@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <!-- TEMP directory -->
+    <temp>C:\temp</temp>
+
+    <black-list-xml-file-path>C:\bin\Xml\taxonomy.blackList.xml</black-list-xml-file-path>
+    <white-list-xml-file-path>C:\bin\Xml\taxonomy.whiteList.xml</white-list-xml-file-path>
+    <rank-list-xml-file-path>C:\bin\Xml\taxonomy.rankList.xml</rank-list-xml-file-path>
+
+    <rank-list-clean-xsl-path>C:\bin\Xsl\RankListClean.xsl</rank-list-clean-xsl-path>
+    <white-list-clean-xsl-path>C:\bin\Xsl\WhiteListClean.xsl</white-list-clean-xsl-path>
+    <black-list-clean-xsl-path>C:\bin\Xsl\WhiteListClean.xsl</black-list-clean-xsl-path>
+
+    <taxa-replaces-query-xsl-path>C:\bin\Xsl\taxonomy.taxa-replaces.xslt</taxa-replaces-query-xsl-path>
+    <taxa-replaces-query-xml-path>C:\temp\taxa-replaces-query.xml</taxa-replaces-query-xml-path>
+
+    <get-taxa-0-path>C:\bin\Xsl\taxonomy.get-taxa.tagged.0.xslt</get-taxa-0-path>
+    <get-taxa-1-path>C:\bin\Xsl\taxonomy.get-taxa.tagged.1.xslt</get-taxa-1-path>
+
+    <get-taxa-plain-0-path>C:\bin\Xsl\taxonomy.get-taxa.plain.0.xslt</get-taxa-plain-0-path>
+    <get-taxa-plain-1-path>C:\bin\Xsl\taxonomy.get-taxa.plain.1.xslt</get-taxa-plain-1-path>
+
+    <taxa-expand-xsl-path>C:\bin\Xsl\taxonomy.expand.xslt</taxa-expand-xsl-path>
+
+    <flora-distrinct-taxa-xsl-path>C:\bin\Xsl\taxa.distinct.xslt</flora-distrinct-taxa-xsl-path>
+    <flora-extracted-taxa-list-path>C:\temp\Xsl\flora-taxa-list.xml</flora-extracted-taxa-list-path>
+    <flora-extract-taxa-parts-output-path>C:\temp\Xsl\flora-taxa-parts.xml</flora-extract-taxa-parts-output-path>
+    <flora-extract-taxa-parts-xsl-path>C:\bin\Xsl\flora.extract.taxa-parts.xslt</flora-extract-taxa-parts-xsl-path>
+    <flora-extract-taxa-xsl-path>C:\bin\Xsl\flora.extract-taxa.xslt</flora-extract-taxa-xsl-path>
+    <flora-generate-templates-xsl-path>C:\bin\Xsl\flora.generate-template.xslt</flora-generate-templates-xsl-path>
+    <flora-templates-output-xml-path>C:\temp\Xsl\flora-templates.xml</flora-templates-output-xml-path>
+    
+    <!-- References -->
+    <references-tag-template-xsl-path>C:\bin\Xsl\references.tag-template.xsl</references-tag-template-xsl-path>
+    <references-tag-template-xml-path>C:\temp\Xsl\references-tag-template.xml</references-tag-template-xml-path>
+    <references-get-references-xsl-path>C:\bin\Xsl\get-references.xslt</references-get-references-xsl-path>
+    <references-sort-references-xsl-path>C:\bin\Xsl\sort-references.xslt</references-sort-references-xsl-path>
+    <references-get-references-xml-path>C:\temp\references.xml</references-get-references-xml-path>
+
+    <!-- ZooBank NLM -->
+    <zoobank-nlm-xsl-path>C:\bin\Xsl\zoobank-nlm.xsl</zoobank-nlm-xsl-path>
+
+    <!-- Formatting xsl -->
+    <format-nlm-to-system>C:\bin\Xsl\format.nlm-to-system.xslt</format-nlm-to-system>
+    <format-system-to-nlm>C:\bin\Xsl\format.system-to-nlm.xslt</format-system-to-nlm>
+    <system-initial-format-xsl-path>C:\bin\Xsl\system.initial-format.xslt</system-initial-format-xsl-path>
+</config>
