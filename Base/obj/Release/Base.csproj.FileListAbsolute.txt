@@ -1,0 +1,6 @@
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\bin\Release\Base.dll
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\bin\Release\Base.pdb
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.src.Base.Messages.Messages.resources
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.csproj.GenerateResource.Cache
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.dll
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.pdb

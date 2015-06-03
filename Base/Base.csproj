@@ -100,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\Base\Messages\helpMessage.txt" />
-    <Content Include="src\Notes.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
     <Content Include="src\Test\json-test\Program.cs.txt" />
