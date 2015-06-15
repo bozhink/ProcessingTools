@@ -105,7 +105,9 @@ namespace Tag
             else if (arguments.Count == 1)
             {
                 InputFileName = args[arguments[0]];
-                OutputFileName = Regex.Replace(InputFileName, @"\A(.*)(\.[A-Za-z0-9]+)\Z", "$1-out$2");
+                OutputFileName = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
+                    + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-out"
+                    + System.IO.Path.GetExtension(InputFileName);
             }
             else if (arguments.Count == 2)
             {
@@ -123,8 +125,13 @@ namespace Tag
             Alert.Message("Output file name: " + OutputFileName);
             Alert.Message(queryFileName);
 
-            config.ExtractedTaxaXml = Regex.Replace(InputFileName, @"\A(.*)(\.[A-Za-z0-9]+)\Z", "$1-extracted-taxa$2");
-            config.ExpandedTaxaXml = Regex.Replace(InputFileName, @"\A(.*)(\.[A-Za-z0-9]+)\Z", "$1-expanded-taxa$2");
+            config.ExtractedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
+                    + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-extracted-taxa"
+                    + System.IO.Path.GetExtension(InputFileName);
+
+            config.ExpandedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
+                    + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-expanded-taxa"
+                    + System.IO.Path.GetExtension(InputFileName);
 
             foreach (int item in dashOptions)
             {

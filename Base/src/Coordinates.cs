@@ -71,6 +71,11 @@ namespace Base
                 // N33.50.613, E107.48.524 --> N33 50.613, E107 48.524
                 coordinateText = Regex.Replace(coordinateText, @"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2");
 
+                // S39°34 283, W71°29 908
+                coordinateText = Regex.Replace(coordinateText, @"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".");
+                // S39°34'283"W 71°29'908"
+                coordinateText = Regex.Replace(coordinateText, @"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ");
+
                 Alert.Message("\n>> " + coordinateText);
 
                 Match latMatch = null;

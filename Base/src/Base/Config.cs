@@ -207,6 +207,13 @@ namespace Base
             set { _systemInitialFormat = value; }
         }
 
+        private string _nlmInitialFormatXslPath;
+        public string nlmInitialFormatXslPath
+        {
+            get { return _nlmInitialFormatXslPath; }
+            set { _nlmInitialFormatXslPath = value; }
+        }
+
         /*
          * ZooBank NLM
          */
@@ -273,6 +280,7 @@ namespace Base
             _referencesGetReferencesXmlPath = configXml["config"]["references-get-references-xml-path"].InnerText;
 
             _systemInitialFormat = configXml["config"]["system-initial-format-xsl-path"].InnerText;
+            //_nlmInitialFormatXslPath = configXml["config"]["nlm-initial-format-xsl-path"].InnerText;
 
             _zoobankNlmPath = configXml["config"]["zoobank-nlm-xsl-path"].InnerText;
 

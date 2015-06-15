@@ -248,8 +248,8 @@ namespace Base.Format
 
             public void FormatOpenTags()
             {
-                xml = Regex.Replace(xml, @"(<(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|year|month|day|volume|fpage|lpage|graphic)([^>]*)>)\s+", "$1");
                 xml = Regex.Replace(xml, @"(<(source|issue-title|bold|italic|underline|monospace)([^>]*)>)\s+", " $1");
+                xml = Regex.Replace(xml, @"(<(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|year|month|day|volume|fpage|lpage|graphic)([^>]*)>)\s+", "$1");
             }
 
             public void FormatPunctuation()
