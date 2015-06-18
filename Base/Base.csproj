@@ -76,6 +76,7 @@
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\Base\Diagnostics.cs" />
     <Compile Include="src\Base\FileProcessor.cs" />
+    <Compile Include="src\Environments.cs" />
     <Compile Include="src\Floats.cs" />
     <Compile Include="src\Flora.cs" />
     <Compile Include="src\Format.cs" />

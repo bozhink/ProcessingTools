@@ -51,6 +51,7 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
             }
+
             return reader;
         }
 
@@ -83,6 +84,7 @@ namespace Base
                     reader.Close();
                 }
             }
+
             // Remove all Carret Return (CR) symbols
             xml = string.Empty;
             try

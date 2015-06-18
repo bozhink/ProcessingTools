@@ -53,6 +53,7 @@ namespace Base
                         }
                     }
                 }
+
                 httpWebResponse.Close();
             }
             catch (Exception ex)
@@ -65,6 +66,7 @@ namespace Base
                 httpWebResponse = null;
                 httpWebRequest = null;
             }
+
             return response;
         }
 
@@ -105,6 +107,7 @@ namespace Base
                         }
                     }
                 }
+
                 httpWebResponse.Close();
             }
             catch (Exception ex)
@@ -117,6 +120,7 @@ namespace Base
                 httpWebResponse = null;
                 httpWebRequest = null;
             }
+
             return response;
         }
 
@@ -160,6 +164,7 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, 0);
             }
+
             return obj;
         }
 
@@ -185,6 +190,7 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, 0);
             }
+
             return xml;
         }
 
@@ -213,6 +219,7 @@ namespace Base
                     Match mKeys = Regex.Match(keys, "(?<=\")[^,\"]*(?=\")");
                     Match mValues = Regex.Match(values, "(?<=\")[^,\"]*(?=\")");
                     Hashtable response = new Hashtable();
+
                     while (mKeys.Success && mValues.Success)
                     {
                         response.Add(mKeys.Value, mValues.Value);
@@ -236,6 +243,7 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, 0);
             }
+
             return result;
         }
 
@@ -279,6 +287,7 @@ namespace Base
                             sBuilder.Append("|");
                         }
                     }
+
                     if (sourceId != null)
                     {
                         sBuilder.Append("&data_source_ids=");
@@ -291,6 +300,7 @@ namespace Base
                             }
                         }
                     }
+
                     Alert.Message(sBuilder.ToString());
                     searchString = sBuilder.ToString();
                 }
@@ -306,6 +316,7 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, 0);
             }
+
             return xmlResult;
         }
     }

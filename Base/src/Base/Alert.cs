@@ -72,6 +72,7 @@ namespace Base
                 {
                     Alert.Message(message);
                 }
+
                 Alert.Message();
             }
             catch (System.IO.IOException)
@@ -92,6 +93,7 @@ namespace Base
                 {
                     Alert.Message(message);
                 }
+
                 Alert.Message();
             }
             catch (System.IO.IOException)
@@ -112,6 +114,7 @@ namespace Base
                 {
                     Alert.Message(message);
                 }
+
                 Alert.Message();
             }
             catch (System.IO.IOException)

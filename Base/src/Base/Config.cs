@@ -2,291 +2,148 @@
 
 namespace Base
 {
-
-    public class Config
+    public class ConfigBuilder
     {
-        private XmlDocument configXml;
-
-        public Config()
+        /// <summary>
+        /// This method reads a config Xml file and builds a config object from it.
+        /// </summary>
+        /// <param name="configFilePath">full path of the config fule</param>
+        /// <returns>initialized config object</returns>
+        public static Config CreateConfig(string configFilePath)
         {
-            configXml = null;
-        }
+            Config config = new Config();
+            XmlDocument configXml = null;
 
-        public Config(string configXmlFilePath)
-        {
-            configXml = new XmlDocument();
             try
             {
-                configXml.Load(configXmlFilePath);
+                configXml.Load(configFilePath);
             }
             catch (System.Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
+                Alert.Message("Error parsing config xml");
+                Alert.Message(e.Message);
             }
             finally
             {
                 if (configXml != null)
                 {
-                    ParseConfigXml();
+                    config.temp = configXml["config"]["temp"].InnerText;
+
+                    config.taxaReplacesQueryXsl = configXml["config"]["taxa-replaces-query-xsl-path"].InnerText;
+                    config.taxaReplacesQueryFile = configXml["config"]["taxa-replaces-query-xml-path"].InnerText;
+                    config.taxaBlackListXml = configXml["config"]["black-list-xml-file-path"].InnerText;
+                    config.taxaWhiteListXml = configXml["config"]["white-list-xml-file-path"].InnerText;
+                    config.taxaRankListXml = configXml["config"]["rank-list-xml-file-path"].InnerText;
+
+                    config.getTaxa0Xsl = configXml["config"]["get-taxa-0-path"].InnerText;
+                    config.getTaxa1Xsl = configXml["config"]["get-taxa-1-path"].InnerText;
+                    config.getTaxaPlain0Xsl = configXml["config"]["get-taxa-plain-0-path"].InnerText;
+                    config.getTaxaPlain1Xsl = configXml["config"]["get-taxa-plain-1-path"].InnerText;
+
+                    config.taxaExpandXsl = configXml["config"]["taxa-expand-xsl-path"].InnerText;
+
+                    config.floraDistrinctTaxaXsl = configXml["config"]["flora-distrinct-taxa-xsl-path"].InnerText;
+                    config.floraExtractedTaxaList = configXml["config"]["flora-extracted-taxa-list-path"].InnerText;
+                    config.floraExtractTaxaPartsOutput = configXml["config"]["flora-extract-taxa-parts-output-path"].InnerText;
+                    config.floraExtractTaxaPartsXsl = configXml["config"]["flora-extract-taxa-parts-xsl-path"].InnerText;
+                    config.floraExtractTaxaXsl = configXml["config"]["flora-extract-taxa-xsl-path"].InnerText;
+                    config.floraGenerateTemplatesXsl = configXml["config"]["flora-generate-templates-xsl-path"].InnerText;
+                    config.floraTemplatesOutputXml = configXml["config"]["flora-templates-output-xml-path"].InnerText;
+
+                    config.referencesTagTemplateXslPath = configXml["config"]["references-tag-template-xsl-path"].InnerText;
+                    config.referencesTagTemplateXmlPath = configXml["config"]["references-tag-template-xml-path"].InnerText;
+                    config.referencesGetReferencesXslPath = configXml["config"]["references-get-references-xsl-path"].InnerText;
+                    config.referencesSortReferencesXslPath = configXml["config"]["references-sort-references-xsl-path"].InnerText;
+                    config.referencesGetReferencesXmlPath = configXml["config"]["references-get-references-xml-path"].InnerText;
+
+                    config.systemInitialFormat = configXml["config"]["system-initial-format-xsl-path"].InnerText;
+                    config.nlmInitialFormatXslPath = configXml["config"]["nlm-initial-format-xsl-path"].InnerText;
+
+                    config.zoobankNlmPath = configXml["config"]["zoobank-nlm-xsl-path"].InnerText;
+
+                    config.formatXslNlmToSystem = configXml["config"]["format-nlm-to-system"].InnerText;
+                    config.formatXslSystemToNlm = configXml["config"]["format-system-to-nlm"].InnerText;
                 }
             }
-        }
 
-        public Config(XmlDocument xml)
-        {
-            configXml = xml;
-            if (configXml != null)
-            {
-                ParseConfigXml();
-            }
+            return config;
         }
+    }
 
-        // Global file names
-        private string _taxaReplacesQueryXsl;
-        public string taxaReplacesQueryXsl
-        {
-            get { return _taxaReplacesQueryXsl; }
-            set { _taxaReplacesQueryXsl = value; }
-        }
+    public class Config
+    {
+        public string taxaReplacesQueryXsl { get; set; }
 
-        private string _taxaReplacesQueryFile;
-        public string taxaReplacesQueryFile
-        {
-            get { return _taxaReplacesQueryFile; }
-            set { _taxaReplacesQueryFile = value; }
-        }
+        public string taxaReplacesQueryFile { get; set; }
 
-        private string _taxaBlackListXml;
-        public string taxaBlackListXml
-        {
-            get { return _taxaBlackListXml; }
-            set { _taxaBlackListXml = value; }
-        }
+        public string taxaBlackListXml { get; set; }
 
-        private string _taxaWhiteListXml;
-        public string taxaWhiteListXml
-        {
-            get { return _taxaWhiteListXml; }
-            set { _taxaWhiteListXml = value; }
-        }
+        public string taxaWhiteListXml { get; set; }
 
-        private string _taxaRankListXml;
-        public string taxaRankListXml
-        {
-            get { return _taxaRankListXml; }
-            set { _taxaRankListXml = value; }
-        }
+        public string taxaRankListXml { get; set; }
 
-        private string _getTaxa0Xsl;
-        public string getTaxa0Xsl
-        {
-            get { return _getTaxa0Xsl; }
-            set { _getTaxa0Xsl = value; }
-        }
+        public string getTaxa0Xsl { get; set; }
 
-        private string _getTaxa1Xsl;
-        public string getTaxa1Xsl
-        {
-            get { return _getTaxa1Xsl; }
-            set { _getTaxa1Xsl = value; }
-        }
+        public string getTaxa1Xsl { get; set; }
 
-        private string _getTaxaPlain0Xsl;
-        public string getTaxaPlain0Xsl
-        {
-            get { return _getTaxaPlain0Xsl; }
-            set { _getTaxaPlain0Xsl = value; }
-        }
+        public string getTaxaPlain0Xsl { get; set; }
 
-        private string _getTaxaPlain1Xsl;
-        public string getTaxaPlain1Xsl
-        {
-            get { return _getTaxaPlain1Xsl; }
-            set { _getTaxaPlain1Xsl = value; }
-        }
+        public string getTaxaPlain1Xsl { get; set; }
 
-        private string _taxaExpandXsl;
-        public string taxaExpandXsl
-        {
-            get { return _taxaExpandXsl; }
-            set { _taxaExpandXsl = value; }
-        }
+        public string taxaExpandXsl { get; set; }
 
-        private string _floraDistrinctTaxaXsl; // XSL to get distinct values of extracted taxa
-        public string floraDistrinctTaxaXsl
-        {
-            get { return _floraDistrinctTaxaXsl; }
-            set { _floraDistrinctTaxaXsl = value; }
-        }
+        // XSL to get distinct values of extracted taxa
+        public string floraDistrinctTaxaXsl { get; set; }
 
-        private string _floraExtractedTaxaList; // Name of the output xml file containing initial extracted taxa list
-        public string floraExtractedTaxaList
-        {
-            get { return _floraExtractedTaxaList; }
-            set { _floraExtractedTaxaList = value; }
-        }
+        // Name of the output xml file containing initial extracted taxa list
+        public string floraExtractedTaxaList { get; set; }
 
-        private string _floraExtractTaxaPartsOutput;
-        public string floraExtractTaxaPartsOutput
-        {
-            get { return _floraExtractTaxaPartsOutput; }
-            set { _floraExtractTaxaPartsOutput = value; }
-        }
+        public string floraExtractTaxaPartsOutput { get; set; }
 
-        private string _floraExtractTaxaPartsXsl;
-        public string floraExtractTaxaPartsXsl
-        {
-            get { return _floraExtractTaxaPartsXsl; }
-            set { _floraExtractTaxaPartsXsl = value; }
-        }
+        public string floraExtractTaxaPartsXsl { get; set; }
 
-        private string _floraExtractTaxaXsl; // XSL to extract taxa from input xml
-        public string floraExtractTaxaXsl
-        {
-            get { return _floraExtractTaxaXsl; }
-            set { _floraExtractTaxaXsl = value; }
-        }
+        // XSL to extract taxa from input xml
+        public string floraExtractTaxaXsl { get; set; }
 
-        private string _floraGenerateTemplatesXsl;
-        public string floraGenerateTemplatesXsl
-        {
-            get { return _floraGenerateTemplatesXsl; }
-            set { _floraGenerateTemplatesXsl = value; }
-        }
+        public string floraGenerateTemplatesXsl { get; set; }
 
-        private string _floraTemplatesOutputXml; // Output Xml file for Flora templates
-        public string floraTemplatesOutputXml
-        {
-            get { return _floraTemplatesOutputXml; }
-            set { _floraTemplatesOutputXml = value; }
-        }
+        // Output Xml file for Flora templates
+        public string floraTemplatesOutputXml { get; set; }
 
         /*
          * References
          */
-        private string _referencesTagTemplateXslPath;
-        public string referencesTagTemplateXslPath
-        {
-            get { return _referencesTagTemplateXslPath; }
-            set { _referencesTagTemplateXslPath = value; }
-        }
+        public string referencesTagTemplateXslPath { get; set; }
 
-        private string _referencesTagTemplateXmlPath;
-        public string referencesTagTemplateXmlPath
-        {
-            get { return _referencesTagTemplateXmlPath; }
-            set { _referencesTagTemplateXmlPath = value; }
-        }
+        public string referencesTagTemplateXmlPath { get; set; }
 
-        private string _referencesGetReferencesXslPath;
-        public string referencesGetReferencesXslPath
-        {
-            get { return _referencesGetReferencesXslPath; }
-            set { _referencesGetReferencesXslPath = value; }
-        }
+        public string referencesGetReferencesXslPath { get; set; }
 
-        private string _referencesSortReferencesXslPath;
-        public string referencesSortReferencesXslPath
-        {
-            get { return _referencesSortReferencesXslPath; }
-            set { _referencesSortReferencesXslPath = value; }
-        }
+        public string referencesSortReferencesXslPath { get; set; }
 
-        private string _referencesGetReferencesXmlPath;
-        public string referencesGetReferencesXmlPath
-        {
-            get { return _referencesGetReferencesXmlPath; }
-            set { _referencesGetReferencesXmlPath = value; }
-        }
-
-
-        private string _systemInitialFormat;
-        public string systemInitialFormat
-        {
-            get { return _systemInitialFormat; }
-            set { _systemInitialFormat = value; }
-        }
-
-        private string _nlmInitialFormatXslPath;
-        public string nlmInitialFormatXslPath
-        {
-            get { return _nlmInitialFormatXslPath; }
-            set { _nlmInitialFormatXslPath = value; }
-        }
+        public string referencesGetReferencesXmlPath { get; set; }
 
         /*
          * ZooBank NLM
          */
-        private string _zoobankNlmPath;
-        public string zoobankNlmPath
-        {
-            get { return _zoobankNlmPath; }
-            set { _zoobankNlmPath = value; }
-        }
+        public string zoobankNlmPath { get; set; }
 
         /*
          * Format
          */
-        private string _formatXslNlmToSystem;
-        public string formatXslNlmToSystem
-        {
-            get { return _formatXslNlmToSystem; }
-            set { _formatXslNlmToSystem = value; }
-        }
+        public string systemInitialFormat { get; set; }
 
-        private string _formatXslSystemToNlm;
-        public string formatXslSystemToNlm
-        {
-            get { return _formatXslSystemToNlm; }
-            set { _formatXslSystemToNlm = value; }
-        }
+        public string nlmInitialFormatXslPath { get; set; }
 
-        private string _temp;
-        public string temp
-        {
-            get { return _temp; }
-            set { _temp = value; }
-        }
+        public string formatXslNlmToSystem { get; set; }
 
-        private void ParseConfigXml()
-        {
-            _temp = configXml["config"]["temp"].InnerText;
+        public string formatXslSystemToNlm { get; set; }
 
-            _taxaReplacesQueryXsl = configXml["config"]["taxa-replaces-query-xsl-path"].InnerText;
-            _taxaReplacesQueryFile = configXml["config"]["taxa-replaces-query-xml-path"].InnerText;
-            _taxaBlackListXml = configXml["config"]["black-list-xml-file-path"].InnerText;
-            _taxaWhiteListXml = configXml["config"]["white-list-xml-file-path"].InnerText;
-            _taxaRankListXml = configXml["config"]["rank-list-xml-file-path"].InnerText;
-
-            _getTaxa0Xsl = configXml["config"]["get-taxa-0-path"].InnerText;
-            _getTaxa1Xsl = configXml["config"]["get-taxa-1-path"].InnerText;
-            _getTaxaPlain0Xsl = configXml["config"]["get-taxa-plain-0-path"].InnerText;
-            _getTaxaPlain1Xsl = configXml["config"]["get-taxa-plain-1-path"].InnerText;
-
-            _taxaExpandXsl = configXml["config"]["taxa-expand-xsl-path"].InnerText;
-
-            _floraDistrinctTaxaXsl = configXml["config"]["flora-distrinct-taxa-xsl-path"].InnerText;
-            _floraExtractedTaxaList = configXml["config"]["flora-extracted-taxa-list-path"].InnerText;
-            _floraExtractTaxaPartsOutput = configXml["config"]["flora-extract-taxa-parts-output-path"].InnerText;
-            _floraExtractTaxaPartsXsl = configXml["config"]["flora-extract-taxa-parts-xsl-path"].InnerText;
-            _floraExtractTaxaXsl = configXml["config"]["flora-extract-taxa-xsl-path"].InnerText;
-            _floraGenerateTemplatesXsl = configXml["config"]["flora-generate-templates-xsl-path"].InnerText;
-            _floraTemplatesOutputXml = configXml["config"]["flora-templates-output-xml-path"].InnerText;
-
-            _referencesTagTemplateXslPath = configXml["config"]["references-tag-template-xsl-path"].InnerText;
-            _referencesTagTemplateXmlPath = configXml["config"]["references-tag-template-xml-path"].InnerText;
-            _referencesGetReferencesXslPath = configXml["config"]["references-get-references-xsl-path"].InnerText;
-            _referencesSortReferencesXslPath = configXml["config"]["references-sort-references-xsl-path"].InnerText;
-            _referencesGetReferencesXmlPath = configXml["config"]["references-get-references-xml-path"].InnerText;
-
-            _systemInitialFormat = configXml["config"]["system-initial-format-xsl-path"].InnerText;
-            //_nlmInitialFormatXslPath = configXml["config"]["nlm-initial-format-xsl-path"].InnerText;
-
-            _zoobankNlmPath = configXml["config"]["zoobank-nlm-xsl-path"].InnerText;
-
-            _formatXslNlmToSystem = configXml["config"]["format-nlm-to-system"].InnerText;
-            _formatXslSystemToNlm = configXml["config"]["format-system-to-nlm"].InnerText;
-        }
+        /*
+         * Directories
+         */
+        // temp directory path
+        public string temp { get; set; }
 
         /*
          * Tagging parameters

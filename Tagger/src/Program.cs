@@ -54,7 +54,7 @@ namespace Tag
         static bool parseTreatmentMetaWithCol = false;
         static bool testFlag = false;
         static bool normalizeFlag = false;
-        static Config config = new Config("C:\\bin\\config.xml");
+        static Config config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
 
         static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
 
@@ -541,7 +541,8 @@ namespace Tag
             }
             else if (testFlag)
             {
-                //Test test = new Test(fp.Xml);
+                Test test = new Test(fp.Xml);
+                test.Config = config;
                 //test.ExtractSystemChecklistAuthority();
                 //fp.Xml = test.Xml;
 
@@ -558,8 +559,10 @@ namespace Tag
                 //    Alert.Message(obj.records[0].nam + "  " + obj.records[0].rnk);
                 //}
 
-                XmlDocument xx = Base.Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
-                fp.Xml = xx.OuterXml;
+                //XmlDocument xx = Base.Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
+                //fp.Xml = xx.OuterXml;
+
+
 
             }
             else if (generateZooBankNlm)

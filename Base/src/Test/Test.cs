@@ -47,5 +47,15 @@ namespace Base
 
             xml = xmlDocument.OuterXml;
         }
+
+        public void TestEnvironments()
+        {
+            Environments envs = new Environments(config);
+            envs.Xml = xml;
+
+            Environments.EnvironmentRecord envr;
+            envr.id = "1";
+            envr.content = "122";
+        }
     }
 }

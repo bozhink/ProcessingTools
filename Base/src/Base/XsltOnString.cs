@@ -45,6 +45,7 @@ namespace Base
                 Alert.Message("ApplyTransofm: ERROR: the xml string is emplty!");
                 return;
             }
+
             XslCompiledTransform xslTransform = new XslCompiledTransform();
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.PreserveWhitespace = true;
@@ -97,6 +98,7 @@ namespace Base
                     result = streamReader.ReadToEnd();
                 }
             }
+
             return result;
         }
 
@@ -108,6 +110,7 @@ namespace Base
                 Alert.Message("ApplyTransofm: ERROR: the xslFileName string is emplty!");
                 return result;
             }
+
             XslCompiledTransform xslTransform = new XslCompiledTransform();
             MemoryStream stream = new MemoryStream();
             StreamReader streamReader = null;
@@ -129,6 +132,7 @@ namespace Base
                     result = streamReader.ReadToEnd();
                 }
             }
+
             return result;
         }
 
@@ -140,6 +144,7 @@ namespace Base
                 Alert.Message("ApplyTransofm: ERROR: the xslFileName string is emplty!");
                 return result;
             }
+
             XslCompiledTransform xslTransform = new XslCompiledTransform();
             MemoryStream stream = new MemoryStream();
             StreamReader streamReader = null;
@@ -161,6 +166,7 @@ namespace Base
                     result = streamReader.ReadToEnd();
                 }
             }
+
             return result;
         }
     }

@@ -109,6 +109,7 @@ namespace Base.ZooBank
                             }
                         }
                     }
+
                     Alert.Message();
                 }
                 else
@@ -133,6 +134,7 @@ namespace Base.ZooBank
                         nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
                         Alert.Message(nodeList[i].InnerXml);
                     }
+
                     Alert.Message();
                 }
                 else
@@ -208,6 +210,7 @@ namespace Base.ZooBank
                         Alert.Message("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
                         Alert.Exit(1);
                     }
+
                     selfUri.InnerText = articleLsid;
                 }
 

@@ -22,6 +22,7 @@ namespace Base
             {
                 stackPath += sf[i].GetMethod().Name + ".";
             }
+
             stackPath += sf[1].GetMethod().Name;
 
             return stackPath;
