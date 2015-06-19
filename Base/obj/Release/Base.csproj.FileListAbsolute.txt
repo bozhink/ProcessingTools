@@ -5,3 +5,4 @@ C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools
 C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\bin\Release\Base.pdb
 C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.dll
 C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.pdb
+C:\Users\Bozhin Karaivanov\Documents\Visual Studio 2013\Projects\ProcessingTools\Base\obj\Release\Base.csprojResolveAssemblyReference.cache

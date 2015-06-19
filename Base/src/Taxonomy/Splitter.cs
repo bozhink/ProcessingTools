@@ -217,6 +217,9 @@ namespace Base
                 string replace = str;
 
                 // Parse different parts of the taxonomic name
+                replace = Regex.Replace(replace,
+                    @"\b([Ss]ubvar)\b(\.\s*|\s+)([A-Za-zçäöüëïâôûêîæœ\.-]+)",
+                    "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subvariety\">$3</tn-part>");
 
                 replace = Regex.Replace(replace,
                     @"\b([Vv]ar|v)\b(\.\s*|\s+)([A-Za-zçäöüëïâôûêîæœ\.-]+)",
@@ -292,6 +295,10 @@ namespace Base
                 replace = Regex.Replace(replace,
                     @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)",
                     "<tn-part type=\"genus\">$1</tn-part>");
+                // species
+                replace = Regex.Replace(replace,
+                    @"\A([a-zçäöüëïâôûêîæœ\.-]+)",
+                    @"<tn-part type=""species"">$1</tn-part>");
 
                 // Try to parse whole string
 

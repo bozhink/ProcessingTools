@@ -242,14 +242,14 @@ namespace Base.Format
 
             public void FormatCloseTags()
             {
-                xml = Regex.Replace(xml, @"\s+(</(source|issue-title|bold|italic|underline|monospace)>)", "$1 ");
-                xml = Regex.Replace(xml, @"\s+(</(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|year|month|day|volume|fpage|lpage|graphic)>)", "$1");
+                xml = Regex.Replace(xml, @"\s+(</(source|issue-title|bold|italic|underline|monospace|year|month|day|volume|fpage|lpage)>)", "$1 ");
+                xml = Regex.Replace(xml, @"\s+(</(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|graphic)>)", "$1");
             }
 
             public void FormatOpenTags()
             {
-                xml = Regex.Replace(xml, @"(<(source|issue-title|bold|italic|underline|monospace)([^>]*)>)\s+", " $1");
-                xml = Regex.Replace(xml, @"(<(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|year|month|day|volume|fpage|lpage|graphic)([^>]*)>)\s+", "$1");
+                xml = Regex.Replace(xml, @"(<(source|issue-title|bold|italic|underline|monospace|year|month|day|volume|fpage|lpage)([^>]*)>)\s+", " $1");
+                xml = Regex.Replace(xml, @"(<(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|graphic)([^>]*)>)\s+", "$1");
             }
 
             public void FormatPunctuation()
