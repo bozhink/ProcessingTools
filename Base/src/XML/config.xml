@@ -44,4 +44,5 @@
     <format-nlm-to-system>C:\bin\Xsl\format.nlm-to-system.xslt</format-nlm-to-system>
     <format-system-to-nlm>C:\bin\Xsl\format.system-to-nlm.xslt</format-system-to-nlm>
     <system-initial-format-xsl-path>C:\bin\Xsl\system.initial-format.xslt</system-initial-format-xsl-path>
+    <nlm-initial-format-xsl-path>C:\bin\Xsl\nlm.initial-format.xslt</nlm-initial-format-xsl-path>
 </config>

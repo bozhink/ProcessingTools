@@ -1,0 +1,1 @@
+﻿select Content, ContentId from dbo.environments_names order by LEN(Content) desc;

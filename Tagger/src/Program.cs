@@ -54,7 +54,7 @@ namespace Tag
         static bool parseTreatmentMetaWithCol = false;
         static bool testFlag = false;
         static bool normalizeFlag = false;
-        static Config config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
+        static Config config;
 
         static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
 
@@ -64,6 +64,11 @@ namespace Tag
 
         static void Main(string[] args)
         {
+            /*
+             * Parse config file
+             */
+            config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
+
             /*
              * Initial check of input parameters
              */
@@ -562,7 +567,7 @@ namespace Tag
                 //XmlDocument xx = Base.Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
                 //fp.Xml = xx.OuterXml;
 
-
+                test.SqlSelect();
 
             }
             else if (generateZooBankNlm)

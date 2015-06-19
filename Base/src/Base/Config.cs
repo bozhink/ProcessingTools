@@ -12,8 +12,7 @@ namespace Base
         public static Config CreateConfig(string configFilePath)
         {
             Config config = new Config();
-            XmlDocument configXml = null;
-
+            XmlDocument configXml = new XmlDocument();
             try
             {
                 configXml.Load(configFilePath);

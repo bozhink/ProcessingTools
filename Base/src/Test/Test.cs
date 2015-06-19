@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Data.SqlClient;
 
 namespace Base
 {
@@ -56,6 +57,30 @@ namespace Base
             Environments.EnvironmentRecord envr;
             envr.id = "1";
             envr.content = "122";
+        }
+
+        public void SqlSelect()
+        {
+            //
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\ProjectsV12;Initial Catalog=Environments;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            {
+                Alert.Message(connection.ConnectionString);
+                Alert.Message(connection.Database);
+                connection.Open();
+                string query = "select Content, ContentId from dbo.environments_names order by LEN(Content) desc;";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Alert.Message(reader.GetString(0) + " " + reader.GetInt32(1));
+                        }
+                    }
+                }
+                connection.Dispose();
+                connection.Close();
+            }
         }
     }
 }

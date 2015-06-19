@@ -113,6 +113,7 @@
     <Content Include="src\XSL\copy.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="src\XSL\dwc-to-named-content.xslt" />
     <Content Include="src\XSL\Flora\flora.extract-taxa.xslt">
       <SubType>Designer</SubType>
     </Content>
