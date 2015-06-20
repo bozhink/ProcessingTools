@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<references>
+  <article>10.3897/zookeys.509.8897</article>
+  <reference-list title="">
+    <reference id="B1" year="2006" authors="Agnarsson_I" />
+    <reference id="B2" year="2014" authors="Agnarsson_I, Cheng_R-C, Kuntner_M" />
+    <reference id="B3" year="2013" authors="Agnarsson_I, Coddington_JA, Kuntner_M" />
+    <reference id="B4" year="2005" authors="Agnarsson_I, Kuntner_M" />
+    <reference id="B5" year="2012" authors="Agnarsson_I, Kuntner_M" />
+    <reference id="B6" year="2010a" authors="Agnarsson_I, Kuntner_M, Blackledge_TA" />
+    <reference id="B7" year="2010b" authors="Agnarsson_I, Kuntner_M, Coddington_JA, Blackledge_TA" />
+    <reference id="B8" year="2007" authors="Agnarsson_I, Maddison_WP, Aviles_L" />
+    <reference id="B9" year="2010c" authors="Agnarsson_I, Maddison_WP, Aviles_L" />
+    <reference id="B10" year="2007" authors="Albo_MJ, Viera_C, Costa_FG" />
+    <reference id="B11" year="2012" authors="Alvarez-Padilla_F, Ubick_D, Griswold_CE" />
+    <reference id="B12" year="1986" authors="Aviles_L" />
+    <reference id="B13" year="2006" authors="Aviles_L, Bukowski_T-C" />
+    <reference id="B14" year="1998" authors="Aviles_L, Gelsey_G" />
+    <reference id="B15" year="2006" authors="Aviles_L, Maddison_WP, Agnarsson_I" />
+    <reference id="B16" year="2015" authors="Čandek_K, Kuntner_M" />
+    <reference id="B17" year="2007" authors="Dijkstra_KDB" />
+    <reference id="B18" year="1997" authors="Fisher_BL" />
+    <reference id="B19" year="1994" authors="Folmer_O, Black_M, Hoeh_W, Lutz_R, Vrijenhoek_R" />
+    <reference id="B20" year="2002" authors="Gillespie_RG, Roderick_GK" />
+    <reference id="B21" year="2009" authors="Green_P" />
+    <reference id="B22" year="2002" authors="Green_P, Ewing_B" />
+    <reference id="B23" year="2011a" authors="Gregorič_M, Agnarsson_I, Blackledge_TA, Kuntner_M" />
+    <reference id="B24" year="2011b" authors="Gregorič_M, Agnarsson_I, Blackledge_TA, Kuntner_M" />
+    <reference id="B25" year="2015" authors="Gregorič_M, Agnarsson_I, Blackledge_TA, Kuntner_M" />
+    <reference id="B26" year="1997" authors="Griswold_CE" />
+    <reference id="B27" year="2000" authors="Griswold_CE" />
+    <reference id="B28" year="2001" authors="Griswold_CE, Ledford_J" />
+    <reference id="B29" year="2001" authors="Hedin_MC, Maddison_WP" />
+    <reference id="B30" year="2001" authors="Huelsenbeck_JP, Ronquist_F" />
+    <reference id="B31" year="1994" authors="Jocqué_R" />
+    <reference id="B32" year="2005" authors="Karanth_KP, Delefosse_T, Rakotosamimanana_B, Parsons_TJ, Yoder_AD" />
+    <reference id="B33" year="2013" authors="Katoh_S" />
+    <reference id="B34" year="2012" authors="Krishnankutty_S" />
+    <reference id="B35" year="2006" authors="Kuntner_M" />
+    <reference id="B36" year="2007" authors="Kuntner_M" />
+    <reference id="B37" year="2010" authors="Kuntner_M, Agnarsson_I" />
+    <reference id="B38" year="2011" authors="Kuntner_M, Agnarsson_I" />
+    <reference id="B39" year="2010" authors="Maddison_DR, Maddison_WP" />
+    <reference id="B40" year="2014" authors="Maddison_WP, Maddison_DR" />
+    <reference id="B41" year="2008" authors="Posada_D" />
+    <reference id="B42" year="2012" authors="Rainio_J" />
+    <reference id="B43" year="2007" authors="Rambaut_A, Drummond_AJ" />
+    <reference id="B44" year="2007" authors="Raxworthy_CJ, Ingram_CM, Rabibisoa_N, Pearson_RG" />
+    <reference id="B45" year="2008" authors="Raxworthy_CJ, Pearson_RG, Zimkus_BM, Reddy_S, Deo_AJ, Nussbaum_RA, Ingram_CM" />
+    <reference id="B46" year="2003" authors="Ronquist_F, Huelsenbeck_JP" />
+    <reference id="B47" year="1994" authors="Simon_C, Frati_F, Beckenbach_A, Crespi_B, Liu_H, Flook_P" />
+    <reference id="B48" year="2013" authors="Tamura_K, Stecher_G, Peterson_D, Filipski_A, Kumar_S" />
+    <reference id="B49" year="2003" authors="Vences_M, Kosuch_J, Glaw_F, Bohme_W, Veith_M" />
+    <reference id="B50" year="2004" authors="Vences_M, Wanke_S, Vieites_DR, Branch_WR, Glaw_F, Meyer_A" />
+    <reference id="B51" year="2010" authors="Vidal_N, Marin_J, Morini_M, Donnellan_S, Branch_WR, Thomas_R, Vences_M, Wynn_A, Cruaud_C, Hedges_SB" />
+    <reference id="B52" year="1990" authors="White_TJ, Bruns_T, Lee_S, Taylor_JW" />
+    <reference id="B53" year="1997" authors="Whiting_MF, Carpenter_JC, Wheeler_QD, Wheeler_WC" />
+    <reference id="B54" year="2007" authors="Wood_HM, Griswold_CE, Spicer_GS" />
+    <reference id="B55" year="2006" authors="Yoder_AD, Nowak_MD" />
+  </reference-list>
+</references>

@@ -46,3 +46,6 @@ Options:
 	--zoobank-nlm = Generate NLM XML file for ZooBank registration
 	--zoobank-json = Clone ZooBank lsid from JSON file: <in xml> <out xml> <json>
 	-z or --zoobank-clone = clone zoobank lsid; syntax: <in xml> <out xml> <nlm xml>
+
+	--environments = tag environments (ENVO ID-s)
+

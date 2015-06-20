@@ -135,5 +135,32 @@ namespace Base
                 }
             }
         }
+
+        public static string ReadAllLinesToString(string fileName)
+        {
+            string content = string.Empty;
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                string[] lines = System.IO.File.ReadAllLines(fileName);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    sb.Append(lines[i]);
+                    sb.Append('\n');
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.Message("ReadAllLinesToString Exception:");
+                Alert.Message(e.Message);
+                Alert.Exit(1);
+            }
+            finally
+            {
+                content = sb.ToString();
+            }
+
+            return content;
+        }
     }
 }

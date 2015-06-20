@@ -11,6 +11,21 @@
     <AssemblyName>Base</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,14 +116,24 @@
     <Compile Include="src\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Environments.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Environments_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Environments.mdf</DependentUpon>
+    </Content>
+    <Content Include="Data\Sql\environments_entities.sql" />
+    <Content Include="Data\Sql\environments_global.sql" />
+    <Content Include="Data\Sql\environments_groups.sql" />
+    <Content Include="Data\Sql\environments_names.sql" />
     <Content Include="src\Base\Messages\helpMessage.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
     <Content Include="src\Test\json-test\Program.cs.txt" />
-    <Content Include="src\XML\config.xml" />
-    <Content Include="src\XML\taxonomy.blackList.xml" />
-    <Content Include="src\XML\taxonomy.rankList.xml" />
-    <Content Include="src\XML\taxonomy.whiteList.xml" />
+    <Content Include="Data\Xml\taxonomy.blackList.xml" />
+    <Content Include="Data\Xml\taxonomy.rankList.xml" />
+    <Content Include="Data\Xml\taxonomy.whiteList.xml" />
     <Content Include="src\XSL\copy-nlm.xslt" />
     <Content Include="src\XSL\copy.xslt">
       <SubType>Designer</SubType>
@@ -168,9 +193,27 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="src\aphia.wsdl" />
+    <None Include="src\Base\config.json" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

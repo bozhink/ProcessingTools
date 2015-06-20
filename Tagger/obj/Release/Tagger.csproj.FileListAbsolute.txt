@@ -1,0 +1,10 @@
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Tagger.exe.config
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Tagger.exe
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Tagger.pdb
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Base.dll
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Base.pdb
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\obj\Release\Tagger.csprojResolveAssemblyReference.cache
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\obj\Release\Tagger.exe
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\obj\Release\Tagger.pdb
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Data\Environments.mdf
+C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger\bin\Release\Data\Environments_log.ldf

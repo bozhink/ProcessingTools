@@ -387,7 +387,7 @@ namespace Base
 
                 if (splitWithDatabaseXmlFile)
                 {
-                    xmlDocument = Splitter.SplitHigherTaxaWithDatabaseXmlFile(config.taxaRankListXml, xmlDocument, config.NlmStyle);
+                    xmlDocument = Splitter.SplitHigherTaxaWithDatabaseXmlFile(config.rankListXmlFilePath, xmlDocument, config.NlmStyle);
                 }
                 if (splitWithAphiaApi)
                 {

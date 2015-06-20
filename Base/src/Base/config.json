@@ -1,0 +1,39 @@
+{
+    "tempDirectoryPath": "C:\\temp",
+
+    "blackListXmlFilePath": "C:\\bin\\Xml\\taxonomy.blackList.xml",
+    "whiteListXmlFilePath": "C:\\bin\\Xml\\taxonomy.whiteList.xml",
+    "rankListXmlFilePath": "C:\\bin\\Xml\\taxonomy.rankList.xml",
+
+    "rankListCleanXslPath": "C:\\bin\\Xsl\\RankListClean.xsl",
+    "whiteListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
+    "blackListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
+
+    "taxaReplacesQueryXslPath": "C:\\bin\\Xsl\\taxonomy.taxa-replaces.xslt",
+    "taxaReplacesQueryXmlPath": "C:\\temp\\taxa-replaces-query.xml",
+
+    "taxaExpandXslPath": "C:\\bin\\Xsl\\taxonomy.expand.xslt",
+
+    "floraDistrinctTaxaXslPath": "C:\\bin\\Xsl\\taxa.distinct.xslt",
+    "floraExtractedTaxaListPath": "C:\\temp\\flora-taxa-list.xml",
+    "floraExtractTaxaPartsOutputPath": "C:\\temp\\flora-taxa-parts.xml",
+    "floraExtractTaxaPartsXslPath": "C:\\bin\\Xsl\\flora.extract.taxa-parts.xslt",
+    "floraExtractTaxaXslPath": "C:\\bin\\Xsl\\flora.extract-taxa.xslt",
+    "floraGenerateTemplatesXslPath": "C:\\bin\\Xsl\\flora.generate-template.xslt",
+    "floraTemplatesOutputXmlPath": "C:\\temp\\flora-templates.xml",
+
+    "referencesTagTemplateXslPath": "C:\\bin\\Xsl\\references.tag-template.xsl",
+    "referencesTagTemplateXmlPath": "C:\\temp\\references-tag-template.xml",
+    "referencesGetReferencesXslPath": "C:\\bin\\Xsl\\get-references.xslt",
+    "referencesSortReferencesXslPath": "C:\\bin\\Xsl\\sort-references.xslt",
+    "referencesGetReferencesXmlPath": "C:\\temp\\references.xml",
+
+    "zoobankNlmXslPath": "C:\\bin\\Xsl\\zoobank-nlm.xsl",
+
+    "formatXslNlmToSystem": "C:\\bin\\Xsl\\format.nlm-to-system.xslt",
+    "formatXslSystemToNlm": "C:\\bin\\Xsl\\format.system-to-nlm.xslt",
+    "systemInitialFormatXslPath": "C:\\bin\\Xsl\\system.initial-format.xslt",
+    "nlmInitialFormatXslPath": "C:\\bin\\Xsl\\nlm.initial-format.xslt",
+
+    "environmentsDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
+}

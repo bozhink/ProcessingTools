@@ -19,17 +19,17 @@ namespace Base
 
         public void ExtractTaxa()
         {
-            xml = XsltOnString.ApplyTransform(config.floraExtractTaxaXsl, xml);
+            xml = XsltOnString.ApplyTransform(config.floraExtractTaxaXslPath, xml);
         }
 
         public string ExtractTaxaParts()
         {
-            return XsltOnString.ApplyTransform(config.floraExtractTaxaPartsXsl, xml);
+            return XsltOnString.ApplyTransform(config.floraExtractTaxaPartsXslPath, xml);
         }
 
         public void DistinctTaxa()
         {
-            xml = XsltOnString.ApplyTransform(config.floraDistrinctTaxaXsl, xml);
+            xml = XsltOnString.ApplyTransform(config.floraDistrinctTaxaXslPath, xml);
         }
 
         public static string DistinctTaxa(string xml)
@@ -40,8 +40,8 @@ namespace Base
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(XsltOnString.ApplyTransform(config.floraGenerateTemplatesXsl, xml)));
-            generatedTemplate.Save(config.floraTemplatesOutputXml);
+            generatedTemplate.LoadXml(Flora.DistinctTaxa(XsltOnString.ApplyTransform(config.floraGenerateTemplatesXslPath, xml)));
+            generatedTemplate.Save(config.floraTemplatesOutputXmlPath);
         }
 
         public void PerformReplace()
@@ -49,7 +49,7 @@ namespace Base
             ParseXmlStringToXmlDocument();
 
             XmlDocument template = new XmlDocument();
-            template.Load(config.floraTemplatesOutputXml);
+            template.Load(config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
             Alert.Message(root.ChildNodes.Count);
@@ -165,7 +165,7 @@ namespace Base
         {
             ParseXmlStringToXmlDocument();
             XmlDocument template = new XmlDocument();
-            template.Load(config.floraTemplatesOutputXml);
+            template.Load(config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
 

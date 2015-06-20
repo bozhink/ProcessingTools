@@ -54,6 +54,7 @@ namespace Tag
         static bool parseTreatmentMetaWithCol = false;
         static bool testFlag = false;
         static bool normalizeFlag = false;
+        static bool tagEnvironments = false;
         static Config config;
 
         static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
@@ -67,7 +68,9 @@ namespace Tag
             /*
              * Parse config file
              */
-            config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
+            //config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
+            config = ConfigBuilder.CreateConfig("C:\\bin\\config.json");
+
 
             /*
              * Initial check of input parameters
@@ -130,13 +133,13 @@ namespace Tag
             Alert.Message("Output file name: " + OutputFileName);
             Alert.Message(queryFileName);
 
-            config.ExtractedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
-                    + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-extracted-taxa"
-                    + System.IO.Path.GetExtension(InputFileName);
+            //config.ExtractedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
+            //        + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-extracted-taxa"
+            //        + System.IO.Path.GetExtension(InputFileName);
 
-            config.ExpandedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
-                    + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-expanded-taxa"
-                    + System.IO.Path.GetExtension(InputFileName);
+            //config.ExpandedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
+            //        + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-expanded-taxa"
+            //        + System.IO.Path.GetExtension(InputFileName);
 
             foreach (int item in dashOptions)
             {
@@ -306,6 +309,10 @@ namespace Tag
                 {
                     tagTableFn = true;
                 }
+                else if (args[item].CompareTo("--environments") == 0)
+                {
+                    tagEnvironments = true;
+                }
             }
             /*
              * Now input parameters are set.
@@ -325,7 +332,7 @@ namespace Tag
                 if (!config.NlmStyle)
                 {
                     Base.Format.NlmSystem.Format fmt = new Base.Format.NlmSystem.Format();
-                    fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormat, fp.GetXmlReader());
+                    fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
 
                     fmt.InitialFormat();
 
@@ -501,8 +508,8 @@ namespace Tag
             }
             else if (flora)
             {
-                FileProcessor flp = new FileProcessor(InputFileName, config.floraExtractedTaxaList);
-                FileProcessor flpp = new FileProcessor(InputFileName, config.floraExtractTaxaPartsOutput);
+                FileProcessor flp = new FileProcessor(InputFileName, config.floraExtractedTaxaListPath);
+                FileProcessor flpp = new FileProcessor(InputFileName, config.floraExtractTaxaPartsOutputPath);
                 Flora fl = new Flora();
                 fl.Config = config;
                 fl.Xml = fp.Xml;
@@ -691,6 +698,19 @@ namespace Tag
                 {
                     fp.Xml = MainProcessing(fp.Xml, timer);
                 }
+            }
+
+            if (tagEnvironments)
+            {
+                timer.Start();
+                Alert.Message("\n\tTag environments.\n");
+                Base.Environments environments = new Environments(fp.Xml);
+                environments.Config = config;
+
+                environments.TagEnvironmentsRecords();
+
+                fp.Xml = environments.Xml;
+                timer.WriteOutput();
             }
 
             timer.Start();
@@ -950,7 +970,7 @@ namespace Tag
             References refs = new References(Xml);
             
             config.referencesGetReferencesXmlPath = "zzz-" + System.IO.Path.GetFileNameWithoutExtension(fileName) + "-references.xml";
-            config.referencesTagTemplateXmlPath = config.temp + "\\zzz-" + System.IO.Path.GetFileNameWithoutExtension(fileName) + "-references-tag-template.xml";
+            config.referencesTagTemplateXmlPath = config.tempDirectoryPath + "\\zzz-" + System.IO.Path.GetFileNameWithoutExtension(fileName) + "-references-tag-template.xml";
 
             refs.Config = config;
             refs.GenerateTagTemplateXml();

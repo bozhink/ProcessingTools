@@ -182,7 +182,7 @@ namespace Base
                 try
                 {
                     XmlDocument blackList = new XmlDocument();
-                    blackList.Load(config.taxaBlackListXml);
+                    blackList.Load(config.blackListXmlFilePath);
                     foreach (XmlNode node in blackList.SelectNodes("//item"))
                     {
                         xml = Regex.Replace(xml, "<(tn|tp:taxon-name) [^>]*>((?i)" + node.InnerXml + "(\\s+.*?)?(\\.?))</(tn|tp:taxon-name)>", "$2");
@@ -226,8 +226,8 @@ namespace Base
             public void ExtractTaxaToReplaceQuery()
             {
                 FileProcessor fp = new FileProcessor();
-                fp.OutputFileName = config.taxaReplacesQueryFile;
-                fp.Xml = XsltOnString.ApplyTransform(config.taxaReplacesQueryXsl, xml);
+                fp.OutputFileName = config.taxaReplacesQueryXmlPath;
+                fp.Xml = XsltOnString.ApplyTransform(config.taxaReplacesQueryXslPath, xml);
                 fp.WriteXMLFile();
             }
 
@@ -235,7 +235,7 @@ namespace Base
             {
                 FileProcessor fp = new FileProcessor();
                 fp.OutputFileName = outputFileName;
-                fp.Xml = XsltOnString.ApplyTransform(config.taxaReplacesQueryXsl, xml);
+                fp.Xml = XsltOnString.ApplyTransform(config.taxaReplacesQueryXslPath, xml);
                 fp.WriteXMLFile();
             }
 
@@ -301,7 +301,7 @@ namespace Base
                 try
                 {
                     XmlDocument whiteList = new XmlDocument();
-                    whiteList.Load(config.taxaWhiteListXml);
+                    whiteList.Load(config.whiteListXmlFilePath);
                     foreach (XmlNode item in whiteList.SelectNodes("//*[count(*) = 0]"))
                     {
                         xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, "(?<!<tn [^>]*>)(?<!name [^>]*>)(?<!<[^>]+=\"[^>]*)(?i)\\b(" + item.InnerText + ")\\b(?!\"\\s?>)(?!</tn)(?!</tp:)", higherTaxaReplacePattern);
@@ -653,17 +653,17 @@ namespace Base
             // Flora-like tagging methods
             public static string ExtractTaxa(Config config, string xml)
             {
-                return XsltOnString.ApplyTransform(config.floraExtractTaxaXsl, xml);
+                return XsltOnString.ApplyTransform(config.floraExtractTaxaXslPath, xml);
             }
 
             public static string DistinctTaxa(Config config, string xml)
             {
-                return XsltOnString.ApplyTransform(config.floraDistrinctTaxaXsl, xml);
+                return XsltOnString.ApplyTransform(config.floraDistrinctTaxaXslPath, xml);
             }
 
             public static string GenerateTagTemplate(Config config, string xml)
             {
-                return XsltOnString.ApplyTransform(config.floraGenerateTemplatesXsl, xml);
+                return XsltOnString.ApplyTransform(config.floraGenerateTemplatesXslPath, xml);
             }
 
 
