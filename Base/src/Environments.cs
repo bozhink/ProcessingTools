@@ -206,18 +206,92 @@ namespace Base
         public string TagOrderNormalizer(string text, string tagName)
         {
             XmlElement testXmlNode = xmlDocument.CreateElement("test");
+        NormalizeXmlNode:
             try
             {
                 testXmlNode.InnerXml = text;
             }
             catch (XmlException e)
             {
-                //
-                Alert.Message("Invalid Xml");
-                text = Regex.Replace(text,
-                    @"(<([^>\s/]+)[^>/]*>)(.*?)(?!</\2>)(<" + tagName + @"\b[^>]*>)",
-                    "$1$3</$2>$4$1");
-                Alert.Message(text);
+                for (Match m = Regex.Match(text, @"<(" + tagName + @")\b[^>]*>.*?</\1>"); m.Success; m = m.NextMatch())
+                {
+                    // <tagName> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
+                    // will be
+                    // </x3></x4><tagName><x4><x3> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
+                    string replace = m.Value;
+
+                    List<string> tags = new List<string>();
+                    for (Match m1 = Regex.Match(replace, @"(?<=<)/?[^\s/<>""'!\?]+(?=[^>]*>)"); m1.Success; m1 = m1.NextMatch())
+                    {
+                        string tName = m1.Value;
+                        if (tName[0] == '/')
+                        {
+                            // This is closing tag
+                            int lastItemIndex = tags.Count - 1;
+                            if (String.Compare(tags[lastItemIndex], tName.Substring(1)) == 0)
+                            {
+                                tags.RemoveAt(lastItemIndex);
+                            }
+                            else
+                            {
+                                tags.Add(tName);
+                            }
+                        }
+                        else
+                        {
+                            tags.Add(tName);
+                        }
+                    }
+
+                    // Remove the first and last taggs items because they must be tagName and /tagName
+                    {
+                        int lastItemIndex = tags.Count - 1;
+                        if (lastItemIndex > 0)
+                        {
+                            tags.RemoveAt(lastItemIndex);
+                            tags.RemoveAt(0);
+                        }
+                    }
+
+
+                    for (int j = 0; j < tags.Count; j++)
+                    {
+                        Alert.Message(tags[j]);
+                    }
+                    Alert.Message("=======");
+
+                    string prefix, suffix, body;
+
+                    prefix = Regex.Match(m.Value, @"\A<(" + tagName + @")\b[^>]*>").Value;
+                    Alert.Message(prefix);
+                    body = Regex.Replace(Regex.Match(m.Value, ".*?(?=</" + tagName + ">)").Value,
+                        @"\A<" + tagName + @"\b[^>]*>", "");
+                    Alert.Message(body);
+                    suffix = "</" + tagName + ">";
+                    Alert.Message(suffix);
+
+                    for (int j = 0; j < tags.Count; j++)
+                    {
+                        // In this way we lose attributes in added open tags
+                        if (tags[j][0] == '/')
+                        {
+                            string openTag = "<" + tags[j].Substring(1) + ">";
+                            string closeTag = "<" + tags[j] + ">";
+                            prefix = closeTag + prefix + openTag;
+                        }
+                        else
+                        {
+                            string openTag = "<" + tags[j] + ">";
+                            string closeTag = "</" + tags[j] + ">";
+                            suffix = closeTag + suffix + openTag;
+                        }
+                    }
+
+                    replace = prefix + body + suffix;
+                    Alert.Message(replace);
+                    text = Regex.Replace(text, Regex.Escape(m.Value), replace);
+                }
+                goto NormalizeXmlNode;
             }
             return testXmlNode.InnerXml;
         }
