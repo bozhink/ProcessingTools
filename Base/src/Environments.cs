@@ -74,27 +74,37 @@ namespace Base
                                 {
                                     testXmlNode.InnerText = reader.GetString(0);
                                     string contentString = testXmlNode.InnerText;
+                                    string envoId = "ENVO_" + reader.GetString(2).Substring(5);
+                                    string envoTagName = "envo";
+                                    string envoOpenTag = "<" + envoTagName +
+                                        //@" EnvoTermUri=""http://purl.obolibrary.org/obo/" + envoId + @"""" + 
+                                        @" EnvoTermUri=""" + envoId + @"""" + 
+                                        @" ID=""" + reader.GetInt32(1) + @"""" +
+                                        @" EnvoID=""" + envoId + @"""" +
+                                        @" VerbatimTerm=""" + reader.GetString(0) + @"""" +
+                                        @">";
+
                                     string pattern = "\\b((?i)" + Regex.Replace(Regex.Escape(contentString), "'", "\\W") + ")\\b";
                                     if (Regex.Match(node.InnerText, pattern).Success)
                                     {
+                                        // The text content of the current node contains this environment string
                                         pattern = "(?<!<[^>]+)" + pattern + "(?![^<>]*>)";
+                                        string replace = node.InnerXml;
+
                                         if (!Regex.Match(node.InnerXml, pattern).Success)
                                         {
-                                            Alert.Message("\n\n");
-                                            Alert.Message(node.InnerXml);
-                                            Alert.Message();
-                                            string xx = TagNodeContent(node.InnerXml, Regex.Escape(contentString), "<envo>");
-                                            Alert.Message(xx);
-                                            Alert.Message("\n\n");
-                                            Alert.Message(TagOrderNormalizer(xx, "envo"));
-                                            Alert.Message("\n\n");
-                                            //throw new Exception("InnerXml does not match whath InnerText does: \n\n''" +
-                                            //    node.InnerXml + "''\n\n''" + reader.GetString(0) + "''");
+                                            // The xml-as-string content of the current node soes not contain this environment string
+                                            // Here we suppose that there is some tag inside the environment-string in the xml node.
+
+                                            // Tag the xml-node-content using non-regex skip-tag matches
+                                            replace = TagNodeContent(node.InnerXml, contentString, envoOpenTag);
+                                            replace = TagOrderNormalizer(replace, envoTagName);
                                         }
-                                        string replace = Regex.Replace(node.InnerXml, pattern,
-                                            //@"<envo id=""" + reader.GetInt32(1) + @""">$1</envo>");
-                                            @"<envo id=""" + reader.GetInt32(1) + @""" envo-id=""" + reader.GetString(2) + @""">$1</envo>");
-                                        //@"<envo>$1</envo>");
+                                        else
+                                        {
+                                            replace = Regex.Replace(node.InnerXml, pattern, envoOpenTag + "$1</" + envoTagName + ">");
+                                        }
+
                                         node.InnerXml = replace;
                                     }
                                 }
@@ -111,7 +121,7 @@ namespace Base
                 Alert.RaiseExceptionForMethod(e, 1);
             }
 
-
+            xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
             xml = xmlDocument.OuterXml;
             if (config.NlmStyle)
             {
@@ -125,9 +135,6 @@ namespace Base
             string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
             string closeTag = "</" + tagName + ">";
             openTag = Regex.Replace(openTag, "/", "");
-
-            //openTag = "[envo]";
-            //closeTag = "[/envo]";
 
             StringBuilder sb = new StringBuilder();
             StringBuilder charStack = new StringBuilder();
@@ -190,9 +197,7 @@ namespace Base
             return sb.ToString();
         }
 
-        /*
-         * TODO
-         */
+
         /// <summary>
         /// Normalizes crossed tags where tagName is the name of the tag which must not be splitted.
         /// Example:
@@ -206,246 +211,245 @@ namespace Base
         public string TagOrderNormalizer(string text, string tagName)
         {
             XmlElement testXmlNode = xmlDocument.CreateElement("test");
+
+            // Control counter and maximal value of iterations
+            const int maxIter = 100;
+            int iter = 0;
         NormalizeXmlNode:
             try
             {
                 testXmlNode.InnerXml = text;
             }
-            catch (XmlException e)
+            catch (XmlException)
             {
-                for (Match m = Regex.Match(text, @"<(" + tagName + @")\b[^>]*>.*?</\1>"); m.Success; m = m.NextMatch())
+                // <tagName> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
+                // will be
+                // </x3></x4><tagName><x4><x3> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
+
+                List<TagContent> tags = GetTagModel(text);
+
+                /*
+                 * Broken block are pieces of xml in which the number of opening and closing tags is equal,
+                 * i.e. the problem in broken blocks are crossed tags
+                 * 
+                 * Example of different broken blocks
+                 * 
+                 * envo
+                 * some-tag x="y"
+                 * nested-tag y="z" z="w"
+                 * /envo
+                 * /nested-tag
+                 * /some-tag
+                 * 
+                 * some-tag
+                 * nested-tag y="z" z="w"
+                 * envo
+                 * /nested-tag
+                 * /some-tag
+                 * /envo
+                 * 
+                 */
+                for (int brokenBlockIndex = 0, len = tags.Count; brokenBlockIndex < len; brokenBlockIndex++)
                 {
-                    // <tagName> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
-                    // will be
-                    // </x3></x4><tagName><x4><x3> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
-                    string replace = m.Value;
+                    // Generate the RegEx pattern to select every broken block
 
-                    List<string> tags = new List<string>();
-                    for (Match m1 = Regex.Match(replace, @"(?<=<)/?[^\s/<>""'!\?]+(?=[^>]*>)"); m1.Success; m1 = m1.NextMatch())
+                    string singleBrokenPattern = GenerateSingleBrokenBlockSearchPattern(tags, ref brokenBlockIndex);
+
+                    for (Match m = Regex.Match(text, singleBrokenPattern); m.Success; m = m.NextMatch())
                     {
-                        string tName = m1.Value;
-                        if (tName[0] == '/')
+                        string mValue = m.Value;
+
+                        // Get the rightmost match of the singleBrokenPattern in m.Value
                         {
-                            // This is closing tag
-                            int lastItemIndex = tags.Count - 1;
-                            if (String.Compare(tags[lastItemIndex], tName.Substring(1)) == 0)
-                            {
-                                tags.RemoveAt(lastItemIndex);
-                            }
-                            else
-                            {
-                                tags.Add(tName);
-                            }
-                        }
-                        else
-                        {
-                            tags.Add(tName);
-                        }
-                    }
-
-                    // Remove the first and last taggs items because they must be tagName and /tagName
-                    {
-                        int lastItemIndex = tags.Count - 1;
-                        if (lastItemIndex > 0)
-                        {
-                            tags.RemoveAt(lastItemIndex);
-                            tags.RemoveAt(0);
-                        }
-                    }
-
-
-                    for (int j = 0; j < tags.Count; j++)
-                    {
-                        Alert.Message(tags[j]);
-                    }
-                    Alert.Message("=======");
-
-                    string prefix, suffix, body;
-
-                    prefix = Regex.Match(m.Value, @"\A<(" + tagName + @")\b[^>]*>").Value;
-                    Alert.Message(prefix);
-                    body = Regex.Replace(Regex.Match(m.Value, ".*?(?=</" + tagName + ">)").Value,
-                        @"\A<" + tagName + @"\b[^>]*>", "");
-                    Alert.Message(body);
-                    suffix = "</" + tagName + ">";
-                    Alert.Message(suffix);
-
-                    for (int j = 0; j < tags.Count; j++)
-                    {
-                        // In this way we lose attributes in added open tags
-                        if (tags[j][0] == '/')
-                        {
-                            string openTag = "<" + tags[j].Substring(1) + ">";
-                            string closeTag = "<" + tags[j] + ">";
-                            prefix = closeTag + prefix + openTag;
-                        }
-                        else
-                        {
-                            string openTag = "<" + tags[j] + ">";
-                            string closeTag = "</" + tags[j] + ">";
-                            suffix = closeTag + suffix + openTag;
-                        }
-                    }
-
-                    replace = prefix + body + suffix;
-                    Alert.Message(replace);
-                    text = Regex.Replace(text, Regex.Escape(m.Value), replace);
-                }
-                goto NormalizeXmlNode;
-            }
-            return testXmlNode.InnerXml;
-        }
-
-        public string TagOrderNormalizer1(string text)
-        {
-            Exception InvalidXml = new Exception("Invalid XML");
-            StringBuilder sb = new StringBuilder(), charStack = new StringBuilder();
-            List<string> stack = new List<string>();
-            int len = text.Length;
-            char ch;
-
-            for (int i = 0; i < len; ++i)
-            {
-                ch = text[i];
-                if (ch == '<')
-                {
-                    // tag begins
-                    charStack.Clear();
-                    charStack.Append(ch); // charStack "<"
-                    try
-                    {
-                        ch = text[++i];
-                        if (ch == '?')
-                        {
-                            // Processing Instruction
-                            charStack.Append(ch); // charStack "<?"
-                            ch = text[++i];
+                            Match m1;
                             while (true)
-                            {
-                                charStack.Append(ch);
-                                if ((text[++i] == '>') && (ch == '?')) // Do not change order of operands around &&
+                            { 
+                                m1 = Regex.Match(mValue.Substring(2), singleBrokenPattern);
+                                if (!m1.Success)
                                 {
                                     break;
                                 }
-                                ch = text[i];
-                            }  // charStack "<?....?"
-                            // Here ch = '?' and text[i] = '>'
-                            ch = text[i]; // Useless, but so we avoid errors
-                            charStack.Append(ch); // charStack "<?....?>"
-                            // Here ch = '>' and text[i] = '>'
-                            sb.Append(charStack.ToString());
+                                mValue = m1.Value;
+                            }
                         }
-                        else if (ch == '!')
+
+                        string replace = mValue;
+                        List<TagContent> localTags = GetTagModel(replace);
+
+                        // Here we have 2 cases: localTags[0].Name == 'tagName' and localTags[localTags.Count - 1].Name == '/tagName'
+                        int firstLocalItem = 0;
+                        int lastLocalItem = localTags.Count - 1;
+
+                        if (String.Compare(tagName, localTags[firstLocalItem].Name) == 0)
                         {
-                            // comment, CDATA or DOCTYPE
-                            charStack.Append(ch); // charStack "<!"
-                            ch = text[++i];
-                            if (ch == '-' && text[i + 1] == '-')
-                            {
-                                // Comment
-                                do
-                                {
-                                    charStack.Append(ch);
-                                    ch = text[++i];
-                                } while (!((ch == '-') && (text[i - 1] == '-') && (text[i + 1] == '>')));
-                                // charStack "<!--...-"
-                                charStack.Append(ch); // charStack "<!--...--"
-                                ch = text[++i];
-                                charStack.Append(ch); // charStack "<!--...-->"
+                            // The first tag in localTags is the tagName-tag
+                            // <envo>.*?<some-tag\ x="y">.*?<nested-tag\ y="z"\ z="w">.*?</envo>.*?</nested-tag>.*?</some-tag>
+                            string prefix = Regex.Replace(replace, @"\A(.*?)</" + tagName + @">.*\Z", "$1");
+                            string suffix = Regex.Replace(replace, @"\A.*?</" + tagName + @">(.*)\Z", "$1");
+                            string body = "</" + tagName + ">";
 
-                                sb.Append(charStack.ToString());
-                            }
-                            else if (String.Compare(text.Substring(i, 7), "[CDATA[") == 0)
+                            for (int i = firstLocalItem + 1; i <= lastLocalItem; ++i)
                             {
-                                // <![CDATA[...]]>
-                                do
+                                if (String.Compare(tagName, localTags[i].Name.Substring(1)) == 0)
                                 {
-                                    charStack.Append(ch);
-                                    ch = text[++i];
-                                } while (!((ch == ']') && (text[i - 1] == ']') && (text[i + 1] == '>')));
-                                // charStack "<![CDATA[...]"
-                                charStack.Append(ch); // charStack "<![CDATA[...]]"
-                                ch = text[++i];
-                                charStack.Append(ch); // charStack "<![CDATA[...]]>"
-
-                                sb.Append(charStack.ToString());
-                            }
-                            else if (String.Compare(text.Substring(i, 7), "DOCTYPE") == 0)
-                            {
-                                // DOCTYPE
-                                // ch == 'D'
-                                List<char> st = new List<char>();
-                                st.Clear();
-                                while (true)
-                                {
-                                    charStack.Append(ch);
-                                    ch = text[++i];
-                                    if (ch == '<')
-                                    {
-                                        st.Add('<');
-                                    }
-                                    if (ch == '>')
-                                    {
-                                        int count = st.Count;
-                                        if (count < 1)
-                                        {
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            st.RemoveAt(count - 1);
-                                        }
-                                    }
+                                    // Here we are looking for the closing tag
+                                    break;
                                 }
-                                ch = text[++i];
-                                charStack.Append(ch);
 
-                                sb.Append(charStack.ToString());
+                                body = "</" + localTags[i].Name + ">" + body + localTags[i].FullTag;
                             }
+
+                            replace = prefix + body + suffix;
                         }
                         else
                         {
-                            // Normal tag
-                            if (ch != '/')
+                            // The last tag in localTags is the tagName-tag
+                            // <some-tag>.*?<nested-tag\ y="z"\ z="w">.*?<envo>.*?</nested-tag>.*?</some-tag>.*?</envo>
+                            string prefix = Regex.Replace(replace, @"\A(.*)<" + tagName + @"[^>]*>.*?\Z", "$1");
+                            string suffix = Regex.Replace(replace, @"\A.*<" + tagName + @"[^>]*>(.*?)\Z", "$1");
+                            string body = Regex.Replace(replace, @"\A.*(<" + tagName + @"[^>]*>).*?\Z", "$1");
+
+                            for (int i = firstLocalItem; i < lastLocalItem; ++i)
                             {
-                                // Open tag
-                                string tagName = Regex.Match(text.Substring(i), @"\A\S+").Value;
-                                stack.Add(tagName);
-
-                                do
+                                if (String.Compare(tagName, localTags[i].Name) == 0)
                                 {
-                                    charStack.Append(ch);
-                                    ch = text[++i];
-                                } while (ch != '>');
-                                charStack.Append(ch);
-
-                                if (text[i - 1] == '/')
-                                {
-                                    // Tag is self-closed
-                                    stack.RemoveAt(stack.Count - 1);
+                                    // Here we are looking for the opening tag
+                                    break;
                                 }
+
+                                body = "</" + localTags[i].Name + ">" + body + localTags[i].FullTag;
                             }
-                            else
-                            {
-                                // Close tag
-                                charStack.Append(ch);
-                            }
-                            sb.Append(charStack.ToString());
+
+                            replace = prefix + body + suffix;
                         }
+
+                        text = Regex.Replace(text, Regex.Escape(mValue), replace);
                     }
-                    catch (Exception e)
+                }
+
+                // Try again if text is a valid XmlNode content
+                if (++iter > maxIter)
+                {
+                    throw new Exception("TagOrderNormalizer: invalid XmlBlock");
+                }
+                goto NormalizeXmlNode;
+            }
+
+            return testXmlNode.InnerXml;
+        }
+
+        private List<TagContent> GetTagModel(string text)
+        {
+            List<TagContent> tags = new List<TagContent>();
+
+            for (Match m = Regex.Match(text, @"(?<=<)/?[^\s/<>""'!\?]+[^>/]*(?=>)"); m.Success; m = m.NextMatch())
+            {
+                // For every tag name
+                TagContent tag = new TagContent();
+                tag.Name = Regex.Match(m.Value, @"\A/?[^\s/<>""'!\?]+").Value;
+                tag.Attributes = Regex.Match(m.Value, @"\s+.*\Z").Value;
+                tag.FullTag = "<" + m.Value + ">";
+
+                if (tag.IsClosingTag)
+                {
+                    int lastItemIndex = tags.Count - 1;
+                    if (String.Compare(tags[lastItemIndex].Name, tag.Name.Substring(1)) == 0)
                     {
-                        Alert.Message("TagOrderNormalizer: Error parsing Xml or invalid Xml.\n\n" + e.Message);
+                        tags.RemoveAt(lastItemIndex);
+                    }
+                    else
+                    {
+                        tags.Add(tag);
                     }
                 }
                 else
                 {
-                    // other
-                    sb.Append(ch);
+                    tags.Add(tag);
                 }
             }
 
-            return sb.ToString();
+            return tags;
+        }
+
+        private string GenerateSingleBrokenBlockSearchPattern(List<TagContent> tags, ref int initialIndexInTags)
+        {
+            StringBuilder singleBrokenPattern = new StringBuilder();
+            List<string> brokenStack = new List<string>();
+
+            for (int k = initialIndexInTags; k < tags.Count; k++)
+            {
+                singleBrokenPattern.Append(Regex.Escape(tags[k].FullTag));
+
+                /*
+                 * The main idea here is that the number of opening tags must be equal to the number of closing tag.
+                 */
+                if (tags[k].IsClosingTag)
+                {
+                    for (int kk = brokenStack.Count - 1; kk >= 0; kk--)
+                    {
+                        if (String.Compare(brokenStack[kk], tags[k].Name.Substring(1)) == 0)
+                        {
+                            brokenStack.RemoveAt(kk);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    brokenStack.Add(tags[k].Name);
+                }
+
+                if (brokenStack.Count > 0)
+                {
+                    singleBrokenPattern.Append(".*?");
+                }
+                else
+                {
+                    initialIndexInTags = k;
+                    break;
+                }
+            }
+
+            return singleBrokenPattern.ToString();
+        }
+
+        private class TagContent
+        {
+            public bool IsClosingTag
+            {
+                get;
+                set;
+            }
+            private string name;
+            public string Name
+            {
+                get
+                {
+                    return name;
+                }
+                set
+                {
+                    name = value;
+                    this.IsClosingTag = (name.Length > 0) ? ((name[0] == '/') ? true : false) : false;
+                }
+            }
+            public string Attributes
+            {
+                get;
+                set;
+            }
+            public string FullTag
+            {
+                get;
+                set;
+            }
+
+            public TagContent(string name = "", string attributes = "", string fullTag = "")
+            {
+                this.Name = name;
+                this.Attributes = attributes;
+                this.FullTag = fullTag;
+            }
         }
     }
 }
