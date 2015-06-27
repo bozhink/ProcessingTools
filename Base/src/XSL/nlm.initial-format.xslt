@@ -94,10 +94,16 @@
         </b>
     </xsl:template>
 
-    <xsl:template match="u">
+    <xsl:template match="u | underline">
         <u>
             <xsl:apply-templates />
         </u>
+    </xsl:template>
+
+    <xsl:template match="strike | s">
+        <s>
+            <xsl:apply-templates/>
+        </s>
     </xsl:template>
 
     <xsl:template match="sup">
@@ -112,7 +118,7 @@
         </sub>
     </xsl:template>
 
-    <xsl:template match="span | div">
+    <xsl:template match="span | div | fake_tag">
         <xsl:apply-templates />
     </xsl:template>
 
@@ -120,6 +126,7 @@
         <xsl:apply-templates select="." mode="title"/>
     </xsl:template>
 
+<!--
     <xsl:template match="article-meta/aff">
         <xsl:element name="{name()}">
             <xsl:apply-templates select="label"/>
@@ -128,6 +135,7 @@
             </addr-line>
         </xsl:element>
     </xsl:template>
+-->
 
     <!-- Title modes -->
     <xsl:template match="@* | node()" mode="title">
@@ -152,10 +160,16 @@
         </i>
     </xsl:template>
 
-    <xsl:template match="u" mode="title">
+    <xsl:template match="u | underline" mode="title">
         <u>
             <xsl:apply-templates mode="title"/>
         </u>
+    </xsl:template>
+
+    <xsl:template match="strike | s" mode="title">
+        <s>
+            <xsl:apply-templates mode="title"/>
+        </s>
     </xsl:template>
 
     <xsl:template match="sup" mode="title">
@@ -232,7 +246,14 @@
                     <xsl:text>1</xsl:text>
                 </xsl:attribute>
             </xsl:if>
-            <xsl:apply-templates/>
+            <xsl:choose>
+                <xsl:when test="count(text()) = count(node())">
+                    <xsl:value-of select="normalize-space()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -257,21 +278,31 @@
 
     <xsl:template match="kwd/text()[name()=''][normalize-space()='']"></xsl:template>
 
-    <xsl:template match="label[count(text()) = count(node())] | title[count(text()) = count(node())] | license-p[count(text()) = count(node())] | li[count(text()) = count(node())] | attrib[count(text()) = count(node())] | element-citation[count(text()) = count(node())] | nlm-citation[count(text()) = count(node())] | mixed-citation[count(text()) = count(node())] | object-id[count(text()) = count(node())] | xref-group[count(text()) = count(node())] | kwd[count(text()) = count(node())] | tp:nomenclature-citation[count(text()) = count(node())] | article-title[count(text()) = count(node())] | self-uri[count(text()) = count(node())] | given-names[count(text()) = count(node())] | surname[count(text()) = count(node())]">
+    <xsl:template match="label[count(text()) = count(node())] | title[count(text()) = count(node())] | p[local-name(..)!='td' and local-name(..)!='th'][count(text()) = count(node())] | license-p[count(text()) = count(node())] | li[count(text()) = count(node())] | attrib[count(text()) = count(node())] | element-citation[count(text()) = count(node())] | nlm-citation[count(text()) = count(node())] | mixed-citation[count(text()) = count(node())] | object-id[count(text()) = count(node())] | xref-group[count(text()) = count(node())] | kwd[count(text()) = count(node())] | tp:nomenclature-citation[count(text()) = count(node())] | article-title[count(text()) = count(node())] | self-uri[count(text()) = count(node())] | given-names[count(text()) = count(node())] | surname[count(text()) = count(node())]">
         <xsl:element name="{name()}">
+            <xsl:apply-templates select="@*"/>
             <xsl:value-of select="normalize-space()"/>
         </xsl:element>
     </xsl:template>
 
     <!-- Replace white-space-tags with pure white space -->
-    <xsl:template match="i[normalize-space() = ''][string() != ''][not(comment())] | italic[normalize-space() = ''][string() != ''][not(comment())] | Italic[normalize-space() = ''][string() != ''][not(comment())] | em[normalize-space() = ''][string() != ''][not(comment())] | b[normalize-space() = ''][string() != ''][not(comment())] | bold[normalize-space() = ''][string() != ''][not(comment())] | Bold[normalize-space() = ''][string() != ''][not(comment())] | strong[normalize-space() = ''][string() != ''][not(comment())] | bold-italic[normalize-space() = ''][string() != ''][not(comment())] | Bold-Italic[normalize-space() = ''][string() != ''][not(comment())] | sup[normalize-space() = ''][string() != ''][not(comment())] | sub[normalize-space() = ''][string() != ''][not(comment())] | u[normalize-space() = ''][string() != ''][not(comment())] | underline[normalize-space() = ''][string() != ''][not(comment())]">
+    <xsl:template match="i[normalize-space() = ''][string() != ''][not(comment())] | italic[normalize-space() = ''][string() != ''][not(comment())] | Italic[normalize-space() = ''][string() != ''][not(comment())] | em[normalize-space() = ''][string() != ''][not(comment())] | b[normalize-space() = ''][string() != ''][not(comment())] | bold[normalize-space() = ''][string() != ''][not(comment())] | Bold[normalize-space() = ''][string() != ''][not(comment())] | strong[normalize-space() = ''][string() != ''][not(comment())] | bold-italic[normalize-space() = ''][string() != ''][not(comment())] | Bold-Italic[normalize-space() = ''][string() != ''][not(comment())] | sup[normalize-space() = ''][string() != ''][not(comment())] | sub[normalize-space() = ''][string() != ''][not(comment())] | u[normalize-space() = ''][string() != ''][not(comment())] | underline[normalize-space() = ''][string() != ''][not(comment())] | s[normalize-space() = ''][string() != ''][not(comment())] | strike[normalize-space() = ''][string() != ''][not(comment())]">
         <xsl:text> </xsl:text>
     </xsl:template>
 
     <!-- Remove empty tags -->
-    <xsl:template match="i[normalize-space() = ''][string() = ''][not(comment())] | italic[normalize-space() = ''][string() = ''][not(comment())] | Italic[normalize-space() = ''][string() = ''][not(comment())] | em[normalize-space() = ''][string() = ''][not(comment())] | b[normalize-space() = ''][string() = ''][not(comment())] | bold[normalize-space() = ''][string() = ''][not(comment())] | Bold[normalize-space() = ''][string() = ''][not(comment())] | strong[normalize-space() = ''][string() = ''][not(comment())] | bold-italic[normalize-space() = ''][string() = ''][not(comment())] | Bold-Italic[normalize-space() = ''][string() = ''][not(comment())] | sup[normalize-space() = ''][string() = ''][not(comment())] | sub[normalize-space() = ''][string() = ''][not(comment())] | u[normalize-space() = ''][string() = ''][not(comment())] | underline[normalize-space() = ''][string() = ''][not(comment())]">
+    <xsl:template match="i[normalize-space() = ''][string() = ''][not(comment())] | italic[normalize-space() = ''][string() = ''][not(comment())] | Italic[normalize-space() = ''][string() = ''][not(comment())] | em[normalize-space() = ''][string() = ''][not(comment())] | b[normalize-space() = ''][string() = ''][not(comment())] | bold[normalize-space() = ''][string() = ''][not(comment())] | Bold[normalize-space() = ''][string() = ''][not(comment())] | strong[normalize-space() = ''][string() = ''][not(comment())] | bold-italic[normalize-space() = ''][string() = ''][not(comment())] | Bold-Italic[normalize-space() = ''][string() = ''][not(comment())] | sup[normalize-space() = ''][string() = ''][not(comment())] | sub[normalize-space() = ''][string() = ''][not(comment())] | u[normalize-space() = ''][string() = ''][not(comment())] | underline[normalize-space() = ''][string() = ''][not(comment())]| s[normalize-space() = ''][string() = ''][not(comment())] | strike[normalize-space() = ''][string() = ''][not(comment())]">
+    </xsl:template>
+    
+    <!-- Copy comments from empty tags -->
+    <xsl:template match="i[normalize-space() = ''][comment()] | italic[normalize-space() = ''][comment()] | Italic[normalize-space() = ''][comment()] | em[normalize-space() = ''][comment()] | b[normalize-space() = ''][comment()] | bold[normalize-space() = ''][comment()] | Bold[normalize-space() = ''][comment()] | strong[normalize-space() = ''][comment()] | bold-italic[normalize-space() = ''][comment()] | Bold-Italic[normalize-space() = ''][comment()] | sup[normalize-space() = ''][comment()] | sub[normalize-space() = ''][comment()] | u[normalize-space() = ''][comment()] | underline[normalize-space() = ''][comment()]| s[normalize-space() = ''][comment()] | strike[normalize-space() = ''][comment()] | label[normalize-space() = ''][comment()] | title[normalize-space() = ''][comment()] | p[local-name(..)!='td' and local-name(..)!='th'][normalize-space() = ''][comment()] | license-p[normalize-space() = ''][comment()] | li[normalize-space() = ''][comment()] | attrib[normalize-space() = ''][comment()] | ref[normalize-space() = ''][comment()] | element-citation[normalize-space() = ''][comment()] | nlm-citation[normalize-space() = ''][comment()] | mixed-citation[normalize-space() = ''][comment()] | object-id[normalize-space() = ''][comment()] | xref-group[normalize-space() = ''][comment()] | kwd[normalize-space() = ''][comment()] | tp:nomenclature-citation[normalize-space() = ''][comment()] | article-title[normalize-space() = ''][comment()] | self-uri[normalize-space() = ''][comment()] | given-names[normalize-space() = ''][comment()] | surname[normalize-space() = ''][comment()]">
+        <xsl:apply-templates select="comment()"/>
     </xsl:template>
 
-
+    <xsl:template match="tp:nomenclature/tp:taxon-name">
+        <title>
+            <xsl:apply-templates/>
+        </title>
+    </xsl:template>
 
 </xsl:stylesheet>

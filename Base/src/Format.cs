@@ -35,112 +35,47 @@ namespace Base.Format
             public Format() : base() { }
             public Format(string xml) : base(xml) { }
 
+
             public void InitialFormat()
             {
                 xml = Regex.Replace(xml, "\r", "");
-                xml = Regex.Replace(xml, "<bold-italic>", "<bold><italic>");
-                xml = Regex.Replace(xml, "</bold-italic>", "</italic></bold>");
-                xml = Regex.Replace(xml, "</?fake_tag>", "");
-                xml = Regex.Replace(xml, "tp:taxon-name", "tp:Taxon-name");
-
-                xml = Regex.Replace(xml, @"(?<=<table id="".*?"")[^>]*(?=>)", "");
-                //xml = Regex.Replace(xml, "( headerRowCount=\"\\d+\"| bodyRowCount=\"\\d+\"| columnCount=\"\\d+\"| aid:table=\"[a-z]+\"| aid:trows=\"\\d+\"| aid:tcols=\"\\d+\")", "");
 
                 // Remove white spaces in @id and @rid values
                 xml = Regex.Replace(xml, @"(?<=<[^>]+\br?id="")\s*([^<>""]*?)\s*(?="")", "$1");
-
-                //Alert.Message("Break 1");
-
-                ParseXmlStringToXmlDocument();
-                foreach (XmlNode node in xmlDocument.SelectNodes("//title|//label|//article-title|//th", namespaceManager))
-                {
-                    node.InnerXml = Regex.Replace(node.InnerXml, "</?bold>|</?b>", "");
-                }
-                foreach (XmlNode node in xmlDocument.SelectNodes("//title|//label|//article-title|//th|//td|//p|//kwd|//ref|//tp:Taxon-name", namespaceManager))
-                {
-                    node.InnerXml = Regex.Replace(node.InnerXml, "^\\s+|\\s+$", "");
-                    node.InnerXml = Regex.Replace(node.InnerXml, "\\s+", " ");
-                }
-                foreach (XmlNode node in xmlDocument.SelectNodes("//table-wrap[table[@id]]", namespaceManager))
-                {
-                    node.Attributes.Prepend(node["table"].Attributes["id"]);
-                }
-                foreach (XmlNode node in xmlDocument.SelectNodes("//table[not(@rules)]", namespaceManager))
-                {
-                    XmlAttribute rules = xmlDocument.CreateAttribute("rules");
-                    rules.AppendChild(xmlDocument.CreateTextNode("all"));
-                    node.Attributes.Append(rules);
-                }
-                xml = xmlDocument.OuterXml;
-
-                //Alert.Message("Break 2");
-
-                // Format sec-type attribute
-                xml = Regex.Replace(xml, "(sec-type=\".*?)[,\\.;:](\")", "$1$2");
 
                 // Format openeing and closing tags
                 FormatCloseTags();
                 FormatOpenTags();
                 BoldItalic();
 
-                //Alert.Message("Break 3");
-
                 // Format wrong figures' labels
-                xml = Regex.Replace(xml, @"(\s*)(<caption>)\s*(<p>)\s*<bold>\s*((Figure|Table).*?)\s*</bold>", "$1<label>$4</label>$1$2$3");
-
-                //Alert.Message("Break 4");
+                xml = Regex.Replace(xml, @"<caption>\s+<p>", "<caption><p>");
+                xml = Regex.Replace(xml, @"</p>\s+</caption>", "</p></caption>");
+                xml = Regex.Replace(xml, @"(\s*)(<caption><p>)\s*<b>\s*((Figure|Map|Plate|Table|Suppl|Box)[^<>]*?)\s*</b>", "$1<label>$3</label>$1$2");
 
                 FormatReferances();
-
-                //Alert.Message("Break 5 Referances");
-
                 FormatPageBreaks();
 
-                //Alert.Message("Break 6 PageBreaks");
-
                 // male and female
-                xml = Regex.Replace(xml, "<italic>([♂♀\\s]+)</italic>", "$1");
+                xml = Regex.Replace(xml, "<i>([♂♀\\s]+)</i>", "$1");
 
                 // Post-formatting
                 for (int i = 0; i < 3; i++)
                 {
                     BoldItalic();
-                    //Alert.Message("= 1");
                     FormatPunctuation();
-                    //Alert.Message("= 2");
                     //FormatPageBreaks();
-                    //Alert.Message("= 3");
                     RemoveEmptyTags();
-                    //Alert.Message("= 4");
                     FormatCloseTags();
-                    //Alert.Message("= 5");
                     FormatOpenTags();
-                    //Alert.Message("= 6");
-                    //Alert.Message(i);
                 }
 
-                //Alert.Message("Break 7");
-
-                // Subspecies, subgenera, etc.
-                xml = Regex.Replace(xml, @"<italic>([A-Z][a-z]+)</italic>\.\s*<italic>([a-z]+)</italic>", "<italic>$1. $2</italic>");
-                xml = Regex.Replace(xml, @"<italic>([A-Z][a-z]*\.\s+[a-z]+)</italic>\.\s*<italic>([a-z]+)</italic>", "<italic>$1. $2</italic>");
-                xml = Regex.Replace(xml, @"(<italic>[A-Z][a-z]*\.?\s*\([A-Za-z][a-z]*\.?)(</italic>)(\))", "$1$3$2");
-                xml = Regex.Replace(xml, @"</italic>\s+<italic>", " ");
-                xml = Regex.Replace(xml, @"</italic><italic>", "");
-
-                // Clear empty symbols out of <article> tag
-                xml = Regex.Replace(xml, @"(?<=</article>)\s+", "");
-                //
-                xml = Regex.Replace(xml, @"<\s+/", "</");
-
-                // Supplementary materials external link
-                xml = Regex.Replace(xml, "(<ext-link ext-link-type=\")uri(\" [^>]*xlink:href=\")doi:\\s+", "$1doi$2");
-
-                // Misc
-                xml = Regex.Replace(xml, @"\s*(<\w[^>]*>\s*)?&lt;br\s*/&gt;(\s*</\w[^>]*>)?\s*(?=</p>\s*</caption>)", "");
-                xml = Regex.Replace(xml, @"\.</italic>(?=</p>)", "</italic>.");
-
                 ParseXmlStringToXmlDocument();
+                foreach (XmlNode node in xmlDocument.SelectNodes("//title|//label|//article-title|//th|//td|//p|//license-p|//li|//attrib|//kwd|//ref|//mixed-citation|//object-id|//xref-group|//tp:nomenclature-citation|//self-uri|//name|//given-names|//surname|//person-group|//graphic[string()!='']", namespaceManager))
+                {
+                    node.InnerXml = Regex.Replace(node.InnerXml, @"\A\s+|\s+\Z", "");
+                    node.InnerXml = Regex.Replace(node.InnerXml, @"\s+", " ");
+                }
                 foreach (XmlNode node in xmlDocument.SelectNodes("//td|//th", namespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "&lt;br/&gt;", "<break />");
@@ -153,16 +88,29 @@ namespace Base.Format
                 }
                 xml = xmlDocument.OuterXml;
 
+                // Subspecies, subgenera, etc.
+                xml = Regex.Replace(xml, @"<i>([A-Z][a-z]+)</i>\.\s*<i>([a-z]+)</i>", "<i>$1. $2</i>");
+                xml = Regex.Replace(xml, @"<i>([A-Z][a-z]*\.\s+[a-z]+)</i>\.\s*<i>([a-z]+)</i>", "<i>$1. $2</i>");
+                xml = Regex.Replace(xml, @"(<i>[A-Z][a-z]*\.?\s*\([A-Za-z][a-z]*\.?)(</i>)(\))", "$1$3$2");
+                xml = Regex.Replace(xml, @"</i>\s+<i>", " ");
+                xml = Regex.Replace(xml, @"</i><i>", "");
 
-                // Remove some empty tags
-                xml = Regex.Replace(xml, @"<source>\s*</source>", "");
-                // Remove empty lines
-                xml = Regex.Replace(xml, @"\n\s*\n", "\n");
+                // Clear empty symbols out of <article> tag
+                xml = Regex.Replace(xml, @"(?<=</article>)\s+", "");
+
+                // Supplementary materials external link
+                xml = Regex.Replace(xml, "(<ext-link ext-link-type=\")uri(\" [^>]*xlink:href=\")doi:\\s+", "$1doi$2");
+
+                // Misc
+                xml = Regex.Replace(xml, @"\s*(<\w[^>]*>\s*)?&lt;br\s*/&gt;(\s*</\w[^>]*>)?\s*(?=</p>\s*</caption>)", "");
+                xml = Regex.Replace(xml, @"\.</i>(?=</p>)", "</i>.");
+
                 // sensu lato & stricto
-                xml = Regex.Replace(xml, @"(<italic>)((s\.|sens?u?)\s+[sl][a-z]*)(</italic>)\.", "$1$2.$4");
+                xml = Regex.Replace(xml, @"(<i>)((s\.|sens?u?)\s+[sl][a-z]*)(</i>)\.", "$1$2.$4");
                 //
                 xml = Regex.Replace(xml, @"<\s+/", "</");
                 //
+                RemoveEmptyTags();
                 FormatPageBreaks();
 
                 xml = Regex.Replace(xml, "(\\s+)(<tp:nomenclature-citation-list>)(<tp:nomenclature-citation>)", "$1$2$1    $3");
@@ -171,88 +119,79 @@ namespace Base.Format
                 xml = Regex.Replace(xml, "(\\s+)(<pub-date [^>]*>)(<)", "$1$2$1    $3");
                 xml = Regex.Replace(xml, "(\\s+)(<permissions>)(<copyright-statement>)", "$1$2$1    $3");
                 xml = Regex.Replace(xml, "(\\s+)(<permissions>)(<license)", "$1$2$1    $3");
+                xml = Regex.Replace(xml, @"(?<=(\s*)<license[^>]*>)(<license-p>)", "$1    $2");
                 xml = Regex.Replace(xml, "(\\s+)(<kwd-group>)(<label>)", "$1$2$1    $3");
                 xml = Regex.Replace(xml, "(\\s+)(<title-group>)(<article-title>)", "$1$2$1    $3");
                 xml = Regex.Replace(xml, @"(\s*)(</table>)\s*&lt;br\s*/&gt;\s*", "$1$2$1");
 
+                // Remove empty lines
                 xml = Regex.Replace(xml, "\n\\s*(?=\n)", "");
-
-                xml = Regex.Replace(xml, @"(?<=(\s*)<license[^>]*>)(<license-p>)", "$1    $2");
             }
 
-            public void SubgenusBrackets()
+            private void BoldItalicSpaces()
             {
-                xml = Regex.Replace(xml, "\\((<tp:taxon-name-part taxon-name-part-type=\"subgenus\">)([A-Z][a-z\\.]+)(</tp:taxon-name-part>)\\)", "$1 ($2) $3");
-            }
-
-            public void BoldItalicSpaces()
-            {
-                xml = Regex.Replace(xml, @"(<bold>|<italic>)(\s+)", " $1");
-                xml = Regex.Replace(xml, @"\s+(</bold>|</italic>)", "$1 ");
-                xml = Regex.Replace(xml, @"(</bold>\s+<bold>|</italic>\s+<italic>|<bold>\s+</bold>|<italic>\s+</italic>)", " ");
-                xml = Regex.Replace(xml, @"(</bold><bold>|<bold></bold>|</italic><italic>|<italic></italic>)", "");
+                xml = Regex.Replace(xml, @"(<b>|<i>)(\s+)", " $1");
+                xml = Regex.Replace(xml, @"\s+(</b>|</i>)", "$1 ");
+                xml = Regex.Replace(xml, @"(</b>\s+<b>|</i>\s+<i>|<b>\s+</b>|<i>\s+</i>)", " ");
+                xml = Regex.Replace(xml, @"(</b><b>|<b></b>|</i><i>|<i></i>)", "");
                 xml = Regex.Replace(xml, @"(</italic>|</bold>)(\w)", "$1 $2");
-                //xml = Regex.Replace(xml, @"(“|‘)\s+(<italic>|<bold>)", " $1$2");
-                //xml = Regex.Replace(xml, @"(</italic>|</bold>)\s+(’)", "$1$2 ");
+                //xml = Regex.Replace(xml, @"(“|‘)\s+(<i>|<b>)", " $1$2");
+                //xml = Regex.Replace(xml, @"(</i>|</b>)\s+(’)", "$1$2 ");
 
-                xml = Regex.Replace(xml, @"([\(\[])\s+(<italic>|<bold>|<underline>|<sub>|<sup>)\s*", " $1$2");
-                xml = Regex.Replace(xml, @"\s+(</italic>|</bold>|</underline>|</sub>|</sup>)([^,;\)\]\.])", "$1 $2");
+                xml = Regex.Replace(xml, @"([\(\[])\s+(<i>|<b>|<u>|<sub>|<sup>)\s*", " $1$2");
+                //xml = Regex.Replace(xml, @"\s+(</i>|</b>|</u>|</sub>|</sup>)([^,;\)\]\.])", "$1 $2");
 
-                xml = Regex.Replace(xml, @"(</bold>|</italic>)\s*(<bold>|<italic>)", "$1 $2");
+                //xml = Regex.Replace(xml, @"(</b>|</i>)\s*(<b>|<i>)", "$1 $2");
 
-                xml = Regex.Replace(xml, @"([,\.;])(<italic>|<bold>)", "$1 $2");
-                xml = Regex.Replace(xml, @"(</italic>|</bold>)\s+([,\.;])", "$1$2 ");
+                xml = Regex.Replace(xml, @"([,\.;])(<i>|<b>)", "$1 $2");
+                xml = Regex.Replace(xml, @"(</i>|</b>)\s+([,\.;])", "$1$2 ");
             }
 
-            public void BoldItalic()
+            private void BoldItalic()
             {
                 BoldItalicSpaces();
 
-                xml = Regex.Replace(xml, @"\&lt;\s*br\s*/\s*\&gt;</(italic|bold)>", "</$1>&lt;br/&gt;");
-                xml = Regex.Replace(xml, @"(?<!\&[a-z]+)([^\w<>\.\(\)]+)(</italic>|</bold>)", "$2$1");
-                xml = Regex.Replace(xml, @"(<italic>|<bold>)([^\w<>\.\(\)\&]+)", "$2$1");
-                xml = Regex.Replace(xml, @"(<italic>)([A-Za-z][a-z]{0,2})(</italic>)(\.)", "$1$2$4$3");
+                xml = Regex.Replace(xml, @"\&lt;\s*br\s*/\s*\&gt;(</i>|</b>)", "$1&lt;br/&gt;");
+                xml = Regex.Replace(xml, @"(?<!\&[a-z]+)([^\w<>\.\(\)]+)(</i>|</b>)", "$2$1");
+                xml = Regex.Replace(xml, @"(<i>|<b>)([^\w<>\.\(\)\&]+)", "$2$1");
+                xml = Regex.Replace(xml, @"(<i>)([A-Za-z][a-z]{0,2})(</i>)(\.)", "$1$2$4$3");
                 //xml = Regex.Replace(xml, @"(</bold>)([\.:])", "$2$1");
 
-                xml = Regex.Replace(xml, @"\s*\(\s*(</italic>|</bold>)", "$1 (");
-                xml = Regex.Replace(xml, @"(<italic>|<bold>)\s*\)\s*", ") $1");
+                xml = Regex.Replace(xml, @"\s*\(\s*(</i>|</b>)", "$1 (");
+                xml = Regex.Replace(xml, @"(<i>|<b>)\s*\)\s*", ") $1");
 
                 //xml = Regex.Replace(xml, "(’)(</italic>)", "$2$1");
                 //xml = Regex.Replace(xml, "(<italic>)(‘)", "$2$1");
 
-                xml = Regex.Replace(xml, @"(<bold>|<italic>)([,\s\.:;\-––])(</bold>|</italic>)", "$2");
+                xml = Regex.Replace(xml, @"(<b>|<i>)([,\s\.:;\-––])(</b>|</i>)", "$2");
 
                 // Genus + (Subgenus)
-                xml = Regex.Replace(xml, @"<italic>([A-Z][a-z\.]+)</italic>\s*\(\s*<italic>([A-Za-z][a-z\.]+)</italic>\s*\)", "<italic>$1 ($2)</italic>");
+                xml = Regex.Replace(xml, @"<i>([A-Z][a-z\.]+)</i>\s*\(\s*<i>([A-Za-z][a-z\.]+)</i>\s*\)", "<i>$1 ($2)</i>");
                 // Genus + (Subgenus) + species
-                xml = Regex.Replace(xml, @"<italic>([A-Z][a-z\.]+\s\([A-Za-z][a-z\.]+\))</italic>\s*<italic>([a-z\.\-]+)</italic>", "<italic>$1 $2</italic>");
+                xml = Regex.Replace(xml, @"<i>([A-Z][a-z\.]+\s\([A-Za-z][a-z\.]+\))</i>\s*<i>([a-z\.\-]+)</i>", "<i>$1 $2</i>");
                 // sensu lato & sensu stricto
-                xml = Regex.Replace(xml, @"<italic>([A-Za-z\.\(\)\s\-]+)\s*(sensu\s*.*?)</italic>", "<italic>$1</italic> <italic>$2</italic>");
-                xml = Regex.Replace(xml, @"<italic>([A-Za-z\.\(\)\s\-]+)\s+(s\.\s*[a-z\.]*)</italic>", "<italic>$1</italic> <italic>$2</italic>");
-                xml = Regex.Replace(xml, @"<italic>(s(ensu|\.))\s*(l|s|str)</italic>\.", "<italic>$1 $3.</italic>");
+                xml = Regex.Replace(xml, @"<i>([A-Za-z\.\(\)\s\-]+)\s*(sensu\s*.*?)</i>", "<i>$1</i> <i>$2</i>");
+                xml = Regex.Replace(xml, @"<i>([A-Za-z\.\(\)\s\-]+)\s+(s\.\s*[a-z\.]*)</i>", "<i>$1</i> <i>$2</i>");
+                xml = Regex.Replace(xml, @"<i>(s(ensu|\.))\s*(l|s|str)</i>\.", "<i>$1 $3.</i>");
 
-                // Remove empty tags
-                xml = Regex.Replace(xml, "(<italic></italic>|<bold></bold>|<source></source>|<sup></sup>)", "");
                 // Paste some intervals
-                xml = Regex.Replace(xml, "</italic><bold>", "</italic> <bold>");
+                //xml = Regex.Replace(xml, "</i><b>", "</i> <b>");
 
-                xml = Regex.Replace(xml, @"(</italic>)(\()", "$1 $2");
-                xml = Regex.Replace(xml, @"(<italic>)([\.,;:\s]+)", "$2$1");
+                xml = Regex.Replace(xml, @"(</i>)(\()", "$1 $2");
+                xml = Regex.Replace(xml, @"(<i>)([\.,;:\s]+)", "$2$1");
             }
 
-            public void FormatCloseTags()
+            private void FormatCloseTags()
             {
-                xml = Regex.Replace(xml, @"\s+(</(source|issue-title|bold|italic|underline|monospace|year|month|day|volume|fpage|lpage)>)", "$1 ");
-                xml = Regex.Replace(xml, @"\s+(</(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|graphic)>)", "$1");
+                xml = Regex.Replace(xml, @"\s+(</(source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)>)", "$1 ");
             }
 
-            public void FormatOpenTags()
+            private void FormatOpenTags()
             {
-                xml = Regex.Replace(xml, @"(<(source|issue-title|bold|italic|underline|monospace|year|month|day|volume|fpage|lpage)([^>]*)>)\s+", " $1");
-                xml = Regex.Replace(xml, @"(<(label|title|p|license-p|li|attrib|mixed-citation|object-id|xref|xref-group|kwd|td|ref|caption|th|tp:nomenclature-citation|article-title|self-uri|name|given-names|surname|person-group|graphic)([^>]*)>)\s+", "$1");
+                xml = Regex.Replace(xml, @"(<(source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)([^>]*)>)\s+", " $1");
             }
 
-            public void FormatPunctuation()
+            private void FormatPunctuation()
             {
                 // Format brakets
                 xml = Regex.Replace(xml, @"(\s*)(\()(\s+)", "$1$3$2");
@@ -261,34 +200,35 @@ namespace Base.Format
                 xml = Regex.Replace(xml, @"(\(|\[)\s+(\(|\[)", "$1$2");
                 // Format other punctuation
                 xml = Regex.Replace(xml, @"(\s+)([,;\.])", "$2$1");
-                xml = Regex.Replace(xml, @"([,\.\;])(<italic>|<bold>)", "$1 $2");
+                xml = Regex.Replace(xml, @"([,\.\;])(<i>|<b>)", "$1 $2");
             }
 
-            public void FormatPageBreaks()
+            private void FormatPageBreaks()
             {
-                xml = Regex.Replace(xml, @"(<!--PageBreak-->)\s+(<!--PageBreak-->)", "$1$2");
+                xml = Regex.Replace(xml, @"(<!--PageBreak-->)(\s+)(<!--PageBreak-->)", "$1$3$2");
                 xml = Regex.Replace(xml, @"(\s*)(<p>|<tp:nomenclature-citation>|<title>|<label>)\s*((<!--PageBreak-->)+)\s*", "$1$3$1$2");
 
                 xml = Regex.Replace(xml, @"<tr[^>]*>\s*<(td|th)[^>]*>\s*((<!--PageBreak-->)+)\s*</(td|th)>\s*</tr>", "$2");
                 xml = Regex.Replace(xml, @"<tr>\s*((<!--PageBreak-->)+)\s*</tr>", "$1");
                 xml = Regex.Replace(xml, @"((\s*)<ref [^>]*>.*?)((<!--PageBreak-->)+)", "$2$3$1");
-                xml = Regex.Replace(xml, @"(<italic>.*?)((<!--PageBreak-->)+)", "$2$1");
+                xml = Regex.Replace(xml, @"(<i>[^<>]*?)((<!--PageBreak-->)+)", "$2$1");
 
                 xml = Regex.Replace(xml, @"(\s*)(<kwd>.*?)\s*((<!--PageBreak-->)+)(.*</kwd>)", "$1$2$5$1$3");
                 xml = Regex.Replace(xml, @"<(title|label|kwd|p)>\s*((<!--PageBreak-->)+)</(title|label|kwd|p)>", "$2");
 
-                xml = Regex.Replace(xml, @"(<bold>|<italic>)((<!--PageBreak-->)+)(</bold>|</italic>)", "$2");
+                xml = Regex.Replace(xml, @"(<b>|<i>)((<!--PageBreak-->)+)(</b>|</i>)", "$2");
                 xml = Regex.Replace(xml, @"(\s*)(<xref-group>[\s\S]*?)((<!--PageBreak-->)+)([\s\S]*?</xref-group>)", "$1$2$5$1$3");
-                xml = Regex.Replace(xml, @"\s*<xref-group>\s*</xref-group>", "");
+
+                xml = Regex.Replace(xml, @"(<!--PageBreak-->)\s+(<!--PageBreak-->)", "$1$2");
             }
 
-            public void RemoveEmptyTags()
+            private void RemoveEmptyTags()
             {
-                xml = Regex.Replace(xml, @"(<p>\s*</p>)|(<italic></italic>)|<italic\s*/>|<sup\s*/>|<sub\s*/>|<bold\s*/>|<label\s*/>|(<bold></bold>)|(<kwd>\s*</kwd>)|(<sup></sup>)|(<sub></sub>)|(<mixed-citation [^>]*>\s*</mixed-citation>)|(<tp:nomenclature-citation>\s*</tp:nomenclature-citation>)|(<ref [^>]*>\s*</ref>)|(<source></source>)|(<underline></underline>)|<underline\s*/>|(<monospace></monospace>)|<monospace\s*/>", "");
-                xml = Regex.Replace(xml, @"(<italic>\s+</italic>)|(<bold>\s+</bold>)|(<sup>\s+</sup>)|(<sub>\s+</sub>)|(<source>\s+</source>)|(<underline>\s+</underline>)|(<monospace>\s+</monospace>)", " ");
+                xml = Regex.Replace(xml, @"<p>\s*</p>|<xref-group>\s*</xref-group>|<i></i>|<i\s*/>|<sup\s*/>|<sub\s*/>|<b\s*/>|<label\s*/>|<b></b>|<kwd>\s*</kwd>|<sup></sup>|<sub></sub>|<mixed-citation [^>]*>\s*</mixed-citation>|<tp:nomenclature-citation>\s*</tp:nomenclature-citation>|<ref [^>]*>\s*</ref>|<source></source>|<u></u>|<u\s*/>|<monospace></monospace>|<monospace\s*/>", "");
+                xml = Regex.Replace(xml, @"<i>\s+</i>|<b>\s+</b>|<sup>\s+</sup>|<sub>\s+</sub>|<source>\s+</source>|<u>\s+</u>|<monospace>\s+</monospace>", " ");
             }
 
-            public void FormatReferances()
+            private void FormatReferances()
             {
                 xml = Regex.Replace(xml, @"(\S)(<article-title>|<source>)", "$1 $2");
                 xml = Regex.Replace(xml, @"(</article-title>|</source>)(\S)", "$1 $2");

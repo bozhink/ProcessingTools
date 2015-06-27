@@ -112,8 +112,8 @@ namespace Base
                     }
                     else
                     {
-                        //xpath = "//body//p[.//italic]|//back//p[.//italic]|//floats-group//p[.//italic]|//article_figs_and_tables//p[.//italic]|//li[.//italic]|//th[.//italic]|//td[.//italic]|//title[.//italic]|//label[.//italic]|//tp:nomenclature-citation[.//italic]|//tp:Taxon-name";
-                        xpath = "//p[.//i]|//ref[.//i]|//kwd[.//i]|//article-title[.//i]|//li[.//i]|//th[.//i]|//td[.//i]|//title[.//i]|//label[.//i]|//tp:nomenclature-citation[.//i]|//tp:Taxon-name";
+                        //xpath = "//body//p[.//italic]|//back//p[.//italic]|//floats-group//p[.//italic]|//article_figs_and_tables//p[.//italic]|//li[.//italic]|//th[.//italic]|//td[.//italic]|//title[.//italic]|//label[.//italic]|//tp:nomenclature-citation[.//italic]";
+                        xpath = "//p[.//i]|//ref[.//i]|//kwd[.//i]|//article-title[.//i]|//li[.//i]|//th[.//i]|//td[.//i]|//title[.//i]|//label[.//i]|//tp:nomenclature-citation[.//i]";
                     }
                 }
                 else
@@ -328,12 +328,12 @@ namespace Base
                 {
                     foreach (XmlNode node in xmlDocument.SelectNodes("//tp:nomenclature", namespaceManager))
                     {
-                        if (node["tp:Taxon-name"] != null)
+                        if (node["title"] != null)
                         {
-                            node["tp:Taxon-name"].InnerXml = Regex.Replace(node["tp:Taxon-name"].InnerXml, "</?italic>", "");
-                            node["tp:Taxon-name"].InnerXml = Regex.Replace(node["tp:Taxon-name"].InnerXml, "\\s+", " ");
+                            node["title"].InnerXml = Regex.Replace(node["title"].InnerXml, "</?italic>", "");
+                            node["title"].InnerXml = Regex.Replace(node["title"].InnerXml, "\\s+", " ");
                         }
-                        node.InnerXml = Regex.Replace(node.InnerXml, @"(?<=<tp:Taxon-name [^>]*>)\s+|\s+(?=</tp:Taxon-name>)", "");
+                        node.InnerXml = Regex.Replace(node.InnerXml, @"(?<=<title [^>]*>)\s+|\s+(?=</title>)", "");
 
                         string replace = node.InnerXml;
 
@@ -341,13 +341,13 @@ namespace Base
                          * Extract label preceding lower taxa and Authority and Status tags
                          */
                         replace = Regex.Replace(replace,
-                            @"(\s*)<tp:Taxon-name[^>]*>([^<>]+?)\s*(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</tp:Taxon-name>",
+                            @"(\s*)<title[^>]*>([^<>]+?)\s*(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</title>",
                             "$1<label>$2</label>$1$3$1<tp:taxon-authority>$4</tp:taxon-authority>");
                         /*
                          * Extract Authority and Status tags if there is no label
                          */
                         replace = Regex.Replace(replace,
-                            @"(\s*)<tp:Taxon-name[^>]*>(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</tp:Taxon-name>",
+                            @"(\s*)<title[^>]*>(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</title>",
                             "$1$2$1<tp:taxon-authority>$3</tp:taxon-authority>");
 
                         replace = Regex.Replace(replace, @"\s*<tp:taxon-authority>\s*</tp:taxon-authority>", "");

@@ -341,11 +341,12 @@ namespace Tag
                 else
                 {
                     Base.Format.Nlm.Format fmt = new Base.Format.Nlm.Format();
-                    fmt.Xml = fp.Xml;
+                    //fmt.Xml = fp.Xml;
+                    fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
 
                     fmt.InitialFormat();
 
-                    fp.Xml = fmt.Xml;
+                    fp.Xml = Base.Format.Format.NormalizeSystemToNlmXml(config, fmt.Xml);
                 }
 
                 timer.WriteOutput();
