@@ -43,6 +43,10 @@ Options:
 		--parse-treatment-meta-with-gbif, --ptm-gbif
 		--parse-treatment-meta-with-col, --ptm-col
 
+		--extract-taxa, --et
+		--extract-lower-taxa, --elt
+		--extract-higher-taxa, --eht
+
 	--zoobank-nlm = Generate NLM XML file for ZooBank registration
 	--zoobank-json = Clone ZooBank lsid from JSON file: <in xml> <out xml> <json>
 	-z or --zoobank-clone = clone zoobank lsid; syntax: <in xml> <out xml> <nlm xml>

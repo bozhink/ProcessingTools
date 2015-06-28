@@ -121,6 +121,7 @@
     <Compile Include="src\Taxonomy\Tagger.cs" />
     <Compile Include="src\Base\Timer.cs" />
     <Compile Include="src\Base\XsltOnString.cs" />
+    <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
     <Compile Include="src\ZooBank.cs" />
     <Compile Include="src\ZoobankCloner.cs" />

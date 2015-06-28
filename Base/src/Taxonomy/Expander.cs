@@ -30,114 +30,22 @@ namespace Base
             {
             }
 
-            /*
-             * Messages
-             */
-            public static bool EmptyGenus(string source, Species sp)
-            {
-                if (String.Compare(sp.genus, string.Empty) == 0)
-                {
-                    Console.WriteLine("\nERROR: Empty genus name found!:\n{0}\n", source);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
 
-            public static void PrintNextShortened(Species sp)
-            {
-                Console.WriteLine("\nNext shortened taxon:\t{0}", sp.speciesName);
-            }
 
-            public static void PrintSubstitutionMessage(Species original, Species substitution)
-            {
-                Console.WriteLine("\tSubstitution:\t{0}\t-->\t{1}", original.speciesName, substitution.speciesName);
-            }
 
-            public static void PrintSubstitutionMessage1(Species original, Species substitution)
-            {
-                Console.WriteLine("\tSubstitution:\t{0}\t-->\t{1}", original.speciesName, substitution.speciesNameGenusSubgenus);
-            }
-
-            public static void PrintSubstitutionMessageFail(Species original, Species substitution)
-            {
-                Console.WriteLine("\tFailed Subst:\t{0}\t<->\t{1}", original.speciesName, substitution.speciesName);
-            }
-
-            public static void PrintMethodMessage(string name)
-            {
-                Console.WriteLine("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
-            }
-
-            public static void PrintFoundMessage(string where, Species sp)
-            {
-                Console.WriteLine("....... Found in {0}: {1}", where, sp.speciesName);
-            }
-
-            /*
-             * Taxa lists
-             */
-            public static List<string> ListOfShortenedTaxa(XmlNode xml)
-            {
-                //string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
-                string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-                XmlNodeList nodeList = xml.SelectNodes(xpath, Base.TaxPubNamespceManager());
-                return nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
-            }
-
-            public static List<string> ListOfNonShortenedTaxa(XmlNode xml)
-            {
-                //string xpath = "//tp:taxon-name[count(tp:taxon-name-part[normalize-space(@full-name)=''])=0][tp:taxon-name-part[@taxon-name-part-type='genus']]";
-                //string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
-                string xpath = "//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
-                XmlDocument xd = new XmlDocument();
-                XmlNamespaceManager nm = Base.TaxPubNamespceManager();
-                XmlNodeList nodeList = xml.SelectNodes(xpath, nm);
-                List<XmlNode> newList = new List<XmlNode>();
-                foreach (XmlNode node in nodeList)
-                {
-                    XmlNode taxonName = xd.CreateElement("tn");
-                    foreach (XmlNode innerNode in node.SelectNodes(".//*", nm))
-                    {
-                        XmlNode newNode = xd.CreateElement("tn-part");
-                        foreach (XmlAttribute attribute in innerNode.Attributes)
-                        {
-                            if (attribute.Name.Contains("type"))
-                            {
-                                XmlAttribute newAttribute = xd.CreateAttribute(attribute.Name);
-                                newAttribute.InnerText = attribute.InnerText;
-                                newNode.Attributes.Append(newAttribute);
-                            }
-                        }
-                        if (innerNode.Attributes["full-name"] != null)
-                        {
-                            newNode.InnerText = innerNode.Attributes["full-name"].InnerText;
-                        }
-                        else
-                        {
-                            newNode.InnerText = innerNode.InnerText;
-                        }
-                        taxonName.AppendChild(newNode);
-                    }
-                    newList.Add(taxonName);
-                }
-                return newList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
-            }
 
             public void StableExpand()
             {
                 xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
 
                 // In this method it is supposed that the subspecies name is not shortened
-                Taxonomy.Expander.PrintMethodMessage("StableExpand");
+                Taxonomy.PrintMethodMessage("StableExpand");
 
                 xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
                 ParseXmlStringToXmlDocument();
 
-                List<string> shortTaxaListUnique = Taxonomy.Expander.ListOfShortenedTaxa(xmlDocument);
-                List<string> nonShortTaxaListUnique = Taxonomy.Expander.ListOfNonShortenedTaxa(xmlDocument);
+                List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(xmlDocument);
+                List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(xmlDocument);
 
                 List<Species> speciesList = new List<Species>();
                 foreach (string taxon in nonShortTaxaListUnique)
@@ -151,7 +59,7 @@ namespace Base
                     string replace = text;
 
                     Species sp = new Species(shortTaxon);
-                    Taxonomy.Expander.PrintNextShortened(sp);
+                    Taxonomy.PrintNextShortened(sp);
 
                     foreach (Species sp1 in speciesList)
                     {
@@ -168,13 +76,13 @@ namespace Base
                                 {
                                     if (String.Compare(sp1.subgenus, string.Empty) == 0)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                         replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
                                     }
                                     else
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessageFail(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessageFail(sp, sp1);
                                     }
                                 }
                             }
@@ -182,7 +90,7 @@ namespace Base
                             {
                                 if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                    Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                     replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                     replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                                     replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
@@ -204,7 +112,7 @@ namespace Base
 
             public void UnstableExpand3()
             {
-                Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
+                Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
 
                 xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
                 ParseXmlStringToXmlDocument();
@@ -217,8 +125,8 @@ namespace Base
                     Alert.Message(p.InnerText);
                     Alert.Message("\n\n");
 
-                    List<string> shortTaxaListUnique = Taxonomy.Expander.ListOfShortenedTaxa(p);
-                    List<string> nonShortTaxaListUnique = Taxonomy.Expander.ListOfNonShortenedTaxa(p);
+                    List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(p);
+                    List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(p);
 
                     List<Species> speciesList = new List<Species>();
                     foreach (string taxon in nonShortTaxaListUnique)
@@ -256,7 +164,7 @@ namespace Base
                 //    string replace = text;
 
                 //    Species sp = new Species(shortTaxon);
-                //    Taxonomy.Expander.PrintNextShortened(sp);
+                //    Taxonomy.PrintNextShortened(sp);
 
                 //    foreach (Species sp1 in speciesList)
                 //    {
@@ -273,13 +181,13 @@ namespace Base
                 //                {
                 //                    if (String.Compare(sp1.subgenus, string.Empty) == 0)
                 //                    {
-                //                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                //                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                 //                        replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                 //                        replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
                 //                    }
                 //                    else
                 //                    {
-                //                        Taxonomy.Expander.PrintSubstitutionMessageFail(sp, sp1);
+                //                        Taxonomy.PrintSubstitutionMessageFail(sp, sp1);
                 //                    }
                 //                }
                 //            }
@@ -287,7 +195,7 @@ namespace Base
                 //            {
                 //                if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                 //                {
-                //                    Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                //                    Taxonomy.PrintSubstitutionMessage(sp, sp1);
                 //                    replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                 //                    replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                 //                    replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
@@ -314,14 +222,14 @@ namespace Base
                 //foreach (XmlNode node in lowerTaxa)
                 //{
                 //    Species sp = new Species(node.InnerXml);
-                //    if (Taxonomy.Expander.EmptyGenus(node.InnerXml, sp))
+                //    if (Taxonomy.EmptyGenus(node.InnerXml, sp))
                 //    {
                 //        return;
                 //    }
                 //    // Select only shortened taxa with non-zero species name
                 //    if (sp.isShortened && (sp.species.Length > 0))
                 //    {
-                //        Taxonomy.Expander.PrintNextShortened(sp);
+                //        Taxonomy.PrintNextShortened(sp);
 
                 //        //TODO
                 //        for (Match p = Regex.Match(xml, "<p>[\\s\\S]+?" + Regex.Escape(node.InnerXml)); p.Success; p = p.NextMatch())
@@ -348,11 +256,11 @@ namespace Base
                 //                    last.SetSpecies(sp1.species);
                 //                    isFound = true;
                 //                }
-                //                Taxonomy.Expander.PrintFoundMessage("paragraph", sp1);
+                //                Taxonomy.PrintFoundMessage("paragraph", sp1);
                 //            }
                 //            if (isFound)
                 //            {
-                //                Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                //                Taxonomy.PrintSubstitutionMessage(sp, last);
                 //                string replace = node.InnerXml;
                 //                if (last.genus.Length > 0)
                 //                {
@@ -391,13 +299,13 @@ namespace Base
 
             public void UnstableExpand8()
             {
-                Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
+                Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
 
                 xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
                 ParseXmlStringToXmlDocument();
 
-                List<string> shortTaxaListUnique = Taxonomy.Expander.ListOfShortenedTaxa(xmlDocument);
-                List<string> nonShortTaxaListUnique = Taxonomy.Expander.ListOfNonShortenedTaxa(xmlDocument);
+                List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(xmlDocument);
+                List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(xmlDocument);
 
                 List<Species> speciesList = new List<Species>();
                 foreach (string taxon in nonShortTaxaListUnique)
@@ -411,7 +319,7 @@ namespace Base
                     string replace = text;
 
                     Species sp = new Species(shortTaxon);
-                    Taxonomy.Expander.PrintNextShortened(sp);
+                    Taxonomy.PrintNextShortened(sp);
 
                     foreach (Species sp1 in speciesList)
                     {
@@ -421,7 +329,7 @@ namespace Base
 
                         if (matchGenus.Success || matchSubgenus.Success || matchSpecies.Success)
                         {
-                            Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                            Taxonomy.PrintSubstitutionMessage(sp, sp1);
                             replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                             replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                             replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
@@ -460,7 +368,7 @@ namespace Base
 
                 public void UnstableExpand1()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 1\nTrying to expand all quasi-stable cases like\n[Genus] ([Subgenus].) species ~~ [Genus]. ([Subenus]) species ~~ [Genus]. ([Subgenus].) species");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 1\nTrying to expand all quasi-stable cases like\n[Genus] ([Subgenus].) species ~~ [Genus]. ([Subenus]) species ~~ [Genus]. ([Subgenus].) species");
                     ParseXmlStringToXmlDocument();
 
                     XmlNodeList lowerTaxa = xmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", namespaceManager);
@@ -474,14 +382,14 @@ namespace Base
                     {
                         XmlNode node = lowerTaxa[i];
                         Species sp = speciesList[i];
-                        if (Taxonomy.Expander.EmptyGenus(node.InnerXml, sp))
+                        if (Taxonomy.EmptyGenus(node.InnerXml, sp))
                         {
                             return;
                         }
                         // Select only shortened taxa with non-zero species name
                         if (sp.isShortened && sp.species.Length > 0)
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             foreach (Species sp1 in speciesList)
                             {
                                 SpeciesComparison compare = new SpeciesComparison(sp, sp1);
@@ -493,7 +401,7 @@ namespace Base
                                         {
                                             if (Regex.Match(sp1.genus, sp.genusSkipPattern).Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 node.InnerXml = Regex.Replace(node.InnerXml, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                             }
                                         }
@@ -501,7 +409,7 @@ namespace Base
                                         {
                                             if (Regex.Match(sp1.subgenus, sp.subgenusSkipPattern).Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 node.InnerXml = Regex.Replace(node.InnerXml, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                                             }
                                         }
@@ -512,7 +420,7 @@ namespace Base
                                         {
                                             if (Regex.Match(sp1.species, sp.speciesSkipPattern).Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 node.InnerXml = Regex.Replace(node.InnerXml, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
                                             }
                                         }
@@ -526,7 +434,7 @@ namespace Base
 
                 public void _UnstableExpand1()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 1");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 1");
                     // On the first stage try to expand all quasi-stable cases like
                     // [Genus] ([Subgenus].) species ~~ [Genus]. ([Subenus]) species ~~ [Genus]. ([Subgenus].) species
 
@@ -534,11 +442,11 @@ namespace Base
                     {
                         string replace = m.Value;
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && String.Compare(sp.species, string.Empty) != 0)
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -554,7 +462,7 @@ namespace Base
                                             Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern);
                                             if (mgen.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                                 found = true;
                                             }
@@ -564,7 +472,7 @@ namespace Base
                                             Match msgen = Regex.Match(sp1.subgenus, sp.subgenusSkipPattern);
                                             if (msgen.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                                 found = true;
                                             }
@@ -577,7 +485,7 @@ namespace Base
                                             Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern);
                                             if (msp.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.speciesTagged), sp1.speciesTagged);
                                                 found = true;
                                             }
@@ -595,7 +503,7 @@ namespace Base
 
                 public void UnstableExpand2()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 2\nTrying to expand all genus-subgenus abbreviations [Genus]. ([Subgenus].)");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 2\nTrying to expand all genus-subgenus abbreviations [Genus]. ([Subgenus].)");
                     ParseXmlStringToXmlDocument();
 
                     XmlNodeList lowerTaxa = xmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", namespaceManager);
@@ -609,7 +517,7 @@ namespace Base
                     {
                         XmlNode node = lowerTaxa[i];
                         Species sp = speciesList[i];
-                        if (Taxonomy.Expander.EmptyGenus(node.InnerXml, sp))
+                        if (Taxonomy.EmptyGenus(node.InnerXml, sp))
                         {
                             return;
                         }
@@ -618,7 +526,7 @@ namespace Base
                          */
                         if ((sp.genus.IndexOf('.') > -1) && ((sp.subgenus.IndexOf('.') < 0) && (sp.subgenus.Length > 0)) && (sp.species.Length > 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             foreach (Species sp1 in speciesList)
                             {
                                 SpeciesComparison compare = new SpeciesComparison(sp, sp1);
@@ -626,7 +534,7 @@ namespace Base
                                 {
                                     if (Regex.Match(sp1.genus, sp.genusPattern).Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         node.InnerXml = Regex.Replace(node.InnerXml, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                     }
                                 }
@@ -637,7 +545,7 @@ namespace Base
                          */
                         if ((sp.subgenus.IndexOf('.') > -1) && ((sp.genus.IndexOf('.') < 0) && (sp.genus.Length > 0)) && (sp.species.Length > 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             foreach (Species sp1 in speciesList)
                             {
                                 SpeciesComparison compare = new SpeciesComparison(sp, sp1);
@@ -645,7 +553,7 @@ namespace Base
                                 {
                                     if (Regex.Match(sp1.subgenus, sp.subgenusPattern).Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         node.InnerXml = Regex.Replace(node.InnerXml, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                                     }
                                 }
@@ -657,18 +565,18 @@ namespace Base
 
                 public void _UnstableExpand2()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 2");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 2");
                     // On the second stage try to expand all genus-subgenus abbreviations [Genus]. ([Subgenus].)
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         string replace = m.Value;
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
 
                         // Select only shortened taxa with non-zero species and subgenus name
                         if ((sp.genus.IndexOf('.') > -1) && (sp.subgenus.IndexOf('.') < 0) && (String.Compare(sp.subgenus, string.Empty) != 0) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -680,7 +588,7 @@ namespace Base
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusPattern);
                                     if (msgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                         found = true;
                                     }
@@ -690,7 +598,7 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusPattern);
                                     if (mgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                         found = true;
                                     }
@@ -704,7 +612,7 @@ namespace Base
                         // Select only shortened taxa with non-zero species and subgenus name
                         if ((sp.genus.IndexOf('.') < 0) && (sp.subgenus.IndexOf('.') > -1) && (String.Compare(sp.subgenus, string.Empty) != 0) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -716,7 +624,7 @@ namespace Base
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusPattern);
                                     if (msgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                         found = true;
                                     }
@@ -726,7 +634,7 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusPattern);
                                     if (mgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage1(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage1(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                         found = true;
                                     }
@@ -741,21 +649,21 @@ namespace Base
 
                 public void UnstableExpand3()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
                     ParseXmlStringToXmlDocument();
 
                     XmlNodeList lowerTaxa = xmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", namespaceManager);
                     foreach (XmlNode node in lowerTaxa)
                     {
                         Species sp = new Species(node.InnerXml);
-                        if (Taxonomy.Expander.EmptyGenus(node.InnerXml, sp))
+                        if (Taxonomy.EmptyGenus(node.InnerXml, sp))
                         {
                             return;
                         }
                         // Select only shortened taxa with non-zero species name
                         if (sp.isShortened && (sp.species.Length > 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
 
                             //TODO
                             for (Match p = Regex.Match(xml, "<p>[\\s\\S]+?" + Regex.Escape(node.InnerXml)); p.Success; p = p.NextMatch())
@@ -782,11 +690,11 @@ namespace Base
                                         last.SetSpecies(sp1.species);
                                         isFound = true;
                                     }
-                                    Taxonomy.Expander.PrintFoundMessage("paragraph", sp1);
+                                    Taxonomy.PrintFoundMessage("paragraph", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = node.InnerXml;
                                     if (last.genus.Length > 0)
                                     {
@@ -814,15 +722,15 @@ namespace Base
 
                 public void _UnstableExpand3()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<p>.*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -837,11 +745,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("paragraph", sp1);
+                                    Taxonomy.PrintFoundMessage("paragraph", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -873,15 +781,15 @@ namespace Base
 
                 public void UnstableExpand4()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 4: look in treatment sections");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 4: look in treatment sections");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<tp:treatment-sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -895,11 +803,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("treatment section", sp1);
+                                    Taxonomy.PrintFoundMessage("treatment section", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -931,15 +839,15 @@ namespace Base
 
                 public void UnstableExpand5()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 5: look in treatments");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 5: look in treatments");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<tp:taxon-treatment>[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -953,11 +861,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("treatment", sp1);
+                                    Taxonomy.PrintFoundMessage("treatment", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -989,15 +897,15 @@ namespace Base
 
                 public void UnstableExpand6()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 6: look in sections");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 6: look in sections");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -1011,11 +919,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("section", sp1);
+                                    Taxonomy.PrintFoundMessage("section", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1047,15 +955,15 @@ namespace Base
 
                 public void UnstableExpand7()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 7: WARNING: search from the beginnig");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 7: WARNING: search from the beginnig");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<?xml[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -1069,11 +977,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("preceding text", sp1);
+                                    Taxonomy.PrintFoundMessage("preceding text", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1105,15 +1013,15 @@ namespace Base
 
                 public void UnstableExpand8()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match p = Regex.Match(xml, "<sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (p.Success)
@@ -1126,11 +1034,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("article", sp1);
+                                    Taxonomy.PrintFoundMessage("article", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1184,7 +1092,7 @@ namespace Base
                 public void StableExpand()
                 {
                     // In this method it is supposed that the subspecies name is not shortened
-                    Taxonomy.Expander.PrintMethodMessage("StableExpand");
+                    Taxonomy.PrintMethodMessage("StableExpand");
 
                     ParseXmlStringToXmlDocument();
 
@@ -1206,7 +1114,7 @@ namespace Base
                         string replace = text;
 
                         Species sp = new Species(shortTaxon);
-                        Taxonomy.Expander.PrintNextShortened(sp);
+                        Taxonomy.PrintNextShortened(sp);
 
                         foreach (Species sp1 in speciesList)
                         {
@@ -1223,13 +1131,13 @@ namespace Base
                                     {
                                         if (String.Compare(sp1.subgenus, string.Empty) == 0)
                                         {
-                                            Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                            Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                             replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                             replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
                                         }
                                         else
                                         {
-                                            Taxonomy.Expander.PrintSubstitutionMessageFail(sp, sp1);
+                                            Taxonomy.PrintSubstitutionMessageFail(sp, sp1);
                                         }
                                     }
                                 }
@@ -1237,7 +1145,7 @@ namespace Base
                                 {
                                     if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.genus);
                                         replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.subgenus);
                                         replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.species);
@@ -1253,18 +1161,18 @@ namespace Base
                 public void StableExpand1()
                 {
                     // In this method it is supposed that the subspecies name is not shortened
-                    Taxonomy.Expander.PrintMethodMessage("StableExpand");
+                    Taxonomy.PrintMethodMessage("StableExpand");
 
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         string replace = m.Value;
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
 
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && String.Compare(sp.species, string.Empty) != 0)
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             for (Match taxon = FindLowerTaxa.Match(xml); taxon.Success; taxon = taxon.NextMatch())
                             {
@@ -1286,7 +1194,7 @@ namespace Base
                                         {
                                             if (String.Compare(sp1.subgenus, string.Empty) == 0)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace = Regex.Replace(replace1, @"<tn[^>\-]*>", "<tn genus=\"" + sp1.genus + "\">");
                                             }
                                             else
@@ -1301,7 +1209,7 @@ namespace Base
                                     {
                                         if (mgen.Success && msgen.Success && msp.Success)
                                         {
-                                            Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                            Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                             replace = Regex.Replace(replace1, @"<tn[^>\-]*>", "<tn genus=\"" + sp1.genus + "\" subgenus=\"" + sp1.subgenus + "\">");
                                         }
                                     }
@@ -1314,7 +1222,7 @@ namespace Base
 
                 public void UnstableExpand(int stage)
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand" + stage);
+                    Taxonomy.PrintMethodMessage("UnstableExpand" + stage);
 
                     //string [] division = {"paragraph", "treatment section", "treatment", "section", "beginning", "all"};
                     //string [] pattern = {"<p>.*?", "<tp:treatment-sec[^\r]*?", "<tp:taxon-treatment>[^\r]*?", "<sec[^\r]*?", "<?xml[^\r]*?", "[^\r]*"};
@@ -1322,7 +1230,7 @@ namespace Base
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
 
                         string xgenus = (sp.genus.IndexOf('.') > -1) ? sp.genus.Substring(0, sp.genus.Length - 1) + "[a-z]+?" : "SKIP";
                         string xsubgenus = (sp.subgenus.IndexOf('.') > -1) ? sp.subgenus.Substring(0, sp.subgenus.Length - 1) + "[a-z]+?" : "SKIP";
@@ -1383,7 +1291,7 @@ namespace Base
 
                 public void UnstableExpand1()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 1");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 1");
                     // On the first stage try to expand all quasi-stable cases like
                     // [Genus] ([Subgenus].) species ~~ [Genus]. ([Subenus]) species ~~ [Genus]. ([Subgenus].) species
 
@@ -1391,11 +1299,11 @@ namespace Base
                     {
                         string replace = m.Value;
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && String.Compare(sp.species, string.Empty) != 0)
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -1411,7 +1319,7 @@ namespace Base
                                             Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern);
                                             if (mgen.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                                 found = true;
                                             }
@@ -1421,7 +1329,7 @@ namespace Base
                                             Match msgen = Regex.Match(sp1.subgenus, sp.subgenusSkipPattern);
                                             if (msgen.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                                 found = true;
                                             }
@@ -1434,7 +1342,7 @@ namespace Base
                                             Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern);
                                             if (msp.Success)
                                             {
-                                                Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                                Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                                 replace1 = Regex.Replace(replace1, Regex.Escape(sp.speciesTagged), sp1.speciesTagged);
                                                 found = true;
                                             }
@@ -1451,18 +1359,18 @@ namespace Base
 
                 public void UnstableExpand2()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 2");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 2");
                     // On the second stage try to expand all genus-subgenus abbreviations [Genus]. ([Subgenus].)
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         string replace = m.Value;
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
 
                         // Select only shortened taxa with non-zero species and subgenus name
                         if ((sp.genus.IndexOf('.') > -1) && (sp.subgenus.IndexOf('.') < 0) && (String.Compare(sp.subgenus, string.Empty) != 0) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -1474,7 +1382,7 @@ namespace Base
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusPattern);
                                     if (msgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                         found = true;
                                     }
@@ -1484,7 +1392,7 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusPattern);
                                     if (mgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                         found = true;
                                     }
@@ -1499,7 +1407,7 @@ namespace Base
                         // Select only shortened taxa with non-zero species and subgenus name
                         if ((sp.genus.IndexOf('.') < 0) && (sp.subgenus.IndexOf('.') > -1) && (String.Compare(sp.subgenus, string.Empty) != 0) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             bool found = false;
                             string replace1 = m.Value;
@@ -1511,7 +1419,7 @@ namespace Base
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusPattern);
                                     if (msgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.subgenusTagged), sp1.subgenusTagged);
                                         found = true;
                                     }
@@ -1521,7 +1429,7 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusPattern);
                                     if (mgen.Success)
                                     {
-                                        Taxonomy.Expander.PrintSubstitutionMessage(sp, sp1);
+                                        Taxonomy.PrintSubstitutionMessage(sp, sp1);
                                         replace1 = Regex.Replace(replace1, Regex.Escape(sp.genusTagged), sp1.genusTagged);
                                         found = true;
                                     }
@@ -1536,15 +1444,15 @@ namespace Base
 
                 public void UnstableExpand3()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<p>.*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1559,11 +1467,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subgenusSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("paragraph", sp1);
+                                    Taxonomy.PrintFoundMessage("paragraph", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1595,15 +1503,15 @@ namespace Base
 
                 public void UnstableExpand4()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 4: look in treatment sections");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 4: look in treatment sections");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<tp:treatment-sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1617,11 +1525,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("treatment section", sp1);
+                                    Taxonomy.PrintFoundMessage("treatment section", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1653,15 +1561,15 @@ namespace Base
 
                 public void UnstableExpand5()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 5: look in treatments");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 5: look in treatments");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<tp:taxon-treatment>[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1675,11 +1583,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("treatment", sp1);
+                                    Taxonomy.PrintFoundMessage("treatment", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1711,15 +1619,15 @@ namespace Base
 
                 public void UnstableExpand6()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 6: look in sections");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 6: look in sections");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1733,11 +1641,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("section", sp1);
+                                    Taxonomy.PrintFoundMessage("section", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1769,15 +1677,15 @@ namespace Base
 
                 public void UnstableExpand7()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 7: WARNING: search from the beginnig");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 7: WARNING: search from the beginnig");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<?xml[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1791,11 +1699,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("preceding text", sp1);
+                                    Taxonomy.PrintFoundMessage("preceding text", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {
@@ -1827,15 +1735,15 @@ namespace Base
 
                 public void UnstableExpand8()
                 {
-                    Taxonomy.Expander.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
+                    Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
                     for (Match m = findLowerTaxa.Match(xml); m.Success; m = m.NextMatch())
                     {
                         Species sp = new Species(m.Value);
-                        if (Taxonomy.Expander.EmptyGenus(m.Value, sp)) return;
+                        if (Taxonomy.EmptyGenus(m.Value, sp)) return;
                         // Select only shortened taxa with non-zero species name
                         if ((m.Value.IndexOf('.') > -1) && (String.Compare(sp.species, string.Empty) != 0))
                         {
-                            Taxonomy.Expander.PrintNextShortened(sp);
+                            Taxonomy.PrintNextShortened(sp);
                             // Scan all lower-taxon names in the article
                             Match paragraph = Regex.Match(xml, "<sec[\\s\\S]*?" + Regex.Escape(m.Value));
                             if (paragraph.Success)
@@ -1848,11 +1756,11 @@ namespace Base
                                     Match mgen = Regex.Match(sp1.genus, sp.genusSkipPattern); if (mgen.Success) { last.SetGenus(sp1.genus); isFound = true; }
                                     Match msgen = Regex.Match(sp1.subgenus, sp.subspeciesSkipPattern); if (msgen.Success) { last.SetSubgenus(sp1.subgenus); isFound = true; }
                                     Match msp = Regex.Match(sp1.species, sp.speciesSkipPattern); if (msp.Success) { last.SetSpecies(sp1.species); isFound = true; }
-                                    Taxonomy.Expander.PrintFoundMessage("article", sp1);
+                                    Taxonomy.PrintFoundMessage("article", sp1);
                                 }
                                 if (isFound)
                                 {
-                                    Taxonomy.Expander.PrintSubstitutionMessage(sp, last);
+                                    Taxonomy.PrintSubstitutionMessage(sp, last);
                                     string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                     if (String.Compare(last.genus, string.Empty) != 0)
                                     {

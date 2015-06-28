@@ -24,6 +24,9 @@ namespace Tag
         static bool taxaC = false;
         static bool taxaD = false;
         static bool taxaE = false;
+        static bool extractTaxa = false;
+        static bool extractLowerTaxa = false;
+        static bool extractHigherTaxa = false;
         static bool untagSplit = false;
         static bool flag1 = false;
         static bool flag2 = false;
@@ -281,6 +284,18 @@ namespace Tag
                 {
                     testFlag = true;
                 }
+                else if (args[item].CompareTo("--extract-taxa") == 0 || args[item].CompareTo("--et") == 0)
+                {
+                    extractTaxa = true;
+                }
+                else if (args[item].CompareTo("--extract-lower-taxa") == 0 || args[item].CompareTo("--elt") == 0)
+                {
+                    extractLowerTaxa = true;
+                }
+                else if (args[item].CompareTo("--extract-higher-taxa") == 0 || args[item].CompareTo("--eht") == 0)
+                {
+                    extractHigherTaxa = true;
+                }
                 else if (args[item].CompareTo("--zoobank-nlm") == 0)
                 {
                     generateZooBankNlm = true;
@@ -333,19 +348,14 @@ namespace Tag
                 {
                     Base.Format.NlmSystem.Format fmt = new Base.Format.NlmSystem.Format();
                     fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
-
                     fmt.InitialFormat();
-
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
                     Base.Format.Nlm.Format fmt = new Base.Format.Nlm.Format();
-                    //fmt.Xml = fp.Xml;
                     fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
-
                     fmt.InitialFormat();
-
                     fp.Xml = Base.Format.Format.NormalizeSystemToNlmXml(config, fmt.Xml);
                 }
 
@@ -904,8 +914,40 @@ namespace Tag
             //}
 
             // Extract taxa
-            //split.Xml = Xml;
-            //split.ExtractTaxa();
+            if (extractTaxa || extractLowerTaxa || extractHigherTaxa)
+            {
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.LoadXml(Xml);
+                List<string> taxaList;
+
+                if (extractTaxa)
+                {
+                    Alert.Message("\n\t\tExtract all taxa\n");
+                    taxaList = Taxonomy.ExtractTaxa(xdoc, true);
+                    foreach (string taxon in taxaList)
+                    {
+                        Alert.Message(taxon);
+                    }
+                }
+                if (extractLowerTaxa)
+                {
+                    Alert.Message("\n\t\tExtract lower taxa\n");
+                    taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.lower);
+                    foreach (string taxon in taxaList)
+                    {
+                        Alert.Message(taxon);
+                    }
+                }
+                if (extractHigherTaxa)
+                {
+                    Alert.Message("\n\t\tExtract higher taxa\n");
+                    taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.higher);
+                    foreach (string taxon in taxaList)
+                    {
+                        Alert.Message(taxon);
+                    }
+                }
+            }
 
             if (untagSplit)
             {
