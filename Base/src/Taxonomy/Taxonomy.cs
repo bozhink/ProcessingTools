@@ -131,9 +131,12 @@ namespace Base.Taxonomy
                 if (stripTags)
                 {
                     result = nodeList.Cast<XmlNode>().Select(c =>
+                        Regex.Replace(
                             Regex.Replace(
                                 Regex.Replace(c.InnerXml, @"</[^>]*>(?=\S)(?!\Z)", " "),
-                                @"<[^>]*>", "")
+                                //@"<[^>]*>", "")
+                                @"<[^>]+ full-name=""([^<>""]+)""[^>]*>\S*", "$1"),
+                            @"<[^>]+>", "")
                         ).Distinct().ToList();
                 }
                 else

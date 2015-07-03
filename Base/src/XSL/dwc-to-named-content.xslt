@@ -9,22 +9,21 @@
   xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
   exclude-result-prefixes="dwc xs">
 
-    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no"/>
-    <xsl:preserve-space elements="*"/>
+	<xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no"/>
+	<xsl:preserve-space elements="*"/>
 
-    <xsl:template match="@*|node()">
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates/>
-        </xsl:copy>
-    </xsl:template>
+	<xsl:template match="@*|node()">
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:copy>
+	</xsl:template>
 
-    <xsl:template match="dwc:*">
-        <named-content>
-            <xsl:attribute name="content-type">
-                <xsl:value-of select="name()"/>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </named-content>
-    </xsl:template>
+	<xsl:template match="dwc:*">
+		<named-content>
+			<xsl:attribute name="content-type">
+				<xsl:value-of select="name()"/>
+			</xsl:attribute>
+			<xsl:apply-templates/>
+		</named-content>
+	</xsl:template>
 </xsl:stylesheet>

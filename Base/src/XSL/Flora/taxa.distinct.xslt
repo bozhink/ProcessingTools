@@ -8,23 +8,23 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs xlink mml xsi tp">
 
-    <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="yes"/>
+	<xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="yes"/>
 
-    <xsl:key name="distinct-taxa" match="taxon" use="normalize-space(.)"/>
+	<xsl:key name="distinct-taxa" match="taxon" use="normalize-space(.)"/>
 
-    <xsl:template match="/">
-        <taxa>
-            <xsl:for-each select="//taxon[generate-id() = generate-id(key('distinct-taxa', normalize-space(.))[1])]">
-                <xsl:sort/>
-                <xsl:apply-templates select="."/>
-            </xsl:for-each>
-        </taxa>
-    </xsl:template>
+	<xsl:template match="/">
+		<taxa>
+			<xsl:for-each select="//taxon[generate-id() = generate-id(key('distinct-taxa', normalize-space(.))[1])]">
+				<xsl:sort/>
+				<xsl:apply-templates select="."/>
+			</xsl:for-each>
+		</taxa>
+	</xsl:template>
 
-    <xsl:template match="@* | node()">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
-    </xsl:template>
+	<xsl:template match="@* | node()">
+		<xsl:copy>
+			<xsl:apply-templates select="@* | node()"/>
+		</xsl:copy>
+	</xsl:template>
 
 </xsl:stylesheet>
