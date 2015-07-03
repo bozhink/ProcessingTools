@@ -69,14 +69,14 @@ namespace Base.Taxonomy
 
                 // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
                 // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-                infraspecificPattern = @"<i(talic)?><tn type=""lower"">([^<>]*?)</tn></i(talic)?>(?![,\.])\s*(([^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,10})?)\s*((\b([Aa]b?|[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|f|[Ff]orma?|[Ss]f|[Cc]f|[Nn]r|sp\. near|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×|\?)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
+				infraspecificPattern = @"<i(talic)?><tn type=""lower"">([^<>]*?)</tn></i(talic)?>(?![,\.])\s*(([^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,10})?)\s*((\b([Aa]b?|[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|f|[Ff]orma?|[Ss]t|r|[Ss]f|[Cc]f|[Nn]r|sp\. near|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×|\?)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
                 for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
                 {
                     replace = Regex.Replace(replace, infraspecificPattern,
                         "<tn type=\"lower\"><basionym>$2</basionym> <basionym-authority>$4</basionym-authority> <infraspecific-rank>$6</infraspecific-rank> <infraspecific>$12</infraspecific></tn>");
                 }
 
-                infraspecificPattern = @"(?<=</infraspecific>)</tn>\s*([^<>]{0,100}?)\s*((\b([Aa]b?|[Nn]?\.?\s*[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|[Ss]ubspec|f|fo|[Ff]orma?|[Ss]f|[Cc]f|[Nn]r|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
+				infraspecificPattern = @"(?<=</infraspecific>)</tn>\s*([^<>]{0,100}?)\s*((\b([Aa]b?|[Nn]?\.?\s*[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|[Ss]ubspec|f|fo|[Ff]orma?|[Ss]t|r|[Ss]f|[Cc]f|[Nn]r|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
                 for (int i = 0; i < 4; i++)
                 {
                     for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
