@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<searches>
-	<search id="1" uri="http://data.gbif.org/search/" label="Global Biodiversity Information Facility"/>
-	<search id="2" uri="http://www.ncbi.nlm.nih.gov/gquery/?term=" label="National Center for Biotechnology Information"/>
-	<search id="3" uri="http://www.eol.org/search?q=" label="Encyclopedia of Life"/>
-	<search id="4" uri="http://www.biodiversitylibrary.org/Search.aspx?searchCat=&amp;searchTerm=" label="Biodiversity Heritage Library"/>
-	<search id="5" uri="http://en.wikipedia.org/w/index.php?search=" label="Wikipedia"/>
-	<search id="6" uri="https://www.google.com/search?q=" label="Google"/>
-</searches>
