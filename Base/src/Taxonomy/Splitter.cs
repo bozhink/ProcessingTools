@@ -99,7 +99,7 @@ namespace Base
 						replace = Regex.Replace(replace, @"<sensu>(.*?)</sensu>", "<tn-part type=\"sensu\">$1</tn-part>");
 						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">×</tn-part>", "<tn-part type=\"hybrid-sign\">×</tn-part>");
 						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">\?</tn-part>", "<tn-part type=\"uncertainty-rank\">?</tn-part>");
-						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(aff|prope|cf|nr|sp\. near)\.?)</tn-part>", "<tn-part type=\"uncertainty-rank\">$1</tn-part>");
+						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(aff|prope|cf|nr|near|sp\. near)\.?)</tn-part>", "<tn-part type=\"uncertainty-rank\">$1</tn-part>");
 						//replace = Regex.Replace(replace, "</tn-part><tn-part", "</tn-part> <tn-part");
 						node.InnerXml = replace;
 					}
@@ -201,6 +201,8 @@ namespace Base
 					case "Sp":
 					case "nr":
 					case "Nr":
+					case "Near":
+					case "near":
 					case "sp. near":
 					case "×":
 					case "?":

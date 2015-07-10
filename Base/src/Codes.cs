@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -6,6 +9,9 @@ namespace Base
 {
 	public class Codes : Base
 	{
+		private const string selectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
+		private const string abbreviationReplaceTagName = "abbreviationReplaceTagName";
+
 		public Codes()
 			: base()
 		{
@@ -16,5 +22,132 @@ namespace Base
 		{
 		}
 
+		public void TagAbbreviationsInText()
+		{
+			ParseXmlStringToXmlDocument();
+
+			// Do not change this sequence
+			TagAbbreviationsInSpecificNode("//graphic|//media|//disp-formula-group");
+			TagAbbreviationsInSpecificNode("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
+			TagAbbreviationsInSpecificNode("//fig-group|//table-wrap-group");
+			TagAbbreviationsInSpecificNode("//boxed-text");
+			TagAbbreviationsInSpecificNode("/");
+
+			xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, "</?" + abbreviationReplaceTagName + "[^>]*>", "");
+			xml = xmlDocument.OuterXml;
+		}
+
+		private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)
+		{
+			XmlNodeList specificNodes = xmlDocument.SelectNodes(selectSpecificNodeXPath, namespaceManager);
+			foreach (XmlNode specificNode in specificNodes)
+			{
+				List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", namespaceManager)
+					.Cast<XmlNode>().Select(a => ConvertAbbrevXmlNodeToAbbreviation(a)).ToList();
+
+				foreach (Abbreviation abbreviation in abbreviationsList)
+				{
+					string xpath = string.Format(selectNodesToTagAbbreviationsXPathTemplate, abbreviation.content);
+					foreach (XmlNode nodeInspecificNode in specificNode.SelectNodes(xpath, namespaceManager))
+					{
+						bool doReplace = false;
+						if (nodeInspecificNode.InnerXml == string.Empty)
+						{
+							if (nodeInspecificNode.OuterXml.IndexOf("<!--") == 0)
+							{
+								// This node is a comment. Do not replace matches here.
+								doReplace = false;
+							}
+							else if (nodeInspecificNode.OuterXml.IndexOf("<?") == 0)
+							{
+								// This node is a processing instruction. Do not replace matches here.
+								doReplace = false;
+							}
+							else if (nodeInspecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
+							{
+								// This node is a DOCTYPE node. Do not replace matches here.
+								doReplace = false;
+							}
+							else if (nodeInspecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
+							{
+								// This node is a CDATA node. Do nothing?
+								doReplace = false;
+							}
+							else
+							{
+								// This node is a text node. Tag this tex¾t and replace in InnerXml
+								doReplace = true;
+							}
+						}
+						else
+						{
+							// This is a named node
+							doReplace = true;
+						}
+
+						if (doReplace)
+						{
+							XmlElement newNode = xmlDocument.CreateElement("abbreviationReplaceTagName");
+							newNode.InnerXml = Regex.Replace(nodeInspecificNode.OuterXml, abbreviation.searchPattern, abbreviation.replacePattern);
+							nodeInspecificNode.ParentNode.ReplaceChild(newNode, nodeInspecificNode);
+						}
+					}
+				}
+			}
+		}
+
+		public Abbreviation ConvertAbbrevXmlNodeToAbbreviation(XmlNode abbrev)
+		{
+			Abbreviation abbreviation = new Abbreviation();
+
+			abbreviation.content = Regex.Replace(
+						Regex.Replace(
+							Regex.Replace(abbrev.InnerXml, @"<def.+</def>", ""),
+							@"<def[*>]</def>|</?b[^>]*>", ""),
+						@"\A\W+|\W+\Z", "");
+
+			if (abbrev.Attributes["content-type"] != null)
+			{
+				abbreviation.contentType = abbrev.Attributes["content-type"].InnerText;
+			}
+
+			if (abbrev["def"] != null)
+			{
+				abbreviation.definition = Regex.Replace(
+					Regex.Replace(abbrev["def"].InnerXml, "<[^>]*>", ""),
+					@"\A[=,;:\s–—−-]|[=,;:\s–—−-]\Z|\s+(?=\s)", "");
+			}
+
+			return abbreviation;
+		}
+
+		public struct Abbreviation
+		{
+			public string content;
+
+			public string contentType;
+
+			public string definition;
+
+			public string searchPattern
+			{
+				get
+				{
+					return "\\b(" + this.content + ")\\b";
+				}
+			}
+
+			public string replacePattern
+			{
+				get
+				{
+					return "<abbrev" +
+						((this.contentType == null || this.contentType == string.Empty) ? "" : @" content-type=""" + this.contentType + @"""") +
+						((this.definition == null || this.definition == string.Empty) ? "" : @" xlink:title=""" + this.definition + @"""") +
+						@" xmlns:xlink=""http://www.w3.org/1999/xlink""" +
+						">$1</abbrev>";
+				}
+			}
+		}
 	}
 }

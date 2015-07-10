@@ -71,9 +71,7 @@ namespace Tag
 			/*
 			 * Parse config file
 			 */
-			//config = ConfigBuilder.CreateConfig("C:\\bin\\config.xml");
 			config = ConfigBuilder.CreateConfig("C:\\bin\\config.json");
-
 
 			/*
 			 * Initial check of input parameters
@@ -135,14 +133,6 @@ namespace Tag
 			Alert.Message("Input file name: " + InputFileName);
 			Alert.Message("Output file name: " + OutputFileName);
 			Alert.Message(queryFileName);
-
-			//config.ExtractedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
-			//        + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-extracted-taxa"
-			//        + System.IO.Path.GetExtension(InputFileName);
-
-			//config.ExpandedTaxaXml = System.IO.Path.GetDirectoryName(InputFileName) + "\\"
-			//        + System.IO.Path.GetFileNameWithoutExtension(InputFileName) + "-expanded-taxa"
-			//        + System.IO.Path.GetExtension(InputFileName);
 
 			foreach (int item in dashOptions)
 			{
@@ -564,14 +554,14 @@ namespace Tag
 			}
 			else if (testFlag)
 			{
-				Test test = new Test(fp.Xml);
-				test.Config = config;
+				//Test test = new Test(fp.Xml);
+				//test.Config = config;
 				//test.ExtractSystemChecklistAuthority();
 				//fp.Xml = test.Xml;
 
-				string scientificName = "Dascillidae";
-				string[] scientificNames = { "Plantago major", "Monohamus galloprovincialis", "Felis concolor" };
-				int[] srcId = { 1, 12 };
+				//string scientificName = "Dascillidae";
+				//string[] scientificNames = { "Plantago major", "Monohamus galloprovincialis", "Felis concolor" };
+				//int[] srcId = { 1, 12 };
 				//string rank = Base.Net.SearchNameInPaleobiologyDatabase(scientificName);
 				//Alert.Message(scientificName + " --> " + rank);
 
@@ -585,7 +575,11 @@ namespace Tag
 				//XmlDocument xx = Base.Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
 				//fp.Xml = xx.OuterXml;
 
-				test.SqlSelect();
+				//test.SqlSelect();
+
+				Codes code = new Codes(fp.Xml);
+				code.TagAbbreviationsInText();
+				fp.Xml = code.Xml;
 
 			}
 			else if (generateZooBankNlm)
@@ -932,7 +926,7 @@ namespace Tag
 				if (extractLowerTaxa)
 				{
 					Alert.Message("\n\t\tExtract lower taxa\n");
-					taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.lower);
+					taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.Lower);
 					foreach (string taxon in taxaList)
 					{
 						Alert.Message(taxon);
@@ -941,7 +935,7 @@ namespace Tag
 				if (extractHigherTaxa)
 				{
 					Alert.Message("\n\t\tExtract higher taxa\n");
-					taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.higher);
+					taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.Higher);
 					foreach (string taxon in taxaList)
 					{
 						Alert.Message(taxon);
