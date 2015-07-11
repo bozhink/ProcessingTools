@@ -47,7 +47,7 @@ namespace Base.Json.Gbif
         [DataMember]
         public int genusKey { get; set; }
         [DataMember]
-        public string Class { get; set; }
+        public string @class { get; set; }
     }
 
     [DataContract]
