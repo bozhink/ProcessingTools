@@ -32,12 +32,12 @@ namespace Base
 
 			public void StableExpand()
 			{
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 
 				// In this method it is supposed that the subspecies name is not shortened
 				Taxonomy.PrintMethodMessage("StableExpand");
 
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 				ParseXmlStringToXmlDocument();
 
 				List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(xmlDocument);
@@ -101,7 +101,7 @@ namespace Base
 				// Return
 				if (config.NlmStyle)
 				{
-					xml = Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.NormalizeSystemToNlmXml(config, xml);
 				}
 			}
 
@@ -110,7 +110,7 @@ namespace Base
 			{
 				Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
 
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 				ParseXmlStringToXmlDocument();
 
 				// Loop over paragraphs containong shortened taxa
@@ -265,7 +265,7 @@ namespace Base
 				xml = xmlDocument.OuterXml;
 				if (config.NlmStyle)
 				{
-					xml = Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.NormalizeSystemToNlmXml(config, xml);
 				}
 			}
 
@@ -273,7 +273,7 @@ namespace Base
 			{
 				Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
 
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 				ParseXmlStringToXmlDocument();
 
 				List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(xmlDocument);
@@ -313,7 +313,7 @@ namespace Base
 				// Return
 				if (config.NlmStyle)
 				{
-					xml = Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.NormalizeSystemToNlmXml(config, xml);
 				}
 			}
 		}
@@ -400,6 +400,7 @@ namespace Base
 							}
 						}
 					}
+
 					xml = xmlDocument.OuterXml;
 				}
 
@@ -530,6 +531,7 @@ namespace Base
 							}
 						}
 					}
+
 					xml = xmlDocument.OuterXml;
 				}
 
@@ -574,6 +576,7 @@ namespace Base
 									}
 								}
 							}
+
 							if (found) replace = Regex.Replace(replace1, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
 							xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
 						}
@@ -610,6 +613,7 @@ namespace Base
 									}
 								}
 							}
+
 							if (found) replace = Regex.Replace(replace1, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
 							xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
 						}

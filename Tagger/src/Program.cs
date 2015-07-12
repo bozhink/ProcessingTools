@@ -327,7 +327,7 @@ namespace Tag
 			 * Main processing part
 			 */
 			FileProcessor fp = new FileProcessor(InputFileName, OutputFileName);
-			fp.GetContent(true);
+			fp.ReadStringContent(true);
 
 			if (formatInit)
 			{
@@ -346,7 +346,7 @@ namespace Tag
 					Base.Format.Nlm.Format fmt = new Base.Format.Nlm.Format();
 					fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
 					fmt.InitialFormat();
-					fp.Xml = Base.Format.Format.NormalizeSystemToNlmXml(config, fmt.Xml);
+					fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
 				}
 
 				timer.WriteOutput();
@@ -441,14 +441,14 @@ namespace Tag
 				{
 					Alert.Message("Input Xml will be normalized to NLM syle.");
 					string xml = fp.Xml;
-					xml = Base.Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.Base.NormalizeSystemToNlmXml(config, xml);
 					fp.Xml = xml;
 				}
 				else
 				{
 					Alert.Message("Input Xml will be normalized to System style.");
 					string xml = fp.Xml;
-					xml = Base.Format.Format.NormalizeNlmToSystemXml(config, xml);
+					xml = Base.Base.NormalizeNlmToSystemXml(config, xml);
 					fp.Xml = xml;
 				}
 				timer.WriteOutput();
@@ -460,7 +460,7 @@ namespace Tag
 				if (arguments.Count > 2)
 				{
 					FileProcessor fpNlm = new FileProcessor(queryFileName, OutputFileName);
-					fpNlm.GetContent(true);
+					fpNlm.ReadStringContent(true);
 					ZoobankCloner zb = new ZoobankCloner(fpNlm.Xml, fp.Xml);
 					zb.Clone();
 					fp.Xml = zb.Xml;
@@ -474,7 +474,7 @@ namespace Tag
 				if (arguments.Count > 2)
 				{
 					FileProcessor fpJson = new FileProcessor(queryFileName, OutputFileName);
-					fpJson.GetContent();
+					fpJson.ReadStringContent();
 					ZoobankCloner zb = new ZoobankCloner();
 					zb.Xml = fp.Xml;
 					zb.CloneJsonToXml(fpJson.Xml);
@@ -520,7 +520,7 @@ namespace Tag
 				fl.GenerateTagTemplate();
 
 				flp.Xml = fl.Xml;
-				flp.WriteXMLFile();
+				flp.WriteStringContentToFile();
 
 				fl.Xml = fp.Xml;
 				if (taxaA)
@@ -550,7 +550,7 @@ namespace Tag
 				fp.Xml = fl.Xml;
 
 				flpp.Xml = fl.ExtractTaxaParts();
-				flpp.WriteXMLFile();
+				flpp.WriteStringContentToFile();
 			}
 			else if (testFlag)
 			{
@@ -720,7 +720,7 @@ namespace Tag
 
 			timer.Start();
 			Alert.WriteOutputFileMessage();
-			fp.WriteXMLFile();
+			fp.WriteStringContentToFile();
 			timer.WriteOutput();
 
 			allTime.WriteOutput();

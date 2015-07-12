@@ -4,58 +4,42 @@ using System.Text.RegularExpressions;
 
 namespace Base
 {
-    public static class QueryReplace
-    {
-        /// <summary>
-        /// Do multiple replaces using a valid xml query.
-        /// </summary>
-        /// <param name="Xml">Input string.</param>
-        /// <param name="queryFileName">Valid Xml file containing [multiple ]replace instructions.</param>
-        /// <returns>Output string after replaces.</returns>
-        public static string Replace(string Xml, string queryFileName)
-        {
-            string xml = Xml;
-            FileProcessor fp = new FileProcessor(queryFileName);
-            fp.GetContent();
+	public static class QueryReplace
+	{
+		/// <summary>
+		/// Do multiple replaces using a valid xml query.
+		/// </summary>
+		/// <param name="textContent">Input string.</param>
+		/// <param name="queryFileName">Valid Xml file containing [multiple ]replace instructions.</param>
+		/// <returns>Output string after replaces.</returns>
+		public static string Replace(string textContent, string queryFileName)
+		{
+			string text = textContent;
+			XmlDocument queryXml = FileProcessor.GetContentAsXmlDocument(queryFileName);
 
-            XmlDocument xmlfp = new XmlDocument();
+			try
+			{
+				XmlNodeList replaceNodeList = queryXml.SelectNodes("//replace");
+				foreach (XmlNode replaceNode in replaceNodeList)
+				{
+					string a = replaceNode["A"].InnerXml;
+					string b = replaceNode["B"].InnerXml;
+					if (replaceNode.Attributes.Count > 0)
+					{
+						text = Regex.Replace(text, a, b);
+					}
+					else
+					{
+						text = Regex.Replace(text, Regex.Escape(a), b);
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Alert.RaiseExceptionForMethod(e, "QueryReplace", 2);
+			}
 
-            try
-            {
-                xmlfp.InnerXml = fp.Xml;
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, "QueryReplace", 1);
-            }
-
-            try
-            {
-                XmlNodeList nodeList = xmlfp.SelectNodes("//replace");
-                foreach (XmlNode node in nodeList)
-                {
-                    string a = Regex.Replace(Regex.Replace(node["A"].InnerXml, @">\s+<", "><"), @"</tn-part><tn-part", "</tn-part> <tn-part");
-                    string b = Regex.Replace(Regex.Replace(node["B"].InnerXml, @">\s+<", "><"), @"</tn-part><tn-part", "</tn-part> <tn-part");
-
-                    Alert.Message(a);
-                    Alert.Message(b);
-
-                    if (node.Attributes.Count > 0)
-                    {
-                        xml = Regex.Replace(xml, a, b);
-                    }
-                    else
-                    {
-                        xml = Regex.Replace(xml, Regex.Escape(a), b);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, "QueryReplace", 2);
-            }
-
-            return xml;
-        }
-    }
+			return text;
+		}
+	}
 }

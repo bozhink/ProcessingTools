@@ -40,7 +40,7 @@ namespace Base
 
 			public void SplitLowerTaxa()
 			{
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 
 				ParseXmlStringToXmlDocument();
 
@@ -121,7 +121,7 @@ namespace Base
 
 				if (config.NlmStyle)
 				{
-					xml = Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.NormalizeSystemToNlmXml(config, xml);
 				}
 			}
 
@@ -390,7 +390,7 @@ namespace Base
 				bool splitBySuffix = false,
 				bool splitAboveGenus = false)
 			{
-				xml = Format.Format.NormalizeNlmToSystemXml(config, xml);
+				xml = Base.NormalizeNlmToSystemXml(config, xml);
 
 				ParseXmlStringToXmlDocument();
 
@@ -437,7 +437,7 @@ namespace Base
 
 				if (config.NlmStyle)
 				{
-					xml = Format.Format.NormalizeSystemToNlmXml(config, xml);
+					xml = Base.NormalizeSystemToNlmXml(config, xml);
 				}
 			}
 

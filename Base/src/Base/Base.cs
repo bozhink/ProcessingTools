@@ -51,18 +51,6 @@ namespace Base
 			encoding = new UTF8Encoding(false);
 		}
 
-		protected void ParseXmlStringToXmlDocument()
-		{
-			try
-			{
-				this.xmlDocument.LoadXml(xml);
-			}
-			catch (Exception e)
-			{
-				Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
-			}
-		}
-
 		public string Xml
 		{
 			get { return xml; }
@@ -79,6 +67,36 @@ namespace Base
 		{
 			get { return config; }
 			set { config = value; }
+		}
+
+		protected void NormalizeXmlToSystemXml()
+		{
+			xml = Base.NormalizeNlmToSystemXml(config, xml);
+		}
+
+		protected void NormalizeSystemXmlToCurrent()
+		{
+			if (config.NlmStyle)
+			{
+				xml = Base.NormalizeSystemToNlmXml(config, xml);
+			}
+		}
+
+		protected void ParseXmlDocumentToXmlString()
+		{
+			xml = xmlDocument.OuterXml;
+		}
+
+		protected void ParseXmlStringToXmlDocument()
+		{
+			try
+			{
+				this.xmlDocument.LoadXml(xml);
+			}
+			catch (Exception e)
+			{
+				Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
+			}
 		}
 
 		public static XmlNamespaceManager TaxPubNamespceManager()
@@ -149,6 +167,26 @@ namespace Base
 			}
 
 			return result;
+		}
+
+		public static string NormalizeNlmToSystemXml(Config config, string xml)
+		{
+			return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
+		}
+
+		public static string NormalizeNlmToSystemXml(Config config, XmlDocument xml)
+		{
+			return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
+		}
+
+		public static string NormalizeSystemToNlmXml(Config config, string xml)
+		{
+			return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
+		}
+
+		public static string NormalizeSystemToNlmXml(Config config, XmlDocument xml)
+		{
+			return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
 		}
 	}
 }
