@@ -149,5 +149,79 @@ namespace Base
 				}
 			}
 		}
+
+		public void TagQuantities()
+		{
+			string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
+
+			ParseXmlStringToXmlDocument();
+			foreach (XmlNode node in xmlDocument.SelectNodes(xpath,namespaceManager))
+			{
+				string replace = node.InnerXml;
+
+				// 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
+				string pattern = @"((?:(?:[–—−‒-]\s*)?\d+(?:[,\.]\d+)?(?:\s*[×\*])?\s*)+(?:[kdcmµ]m|[º°˚]\s*C|bp|ft|m|[kdcmµ]M|[kdcmµ]mol|mile|min(?:ute))\b)";
+				Match m = Regex.Match(replace, pattern);
+				if (m.Success)
+				{
+					Alert.Message(m.Value);
+					replace = Regex.Replace(replace, pattern, "<quantity>$1</quantity>");
+					node.InnerXml = replace;
+				}
+			}
+
+			ParseXmlDocumentToXmlString();
+		}
+
+		public void TagDates()
+		{
+			string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
+
+			ParseXmlStringToXmlDocument();
+			foreach (XmlNode node in xmlDocument.SelectNodes(xpath, namespaceManager))
+			{
+				string replace = node.InnerXml;
+
+				// 18 Jan 2008
+				string pattern = @"((?:(?:(?:[1-2][0-9]|3[0-1]|0?[1-9])(?:\s*[–—−‒-]\s*)?)+\W{0,4})?(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\W{0,4}(?:1[6-9][0-9]|20[0-9])[0-9](?![0-9]))";
+				Match m = Regex.Match(replace, pattern);
+				if (m.Success)
+				{
+					Alert.Message(m.Value);
+					replace = Regex.Replace(replace, pattern, "<date>$1</date>");
+					node.InnerXml = replace;
+				}
+			}
+
+			ParseXmlDocumentToXmlString();
+		}
+
+		public void SelectCodes()
+		{
+			const string codePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
+
+			List<string> codeWords = new List<string>();
+			XmlDocument cleanedXmlDocument = new XmlDocument();
+
+			ParseXmlStringToXmlDocument();
+			cleanedXmlDocument = xmlDocument;
+
+			cleanedXmlDocument.InnerXml = Regex.Replace(cleanedXmlDocument.InnerXml, @"(?<=</xref>)\s*:\s*" + codePattern, "");
+
+			cleanedXmlDocument.LoadXml(XsltOnString.ApplyTransform(config.codesRemoveNonCodeNodes, cleanedXmlDocument));
+
+			for (Match m = Regex.Match(cleanedXmlDocument.InnerText, codePattern); m.Success; m = m.NextMatch())
+			{
+				codeWords.Add(m.Value);
+			}
+
+			codeWords = codeWords.Distinct().ToList();
+			codeWords.Sort();
+			Alert.Message("\n\n" + codeWords.Count + " code words in article\n");
+			foreach(string word in codeWords)
+			{
+				Alert.Message(word);
+			}
+		}
 	}
 }

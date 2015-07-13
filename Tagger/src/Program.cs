@@ -58,6 +58,7 @@ namespace Tag
 		static bool testFlag = false;
 		static bool normalizeFlag = false;
 		static bool tagEnvironments = false;
+		static bool tagCodes = false;
 		static Config config;
 
 		static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
@@ -318,6 +319,10 @@ namespace Tag
 				{
 					tagEnvironments = true;
 				}
+				else if (args[item].CompareTo("--codes") == 0)
+				{
+					tagCodes = true;
+				}
 			}
 			/*
 			 * Now input parameters are set.
@@ -577,9 +582,12 @@ namespace Tag
 
 				//test.SqlSelect();
 
-				Codes code = new Codes(fp.Xml);
-				code.TagAbbreviationsInText();
-				fp.Xml = code.Xml;
+				List<string> words = fp.ExtractWordsFromXml();
+				foreach (string word in words)
+				{
+					Alert.Message(word);
+				}
+				Alert.Message("\n\n" + words.Count + " words in this article\n");
 
 			}
 			else if (generateZooBankNlm)
@@ -715,6 +723,22 @@ namespace Tag
 				environments.TagEnvironmentsRecords();
 
 				fp.Xml = environments.Xml;
+				timer.WriteOutput();
+			}
+
+			if (tagCodes)
+			{
+				timer.Start();
+				Alert.Message("\n\tTag codes.\n");
+				Base.Codes codes = new Codes(Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
+				codes.Config = config;
+
+				codes.TagAbbreviationsInText();
+				codes.TagQuantities();
+				codes.TagDates();
+				codes.SelectCodes();
+
+				fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
 				timer.WriteOutput();
 			}
 

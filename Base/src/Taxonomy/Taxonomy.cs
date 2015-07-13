@@ -129,7 +129,7 @@ namespace Base.Taxonomy
 					result = nodeList.Cast<XmlNode>().Select(c =>
 						Regex.Replace(
 							Regex.Replace(
-								Regex.Replace(c.InnerXml, @"</[^>]*>(?=\S)(?!\Z)", " "),
+								Regex.Replace(c.InnerXml, @"</[^>]*>(?=[^\s\)\]])(?!\Z)", " "),
 								@"<[^>]+ full-name=""([^<>""]+)""[^>]*>\S*", "$1"),
 							@"<[^>]+>", "")
 						).Distinct().ToList();

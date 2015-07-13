@@ -104,6 +104,9 @@ namespace Base
 		[DataMember]
 		public string environmentsDataSourceString { get; set; }
 
+		[DataMember]
+		public string codesRemoveNonCodeNodes { get; set; }
+
 		/*
 		 * Tagging parameters
 		 */

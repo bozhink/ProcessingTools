@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EnvironmentsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MainDictionaryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -140,6 +145,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Environments.mdf</DependentUpon>
     </Content>
+    <Content Include="Data\MainDictionary.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\MainDictionary_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>MainDictionary.mdf</DependentUpon>
+    </Content>
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
     <Content Include="Data\Sql\environments_groups.sql" />
@@ -152,6 +164,7 @@
     <Content Include="Data\Xml\taxonomy.blackList.xml" />
     <Content Include="Data\Xml\taxonomy.rankList.xml" />
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
+    <Content Include="src\XSL\codes.remove-non-code-nodes.xslt" />
     <Content Include="src\XSL\copy-nlm.xslt" />
     <Content Include="src\XSL\copy.xslt">
       <SubType>Designer</SubType>
@@ -225,6 +238,17 @@
     </None>
     <None Include="EnvironmentsDataSet.xss">
       <DependentUpon>EnvironmentsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MainDictionaryDataSet.xsc">
+      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MainDictionaryDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDictionaryDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MainDictionaryDataSet.xss">
+      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

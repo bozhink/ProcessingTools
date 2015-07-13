@@ -1,0 +1,556 @@
+﻿IF OBJECT_ID ('geographic_names') IS NOT NULL
+   DROP TABLE [dbo].[geographic_names]
+GO
+CREATE TABLE [dbo].[geographic_names]
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Name VARCHAR(255) NOT NULL
+);
+GO
+
+--Alain Obry
+--Alakai Swamp
+--Albany Scenic Reserve
+--Alpine National Park
+--Amoa River Valley
+--Anatoki Valley
+--Aneityum
+--Aniseed Valley Scenic Reserve
+--Antartica Chilena
+--Aorangi Island
+--Argentina
+--Arthur’s Pass
+--Atuanui State Forest
+--Auckland
+--Auckland City
+--Auckland Ecological Region
+--Austral Islands
+--Australia
+--Awaawaphui Trail
+--Awaawapuhi Trail
+--Awhitu Ecological District
+--Bahia San Antonio
+--Bahia Thetis
+--Balaclava Ecological District
+--Bald Cove
+--Bald Hill
+--Barthow Road
+--Bay of Islands County
+--Bealey Track
+--Beenak
+--Big River Fire trail
+--Blue Mountains
+--Bogong Plains
+--Borland Saddle
+--Boulder Lake
+--Boulder Lake Basin
+--Bramley’s Ridge
+--Brown Cow Saddle
+--Brown Town
+--Brown Town Track
+--Brown Town track
+--Browntown Road
+--Bryant Range
+--Campbell Island
+--Canaan
+--Canister Cove
+--Canterbury
+--Canterbury Land District
+--Central Highlands
+--Chancellor Hut
+--Chateau
+--Chateau Tongariro
+--Chatham Island
+--Chatham Islands
+--Chatham Islands source 
+--Chatham Islands source  
+--Chepu
+--Chile
+--Chiloe Island
+--Churucca
+--Cobb Dam
+--Cobb Valley
+--Coromandel
+--Coromandel County
+--Coromandel Range
+--Cradle Mountain-Lake St. Clair National Park
+--Craig’s Bush
+--Croesus track
+--Curtis Falls Track
+--Dairy flat
+--Darby Pond
+--Dawson Falls
+--Deer Spur Walk
+--Denniston
+--Detroit de Magellan-Port Famine
+--Douglas
+--Douglas Range
+--Dun Saddle
+--Dunedin
+--East Maui
+--Eastern Highlands
+--Eastern Highlands province
+--Eastern Northland & Islands Ecological District
+--Eastern Northland and Islands Ecological Region and District
+--Eastern Northland Ecological Region
+--Economie Rurale
+--Economie Rurale
+--Egmont Ecological Region and District
+--Egmont National Park
+--Elsthorpe Scenic Reserve
+--Espiritu Santo
+--Falkland Islands
+--Fare Ata
+--Fare Rau Ape
+--Fautaua Valley
+--Fiji Islands
+--Fijian Islands
+--Fiordland
+--Fiordland National Park
+--Flora Hut
+--Flora saddle
+--Flora track
+--Foret de Sailles
+--Fox Glacier
+--Franklin Co.
+--Franklin County
+--Galatea
+--George Sound track
+--Gertrude Saddle track
+--Goilala sub-district
+--Gordon’s Pyramid
+--Gordontown Road
+--Goro Ate
+--Gouland Downs
+--Gouland Downs Hut
+--Grande Terre
+--Granity Pass
+--Great Otway National Park
+--Green Lake
+--Haast side of Grassy Creek 
+--Hagen sub-district
+--Haleakala
+--Halehaha area
+--Hamilton
+--Hana District
+--Hana Forest Reserve
+--Hatton Road
+--Hauraki Gulf
+--Hawai‘i Island
+--Hawaii Volcanoes National Park
+--HAWAIIAN ISLANDS
+--Hawkes Bay
+--Hawkes Bay 
+--Heaphy Track
+--Hector Busby property
+--Henry Saddle
+--Hikurangi Trig
+--Hilo
+--Hokio
+--Hollyford Valley
+--Holmwood Road, Christchurch
+--Homer
+--Homestead Ridge
+--Honopu
+--Hukutaia Domain
+--Hunter Mts.
+--Hunua
+--Hunua Ecological District
+--Hunua Range
+--Hutt Valley
+--Ikawhenua Ranges
+--Iles Maclovian
+--Isla de los Estados
+--Island Saddle
+--James Mackay Hutt
+--Kaaawa
+--Kaeo
+--Kahikatea bush
+--Kahurangi National Park
+--Kaimai Mamaku Forest Park
+--Kaimaru
+--Kainantu sub-province
+--Kaitoke
+--Kandavu
+--Kapapala Forest Reserve
+--Karamea bluffs
+--Karikari
+--Kau Forest Reserve
+--Kaua‘i
+--Kauaeranga Valley
+--Kauai
+--Kaukawahua gulch
+--Kaunuohua
+--Kawaihau District
+--Kawele
+--Kawhia Ecological District
+--Kealakekua Ranch
+--Keanae valley
+--Kekoiki
+--Kilauea Research Center
+--Kipahulu
+--Kipuka
+--Kohaihai River 
+--Koia sanctuary
+--Kokianga Co.
+--Koloa District
+--Kona
+--Koolau Range
+--Kosciuszko National Park
+--Kosciuszko summit trail
+--Kulani Prison
+--Kuliouou Valley
+--Kumakalii
+--Laird Thomson trail
+--Laka Lanoto‘o
+--Lake Aunde
+--Lake Brunner
+--Lake Harris Saddle 
+--Lake Ianthe 
+--Lake Lano
+--Lake Rotoehu
+--Lake Sylvester
+--Landing Bay
+--Lavers Hill-Beech Forest road 
+--Levin
+--Lewis Pass
+--Lihue-Koloa Forest Reserve
+--Lincoln
+--Little Barrier Island
+--Lockett Ranges
+--Lonely Track Road
+--Longwood Range
+--Lookout rocks
+--Lyrebird Plains
+--Magallenes
+--Makotukutuku St. near Mt. Kaiparoro
+--Manakau Harbour
+--Mangatangi Kauri area
+--Mangonui County
+--Mapulehu Valley
+--Margaret’s Tarn
+--Marian’s Lookout trail
+--Marlborough
+--Marlborough Land District
+--Marlborough Sounds
+--MARQUESAS ISLANDS
+--MASCARENE ISLANDS
+--Matakawau
+--Matakawau Reserve
+--Matakawau Road
+--Matavanu Crater
+--Mauku
+--Maungataniwha Range
+--Maungatapere
+--Maungatapu Track
+--Mauritius
+--Milford Sound
+--Moehau summit
+--Moeraki Valley
+--Molesworth Ecological Region
+--Molokai
+--Mont Goro Ate
+--Morne du Patates a Durand
+--Motukapiti Island
+--Mount Misery
+--Mount Pirongia
+--Mt Field East
+--Mt Tabwemasana
+--Mt. Ambua
+--Mt. Anglem
+--Mt. Anglem summit
+--Mt. Aorai
+--Mt. Arthur
+--Mt. Arthur Plateau
+--Mt. Arthur summit trail
+--Mt. Baw Baw
+--Mt. Baw Baw Alpine Resort
+--Mt. Blue Cow
+--Mt. Buffalo National Park
+--Mt. Burns track
+--Mt. Capella north of east summit
+--Mt. Centre
+--Mt. Davy
+--Mt. Dickson
+--Mt. Domett
+--Mt. Duppa
+--Mt. Egmont
+--Mt. Eliza Plateau
+--Mt. Field National Park
+--Mt. Fito
+--Mt. Goul
+--Mt. Gray
+--Mt. Hagen
+--Mt. Holdsworth
+--Mt. Inrero
+--Mt. Kaala
+--Mt. Kaala summit
+--Mt. Kaala summit trail 
+--Mt. Kahili
+--Mt. Kegum
+--Mt. Koghi
+--Mt. Kosciuszko
+--Mt. Lepu‘e
+--Mt. Luna
+--Mt. Mandjelia
+--Mt. Marau
+--Mt. Mau
+--Mt. Mbuke Levu summit
+--Mt. Ollivier
+--Mt. Ooumu
+--Mt. Orohena
+--Mt. Owen
+--Mt. Perahu
+--Mt. Piora
+--Mt. Richmond
+--Mt. Richmond Forest Park
+--Mt. Road
+--Mt. Rodway tow
+--Mt. Scorpion
+--Mt. Siga‘ele
+--Mt. Silisili
+--Mt. St. Patrick
+--Mt. Stokes
+--Mt. Stokes Scenic Reserve
+--Mt. Stokes summit
+--Mt. Tabwemasana
+--Mt. Tamahunga
+--Mt. Tapuaooa
+--Mt. Te Aroha
+--Mt. Te Aroha summit trail
+--Mt. Tekao
+--Mt. Toomaru
+--Mt. Toukosmereu
+--Mt. Wellington
+--Mt. Wellington lava fields
+--Mt. Wilhelm
+--Murchison
+--Na Pali-Kona Forest Reserve
+--Natewa Peninsula
+--National Park Road
+--Nature Reserve
+--Nelson
+--Nelson Lakes National Park
+--Nelson Land District
+--New Caledonia
+--New South Wales
+--New Zealand
+--Nezwon Netounemla
+--Ngaroku Stream
+--North Auckland
+--North Auckland Land District
+--North Canterbury
+--North Cape
+--North Cape Scientific Reserve
+--North Island
+--North Tararua Range
+--Northeastern Long Island
+--Northland
+--Nuku Hiva
+--Oahu
+--Oakura Bay
+--Ohakune
+--Olaa Forest Reserve
+--Omahu Islets
+--Ooumu
+--Ooumu Peak
+--Oparara Arch
+--Opotiki
+--Orater Creek
+--Orohena
+--Orotere
+--Otago Province
+--Otorohanga County
+--Otway Range
+--Otways
+--Owen Creek
+--Painted Run t-bar
+--Paliku Cabin
+--Paparoa Range
+--Papeete
+--Papenoo
+--Papua New Guinea
+--Parihakoakoa Stream
+--Pearse River 
+--Peel Forest Park
+--Pelekunu Pali
+--Pelorus River Bridge
+--Peninsula Cordova
+--Pepeopae Bog
+--Percy Hut
+--Petrin Nature Reserve
+--Pigeon Saddle
+--Piha Beach
+--Pihea Trail
+--Pinehaven
+--Pioneer Creek
+--Pitt Island
+--Plateau de Belouve
+--Pollok
+--Poor Knights Islands
+--Port Pegasus
+--Potaema Track
+--Pouebo
+--Powelltown
+--Princeville
+--Province du Nord
+--Province Nord
+--Pto. Condor
+--Puerto Hoppner
+--Pukaloa gulch
+--Puketaha Road
+--Puketi Forest
+--Puniho Hut
+--Pureora State Forest Park
+--Puu Alii
+--Puu Hapapa
+--Puu Kalena
+--Puu Kanehoa
+--Puu Kaua
+--Puu Kukui Watershed Preserve
+--Raiatea
+--Rakitu
+--Rakiura National Park
+--Rameka Gorge
+--Ranginui summit
+--Rangitoto Island
+--Rangitoto Range
+--Rapa
+--Resolution Bay
+--Reunion Island
+--Richmond Range
+--Ridge to Mole Tops
+--Riesco Island
+--River Toigoi
+--Roa Mine
+--Rocher du Diable
+--Rodney Ecological District
+--Rotorua County
+--Ruahine Range
+--Ruapane
+--Saddle Road
+--Samoa Islands
+--Samoan Islands
+--Savai‘I
+--Scenic Reserve at Moerangi
+--Schofield
+--Sealey Range
+--Secretary Island
+--Sinbad Gulley
+--Sincock Bog
+--Smith’S Creek
+--Society Islands
+--South Auckland Land District
+--South Auckland Province
+--South Highland District
+--South Island
+--South Kohala District
+--South Manukau
+--South Westland
+--Southern Ruahine Range
+--Southern Tablelands
+--Southland
+--Southwest National Park
+--St. Arnaud Range
+--Star Mountains
+--Stewart Island
+--Stony River
+--Suva
+--Table Hill
+--Table Mountain
+--Tahiti
+--Tainui Ecological Region
+--Takaka
+--Takaka Hill
+--Takapuna Beach
+--Tamaki River 
+--Tanna
+--Tapuaooa
+--Taran
+--Tararua Forest Park
+--Tari sub-district
+--Tasmania
+--Tawhiti Rahi Island
+--Te Akau Point
+--Te Kinga
+--Tekao
+--Telefomin sub-district
+--Temple Basin
+--Tevaitoa
+--Thakaundrove
+--Thames County
+--The Pulpit
+--Third Basin
+--Tiavi
+--Tierra del Fuego
+--Timihunga
+--Tokerau Beach
+--Tongariro 
+--Tongariro National Park
+--Toovii
+--Toovii Plateau
+--Tovii
+--Travers Range
+--Tucker Cove
+--Tuku Valley
+--Turoa
+--Ukulele
+--Uluingala
+--Umipoho Gulch area
+--Upolu
+--Upper Clarence Valley
+--Uraquat Trail
+--USA
+--Vanua Levu
+--VANUATU ISLANDS
+--Victoria
+--Village Trail
+--Viti Levu
+--Wahiawa Bog
+--Wahiawa Mountains
+--Wahiawa Mts.
+--Wai Anapanapa
+--Waiakea mauka
+--Waialealae
+--Waianae Range
+--Waikanae
+--Waikape Stream
+--Waikato
+--Waikolu Valley
+--Wailua
+--Waima Forest
+--Waimea District
+--Waimea Drainage Basin
+--Waingaro Peak
+--Wairoa
+--Wairoa [Hunua] Falls
+--Waitakere Ranges
+--Waitanguru
+--Waitemata
+--Waitemata Co.
+--Waitemata County
+--Waitomo Co.
+--Wangapeka
+--Water reserve
+--Wellington
+--Wellington District
+--Wellington Land District
+--West Coast
+--West Highlands
+--West Maui
+--West Sepik District
+--West Taupo
+--Western Highlands District
+--Westland
+--Westland Land District
+--Westland National Park
+--Westport
+--Whakapapanui Track
+--Whanganui
+--Whangarei
+--Whangarei County
+--Wilberg Range
+--Wilmot Pass
+--Wright’S Road
+--Yarra State Forest
+--Youngs Creek

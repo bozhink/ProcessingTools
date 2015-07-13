@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Base
 {
@@ -67,6 +68,32 @@ namespace Base
 		{
 			get { return config; }
 			set { config = value; }
+		}
+
+		public static List<string> ExtractWordsFromString(string text)
+		{
+			List<string> result = new List<string>();
+
+			for (Match m = Regex.Match(text, @"\b\w+\b"); m.Success; m = m.NextMatch())
+			{
+				result.Add(m.Value);
+			}
+
+			result = result.Distinct().ToList();
+			result.Sort();
+
+			return result;
+		}
+
+		public static List<string> ExtractWordsFromXml(XmlDocument xml)
+		{
+			return Base.ExtractWordsFromString(xml.InnerText);
+		}
+
+		public List<string> ExtractWordsFromXml()
+		{
+			ParseXmlStringToXmlDocument();
+			return Base.ExtractWordsFromString(xmlDocument.InnerText);
 		}
 
 		protected void NormalizeXmlToSystemXml()

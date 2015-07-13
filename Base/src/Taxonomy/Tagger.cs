@@ -45,45 +45,56 @@ namespace Base.Taxonomy
 			{
 				string infraspecificPattern;
 				// Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-				infraspecificPattern = @"<i(talic)?><tn type=""lower"">([^<>]*?)</tn></i(talic)?>\s*(\((?i)(\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)\))\s*<i(talic)?>([a-z\s-]+)</i(talic)?>";
+				infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
 				replace = Regex.Replace(replace, infraspecificPattern,
-					"<tn type=\"lower\"><basionym>$2</basionym> <sensu>$4</sensu> <specific>$7</specific></tn>");
+					@"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
 				// Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
-				infraspecificPattern = @"<i(talic)?><tn type=""lower"">([A-Za-z\.-]+)</tn></i(talic)?>(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,30}?)\s*(\b([Ss]ubgen(us)?|[Ss]ubg|[Ss]er|([Ss]ub)?[Ss]ect(ion)?)\b\.?)\s*(<i(talic)?>)?(<tn type=""lower"">)?([A-Za-z\.-]+(\s+[a-z\s\.-]+){0,3})(</tn>)?(</i(talic)?>)?";
-				for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
 				{
-					replace = Regex.Replace(replace, infraspecificPattern,
-						"<tn type=\"lower\"><genus>$2</genus> <genus-authority>$4</genus-authority> <infraspecific-rank>$5</infraspecific-rank> <infraspecific>$13</infraspecific></tn>");
-				}
-				infraspecificPattern = @"(?<=</infraspecific>)</tn>\s*([^<>]{0,100}?)\s*(\b([Ss]ubgen(us)?|[Ss]ubg|([Ss]ub)?[Ss]ect(ion)?)\b\.?)\s*(<i(talic)?>)?(<tn type=""lower"">)?([A-Za-z\.-]+(\s+[a-z\s\.-]+){0,3})(</tn>)?(</i(talic)?>)?";
-				for (int i = 0; i < 3; i++)
-				{
+					const string subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
+
+					infraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + subpattern;
 					for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
 					{
 						replace = Regex.Replace(replace, infraspecificPattern,
-							" <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$10</infraspecific></tn>");
+							@"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
 					}
-				}
-				//replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z\.-]+)\s+([a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
+					replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
 
+					infraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + subpattern;
+					for (int i = 0; i < 3; i++)
+					{
+						for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
+						{
+							replace = Regex.Replace(replace, infraspecificPattern,
+								" <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
+						}
+					}
+					replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+				}
 
 				// <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
 				// <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-				infraspecificPattern = @"<i(talic)?><tn type=""lower"">([^<>]*?)</tn></i(talic)?>(?![,\.])\s*(([^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,10})?)\s*((\b([Aa]b?|[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|f|[Ff]orma?|[Ss]t|r|[Ss]f|[Cc]f|[Nn]r|[Nn]ear|sp\. near|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×|\?)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
-				for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
 				{
-					replace = Regex.Replace(replace, infraspecificPattern,
-						"<tn type=\"lower\"><basionym>$2</basionym> <basionym-authority>$4</basionym-authority> <infraspecific-rank>$6</infraspecific-rank> <infraspecific>$12</infraspecific></tn>");
-				}
-
-				infraspecificPattern = @"(?<=</infraspecific>)</tn>\s*([^<>]{0,100}?)\s*((\b([Aa]b?|[Nn]?\.?\s*[Ss]p|[Vv]ar|[Ss]ubvar|[Ss]ubsp|[Ss]ubspecies|[Ss]sp|[Ss]ubspec|f|fo|[Ff]orma?|[Ss]t|r|[Ss]f|[Cc]f|[Nn]r|[Nn]ear|[Aa]ff|[Pp]rope|([Ss]ub)?[Ss]ect)\b(\.)?)|×)\s*<i(talic)?>([a-z-]+)</i(talic)?>";
-				for (int i = 0; i < 4; i++)
-				{
+					infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|f|forma?|st|r|sf|cf|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
 					for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
 					{
 						replace = Regex.Replace(replace, infraspecificPattern,
-							" <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$8</infraspecific></tn>");
+							@"<tn type=""lower""><basionym>$1</basionym> <basionym-authority>$2</basionym-authority> <infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>");
+					}
+
+					replace = Regex.Replace(replace,
+						@"(?<=</infraspecific>\s*\)?)</tn>\s*<i>([A-Za-z\.\s-]+)</i>",
+						" <species>$1</species></tn>");
+
+					infraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|subspec|f|fo|forma?|st|r|sf|cf|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+					for (int i = 0; i < 4; i++)
+					{
+						for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
+						{
+							replace = Regex.Replace(replace, infraspecificPattern,
+								" <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$3</infraspecific></tn>");
+						}
 					}
 				}
 
@@ -144,21 +155,6 @@ namespace Base.Taxonomy
 			catch (Exception e)
 			{
 				Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag taxa.");
-			}
-
-			/*
-			 * Put some blank spaces in taxomic names
-			 */
-			try
-			{
-				foreach (XmlNode node in xmlDocument.SelectNodes("//tn[@type='lower'][not(tn-part)]", namespaceManager))
-				{
-					node.InnerXml = Regex.Replace(node.InnerXml, @"(\.)(\w)", "$1 $2");
-				}
-			}
-			catch (Exception e)
-			{
-				Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Refactor tagged taxa.");
 			}
 
 			ParseXmlDocumentToXmlString();
@@ -237,16 +233,6 @@ namespace Base.Taxonomy
 				ApplyBlackList();
 
 				xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, @"<tn type=""higher"">([a-z]+)</tn>", "$1");
-
-				foreach (XmlNode node in xmlDocument.SelectNodes("//tn[count(.//tn)!=0]|//a[count(.//tn)!=0]|//ext-link[count(.//tn)!=0]|//tp:treatment-meta/kwd-group/kwd/named-content[count(.//tn)!=0]|//*[@object_id='82'][count(.//tn)!=0]|//*[@id='41'][count(.//tn)!=0]|//surname[count(.//tn)!=0]|//given-names[count(.//tn)!=0]|//article/front/notes/sec", namespaceManager))
-				{
-					node.InnerXml = Regex.Replace(node.InnerXml, "<tn [^>]*>|</?tn>", "");
-				}
-
-				foreach (XmlNode node in xmlDocument.SelectNodes("//*[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[count(.//tn)!=0]", namespaceManager))
-				{
-					node.InnerXml = Regex.Replace(node.InnerXml, "<tn [^>]*>|</?tn>", "");
-				}
 			}
 			catch (Exception e)
 			{
@@ -268,7 +254,7 @@ namespace Base.Taxonomy
 				foreach (string taxon in firstWordTaxaList)
 				{
 					IEnumerable<string> queryResult = from item in blackList.Elements()
-													  where Regex.Match(taxon, item.Value).Success
+													  where Regex.Match(taxon, "(?i)" + item.Value).Success
 													  select item.Value;
 					foreach (string item in queryResult)
 					{

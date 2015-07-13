@@ -73,7 +73,7 @@ namespace Base
 						replace = Regex.Replace(replace, @"<basionym-authority>(\s*)(\(.*?\))(\s*)(.*?)</basionym-authority>", "$1<tn-part type=\"basionym-authority\">$2</tn-part>$3<tn-part type=\"authority\">$4</tn-part>");
 						replace = Regex.Replace(replace, "<basionym-authority>(.*?)</basionym-authority>", "<tn-part type=\"authority\">$1</tn-part>");
 
-						for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>\s*<species>[^<>]*</species>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
+						for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>\s*\)?\s*<species>[^<>]*</species>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
 						{
 							string replace1 = m.Value;
 							string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", "");
@@ -86,6 +86,7 @@ namespace Base
 							replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"authority\">$1</tn-part>");
 							replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
 						}
+
 						for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
 						{
 							string replace1 = m.Value;
@@ -93,19 +94,21 @@ namespace Base
 							string rank = ParseRank(infraSpecificRank);
 							replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", "<tn-part type=\"infraspecific-rank\">$1</tn-part>");
 							replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", "<tn-part type=\"" + rank + "\">$1</tn-part>");
-							replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"" + rank + "-authority\">$1</tn-part>");
+							//replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"" + rank + "-authority\">$1</tn-part>");
+							replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"authority\">$1</tn-part>");
 							replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
 						}
-						replace = Regex.Replace(replace, @"<sensu>(.*?)</sensu>", "<tn-part type=\"sensu\">$1</tn-part>");
-						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">×</tn-part>", "<tn-part type=\"hybrid-sign\">×</tn-part>");
-						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">\?</tn-part>", "<tn-part type=\"uncertainty-rank\">?</tn-part>");
-						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(aff|prope|cf|nr|near|sp\. near)\.?)</tn-part>", "<tn-part type=\"uncertainty-rank\">$1</tn-part>");
-						//replace = Regex.Replace(replace, "</tn-part><tn-part", "</tn-part> <tn-part");
+
+						replace = Regex.Replace(replace, @"<sensu>(.*?)</sensu>", @"<tn-part type=""sensu"">$1</tn-part>");
+						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">×</tn-part>", @"<tn-part type=""hybrid-sign"">×</tn-part>");
+						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">\?</tn-part>", @"<tn-part type=""uncertainty-rank"">?</tn-part>");
+						replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(aff|prope|cf|nr|near|sp\. near)\.?)</tn-part>", @"<tn-part type=""uncertainty-rank"">$1</tn-part>");
+
 						node.InnerXml = replace;
 					}
 
 					// Add @full-name
-					foreach (XmlNode node in xmlDocument.SelectNodes("//tn[@type='lower']/tn-part[@type='genus' or @type='subgenus' or @type='species' or @type='subspecies'][not(@full-name)][contains(string(.), '.')]", namespaceManager))
+					foreach (XmlNode node in xmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority'][contains(string(.), '.')]", namespaceManager))
 					{
 						XmlAttribute fullName = xmlDocument.CreateAttribute("full-name");
 						node.Attributes.Append(fullName);
