@@ -2,53 +2,63 @@
 
 namespace Base
 {
-	public class Timer
-	{
-		private int tic, toc;
+    public class Timer
+    {
+        private int tic, toc;
 
-		public Timer()
-		{
-			tic = gettime();
-			toc = tic;
-		}
+        public Timer()
+        {
+            this.tic = Gettime();
+            this.toc = this.tic;
+        }
 
-		public void Start()
-		{
-			tic = gettime();
-			toc = tic;
-		}
+        public int Tic
+        {
+            get
+            {
+                return this.tic;
+            }
+        }
 
-		public void Stop()
-		{
-			toc = gettime();
-		}
+        public int Toc
+        {
+            get
+            {
+                return this.toc;
+            }
+        }
 
-		public int Tic
-		{
-			get { return tic; }
-		}
+        public int Interval
+        {
+            get
+            {
+                this.toc = Gettime();
+                return this.toc - this.tic;
+            }
+        }
 
-		public int Toc
-		{
-			get { return toc; }
-		}
+        public void Start()
+        {
+            this.tic = Gettime();
+            this.toc = this.tic;
+        }
 
-		public int Interval
-		{
-			get { toc = gettime(); return toc - tic; }
-		}
+        public void Stop()
+        {
+            this.toc = Gettime();
+        }
 
-		public void WriteOutput()
-		{
-			toc = gettime();
-			int interval = toc - tic;
-			Alert.Message("Completed in " + interval + " ms = " + interval / 1000.0 + " s = " + interval / 60000.0 + " m");
-		}
+        public void WriteOutput()
+        {
+            this.toc = Gettime();
+            int interval = this.toc - this.tic;
+            Alert.Message("Completed in " + interval + " ms = " + (interval / 1000.0) + " s = " + (interval / 60000.0) + " m");
+        }
 
-		private int gettime()
-		{
-			DateTime t = DateTime.Now;
-			return t.Millisecond + 1000 * (t.Second + 60 * (t.Minute + 60 * t.Hour));
-		}
-	}
+        private static int Gettime()
+        {
+            DateTime t = DateTime.Now;
+            return t.Millisecond + (1000 * (t.Second + (60 * (t.Minute + (60 * t.Hour)))));
+        }
+    }
 }

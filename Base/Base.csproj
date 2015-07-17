@@ -120,7 +120,6 @@
     <Compile Include="src\QuentinFlora.cs" />
     <Compile Include="src\QueryReplace.cs" />
     <Compile Include="src\References.cs" />
-    <Compile Include="src\Base\Resources.cs" />
     <Compile Include="src\Taxonomy\Expander.cs" />
     <Compile Include="src\Taxonomy\Species.cs" />
     <Compile Include="src\Taxonomy\Splitter.cs" />
@@ -152,10 +151,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MainDictionary.mdf</DependentUpon>
     </Content>
+    <Content Include="Data\Sql\biorepositories.sql" />
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
     <Content Include="Data\Sql\environments_groups.sql" />
     <Content Include="Data\Sql\environments_names.sql" />
+    <Content Include="Data\Sql\geonames.sql" />
+    <Content Include="Data\Sql\institution.sql" />
+    <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
     <Content Include="src\Base\Messages\helpMessage.txt" />
     <Content Include="src\Test\json-test\example1.txt" />

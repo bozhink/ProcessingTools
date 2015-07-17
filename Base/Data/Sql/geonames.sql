@@ -1,556 +1,650 @@
-﻿IF OBJECT_ID ('geographic_names') IS NOT NULL
-   DROP TABLE [dbo].[geographic_names]
+﻿IF OBJECT_ID ('geonames') IS NOT NULL
+   DROP TABLE [dbo].[geonames]
 GO
-CREATE TABLE [dbo].[geographic_names]
+CREATE TABLE [dbo].[geonames]
 (
 Id int IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(255) NOT NULL
 );
 GO
 
---Alain Obry
---Alakai Swamp
---Albany Scenic Reserve
---Alpine National Park
---Amoa River Valley
---Anatoki Valley
---Aneityum
---Aniseed Valley Scenic Reserve
---Antartica Chilena
---Aorangi Island
---Argentina
---Arthur’s Pass
---Atuanui State Forest
---Auckland
---Auckland City
---Auckland Ecological Region
---Austral Islands
---Australia
---Awaawaphui Trail
---Awaawapuhi Trail
---Awhitu Ecological District
---Bahia San Antonio
---Bahia Thetis
---Balaclava Ecological District
---Bald Cove
---Bald Hill
---Barthow Road
---Bay of Islands County
---Bealey Track
---Beenak
---Big River Fire trail
---Blue Mountains
---Bogong Plains
---Borland Saddle
---Boulder Lake
---Boulder Lake Basin
---Bramley’s Ridge
---Brown Cow Saddle
---Brown Town
---Brown Town Track
---Brown Town track
---Browntown Road
---Bryant Range
---Campbell Island
---Canaan
---Canister Cove
---Canterbury
---Canterbury Land District
---Central Highlands
---Chancellor Hut
---Chateau
---Chateau Tongariro
---Chatham Island
---Chatham Islands
---Chatham Islands source 
---Chatham Islands source  
---Chepu
---Chile
---Chiloe Island
---Churucca
---Cobb Dam
---Cobb Valley
---Coromandel
---Coromandel County
---Coromandel Range
---Cradle Mountain-Lake St. Clair National Park
---Craig’s Bush
---Croesus track
---Curtis Falls Track
---Dairy flat
---Darby Pond
---Dawson Falls
---Deer Spur Walk
---Denniston
---Detroit de Magellan-Port Famine
---Douglas
---Douglas Range
---Dun Saddle
---Dunedin
---East Maui
---Eastern Highlands
---Eastern Highlands province
---Eastern Northland & Islands Ecological District
---Eastern Northland and Islands Ecological Region and District
---Eastern Northland Ecological Region
---Economie Rurale
---Economie Rurale
---Egmont Ecological Region and District
---Egmont National Park
---Elsthorpe Scenic Reserve
---Espiritu Santo
---Falkland Islands
---Fare Ata
---Fare Rau Ape
---Fautaua Valley
---Fiji Islands
---Fijian Islands
---Fiordland
---Fiordland National Park
---Flora Hut
---Flora saddle
---Flora track
---Foret de Sailles
---Fox Glacier
---Franklin Co.
---Franklin County
---Galatea
---George Sound track
---Gertrude Saddle track
---Goilala sub-district
---Gordon’s Pyramid
---Gordontown Road
---Goro Ate
---Gouland Downs
---Gouland Downs Hut
---Grande Terre
---Granity Pass
---Great Otway National Park
---Green Lake
---Haast side of Grassy Creek 
---Hagen sub-district
---Haleakala
---Halehaha area
---Hamilton
---Hana District
---Hana Forest Reserve
---Hatton Road
---Hauraki Gulf
---Hawai‘i Island
---Hawaii Volcanoes National Park
---HAWAIIAN ISLANDS
---Hawkes Bay
---Hawkes Bay 
---Heaphy Track
---Hector Busby property
---Henry Saddle
---Hikurangi Trig
---Hilo
---Hokio
---Hollyford Valley
---Holmwood Road, Christchurch
---Homer
---Homestead Ridge
---Honopu
---Hukutaia Domain
---Hunter Mts.
---Hunua
---Hunua Ecological District
---Hunua Range
---Hutt Valley
---Ikawhenua Ranges
---Iles Maclovian
---Isla de los Estados
---Island Saddle
---James Mackay Hutt
---Kaaawa
---Kaeo
---Kahikatea bush
---Kahurangi National Park
---Kaimai Mamaku Forest Park
---Kaimaru
---Kainantu sub-province
---Kaitoke
---Kandavu
---Kapapala Forest Reserve
---Karamea bluffs
---Karikari
---Kau Forest Reserve
---Kaua‘i
---Kauaeranga Valley
---Kauai
---Kaukawahua gulch
---Kaunuohua
---Kawaihau District
---Kawele
---Kawhia Ecological District
---Kealakekua Ranch
---Keanae valley
---Kekoiki
---Kilauea Research Center
---Kipahulu
---Kipuka
---Kohaihai River 
---Koia sanctuary
---Kokianga Co.
---Koloa District
---Kona
---Koolau Range
---Kosciuszko National Park
---Kosciuszko summit trail
---Kulani Prison
---Kuliouou Valley
---Kumakalii
---Laird Thomson trail
---Laka Lanoto‘o
---Lake Aunde
---Lake Brunner
---Lake Harris Saddle 
---Lake Ianthe 
---Lake Lano
---Lake Rotoehu
---Lake Sylvester
---Landing Bay
---Lavers Hill-Beech Forest road 
---Levin
---Lewis Pass
---Lihue-Koloa Forest Reserve
---Lincoln
---Little Barrier Island
---Lockett Ranges
---Lonely Track Road
---Longwood Range
---Lookout rocks
---Lyrebird Plains
---Magallenes
---Makotukutuku St. near Mt. Kaiparoro
---Manakau Harbour
---Mangatangi Kauri area
---Mangonui County
---Mapulehu Valley
---Margaret’s Tarn
---Marian’s Lookout trail
---Marlborough
---Marlborough Land District
---Marlborough Sounds
---MARQUESAS ISLANDS
---MASCARENE ISLANDS
---Matakawau
---Matakawau Reserve
---Matakawau Road
---Matavanu Crater
---Mauku
---Maungataniwha Range
---Maungatapere
---Maungatapu Track
---Mauritius
---Milford Sound
---Moehau summit
---Moeraki Valley
---Molesworth Ecological Region
---Molokai
---Mont Goro Ate
---Morne du Patates a Durand
---Motukapiti Island
---Mount Misery
---Mount Pirongia
---Mt Field East
---Mt Tabwemasana
---Mt. Ambua
---Mt. Anglem
---Mt. Anglem summit
---Mt. Aorai
---Mt. Arthur
---Mt. Arthur Plateau
---Mt. Arthur summit trail
---Mt. Baw Baw
---Mt. Baw Baw Alpine Resort
---Mt. Blue Cow
---Mt. Buffalo National Park
---Mt. Burns track
---Mt. Capella north of east summit
---Mt. Centre
---Mt. Davy
---Mt. Dickson
---Mt. Domett
---Mt. Duppa
---Mt. Egmont
---Mt. Eliza Plateau
---Mt. Field National Park
---Mt. Fito
---Mt. Goul
---Mt. Gray
---Mt. Hagen
---Mt. Holdsworth
---Mt. Inrero
---Mt. Kaala
---Mt. Kaala summit
---Mt. Kaala summit trail 
---Mt. Kahili
---Mt. Kegum
---Mt. Koghi
---Mt. Kosciuszko
---Mt. Lepu‘e
---Mt. Luna
---Mt. Mandjelia
---Mt. Marau
---Mt. Mau
---Mt. Mbuke Levu summit
---Mt. Ollivier
---Mt. Ooumu
---Mt. Orohena
---Mt. Owen
---Mt. Perahu
---Mt. Piora
---Mt. Richmond
---Mt. Richmond Forest Park
---Mt. Road
---Mt. Rodway tow
---Mt. Scorpion
---Mt. Siga‘ele
---Mt. Silisili
---Mt. St. Patrick
---Mt. Stokes
---Mt. Stokes Scenic Reserve
---Mt. Stokes summit
---Mt. Tabwemasana
---Mt. Tamahunga
---Mt. Tapuaooa
---Mt. Te Aroha
---Mt. Te Aroha summit trail
---Mt. Tekao
---Mt. Toomaru
---Mt. Toukosmereu
---Mt. Wellington
---Mt. Wellington lava fields
---Mt. Wilhelm
---Murchison
---Na Pali-Kona Forest Reserve
---Natewa Peninsula
---National Park Road
---Nature Reserve
---Nelson
---Nelson Lakes National Park
---Nelson Land District
---New Caledonia
---New South Wales
---New Zealand
---Nezwon Netounemla
---Ngaroku Stream
---North Auckland
---North Auckland Land District
---North Canterbury
---North Cape
---North Cape Scientific Reserve
---North Island
---North Tararua Range
---Northeastern Long Island
---Northland
---Nuku Hiva
---Oahu
---Oakura Bay
---Ohakune
---Olaa Forest Reserve
---Omahu Islets
---Ooumu
---Ooumu Peak
---Oparara Arch
---Opotiki
---Orater Creek
---Orohena
---Orotere
---Otago Province
---Otorohanga County
---Otway Range
---Otways
---Owen Creek
---Painted Run t-bar
---Paliku Cabin
---Paparoa Range
---Papeete
---Papenoo
---Papua New Guinea
---Parihakoakoa Stream
---Pearse River 
---Peel Forest Park
---Pelekunu Pali
---Pelorus River Bridge
---Peninsula Cordova
---Pepeopae Bog
---Percy Hut
---Petrin Nature Reserve
---Pigeon Saddle
---Piha Beach
---Pihea Trail
---Pinehaven
---Pioneer Creek
---Pitt Island
---Plateau de Belouve
---Pollok
---Poor Knights Islands
---Port Pegasus
---Potaema Track
---Pouebo
---Powelltown
---Princeville
---Province du Nord
---Province Nord
---Pto. Condor
---Puerto Hoppner
---Pukaloa gulch
---Puketaha Road
---Puketi Forest
---Puniho Hut
---Pureora State Forest Park
---Puu Alii
---Puu Hapapa
---Puu Kalena
---Puu Kanehoa
---Puu Kaua
---Puu Kukui Watershed Preserve
---Raiatea
---Rakitu
---Rakiura National Park
---Rameka Gorge
---Ranginui summit
---Rangitoto Island
---Rangitoto Range
---Rapa
---Resolution Bay
---Reunion Island
---Richmond Range
---Ridge to Mole Tops
---Riesco Island
---River Toigoi
---Roa Mine
---Rocher du Diable
---Rodney Ecological District
---Rotorua County
---Ruahine Range
---Ruapane
---Saddle Road
---Samoa Islands
---Samoan Islands
---Savai‘I
---Scenic Reserve at Moerangi
---Schofield
---Sealey Range
---Secretary Island
---Sinbad Gulley
---Sincock Bog
---Smith’S Creek
---Society Islands
---South Auckland Land District
---South Auckland Province
---South Highland District
---South Island
---South Kohala District
---South Manukau
---South Westland
---Southern Ruahine Range
---Southern Tablelands
---Southland
---Southwest National Park
---St. Arnaud Range
---Star Mountains
---Stewart Island
---Stony River
---Suva
---Table Hill
---Table Mountain
---Tahiti
---Tainui Ecological Region
---Takaka
---Takaka Hill
---Takapuna Beach
---Tamaki River 
---Tanna
---Tapuaooa
---Taran
---Tararua Forest Park
---Tari sub-district
---Tasmania
---Tawhiti Rahi Island
---Te Akau Point
---Te Kinga
---Tekao
---Telefomin sub-district
---Temple Basin
---Tevaitoa
---Thakaundrove
---Thames County
---The Pulpit
---Third Basin
---Tiavi
---Tierra del Fuego
---Timihunga
---Tokerau Beach
---Tongariro 
---Tongariro National Park
---Toovii
---Toovii Plateau
---Tovii
---Travers Range
---Tucker Cove
---Tuku Valley
---Turoa
---Ukulele
---Uluingala
---Umipoho Gulch area
---Upolu
---Upper Clarence Valley
---Uraquat Trail
---USA
---Vanua Levu
---VANUATU ISLANDS
---Victoria
---Village Trail
---Viti Levu
---Wahiawa Bog
---Wahiawa Mountains
---Wahiawa Mts.
---Wai Anapanapa
---Waiakea mauka
---Waialealae
---Waianae Range
---Waikanae
---Waikape Stream
---Waikato
---Waikolu Valley
---Wailua
---Waima Forest
---Waimea District
---Waimea Drainage Basin
---Waingaro Peak
---Wairoa
---Wairoa [Hunua] Falls
---Waitakere Ranges
---Waitanguru
---Waitemata
---Waitemata Co.
---Waitemata County
---Waitomo Co.
---Wangapeka
---Water reserve
---Wellington
---Wellington District
---Wellington Land District
---West Coast
---West Highlands
---West Maui
---West Sepik District
---West Taupo
---Western Highlands District
---Westland
---Westland Land District
---Westland National Park
---Westport
---Whakapapanui Track
---Whanganui
---Whangarei
---Whangarei County
---Wilberg Range
---Wilmot Pass
---Wright’S Road
---Yarra State Forest
---Youngs Creek
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Alain Obry')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Alakai Swamp')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Albany Scenic Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Alpine National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Amoa River Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Anatoki Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Aneityum')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Aniseed Valley Scenic Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Antartica Chilena')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Aorangi Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Argentina')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Arthur’s Pass')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Atuanui State Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Auckland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Auckland City')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Auckland Ecological Region')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Austral Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Australia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Awaawaphui Trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Awaawapuhi Trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Awhitu Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bahia San Antonio')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bahia Thetis')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Balaclava Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bald Cove')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bald Hill')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Barthow Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bay of Islands County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bealey Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Beenak')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Belize')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bermejo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Big River Fire trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Blue Mountains')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bogong Plains')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bolivia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Borland Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Boulder Lake')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Boulder Lake Basin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bramley’s Ridge')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Brazil')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Brown Cow Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Brown Town')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Brown Town Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Brown Town track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Browntown Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bryant Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Campbell Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Canaan')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Canister Cove')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Canterbury')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Canterbury Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cayo District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Central Highlands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chaco Above Achira')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chaco Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chancellor Hut')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chateau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chateau Tongariro')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chatham Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chatham Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chepu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chile')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Chiloe Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Churucca')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cobb Dam')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cobb Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Coromandel')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Coromandel County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Coromandel Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cradle Mountain-Lake St. Clair National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Craig’s Bush')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Croesus track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Curtis Falls Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Dairy flat')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Darby Pond')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Dawson Falls')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Deer Spur Walk')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Denniston')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Detroit de Magellan-Port Famine')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Douglas')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Douglas Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Dun Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Dunedin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('East Maui')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Eastern Highlands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Eastern Highlands province')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Eastern Northland & Islands Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Eastern Northland and Islands Ecological Region and District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Eastern Northland Ecological Region')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Economie Rurale')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Egmont Ecological Region and District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Egmont National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Elsthorpe Scenic Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Espiritu Santo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Espírito Santo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Falkland Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fare Ata')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fare Rau Ape')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fautaua Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fiji Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fijian Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fiordland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fiordland National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Flora Hut')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Flora saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Flora track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Florida Province')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Foret de Sailles')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fox Glacier')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Franklin Co.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Franklin County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Galatea')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('George Sound track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Gertrude Saddle track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Goilala sub-district')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Gordontown Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Gordon’s Pyramid')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Goro Ate')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Gouland Downs')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Gouland Downs Hut')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Grande Terre')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Granity Pass')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Great Otway National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Green Lake')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Haast side of Grassy Creek ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hagen sub-district')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Haleakala')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Halehaha area')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hamilton')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hana District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hana Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hatton Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hauraki Gulf')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hawaii Volcanoes National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('HAWAIIAN ISLANDS')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hawai‘i Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hawkes Bay')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hawkes Bay ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Heaphy Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hector Busby property')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Henry Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hikurangi Trig')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hilo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hokio')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hollyford Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Holmwood Road, Christchurch')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Homer')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Homestead Ridge')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Honopu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hukutaia Domain')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hunter Mts.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hunua')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hunua Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hunua Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hutt Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ikawhenua Ranges')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Iles Maclovian')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Isla de los Estados')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Island Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('James Mackay Hutt')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaaawa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaeo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kahikatea bush')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kahurangi National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaimai Mamaku Forest Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaimaru')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kainantu sub-province')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaitoke')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kandavu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kapapala Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Karamea bluffs')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Karikari')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kau Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kauaeranga Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kauai')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaua‘i')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaukawahua gulch')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kaunuohua')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kawaihau District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kawele')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kawhia Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kealakekua Ranch')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Keanae valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kekoiki')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kilauea Research Center')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kipahulu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kipuka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kohaihai River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Koia sanctuary')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kokianga Co.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Koloa District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kona')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Koolau Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kosciuszko National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kosciuszko summit trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kulani Prison')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kuliouou Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kumakalii')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Laird Thomson trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Laka Lanoto‘o')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Aunde')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Brunner')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Harris Saddle ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Ianthe ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Lano')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Rotoehu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lake Sylvester')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Landing Bay')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Las Cuevas Research Station')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lavers Hill-Beech Forest road ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Levin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lewis Pass')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lihue-Koloa Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lincoln')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Little Barrier Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lockett Ranges')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lonely Track Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Longwood Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lookout rocks')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Lyrebird Plains')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Magallenes')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Makotukutuku St.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Manakau Harbour')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mangatangi Kauri area')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mangonui County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mapulehu Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Margaret’s Tarn')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Marian’s Lookout trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Marlborough')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Marlborough Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Marlborough Sounds')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Marquesas Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mascarene Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Matakawau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Matakawau Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Matakawau Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Matavanu Crater')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mauku')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Maungataniwha Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Maungatapere')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Maungatapu Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mauritius')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Milford Sound')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Moehau summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Moeraki Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Molesworth Ecological Region')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Molokai')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mont Goro Ate')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Morne du Patates a Durand')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Motukapiti Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mount Misery')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mount Pirongia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt Field East')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt Tabwemasana')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Ambua')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Anglem')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Anglem summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Aorai')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Arthur')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Arthur Plateau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Arthur summit trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Baw Baw')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Baw Baw Alpine Resort')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Blue Cow')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Buffalo National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Burns track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Capella')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Centre')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Davy')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Dickson')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Domett')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Duppa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Egmont')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Eliza Plateau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Field National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Fito')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Goul')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Gray')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Hagen')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Holdsworth')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Inrero')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kaala')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kaala summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kaala summit trail ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kahili')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kaiparoro')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kegum')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Koghi')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Kosciuszko')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Lepu‘e')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Luna')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Mandjelia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Marau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Mau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Mbuke Levu summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Ollivier')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Ooumu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Orohena')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Owen')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Perahu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Piora')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Richmond')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Richmond Forest Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Rodway tow')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Scorpion')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Siga‘ele')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Silisili')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. St. Patrick')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Stokes')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Stokes Scenic Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Stokes summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Tabwemasana')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Tamahunga')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Tapuaooa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Te Aroha')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Te Aroha summit trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Tekao')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Toomaru')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Toukosmereu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Wellington')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Wellington lava fields')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mt. Wilhelm')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Murchison')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Na Pali-Kona Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Natewa Peninsula')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('National Park Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nature Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nebraska')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nelson')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nelson Lakes National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nelson Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('New Caledonia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('New South Wales')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('New Zealand')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nezwon Netounemla')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ngaroku Stream')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Auckland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Auckland Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Canterbury')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Cape')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Cape Scientific Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('North Tararua Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Northeastern Long Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Northland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Nuku Hiva')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Oahu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Oakura Bay')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ohakune')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Olaa Forest Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Omahu Islets')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ooumu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ooumu Peak')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Oparara Arch')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Opotiki')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Orater Creek')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Orohena')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Orotere')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Otago Province')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Otorohanga County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Otway Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Otways')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Owen Creek')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Painted Run t-bar')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Paliku Cabin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Palo Marcado')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Paparoa Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Papeete')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Papenoo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Papua New Guinea')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Paraná')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Parihakoakoa Stream')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pearse River ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Peel Forest Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pelekunu Pali')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pelorus River Bridge')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Peninsula Cordova')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pepeopae Bog')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Percy Hut')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Petrin Nature Reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pigeon Saddle')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Piha Beach')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pihea Trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pilcomayo River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pinehaven')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pioneer Creek')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pitt Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Plateau de Belouve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pollok')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Poor Knights Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Port Pegasus')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Porto Alegre')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Porto Alegre, RS')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Potaema Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pouebo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Powelltown')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Princeville')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Province du Nord')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Province Nord')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pto. Condor')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puerto Hoppner')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pukaloa gulch')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puketaha Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puketi Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puniho Hut')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pureora State Forest Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Alii')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Hapapa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Kalena')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Kanehoa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Kaua')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Puu Kukui Watershed Preserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Raiatea')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rakitu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rakiura National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rameka Gorge')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ranginui summit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rangitoto Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rangitoto Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rapa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ratcliffe, Cave')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Refugio Los Volcanes')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Republic of Fiji')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Resolution Bay')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Reunion Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Richmond Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ridge to Mole Tops')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Riesco Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('River Toigoi')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Roa Mine')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rocher du Diable')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rodney Ecological District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rotorua County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ruahine Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ruapane')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Saddle Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Samoa Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Samoan Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Santa Cruz')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Savai‘i')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Scenic Reserve at Moerangi')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Schofield')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Sealey Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Secretary Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Sinbad Gulley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Sincock Bog')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Smith’s Creek')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Society Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Auckland Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Auckland Province')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Highland District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Kohala District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Manukau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('South Westland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Southern Ruahine Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Southern Tablelands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Southland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Southwest National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('St. Arnaud Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Star Mountains')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Stewart Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Stony River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Submontane Chaco Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Suva')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('São Paulo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Table Hill')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Table Mountain')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tahiti')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tainui Ecological Region')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Takaka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Takaka Hill')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Takapuna Beach')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tamaki River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tanna')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tapuaooa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Taran')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tararua Forest Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tari sub-district')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tarija')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tasmania')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tawhiti Rahi Island')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Te Akau Point')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Te Kinga')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tekao')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Telefomin sub-district')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Temple Basin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tevaitoa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Thakaundrove')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Thames County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('The Pulpit')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Third Basin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tiavi')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tierra del Fuego')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Timihunga')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tokerau Beach')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tongariro ')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tongariro National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Toovii')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Toovii Plateau')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tovii')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Travers Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tucker Cove')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Tuku Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Turoa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Ukulele')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Uluingala')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Umipoho Gulch area')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Upolu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Upper Clarence Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Uraquat Trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('USA')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Valley Rio Isiri')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Vanua Levu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Vanuatu Islands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Vicoquin Area')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Victoria')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Village Trail')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Villamontes')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Viti Levu')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wahiawa Bog')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wahiawa Mountains')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wahiawa Mts.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wai Anapanapa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waiakea mauka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waialealae')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waianae Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waikanae')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waikape Stream')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waikato')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waikolu Valley')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wailua')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waima Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waimea District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waimea Drainage Basin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waingaro Peak')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wairoa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wairoa [Hunua] Falls')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitakere Ranges')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitanguru')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitemata')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitemata Co.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitemata County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Waitomo Co.')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wangapeka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Washington')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Washington, DC')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Water reserve')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wellington')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wellington District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wellington Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('West Coast')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('West Highlands')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('West Maui')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('West Sepik District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('West Taupo')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Western Highlands District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Westland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Westland Land District')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Westland National Park')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Westport')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Whakapapanui Track')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Whanganui')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Whangarei')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Whangarei County')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wilberg Range')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wilmot Pass')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wright’s Road')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Yarra State Forest')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Youngs Creek')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hawaii')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Manoa')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Birdwood Avenue')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Melbourne')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Victoria')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Australia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Angkor')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Angkor Wat')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cambodia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Fukuoka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Hakozaki')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Indo-Chinese subregion')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Japan')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Neak Pean')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Siem Reap')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Albania')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Alps')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Amsterdam')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Austria')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Balkan')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Balkan Peninsula')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bijele rijeka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bosnia and Herzegovina')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Bulgaria')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Carpathians')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Cluj-Napoca')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Crna rijeka')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Croatia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Czech Republic')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Dubočanka stream')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Europe')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('France')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Germany')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Great Britain')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Greece')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Iran')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Italy')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Jankovac')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Korana Village')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kozjak-Milanovac')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Krka River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Krupa River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Krčić')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kupa River')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Labudovac')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Macedonia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Mediterranean region')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Montenegro')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Novakovića Brod')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Papuk Mountain')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Pirin')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Plitvica')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Plitvice Lakes')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Rila')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Romania')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Roški Slap')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Serbia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Serbia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Skradinski Buk')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Slovakia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Slovenia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Slovenia')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Spain')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Switzerland')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Kozjak-Milanovac')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Wien')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Zagreb')
+INSERT INTO [dbo].[geonames] (Name) VALUES ('Zagreb')

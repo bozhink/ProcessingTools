@@ -1,63 +1,69 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
-using System.Xml;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Data.SqlClient;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace Base
 {
-	public class Test : Base
-	{
-		public Test() : base() { }
-		public Test(string xml) : base(xml) { }
+    public class Test : Base
+    {
+        public Test()
+            : base()
+        {
+        }
 
-		public void ExtractSystemChecklistAuthority1()
-		{
-			ParseXmlStringToXmlDocument();
-			XmlDocument newXml = new XmlDocument(namespaceManager.NameTable);
-			XmlElement root = newXml.CreateElement("root");
+        public Test(string xml)
+            : base(xml)
+        {
+        }
 
-			foreach (XmlNode node in xmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", namespaceManager))
-			{
-				XmlElement newNode = newXml.CreateElement("node");
-				newNode.InnerXml = node["taxon_authors_and_year"].OuterXml;
-				root.AppendChild(newNode);
-			}
+        public void ExtractSystemChecklistAuthority1()
+        {
+            this.ParseXmlStringToXmlDocument();
+            XmlDocument newXml = new XmlDocument(this.namespaceManager.NameTable);
+            XmlElement root = newXml.CreateElement("root");
 
-			newXml.AppendChild(root);
+            foreach (XmlNode node in this.xmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.namespaceManager))
+            {
+                XmlElement newNode = newXml.CreateElement("node");
+                newNode.InnerXml = node["taxon_authors_and_year"].OuterXml;
+                root.AppendChild(newNode);
+            }
 
-			xml = newXml.OuterXml;
-		}
+            newXml.AppendChild(root);
 
-		public void ExtractSystemChecklistAuthority()
-		{
-			ParseXmlStringToXmlDocument();
+            this.xml = newXml.OuterXml;
+        }
 
-			foreach (XmlNode node in xmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", namespaceManager))
-			{
-				node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
-				node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
-			}
+        public void ExtractSystemChecklistAuthority()
+        {
+            this.ParseXmlStringToXmlDocument();
 
-			xml = xmlDocument.OuterXml;
-		}
+            foreach (XmlNode node in xmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.namespaceManager))
+            {
+                node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
+                node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
+            }
 
-		public void SqlSelect()
-		{
-			//
-			using (SqlConnection connection = new SqlConnection(config.environmentsDataSourceString))
-			{
-				Alert.Message(connection.ConnectionString);
-				Alert.Message(connection.Database);
-				connection.Open();
-				string query = @"select
+            this.xml = this.xmlDocument.OuterXml;
+        }
+
+        public void SqlSelect()
+        {
+            using (SqlConnection connection = new SqlConnection(config.environmentsDataSourceString))
+            {
+                Alert.Message(connection.ConnectionString);
+                Alert.Message(connection.Database);
+                connection.Open();
+                string query = @"select
 [dbo].[environments_names].[Content] as content,
 [dbo].[environments_names].[ContentId] as id,
 [dbo].[environments_entities].[EnvoId] as envoId
@@ -66,19 +72,20 @@ inner join [dbo].[environments_entities]
 on [dbo].[environments_names].[ContentId]=[dbo].[environments_entities].[Id]
 where content not like 'ENVO%'
 order by len(content) desc;";
-				using (SqlCommand command = new SqlCommand(query, connection))
-				{
-					using (SqlDataReader reader = command.ExecuteReader())
-					{
-						while (reader.Read())
-						{
-							Alert.Message(reader.GetString(0) + " " + reader.GetInt32(1));
-						}
-					}
-				}
-				connection.Dispose();
-				connection.Close();
-			}
-		}
-	}
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Alert.Message(reader.GetString(0) + " " + reader.GetInt32(1));
+                        }
+                    }
+                }
+
+                connection.Dispose();
+                connection.Close();
+            }
+        }
+    }
 }

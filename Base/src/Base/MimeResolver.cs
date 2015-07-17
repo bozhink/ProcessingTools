@@ -2,232 +2,234 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.IO;
 using Microsoft.Win32;
-
 
 namespace Base
 {
-	class MimeResolver
-	{
-		//public bool CheckMimeMapExtension(string fileExtension)
-		//{
-		//    try
-		//    {
+    public class MimeResolver
+    {
+        ////public bool CheckMimeMapExtension(string fileExtension)
+        ////{
+        ////    try
+        ////    {
 
-		//        using (Microsoft.Web.Administration.ServerManager serverManager = new Microsoft.Web.Administration.ServerManager())
-		//        {
-		//            // connects to default app.config
-		//            var config = serverManager.GetApplicationHostConfiguration();
-		//            var staticContent = config.GetSection("system.webServer/staticContent");
-		//            var mimeMap = staticContent.GetCollection();
+        ////        using (Microsoft.Web.Administration.ServerManager serverManager = new Microsoft.Web.Administration.ServerManager())
+        ////        {
+        ////            // connects to default app.config
+        ////            var config = serverManager.GetApplicationHostConfiguration();
+        ////            var staticContent = config.GetSection("system.webServer/staticContent");
+        ////            var mimeMap = staticContent.GetCollection();
 
-		//            foreach (var mimeType in mimeMap)
-		//            {
+        ////            foreach (var mimeType in mimeMap)
+        ////            {
 
-		//                if (((String)mimeType["fileExtension"]).Equals(fileExtension, StringComparison.OrdinalIgnoreCase))
-		//                    return true;
+        ////                if (((String)mimeType["fileExtension"]).Equals(fileExtension, StringComparison.OrdinalIgnoreCase))
+        ////                    return true;
 
-		//            }
+        ////            }
 
-		//        }
-		//        return false;
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        Console.WriteLine("An exception has occurred: \n{0}", ex.Message);
-		//        Console.Read();
-		//    }
+        ////        }
+        ////        return false;
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        Console.WriteLine("An exception has occurred: \n{0}", ex.Message);
+        ////        Console.Read();
+        ////    }
 
-		//    return false;
+        ////    return false;
 
-		//}
+        ////}
 
-		[DllImport("urlmon.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false)]
-		private static extern int FindMimeFromData(IntPtr pBC,
-			[MarshalAs(UnmanagedType.LPWStr)] string pwzUrl,
-			[MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1, SizeParamIndex = 3)] byte[] pBuffer,
-			int cbSize,
-			[MarshalAs(UnmanagedType.LPWStr)] string pwzMimeProposed,
-			int dwMimeFlags,
-			out IntPtr ppwzMimeOut,
-			int dwReserved);
+        [DllImport("urlmon.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false)]
+        private static extern int FindMimeFromData(IntPtr pBC,
+            [MarshalAs(UnmanagedType.LPWStr)] string pwzUrl,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1, SizeParamIndex = 3)] byte[] pBuffer,
+            int cbSize,
+            [MarshalAs(UnmanagedType.LPWStr)] string pwzMimeProposed,
+            int dwMimeFlags,
+            out IntPtr ppwzMimeOut,
+            int dwReserved);
 
-		[DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
-		private extern static System.UInt32 FindMimeFromData(
-			System.UInt32 pBC,
-			[MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
-			[MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
-			System.UInt32 cbSize,
-			[MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
-			System.UInt32 dwMimeFlags,
-			out System.UInt32 ppwzMimeOut,
-			System.UInt32 dwReserverd);
+        [DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
+        private extern static System.UInt32 FindMimeFromData(
+            System.UInt32 pBC,
+            [MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
+            [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
+            System.UInt32 cbSize,
+            [MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
+            System.UInt32 dwMimeFlags,
+            out System.UInt32 ppwzMimeOut,
+            System.UInt32 dwReserverd);
 
-		public static string GetMimeFromFile(string filename)
-		{
-			if (!File.Exists(filename))
-			{
-				throw new FileNotFoundException(filename + " not found");
-			}
+        public static string GetMimeFromFile(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                throw new FileNotFoundException(filename + " not found");
+            }
 
-			const int maxContent = 256;
+            const int maxContent = 256;
 
-			var buffer = new byte[maxContent];
-			using (var fs = new FileStream(filename, FileMode.Open))
-			{
-				if (fs.Length >= maxContent)
-				{
-					fs.Read(buffer, 0, maxContent);
-				}
-				else
-				{
-					fs.Read(buffer, 0, (int)fs.Length);
-				}
-			}
+            var buffer = new byte[maxContent];
+            using (var fs = new FileStream(filename, FileMode.Open))
+            {
+                if (fs.Length >= maxContent)
+                {
+                    fs.Read(buffer, 0, maxContent);
+                }
+                else
+                {
+                    fs.Read(buffer, 0, (int)fs.Length);
+                }
+            }
 
-			var mimeTypePtr = IntPtr.Zero;
-			try
-			{
-				var result = FindMimeFromData(IntPtr.Zero, null, buffer, maxContent, null, 0, out mimeTypePtr, 0);
-				if (result != 0)
-				{
-					Marshal.FreeCoTaskMem(mimeTypePtr);
-					throw Marshal.GetExceptionForHR(result);
-				}
+            var mimeTypePtr = IntPtr.Zero;
+            try
+            {
+                var result = FindMimeFromData(IntPtr.Zero, null, buffer, maxContent, null, 0, out mimeTypePtr, 0);
+                if (result != 0)
+                {
+                    Marshal.FreeCoTaskMem(mimeTypePtr);
+                    throw Marshal.GetExceptionForHR(result);
+                }
 
-				var mime = Marshal.PtrToStringUni(mimeTypePtr);
-				Marshal.FreeCoTaskMem(mimeTypePtr);
-				return mime;
-			}
-			catch (Exception)
-			{
-				if (mimeTypePtr != IntPtr.Zero)
-				{
-					Marshal.FreeCoTaskMem(mimeTypePtr);
-				}
-				return "unknown/unknown";
-			}
-		}
+                var mime = Marshal.PtrToStringUni(mimeTypePtr);
+                Marshal.FreeCoTaskMem(mimeTypePtr);
+                return mime;
+            }
+            catch (Exception)
+            {
+                if (mimeTypePtr != IntPtr.Zero)
+                {
+                    Marshal.FreeCoTaskMem(mimeTypePtr);
+                }
 
-		private string GetMimeFromRegistry(string Filename)
-		{
-			string mime = "application/octetstream";
-			string ext = Path.GetExtension(Filename).ToLower();
-			RegistryKey rk = Registry.ClassesRoot.OpenSubKey(ext);
-			if (rk != null && rk.GetValue("Content Type") != null)
-			{
-				mime = rk.GetValue("Content Type").ToString();
-			}
-			return mime;
-		}
+                return "unknown/unknown";
+            }
+        }
 
-		public string GetMimeTypeFromFileAndRegistry(string filename)
-		{
-			if (!File.Exists(filename))
-			{
-				return GetMimeFromRegistry(filename);
-			}
+        private string GetMimeFromRegistry(string Filename)
+        {
+            string mime = "application/octetstream";
+            string ext = Path.GetExtension(Filename).ToLower();
+            RegistryKey rk = Registry.ClassesRoot.OpenSubKey(ext);
+            if (rk != null && rk.GetValue("Content Type") != null)
+            {
+                mime = rk.GetValue("Content Type").ToString();
+            }
 
-			byte[] buffer = new byte[256];
+            return mime;
+        }
 
-			using (FileStream fs = new FileStream(filename, FileMode.Open))
-			{
-				if (fs.Length >= 256)
-				{
-					fs.Read(buffer, 0, 256);
-				}
-				else
-				{
-					fs.Read(buffer, 0, (int)fs.Length);
-				}
-			}
+        public string GetMimeTypeFromFileAndRegistry(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return GetMimeFromRegistry(filename);
+            }
 
-			try
-			{
-				System.UInt32 mimetype;
+            byte[] buffer = new byte[256];
 
-				FindMimeFromData(0, null, buffer, 256, null, 0, out mimetype, 0);
+            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            {
+                if (fs.Length >= 256)
+                {
+                    fs.Read(buffer, 0, 256);
+                }
+                else
+                {
+                    fs.Read(buffer, 0, (int)fs.Length);
+                }
+            }
 
-				IntPtr mimeTypePtr = new IntPtr(mimetype);
+            try
+            {
+                System.UInt32 mimetype;
 
-				string mime = Marshal.PtrToStringUni(mimeTypePtr);
+                FindMimeFromData(0, null, buffer, 256, null, 0, out mimetype, 0);
 
-				Marshal.FreeCoTaskMem(mimeTypePtr);
+                IntPtr mimeTypePtr = new IntPtr(mimetype);
 
-				if (string.IsNullOrWhiteSpace(mime) || mime == "text/plain" || mime == "application/octet-stream")
-				{
-					return GetMimeFromRegistry(filename);
-				}
+                string mime = Marshal.PtrToStringUni(mimeTypePtr);
 
-				return mime;
-			}
-			catch (Exception)
-			{
-				return GetMimeFromRegistry(filename);
-			}
-		}
+                Marshal.FreeCoTaskMem(mimeTypePtr);
 
-		public static string getMimeFromFile(string filename)
-		{
-			if (!File.Exists(filename))
-			{
-				throw new System.IO.FileNotFoundException(filename + " not found");
-			}
+                if (string.IsNullOrWhiteSpace(mime) || mime == "text/plain" || mime == "application/octet-stream")
+                {
+                    return GetMimeFromRegistry(filename);
+                }
 
-			byte[] buffer = new byte[256];
-			using (FileStream fs = new FileStream(filename, FileMode.Open))
-			{
-				if (fs.Length >= 256)
-				{
-					fs.Read(buffer, 0, 256);
-				}
-				else
-				{
-					fs.Read(buffer, 0, (int)fs.Length);
-				}
-			}
-			try
-			{
-				System.UInt32 mimetype;
-				FindMimeFromData(0, null, buffer, 256, null, 0, out mimetype, 0);
-				System.IntPtr mimeTypePtr = new IntPtr(mimetype);
-				string mime = Marshal.PtrToStringUni(mimeTypePtr);
-				Marshal.FreeCoTaskMem(mimeTypePtr);
-				return mime;
-			}
-			catch (Exception)
-			{
-				return "unknown/unknown";
-			}
-		}
+                return mime;
+            }
+            catch (Exception)
+            {
+                return GetMimeFromRegistry(filename);
+            }
+        }
 
-		public string GetMimeType(FileInfo fileInfo)
-		{
-			string mimeType = "application/unknown";
+        public static string getMimeFromFile(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                throw new System.IO.FileNotFoundException(filename + " not found");
+            }
 
-			RegistryKey regKey = Registry.ClassesRoot.OpenSubKey(fileInfo.Extension.ToLower());
+            byte[] buffer = new byte[256];
+            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            {
+                if (fs.Length >= 256)
+                {
+                    fs.Read(buffer, 0, 256);
+                }
+                else
+                {
+                    fs.Read(buffer, 0, (int)fs.Length);
+                }
+            }
 
-			if (regKey != null)
-			{
-				object contentType = regKey.GetValue("Content Type");
+            try
+            {
+                System.UInt32 mimetype;
+                FindMimeFromData(0, null, buffer, 256, null, 0, out mimetype, 0);
+                System.IntPtr mimeTypePtr = new IntPtr(mimetype);
+                string mime = Marshal.PtrToStringUni(mimeTypePtr);
+                Marshal.FreeCoTaskMem(mimeTypePtr);
+                return mime;
+            }
+            catch (Exception)
+            {
+                return "unknown/unknown";
+            }
+        }
 
-				if (contentType != null)
-				{
-					mimeType = contentType.ToString();
-				}
-			}
+        public string GetMimeType(FileInfo fileInfo)
+        {
+            string mimeType = "application/unknown";
 
-			return mimeType;
-		}
+            RegistryKey regKey = Registry.ClassesRoot.OpenSubKey(fileInfo.Extension.ToLower());
 
-		public static class MIMEAssistant
-		{
-			private static readonly Dictionary<string, string> MIMETypesDictionary = new Dictionary<string, string>
+            if (regKey != null)
+            {
+                object contentType = regKey.GetValue("Content Type");
+
+                if (contentType != null)
+                {
+                    mimeType = contentType.ToString();
+                }
+            }
+
+            return mimeType;
+        }
+
+        public static class MIMEAssistant
+        {
+            private static readonly Dictionary<string, string> MIMETypesDictionary = new Dictionary<string, string>
   {
     {"ai", "application/postscript"},
     {"aif", "audio/x-aiff"},
@@ -419,251 +421,250 @@ namespace Base
     {"zip", "application/zip"}
   };
 
-			public static string GetMIMEType(string fileName)
-			{
-				//get file extension
-				string extension = System.IO.Path.GetExtension(fileName).ToLowerInvariant();
-				string mime = "unknown/unknown";
+            public static string GetMIMEType(string fileName)
+            {
+                //get file extension
+                string extension = System.IO.Path.GetExtension(fileName).ToLowerInvariant();
+                string mime = "unknown/unknown";
 
-				if (extension.Length > 0 && MIMETypesDictionary.ContainsKey(extension.Remove(0, 1)))
-				{
-					mime = MIMETypesDictionary[extension.Remove(0, 1)];
-				}
-				return mime;
-			}
-		}
+                if (extension.Length > 0 && MIMETypesDictionary.ContainsKey(extension.Remove(0, 1)))
+                {
+                    mime = MIMETypesDictionary[extension.Remove(0, 1)];
+                }
 
-		public class MimeType
-		{
-			private static readonly byte[] BMP = { 66, 77 };
-			private static readonly byte[] DOC = { 208, 207, 17, 224, 161, 177, 26, 225 };
-			private static readonly byte[] EXE_DLL = { 77, 90 };
-			private static readonly byte[] GIF = { 71, 73, 70, 56 };
-			private static readonly byte[] ICO = { 0, 0, 1, 0 };
-			private static readonly byte[] JPG = { 255, 216, 255 };
-			private static readonly byte[] MP3 = { 255, 251, 48 };
-			private static readonly byte[] OGG = { 79, 103, 103, 83, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0 };
-			private static readonly byte[] PDF = { 37, 80, 68, 70, 45, 49, 46 };
-			private static readonly byte[] PNG = { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82 };
-			private static readonly byte[] RAR = { 82, 97, 114, 33, 26, 7, 0 };
-			private static readonly byte[] SWF = { 70, 87, 83 };
-			private static readonly byte[] TIFF = { 73, 73, 42, 0 };
-			private static readonly byte[] TORRENT = { 100, 56, 58, 97, 110, 110, 111, 117, 110, 99, 101 };
-			private static readonly byte[] TTF = { 0, 1, 0, 0, 0 };
-			private static readonly byte[] WAV_AVI = { 82, 73, 70, 70 };
-			private static readonly byte[] WMV_WMA = { 48, 38, 178, 117, 142, 102, 207, 17, 166, 217, 0, 170, 0, 98, 206, 108 };
-			private static readonly byte[] ZIP_DOCX = { 80, 75, 3, 4 };
+                return mime;
+            }
+        }
 
-			public static string GetMimeType(byte[] file, string fileName)
-			{
+        public class MimeType
+        {
+            private static readonly byte[] BMP = { 66, 77 };
+            private static readonly byte[] DOC = { 208, 207, 17, 224, 161, 177, 26, 225 };
+            private static readonly byte[] EXE_DLL = { 77, 90 };
+            private static readonly byte[] GIF = { 71, 73, 70, 56 };
+            private static readonly byte[] ICO = { 0, 0, 1, 0 };
+            private static readonly byte[] JPG = { 255, 216, 255 };
+            private static readonly byte[] MP3 = { 255, 251, 48 };
+            private static readonly byte[] OGG = { 79, 103, 103, 83, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0 };
+            private static readonly byte[] PDF = { 37, 80, 68, 70, 45, 49, 46 };
+            private static readonly byte[] PNG = { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82 };
+            private static readonly byte[] RAR = { 82, 97, 114, 33, 26, 7, 0 };
+            private static readonly byte[] SWF = { 70, 87, 83 };
+            private static readonly byte[] TIFF = { 73, 73, 42, 0 };
+            private static readonly byte[] TORRENT = { 100, 56, 58, 97, 110, 110, 111, 117, 110, 99, 101 };
+            private static readonly byte[] TTF = { 0, 1, 0, 0, 0 };
+            private static readonly byte[] WAV_AVI = { 82, 73, 70, 70 };
+            private static readonly byte[] WMV_WMA = { 48, 38, 178, 117, 142, 102, 207, 17, 166, 217, 0, 170, 0, 98, 206, 108 };
+            private static readonly byte[] ZIP_DOCX = { 80, 75, 3, 4 };
 
-				string mime = "application/octet-stream"; //DEFAULT UNKNOWN MIME TYPE
+            public static string GetMimeType(byte[] file, string fileName)
+            {
+                string mime = "application/octet-stream"; //DEFAULT UNKNOWN MIME TYPE
 
-				//Ensure that the filename isn't empty or null
-				if (string.IsNullOrWhiteSpace(fileName))
-				{
-					return mime;
-				}
+                //Ensure that the filename isn't empty or null
+                if (string.IsNullOrWhiteSpace(fileName))
+                {
+                    return mime;
+                }
 
-				//Get the file extension
-				string extension = System.IO.Path.GetExtension(fileName) == null ? string.Empty : System.IO.Path.GetExtension(fileName).ToUpper();
+                //Get the file extension
+                string extension = System.IO.Path.GetExtension(fileName) == null ? string.Empty : System.IO.Path.GetExtension(fileName).ToUpper();
 
-				//Get the MIME Type
-				if (file.Take(2).SequenceEqual(BMP))
-				{
-					mime = "image/bmp";
-				}
-				else if (file.Take(8).SequenceEqual(DOC))
-				{
-					mime = "application/msword";
-				}
-				else if (file.Take(2).SequenceEqual(EXE_DLL))
-				{
-					mime = "application/x-msdownload"; //both use same mime type
-				}
-				else if (file.Take(4).SequenceEqual(GIF))
-				{
-					mime = "image/gif";
-				}
-				else if (file.Take(4).SequenceEqual(ICO))
-				{
-					mime = "image/x-icon";
-				}
-				else if (file.Take(3).SequenceEqual(JPG))
-				{
-					mime = "image/jpeg";
-				}
-				else if (file.Take(3).SequenceEqual(MP3))
-				{
-					mime = "audio/mpeg";
-				}
-				else if (file.Take(14).SequenceEqual(OGG))
-				{
-					if (extension == ".OGX")
-					{
-						mime = "application/ogg";
-					}
-					else if (extension == ".OGA")
-					{
-						mime = "audio/ogg";
-					}
-					else
-					{
-						mime = "video/ogg";
-					}
-				}
-				else if (file.Take(7).SequenceEqual(PDF))
-				{
-					mime = "application/pdf";
-				}
-				else if (file.Take(16).SequenceEqual(PNG))
-				{
-					mime = "image/png";
-				}
-				else if (file.Take(7).SequenceEqual(RAR))
-				{
-					mime = "application/x-rar-compressed";
-				}
-				else if (file.Take(3).SequenceEqual(SWF))
-				{
-					mime = "application/x-shockwave-flash";
-				}
-				else if (file.Take(4).SequenceEqual(TIFF))
-				{
-					mime = "image/tiff";
-				}
-				else if (file.Take(11).SequenceEqual(TORRENT))
-				{
-					mime = "application/x-bittorrent";
-				}
-				else if (file.Take(5).SequenceEqual(TTF))
-				{
-					mime = "application/x-font-ttf";
-				}
-				else if (file.Take(4).SequenceEqual(WAV_AVI))
-				{
-					mime = extension == ".AVI" ? "video/x-msvideo" : "audio/x-wav";
-				}
-				else if (file.Take(16).SequenceEqual(WMV_WMA))
-				{
-					mime = extension == ".WMA" ? "audio/x-ms-wma" : "video/x-ms-wmv";
-				}
-				else if (file.Take(4).SequenceEqual(ZIP_DOCX))
-				{
-					mime = extension == ".DOCX" ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document" : "application/x-zip-compressed";
-				}
+                //Get the MIME Type
+                if (file.Take(2).SequenceEqual(BMP))
+                {
+                    mime = "image/bmp";
+                }
+                else if (file.Take(8).SequenceEqual(DOC))
+                {
+                    mime = "application/msword";
+                }
+                else if (file.Take(2).SequenceEqual(EXE_DLL))
+                {
+                    mime = "application/x-msdownload"; //both use same mime type
+                }
+                else if (file.Take(4).SequenceEqual(GIF))
+                {
+                    mime = "image/gif";
+                }
+                else if (file.Take(4).SequenceEqual(ICO))
+                {
+                    mime = "image/x-icon";
+                }
+                else if (file.Take(3).SequenceEqual(JPG))
+                {
+                    mime = "image/jpeg";
+                }
+                else if (file.Take(3).SequenceEqual(MP3))
+                {
+                    mime = "audio/mpeg";
+                }
+                else if (file.Take(14).SequenceEqual(OGG))
+                {
+                    if (extension == ".OGX")
+                    {
+                        mime = "application/ogg";
+                    }
+                    else if (extension == ".OGA")
+                    {
+                        mime = "audio/ogg";
+                    }
+                    else
+                    {
+                        mime = "video/ogg";
+                    }
+                }
+                else if (file.Take(7).SequenceEqual(PDF))
+                {
+                    mime = "application/pdf";
+                }
+                else if (file.Take(16).SequenceEqual(PNG))
+                {
+                    mime = "image/png";
+                }
+                else if (file.Take(7).SequenceEqual(RAR))
+                {
+                    mime = "application/x-rar-compressed";
+                }
+                else if (file.Take(3).SequenceEqual(SWF))
+                {
+                    mime = "application/x-shockwave-flash";
+                }
+                else if (file.Take(4).SequenceEqual(TIFF))
+                {
+                    mime = "image/tiff";
+                }
+                else if (file.Take(11).SequenceEqual(TORRENT))
+                {
+                    mime = "application/x-bittorrent";
+                }
+                else if (file.Take(5).SequenceEqual(TTF))
+                {
+                    mime = "application/x-font-ttf";
+                }
+                else if (file.Take(4).SequenceEqual(WAV_AVI))
+                {
+                    mime = extension == ".AVI" ? "video/x-msvideo" : "audio/x-wav";
+                }
+                else if (file.Take(16).SequenceEqual(WMV_WMA))
+                {
+                    mime = extension == ".WMA" ? "audio/x-ms-wma" : "video/x-ms-wmv";
+                }
+                else if (file.Take(4).SequenceEqual(ZIP_DOCX))
+                {
+                    mime = extension == ".DOCX" ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document" : "application/x-zip-compressed";
+                }
 
-				return mime;
-			}
+                return mime;
+            }
+        }
+    }
 
+    namespace YourNamespace
+    {
+        public static class MimeTypeParser
+        {
+            [DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
+            private extern static System.UInt32 FindMimeFromData(
+                    System.UInt32 pBC,
+                    [MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
+                    [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
+                    System.UInt32 cbSize,
+                    [MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
+                    System.UInt32 dwMimeFlags,
+                    out System.UInt32 ppwzMimeOut,
+                    System.UInt32 dwReserverd
+            );
 
-		}
+            public static string GetMimeType(string sFilePath)
+            {
+                string sMimeType = GetMimeTypeFromList(sFilePath);
 
-	}
+                if (String.IsNullOrEmpty(sMimeType))
+                {
+                    sMimeType = GetMimeTypeFromFile(sFilePath);
 
-	namespace YourNamespace
-	{
-		public static class MimeTypeParser
-		{
-			[DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
-			private extern static System.UInt32 FindMimeFromData(
-					System.UInt32 pBC,
-					[MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
-					[MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
-					System.UInt32 cbSize,
-					[MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
-					System.UInt32 dwMimeFlags,
-					out System.UInt32 ppwzMimeOut,
-					System.UInt32 dwReserverd
-			);
+                    if (String.IsNullOrEmpty(sMimeType))
+                    {
+                        sMimeType = GetMimeTypeFromRegistry(sFilePath);
+                    }
+                }
 
-			public static string GetMimeType(string sFilePath)
-			{
-				string sMimeType = GetMimeTypeFromList(sFilePath);
+                return sMimeType;
+            }
 
-				if (String.IsNullOrEmpty(sMimeType))
-				{
-					sMimeType = GetMimeTypeFromFile(sFilePath);
+            public static string GetMimeTypeFromList(string sFileNameOrPath)
+            {
+                string sMimeType = null;
+                string sExtensionWithoutDot = Path.GetExtension(sFileNameOrPath).Substring(1).ToLower();
 
-					if (String.IsNullOrEmpty(sMimeType))
-					{
-						sMimeType = GetMimeTypeFromRegistry(sFilePath);
-					}
-				}
+                if (!String.IsNullOrEmpty(sExtensionWithoutDot) && spDicMIMETypes.ContainsKey(sExtensionWithoutDot))
+                {
+                    sMimeType = spDicMIMETypes[sExtensionWithoutDot];
+                }
 
-				return sMimeType;
-			}
+                return sMimeType;
+            }
 
-			public static string GetMimeTypeFromList(string sFileNameOrPath)
-			{
-				string sMimeType = null;
-				string sExtensionWithoutDot = Path.GetExtension(sFileNameOrPath).Substring(1).ToLower();
+            public static string GetMimeTypeFromRegistry(string sFileNameOrPath)
+            {
+                string sMimeType = null;
+                string sExtension = Path.GetExtension(sFileNameOrPath).ToLower();
+                RegistryKey pKey = Registry.ClassesRoot.OpenSubKey(sExtension);
 
-				if (!String.IsNullOrEmpty(sExtensionWithoutDot) && spDicMIMETypes.ContainsKey(sExtensionWithoutDot))
-				{
-					sMimeType = spDicMIMETypes[sExtensionWithoutDot];
-				}
+                if (pKey != null && pKey.GetValue("Content Type") != null)
+                {
+                    sMimeType = pKey.GetValue("Content Type").ToString();
+                }
 
-				return sMimeType;
-			}
+                return sMimeType;
+            }
 
-			public static string GetMimeTypeFromRegistry(string sFileNameOrPath)
-			{
-				string sMimeType = null;
-				string sExtension = Path.GetExtension(sFileNameOrPath).ToLower();
-				RegistryKey pKey = Registry.ClassesRoot.OpenSubKey(sExtension);
+            public static string GetMimeTypeFromFile(string sFilePath)
+            {
+                string sMimeType = null;
 
-				if (pKey != null && pKey.GetValue("Content Type") != null)
-				{
-					sMimeType = pKey.GetValue("Content Type").ToString();
-				}
+                if (File.Exists(sFilePath))
+                {
+                    byte[] abytBuffer = new byte[256];
 
-				return sMimeType;
-			}
+                    using (FileStream pFileStream = new FileStream(sFilePath, FileMode.Open))
+                    {
+                        if (pFileStream.Length >= 256)
+                        {
+                            pFileStream.Read(abytBuffer, 0, 256);
+                        }
+                        else
+                        {
+                            pFileStream.Read(abytBuffer, 0, (int)pFileStream.Length);
+                        }
+                    }
 
-			public static string GetMimeTypeFromFile(string sFilePath)
-			{
-				string sMimeType = null;
+                    try
+                    {
+                        UInt32 unMimeType;
 
-				if (File.Exists(sFilePath))
-				{
-					byte[] abytBuffer = new byte[256];
+                        FindMimeFromData(0, null, abytBuffer, 256, null, 0, out unMimeType, 0);
 
-					using (FileStream pFileStream = new FileStream(sFilePath, FileMode.Open))
-					{
-						if (pFileStream.Length >= 256)
-						{
-							pFileStream.Read(abytBuffer, 0, 256);
-						}
-						else
-						{
-							pFileStream.Read(abytBuffer, 0, (int)pFileStream.Length);
-						}
-					}
+                        IntPtr pMimeType = new IntPtr(unMimeType);
+                        string sMimeTypeFromFile = Marshal.PtrToStringUni(pMimeType);
 
-					try
-					{
-						UInt32 unMimeType;
+                        Marshal.FreeCoTaskMem(pMimeType);
 
-						FindMimeFromData(0, null, abytBuffer, 256, null, 0, out unMimeType, 0);
+                        if (!String.IsNullOrEmpty(sMimeTypeFromFile) && sMimeTypeFromFile != "text/plain" && sMimeTypeFromFile != "application/octet-stream")
+                        {
+                            sMimeType = sMimeTypeFromFile;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
 
-						IntPtr pMimeType = new IntPtr(unMimeType);
-						string sMimeTypeFromFile = Marshal.PtrToStringUni(pMimeType);
+                return sMimeType;
+            }
 
-						Marshal.FreeCoTaskMem(pMimeType);
-
-						if (!String.IsNullOrEmpty(sMimeTypeFromFile) && sMimeTypeFromFile != "text/plain" && sMimeTypeFromFile != "application/octet-stream")
-						{
-							sMimeType = sMimeTypeFromFile;
-						}
-					}
-					catch { }
-				}
-
-				return sMimeType;
-			}
-
-			private static readonly Dictionary<string, string> spDicMIMETypes = new Dictionary<string, string>
+            private static readonly Dictionary<string, string> spDicMIMETypes = new Dictionary<string, string>
         {
             {"ai", "application/postscript"},
             {"aif", "audio/x-aiff"},
@@ -855,6 +856,6 @@ namespace Base
             {"xyz", "chemical/x-xyz"},
             {"zip", "application/zip"}
         };
-		}
-	}
+        }
+    }
 }

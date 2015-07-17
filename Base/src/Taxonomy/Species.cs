@@ -1,309 +1,448 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Base
+namespace Base.Taxonomy
 {
-	namespace Taxonomy
-	{
-		public class SpeciesComparison
-		{
-			private bool _genus;
-			private bool _subgenus;
-			private bool _species;
-			private bool _subspecies;
-			public bool genus { get { return _genus; } }
-			public bool subgenus { get { return _subgenus; } }
-			public bool species { get { return _species; } }
-			public bool subspecies { get { return _subspecies; } }
+    public class SpeciesComparison
+    {
+        private bool equalGenera;
+        private bool equalSubgenera;
+        private bool equalSpecies;
+        private bool equalSubspecies;
 
-			public SpeciesComparison()
-			{
-				_genus = false;
-				_subgenus = false;
-				_species = false;
-				_subspecies = false;
-			}
+        public SpeciesComparison()
+        {
+            this.equalGenera = false;
+            this.equalSubgenera = false;
+            this.equalSpecies = false;
+            this.equalSubspecies = false;
+        }
 
-			public SpeciesComparison(Species sp1, Species sp2)
-			{
-				_genus = String.Compare(sp1.genus, sp2.genus) == 0;
-				_subgenus = String.Compare(sp1.subgenus, sp2.subgenus) == 0;
-				_species = String.Compare(sp1.species, sp2.species) == 0;
-				_subspecies = String.Compare(sp1.subspecies, sp2.subspecies) == 0;
-			}
-		}
+        public SpeciesComparison(Species sp1, Species sp2)
+        {
+            this.equalGenera = string.Compare(sp1.GenusName, sp2.GenusName) == 0;
+            this.equalSubgenera = string.Compare(sp1.SubgenusName, sp2.SubgenusName) == 0;
+            this.equalSpecies = string.Compare(sp1.SpeciesName, sp2.SpeciesName) == 0;
+            this.equalSubspecies = string.Compare(sp1.SubspeciesName, sp2.SubspeciesName) == 0;
+        }
 
-		public class Species
-		{
-			public static Regex GenusName = new Regex("(?<=type=\"genus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
-			public static Regex SubgenusName = new Regex("(?<=type=\"subgenus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
-			public static Regex SpeciesName = new Regex("(?<=type=\"species\"[^>]*>)[a-z\\-\\.]+(?=</t)");
-			public static Regex SubspeciesName = new Regex("(?<=type=\"subspecies\"[^>]*>)[a-z\\-]+(?=</t)");
+        public bool EqualGenera
+        {
+            get
+            {
+                return this.equalGenera;
+            }
+        }
 
-			protected string _genus;
-			protected string _subgenus;
-			protected string _species;
-			protected string _subspecies;
-			protected bool _isGenusNull;
-			protected bool _isSubgenusNull;
-			protected bool _isSpeciesNull;
-			protected bool _isSubspeciesNull;
-			protected bool _isShortened;
+        public bool EqualSubgenera
+        {
+            get
+            {
+                return this.equalSubgenera;
+            }
+        }
 
-			public string genus { get { return _genus; } }
-			public string subgenus { get { return _subgenus; } }
-			public string species { get { return _species; } }
-			public string subspecies { get { return _subspecies; } }
-			public bool isGenusNull { get { return _isGenusNull; } }
-			public bool isSubgenusNull { get { return _isSubgenusNull; } }
-			public bool isSpeciesNull { get { return _isSpeciesNull; } }
-			public bool isSubspeciesNull { get { return _isSubspeciesNull; } }
-			public bool isShortened { get { return _isShortened; } }
+        public bool EqaulSpecies
+        {
+            get
+            {
+                return this.equalSpecies;
+            }
+        }
 
-			public string genusTagged { get { return "<tn-part type=\"genus\">" + _genus + "</tn-part>"; } }
-			public string subgenusTagged { get { return "<tn-part part-type=\"subgenus\">" + _subgenus + "</tn-part>"; } }
-			public string speciesTagged { get { return "<tn-part type=\"species\">" + _species + "</tn-part>"; } }
-			public string subspeciesTaged { get { return "<tn-part type=\"subspecies\">" + _subspecies + "</tn-part>"; } }
+        public bool EqualSubspecies
+        {
+            get
+            {
+                return this.equalSubspecies;
+            }
+        }
+    }
 
-			public string genusPattern
-			{
-				get
-				{
-					return (_genus.IndexOf('.') > -1) ? "\\b" + _genus.Substring(0, _genus.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + _genus + "\\b";
-				}
-			}
-			public string subgenusPattern
-			{
-				get
-				{
-					return (_subgenus.IndexOf('.') > -1) ? "\\b" + _subgenus.Substring(0, _subgenus.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + _subgenus + "\\b";
-				}
-			}
-			public string speciesPattern
-			{
-				get
-				{
-					return (_species.IndexOf('.') > -1) ? "\\b" + _species.Substring(0, _species.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + _species + "\\b";
-				}
-			}
-			public string subspeciesPattern
-			{
-				get
-				{
-					return (_subspecies.IndexOf('.') > -1) ? "\\b" + _subspecies.Substring(0, _subspecies.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + _subspecies + "\\b";
-				}
-			}
+    public class Species
+    {
+        private static Regex genusNameMatchInXml = new Regex("(?<=type=\"genus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
+        private static Regex subgenusNameMatchInXml = new Regex("(?<=type=\"subgenus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
+        private static Regex speciesNameMatchInXml = new Regex("(?<=type=\"species\"[^>]*>)[a-z\\-\\.]+(?=</t)");
+        private static Regex subspeciesNameMatchInXml = new Regex("(?<=type=\"subspecies\"[^>]*>)[a-z\\-]+(?=</t)");
 
-			public string genusSkipPattern
-			{
-				get
-				{
-					return (_genus.IndexOf('.') > -1) ? "\\b" + _genus.Substring(0, _genus.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
-				}
-			}
-			public string subgenusSkipPattern
-			{
-				get
-				{
-					return (_subgenus.IndexOf('.') > -1) ? "\\b" + _subgenus.Substring(0, _subgenus.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
-				}
-			}
-			public string speciesSkipPattern
-			{
-				get
-				{
-					return (_species.IndexOf('.') > -1) ? "\\b" + _species.Substring(0, _species.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
-				}
-			}
-			public string subspeciesSkipPattern
-			{
-				get
-				{
-					return (_subspecies.IndexOf('.') > -1) ? "\\b" + _subspecies.Substring(0, _subspecies.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
-				}
-			}
+        private string genus;
+        private string subgenus;
+        private string species;
+        private string subspecies;
+        private bool isGenusNull;
+        private bool isSubgenusNull;
+        private bool isSpeciesNull;
+        private bool isSubspeciesNull;
+        private bool isShortened;
 
-			public string speciesName
-			{
-				get
-				{
-					string name = _isGenusNull ? string.Empty : _genus;
-					name += _isSubgenusNull ? string.Empty : " (" + _subgenus + ")";
-					name += _isSpeciesNull ? string.Empty : " " + _species;
-					name += _isSubspeciesNull ? string.Empty : " " + _subspecies;
-					return name;
-				}
-			}
+        public Species(string parsedContent)
+        {
+            Match m = Species.genusNameMatchInXml.Match(parsedContent);
+            this.genus = m.Success ? m.Value : string.Empty;
+            m = Species.subgenusNameMatchInXml.Match(parsedContent);
+            this.subgenus = m.Success ? m.Value : string.Empty;
+            m = Species.speciesNameMatchInXml.Match(parsedContent);
+            this.species = m.Success ? m.Value : string.Empty;
+            m = Species.subspeciesNameMatchInXml.Match(parsedContent);
+            this.subspecies = m.Success ? m.Value : string.Empty;
+            this.isGenusNull = this.CheckIfGenusIsNull();
+            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
+            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
+            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
 
-			public string speciesNameGenusSubgenus
-			{
-				get
-				{
-					string name = _isGenusNull ? string.Empty : _genus;
-					name += _isSubgenusNull ? string.Empty : " (" + _subgenus + ")";
-					name += _isSpeciesNull ? string.Empty : " [" + _species + "]";
-					name += _isSubspeciesNull ? string.Empty : " [" + _subspecies + "]";
-					return name;
-				}
-			}
+        public Species(string genus, string subgenus, string species, string subspecies)
+        {
+            this.genus = genus;
+            this.subgenus = subgenus;
+            this.species = species;
+            this.subspecies = subspecies;
+            this.isGenusNull = this.CheckIfGenusIsNull();
+            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
+            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
+            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
 
-			public Species(string parsedContent)
-			{
-				Match m = Species.GenusName.Match(parsedContent);
-				_genus = m.Success ? m.Value : string.Empty;
-				m = Species.SubgenusName.Match(parsedContent);
-				_subgenus = m.Success ? m.Value : string.Empty;
-				m = Species.SpeciesName.Match(parsedContent);
-				_species = m.Success ? m.Value : string.Empty;
-				m = Species.SubspeciesName.Match(parsedContent);
-				_subspecies = m.Success ? m.Value : string.Empty;
-				_isGenusNull = IsGenusNull();
-				_isSubgenusNull = IsSubgenusNull();
-				_isSpeciesNull = IsSpeciesNull();
-				_isSubspeciesNull = IsSubspeciesNull();
-				_isShortened = IsShortened();
-			}
+        public Species()
+        {
+            this.genus = string.Empty;
+            this.subgenus = string.Empty;
+            this.species = string.Empty;
+            this.subspecies = string.Empty;
+            this.isGenusNull = true;
+            this.isSubgenusNull = true;
+            this.isSpeciesNull = true;
+            this.isSubspeciesNull = true;
+            this.isShortened = false;
+        }
 
-			public Species(string genus, string subgenus, string species, string subspecies)
-			{
-				this._genus = genus;
-				this._subgenus = subgenus;
-				this._species = species;
-				this._subspecies = subspecies;
-				_isGenusNull = IsGenusNull();
-				_isSubgenusNull = IsSubgenusNull();
-				_isSpeciesNull = IsSpeciesNull();
-				_isSubspeciesNull = IsSubspeciesNull();
-				_isShortened = IsShortened();
-			}
+        public Species(Species sp)
+        {
+            this.genus = sp.GenusName;
+            this.subgenus = sp.SubgenusName;
+            this.species = sp.SpeciesName;
+            this.subspecies = sp.SubspeciesName;
+            this.isGenusNull = this.CheckIfGenusIsNull();
+            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
+            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
+            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
 
-			public Species()
-			{
-				_genus = string.Empty;
-				_subgenus = string.Empty;
-				_species = string.Empty;
-				_subspecies = string.Empty;
-				_isGenusNull = true;
-				_isSubgenusNull = true;
-				_isSpeciesNull = true;
-				_isSubspeciesNull = true;
-				_isShortened = false;
-			}
+        public string GenusName
+        {
+            get
+            {
+                return this.genus;
+            }
+        }
 
-			public Species(Species sp)
-			{
-				this._genus = sp.genus;
-				this._subgenus = sp.subgenus;
-				this._species = sp.species;
-				this._subspecies = sp.subspecies;
-				_isGenusNull = IsGenusNull();
-				_isSubgenusNull = IsSubgenusNull();
-				_isSpeciesNull = IsSpeciesNull();
-				_isSubspeciesNull = IsSubspeciesNull();
-				_isShortened = IsShortened();
-			}
+        public string SubgenusName
+        {
+            get
+            {
+                return this.subgenus;
+            }
+        }
 
-			public void SetGenus(string genus)
-			{
-				this._genus = genus;
-				_isGenusNull = IsGenusNull();
-				_isShortened = IsShortened();
-			}
+        public string SpeciesName
+        {
+            get
+            {
+                return this.species;
+            }
+        }
 
-			public void SetSubgenus(string subgenus)
-			{
-				this._subgenus = subgenus;
-				_isSubgenusNull = IsSubgenusNull();
-				_isShortened = IsShortened();
-			}
+        public string SubspeciesName
+        {
+            get
+            {
+                return this.subspecies;
+            }
+        }
 
-			public void SetSpecies(string species)
-			{
-				this._species = species;
-				_isSpeciesNull = IsSpeciesNull();
-				_isShortened = IsShortened();
-			}
+        public bool IsGenusNull
+        {
+            get
+            {
+                return this.isGenusNull;
+            }
+        }
 
-			public void SetSubspecies(string subspecies)
-			{
-				this._subspecies = subspecies;
-				_isSubspeciesNull = IsSubspeciesNull();
-			}
+        public bool IsSubgenusNull
+        {
+            get
+            {
+                return this.isSubgenusNull;
+            }
+        }
 
-			public void SetGenus(Species sp)
-			{
-				this._genus = sp.genus;
-				_isGenusNull = sp.isGenusNull;
-				_isShortened = IsShortened();
-			}
+        public bool IsSpeciesNull
+        {
+            get
+            {
+                return this.isSpeciesNull;
+            }
+        }
 
-			public void SetSubgenus(Species sp)
-			{
-				this._subgenus = sp.subgenus;
-				_isSubgenusNull = sp.isSubgenusNull;
-				_isShortened = IsShortened();
-			}
+        public bool IsSubspeciesNull
+        {
+            get
+            {
+                return this.isSubspeciesNull;
+            }
+        }
 
-			public void SetSpecies(Species sp)
-			{
-				this._species = sp.species;
-				_isSpeciesNull = sp.isSpeciesNull;
-				_isShortened = IsShortened();
-			}
+        public bool IsShortened
+        {
+            get
+            {
+                return this.isShortened;
+            }
+        }
 
-			public void SetSubspecies(Species sp)
-			{
-				this._subspecies = sp.subspecies;
-				_isSubspeciesNull = sp.isSubspeciesNull;
-			}
+        public string GenusTagged
+        {
+            get
+            {
+                return "<tn-part type=\"genus\">" + this.genus + "</tn-part>";
+            }
+        }
 
-			private bool IsGenusNull()
-			{
-				return (_genus.Length == 0);
-			}
+        public string SubgenusTagged
+        {
+            get
+            {
+                return "<tn-part part-type=\"subgenus\">" + this.subgenus + "</tn-part>";
+            }
+        }
 
-			private bool IsSubgenusNull()
-			{
-				return (_subgenus.Length == 0);
-			}
+        public string SpeciesTagged
+        {
+            get
+            {
+                return "<tn-part type=\"species\">" + this.species + "</tn-part>";
+            }
+        }
 
-			private bool IsSpeciesNull()
-			{
-				return (_species.Length == 0);
-			}
+        public string SubspeciesTaged
+        {
+            get
+            {
+                return "<tn-part type=\"subspecies\">" + this.subspecies + "</tn-part>";
+            }
+        }
 
-			private bool IsSubspeciesNull()
-			{
-				return (_subspecies.Length == 0);
-			}
+        public string GenusPattern
+        {
+            get
+            {
+                return (this.genus.IndexOf('.') > -1) ? "\\b" + this.genus.Substring(0, this.genus.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + this.genus + "\\b";
+            }
+        }
 
-			private bool IsShortened()
-			{
-				string sp = _genus + _subgenus + _species + _subspecies;
-				return (sp.IndexOf('.') > -1);
-			}
+        public string SubgenusPattern
+        {
+            get
+            {
+                return (this.subgenus.IndexOf('.') > -1) ? "\\b" + this.subgenus.Substring(0, this.subgenus.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + this.subgenus + "\\b";
+            }
+        }
 
-			public string AsString()
-			{
-				string result = string.Empty;
-				if (!_isGenusNull) result += _genus;
-				if (!_isSubgenusNull)
-				{
-					if (result.Length != 0) result += " ";
-					result += "(" + _subgenus + ")";
-				}
-				if (!_isSpeciesNull)
-				{
-					if (result.Length != 0) result += " ";
-					result += _species;
-				}
-				if (!_isSubgenusNull)
-				{
-					if (result.Length != 0) result += " ";
-					result += _subspecies;
-				}
-				return result;
-			}
-		}
-	}
+        public string SpeciesPattern
+        {
+            get
+            {
+                return (this.species.IndexOf('.') > -1) ? "\\b" + this.species.Substring(0, this.species.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + this.species + "\\b";
+            }
+        }
+
+        public string SubspeciesPattern
+        {
+            get
+            {
+                return (this.subspecies.IndexOf('.') > -1) ? "\\b" + this.subspecies.Substring(0, this.subspecies.IndexOf('.')) + "[a-z\\-]+?" : "\\b" + this.subspecies + "\\b";
+            }
+        }
+
+        public string GenusSkipPattern
+        {
+            get
+            {
+                return (this.genus.IndexOf('.') > -1) ? "\\b" + this.genus.Substring(0, this.genus.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
+            }
+        }
+
+        public string SubgenusSkipPattern
+        {
+            get
+            {
+                return (this.subgenus.IndexOf('.') > -1) ? "\\b" + this.subgenus.Substring(0, this.subgenus.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
+            }
+        }
+
+        public string SpeciesSkipPattern
+        {
+            get
+            {
+                return (this.species.IndexOf('.') > -1) ? "\\b" + this.species.Substring(0, this.species.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
+            }
+        }
+
+        public string SubspeciesSkipPattern
+        {
+            get
+            {
+                return (this.subspecies.IndexOf('.') > -1) ? "\\b" + this.subspecies.Substring(0, this.subspecies.IndexOf('.')) + "[a-z\\-]+?" : "SKIP";
+            }
+        }
+
+        public string SpeciesNameAsString
+        {
+            get
+            {
+                string name = this.isGenusNull ? string.Empty : this.genus;
+                name += this.isSubgenusNull ? string.Empty : " (" + this.subgenus + ")";
+                name += this.isSpeciesNull ? string.Empty : " " + this.species;
+                name += this.isSubspeciesNull ? string.Empty : " " + this.subspecies;
+                return name;
+            }
+        }
+
+        public string SpeciesNameGenusSubgenusAsString
+        {
+            get
+            {
+                string name = this.isGenusNull ? string.Empty : this.genus;
+                name += this.isSubgenusNull ? string.Empty : " (" + this.subgenus + ")";
+                name += this.isSpeciesNull ? string.Empty : " [" + this.species + "]";
+                name += this.isSubspeciesNull ? string.Empty : " [" + this.subspecies + "]";
+                return name;
+            }
+        }
+
+        public string AsString()
+        {
+            string result = string.Empty;
+            if (!this.isGenusNull)
+            {
+                result += this.genus;
+            }
+
+            if (!this.isSubgenusNull)
+            {
+                if (result.Length != 0)
+                {
+                    result += " ";
+                }
+
+                result += "(" + this.subgenus + ")";
+            }
+
+            if (!this.isSpeciesNull)
+            {
+                if (result.Length != 0)
+                {
+                    result += " ";
+                }
+
+                result += this.species;
+            }
+
+            if (!this.isSubgenusNull)
+            {
+                if (result.Length != 0)
+                {
+                    result += " ";
+                }
+
+                result += this.subspecies;
+            }
+
+            return result;
+        }
+
+        public void SetGenus(string genus)
+        {
+            this.genus = genus;
+            this.isGenusNull = this.CheckIfGenusIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSubgenus(string subgenus)
+        {
+            this.subgenus = subgenus;
+            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSpecies(string species)
+        {
+            this.species = species;
+            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSubspecies(string subspecies)
+        {
+            this.subspecies = subspecies;
+            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
+        }
+
+        public void SetGenus(Species sp)
+        {
+            this.genus = sp.GenusName;
+            this.isGenusNull = sp.IsGenusNull;
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSubgenus(Species sp)
+        {
+            this.subgenus = sp.SubgenusName;
+            this.isSubgenusNull = sp.IsSubgenusNull;
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSpecies(Species sp)
+        {
+            this.species = sp.SpeciesName;
+            this.isSpeciesNull = sp.IsSpeciesNull;
+            this.isShortened = this.CheckIfTaxonIsShortened();
+        }
+
+        public void SetSubspecies(Species sp)
+        {
+            this.subspecies = sp.SubspeciesName;
+            this.isSubspeciesNull = sp.IsSubspeciesNull;
+        }
+
+        private bool CheckIfGenusIsNull()
+        {
+            return this.genus.Length == 0;
+        }
+
+        private bool CheckIfSubgenusIsNull()
+        {
+            return this.subgenus.Length == 0;
+        }
+
+        private bool CheckIfSpeciesIsNull()
+        {
+            return this.species.Length == 0;
+        }
+
+        private bool CheckIfSubspeciesIsNull()
+        {
+            return this.subspecies.Length == 0;
+        }
+
+        private bool CheckIfTaxonIsShortened()
+        {
+            string sp = this.genus + this.subgenus + this.species + this.subspecies;
+            return sp.IndexOf('.') > -1;
+        }
+    }
 }

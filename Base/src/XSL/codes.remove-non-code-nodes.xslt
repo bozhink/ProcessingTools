@@ -16,7 +16,7 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template match="xref|ext-link|a|tn|tp:taxon-name|tp:treatment-meta|article/front//*[name()!='p']|ref|locality-coordinates|quantity|abbrev|date">
+	<xsl:template match="xref|ext-link|a|tn|tp:taxon-name|tp:treatment-meta|article/front//*[name()!='p']|ref|locality-coordinates|quantity|abbrev|date|institution|product|geoname|morphology-part">
 		<!-- Delete this nodes-->
 	</xsl:template>
 </xsl:stylesheet>
