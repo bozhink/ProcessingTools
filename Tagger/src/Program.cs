@@ -763,7 +763,7 @@ namespace Tag
                 codes.TagQuantities();
                 codes.TagDirections();
                 codes.TagDates();
-                codes.SelectCodes();
+                codes.TagSpecimenCodes();
 
                 fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
                 timer.WriteOutput();
