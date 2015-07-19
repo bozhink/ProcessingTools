@@ -268,6 +268,13 @@ namespace Base
                 this.FullTag = fullTag;
             }
 
+            public TagContent(TagContent tag)
+            {
+                this.Name = tag.Name;
+                this.Attributes = tag.Attributes;
+                this.FullTag = tag.FullTag;
+            }
+
             public bool IsClosingTag
             {
                 get;

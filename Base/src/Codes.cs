@@ -141,7 +141,6 @@ namespace Base
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        // Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, "<specimen-count>$1</specimen-count>");
                         node.InnerXml = replace;
                     }
@@ -200,10 +199,12 @@ namespace Base
 
         public void TagSpecimenCodes()
         {
-            const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/\–\—\−\-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
+            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+            const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
             List<string> potentialSpecimenCodes = ExtractPotentialSpecimenCodes(CodePattern);
-            Alert.Message("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
+
+            ////Alert.Message("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
             ////foreach (string word in potentialCodeWords)
             ////{
             ////    Alert.Message(word);
@@ -217,90 +218,26 @@ namespace Base
             ////    }
             ////}
 
-            List<string> plausibleSpecimenCodes = GetPlausibleSpecimenCodes(potentialSpecimenCodes);
+            List<string> plausibleSpecimenCodes = GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
-            const string SpecimenCodeTagName = "specimen-code";
+            TagContent specimenCodeTag = new TagContent("specimen-code");
 
             this.ParseXmlStringToXmlDocument();
-            string xpathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
             foreach (string specimenCode in plausibleSpecimenCodes)
             {
                 Alert.Message(specimenCode);
 
-                Regex specimenCodeRegex = new Regex("(" + specimenCode + ")");
-
-                string specimenCodePattern = "(?:<[^>]*>)*" + Regex.Replace(specimenCode, "(.)", "$1(?:<[^>]*>)*");
-                Regex specimenCodePatternRegex = new Regex("(" + specimenCodePattern + ")");
-
-                string replacement = "<" + SpecimenCodeTagName + @" full-string=""" + specimenCode + @""">$1</" + SpecimenCodeTagName + ">";
-
-                string xpath = string.Format(xpathTemplate, "contains(string(.),'" + specimenCode + "')");
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
-                {
-                    string replace = node.InnerXml;
-
-                    /*
-                     * Here we need this if because the use of specimenCodePatternRegex is potentialy dangerous:
-                     * this is dynamically generated regex which might be too complex and slow.
-                     */
-                    if (specimenCodeRegex.Match(node.InnerText).Length == specimenCodeRegex.Match(node.InnerXml).Length)
-                    {
-                        replace = specimenCodeRegex.Replace(replace, replacement);
-                    }
-                    else
-                    {
-                        replace = specimenCodePatternRegex.Replace(replace, replacement);
-                    }
-
-                    try
-                    {
-                        node.InnerXml = replace;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
-                        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag specimen codes.");
-                    }
-                }
+                TagTextInXmlDocument(specimenCode, specimenCodeTag, XPathTemplate);
             }
 
-            /*
-             * Try to guess some other specimen codes following the tagged ones.
-             */
-            {
-                // <specimen-code full-string="UQIC 221451"><institutional-code attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutional-code> 221451</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
-                // <specimen-code full-string="UQIC 221451">.*?</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
-
-                Regex guessNextCode = new Regex("(?<=</" + SpecimenCodeTagName + @">\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)");
-
-                string xpath = string.Format(xpathTemplate, SpecimenCodeTagName);
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
-                {
-                    string replacement = "<" + SpecimenCodeTagName + ">$1</" + SpecimenCodeTagName + ">";
-                    string replace = node.InnerXml;
-
-                    while (guessNextCode.Match(replace).Success)
-                    {
-                        replace = guessNextCode.Replace(replace, replacement);
-                    }
-
-                    try
-                    {
-                        node.InnerXml = replace;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
-                        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Guess specimen codes.");
-                    }
-                }
-            }
+            // Try to guess some other specimen codes following the tagged ones.
+            GuessSequentalSpecimenCodes(specimenCodeTag, XPathTemplate);
 
             /*
              * Here we might have nested <specimen-code> which probably is due to mistaken codes.
              */
             {
-                string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", SpecimenCodeTagName);
+                string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in this.xmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.namespaceManager))
                 {
                     Alert.Message("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
@@ -311,11 +248,121 @@ namespace Base
         }
 
         /// <summary>
-        /// Gets all potential specimen codes which contains a used in the article instirurional code.
+        /// Tags next specimen codes when we have some tagged ones.
+        /// </summary>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        private void GuessSequentalSpecimenCodes(TagContent tag, string xpathTemplate)
+        {
+            // <specimen-code full-string="UQIC 221451"><institutional-code attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutional-code> 221451</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
+            // <specimen-code full-string="UQIC 221451">.*?</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
+
+            Regex guessNextCode = new Regex("(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)");
+
+            string xpath = string.Format(xpathTemplate, tag.Name);
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
+            {
+                TagContent replacement = new TagContent(tag);
+                replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
+
+                string replace = node.InnerXml;
+
+                while (guessNextCode.Match(replace).Success)
+                {
+                    replace = guessNextCode.Replace(replace, replacement.FullTag);
+                }
+
+                try
+                {
+                    node.InnerXml = replace;
+                }
+                catch (Exception e)
+                {
+                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Guess specimen codes.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Tags plain text string (no regex) in the xmlDocument.
+        /// </summary>
+        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        private void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true)
+        {
+            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
+            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.namespaceManager);
+
+            TagTextInXmlDocument(textToTag, tag, nodeList);
+        }
+
+        /// <summary>
+        /// Tags plain text string (no regex) in the xmlDocument.
+        /// </summary>
+        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
+        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        private void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true)
+        {
+            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
+            string textToTagPattern = "(?:<[^>]*>)*\\b" + Regex.Replace(textToTagEscaped, @"([^\\])", "$1(?:<[^>]*>)*");
+            // TODO: replace this regex with simpler string replacement
+            textToTagPattern = Regex.Replace(textToTagPattern, @"(?=\(\?\:<\[\^>\]\*>\)\*\Z)", "\\b"); // Add \b before last (?:<[^>]*>)*
+
+            //Alert.Message(textToTagPattern);
+
+            string caseSensitiveness = string.Empty;
+            if (!isCaseSensitive)
+            {
+                caseSensitiveness = "(?i)";
+            }
+
+            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
+            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
+
+            TagContent replacement = new TagContent(tag);
+            replacement.Attributes += @" full-string=""" + textToTag + @"""";
+            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
+
+            foreach (XmlNode node in nodeList)
+            {
+                string replace = node.InnerXml;
+
+                /*
+                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
+                 * this is dynamically generated regex which might be too complex and slow.
+                 */
+                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+                {
+                    replace = textToTagRegex.Replace(replace, replacement.FullTag);
+                }
+                else
+                {
+                    replace = textTotagPatternRegex.Replace(replace, replacement.FullTag);
+                }
+
+                try
+                {
+                    node.InnerXml = replace;
+                }
+                catch (Exception e)
+                {
+                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all plausible specimen codes which contains a used in the article instirurional code.
         /// </summary>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
         /// <returns>Filtered list of plausible specimen codes.</returns>
-        private List<string> GetPlausibleSpecimenCodes(List<string> potentialSpecimenCodes)
+        private List<string> GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(List<string> potentialSpecimenCodes)
         {
             List<string> result = new List<string>();
 
@@ -415,6 +462,8 @@ namespace Base
                                 {
                                     tag.Attributes = string.Empty;
                                 }
+
+                                ////TagTextInXmlDocument(contentString, tag, nodeList, caseSensitive);
 
                                 string replaceSubstitution = tag.OpenTag + "$1" + tag.CloseTag;
                                 string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
