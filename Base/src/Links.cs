@@ -6,15 +6,20 @@ namespace Base
 {
     namespace Nlm
     {
-        public class Links : Base
+        public class LinksTagger : Base
         {
-            public Links()
+            public LinksTagger()
                 : base()
             {
             }
 
-            public Links(string xml)
+            public LinksTagger(string xml)
                 : base(xml)
+            {
+            }
+
+            public LinksTagger(Base baseObject)
+                : base(baseObject)
             {
             }
 
@@ -23,7 +28,7 @@ namespace Base
                 this.ParseXmlStringToXmlDocument();
                 try
                 {
-                    XmlNodeList nodeList = this.xmlDocument.SelectNodes("//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation", this.namespaceManager);
+                    XmlNodeList nodeList = this.xmlDocument.SelectNodes("//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation", this.NamespaceManager);
                     foreach (XmlNode node in nodeList)
                     {
                         ////string replace = mp.Value;
@@ -103,16 +108,21 @@ namespace Base
 
     namespace NlmSystem
     {
-        public class Links : Base
+        public class LinksTagger : Base
         {
-            public Links()
+            public LinksTagger()
+                : base()
             {
-                this.xml = string.Empty;
             }
 
-            public Links(string xml)
+            public LinksTagger(string xml)
+                : base(xml)
             {
-                this.xml = xml;
+            }
+
+            public LinksTagger(Base baseObject)
+                : base(baseObject)
+            {
             }
 
             public void TagWWW()

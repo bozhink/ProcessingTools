@@ -77,22 +77,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnvironmentsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EnvironmentsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MainDictionaryDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="src\AbbreviationsTagger.cs" />
     <Compile Include="src\Base\Alert.cs" />
     <Compile Include="src\Base\Base.cs" />
     <Compile Include="src\Base\Config.cs" />
@@ -107,6 +98,7 @@
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\Base\Diagnostics.cs" />
     <Compile Include="src\Base\FileProcessor.cs" />
+    <Compile Include="src\DatesTagger.cs" />
     <Compile Include="src\Environments.cs" />
     <Compile Include="src\Floats.cs" />
     <Compile Include="src\Flora.cs" />
@@ -117,6 +109,7 @@
     <Compile Include="src\Json\ZooBank.cs" />
     <Compile Include="src\Links.cs" />
     <Compile Include="src\Nlm.cs" />
+    <Compile Include="src\QuantitiesTagger.cs" />
     <Compile Include="src\QuentinFlora.cs" />
     <Compile Include="src\QueryReplace.cs" />
     <Compile Include="src\References.cs" />
@@ -130,27 +123,8 @@
     <Compile Include="src\Test\Test.cs" />
     <Compile Include="src\ZooBank.cs" />
     <Compile Include="src\ZoobankCloner.cs" />
-    <Compile Include="TaxonomyDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TaxonomyDataSet.xsd</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Environments.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Environments_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Environments.mdf</DependentUpon>
-    </Content>
-    <Content Include="Data\MainDictionary.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\MainDictionary_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>MainDictionary.mdf</DependentUpon>
-    </Content>
     <Content Include="Data\Sql\biorepositories.sql" />
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
@@ -158,6 +132,7 @@
     <Content Include="Data\Sql\environments_names.sql" />
     <Content Include="Data\Sql\geonames.sql" />
     <Content Include="Data\Sql\institution.sql" />
+    <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
     <Content Include="src\Base\Messages\helpMessage.txt" />
@@ -213,13 +188,6 @@
     <Content Include="src\XSL\tn-to-taxon-name.xslt" />
     <Content Include="src\XSL\WhiteListClean.xsl" />
     <Content Include="src\XSL\zoobank-nlm.xsl" />
-    <Content Include="Taxonomy.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Taxonomy_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Taxonomy.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\Base\Messages\Messages.resx">
@@ -231,45 +199,12 @@
     <None Include="app.config" />
     <None Include="Data\select_multi-rank-taxa.xqm" />
     <None Include="Data\taxonomic_ranks.xqm" />
-    <None Include="EnvironmentsDataSet.xsc">
-      <DependentUpon>EnvironmentsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="EnvironmentsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EnvironmentsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="EnvironmentsDataSet.xss">
-      <DependentUpon>EnvironmentsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MainDictionaryDataSet.xsc">
-      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MainDictionaryDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MainDictionaryDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MainDictionaryDataSet.xss">
-      <DependentUpon>MainDictionaryDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="src\aphia.wsdl" />
     <None Include="src\Base\config.json" />
-    <None Include="TaxonomyDataSet.xsc">
-      <DependentUpon>TaxonomyDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TaxonomyDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TaxonomyDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TaxonomyDataSet.xss">
-      <DependentUpon>TaxonomyDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -16,6 +16,21 @@ namespace Base
         {
         }
 
+        public References(Config config)
+            : base(config)
+        {
+        }
+
+        public References(Config config, string xml)
+            : base(config, xml)
+        {
+        }
+
+        public References(Base baseObject)
+            : base(baseObject)
+        {
+        }
+
         public static string ReferencePartSplitter(XmlNode reference)
         {
             string result = reference.InnerXml;
@@ -198,16 +213,16 @@ namespace Base
             this.xml = Regex.Replace(this.xml, "<!DOCTYPE [^>]*>", string.Empty);
             {
                 // References list
-                fp.OutputFileName = config.referencesGetReferencesXmlPath;
-                fp.Xml = XsltOnString.ApplyTransform(config.referencesGetReferencesXslPath, this.xml);
+                fp.OutputFileName = this.Config.referencesGetReferencesXmlPath;
+                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesGetReferencesXslPath, this.xml);
                 fp.WriteStringContentToFile();
             }
 
             {
                 // References template
-                fp.OutputFileName = config.referencesTagTemplateXmlPath;
-                fp.Xml = XsltOnString.ApplyTransform(config.referencesTagTemplateXslPath, this.xml);
-                fp.Xml = XsltOnString.ApplyTransform(config.referencesSortReferencesXslPath, fp.Xml);
+                fp.OutputFileName = this.Config.referencesTagTemplateXmlPath;
+                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesTagTemplateXslPath, this.xml);
+                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesSortReferencesXslPath, fp.Xml);
                 fp.WriteStringContentToFile();
             }
         }
@@ -217,7 +232,7 @@ namespace Base
             XmlDocument xd = new XmlDocument();
             try
             {
-                xd.Load(config.referencesTagTemplateXmlPath);
+                xd.Load(this.Config.referencesTagTemplateXmlPath);
             }
             catch (Exception e)
             {
@@ -247,7 +262,7 @@ namespace Base
                 for (Match m = Regex.Match(this.xml, @"<xref ref-type=""bibr""[^>]+>[^<>]+(?<=[^\)\]])</xref>(\W\s*\b(\d{2,4}(\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*\b\d{2,4}(\W\d{1,4})?[a-z]?\b"); m.Success; m = m.NextMatch())
                 {
                     string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w*?)""[^<>]*>.*\Z", "$1");
-                    string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", namespaceManager).InnerText;
+                    string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", NamespaceManager).InnerText;
 
                     string replace = m.Value;
 
@@ -255,7 +270,7 @@ namespace Base
                     {
                         try
                         {
-                            XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + l.Value + "']", namespaceManager);
+                            XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + l.Value + "']", NamespaceManager);
                             if (node != null)
                             {
                                 replace = Regex.Replace(
@@ -278,8 +293,8 @@ namespace Base
             for (Match m = Regex.Match(this.xml, @"<xref ref-type=""bibr"" [^>]+>[^<>]*\d+\W*[a-z]\W*</xref>(\W\s*(\b[a-z]\b))+"); m.Success; m = m.NextMatch())
             {
                 string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w+)""[^<>]*>.*\Z", "$1");
-                string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", namespaceManager).InnerText;
-                string year = Regex.Replace(referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@year", namespaceManager).InnerText, "[A-Za-z]", string.Empty);
+                string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", NamespaceManager).InnerText;
+                string year = Regex.Replace(referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@year", NamespaceManager).InnerText, "[A-Za-z]", string.Empty);
 
                 string replace = m.Value;
 
@@ -287,7 +302,7 @@ namespace Base
                 {
                     try
                     {
-                        XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + year + l.Value + "']", namespaceManager);
+                        XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + year + l.Value + "']", NamespaceManager);
                         if (node != null)
                         {
                             replace = Regex.Replace(
@@ -329,7 +344,7 @@ namespace Base
                 bool xrefInRef = true;
                 while (xrefInRef)
                 {
-                    nodeList = xmlDocument.SelectNodes("//ref[.//xref[@ref-type='bibr']]", this.namespaceManager);
+                    nodeList = xmlDocument.SelectNodes("//ref[.//xref[@ref-type='bibr']]", this.NamespaceManager);
                     if (nodeList.Count > 0)
                     {
                         foreach (XmlNode node in nodeList)
@@ -353,7 +368,7 @@ namespace Base
             this.ParseXmlStringToXmlDocument();
             try
             {
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", namespaceManager);
+                XmlNodeList nodeList = this.xmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", NamespaceManager);
                 foreach (XmlNode node in nodeList)
                 {
                     node.InnerXml = ReferencePartSplitter(node);

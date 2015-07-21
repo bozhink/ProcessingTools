@@ -345,14 +345,14 @@ namespace Tag
 
                 if (!config.NlmStyle)
                 {
-                    Base.Format.NlmSystem.Format fmt = new Base.Format.NlmSystem.Format();
+                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter();
                     fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
                     fmt.InitialFormat();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
-                    Base.Format.Nlm.Format fmt = new Base.Format.Nlm.Format();
+                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter();
                     fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
                     fmt.InitialFormat();
                     fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
@@ -378,7 +378,7 @@ namespace Tag
             {
                 timer.Start();
                 Alert.Message("\n\tTag DOI.\n");
-                Base.Nlm.Links ln = new Base.Nlm.Links(fp.Xml);
+                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
 
                 ln.TagDOI();
                 ln.TagPMCLinks();
@@ -391,7 +391,7 @@ namespace Tag
             {
                 timer.Start();
                 Alert.Message("\n\tTag web links.\n");
-                Base.Nlm.Links ln = new Base.Nlm.Links(fp.Xml);
+                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
 
                 ln.TagWWW();
 
@@ -524,8 +524,7 @@ namespace Tag
             {
                 FileProcessor flp = new FileProcessor(inputFileName, config.floraExtractedTaxaListPath);
                 FileProcessor flpp = new FileProcessor(inputFileName, config.floraExtractTaxaPartsOutputPath);
-                Flora fl = new Flora();
-                fl.Config = config;
+                Flora fl = new Flora(config);
                 fl.Xml = fp.Xml;
 
                 fl.ExtractTaxa();
@@ -604,8 +603,7 @@ namespace Tag
             }
             else if (generateZooBankNlm)
             {
-                ZooBank zb = new ZooBank();
-                zb.Config = config;
+                ZooBank zb = new ZooBank(config);
                 zb.Xml = fp.Xml;
                 zb.GenerateZooBankNlm();
                 fp.Xml = zb.Xml;
@@ -734,8 +732,7 @@ namespace Tag
             {
                 timer.Start();
                 Alert.Message("\n\tTag environments.\n");
-                Base.Environments environments = new Environments(fp.Xml);
-                environments.Config = config;
+                Base.Environments environments = new Environments(config, fp.Xml);
 
                 environments.TagEnvironmentsRecords();
 
@@ -747,22 +744,31 @@ namespace Tag
             {
                 timer.Start();
                 Alert.Message("\n\tTag codes.\n");
-                Base.Codes codes = new Codes(Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
-                codes.Config = config;
+                Codes codes = new Codes(config, Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
+
+                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(codes);
+                quantitiesTagger.TagQuantities();
+                quantitiesTagger.TagDirections();
+                codes.Xml = quantitiesTagger.Xml;
+
+                DatesTagger datesTagger = new DatesTagger(codes);
+                datesTagger.TagDates();
+                codes.Xml = datesTagger.Xml;
+
+                codes.TagSpecimenCount();
+
+                AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(codes);
+                abbreviationsTagger.TagAbbreviationsInText();
+
+                codes.Xml = abbreviationsTagger.Xml;
 
                 codes.TagInstitutions();
 
                 codes.TagProducts();
                 codes.TagGeonames();
                 codes.TagMorphology();
-                codes.TagSpecimenCount();
-                codes.TagAbbreviationsInText();
 
                 codes.TagInstitutionalCodes();
-
-                codes.TagQuantities();
-                codes.TagDirections();
-                codes.TagDates();
                 codes.TagSpecimenCodes();
 
                 fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
@@ -883,10 +889,8 @@ namespace Tag
                 timer.Start();
                 Alert.Message("\n\tExpand taxa.\n");
 
-                Base.Taxonomy.Nlm.Expander expand = new Base.Taxonomy.Nlm.Expander(xmlContent);
-                Base.Taxonomy.Expander exp = new Base.Taxonomy.Expander(xmlContent);
-                expand.Config = config;
-                exp.Config = config;
+                Base.Taxonomy.Nlm.Expander expand = new Base.Taxonomy.Nlm.Expander(config, xmlContent);
+                Base.Taxonomy.Expander exp = new Base.Taxonomy.Expander(config, xmlContent);
 
                 for (int i = 0; i < NumberOfExpandingIterations; i++)
                 {
@@ -1073,12 +1077,11 @@ namespace Tag
         private static string TagReferences(string xml, string fileName)
         {
             string xmlContent = xml;
-            References refs = new References(xmlContent);
+            References refs = new References(config, xmlContent);
 
             config.referencesGetReferencesXmlPath = Path.GetDirectoryName(fileName) + "\\zzz-" + Path.GetFileNameWithoutExtension(fileName) + "-references.xml";
             config.referencesTagTemplateXmlPath = config.tempDirectoryPath + "\\zzz-" + Path.GetFileNameWithoutExtension(fileName) + "-references-tag-template.xml";
 
-            refs.Config = config;
             refs.GenerateTagTemplateXml();
             refs.TagReferences();
             xmlContent = refs.Xml;

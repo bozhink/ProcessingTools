@@ -108,7 +108,7 @@ namespace Base
             StringBuilder result = new StringBuilder();
             try
             {
-                reader = new StreamReader(this.inputFileName, this.encoding);
+                reader = new StreamReader(this.inputFileName, this.DefaultEncoding);
                 while ((line = reader.ReadLine()) != null)
                 {
                     result.Append(line);
@@ -159,7 +159,7 @@ namespace Base
             StreamWriter writer = null;
             try
             {
-                writer = new StreamWriter(this.outputFileName, false, encoding);
+                writer = new StreamWriter(this.outputFileName, false, this.DefaultEncoding);
                 writer.Write(this.xml);
             }
             catch (Exception e)

@@ -14,6 +14,11 @@ namespace Base
             this.xml = Regex.Replace(xml, "\r", string.Empty);
         }
 
+        public QuentinFlora(Base baseObject)
+            : base(baseObject)
+        {
+        }
+
         public void InitialFormat()
         {
             this.xml = Regex.Replace(this.xml, "(<notes>|<latinname>)\\s+", "$1");

@@ -17,6 +17,21 @@ namespace Base
         {
         }
 
+        public Flora(Config config)
+            : base(config)
+        {
+        }
+
+        public Flora(Config config, string xml)
+            : base(config, xml)
+        {
+        }
+
+        public Flora(Base baseObject)
+            : base(baseObject)
+        {
+        }
+
         public static string DistinctTaxa(string xml)
         {
             return XsltOnString.ApplyTransform(@"C:\bin\taxa.distinct.xslt", xml);
@@ -24,24 +39,24 @@ namespace Base
 
         public void ExtractTaxa()
         {
-            this.xml = XsltOnString.ApplyTransform(this.config.floraExtractTaxaXslPath, this.xml);
+            this.xml = XsltOnString.ApplyTransform(this.Config.floraExtractTaxaXslPath, this.xml);
         }
 
         public string ExtractTaxaParts()
         {
-            return XsltOnString.ApplyTransform(config.floraExtractTaxaPartsXslPath, this.xml);
+            return XsltOnString.ApplyTransform(this.Config.floraExtractTaxaPartsXslPath, this.xml);
         }
 
         public void DistinctTaxa()
         {
-            this.xml = XsltOnString.ApplyTransform(config.floraDistrinctTaxaXslPath, this.xml);
+            this.xml = XsltOnString.ApplyTransform(this.Config.floraDistrinctTaxaXslPath, this.xml);
         }
 
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(XsltOnString.ApplyTransform(this.config.floraGenerateTemplatesXslPath, this.xml)));
-            generatedTemplate.Save(this.config.floraTemplatesOutputXmlPath);
+            generatedTemplate.LoadXml(Flora.DistinctTaxa(XsltOnString.ApplyTransform(this.Config.floraGenerateTemplatesXslPath, this.xml)));
+            generatedTemplate.Save(this.Config.floraTemplatesOutputXmlPath);
         }
 
         public void PerformReplace()
@@ -49,7 +64,7 @@ namespace Base
             this.ParseXmlStringToXmlDocument();
 
             XmlDocument template = new XmlDocument();
-            template.Load(this.config.floraTemplatesOutputXmlPath);
+            template.Load(this.Config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
             Alert.Message(root.ChildNodes.Count);
@@ -177,7 +192,7 @@ namespace Base
         {
             this.ParseXmlStringToXmlDocument();
             XmlDocument template = new XmlDocument();
-            template.Load(this.config.floraTemplatesOutputXmlPath);
+            template.Load(this.Config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
 

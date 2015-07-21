@@ -59,6 +59,12 @@ namespace Base
             this.InitFloats();
         }
 
+        public Floats(Base baseObject)
+            : base(baseObject)
+        {
+            this.InitFloats();
+        }
+
         /// <summary>
         /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
         /// This method generates the "dictionary" to correctly post-process xref/@rid references.
@@ -96,7 +102,7 @@ namespace Base
 
             try
             {
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.namespaceManager);
+                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 numberOfFloatsOfType = nodeList.Count;
                 this.floatNumericLabel = new string[numberOfFloatsOfType + 1];
                 for (int i = 0; i < numberOfFloatsOfType + 1; i++)
@@ -337,7 +343,7 @@ namespace Base
             this.ParseXmlStringToXmlDocument();
 
             // Get list of table-wrap with correctly formatted foot-notes
-            XmlNodeList tableWrapList = this.xmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.namespaceManager);
+            XmlNodeList tableWrapList = this.xmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
             {
                 Alert.Message("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
@@ -350,14 +356,14 @@ namespace Base
                     Hashtable tableFootNotes = new Hashtable();
 
                     // Get foot-note's label and corresponding @id-s
-                    foreach (XmlNode fn in tableWrap.SelectNodes("//fn[label][@id]", this.namespaceManager))
+                    foreach (XmlNode fn in tableWrap.SelectNodes("//fn[label][@id]", this.NamespaceManager))
                     {
                         tableFootNotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
                     }
 
                     foreach (string x in tableFootNotes.Keys)
                     {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + x + "']", this.namespaceManager))
+                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + x + "']", this.NamespaceManager))
                         {
                             // <xref ref-type="table-fn" rid="TN1"></xref>
                             XmlNode xrefTableFootNote = xmlDocument.CreateElement("xref");
@@ -462,7 +468,7 @@ namespace Base
             string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
                 }
@@ -498,7 +504,7 @@ namespace Base
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
                 {
                     // Format content in xref-group
                     string xref_group = node.InnerXml;

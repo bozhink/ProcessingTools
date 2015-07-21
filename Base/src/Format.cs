@@ -7,15 +7,30 @@ namespace Base.Format
 {
     namespace Nlm
     {
-        public class Format : Base
+        public class Formatter : Base
         {
-            public Format()
+            public Formatter()
                 : base()
             {
             }
 
-            public Format(string xml)
+            public Formatter(string xml)
                 : base(xml)
+            {
+            }
+
+            public Formatter(Config config)
+                : base(config)
+            {
+            }
+
+            public Formatter(Config config, string xml)
+                : base(config, xml)
+            {
+            }
+
+            public Formatter(Base baseObject)
+                : base(baseObject)
             {
             }
 
@@ -54,18 +69,18 @@ namespace Base.Format
                 }
 
                 this.ParseXmlStringToXmlDocument();
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//title|//label|//article-title|//th|//td|//p|//license-p|//li|//attrib|//kwd|//ref|//mixed-citation|//object-id|//xref-group|//tp:nomenclature-citation|//self-uri|//name|//given-names|//surname|//person-group|//graphic[string()!='']", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//title|//label|//article-title|//th|//td|//p|//license-p|//li|//attrib|//kwd|//ref|//mixed-citation|//object-id|//xref-group|//tp:nomenclature-citation|//self-uri|//name|//given-names|//surname|//person-group|//graphic[string()!='']", this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, @"\A\s+|\s+\Z", string.Empty);
                     node.InnerXml = Regex.Replace(node.InnerXml, @"\s+", " ");
                 }
 
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//td|//th", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//td|//th", this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "&lt;br/&gt;", "<break />");
                 }
 
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//front//contrib", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//front//contrib", this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(
                         node.InnerXml,
@@ -239,16 +254,31 @@ namespace Base.Format
 
     namespace NlmSystem
     {
-        public class Format : Base
+        public class Formatter : Base
         {
-            public Format(string xml)
+            public Formatter()
+                : base()
             {
-                this.xml = xml;
             }
 
-            public Format()
+            public Formatter(string xml)
+                : base(xml)
             {
-                this.xml = string.Empty;
+            }
+
+            public Formatter(Config config)
+                : base(config)
+            {
+            }
+
+            public Formatter(Config config, string xml)
+                : base(config, xml)
+            {
+            }
+
+            public Formatter(Base baseObject)
+                : base(baseObject)
+            {
             }
 
             public void InitialFormat()

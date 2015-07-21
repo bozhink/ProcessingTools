@@ -205,7 +205,7 @@ namespace Base.ZooBank
                 // Article lsid
                 {
                     string articleLsid = ZooBankPrefix + z.referenceuuid;
-                    XmlNode selfUri = xmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", namespaceManager);
+                    XmlNode selfUri = xmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", NamespaceManager);
                     if (selfUri == null)
                     {
                         Alert.Message("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
@@ -248,7 +248,7 @@ namespace Base.ZooBank
                                 break;
                         }
 
-                        XmlNode objectId = this.xmlDocument.SelectSingleNode(xpath, namespaceManager);
+                        XmlNode objectId = this.xmlDocument.SelectSingleNode(xpath, NamespaceManager);
                         if (objectId != null)
                         {
                             objectId.InnerText = ZooBankPrefix + na.tnuuuid;

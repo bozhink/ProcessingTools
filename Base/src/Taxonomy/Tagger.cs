@@ -31,6 +31,16 @@ namespace Base.Taxonomy
         {
         }
 
+        public Tagger(Config config, string xml)
+            : base(config, xml)
+        {
+        }
+
+        public Tagger(Base baseObject)
+            : base(baseObject)
+        {
+        }
+
         public static string TagItalics(string nodeXml, bool tagInfraspecific = false)
         {
             // Genus (Subgenus)? species subspecies?
@@ -125,9 +135,9 @@ namespace Base.Taxonomy
         public void TagLowerTaxa(bool tagBasionym = false)
         {
             string xpath = string.Empty;
-            if (config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
-                if (config.TagWholeDocument)
+                if (this.Config.TagWholeDocument)
                 {
                     xpath = "//*[i]";
                 }
@@ -138,7 +148,7 @@ namespace Base.Taxonomy
             }
             else
             {
-                if (config.TagWholeDocument)
+                if (this.Config.TagWholeDocument)
                 {
                     xpath = "//*[i]";
                 }
@@ -156,14 +166,14 @@ namespace Base.Taxonomy
              */
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
                     node.InnerXml = Tagger.TagItalics(node.InnerXml, tagBasionym);
                 }
 
-                if (!config.NlmStyle && !config.TagWholeDocument)
+                if (!this.Config.NlmStyle && !this.Config.TagWholeDocument)
                 {
-                    foreach (XmlNode node in this.xmlDocument.SelectNodes("//value[.//i]", this.namespaceManager))
+                    foreach (XmlNode node in this.xmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
                     {
                         node.InnerXml = Tagger.TagItalics(node.InnerXml, tagBasionym);
                     }
@@ -191,30 +201,30 @@ namespace Base.Taxonomy
              */
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//p|//td|//th|//li", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//p|//td|//th|//li", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, searchPattern, HigherTaxaReplacePattern);
                     replace = Regex.Replace(replace, "(<[^<>]*)<[^>]*>([^<>]*)</[^>]*>([^>]*>)", "$1$2$3");
                     node.InnerXml = replace;
                 }
 
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//article-title|//title|//label", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//article-title|//title|//label", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, searchPattern, HigherTaxaReplacePattern);
                     replace = Regex.Replace(replace, "(<[^<>]*)<[^>]*>([^<>]*)</[^>]*>([^>]*>)", "$1$2$3");
                     node.InnerXml = replace;
                 }
 
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//ref|//kwd", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//ref|//kwd", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, searchPattern, HigherTaxaReplacePattern);
                     replace = Regex.Replace(replace, "(<[^<>]*)<[^>]*>([^<>]*)</[^>]*>([^>]*>)", "$1$2$3");
                     node.InnerXml = replace;
                 }
 
-                if (config.NlmStyle)
+                if (this.Config.NlmStyle)
                 {
-                    foreach (XmlNode node in xmlDocument.SelectNodes("//tp:nomenclature-citation", this.namespaceManager))
+                    foreach (XmlNode node in xmlDocument.SelectNodes("//tp:nomenclature-citation", this.NamespaceManager))
                     {
                         string replace = Regex.Replace(node.InnerXml, searchPattern, HigherTaxaReplacePattern);
                         replace = Regex.Replace(replace, "(<[^<>]*)<[^>]*>([^<>]*)</[^>]*>([^>]*>)", "$1$2$3");
@@ -222,7 +232,7 @@ namespace Base.Taxonomy
                     }
                 }
 
-                foreach (XmlNode node in xmlDocument.SelectNodes("//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']", this.namespaceManager))
+                foreach (XmlNode node in xmlDocument.SelectNodes("//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, searchPattern, HigherTaxaReplacePattern);
                     replace = Regex.Replace(replace, "(<[^<>]*)<[^>]*>([^<>]*)</[^>]*>([^>]*>)", "$1$2$3");
@@ -265,7 +275,7 @@ namespace Base.Taxonomy
             this.ParseXmlStringToXmlDocument();
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:nomenclature", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
                 {
                     if (node["title"] != null)
                     {
@@ -333,7 +343,7 @@ namespace Base.Taxonomy
                     {
                         if (node["tp:taxon-name"] != null)
                         {
-                            foreach (XmlNode objectId in node.SelectNodes("./object-id", this.namespaceManager))
+                            foreach (XmlNode objectId in node.SelectNodes("./object-id", this.NamespaceManager))
                             {
                                 node["tp:taxon-name"].AppendChild(objectId);
                             }
@@ -360,7 +370,7 @@ namespace Base.Taxonomy
             this.ParseXmlStringToXmlDocument();
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.namespaceManager);
+                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -378,9 +388,9 @@ namespace Base.Taxonomy
 
                     XmlDocument response = Net.SearchAphia(genus);
 
-                    List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/family", namespaceManager);
-                    List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/order", namespaceManager);
-                    List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/kingdom", namespaceManager);
+                    List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/family", NamespaceManager);
+                    List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/order", NamespaceManager);
+                    List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/kingdom", NamespaceManager);
 
                     this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
                     this.TreatmentMetaReplaceOrders(responseOrder, genus);
@@ -400,7 +410,7 @@ namespace Base.Taxonomy
             this.ParseXmlStringToXmlDocument();
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.namespaceManager);
+                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -476,7 +486,7 @@ namespace Base.Taxonomy
             this.ParseXmlStringToXmlDocument();
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.namespaceManager);
+                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -496,9 +506,9 @@ namespace Base.Taxonomy
 
                     if (response != null)
                     {
-                        List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", namespaceManager);
-                        List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", namespaceManager);
-                        List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", namespaceManager);
+                        List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", NamespaceManager);
+                        List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", NamespaceManager);
+                        List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", NamespaceManager);
 
                         this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
                         this.TreatmentMetaReplaceOrders(responseOrder, genus);
@@ -632,9 +642,9 @@ namespace Base.Taxonomy
             ////    xml = xmlDocument.OuterXml;
             ////}
 
-            if (config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
-                this.xml = Base.NormalizeSystemToNlmXml(this.config, this.xml);
+                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
             }
         }
 
@@ -642,10 +652,10 @@ namespace Base.Taxonomy
         {
             try
             {
-                List<string> firstWordTaxaList = Base.GetStringListOfUniqueXmlNodes(xmlDocument, "//tn", namespaceManager)
-                    .Cast<string>().Select(c => Regex.Match(c, @"\w+\.?").Value).Distinct().ToList();
+                List<string> firstWordTaxaList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, "//tn", this.NamespaceManager)
+                    .Cast<string>().Select(c => Regex.Match(c, @"\w+\.|\w+\b").Value).Distinct().ToList();
 
-                XElement blackList = XElement.Load(config.blackListXmlFilePath);
+                XElement blackList = XElement.Load(this.Config.blackListXmlFilePath);
                 foreach (string taxon in firstWordTaxaList)
                 {
                     IEnumerable<string> queryResult = from item in blackList.Elements()
@@ -667,7 +677,7 @@ namespace Base.Taxonomy
         {
             try
             {
-                XElement whiteList = XElement.Load(config.whiteListXmlFilePath);
+                XElement whiteList = XElement.Load(this.Config.whiteListXmlFilePath);
                 IEnumerable<string> whiteListItems = from item in whiteList.Elements()
                                                      select item.Value;
                 foreach (string item in whiteListItems)
@@ -686,7 +696,7 @@ namespace Base.Taxonomy
             if (responseKingdom.Count == 1)
             {
                 string kingdom = responseKingdom[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='kingdom']", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='kingdom']", this.NamespaceManager))
                 {
                     node.InnerXml = kingdom;
                 }
@@ -708,7 +718,7 @@ namespace Base.Taxonomy
             if (responseOrder.Count == 1)
             {
                 string order = responseOrder[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order']", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order']", this.NamespaceManager))
                 {
                     node.InnerText = order;
                 }
@@ -730,7 +740,7 @@ namespace Base.Taxonomy
             if (responseFamily.Count == 1)
             {
                 string family = responseFamily[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family']", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family']", this.NamespaceManager))
                 {
                     node.InnerText = family;
                 }

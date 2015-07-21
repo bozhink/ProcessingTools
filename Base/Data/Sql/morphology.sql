@@ -47,3 +47,37 @@ INSERT INTO [dbo].[morphology] (Name) VALUES ('pygidium')
 INSERT INTO [dbo].[morphology] (Name) VALUES ('segment')
 INSERT INTO [dbo].[morphology] (Name) VALUES ('sublateral costa')
 INSERT INTO [dbo].[morphology] (Name) VALUES ('tibial apex')
+
+--anthers
+--buds
+--calyx
+--corolla
+--corona
+--fruit
+--fruits
+--gynostegium
+--hoya
+--inflorescence
+--inflorescences
+--leaves
+--pedicel
+--petioles
+--pollinia
+--stems
+--root
+--basal colleter
+--caudicle
+--caudicles
+--colleters
+--corolla lobes
+--corona
+--corona lobes
+--corpusculum
+--lamina
+--ovary
+--pedicels
+--peduncle
+--peduncles
+--seed
+--seeds
+--stems

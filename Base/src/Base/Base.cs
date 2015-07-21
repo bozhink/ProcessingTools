@@ -12,63 +12,87 @@ namespace Base
     {
         protected string xml;
         protected XmlDocument xmlDocument;
-        protected Config config;
-        protected XmlNamespaceManager namespaceManager;
-        protected UTF8Encoding encoding;
+        private Config config;
+        private XmlNamespaceManager namespaceManager;
+        private UTF8Encoding encoding;
 
         public Base()
         {
-            this.xml = string.Empty;
-            this.xmlDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-            this.namespaceManager = Base.TaxPubNamespceManager(this.xmlDocument);
-            this.encoding = new UTF8Encoding(false);
+            InitializeClass(null, string.Empty);
         }
 
         public Base(string xml)
         {
-            this.xml = xml;
-            this.xmlDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-            try
-            {
-                this.xmlDocument.LoadXml(xml);
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
-            }
-
-            this.namespaceManager = Base.TaxPubNamespceManager(this.xmlDocument);
-            this.encoding = new UTF8Encoding(false);
+            InitializeClass(null, xml);
         }
 
         public Base(Config config)
         {
-            this.config = config;
-            this.xml = string.Empty;
-            this.xmlDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-            this.namespaceManager = Base.TaxPubNamespceManager(this.xmlDocument);
-            this.encoding = new UTF8Encoding(false);
+            InitializeClass(config, string.Empty);
+        }
+
+        public Base(Config config, string xml)
+        {
+            InitializeClass(config, xml);
+        }
+
+        public Base(Base objectToClone)
+        {
+            this.Xml = objectToClone.Xml;
+            this.XmlDocument = objectToClone.XmlDocument;
+            this.encoding = (UTF8Encoding) objectToClone.DefaultEncoding;
+            this.config = objectToClone.Config;
+            this.namespaceManager = objectToClone.NamespaceManager;
         }
 
         public string Xml
         {
-            get { return this.xml; }
-            set { this.xml = value; }
+            get
+            {
+                return this.xml;
+            }
+
+            set
+            {
+                this.xml = value;
+            }
         }
 
         public XmlDocument XmlDocument
         {
-            get { return this.xmlDocument; }
-            set { this.xmlDocument = value; }
+            get
+            {
+                return this.xmlDocument;
+            }
+
+            set
+            {
+                this.xmlDocument = value;
+            }
         }
 
-        public Config Config
+        protected Config Config
         {
-            get { return this.config; }
-            set { this.config = value; }
+            get
+            {
+                return this.config;
+            }
+        }
+
+        protected Encoding DefaultEncoding
+        {
+            get
+            {
+                return this.encoding;
+            }
+        }
+
+        protected XmlNamespaceManager NamespaceManager
+        {
+            get
+            {
+                return this.namespaceManager;
+            }
         }
 
         public static List<string> ExtractWordsFromString(string text)
@@ -255,6 +279,28 @@ namespace Base
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
             }
+        }
+
+        private void InitializeClass(Config config, string xml)
+        {
+            this.config = config;
+            this.xml = xml;
+            this.xmlDocument = new XmlDocument();
+            this.xmlDocument.PreserveWhitespace = true;
+            if (this.xml != string.Empty && this.xml != null)
+            {
+                try
+                {
+                    this.xmlDocument.LoadXml(xml);
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
+                }
+            }
+
+            this.namespaceManager = Base.TaxPubNamespceManager(this.xmlDocument);
+            this.encoding = new UTF8Encoding(false);
         }
 
         protected class TagContent

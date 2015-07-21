@@ -64,6 +64,16 @@ namespace Base.Taxonomy
         {
         }
 
+        public Splitter(Config config, string xml)
+            : base(config, xml)
+        {
+        }
+
+        public Splitter(Base baseObject)
+            : base(baseObject)
+        {
+        }
+
         public static XmlDocument SplitHigherTaxaBySuffix(XmlDocument xmlDocument, bool nlmStyle)
         {
             XmlDocument xmlResult = xmlDocument;
@@ -581,7 +591,7 @@ namespace Base.Taxonomy
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
                 {
                     node.InnerXml = SplitLower(node.InnerXml);
                 }
@@ -593,7 +603,7 @@ namespace Base.Taxonomy
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, "</?i>", string.Empty);
                     string splitBasionym = Regex.Replace(replace, "^.*?<basionym>(.*?)</basionym>.*$", "$1");
@@ -643,43 +653,46 @@ namespace Base.Taxonomy
                 }
 
                 // Add @full-name
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority'][contains(string(.), '.')]", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
                 {
                     XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
                     node.Attributes.Append(fullName);
                 }
 
                 // Add missing tags in lower-taxa
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'])!=0)]", this.namespaceManager))
+                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
                 {
-                    XmlNode species = node.SelectSingleNode(".//tn-part[@type='species']", this.namespaceManager);
-                    if (species == null)
-                    {
-                        XmlElement speciesElement = this.xmlDocument.CreateElement("tn-part");
-
-                        XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
-                        elementType.InnerText = "species";
-                        speciesElement.Attributes.Append(elementType);
-
-                        XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
-                        speciesElement.Attributes.Append(fullName);
-
-                        node.PrependChild(speciesElement);
-                    }
-
-                    XmlNode genus = node.SelectSingleNode(".//tn-part[@type='genus']", this.namespaceManager);
+                    XmlNode genus = node.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
                     if (genus == null)
                     {
-                        XmlElement genusElement = this.xmlDocument.CreateElement("tn-part");
+                        XmlNode species = node.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
+                        if (species == null)
+                        {
+                            XmlElement speciesElement = this.xmlDocument.CreateElement("tn-part");
 
-                        XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
-                        elementType.InnerText = "genus";
-                        genusElement.Attributes.Append(elementType);
+                            XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
+                            elementType.InnerText = "species";
+                            speciesElement.Attributes.Append(elementType);
 
-                        XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
-                        genusElement.Attributes.Append(fullName);
+                            XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
+                            speciesElement.Attributes.Append(fullName);
 
-                        node.PrependChild(genusElement);
+                            node.PrependChild(speciesElement);
+                        }
+
+                        // Add genus tag
+                        {
+                            XmlElement genusElement = this.xmlDocument.CreateElement("tn-part");
+
+                            XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
+                            elementType.InnerText = "genus";
+                            genusElement.Attributes.Append(elementType);
+
+                            XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
+                            genusElement.Attributes.Append(fullName);
+
+                            node.PrependChild(genusElement);
+                        }
                     }
                 }
             }
@@ -691,9 +704,9 @@ namespace Base.Taxonomy
             // Remove wrapping i around tn[tn-part[@type='subgenus']]
             this.xml = Regex.Replace(this.xmlDocument.OuterXml, @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>", "$1");
 
-            if (config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
-                this.xml = Base.NormalizeSystemToNlmXml(this.config, this.xml);
+                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
             }
         }
 
@@ -716,13 +729,13 @@ namespace Base.Taxonomy
             bool splitBySuffix = false,
             bool splitAboveGenus = false)
         {
-            this.xml = Base.NormalizeNlmToSystemXml(this.config, this.xml);
+            this.xml = Base.NormalizeNlmToSystemXml(this.Config, this.xml);
 
             this.ParseXmlStringToXmlDocument();
 
             if (splitWithDatabaseXmlFile)
             {
-                this.xmlDocument = Splitter.SplitHigherTaxaWithDatabaseXmlFile(this.config.rankListXmlFilePath, this.xmlDocument, this.config.NlmStyle);
+                this.xmlDocument = Splitter.SplitHigherTaxaWithDatabaseXmlFile(this.Config.rankListXmlFilePath, this.xmlDocument, this.Config.NlmStyle);
             }
 
             if (splitWithAphiaApi)
@@ -742,7 +755,7 @@ namespace Base.Taxonomy
 
             if (splitBySuffix)
             {
-                this.xmlDocument = Splitter.SplitHigherTaxaBySuffix(this.xmlDocument, this.config.NlmStyle);
+                this.xmlDocument = Splitter.SplitHigherTaxaBySuffix(this.xmlDocument, this.Config.NlmStyle);
             }
 
             if (splitAboveGenus)
@@ -767,16 +780,16 @@ namespace Base.Taxonomy
 
             this.xml = this.xmlDocument.OuterXml;
 
-            if (this.config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
-                this.xml = Base.NormalizeSystemToNlmXml(this.config, this.xml);
+                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
             }
         }
 
         public void UnSplitAllTaxa()
         {
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn|//tp:taxon-name[name(..)!='tp:nomenclature']", this.namespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn|//tp:taxon-name[name(..)!='tp:nomenclature']", this.NamespaceManager))
             {
                 node.InnerXml = Regex.Replace(node.InnerXml, "( full-name=\"(.*?)\"[^>]*>)[^<>]*(?=</)", "$1$2");
                 node.InnerXml = Regex.Replace(node.InnerXml, "</?tn-part[^>]*?>|</?tp:taxon-name-part[^>]*?>", string.Empty);

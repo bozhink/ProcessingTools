@@ -105,6 +105,9 @@ namespace Base
         public string environmentsDataSourceString { get; set; }
 
         [DataMember]
+        public string mainDictionaryDataSourceString { get; set; }
+
+        [DataMember]
         public string codesRemoveNonCodeNodes { get; set; }
 
         /*

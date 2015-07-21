@@ -27,16 +27,21 @@ namespace Base
         {
         }
 
+        public Environments(Config config, string xml)
+            : base(config, xml)
+        {
+        }
+
         public void TagEnvironmentsRecords()
         {
-            this.xml = Base.NormalizeNlmToSystemXml(this.config, this.xml);
+            this.xml = Base.NormalizeNlmToSystemXml(this.Config, this.xml);
             this.ParseXmlStringToXmlDocument();
 
             XmlElement testXmlNode = this.xmlDocument.CreateElement("test");
 
             // Set the XPath string to select all nodes which may contain environments’ strings
             string xpath = string.Empty;
-            if (config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
                 xpath = "//p|//title|//label|//tp:nomenclature-citation";
             }
@@ -49,10 +54,10 @@ namespace Base
             try
             {
                 // Select all nodes which potentioaly contains environments’ records
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.namespaceManager);
+                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
                 // Connect to Environments database and use its records to tag Xml
-                using (SqlConnection connection = new SqlConnection(config.environmentsDataSourceString))
+                using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
                 {
                     connection.Open();
                     string query = @"select
@@ -125,9 +130,9 @@ namespace Base
 
             this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
             this.xml = this.xmlDocument.OuterXml;
-            if (this.config.NlmStyle)
+            if (this.Config.NlmStyle)
             {
-                this.xml = Base.NormalizeSystemToNlmXml(this.config, this.xml);
+                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
             }
         }
 

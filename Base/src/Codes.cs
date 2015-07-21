@@ -15,8 +15,6 @@ namespace Base
 
         private const string AbbreviationReplaceTagName = "abbreviationReplaceTagName";
 
-        private const string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\bozhin\Documents\GitHub\ProcessingTools\Base\Data\MainDictionary.mdf;Integrated Security=True";
-
         public Codes()
             : base()
         {
@@ -27,103 +25,19 @@ namespace Base
         {
         }
 
-        public void TagAbbreviationsInText()
+        public Codes(Config config)
+            : base(config)
         {
-            this.ParseXmlStringToXmlDocument();
-
-            // Do not change this sequence
-            this.TagAbbreviationsInSpecificNode("//graphic|//media|//disp-formula-group");
-            this.TagAbbreviationsInSpecificNode("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
-            this.TagAbbreviationsInSpecificNode("//fig-group|//table-wrap-group");
-            this.TagAbbreviationsInSpecificNode("//boxed-text");
-            this.TagAbbreviationsInSpecificNode("/");
-
-            this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "</?" + AbbreviationReplaceTagName + "[^>]*>", string.Empty);
-            this.xml = this.xmlDocument.OuterXml;
         }
 
-        public void TagQuantities()
+        public Codes(Config config, string xml)
+            : base(config, xml)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
-            this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in xmlDocument.SelectNodes(xpath, this.namespaceManager))
-            {
-                string replace = node.InnerXml;
-
-                // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
-                string pattern = @"(?<!<[^>]+)((?:(?:[–—−‒-]\s*)?\d+(?:[,\.]\d+)?(?:\s*[×\*])?\s*)+(?:[kdcmµ]m|[º°˚]\s*C|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
-                Match m = Regex.Match(replace, pattern);
-                if (m.Success)
-                {
-                    // Alert.Message(m.Value);
-                    replace = Regex.Replace(replace, pattern, "<quantity>$1</quantity>");
-                    node.InnerXml = replace;
-                }
-            }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
-        public void TagDirections()
+        public Codes(Base baseObject)
+            : base(baseObject)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
-            this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
-            {
-                string replace = node.InnerXml;
-
-                // 24 km W
-                string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+))";
-                Match m = Regex.Match(replace, pattern);
-                if (m.Success)
-                {
-                    // Alert.Message(m.Value);
-                    replace = Regex.Replace(replace, pattern, "<direction>$1</direction>");
-                    node.InnerXml = replace;
-                }
-            }
-
-            this.ParseXmlDocumentToXmlString();
-        }
-
-        public void TagDates()
-        {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
-            this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
-            {
-                string replace = node.InnerXml;
-
-                // 18 Jan 2008
-                {
-                    string pattern = @"(?<!<[^>]+)((?i)(?:(?:(?:(?:[1-2][0-9]|3[0-1]|0?[1-9])(?:\s*[–—−‒-]\s*))+|(?<!\S)(?:[1-2][0-9]|3[0-1]|0?[1-9]))[^\w<>]{0,4})?(?:(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s*(?:[–—−‒-]|to)\s*)+[^\w<>]{0,4}(?:1[6-9][0-9]|20[0-9])[0-9](?![0-9]))(?![^<>]*>)";
-                    Match m = Regex.Match(replace, pattern);
-                    if (m.Success)
-                    {
-                        // Alert.Message(m.Value);
-                        replace = Regex.Replace(replace, pattern, "<date>$1</date>");
-                        node.InnerXml = replace;
-                    }
-                }
-
-                // 22–25.I.2007
-                {
-                    ////string pattern = @"((?i)(?:(?:(?:(?:[1-2][0-9]|3[0-1]|0?[1-9])(?:\s*[–—−‒-]\s*))+|(?<!\S)(?:[1-2][0-9]|3[0-1]|0?[1-9]))[^\w<>]{0,4})?(?<![a-z])(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)[^\w<>]{0,4}(?:1[6-9][0-9]|20[0-9])[0-9](?![0-9]))";
-                    string pattern = @"(?<!<[^>]+)((?i)(?:(?:(?:(?:[1-2][0-9]|3[0-1]|0?[1-9])(?:\s*[–—−‒-]\s*))+|(?<![^\s–—−‒-])(?:[1-2][0-9]|3[0-1]|0?[1-9]))[^\w<>]{0,4})?\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\b[^\w<>]{0,4}(?:1[6-9][0-9]|20[0-9])[0-9](?![0-9]))(?![^<>]*>)";
-                    Match m = Regex.Match(replace, pattern);
-                    if (m.Success)
-                    {
-                        // Alert.Message(m.Value);
-                        replace = Regex.Replace(replace, pattern, "<date>$1</date>");
-                        node.InnerXml = replace;
-                    }
-                }
-            }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void TagSpecimenCount()
@@ -131,13 +45,13 @@ namespace Base
             string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
 
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
                 // 1♀
                 {
-                    string pattern = @"(?<!<[^>]+)((?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>]{0,5}[♀♂])(?![^<>]*>)";
+                    string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>]{0,5}(?:[♀♂]|male|female)+)(?![^<>]*>)";
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
@@ -204,25 +118,25 @@ namespace Base
 
             List<string> potentialSpecimenCodes = ExtractPotentialSpecimenCodes(CodePattern);
 
-            ////Alert.Message("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
-            ////foreach (string word in potentialCodeWords)
-            ////{
-            ////    Alert.Message(word);
-            ////    var instCodes = from code in institutionalCodes
-            ////                    where Regex.Match(word, @"\A" + code).Success
-            ////                    select code;
-            ////    List<string> matchigCodes = instCodes.ToList();
-            ////    foreach(string code in matchigCodes)
-            ////    {
-            ////        Alert.Message("\t-->\t" + code);
-            ////    }
-            ////}
+            Alert.Message("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
+            foreach (string word in potentialSpecimenCodes)
+            {
+                Alert.Message(word);
+            }
+
+            Alert.Message("\n\nPlausible specimen codes\n\n");
 
             List<string> plausibleSpecimenCodes = GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
+            this.ParseXmlStringToXmlDocument();
+
+            //// Add to plausible various known codes: Janzen, OSUC, CASENT, LACMENT, ...
+            TagJanzenCodes(plausibleSpecimenCodes);
+
+            plausibleSpecimenCodes = plausibleSpecimenCodes.Distinct().ToList();
+
             TagContent specimenCodeTag = new TagContent("specimen-code");
 
-            this.ParseXmlStringToXmlDocument();
             foreach (string specimenCode in plausibleSpecimenCodes)
             {
                 Alert.Message(specimenCode);
@@ -238,13 +152,43 @@ namespace Base
              */
             {
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
-                foreach (XmlNode nestedSpecimenCodesNode in this.xmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.namespaceManager))
+                foreach (XmlNode nestedSpecimenCodesNode in this.xmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
                 {
                     Alert.Message("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
 
             this.ParseXmlDocumentToXmlString();
+        }
+
+        private void TagJanzenCodes(List<string> specimenCodes)
+        {
+            // Janzen codes:
+            // yy-SRNP-xxxxxx
+            // DHJPARxxxxxxx
+            {
+                List<string> janzenSpecimenCodes = new List<string>();
+                string searchableText = this.xmlDocument.InnerText;
+
+                Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
+                for (Match m = srnpCodes.Match(searchableText); m.Success; m = m.NextMatch())
+                {
+                    janzenSpecimenCodes.Add(m.Value);
+                }
+
+                Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
+                for (Match m = dhjparCodes.Match(searchableText); m.Success; m = m.NextMatch())
+                {
+                    janzenSpecimenCodes.Add(m.Value);
+                }
+
+                janzenSpecimenCodes = janzenSpecimenCodes.Distinct().ToList();
+
+                if (janzenSpecimenCodes.Count > 0)
+                {
+                    specimenCodes.AddRange(janzenSpecimenCodes);
+                }
+            }
         }
 
         /// <summary>
@@ -260,7 +204,7 @@ namespace Base
             Regex guessNextCode = new Regex("(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)");
 
             string xpath = string.Format(xpathTemplate, tag.Name);
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.namespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
                 TagContent replacement = new TagContent(tag);
                 replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
@@ -274,12 +218,19 @@ namespace Base
 
                 try
                 {
-                    node.InnerXml = replace;
+                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
+                    testNode.InnerXml = replace;
                 }
                 catch (Exception e)
                 {
+                    replace = node.InnerXml;
+
                     Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
                     Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Guess specimen codes.");
+                }
+                finally
+                {
+                    node.InnerXml = replace;
                 }
             }
         }
@@ -294,7 +245,7 @@ namespace Base
         private void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
-            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.namespaceManager);
+            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
             TagTextInXmlDocument(textToTag, tag, nodeList);
         }
@@ -309,11 +260,7 @@ namespace Base
         private void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true)
         {
             string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = "(?:<[^>]*>)*\\b" + Regex.Replace(textToTagEscaped, @"([^\\])", "$1(?:<[^>]*>)*");
-            // TODO: replace this regex with simpler string replacement
-            textToTagPattern = Regex.Replace(textToTagPattern, @"(?=\(\?\:<\[\^>\]\*>\)\*\Z)", "\\b"); // Add \b before last (?:<[^>]*>)*
-
-            //Alert.Message(textToTagPattern);
+            string textToTagPattern = @"(?:<[\w\!][^>]*>)*\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b(?:<[\/\!][^>]*>)*";
 
             string caseSensitiveness = string.Empty;
             if (!isCaseSensitive)
@@ -347,12 +294,20 @@ namespace Base
 
                 try
                 {
-                    node.InnerXml = replace;
+                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
+                    testNode.InnerXml = replace;
                 }
                 catch (Exception e)
                 {
                     Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+
+                    replace = node.InnerXml;
+
                     Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                }
+                finally
+                {
+                    node.InnerXml = replace;
                 }
             }
         }
@@ -368,16 +323,17 @@ namespace Base
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(this.xml);
-            XmlNodeList institutionalCodesXmlNodes = xmlDoc.SelectNodes("//institutional-code", this.namespaceManager);
+            XmlNodeList institutionalCodesXmlNodes = xmlDoc.SelectNodes("//institutional-code", this.NamespaceManager);
             List<string> institutionalCodes = GetStringListOfUniqueXmlNodeContent(institutionalCodesXmlNodes);
             foreach (string institutionalCode in institutionalCodes)
             {
                 /*
                  * Here we believe that instituional codes are not specimen codes.
                  */
-                string pattern = @"\A" + institutionalCode + ".+";
+                string pattern = @"\A" + institutionalCode + @"(\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
+                Regex matchPattern = new Regex(pattern);
                 List<string> codeWordsList = (from word in potentialSpecimenCodes
-                                              where Regex.Match(word, pattern).Success
+                                              where matchPattern.Match(word).Success
                                               select word).ToList();
                 if (codeWordsList != null)
                 {
@@ -398,7 +354,7 @@ namespace Base
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
             cleanedXmlDocument.LoadXml(
-                XsltOnString.ApplyTransform(config.codesRemoveNonCodeNodes, cleanedXmlDocument));
+                XsltOnString.ApplyTransform(this.Config.codesRemoveNonCodeNodes, cleanedXmlDocument));
 
             List<string> potentialCodeWords = new List<string>();
             for (Match m = Regex.Match(cleanedXmlDocument.InnerText, codePattern); m.Success; m = m.NextMatch())
@@ -426,8 +382,9 @@ namespace Base
             this.ParseXmlStringToXmlDocument();
             try
             {
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.namespaceManager);
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                string connectionString = this.Config.mainDictionaryDataSourceString;
+                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -463,8 +420,6 @@ namespace Base
                                     tag.Attributes = string.Empty;
                                 }
 
-                                ////TagTextInXmlDocument(contentString, tag, nodeList, caseSensitive);
-
                                 string replaceSubstitution = tag.OpenTag + "$1" + tag.CloseTag;
                                 string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
                                 foreach (XmlNode node in nodeList)
@@ -475,7 +430,13 @@ namespace Base
                                     }
                                 }
                             }
+
+                            reader.Dispose();
+                            reader.Close();
                         }
+
+                        command.Cancel();
+                        command.Dispose();
                     }
 
                     connection.Dispose();
@@ -494,128 +455,6 @@ namespace Base
         {
             TagContent tag = new TagContent(tagName);
             this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
-        }
-
-        private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)
-        {
-            XmlNodeList specificNodes = xmlDocument.SelectNodes(selectSpecificNodeXPath, namespaceManager);
-            foreach (XmlNode specificNode in specificNodes)
-            {
-                List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", namespaceManager)
-                    .Cast<XmlNode>().Select(a => this.ConvertAbbrevXmlNodeToAbbreviation(a)).ToList();
-
-                foreach (Abbreviation abbreviation in abbreviationsList)
-                {
-                    string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                    foreach (XmlNode nodeInspecificNode in specificNode.SelectNodes(xpath, this.namespaceManager))
-                    {
-                        bool doReplace = false;
-                        if (nodeInspecificNode.InnerXml == string.Empty)
-                        {
-                            if (nodeInspecificNode.OuterXml.IndexOf("<!--") == 0)
-                            {
-                                // This node is a comment. Do not replace matches here.
-                                doReplace = false;
-                            }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<?") == 0)
-                            {
-                                // This node is a processing instruction. Do not replace matches here.
-                                doReplace = false;
-                            }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
-                            {
-                                // This node is a DOCTYPE node. Do not replace matches here.
-                                doReplace = false;
-                            }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
-                            {
-                                // This node is a CDATA node. Do nothing?
-                                doReplace = false;
-                            }
-                            else
-                            {
-                                // This node is a text node. Tag this tex¾t and replace in InnerXml
-                                doReplace = true;
-                            }
-                        }
-                        else
-                        {
-                            // This is a named node
-                            doReplace = true;
-                        }
-
-                        if (doReplace)
-                        {
-                            XmlElement newNode = xmlDocument.CreateElement("abbreviationReplaceTagName");
-                            newNode.InnerXml = Regex.Replace(nodeInspecificNode.OuterXml, abbreviation.SearchPattern, abbreviation.ReplacePattern);
-                            nodeInspecificNode.ParentNode.ReplaceChild(newNode, nodeInspecificNode);
-                        }
-                    }
-                }
-            }
-        }
-
-        private Abbreviation ConvertAbbrevXmlNodeToAbbreviation(XmlNode abbrev)
-        {
-            Abbreviation abbreviation = new Abbreviation();
-
-            abbreviation.Content = Regex.Replace(
-                        Regex.Replace(
-                            Regex.Replace(
-                                abbrev.InnerXml,
-                                @"<def.+</def>",
-                                string.Empty),
-                            @"<def[*>]</def>|</?b[^>]*>",
-                            string.Empty),
-                        @"\A\W+|\W+\Z",
-                        string.Empty);
-
-            if (abbrev.Attributes["content-type"] != null)
-            {
-                abbreviation.ContentType = abbrev.Attributes["content-type"].InnerText;
-            }
-
-            if (abbrev["def"] != null)
-            {
-                abbreviation.Definition = Regex.Replace(
-                    Regex.Replace(
-                        abbrev["def"].InnerXml,
-                        "<[^>]*>",
-                        string.Empty),
-                    @"\A[=,;:\s–—−-]|[=,;:\s–—−-]\Z|\s+(?=\s)",
-                    string.Empty);
-            }
-
-            return abbreviation;
-        }
-
-        private struct Abbreviation
-        {
-            public string Content;
-
-            public string ContentType;
-
-            public string Definition;
-
-            public string SearchPattern
-            {
-                get
-                {
-                    return "\\b(" + this.Content + ")\\b";
-                }
-            }
-
-            public string ReplacePattern
-            {
-                get
-                {
-                    return "<abbrev" +
-                        ((this.ContentType == null || this.ContentType == string.Empty) ? string.Empty : @" content-type=""" + this.ContentType + @"""") +
-                        ((this.Definition == null || this.Definition == string.Empty) ? string.Empty : @" xlink:title=""" + this.Definition + @"""") +
-                        @" xmlns:xlink=""http://www.w3.org/1999/xlink""" +
-                        ">$1</abbrev>";
-                }
-            }
         }
     }
 }

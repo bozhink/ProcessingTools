@@ -28,10 +28,10 @@ namespace Base
         public void ExtractSystemChecklistAuthority1()
         {
             this.ParseXmlStringToXmlDocument();
-            XmlDocument newXml = new XmlDocument(this.namespaceManager.NameTable);
+            XmlDocument newXml = new XmlDocument(this.NamespaceManager.NameTable);
             XmlElement root = newXml.CreateElement("root");
 
-            foreach (XmlNode node in this.xmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.namespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.NamespaceManager))
             {
                 XmlElement newNode = newXml.CreateElement("node");
                 newNode.InnerXml = node["taxon_authors_and_year"].OuterXml;
@@ -47,7 +47,7 @@ namespace Base
         {
             this.ParseXmlStringToXmlDocument();
 
-            foreach (XmlNode node in xmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.namespaceManager))
+            foreach (XmlNode node in xmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))
             {
                 node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
                 node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
@@ -58,7 +58,7 @@ namespace Base
 
         public void SqlSelect()
         {
-            using (SqlConnection connection = new SqlConnection(config.environmentsDataSourceString))
+            using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
             {
                 Alert.Message(connection.ConnectionString);
                 Alert.Message(connection.Database);
