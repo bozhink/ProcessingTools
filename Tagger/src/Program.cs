@@ -11,71 +11,16 @@ using Tag;
 
 namespace Tag
 {
-    public class Tag
+    public partial class Tagger
     {
-        private const int NumberOfExpandingIterations = 1;
-        private static bool tagWWW = false;
-        private static bool tagDoi = false;
-        private static bool tagFigTab = false;
-        private static bool tagTableFn = false;
-        private static bool tagCoords = false;
-        private static bool parseCoords = false;
-        private static bool formatInit = false;
-        private static bool formatTreat = false;
-        private static bool taxaA = false;
-        private static bool taxaB = false;
-        private static bool taxaC = false;
-        private static bool taxaD = false;
-        private static bool taxaE = false;
-        private static bool extractTaxa = false;
-        private static bool extractLowerTaxa = false;
-        private static bool extractHigherTaxa = false;
-        private static bool untagSplit = false;
-        private static bool flag1 = false;
-        private static bool flag2 = false;
-        private static bool flag3 = false;
-        private static bool flag4 = false;
-        private static bool flag5 = false;
-        private static bool flag6 = false;
-        private static bool flag7 = false;
-        private static bool flag8 = false;
-        private static bool nlm = false;
-        private static bool html = false;
-        private static bool zoobank = false;
-        private static bool zoobankJson = false;
-        private static bool generateZooBankNlm = false;
-        private static bool parseReferences = false;
-        private static bool tagReferences = false;
-        private static bool quentinSpecificActions = false;
-        private static bool queryReplace = false;
-        private static bool flora = false;
-        private static bool parseBySection = false;
-        private static bool splitHigherBySuffix = false;
-        private static bool splitHigherWithGbif = false;
-        private static bool splitHigherWithAphia = false;
-        private static bool splitHigherWithCoL = false;
-        private static bool splitHigherAboveGenus = false;
-        private static bool parseTreatmentMetaWithAphia = false;
-        private static bool parseTreatmentMetaWithGbif = false;
-        private static bool parseTreatmentMetaWithCol = false;
-        private static bool testFlag = false;
-        private static bool normalizeFlag = false;
-        private static bool tagEnvironments = false;
-        private static bool tagCodes = false;
-        private static Config config;
-
-        private static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
-
-        private static List<int> dashOptions = new List<int>();
-        private static List<int> ddashOptions = new List<int>();
-        private static List<int> arguments = new List<int>();
-
         public static void Main(string[] args)
         {
             /*
              * Parse config file
              */
             config = ConfigBuilder.CreateConfig("C:\\bin\\config.json");
+            config.NlmStyle = true;
+            config.TagWholeDocument = false;
 
             /*
              * Initial check of input parameters
@@ -85,17 +30,13 @@ namespace Tag
                 char[] arg = args[i].ToCharArray();
                 if (arg[0] == '-' && arg[1] == '-')
                 {
-                    /*
-                     * Double dashed options
-                    */
-                    ddashOptions.Add(i);
+                    // Double dashed options
+                    doubleDashedOptions.Add(i);
                 }
                 else if (arg[0] == '-' || arg[0] == '/')
                 {
-                    /*
-                     * Single dashed options
-                     */
-                    dashOptions.Add(i);
+                    // Single dashed options
+                    singleDashedOptions.Add(i);
                 }
                 else
                 {
@@ -103,234 +44,11 @@ namespace Tag
                 }
             }
 
-            config.NlmStyle = true;
-            config.TagWholeDocument = false;
-
             Timer allTime = new Timer();
-            Timer timer = new Timer();
-            string inputFileName = string.Empty, outputFileName = string.Empty, queryFileName = string.Empty;
 
-            if (arguments.Count < 1)
-            {
-                Alert.PrintHelp();
-                Alert.Exit(1);
-            }
-            else if (arguments.Count == 1)
-            {
-                inputFileName = args[arguments[0]];
-                outputFileName = System.IO.Path.GetDirectoryName(inputFileName) + "\\"
-                    + System.IO.Path.GetFileNameWithoutExtension(inputFileName) + "-out"
-                    + System.IO.Path.GetExtension(inputFileName);
-            }
-            else if (arguments.Count == 2)
-            {
-                inputFileName = args[arguments[0]];
-                outputFileName = args[arguments[1]];
-            }
-            else
-            {
-                inputFileName = args[arguments[0]];
-                outputFileName = args[arguments[1]];
-                queryFileName = args[arguments[2]];
-            }
-
-            Alert.Message("Input file name: " + inputFileName);
-            Alert.Message("Output file name: " + outputFileName);
-            Alert.Message(queryFileName);
-
-            foreach (int item in dashOptions)
-            {
-                char[] arg = args[item].ToCharArray();
-                for (int i = 1; i < arg.Length; i++)
-                {
-                    switch (arg[i])
-                    {
-                        case 'h':
-                        case '?':
-                            Alert.PrintHelp();
-                            Alert.Exit(0);
-                            break;
-                        case 'i':
-                            formatInit = true;
-                            break;
-                        case 't':
-                            formatTreat = true;
-                            break;
-                        case 'A':
-                            taxaA = true;
-                            break;
-                        case 'B':
-                            taxaB = true;
-                            break;
-                        case 'C':
-                            taxaC = true;
-                            break;
-                        case 'D':
-                            taxaD = true;
-                            break;
-                        case 'E':
-                            taxaE = true;
-                            break;
-                        case 'u':
-                            untagSplit = true;
-                            break;
-                        case 'w':
-                            tagWWW = true;
-                            break;
-                        case 'd':
-                            tagDoi = true;
-                            break;
-                        case 'f':
-                            tagFigTab = true;
-                            break;
-                        case 'c':
-                            tagCoords = true;
-                            break;
-                        case 'k':
-                            parseCoords = true;
-                            break;
-                        case '1':
-                            flag1 = true;
-                            break;
-                        case '2':
-                            flag2 = true;
-                            break;
-                        case '3':
-                            flag3 = true;
-                            break;
-                        case '4':
-                            flag4 = true;
-                            break;
-                        case '5':
-                            flag5 = true;
-                            break;
-                        case '6':
-                            flag6 = true;
-                            break;
-                        case '7':
-                            flag7 = true;
-                            break;
-                        case '8':
-                            flag8 = true;
-                            break;
-                        case 'X':
-                            queryReplace = true;
-                            break;
-                        case 'N':
-                            nlm = true;
-                            break;
-                        case 'H':
-                            html = true;
-                            break;
-                        case 'z':
-                            zoobank = true;
-                            break;
-                        case 'r':
-                            parseReferences = true;
-                            break;
-                        case 'R':
-                            tagReferences = true;
-                            break;
-                        case 'Q':
-                            quentinSpecificActions = true;
-                            break;
-                        case 'F':
-                            flora = true;
-                            break;
-                        case 's':
-                            parseBySection = true;
-                            break;
-                    }
-                }
-            }
-
-            foreach (int item in ddashOptions)
-            {
-                if (args[item].CompareTo("--split-aphia") == 0)
-                {
-                    splitHigherWithAphia = true;
-                }
-                else if (args[item].CompareTo("--split-col") == 0)
-                {
-                    splitHigherWithCoL = true;
-                }
-                else if (args[item].CompareTo("--split-gbif") == 0)
-                {
-                    splitHigherWithGbif = true;
-                }
-                else if (args[item].CompareTo("--split-suffix") == 0)
-                {
-                    splitHigherBySuffix = true;
-                }
-                else if (args[item].CompareTo("--above-genus") == 0)
-                {
-                    splitHigherAboveGenus = true;
-                }
-                else if (args[item].CompareTo("--system") == 0)
-                {
-                    config.NlmStyle = false;
-                }
-                else if (args[item].CompareTo("--normalize") == 0)
-                {
-                    normalizeFlag = true;
-                }
-                else if (args[item].CompareTo("--test") == 0)
-                {
-                    testFlag = true;
-                }
-                else if (args[item].CompareTo("--extract-taxa") == 0 || args[item].CompareTo("--et") == 0)
-                {
-                    extractTaxa = true;
-                }
-                else if (args[item].CompareTo("--extract-lower-taxa") == 0 || args[item].CompareTo("--elt") == 0)
-                {
-                    extractLowerTaxa = true;
-                }
-                else if (args[item].CompareTo("--extract-higher-taxa") == 0 || args[item].CompareTo("--eht") == 0)
-                {
-                    extractHigherTaxa = true;
-                }
-                else if (args[item].CompareTo("--zoobank-nlm") == 0)
-                {
-                    generateZooBankNlm = true;
-                }
-                else if (args[item].CompareTo("--zoobank-json") == 0)
-                {
-                    zoobankJson = true;
-                }
-                else if (args[item].CompareTo("--zoobank-clone") == 0)
-                {
-                    zoobank = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-aphia") == 0 || args[item].CompareTo("--ptm-aphia") == 0)
-                {
-                    parseTreatmentMetaWithAphia = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-gbif") == 0 || args[item].CompareTo("--ptm-gbif") == 0)
-                {
-                    parseTreatmentMetaWithGbif = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-col") == 0 || args[item].CompareTo("--ptm-col") == 0)
-                {
-                    parseTreatmentMetaWithCol = true;
-                }
-                else if (args[item].CompareTo("--table-fn") == 0)
-                {
-                    tagTableFn = true;
-                }
-                else if (args[item].CompareTo("--environments") == 0)
-                {
-                    tagEnvironments = true;
-                }
-                else if (args[item].CompareTo("--codes") == 0)
-                {
-                    tagCodes = true;
-                }
-            }
-
-            /*
-             * Now input parameters are set.
-             */
+            ParseFileNames(args);
+            ParseSingleDashedOptions(args);
+            ParseDoubleDashedOptions(args);
 
             /*
              * Main processing part
@@ -338,93 +56,26 @@ namespace Tag
             FileProcessor fp = new FileProcessor(inputFileName, outputFileName);
             fp.ReadStringContent(true);
 
-            if (formatInit)
-            {
-                timer.Start();
-                Alert.Message("\n\tInitial format.\n");
+            InitialFormat(fp);
 
-                if (!config.NlmStyle)
-                {
-                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter();
-                    fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
-                    fmt.InitialFormat();
-                    fp.Xml = fmt.Xml;
-                }
-                else
-                {
-                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter();
-                    fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
-                    fmt.InitialFormat();
-                    fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
-                }
+            ParseReferences(fp);
 
-                timer.WriteOutput();
-            }
+            TagDoi(fp);
+            TagWebLinks(fp);
 
-            if (parseReferences)
-            {
-                timer.Start();
-                Alert.Message("\n\tParse references.\n");
-                References refs = new References();
-                refs.Xml = fp.Xml;
+            TagCoordinates(fp);
+            ParseCoordinates(fp);
 
-                refs.SplitReferences();
+            TagEnvoTerms(fp);
+            TagQuantities(fp);
+            TagDates(fp);
+            TagAbbreviations(fp);
 
-                fp.Xml = refs.Xml;
-                timer.WriteOutput();
-            }
-
-            if (tagDoi)
-            {
-                timer.Start();
-                Alert.Message("\n\tTag DOI.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
-
-                ln.TagDOI();
-                ln.TagPMCLinks();
-
-                fp.Xml = ln.Xml;
-                timer.WriteOutput();
-            }
-
-            if (tagWWW)
-            {
-                timer.Start();
-                Alert.Message("\n\tTag web links.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
-
-                ln.TagWWW();
-
-                fp.Xml = ln.Xml;
-                timer.WriteOutput();
-            }
-
-            if (tagCoords)
-            {
-                timer.Start();
-                Alert.Message("\n\tTag coordinates.\n");
-                Coordinates cd = new Coordinates(fp.Xml);
-
-                cd.TagCoordinates();
-
-                fp.Xml = cd.Xml;
-                timer.WriteOutput();
-            }
-
-            if (parseCoords)
-            {
-                timer.Start();
-                Alert.Message("\n\tParse coordinates.\n");
-                Coordinates cd = new Coordinates(fp.Xml);
-
-                cd.ParseCoordinates();
-
-                fp.Xml = cd.Xml;
-                timer.WriteOutput();
-            }
+            TagCodes(fp);
 
             if (nlm)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tFormat NLM xml. [obsolete]\n");
                 Base.Format.Nlm.Nlm fpnlm = new Base.Format.Nlm.Nlm();
@@ -435,6 +86,7 @@ namespace Tag
             }
             else if (html)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tFormat Html. [obsolete]\n");
                 Base.Format.Nlm.Html fphtml = new Base.Format.Nlm.Html();
@@ -445,6 +97,7 @@ namespace Tag
             }
             else if (normalizeFlag)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 if (config.NlmStyle)
                 {
@@ -465,6 +118,7 @@ namespace Tag
             }
             else if (zoobank)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.ZoobankCloneMessage();
                 if (arguments.Count > 2)
@@ -480,6 +134,7 @@ namespace Tag
             }
             else if (zoobankJson)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.ZoobankCloneMessage();
                 if (arguments.Count > 2)
@@ -700,7 +355,7 @@ namespace Tag
                         foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
                         {
                             XmlNode newNode = node;
-                            newNode.InnerXml = MainProcessing(node.OuterXml, timer);
+                            newNode.InnerXml = MainProcessing(node.OuterXml);
                             node.InnerXml = newNode.FirstChild.InnerXml;
                         }
                     }
@@ -724,66 +379,53 @@ namespace Tag
                 }
                 else
                 {
-                    fp.Xml = MainProcessing(fp.Xml, timer);
+                    fp.Xml = MainProcessing(fp.Xml);
                 }
             }
 
-            if (tagEnvironments)
             {
+                Timer timer = new Timer();
                 timer.Start();
-                Alert.Message("\n\tTag environments.\n");
-                Base.Environments environments = new Environments(config, fp.Xml);
-
-                environments.TagEnvironmentsRecords();
-
-                fp.Xml = environments.Xml;
+                Alert.WriteOutputFileMessage();
+                fp.WriteStringContentToFile();
                 timer.WriteOutput();
             }
-
-            if (tagCodes)
-            {
-                timer.Start();
-                Alert.Message("\n\tTag codes.\n");
-                Codes codes = new Codes(config, Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
-
-                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(codes);
-                quantitiesTagger.TagQuantities();
-                quantitiesTagger.TagDirections();
-                codes.Xml = quantitiesTagger.Xml;
-
-                DatesTagger datesTagger = new DatesTagger(codes);
-                datesTagger.TagDates();
-                codes.Xml = datesTagger.Xml;
-
-                codes.TagSpecimenCount();
-
-                AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(codes);
-                abbreviationsTagger.TagAbbreviationsInText();
-
-                codes.Xml = abbreviationsTagger.Xml;
-
-                codes.TagInstitutions();
-
-                codes.TagProducts();
-                codes.TagGeonames();
-                codes.TagMorphology();
-
-                codes.TagInstitutionalCodes();
-                codes.TagSpecimenCodes();
-
-                fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
-                timer.WriteOutput();
-            }
-
-            timer.Start();
-            Alert.WriteOutputFileMessage();
-            fp.WriteStringContentToFile();
-            timer.WriteOutput();
 
             allTime.WriteOutput();
         }
 
-        private static string MainProcessing(string xml, Timer timer)
+        private static void ParseFileNames(string[] args)
+        {
+            if (arguments.Count < 1)
+            {
+                Alert.PrintHelp();
+                Alert.Exit(1);
+            }
+            else if (arguments.Count == 1)
+            {
+                inputFileName = args[arguments[0]];
+                outputFileName = System.IO.Path.GetDirectoryName(inputFileName) + "\\"
+                    + System.IO.Path.GetFileNameWithoutExtension(inputFileName) + "-out"
+                    + System.IO.Path.GetExtension(inputFileName);
+            }
+            else if (arguments.Count == 2)
+            {
+                inputFileName = args[arguments[0]];
+                outputFileName = args[arguments[1]];
+            }
+            else
+            {
+                inputFileName = args[arguments[0]];
+                outputFileName = args[arguments[1]];
+                queryFileName = args[arguments[2]];
+            }
+
+            Alert.Message("Input file name: " + inputFileName);
+            Alert.Message("Output file name: " + outputFileName);
+            Alert.Message(queryFileName);
+        }
+
+        private static string MainProcessing(string xml)
         {
             string xmlContent = xml;
             Base.Taxonomy.Splitter split = new Base.Taxonomy.Splitter(config);
@@ -791,6 +433,7 @@ namespace Tag
 
             if (tagFigTab)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tTag floats.\n");
                 Floats fl = new Floats(xmlContent);
@@ -801,6 +444,7 @@ namespace Tag
 
             if (tagTableFn)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tTag table foot-notes.\n");
                 Floats fl = new Floats(xmlContent);
@@ -814,6 +458,7 @@ namespace Tag
              */
             if (taxaA || taxaB)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tTag taxa.\n");
                 tagger.Xml = xmlContent;
@@ -836,6 +481,7 @@ namespace Tag
 
             if (taxaC || taxaD)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tSplit taxa.\n");
                 split.Xml = xmlContent;
@@ -886,6 +532,7 @@ namespace Tag
 
             if (taxaE || flag1 || flag2 || flag3 || flag4 || flag5 || flag6 || flag7 || flag8)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tExpand taxa.\n");
 
@@ -1025,6 +672,7 @@ namespace Tag
 
             if (formatTreat)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tFormat treatments.\n");
                 tagger.Xml = xmlContent;
@@ -1037,6 +685,7 @@ namespace Tag
 
             if (parseTreatmentMetaWithAphia)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tParse treatment meta with Aphia.\n");
                 tagger.Xml = xmlContent;
@@ -1049,6 +698,7 @@ namespace Tag
 
             if (parseTreatmentMetaWithGbif)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tParse treatment meta with GBIF.\n");
                 tagger.Xml = xmlContent;
@@ -1061,6 +711,7 @@ namespace Tag
 
             if (parseTreatmentMetaWithCol)
             {
+                Timer timer = new Timer();
                 timer.Start();
                 Alert.Message("\n\tParse treatment meta with CoL.\n");
                 tagger.Xml = xmlContent;
@@ -1071,20 +722,6 @@ namespace Tag
                 timer.WriteOutput();
             }
 
-            return xmlContent;
-        }
-
-        private static string TagReferences(string xml, string fileName)
-        {
-            string xmlContent = xml;
-            References refs = new References(config, xmlContent);
-
-            config.referencesGetReferencesXmlPath = Path.GetDirectoryName(fileName) + "\\zzz-" + Path.GetFileNameWithoutExtension(fileName) + "-references.xml";
-            config.referencesTagTemplateXmlPath = config.tempDirectoryPath + "\\zzz-" + Path.GetFileNameWithoutExtension(fileName) + "-references-tag-template.xml";
-
-            refs.GenerateTagTemplateXml();
-            refs.TagReferences();
-            xmlContent = refs.Xml;
             return xmlContent;
         }
     }

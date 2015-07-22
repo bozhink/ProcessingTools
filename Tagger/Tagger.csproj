@@ -82,7 +82,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="src\Arguments.cs" />
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\TagMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

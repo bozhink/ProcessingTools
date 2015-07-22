@@ -303,6 +303,83 @@ namespace Base
             this.encoding = new UTF8Encoding(false);
         }
 
+        /// <summary>
+        /// Tags plain text string (no regex) in the xmlDocument.
+        /// </summary>
+        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true)
+        {
+            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
+            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+
+            TagTextInXmlDocument(textToTag, tag, nodeList);
+        }
+
+        /// <summary>
+        /// Tags plain text string (no regex) in the xmlDocument.
+        /// </summary>
+        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
+        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true)
+        {
+            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
+            string textToTagPattern = @"(?:<[\w\!][^>]*>)*\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b(?:<[\/\!][^>]*>)*";
+
+            string caseSensitiveness = string.Empty;
+            if (!isCaseSensitive)
+            {
+                caseSensitiveness = "(?i)";
+            }
+
+            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
+            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
+
+            TagContent replacement = new TagContent(tag);
+            replacement.Attributes += @" full-string=""" + textToTag + @"""";
+            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
+
+            foreach (XmlNode node in nodeList)
+            {
+                string replace = node.InnerXml;
+
+                /*
+                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
+                 * this is dynamically generated regex which might be too complex and slow.
+                 */
+                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+                {
+                    replace = textToTagRegex.Replace(replace, replacement.FullTag);
+                }
+                else
+                {
+                    replace = textTotagPatternRegex.Replace(replace, replacement.FullTag);
+                }
+
+                try
+                {
+                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
+                    testNode.InnerXml = replace;
+                }
+                catch (Exception e)
+                {
+                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+
+                    replace = node.InnerXml;
+
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                }
+                finally
+                {
+                    node.InnerXml = replace;
+                }
+            }
+        }
+
         protected class TagContent
         {
             private string name;

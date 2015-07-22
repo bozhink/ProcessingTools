@@ -55,7 +55,7 @@ namespace Base
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        replace = Regex.Replace(replace, pattern, "<specimen-count>$1</specimen-count>");
+                        replace = Regex.Replace(replace, pattern, "<specimenCount>$1</specimenCount>");
                         node.InnerXml = replace;
                     }
                 }
@@ -104,7 +104,7 @@ namespace Base
         public void TagInstitutionalCodes()
         {
             string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-            TagContent tagName = new TagContent("institutional-code");
+            TagContent tagName = new TagContent("institutionalCode");
 
             // WARNING: here is set len(name) > 1!
             string query = @"select [InstitutionalCode], [URL] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
@@ -130,25 +130,46 @@ namespace Base
 
             this.ParseXmlStringToXmlDocument();
 
+            TagContent specimenCodeTag = new TagContent("specimenCode");
+
+            ReplaceSpecimenCodesInXml(XPathTemplate, plausibleSpecimenCodes, specimenCodeTag);
+
+            this.ParseXmlDocumentToXmlString();
+        }
+
+        public void TagKnownSpecimenCodes()
+        {
+            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+            List<string> knownSpecimenCodes = new List<string>();
+
+            this.ParseXmlStringToXmlDocument();
+
             //// Add to plausible various known codes: Janzen, OSUC, CASENT, LACMENT, ...
-            TagJanzenCodes(plausibleSpecimenCodes);
+            GetJanzenCodes(knownSpecimenCodes);
+            GetPrefixNumericCodes(knownSpecimenCodes);
 
-            plausibleSpecimenCodes = plausibleSpecimenCodes.Distinct().ToList();
+            knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
-            TagContent specimenCodeTag = new TagContent("specimen-code");
+            TagContent specimenCodeTag = new TagContent("specimenCode");
+            ReplaceSpecimenCodesInXml(XPathTemplate, knownSpecimenCodes, specimenCodeTag);
 
-            foreach (string specimenCode in plausibleSpecimenCodes)
+            this.ParseXmlDocumentToXmlString();
+        }
+
+        private void ReplaceSpecimenCodesInXml(string xpathTemplate, List<string> specimenCodes, TagContent specimenCodeTag)
+        {
+            foreach (string specimenCode in specimenCodes)
             {
                 Alert.Message(specimenCode);
 
-                TagTextInXmlDocument(specimenCode, specimenCodeTag, XPathTemplate);
+                TagTextInXmlDocument(specimenCode, specimenCodeTag, xpathTemplate);
             }
 
             // Try to guess some other specimen codes following the tagged ones.
-            GuessSequentalSpecimenCodes(specimenCodeTag, XPathTemplate);
+            GuessSequentalSpecimenCodes(specimenCodeTag, xpathTemplate);
 
             /*
-             * Here we might have nested <specimen-code> which probably is due to mistaken codes.
+             * Here we might have nested <specimenCode> which probably is due to mistaken codes.
              */
             {
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
@@ -157,11 +178,9 @@ namespace Base
                     Alert.Message("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
-        private void TagJanzenCodes(List<string> specimenCodes)
+        private void GetJanzenCodes(List<string> specimenCodes)
         {
             // Janzen codes:
             // yy-SRNP-xxxxxx
@@ -191,6 +210,31 @@ namespace Base
             }
         }
 
+        private void GetPrefixNumericCodes(List<string> specimenCodes)
+        {
+            // USNM 123392
+            // AMNH 235608
+            // FMNH 21077
+            // 4-digit individual code including the notion “Baur” (e.g., “Baur 2410”); see doi: 10.3897/zookeys.514.9910
+            {
+                List<string> prefixNumericSpecimenCodes = new List<string>();
+                string searchableText = this.xmlDocument.InnerText;
+
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
+                for (Match m = prefixNumericCodes.Match(searchableText); m.Success; m = m.NextMatch())
+                {
+                    prefixNumericSpecimenCodes.Add(m.Value);
+                }
+
+                prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
+
+                if (prefixNumericSpecimenCodes.Count > 0)
+                {
+                    specimenCodes.AddRange(prefixNumericSpecimenCodes);
+                }
+            }
+        }
+
         /// <summary>
         /// Tags next specimen codes when we have some tagged ones.
         /// </summary>
@@ -198,8 +242,8 @@ namespace Base
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         private void GuessSequentalSpecimenCodes(TagContent tag, string xpathTemplate)
         {
-            // <specimen-code full-string="UQIC 221451"><institutional-code attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutional-code> 221451</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
-            // <specimen-code full-string="UQIC 221451">.*?</specimen-code>, 221452, 221447, 221448, 221450, 221454, 221456
+            // <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
+            // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
 
             Regex guessNextCode = new Regex("(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)");
 
@@ -236,83 +280,6 @@ namespace Base
         }
 
         /// <summary>
-        /// Tags plain text string (no regex) in the xmlDocument.
-        /// </summary>
-        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
-        /// <param name="tag">The tag model.</param>
-        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
-        private void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true)
-        {
-            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
-            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
-
-            TagTextInXmlDocument(textToTag, tag, nodeList);
-        }
-
-        /// <summary>
-        /// Tags plain text string (no regex) in the xmlDocument.
-        /// </summary>
-        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
-        /// <param name="tag">The tag model.</param>
-        /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
-        private void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true)
-        {
-            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = @"(?:<[\w\!][^>]*>)*\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b(?:<[\/\!][^>]*>)*";
-
-            string caseSensitiveness = string.Empty;
-            if (!isCaseSensitive)
-            {
-                caseSensitiveness = "(?i)";
-            }
-
-            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
-            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
-
-            TagContent replacement = new TagContent(tag);
-            replacement.Attributes += @" full-string=""" + textToTag + @"""";
-            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
-
-            foreach (XmlNode node in nodeList)
-            {
-                string replace = node.InnerXml;
-
-                /*
-                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
-                 * this is dynamically generated regex which might be too complex and slow.
-                 */
-                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
-                {
-                    replace = textToTagRegex.Replace(replace, replacement.FullTag);
-                }
-                else
-                {
-                    replace = textTotagPatternRegex.Replace(replace, replacement.FullTag);
-                }
-
-                try
-                {
-                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
-                    testNode.InnerXml = replace;
-                }
-                catch (Exception e)
-                {
-                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
-
-                    replace = node.InnerXml;
-
-                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
-                }
-                finally
-                {
-                    node.InnerXml = replace;
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets all plausible specimen codes which contains a used in the article instirurional code.
         /// </summary>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
@@ -323,7 +290,7 @@ namespace Base
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(this.xml);
-            XmlNodeList institutionalCodesXmlNodes = xmlDoc.SelectNodes("//institutional-code", this.NamespaceManager);
+            XmlNodeList institutionalCodesXmlNodes = xmlDoc.SelectNodes("//institutionalCode", this.NamespaceManager);
             List<string> institutionalCodes = GetStringListOfUniqueXmlNodeContent(institutionalCodesXmlNodes);
             foreach (string institutionalCode in institutionalCodes)
             {
@@ -366,6 +333,7 @@ namespace Base
             potentialCodeWords.Sort();
             return potentialCodeWords;
         }
+
 
         private void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
         {
@@ -421,6 +389,7 @@ namespace Base
                                 }
 
                                 string replaceSubstitution = tag.OpenTag + "$1" + tag.CloseTag;
+
                                 string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
                                 foreach (XmlNode node in nodeList)
                                 {

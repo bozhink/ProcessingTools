@@ -35,12 +35,14 @@ namespace Base
             string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
 
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+
+            // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
+            string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)?\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+(?:[kdcmµ]m|meters?|[º°˚]\s*[FC]|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
+
+            foreach (XmlNode node in nodeList)
             {
                 string replace = node.InnerXml;
-
-                // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
-                string pattern = @"(?<!<[^>]+)((?:(?:[–—−‒-]\s*)?\d+(?:[,\.]\d+)?(?:\s*[×\*])?\s*)+(?:[kdcmµ]m|[º°˚]\s*C|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
                 Match m = Regex.Match(replace, pattern);
                 if (m.Success)
                 {

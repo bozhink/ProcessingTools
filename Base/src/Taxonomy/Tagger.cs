@@ -257,6 +257,8 @@ namespace Base.Taxonomy
 
             try
             {
+                this.RemoveFalseTaxaOfPersonNames();
+
                 this.ApplyBlackList();
 
                 this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, @"<tn type=""higher"">([a-z]+)</tn>", "$1");
@@ -648,14 +650,42 @@ namespace Base.Taxonomy
             }
         }
 
+        private void RemoveFalseTaxaOfPersonNames()
+        {
+            try
+            {
+                List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
+
+                char[] charsToSplit = new char[]{' ', ',', ';'};
+                List<string> personNameParts = this.xmlDocument.SelectNodes("//surname[normalize-space(.)!='']|//given-names[normalize-space(.)!='']")
+                    .Cast<XmlNode>().Select(s => s.InnerText).Distinct().ToList();
+
+                foreach (string taxon in firstWordTaxaList)
+                {
+                    Regex matchTaxonInName = new Regex("(?i)" + taxon);
+                    IEnumerable<string> queryResult = from item in personNameParts
+                                                      where matchTaxonInName.Match(item).Success
+                                                      select matchTaxonInName.Match(item).Value;
+                    foreach (string item in queryResult)
+                    {
+                        this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+        }
+
         private void ApplyBlackList()
         {
             try
             {
-                List<string> firstWordTaxaList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, "//tn", this.NamespaceManager)
-                    .Cast<string>().Select(c => Regex.Match(c, @"\w+\.|\w+\b").Value).Distinct().ToList();
+                List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
 
                 XElement blackList = XElement.Load(this.Config.blackListXmlFilePath);
+
                 foreach (string taxon in firstWordTaxaList)
                 {
                     IEnumerable<string> queryResult = from item in blackList.Elements()
@@ -663,7 +693,7 @@ namespace Base.Taxonomy
                                                       select item.Value;
                     foreach (string item in queryResult)
                     {
-                        xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                        this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
                     }
                 }
             }
@@ -671,6 +701,13 @@ namespace Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Apply black list.");
             }
+        }
+
+        private List<string> GetFirstWordOfTaxaNames()
+        {
+            List<string> firstWordTaxaList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, "//tn", this.NamespaceManager)
+                .Cast<string>().Select(c => Regex.Match(c, @"\w+\.|\w+\b").Value).Distinct().ToList();
+            return firstWordTaxaList;
         }
 
         private void ApplyWhiteList()

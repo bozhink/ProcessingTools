@@ -53,4 +53,6 @@ Options:
 
 	--environments = tag environments (ENVO ID-s)
 	--codes = tag institutional and specimen codes
-
+	--quantities = tag quantities
+	--dates = tag dates
+	--abbrev = tag abbreviations
