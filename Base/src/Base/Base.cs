@@ -303,6 +303,43 @@ namespace Base
             this.encoding = new UTF8Encoding(false);
         }
 
+        protected static List<string> GetMatchesInXmlText(XmlNodeList nodeList, Regex search, bool clearList = true)
+        {
+            List<string> result = new List<string>();
+
+            foreach (XmlNode node in nodeList)
+            {
+                result.AddRange(GetMatchesInXmlText(node, search, false));
+            }
+
+            if (clearList)
+            {
+                result = result.Distinct().ToList();
+                result.Sort();
+            }
+
+            return result;
+        }
+
+        protected static List<string> GetMatchesInXmlText(XmlNode node, Regex search, bool clearList = true)
+        {
+            List<string> result = new List<string>();
+
+            string text = node.InnerText;
+            for (Match m = search.Match(text); m.Success; m = m.NextMatch())
+            {
+                result.Add(m.Value);
+            }
+
+            if (clearList)
+            {
+                result = result.Distinct().ToList();
+                result.Sort();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Tags plain text string (no regex) in the xmlDocument.
         /// </summary>

@@ -187,24 +187,16 @@ namespace Base
             // DHJPARxxxxxxx
             {
                 List<string> janzenSpecimenCodes = new List<string>();
-                string searchableText = this.xmlDocument.InnerText;
 
                 Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
-                for (Match m = srnpCodes.Match(searchableText); m.Success; m = m.NextMatch())
-                {
-                    janzenSpecimenCodes.Add(m.Value);
-                }
+                janzenSpecimenCodes.AddRange(GetMatchesInXmlText(this.xmlDocument, srnpCodes, false));
 
                 Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
-                for (Match m = dhjparCodes.Match(searchableText); m.Success; m = m.NextMatch())
-                {
-                    janzenSpecimenCodes.Add(m.Value);
-                }
-
-                janzenSpecimenCodes = janzenSpecimenCodes.Distinct().ToList();
+                janzenSpecimenCodes.AddRange(GetMatchesInXmlText(this.xmlDocument, dhjparCodes, false));
 
                 if (janzenSpecimenCodes.Count > 0)
                 {
+                    janzenSpecimenCodes = janzenSpecimenCodes.Distinct().ToList();
                     specimenCodes.AddRange(janzenSpecimenCodes);
                 }
             }
@@ -218,13 +210,9 @@ namespace Base
             // 4-digit individual code including the notion “Baur” (e.g., “Baur 2410”); see doi: 10.3897/zookeys.514.9910
             {
                 List<string> prefixNumericSpecimenCodes = new List<string>();
-                string searchableText = this.xmlDocument.InnerText;
 
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
-                for (Match m = prefixNumericCodes.Match(searchableText); m.Success; m = m.NextMatch())
-                {
-                    prefixNumericSpecimenCodes.Add(m.Value);
-                }
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
+                prefixNumericSpecimenCodes = GetMatchesInXmlText(this.xmlDocument, prefixNumericCodes);
 
                 prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
 

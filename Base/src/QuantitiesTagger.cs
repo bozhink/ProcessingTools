@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace Base
@@ -32,24 +33,25 @@ namespace Base
 
         public void TagQuantities()
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
+            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+            TagContent quantityTag = new TagContent("quantity");
+            List<string> quantities = new List<string>();
 
             this.ParseXmlStringToXmlDocument();
+            string xpath = string.Format(XPathTemplate, "normalize-space(.)!=''");
             XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
             // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
-            string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)?\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+(?:[kdcmµ]m|meters?|[º°˚]\s*[FC]|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
-
-            foreach (XmlNode node in nodeList)
             {
-                string replace = node.InnerXml;
-                Match m = Regex.Match(replace, pattern);
-                if (m.Success)
-                {
-                    // Alert.Message(m.Value);
-                    replace = Regex.Replace(replace, pattern, "<quantity>$1</quantity>");
-                    node.InnerXml = replace;
-                }
+                string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[º°˚]\s*[FC]|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
+                Regex matchQuantities = new Regex(pattern);
+                quantities = GetMatchesInXmlText(nodeList, matchQuantities, true);
+            }
+
+            foreach (string quantity in quantities)
+            {
+                Alert.Message(quantity);
+                TagTextInXmlDocument(quantity, quantityTag, XPathTemplate, true);
             }
 
             this.ParseXmlDocumentToXmlString();

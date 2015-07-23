@@ -657,18 +657,25 @@ namespace Base.Taxonomy
                 List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
 
                 char[] charsToSplit = new char[]{' ', ',', ';'};
-                List<string> personNameParts = this.xmlDocument.SelectNodes("//surname[normalize-space(.)!='']|//given-names[normalize-space(.)!='']")
+                List<string> personNameParts = this.xmlDocument.SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                     .Cast<XmlNode>().Select(s => s.InnerText).Distinct().ToList();
 
                 foreach (string taxon in firstWordTaxaList)
                 {
-                    Regex matchTaxonInName = new Regex("(?i)" + taxon);
-                    IEnumerable<string> queryResult = from item in personNameParts
-                                                      where matchTaxonInName.Match(item).Success
-                                                      select matchTaxonInName.Match(item).Value;
-                    foreach (string item in queryResult)
+                    if (taxon.IndexOf('.') < 0)
                     {
-                        this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                        Regex matchTaxonInName = new Regex("(?i)\\b" + Regex.Escape(taxon) + "\\b");
+                        IEnumerable<string> queryResult = from item in personNameParts
+                                                          where matchTaxonInName.Match(item).Success
+                                                          select matchTaxonInName.Match(item).Value;
+
+                        foreach (string item in queryResult)
+                        {
+                            if (item.IndexOf('.') < 0)
+                            {
+                                this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                            }
+                        }
                     }
                 }
             }
