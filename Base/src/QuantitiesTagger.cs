@@ -43,7 +43,7 @@ namespace Base
 
             // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
             {
-                string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[º°˚]\s*[FC]|bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
+                string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[kmµnp]g|[º°˚]\s*[FC]|[M]?bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
                 Regex matchQuantities = new Regex(pattern);
                 quantities = GetMatchesInXmlText(nodeList, matchQuantities, true);
             }
@@ -73,6 +73,29 @@ namespace Base
                 {
                     // Alert.Message(m.Value);
                     replace = Regex.Replace(replace, pattern, "<direction>$1</direction>");
+                    node.InnerXml = replace;
+                }
+            }
+
+            this.ParseXmlDocumentToXmlString();
+        }
+
+        public void TagAltitude()
+        {
+            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
+
+            this.ParseXmlStringToXmlDocument();
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            {
+                string replace = node.InnerXml;
+
+                // 510–650 m a.s.l.
+                string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a\W*<[^>]*>)*s\W*<[^>]*>)*l\W?))";
+                Match m = Regex.Match(replace, pattern);
+                if (m.Success)
+                {
+                    // Alert.Message(m.Value);
+                    replace = Regex.Replace(replace, pattern, "<altitude>$1</altitude>");
                     node.InnerXml = replace;
                 }
             }

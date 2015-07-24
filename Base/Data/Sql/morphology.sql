@@ -81,3 +81,4 @@ INSERT INTO [dbo].[morphology] (Name) VALUES ('tibial apex')
 --seed
 --seeds
 --stems
+--canthus rostralis

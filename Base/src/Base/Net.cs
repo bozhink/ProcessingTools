@@ -329,5 +329,44 @@ namespace Base
 
             return xmlResult;
         }
+
+        /*
+         * https://extract.hcmr.gr/
+         * http://tagger.jensenlab.org/GetHTML?document=Both+samples+were+dominated+by+Zetaproteobacteria+Fe+oxidizers.+This+group+was+most+abundant+at+Volcano+1,+where+sediments+were+richer+in+Fe+and+contained+more+crystalline+forms+of+Fe+oxides.&entity_types=-2+-25+-26+-27
+         */
+        public static XmlDocument GreekTagger(XmlDocument xml)
+        {
+            XmlDocument result = new XmlDocument();
+
+            result = Net.XmlHttpRequest("http://tagger.jensenlab.org/GetHTML?entity_types=-2+-25+-26+-27&document", xml);
+
+            /*
+            if (this.textToSend.Text.Length > 0)
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    Dictionary<string, string> values = new Dictionary<string, string>();
+
+                    values.Add("document", this.textToSend.Text);
+                    values.Add("entity_types", "-2 -25 -26 -27");
+                    values.Add("format", "xml");
+
+                    HttpContent content = new FormUrlEncodedContent(values);
+
+                    // Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetHTML", content);
+                    Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
+
+                    Task<string> responseString = response.Result.Content.ReadAsStringAsync();
+                    displayResultText.Text = responseString.Result;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No text to send.");
+            }
+             */
+
+            return result;
+        }
     }
 }

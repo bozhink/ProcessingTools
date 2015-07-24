@@ -51,7 +51,7 @@ namespace Base
 
                 // 1♀
                 {
-                    string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>]{0,5}(?:[♀♂]|male|female)+)(?![^<>]*>)";
+                    string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)(?![^<>]*>)";
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
