@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class MimeResolver
     {

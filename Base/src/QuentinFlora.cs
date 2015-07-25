@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class QuentinFlora : Base
     {

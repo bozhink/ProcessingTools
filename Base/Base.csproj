@@ -84,19 +84,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="src\AbbreviationsTagger.cs" />
-    <Compile Include="src\Base\Alert.cs" />
     <Compile Include="src\Base\Base.cs" />
-    <Compile Include="src\Base\Config.cs" />
-    <Compile Include="src\Base\Messages\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Base\Net.cs" />
     <Compile Include="src\Codes.cs" />
     <Compile Include="src\Coordinates.cs" />
-    <Compile Include="src\Base\Diagnostics.cs" />
     <Compile Include="src\Base\FileProcessor.cs" />
     <Compile Include="src\DatesTagger.cs" />
     <Compile Include="src\Environments.cs" />
@@ -115,9 +107,8 @@
     <Compile Include="src\References.cs" />
     <Compile Include="src\Taxonomy\Expander.cs" />
     <Compile Include="src\Taxonomy\Species.cs" />
-    <Compile Include="src\Taxonomy\Splitter.cs" />
-    <Compile Include="src\Taxonomy\Tagger.cs" />
-    <Compile Include="src\Base\Timer.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger.cs" />
     <Compile Include="src\Base\XsltOnString.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
@@ -135,7 +126,6 @@
     <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
-    <Content Include="src\Base\Messages\helpMessage.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
     <Content Include="src\Test\json-test\Program.cs.txt" />
@@ -190,12 +180,6 @@
     <Content Include="src\XSL\zoobank-nlm.xsl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\Base\Messages\Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Data\select_multi-rank-taxa.xqm" />
     <None Include="Data\taxonomic_ranks.xqm" />
@@ -204,7 +188,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="src\aphia.wsdl" />
-    <None Include="src\Base\config.json" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -225,6 +208,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>ProcessingToolsConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsMessaging.csproj">
+      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
+      <Name>ProcessingToolsMessaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

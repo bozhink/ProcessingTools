@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base.Taxonomy
+namespace ProcessingTools.Base.Taxonomy
 {
     namespace Nlm
     {
@@ -398,7 +398,7 @@ namespace Base.Taxonomy
                         // TODO
                         for (Match p = Regex.Match(this.xml, "<p>[\\s\\S]+?" + Regex.Escape(node.InnerXml)); p.Success; p = p.NextMatch())
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", Splitter.UnSplitTaxa(p.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(p.Value));
 
                             Species last = new Species();
                             bool isFound = false;
@@ -478,7 +478,7 @@ namespace Base.Taxonomy
                         Match p = Regex.Match(this.xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (p.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", Splitter.UnSplitTaxa(p.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(p.Value));
                             Species last = new Species();
                             bool isFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -1446,7 +1446,7 @@ namespace Base.Taxonomy
                         Match paragraph = Regex.Match(this.xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (paragraph.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", Splitter.UnSplitTaxa(paragraph.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(paragraph.Value));
                             Species last = new Species();
                             bool isFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -2115,8 +2115,8 @@ namespace Base.Taxonomy
             // Loop over paragraphs containong shortened taxa
             foreach (XmlNode p in xmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
             {
-                Alert.Message(p.InnerText);
-                Alert.Message("\n\n");
+                Alert.Log(p.InnerText);
+                Alert.Log("\n\n");
 
                 List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(p);
                 List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(p);
@@ -2129,16 +2129,16 @@ namespace Base.Taxonomy
 
                 foreach (string taxon in shortTaxaListUnique)
                 {
-                    Alert.Message(taxon);
+                    Alert.Log(taxon);
                 }
 
-                Alert.Message();
+                Alert.Log();
                 foreach (string taxon in nonShortTaxaListUnique)
                 {
-                    Alert.Message(taxon);
+                    Alert.Log(taxon);
                 }
 
-                Alert.Message("\n\n");
+                Alert.Log("\n\n");
             }
 
             this.xml = this.xmlDocument.OuterXml;

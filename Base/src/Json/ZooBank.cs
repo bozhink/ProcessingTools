@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Base.Json.ZooBank
+namespace ProcessingTools.Base.Json.ZooBank
 {
     [DataContract]
     public class Author

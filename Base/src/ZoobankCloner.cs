@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base.ZooBank
+namespace ProcessingTools.Base.ZooBank
 {
     public class ZoobankCloner : Base
     {
@@ -81,7 +81,7 @@ namespace Base.ZooBank
 
             XmlNodeList nlmNodeList, nodeList;
 
-            Alert.Message("Taxonomic acts:");
+            Alert.Log("Taxonomic acts:");
             try
             {
                 nlmNodeList = this.nlmDocument.SelectNodes("//tp:taxon-treatment/tp:nomenclature", xmlNamespaceManager);
@@ -100,21 +100,21 @@ namespace Base.ZooBank
                                 for (int j = 0; j < objecIdList.Count; j++)
                                 {
                                     objecIdList[j].InnerXml = nlmObjecIdList[j].InnerXml;
-                                    Alert.Message(objecIdList[j].InnerXml);
+                                    Alert.Log(objecIdList[j].InnerXml);
                                 }
                             }
                             else
                             {
-                                Alert.Message("Number of ZooBank objec-id tags does not match.");
+                                Alert.Log("Number of ZooBank objec-id tags does not match.");
                             }
                         }
                     }
 
-                    Alert.Message();
+                    Alert.Log();
                 }
                 else
                 {
-                    Alert.Message("Number of nomenclatures tags in these files does not match.");
+                    Alert.Log("Number of nomenclatures tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -122,7 +122,7 @@ namespace Base.ZooBank
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            Alert.Message("Reference:");
+            Alert.Log("Reference:");
             try
             {
                 nlmNodeList = this.nlmDocument.SelectNodes("//self-uri", xmlNamespaceManager);
@@ -132,14 +132,14 @@ namespace Base.ZooBank
                     for (int i = 0; i < nodeList.Count; i++)
                     {
                         nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
-                        Alert.Message(nodeList[i].InnerXml);
+                        Alert.Log(nodeList[i].InnerXml);
                     }
 
-                    Alert.Message();
+                    Alert.Log();
                 }
                 else
                 {
-                    Alert.Message("Number of ZooBank self-uri tags in these files does not match.");
+                    Alert.Log("Number of ZooBank self-uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -147,7 +147,7 @@ namespace Base.ZooBank
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            Alert.Message("Author(s):");
+            Alert.Log("Author(s):");
             try
             {
                 nodeList = this.xmlDocument.SelectNodes("/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']", xmlNamespaceManager);
@@ -157,14 +157,14 @@ namespace Base.ZooBank
                     for (int i = 0; i < nodeList.Count; i++)
                     {
                         nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
-                        Alert.Message(nodeList[i].InnerXml);
+                        Alert.Log(nodeList[i].InnerXml);
                     }
 
-                    Alert.Message();
+                    Alert.Log();
                 }
                 else
                 {
-                    Alert.Message("Number of ZooBank uri tags in these files does not match.");
+                    Alert.Log("Number of ZooBank uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -186,13 +186,13 @@ namespace Base.ZooBank
 
                 if (zbr.Count < 1)
                 {
-                    Alert.Message("ERROR: No valid ZooBank registation records in JSON File");
+                    Alert.Log("ERROR: No valid ZooBank registation records in JSON File");
                     Alert.Exit(1);
                 }
                 else if (zbr.Count > 1)
                 {
-                    Alert.Message("WARNING: More than one ZooBank registration records in JSON File");
-                    Alert.Message("         It will be used only the first one");
+                    Alert.Log("WARNING: More than one ZooBank registration records in JSON File");
+                    Alert.Log("         It will be used only the first one");
                     z = zbr[0];
                 }
                 else
@@ -208,7 +208,7 @@ namespace Base.ZooBank
                     XmlNode selfUri = xmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", NamespaceManager);
                     if (selfUri == null)
                     {
-                        Alert.Message("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
+                        Alert.Log("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
                         Alert.Exit(1);
                     }
 
@@ -234,8 +234,8 @@ namespace Base.ZooBank
                             }
                         }
 
-                        Alert.Message("\n\n");
-                        Alert.Message(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
+                        Alert.Log("\n\n");
+                        Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
 
                         string xpath = "//tp:taxon-treatment/tp:nomenclature/tp:taxon-name";
                         switch (na.rankgroup)
@@ -254,11 +254,11 @@ namespace Base.ZooBank
                             objectId.InnerText = ZooBankPrefix + na.tnuuuid;
                             numberOfNewNomenclaturalActs++;
 
-                            Alert.Message(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
+                            Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
                         }
                     }
 
-                    Alert.Message("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
+                    Alert.Log("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
                 }
 
                 this.xml = this.xmlDocument.OuterXml;

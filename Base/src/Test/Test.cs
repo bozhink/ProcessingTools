@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Test : Base
     {
@@ -60,8 +60,8 @@ namespace Base
         {
             using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
             {
-                Alert.Message(connection.ConnectionString);
-                Alert.Message(connection.Database);
+                Alert.Log(connection.ConnectionString);
+                Alert.Log(connection.Database);
                 connection.Open();
                 string query = @"select
 [dbo].[environments_names].[Content] as content,
@@ -78,7 +78,7 @@ order by len(content) desc;";
                     {
                         while (reader.Read())
                         {
-                            Alert.Message(reader.GetString(0) + " " + reader.GetInt32(1));
+                            Alert.Log(reader.GetString(0) + " " + reader.GetInt32(1));
                         }
                     }
                 }

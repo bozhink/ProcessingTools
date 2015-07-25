@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class AbbreviationsTagger : Base
     {

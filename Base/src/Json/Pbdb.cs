@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Base.Json.Pbdb
+namespace ProcessingTools.Base.Json.Pbdb
 {
     [DataContract]
     public class PbdbSingleName

@@ -1,0 +1,58 @@
+﻿Usage: Tagger -<options> <input file name>[ <output file name>[ <query|zoobank input file>]][ --<double-dashed options>]
+where:
+Options:
+	h, ? = print this message and exit
+
+	--system = use System-style processing
+	--normalize[ --system] = convert common tags in NLM or System syle
+	i = perform initial format
+	w = tag web links
+	d = tag DOI
+	f = tag figures and tables
+	--table-fn = tag table foot notes
+
+	c = tag coordinates
+	k = parse coordinates
+
+	r = Parse references [under construction]
+	R = Tag references
+
+	X = Query replace <input> <output> <query>
+	F = Flora
+
+	s = Parse document by first-level sections
+
+	N = convert Xml to NLM Xml [obsolete]
+	H = initial format of Html file [obsolete]
+
+	Taxonomic part
+		A = tag lower taxa
+		B = tag higher taxa
+		C = split lower taxa
+		D = split higher taxa
+		--split-aphia  = split higher taxa using Aphia API
+		--split-col    = split higher taxa using CoL Web Service
+		--split-gbif   = split higher taxa using GBIF API
+		--split-suffix = split higher taxa by suffix
+		--above-genus  = make all higher taxa of type='above-genus'
+		E = stable expand taxa
+		1,2,3,4,5,6,7,8 = unstable expand level
+		u = untag splitted taxa
+		t = format treatements
+		--parse-treatment-meta-with-aphia, --ptm-aphia
+		--parse-treatment-meta-with-gbif, --ptm-gbif
+		--parse-treatment-meta-with-col, --ptm-col
+
+		--extract-taxa, --et
+		--extract-lower-taxa, --elt
+		--extract-higher-taxa, --eht
+
+	--zoobank-nlm = Generate NLM XML file for ZooBank registration
+	--zoobank-json = Clone ZooBank lsid from JSON file: <in xml> <out xml> <json>
+	-z or --zoobank-clone = clone zoobank lsid; syntax: <in xml> <out xml> <nlm xml>
+
+	--environments = tag environments (ENVO ID-s)
+	--codes = tag institutional and specimen codes
+	--quantities = tag quantities
+	--dates = tag dates
+	--abbrev = tag abbreviations

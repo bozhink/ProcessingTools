@@ -83,6 +83,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="src\Arguments.cs" />
+    <Compile Include="src\MainProcessing.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\TagMethods.cs" />
   </ItemGroup>
@@ -97,6 +98,14 @@
     <ProjectReference Include="..\Base\Base.csproj">
       <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
       <Name>Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>ProcessingToolsConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsMessaging.csproj">
+      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
+      <Name>ProcessingToolsMessaging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

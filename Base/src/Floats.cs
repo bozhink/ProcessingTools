@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public enum ReferenceType
     {
@@ -346,7 +346,7 @@ namespace Base
             XmlNodeList tableWrapList = this.xmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
             {
-                Alert.Message("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                Alert.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
             }
             else
             {

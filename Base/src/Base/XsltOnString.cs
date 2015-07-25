@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Xsl;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class XsltOnString
     {
@@ -57,7 +57,7 @@ namespace Base
             string result = string.Empty;
             if (xslFileName == string.Empty || xml == string.Empty)
             {
-                Alert.Message("ApplyTransofm: ERROR: the xml string is emplty!");
+                Alert.Log("ApplyTransofm: ERROR: the xml string is emplty!");
                 return result;
             }
 
@@ -94,7 +94,7 @@ namespace Base
             string result = string.Empty;
             if (xslFileName == string.Empty)
             {
-                Alert.Message("ApplyTransofm: ERROR: the xslFileName string is emplty!");
+                Alert.Log("ApplyTransofm: ERROR: the xslFileName string is emplty!");
                 return result;
             }
 
@@ -128,7 +128,7 @@ namespace Base
             string result = string.Empty;
             if (xslFileName == string.Empty)
             {
-                Alert.Message("ApplyTransofm: ERROR: the xslFileName string is emplty!");
+                Alert.Log("ApplyTransofm: ERROR: the xslFileName string is emplty!");
                 return result;
             }
 
@@ -161,7 +161,7 @@ namespace Base
         {
             if (this.xslFileName == string.Empty || this.xml == string.Empty)
             {
-                Alert.Message("ApplyTransofm: ERROR: the xml string is emplty!");
+                Alert.Log("ApplyTransofm: ERROR: the xml string is emplty!");
                 return;
             }
 

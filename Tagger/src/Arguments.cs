@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Base;
 
-
-namespace Tag
+namespace ProcessingTools.Tag
 {
     public partial class Tagger
     {

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Flora : Base
     {
@@ -67,7 +67,7 @@ namespace Base
             template.Load(this.Config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
-            Alert.Message(root.ChildNodes.Count);
+            Alert.Log(root.ChildNodes.Count);
 
             this.xml = this.xmlDocument.OuterXml;
             for (int i = root.ChildNodes.Count - 1; i >= 0; i--)
@@ -198,10 +198,10 @@ namespace Base
 
             // Get only full-named taxa
             XmlNodeList templateList = root.SelectNodes("//taxon[count(replace/tn/tn-part[normalize-space(.)=''])=0]");
-            Alert.Message(templateList.Count);
+            Alert.Log(templateList.Count);
 
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn");
-            Alert.Message(nodeList.Count);
+            Alert.Log(nodeList.Count);
 
             Parallel.For(
                 0,

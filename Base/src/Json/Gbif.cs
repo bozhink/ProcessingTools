@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Base.Json.Gbif
+namespace ProcessingTools.Base.Json.Gbif
 {
     [DataContract]
     public class GbifResult

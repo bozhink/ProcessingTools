@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     namespace Nlm
     {

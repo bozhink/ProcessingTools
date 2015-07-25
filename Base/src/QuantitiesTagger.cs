@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class QuantitiesTagger : Base
     {
@@ -50,7 +50,7 @@ namespace Base
 
             foreach (string quantity in quantities)
             {
-                Alert.Message(quantity);
+                Alert.Log(quantity);
                 TagTextInXmlDocument(quantity, quantityTag, XPathTemplate, true);
             }
 

@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class DatesTagger : Base
     {
@@ -79,7 +79,7 @@ namespace Base
 
             foreach (string date in dates)
             {
-                Alert.Message(date);
+                Alert.Log(date);
                 TagTextInXmlDocument(date, dateTag, XPathTemplate, true);
             }
 

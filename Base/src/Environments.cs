@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Environments : Base
     {

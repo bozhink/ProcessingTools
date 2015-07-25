@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public abstract class Base
     {
@@ -40,7 +40,7 @@ namespace Base
         {
             this.Xml = objectToClone.Xml;
             this.XmlDocument = objectToClone.XmlDocument;
-            this.encoding = (UTF8Encoding) objectToClone.DefaultEncoding;
+            this.encoding = (UTF8Encoding)objectToClone.DefaultEncoding;
             this.config = objectToClone.Config;
             this.namespaceManager = objectToClone.NamespaceManager;
         }
@@ -404,7 +404,7 @@ namespace Base
                 }
                 catch (Exception e)
                 {
-                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+                    Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
 
                     replace = node.InnerXml;
 

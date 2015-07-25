@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Codes : Base
     {
@@ -118,13 +118,13 @@ namespace Base
 
             List<string> potentialSpecimenCodes = ExtractPotentialSpecimenCodes(CodePattern);
 
-            Alert.Message("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
+            Alert.Log("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
             {
-                Alert.Message(word);
+                Alert.Log(word);
             }
 
-            Alert.Message("\n\nPlausible specimen codes\n\n");
+            Alert.Log("\n\nPlausible specimen codes\n\n");
 
             List<string> plausibleSpecimenCodes = GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
@@ -160,7 +160,7 @@ namespace Base
         {
             foreach (string specimenCode in specimenCodes)
             {
-                Alert.Message(specimenCode);
+                Alert.Log(specimenCode);
 
                 TagTextInXmlDocument(specimenCode, specimenCodeTag, xpathTemplate);
             }
@@ -175,7 +175,7 @@ namespace Base
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in this.xmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
                 {
-                    Alert.Message("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+                    Alert.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
         }
@@ -257,7 +257,7 @@ namespace Base
                 {
                     replace = node.InnerXml;
 
-                    Alert.Message("\nInvalid replacement string:\n" + replace + "\n\n");
+                    Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
                     Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Guess specimen codes.");
                 }
                 finally

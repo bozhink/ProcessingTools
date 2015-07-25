@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Base;
-using Base.Taxonomy;
-using Base.ZooBank;
-using Tag;
+using ProcessingTools.Base;
+using ProcessingTools.Base.Taxonomy;
+using ProcessingTools.Base.ZooBank;
 
-namespace Tag
+namespace ProcessingTools.Tag
 {
     public partial class Tagger
     {
@@ -17,15 +17,15 @@ namespace Tag
         {
             if (parseCoords)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tParse coordinates.\n");
+                Alert.Log("\n\tParse coordinates.\n");
                 Coordinates cd = new Coordinates(fp.Xml);
 
                 cd.ParseCoordinates();
 
                 fp.Xml = cd.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -33,15 +33,15 @@ namespace Tag
         {
             if (tagCoords)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag coordinates.\n");
+                Alert.Log("\n\tTag coordinates.\n");
                 Coordinates cd = new Coordinates(fp.Xml);
 
                 cd.TagCoordinates();
 
                 fp.Xml = cd.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -49,15 +49,15 @@ namespace Tag
         {
             if (tagWWW)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag web links.\n");
+                Alert.Log("\n\tTag web links.\n");
                 Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
 
                 ln.TagWWW();
 
                 fp.Xml = ln.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -65,16 +65,16 @@ namespace Tag
         {
             if (tagDoi)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag DOI.\n");
+                Alert.Log("\n\tTag DOI.\n");
                 Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
 
                 ln.TagDOI();
                 ln.TagPMCLinks();
 
                 fp.Xml = ln.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -82,16 +82,16 @@ namespace Tag
         {
             if (parseReferences)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tParse references.\n");
+                Alert.Log("\n\tParse references.\n");
                 References refs = new References();
                 refs.Xml = fp.Xml;
 
                 refs.SplitReferences();
 
                 fp.Xml = refs.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -99,9 +99,9 @@ namespace Tag
         {
             if (formatInit)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tInitial format.\n");
+                Alert.Log("\n\tInitial format.\n");
 
                 if (!config.NlmStyle)
                 {
@@ -118,7 +118,7 @@ namespace Tag
                     fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
                 }
 
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -142,15 +142,15 @@ namespace Tag
         {
             if (tagEnvironments)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag environments.\n");
+                Alert.Log("\n\tTag environments.\n");
                 Base.Environments environments = new Environments(config, fp.Xml);
 
                 environments.TagEnvironmentsRecords();
 
                 fp.Xml = environments.Xml;
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -158,16 +158,16 @@ namespace Tag
         {
             if (tagQuantities)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag quantities.\n");
+                Alert.Log("\n\tTag quantities.\n");
 
                 QuantitiesTagger quantitiesTagger = new QuantitiesTagger(fp.Xml);
                 quantitiesTagger.TagQuantities();
                 quantitiesTagger.TagDirections();
                 fp.Xml = quantitiesTagger.Xml;
 
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -175,15 +175,15 @@ namespace Tag
         {
             if (tagDates)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag dates.\n");
+                Alert.Log("\n\tTag dates.\n");
 
                 DatesTagger datesTagger = new DatesTagger(fp.Xml);
                 datesTagger.TagDates();
                 fp.Xml = datesTagger.Xml;
 
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -191,15 +191,15 @@ namespace Tag
         {
             if (tagAbbrev)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag abbreviations.\n");
+                Alert.Log("\n\tTag abbreviations.\n");
 
                 AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(fp.Xml);
                 abbreviationsTagger.TagAbbreviationsInText();
                 fp.Xml = abbreviationsTagger.Xml;
 
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
 
@@ -207,9 +207,9 @@ namespace Tag
         {
             if (tagCodes)
             {
-                Timer timer = new Timer();
+                Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Message("\n\tTag codes.\n");
+                Alert.Log("\n\tTag codes.\n");
                 Codes codes = new Codes(config, Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
 
                 //codes.TagSpecimenCount();
@@ -225,7 +225,7 @@ namespace Tag
                 codes.TagSpecimenCodes();
 
                 fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
-                timer.WriteOutput();
+                PrintElapsedTime(timer);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Base.Format.Nlm
+namespace ProcessingTools.Base.Format.Nlm
 {
     public class Html : Base
     {

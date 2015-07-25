@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Net
     {
@@ -222,7 +222,7 @@ namespace Base
                 using (var client = new HttpClient())
                 {
                     string responseString = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/single.txt?name=" + scientificName).Result;
-                    Alert.Message(responseString);
+                    Alert.Log(responseString);
 
                     string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                     string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -240,7 +240,7 @@ namespace Base
                     ICollection responseKeys = response.Keys;
                     foreach (var str in responseKeys)
                     {
-                        Alert.Message(str + " --- " + response[str]);
+                        Alert.Log(str + " --- " + response[str]);
                     }
 
                     if (response["taxon_name"].ToString().CompareTo(scientificName) == 0)
@@ -311,7 +311,7 @@ namespace Base
                         }
                     }
 
-                    Alert.Message(searchStringBuilder.ToString());
+                    Alert.Log(searchStringBuilder.ToString());
                     searchString = searchStringBuilder.ToString();
                 }
 

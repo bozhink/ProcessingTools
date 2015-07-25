@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class FileProcessor : Base
     {
@@ -73,8 +73,8 @@ namespace Base
             }
             catch (Exception e)
             {
-                Alert.Message("ReadAllLinesToString Exception:");
-                Alert.Message(e.Message);
+                Alert.Log("ReadAllLinesToString Exception:");
+                Alert.Log(e.Message);
                 Alert.Exit(1);
             }
             finally

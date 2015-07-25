@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Base.Taxonomy
+namespace ProcessingTools.Base.Taxonomy
 {
     public class SpeciesComparison
     {

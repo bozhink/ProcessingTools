@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base.Format
+namespace ProcessingTools.Base.Format
 {
     namespace Nlm
     {

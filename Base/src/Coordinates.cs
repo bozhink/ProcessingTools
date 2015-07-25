@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace Base
+namespace ProcessingTools.Base
 {
     public class Coordinates : Base
     {
@@ -64,13 +64,13 @@ namespace Base
             this.ParseXmlStringToXmlDocument();
             foreach (XmlNode coordinate in this.xmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
             {
-                Alert.Message("\n" + coordinate.OuterXml + "\n");
+                Alert.Log("\n" + coordinate.OuterXml + "\n");
 
                 coordinate.InnerXml = Regex.Replace(coordinate.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 
                 string coordinateText = this.SimplifyCoordinateString(coordinate.InnerText);
 
-                Alert.Message(">> " + coordinateText);
+                Alert.Log(">> " + coordinateText);
 
                 CoordinatePart latitude = new CoordinatePart();
                 CoordinatePart longitude = new CoordinatePart();
@@ -88,7 +88,7 @@ namespace Base
                     {
                         if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") || rightPart.Contains("N") || rightPart.Contains("S"))
                         {
-                            Alert.Message("Can not parse coordinate.");
+                            Alert.Log("Can not parse coordinate.");
                             continue;
                         }
                         else
@@ -101,7 +101,7 @@ namespace Base
                     {
                         if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
                         {
-                            Alert.Message("Can not parse coordinate.");
+                            Alert.Log("Can not parse coordinate.");
                             continue;
                         }
                         else
@@ -116,7 +116,7 @@ namespace Base
                         longitudeString = rightPart;
                     }
 
-                    Alert.Message("Latitude =\t" + latitudeString + ";\tLongitude =\t" + longitudeString);
+                    Alert.Log("Latitude =\t" + latitudeString + ";\tLongitude =\t" + longitudeString);
 
                     Match latMatch = Regex.Match(latitudeString, @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SN]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
                     hasLatitudePart = latMatch.Success;
@@ -127,19 +127,19 @@ namespace Base
                     {
                         if (latMatch.NextMatch().Success)
                         {
-                            Alert.Message("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
+                            Alert.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
                         }
                         else if (lngMatch.NextMatch().Success)
                         {
-                            Alert.Message("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
+                            Alert.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             latitude.ParseString(hasLatitudePart ? latMatch.Value : string.Empty);
                             longitude.ParseString(hasLongitudePart ? lngMatch.Value : string.Empty);
 
-                            Alert.Message("Latitude =\t" + latitude.CoordinateString + ";\tLongitude =\t" + longitude.CoordinateString);
-                            Alert.Message(latitude.Type + " =\t" + latitude.CoordinateValue + ";\t" +
+                            Alert.Log("Latitude =\t" + latitude.CoordinateString + ";\tLongitude =\t" + longitude.CoordinateString);
+                            Alert.Log(latitude.Type + " =\t" + latitude.CoordinateValue + ";\t" +
                                 longitude.Type + " =\t" + longitude.CoordinateValue);
                         }
                     }
@@ -153,12 +153,12 @@ namespace Base
                     {
                         if (latMatch.NextMatch().Success)
                         {
-                            Alert.Message("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
+                            Alert.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             latitude.ParseString(latMatch.Value);
-                            Alert.Message(latitude.Type + " =\t" + latitude.CoordinateString);
+                            Alert.Log(latitude.Type + " =\t" + latitude.CoordinateString);
                         }
                     }
                 }
@@ -171,12 +171,12 @@ namespace Base
                     {
                         if (lngMatch.NextMatch().Success)
                         {
-                            Alert.Message("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
+                            Alert.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             longitude.ParseString(lngMatch.Value);
-                            Alert.Message(longitude.Type + " =\t" + longitude.CoordinateString);
+                            Alert.Log(longitude.Type + " =\t" + longitude.CoordinateString);
                         }
                     }
                 }
@@ -356,7 +356,7 @@ namespace Base
                     secondsString = " ";
                 }
 
-                Alert.Message("DEG: " + Regex.Replace(degreesString, "\\s+", "#") + " MM: " + Regex.Replace(minutesString, "\\s+", "#") + " SS: " + Regex.Replace(secondsString, "\\s+", "#"));
+                Alert.Log("DEG: " + Regex.Replace(degreesString, "\\s+", "#") + " MM: " + Regex.Replace(minutesString, "\\s+", "#") + " SS: " + Regex.Replace(secondsString, "\\s+", "#"));
 
                 try
                 {
@@ -368,17 +368,17 @@ namespace Base
                 }
                 catch (System.ArgumentNullException)
                 {
-                    Alert.Message("ArgumentNullException in Coordinate parameter = " + str);
+                    Alert.Log("ArgumentNullException in Coordinate parameter = " + str);
                     return 0.0;
                 }
                 catch (System.FormatException)
                 {
-                    Alert.Message("FormatException in Coordinate parameter = " + str);
+                    Alert.Log("FormatException in Coordinate parameter = " + str);
                     return 0.0;
                 }
                 catch (System.OverflowException)
                 {
-                    Alert.Message("OverflowException in Coordinate parameter = " + str);
+                    Alert.Log("OverflowException in Coordinate parameter = " + str);
                     return 0.0;
                 }
             }
