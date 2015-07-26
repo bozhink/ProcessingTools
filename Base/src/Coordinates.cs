@@ -6,11 +6,6 @@ namespace ProcessingTools.Base
 {
     public class Coordinates : Base
     {
-        public Coordinates()
-            : base()
-        {
-        }
-
         public Coordinates(string xml)
             : base(xml)
         {

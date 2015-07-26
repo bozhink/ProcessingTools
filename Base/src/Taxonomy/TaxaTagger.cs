@@ -18,18 +18,8 @@ namespace ProcessingTools.Base.Taxonomy
         private const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus']";
 
-        public TaxaTagger()
-            : base()
-        {
-        }
-
         public TaxaTagger(string xml)
             : base(xml)
-        {
-        }
-
-        public TaxaTagger(Config config)
-            : base(config)
         {
         }
 
@@ -206,8 +196,8 @@ namespace ProcessingTools.Base.Taxonomy
                 TagContent tag = new TagContent("tn", @" type=""higher""");
                 foreach (string taxon in taxaNames)
                 {
-                    Alert.Log(taxon);
-                    TagTextInXmlDocument(taxon, tag, HigherTaxaXPathTemplate, true);
+                    // Alert.Log(taxon);
+                    TagTextInXmlDocument(taxon, tag, HigherTaxaXPathTemplate, false, true);
                 }
             }
             catch (Exception e)

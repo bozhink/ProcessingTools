@@ -57,6 +57,7 @@ namespace ProcessingTools.Tag
         private static bool tagQuantities = false;
         private static bool tagDates = false;
         private static bool tagAbbrev = false;
+        private static bool tagEnvo = false;
         private static Config config;
 
         private static string higherStructrureXpath = "//article"; // "//sec[name(..)!='sec']";
@@ -164,6 +165,10 @@ namespace ProcessingTools.Tag
                 else if (args[item].CompareTo("--abbrev") == 0)
                 {
                     tagAbbrev = true;
+                }
+                else if (args[item].CompareTo("--envo") == 0)
+                {
+                    tagEnvo = true;
                 }
             }
         }

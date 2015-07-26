@@ -50,18 +50,8 @@ namespace ProcessingTools.Base.Taxonomy
                 "inae|ina"
             };
 
-        public TaxaParser()
-            : base()
-        {
-        }
-
         public TaxaParser(string xml)
             : base(xml)
-        {
-        }
-
-        public TaxaParser(Config config)
-            : base(config)
         {
         }
 
@@ -302,7 +292,7 @@ namespace ProcessingTools.Base.Taxonomy
 
         public static List<string> ExtractUniqueHigherTaxa(XmlDocument xmlDocument)
         {
-            XmlNamespaceManager xmlNamespaceManager = Base.TaxPubNamespceManager(xmlDocument);
+            XmlNamespaceManager xmlNamespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]", xmlNamespaceManager);
             return nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
         }

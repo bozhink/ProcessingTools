@@ -1,4 +1,5 @@
 ﻿using System;
+using ProcessingToolsMessaging.Messages;
 
 namespace ProcessingTools
 {
@@ -59,63 +60,11 @@ namespace ProcessingTools
             }
         }
 
-        public static void Log(string message, bool indent)
+        public static void Log(string format, params object[] args)
         {
             try
             {
-                Alert.Log();
-                if (indent)
-                {
-                    Alert.Log("\t" + message);
-                }
-                else
-                {
-                    Alert.Log(message);
-                }
-
-                Alert.Log();
-            }
-            catch (System.IO.IOException)
-            {
-            }
-        }
-
-        public static void Log(int message, bool indent)
-        {
-            try
-            {
-                Alert.Log();
-                if (indent)
-                {
-                    Alert.Log("\t" + message);
-                }
-                else
-                {
-                    Alert.Log(message);
-                }
-
-                Alert.Log();
-            }
-            catch (System.IO.IOException)
-            {
-            }
-        }
-
-        public static void Log(double message, bool indent)
-        {
-            try
-            {
-                Alert.Log();
-                if (indent)
-                {
-                    Alert.Log("\t" + message);
-                }
-                else
-                {
-                    Alert.Log(message);
-                }
-
-                Alert.Log();
+                Console.WriteLine(format, args);
             }
             catch (System.IO.IOException)
             {
@@ -131,6 +80,12 @@ namespace ProcessingTools
             catch (System.Security.SecurityException)
             {
             }
+        }
+
+        public static void Die(int exitCode, string format, params object[] args)
+        {
+            Alert.Log(format, args);
+            Alert.Exit(exitCode);
         }
 
         public static void RaiseExceptionForType(Exception e, string callerType, int exitCode)
@@ -187,12 +142,12 @@ namespace ProcessingTools
 
         public static void WriteOutputFileMessage()
         {
-            Alert.Log(Messages.writeOutputFileMessage, true);
+            Alert.Log("\n\t{0}\n", Messages.writeOutputFileMessage);
         }
 
         public static void ZoobankCloneMessage()
         {
-            Alert.Log(Messages.zoobankCloneMessage, true);
+            Alert.Log("\n\t{0}\n", Messages.zoobankCloneMessage);
         }
 
         public static void PrintHelp()

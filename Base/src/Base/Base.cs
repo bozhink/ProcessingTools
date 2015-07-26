@@ -8,41 +8,47 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public abstract class Base
+    public abstract class Base : IBase
     {
         protected string xml;
         protected XmlDocument xmlDocument;
+        private string textContent;
+        private HashSet<string> textWords;
         private Config config;
         private XmlNamespaceManager namespaceManager;
-        private UTF8Encoding encoding;
-
-        public Base()
-        {
-            InitializeClass(null, string.Empty);
-        }
 
         public Base(string xml)
         {
-            InitializeClass(null, xml);
-        }
-
-        public Base(Config config)
-        {
-            InitializeClass(config, string.Empty);
+            Initialize(null, xml);
         }
 
         public Base(Config config, string xml)
         {
-            InitializeClass(config, xml);
+            Initialize(config, xml);
         }
 
         public Base(Base objectToClone)
         {
             this.Xml = objectToClone.Xml;
             this.XmlDocument = objectToClone.XmlDocument;
-            this.encoding = (UTF8Encoding)objectToClone.DefaultEncoding;
             this.config = objectToClone.Config;
             this.namespaceManager = objectToClone.NamespaceManager;
+        }
+
+        public Config Config
+        {
+            get
+            {
+                return this.config;
+            }
+        }
+
+        public XmlNamespaceManager NamespaceManager
+        {
+            get
+            {
+                return this.namespaceManager;
+            }
         }
 
         public string Xml
@@ -54,7 +60,28 @@ namespace ProcessingTools.Base
 
             set
             {
-                this.xml = value;
+                if (value != null && value.Length > 0)
+                {
+                    try
+                    {
+                        this.xml = value;
+                        this.xmlDocument.LoadXml(this.xml);
+                        this.textContent = XsltOnString.ApplyTransform(this.config.textContentXslFileName, this.xml);
+                        this.textWords = Base.ExtractWordsFromString(this.textContent);
+                    }
+                    catch (XmlException e)
+                    {
+                        throw e;
+                    }
+                    catch (Exception e)
+                    {
+                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException("Invalid value for Xml: null or empty.");
+                }
             }
         }
 
@@ -67,35 +94,48 @@ namespace ProcessingTools.Base
 
             set
             {
-                this.xmlDocument = value;
+                if (value != null)
+                {
+                    try
+                    {
+                        this.xmlDocument = value;
+                        this.xml = this.xmlDocument.OuterXml;
+                        this.textContent = XsltOnString.ApplyTransform(this.config.textContentXslFileName, this.xml);
+                        this.textWords = ExtractWordsFromString(this.textContent);
+                    }
+                    catch (XmlException e)
+                    {
+                        throw e;
+                    }
+                    catch (Exception e)
+                    {
+                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException("Invalid value for XmlDocument: null.");
+                }
             }
         }
 
-        protected Config Config
+        protected string TextContent
         {
             get
             {
-                return this.config;
+                return this.textContent;
             }
         }
 
-        protected Encoding DefaultEncoding
+        protected HashSet<string> TextWords
         {
             get
             {
-                return this.encoding;
+                return this.textWords;
             }
         }
 
-        protected XmlNamespaceManager NamespaceManager
-        {
-            get
-            {
-                return this.namespaceManager;
-            }
-        }
-
-        public static List<string> ExtractWordsFromString(string text)
+        public static HashSet<string> ExtractWordsFromString(string text)
         {
             List<string> result = new List<string>();
 
@@ -107,42 +147,12 @@ namespace ProcessingTools.Base
             result = result.Distinct().ToList();
             result.Sort();
 
-            return result;
+            return new HashSet<string>(result);
         }
 
-        public static List<string> ExtractWordsFromXml(XmlDocument xml)
+        public static HashSet<string> ExtractWordsFromXml(XmlDocument xml)
         {
-            return Base.ExtractWordsFromString(xml.InnerText);
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager()
-        {
-            XmlNamespaceManager nspm = new XmlNamespaceManager(new XmlDocument().NameTable);
-            nspm.AddNamespace("tp", "http://www.plazi.org/taxpub");
-            nspm.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            nspm.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-            nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
-            return nspm;
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager(XmlNameTable nameTable)
-        {
-            XmlNamespaceManager nspm = new XmlNamespaceManager(nameTable);
-            nspm.AddNamespace("tp", "http://www.plazi.org/taxpub");
-            nspm.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            nspm.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-            nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
-            return nspm;
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager(XmlDocument xmlDocument)
-        {
-            XmlNamespaceManager nspm = new XmlNamespaceManager(xmlDocument.NameTable);
-            nspm.AddNamespace("tp", "http://www.plazi.org/taxpub");
-            nspm.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            nspm.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-            nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
-            return nspm;
+            return ExtractWordsFromString(xml.InnerText);
         }
 
         public static List<string> GetStringListOfUniqueXmlNodes(XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
@@ -245,10 +255,10 @@ namespace ProcessingTools.Base
             return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
         }
 
-        public List<string> ExtractWordsFromXml()
+        public HashSet<string> ExtractWordsFromXml()
         {
             this.ParseXmlStringToXmlDocument();
-            return Base.ExtractWordsFromString(this.xmlDocument.InnerText);
+            return ExtractWordsFromString(this.TextContent);
         }
 
         protected void NormalizeXmlToSystemXml()
@@ -281,26 +291,13 @@ namespace ProcessingTools.Base
             }
         }
 
-        private void InitializeClass(Config config, string xml)
+        private void Initialize(Config config, string xml)
         {
             this.config = config;
-            this.xml = xml;
-            this.xmlDocument = new XmlDocument();
+            this.namespaceManager = ProcessingTools.Config.TaxPubNamespceManager();
+            this.xmlDocument = new XmlDocument(this.namespaceManager.NameTable);
             this.xmlDocument.PreserveWhitespace = true;
-            if (this.xml != string.Empty && this.xml != null)
-            {
-                try
-                {
-                    this.xmlDocument.LoadXml(xml);
-                }
-                catch (Exception e)
-                {
-                    Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
-                }
-            }
-
-            this.namespaceManager = Base.TaxPubNamespceManager(this.xmlDocument);
-            this.encoding = new UTF8Encoding(false);
+            this.Xml = xml; // This must not precede this.xmlDocument initialization
         }
 
         protected static List<string> GetMatchesInXmlText(XmlNodeList nodeList, Regex search, bool clearList = true)
@@ -347,12 +344,13 @@ namespace ProcessingTools.Base
         /// <param name="tag">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
-        protected void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true)
+        /// /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true, bool minimalTextSelect = false)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
             XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
-            TagTextInXmlDocument(textToTag, tag, nodeList);
+            TagTextInXmlDocument(textToTag, tag, nodeList, isCaseSensitive, minimalTextSelect);
         }
 
         /// <summary>
@@ -362,15 +360,28 @@ namespace ProcessingTools.Base
         /// <param name="tag">The tag model.</param>
         /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
         /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
-        protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true)
+        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
         {
-            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = @"(?:<[\w\!][^>]*>)*\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b(?:<[\/\!][^>]*>)*";
+            ////TagContent replacement = new TagContent(tag);
+            ////replacement.Attributes += @" full-string=""" + textToTag + @"""";
+            ////replacement.FullTag = replacement.OpenTag + textToTag + replacement.CloseTag;
+
+            ////XmlDocument tagNode = new System.Xml.XmlDocument();
+            ////tagNode.LoadXml(replacement.FullTag);
+            ////TagTextInXmlDocument(tagNode, nodeList, isCaseSensitive, minimalTextSelect);
 
             string caseSensitiveness = string.Empty;
             if (!isCaseSensitive)
             {
                 caseSensitiveness = "(?i)";
+            }
+
+            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
+            string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
+            if (!minimalTextSelect)
+            {
+                textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
             }
 
             Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
@@ -395,6 +406,74 @@ namespace ProcessingTools.Base
                 else
                 {
                     replace = textTotagPatternRegex.Replace(replace, replacement.FullTag);
+                }
+
+                try
+                {
+                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
+                    testNode.InnerXml = replace;
+                }
+                catch (Exception e)
+                {
+                    Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
+
+                    replace = node.InnerXml;
+
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                }
+                finally
+                {
+                    node.InnerXml = replace;
+                }
+            }
+        }
+
+        protected void TagTextInXmlDocument(XmlDocument tagSet, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        {
+            foreach (XmlNode tagNode in tagSet.DocumentElement.ChildNodes)
+            {
+                TagTextInXmlDocument(tagNode, nodeList, isCaseSensitive, minimalTextSelect);
+            }
+        }
+
+        protected void TagTextInXmlDocument(XmlNode tagNode, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        {
+            string caseSensitiveness = string.Empty;
+            if (!isCaseSensitive)
+            {
+                caseSensitiveness = "(?i)";
+            }
+
+            string textToTagEscaped = Regex.Replace(Regex.Escape(tagNode.InnerText), "'", "\\W");
+            string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
+            if (!minimalTextSelect)
+            {
+                textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
+            }
+
+            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
+            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
+
+            XmlNode replacementNode = tagNode.Clone();
+            replacementNode.InnerText = "$1";
+
+            string replacement = replacementNode.OuterXml;
+
+            foreach (XmlNode node in nodeList)
+            {
+                string replace = node.InnerXml;
+
+                /*
+                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
+                 * this is dynamically generated regex which might be too complex and slow.
+                 */
+                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+                {
+                    replace = textToTagRegex.Replace(replace, replacement);
+                }
+                else
+                {
+                    replace = textTotagPatternRegex.Replace(replace, replacement);
                 }
 
                 try

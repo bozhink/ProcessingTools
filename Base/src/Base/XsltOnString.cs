@@ -55,35 +55,16 @@ namespace ProcessingTools.Base
         public static string ApplyTransform(string xslFileName, string xml)
         {
             string result = string.Empty;
-            if (xslFileName == string.Empty || xml == string.Empty)
-            {
-                Alert.Log("ApplyTransofm: ERROR: the xml string is emplty!");
-                return result;
-            }
-
-            XslCompiledTransform xslTransform = new XslCompiledTransform();
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.PreserveWhitespace = true;
-            MemoryStream stream = new MemoryStream();
-            StreamReader streamReader = null;
             try
             {
-                xslTransform.Load(xslFileName);
                 xmlDocument.LoadXml(xml);
-                xslTransform.Transform(xmlDocument, null, stream);
-                stream.Position = 0;
-                streamReader = new StreamReader(stream);
+                result = ApplyTransform(xslFileName, xmlDocument);
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, "XsltOnString", 100, "XSLT file: " + xslFileName);
-            }
-            finally
-            {
-                if (streamReader != null)
-                {
-                    result = streamReader.ReadToEnd();
-                }
+                Alert.RaiseExceptionForMethod(e, "XsltOnString", 100, "Input xml is invalid.");
             }
 
             return result;
@@ -92,31 +73,37 @@ namespace ProcessingTools.Base
         public static string ApplyTransform(string xslFileName, XmlDocument xmlDocument)
         {
             string result = string.Empty;
-            if (xslFileName == string.Empty)
+            if (xslFileName == null || xslFileName == string.Empty)
             {
-                Alert.Log("ApplyTransofm: ERROR: the xslFileName string is emplty!");
-                return result;
+                Alert.RaiseExceptionForMethod(new ArgumentException(), "XsltOnString", 100, "ApplyTransofm: ERROR: the xslFileName string is emplty!");
             }
 
-            XslCompiledTransform xslTransform = new XslCompiledTransform();
-            MemoryStream stream = new MemoryStream();
-            StreamReader streamReader = null;
-            try
+            using (MemoryStream stream = new MemoryStream())
             {
-                xslTransform.Load(xslFileName);
-                xslTransform.Transform(xmlDocument, null, stream);
-                stream.Position = 0;
-                streamReader = new StreamReader(stream);
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, "XsltOnString", 100, "XSLT file: " + xslFileName);
-            }
-            finally
-            {
-                if (streamReader != null)
+                StreamReader streamReader = null;
+                try
                 {
-                    result = streamReader.ReadToEnd();
+                    XslCompiledTransform xslTransform = new XslCompiledTransform();
+                    xslTransform.Load(xslFileName);
+                    xslTransform.Transform(xmlDocument, null, stream);
+                    stream.Position = 0;
+                    streamReader = new StreamReader(stream);
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, "XsltOnString", 100, "XSLT file: " + xslFileName);
+                }
+                finally
+                {
+                    if (streamReader != null)
+                    {
+                        result = streamReader.ReadToEnd();
+                        streamReader.Dispose();
+                        streamReader.Close();
+                    }
+
+                    stream.Dispose();
+                    stream.Close();
                 }
             }
 

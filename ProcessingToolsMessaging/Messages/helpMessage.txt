@@ -56,3 +56,4 @@ Options:
 	--quantities = tag quantities
 	--dates = tag dates
 	--abbrev = tag abbreviations
+	--envo = use greek tagger

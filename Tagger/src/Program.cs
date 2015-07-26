@@ -55,7 +55,13 @@ namespace ProcessingTools.Tag
              * Main processing part
              */
             FileProcessor fp = new FileProcessor(inputFileName, outputFileName);
-            fp.ReadStringContent(true);
+            Alert.Log(
+                "Input file name: {0}\nOutput file name: {1}\n{2}",
+                fp.InputFileName,
+                fp.OutputFileName,
+                queryFileName);
+
+            fp.Read();
 
             InitialFormat(fp);
 
@@ -67,6 +73,7 @@ namespace ProcessingTools.Tag
             TagCoordinates(fp);
             ParseCoordinates(fp);
 
+            TagEnvo(fp);
             TagEnvoTerms(fp);
             TagQuantities(fp);
             TagDates(fp);
@@ -79,8 +86,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tFormat NLM xml. [obsolete]\n");
-                Base.Format.Nlm.Nlm fpnlm = new Base.Format.Nlm.Nlm();
-                fpnlm.Xml = fp.Xml;
+                Base.Format.Nlm.Nlm fpnlm = new Base.Format.Nlm.Nlm(fp.Xml);
                 fpnlm.Format();
                 fp.Xml = fpnlm.Xml;
                 PrintElapsedTime(timer);
@@ -90,8 +96,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tFormat Html. [obsolete]\n");
-                Base.Format.Nlm.Html fphtml = new Base.Format.Nlm.Html();
-                fphtml.Xml = fp.Xml;
+                Base.Format.Nlm.Html fphtml = new Base.Format.Nlm.Html(fp.Xml);
                 fphtml.Format();
                 fp.Xml = fphtml.Xml;
                 PrintElapsedTime(timer);
@@ -125,7 +130,7 @@ namespace ProcessingTools.Tag
                 if (arguments.Count > 2)
                 {
                     FileProcessor fileProcessorNlm = new FileProcessor(queryFileName, outputFileName);
-                    fileProcessorNlm.ReadStringContent(true);
+                    fileProcessorNlm.Read();
                     ZoobankCloner zb = new ZoobankCloner(fileProcessorNlm.Xml, fp.Xml);
                     zb.Clone();
                     fp.Xml = zb.Xml;
@@ -141,9 +146,8 @@ namespace ProcessingTools.Tag
                 if (arguments.Count > 2)
                 {
                     FileProcessor fileProcessorJson = new FileProcessor(queryFileName, outputFileName);
-                    fileProcessorJson.ReadStringContent();
-                    ZoobankCloner zb = new ZoobankCloner();
-                    zb.Xml = fp.Xml;
+                    fileProcessorJson.Read();
+                    ZoobankCloner zb = new ZoobankCloner(fp.Xml);
                     zb.CloneJsonToXml(fileProcessorJson.Xml);
                     fp.Xml = zb.Xml;
                 }
@@ -180,15 +184,14 @@ namespace ProcessingTools.Tag
             {
                 FileProcessor flp = new FileProcessor(inputFileName, config.floraExtractedTaxaListPath);
                 FileProcessor flpp = new FileProcessor(inputFileName, config.floraExtractTaxaPartsOutputPath);
-                Flora fl = new Flora(config);
-                fl.Xml = fp.Xml;
+                Flora fl = new Flora(config, fp.Xml);
 
                 fl.ExtractTaxa();
                 fl.DistinctTaxa();
                 fl.GenerateTagTemplate();
 
                 flp.Xml = fl.Xml;
-                flp.WriteStringContentToFile();
+                flp.Write();
 
                 fl.Xml = fp.Xml;
                 if (taxaA)
@@ -222,7 +225,7 @@ namespace ProcessingTools.Tag
                 fp.Xml = fl.Xml;
 
                 flpp.Xml = fl.ExtractTaxaParts();
-                flpp.WriteStringContentToFile();
+                flpp.Write();
             }
             else if (testFlag)
             {
@@ -248,19 +251,10 @@ namespace ProcessingTools.Tag
                 ////fp.Xml = xx.OuterXml;
 
                 ////test.SqlSelect();
-
-                List<string> words = fp.ExtractWordsFromXml();
-                foreach (string word in words)
-                {
-                    Alert.Log(word);
-                }
-
-                Alert.Log("\n\n" + words.Count + " words in this article\n");
             }
             else if (generateZooBankNlm)
             {
-                ZooBank zb = new ZooBank(config);
-                zb.Xml = fp.Xml;
+                ZooBank zb = new ZooBank(config, fp.Xml);
                 zb.GenerateZooBankNlm();
                 fp.Xml = zb.Xml;
             }
@@ -270,7 +264,7 @@ namespace ProcessingTools.Tag
                 {
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.PreserveWhitespace = true;
-                    XmlNamespaceManager namespaceManager = Base.Base.TaxPubNamespceManager(xmlDocument);
+                    XmlNamespaceManager namespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
 
                     try
                     {
@@ -339,7 +333,7 @@ namespace ProcessingTools.Tag
                 {
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.PreserveWhitespace = true;
-                    XmlNamespaceManager namespaceManager = Base.Base.TaxPubNamespceManager(xmlDocument);
+                    XmlNamespaceManager namespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
 
                     try
                     {
@@ -388,7 +382,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.WriteOutputFileMessage();
-                fp.WriteStringContentToFile();
+                fp.Write();
                 PrintElapsedTime(timer);
             }
 
@@ -410,9 +404,10 @@ namespace ProcessingTools.Tag
             else if (arguments.Count == 1)
             {
                 inputFileName = args[arguments[0]];
-                outputFileName = System.IO.Path.GetDirectoryName(inputFileName) + "\\"
-                    + System.IO.Path.GetFileNameWithoutExtension(inputFileName) + "-out"
-                    + System.IO.Path.GetExtension(inputFileName);
+                outputFileName = null;
+                //outputFileName = System.IO.Path.GetDirectoryName(inputFileName) + "\\"
+                //    + System.IO.Path.GetFileNameWithoutExtension(inputFileName) + "-out"
+                //    + System.IO.Path.GetExtension(inputFileName);
             }
             else if (arguments.Count == 2)
             {
@@ -425,10 +420,6 @@ namespace ProcessingTools.Tag
                 outputFileName = args[arguments[1]];
                 queryFileName = args[arguments[2]];
             }
-
-            Alert.Log("Input file name: " + inputFileName);
-            Alert.Log("Output file name: " + outputFileName);
-            Alert.Log(queryFileName);
         }
     }
 }

@@ -15,11 +15,6 @@ namespace ProcessingTools.Base
 {
     public class Test : Base
     {
-        public Test()
-            : base()
-        {
-        }
-
         public Test(string xml)
             : base(xml)
         {

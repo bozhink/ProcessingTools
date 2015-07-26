@@ -13,6 +13,21 @@ namespace ProcessingTools.Tag
 {
     public partial class Tagger
     {
+        private static void TagEnvo(FileProcessor fp)
+        {
+            if (tagEnvo)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tUse greek tagger.\n");
+                Envo envo = new Envo(config, fp.Xml);
+
+                envo.Tag();
+
+                fp.Xml = envo.Xml;
+                PrintElapsedTime(timer);
+            }
+        }
         private static void ParseCoordinates(FileProcessor fp)
         {
             if (parseCoords)
@@ -85,8 +100,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse references.\n");
-                References refs = new References();
-                refs.Xml = fp.Xml;
+                References refs = new References(fp.Xml);
 
                 refs.SplitReferences();
 
@@ -105,15 +119,15 @@ namespace ProcessingTools.Tag
 
                 if (!config.NlmStyle)
                 {
-                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter();
-                    fmt.Xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
+                    string xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
+                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(xml);
                     fmt.InitialFormat();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
-                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter();
-                    fmt.Xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
+                    string xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
+                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(xml);
                     fmt.InitialFormat();
                     fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
                 }

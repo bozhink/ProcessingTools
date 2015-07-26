@@ -6,18 +6,8 @@ namespace ProcessingTools.Base
 {
     public class References : Base
     {
-        public References()
-            : base()
-        {
-        }
-
         public References(string xml)
             : base(xml)
-        {
-        }
-
-        public References(Config config)
-            : base(config)
         {
         }
 
@@ -215,7 +205,7 @@ namespace ProcessingTools.Base
                 // References list
                 fp.OutputFileName = this.Config.referencesGetReferencesXmlPath;
                 fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesGetReferencesXslPath, this.xml);
-                fp.WriteStringContentToFile();
+                fp.Write();
             }
 
             {
@@ -223,7 +213,7 @@ namespace ProcessingTools.Base
                 fp.OutputFileName = this.Config.referencesTagTemplateXmlPath;
                 fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesTagTemplateXslPath, this.xml);
                 fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesSortReferencesXslPath, fp.Xml);
-                fp.WriteStringContentToFile();
+                fp.Write();
             }
         }
 

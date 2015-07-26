@@ -7,18 +7,8 @@ namespace ProcessingTools.Base
 {
     public class Flora : Base
     {
-        public Flora()
-            : base()
-        {
-        }
-
         public Flora(string xml)
             : base(xml)
-        {
-        }
-
-        public Flora(Config config)
-            : base(config)
         {
         }
 

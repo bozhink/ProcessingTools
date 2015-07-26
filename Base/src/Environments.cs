@@ -12,18 +12,8 @@ namespace ProcessingTools.Base
 {
     public class Environments : Base
     {
-        public Environments()
-            : base()
-        {
-        }
-
         public Environments(string xml)
             : base(xml)
-        {
-        }
-
-        public Environments(Config config)
-            : base(config)
         {
         }
 

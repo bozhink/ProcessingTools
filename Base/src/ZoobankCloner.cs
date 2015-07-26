@@ -18,17 +18,19 @@ namespace ProcessingTools.Base.ZooBank
         private string nlmXml;
         private XmlDocument nlmDocument;
 
-        public ZoobankCloner(string nlmXmlContent)
+        public ZoobankCloner(string xmlContent)
+            : base(xmlContent)
         {
-            this.nlmXml = nlmXmlContent;
-            this.xml = string.Empty;
+            this.xml = xmlContent;
             this.xmlDocument = new XmlDocument();
-            this.nlmDocument = new XmlDocument();
             this.xmlDocument.PreserveWhitespace = true;
+
+            this.nlmXml = string.Empty;
+            this.nlmDocument = new XmlDocument();
             this.nlmDocument.PreserveWhitespace = true;
             try
             {
-                this.nlmDocument.LoadXml(this.nlmXml);
+                this.xmlDocument.LoadXml(this.xml);
             }
             catch (Exception e)
             {
@@ -37,12 +39,14 @@ namespace ProcessingTools.Base.ZooBank
         }
 
         public ZoobankCloner(string nlmXmlContent, string xmlContent)
+            : base(xmlContent)
         {
-            this.nlmXml = nlmXmlContent;
             this.xml = xmlContent;
             this.xmlDocument = new XmlDocument();
-            this.nlmDocument = new XmlDocument();
             this.xmlDocument.PreserveWhitespace = true;
+
+            this.nlmXml = nlmXmlContent;
+            this.nlmDocument = new XmlDocument();
             this.nlmDocument.PreserveWhitespace = true;
             try
             {
@@ -55,18 +59,9 @@ namespace ProcessingTools.Base.ZooBank
             }
         }
 
-        public ZoobankCloner()
-        {
-            this.xml = string.Empty;
-            this.xmlDocument = new XmlDocument();
-            this.nlmDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-            this.nlmDocument.PreserveWhitespace = true;
-        }
-
         public void Clone()
         {
-            XmlNamespaceManager xmlNamespaceManager = Base.TaxPubNamespceManager(xmlDocument);
+            XmlNamespaceManager xmlNamespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
             this.nlmXml = Regex.Replace(this.nlmXml, @"\s*<!DOCTYPE [^>]*>", string.Empty);
 
             try

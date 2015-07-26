@@ -47,12 +47,6 @@ namespace ProcessingTools.Base
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
 
-        public Floats()
-            : base()
-        {
-            this.InitFloats();
-        }
-
         public Floats(string xml)
             : base(xml)
         {

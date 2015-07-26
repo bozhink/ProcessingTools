@@ -38,4 +38,6 @@
     "environmentsDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
     "mainDictionaryDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
     "codesRemoveNonCodeNodes": "C:\\bin\\Xsl\\codes.remove-non-code-nodes.xslt",
+    "textContentXslFileName": "C:\\bin\\Xsl\\text-content.xslt",
+    "envoTermsWebServiceTransformXslPath": "C:\\bin\\Xsl\\envo-items-to-tagreplace.xslt",
 }

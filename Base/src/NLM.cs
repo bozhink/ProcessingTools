@@ -4,11 +4,6 @@ namespace ProcessingTools.Base.Format.Nlm
 {
     public class Nlm : Base
     {
-        public Nlm()
-            : base()
-        {
-        }
-
         public Nlm(string xml)
             : base(xml)
         {

@@ -8,11 +8,6 @@ namespace ProcessingTools.Base
     {
         public class LinksTagger : Base
         {
-            public LinksTagger()
-                : base()
-            {
-            }
-
             public LinksTagger(string xml)
                 : base(xml)
             {
@@ -110,11 +105,6 @@ namespace ProcessingTools.Base
     {
         public class LinksTagger : Base
         {
-            public LinksTagger()
-                : base()
-            {
-            }
-
             public LinksTagger(string xml)
                 : base(xml)
             {

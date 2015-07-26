@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Xml;
 
 namespace ProcessingTools
 {
@@ -25,9 +26,9 @@ namespace ProcessingTools
             }
             catch (Exception e)
             {
-                ////Alert.Log("ReadAllLinesToString Exception:");
-                ////Alert.Log(e.Message);
-                ////Alert.Exit(1);
+                Alert.Log("ReadAllLinesToString Exception:");
+                Alert.Log(e.Message);
+                Alert.Exit(1);
             }
 
             return config;
@@ -35,7 +36,7 @@ namespace ProcessingTools
     }
 
     [DataContract]
-    public class Config
+    public partial class Config
     {
         [DataMember]
         public string tempDirectoryPath { get; set; }
@@ -108,11 +109,48 @@ namespace ProcessingTools
         [DataMember]
         public string codesRemoveNonCodeNodes { get; set; }
 
+        [DataMember]
+        public string textContentXslFileName { get; set; }
+
+        [DataMember]
+        public string envoTermsWebServiceTransformXslPath { get; set; }
+
         /*
          * Tagging parameters
          */
         public bool NlmStyle { get; set; }
 
         public bool TagWholeDocument { get; set; }
+    }
+
+    public partial class Config
+    {
+        public static Encoding DefaultEncoding
+        {
+            get
+            {
+                return new UTF8Encoding(false);
+            }
+        }
+
+        public static XmlNamespaceManager TaxPubNamespceManager()
+        {
+            return TaxPubNamespceManager(new XmlDocument().NameTable);
+        }
+
+        public static XmlNamespaceManager TaxPubNamespceManager(XmlDocument xmlDocument)
+        {
+            return TaxPubNamespceManager(xmlDocument.NameTable);
+        }
+
+        public static XmlNamespaceManager TaxPubNamespceManager(XmlNameTable nameTable)
+        {
+            XmlNamespaceManager nspm = new XmlNamespaceManager(nameTable);
+            nspm.AddNamespace("tp", "http://www.plazi.org/taxpub");
+            nspm.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            nspm.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+            nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
+            return nspm;
+        }
     }
 }

@@ -27,18 +27,8 @@ namespace ProcessingTools.Base.Taxonomy
             private static Regex findLowerTaxa = new Regex(@"<italic><tp:taxon-name[^>\-]*>(.*?)</tp:taxon-name></italic>");
             private static Regex findLowerTaxaMultiLine = new Regex(@"<italic><tp:taxon-name[^>\-]*>([\s\S]*?)</tp:taxon-name></italic>");
 
-            public Expander()
-                : base()
-            {
-            }
-
             public Expander(string xml)
                 : base(xml)
-            {
-            }
-
-            public Expander(Config config)
-                : base(config)
             {
             }
 
@@ -988,18 +978,8 @@ namespace ProcessingTools.Base.Taxonomy
             private Regex findLowerTaxa = new Regex(@"<i><tn[^>\-]*>([\s\S]*?)</tn></i>");
             private Regex findLowerTaxaMultiLine = new Regex(@"<i><tn[^>\-]*>([\s\S]*?)</tn></i>");
 
-            public Expander()
-                : base()
-            {
-            }
-
             public Expander(string xml)
                 : base(xml)
-            {
-            }
-
-            public Expander(Config config)
-                : base(config)
             {
             }
 
@@ -2006,18 +1986,8 @@ namespace ProcessingTools.Base.Taxonomy
 
     public class Expander : Base
     {
-        public Expander()
-            : base()
-        {
-        }
-
         public Expander(string xml)
             : base(xml)
-        {
-        }
-
-        public Expander(Config config)
-            : base(config)
         {
         }
 

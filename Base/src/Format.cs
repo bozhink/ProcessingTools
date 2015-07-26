@@ -9,21 +9,11 @@ namespace ProcessingTools.Base.Format
     {
         public class Formatter : Base
         {
-            public Formatter()
-                : base()
-            {
-            }
-
             public Formatter(string xml)
                 : base(xml)
             {
             }
-
-            public Formatter(Config config)
-                : base(config)
-            {
-            }
-
+            
             public Formatter(Config config, string xml)
                 : base(config, xml)
             {
@@ -256,18 +246,8 @@ namespace ProcessingTools.Base.Format
     {
         public class Formatter : Base
         {
-            public Formatter()
-                : base()
-            {
-            }
-
             public Formatter(string xml)
                 : base(xml)
-            {
-            }
-
-            public Formatter(Config config)
-                : base(config)
             {
             }
 

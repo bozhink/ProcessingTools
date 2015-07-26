@@ -70,7 +70,7 @@ namespace ProcessingTools.Base.Taxonomy
         {
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-            return Base.GetStringListOfUniqueXmlNodes(xml, xpath, Base.TaxPubNamespceManager());
+            return Base.GetStringListOfUniqueXmlNodes(xml, xpath, ProcessingTools.Config.TaxPubNamespceManager());
         }
 
         public static List<string> ListOfNonShortenedTaxa(XmlNode xml)
@@ -79,7 +79,7 @@ namespace ProcessingTools.Base.Taxonomy
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             string xpath = "//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
             XmlDocument xd = new XmlDocument();
-            XmlNamespaceManager nm = Base.TaxPubNamespceManager();
+            XmlNamespaceManager nm = ProcessingTools.Config.TaxPubNamespceManager();
             XmlNodeList nodeList = xml.SelectNodes(xpath, nm);
             List<XmlNode> newList = new List<XmlNode>();
             foreach (XmlNode node in nodeList)
@@ -134,7 +134,7 @@ namespace ProcessingTools.Base.Taxonomy
 
             if (xpath != string.Empty)
             {
-                XmlNodeList nodeList = xml.SelectNodes(xpath, Base.TaxPubNamespceManager());
+                XmlNodeList nodeList = xml.SelectNodes(xpath, ProcessingTools.Config.TaxPubNamespceManager());
                 if (stripTags)
                 {
                     result = nodeList.Cast<XmlNode>().Select(c =>

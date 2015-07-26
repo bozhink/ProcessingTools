@@ -101,8 +101,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with Aphia.\n");
-                TaxaTagger tagger = new TaxaTagger(config);
-                tagger.Xml = xmlContent;
+                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
                 tagger.ParseTreatmentMetaWithAphia();
 
@@ -115,8 +114,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with GBIF.\n");
-                TaxaTagger tagger = new TaxaTagger(config);
-                tagger.Xml = xmlContent;
+                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
                 tagger.ParseTreatmentMetaWithGbif();
 
@@ -129,8 +127,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with CoL.\n");
-                TaxaTagger tagger = new TaxaTagger(config);
-                tagger.Xml = xmlContent;
+                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
                 tagger.ParseTreatmentMetaWithCoL();
 
@@ -145,8 +142,7 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tFormat treatments.\n");
-            TaxaTagger tagger = new TaxaTagger(config);
-            tagger.Xml = xmlContent;
+            TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
             tagger.FormatTreatments();
 
@@ -157,8 +153,7 @@ namespace ProcessingTools.Tag
 
         private static string RemoveAllTaxaTags(string xmlContent)
         {
-            TaxaParser parser = new TaxaParser(config);
-            parser.Xml = xmlContent;
+            TaxaParser parser = new TaxaParser(config, xmlContent);
             parser.UnSplitAllTaxa();
             xmlContent = parser.Xml;
             return xmlContent;
@@ -274,8 +269,7 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tSplit taxa.\n");
-            TaxaParser parser = new TaxaParser(config);
-            parser.Xml = xmlContent;
+            TaxaParser parser = new TaxaParser(config, xmlContent);
 
             if (taxaC)
             {
@@ -327,8 +321,7 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tTag taxa.\n");
-            TaxaTagger tagger = new TaxaTagger(config);
-            tagger.Xml = xmlContent;
+            TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
             if (taxaA)
             {

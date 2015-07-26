@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="src\AbbreviationsTagger.cs" />
     <Compile Include="src\Base\Base.cs" />
+    <Compile Include="src\Base\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Base\Net.cs" />
     <Compile Include="src\Codes.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="src\Base\FileProcessor.cs" />
     <Compile Include="src\DatesTagger.cs" />
     <Compile Include="src\Environments.cs" />
+    <Compile Include="src\Envo.cs" />
     <Compile Include="src\Floats.cs" />
     <Compile Include="src\Flora.cs" />
     <Compile Include="src\Format.cs" />
@@ -138,6 +140,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="src\XSL\dwc-to-named-content.xslt" />
+    <Content Include="src\XSL\envo-items-to-tagreplace.xslt" />
     <Content Include="src\XSL\Flora\flora.extract-taxa.xslt">
       <SubType>Designer</SubType>
     </Content>
@@ -175,6 +178,7 @@
     <Content Include="src\XSL\RankListClean.xsl" />
     <Content Include="src\XSL\set-genus-in-paragraph.xslt" />
     <Content Include="src\XSL\sort-references.xslt" />
+    <Content Include="src\XSL\text-content.xslt" />
     <Content Include="src\XSL\tn-to-taxon-name.xslt" />
     <Content Include="src\XSL\WhiteListClean.xsl" />
     <Content Include="src\XSL\zoobank-nlm.xsl" />

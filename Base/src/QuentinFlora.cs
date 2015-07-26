@@ -4,12 +4,8 @@ namespace ProcessingTools.Base
 {
     public class QuentinFlora : Base
     {
-        public QuentinFlora()
-        {
-            this.xml = string.Empty;
-        }
-
         public QuentinFlora(string xml)
+            : base(xml)
         {
             this.xml = Regex.Replace(xml, "\r", string.Empty);
         }

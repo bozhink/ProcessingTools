@@ -15,7 +15,9 @@ namespace ProcessingTools.Base
         public static string Replace(string textContent, string queryFileName)
         {
             string text = textContent;
-            XmlDocument queryXml = FileProcessor.GetContentAsXmlDocument(queryFileName);
+            FileProcessor queryFileProcessor = new FileProcessor(queryFileName);
+            queryFileProcessor.Read();
+            XmlDocument queryXml = queryFileProcessor.XmlDocument;
 
             try
             {

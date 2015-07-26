@@ -6,18 +6,8 @@ namespace ProcessingTools.Base
 {
     public class QuantitiesTagger : Base
     {
-        public QuantitiesTagger()
-            : base()
-        {
-        }
-
         public QuantitiesTagger(string xml)
             : base(xml)
-        {
-        }
-
-        public QuantitiesTagger(Config config)
-            : base(config)
         {
         }
 

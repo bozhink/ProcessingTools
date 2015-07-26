@@ -4,18 +4,9 @@ namespace ProcessingTools.Base.ZooBank
 {
     public class ZooBank : Base
     {
-        public ZooBank()
-            : base()
-        {
-        }
 
         public ZooBank(string xml)
             : base(xml)
-        {
-        }
-
-        public ZooBank(Config config)
-            : base(config)
         {
         }
 

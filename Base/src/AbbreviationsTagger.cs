@@ -14,18 +14,8 @@ namespace ProcessingTools.Base
 
         private const string AbbreviationReplaceTagName = "abbreviationReplaceTagName";
 
-        public AbbreviationsTagger()
-            : base()
-        {
-        }
-
         public AbbreviationsTagger(string xml)
             : base(xml)
-        {
-        }
-
-        public AbbreviationsTagger(Config config)
-            : base(config)
         {
         }
 
