@@ -30,6 +30,21 @@ namespace ProcessingTools.Base
             {
                 XmlDocument envoTermsResponse = Net.UseGreekTagger(this.TextContent);
 
+                try
+                {
+                    envoTermsResponse.Save(this.Config.EnvoResponseOutputXmlFileName);
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(
+                        e,
+                        this.GetType().Name,
+                        0,
+                        string.Format(
+                            "Cannot write envoTermsResponse XML document to file '{0}'",
+                            this.Config.EnvoResponseOutputXmlFileName));
+                }
+
                 string envoTermsResponseString = Regex.Replace(
                     envoTermsResponse.OuterXml,
                     @"\sxmlns=""[^<>""]*""",

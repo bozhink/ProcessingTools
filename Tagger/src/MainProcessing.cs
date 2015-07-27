@@ -134,6 +134,7 @@ namespace ProcessingTools.Tag
                 xmlContent = tagger.Xml;
                 PrintElapsedTime(timer);
             }
+
             return xmlContent;
         }
 
@@ -345,7 +346,7 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tTag table foot-notes.\n");
-            Floats fl = new Floats(xmlContent);
+            Floats fl = new Floats(config, xmlContent);
             fl.TagTableFootNotes();
             xmlContent = fl.Xml;
             PrintElapsedTime(timer);
@@ -357,7 +358,7 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tTag floats.\n");
-            Floats fl = new Floats(xmlContent);
+            Floats fl = new Floats(config, xmlContent);
             fl.TagAllFloats();
             xmlContent = fl.Xml;
             PrintElapsedTime(timer);

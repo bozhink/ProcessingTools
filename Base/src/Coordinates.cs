@@ -6,8 +6,8 @@ namespace ProcessingTools.Base
 {
     public class Coordinates : Base
     {
-        public Coordinates(string xml)
-            : base(xml)
+        public Coordinates(Config config, string xml)
+            : base(config, xml)
         {
         }
 

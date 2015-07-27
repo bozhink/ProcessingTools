@@ -344,26 +344,37 @@ namespace ProcessingTools.Base
                 {
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     values.Add("document", xmlContent);
-                    values.Add("entity_types", "-2 -25 -26 -27");
+                    // values.Add("entity_types", "-2 -25 -26 -27");
+                    values.Add("entity_types", "-25 -26 -27");
                     values.Add("format", "xml");
 
-                    using (HttpContent content = new FormUrlEncodedContent(values))
+                    try
                     {
-                        try
+                        using (HttpContent content = new FormUrlEncodedContent(values))
                         {
-                            Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
-                            Task<string> responseString = response.Result.Content.ReadAsStringAsync();
-                            result.LoadXml(responseString.Result);
+                            try
+                            {
+                                Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
+                                Task<string> responseString = response.Result.Content.ReadAsStringAsync();
+                                result.LoadXml(responseString.Result);
+                            }
+                            catch (Exception e)
+                            {
+                                Alert.RaiseExceptionForMethod(e, 0, 1);
+                            }
+                            finally
+                            {
+                                content.Dispose();
+                            }
                         }
-                        catch (Exception e)
-                        {
-                            Alert.RaiseExceptionForMethod(e, 0, 1);
-                        }
-                        finally
-                        {
-                            content.Dispose();
-                            client.Dispose();
-                        }
+                    }
+                    catch (Exception contentException)
+                    {
+                        Alert.RaiseExceptionForMethod(contentException, "UseGreekTagger", 1, 1);
+                    }
+                    finally
+                    {
+                        client.Dispose();
                     }
                 }
             }

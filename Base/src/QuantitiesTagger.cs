@@ -6,11 +6,6 @@ namespace ProcessingTools.Base
 {
     public class QuantitiesTagger : Base
     {
-        public QuantitiesTagger(string xml)
-            : base(xml)
-        {
-        }
-
         public QuantitiesTagger(Config config, string xml)
             : base(config, xml)
         {
@@ -33,7 +28,7 @@ namespace ProcessingTools.Base
 
             // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
             {
-                string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[kmµnp]g|[º°˚]\s*[FC]|[M]?bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
+                string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[kmµnp]g|[º°˚]\s*[FC]|[º°˚]|[M]?bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
                 Regex matchQuantities = new Regex(pattern);
                 quantities = GetMatchesInXmlText(nodeList, matchQuantities, true);
             }

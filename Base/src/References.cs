@@ -6,11 +6,6 @@ namespace ProcessingTools.Base
 {
     public class References : Base
     {
-        public References(string xml)
-            : base(xml)
-        {
-        }
-
         public References(Config config, string xml)
             : base(config, xml)
         {

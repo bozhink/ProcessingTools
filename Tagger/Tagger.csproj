@@ -95,20 +95,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base\Base.csproj">
-      <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
-      <Name>Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
-      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>ProcessingToolsConfig</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsMessaging.csproj">
-      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingToolsMessaging</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
@@ -124,6 +110,20 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.csproj">
+      <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
+      <Name>Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>ProcessingToolsConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsMessaging.csproj">
+      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
+      <Name>ProcessingToolsMessaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

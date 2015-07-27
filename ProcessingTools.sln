@@ -4,10 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{76BEF8BF-631B-4C9D-B0D4-986718D5C859} = {76BEF8BF-631B-4C9D-B0D4-986718D5C859}
+		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {BDE55FC4-E7D2-416D-A220-164CA99BD63B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsConfig", "ProcessingToolsConfig\ProcessingToolsConfig.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{76BEF8BF-631B-4C9D-B0D4-986718D5C859} = {76BEF8BF-631B-4C9D-B0D4-986718D5C859}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsMessaging", "ProcessingToolsMessaging\ProcessingToolsMessaging.csproj", "{76BEF8BF-631B-4C9D-B0D4-986718D5C859}"
 EndProject

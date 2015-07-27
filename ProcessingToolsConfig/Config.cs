@@ -121,6 +121,8 @@ namespace ProcessingTools
         public bool NlmStyle { get; set; }
 
         public bool TagWholeDocument { get; set; }
+
+        public string EnvoResponseOutputXmlFileName { get; set; }
     }
 
     public partial class Config

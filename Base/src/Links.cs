@@ -8,8 +8,8 @@ namespace ProcessingTools.Base
     {
         public class LinksTagger : Base
         {
-            public LinksTagger(string xml)
-                : base(xml)
+            public LinksTagger(Config config, string xml)
+                : base(config, xml)
             {
             }
 

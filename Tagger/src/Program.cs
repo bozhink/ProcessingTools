@@ -61,6 +61,11 @@ namespace ProcessingTools.Tag
                 fp.OutputFileName,
                 queryFileName);
 
+            config.EnvoResponseOutputXmlFileName = string.Format(
+                "{0}\\envo-{1}.xml",
+                config.tempDirectoryPath,
+                Path.GetFileNameWithoutExtension(fp.OutputFileName));
+
             fp.Read();
 
             InitialFormat(fp);
@@ -321,7 +326,7 @@ namespace ProcessingTools.Tag
                 }
                 else
                 {
-                    fp.Xml = TagReferences(fp.Xml, outputFileName);
+                    fp.Xml = TagReferences(fp.Xml, fp.OutputFileName);
                 }
             }
             else

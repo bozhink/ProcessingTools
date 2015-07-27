@@ -35,7 +35,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse coordinates.\n");
-                Coordinates cd = new Coordinates(fp.Xml);
+                Coordinates cd = new Coordinates(config, fp.Xml);
 
                 cd.ParseCoordinates();
 
@@ -51,7 +51,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag coordinates.\n");
-                Coordinates cd = new Coordinates(fp.Xml);
+                Coordinates cd = new Coordinates(config, fp.Xml);
 
                 cd.TagCoordinates();
 
@@ -67,7 +67,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag web links.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
+                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(config, fp.Xml);
 
                 ln.TagWWW();
 
@@ -83,7 +83,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag DOI.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(fp.Xml);
+                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(config, fp.Xml);
 
                 ln.TagDOI();
                 ln.TagPMCLinks();
@@ -100,7 +100,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse references.\n");
-                References refs = new References(fp.Xml);
+                References refs = new References(config, fp.Xml);
 
                 refs.SplitReferences();
 
@@ -120,14 +120,14 @@ namespace ProcessingTools.Tag
                 if (!config.NlmStyle)
                 {
                     string xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
-                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(xml);
+                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(config, xml);
                     fmt.InitialFormat();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
                     string xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
-                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(xml);
+                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(config, xml);
                     fmt.InitialFormat();
                     fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
                 }
@@ -176,7 +176,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag quantities.\n");
 
-                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(fp.Xml);
+                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
                 quantitiesTagger.TagQuantities();
                 quantitiesTagger.TagDirections();
                 fp.Xml = quantitiesTagger.Xml;
@@ -193,7 +193,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag dates.\n");
 
-                DatesTagger datesTagger = new DatesTagger(fp.Xml);
+                DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
                 datesTagger.TagDates();
                 fp.Xml = datesTagger.Xml;
 
@@ -209,7 +209,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag abbreviations.\n");
 
-                AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(fp.Xml);
+                AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
                 abbreviationsTagger.TagAbbreviationsInText();
                 fp.Xml = abbreviationsTagger.Xml;
 

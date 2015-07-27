@@ -10,11 +10,6 @@ namespace ProcessingTools.Base
 {
     public class DatesTagger : Base
     {
-        public DatesTagger(string xml)
-            : base(xml)
-        {
-        }
-
         public DatesTagger(Config config, string xml)
             : base(config, xml)
         {

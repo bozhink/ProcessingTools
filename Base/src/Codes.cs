@@ -15,11 +15,6 @@ namespace ProcessingTools.Base
 
         private const string AbbreviationReplaceTagName = "abbreviationReplaceTagName";
 
-        public Codes(string xml)
-            : base(xml)
-        {
-        }
-
         public Codes(Config config, string xml)
             : base(config, xml)
         {
@@ -201,7 +196,7 @@ namespace ProcessingTools.Base
             {
                 List<string> prefixNumericSpecimenCodes = new List<string>();
 
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|SMF|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
                 prefixNumericSpecimenCodes = GetMatchesInXmlText(this.xmlDocument, prefixNumericCodes);
 
                 prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
