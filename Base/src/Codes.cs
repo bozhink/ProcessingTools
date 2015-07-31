@@ -7,6 +7,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
+
+// institutionalCode -> @description
+// specimenCode -> @institutionalCode
+
+
 namespace ProcessingTools.Base
 {
     public class Codes : Base
@@ -25,89 +30,47 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void TagSpecimenCount()
+        public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
-            this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                string replace = node.InnerXml;
-
-                // 1♀
-                {
-                    string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)(?![^<>]*>)";
-                    Match m = Regex.Match(replace, pattern);
-                    if (m.Success)
-                    {
-                        replace = Regex.Replace(replace, pattern, "<specimenCount>$1</specimenCount>");
-                        node.InnerXml = replace;
-                    }
-                }
-            }
-
-            this.ParseXmlDocumentToXmlString();
-        }
-
-        public void TagProducts()
-        {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-            string query = @"select [dbo].[products].[Name] as name from [dbo].[products] order by len(name) desc;";
-            string tagName = "product";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tagName);
-        }
-
-        public void TagGeonames()
-        {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-            string query = @"select [dbo].[geonames].[Name] as name from [dbo].[geonames] order by len(name) desc;";
-            string tagName = "geoname";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tagName);
-        }
-
-        public void TagMorphology()
-        {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-            string query = @"select [dbo].[morphology].[Name] as name from [dbo].[morphology] order by len(name) desc;";
-            string tagName = "morphology-part";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tagName);
-        }
-
-        public void TagInstitutions()
-        {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
             TagContent tag = new TagContent("institution");
 
-            string query = @"select [Name] as name from [dbo].[institutions] order by len(name) desc;";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
+            string query = @"select [Name] from [dbo].[institutions] order by len([Name]) desc;";
+
+            dataProvider.Xml = this.Xml;
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, tag);
+            this.Xml = dataProvider.Xml;
 
             // WARNING: here is set len(name) > 1!
             query = @"select [NameOfInstitution], [URL] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
+
+            dataProvider.Xml = this.Xml;
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, tag);
+            this.Xml = dataProvider.Xml;
         }
 
-        public void TagInstitutionalCodes()
+        public void TagInstitutionalCodes(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
             TagContent tagName = new TagContent("institutionalCode");
 
             // WARNING: here is set len(name) > 1!
             string query = @"select [InstitutionalCode], [URL] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tagName, true);
+
+            dataProvider.Xml = this.Xml;
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, tagName, true);
+            this.Xml = dataProvider.Xml;
         }
 
-        public void TagSpecimenCodes()
+        public void TagSpecimenCodes(IXPathProvider xpathProvider)
         {
-            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
             List<string> potentialSpecimenCodes = ExtractPotentialSpecimenCodes(CodePattern);
 
             Alert.Log("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
-            foreach (string word in potentialSpecimenCodes)
-            {
-                Alert.Log(word);
-            }
+            //foreach (string word in potentialSpecimenCodes)
+            //{
+            //    Alert.Log(word);
+            //}
 
             Alert.Log("\n\nPlausible specimen codes\n\n");
 
@@ -117,17 +80,16 @@ namespace ProcessingTools.Base
 
             TagContent specimenCodeTag = new TagContent("specimenCode");
 
-            ReplaceSpecimenCodesInXml(XPathTemplate, plausibleSpecimenCodes, specimenCodeTag);
+            ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, specimenCodeTag);
 
             this.ParseXmlDocumentToXmlString();
         }
 
-        public void TagKnownSpecimenCodes()
+        public void TagKnownSpecimenCodes(IXPathProvider xpathProvider)
         {
-            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-            List<string> knownSpecimenCodes = new List<string>();
-
             this.ParseXmlStringToXmlDocument();
+
+            List<string> knownSpecimenCodes = new List<string>();
 
             //// Add to plausible various known codes: Janzen, OSUC, CASENT, LACMENT, ...
             GetJanzenCodes(knownSpecimenCodes);
@@ -136,7 +98,7 @@ namespace ProcessingTools.Base
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
             TagContent specimenCodeTag = new TagContent("specimenCode");
-            ReplaceSpecimenCodesInXml(XPathTemplate, knownSpecimenCodes, specimenCodeTag);
+            ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, specimenCodeTag);
 
             this.ParseXmlDocumentToXmlString();
         }
@@ -196,7 +158,7 @@ namespace ProcessingTools.Base
             {
                 List<string> prefixNumericSpecimenCodes = new List<string>();
 
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|SMF|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|SMF|ZUTC(?: Iso\.)?|PCGMK|IRIPP Iso\-|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
                 prefixNumericSpecimenCodes = GetMatchesInXmlText(this.xmlDocument, prefixNumericCodes);
 
                 prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
@@ -217,15 +179,17 @@ namespace ProcessingTools.Base
         {
             // <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
+            // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
+            // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="UQIC 221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
 
-            Regex guessNextCode = new Regex("(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)");
+            string guessNextCodePattern = "(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
+            Regex guessNextCode = new Regex(guessNextCodePattern);
+            TagContent replacement = new TagContent(tag);
+            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
 
             string xpath = string.Format(xpathTemplate, tag.Name);
             foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
-                TagContent replacement = new TagContent(tag);
-                replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
-
                 string replace = node.InnerXml;
 
                 while (guessNextCode.Match(replace).Success)
@@ -305,98 +269,6 @@ namespace ProcessingTools.Base
             potentialCodeWords = potentialCodeWords.Distinct().ToList();
             potentialCodeWords.Sort();
             return potentialCodeWords;
-        }
-
-
-        private void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
-        {
-            string patternTemplate = string.Empty;
-            if (caseSensitive)
-            {
-                patternTemplate = "(?<!<[^>]+)\\b({0})\\b(?![^<>]*>)";
-            }
-            else
-            {
-                patternTemplate = "(?<!<[^>]+)\\b((?i){0})\\b(?![^<>]*>)";
-            }
-
-            this.ParseXmlStringToXmlDocument();
-            try
-            {
-                string connectionString = this.Config.mainDictionaryDataSourceString;
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                string contentString = reader.GetString(0);
-
-                                if (reader.FieldCount > 1)
-                                {
-                                    StringBuilder attributes = new StringBuilder();
-                                    for (int i = 1, len = reader.FieldCount; i < len; ++i)
-                                    {
-                                        attributes.Append(
-                                            string.Format(
-                                                @" attribute{0}=""{1}""",
-                                                i,
-                                                Regex.Replace(
-                                                    Regex.Replace(
-                                                        reader.GetString(i),
-                                                        "&",
-                                                        "&amp;"),
-                                                    @"""",
-                                                    "&quot;")));
-                                    }
-
-                                    tag.Attributes = attributes.ToString();
-                                }
-                                else
-                                {
-                                    tag.Attributes = string.Empty;
-                                }
-
-                                string replaceSubstitution = tag.OpenTag + "$1" + tag.CloseTag;
-
-                                string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
-                                foreach (XmlNode node in nodeList)
-                                {
-                                    if (Regex.Match(node.InnerText, pattern).Success)
-                                    {
-                                        node.InnerXml = Regex.Replace(node.InnerXml, pattern, replaceSubstitution);
-                                    }
-                                }
-                            }
-
-                            reader.Dispose();
-                            reader.Close();
-                        }
-
-                        command.Cancel();
-                        command.Dispose();
-                    }
-
-                    connection.Dispose();
-                    connection.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, 1);
-            }
-
-            this.ParseXmlDocumentToXmlString();
-        }
-
-        private void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName)
-        {
-            TagContent tag = new TagContent(tagName);
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
         }
     }
 }

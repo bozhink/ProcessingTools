@@ -176,9 +176,11 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag quantities.\n");
 
+                XPathProvider xpathProvider = new XPathProvider(config);
                 QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
-                quantitiesTagger.TagQuantities();
-                quantitiesTagger.TagDirections();
+                quantitiesTagger.TagQuantities(xpathProvider);
+                quantitiesTagger.TagDirections(xpathProvider);
+                quantitiesTagger.TagAltitude(xpathProvider);
                 fp.Xml = quantitiesTagger.Xml;
 
                 PrintElapsedTime(timer);
@@ -193,8 +195,9 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag dates.\n");
 
+                XPathProvider xpathProvider = new XPathProvider(config);
                 DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
-                datesTagger.TagDates();
+                datesTagger.TagDates(xpathProvider);
                 fp.Xml = datesTagger.Xml;
 
                 PrintElapsedTime(timer);
@@ -226,17 +229,58 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tTag codes.\n");
                 Codes codes = new Codes(config, Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
 
-                //codes.TagSpecimenCount();
+                //Alert.Log("1");
 
-                codes.TagKnownSpecimenCodes();
+                using (DataProvider dataProvider = new DataProvider(config, codes.Xml))
+                {
+                    //Alert.Log("2");
+                    XPathProvider xpathProvider = new XPathProvider(config);
 
-                codes.TagProducts();
-                codes.TagGeonames();
-                codes.TagMorphology();
+                    {
+                        SpecimenCountTagger specimenCounter = new SpecimenCountTagger(config, fp.Xml);
+                        specimenCounter.TagSpecimenCount(xpathProvider);
+                        codes.Xml = specimenCounter.Xml;
+                    }
 
-                codes.TagInstitutions();
-                codes.TagInstitutionalCodes();
-                codes.TagSpecimenCodes();
+                    //Alert.Log("3");
+                    codes.TagKnownSpecimenCodes(xpathProvider);
+
+                    //Alert.Log("4");
+                    {
+                        ProductsTagger products = new ProductsTagger(config, codes.Xml);
+                        //Alert.Log("5");
+                        products.TagProducts(xpathProvider, dataProvider);
+                        //Alert.Log("6");
+                        codes.Xml = products.Xml;
+                    }
+
+                    //Alert.Log("7");
+                    {
+                        GeoNamesTagger geonames = new GeoNamesTagger(config, codes.Xml);
+                        geonames.TagGeonames(xpathProvider, dataProvider);
+                        codes.Xml = geonames.Xml;
+                    }
+
+                    //Alert.Log("8");
+                    {
+                        MorphologyTagger morphology = new MorphologyTagger(config, codes.Xml);
+                        morphology.TagMorphology(xpathProvider, dataProvider);
+                        codes.Xml = morphology.Xml;
+                    }
+
+                    //Alert.Log("9");
+                    codes.TagInstitutions(xpathProvider, dataProvider);
+
+                    //Alert.Log("9");
+                    codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+
+                    //Alert.Log("10");
+                    codes.TagSpecimenCodes(xpathProvider);
+
+                    //Alert.Log("11");
+                    dataProvider.Dispose();
+                    //Alert.Log("12");
+                }
 
                 fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
                 PrintElapsedTime(timer);

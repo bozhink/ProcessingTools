@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    interface IBase
+    public interface IBase
     {
         string Xml
         {

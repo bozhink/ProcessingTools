@@ -20,15 +20,12 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void TagDates()
+        public void TagDates(IXPathProvider xpathProvider)
         {
-            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-            TagContent dateTag = new TagContent("date");
             List<string> dates = new List<string>();
 
             this.ParseXmlStringToXmlDocument();
-            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager);
             {
                 // 18 Jan 2008
                 {
@@ -59,13 +56,21 @@ namespace ProcessingTools.Base
                     dates.AddRange(GetMatchesInXmlText(nodeList, re, true));
                 }
 
+                // 2012/12/10
+                // 15th October 2014
+                // 2nd March 2015
+                // July 01.2015
+                // 26–30. June, 2014
+                // 29th of April, 2015
+
                 dates = dates.Distinct().ToList();
             }
 
+            TagContent dateTag = new TagContent("date");
             foreach (string date in dates)
             {
                 Alert.Log(date);
-                TagTextInXmlDocument(date, dateTag, XPathTemplate, true);
+                TagTextInXmlDocument(date, dateTag, xpathProvider.SelectContentNodesXPathTemplate, true);
             }
 
             this.ParseXmlDocumentToXmlString();

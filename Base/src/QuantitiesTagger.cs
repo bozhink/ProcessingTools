@@ -16,15 +16,13 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void TagQuantities()
+        public void TagQuantities(IXPathProvider xpathProvider)
         {
-            const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-            TagContent quantityTag = new TagContent("quantity");
-            List<string> quantities = new List<string>();
-
             this.ParseXmlStringToXmlDocument();
-            string xpath = string.Format(XPathTemplate, "normalize-space(.)!=''");
+            string xpath = string.Format(xpathProvider.SelectContentNodesXPathTemplate, "normalize-space(.)!=''");
             XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+
+            List<string> quantities = new List<string>();
 
             // 0.6–1.9 mm, 1.1–1.7 × 0.5–0.8 mm
             {
@@ -33,21 +31,20 @@ namespace ProcessingTools.Base
                 quantities = GetMatchesInXmlText(nodeList, matchQuantities, true);
             }
 
+            TagContent quantityTag = new TagContent("quantity");
             foreach (string quantity in quantities)
             {
                 Alert.Log(quantity);
-                TagTextInXmlDocument(quantity, quantityTag, XPathTemplate, true);
+                TagTextInXmlDocument(quantity, quantityTag, xpathProvider.SelectContentNodesXPathTemplate, true);
             }
 
             this.ParseXmlDocumentToXmlString();
         }
 
-        public void TagDirections()
+        public void TagDirections(IXPathProvider xpathProvider)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
@@ -65,12 +62,10 @@ namespace ProcessingTools.Base
             this.ParseXmlDocumentToXmlString();
         }
 
-        public void TagAltitude()
+        public void TagAltitude(IXPathProvider xpathProvider)
         {
-            string xpath = "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
