@@ -148,6 +148,32 @@ namespace ProcessingTools.Base
                 }
             }
         }
+        /*
+         * S08-12075
+         * GRA0002851-0
+         * Z-000004443
+         * S-G-1519
+         * B 10 0154930
+         * BR0000008351050
+         * BM000815208
+         * P05620544
+         * WAG0225448
+         * L 0587600
+         * W 0011066
+         * PR 801377
+         * FLAS 29152
+         * COI00005515
+         * K000313234
+         * LISU214548
+         * LISC 031408
+         * M0105771
+         * MA386121
+         * G00301594
+         * HBG506425
+         * PRE43077
+         * C10002122
+         * PTBG1000013099
+         */
 
         private void GetPrefixNumericCodes(List<string> specimenCodes)
         {
@@ -158,7 +184,7 @@ namespace ProcessingTools.Base
             {
                 List<string> prefixNumericSpecimenCodes = new List<string>();
 
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|ZMB|SMF|ZUTC(?: Iso\.)?|PCGMK|IRIPP Iso\-|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|HEID|WAG|P|ZMB|SMF|ZUTC(?: Iso\.)?|PCGMK|IRIPP Iso\-|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
                 prefixNumericSpecimenCodes = GetMatchesInXmlText(this.xmlDocument, prefixNumericCodes);
 
                 prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
