@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -42,24 +40,19 @@ namespace ProcessingTools.Base
                 {
                     // Writes a sequence of bytes to the current stream 
                     requestStream.Write(bytes, 0, bytes.Length);
-                    requestStream.Close();
                 }
 
                 // Sends the HttpWebRequest, and waits for a response.
                 httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpWebResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    // Get response stream into StreamReader
-                    using (Stream responseStream = httpWebResponse.GetResponseStream())
+                    Stream responseStream = httpWebResponse.GetResponseStream();
+                    using (StreamReader reader = new StreamReader(responseStream))
                     {
-                        using (StreamReader reader = new StreamReader(responseStream))
-                        {
-                            response = reader.ReadToEnd();
-                        }
+                        response = reader.ReadToEnd();
                     }
                 }
 
-                httpWebResponse.Close();
             }
             catch (Exception ex)
             {
@@ -101,24 +94,18 @@ namespace ProcessingTools.Base
                 {
                     // Writes a sequence of bytes to the current stream 
                     requestStream.Write(bytes, 0, bytes.Length);
-                    requestStream.Close();
                 }
 
                 // Sends the HttpWebRequest, and waits for a response.
                 httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpWebResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    // Get response stream into StreamReader
-                    using (Stream responseStream = httpWebResponse.GetResponseStream())
+                    Stream responseStream = httpWebResponse.GetResponseStream();
+                    using (StreamReader reader = new StreamReader(responseStream))
                     {
-                        using (StreamReader reader = new StreamReader(responseStream))
-                        {
-                            response.InnerXml = reader.ReadToEnd();
-                        }
+                        response.InnerXml = reader.ReadToEnd();
                     }
                 }
-
-                httpWebResponse.Close();
             }
             catch (Exception ex)
             {
@@ -362,19 +349,11 @@ namespace ProcessingTools.Base
                             {
                                 Alert.RaiseExceptionForMethod(e, 0, 1);
                             }
-                            finally
-                            {
-                                content.Dispose();
-                            }
                         }
                     }
                     catch (Exception contentException)
                     {
                         Alert.RaiseExceptionForMethod(contentException, "UseGreekTagger", 1, 1);
-                    }
-                    finally
-                    {
-                        client.Dispose();
                     }
                 }
             }

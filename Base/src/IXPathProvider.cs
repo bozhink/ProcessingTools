@@ -1,6 +1,4 @@
-﻿using ProcessingTools;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
     public interface IXPathProvider
     {

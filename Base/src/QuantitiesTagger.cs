@@ -4,14 +4,14 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class QuantitiesTagger : Base
+    public class QuantitiesTagger : TaggerBase
     {
         public QuantitiesTagger(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public QuantitiesTagger(Base baseObject)
+        public QuantitiesTagger(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -20,7 +20,7 @@ namespace ProcessingTools.Base
         {
             this.ParseXmlStringToXmlDocument();
             string xpath = string.Format(xpathProvider.SelectContentNodesXPathTemplate, "normalize-space(.)!=''");
-            XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+            XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
             List<string> quantities = new List<string>();
 
@@ -28,7 +28,7 @@ namespace ProcessingTools.Base
             {
                 string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµ]m|meters?|[kmµnp]g|[º°˚]\s*[FC]|[º°˚]|[M]?bp|ft|m|[kdcmµ]M|[dcmµ][lL]|[kdcmµ]mol|mile|mi|min(?:ute)|\%)\b)(?![^<>]*>)";
                 Regex matchQuantities = new Regex(pattern);
-                quantities = GetMatchesInXmlText(nodeList, matchQuantities, true);
+                quantities = nodeList.GetMatchesInXmlText(matchQuantities, true);
             }
 
             TagContent quantityTag = new TagContent("quantity");
@@ -44,7 +44,7 @@ namespace ProcessingTools.Base
         public void TagDirections(IXPathProvider xpathProvider)
         {
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
@@ -65,12 +65,12 @@ namespace ProcessingTools.Base
         public void TagAltitude(IXPathProvider xpathProvider)
         {
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
                 // 510–650 m a.s.l.
-                string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a\W*<[^>]*>)*s\W*<[^>]*>)*l\W?))";
+                string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a\W*(?:<[^>]*>)*s\W*(?:<[^>]*>)*l\W?))";
                 Match m = Regex.Match(replace, pattern);
                 if (m.Success)
                 {

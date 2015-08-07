@@ -1,30 +1,29 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class FileProcessor : IBase
+    public class FileProcessor : Base
     {
         private string inputFileName;
         private string outputFileName;
-        private string xml;
-        private XmlDocument xmlDocument;
-        private XmlNamespaceManager namespaceManager;
 
-        public FileProcessor()
+        public FileProcessor(Config config)
+            : base(config)
         {
             this.Initialize(null, null);
         }
 
-        public FileProcessor(string inputFileName)
+        public FileProcessor(Config config, string inputFileName)
+            : base(config)
         {
             this.Initialize(inputFileName, null);
         }
 
-        public FileProcessor(string inputFileName, string outputFileName)
+        public FileProcessor(Config config, string inputFileName, string outputFileName)
+            : base(config)
         {
             this.Initialize(inputFileName, outputFileName);
         }
@@ -38,7 +37,7 @@ namespace ProcessingTools.Base
 
             set
             {
-                if (value == null)
+                if (value == null || value.Length < 1)
                 {
                     this.inputFileName = null;
                 }
@@ -46,7 +45,7 @@ namespace ProcessingTools.Base
                 {
                     if (!File.Exists(value))
                     {
-                        Alert.Die(1, "\nERROR: The input file name '{0}' does not exist.\n", value);
+                        Alert.Die(1, "\nERROR: The input file '{0}' does not exist.\n", value);
                     }
                     else
                     {
@@ -66,7 +65,7 @@ namespace ProcessingTools.Base
             set
             {
                 string fileName = value;
-                if (value == null)
+                if (value == null || value.Length < 1)
                 {
                     fileName = this.GenerateOutputFileNameBasedOnInputFileName();
                 }
@@ -80,92 +79,39 @@ namespace ProcessingTools.Base
             }
         }
 
-
-        public string Xml
+        public static string ReadFileContentToString(string inputFileName)
         {
-            get
+            string result = string.Empty;
+            try
             {
-                return this.xml;
+                result = File.ReadAllText(inputFileName);
+            }
+            catch (Exception e)
+            {
+                Alert.Die(1, "Cannot read file {0}\n{1}", inputFileName, e.Message);
             }
 
-            set
-            {
-                if (value != null && value.Length > 0)
-                {
-                    try
-                    {
-                        this.xml = value;
-                        this.xmlDocument.LoadXml(this.xml);
-                    }
-                    catch (XmlException e)
-                    {
-                        throw e;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
-                    }
-                }
-                else
-                {
-                    throw new ArgumentNullException("Invalid value for Xml: null or empty.");
-                }
-            }
+            return result;
         }
 
-        public XmlDocument XmlDocument
+        public static string NormalizeNlmToSystemXml(Config config, string xml)
         {
-            get
-            {
-                return this.xmlDocument;
-            }
-
-            set
-            {
-                if (value != null)
-                {
-                    try
-                    {
-                        this.xmlDocument = value;
-                        this.xml = this.xmlDocument.OuterXml;
-                    }
-                    catch (XmlException e)
-                    {
-                        throw e;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
-                    }
-                }
-                else
-                {
-                    throw new ArgumentNullException("Invalid value for XmlDocument: null.");
-                }
-            }
+            return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
         }
 
-        public Config Config
+        public static string NormalizeNlmToSystemXml(Config config, XmlDocument xml)
         {
-            get
-            {
-                return null;
-            }
+            return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
         }
 
-        public XmlNamespaceManager NamespaceManager
+        public static string NormalizeSystemToNlmXml(Config config, string xml)
         {
-            get
-            {
-                if (this.xmlDocument != null)
-                {
-                    return ProcessingTools.Config.TaxPubNamespceManager(this.xmlDocument);
-                }
-                else
-                {
-                    return ProcessingTools.Config.TaxPubNamespceManager();
-                }
-            }
+            return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
+        }
+
+        public static string NormalizeSystemToNlmXml(Config config, XmlDocument xml)
+        {
+            return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
         }
 
         public static XmlReader GetXmlReader(string inputFileName)
@@ -202,25 +148,37 @@ namespace ProcessingTools.Base
             readXml.PreserveWhitespace = true;
             try
             {
-                using (FileStream stream = new FileStream(inputFileName, FileMode.Open))
+                XmlReaderSettings readerSettings = new XmlReaderSettings();
+                readerSettings.IgnoreWhitespace = false;
+                readerSettings.DtdProcessing = DtdProcessing.Ignore;
+
+                FileStream stream = null;
+                XmlReader reader = null;
+                try
                 {
-                    XmlReaderSettings readerSettings = new XmlReaderSettings();
-                    readerSettings.IgnoreWhitespace = false;
-                    readerSettings.DtdProcessing = DtdProcessing.Ignore;
-                    using (XmlReader reader = XmlTextReader.Create(stream, readerSettings))
+                    stream = new FileStream(inputFileName, FileMode.Open);
+                    reader = XmlTextReader.Create(stream, readerSettings);
+
+                    readXml.Load(reader);
+                    this.XmlDocument = readXml;
+                }
+                finally
+                {
+                    // Just close all open streams and readers
+                    try
                     {
-                        try
-                        {
-                            readXml.Load(reader);
-                            this.XmlDocument = readXml;
-                        }
-                        finally
-                        {
-                            reader.Dispose();
-                            reader.Close();
-                            stream.Dispose();
-                            stream.Close();
-                        }
+                        reader.Close();
+                    }
+                    catch(Exception)
+                    {
+                    }
+
+                    try
+                    {
+                        stream.Close();
+                    }
+                    catch (Exception)
+                    {
                     }
                 }
             }
@@ -228,7 +186,7 @@ namespace ProcessingTools.Base
             {
                 Alert.Log(
                     "Input file name '{0}' is not a valid XML document.\n" +
-                    "It will be read as text file and will wrapped in basic XML tags.\n\n" +
+                    "It will be read as text file and will be wrapped in basic XML tags.\n\n" +
                     "{1}\n",
                     this.InputFileName,
                     xmlException.Message);
@@ -277,9 +235,25 @@ namespace ProcessingTools.Base
             {
                 if (writer != null)
                 {
-                    writer.Dispose();
                     writer.Close();
                 }
+            }
+        }
+
+        public void NormalizeXmlToSystemXml()
+        {
+            this.Xml = NormalizeNlmToSystemXml(this.Config, this.Xml);
+        }
+
+        public void NormalizeSystemXmlToCurrent()
+        {
+            if (this.Config.NlmStyle)
+            {
+                this.Xml = NormalizeSystemToNlmXml(this.Config, this.Xml);
+            }
+            else
+            {
+                this.Xml = NormalizeNlmToSystemXml(this.Config, this.Xml);
             }
         }
 
@@ -287,10 +261,6 @@ namespace ProcessingTools.Base
         {
             this.InputFileName = inputFileName;
             this.OutputFileName = outputFileName;
-            this.xml = null;
-            this.namespaceManager = ProcessingTools.Config.TaxPubNamespceManager();
-            this.xmlDocument = new XmlDocument(namespaceManager.NameTable);
-            this.xmlDocument.PreserveWhitespace = true;
         }
 
         private string GenerateOutputFileNameBasedOnInputFileName()
@@ -309,19 +279,19 @@ namespace ProcessingTools.Base
                 if (Regex.Match(name, @"\-out(\-\d+)?\Z").Success)
                 {
                     name = Regex.Replace(name, @"\-\d+(?=\Z)", string.Empty);
-                    int i = 1;
+                    int i = 0;
                     do
                     {
-                        fileName = string.Format("{0}\\{1}-{2}{3}", directoryPath, name, i++, extension);
+                        fileName = string.Format("{0}\\{1}-{2}{3}", directoryPath, name, ++i, extension);
                     }
                     while (File.Exists(fileName));
                 }
                 else
                 {
-                    int i = 1;
+                    int i = 0;
                     do
                     {
-                        fileName = string.Format("{0}\\{1}-out-{2}{3}", directoryPath, name, i++, extension);
+                        fileName = string.Format("{0}\\{1}-out-{2}{3}", directoryPath, name, ++i, extension);
                     }
                     while (File.Exists(fileName));
                 }

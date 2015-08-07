@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -70,7 +68,7 @@ namespace ProcessingTools.Base.Taxonomy
         {
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-            return Base.GetStringListOfUniqueXmlNodes(xml, xpath, ProcessingTools.Config.TaxPubNamespceManager());
+            return xml.GetStringListOfUniqueXmlNodes(xpath, ProcessingTools.Config.TaxPubNamespceManager());
         }
 
         public static List<string> ListOfNonShortenedTaxa(XmlNode xml)
@@ -113,7 +111,7 @@ namespace ProcessingTools.Base.Taxonomy
                 newList.Add(taxonName);
             }
 
-            return Base.GetStringListOfUniqueXmlNodes(newList);
+            return newList.GetStringListOfUniqueXmlNodes();
         }
 
         public static List<string> ExtractTaxa(XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
@@ -151,7 +149,7 @@ namespace ProcessingTools.Base.Taxonomy
                 }
                 else
                 {
-                    result = Base.GetStringListOfUniqueXmlNodes(nodeList);
+                    result = nodeList.GetStringListOfUniqueXmlNodes();
                 }
 
                 result.Sort();

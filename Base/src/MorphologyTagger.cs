@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
-    public class MorphologyTagger : Base
+    public class MorphologyTagger : TaggerBase
     {
         private const string TagName = "morphology-part";
 

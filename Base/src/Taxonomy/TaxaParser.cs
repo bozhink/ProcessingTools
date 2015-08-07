@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace ProcessingTools.Base.Taxonomy
 {
-    public class TaxaParser : Base
+    public class TaxaParser : TaggerBase
     {
         private static string[] higherTaxaRanks = 
             {
@@ -60,7 +55,7 @@ namespace ProcessingTools.Base.Taxonomy
         {
         }
 
-        public TaxaParser(Base baseObject)
+        public TaxaParser(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -581,12 +576,11 @@ namespace ProcessingTools.Base.Taxonomy
 
         public void ParseLowerTaxa()
         {
-            this.NormalizeXmlToSystemXml();
             this.ParseXmlStringToXmlDocument();
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
                 {
                     node.InnerXml = ParseLower(node.InnerXml);
                 }
@@ -598,7 +592,7 @@ namespace ProcessingTools.Base.Taxonomy
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(node.InnerXml, "</?i>", string.Empty);
                     string parseBasionym = Regex.Replace(replace, "^.*?<basionym>(.*?)</basionym>.*$", "$1");
@@ -648,14 +642,14 @@ namespace ProcessingTools.Base.Taxonomy
                 }
 
                 // Add @full-name
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
                 {
-                    XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
+                    XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
                     node.Attributes.Append(fullName);
                 }
 
                 // Add missing tags in lower-taxa
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
                 {
                     XmlNode genus = node.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
                     if (genus == null)
@@ -663,13 +657,13 @@ namespace ProcessingTools.Base.Taxonomy
                         XmlNode species = node.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
                         if (species == null)
                         {
-                            XmlElement speciesElement = this.xmlDocument.CreateElement("tn-part");
+                            XmlElement speciesElement = this.XmlDocument.CreateElement("tn-part");
 
-                            XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
+                            XmlAttribute elementType = this.XmlDocument.CreateAttribute("type");
                             elementType.InnerText = "species";
                             speciesElement.Attributes.Append(elementType);
 
-                            XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
+                            XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
                             speciesElement.Attributes.Append(fullName);
 
                             node.PrependChild(speciesElement);
@@ -677,13 +671,13 @@ namespace ProcessingTools.Base.Taxonomy
 
                         // Add genus tag
                         {
-                            XmlElement genusElement = this.xmlDocument.CreateElement("tn-part");
+                            XmlElement genusElement = this.XmlDocument.CreateElement("tn-part");
 
-                            XmlAttribute elementType = this.xmlDocument.CreateAttribute("type");
+                            XmlAttribute elementType = this.XmlDocument.CreateAttribute("type");
                             elementType.InnerText = "genus";
                             genusElement.Attributes.Append(elementType);
 
-                            XmlAttribute fullName = this.xmlDocument.CreateAttribute("full-name");
+                            XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
                             genusElement.Attributes.Append(fullName);
 
                             node.PrependChild(genusElement);
@@ -697,12 +691,12 @@ namespace ProcessingTools.Base.Taxonomy
             }
 
             // Remove wrapping i around tn[tn-part[@type='subgenus']]
-            this.xml = Regex.Replace(this.xmlDocument.OuterXml, @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>", "$1");
+            this.XmlDocument.InnerXml = Regex.Replace(
+                this.XmlDocument.InnerXml,
+                @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>",
+                "$1");
 
-            if (this.Config.NlmStyle)
-            {
-                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
-            }
+            this.ParseXmlDocumentToXmlString();
         }
 
         /*
@@ -724,43 +718,41 @@ namespace ProcessingTools.Base.Taxonomy
             bool parseBySuffix = false,
             bool parseAboveGenus = false)
         {
-            this.xml = Base.NormalizeNlmToSystemXml(this.Config, this.xml);
-
             this.ParseXmlStringToXmlDocument();
 
             if (parseWithDatabaseXmlFile)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaWithLocalDatabase(this.Config.rankListXmlFilePath, this.xmlDocument, this.Config.NlmStyle);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaWithLocalDatabase(this.Config.rankListXmlFilePath, this.XmlDocument, this.Config.NlmStyle);
             }
 
             if (parseWithAphiaApi)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaWithAphiaApi(this.xmlDocument);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaWithAphiaApi(this.XmlDocument);
             }
 
             if (parseWithCoLApi)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaWithCoLApi(this.xmlDocument);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaWithCoLApi(this.XmlDocument);
             }
 
             if (parseWithGbifApi)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaWithGbifApi(this.xmlDocument);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaWithGbifApi(this.XmlDocument);
             }
 
             if (parseBySuffix)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaBySuffix(this.xmlDocument, this.Config.NlmStyle);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaBySuffix(this.XmlDocument, this.Config.NlmStyle);
             }
 
             if (parseAboveGenus)
             {
-                this.xmlDocument = TaxaParser.ParseHigherTaxaWithAboveGenus(this.xmlDocument);
+                this.XmlDocument = TaxaParser.ParseHigherTaxaWithAboveGenus(this.XmlDocument);
             }
 
             // Some debug information
             {
-                List<string> stringList = ExtractUniqueHigherTaxa(this.xmlDocument);
+                List<string> stringList = ExtractUniqueHigherTaxa(this.XmlDocument);
                 if (stringList.Count > 0)
                 {
                     Alert.Log("\nNon-parsed taxa:");
@@ -773,23 +765,18 @@ namespace ProcessingTools.Base.Taxonomy
                 }
             }
 
-            this.xml = this.xmlDocument.OuterXml;
-
-            if (this.Config.NlmStyle)
-            {
-                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
-            }
+            this.ParseXmlDocumentToXmlString();
         }
 
         public void UnSplitAllTaxa()
         {
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode node in this.xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", this.NamespaceManager))
             {
                 node.InnerXml = UnSplitTaxa(node.InnerXml);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         public class TaxonNamePart

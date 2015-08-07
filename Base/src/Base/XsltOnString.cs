@@ -98,12 +98,7 @@ namespace ProcessingTools.Base
                     if (streamReader != null)
                     {
                         result = streamReader.ReadToEnd();
-                        streamReader.Dispose();
-                        streamReader.Close();
                     }
-
-                    stream.Dispose();
-                    stream.Close();
                 }
             }
 

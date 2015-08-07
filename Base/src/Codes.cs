@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -14,7 +11,7 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class Codes : Base
+    public class Codes : TaggerBase
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
 
@@ -25,7 +22,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public Codes(Base baseObject)
+        public Codes(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -120,7 +117,7 @@ namespace ProcessingTools.Base
              */
             {
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
-                foreach (XmlNode nestedSpecimenCodesNode in this.xmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
+                foreach (XmlNode nestedSpecimenCodesNode in this.XmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
                 {
                     Alert.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
@@ -136,10 +133,10 @@ namespace ProcessingTools.Base
                 List<string> janzenSpecimenCodes = new List<string>();
 
                 Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
-                janzenSpecimenCodes.AddRange(GetMatchesInXmlText(this.xmlDocument, srnpCodes, false));
+                janzenSpecimenCodes.AddRange(this.XmlDocument.GetMatchesInXmlText(srnpCodes, false));
 
                 Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
-                janzenSpecimenCodes.AddRange(GetMatchesInXmlText(this.xmlDocument, dhjparCodes, false));
+                janzenSpecimenCodes.AddRange(this.XmlDocument.GetMatchesInXmlText(dhjparCodes, false));
 
                 if (janzenSpecimenCodes.Count > 0)
                 {
@@ -182,10 +179,8 @@ namespace ProcessingTools.Base
             // FMNH 21077
             // 4-digit individual code including the notion “Baur” (e.g., “Baur 2410”); see doi: 10.3897/zookeys.514.9910
             {
-                List<string> prefixNumericSpecimenCodes = new List<string>();
-
                 Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|HEID|WAG|P|ZMB|SMF|ZUTC(?: Iso\.)?|PCGMK|IRIPP Iso\-|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
-                prefixNumericSpecimenCodes = GetMatchesInXmlText(this.xmlDocument, prefixNumericCodes);
+                List<string> prefixNumericSpecimenCodes = this.XmlDocument.GetMatchesInXmlText(prefixNumericCodes);
 
                 prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
 
@@ -214,7 +209,7 @@ namespace ProcessingTools.Base
             replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
 
             string xpath = string.Format(xpathTemplate, tag.Name);
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
@@ -225,7 +220,7 @@ namespace ProcessingTools.Base
 
                 try
                 {
-                    XmlNode testNode = this.xmlDocument.CreateElement("test-node");
+                    XmlNode testNode = this.XmlDocument.CreateElement("test-node");
                     testNode.InnerXml = replace;
                 }
                 catch (Exception e)
@@ -252,9 +247,9 @@ namespace ProcessingTools.Base
             List<string> result = new List<string>();
 
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(this.xml);
+            xmlDoc.LoadXml(this.Xml);
             XmlNodeList institutionalCodesXmlNodes = xmlDoc.SelectNodes("//institutionalCode", this.NamespaceManager);
-            List<string> institutionalCodes = GetStringListOfUniqueXmlNodeContent(institutionalCodesXmlNodes);
+            List<string> institutionalCodes = institutionalCodesXmlNodes.GetStringListOfUniqueXmlNodeContent();
             foreach (string institutionalCode in institutionalCodes)
             {
                 /*
@@ -278,7 +273,7 @@ namespace ProcessingTools.Base
         private List<string> ExtractPotentialSpecimenCodes(string codePattern)
         {
             XmlDocument cleanedXmlDocument = new XmlDocument();
-            cleanedXmlDocument.LoadXml(this.xml);
+            cleanedXmlDocument.LoadXml(this.Xml);
             cleanedXmlDocument.InnerXml = Regex.Replace(
                 cleanedXmlDocument.InnerXml,
                 @"(?<=</xref>)\s*:\s*" + codePattern,

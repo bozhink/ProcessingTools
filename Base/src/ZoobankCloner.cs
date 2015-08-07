@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace ProcessingTools.Base.ZooBank
 {
-    public class ZoobankCloner : Base
+    public class ZoobankCloner : TaggerBase
     {
         public const string ZooBankPrefix = "http://zoobank.org/";
         private string nlmXml;
@@ -21,36 +17,19 @@ namespace ProcessingTools.Base.ZooBank
         public ZoobankCloner(string xmlContent)
             : base(xmlContent)
         {
-            this.xml = xmlContent;
-            this.xmlDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-
             this.nlmXml = string.Empty;
             this.nlmDocument = new XmlDocument();
             this.nlmDocument.PreserveWhitespace = true;
-            try
-            {
-                this.xmlDocument.LoadXml(this.xml);
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
-            }
         }
 
         public ZoobankCloner(string nlmXmlContent, string xmlContent)
             : base(xmlContent)
         {
-            this.xml = xmlContent;
-            this.xmlDocument = new XmlDocument();
-            this.xmlDocument.PreserveWhitespace = true;
-
             this.nlmXml = nlmXmlContent;
             this.nlmDocument = new XmlDocument();
             this.nlmDocument.PreserveWhitespace = true;
             try
             {
-                this.xmlDocument.LoadXml(this.xml);
                 this.nlmDocument.LoadXml(this.nlmXml);
             }
             catch (Exception e)
@@ -61,12 +40,10 @@ namespace ProcessingTools.Base.ZooBank
 
         public void Clone()
         {
-            XmlNamespaceManager xmlNamespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
             this.nlmXml = Regex.Replace(this.nlmXml, @"\s*<!DOCTYPE [^>]*>", string.Empty);
 
             try
             {
-                this.xmlDocument.LoadXml(this.xml);
                 this.nlmDocument.LoadXml(this.nlmXml);
             }
             catch (Exception e)
@@ -74,20 +51,85 @@ namespace ProcessingTools.Base.ZooBank
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 51);
             }
 
-            XmlNodeList nlmNodeList, nodeList;
+            this.ParseXmlStringToXmlDocument();
 
+            this.CloneTaxonomicActsLsid();
+            this.CloneArticleLsid();
+            this.CloneAuthorsLsid();
+
+            this.ParseXmlDocumentToXmlString();
+        }
+
+        private void CloneAuthorsLsid()
+        {
+            Alert.Log("Author(s):");
+            try
+            {
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes("/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']", this.NamespaceManager);
+                XmlNodeList nlmNodeList = this.nlmDocument.SelectNodes("/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']", this.NamespaceManager);
+                if (nlmNodeList.Count == nodeList.Count)
+                {
+                    for (int i = 0; i < nodeList.Count; i++)
+                    {
+                        nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
+                        Alert.Log(nodeList[i].InnerXml);
+                    }
+
+                    Alert.Log();
+                }
+                else
+                {
+                    Alert.Log("Number of ZooBank uri tags in these files does not match.");
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+        }
+
+        private void CloneArticleLsid()
+        {
+            Alert.Log("Reference:");
+            try
+            {
+                XmlNodeList nlmNodeList = this.nlmDocument.SelectNodes("//self-uri", this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes("//self-uri", this.NamespaceManager);
+                if (nlmNodeList.Count == nodeList.Count)
+                {
+                    for (int i = 0; i < nodeList.Count; i++)
+                    {
+                        nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
+                        Alert.Log(nodeList[i].InnerXml);
+                    }
+
+                    Alert.Log();
+                }
+                else
+                {
+                    Alert.Log("Number of ZooBank self-uri tags in these files does not match.");
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+        }
+
+        private void CloneTaxonomicActsLsid()
+        {
             Alert.Log("Taxonomic acts:");
             try
             {
-                nlmNodeList = this.nlmDocument.SelectNodes("//tp:taxon-treatment/tp:nomenclature", xmlNamespaceManager);
-                nodeList = this.xmlDocument.SelectNodes("//tp:taxon-treatment/tp:nomenclature", xmlNamespaceManager);
+                XmlNodeList nlmNodeList = this.nlmDocument.SelectNodes("//tp:taxon-treatment/tp:nomenclature", this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tp:taxon-treatment/tp:nomenclature", this.NamespaceManager);
 
                 if (nlmNodeList.Count == nodeList.Count)
                 {
                     for (int i = 0; i < nodeList.Count; i++)
                     {
-                        XmlNodeList objecIdList = nodeList[i].SelectNodes(".//object-id[@content-type='zoobank']", xmlNamespaceManager);
-                        XmlNodeList nlmObjecIdList = nlmNodeList[i].SelectNodes(".//object-id[@content-type='zoobank']", xmlNamespaceManager);
+                        XmlNodeList objecIdList = nodeList[i].SelectNodes(".//object-id[@content-type='zoobank']", this.NamespaceManager);
+                        XmlNodeList nlmObjecIdList = nlmNodeList[i].SelectNodes(".//object-id[@content-type='zoobank']", this.NamespaceManager);
                         if (objecIdList.Count > 0)
                         {
                             if (objecIdList.Count == nlmObjecIdList.Count)
@@ -116,58 +158,6 @@ namespace ProcessingTools.Base.ZooBank
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            Alert.Log("Reference:");
-            try
-            {
-                nlmNodeList = this.nlmDocument.SelectNodes("//self-uri", xmlNamespaceManager);
-                nodeList = this.xmlDocument.SelectNodes("//self-uri", xmlNamespaceManager);
-                if (nlmNodeList.Count == nodeList.Count)
-                {
-                    for (int i = 0; i < nodeList.Count; i++)
-                    {
-                        nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
-                        Alert.Log(nodeList[i].InnerXml);
-                    }
-
-                    Alert.Log();
-                }
-                else
-                {
-                    Alert.Log("Number of ZooBank self-uri tags in these files does not match.");
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
-            }
-
-            Alert.Log("Author(s):");
-            try
-            {
-                nodeList = this.xmlDocument.SelectNodes("/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']", xmlNamespaceManager);
-                nlmNodeList = this.nlmDocument.SelectNodes("/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']", xmlNamespaceManager);
-                if (nlmNodeList.Count == nodeList.Count)
-                {
-                    for (int i = 0; i < nodeList.Count; i++)
-                    {
-                        nodeList[i].InnerXml = nlmNodeList[i].InnerXml;
-                        Alert.Log(nodeList[i].InnerXml);
-                    }
-
-                    Alert.Log();
-                }
-                else
-                {
-                    Alert.Log("Number of ZooBank uri tags in these files does not match.");
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
-            }
-
-            this.xml = this.xmlDocument.OuterXml;
         }
 
         public void CloneJsonToXml(string jsonString)
@@ -200,7 +190,7 @@ namespace ProcessingTools.Base.ZooBank
                 // Article lsid
                 {
                     string articleLsid = ZooBankPrefix + z.referenceuuid;
-                    XmlNode selfUri = xmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", NamespaceManager);
+                    XmlNode selfUri = this.XmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", this.NamespaceManager);
                     if (selfUri == null)
                     {
                         Alert.Log("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
@@ -243,7 +233,7 @@ namespace ProcessingTools.Base.ZooBank
                                 break;
                         }
 
-                        XmlNode objectId = this.xmlDocument.SelectSingleNode(xpath, NamespaceManager);
+                        XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
                         if (objectId != null)
                         {
                             objectId.InnerText = ZooBankPrefix + na.tnuuuid;
@@ -256,7 +246,7 @@ namespace ProcessingTools.Base.ZooBank
                     Alert.Log("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
                 }
 
-                this.xml = this.xmlDocument.OuterXml;
+                this.ParseXmlDocumentToXmlString();
             }
             catch (Exception e)
             {

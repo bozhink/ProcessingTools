@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace ProcessingTools.Base.Taxonomy
 {
-    public class TaxaTagger : Base
+    public class TaxaTagger : TaggerBase
     {
         public const string HigherTaxaMatchPattern = "\\b([A-Z](?i)[a-z]*(morphae?|mida|toda|ideae|oida|genea|formes|ales|lifera|ieae|indeae|eriae|idea|aceae|oidea|oidae|inae|ini|ina|anae|ineae|acea|oideae|mycota|mycotina|mycetes|mycetidae|phyta|phytina|opsida|phyceae|idae|phycidae|ptera|poda|phaga|itae|odea|alia|ntia|osauria))\\b";
         private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
@@ -28,98 +25,106 @@ namespace ProcessingTools.Base.Taxonomy
         {
         }
 
-        public TaxaTagger(Base baseObject)
+        public TaxaTagger(TaggerBase baseObject)
             : base(baseObject)
         {
         }
 
-        public static string TagItalics(string nodeXml, bool tagInfraspecific = false)
+        public static string TagItalics(string nodeXml)
         {
+            string result = nodeXml;
+
             // Genus (Subgenus)? species subspecies?
-            string replace = Regex.Replace(nodeXml, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*)(?=</i>)", LowerRaxaReplacePattern);
-            replace = Regex.Replace(replace, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)", LowerRaxaReplacePattern);
-            replace = Regex.Replace(replace, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*)(?=</i>)", LowerRaxaReplacePattern);
-            replace = Regex.Replace(replace, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)", LowerRaxaReplacePattern);
-            replace = Regex.Replace(replace, @"(?<=<i>)([A-Z\.-]{3,30})(?=</i>)", LowerRaxaReplacePattern);
+            result = Regex.Replace(result, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*)(?=</i>)", LowerRaxaReplacePattern);
+            result = Regex.Replace(result, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)", LowerRaxaReplacePattern);
+            result = Regex.Replace(result, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*)(?=</i>)", LowerRaxaReplacePattern);
+            result = Regex.Replace(result, @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)", LowerRaxaReplacePattern);
+            result = Regex.Replace(result, @"(?<=<i>)([A-Z\.-]{3,30})(?=</i>)", LowerRaxaReplacePattern);
 
-            replace = Regex.Replace(replace, @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>", "$1‘$2’ $4$3");
+            result = Regex.Replace(result, @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>", "$1‘$2’ $4$3");
 
-            if (tagInfraspecific)
+
+            result = TagInfraspecificTaxa(result);
+
+            return result;
+        }
+
+        public static string TagInfraspecificTaxa(string nodeXml)
+        {
+            string replace = nodeXml;
+            string infraspecificPattern;
+
+            // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
+            infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
+            replace = Regex.Replace(
+                replace,
+                infraspecificPattern,
+                @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
+
+            // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
             {
-                string infraspecificPattern;
+                const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
-                // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-                infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
-                replace = Regex.Replace(
-                    replace,
-                    infraspecificPattern,
-                    @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
-
-                // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
+                infraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + Subpattern;
+                for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
                 {
-                    const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
-
-                    infraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + Subpattern;
-                    for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
-                    {
-                        replace = Regex.Replace(
-                            replace,
-                            infraspecificPattern,
-                            @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
-                    }
-
-                    replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
-
-                    infraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + Subpattern;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
-                        {
-                            replace = Regex.Replace(
-                                replace,
-                                infraspecificPattern,
-                                " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
-                        }
-                    }
-
-                    replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
-                }
-
-                // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
-                // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-                {
-                    infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|f|forma?|st|r|sf|cf|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
-                    for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
-                    {
-                        replace = Regex.Replace(
-                            replace,
-                            infraspecificPattern,
-                            @"<tn type=""lower""><basionym>$1</basionym> <basionym-authority>$2</basionym-authority> <infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>");
-                    }
-
                     replace = Regex.Replace(
                         replace,
-                        @"(?<=</infraspecific>\s*\)?)</tn>\s*<i>([A-Za-z\.\s-]+)</i>",
-                        " <species>$1</species></tn>");
+                        infraspecificPattern,
+                        @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
+                }
 
-                    infraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|subspec|f|fo|forma?|st|r|sf|cf|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
-                    for (int i = 0; i < 4; i++)
+                replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+
+                infraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + Subpattern;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
                     {
-                        for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
-                        {
-                            replace = Regex.Replace(
-                                replace,
-                                infraspecificPattern,
-                                " <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$3</infraspecific></tn>");
-                        }
+                        replace = Regex.Replace(
+                            replace,
+                            infraspecificPattern,
+                            " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
                     }
                 }
 
-                // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
-                replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z\.-]+)\s+([a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
-
-                replace = Regex.Replace(replace, " <([a-z-]+)?authority></([a-z-]+)?authority>", string.Empty);
+                replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
             }
+
+            // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
+            // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
+            {
+                infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|f|forma?|st|r|sf|cf|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
+                {
+                    replace = Regex.Replace(
+                        replace,
+                        infraspecificPattern,
+                        @"<tn type=""lower""><basionym>$1</basionym> <basionym-authority>$2</basionym-authority> <infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>");
+                }
+
+                replace = Regex.Replace(
+                    replace,
+                    @"(?<=</infraspecific>\s*\)?)</tn>\s*<i>([A-Za-z\.\s-]+)</i>",
+                    " <species>$1</species></tn>");
+
+                infraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|subspec|f|fo|forma?|st|r|sf|cf|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                for (int i = 0; i < 4; i++)
+                {
+                    for (Match m = Regex.Match(replace, infraspecificPattern); m.Success; m = m.NextMatch())
+                    {
+                        replace = Regex.Replace(
+                            replace,
+                            infraspecificPattern,
+                            " <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$3</infraspecific></tn>");
+                    }
+                }
+            }
+
+            // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
+            replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z\.-]+)\s+([a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
+
+            replace = Regex.Replace(replace, " <([a-z-]+)?authority></([a-z-]+)?authority>", string.Empty);
 
             return replace;
         }
@@ -150,7 +155,6 @@ namespace ProcessingTools.Base.Taxonomy
                 }
             }
 
-            this.NormalizeXmlToSystemXml();
             this.ParseXmlStringToXmlDocument();
 
             /*
@@ -158,16 +162,34 @@ namespace ProcessingTools.Base.Taxonomy
              */
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
-                    node.InnerXml = TaxaTagger.TagItalics(node.InnerXml, tagBasionym);
+                    node.InnerXml = TaxaTagger.TagItalics(node.InnerXml);
                 }
 
                 if (!this.Config.NlmStyle && !this.Config.TagWholeDocument)
                 {
-                    foreach (XmlNode node in this.xmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
+                    foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
                     {
-                        node.InnerXml = TaxaTagger.TagItalics(node.InnerXml, tagBasionym);
+                        node.InnerXml = TaxaTagger.TagItalics(node.InnerXml);
+                    }
+                }
+
+                this.RemoveTaxaInWrongPlaces();
+
+                if (tagBasionym)
+                {
+                    foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+                    {
+                        node.InnerXml = TaxaTagger.TagInfraspecificTaxa(node.InnerXml);
+                    }
+
+                    if (!this.Config.NlmStyle && !this.Config.TagWholeDocument)
+                    {
+                        foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
+                        {
+                            node.InnerXml = TaxaTagger.TagInfraspecificTaxa(node.InnerXml);
+                        }
                     }
                 }
             }
@@ -177,28 +199,34 @@ namespace ProcessingTools.Base.Taxonomy
             }
 
             this.ParseXmlDocumentToXmlString();
-            this.NormalizeSystemXmlToCurrent();
         }
 
         public void TagHigherTaxa()
         {
-            this.NormalizeXmlToSystemXml();
             this.ParseXmlStringToXmlDocument();
 
             try
             {
-                List<string> taxaNames = new List<string>();
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
-                taxaNames = GetMatchesInXmlText(this.xmlDocument, matchHigherTaxa, true);
+
+                IEnumerable<string> taxaNames = GetNonTaggedTaxa(matchHigherTaxa);
+
+                Alert.Log(taxaNames.Count());
+
+                taxaNames = taxaNames.ClearListWithXDocument(this.GetBlackList());
+
+                Alert.Log(taxaNames.Count());
+
+                ////IEnumerable<string> whiteListedTaxa = this.TextWords.SelectListWithXDocument(this.GetWhiteList());
+                ////foreach (string taxon in whiteListedTaxa)
+                ////{
+                ////    Alert.Log(taxon);
+                ////}
 
                 // TODO: Clear taxaNames by black List
 
                 TagContent tag = new TagContent("tn", @" type=""higher""");
-                foreach (string taxon in taxaNames)
-                {
-                    // Alert.Log(taxon);
-                    TagTextInXmlDocument(taxon, tag, HigherTaxaXPathTemplate, false, true);
-                }
+                TagTextInXmlDocument(taxaNames, tag, HigherTaxaXPathTemplate, false, true);
             }
             catch (Exception e)
             {
@@ -206,14 +234,20 @@ namespace ProcessingTools.Base.Taxonomy
             }
 
             this.ApplyWhiteList();
+            this.RemoveTaxaInWrongPlaces();
 
             this.ParseXmlDocumentToXmlString();
-            this.NormalizeSystemXmlToCurrent();
+        }
+
+        private IEnumerable<string> GetNonTaggedTaxa(Regex matchTaxa)
+        {
+            return from item in this.XmlDocument.GetMatchesInXmlText(matchTaxa, true)
+                   where this.XmlDocument.SelectNodes("//tn[contains(string(.),'" + item + "')]", this.NamespaceManager).Count == 0
+                   select item;
         }
 
         public void UntagTaxa()
         {
-            this.NormalizeXmlToSystemXml();
             this.ParseXmlStringToXmlDocument();
 
             try
@@ -222,7 +256,7 @@ namespace ProcessingTools.Base.Taxonomy
 
                 this.ApplyBlackList();
 
-                this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, @"<tn type=""higher"">([a-z]+)</tn>", "$1");
+                this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"<tn type=""higher"">([a-z]+)</tn>", "$1");
             }
             catch (Exception e)
             {
@@ -230,19 +264,19 @@ namespace ProcessingTools.Base.Taxonomy
             }
 
             this.ParseXmlDocumentToXmlString();
-            this.NormalizeSystemXmlToCurrent();
         }
 
         public void FormatTreatments()
         {
             this.ParseXmlStringToXmlDocument();
+
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
                 {
                     if (node["title"] != null)
                     {
-                        node["title"].InnerXml = Regex.Replace(node["title"].InnerXml, "</?italic>", string.Empty);
+                        node["title"].InnerXml = Regex.Replace(node["title"].InnerXml, "</?i>", string.Empty);
                         node["title"].InnerXml = Regex.Replace(node["title"].InnerXml, "\\s+", " ");
                     }
 
@@ -255,14 +289,14 @@ namespace ProcessingTools.Base.Taxonomy
                      */
                     replace = Regex.Replace(
                         replace,
-                        @"(\s*)<title[^>]*>([^<>]+?)\s*(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</title>",
+                        @"(\s*)<title[^>]*>([^<>]+?)\s*(<tn [^>]*>.*?</tn>)\s*([^<>]*)</title>",
                         "$1<label>$2</label>$1$3$1<tp:taxon-authority>$4</tp:taxon-authority>");
                     /*
                      * Extract Authority and Status tags if there is no label
                      */
                     replace = Regex.Replace(
                         replace,
-                        @"(\s*)<title[^>]*>(<tp:taxon-name [^>]*>.*?</tp:taxon-name>)\s*([^<>]*)</title>",
+                        @"(\s*)<title[^>]*>(<tn [^>]*>.*?</tn>)\s*([^<>]*)</title>",
                         "$1$2$1<tp:taxon-authority>$3</tp:taxon-authority>");
 
                     replace = Regex.Replace(replace, @"\s*<tp:taxon-authority>\s*</tp:taxon-authority>", string.Empty);
@@ -271,17 +305,17 @@ namespace ProcessingTools.Base.Taxonomy
                      */
                     replace = Regex.Replace(
                         replace,
-                        @"(?<=</label>)(\s*)(<tp:taxon-name [^>]*>)(<tp:taxon-name-part[\s\S]*?)(</tp:taxon-name>)",
+                        @"(?<=</label>)(\s*)(<tn [^>]*>)(<tn-part[\s\S]*?)(</tn>)",
                         "$1$2$1    $3$1$4");
                     replace = Regex.Replace(
                         replace,
-                        @"^(\s*)(<tp:taxon-name [^>]*>)(<tp:taxon-name-part[\s\S]*?)(</tp:taxon-name>)",
+                        @"^(\s*)(<tn [^>]*>)(<tn-part[\s\S]*?)(</tn>)",
                         "$1$2$1    $3$1$4");
                     for (int i = 0; i < 8; i++)
                     {
                         replace = Regex.Replace(
                             replace,
-                            @"(\n\s*)(\(?<tp:taxon-name-part [^>]*>.*?</tp:taxon-name-part>\)?) (\(?<tp:taxon-name-part [^>]*>.*?</tp:taxon-name-part>\)?)",
+                            @"(\n\s*)(\(?<tn-part [^>]*>.*?</tn-part>\)?) (\(?<tn-part [^>]*>.*?</tn-part>\)?)",
                             "$1$2$1$3");
                     }
 
@@ -304,36 +338,37 @@ namespace ProcessingTools.Base.Taxonomy
 
                     if (node["object-id"] != null)
                     {
-                        if (node["tp:taxon-name"] != null)
+                        if (node["tn"] != null)
                         {
                             foreach (XmlNode objectId in node.SelectNodes("./object-id", this.NamespaceManager))
                             {
-                                node["tp:taxon-name"].AppendChild(objectId);
+                                node["tn"].AppendChild(objectId);
                             }
 
-                            node["tp:taxon-name"].InnerXml = Regex.Replace(node["tp:taxon-name"].InnerXml, "(?=<object-id)", "    ");
+                            node["tn"].InnerXml = Regex.Replace(node["tn"].InnerXml, "(?=<object-id)", "    ");
                         }
 
                         node.InnerXml = Regex.Replace(node.InnerXml, @"\n\s*\n", "\n");
                     }
                 }
 
-                this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, @"(\s*)(    <object-id .*?</object-id>)(</tp:taxon-name>)", "$1$2$1$3");
+                this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(\s*)(    <object-id .*?</object-id>)(</tn>)", "$1$2$1$3");
             }
             catch (Exception e)
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithAphia()
         {
             this.ParseXmlStringToXmlDocument();
+
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
+                List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -351,9 +386,9 @@ namespace ProcessingTools.Base.Taxonomy
 
                     XmlDocument response = Net.SearchAphia(genus);
 
-                    List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/family", NamespaceManager);
-                    List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/order", NamespaceManager);
-                    List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "//return/item[string(genus)='" + genus + "']/kingdom", NamespaceManager);
+                    List<string> responseFamily = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/family", NamespaceManager);
+                    List<string> responseOrder = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/order", NamespaceManager);
+                    List<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/kingdom", NamespaceManager);
 
                     this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
                     this.TreatmentMetaReplaceOrders(responseOrder, genus);
@@ -365,15 +400,16 @@ namespace ProcessingTools.Base.Taxonomy
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithGbif()
         {
             this.ParseXmlStringToXmlDocument();
+
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
+                List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -441,15 +477,16 @@ namespace ProcessingTools.Base.Taxonomy
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithCoL()
         {
             this.ParseXmlStringToXmlDocument();
+
             try
             {
-                List<string> genusList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, SelectTreatmentGeneraXPathString, this.NamespaceManager);
+                List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 bool delay = false;
                 foreach (string genus in genusList)
@@ -469,9 +506,9 @@ namespace ProcessingTools.Base.Taxonomy
 
                     if (response != null)
                     {
-                        List<string> responseFamily = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", NamespaceManager);
-                        List<string> responseOrder = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", NamespaceManager);
-                        List<string> responseKingdom = Base.GetStringListOfUniqueXmlNodes(response, "/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", NamespaceManager);
+                        List<string> responseFamily = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", NamespaceManager);
+                        List<string> responseOrder = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", NamespaceManager);
+                        List<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", NamespaceManager);
 
                         this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
                         this.TreatmentMetaReplaceOrders(responseOrder, genus);
@@ -504,14 +541,12 @@ namespace ProcessingTools.Base.Taxonomy
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         // Flora-like tagging methods
         public void PerformFloraReplace(string xmlTemplate)
         {
-            this.NormalizeXmlToSystemXml();
-
             this.ParseXmlStringToXmlDocument();
 
             XmlDocument template = new XmlDocument();
@@ -520,7 +555,8 @@ namespace ProcessingTools.Base.Taxonomy
             XmlNode root = template.DocumentElement;
             Alert.Log(root.ChildNodes.Count);
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
+
             for (int i = root.ChildNodes.Count - 1; i >= 0; i--)
             {
                 XmlNode taxon = root.ChildNodes.Item(i);
@@ -538,8 +574,8 @@ namespace ProcessingTools.Base.Taxonomy
 
                 pattern = "(?i)" + pattern;
 
-                this.xml = Regex.Replace(
-                    this.xml,
+                this.Xml = Regex.Replace(
+                    this.Xml,
                     "(?<![a-z-])(?<!<[^>]+=\"[^>]*)(?<!<tn>)(" + pattern + ")(?![A-Za-z])(?!</tn\\W)(?!</tp:)(?!</name>)",
                     "<tn>$1</tn>");
             }
@@ -604,11 +640,6 @@ namespace ProcessingTools.Base.Taxonomy
             ////    }
             ////    xml = xmlDocument.OuterXml;
             ////}
-
-            if (this.Config.NlmStyle)
-            {
-                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
-            }
         }
 
         private void RemoveFalseTaxaOfPersonNames()
@@ -618,7 +649,7 @@ namespace ProcessingTools.Base.Taxonomy
                 List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
 
                 char[] charsToSplit = new char[] { ' ', ',', ';' };
-                List<string> personNameParts = this.xmlDocument.SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
+                List<string> personNameParts = this.XmlDocument.SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                     .Cast<XmlNode>().Select(s => s.InnerText).Distinct().ToList();
 
                 foreach (string taxon in firstWordTaxaList)
@@ -634,7 +665,7 @@ namespace ProcessingTools.Base.Taxonomy
                         {
                             if (item.IndexOf('.') < 0)
                             {
-                                this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                                this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
                             }
                         }
                     }
@@ -646,14 +677,35 @@ namespace ProcessingTools.Base.Taxonomy
             }
         }
 
+        private void RemoveTaxaInWrongPlaces()
+        {
+            string xpath = "tn[.//tn] | a[.//tn] | ext-link[.//tn] | xref[.//tn] | article/front/notes/sec[.//tn] | tp:treatment-meta/kwd-group/kwd/named-content[.//tn] | *[@object_id='82'][.//tn] | *[@id='41'][.//tn] | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[.//tn]";
+            Regex matchTaxonTag = new Regex(@"</?tn[^>]*>");
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            {
+                node.InnerXml = matchTaxonTag.Replace(node.InnerXml, string.Empty);
+            }
+        }
+
+        private XElement GetWhiteList()
+        {
+            return XElement.Load(this.Config.whiteListXmlFilePath);
+        }
+
+        private XElement GetBlackList()
+        {
+            return XElement.Load(this.Config.blackListXmlFilePath);
+        }
+
         private void ApplyBlackList()
         {
             try
             {
                 List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
 
-                XElement blackList = XElement.Load(this.Config.blackListXmlFilePath);
+                XElement blackList = GetBlackList();
 
+                string xml = this.XmlDocument.InnerXml;
                 foreach (string taxon in firstWordTaxaList)
                 {
                     IEnumerable<string> queryResult = from item in blackList.Elements()
@@ -661,9 +713,11 @@ namespace ProcessingTools.Base.Taxonomy
                                                       select item.Value;
                     foreach (string item in queryResult)
                     {
-                        this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
+                        xml = Regex.Replace(xml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
                     }
                 }
+
+                this.XmlDocument.InnerXml = xml;
             }
             catch (Exception e)
             {
@@ -673,7 +727,7 @@ namespace ProcessingTools.Base.Taxonomy
 
         private List<string> GetFirstWordOfTaxaNames()
         {
-            List<string> firstWordTaxaList = Base.GetStringListOfUniqueXmlNodes(this.xmlDocument, "//tn", this.NamespaceManager)
+            List<string> firstWordTaxaList = this.XmlDocument.GetStringListOfUniqueXmlNodes("//tn", this.NamespaceManager)
                 .Cast<string>().Select(c => Regex.Match(c, @"\w+\.|\w+\b").Value).Distinct().ToList();
             return firstWordTaxaList;
         }
@@ -685,9 +739,13 @@ namespace ProcessingTools.Base.Taxonomy
                 XElement whiteList = XElement.Load(this.Config.whiteListXmlFilePath);
                 IEnumerable<string> whiteListItems = from item in whiteList.Elements()
                                                      select item.Value;
+
                 foreach (string item in whiteListItems)
                 {
-                    xmlDocument.InnerXml = Regex.Replace(xmlDocument.InnerXml, "(?<!<tn [^>]*>)(?<!name [^>]*>)(?<!<[^>]+=\"[^>]*)(?i)\\b(" + item + ")\\b(?!\"\\s?>)(?!</tn)(?!</tp:)", HigherTaxaReplacePattern);
+                    this.XmlDocument.InnerXml = Regex.Replace(
+                        this.XmlDocument.InnerXml,
+                        "(?<!<tn [^>]*>)(?<!name [^>]*>)(?<!<[^>]+=\"[^>]*)(?i)\\b(" + item + ")\\b(?!\"\\s?>)(?!</tn)(?!</tp:)(?!</named-content></kwd>)",
+                        HigherTaxaReplacePattern);
                 }
             }
             catch (Exception e)
@@ -701,7 +759,7 @@ namespace ProcessingTools.Base.Taxonomy
             if (responseKingdom.Count == 1)
             {
                 string kingdom = responseKingdom[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='kingdom']", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='kingdom']", this.NamespaceManager))
                 {
                     node.InnerXml = kingdom;
                 }
@@ -723,7 +781,7 @@ namespace ProcessingTools.Base.Taxonomy
             if (responseOrder.Count == 1)
             {
                 string order = responseOrder[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order']", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order']", this.NamespaceManager))
                 {
                     node.InnerText = order;
                 }
@@ -745,7 +803,7 @@ namespace ProcessingTools.Base.Taxonomy
             if (responseFamily.Count == 1)
             {
                 string family = responseFamily[0];
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family']", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family']", this.NamespaceManager))
                 {
                     node.InnerText = family;
                 }

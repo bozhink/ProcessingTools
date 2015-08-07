@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
-    public class ProductsTagger : Base
+    public class ProductsTagger : TaggerBase
     {
         private const string TagName = "product";
 

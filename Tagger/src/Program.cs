@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using ProcessingTools.Base;
-using ProcessingTools.Base.Taxonomy;
 using ProcessingTools.Base.ZooBank;
 
 namespace ProcessingTools.Tag
@@ -21,7 +17,7 @@ namespace ProcessingTools.Tag
             /*
              * Parse config file
              */
-            config = ConfigBuilder.CreateConfig("C:\\bin\\config.json");
+            config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
             config.NlmStyle = true;
             config.TagWholeDocument = false;
 
@@ -54,7 +50,7 @@ namespace ProcessingTools.Tag
             /*
              * Main processing part
              */
-            FileProcessor fp = new FileProcessor(inputFileName, outputFileName);
+            FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
             Alert.Log(
                 "Input file name: {0}\nOutput file name: {1}\n{2}",
                 fp.InputFileName,
@@ -67,6 +63,7 @@ namespace ProcessingTools.Tag
                 Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
             fp.Read();
+            fp.NormalizeXmlToSystemXml();
 
             InitialFormat(fp);
 
@@ -86,55 +83,14 @@ namespace ProcessingTools.Tag
 
             TagCodes(fp);
 
-            if (nlm)
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.Log("\n\tFormat NLM xml. [obsolete]\n");
-                Base.Format.Nlm.Nlm fpnlm = new Base.Format.Nlm.Nlm(fp.Xml);
-                fpnlm.Format();
-                fp.Xml = fpnlm.Xml;
-                PrintElapsedTime(timer);
-            }
-            else if (html)
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.Log("\n\tFormat Html. [obsolete]\n");
-                Base.Format.Nlm.Html fphtml = new Base.Format.Nlm.Html(fp.Xml);
-                fphtml.Format();
-                fp.Xml = fphtml.Xml;
-                PrintElapsedTime(timer);
-            }
-            else if (normalizeFlag)
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                if (config.NlmStyle)
-                {
-                    Alert.Log("Input Xml will be normalized to NLM syle.");
-                    string xml = fp.Xml;
-                    xml = Base.Base.NormalizeSystemToNlmXml(config, xml);
-                    fp.Xml = xml;
-                }
-                else
-                {
-                    Alert.Log("Input Xml will be normalized to System style.");
-                    string xml = fp.Xml;
-                    xml = Base.Base.NormalizeNlmToSystemXml(config, xml);
-                    fp.Xml = xml;
-                }
-
-                PrintElapsedTime(timer);
-            }
-            else if (zoobank)
+            if (zoobank)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.ZoobankCloneMessage();
                 if (arguments.Count > 2)
                 {
-                    FileProcessor fileProcessorNlm = new FileProcessor(queryFileName, outputFileName);
+                    FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
                     fileProcessorNlm.Read();
                     ZoobankCloner zb = new ZoobankCloner(fileProcessorNlm.Xml, fp.Xml);
                     zb.Clone();
@@ -150,10 +106,9 @@ namespace ProcessingTools.Tag
                 Alert.ZoobankCloneMessage();
                 if (arguments.Count > 2)
                 {
-                    FileProcessor fileProcessorJson = new FileProcessor(queryFileName, outputFileName);
-                    fileProcessorJson.Read();
+                    string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
                     ZoobankCloner zb = new ZoobankCloner(fp.Xml);
-                    zb.CloneJsonToXml(fileProcessorJson.Xml);
+                    zb.CloneJsonToXml(jsonStringContent);
                     fp.Xml = zb.Xml;
                 }
 
@@ -183,12 +138,12 @@ namespace ProcessingTools.Tag
             }
             else if (queryReplace && queryFileName.Length > 0)
             {
-                fp.Xml = Base.QueryReplace.Replace(fp.Xml, queryFileName);
+                fp.Xml = Base.QueryReplace.Replace(config, fp.Xml, queryFileName);
             }
             else if (flora)
             {
-                FileProcessor flp = new FileProcessor(inputFileName, config.floraExtractedTaxaListPath);
-                FileProcessor flpp = new FileProcessor(inputFileName, config.floraExtractTaxaPartsOutputPath);
+                FileProcessor flp = new FileProcessor(config, inputFileName, config.floraExtractedTaxaListPath);
+                FileProcessor flpp = new FileProcessor(config, inputFileName, config.floraExtractTaxaPartsOutputPath);
                 Flora fl = new Flora(config, fp.Xml);
 
                 fl.ExtractTaxa();
@@ -316,7 +271,7 @@ namespace ProcessingTools.Tag
                         Alert.Log("Tagger: InvalidOperationException");
                         Alert.Exit(1);
                     }
-                    catch (System.Xml.XmlException)
+                    catch (XmlException)
                     {
                         Alert.Log("Tagger: XmlException");
                         Alert.Exit(1);
@@ -369,7 +324,7 @@ namespace ProcessingTools.Tag
                         Alert.Log("Tagger: InvalidOperationException trying to tag taxa.");
                         Alert.Exit(1);
                     }
-                    catch (System.Xml.XmlException)
+                    catch (XmlException)
                     {
                         Alert.Log("Tagger: XmlException trying to tag taxa.");
                         Alert.Exit(1);
@@ -387,7 +342,10 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.WriteOutputFileMessage();
+
+                fp.NormalizeSystemXmlToCurrent();
                 fp.Write();
+
                 PrintElapsedTime(timer);
             }
 
@@ -410,9 +368,6 @@ namespace ProcessingTools.Tag
             {
                 inputFileName = args[arguments[0]];
                 outputFileName = null;
-                //outputFileName = System.IO.Path.GetDirectoryName(inputFileName) + "\\"
-                //    + System.IO.Path.GetFileNameWithoutExtension(inputFileName) + "-out"
-                //    + System.IO.Path.GetExtension(inputFileName);
             }
             else if (arguments.Count == 2)
             {

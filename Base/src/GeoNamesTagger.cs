@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
-    public class GeoNamesTagger : Base
+    public class GeoNamesTagger : TaggerBase
     {
         private const string TagName = "geoname";
 

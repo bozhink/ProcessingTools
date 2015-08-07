@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace ProcessingTools
 {
-    public class ConfigBuilder
+    public static class ConfigBuilder
     {
         /// <summary>
         /// This method reads a config Xml file and builds a config object from it.

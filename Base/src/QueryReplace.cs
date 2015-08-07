@@ -12,10 +12,10 @@ namespace ProcessingTools.Base
         /// <param name="textContent">Input string.</param>
         /// <param name="queryFileName">Valid Xml file containing [multiple ]replace instructions.</param>
         /// <returns>Output string after replaces.</returns>
-        public static string Replace(string textContent, string queryFileName)
+        public static string Replace(Config config, string textContent, string queryFileName)
         {
             string text = textContent;
-            FileProcessor queryFileProcessor = new FileProcessor(queryFileName);
+            FileProcessor queryFileProcessor = new FileProcessor(config, queryFileName);
             queryFileProcessor.Read();
             XmlDocument queryXml = queryFileProcessor.XmlDocument;
 

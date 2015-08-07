@@ -1,8 +1,6 @@
-﻿using System.Text.RegularExpressions;
-
-namespace ProcessingTools.Base.ZooBank
+﻿namespace ProcessingTools.Base.ZooBank
 {
-    public class ZooBank : Base
+    public class ZooBank : TaggerBase
     {
 
         public ZooBank(string xml)
@@ -15,15 +13,14 @@ namespace ProcessingTools.Base.ZooBank
         {
         }
 
-        public ZooBank(Base baseObject)
+        public ZooBank(TaggerBase baseObject)
             : base(baseObject)
         {
         }
 
         public void GenerateZooBankNlm()
         {
-            this.xml = XsltOnString.ApplyTransform(this.Config.zoobankNlmXslPath, this.xml);
-            this.xml = Regex.Replace(this.xml, @"(?<=<\?xml version=""1\.0"" encoding=""utf\-8""\?>)", "<!DOCTYPE article PUBLIC \"-//TaxonX//DTD Taxonomic Treatment Publishing DTD v0 20100105//EN\" \"tax-treatment-NS0.dtd\">");
+            this.Xml = XsltOnString.ApplyTransform(this.Config.zoobankNlmXslPath, this.Xml);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ProcessingTools.Tag
 {
@@ -31,8 +30,6 @@ namespace ProcessingTools.Tag
         private static bool flag6 = false;
         private static bool flag7 = false;
         private static bool flag8 = false;
-        private static bool nlm = false;
-        private static bool html = false;
         private static bool zoobank = false;
         private static bool zoobankJson = false;
         private static bool generateZooBankNlm = false;
@@ -51,7 +48,6 @@ namespace ProcessingTools.Tag
         private static bool parseTreatmentMetaWithGbif = false;
         private static bool parseTreatmentMetaWithCol = false;
         private static bool testFlag = false;
-        private static bool normalizeFlag = false;
         private static bool tagEnvironments = false;
         private static bool tagCodes = false;
         private static bool tagQuantities = false;
@@ -97,10 +93,6 @@ namespace ProcessingTools.Tag
                 else if (args[item].CompareTo("--system") == 0)
                 {
                     config.NlmStyle = false;
-                }
-                else if (args[item].CompareTo("--normalize") == 0)
-                {
-                    normalizeFlag = true;
                 }
                 else if (args[item].CompareTo("--test") == 0)
                 {
@@ -252,12 +244,6 @@ namespace ProcessingTools.Tag
                             break;
                         case 'X':
                             queryReplace = true;
-                            break;
-                        case 'N':
-                            nlm = true;
-                            break;
-                        case 'H':
-                            html = true;
                             break;
                         case 'z':
                             zoobank = true;

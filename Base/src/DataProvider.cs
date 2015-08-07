@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class DataProvider : Base, IDataProvider, IDisposable
+    public class DataProvider : TaggerBase, IDataProvider, IDisposable
     {
         private SqlConnection connection;
 
@@ -26,6 +25,14 @@ namespace ProcessingTools.Base
         }
 
         public void Dispose()
+        {
+            this.connection.Dispose();
+            this.connection.Close();
+            GC.SuppressFinalize(this);
+            return;
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             this.connection.Dispose();
             this.connection.Close();
@@ -46,7 +53,7 @@ namespace ProcessingTools.Base
             this.ParseXmlStringToXmlDocument();
             try
             {
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 using (SqlCommand command = new SqlCommand(query, this.connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -67,12 +74,7 @@ namespace ProcessingTools.Base
                                 }
                             }
                         }
-
-                        reader.Dispose();
-                        reader.Close();
                     }
-
-                    command.Dispose();
                 }
             }
             catch (Exception e)
@@ -124,12 +126,6 @@ namespace ProcessingTools.Base
                 string connectionString = this.Config.mainDictionaryDataSourceString;
                 this.connection = new SqlConnection(connectionString);
                 this.connection.Open();
-
-                //IList<string> tables = ListTables();
-                //foreach (string table in tables)
-                //{
-                //    Alert.Log(table);
-                //}
             }
             catch (Exception e)
             {

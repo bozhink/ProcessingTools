@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
+﻿using System.Data.SqlClient;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class Test : Base
+    public class Test : TaggerBase
     {
         public Test(string xml)
             : base(xml)
@@ -26,7 +17,7 @@ namespace ProcessingTools.Base
             XmlDocument newXml = new XmlDocument(this.NamespaceManager.NameTable);
             XmlElement root = newXml.CreateElement("root");
 
-            foreach (XmlNode node in this.xmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.NamespaceManager))
             {
                 XmlElement newNode = newXml.CreateElement("node");
                 newNode.InnerXml = node["taxon_authors_and_year"].OuterXml;
@@ -35,20 +26,20 @@ namespace ProcessingTools.Base
 
             newXml.AppendChild(root);
 
-            this.xml = newXml.OuterXml;
+            this.Xml = newXml.OuterXml;
         }
 
         public void ExtractSystemChecklistAuthority()
         {
             this.ParseXmlStringToXmlDocument();
 
-            foreach (XmlNode node in xmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))
             {
                 node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
                 node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.Xml = this.XmlDocument.OuterXml;
         }
 
         public void SqlSelect()
@@ -77,9 +68,6 @@ order by len(content) desc;";
                         }
                     }
                 }
-
-                connection.Dispose();
-                connection.Close();
             }
         }
     }

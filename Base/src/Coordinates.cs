@@ -4,14 +4,14 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class Coordinates : Base
+    public class Coordinates : TaggerBase
     {
         public Coordinates(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public Coordinates(Base baseObject)
+        public Coordinates(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -25,21 +25,25 @@ namespace ProcessingTools.Base
 
         public void TagCoordinates()
         {
+            string xml = this.Xml;
+            
             // Format deg symbol
-            this.xml = Regex.Replace(this.xml, "(\\d)([º°˚]|<sup>o</sup>)", "$1°");
+            xml = Regex.Replace(xml, "(\\d)([º°˚]|<sup>o</sup>)", "$1°");
 
             // Tag coordinates
-            string replace = "<locality-coordinates latitude=\"\" longitude=\"\">$1</locality-coordinates>";
+            string replace = @"<locality-coordinates latitude="""" longitude="""">$1</locality-coordinates>";
 
-            this.xml = Regex.Replace(
-                this.xml,
+            xml = Regex.Replace(
+                xml,
                 @"(([NSEW])((\d+\.)?\d+°\d+(\.\d+)?\'(\d+(\.\d+)?\&quot;)?)\s*?\W?\s*([NSEW])((\d+\.)?\d+°\d+(\.\d+)?\'(\d+(\.\d+)?\&quot;)?))",
                 replace);
-            this.xml = Regex.Replace(this.xml, @"(([NSEW])((\d+\.)?\d+°)\s*?\W?\s*([NSEW])((\d+\.)?\d+°))", replace);
+            xml = Regex.Replace(xml, @"(([NSEW])((\d+\.)?\d+°)\s*?\W?\s*([NSEW])((\d+\.)?\d+°))", replace);
 
-            this.xml = Regex.Replace(this.xml, @"((\d+\.\d+)\s*([NSEW])\s*\,?\s*(\d+\.\d+)\s*([NSEW]))", replace);
-            this.xml = Regex.Replace(this.xml, @"(((\d+\.)?\d+°[^<>]{0,20}?[SWNE])\s*?\W?\s*((\d+\.)?\d+°[^</>]{0,20}?[SWNE]))", replace);
-            this.xml = Regex.Replace(this.xml, @"((\-?\d{1,3}\.\d{3,6})\s*(;|,)\s*(\-?\d{1,3}\.\d{3,6}))", replace);
+            xml = Regex.Replace(xml, @"((\d+\.\d+)\s*([NSEW])\s*\,?\s*(\d+\.\d+)\s*([NSEW]))", replace);
+            xml = Regex.Replace(xml, @"(((\d+\.)?\d+°[^<>]{0,20}?[SWNE])\s*?\W?\s*((\d+\.)?\d+°[^</>]{0,20}?[SWNE]))", replace);
+            xml = Regex.Replace(xml, @"((\-?\d{1,3}\.\d{3,6})\s*(;|,)\s*(\-?\d{1,3}\.\d{3,6}))", replace);
+
+            this.Xml = xml;
         }
 
         public void ParseCoordinates()
@@ -57,7 +61,8 @@ namespace ProcessingTools.Base
             ////20°20.1N 74°33.6W
 
             this.ParseXmlStringToXmlDocument();
-            foreach (XmlNode coordinate in this.xmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
+
+            foreach (XmlNode coordinate in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
             {
                 Alert.Log("\n" + coordinate.OuterXml + "\n");
 
@@ -201,7 +206,7 @@ namespace ProcessingTools.Base
                 }
             }
 
-            foreach (XmlNode node in this.xmlDocument.SelectNodes("//tr[count(.//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)=''])=1][count(.//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!=''])=1]", this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//tr[count(.//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)=''])=1][count(.//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!=''])=1]", this.NamespaceManager))
             {
                 XmlNode latCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']", this.NamespaceManager);
                 XmlNode lngCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']", this.NamespaceManager);
@@ -210,7 +215,7 @@ namespace ProcessingTools.Base
                 lngCoordinate.Attributes["latitude"].InnerText = latCoordinate.Attributes["latitude"].InnerText;
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         private string SimplifyCoordinateString(string coordinateString)

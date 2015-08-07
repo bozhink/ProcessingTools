@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class Environments : Base
+    public class Environments : TaggerBase
     {
         public Environments(string xml)
             : base(xml)
@@ -24,10 +19,9 @@ namespace ProcessingTools.Base
 
         public void TagEnvironmentsRecords()
         {
-            this.xml = Base.NormalizeNlmToSystemXml(this.Config, this.xml);
             this.ParseXmlStringToXmlDocument();
 
-            XmlElement testXmlNode = this.xmlDocument.CreateElement("test");
+            XmlElement testXmlNode = this.XmlDocument.CreateElement("test");
 
             // Set the XPath string to select all nodes which may contain environments’ strings
             string xpath = string.Empty;
@@ -44,7 +38,7 @@ namespace ProcessingTools.Base
             try
             {
                 // Select all nodes which potentioaly contains environments’ records
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
                 // Connect to Environments database and use its records to tag Xml
                 using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
@@ -108,9 +102,6 @@ namespace ProcessingTools.Base
                             }
                         }
                     }
-
-                    connection.Dispose();
-                    connection.Close();
                 }
             }
             catch (Exception e)
@@ -118,12 +109,9 @@ namespace ProcessingTools.Base
                 Alert.RaiseExceptionForMethod(e, 1);
             }
 
-            this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
-            this.xml = this.xmlDocument.OuterXml;
-            if (this.Config.NlmStyle)
-            {
-                this.xml = Base.NormalizeSystemToNlmXml(this.Config, this.xml);
-            }
+            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
+
+            this.ParseXmlDocumentToXmlString();
         }
     }
 }

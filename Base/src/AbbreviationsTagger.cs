@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class AbbreviationsTagger : Base
+    public class AbbreviationsTagger : TaggerBase
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
 
@@ -19,7 +16,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public AbbreviationsTagger(Base baseObject)
+        public AbbreviationsTagger(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -35,13 +32,13 @@ namespace ProcessingTools.Base
             this.TagAbbreviationsInSpecificNode("//boxed-text");
             this.TagAbbreviationsInSpecificNode("/");
 
-            this.xmlDocument.InnerXml = Regex.Replace(this.xmlDocument.InnerXml, "</?" + AbbreviationReplaceTagName + "[^>]*>", string.Empty);
-            this.xml = this.xmlDocument.OuterXml;
+            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "</?" + AbbreviationReplaceTagName + "[^>]*>", string.Empty);
+            this.Xml = this.XmlDocument.OuterXml;
         }
 
         private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)
         {
-            XmlNodeList specificNodes = xmlDocument.SelectNodes(selectSpecificNodeXPath, NamespaceManager);
+            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, NamespaceManager);
             foreach (XmlNode specificNode in specificNodes)
             {
                 List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", NamespaceManager)
@@ -89,7 +86,7 @@ namespace ProcessingTools.Base
 
                         if (doReplace)
                         {
-                            XmlElement newNode = xmlDocument.CreateElement("abbreviationReplaceTagName");
+                            XmlElement newNode = this.XmlDocument.CreateElement("abbreviationReplaceTagName");
                             newNode.InnerXml = Regex.Replace(nodeInspecificNode.OuterXml, abbreviation.SearchPattern, abbreviation.ReplacePattern);
                             nodeInspecificNode.ParentNode.ReplaceChild(newNode, nodeInspecificNode);
                         }

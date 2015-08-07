@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -34,7 +32,7 @@ namespace ProcessingTools.Base
         Textbox ////"boxed-text"
     }
 
-    public class Floats : Base
+    public class Floats : TaggerBase
     {
         private const int MaxNumberOfSequentalFloats = 30;
         private const int MaxNumberOfPunctuationSigns = 10;
@@ -53,7 +51,7 @@ namespace ProcessingTools.Base
             this.InitFloats();
         }
 
-        public Floats(Base baseObject)
+        public Floats(TaggerBase baseObject)
             : base(baseObject)
         {
             this.InitFloats();
@@ -96,7 +94,7 @@ namespace ProcessingTools.Base
 
             try
             {
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 numberOfFloatsOfType = nodeList.Count;
                 this.floatNumericLabel = new string[numberOfFloatsOfType + 1];
                 for (int i = 0; i < numberOfFloatsOfType + 1; i++)
@@ -204,8 +202,10 @@ namespace ProcessingTools.Base
         public void TagAllFloats()
         {
             // Force Fig. and Figs
-            this.xml = Regex.Replace(this.xml, @"(Fig)\s", "$1. ");
-            this.xml = Regex.Replace(this.xml, @"(Figs)\.", "$1");
+            this.Xml = Regex.Replace(
+                Regex.Replace(this.Xml, @"(Fig)\s", "$1. "),
+                @"(Figs)\.",
+                "$1");
 
             {
                 /*
@@ -329,7 +329,7 @@ namespace ProcessingTools.Base
 
             this.RemoveXrefInTitles();
 
-            this.xml = Regex.Replace(this.xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
+            this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
         }
 
         public void TagTableFootNotes()
@@ -337,7 +337,7 @@ namespace ProcessingTools.Base
             this.ParseXmlStringToXmlDocument();
 
             // Get list of table-wrap with correctly formatted foot-notes
-            XmlNodeList tableWrapList = this.xmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
+            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
             {
                 Alert.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
@@ -360,13 +360,13 @@ namespace ProcessingTools.Base
                         foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + x + "']", this.NamespaceManager))
                         {
                             // <xref ref-type="table-fn" rid="TN1"></xref>
-                            XmlNode xrefTableFootNote = xmlDocument.CreateElement("xref");
+                            XmlNode xrefTableFootNote = this.XmlDocument.CreateElement("xref");
 
-                            XmlAttribute refType = xmlDocument.CreateAttribute("ref-type");
+                            XmlAttribute refType = this.XmlDocument.CreateAttribute("ref-type");
                             refType.InnerXml = "table-fn";
                             xrefTableFootNote.Attributes.Append(refType);
 
-                            XmlAttribute rid = xmlDocument.CreateAttribute("rid");
+                            XmlAttribute rid = this.XmlDocument.CreateAttribute("rid");
                             rid.InnerXml = tableFootNotes[x].ToString();
                             xrefTableFootNote.Attributes.Append(rid);
 
@@ -378,8 +378,8 @@ namespace ProcessingTools.Base
                 }
             }
 
-            this.xml = this.xmlDocument.OuterXml;
-            this.xml = Regex.Replace(this.xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
+            this.ParseXmlDocumentToXmlString();
+            this.Xml = Regex.Replace(this.Xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
         }
 
         private void InitFloats()
@@ -428,41 +428,48 @@ namespace ProcessingTools.Base
         {
             string pattern = this.FloatsFirstOccurencePattern(labelPattern);
             string replace = this.FloatsFirstOccurenceReplace(floatType);
-            this.xml = Regex.Replace(this.xml, pattern, replace);
+
+            string xml = this.Xml;
+            xml = Regex.Replace(xml, pattern, replace);
 
             pattern = this.FloatsNextOccurencePattern(floatType);
             replace = this.FloatsNextOccurenceReplace(floatType);
             for (int i = 0; i < MaxNumberOfSequentalFloats; i++)
             {
-                this.xml = Regex.Replace(this.xml, pattern, replace);
+                xml = Regex.Replace(xml, pattern, replace);
             }
+
+            this.Xml = xml;
         }
 
         private void ProcessFloatsRid(int floatsNumber, string refType)
         {
-            string pattern = string.Empty, replace = string.Empty;
+            string xml = this.Xml;
 
             foreach (string s in this.floatIdByLabelKeys)
             {
-                this.xml = Regex.Replace(this.xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
+                xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
             }
 
             foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct().ToList())
             {
                 for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
                 {
-                    this.xml = Regex.Replace(this.xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
+                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
                 }
             }
+
+            this.Xml = xml;
         }
 
         private void RemoveXrefInTitles()
         {
             this.ParseXmlStringToXmlDocument();
+
             string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes(xpath, this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
                 }
@@ -472,23 +479,27 @@ namespace ProcessingTools.Base
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
 
         private void FormatXref()
         {
-            // Format content between </xref> and <xref
-            this.xml = Regex.Replace(this.xml, @"(?<=</xref>)\s*[–—−-]\s*(?=<xref)", "–");
-            this.xml = Regex.Replace(this.xml, @"(?<=</xref>)\s*([,;])\s*(?=<xref)", "$1 ");
-            this.xml = Regex.Replace(this.xml, @"(?<=</xref>)\s*(and|\\&amp;)\s*(?=<xref)", " $1 ");
+            string xml = this.Xml;
 
-            this.xml = Regex.Replace(this.xml, @"(<xref [^>]*>)\s*[–—−-]\s*(?=[A-Za-z0-9][^<>]*</xref>)", "–$1");
+            // Format content between </xref> and <xref
+            xml = Regex.Replace(xml, @"(?<=</xref>)\s*[–—−-]\s*(?=<xref)", "–");
+            xml = Regex.Replace(xml, @"(?<=</xref>)\s*([,;])\s*(?=<xref)", "$1 ");
+            xml = Regex.Replace(xml, @"(?<=</xref>)\s*(and|\\&amp;)\s*(?=<xref)", " $1 ");
+
+            xml = Regex.Replace(xml, @"(<xref [^>]*>)\s*[–—−-]\s*(?=[A-Za-z0-9][^<>]*</xref>)", "–$1");
 
             // Remove xref from attributes
             for (int i = 0; i < 2 * MaxNumberOfSequentalFloats; i++)
             {
-                this.xml = Regex.Replace(this.xml, "(<[^<>]+=\"[^<>\"]*)<[^<>]*>", "$1");
+                xml = Regex.Replace(xml, "(<[^<>]+=\"[^<>\"]*)<[^<>]*>", "$1");
             }
+
+            this.Xml = xml;
         }
 
         private void FormatXrefGroup(string refType)
@@ -498,7 +509,7 @@ namespace ProcessingTools.Base
 
             try
             {
-                foreach (XmlNode node in this.xmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
                 {
                     // Format content in xref-group
                     string xref_group = node.InnerXml;
@@ -580,7 +591,7 @@ namespace ProcessingTools.Base
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
 
-            this.xml = this.xmlDocument.OuterXml;
+            this.ParseXmlDocumentToXmlString();
         }
     }
 }

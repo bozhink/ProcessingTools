@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class Envo : Base
+    public class Envo : TaggerBase
     {
         public Envo(string xml)
             :base(xml)
@@ -19,7 +16,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public Envo(Base baseObject)
+        public Envo(TaggerBase baseObject)
             : base(baseObject)
         {
         }
@@ -62,7 +59,7 @@ namespace ProcessingTools.Base
 
                 const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
                 string xpath = string.Format(XPathTemplate, "normalize-space(.)!=''");
-                XmlNodeList nodeList = this.xmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
                 TagTextInXmlDocument(envoTermsTagSet, nodeList, true, false);
 

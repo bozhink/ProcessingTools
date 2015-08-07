@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using ProcessingTools.Base;
 using ProcessingTools.Base.Taxonomy;
-using ProcessingTools.Base.ZooBank;
 
 namespace ProcessingTools.Tag
 {
@@ -30,15 +25,10 @@ namespace ProcessingTools.Tag
             /*
              * Taxonomic part
              */
-            if (taxaA || taxaB)
-            {
-                xmlContent = TagTaxa(xmlContent);
-            }
-
-            if (taxaC || taxaD)
-            {
-                xmlContent = SplitTaxa(xmlContent);
-            }
+            xmlContent = TagLowerTaxa(xmlContent);
+            xmlContent = TagHigherTaxa(xmlContent);
+            xmlContent = ParseLowerTaxa(xmlContent);
+            xmlContent = ParseHigherTaxa(xmlContent);
 
             if (taxaE || flag1 || flag2 || flag3 || flag4 || flag5 || flag6 || flag7 || flag8)
             {
@@ -90,6 +80,112 @@ namespace ProcessingTools.Tag
             }
 
             xmlContent = ParseTreatmentMeta(xmlContent);
+
+            return xmlContent;
+        }
+
+        private static string ParseHigherTaxa(string xmlContent)
+        {
+            if (taxaD)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tParse higher taxa.\n");
+                TaxaParser parser = new TaxaParser(config, xmlContent);
+
+                parser.ParseHigherTaxa(true, false, false, false, false);
+
+                if (splitHigherWithAphia)
+                {
+                    Alert.Log("\n\tSplit higher taxa using Aphia API\n");
+                    parser.ParseHigherTaxa(false, true, false, false, false);
+                }
+
+                if (splitHigherWithCoL)
+                {
+                    Alert.Log("\n\tSplit higher taxa using CoL API\n");
+                    parser.ParseHigherTaxa(false, false, true, false, false);
+                }
+
+                if (splitHigherWithGbif)
+                {
+                    Alert.Log("\n\tSplit higher taxa using GBIF API\n");
+                    parser.ParseHigherTaxa(false, false, false, true, false);
+                }
+
+                if (splitHigherBySuffix)
+                {
+                    Alert.Log("\n\tSplit higher taxa by suffix\n");
+                    parser.ParseHigherTaxa(false, false, false, false, true);
+                }
+
+                if (splitHigherAboveGenus)
+                {
+                    Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
+                    parser.ParseHigherTaxa(false, false, false, false, false, true);
+                }
+
+                xmlContent = parser.Xml;
+                PrintElapsedTime(timer);
+            }
+
+            return xmlContent;
+        }
+
+        private static string TagHigherTaxa(string xmlContent)
+        {
+            if (taxaB)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tTag higher taxa.\n");
+                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
+
+                tagger.TagHigherTaxa();
+
+                tagger.UntagTaxa();
+
+                xmlContent = tagger.Xml;
+                PrintElapsedTime(timer);
+            }
+
+            return xmlContent;
+        }
+
+        private static string ParseLowerTaxa(string xmlContent)
+        {
+            if (taxaC)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tParse lower taxa.\n");
+                TaxaParser parser = new TaxaParser(config, xmlContent);
+
+                parser.ParseLowerTaxa();
+
+                xmlContent = parser.Xml;
+                PrintElapsedTime(timer);
+            }
+
+            return xmlContent;
+        }
+
+        private static string TagLowerTaxa(string xmlContent)
+        {
+            if (taxaA)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tTag lower taxa.\n");
+                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
+
+                tagger.TagLowerTaxa(true);
+
+                tagger.UntagTaxa();
+
+                xmlContent = tagger.Xml;
+                PrintElapsedTime(timer);
+            }
 
             return xmlContent;
         }
@@ -262,82 +358,6 @@ namespace ProcessingTools.Tag
                 xmlContent = expand.Xml;
                 PrintElapsedTime(timer);
             }
-            return xmlContent;
-        }
-
-        private static string SplitTaxa(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            Alert.Log("\n\tSplit taxa.\n");
-            TaxaParser parser = new TaxaParser(config, xmlContent);
-
-            if (taxaC)
-            {
-                parser.ParseLowerTaxa();
-            }
-
-            if (taxaD)
-            {
-                parser.ParseHigherTaxa(true, false, false, false, false);
-
-                if (splitHigherWithAphia)
-                {
-                    Alert.Log("\n\tSplit higher taxa using Aphia API\n");
-                    parser.ParseHigherTaxa(false, true, false, false, false);
-                }
-
-                if (splitHigherWithCoL)
-                {
-                    Alert.Log("\n\tSplit higher taxa using CoL API\n");
-                    parser.ParseHigherTaxa(false, false, true, false, false);
-                }
-
-                if (splitHigherWithGbif)
-                {
-                    Alert.Log("\n\tSplit higher taxa using GBIF API\n");
-                    parser.ParseHigherTaxa(false, false, false, true, false);
-                }
-
-                if (splitHigherBySuffix)
-                {
-                    Alert.Log("\n\tSplit higher taxa by suffix\n");
-                    parser.ParseHigherTaxa(false, false, false, false, true);
-                }
-
-                if (splitHigherAboveGenus)
-                {
-                    Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
-                    parser.ParseHigherTaxa(false, false, false, false, false, true);
-                }
-            }
-
-            xmlContent = parser.Xml;
-            PrintElapsedTime(timer);
-            return xmlContent;
-        }
-
-        private static string TagTaxa(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            Alert.Log("\n\tTag taxa.\n");
-            TaxaTagger tagger = new TaxaTagger(config, xmlContent);
-
-            if (taxaA)
-            {
-                tagger.TagLowerTaxa(true);
-            }
-
-            if (taxaB)
-            {
-                tagger.TagHigherTaxa();
-            }
-
-            tagger.UntagTaxa();
-
-            xmlContent = tagger.Xml;
-            PrintElapsedTime(timer);
             return xmlContent;
         }
 

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml;
 using ProcessingTools.Base;
-using ProcessingTools.Base.Taxonomy;
-using ProcessingTools.Base.ZooBank;
 
 namespace ProcessingTools.Tag
 {
@@ -129,7 +122,7 @@ namespace ProcessingTools.Tag
                     string xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
                     Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(config, xml);
                     fmt.InitialFormat();
-                    fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, fmt.Xml);
+                    fp.Xml = fmt.Xml;
                 }
 
                 PrintElapsedTime(timer);
@@ -227,7 +220,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag codes.\n");
-                Codes codes = new Codes(config, Base.Base.NormalizeNlmToSystemXml(config, fp.Xml));
+                Codes codes = new Codes(config, fp.Xml);
 
                 //Alert.Log("1");
 
@@ -276,13 +269,9 @@ namespace ProcessingTools.Tag
 
                     //Alert.Log("10");
                     codes.TagSpecimenCodes(xpathProvider);
-
-                    //Alert.Log("11");
-                    dataProvider.Dispose();
-                    //Alert.Log("12");
                 }
 
-                fp.Xml = Base.Base.NormalizeSystemToNlmXml(config, codes.Xml);
+                fp.Xml = codes.Xml;
                 PrintElapsedTime(timer);
             }
         }

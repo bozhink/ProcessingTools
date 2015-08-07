@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class SpecimenCountTagger : Base
+    public class SpecimenCountTagger : TaggerBase
     {
         private const string TagName = "specimen-count";
         private const string TagReplacement = "<" + TagName + ">$1</" + TagName + ">";
@@ -23,7 +22,7 @@ namespace ProcessingTools.Base
         {
             this.ParseXmlStringToXmlDocument();
 
-            foreach (XmlNode node in this.xmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
