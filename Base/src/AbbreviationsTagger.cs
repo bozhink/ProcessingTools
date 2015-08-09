@@ -9,8 +9,6 @@ namespace ProcessingTools.Base
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
 
-        private const string AbbreviationReplaceTagName = "abbreviationReplaceTagName";
-
         public AbbreviationsTagger(Config config, string xml)
             : base(config, xml)
         {
@@ -23,58 +21,53 @@ namespace ProcessingTools.Base
 
         public void TagAbbreviationsInText()
         {
-            this.ParseXmlStringToXmlDocument();
-
             // Do not change this sequence
             this.TagAbbreviationsInSpecificNode("//graphic|//media|//disp-formula-group");
             this.TagAbbreviationsInSpecificNode("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
             this.TagAbbreviationsInSpecificNode("//fig-group|//table-wrap-group");
             this.TagAbbreviationsInSpecificNode("//boxed-text");
             this.TagAbbreviationsInSpecificNode("/");
-
-            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "</?" + AbbreviationReplaceTagName + "[^>]*>", string.Empty);
-            this.Xml = this.XmlDocument.OuterXml;
         }
 
         private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)
         {
-            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, NamespaceManager);
+            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager);
             foreach (XmlNode specificNode in specificNodes)
             {
-                List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", NamespaceManager)
+                List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
                     .Cast<XmlNode>().Select(a => this.ConvertAbbrevXmlNodeToAbbreviation(a)).ToList();
 
                 foreach (Abbreviation abbreviation in abbreviationsList)
                 {
                     string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                    foreach (XmlNode nodeInspecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
+                    foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
                     {
                         bool doReplace = false;
-                        if (nodeInspecificNode.InnerXml == string.Empty)
+                        if (nodeInSpecificNode.InnerXml.Length < 1)
                         {
-                            if (nodeInspecificNode.OuterXml.IndexOf("<!--") == 0)
+                            if (nodeInSpecificNode.OuterXml.IndexOf("<!--") == 0)
                             {
                                 // This node is a comment. Do not replace matches here.
                                 doReplace = false;
                             }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<?") == 0)
+                            else if (nodeInSpecificNode.OuterXml.IndexOf("<?") == 0)
                             {
                                 // This node is a processing instruction. Do not replace matches here.
                                 doReplace = false;
                             }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
+                            else if (nodeInSpecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
                             {
                                 // This node is a DOCTYPE node. Do not replace matches here.
                                 doReplace = false;
                             }
-                            else if (nodeInspecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
+                            else if (nodeInSpecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
                             {
                                 // This node is a CDATA node. Do nothing?
                                 doReplace = false;
                             }
                             else
                             {
-                                // This node is a text node. Tag this tex¾t and replace in InnerXml
+                                // This node is a text node. Tag this text and replace in InnerXml
                                 doReplace = true;
                             }
                         }
@@ -86,9 +79,14 @@ namespace ProcessingTools.Base
 
                         if (doReplace)
                         {
-                            XmlElement newNode = this.XmlDocument.CreateElement("abbreviationReplaceTagName");
-                            newNode.InnerXml = Regex.Replace(nodeInspecificNode.OuterXml, abbreviation.SearchPattern, abbreviation.ReplacePattern);
-                            nodeInspecificNode.ParentNode.ReplaceChild(newNode, nodeInspecificNode);
+                            XmlDocumentFragment nodeFragment = this.XmlDocument.CreateDocumentFragment();
+
+                            nodeFragment.InnerXml = Regex.Replace(
+                                nodeInSpecificNode.OuterXml,
+                                abbreviation.SearchPattern,
+                                abbreviation.ReplacePattern);
+
+                            nodeInSpecificNode.ParentNode.ReplaceChild(nodeFragment, nodeInSpecificNode);
                         }
                     }
                 }
@@ -129,13 +127,13 @@ namespace ProcessingTools.Base
             return abbreviation;
         }
 
-        private struct Abbreviation
+        private class Abbreviation
         {
-            public string Content;
+            public string Content { get; set; }
 
-            public string ContentType;
+            public string ContentType { get; set; }
 
-            public string Definition;
+            public string Definition { get; set; }
 
             public string SearchPattern
             {

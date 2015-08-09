@@ -96,22 +96,22 @@ namespace ProcessingTools.Base
 
         public static string NormalizeNlmToSystemXml(Config config, string xml)
         {
-            return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
+            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
         }
 
         public static string NormalizeNlmToSystemXml(Config config, XmlDocument xml)
         {
-            return XsltOnString.ApplyTransform(config.formatXslNlmToSystem, xml);
+            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
         }
 
         public static string NormalizeSystemToNlmXml(Config config, string xml)
         {
-            return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
+            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
         }
 
         public static string NormalizeSystemToNlmXml(Config config, XmlDocument xml)
         {
-            return XsltOnString.ApplyTransform(config.formatXslSystemToNlm, xml);
+            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
         }
 
         public static XmlReader GetXmlReader(string inputFileName)
@@ -137,9 +137,12 @@ namespace ProcessingTools.Base
         /// Try to read the file ‘InputFileName’ as valid XML document.
         /// </summary>
         /// <returns>XmlReader of the file ‘InputFileName’</returns>
-        public XmlReader GetXmlReader()
+        public XmlReader XmlReader
         {
-            return FileProcessor.GetXmlReader(this.InputFileName);
+            get
+            {
+                return FileProcessor.GetXmlReader(this.InputFileName);
+            }
         }
 
         public void Read()

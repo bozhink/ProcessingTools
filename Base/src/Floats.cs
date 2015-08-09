@@ -67,8 +67,6 @@ namespace ProcessingTools.Base
         public int GetFloats(ReferenceType refType = ReferenceType.Figure, string floatType = "Figure")
         {
             int numberOfFloatsOfType = 0;
-            this.ParseXmlStringToXmlDocument();
-
             string xpath = string.Empty;
             switch (refType)
             {
@@ -334,8 +332,6 @@ namespace ProcessingTools.Base
 
         public void TagTableFootNotes()
         {
-            this.ParseXmlStringToXmlDocument();
-
             // Get list of table-wrap with correctly formatted foot-notes
             XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
@@ -378,7 +374,6 @@ namespace ProcessingTools.Base
                 }
             }
 
-            this.ParseXmlDocumentToXmlString();
             this.Xml = Regex.Replace(this.Xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
         }
 
@@ -464,8 +459,6 @@ namespace ProcessingTools.Base
 
         private void RemoveXrefInTitles()
         {
-            this.ParseXmlStringToXmlDocument();
-
             string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
             try
             {
@@ -478,8 +471,6 @@ namespace ProcessingTools.Base
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         private void FormatXref()
@@ -505,17 +496,15 @@ namespace ProcessingTools.Base
         private void FormatXrefGroup(string refType)
         {
             StringBuilder sb = new StringBuilder();
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
+                foreach (XmlNode xrefGroupNode in this.XmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
                 {
                     // Format content in xref-group
-                    string xref_group = node.InnerXml;
+                    string xrefGroup = xrefGroupNode.InnerXml;
 
                     // <xref-group>Figures 109–112
-                    for (Match dashed = Regex.Match(xref_group, "<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>[–—−-]<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>"); dashed.Success; dashed = dashed.NextMatch())
+                    for (Match dashed = Regex.Match(xrefGroup, "<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>[–—−-]<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>"); dashed.Success; dashed = dashed.NextMatch())
                     {
                         string xref_replace = dashed.Value;
 
@@ -580,18 +569,16 @@ namespace ProcessingTools.Base
                             xref_replace = Regex.Replace(xref_replace, Regex.Escape(matchRightXref.Value), rightXref);
                         }
 
-                        xref_group = Regex.Replace(xref_group, Regex.Escape(dashed.Value), xref_replace);
+                        xrefGroup = Regex.Replace(xrefGroup, Regex.Escape(dashed.Value), xref_replace);
                     }
 
-                    node.InnerXml = xref_group;
+                    xrefGroupNode.InnerXml = xrefGroup;
                 }
             }
             catch (Exception e)
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

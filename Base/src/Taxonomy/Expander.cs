@@ -40,7 +40,6 @@ namespace ProcessingTools.Base.Taxonomy
             public void UnstableExpand1()
             {
                 Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 1\nTrying to expand all quasi-stable cases like\n[Genus] ([Subgenus].) species ~~ [Genus]. ([Subenus]) species ~~ [Genus]. ([Subgenus].) species");
-                this.ParseXmlStringToXmlDocument();
 
                 XmlNodeList lowerTaxa = this.XmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", NamespaceManager);
                 List<Species> speciesList = new List<Species>();
@@ -108,8 +107,6 @@ namespace ProcessingTools.Base.Taxonomy
                         }
                     }
                 }
-
-                this.ParseXmlDocumentToXmlString();
             }
 
             public void _UnstableExpand1()
@@ -199,7 +196,6 @@ namespace ProcessingTools.Base.Taxonomy
             public void UnstableExpand2()
             {
                 Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 2\nTrying to expand all genus-subgenus abbreviations [Genus]. ([Subgenus].)");
-                this.ParseXmlStringToXmlDocument();
 
                 XmlNodeList lowerTaxa = this.XmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", NamespaceManager);
                 List<Species> speciesList = new List<Species>();
@@ -257,8 +253,6 @@ namespace ProcessingTools.Base.Taxonomy
                         }
                     }
                 }
-
-                this.Xml = this.XmlDocument.OuterXml;
             }
 
             public void _UnstableExpand2()
@@ -364,7 +358,6 @@ namespace ProcessingTools.Base.Taxonomy
             public void UnstableExpand3()
             {
                 Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
-                this.ParseXmlStringToXmlDocument();
 
                 XmlNodeList lowerTaxa = this.XmlDocument.SelectNodes("//tp:taxon-name[@type='lower']", NamespaceManager);
                 foreach (XmlNode node in lowerTaxa)
@@ -992,8 +985,6 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 // In this method it is supposed that the subspecies name is not shortened
                 Taxonomy.PrintMethodMessage("StableExpand");
-
-                this.ParseXmlStringToXmlDocument();
 
                 XmlNodeList shortTaxaList = this.XmlDocument.SelectNodes("//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']]][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']", NamespaceManager);
                 XmlNodeList nonShortTaxaList = this.XmlDocument.SelectNodes("//tn[@type='lower'][not(tn-part[@full-name])][tn-part[@type='genus']]", NamespaceManager);
@@ -2001,8 +1992,6 @@ namespace ProcessingTools.Base.Taxonomy
             // In this method it is supposed that the subspecies name is not shortened
             Taxonomy.PrintMethodMessage("StableExpand");
 
-            this.ParseXmlStringToXmlDocument();
-
             List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(this.XmlDocument);
             List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(this.XmlDocument);
 
@@ -2070,8 +2059,6 @@ namespace ProcessingTools.Base.Taxonomy
         {
             Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs");
 
-            this.ParseXmlStringToXmlDocument();
-
             // Loop over paragraphs containong shortened taxa
             foreach (XmlNode p in this.XmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
             {
@@ -2100,16 +2087,12 @@ namespace ProcessingTools.Base.Taxonomy
 
                 Alert.Log("\n\n");
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         // TODO
         public void UnstableExpand8()
         {
             Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
-
-            this.ParseXmlStringToXmlDocument();
 
             List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(this.XmlDocument);
             List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(this.XmlDocument);

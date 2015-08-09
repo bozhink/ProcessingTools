@@ -58,8 +58,6 @@ namespace ProcessingTools.Base.Format
 
                 {
                     this.Xml = xml;
-                    this.ParseXmlStringToXmlDocument();
-
                     foreach (XmlNode node in this.XmlDocument.SelectNodes("//title|//label|//article-title|//th|//td|//p|//license-p|//li|//attrib|//kwd|//ref|//mixed-citation|//object-id|//xref-group|//tp:nomenclature-citation|//self-uri|//name|//given-names|//surname|//person-group|//graphic[string()!='']", this.NamespaceManager))
                     {
                         node.InnerXml = Regex.Replace(node.InnerXml, @"\A\s+|\s+\Z", string.Empty);
@@ -79,7 +77,6 @@ namespace ProcessingTools.Base.Format
                             "$1$2$1    $3$1    $4$1$5");
                     }
 
-                    this.ParseXmlDocumentToXmlString();
                     xml = this.Xml;
                 }
 

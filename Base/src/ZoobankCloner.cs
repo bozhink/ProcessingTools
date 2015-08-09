@@ -51,13 +51,9 @@ namespace ProcessingTools.Base.ZooBank
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 51);
             }
 
-            this.ParseXmlStringToXmlDocument();
-
             this.CloneTaxonomicActsLsid();
             this.CloneArticleLsid();
             this.CloneAuthorsLsid();
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         private void CloneAuthorsLsid()
@@ -185,8 +181,6 @@ namespace ProcessingTools.Base.ZooBank
                     z = zbr[0];
                 }
 
-                this.ParseXmlStringToXmlDocument();
-
                 // Article lsid
                 {
                     string articleLsid = ZooBankPrefix + z.referenceuuid;
@@ -245,8 +239,6 @@ namespace ProcessingTools.Base.ZooBank
 
                     Alert.Log("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
                 }
-
-                this.ParseXmlDocumentToXmlString();
             }
             catch (Exception e)
             {

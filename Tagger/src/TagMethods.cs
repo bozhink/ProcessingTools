@@ -112,14 +112,14 @@ namespace ProcessingTools.Tag
 
                 if (!config.NlmStyle)
                 {
-                    string xml = XsltOnString.ApplyTransform(config.systemInitialFormatXslPath, fp.GetXmlReader());
+                    string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
                     Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(config, xml);
                     fmt.InitialFormat();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
-                    string xml = XsltOnString.ApplyTransform(config.nlmInitialFormatXslPath, fp.GetXmlReader());
+                    string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
                     Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(config, xml);
                     fmt.InitialFormat();
                     fp.Xml = fmt.Xml;
@@ -222,11 +222,8 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tTag codes.\n");
                 Codes codes = new Codes(config, fp.Xml);
 
-                //Alert.Log("1");
-
                 using (DataProvider dataProvider = new DataProvider(config, codes.Xml))
                 {
-                    //Alert.Log("2");
                     XPathProvider xpathProvider = new XPathProvider(config);
 
                     {
@@ -235,39 +232,30 @@ namespace ProcessingTools.Tag
                         codes.Xml = specimenCounter.Xml;
                     }
 
-                    //Alert.Log("3");
                     codes.TagKnownSpecimenCodes(xpathProvider);
 
-                    //Alert.Log("4");
                     {
                         ProductsTagger products = new ProductsTagger(config, codes.Xml);
-                        //Alert.Log("5");
                         products.TagProducts(xpathProvider, dataProvider);
-                        //Alert.Log("6");
                         codes.Xml = products.Xml;
                     }
 
-                    //Alert.Log("7");
                     {
                         GeoNamesTagger geonames = new GeoNamesTagger(config, codes.Xml);
                         geonames.TagGeonames(xpathProvider, dataProvider);
                         codes.Xml = geonames.Xml;
                     }
 
-                    //Alert.Log("8");
                     {
                         MorphologyTagger morphology = new MorphologyTagger(config, codes.Xml);
                         morphology.TagMorphology(xpathProvider, dataProvider);
                         codes.Xml = morphology.Xml;
                     }
 
-                    //Alert.Log("9");
                     codes.TagInstitutions(xpathProvider, dataProvider);
 
-                    //Alert.Log("9");
                     codes.TagInstitutionalCodes(xpathProvider, dataProvider);
 
-                    //Alert.Log("10");
                     codes.TagSpecimenCodes(xpathProvider);
                 }
 

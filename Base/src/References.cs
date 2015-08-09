@@ -199,15 +199,15 @@ namespace ProcessingTools.Base
             {
                 // References list
                 fp.OutputFileName = this.Config.referencesGetReferencesXmlPath;
-                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesGetReferencesXslPath, this.Xml);
+                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.referencesGetReferencesXslPath);
                 fp.Write();
             }
 
             {
                 // References template
                 fp.OutputFileName = this.Config.referencesTagTemplateXmlPath;
-                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesTagTemplateXslPath, this.Xml);
-                fp.Xml = XsltOnString.ApplyTransform(this.Config.referencesSortReferencesXslPath, fp.Xml);
+                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.referencesTagTemplateXslPath);
+                fp.Xml = fp.XmlDocument.ApplyXslTransform(this.Config.referencesSortReferencesXslPath);
                 fp.Write();
             }
         }
@@ -330,8 +330,6 @@ namespace ProcessingTools.Base
 
         public void SplitReferences()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", this.NamespaceManager);
@@ -346,8 +344,6 @@ namespace ProcessingTools.Base
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

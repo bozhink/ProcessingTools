@@ -90,10 +90,11 @@
     <Compile Include="src\Base\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Base\Net.cs" />
-    <Compile Include="src\Codes.cs" />
+    <Compile Include="src\Codes\Codes.cs" />
+    <Compile Include="src\Codes\SpecimenCode.cs" />
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\Base\FileProcessor.cs" />
-    <Compile Include="src\DataProvider.cs" />
+    <Compile Include="src\DataProvider\DataProvider.cs" />
     <Compile Include="src\DatesTagger.cs" />
     <Compile Include="src\Environments.cs" />
     <Compile Include="src\Envo.cs" />
@@ -101,8 +102,8 @@
     <Compile Include="src\Flora.cs" />
     <Compile Include="src\Format.cs" />
     <Compile Include="src\GeoNamesTagger.cs" />
-    <Compile Include="src\IDataProvider.cs" />
-    <Compile Include="src\IXPathProvider.cs" />
+    <Compile Include="src\DataProvider\IDataProvider.cs" />
+    <Compile Include="src\XPathProvider\IXPathProvider.cs" />
     <Compile Include="src\Json\Gbif.cs" />
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
@@ -119,10 +120,9 @@
     <Compile Include="src\Taxonomy\Species.cs" />
     <Compile Include="src\Taxonomy\TaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger.cs" />
-    <Compile Include="src\Base\XsltOnString.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
-    <Compile Include="src\XPathProvider.cs" />
+    <Compile Include="src\XPathProvider\XPathProvider.cs" />
     <Compile Include="src\ZooBank.cs" />
     <Compile Include="src\ZoobankCloner.cs" />
   </ItemGroup>

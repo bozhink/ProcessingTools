@@ -13,7 +13,6 @@ namespace ProcessingTools.Base
 
         public void ExtractSystemChecklistAuthority1()
         {
-            this.ParseXmlStringToXmlDocument();
             XmlDocument newXml = new XmlDocument(this.NamespaceManager.NameTable);
             XmlElement root = newXml.CreateElement("root");
 
@@ -25,21 +24,15 @@ namespace ProcessingTools.Base
             }
 
             newXml.AppendChild(root);
-
-            this.Xml = newXml.OuterXml;
         }
 
         public void ExtractSystemChecklistAuthority()
         {
-            this.ParseXmlStringToXmlDocument();
-
             foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))
             {
                 node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
                 node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
             }
-
-            this.Xml = this.XmlDocument.OuterXml;
         }
 
         public void SqlSelect()

@@ -160,17 +160,17 @@ namespace ProcessingTools.Base.Taxonomy
 
         public static string ExtractTaxa(Config config, string xml)
         {
-            return XsltOnString.ApplyTransform(config.floraExtractTaxaXslPath, xml);
+            return xml.ApplyXslTransform(config.floraExtractTaxaXslPath);
         }
 
         public static string DistinctTaxa(Config config, string xml)
         {
-            return XsltOnString.ApplyTransform(config.floraDistrinctTaxaXslPath, xml);
+            return xml.ApplyXslTransform(config.floraDistrinctTaxaXslPath);
         }
 
         public static string GenerateTagTemplate(Config config, string xml)
         {
-            return XsltOnString.ApplyTransform(config.floraGenerateTemplatesXslPath, xml);
+            return xml.ApplyXslTransform(config.floraGenerateTemplatesXslPath);
         }
     }
 }

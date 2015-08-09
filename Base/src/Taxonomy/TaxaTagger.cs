@@ -155,8 +155,6 @@ namespace ProcessingTools.Base.Taxonomy
                 }
             }
 
-            this.ParseXmlStringToXmlDocument();
-
             /*
              * The following piece of code will be executed twice: once for lower-level-content-holding tags, and next for all value tags (System)
              */
@@ -197,14 +195,10 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag taxa.");
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void TagHigherTaxa()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
@@ -235,8 +229,6 @@ namespace ProcessingTools.Base.Taxonomy
 
             this.ApplyWhiteList();
             this.RemoveTaxaInWrongPlaces();
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         private IEnumerable<string> GetNonTaggedTaxa(Regex matchTaxa)
@@ -248,8 +240,6 @@ namespace ProcessingTools.Base.Taxonomy
 
         public void UntagTaxa()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 this.RemoveFalseTaxaOfPersonNames();
@@ -262,14 +252,10 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void FormatTreatments()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
@@ -358,14 +344,10 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithAphia()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
@@ -399,14 +381,10 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithGbif()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
@@ -476,14 +454,10 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void ParseTreatmentMetaWithCoL()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
                 List<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
@@ -540,22 +514,16 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         // Flora-like tagging methods
         public void PerformFloraReplace(string xmlTemplate)
         {
-            this.ParseXmlStringToXmlDocument();
-
             XmlDocument template = new XmlDocument();
             template.LoadXml(xmlTemplate);
 
             XmlNode root = template.DocumentElement;
             Alert.Log(root.ChildNodes.Count);
-
-            this.ParseXmlDocumentToXmlString();
 
             for (int i = root.ChildNodes.Count - 1; i >= 0; i--)
             {

@@ -19,8 +19,6 @@ namespace ProcessingTools.Base
 
         public void TagEnvironmentsRecords()
         {
-            this.ParseXmlStringToXmlDocument();
-
             XmlElement testXmlNode = this.XmlDocument.CreateElement("test");
 
             // Set the XPath string to select all nodes which may contain environments’ strings
@@ -110,8 +108,6 @@ namespace ProcessingTools.Base
             }
 
             this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

@@ -23,28 +23,28 @@ namespace ProcessingTools.Base
 
         public static string DistinctTaxa(string xml)
         {
-            return XsltOnString.ApplyTransform(@"C:\bin\taxa.distinct.xslt", xml);
+            return xml.ApplyXslTransform(@"C:\bin\taxa.distinct.xslt");
         }
 
         public void ExtractTaxa()
         {
-            this.Xml = XsltOnString.ApplyTransform(this.Config.floraExtractTaxaXslPath, this.Xml);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.floraExtractTaxaXslPath);
         }
 
         public string ExtractTaxaParts()
         {
-            return XsltOnString.ApplyTransform(this.Config.floraExtractTaxaPartsXslPath, this.Xml);
+            return this.XmlDocument.ApplyXslTransform(this.Config.floraExtractTaxaPartsXslPath);
         }
 
         public void DistinctTaxa()
         {
-            this.Xml = XsltOnString.ApplyTransform(this.Config.floraDistrinctTaxaXslPath, this.Xml);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.floraDistrinctTaxaXslPath);
         }
 
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(XsltOnString.ApplyTransform(this.Config.floraGenerateTemplatesXslPath, this.Xml)));
+            generatedTemplate.LoadXml(Flora.DistinctTaxa(this.XmlDocument.ApplyXslTransform(this.Config.floraGenerateTemplatesXslPath)));
             generatedTemplate.Save(this.Config.floraTemplatesOutputXmlPath);
         }
 
@@ -52,8 +52,6 @@ namespace ProcessingTools.Base
         {
             const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";
             const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
-
-            this.ParseXmlStringToXmlDocument();
 
             XmlDocument template = new XmlDocument();
             template.Load(this.Config.floraTemplatesOutputXmlPath);
@@ -92,15 +90,11 @@ namespace ProcessingTools.Base
 
             // TODO: Here we must remove tn/tn
             {
-                this.ParseXmlStringToXmlDocument();
-
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn[name(..)!='tn'][count(.//tn)!=0]");
                 foreach (XmlNode node in nodeList)
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "</?tn>", string.Empty);
                 }
-
-                this.ParseXmlDocumentToXmlString();
             }
 
             // Guess new taxa:
@@ -130,35 +124,25 @@ namespace ProcessingTools.Base
 
             // TODO: Here we must remove tn/tn
             {
-                this.ParseXmlStringToXmlDocument();
-
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn[name(..)!='tn'][count(.//tn)!=0]");
                 foreach (XmlNode node in nodeList)
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "</?tn>", string.Empty);
                 }
-
-                this.ParseXmlDocumentToXmlString();
             }
 
             // Remove taxa in toTaxon
             {
-                this.ParseXmlStringToXmlDocument();
-
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//toTaxon[count(.//tn)!=0]");
                 foreach (XmlNode node in nodeList)
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "</?tn>", string.Empty);
                 }
-
-                this.ParseXmlDocumentToXmlString();
             }
         }
 
         public void ParseInfra()
         {
-            this.ParseXmlStringToXmlDocument();
-
             XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn");
             foreach (XmlNode node in nodeList)
             {
@@ -188,14 +172,11 @@ namespace ProcessingTools.Base
                     "<tn-part type=\"infrank\">$1</tn-part> <tn-part type=\"subsection\">$2</tn-part>");
             }
 
-            this.ParseXmlDocumentToXmlString();
             this.Xml = Regex.Replace(this.Xml, "(?<=</tn-part>)(?=<tn)", " ");
         }
 
         public void ParseTn()
         {
-            this.ParseXmlStringToXmlDocument();
-
             XmlDocument template = new XmlDocument();
             template.Load(this.Config.floraTemplatesOutputXmlPath);
 
@@ -210,7 +191,6 @@ namespace ProcessingTools.Base
 
             Parallel.For(0, nodeList.Count, index => ParseTnParallelCallBackFunction(index, templateList, nodeList));
 
-            this.ParseXmlDocumentToXmlString();
             this.Xml = Regex.Replace(this.Xml, "(?<=</tn-part>)(?=<tn)", " ");
         }
 

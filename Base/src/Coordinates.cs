@@ -60,8 +60,6 @@ namespace ProcessingTools.Base
             ////08º48’23’’S, 115º56’24’’E
             ////20°20.1N 74°33.6W
 
-            this.ParseXmlStringToXmlDocument();
-
             foreach (XmlNode coordinate in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
             {
                 Alert.Log("\n" + coordinate.OuterXml + "\n");
@@ -214,8 +212,6 @@ namespace ProcessingTools.Base
                 latCoordinate.Attributes["longitude"].InnerText = lngCoordinate.Attributes["longitude"].InnerText;
                 lngCoordinate.Attributes["latitude"].InnerText = latCoordinate.Attributes["latitude"].InnerText;
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         private string SimplifyCoordinateString(string coordinateString)

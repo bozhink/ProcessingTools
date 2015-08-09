@@ -20,8 +20,6 @@ namespace ProcessingTools.Base
 
         public void TagSpecimenCount(IXPathProvider xpathProvider)
         {
-            this.ParseXmlStringToXmlDocument();
-
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
@@ -37,8 +35,6 @@ namespace ProcessingTools.Base
                     }
                 }
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

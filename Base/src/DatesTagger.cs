@@ -21,7 +21,6 @@ namespace ProcessingTools.Base
         {
             List<string> dates = new List<string>();
 
-            this.ParseXmlStringToXmlDocument();
             XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager);
             {
                 // 18 Jan 2008
@@ -69,8 +68,6 @@ namespace ProcessingTools.Base
                 Alert.Log(date);
                 TagTextInXmlDocument(date, dateTag, xpathProvider.SelectContentNodesXPathTemplate, true);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

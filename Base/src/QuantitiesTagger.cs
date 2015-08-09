@@ -18,7 +18,6 @@ namespace ProcessingTools.Base
 
         public void TagQuantities(IXPathProvider xpathProvider)
         {
-            this.ParseXmlStringToXmlDocument();
             string xpath = string.Format(xpathProvider.SelectContentNodesXPathTemplate, "normalize-space(.)!=''");
             XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
@@ -37,13 +36,10 @@ namespace ProcessingTools.Base
                 Alert.Log(quantity);
                 TagTextInXmlDocument(quantity, quantityTag, xpathProvider.SelectContentNodesXPathTemplate, true);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void TagDirections(IXPathProvider xpathProvider)
         {
-            this.ParseXmlStringToXmlDocument();
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
@@ -58,13 +54,10 @@ namespace ProcessingTools.Base
                     node.InnerXml = replace;
                 }
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void TagAltitude(IXPathProvider xpathProvider)
         {
-            this.ParseXmlStringToXmlDocument();
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
@@ -79,8 +72,6 @@ namespace ProcessingTools.Base
                     node.InnerXml = replace;
                 }
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
     }
 }

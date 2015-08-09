@@ -20,8 +20,6 @@ namespace ProcessingTools.Base
 
             public void TagWWW()
             {
-                this.ParseXmlStringToXmlDocument();
-
                 try
                 {
                     XmlNodeList nodeList = this.XmlDocument.SelectNodes("//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation", this.NamespaceManager);
@@ -43,8 +41,6 @@ namespace ProcessingTools.Base
                 {
                     Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
                 }
-
-                this.ParseXmlDocumentToXmlString();
 
                 string xml = this.Xml;
 

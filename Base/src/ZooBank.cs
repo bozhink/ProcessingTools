@@ -20,7 +20,7 @@
 
         public void GenerateZooBankNlm()
         {
-            this.Xml = XsltOnString.ApplyTransform(this.Config.zoobankNlmXslPath, this.Xml);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.zoobankNlmXslPath);
         }
     }
 }

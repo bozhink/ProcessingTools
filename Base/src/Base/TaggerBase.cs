@@ -92,22 +92,22 @@ namespace ProcessingTools.Base
         //    return this.TextContent.ExtractWordsFromString();
         //}
 
-        protected void ParseXmlDocumentToXmlString()
-        {
-            this.Xml = this.XmlDocument.OuterXml;
-        }
+        ////protected void ParseXmlDocumentToXmlString()
+        ////{
+        ////    this.Xml = this.XmlDocument.OuterXml;
+        ////}
 
-        protected void ParseXmlStringToXmlDocument()
-        {
-            try
-            {
-                this.XmlDocument.LoadXml(this.Xml);
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
-            }
-        }
+        ////protected void ParseXmlStringToXmlDocument()
+        ////{
+        ////    try
+        ////    {
+        ////        this.XmlDocument.LoadXml(this.Xml);
+        ////    }
+        ////    catch (Exception e)
+        ////    {
+        ////        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
+        ////    }
+        ////}
 
         /// <summary>
         /// Tags plain text string (no regex) in the xmlDocument.
@@ -593,7 +593,7 @@ namespace ProcessingTools.Base
                 throw new NullReferenceException("Null config.");
             }
 
-            string text = XsltOnString.ApplyTransform(this.Config.textContentXslFileName, this.Xml);
+            string text = this.XmlDocument.ApplyXslTransform(this.Config.textContentXslFileName);
             text = Regex.Replace(text, @"(?<=\n)\s+", string.Empty);
 
             this.TextContent = text;

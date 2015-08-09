@@ -471,31 +471,31 @@ namespace ProcessingTools.Base.Taxonomy
             // Genus (Subgenus) species subspecies
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]+)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
+                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
                 "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
 
             // Genus (superspecies) species subspecies
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]+)\(\s*([a-z][a-zçäöüëïâěôûêî\.-]+)([\s\?×]*?)\s*\)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
+                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêî\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
                 "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
 
             // Genus (Subgenus) species
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]+)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
+                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
                 "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
 
             // Genus (superspecies) species
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]+)\(\s*([a-z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
+                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
                 "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
 
             // Genus (Subgenus)
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]+)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)",
+                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)",
                 "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)");
 
             // Genus
@@ -576,13 +576,11 @@ namespace ProcessingTools.Base.Taxonomy
 
         public void ParseLowerTaxa()
         {
-            this.ParseXmlStringToXmlDocument();
-
             try
             {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
                 {
-                    node.InnerXml = ParseLower(node.InnerXml);
+                    lowerTaxon.InnerXml = ParseLower(lowerTaxon.InnerXml);
                 }
             }
             catch (Exception e)
@@ -592,9 +590,9 @@ namespace ProcessingTools.Base.Taxonomy
 
             try
             {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
                 {
-                    string replace = Regex.Replace(node.InnerXml, "</?i>", string.Empty);
+                    string replace = Regex.Replace(lowerTaxon.InnerXml, "</?i>", string.Empty);
                     string parseBasionym = Regex.Replace(replace, "^.*?<basionym>(.*?)</basionym>.*$", "$1");
                     parseBasionym = ParseLower(parseBasionym);
                     string parseSpecific = Regex.Replace(replace, "^.*?<specific>(.*?)</specific>.*$", "$1");
@@ -638,23 +636,23 @@ namespace ProcessingTools.Base.Taxonomy
                     replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">\?</tn-part>", @"<tn-part type=""uncertainty-rank"">?</tn-part>");
                     replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(aff|prope|cf|nr|near|sp\. near)\.?)</tn-part>", @"<tn-part type=""uncertainty-rank"">$1</tn-part>");
 
-                    node.InnerXml = replace;
+                    lowerTaxon.InnerXml = replace;
                 }
 
                 // Add @full-name
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
                 {
                     XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
-                    node.Attributes.Append(fullName);
+                    lowerTaxon.Attributes.Append(fullName);
                 }
 
                 // Add missing tags in lower-taxa
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
                 {
-                    XmlNode genus = node.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
+                    XmlNode genus = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
                     if (genus == null)
                     {
-                        XmlNode species = node.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
+                        XmlNode species = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
                         if (species == null)
                         {
                             XmlElement speciesElement = this.XmlDocument.CreateElement("tn-part");
@@ -666,7 +664,7 @@ namespace ProcessingTools.Base.Taxonomy
                             XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
                             speciesElement.Attributes.Append(fullName);
 
-                            node.PrependChild(speciesElement);
+                            lowerTaxon.PrependChild(speciesElement);
                         }
 
                         // Add genus tag
@@ -680,7 +678,7 @@ namespace ProcessingTools.Base.Taxonomy
                             XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
                             genusElement.Attributes.Append(fullName);
 
-                            node.PrependChild(genusElement);
+                            lowerTaxon.PrependChild(genusElement);
                         }
                     }
                 }
@@ -695,8 +693,6 @@ namespace ProcessingTools.Base.Taxonomy
                 this.XmlDocument.InnerXml,
                 @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>",
                 "$1");
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         /*
@@ -718,8 +714,6 @@ namespace ProcessingTools.Base.Taxonomy
             bool parseBySuffix = false,
             bool parseAboveGenus = false)
         {
-            this.ParseXmlStringToXmlDocument();
-
             if (parseWithDatabaseXmlFile)
             {
                 this.XmlDocument = TaxaParser.ParseHigherTaxaWithLocalDatabase(this.Config.rankListXmlFilePath, this.XmlDocument, this.Config.NlmStyle);
@@ -764,21 +758,17 @@ namespace ProcessingTools.Base.Taxonomy
                     Alert.Log();
                 }
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
         public void UnSplitAllTaxa()
         {
-            this.ParseXmlStringToXmlDocument();
             foreach (XmlNode node in this.XmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", this.NamespaceManager))
             {
                 node.InnerXml = UnSplitTaxa(node.InnerXml);
             }
-
-            this.ParseXmlDocumentToXmlString();
         }
 
+        // TODO: remove this class
         public class TaxonNamePart
         {
             private string prefix, suffix;

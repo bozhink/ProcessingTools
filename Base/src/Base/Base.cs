@@ -5,7 +5,6 @@ namespace ProcessingTools.Base
 {
     public abstract class Base : IBase
     {
-        private string xml;
         private XmlDocument xmlDocument;
         private Config config;
         private XmlNamespaceManager namespaceManager;
@@ -43,7 +42,7 @@ namespace ProcessingTools.Base
         {
             get
             {
-                return this.xml;
+                return this.XmlDocument.OuterXml;
             }
 
             set
@@ -52,13 +51,12 @@ namespace ProcessingTools.Base
                 {
                     try
                     {
-                        this.xml = value;
-                        this.xmlDocument.LoadXml(this.xml);
+                        this.xmlDocument.LoadXml(value);
                         this.NeedsUpdate = true;
                     }
-                    catch (XmlException e)
+                    catch (XmlException)
                     {
-                        throw e;
+                        throw;
                     }
                     catch (Exception e)
                     {
@@ -86,12 +84,11 @@ namespace ProcessingTools.Base
                     try
                     {
                         this.xmlDocument = value;
-                        this.xml = this.xmlDocument.OuterXml;
                         this.NeedsUpdate = true;
                     }
-                    catch (XmlException e)
+                    catch (XmlException)
                     {
-                        throw e;
+                        throw;
                     }
                     catch (Exception e)
                     {
@@ -146,7 +143,6 @@ namespace ProcessingTools.Base
             this.xmlDocument = new XmlDocument(this.namespaceManager.NameTable);
             this.xmlDocument.PreserveWhitespace = true;
             this.config = null;
-            this.xml = null;
         }
 
         private void Initialize(Config config)
@@ -157,9 +153,8 @@ namespace ProcessingTools.Base
 
         private void Initialize(Config config, string xml)
         {
-            Initialize();
-            this.Config = config;
-            this.Xml = xml; // This must not precede this.xmlDocument initialization
+            Initialize(config);
+            this.Xml = xml;
             this.NeedsUpdate = true;
         }
     }
