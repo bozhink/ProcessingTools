@@ -1,5 +1,6 @@
 {
     "tempDirectoryPath": "C:\\temp",
+    "copyXslFilePath": "C:\\bin\\XSl\\copy.xsl",
 
     "blackListXmlFilePath": "C:\\bin\\Xml\\taxonomy.blackList.xml",
     "whiteListXmlFilePath": "C:\\bin\\Xml\\taxonomy.whiteList.xml",

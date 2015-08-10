@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
     public class SpecimenCode
     {
         private string prefix;
         private string code;
         private string fullString;
+        private string type;
 
         public SpecimenCode()
         {
@@ -19,9 +14,10 @@ namespace ProcessingTools.Base
             this.FullString = null;
         }
 
-        public SpecimenCode(string prefix, string code = null, string fullString = null)
+        public SpecimenCode(string prefix, string type, string code = null, string fullString = null)
         {
             this.Prefix = prefix;
+            this.Type = type;
             this.Code = code;
             this.FullString = fullString;
         }
@@ -36,6 +32,19 @@ namespace ProcessingTools.Base
             set
             {
                 this.prefix = value;
+            }
+        }
+
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.type = value;
             }
         }
 

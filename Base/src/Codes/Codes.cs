@@ -98,91 +98,167 @@ namespace ProcessingTools.Base
             }
         }
 
+        /*
+         * *********************************************************************************************************************************
+         *
+         * Tag known
+         *
+         * *********************************************************************************************************************************
+         */
         public void TagKnownSpecimenCodes(IXPathProvider xpathProvider)
         {
             List<SpecimenCode> knownSpecimenCodes = new List<SpecimenCode>();
 
-            //// Add to plausible various known codes: Janzen, OSUC, CASENT, LACMENT, ...
-            GetJanzenCodes(knownSpecimenCodes);
-            ////GetPrefixNumericCodes(knownSpecimenCodes);
+            knownSpecimenCodes.AddRange(GetJanzenCodes());
+            knownSpecimenCodes.AddRange(GetPrefixNumericCodes());
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
             TagContent specimenCodeTag = new TagContent("specimenCode");
-            ////ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, specimenCodeTag);
+            ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, specimenCodeTag);
         }
 
-        private void GetJanzenCodes(List<SpecimenCode> specimenCodes)
+        private void ReplaceSpecimenCodesInXml(string xpathTemplate, List<SpecimenCode> specimenCodes, TagContent specimenCodeTag)
         {
-            // Janzen codes:
-            // yy-SRNP-xxxxxx
-            // DHJPARxxxxxxx
+            foreach (SpecimenCode specimenCode in specimenCodes)
             {
-                List<SpecimenCode> janzenSpecimenCodes = new List<SpecimenCode>();
-
-                Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
-                janzenSpecimenCodes.AddRange(
-                    this.XmlDocument.GetMatchesInXmlText(srnpCodes, false)
-                        .Select(a => new SpecimenCode("Janzen", a))
-                        .ToList<SpecimenCode>());
-
-                Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
-                janzenSpecimenCodes.AddRange(
-                    this.XmlDocument.GetMatchesInXmlText(dhjparCodes, false)
-                        .Select(a => new SpecimenCode("Janzen", a))
-                        .ToList<SpecimenCode>());
-
-                if (janzenSpecimenCodes.Count > 0)
-                {
-                    janzenSpecimenCodes = janzenSpecimenCodes.Distinct().ToList();
-                    specimenCodes.AddRange(janzenSpecimenCodes);
-                }
+                TagContent codeTag = new TagContent(specimenCodeTag);
+                codeTag.Attributes += @" prefix=""" + specimenCode.Prefix + @""" type=""" + specimenCode.Type + @"""";
+                TagTextInXmlDocument(specimenCode.Code, codeTag, xpathTemplate);
             }
+
+            // Try to guess some other specimen codes following the tagged ones.
+            GuessSequentalSpecimenCodes(specimenCodeTag, xpathTemplate);
+
+            /////*
+            //// * Here we might have nested <specimenCode> which probably is due to mistaken codes.
+            //// */
+            ////{
+            ////    string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", specimenCodeTag.Name);
+            ////    foreach (XmlNode nestedSpecimenCodesNode in this.XmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
+            ////    {
+            ////        Alert.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+            ////    }
+            ////}
         }
+
+        /// <summary>
+        /// Gets all matches of Janzen specimen codes in the text of the XmlDocument.
+        /// </summary>
+        /// <returns>ICollection of found different Janzen speciment codes.</returns>
+        /// <example>
+        /// Janzen codes:
+        /// yy-SRNP-xxxxxx
+        /// DHJPARxxxxxxx
+        /// </example>
+        public List<SpecimenCode> GetJanzenCodes()
+        {
+            List<SpecimenCode> janzenSpecimenCodes = new List<SpecimenCode>();
+
+            Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
+            janzenSpecimenCodes.AddRange(
+                this.XmlDocument.GetMatchesInXmlText(srnpCodes, false)
+                    .Select(a => new SpecimenCode("SRNP", "Janzen", a))
+                    .ToList<SpecimenCode>());
+
+            Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
+            janzenSpecimenCodes.AddRange(
+                this.XmlDocument.GetMatchesInXmlText(dhjparCodes, false)
+                    .Select(a => new SpecimenCode("DHJPAR", "Janzen", a))
+                    .ToList<SpecimenCode>());
+
+            if (janzenSpecimenCodes.Count > 0)
+            {
+                janzenSpecimenCodes = janzenSpecimenCodes.Distinct().ToList();
+            }
+
+            return janzenSpecimenCodes;
+        }
+
         /*
+         * MNHN-IU-2013-9128
+         * RMNH.CRUS.D.56397
+         * RMNH.CRUS.D.2604
+         * MNCN 15.05/7180
+         * MNCN 15.05/60013H
+         * MNCN 15.05/60013P
+         * MNCN 15.05/7477P
+         * MNHN #AR 13335
+         * ISEA 001.4045, 001.4047, 001.4058
          * S08-12075
          * GRA0002851-0
          * Z-000004443
          * S-G-1519
          * B 10 0154930
-         * BR0000008351050
-         * BM000815208
-         * P05620544
-         * WAG0225448
-         * L 0587600
-         * W 0011066
-         * PR 801377
-         * FLAS 29152
-         * COI00005515
-         * K000313234
-         * LISU214548
-         * LISC 031408
-         * M0105771
-         * MA386121
-         * G00301594
-         * HBG506425
-         * PRE43077
-         * C10002122
-         * PTBG1000013099
          */
 
-        private void GetPrefixNumericCodes(List<string> specimenCodes)
+        private static string[] codePrefixes = new string[]
         {
-            // USNM 123392
-            // AMNH 235608
-            // FMNH 21077
-            // 4-digit individual code including the notion “Baur” (e.g., “Baur 2410”); see doi: 10.3897/zookeys.514.9910
+            @"ALP",
+            @"AMNH",
+            @"Bau",
+            @"BM",
+            @"BR",
+            @"C",
+            @"CASENT",
+            @"CM",
+            @"COI",
+            @"DZSJRP",
+            @"FLAS",
+            @"FMNH",
+            @"G",
+            @"HBG",
+            @"HEID",
+            @"IRIPP Iso\-",
+            @"K",
+            @"L",
+            @"LACMENT",
+            @"LDM",
+            @"LISC",
+            @"LISU",
+            @"M",
+            @"MA",
+            @"MHNG",
+            @"MN",
+            @"NHM",
+            @"OSUC",
+            @"P",
+            @"PCGMK",
+            @"PR",
+            @"PRE",
+            @"PTBG",
+            @"SMF",
+            @"UFES",
+            @"USNM",
+            @"W",
+            @"WAG",
+            @"ZMB",
+            @"ZMMSU",
+            @"ZUTC",
+            @"ZUTC Iso\.",
+        };
+
+        public List<SpecimenCode> GetPrefixNumericCodes()
+        {
+            List<SpecimenCode> prefixNumericSpecimenCodes = new List<SpecimenCode>();
+            string textContent = this.TextContent;
+
+            for (int i = 0, length = codePrefixes.Length; i < length; ++i)
             {
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:USNM|HEID|WAG|P|ZMB|SMF|ZUTC(?: Iso\.)?|PCGMK|IRIPP Iso\-|ZMMSU|UFES|ALP|AMNH|MHNG|DZSJRP|BM|CM|MN|LDM|FMNH|Baur)\W{0,3}\d{3,}(?:\.\d+)*\b");
-                List<string> prefixNumericSpecimenCodes = this.XmlDocument.GetMatchesInXmlText(prefixNumericCodes);
-
-                prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
-
-                if (prefixNumericSpecimenCodes.Count > 0)
+                string prefix = codePrefixes[i];
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}\d{3,}(?:\.\d+)*\b");
+                if (prefixNumericCodes.Match(textContent).Success)
                 {
-                    specimenCodes.AddRange(prefixNumericSpecimenCodes);
+                    prefixNumericSpecimenCodes.AddRange(textContent.GetMatchesInText(prefixNumericCodes, true).Select(s => new SpecimenCode(prefix, "prefix-numeric", s)));
                 }
             }
+
+            if (prefixNumericSpecimenCodes.Count > 0)
+            {
+                prefixNumericSpecimenCodes = prefixNumericSpecimenCodes.Distinct().ToList();
+            }
+
+            return prefixNumericSpecimenCodes;
         }
 
         /// <summary>
@@ -199,8 +275,11 @@ namespace ProcessingTools.Base
 
             string guessNextCodePattern = "(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
-            TagContent replacement = new TagContent(tag);
-            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
+
+            TagContent replacementTag = new TagContent(tag);
+            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
+
+            string replacement = replacementTag.FullTag;
 
             string xpath = string.Format(xpathTemplate, tag.Name);
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
@@ -209,7 +288,7 @@ namespace ProcessingTools.Base
 
                 while (guessNextCode.Match(replace).Success)
                 {
-                    replace = guessNextCode.Replace(replace, replacement.FullTag);
+                    replace = guessNextCode.Replace(replace, replacement);
                 }
 
                 try

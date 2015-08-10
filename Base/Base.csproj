@@ -145,7 +145,7 @@
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
     <Content Include="src\XSL\codes.remove-non-code-nodes.xslt" />
     <Content Include="src\XSL\copy-nlm.xslt" />
-    <Content Include="src\XSL\copy.xslt">
+    <Content Include="src\XSL\copy.xsl">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="src\XSL\dwc-to-named-content.xslt" />

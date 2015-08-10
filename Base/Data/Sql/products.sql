@@ -42,3 +42,11 @@ INSERT INTO [dbo].[products] (Name) VALUES ('Photoshop CS5')
 -- Baltimore Ecosystem Study databas
 -- Hitachi S-2460N SEM
 -- Nikon Y-IDT
+-- Canon EOS 550D
+-- Zeiss Stemi 2000
+-- Olympus Camedia E-520 camera
+-- Olympus SZX16 stereomicroscope
+-- Olympus BH-2 transmission microscope
+-- CombineZP
+-- “CombineZP” image stacking software
+-- Leica SD6 stereomicroscope

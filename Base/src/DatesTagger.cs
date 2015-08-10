@@ -3,6 +3,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 
+// 01. Oct. 1930
+// 24.- 29.09.1929
+
 namespace ProcessingTools.Base
 {
     public class DatesTagger : TaggerBase

@@ -40,6 +40,8 @@ namespace ProcessingTools
     {
         [DataMember]
         public string tempDirectoryPath { get; set; }
+        [DataMember]
+        public string copyXslFilePath { get; set; }
 
         [DataMember]
         public string blackListXmlFilePath { get; set; }

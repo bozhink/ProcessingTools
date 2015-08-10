@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -87,30 +85,24 @@ namespace ProcessingTools.Base
             }
         }
 
-        //public HashSet<string> ExtractWordsFromXml()
-        //{
-        //    return this.TextContent.ExtractWordsFromString();
-        //}
-
-        ////protected void ParseXmlDocumentToXmlString()
-        ////{
-        ////    this.Xml = this.XmlDocument.OuterXml;
-        ////}
-
-        ////protected void ParseXmlStringToXmlDocument()
-        ////{
-        ////    try
-        ////    {
-        ////        this.XmlDocument.LoadXml(this.Xml);
-        ////    }
-        ////    catch (Exception e)
-        ////    {
-        ////        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 10, 3);
-        ////    }
-        ////}
+        /// <summary>
+        /// Tags plain text strings (no regex) in XmlDocument.
+        /// </summary>
+        /// <param name="textToTagList">List of text fragments to tag.</param>
+        /// <param name="tag">The tag model.</param>
+        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
+        protected void TagTextInXmlDocument(IEnumerable<string> textToTagList, TagContent tag, string xpathTemplate, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        {
+            foreach (string textToTag in textToTagList)
+            {
+                TagTextInXmlDocument(textToTag, tag, xpathTemplate, isCaseSensitive, minimalTextSelect);
+            }
+        }
 
         /// <summary>
-        /// Tags plain text string (no regex) in the xmlDocument.
+        /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
         /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
         /// <param name="tag">The tag model.</param>
@@ -126,23 +118,7 @@ namespace ProcessingTools.Base
         }
 
         /// <summary>
-        /// Tags plain text strings (no regex) in the xmlDocument.
-        /// </summary>
-        /// <param name="textToTagList">List of text fragments to tag.</param>
-        /// <param name="tag">The tag model.</param>
-        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
-        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
-        protected void TagTextInXmlDocument(IEnumerable<string> textToTagList, TagContent tag, string xpathTemplate, bool isCaseSensitive = true, bool minimalTextSelect = false)
-        {
-            foreach(string textToTag in textToTagList)
-            {
-                TagTextInXmlDocument(textToTag, tag, xpathTemplate, isCaseSensitive, minimalTextSelect);
-            }
-        }
-
-        /// <summary>
-        /// Tags plain text string (no regex) in the xmlDocument.
+        /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
         /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
         /// <param name="tag">The tag model.</param>
@@ -151,14 +127,6 @@ namespace ProcessingTools.Base
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
         {
-            ////TagContent replacement = new TagContent(tag);
-            ////replacement.Attributes += @" full-string=""" + textToTag + @"""";
-            ////replacement.FullTag = replacement.OpenTag + textToTag + replacement.CloseTag;
-
-            ////XmlDocument tagNode = new System.Xml.XmlDocument();
-            ////tagNode.LoadXml(replacement.FullTag);
-            ////TagTextInXmlDocument(tagNode, nodeList, isCaseSensitive, minimalTextSelect);
-
             string caseSensitiveness = string.Empty;
             if (!isCaseSensitive)
             {
@@ -172,12 +140,10 @@ namespace ProcessingTools.Base
                 textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
             }
 
-            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
+            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
             Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
 
-            TagContent replacement = new TagContent(tag);
-            replacement.Attributes += @" full-string=""" + textToTag + @"""";
-            replacement.FullTag = replacement.OpenTag + "$1" + replacement.CloseTag;
+            string replacement = GetReplacementOfTagNode(textToTag, tag);
 
             foreach (XmlNode node in nodeList)
             {
@@ -189,11 +155,11 @@ namespace ProcessingTools.Base
                  */
                 if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
                 {
-                    replace = textToTagRegex.Replace(replace, replacement.FullTag);
+                    replace = textToTagRegex.Replace(replace, replacement);
                 }
                 else
                 {
-                    replace = textTotagPatternRegex.Replace(replace, replacement.FullTag);
+                    replace = textToTagPatternRegex.Replace(replace, replacement);
                 }
 
                 try
@@ -207,7 +173,7 @@ namespace ProcessingTools.Base
 
                     replace = node.InnerXml;
 
-                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in XmlDocument.");
                 }
                 finally
                 {
@@ -215,6 +181,8 @@ namespace ProcessingTools.Base
                 }
             }
         }
+
+
 
         protected void TagTextInXmlDocument(XmlDocument tagSet, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
         {
@@ -239,13 +207,10 @@ namespace ProcessingTools.Base
                 textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
             }
 
-            Regex textTotagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
+            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
             Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
 
-            XmlNode replacementNode = tagNode.Clone();
-            replacementNode.InnerText = "$1";
-
-            string replacement = replacementNode.OuterXml;
+            string replacement = GetReplacementOfTagNode(tagNode);
 
             foreach (XmlNode node in nodeList)
             {
@@ -261,7 +226,7 @@ namespace ProcessingTools.Base
                 }
                 else
                 {
-                    replace = textTotagPatternRegex.Replace(replace, replacement);
+                    replace = textToTagPatternRegex.Replace(replace, replacement);
                 }
 
                 try
@@ -281,8 +246,8 @@ namespace ProcessingTools.Base
 
                         replace = node.InnerXml;
 
-                        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in xmlDocument.");
-                        Alert.RaiseExceptionForMethod(tagOrderNormalizerException, this.GetType().Name, 0, "Tag text in xmlDocument.");
+                        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag text in XmlDocument.");
+                        Alert.RaiseExceptionForMethod(tagOrderNormalizerException, this.GetType().Name, 0, "Tag text in XmlDocument.");
                     }
                 }
                 finally
@@ -290,6 +255,25 @@ namespace ProcessingTools.Base
                     node.InnerXml = replace;
                 }
             }
+        }
+
+        private static string GetReplacementOfTagNode(XmlNode tagNode)
+        {
+            XmlNode replacementNode = tagNode.Clone();
+            replacementNode.InnerText = "$1";
+
+            string replacement = replacementNode.OuterXml;
+            return replacement;
+        }
+
+        private static string GetReplacementOfTagNode(string textToTag, TagContent tag)
+        {
+            TagContent replacementTag = new TagContent(tag);
+            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
+            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
+
+            string replacement = replacementTag.FullTag;
+            return replacement;
         }
 
         protected string TagNodeContent(string text, string keyString, string openTag)

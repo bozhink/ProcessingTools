@@ -1,6 +1,12 @@
 ﻿using System.Text.RegularExpressions;
 using System.Xml;
 
+/*
+ * 1 male, 1 female
+ * 2 spec.
+ */
+
+
 namespace ProcessingTools.Base
 {
     public class SpecimenCountTagger : TaggerBase

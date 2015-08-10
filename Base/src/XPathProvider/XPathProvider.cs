@@ -63,7 +63,7 @@ namespace ProcessingTools.Base
                 else
                 {
                     // TODO
-                    return "//p{0}";
+                    return "//p[{0}]";
                 }
             }
         }

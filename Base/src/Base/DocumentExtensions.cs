@@ -65,9 +65,13 @@ namespace ProcessingTools.Base
 
         public static List<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
         {
+            return node.InnerText.GetMatchesInText(search, clearList);
+        }
+
+        public static List<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
+        {
             List<string> result = new List<string>();
 
-            string text = node.InnerText;
             for (Match m = search.Match(text); m.Success; m = m.NextMatch())
             {
                 result.Add(m.Value);
@@ -239,6 +243,32 @@ namespace ProcessingTools.Base
         }
 
         /// <summary>
+        /// Creates XmlReader object from a text content.
+        /// </summary>
+        /// <param name="text">Valid XML node as text.</param>
+        /// <returns>XmlReader object.</returns>
+        /// <exception cref="System.Text.EncoderFallbackException">Input document string schould be UFT8 encoded.</exception>
+        public static XmlReader ToXmlReader(this string text)
+        {
+            XmlReader xmlReader = null;
+            try
+            {
+                byte[] bytesContent = Encoding.UTF8.GetBytes(text);
+                xmlReader = XmlReader.Create(new MemoryStream(bytesContent));
+            }
+            catch (EncoderFallbackException e)
+            {
+                throw new EncoderFallbackException("Input document string schould be UFT8 encoded.", e);
+            }
+            catch
+            {
+                throw;
+            }
+
+            return xmlReader;
+        }
+
+        /// <summary>
         /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.
         /// </summary>
         /// <param name="xmlDocument">Input document to be transformed.</param>
@@ -289,15 +319,10 @@ namespace ProcessingTools.Base
             string result = string.Empty;
             try
             {
-                byte[] bytesContent = Encoding.UTF8.GetBytes(xml);
-                using (XmlReader xmlReader = XmlReader.Create(new MemoryStream(bytesContent)))
+                using (XmlReader xmlReader = xml.ToXmlReader())
                 {
                     result = xmlReader.ApplyXslTransform(xslFileName);
                 }
-            }
-            catch (EncoderFallbackException e)
-            {
-                throw new EncoderFallbackException("Input document string must be UFT8 encoded.", e);
             }
             catch
             {
