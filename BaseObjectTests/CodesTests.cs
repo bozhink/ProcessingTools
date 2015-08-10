@@ -13,15 +13,32 @@ namespace BaseObjectTests
     [TestClass]
     public class CodesTests
     {
+        private Config config;
+        private XmlTextWriter writer;
+        private XPathProvider xpathProvider;
+
+        [TestInitialize]
+        public void Test_Initialize()
+        {
+            this.config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
+            this.xpathProvider = new XPathProvider(this.config);
+            this.writer = new XmlTextWriter(Console.Out);
+            this.writer.Formatting = Formatting.Indented;
+        }
+
+        [TestCleanup]
+        public void Test_Cleanup()
+        {
+            writer.Close();
+        }
 
         [TestMethod]
-        public void TestMethod1()
+        [Timeout(10000)]
+        public void Test_TagKnownSpecimenCodes()
         {
-            Config config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
-            XPathProvider xpathProvider = new XPathProvider(config);
             Codes codes = new Codes(config, TestResourceStrings.String10);
 
-            Console.WriteLine(codes.Xml.ApplyXslTransform(config.copyXslFilePath));
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
 
             List<SpecimenCode> prefixNumeric = codes.GetPrefixNumericCodes();
             foreach (SpecimenCode code in prefixNumeric)
@@ -31,7 +48,7 @@ namespace BaseObjectTests
 
             codes.TagKnownSpecimenCodes(xpathProvider);
 
-            Console.WriteLine(codes.Xml.ApplyXslTransform(config.copyXslFilePath));
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
         }
     }
 }
