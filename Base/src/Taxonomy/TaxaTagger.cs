@@ -13,7 +13,7 @@ namespace ProcessingTools.Base.Taxonomy
         private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
         private const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         private const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
-        private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus']";
+        private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
         public TaxaTagger(string xml)
             : base(xml)
@@ -372,9 +372,9 @@ namespace ProcessingTools.Base.Taxonomy
                     List<string> responseOrder = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/order", NamespaceManager);
                     List<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/kingdom", NamespaceManager);
 
-                    this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
-                    this.TreatmentMetaReplaceOrders(responseOrder, genus);
-                    this.TreatmentMetaReplaceFamilies(responseFamily, genus);
+                    this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                    this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
+                    this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                 }
             }
             catch (Exception e)
@@ -442,9 +442,9 @@ namespace ProcessingTools.Base.Taxonomy
                                     }
                                 }
 
-                                this.TreatmentMetaReplaceKingdoms(responseKingdom.Cast<string>().Select(c => c).Distinct().ToList(), genus);
-                                this.TreatmentMetaReplaceOrders(responseOrder.Cast<string>().Select(c => c).Distinct().ToList(), genus);
-                                this.TreatmentMetaReplaceFamilies(responseFamily.Cast<string>().Select(c => c).Distinct().ToList(), genus);
+                                this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                                this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
+                                this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                             }
                         }
                     }
@@ -484,29 +484,9 @@ namespace ProcessingTools.Base.Taxonomy
                         List<string> responseOrder = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", NamespaceManager);
                         List<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", NamespaceManager);
 
-                        this.TreatmentMetaReplaceKingdoms(responseKingdom, genus);
-                        this.TreatmentMetaReplaceOrders(responseOrder, genus);
-                        this.TreatmentMetaReplaceFamilies(responseFamily, genus);
-
-                        // Some debug information
-                        foreach (string x in responseKingdom)
-                        {
-                            Alert.Log("Kingdom: " + x);
-                        }
-
-                        Alert.Log();
-                        foreach (string x in responseOrder)
-                        {
-                            Alert.Log("Order: " + x);
-                        }
-
-                        Alert.Log();
-                        foreach (string x in responseFamily)
-                        {
-                            Alert.Log("Family: " + x);
-                        }
-
-                        Alert.Log();
+                        this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                        this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
+                        this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                     }
                 }
             }
@@ -722,66 +702,28 @@ namespace ProcessingTools.Base.Taxonomy
             }
         }
 
-        private void TreatmentMetaReplaceKingdoms(List<string> responseKingdom, string genus)
+        const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
+
+        private void ReplaceTreatmentMetaClassificationItem(List<string> higherTaxaOfType, string genus, string type)
         {
-            if (responseKingdom.Count == 1)
+            if (higherTaxaOfType.Count == 1)
             {
-                string kingdom = responseKingdom[0];
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='kingdom']", this.NamespaceManager))
+                string taxonName = higherTaxaOfType[0];
+
+                Alert.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
+
+                string xpath = string.Format(TreatmentMetaReplaceXPathTemplate, genus, type);
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
-                    node.InnerXml = kingdom;
+                    node.InnerXml = taxonName;
                 }
             }
             else
             {
-                Alert.Log("WARNING: Multiple or zero kingdoms:");
-                foreach (string kingdom in responseKingdom)
+                Alert.Log("WARNING: Multiple or zero matches of type {0}:", type);
+                foreach (string taxonName in higherTaxaOfType)
                 {
-                    Alert.Log(kingdom);
-                }
-
-                Alert.Log();
-            }
-        }
-
-        private void TreatmentMetaReplaceOrders(List<string> responseOrder, string genus)
-        {
-            if (responseOrder.Count == 1)
-            {
-                string order = responseOrder[0];
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order']", this.NamespaceManager))
-                {
-                    node.InnerText = order;
-                }
-            }
-            else
-            {
-                Alert.Log("WARNING: Multiple or zero orders:");
-                foreach (string order in responseOrder)
-                {
-                    Alert.Log(order);
-                }
-
-                Alert.Log();
-            }
-        }
-
-        private void TreatmentMetaReplaceFamilies(List<string> responseFamily, string genus)
-        {
-            if (responseFamily.Count == 1)
-            {
-                string family = responseFamily[0];
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//tp:taxon-treatment[string(tp:nomenclature/tp:taxon-name/tp:taxon-name-part[@taxon-name-part-type='genus'])='" + genus + "']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family']", this.NamespaceManager))
-                {
-                    node.InnerText = family;
-                }
-            }
-            else
-            {
-                Alert.Log("WARNING: Multiple or zero families:");
-                foreach (string family in responseFamily)
-                {
-                    Alert.Log(family);
+                    Alert.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
                 }
 
                 Alert.Log();

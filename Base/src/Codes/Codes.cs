@@ -120,6 +120,11 @@ namespace ProcessingTools.Base
          * Z-000004443
          * S-G-1519
          * B 10 0154930
+         * NMW.Z.2015.013.1a
+         * NSMT-Mo-76703
+         * NSMT Mo-76704j
+         * NMNZ M–075248/1
+         * ZMUC-BIV-30
          */
 
         private static string[] codePrefixes = new string[]
@@ -132,6 +137,7 @@ namespace ProcessingTools.Base
             @"C",
             @"CASENT",
             @"CM",
+            @"CMNML",
             @"COI",
             @"DZSJRP",
             @"FLAS",

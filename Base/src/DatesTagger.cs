@@ -5,6 +5,7 @@ using System.Xml;
 
 // 01. Oct. 1930
 // 24.- 29.09.1929
+// 19/August/2002
 
 namespace ProcessingTools.Base
 {
