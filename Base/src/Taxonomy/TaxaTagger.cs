@@ -205,11 +205,11 @@ namespace ProcessingTools.Base.Taxonomy
 
                 IEnumerable<string> taxaNames = GetNonTaggedTaxa(matchHigherTaxa);
 
-                Alert.Log(taxaNames.Count());
+                //Alert.Log(taxaNames.Count());
 
                 taxaNames = taxaNames.ClearListWithXDocument(this.GetBlackList());
 
-                Alert.Log(taxaNames.Count());
+                //Alert.Log(taxaNames.Count());
 
                 ////IEnumerable<string> whiteListedTaxa = this.TextWords.SelectListWithXDocument(this.GetWhiteList());
                 ////foreach (string taxon in whiteListedTaxa)

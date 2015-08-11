@@ -220,6 +220,7 @@ namespace ProcessingTools.Tag
             }
             else if (tagReferences)
             {
+                Alert.Log("\n\tTag references.\n");
                 if (parseBySection)
                 {
                     XmlDocument xmlDocument = new XmlDocument();

@@ -50,3 +50,5 @@ INSERT INTO [dbo].[products] (Name) VALUES ('Photoshop CS5')
 -- CombineZP
 -- “CombineZP” image stacking software
 -- Leica SD6 stereomicroscope
+-- Quorum K850 critical point dryer
+-- Jeol Neoscope™ SEM

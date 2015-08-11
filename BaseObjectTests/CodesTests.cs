@@ -32,11 +32,9 @@ namespace BaseObjectTests
             writer.Close();
         }
 
-        [TestMethod]
-        [Timeout(10000)]
-        public void Test_TagKnownSpecimenCodes()
+        public void TagKnownSpecimenCodes_Tests(string xmlString)
         {
-            Codes codes = new Codes(config, TestResourceStrings.String10);
+            Codes codes = new Codes(config, xmlString);
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
 
@@ -50,5 +48,39 @@ namespace BaseObjectTests
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
         }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagKnownSpecimenCodes_String7()
+        {
+            TagKnownSpecimenCodes_Tests(TestResourceStrings.String7);
+        }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagKnownSpecimenCodes_String10()
+        {
+            TagKnownSpecimenCodes_Tests(TestResourceStrings.String10);
+        }
+
+
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagCodes_String7()
+        {
+            Codes codes = new Codes(config, TestResourceStrings.String7);
+            DataProvider dataProvider = new DataProvider(config, codes.Xml);
+
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+
+            codes.TagKnownSpecimenCodes(xpathProvider);
+            codes.TagInstitutions(xpathProvider, dataProvider);
+            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+            codes.TagSpecimenCodes(xpathProvider);
+
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+        }
+
     }
 }

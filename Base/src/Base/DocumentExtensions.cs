@@ -451,5 +451,34 @@ namespace ProcessingTools.Base
 
             return result;
         }
+
+        /// <summary>
+        /// Replaces safely the InnerXml of a given XmlNode. If the replace string is not a valid Xml fragment, replacement will not be done.
+        /// </summary>
+        /// <param name="node">XmlNode which content would be replaced.</param>
+        /// <param name="replace">Replacement string.</param>
+        public static void SafeReplaceInnerXml(this XmlNode node, string replace)
+        {
+            string nodeInnerXml = node.InnerXml;
+            bool reset = false;
+            try
+            {
+                reset = true;
+                node.InnerXml = replace;
+                reset = false;
+            }
+            catch (Exception e)
+            {
+                Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
+                Alert.RaiseExceptionForMethod(e, 0);
+            }
+            finally
+            {
+                if (reset)
+                {
+                    node.InnerXml = nodeInnerXml;
+                }
+            }
+        }
     }
 }

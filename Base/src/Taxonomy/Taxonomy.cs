@@ -144,7 +144,7 @@ namespace ProcessingTools.Base.Taxonomy
                                     " "),
                                 @"<[^>]+ full-name=""([^<>""]+)""[^>]*>\S*",
                                 "$1"),
-                            @"<[^>]+>",
+                            @"<[^>]+>|[\(\)\[\]]",
                             string.Empty)).Distinct().ToList();
                 }
                 else
