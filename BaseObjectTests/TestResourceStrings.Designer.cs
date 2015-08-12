@@ -266,5 +266,35 @@ namespace BaseObjectTests {
                 return ResourceManager.GetString("String9", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;article article-type=&quot;research-article&quot; dtd-version=&quot;3.0&quot; xml:lang=&quot;en&quot; xmlns:tp=&quot;http://www.plazi.org/taxpub&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mml=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;
+        ///    &lt;front&gt;
+        ///        &lt;journal-meta&gt;
+        ///            &lt;journal-id journal-id-type=&quot;publisher-id&quot;&gt;ZooKeys&lt;/journal-id&gt;
+        ///            &lt;journal-title-group&gt;
+        ///                &lt;journal-title xml:lang=&quot;en&quot;&gt;ZooKeys&lt;/journal-tit [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ZK10154 {
+            get {
+                return ResourceManager.GetString("ZK10154", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;article article-type=&quot;research-article&quot; dtd-version=&quot;3.0&quot; xml:lang=&quot;en&quot; xmlns:tp=&quot;http://www.plazi.org/taxpub&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mml=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;
+        ///    &lt;front&gt;
+        ///        &lt;journal-meta&gt;
+        ///            &lt;journal-id journal-id-type=&quot;publisher-id&quot;&gt;ZooKeys&lt;/journal-id&gt;
+        ///            &lt;journal-title-group&gt;
+        ///                &lt;journal-title xml:lang=&quot;en&quot;&gt;ZooKeys&lt;/journal-tit [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ZK8817 {
+            get {
+                return ResourceManager.GetString("ZK8817", resourceCulture);
+            }
+        }
     }
 }

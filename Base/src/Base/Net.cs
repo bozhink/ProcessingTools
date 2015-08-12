@@ -331,8 +331,9 @@ namespace ProcessingTools.Base
                 {
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     values.Add("document", xmlContent);
-                    // values.Add("entity_types", "-2 -25 -26 -27");
+                    //// values.Add("entity_types", "-2 -25 -26 -27");
                     values.Add("entity_types", "-25 -26 -27");
+                    //// values.Add("entity_types", "-2 -22 -23 -24 -25 -26 -27");
                     values.Add("format", "xml");
 
                     try

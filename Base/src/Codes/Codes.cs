@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using System.Xml;
 
 
-// institutionalCode -> @description
-// specimenCode -> @institutionalCode
+// institutional_code -> @description
+// specimen_code -> @institutionalCode
 // <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
 
 
@@ -61,10 +61,10 @@ namespace ProcessingTools.Base
             List<string> potentialSpecimenCodes = ExtractPotentialSpecimenCodes(CodePattern);
 
             Alert.Log("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
-            //foreach (string word in potentialSpecimenCodes)
-            //{
-            //    Alert.Log(word);
-            //}
+            foreach (string word in potentialSpecimenCodes)
+            {
+                Alert.Log(word);
+            }
 
             Alert.Log("\n\nPlausible specimen codes\n\n");
 
@@ -78,6 +78,7 @@ namespace ProcessingTools.Base
         private List<string> ExtractPotentialSpecimenCodes(string codePattern)
         {
             XmlDocument cleanedXmlDocument = new XmlDocument();
+            cleanedXmlDocument.PreserveWhitespace = true;
             cleanedXmlDocument.LoadXml(this.Xml);
             cleanedXmlDocument.InnerXml = Regex.Replace(
                 cleanedXmlDocument.InnerXml,
@@ -131,36 +132,51 @@ namespace ProcessingTools.Base
          * *********************************************************************************************************************************
          */
         /*
-         * MNHN-IU-2013-9128
-         * RMNH.CRUS.D.56397
-         * RMNH.CRUS.D.2604
-         * MNCN 15.05/7180
+         * ANSP 22529
+         * B 10 0154930
+         * GRA0002851-0
+         * IBSS FEB RAS 7787
+         * IBSS FEB RAS 7787
+         * IPMB-C 13.00009
+         * ISEA 001.4045, 001.4047, 001.4058
+         * MHNG 7904
          * MNCN 15.05/60013H
          * MNCN 15.05/60013P
+         * MNCN 15.05/7180
          * MNCN 15.05/7477P
+         * MNCN15.05/60147H
+         * MNCN15.05/60148H
          * MNHN #AR 13335
-         * ISEA 001.4045, 001.4047, 001.4058
-         * S08-12075
-         * GRA0002851-0
-         * Z-000004443
-         * S-G-1519
-         * B 10 0154930
-         * NMW.Z.2015.013.1a
-         * NSMT-Mo-76703
-         * NSMT Mo-76704j
+         * MNHN-IU-2013-9128
+         * NHMUK 1991027
+         * NHMW 32008
+         * NMBE 534197/1
+         * NMBE 534197/1
+         * NMBE 534197/1; ZIN RAS 1
+         * NMBE 534361/2
          * NMNZ M–075248/1
+         * NMW.Z.2015.013.1a
+         * NSMT Mo-76704j
+         * NSMT-Mo-76703
+         * RMNH.CRUS.D.2604
+         * RMNH.CRUS.D.56397
+         * S-G-1519
+         * S08-12075
+         * Z-000004443
+         * ZIN RAS 1
          * ZMUC-BIV-30
+         * ZUPV/EHU 188
          */
 
         private static string[] codePrefixes = new string[]
         {
             @"ALP",
             @"AMNH",
+            @"ANSP",
             @"Bau",
             @"BM",
             @"BMNH",
             @"BR",
-            @"C",
             @"CASENT",
             @"CM",
             @"CMNML",
@@ -168,37 +184,44 @@ namespace ProcessingTools.Base
             @"DZSJRP",
             @"FLAS",
             @"FMNH",
-            @"G",
             @"HBG",
             @"HEID",
+            @"IBSS FEB RAS",
+            @"IPMB-C",
             @"IRIPP Iso\-",
-            @"K",
-            @"L",
+            @"ISEA",
             @"LACMENT",
             @"LDM",
             @"LISC",
             @"LISU",
-            @"M",
             @"MA",
             @"MHNG",
             @"MN",
+            @"MNCN",
+            @"MNHN",
             @"NHM",
+            @"NHMUK",
+            @"NHMW",
+            @"NMBE",
             @"OSUC",
-            @"P",
             @"PCGMK",
             @"PR",
             @"PRE",
             @"PTBG",
+            @"RMNH.CRUS.D.",
             @"SMF",
             @"UFES",
             @"USNM",
-            @"W",
             @"WAG",
             @"ZFMK",
+            @"ZIN",
+            @"ZIN RAS",
             @"ZMB",
             @"ZMMSU",
-            @"ZUTC",
+            @"ZMUC-BIV-",
+            @"ZUPV/EHU",
             @"ZUTC Iso\.",
+            @"ZUTC",
         };
 
         public List<SpecimenCode> GetPrefixNumericCodes()
@@ -209,7 +232,7 @@ namespace ProcessingTools.Base
             for (int i = 0, length = codePrefixes.Length; i < length; ++i)
             {
                 string prefix = codePrefixes[i];
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}\d{3,}(?:\.\d+)*\b");
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}\d{2,}(?:[\/\.]?\d+)*\b");
                 if (prefixNumericCodes.Match(textContent).Success)
                 {
                     prefixNumericSpecimenCodes.AddRange(
@@ -303,7 +326,7 @@ namespace ProcessingTools.Base
             // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
             // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="UQIC 221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
 
-            string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:[0-9\.](?:<[^>]*>)*){1,20})";
+            string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:[0-9][\/\.]?(?:<[^>]*>)*){1,20})";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
             GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");

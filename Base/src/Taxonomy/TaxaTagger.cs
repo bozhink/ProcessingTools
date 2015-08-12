@@ -221,6 +221,12 @@ namespace ProcessingTools.Base.Taxonomy
 
                 TagContent tag = new TagContent("tn", @" type=""higher""");
                 TagTextInXmlDocument(taxaNames, tag, HigherTaxaXPathTemplate, false, true);
+
+                // TODO: Refactor
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(".//tn[.//tn]", this.NamespaceManager))
+                {
+                    node.InnerXml = Regex.Replace(node.InnerXml, "<tn [^>]*>|</tn>", string.Empty);
+                }
             }
             catch (Exception e)
             {

@@ -63,8 +63,6 @@ namespace BaseObjectTests
             TagKnownSpecimenCodes_Tests(TestResourceStrings.String10);
         }
 
-
-
         [TestMethod]
         [Timeout(10000)]
         public void Test_TagCodes_String7()
@@ -75,6 +73,76 @@ namespace BaseObjectTests
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
 
             codes.TagKnownSpecimenCodes(xpathProvider);
+            codes.TagInstitutions(xpathProvider, dataProvider);
+            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+            codes.TagSpecimenCodes(xpathProvider);
+
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+        }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagEnvo_10154()
+        {
+            config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+
+            Envo envo = new Envo(config, TestResourceStrings.ZK10154);
+
+            envo.Tag();
+
+            writer.WriteNode(envo.Xml.ToXmlReader(), true);
+        }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagCodes_10154()
+        {
+            config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+
+            Codes codes = new Codes(config, TestResourceStrings.ZK10154);
+            DataProvider dataProvider = new DataProvider(config, codes.Xml);
+
+            codes.TagKnownSpecimenCodes(xpathProvider);
+
+            {
+                Envo envo = new Envo(config, codes.Xml);
+                envo.Tag();
+                codes.Xml = envo.Xml;
+            }
+
+            {
+                AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
+                abbr.TagAbbreviationsInText();
+                codes.Xml = abbr.Xml;
+            }
+
+            {
+                DatesTagger dates = new DatesTagger(config, codes.Xml);
+                dates.TagDates(xpathProvider);
+                codes.Xml = dates.Xml;
+            }
+
+            {
+                QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
+                quant.TagQuantities(xpathProvider);
+                quant.TagDirections(xpathProvider);
+                quant.TagAltitude(xpathProvider);
+                codes.Xml = quant.Xml;
+            }
+
+            {
+                SpecimenCountTagger sc = new SpecimenCountTagger(config, codes.Xml);
+                sc.TagSpecimenCount(xpathProvider);
+                codes.Xml = sc.Xml;
+            }
+
+            {
+                GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
+                geo.TagGeonames(xpathProvider, dataProvider);
+                codes.Xml = geo.Xml;
+            }
+
+            
             codes.TagInstitutions(xpathProvider, dataProvider);
             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
             codes.TagSpecimenCodes(xpathProvider);
