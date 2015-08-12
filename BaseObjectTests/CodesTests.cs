@@ -64,20 +64,41 @@ namespace BaseObjectTests
         }
 
         [TestMethod]
+        [Timeout(5000)]
+        public void Test_ListTablesFromDatabaseProvider_String7()
+        {
+            using (DataProvider dp = new DataProvider(config, TestResourceStrings.String7))
+            {
+                foreach(string name in dp.ListTables())
+                {
+                    Console.WriteLine(name);
+                }
+            }
+        }
+
+        [TestMethod]
         [Timeout(10000)]
         public void Test_TagCodes_String7()
         {
             Codes codes = new Codes(config, TestResourceStrings.String7);
-            DataProvider dataProvider = new DataProvider(config, codes.Xml);
+            using (DataProvider dataProvider = new DataProvider(config, codes.Xml))
+            {
 
-            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+                {
+                    SpecimenCountTagger sp = new SpecimenCountTagger(config, codes.Xml);
+                    sp.TagSpecimenCount(xpathProvider);
+                    codes.Xml = sp.Xml;
+                }
 
-            codes.TagKnownSpecimenCodes(xpathProvider);
-            codes.TagInstitutions(xpathProvider, dataProvider);
-            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-            codes.TagSpecimenCodes(xpathProvider);
+                writer.WriteNode(codes.Xml.ToXmlReader(), true);
 
-            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+                codes.TagKnownSpecimenCodes(xpathProvider);
+                codes.TagInstitutions(xpathProvider, dataProvider);
+                codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                codes.TagSpecimenCodes(xpathProvider);
+
+                writer.WriteNode(codes.Xml.ToXmlReader(), true);
+            }
         }
 
         [TestMethod]

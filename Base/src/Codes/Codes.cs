@@ -23,7 +23,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public Codes(TaggerBase baseObject)
+        public Codes(IBase baseObject)
             : base(baseObject)
         {
         }

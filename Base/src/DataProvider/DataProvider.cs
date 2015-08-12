@@ -61,24 +61,31 @@ namespace ProcessingTools.Base
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 using (SqlCommand command = new SqlCommand(query, this.connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        while (reader.Read())
+                        using(SqlDataReader reader = command.ExecuteReader())
                         {
-                            SetTagAttributes(tag, reader);
-
-                            string replacement = tag.OpenTag + "$1" + tag.CloseTag;
-                            string contentString = reader.GetString(0);
-                            string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
-                            Regex matchEntry = new Regex(pattern);
-                            foreach (XmlNode node in nodeList)
+                            while (reader.Read())
                             {
-                                if (matchEntry.Match(node.InnerText).Success)
+                                SetTagAttributes(tag, reader);
+
+                                string replacement = tag.OpenTag + "$1" + tag.CloseTag;
+                                string contentString = reader.GetString(0);
+                                string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
+                                Regex matchEntry = new Regex(pattern);
+                                foreach (XmlNode node in nodeList)
                                 {
-                                    node.InnerXml = matchEntry.Replace(node.InnerXml, replacement);
+                                    if (matchEntry.Match(node.InnerText).Success)
+                                    {
+                                        node.InnerXml = matchEntry.Replace(node.InnerXml, replacement);
+                                    }
                                 }
                             }
                         }
+                    }
+                    catch (Exception e)
+                    {
+                        Alert.Log(e.Message);
                     }
                 }
             }
@@ -128,7 +135,7 @@ namespace ProcessingTools.Base
             }
         }
 
-        private IList<string> ListTables()
+        public IList<string> ListTables()
         {
             List<string> tables = new List<string>();
             DataTable dt = this.connection.GetSchema("Tables");
