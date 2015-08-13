@@ -52,3 +52,7 @@ INSERT INTO [dbo].[products] (Name) VALUES ('Photoshop CS5')
 -- Leica SD6 stereomicroscope
 -- Quorum K850 critical point dryer
 -- Jeol Neoscope™ SEM
+-- Canon EOS 40D
+-- Adobe Photoshop CS5 computer software
+-- MapInfo Professional 12.0 software
+-- Leica DFC295 stereoscope

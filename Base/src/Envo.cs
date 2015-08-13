@@ -21,7 +21,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void Tag()
+        public void Tag(IXPathProvider xpathProvider)
         {
             XmlDocument envoTermsTagSet = new XmlDocument();
             {
@@ -53,11 +53,34 @@ namespace ProcessingTools.Base
             }
 
             {
-                const string XPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-                string xpath = string.Format(XPathTemplate, "normalize-space(.)!=''");
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                ////string xpath = string.Format(xpathProvider.SelectContentNodesXPathTemplate, "normalize-space(.)!=''");
+                //////string xpath = xpathProvider.SelectContentNodesXPath;
+                ////XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
-                TagTextInXmlDocument(envoTermsTagSet, nodeList, true, false);
+                ////foreach(XmlNode envo in envoTermsTagSet.SelectNodes("//envo"))
+                ////{
+                ////    string xml = this.Xml;
+                ////    bool isValid = true;
+                ////    try
+                ////    {
+                ////        isValid = false;
+                ////        this.Xml = Regex.Replace(this.Xml, @"(?<!<[^>]+)\b" + envo.InnerXml + @"\b(?![^<>]*>)", envo.OuterXml);
+                ////        isValid = true;
+                ////    }
+                ////    catch (Exception e)
+                ////    {
+                ////        Alert.RaiseExceptionForMethod(e, 0);
+                ////    }
+
+                ////    if (!isValid)
+                ////    {
+                ////        this.Xml = xml;
+                ////    }
+                ////}
+
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
+
+                TagTextInXmlDocument(envoTermsTagSet, nodeList, true, true);
             }
         }
     }

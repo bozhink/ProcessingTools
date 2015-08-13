@@ -648,3 +648,5 @@ INSERT INTO [dbo].[geonames] (Name) VALUES ('Kozjak-Milanovac')
 INSERT INTO [dbo].[geonames] (Name) VALUES ('Wien')
 INSERT INTO [dbo].[geonames] (Name) VALUES ('Zagreb')
 INSERT INTO [dbo].[geonames] (Name) VALUES ('Zagreb')
+-- Sofia
+-- China

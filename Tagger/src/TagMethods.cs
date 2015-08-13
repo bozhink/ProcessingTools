@@ -15,7 +15,9 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tUse greek tagger.\n");
                 Envo envo = new Envo(config, fp.Xml);
 
-                envo.Tag();
+                XPathProvider xpathProvider = new XPathProvider(config);
+
+                envo.Tag(xpathProvider);
 
                 fp.Xml = envo.Xml;
                 PrintElapsedTime(timer);
@@ -226,13 +228,40 @@ namespace ProcessingTools.Tag
                 {
                     XPathProvider xpathProvider = new XPathProvider(config);
 
+                    //codes.TagKnownSpecimenCodes(xpathProvider);
+
                     {
-                        SpecimenCountTagger specimenCounter = new SpecimenCountTagger(config, fp.Xml);
-                        specimenCounter.TagSpecimenCount(xpathProvider);
-                        codes.Xml = specimenCounter.Xml;
+                        config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                        Envo envo = new Envo(config, codes.Xml);
+                        envo.Tag(xpathProvider);
+                        codes.Xml = envo.Xml;
                     }
 
-                    codes.TagKnownSpecimenCodes(xpathProvider);
+                    {
+                        AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
+                        abbr.TagAbbreviationsInText();
+                        codes.Xml = abbr.Xml;
+                    }
+
+                    {
+                        DatesTagger dates = new DatesTagger(config, codes.Xml);
+                        dates.TagDates(xpathProvider);
+                        codes.Xml = dates.Xml;
+                    }
+
+                    {
+                        QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
+                        quant.TagQuantities(xpathProvider);
+                        quant.TagDirections(xpathProvider);
+                        quant.TagAltitude(xpathProvider);
+                        codes.Xml = quant.Xml;
+                    }
+
+                    {
+                        SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, codes.Xml);
+                        specimenCountTagger.TagSpecimenCount(xpathProvider);
+                        codes.Xml = specimenCountTagger.Xml;
+                    }
 
                     {
                         ProductsTagger products = new ProductsTagger(config, codes.Xml);
@@ -253,10 +282,10 @@ namespace ProcessingTools.Tag
                     }
 
                     codes.TagInstitutions(xpathProvider, dataProvider);
-
                     codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                    //codes.TagSpecimenCodes(xpathProvider);
 
-                    codes.TagSpecimenCodes(xpathProvider);
+                    codes.ClearWrongTags();
                 }
 
                 fp.Xml = codes.Xml;

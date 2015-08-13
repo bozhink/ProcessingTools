@@ -1239,4 +1239,8 @@
     &lt;/back&gt;
 &lt;/article&gt;</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_10154" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>10154.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

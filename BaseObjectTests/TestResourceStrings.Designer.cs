@@ -61,6 +61,21 @@ namespace BaseObjectTests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;article article-type=&quot;research-article&quot; dtd-version=&quot;3.0&quot; xml:lang=&quot;en&quot; xmlns:tp=&quot;http://www.plazi.org/taxpub&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mml=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;
+        ///    &lt;front&gt;
+        ///        &lt;journal-meta&gt;
+        ///            &lt;journal-id journal-id-type=&quot;publisher-id&quot;&gt;ZooKeys&lt;/journal-id&gt;
+        ///            &lt;journal-title-group&gt;
+        ///                &lt;journal-title xml:lang=&quot;en&quot;&gt;ZooKeys&lt;/journal-tit [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _10154 {
+            get {
+                return ResourceManager.GetString("_10154", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;article xml:lang=&quot;en&quot; xmlns:tp=&quot;http://www.plazi.org/taxpub&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mml=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;p&gt;&lt;bold&gt;Indonesia: Snellius Expedition 1929–1930.&lt;/bold&gt; RMNH.CRUS.D.56378, ca. 260 specimens, Sissie by Misool, beach, 06. Oct. 1929; RMNH.CRUS.D.56379, ca. 140 specimens; RMNH.CRUS.D.56380, ca. 60 specimens, Ambon, 11.-17.09.1930; RMNH.CRUS.D.56381, ca. 145 specime [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string String0 {

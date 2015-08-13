@@ -47,7 +47,7 @@ namespace ProcessingTools.Base
                 else
                 {
                     // TODO
-                    return "//p";
+                    return "//p|//li|//th|//td";
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace ProcessingTools.Base
                 else
                 {
                     // TODO
-                    return "//p[{0}]";
+                    return "//p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]";
                 }
             }
         }

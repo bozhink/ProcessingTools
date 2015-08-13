@@ -105,13 +105,24 @@ namespace BaseObjectTests
         [Timeout(10000)]
         public void Test_TagEnvo_10154()
         {
+            //FileStream fs = new FileStream(@"C:\temp\10154-out.xml", FileMode.Create);
+            //XmlTextWriter xw = new XmlTextWriter(fs, Encoding.UTF8);
+            //xw.Formatting = Formatting.Indented;
+
+            FileProcessor fp = new FileProcessor(config, @"C:\Users\Bozhin Karaivanov\SkyDrive\Work\9949-abbrev.xml");
+            fp.Read();
+
             config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
 
-            Envo envo = new Envo(config, TestResourceStrings.ZK10154);
+            //Envo envo = new Envo(config, TestResourceStrings.ZK10154);
+            Envo envo = new Envo(config, fp.Xml);
 
-            envo.Tag();
+            envo.Xml = fp.Xml;
+
+            envo.Tag(xpathProvider);
 
             writer.WriteNode(envo.Xml.ToXmlReader(), true);
+            //xw.WriteNode(envo.Xml.ToXmlReader(), true);
         }
 
         [TestMethod]
@@ -127,7 +138,7 @@ namespace BaseObjectTests
 
             {
                 Envo envo = new Envo(config, codes.Xml);
-                envo.Tag();
+                envo.Tag(xpathProvider);
                 codes.Xml = envo.Xml;
             }
 
@@ -167,6 +178,119 @@ namespace BaseObjectTests
             codes.TagInstitutions(xpathProvider, dataProvider);
             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
             codes.TagSpecimenCodes(xpathProvider);
+
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+        }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagCodes_WithoutEnvo_10154()
+        {
+            Codes codes = new Codes(config, TestResourceStrings._10154);
+            DataProvider dataProvider = new DataProvider(config, codes.Xml);
+
+            codes.TagKnownSpecimenCodes(xpathProvider);
+
+            {
+                AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
+                abbr.TagAbbreviationsInText();
+                codes.Xml = abbr.Xml;
+            }
+
+            {
+                DatesTagger dates = new DatesTagger(config, codes.Xml);
+                dates.TagDates(xpathProvider);
+                codes.Xml = dates.Xml;
+            }
+
+            {
+                QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
+                quant.TagQuantities(xpathProvider);
+                quant.TagDirections(xpathProvider);
+                quant.TagAltitude(xpathProvider);
+                codes.Xml = quant.Xml;
+            }
+
+            {
+                SpecimenCountTagger sc = new SpecimenCountTagger(config, codes.Xml);
+                sc.TagSpecimenCount(xpathProvider);
+                codes.Xml = sc.Xml;
+            }
+
+            {
+                GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
+                geo.TagGeonames(xpathProvider, dataProvider);
+                codes.Xml = geo.Xml;
+            }
+
+
+            codes.TagInstitutions(xpathProvider, dataProvider);
+            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+            //codes.TagSpecimenCodes(xpathProvider);
+
+            codes.ClearWrongTags();
+
+            writer.WriteNode(codes.Xml.ToXmlReader(), true);
+        }
+
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void Test_TagCodes_WithEnvo_10154()
+        {
+            FileProcessor fp = new FileProcessor(config, @"C:\Users\Bozhin Karaivanov\SkyDrive\Work\9915-abbr.xml");
+            fp.Read();
+
+            Codes codes = new Codes(config, fp.Xml);
+            DataProvider dataProvider = new DataProvider(config, codes.Xml);
+
+            //codes.TagKnownSpecimenCodes(xpathProvider);
+
+            {
+                config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                Envo envo = new Envo(config, codes.Xml);
+                envo.Tag(xpathProvider);
+                codes.Xml = envo.Xml;
+            }
+
+            {
+                AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
+                abbr.TagAbbreviationsInText();
+                codes.Xml = abbr.Xml;
+            }
+
+            {
+                DatesTagger dates = new DatesTagger(config, codes.Xml);
+                dates.TagDates(xpathProvider);
+                codes.Xml = dates.Xml;
+            }
+
+            {
+                QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
+                quant.TagQuantities(xpathProvider);
+                quant.TagDirections(xpathProvider);
+                quant.TagAltitude(xpathProvider);
+                codes.Xml = quant.Xml;
+            }
+
+            {
+                SpecimenCountTagger sc = new SpecimenCountTagger(config, codes.Xml);
+                sc.TagSpecimenCount(xpathProvider);
+                codes.Xml = sc.Xml;
+            }
+
+            {
+                GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
+                geo.TagGeonames(xpathProvider, dataProvider);
+                codes.Xml = geo.Xml;
+            }
+
+
+            codes.TagInstitutions(xpathProvider, dataProvider);
+            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+            //codes.TagSpecimenCodes(xpathProvider);
+
+            codes.ClearWrongTags();
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
         }

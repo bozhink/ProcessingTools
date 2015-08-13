@@ -30,14 +30,14 @@ namespace ProcessingTools.Base
 
         public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
-            string query = @"select [Name] from [dbo].[institutions] order by len([Name]) desc;";
+            string query = @"select [Name] as [name] from [dbo].[institutions] order by len([Name]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionTag);
             this.Xml = dataProvider.Xml;
 
             // WARNING: here is set len(name) > 1!
-            query = @"select [NameOfInstitution], [URL] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
+            query = @"select [NameOfInstitution] as [name], [URL] as [url] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionTag);
@@ -47,7 +47,7 @@ namespace ProcessingTools.Base
         public void TagInstitutionalCodes(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             // WARNING: here is set len(name) > 1!
-            string query = @"select [InstitutionalCode], [NameOfInstitution], [URL] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
+            string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [URL] as [url] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionalCodeTag, true);
@@ -232,7 +232,7 @@ namespace ProcessingTools.Base
             for (int i = 0, length = codePrefixes.Length; i < length; ++i)
             {
                 string prefix = codePrefixes[i];
-                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}\d{2,}(?:[\/\.]?\d+)*\b");
+                Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}(?:\d+(?:[\/\.]\d+)+|\d+)[a-z]?\b");
                 if (prefixNumericCodes.Match(textContent).Success)
                 {
                     prefixNumericSpecimenCodes.AddRange(
@@ -326,7 +326,7 @@ namespace ProcessingTools.Base
             // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
             // <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="UQIC 221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
 
-            string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:[0-9][\/\.]?(?:<[^>]*>)*){1,20})";
+            string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
             GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
@@ -447,6 +447,26 @@ namespace ProcessingTools.Base
                     }
                 }
             }
+        }
+
+        public void ClearWrongTags()
+        {
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']", this.NamespaceManager))
+            {
+                ReplaceTagByItsInnerXml(node);
+            }
+
+            foreach (XmlNode node in this.XmlDocument.SelectNodes("//date//institutional_code", this.NamespaceManager))
+            {
+                ReplaceTagByItsInnerXml(node);
+            }
+        }
+
+        private void ReplaceTagByItsInnerXml(XmlNode node)
+        {
+            XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
+            fragment.InnerXml = node.InnerXml;
+            node.ParentNode.ReplaceChild(fragment, node);
         }
     }
 }
