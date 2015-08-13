@@ -102,10 +102,7 @@ namespace ProcessingTools.Base
                 StringBuilder attributes = new StringBuilder();
                 for (int i = 1, len = reader.FieldCount; i < len; ++i)
                 {
-                    //Alert.Log(reader.GetName(i));
                     string xmlEscapedContent = Regex.Replace(Regex.Replace(reader.GetString(i), "&", "&amp;"), @"""", "&quot;");
-
-                    //attributes.Append(string.Format(@" attribute{0}=""{1}""", i, xmlEscapedContent));
                     attributes.Append(string.Format(@" {0}=""{1}""", reader.GetName(i), xmlEscapedContent));
                 }
 

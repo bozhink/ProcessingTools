@@ -174,7 +174,7 @@ namespace ProcessingTools.Tag
                 XPathProvider xpathProvider = new XPathProvider(config);
                 QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
                 quantitiesTagger.TagQuantities(xpathProvider);
-                quantitiesTagger.TagDirections(xpathProvider);
+                quantitiesTagger.TagDeviation(xpathProvider);
                 quantitiesTagger.TagAltitude(xpathProvider);
                 fp.Xml = quantitiesTagger.Xml;
 
@@ -252,7 +252,7 @@ namespace ProcessingTools.Tag
                     {
                         QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
                         quant.TagQuantities(xpathProvider);
-                        quant.TagDirections(xpathProvider);
+                        quant.TagDeviation(xpathProvider);
                         quant.TagAltitude(xpathProvider);
                         codes.Xml = quant.Xml;
                     }

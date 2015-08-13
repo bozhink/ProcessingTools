@@ -51,7 +51,7 @@ namespace ProcessingTools.Base
 
             foreach (XmlNode node in nodeList)
             {
-                result.AddRange(GetMatchesInXmlText(node, search, false));
+                result.AddRange(node.GetMatchesInXmlText(search, false));
             }
 
             if (clearList)

@@ -69,7 +69,7 @@ namespace BaseObjectTests
         {
             using (DataProvider dp = new DataProvider(config, TestResourceStrings.String7))
             {
-                foreach(string name in dp.ListTables())
+                foreach (string name in dp.ListTables())
                 {
                     Console.WriteLine(name);
                 }
@@ -109,7 +109,7 @@ namespace BaseObjectTests
             //XmlTextWriter xw = new XmlTextWriter(fs, Encoding.UTF8);
             //xw.Formatting = Formatting.Indented;
 
-            FileProcessor fp = new FileProcessor(config, @"C:\Users\Bozhin Karaivanov\SkyDrive\Work\9949-abbrev.xml");
+            FileProcessor fp = new FileProcessor(config, @"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
             fp.Read();
 
             config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
@@ -157,7 +157,7 @@ namespace BaseObjectTests
             {
                 QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
                 quant.TagQuantities(xpathProvider);
-                quant.TagDirections(xpathProvider);
+                quant.TagDeviation(xpathProvider);
                 quant.TagAltitude(xpathProvider);
                 codes.Xml = quant.Xml;
             }
@@ -174,7 +174,7 @@ namespace BaseObjectTests
                 codes.Xml = geo.Xml;
             }
 
-            
+
             codes.TagInstitutions(xpathProvider, dataProvider);
             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
             codes.TagSpecimenCodes(xpathProvider);
@@ -206,7 +206,7 @@ namespace BaseObjectTests
             {
                 QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
                 quant.TagQuantities(xpathProvider);
-                quant.TagDirections(xpathProvider);
+                quant.TagDeviation(xpathProvider);
                 quant.TagAltitude(xpathProvider);
                 codes.Xml = quant.Xml;
             }
@@ -268,7 +268,7 @@ namespace BaseObjectTests
             {
                 QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
                 quant.TagQuantities(xpathProvider);
-                quant.TagDirections(xpathProvider);
+                quant.TagDeviation(xpathProvider);
                 quant.TagAltitude(xpathProvider);
                 codes.Xml = quant.Xml;
             }
@@ -293,6 +293,44 @@ namespace BaseObjectTests
             codes.ClearWrongTags();
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
+        }
+
+        [TestMethod]
+        [Timeout(20000)]
+        public void Codes_MainAlgirithmTest()
+        {
+            XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);
+            xml.PreserveWhitespace = true;
+            xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
+
+            {
+                SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, xml.OuterXml);
+                specimenCountTagger.TagSpecimenCount(xpathProvider);
+                xml.LoadXml(specimenCountTagger.Xml);
+            }
+
+            {
+                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, xml.OuterXml);
+                quantitiesTagger.TagQuantities(xpathProvider);
+                quantitiesTagger.TagDeviation(xpathProvider);
+                quantitiesTagger.TagAltitude(xpathProvider);
+                xml.LoadXml(quantitiesTagger.Xml);
+            }
+
+            {
+                DatesTagger datesTagger = new DatesTagger(config, xml.OuterXml);
+                datesTagger.TagDates(xpathProvider);
+                xml.LoadXml(datesTagger.Xml);
+            }
+
+            {
+                AbbreviationsTagger abbr = new AbbreviationsTagger(config, xml.OuterXml);
+                abbr.TagAbbreviationsInText();
+                xml.LoadXml(abbr.Xml);
+            }
+
+
+            Console.WriteLine(xml.OuterXml);
         }
 
     }
