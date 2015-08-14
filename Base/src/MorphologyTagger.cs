@@ -16,7 +16,7 @@
 
         public void TagMorphology(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
-            string query = @"select [Name] from [dbo].[morphology] order by len([Name]) desc;";
+            string query = @"select [Name] as [name] from [dbo].[morphology] order by len([Name]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, TagName);

@@ -480,5 +480,25 @@ namespace ProcessingTools.Base
                 }
             }
         }
+
+        public static void ClearTagsInWrongPositions(this XmlDocument xml)
+        {
+            foreach (XmlNode node in xml.SelectNodes("//date//institutional_code | //quantity//quantity"))
+            {
+                node.ReplaceXmlNodeByItsInnerXml(xml);
+            }
+
+            foreach (XmlNode node in xml.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']"))
+            {
+                node.ReplaceXmlNodeByItsInnerXml(xml);
+            }
+        }
+
+        public static void ReplaceXmlNodeByItsInnerXml(this XmlNode node, XmlDocument xml)
+        {
+            XmlDocumentFragment fragment = xml.CreateDocumentFragment();
+            fragment.InnerXml = node.InnerXml;
+            node.ParentNode.ReplaceChild(fragment, node);
+        }
     }
 }

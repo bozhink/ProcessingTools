@@ -120,7 +120,7 @@ namespace ProcessingTools.Base
                         abbrev["def"].InnerXml,
                         "<[^>]*>",
                         string.Empty),
-                    @"\A[=,;:\s–—−-]|[=,;:\s–—−-]\Z|\s+(?=\s)",
+                    @"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)",
                     string.Empty);
             }
 

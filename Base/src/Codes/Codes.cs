@@ -100,7 +100,7 @@ namespace ProcessingTools.Base
         {
             List<SpecimenCode> result = new List<SpecimenCode>();
 
-            XmlNodeList institutionalCodesXmlNodes = this.XmlDocument.SelectNodes("//institutionalCode", this.NamespaceManager);
+            XmlNodeList institutionalCodesXmlNodes = this.XmlDocument.SelectNodes("//institutional_code", this.NamespaceManager);
             List<string> institutionalCodes = institutionalCodesXmlNodes.GetStringListOfUniqueXmlNodeContent();
             foreach (string institutionalCode in institutionalCodes)
             {
@@ -308,7 +308,7 @@ namespace ProcessingTools.Base
             }
 
             /*
-             * Here we might have nested <specimenCode> which probably is due to mistaken codes.
+             * Here we might have nested <specimen_code> which probably is due to mistaken codes.
              */
             {
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", tag.Name);
@@ -329,7 +329,7 @@ namespace ProcessingTools.Base
             string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
+            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
         }
 
         /// <summary>
@@ -347,38 +347,7 @@ namespace ProcessingTools.Base
             string guessNextCodePattern = "(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            TagContent replacementTag = new TagContent(tag);
-            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
-
-            string replacement = replacementTag.FullTag;
-
-            string xpath = string.Format(xpathTemplate, tag.Name);
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                string replace = node.InnerXml;
-
-                while (guessNextCode.Match(replace).Success)
-                {
-                    replace = guessNextCode.Replace(replace, replacement);
-                }
-
-                try
-                {
-                    XmlNode testNode = this.XmlDocument.CreateElement("test-node");
-                    testNode.InnerXml = replace;
-                }
-                catch (Exception e)
-                {
-                    replace = node.InnerXml;
-
-                    Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
-                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Guess specimen codes.");
-                }
-                finally
-                {
-                    node.InnerXml = replace;
-                }
-            }
+            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, string.Format("//{0}[count(@*)!=0]", tag.Name));
         }
 
         private void GuessNextSpecimenCodesByRegex(string xpathTemplate, TagContent tag, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
@@ -388,17 +357,20 @@ namespace ProcessingTools.Base
             string xpath = string.Format(xpathTemplate, tag.Name);
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
-                string replace = node.InnerXml;
-                while (guessNextCode.Match(replace).Success)
+                string nodeInnerXml = node.InnerXml;
+                while (guessNextCode.Match(nodeInnerXml).Success)
                 {
-                    replace = guessNextCode.Replace(replace, replacement);
+                    nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                node.SafeReplaceInnerXml(replace);
+                node.SafeReplaceInnerXml(nodeInnerXml);
 
-                foreach (XmlNode specimenCodeNode in node.SelectNodes(xpathToSelectSpecimenCodeTags, this.NamespaceManager))
+                if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {
-                    SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tag);
+                    foreach (XmlNode specimenCodeNode in node.SelectNodes(xpathToSelectSpecimenCodeTags, this.NamespaceManager))
+                    {
+                        SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tag);
+                    }
                 }
             }
         }
@@ -447,26 +419,6 @@ namespace ProcessingTools.Base
                     }
                 }
             }
-        }
-
-        public void ClearWrongTags()
-        {
-            foreach (XmlNode node in this.XmlDocument.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']", this.NamespaceManager))
-            {
-                ReplaceTagByItsInnerXml(node);
-            }
-
-            foreach (XmlNode node in this.XmlDocument.SelectNodes("//date//institutional_code", this.NamespaceManager))
-            {
-                ReplaceTagByItsInnerXml(node);
-            }
-        }
-
-        private void ReplaceTagByItsInnerXml(XmlNode node)
-        {
-            XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
-            fragment.InnerXml = node.InnerXml;
-            node.ParentNode.ReplaceChild(fragment, node);
         }
     }
 }

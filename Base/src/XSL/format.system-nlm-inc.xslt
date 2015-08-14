@@ -38,6 +38,10 @@
   <xsl:template match="a//a|a//ext-link|ext-link//a|ext-link//ext-link|a//xref|ext-link//xref|xref//xref|xref//a|xref//ext-link">
     <xsl:apply-templates/>
   </xsl:template>
+  
+  <xsl:template match="date//institutional_code | quantity//quantity | //abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']">
+    <xsl:apply-templates/>
+  </xsl:template>
 
   <!-- Remove xref/bibr from ref. In some cases this is not needed. -->
   <xsl:template match="ref//xref[@ref-type='bibr']">

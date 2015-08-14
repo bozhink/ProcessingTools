@@ -222,73 +222,80 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag codes.\n");
-                Codes codes = new Codes(config, fp.Xml);
 
-                using (DataProvider dataProvider = new DataProvider(config, codes.Xml))
+                XPathProvider xpathProvider = new XPathProvider(config);
+
+                ////{
+                ////    Codes codes = new Codes(config, fp.Xml);
+                ////    codes.TagKnownSpecimenCodes(xpathProvider);
+                ////    fp.Xml = codes.Xml;
+                ////}
+
                 {
-                    XPathProvider xpathProvider = new XPathProvider(config);
-
-                    //codes.TagKnownSpecimenCodes(xpathProvider);
-
-                    {
-                        config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
-                        Envo envo = new Envo(config, codes.Xml);
-                        envo.Tag(xpathProvider);
-                        codes.Xml = envo.Xml;
-                    }
-
-                    {
-                        AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
-                        abbr.TagAbbreviationsInText();
-                        codes.Xml = abbr.Xml;
-                    }
-
-                    {
-                        DatesTagger dates = new DatesTagger(config, codes.Xml);
-                        dates.TagDates(xpathProvider);
-                        codes.Xml = dates.Xml;
-                    }
-
-                    {
-                        QuantitiesTagger quant = new QuantitiesTagger(config, codes.Xml);
-                        quant.TagQuantities(xpathProvider);
-                        quant.TagDeviation(xpathProvider);
-                        quant.TagAltitude(xpathProvider);
-                        codes.Xml = quant.Xml;
-                    }
-
-                    {
-                        SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, codes.Xml);
-                        specimenCountTagger.TagSpecimenCount(xpathProvider);
-                        codes.Xml = specimenCountTagger.Xml;
-                    }
-
-                    {
-                        ProductsTagger products = new ProductsTagger(config, codes.Xml);
-                        products.TagProducts(xpathProvider, dataProvider);
-                        codes.Xml = products.Xml;
-                    }
-
-                    {
-                        GeoNamesTagger geonames = new GeoNamesTagger(config, codes.Xml);
-                        geonames.TagGeonames(xpathProvider, dataProvider);
-                        codes.Xml = geonames.Xml;
-                    }
-
-                    {
-                        MorphologyTagger morphology = new MorphologyTagger(config, codes.Xml);
-                        morphology.TagMorphology(xpathProvider, dataProvider);
-                        codes.Xml = morphology.Xml;
-                    }
-
-                    codes.TagInstitutions(xpathProvider, dataProvider);
-                    codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-                    //codes.TagSpecimenCodes(xpathProvider);
-
-                    codes.ClearWrongTags();
+                    AbbreviationsTagger abbr = new AbbreviationsTagger(config, fp.Xml);
+                    abbr.TagAbbreviationsInText();
+                    fp.Xml = abbr.Xml;
                 }
 
-                fp.Xml = codes.Xml;
+                //{
+                //    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
+                //    specimenCountTagger.TagSpecimenCount(xpathProvider);
+                //    fp.Xml = specimenCountTagger.Xml;
+                //}
+
+                //{
+                //    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                //    quantitiesTagger.TagQuantities(xpathProvider);
+                //    quantitiesTagger.TagDeviation(xpathProvider);
+                //    quantitiesTagger.TagAltitude(xpathProvider);
+                //    fp.Xml = quantitiesTagger.Xml;
+                //}
+
+                //{
+                //    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
+                //    datesTagger.TagDates(xpathProvider);
+                //    fp.Xml = datesTagger.Xml;
+                //}
+
+                {
+                    config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                    Envo envo = new Envo(config, fp.Xml);
+                    envo.Tag(xpathProvider);
+                    fp.Xml = envo.Xml;
+                }
+
+                using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
+                {
+                    //{
+                    //    ProductsTagger products = new ProductsTagger(config, fp.Xml);
+                    //    products.TagProducts(xpathProvider, dataProvider);
+                    //    fp.Xml = products.Xml;
+                    //}
+
+                    //{
+                    //    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
+                    //    geonames.TagGeonames(xpathProvider, dataProvider);
+                    //    fp.Xml = geonames.Xml;
+                    //}
+
+                    //{
+                    //    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
+                    //    morphology.TagMorphology(xpathProvider, dataProvider);
+                    //    fp.Xml = morphology.Xml;
+                    //}
+
+                    {
+                        Codes codes = new Codes(config, fp.Xml);
+                        codes.TagInstitutions(xpathProvider, dataProvider);
+                        codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                        //codes.TagSpecimenCodes(xpathProvider);
+
+                        fp.Xml = codes.Xml;
+                    }
+                }
+
+                //fp.XmlDocument.ClearTagsInWrongPositions();
+                
                 PrintElapsedTime(timer);
             }
         }

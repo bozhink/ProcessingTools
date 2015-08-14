@@ -1,12 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProcessingTools;
 using ProcessingTools.Base;
-using System.Xml.XPath;
-using System.Text;
-using System.IO;
-using System.Collections.Generic;
 
 namespace BaseObjectTests
 {
@@ -228,7 +225,7 @@ namespace BaseObjectTests
             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
             //codes.TagSpecimenCodes(xpathProvider);
 
-            codes.ClearWrongTags();
+            codes.XmlDocument.ClearTagsInWrongPositions();
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
         }
@@ -290,7 +287,7 @@ namespace BaseObjectTests
             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
             //codes.TagSpecimenCodes(xpathProvider);
 
-            codes.ClearWrongTags();
+            codes.XmlDocument.ClearTagsInWrongPositions();
 
             writer.WriteNode(codes.Xml.ToXmlReader(), true);
         }
@@ -301,7 +298,13 @@ namespace BaseObjectTests
         {
             XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);
             xml.PreserveWhitespace = true;
-            xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
+            xml.Load(@"C:\Users\Bozhin Karaivanov\SkyDrive\Work\9949-abbrev.xml");
+
+            {
+                AbbreviationsTagger abbr = new AbbreviationsTagger(config, xml.OuterXml);
+                abbr.TagAbbreviationsInText();
+                xml.LoadXml(abbr.Xml);
+            }
 
             {
                 SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, xml.OuterXml);
@@ -321,12 +324,6 @@ namespace BaseObjectTests
                 DatesTagger datesTagger = new DatesTagger(config, xml.OuterXml);
                 datesTagger.TagDates(xpathProvider);
                 xml.LoadXml(datesTagger.Xml);
-            }
-
-            {
-                AbbreviationsTagger abbr = new AbbreviationsTagger(config, xml.OuterXml);
-                abbr.TagAbbreviationsInText();
-                xml.LoadXml(abbr.Xml);
             }
 
 
