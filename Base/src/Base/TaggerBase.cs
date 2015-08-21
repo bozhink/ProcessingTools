@@ -276,7 +276,7 @@ namespace ProcessingTools.Base
             return replacement;
         }
 
-        protected string TagNodeContent(string text, string keyString, string openTag)
+        protected static string TagNodeContent(string text, string keyString, string openTag)
         {
             string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
             string closeTag = "</" + tagName + ">";

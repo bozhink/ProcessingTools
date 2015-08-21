@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -15,7 +16,7 @@ using System.Xml;
 
 namespace ProcessingTools.Base
 {
-    public class DatesTagger : TaggerBase
+    public class DatesTagger : TaggerBase, ITagger
     {
         private TagContent dateTag = new TagContent("date");
 
@@ -29,7 +30,12 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void TagDates(IXPathProvider xpathProvider)
+        public void Tag()
+        {
+            this.Tag(null);
+        }
+
+        public void Tag(IXPathProvider xpathProvider)
         {
             List<string> dates = new List<string>();
 
@@ -67,10 +73,18 @@ namespace ProcessingTools.Base
                 dates = dates.Distinct().ToList();
             }
 
-            foreach (string date in dates)
             {
-                Alert.Log(date);
-                TagTextInXmlDocument(date, dateTag, xpathProvider.SelectContentNodesXPathTemplate, true);
+                string xpathTemplate = "/*";
+                if (xpathProvider != null)
+                {
+                    xpathTemplate = xpathProvider.SelectContentNodesXPathTemplate;
+                }
+
+                foreach (string date in dates)
+                {
+                    Alert.Log(date);
+                    TagTextInXmlDocument(date, dateTag, xpathTemplate, true);
+                }
             }
         }
     }

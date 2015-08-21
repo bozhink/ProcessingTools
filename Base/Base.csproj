@@ -87,7 +87,7 @@
     <Compile Include="src\Base\Base.cs" />
     <Compile Include="src\Base\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
-    <Compile Include="src\Base\IBase.cs" />
+    <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Base\Net.cs" />
     <Compile Include="src\Codes\Codes.cs" />
@@ -102,8 +102,10 @@
     <Compile Include="src\Flora.cs" />
     <Compile Include="src\Format.cs" />
     <Compile Include="src\GeoNamesTagger.cs" />
-    <Compile Include="src\DataProvider\IDataProvider.cs" />
-    <Compile Include="src\XPathProvider\IXPathProvider.cs" />
+    <Compile Include="src\Interfaces\IDataProvider.cs" />
+    <Compile Include="src\Interfaces\IParser.cs" />
+    <Compile Include="src\Interfaces\ITagger.cs" />
+    <Compile Include="src\Interfaces\IXPathProvider.cs" />
     <Compile Include="src\Json\Gbif.cs" />
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
@@ -194,7 +196,6 @@
     <Content Include="src\XSL\zoobank-nlm.xsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Data\select_multi-rank-taxa.xqm" />
     <None Include="Data\taxonomic_ranks.xqm" />
     <None Include="Properties\Settings.settings">

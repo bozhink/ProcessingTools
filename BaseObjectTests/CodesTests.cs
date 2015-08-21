@@ -147,7 +147,7 @@ namespace BaseObjectTests
 
             {
                 DatesTagger dates = new DatesTagger(config, codes.Xml);
-                dates.TagDates(xpathProvider);
+                dates.Tag(xpathProvider);
                 codes.Xml = dates.Xml;
             }
 
@@ -196,7 +196,7 @@ namespace BaseObjectTests
 
             {
                 DatesTagger dates = new DatesTagger(config, codes.Xml);
-                dates.TagDates(xpathProvider);
+                dates.Tag(xpathProvider);
                 codes.Xml = dates.Xml;
             }
 
@@ -258,7 +258,7 @@ namespace BaseObjectTests
 
             {
                 DatesTagger dates = new DatesTagger(config, codes.Xml);
-                dates.TagDates(xpathProvider);
+                dates.Tag(xpathProvider);
                 codes.Xml = dates.Xml;
             }
 
@@ -322,7 +322,7 @@ namespace BaseObjectTests
 
             {
                 DatesTagger datesTagger = new DatesTagger(config, xml.OuterXml);
-                datesTagger.TagDates(xpathProvider);
+                datesTagger.Tag(xpathProvider);
                 xml.LoadXml(datesTagger.Xml);
             }
 

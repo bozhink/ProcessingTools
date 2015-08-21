@@ -192,7 +192,7 @@ namespace ProcessingTools.Tag
 
                 XPathProvider xpathProvider = new XPathProvider(config);
                 DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
-                datesTagger.TagDates(xpathProvider);
+                datesTagger.Tag(xpathProvider);
                 fp.Xml = datesTagger.Xml;
 
                 PrintElapsedTime(timer);

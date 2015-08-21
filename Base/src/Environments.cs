@@ -86,7 +86,7 @@ namespace ProcessingTools.Base
                                             // Here we suppose that there is some tag inside the environment-string in the xml node.
 
                                             // Tag the xml-node-content using non-regex skip-tag matches
-                                            replace = this.TagNodeContent(node.InnerXml, contentString, envoOpenTag);
+                                            replace = TagNodeContent(node.InnerXml, contentString, envoOpenTag);
                                             replace = this.TagOrderNormalizer(replace, envoTagName);
                                         }
                                         else

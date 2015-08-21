@@ -17,7 +17,7 @@ namespace ProcessingTools.Tag
             /*
              * Parse config file
              */
-            config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
+            config = ConfigBuilder.CreateConfig(@"config.json");
             config.NlmStyle = true;
             config.TagWholeDocument = false;
 

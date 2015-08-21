@@ -40,8 +40,6 @@ namespace ProcessingTools
     {
         [DataMember]
         public string tempDirectoryPath { get; set; }
-        [DataMember]
-        public string copyXslFilePath { get; set; }
 
         [DataMember]
         public string blackListXmlFilePath { get; set; }
@@ -56,13 +54,6 @@ namespace ProcessingTools
         public string whiteListCleanXslPath { get; set; }
         [DataMember]
         public string blackListCleanXslPath { get; set; }
-
-        [DataMember]
-        public string taxaReplacesQueryXslPath { get; set; }
-        [DataMember]
-        public string taxaReplacesQueryXmlPath { get; set; }
-        [DataMember]
-        public string taxaExpandXslPath { get; set; }
 
         [DataMember]
         public string floraDistrinctTaxaXslPath { get; set; }

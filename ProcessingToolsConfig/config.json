@@ -1,6 +1,5 @@
 {
     "tempDirectoryPath": "C:\\temp",
-    "copyXslFilePath": "C:\\bin\\XSl\\copy.xsl",
 
     "blackListXmlFilePath": "C:\\bin\\Xml\\taxonomy.blackList.xml",
     "whiteListXmlFilePath": "C:\\bin\\Xml\\taxonomy.whiteList.xml",
@@ -9,11 +8,6 @@
     "rankListCleanXslPath": "C:\\bin\\Xsl\\RankListClean.xsl",
     "whiteListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
     "blackListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
-
-    "taxaReplacesQueryXslPath": "C:\\bin\\Xsl\\taxonomy.taxa-replaces.xslt",
-    "taxaReplacesQueryXmlPath": "C:\\temp\\taxa-replaces-query.xml",
-
-    "taxaExpandXslPath": "C:\\bin\\Xsl\\taxonomy.expand.xslt",
 
     "floraDistrinctTaxaXslPath": "C:\\bin\\Xsl\\taxa.distinct.xslt",
     "floraExtractedTaxaListPath": "C:\\temp\\flora-taxa-list.xml",
