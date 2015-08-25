@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base.ZooBank
+﻿namespace ProcessingTools.Base.ZooBank
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization.Json;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class ZoobankCloner : TaggerBase
     {
         public const string ZooBankPrefix = "http://zoobank.org/";

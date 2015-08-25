@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Xml;
-using ProcessingTools.Base;
-using ProcessingTools.Base.ZooBank;
-
-namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.Tag
 {
+    using System.Diagnostics;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+    using ProcessingTools.Base;
+    using ProcessingTools.Base.ZooBank;
+
     public partial class Tagger
     {
         public static void Main(string[] args)
@@ -138,7 +138,7 @@ namespace ProcessingTools.Tag
             }
             else if (queryReplace && queryFileName.Length > 0)
             {
-                fp.Xml = Base.QueryReplace.Replace(config, fp.Xml, queryFileName);
+                fp.Xml = QueryReplace.Replace(config, fp.Xml, queryFileName);
             }
             else if (flora)
             {

@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
-    public class AbbreviationsTagger : TaggerBase
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
+    public class AbbreviationsTagger : TaggerBase, ITagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
 
@@ -19,7 +19,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public void TagAbbreviationsInText()
+        public void Tag()
         {
             // Do not change this sequence
             this.TagAbbreviationsInSpecificNode("//graphic|//media|//disp-formula-group");
@@ -27,6 +27,11 @@ namespace ProcessingTools.Base
             this.TagAbbreviationsInSpecificNode("//fig-group|//table-wrap-group");
             this.TagAbbreviationsInSpecificNode("//boxed-text");
             this.TagAbbreviationsInSpecificNode("/");
+        }
+
+        public void Tag(IXPathProvider xpathProvider)
+        {
+            this.Tag();
         }
 
         private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)

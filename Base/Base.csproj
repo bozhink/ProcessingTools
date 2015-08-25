@@ -85,9 +85,10 @@
     </Compile>
     <Compile Include="src\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="src\Base\Base.cs" />
-    <Compile Include="src\Base\DocumentExtensions.cs" />
+    <Compile Include="src\Extensions\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
     <Compile Include="src\Coordinates\CoordinatesTagger.cs" />
+    <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="src\Json\Gbif.cs" />
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParser.cs" />
     <Compile Include="src\WebLinks\Links.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
     <Compile Include="src\Products\ProductsTagger.cs" />
@@ -122,7 +124,7 @@
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\Expander.cs" />
     <Compile Include="src\Taxonomy\Species.cs" />
-    <Compile Include="src\Taxonomy\TaxaParser.cs" />
+    <Compile Include="src\Taxonomy\LowerTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class References : TaggerBase
     {
         public References(Config config, string xml)
@@ -11,7 +11,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public References(TaggerBase baseObject)
+        public References(IBase baseObject)
             : base(baseObject)
         {
         }

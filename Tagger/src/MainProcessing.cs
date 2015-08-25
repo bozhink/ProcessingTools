@@ -91,38 +91,38 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse higher taxa.\n");
-                TaxaParser parser = new TaxaParser(config, xmlContent);
+                HigherTaxaParser parser = new HigherTaxaParser(config, xmlContent);
 
-                parser.ParseHigherTaxa(true, false, false, false, false);
+                parser.Parse(true, false, false, false, false);
 
                 if (splitHigherWithAphia)
                 {
                     Alert.Log("\n\tSplit higher taxa using Aphia API\n");
-                    parser.ParseHigherTaxa(false, true, false, false, false);
+                    parser.Parse(false, true, false, false, false);
                 }
 
                 if (splitHigherWithCoL)
                 {
                     Alert.Log("\n\tSplit higher taxa using CoL API\n");
-                    parser.ParseHigherTaxa(false, false, true, false, false);
+                    parser.Parse(false, false, true, false, false);
                 }
 
                 if (splitHigherWithGbif)
                 {
                     Alert.Log("\n\tSplit higher taxa using GBIF API\n");
-                    parser.ParseHigherTaxa(false, false, false, true, false);
+                    parser.Parse(false, false, false, true, false);
                 }
 
                 if (splitHigherBySuffix)
                 {
                     Alert.Log("\n\tSplit higher taxa by suffix\n");
-                    parser.ParseHigherTaxa(false, false, false, false, true);
+                    parser.Parse(false, false, false, false, true);
                 }
 
                 if (splitHigherAboveGenus)
                 {
                     Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
-                    parser.ParseHigherTaxa(false, false, false, false, false, true);
+                    parser.Parse(false, false, false, false, false, true);
                 }
 
                 xmlContent = parser.Xml;
@@ -159,9 +159,9 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse lower taxa.\n");
-                TaxaParser parser = new TaxaParser(config, xmlContent);
+                LowerTaxaParser parser = new LowerTaxaParser(config, xmlContent);
 
-                parser.ParseLowerTaxa();
+                parser.Parse();
 
                 xmlContent = parser.Xml;
                 PrintElapsedTime(timer);
@@ -250,8 +250,8 @@ namespace ProcessingTools.Tag
 
         private static string RemoveAllTaxaTags(string xmlContent)
         {
-            TaxaParser parser = new TaxaParser(config, xmlContent);
-            parser.UnSplitAllTaxa();
+            LowerTaxaParser parser = new LowerTaxaParser(config, xmlContent);
+            parser.XmlDocument.RemoveTaxonNamePartTags();
             xmlContent = parser.Xml;
             return xmlContent;
         }

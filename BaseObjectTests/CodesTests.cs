@@ -141,7 +141,7 @@ namespace BaseObjectTests
 
             {
                 AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
-                abbr.TagAbbreviationsInText();
+                abbr.Tag();
                 codes.Xml = abbr.Xml;
             }
 
@@ -190,7 +190,7 @@ namespace BaseObjectTests
 
             {
                 AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
-                abbr.TagAbbreviationsInText();
+                abbr.Tag();
                 codes.Xml = abbr.Xml;
             }
 
@@ -252,7 +252,7 @@ namespace BaseObjectTests
 
             {
                 AbbreviationsTagger abbr = new AbbreviationsTagger(config, codes.Xml);
-                abbr.TagAbbreviationsInText();
+                abbr.Tag();
                 codes.Xml = abbr.Xml;
             }
 
@@ -302,7 +302,7 @@ namespace BaseObjectTests
 
             {
                 AbbreviationsTagger abbr = new AbbreviationsTagger(config, xml.OuterXml);
-                abbr.TagAbbreviationsInText();
+                abbr.Tag();
                 xml.LoadXml(abbr.Xml);
             }
 

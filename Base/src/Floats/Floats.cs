@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public enum ReferenceType
     {
         Affiliation, ////"aff"

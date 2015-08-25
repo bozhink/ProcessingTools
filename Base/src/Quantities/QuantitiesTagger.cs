@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class QuantitiesTagger : TaggerBase
     {
         private TagContent quantityTag = new TagContent("quantity");

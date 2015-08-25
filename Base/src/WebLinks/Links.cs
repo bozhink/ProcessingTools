@@ -1,9 +1,9 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     namespace Nlm
     {
         public class LinksTagger : TaggerBase
@@ -13,7 +13,7 @@ namespace ProcessingTools.Base
             {
             }
 
-            public LinksTagger(TaggerBase baseObject)
+            public LinksTagger(IBase baseObject)
                 : base(baseObject)
             {
             }
@@ -99,59 +99,4 @@ namespace ProcessingTools.Base
             }
         }
     }
-
-    ////namespace NlmSystem
-    ////{
-    ////    public class LinksTagger : TaggerBase
-    ////    {
-    ////        public LinksTagger(string xml)
-    ////            : base(xml)
-    ////        {
-    ////        }
-
-    ////        public LinksTagger(TaggerBase baseObject)
-    ////            : base(baseObject)
-    ////        {
-    ////        }
-
-    ////        public void TagWWW()
-    ////        {
-    ////            Match mp = Regex.Match(this.xml, "(<p>[\\s\\S]*?</p>)");
-    ////            while (mp.Success)
-    ////            {
-    ////                string replace = mp.Value;
-    ////                replace = Regex.Replace(
-    ////                    replace,
-    ////                    @"(((http(s)?:\/\/)|(www\.))([\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?))",
-    ////                    "<a target=\"_blank\" href=\"http$4://$5$6\">$1</a>");
-    ////                this.xml = Regex.Replace(this.xml, Regex.Escape(mp.Value), replace);
-    ////                mp = mp.NextMatch();
-    ////            }
-
-    ////            // Tag IP addresses
-    ////            this.xml = Regex.Replace(this.xml, "(http(s?)://((\\d{1,3}\\.){3,3}\\d{1,3})(:\\d+)?(/[^<>\n\"\\s]*[A-Za-z0-9/])?)", "<a target=\"_blank\" href=\"$1\">$1</a>");
-    ////            this.xml = Regex.Replace(this.xml, "((s?)ftp://((\\d{1,3}\\.){3,3}\\d{1,3})(:\\d+)?(/[^<>\n\"\\s]*[A-Za-z0-9/])?)", "<a target=\"_blank\" href=\"$1\">$1</a>");
-
-    ////            int maxTagInTag = 10;
-    ////            for (int i = 0; i < maxTagInTag; i++)
-    ////            {
-    ////                this.ClearTagsFromTags();
-    ////            }
-    ////        }
-
-    ////        public void ClearTagsFromTags()
-    ////        {
-    ////            this.xml = Regex.Replace(this.xml, "(<[^<>]*)(<[^>]*>)([^<>]*)(</[^>]*>)([^>]*>)", "$1$3$5");
-    ////        }
-
-    ////        public void TagDOI()
-    ////        {
-    ////            // Remove blanks around brackets spanning numbers
-    ////            this.xml = Regex.Replace(this.xml, @"(\d)\s(\(|\[)([A-Z0-9]+)(\]|\))\s(\d)", "$1$2$3$4$5");
-
-    ////            // Tag DOI
-    ////            this.xml = Regex.Replace(this.xml, @"doi:(\s*)([^,<\s]*[A-Za-z0-9])", "doi: <a target=\"_blank\" href=\"http://dx.doi.org/$2\">$2</a>");
-    ////        }
-    ////    }
-    ////}
 }

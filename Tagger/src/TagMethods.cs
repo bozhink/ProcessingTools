@@ -209,7 +209,7 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tTag abbreviations.\n");
 
                 AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
-                abbreviationsTagger.TagAbbreviationsInText();
+                abbreviationsTagger.Tag();
                 fp.Xml = abbreviationsTagger.Xml;
 
                 PrintElapsedTime(timer);
@@ -234,7 +234,7 @@ namespace ProcessingTools.Tag
 
                 {
                     AbbreviationsTagger abbr = new AbbreviationsTagger(config, fp.Xml);
-                    abbr.TagAbbreviationsInText();
+                    abbr.Tag();
                     fp.Xml = abbr.Xml;
                 }
 

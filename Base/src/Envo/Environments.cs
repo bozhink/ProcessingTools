@@ -1,10 +1,10 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Data.SqlClient;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class Environments : TaggerBase
     {
         public Environments(string xml)

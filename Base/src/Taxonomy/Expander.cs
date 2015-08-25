@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base.Taxonomy
+﻿namespace ProcessingTools.Base.Taxonomy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     namespace Nlm
     {
         public class Expander : TaggerBase
@@ -376,7 +376,7 @@ namespace ProcessingTools.Base.Taxonomy
                         // TODO
                         for (Match p = Regex.Match(this.Xml, "<p>[\\s\\S]+?" + Regex.Escape(node.InnerXml)); p.Success; p = p.NextMatch())
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(p.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
 
                             Species last = new Species();
                             bool isFound = false;
@@ -456,7 +456,7 @@ namespace ProcessingTools.Base.Taxonomy
                         Match p = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (p.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(p.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
                             bool isFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -1412,7 +1412,7 @@ namespace ProcessingTools.Base.Taxonomy
                         Match paragraph = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (paragraph.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", TaxaParser.UnSplitTaxa(paragraph.Value));
+                            Console.WriteLine("Paragraph content:\n\t{0}\n", paragraph.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
                             bool isFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())

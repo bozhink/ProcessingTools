@@ -1,8 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base.Format
+﻿namespace ProcessingTools.Base.Format
 {
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     namespace Nlm
     {
         public class Formatter : Base, IFormatter

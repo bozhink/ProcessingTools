@@ -1,9 +1,9 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public static class QueryReplace
     {
         /// <summary>

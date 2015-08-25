@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
-
-namespace ProcessingTools.Base.Json.Gbif
+﻿namespace ProcessingTools.Base.Json.Gbif
 {
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class GbifResult
     {

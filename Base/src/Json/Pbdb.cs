@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
-
-namespace ProcessingTools.Base.Json.Pbdb
+﻿namespace ProcessingTools.Base.Json.Pbdb
 {
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class PbdbSingleName
     {

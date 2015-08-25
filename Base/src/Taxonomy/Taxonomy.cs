@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base.Taxonomy
+﻿namespace ProcessingTools.Base.Taxonomy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public enum TaxaType
     {
         Lower,
@@ -132,7 +132,7 @@ namespace ProcessingTools.Base.Taxonomy
 
             if (xpath != string.Empty)
             {
-                XmlNodeList nodeList = xml.SelectNodes(xpath, ProcessingTools.Config.TaxPubNamespceManager());
+                XmlNodeList nodeList = xml.SelectNodes(xpath, Config.TaxPubNamespceManager());
                 if (stripTags)
                 {
                     result = nodeList.Cast<XmlNode>().Select(c =>
