@@ -134,13 +134,13 @@
 		TAXONOMIC PART
 	 -->
 
-	<xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name[@type='lower']">
+	<xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name[@type='lower']|article/front/article-meta/title-group/article-title/tn[@type='lower']">
 		<italic>
 			<xsl:call-template name="parse-inline-taxon-name-content"/>
 		</italic>
 	</xsl:template>
 
-	<xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name|article/front/article-meta/title-group/article-title/italic/tp:taxon-name">
+	<xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name|article/front/article-meta/title-group/article-title/italic/tp:taxon-name|article/front/article-meta/title-group/article-title/tn|article/front/article-meta/title-group/article-title/i/tn">
 		<xsl:call-template name="parse-inline-taxon-name-content"/>
 	</xsl:template>
 
@@ -150,7 +150,7 @@
 		<tp:nomenclature>
 			<xsl:apply-templates select="sec-meta"/>
 			<xsl:apply-templates select="label"/>
-			<xsl:apply-templates select="tp:taxon-name"/>
+			<xsl:apply-templates select="tp:taxon-name|tn"/>
 			<xsl:apply-templates select="tp:taxon-authority"/>
 			<xsl:apply-templates select="tp:taxon-status"/>
 			<xsl:apply-templates select="tp:taxon-identifier"/>
@@ -167,7 +167,7 @@
 		<xsl:apply-templates/>
 	</xsl:template>
 
-	<xsl:template match="tp:nomenclature/tp:taxon-name">
+	<xsl:template match="tp:nomenclature/tp:taxon-name|tp:nomenclature/tn">
 		<tp:taxon-name>
 			<xsl:apply-templates/>
 			<xsl:if test="count(object-id[@content-type='zoobank']) + count(../object-id[@content-type='zoobank']) = 0">
@@ -177,7 +177,7 @@
 		</tp:taxon-name>
 	</xsl:template>
 
-	<xsl:template match="tp:taxon-name[name(..)!='tp:nomenclature'][name(../..)!='title-group'][name(../../..)!='title-group']">
+	<xsl:template match="tp:taxon-name[name(..)!='tp:nomenclature'][name(../..)!='title-group'][name(../../..)!='title-group']|tn[name(..)!='tp:nomenclature'][name(../..)!='title-group'][name(../../..)!='title-group']">
 		<tp:taxon-name>
 			<xsl:call-template name="parse-inline-taxon-name-content"/>
 		</tp:taxon-name>
@@ -207,13 +207,13 @@
 		</xsl:for-each>
 	</xsl:template>
 
-	<xsl:template match="tp:taxon-name">
+	<xsl:template match="tp:taxon-name|tn">
 		<tp:taxon-name>
 			<xsl:apply-templates/>
 		</tp:taxon-name>
 	</xsl:template>
 
-	<xsl:template match="tp:taxon-name-part">
+	<xsl:template match="tp:taxon-name-part|tn-part">
 		<xsl:variable name="lBracket" select="contains(string(.),'(')"/>
 		<xsl:variable name="rBracket" select="contains(string(.),')')"/>
 		<xsl:variable name="lValue">
@@ -240,7 +240,10 @@
 			<xsl:text> (</xsl:text>
 		</xsl:if>
 		<tp:taxon-name-part>
-			<xsl:apply-templates select="@taxon-name-part-type"/>
+      <xsl:attribute name="taxon-name-part-type">
+        <xsl:value-of select="@taxon-name-part-type"/>
+        <xsl:value-of select="@type"/>
+      </xsl:attribute>
 			<xsl:choose>
 				<xsl:when test="@full-name">
 					<xsl:value-of select="@full-name"/>
@@ -271,19 +274,31 @@
 		</xsl:for-each>
 	</xsl:template>
 
-	<xsl:template match="tp:nomenclature-citation[text()][count(.//tp:taxon-name)!=0]">
+	<xsl:template match="tp:nomenclature-citation[text()][count(.//tp:taxon-name)+count(.//tn)!=0]">
 		<tp:nomenclature-citation>
 			<xsl:choose>
 				<xsl:when test="name(node()[1])='italic' and node()[1]/tp:taxon-name">
 					<xsl:apply-templates select="node()[1]/tp:taxon-name"/>
 				</xsl:when>
+        <xsl:when test="name(node()[1])='i' and node()[1]/tn">
+					<xsl:apply-templates select="node()[1]/tn"/>
+				</xsl:when>
 				<xsl:when test="name(node()[1])='tp:taxon-name'">
+					<xsl:apply-templates select="node()[1]"/>
+				</xsl:when>
+        <xsl:when test="name(node()[1])='tn'">
 					<xsl:apply-templates select="node()[1]"/>
 				</xsl:when>
 				<xsl:when test="name(node()[1])='' and normalize-space(node()[1])='=' and name(node()[2])='italic' and node()[2]/tp:taxon-name">
 					<xsl:apply-templates select="node()[2]/tp:taxon-name"/>
 				</xsl:when>
+        <xsl:when test="name(node()[1])='' and normalize-space(node()[1])='=' and name(node()[2])='i' and node()[2]/tn">
+					<xsl:apply-templates select="node()[2]/tn"/>
+				</xsl:when>
 				<xsl:when test="name(node()[1])='' and normalize-space(node()[1])='=' and name(node()[2])='tp:taxon-name'">
+					<xsl:apply-templates select="node()[2]"/>
+				</xsl:when>
+        <xsl:when test="name(node()[1])='' and normalize-space(node()[1])='=' and name(node()[2])='tn'">
 					<xsl:apply-templates select="node()[2]"/>
 				</xsl:when>
 			</xsl:choose>
@@ -311,11 +326,12 @@
 		</tp:nomenclature-citation>
 	</xsl:template>
 
-	<xsl:template match="tp:nomenclature-citation[text()][count(.//tp:taxon-name)=0]">
+	<xsl:template match="tp:nomenclature-citation[text()][count(.//tp:taxon-name)+count(.//tn)=0]">
 		<xsl:choose>
 			<xsl:when test="normalize-space(.)!=''">
 				<tp:nomenclature-citation>
 					<xsl:apply-templates select="../../tp:taxon-name"/>
+          <xsl:apply-templates select="../../tn"/>
 					<comment>
 						<xsl:apply-templates/>
 					</comment>

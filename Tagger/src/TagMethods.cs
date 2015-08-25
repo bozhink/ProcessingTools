@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using ProcessingTools.Base;
+using ProcessingTools.Base.Coordinates;
 
 namespace ProcessingTools.Tag
 {
@@ -30,9 +31,9 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse coordinates.\n");
-                Coordinates cd = new Coordinates(config, fp.Xml);
+                CoordinatesParser cd = new CoordinatesParser(config, fp.Xml);
 
-                cd.ParseCoordinates();
+                cd.Parse();
 
                 fp.Xml = cd.Xml;
                 PrintElapsedTime(timer);
@@ -46,9 +47,9 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag coordinates.\n");
-                Coordinates cd = new Coordinates(config, fp.Xml);
+                CoordinatesTagger cd = new CoordinatesTagger(config, fp.Xml);
 
-                cd.TagCoordinates();
+                cd.Tag();
 
                 fp.Xml = cd.Xml;
                 PrintElapsedTime(timer);

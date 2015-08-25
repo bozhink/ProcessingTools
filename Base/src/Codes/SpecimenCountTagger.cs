@@ -5,6 +5,9 @@ using System.Xml;
 /*
  * 1 male, 1 female
  * 2 spec.
+ * 2 exx.
+ * 2 spp.
+ * 1 ex.
  */
 
 

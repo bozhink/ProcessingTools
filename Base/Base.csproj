@@ -87,13 +87,14 @@
     <Compile Include="src\Base\Base.cs" />
     <Compile Include="src\Base\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
+    <Compile Include="src\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
     <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Codes\Codes.cs" />
     <Compile Include="src\Codes\SpecimenCode.cs" />
-    <Compile Include="src\Coordinates\Coordinates.cs" />
+    <Compile Include="src\Coordinates\CoordinatesParser.cs" />
     <Compile Include="src\Base\FileProcessor.cs" />
     <Compile Include="src\DataProvider\DataProvider.cs" />
     <Compile Include="src\Dates\DatesTagger.cs" />
