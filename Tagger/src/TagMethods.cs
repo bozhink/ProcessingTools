@@ -116,14 +116,14 @@ namespace ProcessingTools.Tag
                 {
                     string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
                     Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(config, xml);
-                    fmt.InitialFormat();
+                    fmt.Format();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
                     string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
                     Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(config, xml);
-                    fmt.InitialFormat();
+                    fmt.Format();
                     fp.Xml = fmt.Xml;
                 }
 
