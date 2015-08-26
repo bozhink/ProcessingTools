@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class DataProvider : TaggerBase, IDataProvider, IDisposable
     {
         private SqlConnection connection;
@@ -15,33 +15,18 @@ namespace ProcessingTools.Base
         public DataProvider(Config config, string xml)
             : base(config, xml)
         {
-            OpenConnection();
+            this.OpenConnection();
         }
 
         public DataProvider(IBase baseObject)
             : base(baseObject)
         {
-            OpenConnection();
+            this.OpenConnection();
         }
 
         ~DataProvider()
         {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.connection.Dispose();
-                this.connection.Close();
-            }
+            this.Dispose(false);
         }
 
         public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
@@ -63,7 +48,7 @@ namespace ProcessingTools.Base
                 {
                     try
                     {
-                        using(SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
@@ -95,6 +80,40 @@ namespace ProcessingTools.Base
             }
         }
 
+        public IList<string> ListTables()
+        {
+            List<string> tables = new List<string>();
+            DataTable dt = this.connection.GetSchema("Tables");
+            foreach (DataRow row in dt.Rows)
+            {
+                string tablename = (string)row[2];
+                tables.Add(tablename);
+            }
+
+            return tables;
+        }
+
+        public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName)
+        {
+            TagContent tag = new TagContent(tagName);
+            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.connection.Dispose();
+                this.connection.Close();
+            }
+        }
+
         private static void SetTagAttributes(TagContent tag, SqlDataReader reader)
         {
             if (reader.FieldCount > 1)
@@ -114,12 +133,6 @@ namespace ProcessingTools.Base
             }
         }
 
-        public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName)
-        {
-            TagContent tag = new TagContent(tagName);
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
-        }
-
         private void OpenConnection()
         {
             try
@@ -132,18 +145,6 @@ namespace ProcessingTools.Base
             {
                 Alert.RaiseExceptionForMethod(e, 1);
             }
-        }
-
-        public IList<string> ListTables()
-        {
-            List<string> tables = new List<string>();
-            DataTable dt = this.connection.GetSchema("Tables");
-            foreach (DataRow row in dt.Rows)
-            {
-                string tablename = (string)row[2];
-                tables.Add(tablename);
-            }
-            return tables;
         }
     }
 }

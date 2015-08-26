@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+
     public class Flora : TaggerBase
     {
         public Flora(string xml)

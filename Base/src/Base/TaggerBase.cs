@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public abstract class TaggerBase : Base
     {
         private string textContent;
@@ -85,19 +85,89 @@ namespace ProcessingTools.Base
             }
         }
 
+        protected static string TagNodeContent(string text, string keyString, string openTag)
+        {
+            string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
+            string closeTag = "</" + tagName + ">";
+            openTag = Regex.Replace(openTag, "/", string.Empty);
+
+            StringBuilder sb = new StringBuilder();
+            StringBuilder charStack = new StringBuilder();
+
+            int j = 0, len = keyString.Length;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char ch = text[i];
+                j = 0;
+                if (ch == keyString[j])
+                {
+                    charStack.Clear();
+
+                    TestCharInKeyString:
+                    while (ch == keyString[j])
+                    {
+                        charStack.Append(ch);
+                        if (++j >= len)
+                        {
+                            break;
+                        }
+
+                        ch = text[++i];
+                    }
+
+                    if (j < len)
+                    {
+                        // In the loop above we didn’t reach the end of the keyString
+                        // Here we have the ch character which is not appended to the charStack StringBuilder
+                        charStack.Append(ch);
+                        if (ch == '<')
+                        {
+                            while (ch != '>')
+                            {
+                                ch = text[++i];
+                                charStack.Append(ch);
+                            }
+
+                            // Here ch == '>'. Everything is in charStack up to ch = '>'.
+                            ch = text[++i];
+                            goto TestCharInKeyString;
+                        }
+                        else
+                        {
+                            // This means that ch != keyString[j] because here we have no match
+                            // then just append the stored content in charStack and go ahead
+                            sb.Append(charStack.ToString());
+                        }
+                    }
+                    else
+                    {
+                        // Here we have the whole keyString match in the charStack
+                        sb.Append(openTag + charStack.ToString() + closeTag);
+                    }
+                }
+                else
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Tags plain text strings (no regex) in XmlDocument.
         /// </summary>
         /// <param name="textToTagList">List of text fragments to tag.</param>
         /// <param name="tag">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        /// <param name="caseSensitive">Must be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
-        protected void TagTextInXmlDocument(IEnumerable<string> textToTagList, TagContent tag, string xpathTemplate, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        protected void TagTextInXmlDocument(IEnumerable<string> textToTagList, TagContent tag, string xpathTemplate, bool caseSensitive = true, bool minimalTextSelect = false)
         {
             foreach (string textToTag in textToTagList)
             {
-                TagTextInXmlDocument(textToTag, tag, xpathTemplate, isCaseSensitive, minimalTextSelect);
+                this.TagTextInXmlDocument(textToTag, tag, xpathTemplate, caseSensitive, minimalTextSelect);
             }
         }
 
@@ -107,14 +177,14 @@ namespace ProcessingTools.Base
         /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
         /// <param name="tag">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        /// <param name="caseSensitive">Must be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
-        protected void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, string xpathTemplate, bool caseSensitive = true, bool minimalTextSelect = false)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
             XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
-            TagTextInXmlDocument(textToTag, tag, nodeList, isCaseSensitive, minimalTextSelect);
+            this.TagTextInXmlDocument(textToTag, tag, nodeList, caseSensitive, minimalTextSelect);
         }
 
         /// <summary>
@@ -123,12 +193,12 @@ namespace ProcessingTools.Base
         /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
         /// <param name="tag">The tag model.</param>
         /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
-        /// <param name="isCaseSensitive">Must be the search case sensitive?</param>
+        /// <param name="caseSensitive">Must be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
-        protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        protected void TagTextInXmlDocument(string textToTag, TagContent tag, XmlNodeList nodeList, bool caseSensitive = true, bool minimalTextSelect = false)
         {
             string caseSensitiveness = string.Empty;
-            if (!isCaseSensitive)
+            if (!caseSensitive)
             {
                 caseSensitiveness = "(?i)";
             }
@@ -182,20 +252,18 @@ namespace ProcessingTools.Base
             }
         }
 
-
-
-        protected void TagTextInXmlDocument(XmlDocument tagSet, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        protected void TagTextInXmlDocument(XmlDocument tagSet, XmlNodeList nodeList, bool caseSensitive = true, bool minimalTextSelect = false)
         {
             foreach (XmlNode tagNode in tagSet.DocumentElement.ChildNodes)
             {
-                TagTextInXmlDocument(tagNode, nodeList, isCaseSensitive, minimalTextSelect);
+                this.TagTextInXmlDocument(tagNode, nodeList, caseSensitive, minimalTextSelect);
             }
         }
 
-        protected void TagTextInXmlDocument(XmlNode tagNode, XmlNodeList nodeList, bool isCaseSensitive = true, bool minimalTextSelect = false)
+        protected void TagTextInXmlDocument(XmlNode tagNode, XmlNodeList nodeList, bool caseSensitive = true, bool minimalTextSelect = false)
         {
             string caseSensitiveness = string.Empty;
-            if (!isCaseSensitive)
+            if (!caseSensitive)
             {
                 caseSensitiveness = "(?i)";
             }
@@ -255,95 +323,6 @@ namespace ProcessingTools.Base
                     node.InnerXml = replace;
                 }
             }
-        }
-
-        private static string GetReplacementOfTagNode(XmlNode tagNode)
-        {
-            XmlNode replacementNode = tagNode.Clone();
-            replacementNode.InnerText = "$1";
-
-            string replacement = replacementNode.OuterXml;
-            return replacement;
-        }
-
-        private static string GetReplacementOfTagNode(string textToTag, TagContent tag)
-        {
-            TagContent replacementTag = new TagContent(tag);
-            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
-            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
-
-            string replacement = replacementTag.FullTag;
-            return replacement;
-        }
-
-        protected static string TagNodeContent(string text, string keyString, string openTag)
-        {
-            string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
-            string closeTag = "</" + tagName + ">";
-            openTag = Regex.Replace(openTag, "/", string.Empty);
-
-            StringBuilder sb = new StringBuilder();
-            StringBuilder charStack = new StringBuilder();
-
-            int j = 0, len = keyString.Length;
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                char ch = text[i];
-                j = 0;
-                if (ch == keyString[j])
-                {
-                    charStack.Clear();
-
-                TestCharInKeyString:
-                    while (ch == keyString[j])
-                    {
-                        charStack.Append(ch);
-                        if (++j >= len)
-                        {
-                            break;
-                        }
-
-                        ch = text[++i];
-                    }
-
-                    if (j < len)
-                    {
-                        // In the loop above we didn’t reach the end of the keyString
-                        // Here we have the ch character which is not appended to the charStack StringBuilder
-                        charStack.Append(ch);
-                        if (ch == '<')
-                        {
-                            while (ch != '>')
-                            {
-                                ch = text[++i];
-                                charStack.Append(ch);
-                            }
-
-                            // Here ch == '>'. Everything is in charStack up to ch = '>'.
-                            ch = text[++i];
-                            goto TestCharInKeyString;
-                        }
-                        else
-                        {
-                            // This means that ch != keyString[j] because here we have no match
-                            // then just append the stored content in charStack and go ahead
-                            sb.Append(charStack.ToString());
-                        }
-                    }
-                    else
-                    {
-                        // Here we have the whole keyString match in the charStack
-                        sb.Append(openTag + charStack.ToString() + closeTag);
-                    }
-                }
-                else
-                {
-                    sb.Append(ch);
-                }
-            }
-
-            return sb.ToString();
         }
 
         /// <summary>
@@ -562,6 +541,25 @@ namespace ProcessingTools.Base
             }
 
             return singleBrokenPattern.ToString();
+        }
+
+        private static string GetReplacementOfTagNode(XmlNode tagNode)
+        {
+            XmlNode replacementNode = tagNode.Clone();
+            replacementNode.InnerText = "$1";
+
+            string replacement = replacementNode.OuterXml;
+            return replacement;
+        }
+
+        private static string GetReplacementOfTagNode(string textToTag, TagContent tag)
+        {
+            TagContent replacementTag = new TagContent(tag);
+            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
+            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
+
+            string replacement = replacementTag.FullTag;
+            return replacement;
         }
 
         private void Initialize()

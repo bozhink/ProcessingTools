@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class FileProcessor : Base
     {
         private string inputFileName;
@@ -79,6 +79,18 @@ namespace ProcessingTools.Base
             }
         }
 
+        /// <summary>
+        /// Try to read the file ‘InputFileName’ as valid XML document.
+        /// </summary>
+        /// <returns>XmlReader of the file ‘InputFileName’</returns>
+        public XmlReader XmlReader
+        {
+            get
+            {
+                return FileProcessor.GetXmlReader(this.InputFileName);
+            }
+        }
+
         public static string ReadFileContentToString(string inputFileName)
         {
             string result = string.Empty;
@@ -133,18 +145,6 @@ namespace ProcessingTools.Base
             return reader;
         }
 
-        /// <summary>
-        /// Try to read the file ‘InputFileName’ as valid XML document.
-        /// </summary>
-        /// <returns>XmlReader of the file ‘InputFileName’</returns>
-        public XmlReader XmlReader
-        {
-            get
-            {
-                return FileProcessor.GetXmlReader(this.InputFileName);
-            }
-        }
-
         public void Read()
         {
             XmlDocument readXml = new XmlDocument(this.NamespaceManager.NameTable);
@@ -159,7 +159,7 @@ namespace ProcessingTools.Base
                 XmlReader reader = null;
                 try
                 {
-                    stream = new FileStream(inputFileName, FileMode.Open);
+                    stream = new FileStream(this.inputFileName, FileMode.Open);
                     reader = XmlTextReader.Create(stream, readerSettings);
 
                     readXml.Load(reader);
@@ -172,7 +172,7 @@ namespace ProcessingTools.Base
                     {
                         reader.Close();
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
                     }
 

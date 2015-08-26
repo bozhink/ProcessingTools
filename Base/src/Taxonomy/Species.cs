@@ -69,11 +69,11 @@
         private string subgenus;
         private string species;
         private string subspecies;
-        private bool isGenusNull;
-        private bool isSubgenusNull;
-        private bool isSpeciesNull;
-        private bool isSubspeciesNull;
-        private bool isShortened;
+        private bool nullGenus;
+        private bool nullSubgenus;
+        private bool nullSpecies;
+        private bool nullSubspecies;
+        private bool shortened;
 
         public Species(string parsedContent)
         {
@@ -85,11 +85,11 @@
             this.species = m.Success ? m.Value : string.Empty;
             m = Species.subspeciesNameMatchInXml.Match(parsedContent);
             this.subspecies = m.Success ? m.Value : string.Empty;
-            this.isGenusNull = this.CheckIfGenusIsNull();
-            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
-            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
-            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullGenus = this.CheckIfGenusIsNull();
+            this.nullSubgenus = this.CheckIfSubgenusIsNull();
+            this.nullSpecies = this.CheckIfSpeciesIsNull();
+            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public Species(string genus, string subgenus, string species, string subspecies)
@@ -98,11 +98,11 @@
             this.subgenus = subgenus;
             this.species = species;
             this.subspecies = subspecies;
-            this.isGenusNull = this.CheckIfGenusIsNull();
-            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
-            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
-            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullGenus = this.CheckIfGenusIsNull();
+            this.nullSubgenus = this.CheckIfSubgenusIsNull();
+            this.nullSpecies = this.CheckIfSpeciesIsNull();
+            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public Species()
@@ -111,11 +111,11 @@
             this.subgenus = string.Empty;
             this.species = string.Empty;
             this.subspecies = string.Empty;
-            this.isGenusNull = true;
-            this.isSubgenusNull = true;
-            this.isSpeciesNull = true;
-            this.isSubspeciesNull = true;
-            this.isShortened = false;
+            this.nullGenus = true;
+            this.nullSubgenus = true;
+            this.nullSpecies = true;
+            this.nullSubspecies = true;
+            this.shortened = false;
         }
 
         public Species(Species sp)
@@ -124,11 +124,11 @@
             this.subgenus = sp.SubgenusName;
             this.species = sp.SpeciesName;
             this.subspecies = sp.SubspeciesName;
-            this.isGenusNull = this.CheckIfGenusIsNull();
-            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
-            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
-            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullGenus = this.CheckIfGenusIsNull();
+            this.nullSubgenus = this.CheckIfSubgenusIsNull();
+            this.nullSpecies = this.CheckIfSpeciesIsNull();
+            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public string GenusName
@@ -167,7 +167,7 @@
         {
             get
             {
-                return this.isGenusNull;
+                return this.nullGenus;
             }
         }
 
@@ -175,7 +175,7 @@
         {
             get
             {
-                return this.isSubgenusNull;
+                return this.nullSubgenus;
             }
         }
 
@@ -183,7 +183,7 @@
         {
             get
             {
-                return this.isSpeciesNull;
+                return this.nullSpecies;
             }
         }
 
@@ -191,7 +191,7 @@
         {
             get
             {
-                return this.isSubspeciesNull;
+                return this.nullSubspecies;
             }
         }
 
@@ -199,7 +199,7 @@
         {
             get
             {
-                return this.isShortened;
+                return this.shortened;
             }
         }
 
@@ -303,10 +303,10 @@
         {
             get
             {
-                string name = this.isGenusNull ? string.Empty : this.genus;
-                name += this.isSubgenusNull ? string.Empty : " (" + this.subgenus + ")";
-                name += this.isSpeciesNull ? string.Empty : " " + this.species;
-                name += this.isSubspeciesNull ? string.Empty : " " + this.subspecies;
+                string name = this.nullGenus ? string.Empty : this.genus;
+                name += this.nullSubgenus ? string.Empty : " (" + this.subgenus + ")";
+                name += this.nullSpecies ? string.Empty : " " + this.species;
+                name += this.nullSubspecies ? string.Empty : " " + this.subspecies;
                 return name;
             }
         }
@@ -315,10 +315,10 @@
         {
             get
             {
-                string name = this.isGenusNull ? string.Empty : this.genus;
-                name += this.isSubgenusNull ? string.Empty : " (" + this.subgenus + ")";
-                name += this.isSpeciesNull ? string.Empty : " [" + this.species + "]";
-                name += this.isSubspeciesNull ? string.Empty : " [" + this.subspecies + "]";
+                string name = this.nullGenus ? string.Empty : this.genus;
+                name += this.nullSubgenus ? string.Empty : " (" + this.subgenus + ")";
+                name += this.nullSpecies ? string.Empty : " [" + this.species + "]";
+                name += this.nullSubspecies ? string.Empty : " [" + this.subspecies + "]";
                 return name;
             }
         }
@@ -326,12 +326,12 @@
         public string AsString()
         {
             string result = string.Empty;
-            if (!this.isGenusNull)
+            if (!this.nullGenus)
             {
                 result += this.genus;
             }
 
-            if (!this.isSubgenusNull)
+            if (!this.nullSubgenus)
             {
                 if (result.Length != 0)
                 {
@@ -341,7 +341,7 @@
                 result += "(" + this.subgenus + ")";
             }
 
-            if (!this.isSpeciesNull)
+            if (!this.nullSpecies)
             {
                 if (result.Length != 0)
                 {
@@ -351,7 +351,7 @@
                 result += this.species;
             }
 
-            if (!this.isSubgenusNull)
+            if (!this.nullSubgenus)
             {
                 if (result.Length != 0)
                 {
@@ -367,55 +367,55 @@
         public void SetGenus(string genus)
         {
             this.genus = genus;
-            this.isGenusNull = this.CheckIfGenusIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullGenus = this.CheckIfGenusIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSubgenus(string subgenus)
         {
             this.subgenus = subgenus;
-            this.isSubgenusNull = this.CheckIfSubgenusIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullSubgenus = this.CheckIfSubgenusIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSpecies(string species)
         {
             this.species = species;
-            this.isSpeciesNull = this.CheckIfSpeciesIsNull();
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullSpecies = this.CheckIfSpeciesIsNull();
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSubspecies(string subspecies)
         {
             this.subspecies = subspecies;
-            this.isSubspeciesNull = this.CheckIfSubspeciesIsNull();
+            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
         }
 
         public void SetGenus(Species sp)
         {
             this.genus = sp.GenusName;
-            this.isGenusNull = sp.IsGenusNull;
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullGenus = sp.IsGenusNull;
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSubgenus(Species sp)
         {
             this.subgenus = sp.SubgenusName;
-            this.isSubgenusNull = sp.IsSubgenusNull;
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullSubgenus = sp.IsSubgenusNull;
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSpecies(Species sp)
         {
             this.species = sp.SpeciesName;
-            this.isSpeciesNull = sp.IsSpeciesNull;
-            this.isShortened = this.CheckIfTaxonIsShortened();
+            this.nullSpecies = sp.IsSpeciesNull;
+            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
         public void SetSubspecies(Species sp)
         {
             this.subspecies = sp.SubspeciesName;
-            this.isSubspeciesNull = sp.IsSubspeciesNull;
+            this.nullSubspecies = sp.IsSubspeciesNull;
         }
 
         private bool CheckIfGenusIsNull()

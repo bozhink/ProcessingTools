@@ -82,11 +82,11 @@
 
                                         if (!Regex.Match(node.InnerXml, pattern).Success)
                                         {
-                                            // The xml-as-string content of the current node soes not contain this environment string
-                                            // Here we suppose that there is some tag inside the environment-string in the xml node.
+                                            //// The xml-as-string content of the current node soes not contain this environment string
+                                            //// Here we suppose that there is some tag inside the environment-string in the xml node.
 
                                             // Tag the xml-node-content using non-regex skip-tag matches
-                                            replace = TagNodeContent(node.InnerXml, contentString, envoOpenTag);
+                                            replace = Environments.TagNodeContent(node.InnerXml, contentString, envoOpenTag);
                                             replace = this.TagOrderNormalizer(replace, envoTagName);
                                         }
                                         else

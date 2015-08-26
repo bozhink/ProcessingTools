@@ -47,42 +47,42 @@
                     string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
                     foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
                     {
-                        bool doReplace = false;
+                        bool performReplace = false;
                         if (nodeInSpecificNode.InnerXml.Length < 1)
                         {
                             if (nodeInSpecificNode.OuterXml.IndexOf("<!--") == 0)
                             {
                                 // This node is a comment. Do not replace matches here.
-                                doReplace = false;
+                                performReplace = false;
                             }
                             else if (nodeInSpecificNode.OuterXml.IndexOf("<?") == 0)
                             {
                                 // This node is a processing instruction. Do not replace matches here.
-                                doReplace = false;
+                                performReplace = false;
                             }
                             else if (nodeInSpecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
                             {
                                 // This node is a DOCTYPE node. Do not replace matches here.
-                                doReplace = false;
+                                performReplace = false;
                             }
                             else if (nodeInSpecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
                             {
                                 // This node is a CDATA node. Do nothing?
-                                doReplace = false;
+                                performReplace = false;
                             }
                             else
                             {
                                 // This node is a text node. Tag this text and replace in InnerXml
-                                doReplace = true;
+                                performReplace = true;
                             }
                         }
                         else
                         {
                             // This is a named node
-                            doReplace = true;
+                            performReplace = true;
                         }
 
-                        if (doReplace)
+                        if (performReplace)
                         {
                             XmlDocumentFragment nodeFragment = this.XmlDocument.CreateDocumentFragment();
 

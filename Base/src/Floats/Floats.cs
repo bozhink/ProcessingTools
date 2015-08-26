@@ -104,10 +104,10 @@
                 foreach (XmlNode node in nodeList)
                 {
                     currentFloat++;
-                    string idAttribute = string.Empty;
+                    string id = string.Empty;
                     if (node.Attributes["id"] != null)
                     {
-                        idAttribute = node.Attributes["id"].InnerText;
+                        id = node.Attributes["id"].InnerText;
                     }
                     else
                     {
@@ -116,7 +116,7 @@
                             case ReferenceType.Table:
                                 try
                                 {
-                                    idAttribute = node["table"].Attributes["id"].InnerText;
+                                    id = node["table"].Attributes["id"].InnerText;
                                 }
                                 catch (Exception e)
                                 {
@@ -142,7 +142,7 @@
                     if (Regex.Match(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z").Success)
                     {
                         this.floatNumericLabel[currentFloat] = Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1");
-                        this.floatLabelById.Add(idAttribute, this.floatNumericLabel[currentFloat]);
+                        this.floatLabelById.Add(id, this.floatNumericLabel[currentFloat]);
                     }
 
                     for (Match m = Regex.Match(labelText, @"[A-Z]?\d+([–—−-](?=[A-Z]?\d+))?"); m.Success; m = m.NextMatch())
@@ -150,7 +150,7 @@
                         string curr = Regex.Replace(m.Value, "[–—−-]", string.Empty);
                         string next = m.NextMatch().Success ? Regex.Replace(m.NextMatch().Value, "[–—−-]", string.Empty) : string.Empty;
 
-                        this.floatIdByLabel.Add(curr, idAttribute);
+                        this.floatIdByLabel.Add(curr, id);
 
                         Match dash = Regex.Match(m.Value, "[–—−-]");
                         if (dash.Success)
@@ -164,7 +164,7 @@
                                 {
                                     for (int i = icurr + 1; i < inext; i++)
                                     {
-                                        this.floatIdByLabel.Add(prefix + i, idAttribute);
+                                        this.floatIdByLabel.Add(prefix + i, id);
                                     }
                                 }
                                 else
@@ -508,12 +508,12 @@
                     {
                         string xref_replace = dashed.Value;
 
-                        string idPrefix = Regex.Replace(xref_replace, @"<xref .*?rid=\W(.*?)\d+.*?>.*", "$1");
-                        string first_id = Regex.Replace(xref_replace, @"\A<xref .*?(\d+).*?>.*", "$1");
-                        string last_id = Regex.Replace(xref_replace, @".*[–—−-]<xref .*?(\d+).*?>.*", "$1");
+                        string prefixId = Regex.Replace(xref_replace, @"<xref .*?rid=\W(.*?)\d+.*?>.*", "$1");
+                        string firstId = Regex.Replace(xref_replace, @"\A<xref .*?(\d+).*?>.*", "$1");
+                        string lastId = Regex.Replace(xref_replace, @".*[–—−-]<xref .*?(\d+).*?>.*", "$1");
 
-                        int first = int.Parse(first_id);
-                        int last = int.Parse(last_id);
+                        int first = int.Parse(firstId);
+                        int last = int.Parse(lastId);
 
                         // Parse the dash
                         // Convert the dash to a sequence of xref
@@ -521,7 +521,7 @@
                             sb.Clear();
                             for (int i = first + 1; i < last; i++)
                             {
-                                string rid = idPrefix + i;
+                                string rid = prefixId + i;
                                 sb.Append(", <xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">" + this.floatLabelById[rid] + "</xref>");
                             }
 

@@ -14,6 +14,7 @@
         private const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         private const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
+        private const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
         public TaxaTagger(string xml)
             : base(xml)
@@ -42,7 +43,6 @@
             result = Regex.Replace(result, @"(?<=<i>)([A-Z\.-]{3,30})(?=</i>)", LowerRaxaReplacePattern);
 
             result = Regex.Replace(result, @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>", "$1‘$2’ $4$3");
-
 
             result = TagInfraspecificTaxa(result);
 
@@ -203,13 +203,13 @@
             {
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
 
-                IEnumerable<string> taxaNames = GetNonTaggedTaxa(matchHigherTaxa);
+                IEnumerable<string> taxaNames = this.GetNonTaggedTaxa(matchHigherTaxa);
 
-                //Alert.Log(taxaNames.Count());
+                ////Alert.Log(taxaNames.Count());
 
                 taxaNames = taxaNames.ClearListWithXDocument(this.GetBlackList());
 
-                //Alert.Log(taxaNames.Count());
+                ////Alert.Log(taxaNames.Count());
 
                 ////IEnumerable<string> whiteListedTaxa = this.TextWords.SelectListWithXDocument(this.GetWhiteList());
                 ////foreach (string taxon in whiteListedTaxa)
@@ -217,12 +217,12 @@
                 ////    Alert.Log(taxon);
                 ////}
 
-                // TODO: Clear taxaNames by black List
+                //// TODO: Clear taxaNames by black List
 
                 TagContent tag = new TagContent("tn", @" type=""higher""");
-                TagTextInXmlDocument(taxaNames, tag, HigherTaxaXPathTemplate, false, true);
+                this.TagTextInXmlDocument(taxaNames, tag, HigherTaxaXPathTemplate, false, true);
 
-                // TODO: Refactor
+                //// TODO: Refactor
                 foreach (XmlNode node in this.XmlDocument.SelectNodes(".//tn[.//tn]", this.NamespaceManager))
                 {
                     node.InnerXml = Regex.Replace(node.InnerXml, "<tn [^>]*>|</tn>", string.Empty);
@@ -235,13 +235,6 @@
 
             this.ApplyWhiteList();
             this.RemoveTaxaInWrongPlaces();
-        }
-
-        private IEnumerable<string> GetNonTaggedTaxa(Regex matchTaxa)
-        {
-            return from item in this.XmlDocument.GetMatchesInXmlText(matchTaxa, true)
-                   where this.XmlDocument.SelectNodes("//tn[contains(string(.),'" + item + "')]", this.NamespaceManager).Count == 0
-                   select item;
         }
 
         public void UntagTaxa()
@@ -596,11 +589,18 @@
             ////}
         }
 
+        private IEnumerable<string> GetNonTaggedTaxa(Regex matchTaxa)
+        {
+            return from item in this.XmlDocument.GetMatchesInXmlText(matchTaxa, true)
+                   where this.XmlDocument.SelectNodes("//tn[contains(string(.),'" + item + "')]", this.NamespaceManager).Count == 0
+                   select item;
+        }
+
         private void RemoveFalseTaxaOfPersonNames()
         {
             try
             {
-                List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
+                List<string> firstWordTaxaList = this.GetFirstWordOfTaxaNames();
 
                 char[] charsToSplit = new char[] { ' ', ',', ';' };
                 List<string> personNameParts = this.XmlDocument.SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
@@ -655,9 +655,9 @@
         {
             try
             {
-                List<string> firstWordTaxaList = GetFirstWordOfTaxaNames();
+                List<string> firstWordTaxaList = this.GetFirstWordOfTaxaNames();
 
-                XElement blackList = GetBlackList();
+                XElement blackList = this.GetBlackList();
 
                 string xml = this.XmlDocument.InnerXml;
                 foreach (string taxon in firstWordTaxaList)
@@ -707,8 +707,6 @@
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Applying white list.");
             }
         }
-
-        const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
         private void ReplaceTreatmentMetaClassificationItem(List<string> higherTaxaOfType, string genus, string type)
         {

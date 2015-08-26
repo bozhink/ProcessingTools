@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Xml;
-
-namespace ProcessingTools
+﻿namespace ProcessingTools
 {
+    using System;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Json;
+    using System.Text;
+    using System.Xml;
+
     public static class ConfigBuilder
     {
         /// <summary>

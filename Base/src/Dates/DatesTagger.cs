@@ -1,12 +1,14 @@
-﻿// 01. Oct. 1930
-// 24.- 29.09.1929
-// 19/August/2002
-// 2012/12/10
-// 15th October 2014
-// 2nd March 2015
-// July 01.2015
-// 26–30. June, 2014
-// 29th of April, 2015
+﻿/*
+ 01. Oct. 1930
+ 24.- 29.09.1929
+ 19/August/2002
+ 2012/12/10
+ 15th October 2014
+ 2nd March 2015
+ July 01.2015
+ 26–30. June, 2014
+ 29th of April, 2015
+*/
 
 namespace ProcessingTools.Base
 {
@@ -54,7 +56,7 @@ namespace ProcessingTools.Base
                 foreach (string date in dates)
                 {
                     Alert.Log(date);
-                    TagTextInXmlDocument(date, dateTag, xpathTemplate, true);
+                    this.TagTextInXmlDocument(date, this.dateTag, xpathTemplate, true);
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Base.Taxonomy
 {
-    using Json.Gbif;
     using System.Collections.Generic;
+    using Json.Gbif;
 
     public class HigherTaxaParserWithGbifApi : HigherTaxaParser
     {

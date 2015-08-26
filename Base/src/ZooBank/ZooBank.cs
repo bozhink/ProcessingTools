@@ -2,7 +2,6 @@
 {
     public class ZooBank : TaggerBase
     {
-
         public ZooBank(string xml)
             : base(xml)
         {

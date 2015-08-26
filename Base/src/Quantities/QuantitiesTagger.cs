@@ -40,13 +40,13 @@
          */
         public void TagQuantities(IXPathProvider xpathProvider)
         {
-            const string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b)(?![^<>]*>)";
+            string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b)(?![^<>]*>)";
             Regex matchQuantities = new Regex(pattern);
             List<string> quantities = this.TextContent.GetMatchesInText(matchQuantities, true);
             foreach (string quantity in quantities)
             {
                 Alert.Log(quantity);
-                TagTextInXmlDocument(quantity, this.quantityTag, xpathProvider.SelectContentNodesXPathTemplate, true);
+                this.TagTextInXmlDocument(quantity, this.quantityTag, xpathProvider.SelectContentNodesXPathTemplate, true);
             }
         }
 
@@ -57,64 +57,62 @@
              * -36.5806 149.3153 ±100 m
              */
 
-            string replacement = deviationTag.OpenTag + "$1" + deviationTag.CloseTag;
+            string replacement = this.deviationTag.OpenTag + "$1" + this.deviationTag.CloseTag;
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
-                // 24 km W
-                const string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+))";
+                //// 24 km W
+                string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+))";
                 Match m = Regex.Match(replace, pattern);
                 if (m.Success)
                 {
-                    // Alert.Message(m.Value);
+                    //// Alert.Message(m.Value);
                     replace = Regex.Replace(replace, pattern, replacement);
                     node.InnerXml = replace;
                 }
             }
         }
 
-
-        //  6–8 m depth
-
+        ////  6–8 m depth
         public void TagAltitude(IXPathProvider xpathProvider)
         {
-            string replacement = altitudeTag.OpenTag + "$1" + altitudeTag.CloseTag;
+            string replacement = this.altitudeTag.OpenTag + "$1" + this.altitudeTag.CloseTag;
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
             {
                 string replace = node.InnerXml;
 
                 {
-                    // 510–650 m a.s.l.
-                    const string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a\W*(?:<[^>]*>)*s\W*(?:<[^>]*>)*l[^\w<>]?))";
+                    //// 510–650 m a.s.l.
+                    string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a\W*(?:<[^>]*>)*s\W*(?:<[^>]*>)*l[^\w<>]?))";
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        // Alert.Message(m.Value);
+                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }
                 }
 
                 {
-                    // 58 m alt.
-                    const string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a(?:<[^>]*>)*l(?:<[^>]*>)*t[^\w<>]?))";
+                    //// 58 m alt.
+                    string pattern = @"(<quantity>.*?</quantity>\W{0,4}(?:(?i)(?:<[^>]*>)*a(?:<[^>]*>)*l(?:<[^>]*>)*t[^\w<>]?))";
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        // Alert.Message(m.Value);
+                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }
                 }
 
                 {
-                    // alt. ca. 271 m
-                    const string pattern = @"((?:(?i)(?:<[^>]*>)*a(?:<[^>]*>)*l(?:<[^>]*>)*t(?:<[^>]*>)*(?:[^\w<>]{0,3}c(?:<[^>]*>)*a(?:<[^>]*>)*)?)[^\w<>]{0,5}<quantity>.*?</quantity>)";
+                    //// alt. ca. 271 m
+                    string pattern = @"((?:(?i)(?:<[^>]*>)*a(?:<[^>]*>)*l(?:<[^>]*>)*t(?:<[^>]*>)*(?:[^\w<>]{0,3}c(?:<[^>]*>)*a(?:<[^>]*>)*)?)[^\w<>]{0,5}<quantity>.*?</quantity>)";
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        // Alert.Message(m.Value);
+                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }

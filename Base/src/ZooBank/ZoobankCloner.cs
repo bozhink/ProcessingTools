@@ -56,6 +56,96 @@
             this.CloneAuthorsLsid();
         }
 
+        public void CloneJsonToXml(string jsonString)
+        {
+            try
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Json.ZooBank.ZooBankRegistration>));
+                MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+                List<Json.ZooBank.ZooBankRegistration> zbr = (List<Json.ZooBank.ZooBankRegistration>)ser.ReadObject(stream);
+                Json.ZooBank.ZooBankRegistration z = null;
+
+                if (zbr.Count < 1)
+                {
+                    Alert.Log("ERROR: No valid ZooBank registation records in JSON File");
+                    Alert.Exit(1);
+                }
+                else if (zbr.Count > 1)
+                {
+                    Alert.Log("WARNING: More than one ZooBank registration records in JSON File");
+                    Alert.Log("         It will be used only the first one");
+                    z = zbr[0];
+                }
+                else
+                {
+                    z = zbr[0];
+                }
+
+                // Article lsid
+                {
+                    string articleLsid = ZooBankPrefix + z.referenceuuid;
+                    XmlNode selfUri = this.XmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", this.NamespaceManager);
+                    if (selfUri == null)
+                    {
+                        Alert.Log("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
+                        Alert.Exit(1);
+                    }
+
+                    selfUri.InnerText = articleLsid;
+                }
+
+                // Taxonomic acts’ lsid
+                {
+                    int numberOfNomenclaturalActs = z.NomenclaturalActs.Count;
+                    int numberOfNewNomenclaturalActs = 0;
+                    foreach (Json.ZooBank.NomenclaturalAct na in z.NomenclaturalActs)
+                    {
+                        // First try to resolve empty parent names
+                        if (na.parentname == string.Empty && na.parentusageuuid != string.Empty)
+                        {
+                            foreach (Json.ZooBank.NomenclaturalAct n in z.NomenclaturalActs)
+                            {
+                                if (string.Compare(na.parentusageuuid, n.tnuuuid) == 0)
+                                {
+                                    na.parentname = n.namestring;
+                                    break;
+                                }
+                            }
+                        }
+
+                        Alert.Log("\n\n");
+                        Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
+
+                        string xpath = "//tp:taxon-treatment/tp:nomenclature/tp:taxon-name";
+                        switch (na.rankgroup)
+                        {
+                            case "Genus":
+                                xpath += "[tp:taxon-name-part[@taxon-name-part-type='genus']='" + na.namestring + "'][string(../tp:taxon-status)='gen. n.']/object-id[@content-type='zoobank']";
+                                break;
+                            case "Species":
+                                xpath += "[tp:taxon-name-part[@taxon-name-part-type='genus']='" + na.parentname + "'][tp:taxon-name-part[@taxon-name-part-type='species']='" + na.namestring + "'][string(../tp:taxon-status)='sp. n.']/object-id[@content-type='zoobank']";
+                                break;
+                        }
+
+                        XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
+                        if (objectId != null)
+                        {
+                            objectId.InnerText = ZooBankPrefix + na.tnuuuid;
+                            numberOfNewNomenclaturalActs++;
+
+                            Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
+                        }
+                    }
+
+                    Alert.Log("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
+            }
+        }
+
         private void CloneAuthorsLsid()
         {
             Alert.Log("Author(s):");
@@ -153,96 +243,6 @@
             catch (Exception e)
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
-            }
-        }
-
-        public void CloneJsonToXml(string jsonString)
-        {
-            try
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Json.ZooBank.ZooBankRegistration>));
-                MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
-                List<Json.ZooBank.ZooBankRegistration> zbr = (List<Json.ZooBank.ZooBankRegistration>)ser.ReadObject(stream);
-                Json.ZooBank.ZooBankRegistration z = null;
-
-                if (zbr.Count < 1)
-                {
-                    Alert.Log("ERROR: No valid ZooBank registation records in JSON File");
-                    Alert.Exit(1);
-                }
-                else if (zbr.Count > 1)
-                {
-                    Alert.Log("WARNING: More than one ZooBank registration records in JSON File");
-                    Alert.Log("         It will be used only the first one");
-                    z = zbr[0];
-                }
-                else
-                {
-                    z = zbr[0];
-                }
-
-                // Article lsid
-                {
-                    string articleLsid = ZooBankPrefix + z.referenceuuid;
-                    XmlNode selfUri = this.XmlDocument.SelectSingleNode("/article/front/article-meta/self-uri[@content-type='zoobank']", this.NamespaceManager);
-                    if (selfUri == null)
-                    {
-                        Alert.Log("ERROR: article-meta/self-uri/@content-type='zoobank' is missing.\n\n");
-                        Alert.Exit(1);
-                    }
-
-                    selfUri.InnerText = articleLsid;
-                }
-
-                // Taxonomic acts’ lsid
-                {
-                    int numberOfNomenclaturalActs = z.NomenclaturalActs.Count;
-                    int numberOfNewNomenclaturalActs = 0;
-                    foreach (Json.ZooBank.NomenclaturalAct na in z.NomenclaturalActs)
-                    {
-                        // First try to resolve empty parent names
-                        if (na.parentname == string.Empty && na.parentusageuuid != string.Empty)
-                        {
-                            foreach (Json.ZooBank.NomenclaturalAct n in z.NomenclaturalActs)
-                            {
-                                if (string.Compare(na.parentusageuuid, n.tnuuuid) == 0)
-                                {
-                                    na.parentname = n.namestring;
-                                    break;
-                                }
-                            }
-                        }
-
-                        Alert.Log("\n\n");
-                        Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
-
-                        string xpath = "//tp:taxon-treatment/tp:nomenclature/tp:taxon-name";
-                        switch (na.rankgroup)
-                        {
-                            case "Genus":
-                                xpath += "[tp:taxon-name-part[@taxon-name-part-type='genus']='" + na.namestring + "'][string(../tp:taxon-status)='gen. n.']/object-id[@content-type='zoobank']";
-                                break;
-                            case "Species":
-                                xpath += "[tp:taxon-name-part[@taxon-name-part-type='genus']='" + na.parentname + "'][tp:taxon-name-part[@taxon-name-part-type='species']='" + na.namestring + "'][string(../tp:taxon-status)='sp. n.']/object-id[@content-type='zoobank']";
-                                break;
-                        }
-
-                        XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
-                        if (objectId != null)
-                        {
-                            objectId.InnerText = ZooBankPrefix + na.tnuuuid;
-                            numberOfNewNomenclaturalActs++;
-
-                            Alert.Log(na.parentname + (na.parentname == string.Empty ? string.Empty : " ") + na.namestring + " " + na.tnuuuid);
-                        }
-                    }
-
-                    Alert.Log("\n\n\nNumber of nomenclatural acts = " + numberOfNomenclaturalActs + ".\nNumber of new nomenclatural acts = " + numberOfNewNomenclaturalActs + ".\n\n\n");
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
             }
         }
     }

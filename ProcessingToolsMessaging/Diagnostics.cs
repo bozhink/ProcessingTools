@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
-namespace ProcessingTools
+﻿namespace ProcessingTools
 {
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
+
     public class Diagnostics
     {
         [MethodImpl(MethodImplOptions.NoInlining)]

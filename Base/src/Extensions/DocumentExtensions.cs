@@ -17,12 +17,12 @@
         /// Converts XDocument to XmlDocument.
         /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
         /// </summary>
-        /// <param name="xDocument">XDocument instance to be converted.</param>
+        /// <param name="document">XDocument instance to be converted.</param>
         /// <returns></returns>
-        public static XmlDocument ToXmlDocument(this XDocument xDocument)
+        public static XmlDocument ToXmlDocument(this XDocument document)
         {
             XmlDocument xmlDocument = new XmlDocument();
-            using (XmlReader xmlReader = xDocument.CreateReader())
+            using (XmlReader xmlReader = document.CreateReader())
             {
                 xmlDocument.Load(xmlReader);
             }

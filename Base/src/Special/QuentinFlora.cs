@@ -1,16 +1,15 @@
-﻿using System.Text.RegularExpressions;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System.Text.RegularExpressions;
+
     public class QuentinFlora : TaggerBase
     {
         public QuentinFlora(string xml)
             : base(xml)
         {
-            this.Xml = Regex.Replace(Xml, "\r", string.Empty);
         }
 
-        public QuentinFlora(TaggerBase baseObject)
+        public QuentinFlora(IBase baseObject)
             : base(baseObject)
         {
         }

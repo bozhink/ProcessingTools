@@ -48,7 +48,7 @@
 
         public void Tag(IXPathProvider xpathProvider)
         {
-            Tag();
+            this.Tag();
         }
     }
 }

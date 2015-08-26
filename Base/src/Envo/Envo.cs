@@ -7,7 +7,7 @@
     public class Envo : TaggerBase
     {
         public Envo(string xml)
-            :base(xml)
+            : base(xml)
         {
         }
 
@@ -33,13 +33,15 @@
                 }
                 catch (Exception e)
                 {
+                    string message = string.Format(
+                            "Cannot write envoTermsResponse XML document to file '{0}'",
+                            this.Config.EnvoResponseOutputXmlFileName);
+
                     Alert.RaiseExceptionForMethod(
                         e,
                         this.GetType().Name,
                         0,
-                        string.Format(
-                            "Cannot write envoTermsResponse XML document to file '{0}'",
-                            this.Config.EnvoResponseOutputXmlFileName));
+                        message);
                 }
 
                 string envoTermsResponseString = Regex.Replace(
@@ -80,7 +82,7 @@
 
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
 
-                TagTextInXmlDocument(envoTermsTagSet, nodeList, true, true);
+                this.TagTextInXmlDocument(envoTermsTagSet, nodeList, true, true);
             }
         }
     }

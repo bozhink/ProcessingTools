@@ -24,6 +24,7 @@ namespace ProcessingTools.Tag
                 PrintElapsedTime(timer);
             }
         }
+
         private static void ParseCoordinates(FileProcessor fp)
         {
             if (parseCoords)
@@ -238,25 +239,25 @@ namespace ProcessingTools.Tag
                     fp.Xml = abbr.Xml;
                 }
 
-                //{
-                //    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
-                //    specimenCountTagger.TagSpecimenCount(xpathProvider);
-                //    fp.Xml = specimenCountTagger.Xml;
-                //}
+                ////{
+                ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
+                ////    specimenCountTagger.TagSpecimenCount(xpathProvider);
+                ////    fp.Xml = specimenCountTagger.Xml;
+                ////}
 
-                //{
-                //    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
-                //    quantitiesTagger.TagQuantities(xpathProvider);
-                //    quantitiesTagger.TagDeviation(xpathProvider);
-                //    quantitiesTagger.TagAltitude(xpathProvider);
-                //    fp.Xml = quantitiesTagger.Xml;
-                //}
+                ////{
+                ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                ////    quantitiesTagger.TagQuantities(xpathProvider);
+                ////    quantitiesTagger.TagDeviation(xpathProvider);
+                ////    quantitiesTagger.TagAltitude(xpathProvider);
+                ////    fp.Xml = quantitiesTagger.Xml;
+                ////}
 
-                //{
-                //    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
-                //    datesTagger.TagDates(xpathProvider);
-                //    fp.Xml = datesTagger.Xml;
-                //}
+                ////{
+                ////    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
+                ////    datesTagger.TagDates(xpathProvider);
+                ////    fp.Xml = datesTagger.Xml;
+                ////}
 
                 {
                     config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
@@ -267,35 +268,35 @@ namespace ProcessingTools.Tag
 
                 using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
                 {
-                    //{
-                    //    ProductsTagger products = new ProductsTagger(config, fp.Xml);
-                    //    products.TagProducts(xpathProvider, dataProvider);
-                    //    fp.Xml = products.Xml;
-                    //}
+                    ////{
+                    ////    ProductsTagger products = new ProductsTagger(config, fp.Xml);
+                    ////    products.TagProducts(xpathProvider, dataProvider);
+                    ////    fp.Xml = products.Xml;
+                    ////}
 
-                    //{
-                    //    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
-                    //    geonames.TagGeonames(xpathProvider, dataProvider);
-                    //    fp.Xml = geonames.Xml;
-                    //}
+                    ////{
+                    ////    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
+                    ////    geonames.TagGeonames(xpathProvider, dataProvider);
+                    ////    fp.Xml = geonames.Xml;
+                    ////}
 
-                    //{
-                    //    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
-                    //    morphology.TagMorphology(xpathProvider, dataProvider);
-                    //    fp.Xml = morphology.Xml;
-                    //}
+                    ////{
+                    ////    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
+                    ////    morphology.TagMorphology(xpathProvider, dataProvider);
+                    ////    fp.Xml = morphology.Xml;
+                    ////}
 
                     {
                         Codes codes = new Codes(config, fp.Xml);
                         codes.TagInstitutions(xpathProvider, dataProvider);
                         codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-                        //codes.TagSpecimenCodes(xpathProvider);
+                        ////codes.TagSpecimenCodes(xpathProvider);
 
                         fp.Xml = codes.Xml;
                     }
                 }
 
-                //fp.XmlDocument.ClearTagsInWrongPositions();
+                ////fp.XmlDocument.ClearTagsInWrongPositions();
                 
                 PrintElapsedTime(timer);
             }

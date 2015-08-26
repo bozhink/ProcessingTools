@@ -337,7 +337,7 @@
                     mm = minutesString.Contains(" ") ? 0.0 : double.Parse(minutesString);
                     ss = secondsString.Contains(" ") ? 0.0 : double.Parse(secondsString);
 
-                    return deg + (mm + ss / 60.0) / 60.0;
+                    return (deg + (mm + (ss / 60.0))) / 60.0;
                 }
                 catch (System.ArgumentNullException)
                 {

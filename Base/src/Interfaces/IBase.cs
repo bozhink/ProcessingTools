@@ -1,7 +1,7 @@
-﻿using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System.Xml;
+
     public interface IBase
     {
         string Xml

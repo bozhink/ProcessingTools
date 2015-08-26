@@ -379,32 +379,32 @@
                             Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
 
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
                                 if (Regex.Match(sp1.GenusName, sp.GenusSkipPattern).Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 if (Regex.Match(sp1.SubgenusName, sp.SubgenusSkipPattern).Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 if (Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern).Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("paragraph", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = node.InnerXml;
@@ -458,7 +458,7 @@
                         {
                             Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -467,27 +467,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubgenusSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("paragraph", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -544,7 +544,7 @@
                         if (p.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -552,27 +552,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("treatment section", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -629,7 +629,7 @@
                         if (p.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -637,27 +637,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("treatment", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -714,7 +714,7 @@
                         if (p.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -722,27 +722,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("section", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -799,7 +799,7 @@
                         if (p.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -807,27 +807,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("preceding text", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -884,7 +884,7 @@
                         if (p.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -892,27 +892,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("article", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tp:taxon-name[^>\-]*>", "<tp:taxon-name unfold=\"true\">");
@@ -1143,7 +1143,7 @@
                         {
                             // TODO
                             Console.WriteLine("Paragraph content:\n\t{0}\n", div.Value);
-                            bool isFound = false;
+                            bool matchFound = false;
                             Species spl = new Species();
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(div.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
@@ -1152,27 +1152,27 @@
                                 if (mgen.Success)
                                 {
                                     spl.SetGenus(sp1);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, xsubgenus);
                                 if (msgen.Success)
                                 {
                                     spl.SetSubgenus(sp1);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, xspecies);
                                 if (msp.Success)
                                 {
                                     spl.SetSpecies(sp1);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Console.WriteLine("........ Found: genus {0} | subgenus {1} | species {2}", sp1.GenusName, sp1.SubgenusName, sp1.SpeciesName);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Console.WriteLine("________ Substitution '{0}, ({1}), {2}'  by '{3}, ({4}), {5}'.", sp.GenusName, sp.SubgenusName, sp.SpeciesName, spl.GenusName, spl.SubgenusName, spl.SpeciesName);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1414,7 +1414,7 @@
                         {
                             Console.WriteLine("Paragraph content:\n\t{0}\n", paragraph.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1423,27 +1423,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubgenusSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("paragraph", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1500,7 +1500,7 @@
                         if (paragraph.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1508,27 +1508,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("treatment section", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1585,7 +1585,7 @@
                         if (paragraph.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1593,27 +1593,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("treatment", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1670,7 +1670,7 @@
                         if (paragraph.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1678,27 +1678,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("section", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1755,7 +1755,7 @@
                         if (paragraph.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1763,27 +1763,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("preceding text", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1840,7 +1840,7 @@
                         if (paragraph.Success)
                         {
                             Species last = new Species();
-                            bool isFound = false;
+                            bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
                             {
                                 Species sp1 = new Species(taxon.Value);
@@ -1848,27 +1848,27 @@
                                 if (mgen.Success)
                                 {
                                     last.SetGenus(sp1.GenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msgen = Regex.Match(sp1.SubgenusName, sp.SubspeciesSkipPattern);
                                 if (msgen.Success)
                                 {
                                     last.SetSubgenus(sp1.SubgenusName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Match msp = Regex.Match(sp1.SpeciesName, sp.SpeciesSkipPattern);
                                 if (msp.Success)
                                 {
                                     last.SetSpecies(sp1.SpeciesName);
-                                    isFound = true;
+                                    matchFound = true;
                                 }
 
                                 Taxonomy.PrintFoundMessage("article", sp1);
                             }
 
-                            if (isFound)
+                            if (matchFound)
                             {
                                 Taxonomy.PrintSubstitutionMessage(sp, last);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
@@ -1930,24 +1930,24 @@
                     Match genusShort = Regex.Match(genSp.Value, genusNPrefix + "[A-Z][a-z]*?(?=\\.)");
                     Match species = Regex.Match(genSp.Value, "(?<=<tn-part type=\"species\">).*?(?=<)");
                     Console.WriteLine("Shortened species found:\t{0}. {1}\n", genusShort.Value, species.Value);
-                    bool isFound = false;
+                    bool matchFound = false;
                     Console.WriteLine("Scanning containing paragraph to find suitable genus...");
                     Match paragraph = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(genSp.Value));
                     if (paragraph.Success)
                     {
                         Console.WriteLine("Paragraph content:\n\t{0}\n", paragraph.Value);
                         string lastGenusFound = string.Empty;
-                        isFound = false;
+                        matchFound = false;
                         Match genusPar = Regex.Match(paragraph.Value, genusNPrefix + Regex.Escape(genusShort.Value) + "[a-z]+?" + genusNSuffix);
                         while (genusPar.Success)
                         {
-                            isFound = true;
+                            matchFound = true;
                             lastGenusFound = genusPar.Value;
                             Console.WriteLine("........ Found Genus in paragraph: {0}\n", lastGenusFound);
                             genusPar = genusPar.NextMatch();
                         }
 
-                        if (isFound)
+                        if (matchFound)
                         {
                             Console.WriteLine("\n\tSpecies name '{0}. {1}' will be replaced by '{2} {1}' in the current paragraph.\n", genusShort.Value, species.Value, lastGenusFound);
                             string replace = Regex.Replace(paragraph.Value, ">" + genusPrefix + genusShort.Value + "\\." + genusSuffix, " unfold=\"true\"><tn-part type=\"genus\">" + lastGenusFound + "</tn-part>");

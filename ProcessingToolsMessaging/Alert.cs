@@ -1,8 +1,8 @@
-﻿using System;
-using ProcessingToolsMessaging.Messages;
-
-namespace ProcessingTools
+﻿namespace ProcessingTools
 {
+    using System;
+    using ProcessingToolsMessaging.Messages;
+
     public static class Alert
     {
         public static void Log()

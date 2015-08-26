@@ -376,6 +376,7 @@ namespace ProcessingTools.Tag
                 xmlContent = expand.Xml;
                 PrintElapsedTime(timer);
             }
+
             return xmlContent;
         }
 

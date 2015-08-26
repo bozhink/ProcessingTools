@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System;
+
     public class XPathProvider : IXPathProvider
     {
         private Config config;

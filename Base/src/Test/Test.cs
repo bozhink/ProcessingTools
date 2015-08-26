@@ -1,9 +1,9 @@
-﻿using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Xml;
-
-namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base
 {
+    using System.Data.SqlClient;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class Test : TaggerBase
     {
         public Test(string xml)
