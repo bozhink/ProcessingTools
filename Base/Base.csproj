@@ -155,53 +155,35 @@
     <Content Include="Data\Xml\taxonomy.blackList.xml" />
     <Content Include="Data\Xml\taxonomy.rankList.xml" />
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
-    <Content Include="src\XSL\codes.remove-non-code-nodes.xslt" />
-    <Content Include="src\XSL\copy-nlm.xslt" />
-    <Content Include="src\XSL\copy.xsl">
+    <Content Include="src\XSL\codes.remove-non-code-nodes.xsl" />
+    <Content Include="src\XSL\envo-items-to-tagreplace.xsl" />
+    <Content Include="src\XSL\Flora\flora.extract-taxa.xsl">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="src\XSL\dwc-to-named-content.xslt" />
-    <Content Include="src\XSL\envo-items-to-tagreplace.xslt" />
-    <Content Include="src\XSL\Flora\flora.extract-taxa.xslt">
+    <Content Include="src\XSL\Flora\flora.extract.taxa-parts.xsl">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="src\XSL\Flora\flora.extract.taxa-parts.xslt">
+    <Content Include="src\XSL\Flora\flora.generate-template.xsl">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="src\XSL\Flora\flora.generate-template.xslt">
+    <Content Include="src\XSL\Flora\taxa.distinct.xsl">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="src\XSL\Flora\taxa.distinct.xslt">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="src\XSL\format.nlm-to-system.xslt" />
-    <Content Include="src\XSL\format.system-nlm-inc.xslt" />
-    <Content Include="src\XSL\format.system-to-nlm.xslt" />
-    <Content Include="src\XSL\gavin-laurens-tn.xsl" />
-    <Content Include="src\XSL\gavin-laurens.xsl" />
-    <Content Include="src\XSL\get-full-references.xslt" />
-    <Content Include="src\XSL\get-references.xslt" />
-    <Content Include="src\XSL\extract-materials-checklist-taxa.xslt" />
-    <Content Include="src\XSL\nlm.initial-format.xslt" />
-    <Content Include="src\XSL\nlm.to.indesign.xsl">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="src\XSL\system.initial-format.xslt" />
+    <Content Include="src\XSL\format.nlm-to-system.xsl" />
+    <Content Include="src\XSL\format.inc.xsl" />
+    <Content Include="src\XSL\format.system-to-nlm.xsl" />
+    <Content Include="src\XSL\Special\gavin-laurens-tn.xsl" />
+    <Content Include="src\XSL\Special\gavin-laurens.xsl" />
+    <Content Include="src\XSL\references.get.xsl" />
+    <Content Include="src\XSL\format.nlm.initial.xsl" />
+    <Content Include="src\XSL\format.system.initial.xsl" />
     <Content Include="src\XSL\references.tag-template.xsl">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="src\XSL\taxonomy.expand.xslt" />
-    <Content Include="src\XSL\taxonomy.get-taxa.plain.0.xslt" />
-    <Content Include="src\XSL\taxonomy.get-taxa.plain.1.xslt" />
-    <Content Include="src\XSL\taxonomy.get-taxa.tagged.0.xslt" />
-    <Content Include="src\XSL\taxonomy.get-taxa.tagged.1.xslt" />
-    <Content Include="src\XSL\taxonomy.simplify-taxonomic-list.xslt" />
-    <Content Include="src\XSL\taxonomy.taxa-replaces.xslt" />
     <Content Include="src\XSL\RankListClean.xsl" />
-    <Content Include="src\XSL\set-genus-in-paragraph.xslt" />
-    <Content Include="src\XSL\sort-references.xslt" />
-    <Content Include="src\XSL\text-content.xslt" />
-    <Content Include="src\XSL\tn-to-taxon-name.xslt" />
+    <Content Include="src\XSL\Special\set-genus-in-paragraph.xsl" />
+    <Content Include="src\XSL\references.sort.xsl" />
+    <Content Include="src\XSL\text-content.xsl" />
     <Content Include="src\XSL\WhiteListClean.xsl" />
     <Content Include="src\XSL\zoobank-nlm.xsl" />
   </ItemGroup>

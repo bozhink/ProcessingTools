@@ -9,30 +9,30 @@
     "whiteListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
     "blackListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
 
-    "floraDistrinctTaxaXslPath": "C:\\bin\\Xsl\\taxa.distinct.xslt",
+    "floraDistrinctTaxaXslPath": "C:\\bin\\Xsl\\taxa.distinct.xsl",
     "floraExtractedTaxaListPath": "C:\\temp\\flora-taxa-list.xml",
     "floraExtractTaxaPartsOutputPath": "C:\\temp\\flora-taxa-parts.xml",
-    "floraExtractTaxaPartsXslPath": "C:\\bin\\Xsl\\flora.extract.taxa-parts.xslt",
-    "floraExtractTaxaXslPath": "C:\\bin\\Xsl\\flora.extract-taxa.xslt",
-    "floraGenerateTemplatesXslPath": "C:\\bin\\Xsl\\flora.generate-template.xslt",
+    "floraExtractTaxaPartsXslPath": "C:\\bin\\Xsl\\flora.extract.taxa-parts.xsl",
+    "floraExtractTaxaXslPath": "C:\\bin\\Xsl\\flora.extract-taxa.xsl",
+    "floraGenerateTemplatesXslPath": "C:\\bin\\Xsl\\flora.generate-template.xsl",
     "floraTemplatesOutputXmlPath": "C:\\temp\\flora-templates.xml",
 
     "referencesTagTemplateXslPath": "C:\\bin\\Xsl\\references.tag-template.xsl",
     "referencesTagTemplateXmlPath": "C:\\temp\\references-tag-template.xml",
-    "referencesGetReferencesXslPath": "C:\\bin\\Xsl\\get-references.xslt",
-    "referencesSortReferencesXslPath": "C:\\bin\\Xsl\\sort-references.xslt",
+    "referencesGetReferencesXslPath": "C:\\bin\\Xsl\\references.get.xsl",
+    "referencesSortReferencesXslPath": "C:\\bin\\Xsl\\references.sort.xsl",
     "referencesGetReferencesXmlPath": "C:\\temp\\references.xml",
 
     "zoobankNlmXslPath": "C:\\bin\\Xsl\\zoobank-nlm.xsl",
 
-    "formatXslNlmToSystem": "C:\\bin\\Xsl\\format.nlm-to-system.xslt",
-    "formatXslSystemToNlm": "C:\\bin\\Xsl\\format.system-to-nlm.xslt",
-    "systemInitialFormatXslPath": "C:\\bin\\Xsl\\system.initial-format.xslt",
-    "nlmInitialFormatXslPath": "C:\\bin\\Xsl\\nlm.initial-format.xslt",
+    "formatXslNlmToSystem": "C:\\bin\\Xsl\\format.nlm-to-system.xsl",
+    "formatXslSystemToNlm": "C:\\bin\\Xsl\\format.system-to-nlm.xsl",
+    "systemInitialFormatXslPath": "C:\\bin\\Xsl\\format.system.initial.xsl",
+    "nlmInitialFormatXslPath": "C:\\bin\\Xsl\\format.nlm.initial.xsl",
 
     "environmentsDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
     "mainDictionaryDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
-    "codesRemoveNonCodeNodes": "C:\\bin\\Xsl\\codes.remove-non-code-nodes.xslt",
-    "textContentXslFileName": "C:\\bin\\Xsl\\text-content.xslt",
-    "envoTermsWebServiceTransformXslPath": "C:\\bin\\Xsl\\envo-items-to-tagreplace.xslt"
+    "codesRemoveNonCodeNodes": "C:\\bin\\Xsl\\codes.remove-non-code-nodes.xsl",
+    "textContentXslFileName": "C:\\bin\\Xsl\\text-content.xsl",
+    "envoTermsWebServiceTransformXslPath": "C:\\bin\\Xsl\\envo-items-to-tagreplace.xsl"
 }
