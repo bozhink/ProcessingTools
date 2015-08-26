@@ -44,5 +44,20 @@
 
             return prefix + rank + suffix;
         }
+
+        public static void PrintNonParsedTaxa(this XmlDocument xmlDocument)
+        {
+            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
+            if (uniqueHigherTaxaList.Count > 0)
+            {
+                Alert.Log("\nNon-parsed taxa:");
+                foreach (string taxon in uniqueHigherTaxaList)
+                {
+                    Alert.Log("\t" + taxon);
+                }
+
+                Alert.Log();
+            }
+        }
     }
 }

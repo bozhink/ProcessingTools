@@ -113,7 +113,12 @@
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
     <Compile Include="src\Taxonomy\HigherTaxaParser.cs" />
-    <Compile Include="src\Taxonomy\TaxonNamePart.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserBySuffix.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserWithAboveGenus.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserWithAphiaApi.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserWithCoLApi.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserWithGbifApi.cs" />
+    <Compile Include="src\Taxonomy\HigherTaxaParserWithLocalDataBase.cs" />
     <Compile Include="src\WebLinks\Links.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
     <Compile Include="src\Products\ProductsTagger.cs" />

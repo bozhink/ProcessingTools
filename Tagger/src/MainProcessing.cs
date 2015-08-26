@@ -91,41 +91,59 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse higher taxa.\n");
-                HigherTaxaParser parser = new HigherTaxaParser(config, xmlContent);
 
-                parser.Parse(true, false, false, false, false);
+                {
+                    HigherTaxaParserWithLocalDataBase parser = new HigherTaxaParserWithLocalDataBase(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
+                }
 
                 if (splitHigherWithAphia)
                 {
                     Alert.Log("\n\tSplit higher taxa using Aphia API\n");
-                    parser.Parse(false, true, false, false, false);
+                    HigherTaxaParserWithAphiaApi parser = new HigherTaxaParserWithAphiaApi(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
                 }
 
                 if (splitHigherWithCoL)
                 {
                     Alert.Log("\n\tSplit higher taxa using CoL API\n");
-                    parser.Parse(false, false, true, false, false);
+                    HigherTaxaParserWithCoLApi parser = new HigherTaxaParserWithCoLApi(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
                 }
 
                 if (splitHigherWithGbif)
                 {
                     Alert.Log("\n\tSplit higher taxa using GBIF API\n");
-                    parser.Parse(false, false, false, true, false);
+                    HigherTaxaParserWithGbifApi parser = new HigherTaxaParserWithGbifApi(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
                 }
 
                 if (splitHigherBySuffix)
                 {
                     Alert.Log("\n\tSplit higher taxa by suffix\n");
-                    parser.Parse(false, false, false, false, true);
+                    HigherTaxaParserBySuffix parser = new HigherTaxaParserBySuffix(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
                 }
 
                 if (splitHigherAboveGenus)
                 {
                     Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
-                    parser.Parse(false, false, false, false, false, true);
+                    HigherTaxaParserWithAboveGenus parser = new HigherTaxaParserWithAboveGenus(config, xmlContent);
+                    parser.Parse();
+                    parser.XmlDocument.PrintNonParsedTaxa();
+                    xmlContent = parser.Xml;
                 }
 
-                xmlContent = parser.Xml;
                 PrintElapsedTime(timer);
             }
 
