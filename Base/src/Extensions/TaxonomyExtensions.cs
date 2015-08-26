@@ -27,5 +27,22 @@
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]", xmlNamespaceManager);
             return nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
         }
+
+        public static string GetRemplacementStringForTaxonNamePartRank(this string rank, bool taxPub = false)
+        {
+            string prefix, suffix;
+            if (taxPub)
+            {
+                prefix = "<tp:taxon-name-part taxon-name-part-type=\"";
+                suffix = "\">$1</tp:taxon-name-part>";
+            }
+            else
+            {
+                prefix = "<tn-part type=\"";
+                suffix = "\">$1</tn-part>";
+            }
+
+            return prefix + rank + suffix;
+        }
     }
 }

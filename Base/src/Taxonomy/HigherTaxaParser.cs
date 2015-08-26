@@ -7,9 +7,9 @@
     using System.Xml;
     using System.Xml.Linq;
 
-    public class HigherTaxaParser : TaggerBase, IParser
+    public class HigherTaxaParser : Base, IParser
     {
-        private static readonly string[] higherTaxaRanks =
+        private readonly string[] higherTaxaRanks =
             {
                 "phylum",
                 "subphylum",
@@ -27,7 +27,7 @@
                 "subtribe"
             };
 
-        private static readonly string[] higherTaxaSuffixes =
+        private readonly string[] higherTaxaSuffixes =
             {
                 "phyta|mycota",
                 "phytina|mycotina",
@@ -45,6 +45,8 @@
                 "inae|ina"
             };
 
+        private bool delay = false;
+
         public HigherTaxaParser(string xml)
             : base(xml)
         {
@@ -58,231 +60,6 @@
         public HigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
-        }
-
-        public static XmlDocument ParseHigherTaxaBySuffix(XmlDocument xmlDocument, bool nlmStyle)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            string patternPrefix = "^([A-Z][a-z]*", patternSuffix = ")$";
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            foreach (string taxon in uniqueHigherTaxaList)
-            {
-                Alert.Log(taxon);
-                string replace = taxon;
-                for (int i = 0; i < higherTaxaRanks.Length; i++)
-                {
-                    replace = Regex.Replace(
-                        replace,
-                        patternPrefix + higherTaxaSuffixes[i] + patternSuffix,
-                        tnpart.TaxonNamePartReplace(higherTaxaRanks[i]));
-                }
-
-                xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(taxon) + ")(?=</tn>)", replace);
-            }
-
-            return xmlResult;
-        }
-
-        public static XmlDocument ParseHigherTaxaWithLocalDatabase(string databaseXmlFileName, XmlDocument xmlDocument, bool nlmStyle)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            XElement rankList = XElement.Load(databaseXmlFileName);
-
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            foreach (string taxon in uniqueHigherTaxaList)
-            {
-                Regex searchTaxaName = new Regex("(?i)\\b" + taxon + "\\b");
-                IEnumerable<string> ranks = from item in rankList.Elements()
-                                            where searchTaxaName.Match(item.Element("part").Element("value").Value).Success
-                                            select item.Element("part").Element("rank").Element("value").Value;
-                int ranksCount = (ranks == null) ? 0 : ranks.Count();
-                if (ranksCount == 0)
-                {
-                    Alert.Log("\n" + taxon + " --> No match.");
-                }
-                else if (ranksCount > 1)
-                {
-                    Alert.Log(taxon +
-                        "\nWARNING: More than one records in local database." +
-                        "\n         Substitution will not be performed.");
-                    foreach (string rank in ranks)
-                    {
-                        Alert.Log("\n\t" + rank);
-                    }
-                }
-                else
-                {
-                    string rank = ranks.ElementAt(0);
-                    Alert.Log("\n" + taxon + " --> " + rank);
-                    string replace = tnpart.TaxonNamePartReplace(rank);
-                    xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(taxon) + ")(?=</tn>)", replace);
-                }
-            }
-
-            return xmlResult;
-        }
-
-        public static XmlDocument ParseHigherTaxaWithGbifApi(XmlDocument xmlDocument)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            bool delay = false;
-            foreach (string taxon in uniqueHigherTaxaList)
-            {
-                if (delay)
-                {
-                    System.Threading.Thread.Sleep(15000);
-                }
-                else
-                {
-                    delay = true;
-                }
-
-                Json.Gbif.GbifResult obj = Net.SearchGbif(taxon);
-                if (obj != null)
-                {
-                    Console.WriteLine("\n{0} .... {1} .... {2}", taxon, obj.scientificName, obj.canonicalName);
-
-                    if (obj.canonicalName != null || obj.scientificName != null)
-                    {
-                        if (!obj.canonicalName.Equals(taxon) && !obj.scientificName.Contains(taxon))
-                        {
-                            Alert.Log("No match.");
-                        }
-                        else
-                        {
-                            if (obj.rank != null)
-                            {
-                                Alert.Log("--> " + obj.rank.ToLower());
-                                string replace = tnpart.TaxonNamePartReplace(obj.rank.ToLower());
-                                xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(taxon) + ")(?=</tn>)", replace);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return xmlResult;
-        }
-
-        public static XmlDocument ParseHigherTaxaWithAphiaApi(XmlDocument xmlDocument)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            bool delay = false;
-            foreach (string scientificName in uniqueHigherTaxaList)
-            {
-                if (delay)
-                {
-                    System.Threading.Thread.Sleep(15000);
-                }
-                else
-                {
-                    delay = true;
-                }
-
-                XmlDocument response = Net.SearchAphia(scientificName);
-                XmlNodeList responseItems = response.SelectNodes("//return/item[normalize-space(translate(scientificname,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
-                if (responseItems.Count < 1)
-                {
-                    Alert.Log(scientificName + " --> No match or error.");
-                }
-                else
-                {
-                    List<string> ranks = responseItems.Cast<XmlNode>().Select(c => c["rank"].InnerText.ToLower()).Distinct().ToList();
-                    if (ranks.Count > 1)
-                    {
-                        Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
-                        foreach (XmlNode item in responseItems)
-                        {
-                            Alert.Log(item["scientificname"].InnerText + " --> " + item["rank"].InnerText + ", " + item["authority"].InnerText);
-                        }
-                    }
-                    else
-                    {
-                        string rank = ranks[0];
-                        Alert.Log(scientificName + " = " + responseItems[0]["scientificname"].InnerText + " --> " + rank);
-                        string replace = tnpart.TaxonNamePartReplace(rank);
-                        xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(scientificName) + ")(?=</tn>)", replace);
-                    }
-                }
-            }
-
-            return xmlResult;
-        }
-
-        public static XmlDocument ParseHigherTaxaWithCoLApi(XmlDocument xmlDocument)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            bool delay = false;
-            foreach (string scientificName in uniqueHigherTaxaList)
-            {
-                if (delay)
-                {
-                    System.Threading.Thread.Sleep(15000);
-                }
-                else
-                {
-                    delay = true;
-                }
-
-                XmlDocument response = Net.SearchCatalogueOfLife(scientificName);
-
-                Alert.Log("\n" + response.OuterXml + "\n");
-
-                XmlNodeList responseItems = response.SelectNodes("/results/result[normalize-space(translate(name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
-                if (responseItems.Count < 1)
-                {
-                    Alert.Log(scientificName + " --> No match or error.");
-                }
-                else
-                {
-                    List<string> ranks = responseItems.Cast<XmlNode>().Select(c => c["rank"].InnerText.ToLower()).Distinct().ToList();
-                    if (ranks.Count > 1)
-                    {
-                        Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
-                        foreach (XmlNode item in responseItems)
-                        {
-                            Alert.Log(item["name"].InnerText + " --> " + item["rank"].InnerText);
-                        }
-                    }
-                    else
-                    {
-                        string rank = ranks[0].ToLower();
-                        Alert.Log(scientificName + " = " + responseItems[0]["name"].InnerText + " --> " + rank);
-                        string replace = tnpart.TaxonNamePartReplace(rank);
-                        xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(scientificName) + ")(?=</tn>)", replace);
-                    }
-                }
-            }
-
-            return xmlResult;
-        }
-
-        /// <summary>
-        /// This method parses all non-parsed higher taxa by making then of type 'above-genus'
-        /// </summary>
-        /// <param name="xmlDocument">Xml document to be processed</param>
-        /// <returns>Processed xml document</returns>
-        public static XmlDocument ParseHigherTaxaWithAboveGenus(XmlDocument xmlDocument)
-        {
-            XmlDocument xmlResult = xmlDocument;
-            TaxonNamePart tnpart = new TaxonNamePart();
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            foreach (string text in uniqueHigherTaxaList)
-            {
-                Alert.Log("\n" + text + " --> above-genus");
-                string replace = tnpart.TaxonNamePartReplace("above-genus");
-                xmlResult.InnerXml = Regex.Replace(xmlResult.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(text) + ")(?=</tn>)", replace);
-            }
-
-            return xmlResult;
         }
 
         public void Parse()
@@ -303,32 +80,32 @@
         {
             if (parseWithDatabaseXmlFile)
             {
-                this.XmlDocument = ParseHigherTaxaWithLocalDatabase(this.Config.rankListXmlFilePath, this.XmlDocument, this.Config.NlmStyle);
+                this.ParseHigherTaxaWithLocalDatabase(this.Config.rankListXmlFilePath);
             }
 
             if (parseWithAphiaApi)
             {
-                this.XmlDocument = ParseHigherTaxaWithAphiaApi(this.XmlDocument);
+                this.ParseHigherTaxaWithAphiaApi();
             }
 
             if (parseWithCoLApi)
             {
-                this.XmlDocument = ParseHigherTaxaWithCoLApi(this.XmlDocument);
+                this.ParseHigherTaxaWithCoLApi();
             }
 
             if (parseWithGbifApi)
             {
-                this.XmlDocument = ParseHigherTaxaWithGbifApi(this.XmlDocument);
+                this.ParseHigherTaxaWithGbifApi();
             }
 
             if (parseBySuffix)
             {
-                this.XmlDocument = ParseHigherTaxaBySuffix(this.XmlDocument, this.Config.NlmStyle);
+                this.ParseHigherTaxaBySuffix();
             }
 
             if (parseAboveGenus)
             {
-                this.XmlDocument = ParseHigherTaxaWithAboveGenus(this.XmlDocument);
+                this.ParseHigherTaxaWithAboveGenus();
             }
 
             // Some debug information
@@ -337,9 +114,9 @@
                 if (uniqueHigherTaxaList.Count > 0)
                 {
                     Alert.Log("\nNon-parsed taxa:");
-                    foreach (string s in uniqueHigherTaxaList)
+                    foreach (string taxon in uniqueHigherTaxaList)
                     {
-                        Alert.Log("\t" + s);
+                        Alert.Log("\t" + taxon);
                     }
 
                     Alert.Log();
@@ -347,47 +124,218 @@
             }
         }
 
-        // TODO: remove this class
-        private class TaxonNamePart
+        private void ParseHigherTaxaBySuffix()
         {
-            private string prefix, suffix;
-            private bool taxPub;
-
-            public TaxonNamePart(bool taxPub = false)
+            string patternPrefix = "^([A-Z][a-z]*", patternSuffix = ")$";
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            foreach (string scientificName in uniqueHigherTaxaList)
             {
-                this.taxPub = taxPub;
-                if (taxPub)
+                Alert.Log(scientificName);
+                string replace = scientificName;
+                for (int i = 0; i < this.higherTaxaRanks.Length; ++i)
                 {
-                    this.prefix = "<tp:taxon-name-part taxon-name-part-type=\"";
-                    this.suffix = "\">$1</tp:taxon-name-part>";
+                    string pattern = patternPrefix + this.higherTaxaSuffixes[i] + patternSuffix;
+                    string replacement = this.higherTaxaRanks[i].GetRemplacementStringForTaxonNamePartRank();
+
+                    replace = Regex.Replace(replace, pattern, replacement);
+                }
+
+                this.ReplaceTaxonNameByItsParsedContent(scientificName, replace);
+            }
+        }
+
+        private void ParseHigherTaxaWithLocalDatabase(string databaseXmlFileName)
+        {
+            XElement rankList = XElement.Load(databaseXmlFileName);
+
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            foreach (string scientificName in uniqueHigherTaxaList)
+            {
+                Regex searchTaxaName = new Regex("(?i)\\b" + scientificName + "\\b");
+                IEnumerable<string> ranks = from item in rankList.Elements()
+                                            where searchTaxaName.Match(item.Element("part").Element("value").Value).Success
+                                            select item.Element("part").Element("rank").Element("value").Value;
+
+                int ranksCount = (ranks == null) ? 0 : ranks.Count();
+                if (ranksCount == 0)
+                {
+                    Alert.Log("\n" + scientificName + " --> No match.");
+                }
+                else if (ranksCount > 1)
+                {
+                    Alert.Log(scientificName +
+                        "\nWARNING: More than one records in local database." +
+                        "\n         Substitution will not be performed.");
+                    foreach (string rank in ranks)
+                    {
+                        Alert.Log("\n\t" + rank);
+                    }
                 }
                 else
                 {
-                    this.prefix = "<tn-part type=\"";
-                    this.suffix = "\">$1</tn-part>";
+                    string rank = ranks.ElementAt(0);
+                    Alert.Log("\n" + scientificName + " --> " + rank);
+
+                    string replacement = rank.GetRemplacementStringForTaxonNamePartRank();
+
+                    this.ReplaceTaxonNameByItsParsedContent(scientificName, replacement);
                 }
             }
+        }
 
-            public string Prefix
+        private void ParseHigherTaxaWithGbifApi()
+        {
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+
+            this.delay = false;
+            foreach (string scientificName in uniqueHigherTaxaList)
             {
-                get
+                this.Delay();
+
+                Json.Gbif.GbifResult gbifResult = Net.SearchGbif(scientificName);
+                if (gbifResult != null)
                 {
-                    return this.prefix;
+                    Console.WriteLine("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
+
+                    if (gbifResult.canonicalName != null || gbifResult.scientificName != null)
+                    {
+                        if (!gbifResult.canonicalName.Equals(scientificName) && !gbifResult.scientificName.Contains(scientificName))
+                        {
+                            Alert.Log("No match.");
+                        }
+                        else
+                        {
+                            string rank = gbifResult.rank;
+                            if (rank != null && rank != string.Empty)
+                            {
+                                rank = rank.ToLower();
+                                Alert.Log("--> " + rank);
+
+                                string replacement = rank.GetRemplacementStringForTaxonNamePartRank();
+
+                                this.ReplaceTaxonNameByItsParsedContent(scientificName, replacement);
+                            }
+                        }
+                    }
                 }
             }
+        }
 
-            public string Suffix
+        private void ParseHigherTaxaWithAphiaApi()
+        {
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+
+            this.delay = false;
+            foreach (string scientificName in uniqueHigherTaxaList)
             {
-                get
+                this.Delay();
+
+                XmlDocument aphiaResponse = Net.SearchAphia(scientificName);
+                XmlNodeList responseItems = aphiaResponse.SelectNodes("//return/item[normalize-space(translate(scientificname,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
+                if (responseItems.Count < 1)
                 {
-                    return this.suffix;
+                    Alert.Log(scientificName + " --> No match or error.");
+                }
+                else
+                {
+                    List<string> ranks = responseItems.Cast<XmlNode>().Select(c => c["rank"].InnerText.ToLower()).Distinct().ToList();
+                    if (ranks.Count > 1)
+                    {
+                        Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
+                        foreach (XmlNode item in responseItems)
+                        {
+                            Alert.Log(item["scientificname"].InnerText + " --> " + item["rank"].InnerText + ", " + item["authority"].InnerText);
+                        }
+                    }
+                    else
+                    {
+                        string rank = ranks[0];
+                        Alert.Log(scientificName + " = " + responseItems[0]["scientificname"].InnerText + " --> " + rank);
+
+                        string replacement = rank.GetRemplacementStringForTaxonNamePartRank();
+
+                        this.ReplaceTaxonNameByItsParsedContent(scientificName, replacement);
+                    }
                 }
             }
+        }
 
-            public string TaxonNamePartReplace(string rank)
+        private void ParseHigherTaxaWithCoLApi()
+        {
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+
+            this.delay = false;
+            foreach (string scientificName in uniqueHigherTaxaList)
             {
-                return this.prefix + rank + this.suffix;
+                this.Delay();
+
+                XmlDocument colResponse = Net.SearchCatalogueOfLife(scientificName);
+
+                Alert.Log("\n" + colResponse.OuterXml + "\n");
+
+                XmlNodeList responseItems = colResponse.SelectNodes("/results/result[normalize-space(translate(name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
+                if (responseItems.Count < 1)
+                {
+                    Alert.Log(scientificName + " --> No match or error.");
+                }
+                else
+                {
+                    List<string> ranks = responseItems.Cast<XmlNode>().Select(c => c["rank"].InnerText.ToLower()).Distinct().ToList();
+                    if (ranks.Count > 1)
+                    {
+                        Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
+                        foreach (XmlNode item in responseItems)
+                        {
+                            Alert.Log(item["name"].InnerText + " --> " + item["rank"].InnerText);
+                        }
+                    }
+                    else
+                    {
+                        string rank = ranks[0].ToLower();
+                        Alert.Log(scientificName + " = " + responseItems[0]["name"].InnerText + " --> " + rank);
+
+                        string replacement = rank.GetRemplacementStringForTaxonNamePartRank();
+
+                        this.ReplaceTaxonNameByItsParsedContent(scientificName, replacement);
+                    }
+                }
             }
+        }
+
+        /// <summary>
+        /// This method parses all non-parsed higher taxa by making then of type 'above-genus'
+        /// </summary>
+        /// <param name="xmlDocument">Xml document to be processed</param>
+        /// <returns>Processed xml document</returns>
+        public void ParseHigherTaxaWithAboveGenus()
+        {
+            string rank = "above-genus";
+            string replacement = rank.GetRemplacementStringForTaxonNamePartRank();
+
+            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            foreach (string scientificName in uniqueHigherTaxaList)
+            {
+                Alert.Log("\n" + scientificName + " --> " + rank);
+
+                this.ReplaceTaxonNameByItsParsedContent(scientificName, replacement);
+            }
+        }
+
+        private void Delay()
+        {
+            if (this.delay)
+            {
+                System.Threading.Thread.Sleep(15000);
+            }
+            else
+            {
+                this.delay = true;
+            }
+        }
+
+        private void ReplaceTaxonNameByItsParsedContent(string scientificName, string replacement)
+        {
+            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(scientificName) + ")(?=</tn>)", replacement);
         }
     }
 }

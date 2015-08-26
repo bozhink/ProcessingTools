@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class LowerTaxaParser : TaggerBase, IParser
+    public class LowerTaxaParser : Base, IParser
     {
         public LowerTaxaParser(string xml)
             : base(xml)
