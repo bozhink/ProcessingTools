@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools;
-using ProcessingTools.Base;
-
-namespace BaseObjectTests
+﻿namespace BaseObjectTests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools;
+    using ProcessingTools.Base;
+
     [TestClass]
     public class CodesTests
     {

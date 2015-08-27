@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.Tag
 {
+    using System.Collections.Generic;
+
     public partial class Tagger
     {
         private const int NumberOfExpandingIterations = 1;

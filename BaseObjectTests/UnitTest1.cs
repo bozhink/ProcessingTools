@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProcessingTools;
-using ProcessingTools.Base;
-
-
-namespace BaseObjectTests
+﻿namespace BaseObjectTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools;
+    using ProcessingTools.Base;
+
     [TestClass]
     public class UnitTest1
     {
