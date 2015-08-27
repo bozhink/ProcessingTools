@@ -1925,9 +1925,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="-786349395">
-    <configuration>TRACE</configuration>
-  </project>
   <sourcecode name="ZooBank.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-08-26 21:09:48.730</styleCop>
@@ -2034,4 +2031,7 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="-786349395">
+    <configuration>TRACE</configuration>
+  </project>
 </stylecopresultscache>

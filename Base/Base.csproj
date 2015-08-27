@@ -87,6 +87,7 @@
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
+    <Compile Include="src\Interfaces\IValidator.cs" />
     <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Codes\Codes.cs" />
     <Compile Include="src\Codes\SpecimenCode.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="src\Taxonomy\HigherTaxaParserWithCoLApi.cs" />
     <Compile Include="src\Taxonomy\HigherTaxaParserWithGbifApi.cs" />
     <Compile Include="src\Taxonomy\HigherTaxaParserWithLocalDataBase.cs" />
+    <Compile Include="src\Taxonomy\TaxonomicNamesValidator.cs" />
     <Compile Include="src\WebLinks\Links.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
     <Compile Include="src\Products\ProductsTagger.cs" />

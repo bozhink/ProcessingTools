@@ -26,7 +26,7 @@
         {
         }
 
-        public TaxaTagger(TaggerBase baseObject)
+        public TaxaTagger(IBase baseObject)
             : base(baseObject)
         {
         }

@@ -1992,8 +1992,8 @@
             // In this method it is supposed that the subspecies name is not shortened
             Taxonomy.PrintMethodMessage("StableExpand");
 
-            List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(this.XmlDocument);
-            List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(this.XmlDocument);
+            List<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
+            List<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
 
             List<Species> speciesList = new List<Species>();
             foreach (string taxon in nonShortTaxaListUnique)
@@ -2065,8 +2065,8 @@
                 Alert.Log(p.InnerText);
                 Alert.Log("\n\n");
 
-                List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(p);
-                List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(p);
+                List<string> shortTaxaListUnique = p.GetListOfShortenedTaxa();
+                List<string> nonShortTaxaListUnique = p.GetListOfNonShortenedTaxa();
 
                 List<Species> speciesList = new List<Species>();
                 foreach (string taxon in nonShortTaxaListUnique)
@@ -2094,8 +2094,8 @@
         {
             Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article");
 
-            List<string> shortTaxaListUnique = Taxonomy.ListOfShortenedTaxa(this.XmlDocument);
-            List<string> nonShortTaxaListUnique = Taxonomy.ListOfNonShortenedTaxa(this.XmlDocument);
+            List<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
+            List<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
 
             List<Species> speciesList = new List<Species>();
             foreach (string taxon in nonShortTaxaListUnique)

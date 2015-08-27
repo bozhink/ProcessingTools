@@ -69,6 +69,11 @@ namespace ProcessingTools.Tag
                 ExtractTaxa(xmlContent);
             }
 
+            if (validateTaxa)
+            {
+                ValidateTaxa(xmlContent);
+            }
+
             if (untagSplit)
             {
                 xmlContent = RemoveAllTaxaTags(xmlContent);
@@ -276,14 +281,14 @@ namespace ProcessingTools.Tag
 
         private static void ExtractTaxa(string xmlContent)
         {
-            XmlDocument xdoc = new XmlDocument();
-            xdoc.LoadXml(xmlContent);
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(xmlContent);
             List<string> taxaList;
 
             if (extractTaxa)
             {
                 Alert.Log("\n\t\tExtract all taxa\n");
-                taxaList = Taxonomy.ExtractTaxa(xdoc, true);
+                taxaList = xmlDocument.ExtractTaxa(true);
                 foreach (string taxon in taxaList)
                 {
                     Alert.Log(taxon);
@@ -293,7 +298,7 @@ namespace ProcessingTools.Tag
             if (extractLowerTaxa)
             {
                 Alert.Log("\n\t\tExtract lower taxa\n");
-                taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.Lower);
+                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Lower);
                 foreach (string taxon in taxaList)
                 {
                     Alert.Log(taxon);
@@ -303,12 +308,24 @@ namespace ProcessingTools.Tag
             if (extractHigherTaxa)
             {
                 Alert.Log("\n\t\tExtract higher taxa\n");
-                taxaList = Taxonomy.ExtractTaxa(xdoc, true, TaxaType.Higher);
+                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Higher);
                 foreach (string taxon in taxaList)
                 {
                     Alert.Log(taxon);
                 }
             }
+        }
+
+        public static void ValidateTaxa(string xmlContent)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Alert.Log("\n\tTaxa validation using Global names resolver.\n");
+
+            TaxonomicNamesValidator validator = new TaxonomicNamesValidator(config, xmlContent);
+            validator.Validate();
+
+            PrintElapsedTime(timer);
         }
 
         private static string ExpandTaxa(string xmlContent)

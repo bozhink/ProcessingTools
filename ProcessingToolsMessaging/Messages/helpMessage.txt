@@ -53,3 +53,5 @@ Options:
     --dates = tag dates
     --abbrev = tag abbreviations
     --envo = use greek tagger
+
+    -V, --validate-taxa = valdate taxonomic names with Global Names Resolver
