@@ -34,16 +34,17 @@
 
     public class Floats : TaggerBase
     {
-        private const int MaxNumberOfSequentalFloats = 30;
         private const int MaxNumberOfPunctuationSigns = 10;
+        private const int MaxNumberOfSequentalFloats = 30;
         private const string SubfloatsPattern = "\\s*(([A-Za-z]\\d?|[ivx]+)[,\\s]*([,;–−-]|and|\\&amp;)\\s*)*([A-Za-z]\\d?|[ivx]+)";
 
-        private string[] floatNumericLabel;
+        private readonly Regex selectDash = new Regex("[–—−-]");
+        private readonly Regex selectNaNChar = new Regex(@"\D");
 
         private Hashtable floatIdByLabel = null;
-        private Hashtable floatLabelById = null;
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
+        private Hashtable floatLabelById = null;
 
         public Floats(Config config, string xml)
             : base(config, xml)
@@ -55,146 +56,6 @@
             : base(baseObject)
         {
             this.InitFloats();
-        }
-
-        /// <summary>
-        /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
-        /// This method generates the "dictionary" to correctly post-process xref/@rid references.
-        /// </summary>
-        /// <param name="refType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
-        /// <param name="floatType">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
-        /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
-        public int GetFloats(ReferenceType refType = ReferenceType.Figure, string floatType = "Figure")
-        {
-            int numberOfFloatsOfType = 0;
-            string xpath = string.Empty;
-            switch (refType)
-            {
-                case ReferenceType.Figure:
-                    xpath = "//fig[contains(string(label),'" + floatType + "')]";
-                    break;
-                case ReferenceType.Table:
-                    xpath = "//table-wrap[contains(string(label),'" + floatType + "')]";
-                    break;
-                case ReferenceType.Textbox:
-                    xpath = "//box[contains(string(title),'" + floatType + "')]|//boxed-text[contains(string(label),'" + floatType + "')]";
-                    break;
-                case ReferenceType.SupplementaryMaterial:
-                    xpath = "//supplementary-material[contains(string(label),'" + floatType + "')]";
-                    break;
-                default:
-                    xpath = string.Empty;
-                    break;
-            }
-
-            this.floatIdByLabel = new Hashtable();
-            this.floatLabelById = new Hashtable();
-
-            try
-            {
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-                numberOfFloatsOfType = nodeList.Count;
-                this.floatNumericLabel = new string[numberOfFloatsOfType + 1];
-                for (int i = 0; i < numberOfFloatsOfType + 1; i++)
-                {
-                    this.floatNumericLabel[i] = string.Empty;
-                }
-
-                int currentFloat = 0;
-                foreach (XmlNode node in nodeList)
-                {
-                    currentFloat++;
-                    string id = string.Empty;
-                    if (node.Attributes["id"] != null)
-                    {
-                        id = node.Attributes["id"].InnerText;
-                    }
-                    else
-                    {
-                        switch (refType)
-                        {
-                            case ReferenceType.Table:
-                                try
-                                {
-                                    id = node["table"].Attributes["id"].InnerText;
-                                }
-                                catch (Exception e)
-                                {
-                                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0,
-                                        "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
-                                }
-
-                                break;
-                        }
-                    }
-
-                    // Get the text of the current float
-                    string labelText = string.Empty;
-                    if (node["label"] != null)
-                    {
-                        labelText = node["label"].InnerXml;
-                    }
-                    else if (node["title"] != null)
-                    {
-                        labelText = node["title"].InnerXml;
-                    }
-
-                    if (Regex.Match(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z").Success)
-                    {
-                        this.floatNumericLabel[currentFloat] = Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1");
-                        this.floatLabelById.Add(id, this.floatNumericLabel[currentFloat]);
-                    }
-
-                    for (Match m = Regex.Match(labelText, @"[A-Z]?\d+([–—−-](?=[A-Z]?\d+))?"); m.Success; m = m.NextMatch())
-                    {
-                        string curr = Regex.Replace(m.Value, "[–—−-]", string.Empty);
-                        string next = m.NextMatch().Success ? Regex.Replace(m.NextMatch().Value, "[–—−-]", string.Empty) : string.Empty;
-
-                        this.floatIdByLabel.Add(curr, id);
-
-                        Match dash = Regex.Match(m.Value, "[–—−-]");
-                        if (dash.Success)
-                        {
-                            try
-                            {
-                                int icurr = int.Parse(Regex.Replace(curr, @"\D", string.Empty));
-                                int inext = int.Parse(Regex.Replace(next, @"\D", string.Empty));
-                                string prefix = Regex.Replace(curr, @"([A-Z]?)\d+", "$1");
-                                if (icurr < inext)
-                                {
-                                    for (int i = icurr + 1; i < inext; i++)
-                                    {
-                                        this.floatIdByLabel.Add(prefix + i, id);
-                                    }
-                                }
-                                else
-                                {
-                                    throw new Exception("Error in multiple-float's label '" + labelText + "': Label numbers must be strictly increasing.");
-                                }
-                            }
-                            catch (Exception e)
-                            {
-                                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
-            }
-
-            this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
-            this.floatIdByLabelValues = this.floatIdByLabel.Values;
-
-            Console.WriteLine();
-            foreach (string s in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
-            {
-                Console.WriteLine("{2}\t#{0}\tis in float\t#{1}", s, this.floatIdByLabel[s], refType.ToString());
-            }
-
-            return numberOfFloatsOfType;
         }
 
         public void TagAllFloats()
@@ -343,17 +204,17 @@
                 Console.WriteLine("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
                 foreach (XmlNode tableWrap in tableWrapList)
                 {
-                    Hashtable tableFootNotes = new Hashtable();
+                    Hashtable tableFootnotes = new Hashtable();
 
                     // Get foot-note's label and corresponding @id-s
                     foreach (XmlNode fn in tableWrap.SelectNodes("//fn[label][@id]", this.NamespaceManager))
                     {
-                        tableFootNotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
+                        tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
                     }
 
-                    foreach (string x in tableFootNotes.Keys)
+                    foreach (string tableFootnoteKey in tableFootnotes.Keys)
                     {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + x + "']", this.NamespaceManager))
+                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + tableFootnoteKey + "']", this.NamespaceManager))
                         {
                             // <xref ref-type="table-fn" rid="TN1"></xref>
                             XmlNode xrefTableFootNote = this.XmlDocument.CreateElement("xref");
@@ -363,7 +224,7 @@
                             xrefTableFootNote.Attributes.Append(refType);
 
                             XmlAttribute rid = this.XmlDocument.CreateAttribute("rid");
-                            rid.InnerXml = tableFootNotes[x].ToString();
+                            rid.InnerXml = tableFootnotes[tableFootnoteKey].ToString();
                             xrefTableFootNote.Attributes.Append(rid);
 
                             xrefTableFootNote.InnerXml = footnoteSup.OuterXml;
@@ -375,23 +236,6 @@
             }
 
             this.Xml = Regex.Replace(this.Xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
-        }
-
-        private void InitFloats()
-        {
-            if (this.floatIdByLabel != null)
-            {
-                this.floatIdByLabel.Clear();
-                this.floatIdByLabel = null;
-            }
-
-            if (this.floatLabelById != null)
-            {
-                this.floatLabelById.Clear();
-            }
-
-            this.floatIdByLabelKeys = null;
-            this.floatIdByLabelValues = null;
         }
 
         private string FloatsFirstOccurencePattern(string labelPattern)
@@ -412,65 +256,6 @@
         private string FloatsNextOccurenceReplace(string floatType)
         {
             return "$1<xref ref-type=\"" + floatType + "\" rid=\"$4\">$3</xref>";
-        }
-
-        /// <summary>
-        /// Find and put in xref citations of a floating object of given type.
-        /// </summary>
-        /// <param name="floatType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
-        /// <param name="labelPattern">Regex pattern to find citations of floating objects of the given type.</param>
-        private void TagFloatsOfType(string floatType, string labelPattern)
-        {
-            string pattern = this.FloatsFirstOccurencePattern(labelPattern);
-            string replace = this.FloatsFirstOccurenceReplace(floatType);
-
-            string xml = this.Xml;
-            xml = Regex.Replace(xml, pattern, replace);
-
-            pattern = this.FloatsNextOccurencePattern(floatType);
-            replace = this.FloatsNextOccurenceReplace(floatType);
-            for (int i = 0; i < MaxNumberOfSequentalFloats; i++)
-            {
-                xml = Regex.Replace(xml, pattern, replace);
-            }
-
-            this.Xml = xml;
-        }
-
-        private void ProcessFloatsRid(int floatsNumber, string refType)
-        {
-            string xml = this.Xml;
-
-            foreach (string s in this.floatIdByLabelKeys)
-            {
-                xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
-            }
-
-            foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct().ToList())
-            {
-                for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
-                {
-                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
-                }
-            }
-
-            this.Xml = xml;
-        }
-
-        private void RemoveXrefInTitles()
-        {
-            string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
-            try
-            {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-                {
-                    node.InnerXml = Regex.Replace(node.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
-            }
         }
 
         private void FormatXref()
@@ -578,6 +363,252 @@
             catch (Exception e)
             {
                 Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+        }
+
+        private string GetFloatId(ReferenceType refType, XmlNode node)
+        {
+            string id = string.Empty;
+            if (node.Attributes["id"] != null)
+            {
+                id = node.Attributes["id"].InnerText;
+            }
+            else
+            {
+                switch (refType)
+                {
+                    case ReferenceType.Table:
+                        try
+                        {
+                            id = node["table"].Attributes["id"].InnerText;
+                        }
+                        catch (Exception e)
+                        {
+                            Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0,
+                                "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
+                        }
+
+                        break;
+                }
+            }
+
+            return id;
+        }
+
+        private string GetFloatLabelText(XmlNode node)
+        {
+            string labelText = string.Empty;
+            if (node["label"] != null)
+            {
+                labelText = node["label"].InnerXml;
+            }
+            else if (node["title"] != null)
+            {
+                labelText = node["title"].InnerXml;
+            }
+
+            return labelText;
+        }
+
+        /// <summary>
+        /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
+        /// This method generates the "dictionary" to correctly post-process xref/@rid references.
+        /// </summary>
+        /// <param name="refType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
+        /// <param name="floatType">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
+        /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
+        private int GetFloats(ReferenceType refType = ReferenceType.Figure, string floatType = "Figure")
+        {
+            this.floatIdByLabel = new Hashtable();
+            this.floatLabelById = new Hashtable();
+
+            int numberOfFloatsOfType = 0;
+            try
+            {
+                string xpath = this.GetFloatsXPath(refType, floatType);
+                XmlNodeList floatsOfTypeNodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                foreach (XmlNode floatOfTypeNode in floatsOfTypeNodeList)
+                {
+                    string id = this.GetFloatId(refType, floatOfTypeNode);
+                    string labelText = this.GetFloatLabelText(floatOfTypeNode);
+
+                    this.UpdateFloatLabelByIdList(id, labelText);
+                    this.UpdateFloatIdByLabelList(id, labelText);
+                }
+
+                numberOfFloatsOfType = floatsOfTypeNodeList.Count;
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+
+            this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
+            this.floatIdByLabelValues = this.floatIdByLabel.Values;
+
+            this.PrintFloatsDistributionById(refType);
+
+            return numberOfFloatsOfType;
+        }
+
+        private string GetFloatsXPath(ReferenceType refType, string floatType)
+        {
+            string xpath = string.Empty;
+            switch (refType)
+            {
+                case ReferenceType.Figure:
+                    xpath = "//fig[contains(string(label),'" + floatType + "')]";
+                    break;
+                case ReferenceType.Table:
+                    xpath = "//table-wrap[contains(string(label),'" + floatType + "')]";
+                    break;
+                case ReferenceType.Textbox:
+                    xpath = "//box[contains(string(title),'" + floatType + "')]|//boxed-text[contains(string(label),'" + floatType + "')]";
+                    break;
+                case ReferenceType.SupplementaryMaterial:
+                    xpath = "//supplementary-material[contains(string(label),'" + floatType + "')]";
+                    break;
+                default:
+                    xpath = string.Empty;
+                    break;
+            }
+
+            return xpath;
+        }
+
+        private void InitFloats()
+        {
+            if (this.floatIdByLabel != null)
+            {
+                this.floatIdByLabel.Clear();
+                this.floatIdByLabel = null;
+            }
+
+            if (this.floatLabelById != null)
+            {
+                this.floatLabelById.Clear();
+            }
+
+            this.floatIdByLabelKeys = null;
+            this.floatIdByLabelValues = null;
+        }
+
+        private void ParseFloatIndexRangesInLabel(string id, string labelText, Match floatIndexInLabel, string currentFloatIndex)
+        {
+            Match dash = this.selectDash.Match(floatIndexInLabel.Value);
+            if (dash.Success)
+            {
+                try
+                {
+                    int currentFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(currentFloatIndex, string.Empty));
+
+                    string nextFloatIndex = floatIndexInLabel.NextMatch().Success ? this.selectDash.Replace(floatIndexInLabel.NextMatch().Value, string.Empty) : string.Empty;
+                    int nextFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(nextFloatIndex, string.Empty));
+
+                    if (currentFloatIndexNumber < nextFloatIndexNumber)
+                    {
+                        string prefix = Regex.Replace(currentFloatIndex, @"([A-Z]?)\d+", "$1");
+                        for (int i = currentFloatIndexNumber + 1; i < nextFloatIndexNumber; ++i)
+                        {
+                            this.floatIdByLabel.Add(prefix + i, id);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Error in multiple-float's label '" + labelText + "': Label numbers must be strictly increasing.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
+                }
+            }
+        }
+
+        private void PrintFloatsDistributionById(ReferenceType refType)
+        {
+            Console.WriteLine();
+            foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
+            {
+                Console.WriteLine("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
+            }
+        }
+
+        private void ProcessFloatsRid(int floatsNumber, string refType)
+        {
+            string xml = this.Xml;
+
+            foreach (string s in this.floatIdByLabelKeys)
+            {
+                xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
+            }
+
+            foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct().ToList())
+            {
+                for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
+                {
+                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
+                }
+            }
+
+            this.Xml = xml;
+        }
+
+        private void RemoveXrefInTitles()
+        {
+            string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
+            try
+            {
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+                {
+                    node.InnerXml = Regex.Replace(node.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
+                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+            }
+        }
+
+        /// <summary>
+        /// Find and put in xref citations of a floating object of given type.
+        /// </summary>
+        /// <param name="floatType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
+        /// <param name="labelPattern">Regex pattern to find citations of floating objects of the given type.</param>
+        private void TagFloatsOfType(string floatType, string labelPattern)
+        {
+            string pattern = this.FloatsFirstOccurencePattern(labelPattern);
+            string replace = this.FloatsFirstOccurenceReplace(floatType);
+
+            string xml = this.Xml;
+            xml = Regex.Replace(xml, pattern, replace);
+
+            pattern = this.FloatsNextOccurencePattern(floatType);
+            replace = this.FloatsNextOccurenceReplace(floatType);
+            for (int i = 0; i < MaxNumberOfSequentalFloats; i++)
+            {
+                xml = Regex.Replace(xml, pattern, replace);
+            }
+
+            this.Xml = xml;
+        }
+
+        private void UpdateFloatIdByLabelList(string id, string labelText)
+        {
+            for (Match floatIndexInLabel = Regex.Match(labelText, @"[A-Z]?\d+([–—−-](?=[A-Z]?\d+))?"); floatIndexInLabel.Success; floatIndexInLabel = floatIndexInLabel.NextMatch())
+            {
+                string currentFloatIndex = this.selectDash.Replace(floatIndexInLabel.Value, string.Empty);
+                this.floatIdByLabel.Add(currentFloatIndex, id);
+
+                this.ParseFloatIndexRangesInLabel(id, labelText, floatIndexInLabel, currentFloatIndex);
+            }
+        }
+
+        private void UpdateFloatLabelByIdList(string id, string labelText)
+        {
+            if (Regex.Match(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z").Success)
+            {
+                this.floatLabelById.Add(id, Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1"));
             }
         }
     }

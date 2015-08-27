@@ -268,6 +268,7 @@
 
         public static XmlDocument SearchWithGlobalNamesResolver(string[] scientificNames, int[] sourceId = null)
         {
+            Regex selectWhiteSpaces = new Regex(@"\s+");
             XmlDocument xmlResult = new XmlDocument();
             try
             {
@@ -275,10 +276,10 @@
                 {
                     StringBuilder searchStringBuilder = new StringBuilder();
                     searchStringBuilder.Clear();
-                    for (int i = 0, len1 = scientificNames.Length - 1; i <= len1; i++)
+                    for (int i = 0, length = scientificNames.Length - 1; i <= length; ++i)
                     {
-                        searchStringBuilder.Append(Regex.Replace(scientificNames[i].Trim(), "\\s+", "+"));
-                        if (i < len1)
+                        searchStringBuilder.Append(selectWhiteSpaces.Replace(scientificNames[i].Trim(), "+"));
+                        if (i < length)
                         {
                             searchStringBuilder.Append("|");
                         }
@@ -287,24 +288,23 @@
                     if (sourceId != null)
                     {
                         searchStringBuilder.Append("&data_source_ids=");
-                        for (int i = 0, len1 = sourceId.Length - 1; i <= len1; i++)
+                        for (int i = 0, length = sourceId.Length - 1; i <= length; i++)
                         {
                             searchStringBuilder.Append(sourceId[i]);
-                            if (i < len1)
+                            if (i < length)
                             {
                                 searchStringBuilder.Append("|");
                             }
                         }
                     }
 
-                    Alert.Log(searchStringBuilder.ToString());
                     searchString = searchStringBuilder.ToString();
+                    Alert.Log(searchString);
                 }
 
-                using (var client = new HttpClient())
+                using (HttpClient client = new HttpClient())
                 {
                     string responseString = client.GetStringAsync("http://resolver.globalnames.org/name_resolvers.xml?names=" + searchString).Result;
-                    ////responseString = Regex.Replace(responseString, "(?<=<(classification-path|classification-path-ranks|classification-path-ids)>)\\||\\|(?=</(classification-path|classification-path-ranks|classification-path-ids)>)", "");
                     xmlResult.LoadXml(responseString);
                 }
             }

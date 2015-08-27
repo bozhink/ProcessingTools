@@ -11,21 +11,6 @@
         {
         }
 
-        public void ExtractSystemChecklistAuthority1()
-        {
-            XmlDocument newXml = new XmlDocument(this.NamespaceManager.NameTable);
-            XmlElement root = newXml.CreateElement("root");
-
-            foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields[taxon_authors_and_year[normalize-space(.)!='']]", this.NamespaceManager))
-            {
-                XmlElement newNode = newXml.CreateElement("node");
-                newNode.InnerXml = node["taxon_authors_and_year"].OuterXml;
-                root.AppendChild(newNode);
-            }
-
-            newXml.AppendChild(root);
-        }
-
         public void ExtractSystemChecklistAuthority()
         {
             foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))

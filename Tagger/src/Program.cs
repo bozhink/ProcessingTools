@@ -4,8 +4,8 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using ProcessingTools.Base;
-    using ProcessingTools.Base.ZooBank;
+    using Base;
+    using Base.ZooBank;
 
     public partial class Tagger
     {
@@ -29,12 +29,10 @@
                 char[] arg = args[i].ToCharArray();
                 if (arg[0] == '-' && arg[1] == '-')
                 {
-                    // Double dashed options
                     doubleDashedOptions.Add(i);
                 }
                 else if (arg[0] == '-' || arg[0] == '/')
                 {
-                    // Single dashed options
                     singleDashedOptions.Add(i);
                 }
                 else
@@ -207,7 +205,7 @@
                 ////    Alert.Message(obj.records[0].nam + "  " + obj.records[0].rnk);
                 ////}
 
-                ////XmlDocument xx = Base.Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
+                ////XmlDocument xx = Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
                 ////fp.Xml = xx.OuterXml;
 
                 ////test.SqlSelect();
