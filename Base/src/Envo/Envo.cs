@@ -16,7 +16,7 @@
         {
         }
 
-        public Envo(TaggerBase baseObject)
+        public Envo(IBase baseObject)
             : base(baseObject)
         {
         }

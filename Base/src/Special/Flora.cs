@@ -16,7 +16,7 @@
         {
         }
 
-        public Flora(TaggerBase baseObject)
+        public Flora(IBase baseObject)
             : base(baseObject)
         {
         }

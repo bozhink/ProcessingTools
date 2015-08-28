@@ -25,7 +25,7 @@ namespace ProcessingTools.Base
         {
         }
 
-        public DatesTagger(TaggerBase baseObject)
+        public DatesTagger(IBase baseObject)
             : base(baseObject)
         {
         }

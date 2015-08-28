@@ -17,7 +17,7 @@
             {
             }
 
-            public Formatter(TaggerBase baseObject)
+            public Formatter(IBase baseObject)
                 : base(baseObject)
             {
             }
@@ -282,7 +282,7 @@
             {
             }
 
-            public Formatter(TaggerBase baseObject)
+            public Formatter(IBase baseObject)
                 : base(baseObject)
             {
             }

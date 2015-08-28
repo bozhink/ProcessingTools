@@ -52,7 +52,7 @@
             this.InitFloats();
         }
 
-        public Floats(TaggerBase baseObject)
+        public Floats(IBase baseObject)
             : base(baseObject)
         {
             this.InitFloats();

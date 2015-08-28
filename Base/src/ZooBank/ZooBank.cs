@@ -12,7 +12,7 @@
         {
         }
 
-        public ZooBank(TaggerBase baseObject)
+        public ZooBank(IBase baseObject)
             : base(baseObject)
         {
         }

@@ -32,7 +32,7 @@
             {
             }
 
-            public Expander(TaggerBase baseObject)
+            public Expander(IBase baseObject)
                 : base(baseObject)
             {
             }
@@ -976,7 +976,7 @@
             {
             }
 
-            public Expander(TaggerBase baseObject)
+            public Expander(IBase baseObject)
                 : base(baseObject)
             {
             }
@@ -1982,7 +1982,7 @@
         {
         }
 
-        public Expander(TaggerBase baseObject)
+        public Expander(IBase baseObject)
             : base(baseObject)
         {
         }
