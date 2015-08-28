@@ -1,0 +1,9 @@
+﻿SCUBA
+STATISTICA
+package
+PERMANOVA
+Simplex
+Quasi-Newton
+FORTRAN
+Bray-Curtis similarity
+Bray–Curtis dissimilarity
