@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using ProcessingTools.Base;
+using ProcessingTools.Base.Abbreviations;
 using ProcessingTools.Base.Coordinates;
 
 namespace ProcessingTools.Tag

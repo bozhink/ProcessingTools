@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base
+﻿namespace ProcessingTools.Base.Abbreviations
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -14,7 +14,7 @@
         {
         }
 
-        public AbbreviationsTagger(TaggerBase baseObject)
+        public AbbreviationsTagger(IBase baseObject)
             : base(baseObject)
         {
         }
@@ -22,80 +22,16 @@
         public void Tag()
         {
             // Do not change this sequence
-            this.TagAbbreviationsInSpecificNode("//graphic|//media|//disp-formula-group");
-            this.TagAbbreviationsInSpecificNode("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
-            this.TagAbbreviationsInSpecificNode("//fig-group|//table-wrap-group");
-            this.TagAbbreviationsInSpecificNode("//boxed-text");
-            this.TagAbbreviationsInSpecificNode("/");
+            this.TagAbbreviationsInSpecificNodeByXPath("//graphic|//media|//disp-formula-group");
+            this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
+            this.TagAbbreviationsInSpecificNodeByXPath("//fig-group|//table-wrap-group");
+            this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text");
+            this.TagAbbreviationsInSpecificNodeByXPath("/");
         }
 
         public void Tag(IXPathProvider xpathProvider)
         {
             this.Tag();
-        }
-
-        private void TagAbbreviationsInSpecificNode(string selectSpecificNodeXPath)
-        {
-            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager);
-            foreach (XmlNode specificNode in specificNodes)
-            {
-                List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
-                    .Cast<XmlNode>().Select(a => this.ConvertAbbrevXmlNodeToAbbreviation(a)).ToList();
-
-                foreach (Abbreviation abbreviation in abbreviationsList)
-                {
-                    string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                    foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
-                    {
-                        bool performReplace = false;
-                        if (nodeInSpecificNode.InnerXml.Length < 1)
-                        {
-                            if (nodeInSpecificNode.OuterXml.IndexOf("<!--") == 0)
-                            {
-                                // This node is a comment. Do not replace matches here.
-                                performReplace = false;
-                            }
-                            else if (nodeInSpecificNode.OuterXml.IndexOf("<?") == 0)
-                            {
-                                // This node is a processing instruction. Do not replace matches here.
-                                performReplace = false;
-                            }
-                            else if (nodeInSpecificNode.OuterXml.IndexOf("<!DOCTYPE") == 0)
-                            {
-                                // This node is a DOCTYPE node. Do not replace matches here.
-                                performReplace = false;
-                            }
-                            else if (nodeInSpecificNode.OuterXml.IndexOf("<![CDATA[") == 0)
-                            {
-                                // This node is a CDATA node. Do nothing?
-                                performReplace = false;
-                            }
-                            else
-                            {
-                                // This node is a text node. Tag this text and replace in InnerXml
-                                performReplace = true;
-                            }
-                        }
-                        else
-                        {
-                            // This is a named node
-                            performReplace = true;
-                        }
-
-                        if (performReplace)
-                        {
-                            XmlDocumentFragment nodeFragment = this.XmlDocument.CreateDocumentFragment();
-
-                            nodeFragment.InnerXml = Regex.Replace(
-                                nodeInSpecificNode.OuterXml,
-                                abbreviation.SearchPattern,
-                                abbreviation.ReplacePattern);
-
-                            nodeInSpecificNode.ParentNode.ReplaceChild(nodeFragment, nodeInSpecificNode);
-                        }
-                    }
-                }
-            }
         }
 
         private Abbreviation ConvertAbbrevXmlNodeToAbbreviation(XmlNode abbrev)
@@ -132,32 +68,31 @@
             return abbreviation;
         }
 
-        private class Abbreviation
+        private void TagAbbreviationsInSpecificNode(XmlNode specificNode)
         {
-            public string Content { get; set; }
+            List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
+                                .Cast<XmlNode>().Select(a => this.ConvertAbbrevXmlNodeToAbbreviation(a)).ToList<Abbreviation>();
 
-            public string ContentType { get; set; }
-
-            public string Definition { get; set; }
-
-            public string SearchPattern
+            foreach (Abbreviation abbreviation in abbreviationsList)
             {
-                get
+                string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
+                foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
                 {
-                    return "\\b(" + this.Content + ")\\b";
+                    bool performReplace = nodeInSpecificNode.CheckIfIsPossibleToPerformReplaceInXmlNode();
+                    if (performReplace)
+                    {
+                        nodeInSpecificNode.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                    }
                 }
             }
+        }
 
-            public string ReplacePattern
+        private void TagAbbreviationsInSpecificNodeByXPath(string selectSpecificNodeXPath)
+        {
+            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager);
+            foreach (XmlNode specificNode in specificNodes)
             {
-                get
-                {
-                    return "<abbrev" +
-                        ((this.ContentType == null || this.ContentType == string.Empty) ? string.Empty : @" content-type=""" + this.ContentType + @"""") +
-                        ((this.Definition == null || this.Definition == string.Empty) ? string.Empty : @" xlink:title=""" + this.Definition + @"""") +
-                        @" xmlns:xlink=""http://www.w3.org/1999/xlink""" +
-                        ">$1</abbrev>";
-                }
+                this.TagAbbreviationsInSpecificNode(specificNode);
             }
         }
     }
