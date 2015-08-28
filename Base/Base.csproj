@@ -137,6 +137,13 @@
     <Compile Include="src\ZooBank\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\english-common-words.txt" />
+    <Content Include="Data\geo-epithets.txt" />
+    <Content Include="Data\institutions.txt" />
+    <Content Include="Data\journals.txt" />
+    <Content Include="Data\localities.txt" />
+    <Content Include="Data\morphology.txt" />
+    <Content Include="Data\products.txt" />
     <Content Include="Data\Sql\biorepositories.sql" />
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
@@ -147,6 +154,7 @@
     <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
+    <Content Include="Data\words.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
     <Content Include="src\Test\json-test\Program.cs.txt" />

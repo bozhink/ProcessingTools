@@ -35,17 +35,7 @@
                 XmlNodeList nodeList = xml.SelectNodes(xpath, Config.TaxPubNamespceManager());
                 if (stripTags)
                 {
-                    result = nodeList.Cast<XmlNode>().Select(c =>
-                        Regex.Replace(
-                            Regex.Replace(
-                                Regex.Replace(
-                                    c.InnerXml,
-                                    @"</[^>]*>(?=[^\s\)\]])(?!\Z)",
-                                    " "),
-                                @"<[^>]+ full-name=""([^<>""]+)""[^>]*>\S*",
-                                "$1"),
-                            @"<[^>]+>|[\(\)\[\]]",
-                            string.Empty)).Distinct().ToList();
+                    result = nodeList.Cast<XmlNode>().Select(c => c.TaxonNameXmlNodeToString()).Distinct().ToList();
                 }
                 else
                 {
@@ -56,6 +46,25 @@
             }
 
             return result;
+        }
+
+        private static string TaxonNameXmlNodeToString(this XmlNode taxonNameNode)
+        {
+            XmlNode result = taxonNameNode.CloneNode(true);
+            result.Attributes.RemoveAll();
+
+            foreach (XmlNode fullNamedPart in result.SelectNodes(".//*[normalize-space(@full-name)!='']"))
+            {
+                fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
+                fullNamedPart.Attributes.RemoveNamedItem("full-name");
+            }
+
+            string innerXml = result.InnerXml;
+
+            innerXml = Regex.Replace(innerXml, @"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ");
+            innerXml = Regex.Replace(innerXml, @"<[^>]+>|[\(\)\[\]]", string.Empty);
+
+            return innerXml;
         }
 
         public static string ExtractTaxa(this string xml, Config config)
