@@ -246,26 +246,80 @@
         }
 
         /// <summary>
-        /// Given an input list, returns the sublist of not-included-in-xdoc words
+        /// Gets all strings which contains any string of a comparision list.
         /// </summary>
-        /// <param name="wordList">Input list to be parsed.</param>
-        /// <param name="xdoc">XDocument to parse with.</param>
-        /// <returns>Xdoc-clean sublist of the wordList.</returns>
-        public static IEnumerable<string> ClearListWithXDocument(this IEnumerable<string> wordList, XElement xdoc)
+        /// <param name="wordList">IEnumerable object to be matches.</param>
+        /// <param name="compareList">IEnumerable object of patterns which must be contained in the wordList.</param>
+        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
+        /// <returns>IEnumerable object of all matching with compareList string items in wordList.</returns>
+        public static IEnumerable<string> MatchWithStringList(
+            this IEnumerable<string> wordList,
+            IEnumerable<string> compareList,
+            bool treatAsRegex = false)
         {
             IEnumerable<string> result = null;
-
             try
             {
-                result = from word in wordList
-                         where (from item in xdoc.Elements()
-                                where Regex.Match(word, "\\A(?i)" + item.Value + "\\Z").Success
-                                select item).Count() == 0
-                         select word;
+                if (treatAsRegex)
+                {
+                    result = from word in wordList
+                             where (from comparePattern in compareList
+                                    where Regex.Match(word, "\\A(?i)" + comparePattern + "\\Z").Success
+                                    select comparePattern).Count() > 0
+                             select word;
+                }
+                else
+                {
+                    result = from word in wordList
+                             where (from stringToCompare in compareList
+                                    where word.Contains(stringToCompare)
+                                    select stringToCompare).Count() > 0
+                             select word;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
+                throw;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets all strings which does not contain any string of a comparision list.
+        /// </summary>
+        /// <param name="wordList">IEnumerable object to be distincted.</param>
+        /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
+        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
+        /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
+        public static IEnumerable<string> DistinctWithStringList(
+            this IEnumerable<string> wordList,
+            IEnumerable<string> compareList,
+            bool treatAsRegex = false)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                if (treatAsRegex)
+                {
+                    result = from word in wordList
+                             where (from comparePattern in compareList
+                                    where Regex.Match(word, "\\A(?i)" + comparePattern + "\\Z").Success
+                                    select comparePattern).Count() == 0
+                             select word;
+                }
+                else
+                {
+                    result = from word in wordList
+                             where (from stringToCompare in compareList
+                                    where word.Contains(stringToCompare)
+                                    select stringToCompare).Count() == 0
+                             select word;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             return result;
@@ -284,7 +338,7 @@
             }
         }
 
-        public static HashSet<string> ExtractWordsFromString(this string text, bool distinctWords = true)
+        public static IEnumerable<string> ExtractWordsFromString(this string text, bool distinctWords = true)
         {
             List<string> result = new List<string>();
 
@@ -300,15 +354,15 @@
                 result.Sort();
             }
 
-            return new HashSet<string>(result);
+            return result;
         }
 
-        public static HashSet<string> ExtractWordsFromXml(this XmlDocument xml)
+        public static IEnumerable<string> ExtractWordsFromXml(this XmlDocument xml)
         {
             return ExtractWordsFromString(xml.InnerText);
         }
 
-        public static List<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
+        public static IEnumerable<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
         {
             List<string> result = new List<string>();
 
@@ -326,7 +380,7 @@
             return result;
         }
 
-        public static List<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search, bool clearList = true)
+        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search, bool clearList = true)
         {
             List<string> result = new List<string>();
 
@@ -344,14 +398,14 @@
             return result;
         }
 
-        public static List<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
+        public static IEnumerable<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
         {
             return node.InnerText.GetMatchesInText(search, clearList);
         }
 
-        public static List<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
         {
-            List<string> result = new List<string>();
+            IEnumerable<string> result = null;
             try
             {
                 XmlNodeList nodeList;
@@ -374,12 +428,12 @@
             return result;
         }
 
-        public static List<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
         {
-            List<string> result = new List<string>();
+            IEnumerable<string> result = null;
             try
             {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct().ToList();
+                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
             }
             catch (Exception e)
             {
@@ -389,9 +443,9 @@
             return result;
         }
 
-        public static List<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
         {
-            List<string> result = new List<string>();
+            IEnumerable<string> result = null;
             try
             {
                 XmlNodeList nodeList;
@@ -414,12 +468,12 @@
             return result;
         }
 
-        public static List<string> GetStringListOfUniqueXmlNodes(this IEnumerable xmlNodeList)
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this IEnumerable xmlNodeList)
         {
-            List<string> result = new List<string>();
+            IEnumerable<string> result = null;
             try
             {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
+                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct();
             }
             catch (Exception e)
             {
@@ -500,7 +554,6 @@
         public static IEnumerable<string> SelectListWithXDocument(this IEnumerable<string> wordList, XElement xdoc)
         {
             IEnumerable<string> result = null;
-
             try
             {
                 result = from word in wordList

@@ -1,0 +1,57 @@
+﻿namespace ProcessingTools.Base.Taxonomy
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
+    public class HigherTaxaTagger : TaxaTagger
+    {
+        public const string HigherTaxaMatchPattern = "\\b([A-Z](?i)[a-z]*(morphae?|mida|toda|ideae|oida|genea|formes|ales|lifera|ieae|indeae|eriae|idea|aceae|oidea|oidae|inae|ini|ina|anae|ineae|acea|oideae|mycota|mycotina|mycetes|mycetidae|phyta|phytina|opsida|phyceae|idae|phycidae|ptera|poda|phaga|itae|odea|alia|ntia|osauria))\\b";
+
+        private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
+
+        private readonly TagContent higherTaxaTag = new TagContent("tn", @" type=""higher""");
+
+        public HigherTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList)
+            : base(xml, whiteList, blackList)
+        {
+        }
+
+        public HigherTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList)
+            : base(config, xml, whiteList, blackList)
+        {
+        }
+
+        public HigherTaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList)
+            : base(baseObject, whiteList, blackList)
+        {
+        }
+
+        public override void Tag()
+        {
+            try
+            {
+                Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
+
+                IEnumerable<string> taxaNames = this.XmlDocument.GetNonTaggedTaxa(matchHigherTaxa);
+
+                taxaNames = taxaNames.DistinctWithStringList(this.BlackList.StringList, true);
+
+                this.TagTextInXmlDocument(taxaNames, higherTaxaTag, HigherTaxaXPathTemplate, false, true);
+
+                this.ApplyWhiteList();
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tagging higher taxa.");
+            }
+
+            this.XmlDocument.RemoveTaxaInWrongPlaces();
+        }
+
+        public override void Tag(IXPathProvider xpathProvider)
+        {
+            this.Tag();
+        }
+    }
+}

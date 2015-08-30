@@ -8,6 +8,9 @@ namespace ProcessingTools.Tag
 {
     public partial class Tagger
     {
+        private static TaxonomicBlackList blackList;
+        private static TaxonomicWhiteList whiteList;
+
         private static string MainProcessing(string xml)
         {
             string xmlContent = xml;
@@ -25,8 +28,16 @@ namespace ProcessingTools.Tag
             /*
              * Taxonomic part
              */
+
+            blackList = new TaxonomicBlackList(config);
+            whiteList = new TaxonomicWhiteList(config);
+
             xmlContent = TagLowerTaxa(xmlContent);
             xmlContent = TagHigherTaxa(xmlContent);
+
+            blackList.Clear();
+            whiteList.Clear();
+
             xmlContent = ParseLowerTaxa(xmlContent);
             xmlContent = ParseHigherTaxa(xmlContent);
 
@@ -162,10 +173,9 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag higher taxa.\n");
-                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
+                HigherTaxaTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
 
-                tagger.TagHigherTaxa();
-
+                tagger.Tag();
                 tagger.UntagTaxa();
 
                 xmlContent = tagger.Xml;
@@ -200,10 +210,9 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag lower taxa.\n");
-                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
+                LowerTaxaTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
 
-                tagger.TagLowerTaxa(true);
-
+                tagger.Tag();
                 tagger.UntagTaxa();
 
                 xmlContent = tagger.Xml;
@@ -220,11 +229,11 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with Aphia.\n");
-                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
-                tagger.ParseTreatmentMetaWithAphia();
+                TreatmentMetaParser parser = new AphiaTreatmentMetaParser(config, xmlContent);
+                parser.Parse();
+                xmlContent = parser.Xml;
 
-                xmlContent = tagger.Xml;
                 PrintElapsedTime(timer);
             }
 
@@ -233,11 +242,11 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with GBIF.\n");
-                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
-                tagger.ParseTreatmentMetaWithGbif();
+                TreatmentMetaParser parser = new GbifTreatmentMetaParser(config, xmlContent);
+                parser.Parse();
+                xmlContent = parser.Xml;
 
-                xmlContent = tagger.Xml;
                 PrintElapsedTime(timer);
             }
 
@@ -246,11 +255,11 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with CoL.\n");
-                TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
-                tagger.ParseTreatmentMetaWithCoL();
+                TreatmentMetaParser parser = new CoLTreatmentMetaParser(config, xmlContent);
+                parser.Parse();
+                xmlContent = parser.Xml;
 
-                xmlContent = tagger.Xml;
                 PrintElapsedTime(timer);
             }
 
@@ -262,11 +271,11 @@ namespace ProcessingTools.Tag
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Alert.Log("\n\tFormat treatments.\n");
-            TaxaTagger tagger = new TaxaTagger(config, xmlContent);
 
-            tagger.FormatTreatments();
+            TreatmentFormatter formatter = new TreatmentFormatter(config, xmlContent);
+            formatter.Format();
+            xmlContent = formatter.Xml;
 
-            xmlContent = tagger.Xml;
             PrintElapsedTime(timer);
             return xmlContent;
         }
@@ -283,7 +292,7 @@ namespace ProcessingTools.Tag
         {
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(xmlContent);
-            List<string> taxaList;
+            IEnumerable<string> taxaList;
 
             if (extractTaxa)
             {

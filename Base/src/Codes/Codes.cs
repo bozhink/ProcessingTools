@@ -150,9 +150,9 @@ namespace ProcessingTools.Base
         {
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
-            List<string> potentialSpecimenCodes = this.ExtractPotentialSpecimenCodes(CodePattern);
+            IEnumerable<string> potentialSpecimenCodes = this.ExtractPotentialSpecimenCodes(CodePattern);
 
-            Alert.Log("\n\n" + potentialSpecimenCodes.Count + " code words in article\n");
+            Alert.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
             {
                 Alert.Log(word);
@@ -160,7 +160,7 @@ namespace ProcessingTools.Base
 
             Alert.Log("\n\nPlausible specimen codes\n\n");
 
-            List<SpecimenCode> plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
+            IEnumerable<SpecimenCode> plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
             this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, this.specimenCodeTag);
 
@@ -286,7 +286,7 @@ namespace ProcessingTools.Base
             }
         }
 
-        private List<string> ExtractPotentialSpecimenCodes(string codePattern)
+        private IEnumerable<string> ExtractPotentialSpecimenCodes(string codePattern)
         {
             XmlDocument cleanedXmlDocument = new XmlDocument();
             cleanedXmlDocument.PreserveWhitespace = true;
@@ -307,12 +307,13 @@ namespace ProcessingTools.Base
         /// </summary>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
         /// <returns>Filtered list of plausible specimen codes.</returns>
-        private List<SpecimenCode> GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(List<string> potentialSpecimenCodes)
+        private IEnumerable<SpecimenCode> GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(IEnumerable<string> potentialSpecimenCodes)
         {
             List<SpecimenCode> result = new List<SpecimenCode>();
 
             XmlNodeList institutionalCodesXmlNodes = this.XmlDocument.SelectNodes("//institutional_code", this.NamespaceManager);
-            List<string> institutionalCodes = institutionalCodesXmlNodes.GetStringListOfUniqueXmlNodeContent();
+
+            IEnumerable<string> institutionalCodes = institutionalCodesXmlNodes.GetStringListOfUniqueXmlNodeContent();
             foreach (string institutionalCode in institutionalCodes)
             {
                 /*
@@ -331,11 +332,13 @@ namespace ProcessingTools.Base
                 }
             }
 
-            result = result.Distinct().ToList();
-            return result;
+            return result.Distinct();
         }
         
-        private void ReplaceSpecimenCodesInXml(string xpathTemplate, List<SpecimenCode> specimenCodes, TagContent tag)
+        private void ReplaceSpecimenCodesInXml(
+            string xpathTemplate,
+            IEnumerable<SpecimenCode> specimenCodes,
+            TagContent tag)
         {
             foreach (SpecimenCode specimenCode in specimenCodes)
             {

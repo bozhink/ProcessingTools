@@ -87,6 +87,7 @@
     <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
+    <Compile Include="src\Interfaces\IStringDataList.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
     <Compile Include="src\Interfaces\IValidator.cs" />
     <Compile Include="src\Net\Net.cs" />
@@ -109,14 +110,23 @@
     <Compile Include="src\Json\Gbif.cs" />
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParser.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserBySuffix.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserWithAboveGenus.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserWithAphiaApi.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserWithCoLApi.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserWithGbifApi.cs" />
-    <Compile Include="src\Taxonomy\HigherTaxaParserWithLocalDataBase.cs" />
-    <Compile Include="src\Taxonomy\TaxonomicNamesValidator.cs" />
+    <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserBySuffix.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserWithAboveGenus.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserWithAphiaApi.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserWithCoLApi.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserWithGbifApi.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParserWithLocalDataBase.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
+    <Compile Include="src\Taxonomy\TaxonomicBlackList.cs" />
+    <Compile Include="src\Taxonomy\TaxonomicWhiteList.cs" />
+    <Compile Include="src\Taxonomy\TreatmentMetaParser\AphiaTreatmentMetaParser.cs" />
+    <Compile Include="src\Taxonomy\TreatmentMetaParser\CoLTreatmentMetaParser.cs" />
+    <Compile Include="src\Taxonomy\TreatmentMetaParser\GbifTreatmentMetaParser.cs" />
+    <Compile Include="src\Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="src\WebLinks\Links.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
     <Compile Include="src\Products\ProductsTagger.cs" />
@@ -126,10 +136,10 @@
     <Compile Include="src\References\References.cs" />
     <Compile Include="src\Codes\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
-    <Compile Include="src\Taxonomy\Expander.cs" />
+    <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="src\Taxonomy\Species.cs" />
-    <Compile Include="src\Taxonomy\LowerTaxaParser.cs" />
-    <Compile Include="src\Taxonomy\TaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\LowerTaxaParser.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger\TaxaTagger.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
     <Compile Include="src\XPathProvider\XPathProvider.cs" />
@@ -226,6 +236,7 @@
       <Name>ProcessingToolsMessaging</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

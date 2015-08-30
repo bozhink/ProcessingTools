@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -9,7 +10,7 @@
     public abstract class TaggerBase : Base
     {
         private string textContent;
-        private HashSet<string> textWords;
+        private IEnumerable<string> textWords;
 
         public TaggerBase(string xml)
             : base(xml)
@@ -61,11 +62,11 @@
         /// Gets the HashSet of words in the xml document.
         /// </summary>
         /// <exception cref="System.ArgumentNullException">Throws when the xml document does not contain valid words.</exception>
-        protected HashSet<string> TextWords
+        protected IEnumerable<string> TextWords
         {
             get
             {
-                if (this.textWords == null || this.textWords.Count < 1 || this.NeedsUpdate)
+                if (this.textWords == null || this.textWords.Count() < 1 || this.NeedsUpdate)
                 {
                     this.SetTextContent();
                     this.NeedsUpdate = false;
@@ -76,7 +77,7 @@
 
             private set
             {
-                if (value == null || value.Count < 1)
+                if (value == null || value.Count() < 1)
                 {
                     throw new ArgumentNullException("This document does not contain valid words.");
                 }

@@ -29,7 +29,7 @@ namespace ProcessingTools.Base
         {
             string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>\(\)\[\]]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)(?![^<>]*>)";
             Regex matchSpecimenCount = new Regex(pattern);
-            List<string> specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount, true);
+            IEnumerable<string> specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount, true);
             this.TagTextInXmlDocument(specimenCountCitations, this.specimenCountTag, xpathProvider.SelectContentNodesXPathTemplate, false, true);
 
             ////string replacement = specimenCountTag.OpenTag + "$1" + specimenCountTag.CloseTag;

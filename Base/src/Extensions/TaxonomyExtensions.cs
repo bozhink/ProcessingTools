@@ -13,9 +13,8 @@
             return xml.ApplyXslTransform(config.floraDistrinctTaxaXslPath);
         }
 
-        public static List<string> ExtractTaxa(this XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
+        public static IEnumerable<string> ExtractTaxa(this XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
         {
-            List<string> result = new List<string>();
             string typeString = type.ToString().ToLower();
             string xpath = string.Empty;
             switch (type)
@@ -30,6 +29,7 @@
                     break;
             }
 
+            List<string> result = new List<string>();
             if (xpath != string.Empty)
             {
                 XmlNodeList nodeList = xml.SelectNodes(xpath, Config.TaxPubNamespceManager());
@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                    result = nodeList.GetStringListOfUniqueXmlNodes();
+                    result = nodeList.GetStringListOfUniqueXmlNodes().ToList();
                 }
 
                 result.Sort();
@@ -84,7 +84,7 @@
             return xml.ApplyXslTransform(config.floraGenerateTemplatesXslPath);
         }
 
-        public static List<string> GetListOfNonShortenedTaxa(this XmlNode xml)
+        public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode xml)
         {
             ////string xpath = "//tp:taxon-name[count(tp:taxon-name-part[normalize-space(@full-name)=''])=0][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
@@ -127,7 +127,7 @@
             return newList.GetStringListOfUniqueXmlNodes();
         }
 
-        public static List<string> GetListOfShortenedTaxa(this XmlNode xml)
+        public static IEnumerable<string> GetListOfShortenedTaxa(this XmlNode xml)
         {
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
@@ -178,6 +178,34 @@
             {
                 taxonName.InnerXml = taxonName.InnerXml.RemoveTaxonNamePartTags();
             }
+        }
+
+
+        public static IEnumerable<string> GetFirstWordOfTaxaNames(this XmlDocument xml)
+        {
+            return xml.GetStringListOfUniqueXmlNodes("//tn")
+                .Cast<string>()
+                .Select(word => Regex.Match(word, @"\w+\.|\w+\b").Value)
+                .Distinct();
+        }
+
+        public static void RemoveTaxaInWrongPlaces(this XmlDocument xml)
+        {
+            string xpath = "tn[.//tn] | a[.//tn] | ext-link[.//tn] | xref[.//tn] | article/front/notes/sec[.//tn] | tp:treatment-meta/kwd-group/kwd/named-content[.//tn] | *[@object_id='82'][.//tn] | *[@id='41'][.//tn] | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[.//tn]";
+
+            Regex matchTaxonTag = new Regex(@"</?tn[^>]*>");
+
+            foreach (XmlNode node in xml.SelectNodes(xpath, Config.TaxPubNamespceManager()))
+            {
+                node.InnerXml = matchTaxonTag.Replace(node.InnerXml, string.Empty);
+            }
+        }
+
+        public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
+        {
+            return from item in xml.GetMatchesInXmlText(matchTaxa, true)
+                   where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
+                   select item;
         }
     }
 }

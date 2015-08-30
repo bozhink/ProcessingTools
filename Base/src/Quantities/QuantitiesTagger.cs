@@ -43,7 +43,7 @@
         {
             string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b)(?![^<>]*>)";
             Regex matchQuantities = new Regex(pattern);
-            List<string> quantities = this.TextContent.GetMatchesInText(matchQuantities, true);
+            IEnumerable<string> quantities = this.TextContent.GetMatchesInText(matchQuantities, true);
             foreach (string quantity in quantities)
             {
                 Alert.Log(quantity);
