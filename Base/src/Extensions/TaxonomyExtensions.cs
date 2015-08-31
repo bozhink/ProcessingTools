@@ -45,7 +45,7 @@
                 result.Sort();
             }
 
-            return result;
+            return new HashSet<string>(result);
         }
 
         private static string TaxonNameXmlNodeToString(this XmlNode taxonNameNode)

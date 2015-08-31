@@ -5,15 +5,14 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using System.Xml.Linq;
 
     public abstract class TaxaTagger : TaggerBase, ITagger
     {
         protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
 
-        private IStringDataList whiteList;
         private IStringDataList blackList;
+        private IStringDataList whiteList;
 
         public TaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList)
             : base(xml)
@@ -36,6 +35,19 @@
             this.BlackList = blackList;
         }
 
+        protected IStringDataList BlackList
+        {
+            get
+            {
+                return this.blackList;
+            }
+
+            private set
+            {
+                this.blackList = value;
+            }
+        }
+
         protected IStringDataList WhiteList
         {
             get
@@ -49,18 +61,9 @@
             }
         }
 
-        protected IStringDataList BlackList
-        {
-            get
-            {
-                return this.blackList;
-            }
+        public abstract void Tag();
 
-            private set
-            {
-                this.blackList = value;
-            }
-        }
+        public abstract void Tag(IXPathProvider xpathProvider);
 
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
@@ -81,6 +84,14 @@
             return result;
         }
 
+        protected IEnumerable<string> GetTaxaItemsByWhiteList()
+        {
+            string textToMine = string.Join(" ", this.TextWords);
+            IEnumerable<string> whiteListedItems = textToMine.MatchWithStringList(this.WhiteList.StringList, true, false);
+
+            return whiteListedItems;
+        }
+
         private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
         {
             // Get taxa-like person name parts
@@ -96,18 +107,5 @@
 
             return taxaNames.DistinctWithStringList(taxaLikePersonNameParts.Select(Regex.Escape), true, false);
         }
-
-        protected IEnumerable<string> GetTaxaItemsByWhiteList()
-        {
-            string textToMine = String.Join(" ", this.TextWords);
-            IEnumerable<string> whiteListedItems = textToMine.MatchWithStringList(this.WhiteList.StringList, true, false);
-
-            return whiteListedItems;
-        }
-
-
-        public abstract void Tag();
-
-        public abstract void Tag(IXPathProvider xpathProvider);
     }
 }

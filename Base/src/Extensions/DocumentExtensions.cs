@@ -300,7 +300,8 @@
                 throw;
             }
 
-            return result;
+            // This copy of is to solve performance issues.
+            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -320,8 +321,10 @@
             IEnumerable<string> result = null;
             try
             {
+                // This copy of is to solve performance issues.
+                HashSet<string> list = new HashSet<string>(compareList);
                 result = from word in wordList
-                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() > 0
+                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() > 0
                          select word;
             }
             catch
@@ -349,8 +352,10 @@
             IEnumerable<string> result = null;
             try
             {
+                // This copy of is to solve performance issues.
+                HashSet<string> list = new HashSet<string>(compareList);
                 result = from word in wordList
-                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
+                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() == 0
                          select word;
             }
             catch
@@ -457,9 +462,9 @@
 
                 result = nodeList.GetStringListOfUniqueXmlNodeContent();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
+                throw;
             }
 
             return result;
@@ -472,9 +477,9 @@
             {
                 result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
+                throw;
             }
 
             return result;
@@ -497,9 +502,9 @@
 
                 result = nodeList.GetStringListOfUniqueXmlNodes();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
+                throw;
             }
 
             return result;
@@ -512,9 +517,9 @@
             {
                 result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
+                throw;
             }
 
             return result;

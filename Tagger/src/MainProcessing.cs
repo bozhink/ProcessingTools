@@ -219,11 +219,19 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag lower taxa.\n");
-                LowerTaxaTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
+                try
+                {
+                    TaxaTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
 
-                tagger.Tag();
+                    tagger.Tag();
 
-                xmlContent = tagger.Xml;
+                    xmlContent = tagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
+
                 PrintElapsedTime(timer);
             }
 
