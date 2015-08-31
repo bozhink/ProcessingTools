@@ -3,19 +3,19 @@
     using System.Collections.Generic;
     using Json.Gbif;
 
-    public class HigherTaxaParserWithGbifApi : HigherTaxaParser
+    public class GbifHigherTaxaParser : HigherTaxaParser
     {
-        public HigherTaxaParserWithGbifApi(string xml)
+        public GbifHigherTaxaParser(string xml)
             : base(xml)
         {
         }
 
-        public HigherTaxaParserWithGbifApi(Config config, string xml)
+        public GbifHigherTaxaParser(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public HigherTaxaParserWithGbifApi(IBase baseObject)
+        public GbifHigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
         }

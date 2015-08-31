@@ -2,19 +2,19 @@
 {
     using System.Collections.Generic;
 
-    public class HigherTaxaParserWithAboveGenus : HigherTaxaParser
+    public class AboveGenusHigherTaxaParser : HigherTaxaParser
     {
-        public HigherTaxaParserWithAboveGenus(string xml)
+        public AboveGenusHigherTaxaParser(string xml)
             : base(xml)
         {
         }
 
-        public HigherTaxaParserWithAboveGenus(Config config, string xml)
+        public AboveGenusHigherTaxaParser(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public HigherTaxaParserWithAboveGenus(IBase baseObject)
+        public AboveGenusHigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
         }

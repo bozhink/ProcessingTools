@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    public class HigherTaxaParserBySuffix : HigherTaxaParser
+    public class SuffixHigherTaxaParser : HigherTaxaParser
     {
         private readonly string[] higherTaxaRanks =
             {
@@ -41,17 +41,17 @@
                 "inae|ina"
             };
 
-        public HigherTaxaParserBySuffix(string xml)
+        public SuffixHigherTaxaParser(string xml)
             : base(xml)
         {
         }
 
-        public HigherTaxaParserBySuffix(Config config, string xml)
+        public SuffixHigherTaxaParser(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public HigherTaxaParserBySuffix(IBase baseObject)
+        public SuffixHigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
         }

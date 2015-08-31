@@ -5,19 +5,19 @@
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
-    public class HigherTaxaParserWithLocalDataBase : HigherTaxaParser
+    public class LocalDataBaseHigherTaxaParser : HigherTaxaParser
     {
-        public HigherTaxaParserWithLocalDataBase(string xml)
+        public LocalDataBaseHigherTaxaParser(string xml)
             : base(xml)
         {
         }
 
-        public HigherTaxaParserWithLocalDataBase(Config config, string xml)
+        public LocalDataBaseHigherTaxaParser(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public HigherTaxaParserWithLocalDataBase(IBase baseObject)
+        public LocalDataBaseHigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
         }

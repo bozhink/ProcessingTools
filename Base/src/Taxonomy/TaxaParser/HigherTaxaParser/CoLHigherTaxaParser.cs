@@ -4,19 +4,19 @@
     using System.Linq;
     using System.Xml;
 
-    public class HigherTaxaParserWithAphiaApi : HigherTaxaParser
+    public class CoLHigherTaxaParser : HigherTaxaParser
     {
-        public HigherTaxaParserWithAphiaApi(string xml)
+        public CoLHigherTaxaParser(string xml)
             : base(xml)
         {
         }
 
-        public HigherTaxaParserWithAphiaApi(Config config, string xml)
+        public CoLHigherTaxaParser(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public HigherTaxaParserWithAphiaApi(IBase baseObject)
+        public CoLHigherTaxaParser(IBase baseObject)
             : base(baseObject)
         {
         }
@@ -29,8 +29,11 @@
             {
                 this.Delay();
 
-                XmlDocument aphiaResponse = Net.SearchAphia(scientificName);
-                XmlNodeList responseItems = aphiaResponse.SelectNodes("//return/item[normalize-space(translate(scientificname,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
+                XmlDocument colResponse = Net.SearchCatalogueOfLife(scientificName);
+
+                Alert.Log("\n" + colResponse.OuterXml + "\n");
+
+                XmlNodeList responseItems = colResponse.SelectNodes("/results/result[normalize-space(translate(name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
                 if (responseItems.Count < 1)
                 {
                     Alert.Log(scientificName + " --> No match or error.");
@@ -43,13 +46,13 @@
                         Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
                         foreach (XmlNode item in responseItems)
                         {
-                            Alert.Log(item["scientificname"].InnerText + " --> " + item["rank"].InnerText + ", " + item["authority"].InnerText);
+                            Alert.Log(item["name"].InnerText + " --> " + item["rank"].InnerText);
                         }
                     }
                     else
                     {
                         string rank = ranks[0];
-                        Alert.Log(scientificName + " = " + responseItems[0]["scientificname"].InnerText + " --> " + rank);
+                        Alert.Log(scientificName + " = " + responseItems[0]["name"].InnerText + " --> " + rank);
 
                         string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 
