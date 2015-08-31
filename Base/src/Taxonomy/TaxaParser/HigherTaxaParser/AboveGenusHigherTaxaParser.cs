@@ -27,7 +27,7 @@
             string rank = "above-genus";
             string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 
-            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
                 Alert.Log("\n" + scientificName + " --> " + rank);

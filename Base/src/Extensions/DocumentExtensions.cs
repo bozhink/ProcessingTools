@@ -8,195 +8,9 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using System.Xml.Linq;
-    using System.Xml.Xsl;
 
     public static class DocumentExtensions
     {
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.
-        /// </summary>
-        /// <param name="xmlDocument">Input document to be transformed.</param>
-        /// <param name="xslFileName">File name path of the XSL file.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this XmlDocument xmlDocument, string xslFileName)
-        {
-            return xmlDocument.OuterXml.ApplyXslTransform(xslFileName);
-        }
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.
-        /// </summary>
-        /// <param name="xmlDocument">Input document to be transformed.</param>
-        /// <param name="xslTransform">XslCompiledTransform object.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this XmlDocument xmlDocument, XslCompiledTransform xslTransform)
-        {
-            return xmlDocument.OuterXml.ApplyXslTransform(xslTransform);
-        }
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the string object and returns the result as a string.
-        /// </summary>
-        /// <param name="xml">Input document to be transformed.</param>
-        /// <param name="xslFileName">File name path of the XSL file.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this string xml, string xslFileName)
-        {
-            string result = string.Empty;
-            try
-            {
-                using (XmlReader xmlReader = xml.ToXmlReader())
-                {
-                    result = xmlReader.ApplyXslTransform(xslFileName);
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the string object and returns the result as a string.
-        /// </summary>
-        /// <param name="xml">Input document to be transformed.</param>
-        /// <param name="xslTransform">XslCompiledTransform object.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this string xml, XslCompiledTransform xslTransform)
-        {
-            string result = string.Empty;
-            try
-            {
-                byte[] bytesContent = Encoding.UTF8.GetBytes(xml);
-                using (XmlReader xmlReader = XmlReader.Create(new MemoryStream(bytesContent)))
-                {
-                    result = xmlReader.ApplyXslTransform(xslTransform);
-                }
-            }
-            catch (EncoderFallbackException e)
-            {
-                throw new EncoderFallbackException("Input document string must be UFT8 encoded.", e);
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml.XmlReader object and returns the result as a string.
-        /// </summary>
-        /// <param name="xmlReader">Input document to be transformed.</param>
-        /// <param name="xslFileName">File name path of the XSL file.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this XmlReader xmlReader, string xslFileName)
-        {
-            string result = string.Empty;
-            if (xslFileName == null || xslFileName.Length < 1)
-            {
-                throw new ArgumentNullException("XSL file name is invalid.");
-            }
-
-            try
-            {
-                XslCompiledTransform xslTransform = new XslCompiledTransform();
-                xslTransform.Load(xslFileName);
-                result = xmlReader.ApplyXslTransform(xslTransform);
-            }
-            catch (IOException e)
-            {
-                throw new IOException("Cannot read XSL file.", e);
-            }
-            catch (XsltException e)
-            {
-                throw new XsltException("Invalid XSL file.", e);
-            }
-            catch (XmlException e)
-            {
-                throw new XmlException("Invalid XML file.", e);
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml.XmlReader object and returns the result as a string.
-        /// </summary>
-        /// <param name="xmlReader">Input document to be transformed.</param>
-        /// <param name="xslTransform">XslCompiledTransform object.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this XmlReader xmlReader, XslCompiledTransform xslTransform)
-        {
-            string result = string.Empty;
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                StreamReader streamReader = null;
-                try
-                {
-                    xslTransform.Transform(xmlReader, null, memoryStream);
-                    memoryStream.Position = 0;
-                    streamReader = new StreamReader(memoryStream);
-                }
-                catch (XsltException e)
-                {
-                    throw new XsltException("Invalid XSL file.", e);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("General exception.", e);
-                }
-                finally
-                {
-                    if (streamReader != null)
-                    {
-                        result = streamReader.ReadToEnd();
-                    }
-                }
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Checks the type of a given XmlNode object.
         /// Returns true if the XmlNode is a named XmlNode (*) or a text node.
@@ -243,6 +57,206 @@
             }
 
             return performReplace;
+        }
+
+        public static void ClearTagsInWrongPositions(this XmlDocument xml)
+        {
+            foreach (XmlNode node in xml.SelectNodes("//date//institutional_code | //quantity//quantity"))
+            {
+                node.ReplaceXmlNodeByItsInnerXml();
+            }
+
+            foreach (XmlNode node in xml.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']"))
+            {
+                node.ReplaceXmlNodeByItsInnerXml();
+            }
+        }
+
+        /// <summary>
+        /// Gets all strings which does not contain any string of a comparision list.
+        /// </summary>
+        /// <param name="wordList">IEnumerable object to be distincted.</param>
+        /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
+        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
+        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
+        /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
+        public static IEnumerable<string> DistinctWithStringList(
+            this IEnumerable<string> wordList,
+            IEnumerable<string> compareList,
+            bool treatAsRegex = false,
+            bool caseSensitive = false)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                HashSet<string> list = new HashSet<string>(compareList);
+                result = from word in wordList
+                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() == 0
+                         select word;
+            }
+            catch
+            {
+                throw;
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> ExtractWordsFromString(this string text, bool distinctWords = true)
+        {
+            List<string> result = new List<string>();
+
+            Regex matchWords = new Regex(@"[^\W\d]+");
+            ////result.AddRange(matchWords.Matches(text).Cast<Match>().Select(m => m.Value).ToList<string>());
+            for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
+            {
+                result.Add(word.Value);
+            }
+
+            if (distinctWords)
+            {
+                result = result.Distinct().ToList();
+                result.Sort();
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> ExtractWordsFromXml(this XmlDocument xml)
+        {
+            return ExtractWordsFromString(xml.InnerText);
+        }
+
+        /// <summary>
+        /// Gets list of first words of a given list of strings.
+        /// </summary>
+        /// <param name="list">IEnumerable&lt;string&gt; object from which to extract first words.</param>
+        /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
+        public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
+        {
+            Regex matchWord = new Regex(@"[^\W\d]+");
+            return new HashSet<string>(list.Select(word => matchWord.Match(word).Value).Distinct());
+        }
+
+        public static IEnumerable<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
+        {
+            List<string> result = new List<string>();
+
+            for (Match m = search.Match(text); m.Success; m = m.NextMatch())
+            {
+                result.Add(m.Value);
+            }
+
+            if (clearList)
+            {
+                result = result.Distinct().ToList();
+                result.Sort();
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search, bool clearList = true)
+        {
+            List<string> result = new List<string>();
+
+            foreach (XmlNode node in nodeList)
+            {
+                result.AddRange(node.GetMatchesInXmlText(search, false));
+            }
+
+            if (clearList)
+            {
+                result = result.Distinct().ToList();
+                result.Sort();
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
+        {
+            return node.InnerText.GetMatchesInText(search, clearList);
+        }
+
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                XmlNodeList nodeList = null;
+                if (namespaceManager == null)
+                {
+                    nodeList = xml.SelectNodes(xpath);
+                }
+                else
+                {
+                    nodeList = xml.SelectNodes(xpath, namespaceManager);
+                }
+
+                result = nodeList.GetStringListOfUniqueXmlNodeContent();
+            }
+            catch
+            {
+                throw;
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
+            }
+            catch
+            {
+                throw;
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                XmlNodeList nodeList = null;
+                if (namespaceManager == null)
+                {
+                    nodeList = xml.SelectNodes(xpath);
+                }
+                else
+                {
+                    nodeList = xml.SelectNodes(xpath, namespaceManager);
+                }
+
+                result = nodeList.GetStringListOfUniqueXmlNodes();
+            }
+            catch
+            {
+                throw;
+            }
+
+            return new HashSet<string>(result);
+        }
+
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this IEnumerable xmlNodeList)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct();
+            }
+            catch
+            {
+                throw;
+            }
+
+            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -300,7 +314,6 @@
                 throw;
             }
 
-            // This copy of is to solve performance issues.
             return new HashSet<string>(result);
         }
 
@@ -321,7 +334,6 @@
             IEnumerable<string> result = null;
             try
             {
-                // This copy of is to solve performance issues.
                 HashSet<string> list = new HashSet<string>(compareList);
                 result = from word in wordList
                          where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() > 0
@@ -332,197 +344,7 @@
                 throw;
             }
 
-            return result;
-        }
-
-        /// <summary>
-        /// Gets all strings which does not contain any string of a comparision list.
-        /// </summary>
-        /// <param name="wordList">IEnumerable object to be distincted.</param>
-        /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
-        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
-        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
-        /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
-        public static IEnumerable<string> DistinctWithStringList(
-            this IEnumerable<string> wordList,
-            IEnumerable<string> compareList,
-            bool treatAsRegex = false,
-            bool caseSensitive = false)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                // This copy of is to solve performance issues.
-                HashSet<string> list = new HashSet<string>(compareList);
-                result = from word in wordList
-                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() == 0
-                         select word;
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        public static void ClearTagsInWrongPositions(this XmlDocument xml)
-        {
-            foreach (XmlNode node in xml.SelectNodes("//date//institutional_code | //quantity//quantity"))
-            {
-                node.ReplaceXmlNodeByItsInnerXml();
-            }
-
-            foreach (XmlNode node in xml.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']"))
-            {
-                node.ReplaceXmlNodeByItsInnerXml();
-            }
-        }
-
-        public static IEnumerable<string> ExtractWordsFromString(this string text, bool distinctWords = true)
-        {
-            List<string> result = new List<string>();
-
-            Regex matchWords = new Regex(@"[^\W\d]+");
-            ////result.AddRange(matchWords.Matches(text).Cast<Match>().Select(m => m.Value).ToList<string>());
-            for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
-            {
-                result.Add(word.Value);
-            }
-
-            if (distinctWords)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> ExtractWordsFromXml(this XmlDocument xml)
-        {
-            return ExtractWordsFromString(xml.InnerText);
-        }
-
-        public static IEnumerable<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
-        {
-            List<string> result = new List<string>();
-
-            for (Match m = search.Match(text); m.Success; m = m.NextMatch())
-            {
-                result.Add(m.Value);
-            }
-
-            if (clearList)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search, bool clearList = true)
-        {
-            List<string> result = new List<string>();
-
-            foreach (XmlNode node in nodeList)
-            {
-                result.AddRange(node.GetMatchesInXmlText(search, false));
-            }
-
-            if (clearList)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
-        {
-            return node.InnerText.GetMatchesInText(search, clearList);
-        }
-
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                XmlNodeList nodeList;
-                if (namespaceManager == null)
-                {
-                    nodeList = xml.SelectNodes(xpath);
-                }
-                else
-                {
-                    nodeList = xml.SelectNodes(xpath, namespaceManager);
-                }
-
-                result = nodeList.GetStringListOfUniqueXmlNodeContent();
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                XmlNodeList nodeList;
-                if (namespaceManager == null)
-                {
-                    nodeList = xml.SelectNodes(xpath);
-                }
-                else
-                {
-                    nodeList = xml.SelectNodes(xpath, namespaceManager);
-                }
-
-                result = nodeList.GetStringListOfUniqueXmlNodes();
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this IEnumerable xmlNodeList)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct();
-            }
-            catch
-            {
-                throw;
-            }
-
-            return result;
+            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -551,6 +373,10 @@
             node.ParentNode.ReplaceChild(nodeFragment, node);
         }
 
+        /// <summary>
+        /// Strip outer XML tags of an XmlNode object.
+        /// </summary>
+        /// <param name="node">XmlNode object to be stripped.</param>
         public static void ReplaceXmlNodeByItsInnerXml(this XmlNode node)
         {
             XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
@@ -588,62 +414,6 @@
         }
 
         /// <summary>
-        /// Given an input list, returns the sublist of included-in-xdoc words
-        /// </summary>
-        /// <param name="wordList">Input list to be parsed.</param>
-        /// <param name="xdoc">XDocument to parse with.</param>
-        /// <returns>Xdoc-selected sublist of the wordList.</returns>
-        public static IEnumerable<string> SelectListWithXDocument(this IEnumerable<string> wordList, XElement xdoc)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                result = from word in wordList
-                         where (from item in xdoc.Elements()
-                                where Regex.Match(word, "\\A(?i)" + item.Value + "\\Z").Success
-                                select item).Count() > 0
-                         select word;
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, 0, 1);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Converts XmlDocument to XDocument.
-        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
-        /// </summary>
-        /// <param name="xmlDocument">XmlDocument instance to be converted.</param>
-        /// <returns></returns>
-        public static XDocument ToXDocument(this XmlDocument xmlDocument)
-        {
-            using (XmlNodeReader nodeReader = new XmlNodeReader(xmlDocument))
-            {
-                nodeReader.MoveToContent();
-                return XDocument.Load(nodeReader);
-            }
-        }
-
-        /// <summary>
-        /// Converts XDocument to XmlDocument.
-        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
-        /// </summary>
-        /// <param name="document">XDocument instance to be converted.</param>
-        /// <returns></returns>
-        public static XmlDocument ToXmlDocument(this XDocument document)
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            using (XmlReader xmlReader = document.CreateReader())
-            {
-                xmlDocument.Load(xmlReader);
-            }
-
-            return xmlDocument;
-        }
-        /// <summary>
         /// Creates XmlReader object from a text content.
         /// </summary>
         /// <param name="text">Valid XML node as text.</param>
@@ -667,17 +437,6 @@
             }
 
             return xmlReader;
-        }
-
-        /// <summary>
-        /// Gets list of first words of a given list of strings.
-        /// </summary>
-        /// <param name="list">IEnumerable&lt;string&gt; object from which to extract first words.</param>
-        /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
-        public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
-        {
-            Regex matchWord = new Regex(@"[^\W\d]+");
-            return list.Select(word => matchWord.Match(word).Value).Distinct();
         }
     }
 }

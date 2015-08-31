@@ -26,7 +26,7 @@
         {
             XElement rankList = XElement.Load(this.Config.rankListXmlFilePath);
 
-            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
                 Regex searchTaxaName = new Regex("(?i)\\b" + scientificName + "\\b");

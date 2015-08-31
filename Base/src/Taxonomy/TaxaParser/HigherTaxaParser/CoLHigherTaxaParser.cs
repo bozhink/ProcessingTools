@@ -23,7 +23,7 @@
 
         public override void Parse()
         {
-            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
 
             foreach (string scientificName in uniqueHigherTaxaList)
             {

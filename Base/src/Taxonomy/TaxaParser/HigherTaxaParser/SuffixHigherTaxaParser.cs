@@ -59,7 +59,7 @@
         public override void Parse()
         {
             string patternPrefix = "^([A-Z][a-z]*", patternSuffix = ")$";
-            List<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
                 Alert.Log(scientificName);

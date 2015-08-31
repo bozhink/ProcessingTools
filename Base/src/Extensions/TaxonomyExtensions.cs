@@ -72,11 +72,11 @@
             return xml.ApplyXslTransform(config.floraExtractTaxaXslPath);
         }
 
-        public static List<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
+        public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
         {
             XmlNamespaceManager xmlNamespaceManager = Config.TaxPubNamespceManager(xmlDocument);
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]", xmlNamespaceManager);
-            return nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct().ToList();
+            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct());
         }
 
         public static string GenerateTagTemplate(this string xml, Config config)
@@ -90,7 +90,7 @@
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             string xpath = "//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
             XmlDocument xd = new XmlDocument();
-            XmlNamespaceManager nm = ProcessingTools.Config.TaxPubNamespceManager();
+            XmlNamespaceManager nm = Config.TaxPubNamespceManager();
             XmlNodeList nodeList = xml.SelectNodes(xpath, nm);
             List<XmlNode> newList = new List<XmlNode>();
             foreach (XmlNode node in nodeList)
@@ -124,14 +124,14 @@
                 newList.Add(taxonName);
             }
 
-            return newList.GetStringListOfUniqueXmlNodes();
+            return new HashSet<string>(newList.GetStringListOfUniqueXmlNodes());
         }
 
         public static IEnumerable<string> GetListOfShortenedTaxa(this XmlNode xml)
         {
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-            return xml.GetStringListOfUniqueXmlNodes(xpath, ProcessingTools.Config.TaxPubNamespceManager());
+            return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, Config.TaxPubNamespceManager()));
         }
 
         public static string GetRemplacementStringForTaxonNamePartRank(this string rank, bool taxPub = false)
@@ -153,8 +153,8 @@
 
         public static void PrintNonParsedTaxa(this XmlDocument xmlDocument)
         {
-            List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            if (uniqueHigherTaxaList.Count > 0)
+            IEnumerable<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
+            if (uniqueHigherTaxaList.Count() > 0)
             {
                 Alert.Log("\nNon-parsed taxa:");
                 foreach (string taxon in uniqueHigherTaxaList)
@@ -195,10 +195,10 @@
         public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
         {
             IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
-
-            return from item in taxaMatchesInText
-                   where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
-                   select item;
+            IEnumerable<string> result = from item in taxaMatchesInText
+                                         where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
+                                         select item;
+            return new HashSet<string>(result);
         }
     }
 }

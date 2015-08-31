@@ -81,15 +81,15 @@
                 throw;
             }
 
-            return result;
+            return new HashSet<string>(result);
         }
 
         protected IEnumerable<string> GetTaxaItemsByWhiteList()
         {
             string textToMine = string.Join(" ", this.TextWords);
-            IEnumerable<string> whiteListedItems = textToMine.MatchWithStringList(this.WhiteList.StringList, true, false);
+            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, true, false);
 
-            return whiteListedItems;
+            return new HashSet<string>(result);
         }
 
         private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
@@ -105,7 +105,7 @@
                     true,
                     true);
 
-            return taxaNames.DistinctWithStringList(taxaLikePersonNameParts.Select(Regex.Escape), true, false);
+            return new HashSet<string>(taxaNames.DistinctWithStringList(taxaLikePersonNameParts.Select(Regex.Escape), true, false));
         }
     }
 }
