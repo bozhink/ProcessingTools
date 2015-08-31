@@ -180,15 +180,6 @@
             }
         }
 
-
-        public static IEnumerable<string> GetFirstWordOfTaxaNames(this XmlDocument xml)
-        {
-            return xml.GetStringListOfUniqueXmlNodes("//tn")
-                .Cast<string>()
-                .Select(word => Regex.Match(word, @"\w+\.|\w+\b").Value)
-                .Distinct();
-        }
-
         public static void RemoveTaxaInWrongPlaces(this XmlDocument xml)
         {
             string xpath = "tn[.//tn] | a[.//tn] | ext-link[.//tn] | xref[.//tn] | article/front/notes/sec[.//tn] | tp:treatment-meta/kwd-group/kwd/named-content[.//tn] | *[@object_id='82'][.//tn] | *[@id='41'][.//tn] | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[.//tn]";
@@ -203,7 +194,9 @@
 
         public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
         {
-            return from item in xml.GetMatchesInXmlText(matchTaxa, true)
+            IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
+
+            return from item in taxaMatchesInText
                    where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
                    select item;
         }

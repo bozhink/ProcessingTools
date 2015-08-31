@@ -147,7 +147,7 @@
             }
             catch (XmlException e)
             {
-                throw new System.Xml.XmlException("Invalid XML file.", e);
+                throw new XmlException("Invalid XML file.", e);
             }
             catch
             {
@@ -183,7 +183,7 @@
                 }
                 catch (Exception e)
                 {
-                    throw new System.Exception("General exception.", e);
+                    throw new Exception("General exception.", e);
                 }
                 finally
                 {
@@ -246,38 +246,85 @@
         }
 
         /// <summary>
-        /// Gets all strings which contains any string of a comparision list.
+        /// Gets all items of an IEnumerable object which are contained in the given string.
         /// </summary>
-        /// <param name="wordList">IEnumerable object to be matches.</param>
-        /// <param name="compareList">IEnumerable object of patterns which must be contained in the wordList.</param>
+        /// <param name="word">The string which should contain some items of interest.</param>
+        /// <param name="compareList">IEnumerable object which items provides the output items.</param>
         /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
-        /// <returns>IEnumerable object of all matching with compareList string items in wordList.</returns>
+        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
+        /// <returns>IEnumerable object of all matching string items of compareList in word.</returns>
+        /// <remarks>If match-whole-word-search is needed treatAsRegex should be set to true, and values in compareList should be Regex.Escape-d if needed.</remarks>
         public static IEnumerable<string> MatchWithStringList(
-            this IEnumerable<string> wordList,
+            this string word,
             IEnumerable<string> compareList,
-            bool treatAsRegex = false)
+            bool treatAsRegex = false,
+            bool caseSensitive = false)
         {
             IEnumerable<string> result = null;
             try
             {
                 if (treatAsRegex)
                 {
-                    result = from word in wordList
-                             where (from comparePattern in compareList
-                                    where Regex.Match(word, "\\A(?i)" + comparePattern + "\\Z").Success
-                                    select comparePattern).Count() > 0
-                             select word;
+                    if (caseSensitive)
+                    {
+                        result = from comparePattern in compareList
+                                 where Regex.Match(word, @"\b" + comparePattern + @"\b").Success
+                                 select comparePattern;
+                    }
+                    else
+                    {
+                        result = from comparePattern in compareList
+                                 where Regex.Match(word, @"\b(?i)" + comparePattern + @"\b").Success
+                                 select comparePattern;
+                    }
                 }
                 else
                 {
-                    result = from word in wordList
-                             where (from stringToCompare in compareList
-                                    where word.Contains(stringToCompare)
-                                    select stringToCompare).Count() > 0
-                             select word;
+                    if (caseSensitive)
+                    {
+                        result = from stringToCompare in compareList
+                                 where word.Contains(stringToCompare)
+                                 select stringToCompare;
+                    }
+                    else
+                    {
+                        string wordLowerCase = word.ToLower();
+                        result = from stringToCompare in compareList
+                                 where wordLowerCase.Contains(stringToCompare.ToLower())
+                                 select stringToCompare;
+                    }
                 }
             }
-            catch (Exception)
+            catch
+            {
+                throw;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets all strings which contains any string of a comparision list.
+        /// </summary>
+        /// <param name="wordList">IEnumerable object to be matches.</param>
+        /// <param name="compareList">IEnumerable object of patterns which must be contained in the wordList.</param>
+        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
+        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
+        /// <returns>IEnumerable object of all matching with compareList string items in wordList.</returns>
+        public static IEnumerable<string> MatchWithStringList(
+            this IEnumerable<string> wordList,
+            IEnumerable<string> compareList,
+            bool treatAsRegex = false,
+            bool caseSensitive = false)
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                result = from word in wordList
+                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() > 0
+                         select word;
+            }
+            catch
             {
                 throw;
             }
@@ -290,34 +337,23 @@
         /// </summary>
         /// <param name="wordList">IEnumerable object to be distincted.</param>
         /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
+        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
         /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
         /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
         public static IEnumerable<string> DistinctWithStringList(
             this IEnumerable<string> wordList,
             IEnumerable<string> compareList,
-            bool treatAsRegex = false)
+            bool treatAsRegex = false,
+            bool caseSensitive = false)
         {
             IEnumerable<string> result = null;
             try
             {
-                if (treatAsRegex)
-                {
-                    result = from word in wordList
-                             where (from comparePattern in compareList
-                                    where Regex.Match(word, "\\A(?i)" + comparePattern + "\\Z").Success
-                                    select comparePattern).Count() == 0
-                             select word;
-                }
-                else
-                {
-                    result = from word in wordList
-                             where (from stringToCompare in compareList
-                                    where word.Contains(stringToCompare)
-                                    select stringToCompare).Count() == 0
-                             select word;
-                }
+                result = from word in wordList
+                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
+                         select word;
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -342,7 +378,8 @@
         {
             List<string> result = new List<string>();
 
-            Regex matchWords = new Regex(@"\b\w+\b");
+            Regex matchWords = new Regex(@"[^\W\d]+");
+            ////result.AddRange(matchWords.Matches(text).Cast<Match>().Select(m => m.Value).ToList<string>());
             for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
@@ -625,6 +662,17 @@
             }
 
             return xmlReader;
+        }
+
+        /// <summary>
+        /// Gets list of first words of a given list of strings.
+        /// </summary>
+        /// <param name="list">IEnumerable&lt;string&gt; object from which to extract first words.</param>
+        /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
+        public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
+        {
+            Regex matchWord = new Regex(@"[^\W\d]+");
+            return list.Select(word => matchWord.Match(word).Value).Distinct();
         }
     }
 }

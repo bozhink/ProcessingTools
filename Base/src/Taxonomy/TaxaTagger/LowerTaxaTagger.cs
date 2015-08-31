@@ -172,6 +172,7 @@
              */
             try
             {
+                // TODO Refactor + apply black list here!!!
                 foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                 {
                     node.InnerXml = TagItalics(node.InnerXml);

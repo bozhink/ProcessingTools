@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Base.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public class HigherTaxaTagger : TaxaTagger
@@ -32,21 +32,26 @@
             try
             {
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
-
                 IEnumerable<string> taxaNames = this.XmlDocument.GetNonTaggedTaxa(matchHigherTaxa);
 
-                taxaNames = taxaNames.DistinctWithStringList(this.BlackList.StringList, true);
+                // Blacklist items
+                taxaNames = this.ClearFakeTaxaNames(taxaNames);
 
-                this.TagTextInXmlDocument(taxaNames, higherTaxaTag, HigherTaxaXPathTemplate, false, true);
+                // Whitelist items
+                taxaNames = taxaNames.Concat(this.GetTaxaItemsByWhiteList());
 
-                this.ApplyWhiteList();
+                // Select only taxa names which begins with uppercase letter
+                taxaNames = taxaNames.Where(s => s[0] == s.ToUpper()[0]).Distinct();
+
+                // TODO: Optimize peformance.
+                this.TagTextInXmlDocument(taxaNames, this.higherTaxaTag, HigherTaxaXPathTemplate, false, true);
+
+                this.XmlDocument.RemoveTaxaInWrongPlaces();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tagging higher taxa.");
+                throw;
             }
-
-            this.XmlDocument.RemoveTaxaInWrongPlaces();
         }
 
         public override void Tag(IXPathProvider xpathProvider)

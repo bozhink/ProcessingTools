@@ -165,6 +165,7 @@
     <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
     <Content Include="Data\words.txt" />
+    <Content Include="src\Test\FloraReplace.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
     <Content Include="src\Test\json-test\Program.cs.txt" />

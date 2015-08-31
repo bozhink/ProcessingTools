@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Xml;
 using ProcessingTools.Base;
 using ProcessingTools.Base.Taxonomy;
+using System;
 
 namespace ProcessingTools.Tag
 {
@@ -173,12 +174,20 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag higher taxa.\n");
-                HigherTaxaTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
 
-                tagger.Tag();
-                tagger.UntagTaxa();
+                try
+                {
+                    TaxaTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
 
-                xmlContent = tagger.Xml;
+                    tagger.Tag();
+
+                    xmlContent = tagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
+
                 PrintElapsedTime(timer);
             }
 
@@ -213,7 +222,6 @@ namespace ProcessingTools.Tag
                 LowerTaxaTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
 
                 tagger.Tag();
-                tagger.UntagTaxa();
 
                 xmlContent = tagger.Xml;
                 PrintElapsedTime(timer);
