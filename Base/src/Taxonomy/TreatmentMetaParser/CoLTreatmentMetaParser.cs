@@ -36,14 +36,14 @@
                     XmlDocument response = Net.SearchCatalogueOfLife(genus);
                     if (response != null)
                     {
-                        IEnumerable<string> responseFamily = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", this.NamespaceManager);
-                        this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
+                        IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", this.NamespaceManager);
+                        this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
 
                         IEnumerable<string> responseOrder = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Order']/name", this.NamespaceManager);
                         this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
 
-                        IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", this.NamespaceManager);
-                        this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                        IEnumerable<string> responseFamily = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Family']/name", this.NamespaceManager);
+                        this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                     }
                 }
             }

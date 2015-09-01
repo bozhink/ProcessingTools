@@ -83,7 +83,14 @@ namespace ProcessingTools.Tag
 
             if (validateTaxa)
             {
-                ValidateTaxa(xmlContent);
+                try
+                {
+                    ValidateTaxa(xmlContent);
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
             }
 
             if (untagSplit)

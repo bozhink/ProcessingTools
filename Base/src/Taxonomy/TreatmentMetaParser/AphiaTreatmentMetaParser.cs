@@ -35,14 +35,14 @@
 
                     XmlDocument response = Net.SearchAphia(genus);
 
-                    IEnumerable<string> responseFamily = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/family", this.NamespaceManager);
-                    this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
+                    IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/kingdom", this.NamespaceManager);
+                    this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
 
                     IEnumerable<string> responseOrder = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/order", this.NamespaceManager);
                     this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
 
-                    IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/kingdom", this.NamespaceManager);
-                    this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                    IEnumerable<string> responseFamily = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/family", this.NamespaceManager);
+                    this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                 }
             }
             catch (Exception e)

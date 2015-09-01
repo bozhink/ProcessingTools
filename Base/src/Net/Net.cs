@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Runtime.Serialization.Json;
@@ -266,54 +267,122 @@
             return obj;
         }
 
-        public static XmlDocument SearchWithGlobalNamesResolver(string[] scientificNames, int[] sourceId = null)
+        public static XmlDocument SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
         {
-            Regex selectWhiteSpaces = new Regex(@"\s+");
-            XmlDocument xmlResult = new XmlDocument();
+            XmlDocument xmlResult = null;
             try
             {
-                string searchString;
-                {
-                    StringBuilder searchStringBuilder = new StringBuilder();
-                    searchStringBuilder.Clear();
-                    for (int i = 0, length = scientificNames.Length - 1; i <= length; ++i)
-                    {
-                        searchStringBuilder.Append(selectWhiteSpaces.Replace(scientificNames[i].Trim(), "+"));
-                        if (i < length)
-                        {
-                            searchStringBuilder.Append("|");
-                        }
-                    }
-
-                    if (sourceId != null)
-                    {
-                        searchStringBuilder.Append("&data_source_ids=");
-                        for (int i = 0, length = sourceId.Length - 1; i <= length; i++)
-                        {
-                            searchStringBuilder.Append(sourceId[i]);
-                            if (i < length)
-                            {
-                                searchStringBuilder.Append("|");
-                            }
-                        }
-                    }
-
-                    searchString = searchStringBuilder.ToString();
-                    Alert.Log(searchString);
-                }
+                string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
 
                 using (HttpClient client = new HttpClient())
                 {
-                    string responseString = client.GetStringAsync("http://resolver.globalnames.org/name_resolvers.xml?names=" + searchString).Result;
+                    string responseString = client.GetStringAsync("http://resolver.globalnames.org/name_resolvers.xml?" + searchString).Result;
+
+                    xmlResult = new XmlDocument();
+                    xmlResult.PreserveWhitespace = true;
                     xmlResult.LoadXml(responseString);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                throw;
             }
 
             return xmlResult;
+        }
+
+        public static XmlDocument SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
+        {
+            XmlDocument xmlResult = null;
+
+            try
+            {
+                string postData = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+                byte[] data = Encoding.UTF8.GetBytes(postData);
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://resolver.globalnames.org/name_resolvers.xml");
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                Task<WebResponse> response = request.GetResponseAsync();
+
+                xmlResult = new XmlDocument();
+                xmlResult.PreserveWhitespace = true;
+                xmlResult.Load(response.Result.GetResponseStream());
+            }
+            catch
+            {
+                throw;
+            }
+
+            return xmlResult;
+        }
+
+        public static XmlDocument SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
+        {
+            XmlDocument xmlResult = null;
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    Dictionary<string, string> values = new Dictionary<string, string>();
+                    values.Add("data", string.Join("\r\n", scientificNames));
+
+                    if (sourceId != null)
+                    {
+                        values.Add("data_source_ids", string.Join("|", sourceId));
+                    }
+
+                    using (HttpContent content = new FormUrlEncodedContent(values))
+                    {
+                        Task<HttpResponseMessage> response = client.PostAsync("http://resolver.globalnames.org/name_resolvers.xml", content);
+                        Task<string> responseString = response.Result.Content.ReadAsStringAsync();
+
+                        xmlResult = new XmlDocument();
+                        xmlResult.PreserveWhitespace = true;
+                        xmlResult.LoadXml(responseString.Result);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return xmlResult;
+        }
+
+        private static string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
+        {
+            StringBuilder searchStringBuilder = new StringBuilder();
+            searchStringBuilder.Append("names=");
+
+            if (scientificNames != null && scientificNames.Length > 0)
+            {
+                Regex whiteSpaces = new Regex(@"\s+");
+                searchStringBuilder.Append(string.Join("|", scientificNames.Select(s => whiteSpaces.Replace(s.Trim(), "+"))));
+            }
+            else
+            {
+                throw new ArgumentNullException("scientificNames should be a non-empty array of strings.");
+            }
+
+            if (sourceId != null)
+            {
+                searchStringBuilder.Append("&data_source_ids=");
+                searchStringBuilder.Append(string.Join("|", sourceId));
+            }
+
+            string searchString = searchStringBuilder.ToString();
+
+            return searchString;
         }
 
         /*
