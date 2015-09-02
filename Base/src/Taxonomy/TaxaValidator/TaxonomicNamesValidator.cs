@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Base.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -36,7 +37,6 @@
                     try
                     {
                         string suppliedNameString = datumNode["supplied-name-string"].InnerText;
-                        ////Alert.Log(suppliedNameString);
 
                         IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ").ToLower().Split(' ').Select(s => s.Trim());
 
@@ -50,13 +50,6 @@
                         {
                             notFoundNames.Add(suppliedNameString);
                         }
-                        else
-                        {
-                            ////foreach (XmlNode match in taxaMatches)
-                            ////{
-                            ////    Alert.Log("|->\t{0}\n", match.InnerText);
-                            ////}
-                        }
                     }
                     catch
                     {
@@ -66,8 +59,14 @@
 
                 Alert.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
 
-                // TODO
-                gnrXmlResponse.Save(@"C:\temp\gnr-response.xml");
+                try
+                {
+                    gnrXmlResponse.Save(this.Config.TaxaValidatorOutputFileName);
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
             }
             catch
             {

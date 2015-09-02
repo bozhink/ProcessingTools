@@ -44,6 +44,10 @@
                 case "ser":
                     rank = "series";
                     break;
+                case "Trib":
+                case "trib":
+                    rank = "tribe";
+                    break;
                 case "subsect":
                 case "Subsect":
                 case "subsection":

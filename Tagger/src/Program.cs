@@ -60,6 +60,11 @@
                 config.tempDirectoryPath,
                 Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
+            config.TaxaValidatorOutputFileName = string.Format(
+                "{0}\\gnr-{1}.xml",
+                config.tempDirectoryPath,
+                Path.GetFileNameWithoutExtension(fp.OutputFileName));
+
             fp.Read();
             fp.NormalizeXmlToSystemXml();
 

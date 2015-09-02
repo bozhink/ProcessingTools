@@ -116,6 +116,8 @@
         public bool TagWholeDocument { get; set; }
 
         public string EnvoResponseOutputXmlFileName { get; set; }
+
+        public string TaxaValidatorOutputFileName { get; set; }
     }
 
     public partial class Config
