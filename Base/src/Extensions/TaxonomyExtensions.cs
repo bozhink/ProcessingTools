@@ -53,18 +53,26 @@
             XmlNode result = taxonNameNode.CloneNode(true);
             result.Attributes.RemoveAll();
 
-            foreach (XmlNode fullNamedPart in result.SelectNodes(".//*[normalize-space(@full-name)!='']"))
-            {
-                fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
-                fullNamedPart.Attributes.RemoveNamedItem("full-name");
-            }
-
-            string innerXml = result.InnerXml;
+            string innerXml = result
+                .RemoveXmlNodes("//object-id")
+                .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
+                .InnerXml;
 
             innerXml = Regex.Replace(innerXml, @"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ");
             innerXml = Regex.Replace(innerXml, @"<[^>]+>|[\(\)\[\]]", string.Empty);
 
             return innerXml;
+        }
+
+        public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)
+        {
+            foreach (XmlNode fullNamedPart in node.SelectNodes(".//*[normalize-space(@full-name)!='']"))
+            {
+                fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
+                fullNamedPart.Attributes.RemoveNamedItem("full-name");
+            }
+
+            return node;
         }
 
         public static string ExtractTaxa(this string xml, Config config)
@@ -194,11 +202,20 @@
 
         public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
         {
+            ////XmlNode clonedXml = xml.CloneNode(true);
+            ////clonedXml.SelectNodes("//tn|//tn-part|//tp:taxon-name|//tp:taxon-name-part", Config.TaxPubNamespceManager())
+            ////    .Cast<XmlNode>()
+            ////    .Select(node => node.ParentNode.RemoveChild(node));
+
             IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
             IEnumerable<string> result = from item in taxaMatchesInText
                                          where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
                                          select item;
             return new HashSet<string>(result);
+
+            ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
+
+            ////return new HashSet<string>(result);
         }
     }
 }

@@ -117,7 +117,7 @@
 
         public string EnvoResponseOutputXmlFileName { get; set; }
 
-        public string TaxaValidatorOutputFileName { get; set; }
+        public string GnrOutputFileName { get; set; }
     }
 
     public partial class Config

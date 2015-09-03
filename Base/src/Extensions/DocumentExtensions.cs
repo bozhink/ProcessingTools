@@ -134,7 +134,7 @@
         /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
         public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
         {
-            Regex matchWord = new Regex(@"[^\W\d]+");
+            Regex matchWord = new Regex(@"\A[^\W\d]{2,}");
             return new HashSet<string>(list.Select(word => matchWord.Match(word).Value).Distinct());
         }
 
@@ -437,6 +437,31 @@
             }
 
             return xmlReader;
+        }
+
+        public static void RemoveXmlNodes(this XmlNode node)
+        {
+            node.ParentNode.RemoveChild(node);
+        }
+
+        public static void RemoveXmlNodes(this XmlNodeList nodeList)
+        {
+            foreach (XmlNode node in nodeList)
+            {
+                node.RemoveXmlNodes();
+            }
+        }
+
+        public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath)
+        {
+            node.SelectNodes(xpath).RemoveXmlNodes();
+            return node;
+        }
+
+        public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath, XmlNamespaceManager namespaceManager)
+        {
+            node.SelectNodes(xpath, namespaceManager).RemoveXmlNodes();
+            return node;
         }
     }
 }

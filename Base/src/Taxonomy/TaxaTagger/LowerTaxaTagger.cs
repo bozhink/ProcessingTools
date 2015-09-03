@@ -29,6 +29,7 @@
             {
                 this.TagLowerTaxa(xpath);
 
+                // TODO: Must be corrected.
                 this.ClearLowerTaxa();
 
                 this.AdvancedTagLowerTaxa(xpath);

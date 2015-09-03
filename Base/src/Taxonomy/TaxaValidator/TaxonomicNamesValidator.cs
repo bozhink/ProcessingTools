@@ -61,7 +61,7 @@
 
                 try
                 {
-                    gnrXmlResponse.Save(this.Config.TaxaValidatorOutputFileName);
+                    gnrXmlResponse.Save(this.Config.GnrOutputFileName);
                 }
                 catch (Exception e)
                 {
