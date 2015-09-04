@@ -1,0 +1,74 @@
+﻿doi: 10.3897/zse.91.5550
+http://www.museum.lsu.edu/~Remsen/AVECOLlections.html
+
+
+Collection name	Abbreviation	Country
+Academy of Natural Sciences, Philadelphia	ANSP	USA
+American Museum of Natural History	AMNH	USA
+Biologiezentrum Linz	BZL	Austria
+California Academy of Sciences	CAS	USA
+Carlos Wotzkow private collection	Wotzkow	Cuba
+Carnegie Museum of Natural History	CM	USA
+Cornell University Museum of Vertebrates	CUMV	USA
+Delaware Museum of Natural History	DMNH	USA
+Field Museum of Natural History	FMNH	USA
+Florida Museum of Natural History, University of Florida	UF	USA
+Göteborgs Naturhistoriska Museum	GNM	Sweden
+Hessisches Landesmuseum Darmstadt †	HLMD	Germany 
+Institut für Biologie der Martin-Luther-Universität Halle	IfZH	Germany
+Instituto de Ecología y Sistemática	IES	Cuba
+Instituto de Segunda Enseñaza Cuqui Bosch, Santiago de Cuba	ISECB	Cuba
+José H. Bauzá collection, La Habana	Bauzá	Cuba
+Manchester Museum, University of Manchester	MMUM	UK
+Museo “Oscar Maria de Rojas,” Cárdenas	Cárdenas	Cuba
+Museo Civico di Storia Naturale, Milano	MSNM	Italy
+Museo de Historia Natural “Carlos de la Torre,” Holguín	Holguín	Cuba
+Museo de Historia Natural “Dr. Antonio Nuñez Jiménez,” Nueva Gerona	Gerona	Cuba
+Museo de Historia Natural “Felipe Poey,” La Habana	Poey 	Cuba
+Museo de Historia Natural “Joaquin de la Vara,” Gibara	Gibara	Cuba
+Museo de Historia Natural “Tranquilino Sandalio de Noda,” Pinar del Río	Pinar del Río 	Cuba
+Museo de Historia Natural de Sancti Spíritus, Sancti Spíritus	Sancti Spíritus 	Cuba
+Museo di Storia Naturale dell’Università di Parma	MSNP	Italy
+Museo Nacional de Historia Natural de Cuba, La Habana	MNHNC	Cuba
+Museo Nacional de Historia Natural de Santo Domingo	MNHNSD	Dominican Republic
+Museo Provencial – Mayarí – Arcadio Leyte Vidal Delgado, Mayarí	Mayarí	Cuba
+Museo Provincial Ignacio Agramonte, Camagüey	Camagüey	Cuba
+Museo Tomás Romay (BioEco), Santiago de Cuba	BioEco	Cuba
+Muséum d’Histoire naturelle de la Ville de Genève, Geneva	MHNG	Switzerland
+Museum d’Histoire Naturelle de Lyon	MHNL	France
+Museum d’Histoire Naturelle, Neuchâtel 	Neuchâtel 	Switzerland
+Museum fuer Naturkunde Berlin	MfN	Germany
+Muséum National d’Histoire Naturelle Zoologie, Paris	MNHN	France
+Museum of Comparative Zoology, Harvard University	MCZ	USA
+Museum of Natural Science, Louisiana State University	LSUMZ	USA
+Museum of Vertebrate Zoology, University of California, Berkeley	MVZ	USA
+Museum of Zoology, University of Bergen	MZUB	Norway
+Museum of Zoology, University of Michigan	UMMZ	USA
+Nationaal Natuurhistorisch Museum Naturalis, Leiden	NNMN	Netherlands
+National Museum of Natural History, Smithsonian Institution 	USNM	USA
+National Museums of Scotland	NMS	UK
+Natural History Museum of Los Angeles County 	LACM	USA
+Natural History Museum, Columbia-Greene Community College	NHMCG	USA
+Naturhistorisches Museum Bern	NMBE	Switzerland
+Naturhistorisches Museum Wien	NHMW	Austria
+Naturhistoriska Riksmuseet, Stockholm	NR	Sweden
+Naturkundemuseum, Kassel	NMK 	Germany
+Naturmuseum St. Gallen 	St Gallen	Switzerland
+Peabody Museum of Natural History, Yale University 	YPM 	USA
+Pedro Regalado private collection, Camagüey	Regalado	Cuba
+Royal Ontario Museum	ROM	Canada
+San Diego Natural History Museum	SDNHM	USA
+Staatliches Museum für Naturkunde Stuttgart	SMNS 	Germany
+Statens Naturhistoriske Museum, Denmark	SNM	Denmark
+The Natural History Museum (Tring)	BMNH	UK
+Übersee-Museum Bremen, Bremen	UMB	Germany
+Universidad de Puerto Rico, Humacao	UPR-H	Puerto Rico
+Universidad de Puerto Rico, Mayagüez	UPR-RUM	Puerto Rico
+Universidad de Puerto Rico, Río Piedras	UPR-RP	Puerto Rico
+University Museum of Zoology, Cambridge	UMZC	UK
+University of Copenhagen Museum of Zoology	ZMUC	Denmark
+Western Foundation of Vertebrate Zoology	WFVZ	USA
+William Suárez private collection, Caimito	Caimito	Cuba
+World Museum, Liverpool	WML	UK
+Zoological Museum Amsterdam, Universiteit van Amsterdam	ZMUA	Netherlands
+Zoologisches Museum Hamburg	ZMH	Germany

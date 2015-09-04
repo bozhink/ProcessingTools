@@ -150,6 +150,7 @@
   <ItemGroup>
     <Content Include="Data\english-common-words.txt" />
     <Content Include="Data\geo-epithets.txt" />
+    <Content Include="Data\institutional-codes.txt" />
     <Content Include="Data\institutions.txt" />
     <Content Include="Data\journals.txt" />
     <Content Include="Data\localities.txt" />

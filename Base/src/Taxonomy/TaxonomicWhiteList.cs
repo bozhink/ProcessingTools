@@ -1,21 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace ProcessingTools.Base.Taxonomy
+﻿namespace ProcessingTools.Base.Taxonomy
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Xml.Linq;
+
     public class TaxonomicWhiteList : IStringDataList
     {
-        private static IEnumerable<string> stringList = null;
+        private static volatile IEnumerable<string> stringList = null;
+        private static object syncListLock = new object();
 
-        private Config config;
+        private static volatile Config config = null;
+        private static object syncConfigLock = new object();
 
         public TaxonomicWhiteList(Config config)
         {
-            this.config = config;
+            if (TaxonomicWhiteList.config == null)
+            {
+                lock (TaxonomicWhiteList.syncConfigLock)
+                {
+                    if (TaxonomicWhiteList.config == null)
+                    {
+                        TaxonomicWhiteList.config = config;
+                    }
+                }
+            }
         }
 
         public IEnumerable<string> StringList
@@ -24,9 +32,15 @@ namespace ProcessingTools.Base.Taxonomy
             {
                 if (TaxonomicWhiteList.stringList == null)
                 {
-                    XElement list = XElement.Load(this.config.whiteListXmlFilePath);
-                    TaxonomicWhiteList.stringList = from item in list.Elements()
-                                                    select item.Value;
+                    lock (TaxonomicWhiteList.syncListLock)
+                    {
+                        if (TaxonomicWhiteList.stringList == null)
+                        {
+                            XElement list = XElement.Load(TaxonomicWhiteList.config.whiteListXmlFilePath);
+                            TaxonomicWhiteList.stringList = from item in list.Elements()
+                                                            select item.Value;
+                        }
+                    }
                 }
 
                 return TaxonomicWhiteList.stringList;
@@ -35,7 +49,10 @@ namespace ProcessingTools.Base.Taxonomy
 
         public void Clear()
         {
-            TaxonomicWhiteList.stringList = null;
+            lock (TaxonomicWhiteList.syncListLock)
+            {
+                TaxonomicWhiteList.stringList = null;
+            }
         }
     }
 }

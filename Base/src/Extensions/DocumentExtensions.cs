@@ -8,9 +8,42 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using System.Xml.Linq;
 
     public static class DocumentExtensions
     {
+        /// <summary>
+        /// Converts XmlDocument to XDocument.
+        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
+        /// </summary>
+        /// <param name="xmlDocument">XmlDocument instance to be converted.</param>
+        /// <returns></returns>
+        public static XDocument ToXDocument(this XmlDocument xmlDocument)
+        {
+            using (XmlNodeReader nodeReader = new XmlNodeReader(xmlDocument))
+            {
+                nodeReader.MoveToContent();
+                return XDocument.Load(nodeReader);
+            }
+        }
+
+        /// <summary>
+        /// Converts XDocument to XmlDocument.
+        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
+        /// </summary>
+        /// <param name="document">XDocument instance to be converted.</param>
+        /// <returns></returns>
+        public static XmlDocument ToXmlDocument(this XDocument document)
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            using (XmlReader xmlReader = document.CreateReader())
+            {
+                xmlDocument.Load(xmlReader);
+            }
+
+            return xmlDocument;
+        }
+
         /// <summary>
         /// Checks the type of a given XmlNode object.
         /// Returns true if the XmlNode is a named XmlNode (*) or a text node.
