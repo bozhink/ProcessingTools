@@ -15,36 +15,9 @@
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            /*
-             * Parse config file
-             */
+            ParseConfigFiles();
 
-            AppSettingsReader appConfigReader = new AppSettingsReader();
-            string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
-
-            config = ConfigBuilder.CreateConfig(configJsonFilePath);
-            config.NlmStyle = true;
-            config.TagWholeDocument = false;
-
-            /*
-             * Initial check of input parameters
-             */
-            for (int i = 0; i < args.Length; i++)
-            {
-                char[] arg = args[i].ToCharArray();
-                if (arg[0] == '-' && arg[1] == '-')
-                {
-                    doubleDashedOptions.Add(i);
-                }
-                else if (arg[0] == '-' || arg[0] == '/')
-                {
-                    singleDashedOptions.Add(i);
-                }
-                else
-                {
-                    arguments.Add(i);
-                }
-            }
+            InitialCheckOfInputParameters(args);
 
             ParseFileNames(args);
             ParseSingleDashedOptions(args);
@@ -337,6 +310,36 @@
             }
 
             Alert.Log("Main timer: " + mainTimer.Elapsed);
+        }
+
+        private static void InitialCheckOfInputParameters(string[] args)
+        {
+            for (int i = 0; i < args.Length; i++)
+            {
+                char[] arg = args[i].ToCharArray();
+                if (arg[0] == '-' && arg[1] == '-')
+                {
+                    doubleDashedOptions.Add(i);
+                }
+                else if (arg[0] == '-' || arg[0] == '/')
+                {
+                    singleDashedOptions.Add(i);
+                }
+                else
+                {
+                    arguments.Add(i);
+                }
+            }
+        }
+
+        private static void ParseConfigFiles()
+        {
+            AppSettingsReader appConfigReader = new AppSettingsReader();
+            string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
+
+            config = ConfigBuilder.CreateConfig(configJsonFilePath);
+            config.NlmStyle = true;
+            config.TagWholeDocument = false;
         }
 
         private static void PrintElapsedTime(Stopwatch timer)

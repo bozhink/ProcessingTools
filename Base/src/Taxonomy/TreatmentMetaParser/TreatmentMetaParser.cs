@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Xml;
 
-    public abstract class TreatmentMetaParser : TaggerBase, IParser
+    public abstract class TreatmentMetaParser : TaggerBase, IBaseParser
     {
         protected const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

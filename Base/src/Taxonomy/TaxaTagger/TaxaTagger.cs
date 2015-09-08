@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public abstract class TaxaTagger : TaggerBase, ITagger
+    public abstract class TaxaTagger : TaggerBase, IBaseTagger
     {
         protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";

@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class TreatmentFormatter : TaggerBase, IFormatter
+    public class TreatmentFormatter : TaggerBase, IBaseFormatter
     {
         public TreatmentFormatter(string xml)
             : base(xml)

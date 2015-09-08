@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class CoordinatesParser : Base, IParser
+    public class CoordinatesParser : Base, IBaseParser
     {
         public CoordinatesParser(Config config, string xml)
             : base(config, xml)

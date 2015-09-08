@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class AbbreviationsTagger : TaggerBase, ITagger
+    public class AbbreviationsTagger : TaggerBase, IBaseTagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
 

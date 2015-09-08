@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class TaxonomicNamesValidator : Base, IValidator
+    public class TaxonomicNamesValidator : Base, IBaseValidator
     {
         public TaxonomicNamesValidator(string xml)
             : base(xml)

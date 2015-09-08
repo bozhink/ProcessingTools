@@ -14,7 +14,7 @@
         {
         }
 
-        public void TagMorphology(IXPathProvider xpathProvider, IDataProvider dataProvider)
+        public void Tag(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             string query = @"select [Name] as [name] from [dbo].[morphology] order by len([Name]) desc;";
 

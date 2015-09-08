@@ -88,6 +88,10 @@
     <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
+    <Compile Include="src\Interfaces\IBaseFormatter.cs" />
+    <Compile Include="src\Interfaces\IBaseParser.cs" />
+    <Compile Include="src\Interfaces\IBaseTagger.cs" />
+    <Compile Include="src\Interfaces\IBaseValidator.cs" />
     <Compile Include="src\Interfaces\IStringDataList.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
     <Compile Include="src\Interfaces\IValidator.cs" />

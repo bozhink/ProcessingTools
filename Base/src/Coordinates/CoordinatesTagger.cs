@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class CoordinatesTagger : Base, ITagger
+    public class CoordinatesTagger : Base, IBaseTagger
     {
         public CoordinatesTagger(Config config, string xml)
             : base(config, xml)

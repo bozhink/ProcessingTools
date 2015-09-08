@@ -168,7 +168,7 @@
 
             {
                 GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
-                geo.TagGeonames(xpathProvider, dataProvider);
+                geo.Tag(xpathProvider, dataProvider);
                 codes.Xml = geo.Xml;
             }
 
@@ -217,7 +217,7 @@
 
             {
                 GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
-                geo.TagGeonames(xpathProvider, dataProvider);
+                geo.Tag(xpathProvider, dataProvider);
                 codes.Xml = geo.Xml;
             }
 
@@ -279,7 +279,7 @@
 
             {
                 GeoNamesTagger geo = new GeoNamesTagger(config, codes.Xml);
-                geo.TagGeonames(xpathProvider, dataProvider);
+                geo.Tag(xpathProvider, dataProvider);
                 codes.Xml = geo.Xml;
             }
 

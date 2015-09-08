@@ -117,7 +117,7 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tParse higher taxa.\n");
 
                 {
-                    LocalDataBaseHigherTaxaParser parser = new LocalDataBaseHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new LocalDataBaseHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -126,7 +126,7 @@ namespace ProcessingTools.Tag
                 if (splitHigherWithAphia)
                 {
                     Alert.Log("\n\tSplit higher taxa using Aphia API\n");
-                    AphiaHigherTaxaParser parser = new AphiaHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new AphiaHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -135,7 +135,7 @@ namespace ProcessingTools.Tag
                 if (splitHigherWithCoL)
                 {
                     Alert.Log("\n\tSplit higher taxa using CoL API\n");
-                    CoLHigherTaxaParser parser = new CoLHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new CoLHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -144,7 +144,7 @@ namespace ProcessingTools.Tag
                 if (splitHigherWithGbif)
                 {
                     Alert.Log("\n\tSplit higher taxa using GBIF API\n");
-                    GbifHigherTaxaParser parser = new GbifHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new GbifHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -153,7 +153,7 @@ namespace ProcessingTools.Tag
                 if (splitHigherBySuffix)
                 {
                     Alert.Log("\n\tSplit higher taxa by suffix\n");
-                    SuffixHigherTaxaParser parser = new SuffixHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new SuffixHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -162,7 +162,7 @@ namespace ProcessingTools.Tag
                 if (splitHigherAboveGenus)
                 {
                     Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
-                    AboveGenusHigherTaxaParser parser = new AboveGenusHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new AboveGenusHigherTaxaParser(config, xmlContent);
                     parser.Parse();
                     parser.XmlDocument.PrintNonParsedTaxa();
                     xmlContent = parser.Xml;
@@ -184,7 +184,7 @@ namespace ProcessingTools.Tag
 
                 try
                 {
-                    TaxaTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
+                    IBaseTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
 
                     tagger.Tag();
 
@@ -208,7 +208,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse lower taxa.\n");
-                LowerTaxaParser parser = new LowerTaxaParser(config, xmlContent);
+                IBaseParser parser = new LowerTaxaParser(config, xmlContent);
 
                 parser.Parse();
 
@@ -228,7 +228,7 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tTag lower taxa.\n");
                 try
                 {
-                    TaxaTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
+                    IBaseTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
 
                     tagger.Tag();
 
@@ -253,7 +253,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with Aphia.\n");
 
-                TreatmentMetaParser parser = new AphiaTreatmentMetaParser(config, xmlContent);
+                IBaseParser parser = new AphiaTreatmentMetaParser(config, xmlContent);
                 parser.Parse();
                 xmlContent = parser.Xml;
 
@@ -266,7 +266,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with GBIF.\n");
 
-                TreatmentMetaParser parser = new GbifTreatmentMetaParser(config, xmlContent);
+                IBaseParser parser = new GbifTreatmentMetaParser(config, xmlContent);
                 parser.Parse();
                 xmlContent = parser.Xml;
 
@@ -279,7 +279,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tParse treatment meta with CoL.\n");
 
-                TreatmentMetaParser parser = new CoLTreatmentMetaParser(config, xmlContent);
+                IBaseParser parser = new CoLTreatmentMetaParser(config, xmlContent);
                 parser.Parse();
                 xmlContent = parser.Xml;
 
@@ -295,7 +295,7 @@ namespace ProcessingTools.Tag
             timer.Start();
             Alert.Log("\n\tFormat treatments.\n");
 
-            TreatmentFormatter formatter = new TreatmentFormatter(config, xmlContent);
+            IBaseFormatter formatter = new TreatmentFormatter(config, xmlContent);
             formatter.Format();
             xmlContent = formatter.Xml;
 
@@ -305,7 +305,7 @@ namespace ProcessingTools.Tag
 
         private static string RemoveAllTaxaTags(string xmlContent)
         {
-            LowerTaxaParser parser = new LowerTaxaParser(config, xmlContent);
+            IBaseParser parser = new LowerTaxaParser(config, xmlContent);
             parser.XmlDocument.RemoveTaxonNamePartTags();
             xmlContent = parser.Xml;
             return xmlContent;
@@ -354,7 +354,8 @@ namespace ProcessingTools.Tag
             timer.Start();
             Alert.Log("\n\tTaxa validation using Global names resolver.\n");
 
-            TaxonomicNamesValidator validator = new TaxonomicNamesValidator(config, xmlContent);
+            IValidator validator = new TaxonomicNamesValidator(config, xmlContent);
+
             validator.Validate();
 
             PrintElapsedTime(timer);

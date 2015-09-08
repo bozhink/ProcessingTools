@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class Environments : TaggerBase
+    public class Environments : TaggerBase, IBaseTagger
     {
         public Environments(string xml)
             : base(xml)
@@ -17,7 +17,7 @@
         {
         }
 
-        public void TagEnvironmentsRecords()
+        public void Tag()
         {
             XmlElement testXmlNode = this.XmlDocument.CreateElement("test");
 
@@ -108,6 +108,11 @@
             }
 
             this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
+        }
+
+        public void Tag(IXPathProvider xpathProvider)
+        {
+            this.Tag();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ProcessingTools.Base
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class DatesTagger : TaggerBase, ITagger
+    public class DatesTagger : TaggerBase, IBaseTagger
     {
         private TagContent dateTag = new TagContent("date");
 

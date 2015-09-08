@@ -5,7 +5,7 @@
 
     namespace Nlm
     {
-        public class Formatter : Base, IFormatter
+        public class Formatter : Base, IBaseFormatter
         {
             public Formatter(string xml)
                 : base(xml)
@@ -270,7 +270,7 @@
 
     namespace NlmSystem
     {
-        public class Formatter : Base, IFormatter
+        public class Formatter : Base, IBaseFormatter
         {
             public Formatter(string xml)
                 : base(xml)

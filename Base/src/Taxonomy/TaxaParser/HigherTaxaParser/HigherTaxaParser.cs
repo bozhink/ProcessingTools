@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Threading;
 
-    public abstract class HigherTaxaParser : Base, IParser
+    public abstract class HigherTaxaParser : Base, IBaseParser
     {
         private static bool delay = false;
 

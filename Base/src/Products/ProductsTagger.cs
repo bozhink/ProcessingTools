@@ -14,7 +14,7 @@
         {
         }
 
-        public void TagProducts(IXPathProvider xpathProvider, IDataProvider dataProvider)
+        public void Tag(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             string query = @"select [Name] as [name] from [dbo].[products] order by len([Name]) desc;";
 

@@ -14,7 +14,7 @@
         {
         }
 
-        public void TagGeonames(IXPathProvider xpathProvider, IDataProvider dataProvider)
+        public void Tag(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             string query = @"select [Name] as [name] from [dbo].[geonames] order by len([Name]) desc;";
 

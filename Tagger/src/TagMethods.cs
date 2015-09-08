@@ -17,7 +17,7 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tUse greek tagger.\n");
                 Envo envo = new Envo(config, fp.Xml);
 
-                XPathProvider xpathProvider = new XPathProvider(config);
+                IXPathProvider xpathProvider = new XPathProvider(config);
 
                 envo.Tag(xpathProvider);
 
@@ -33,7 +33,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse coordinates.\n");
-                CoordinatesParser cd = new CoordinatesParser(config, fp.Xml);
+                IBaseParser cd = new CoordinatesParser(config, fp.Xml);
 
                 cd.Parse();
 
@@ -49,7 +49,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag coordinates.\n");
-                CoordinatesTagger cd = new CoordinatesTagger(config, fp.Xml);
+                IBaseTagger cd = new CoordinatesTagger(config, fp.Xml);
 
                 cd.Tag();
 
@@ -159,7 +159,7 @@ namespace ProcessingTools.Tag
                 Alert.Log("\n\tTag environments.\n");
                 Base.Environments environments = new Environments(config, fp.Xml);
 
-                environments.TagEnvironmentsRecords();
+                environments.Tag();
 
                 fp.Xml = environments.Xml;
                 PrintElapsedTime(timer);
@@ -174,7 +174,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag quantities.\n");
 
-                XPathProvider xpathProvider = new XPathProvider(config);
+                IXPathProvider xpathProvider = new XPathProvider(config);
                 QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
                 quantitiesTagger.TagQuantities(xpathProvider);
                 quantitiesTagger.TagDeviation(xpathProvider);
@@ -193,8 +193,8 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag dates.\n");
 
-                XPathProvider xpathProvider = new XPathProvider(config);
-                DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
+                IXPathProvider xpathProvider = new XPathProvider(config);
+                IBaseTagger datesTagger = new DatesTagger(config, fp.Xml);
                 datesTagger.Tag(xpathProvider);
                 fp.Xml = datesTagger.Xml;
 
@@ -210,7 +210,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag abbreviations.\n");
 
-                AbbreviationsTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
                 abbreviationsTagger.Tag();
                 fp.Xml = abbreviationsTagger.Xml;
 
@@ -226,7 +226,7 @@ namespace ProcessingTools.Tag
                 timer.Start();
                 Alert.Log("\n\tTag codes.\n");
 
-                XPathProvider xpathProvider = new XPathProvider(config);
+                IXPathProvider xpathProvider = new XPathProvider(config);
 
                 ////{
                 ////    Codes codes = new Codes(config, fp.Xml);
@@ -235,7 +235,7 @@ namespace ProcessingTools.Tag
                 ////}
 
                 {
-                    AbbreviationsTagger abbr = new AbbreviationsTagger(config, fp.Xml);
+                    IBaseTagger abbr = new AbbreviationsTagger(config, fp.Xml);
                     abbr.Tag();
                     fp.Xml = abbr.Xml;
                 }
