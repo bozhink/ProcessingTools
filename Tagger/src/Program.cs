@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tag
 {
+    using System.Configuration;
     using System.Diagnostics;
     using System.IO;
     using System.Text.RegularExpressions;
@@ -17,7 +18,11 @@
             /*
              * Parse config file
              */
-            config = ConfigBuilder.CreateConfig(@"config.json");
+
+            AppSettingsReader appConfigReader = new AppSettingsReader();
+            string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
+
+            config = ConfigBuilder.CreateConfig(configJsonFilePath);
             config.NlmStyle = true;
             config.TagWholeDocument = false;
 
@@ -192,28 +197,6 @@
             }
             else if (testFlag)
             {
-                ////Test test = new Test(fp.Xml);
-                ////test.Config = config;
-                ////test.ExtractSystemChecklistAuthority();
-                ////fp.Xml = test.Xml;
-
-                ////string scientificName = "Dascillidae";
-                ////string[] scientificNames = { "Plantago major", "Monohamus galloprovincialis", "Felis concolor" };
-                ////int[] srcId = { 1, 12 };
-                ////string rank = Base.Net.SearchNameInPaleobiologyDatabase(scientificName);
-                ////Alert.Message(scientificName + " --> " + rank);
-
-                ////Base.Json.Pbdb.PbdbAllParents obj = Net.SearchParentsInPaleobiologyDatabase(scientificName);
-
-                ////if (obj.records.Count > 0)
-                ////{
-                ////    Alert.Message(obj.records[0].nam + "  " + obj.records[0].rnk);
-                ////}
-
-                ////XmlDocument xx = Net.SearchWithGlobalNamesResolver(scientificNames/*, srcId*/);
-                ////fp.Xml = xx.OuterXml;
-
-                ////test.SqlSelect();
             }
             else if (generateZooBankNlm)
             {
