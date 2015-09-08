@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Json.Pbdb
+﻿namespace ProcessingTools.BaseLibrary.Json.Pbdb
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

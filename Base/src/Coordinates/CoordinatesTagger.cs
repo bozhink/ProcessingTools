@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Coordinates
+﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
     using System;
     using System.Text.RegularExpressions;

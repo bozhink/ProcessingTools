@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base
+﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
     using System.Collections.Generic;

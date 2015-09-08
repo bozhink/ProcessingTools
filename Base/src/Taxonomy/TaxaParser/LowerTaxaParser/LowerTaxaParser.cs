@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Taxonomy
+﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System;
     using System.Text.RegularExpressions;

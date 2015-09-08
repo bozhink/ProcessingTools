@@ -2,10 +2,10 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools;
-    using ProcessingTools.Base;
+    using ProcessingTools.BaseLibrary;
 
     [TestClass]
-    public class UnitTest1
+    public class SimpleTests
     {
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentNullException))]

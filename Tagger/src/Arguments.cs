@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.MainProgram
 {
     using System.Collections.Generic;
 
-    public partial class Tagger
+    public partial class MainProcessingTool
     {
         private const int NumberOfExpandingIterations = 1;
         private static List<int> arguments = new List<int>();

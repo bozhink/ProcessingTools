@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.ZooBank
+﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
     public class ZooBank : TaggerBase
     {

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Taxonomy
+﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System.Collections.Generic;
     using Json.Gbif;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Format
+﻿namespace ProcessingTools.BaseLibrary.Format
 {
     using System.Text.RegularExpressions;
     using System.Xml;

@@ -5,8 +5,8 @@
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools;
-    using ProcessingTools.Base;
-    using ProcessingTools.Base.Abbreviations;
+    using ProcessingTools.BaseLibrary;
+    using ProcessingTools.BaseLibrary.Abbreviations;
 
     [TestClass]
     public class CodesTests

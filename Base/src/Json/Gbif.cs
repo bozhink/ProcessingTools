@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Json.Gbif
+﻿namespace ProcessingTools.BaseLibrary.Json.Gbif
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

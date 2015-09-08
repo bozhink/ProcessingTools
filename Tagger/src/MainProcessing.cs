@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Xml;
-using ProcessingTools.Base;
-using ProcessingTools.Base.Taxonomy;
-using System;
-
-namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.MainProgram
 {
-    public partial class Tagger
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Xml;
+    using BaseLibrary;
+    using BaseLibrary.Taxonomy;
+
+    public partial class MainProcessingTool
     {
         private static TaxonomicBlackList blackList;
         private static TaxonomicWhiteList whiteList;
@@ -367,7 +367,7 @@ namespace ProcessingTools.Tag
             timer.Start();
             Alert.Log("\n\tExpand taxa.\n");
 
-            Base.Taxonomy.Nlm.Expander expand = new Base.Taxonomy.Nlm.Expander(config, xmlContent);
+            BaseLibrary.Taxonomy.Nlm.Expander expand = new BaseLibrary.Taxonomy.Nlm.Expander(config, xmlContent);
             Expander exp = new Expander(config, xmlContent);
 
             for (int i = 0; i < NumberOfExpandingIterations; i++)

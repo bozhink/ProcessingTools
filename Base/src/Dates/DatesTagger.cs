@@ -10,7 +10,7 @@
  29th of April, 2015
 */
 
-namespace ProcessingTools.Base
+namespace ProcessingTools.BaseLibrary
 {
     using System.Collections.Generic;
     using System.Linq;

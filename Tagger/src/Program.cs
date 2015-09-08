@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.MainProgram
 {
     using System.Configuration;
     using System.Diagnostics;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Base;
-    using Base.ZooBank;
+    using BaseLibrary;
+    using BaseLibrary.ZooBank;
 
-    public partial class Tagger
+    public partial class MainProcessingTool
     {
         public static void Main(string[] args)
         {

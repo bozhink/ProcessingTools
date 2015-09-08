@@ -2,7 +2,7 @@
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProcessingTools;
-using ProcessingTools.Base;
+using ProcessingTools.BaseLibrary;
 
 namespace BaseObjectTests
 {

@@ -6,7 +6,7 @@
  * 1 ex.
  */
 
-namespace ProcessingTools.Base
+namespace ProcessingTools.BaseLibrary
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;

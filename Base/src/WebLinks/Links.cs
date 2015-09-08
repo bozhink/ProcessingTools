@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Nlm
+﻿namespace ProcessingTools.BaseLibrary.Nlm
 {
     using System;
     using System.Text.RegularExpressions;

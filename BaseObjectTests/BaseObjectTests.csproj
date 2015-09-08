@@ -64,7 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestResourceStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="SimpleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

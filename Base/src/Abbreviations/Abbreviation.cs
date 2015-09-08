@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Base.Abbreviations
+﻿namespace ProcessingTools.BaseLibrary.Abbreviations
 {
     internal class Abbreviation
     {

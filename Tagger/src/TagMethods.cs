@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-using System.IO;
-using ProcessingTools.Base;
-using ProcessingTools.Base.Abbreviations;
-using ProcessingTools.Base.Coordinates;
-
-namespace ProcessingTools.Tag
+﻿namespace ProcessingTools.MainProgram
 {
-    public partial class Tagger
+    using System.Diagnostics;
+    using System.IO;
+    using BaseLibrary;
+    using BaseLibrary.Abbreviations;
+    using BaseLibrary.Coordinates;
+
+    public partial class MainProcessingTool
     {
         private static void TagEnvo(FileProcessor fp)
         {
@@ -65,7 +65,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag web links.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(config, fp.Xml);
+                BaseLibrary.Nlm.LinksTagger ln = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
 
                 ln.TagWWW();
 
@@ -81,7 +81,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag DOI.\n");
-                Base.Nlm.LinksTagger ln = new Base.Nlm.LinksTagger(config, fp.Xml);
+                BaseLibrary.Nlm.LinksTagger ln = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
 
                 ln.TagDOI();
                 ln.TagPMCLinks();
@@ -118,14 +118,14 @@ namespace ProcessingTools.Tag
                 if (!config.NlmStyle)
                 {
                     string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
-                    Base.Format.NlmSystem.Formatter fmt = new Base.Format.NlmSystem.Formatter(config, xml);
+                    BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(config, xml);
                     fmt.Format();
                     fp.Xml = fmt.Xml;
                 }
                 else
                 {
                     string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
-                    Base.Format.Nlm.Formatter fmt = new Base.Format.Nlm.Formatter(config, xml);
+                    BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(config, xml);
                     fmt.Format();
                     fp.Xml = fmt.Xml;
                 }
@@ -157,7 +157,7 @@ namespace ProcessingTools.Tag
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag environments.\n");
-                Base.Environments environments = new Environments(config, fp.Xml);
+                BaseLibrary.Environments environments = new Environments(config, fp.Xml);
 
                 environments.Tag();
 
