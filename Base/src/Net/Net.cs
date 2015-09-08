@@ -19,31 +19,23 @@
         {
             string response = null;
 
-            // Declare an HTTP-specific implementation of the WebRequest class
             HttpWebRequest httpWebRequest = null;
-
-            // Declare an HTTP-specific implementation of the WebResponse class
             HttpWebResponse httpWebResponse = null;
 
             try
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(xmlContent);
 
-                // Creates an HttpWebRequest for the specified URL.
                 httpWebRequest = (HttpWebRequest)WebRequest.Create(urlString);
-
-                // Set HttpWebRequest properties
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentLength = bytes.Length;
                 httpWebRequest.ContentType = "text/xml; encoding='utf-8'";
 
                 using (Stream requestStream = httpWebRequest.GetRequestStream())
                 {
-                    // Writes a sequence of bytes to the current stream 
                     requestStream.Write(bytes, 0, bytes.Length);
                 }
 
-                // Sends the HttpWebRequest, and waits for a response.
                 httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpWebResponse.StatusCode == HttpStatusCode.OK)
                 {
@@ -54,9 +46,9 @@
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(e.Message);
             }
             finally
             {
@@ -72,31 +64,23 @@
         {
             XmlDocument response = new XmlDocument();
 
-            // Declare an HTTP-specific implementation of the WebRequest class
             HttpWebRequest httpWebRequest = null;
-
-            // Declare an HTTP-specific implementation of the WebResponse class
             HttpWebResponse httpWebResponse = null;
 
             try
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(xml.OuterXml);
 
-                // Creates an HttpWebRequest for the specified URL.
                 httpWebRequest = (HttpWebRequest)WebRequest.Create(urlString);
-
-                // Set HttpWebRequest properties
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentLength = bytes.Length;
                 httpWebRequest.ContentType = "text/xml; encoding='utf-8'";
 
                 using (Stream requestStream = httpWebRequest.GetRequestStream())
                 {
-                    // Writes a sequence of bytes to the current stream 
                     requestStream.Write(bytes, 0, bytes.Length);
                 }
 
-                // Sends the HttpWebRequest, and waits for a response.
                 httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpWebResponse.StatusCode == HttpStatusCode.OK)
                 {
@@ -107,9 +91,9 @@
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(e.Message);
             }
             finally
             {
@@ -146,7 +130,7 @@
 
         public static Json.Gbif.GbifResult SearchGbif(string scientificName)
         {
-            Json.Gbif.GbifResult obj = null;
+            Json.Gbif.GbifResult gbifResult = null;
             try
             {
                 using (var client = new HttpClient())
@@ -154,7 +138,7 @@
                     string responseString = client.GetStringAsync("http://api.gbif.org/v0.9/species/match?verbose=true&name=" + scientificName).Result;
                     DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Json.Gbif.GbifResult));
                     MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseString));
-                    obj = (Json.Gbif.GbifResult)data.ReadObject(stream);
+                    gbifResult = (Json.Gbif.GbifResult)data.ReadObject(stream);
                 }
             }
             catch (Exception e)
@@ -162,7 +146,7 @@
                 Alert.RaiseExceptionForMethod(e, 0);
             }
 
-            return obj;
+            return gbifResult;
         }
 
         /// <summary>
@@ -248,7 +232,7 @@
         {
             //// https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents
 
-            Json.Pbdb.PbdbAllParents obj = null;
+            Json.Pbdb.PbdbAllParents pbdbAllParents = null;
             try
             {
                 using (var client = new HttpClient())
@@ -256,7 +240,7 @@
                     string responseString = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/list.json?name=" + scientificName + "&rel=all_parents").Result;
                     DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Json.Pbdb.PbdbAllParents));
                     MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseString));
-                    obj = (Json.Pbdb.PbdbAllParents)data.ReadObject(stream);
+                    pbdbAllParents = (Json.Pbdb.PbdbAllParents)data.ReadObject(stream);
                 }
             }
             catch (Exception e)
@@ -264,7 +248,7 @@
                 Alert.RaiseExceptionForMethod(e, 0);
             }
 
-            return obj;
+            return pbdbAllParents;
         }
 
         public static XmlDocument SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
