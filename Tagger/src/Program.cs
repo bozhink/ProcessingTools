@@ -280,7 +280,7 @@
                 {
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.PreserveWhitespace = true;
-                    XmlNamespaceManager namespaceManager = ProcessingTools.Config.TaxPubNamespceManager(xmlDocument);
+                    XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
 
                     try
                     {

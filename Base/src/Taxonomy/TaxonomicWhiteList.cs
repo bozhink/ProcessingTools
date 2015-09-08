@@ -7,16 +7,14 @@
     public class TaxonomicWhiteList : IStringDataList
     {
         private static volatile IEnumerable<string> stringList = null;
-        private static object syncListLock = new object();
-
         private static volatile Config config = null;
-        private static object syncConfigLock = new object();
 
         public TaxonomicWhiteList(Config config)
         {
+            object syncConfigLock = new object();
             if (TaxonomicWhiteList.config == null)
             {
-                lock (TaxonomicWhiteList.syncConfigLock)
+                lock (syncConfigLock)
                 {
                     if (TaxonomicWhiteList.config == null)
                     {
@@ -30,9 +28,10 @@
         {
             get
             {
+                object syncListLock = new object();
                 if (TaxonomicWhiteList.stringList == null)
                 {
-                    lock (TaxonomicWhiteList.syncListLock)
+                    lock (syncListLock)
                     {
                         if (TaxonomicWhiteList.stringList == null)
                         {
@@ -49,7 +48,8 @@
 
         public void Clear()
         {
-            lock (TaxonomicWhiteList.syncListLock)
+            object syncListLock = new object();
+            lock (syncListLock)
             {
                 TaxonomicWhiteList.stringList = null;
             }
