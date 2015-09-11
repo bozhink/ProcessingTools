@@ -4,6 +4,7 @@ Options:
     h, ? = print this message and exit
 
     --system = use System-style processing
+    --nlm = use NLM-style processing
     i = perform initial format
     w = tag web links
     d = tag DOI

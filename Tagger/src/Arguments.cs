@@ -92,6 +92,10 @@
                 {
                     config.NlmStyle = false;
                 }
+                else if (args[item].CompareTo("--nlm") == 0)
+                {
+                    config.NlmStyle = true;
+                }
                 else if (args[item].CompareTo("--test") == 0)
                 {
                     testFlag = true;

@@ -18,10 +18,9 @@
             InitialCheckOfInputParameters(args);
 
             ParseFileNames(args);
-            ParseSingleDashedOptions(args);
-            ParseDoubleDashedOptions(args);
 
             FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
+
             Alert.Log(
                 "Input file name: {0}\nOutput file name: {1}\n{2}",
                 fp.InputFileName,
@@ -39,7 +38,22 @@
                 Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
             fp.Read();
+
+            switch (fp.XmlDocument.DocumentElement.Name)
+            {
+                case "article":
+                    config.NlmStyle = true;
+                    break;
+
+                default:
+                    config.NlmStyle = false;
+                    break;
+            }
+
             fp.NormalizeXmlToSystemXml();
+
+            ParseSingleDashedOptions(args);
+            ParseDoubleDashedOptions(args);
 
             InitialFormat(fp);
 
