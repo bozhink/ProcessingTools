@@ -353,10 +353,9 @@
 
                 try
                 {
-                    BaseLibrary.HyperLinks.DoiLinksTagger linksTagger = new BaseLibrary.HyperLinks.DoiLinksTagger(config, fp.Xml);
+                    DoiLinksTagger linksTagger = new DoiLinksTagger(config, fp.Xml);
 
-                    linksTagger.TagDOI();
-                    linksTagger.TagPMCLinks();
+                    linksTagger.Tag();
 
                     fp.Xml = linksTagger.Xml;
                 }

@@ -142,7 +142,7 @@
     <Compile Include="src\Taxonomy\TreatmentMetaParser\CoLTreatmentMetaParser.cs" />
     <Compile Include="src\Taxonomy\TreatmentMetaParser\GbifTreatmentMetaParser.cs" />
     <Compile Include="src\Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
-    <Compile Include="src\WebLinks\Links.cs" />
+    <Compile Include="src\WebLinks\DoiLinksTagger.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
     <Compile Include="src\Products\ProductsTagger.cs" />
     <Compile Include="src\Quantities\QuantitiesTagger.cs" />
