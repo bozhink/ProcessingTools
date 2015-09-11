@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
-    using System;
     using System.Text.RegularExpressions;
-    using System.Xml;
 
     public class CoordinatesTagger : Base, IBaseTagger
     {
@@ -16,21 +14,12 @@
         {
         }
 
-        internal enum CoordinateType
-        {
-            Latitude,
-            Longitude,
-            Null
-        }
-
         public void Tag()
         {
             string xml = this.Xml;
 
-            // Format deg symbol
-            xml = Regex.Replace(xml, "(\\d)([º°˚]|<sup>o</sup>)", "$1°");
+            xml = Regex.Replace(xml, @"(\d)([º°˚]|<sup>o</sup>)", "$1°");
 
-            // Tag coordinates
             string replace = @"<locality-coordinates latitude="""" longitude="""">$1</locality-coordinates>";
 
             xml = Regex.Replace(

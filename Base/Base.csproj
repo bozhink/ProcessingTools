@@ -83,6 +83,8 @@
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
     <Compile Include="src\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="src\Base\Base.cs" />
+    <Compile Include="src\Coordinates\CoordinatePart.cs" />
+    <Compile Include="src\Coordinates\CoordinateType.cs" />
     <Compile Include="src\Extensions\ApplyXslTransformExtensions.cs" />
     <Compile Include="src\Extensions\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
