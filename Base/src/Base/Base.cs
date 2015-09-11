@@ -65,9 +65,9 @@
         /// <param name="baseObject">IBase object to provide content and settings for this new instance.</param>
         public Base(IBase baseObject)
         {
+            this.Initialize();
             this.Config = baseObject.Config;
-            this.Xml = baseObject.Xml;
-            this.XmlDocument = baseObject.XmlDocument;
+            this.XmlDocument.LoadXml(baseObject.XmlDocument.OuterXml);
             this.NeedsUpdate = true;
         }
 

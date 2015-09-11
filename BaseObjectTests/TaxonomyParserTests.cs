@@ -6,19 +6,20 @@
     [TestClass]
     public class TaxonomyParserTests
     {
-        private Config config;
+        private static Config config;
 
-        [TestInitialize]
-        public void TestInit()
+        [ClassInitialize]
+        public static void ClassInit(TestContext context)
         {
             config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
         }
-        
+
         [TestMethod]
+        [Ignore]
         public void SuffixHigherTaxaParser_CreateNewInstance_SchouldSucceed()
         {
             string xml = "<article></article>";
-            var parser = new SuffixHigherTaxaParser(this.config, xml);
+            var parser = new SuffixHigherTaxaParser(config, xml);
 
             Assert.IsTrue(parser is SuffixHigherTaxaParser, "Parser is not a SuffixHigherTaxaParser object.");
             Assert.IsTrue(parser is HigherTaxaParser, "Parser is not a HigherTaxaParser object.");

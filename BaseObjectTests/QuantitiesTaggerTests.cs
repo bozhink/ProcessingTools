@@ -10,24 +10,24 @@
     [TestClass]
     public class QuantitiesTaggerTests
     {
-        private Config config;
-        private XmlTextWriter writer;
-        private XPathProvider xpathProvider;
+        private static Config config;
+        private static XmlTextWriter writer;
+        private static XPathProvider xpathProvider;
 
-        [TestInitialize]
-        public void Test_Initialize()
+        [ClassInitialize]
+        public static void ClassInit(TestContext context)
         {
-            this.config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
-            this.xpathProvider = new XPathProvider(this.config);
-            this.writer = new XmlTextWriter(Console.Out);
-            this.writer.Formatting = Formatting.Indented;
+            config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
+            xpathProvider = new XPathProvider(config);
+            writer = new XmlTextWriter(Console.Out);
+            writer.Formatting = Formatting.Indented;
         }
 
-        [TestCleanup]
-        public void Test_Cleanup()
+        [ClassCleanup]
+        public static void ClassCleanup()
         {
             writer.Close();
-        }
+        }       
 
         [TestMethod]
         public void QuantitiesTagger_CreateNewInstance_WithValidConfigAndXml()
@@ -46,15 +46,15 @@
             QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, null);
         }
 
-        //[TestMethod]
-        //public void QuantitiesTagger_CreateNewInstance_WithValidIBaseObject()
-        //{
-        //    string xml = "<x></x>";
-        //    QuantitiesTagger quantitiesTagger1 = new QuantitiesTagger(config, xml);
-        //    QuantitiesTagger quantitiesTagger2 = new QuantitiesTagger(quantitiesTagger1);
-        //    Assert.AreEqual(quantitiesTagger1.Config, quantitiesTagger2.Config, "Configs are different.");
-        //    Assert.AreEqual(quantitiesTagger1.Xml, quantitiesTagger2.Xml, "Xml content differs.");
-        //}
+        [TestMethod]
+        public void QuantitiesTagger_CreateNewInstance_WithValidIBaseObject()
+        {
+            string xml = "<x></x>";
+            QuantitiesTagger quantitiesTagger1 = new QuantitiesTagger(config, xml);
+            QuantitiesTagger quantitiesTagger2 = new QuantitiesTagger(quantitiesTagger1);
+            Assert.AreEqual(quantitiesTagger1.Config, quantitiesTagger2.Config, "Configs are different.");
+            Assert.AreEqual(quantitiesTagger1.Xml, quantitiesTagger2.Xml, "Xml content differs.");
+        }
 
         [TestMethod]
         public void QunatitiesTagger_XPathExecutionTests()

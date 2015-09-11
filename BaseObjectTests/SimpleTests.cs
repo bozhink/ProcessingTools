@@ -8,27 +8,10 @@
     [TestClass]
     public class SimpleTests
     {
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void TestMethod1()
-        //{
-        //    XPathProvider xpathProvider = new ProcessingTools.Base.XPathProvider(new Config());
-        //}
-
         const string pathToConfigFile = @"C:\bin\config.json";
 
         [TestMethod]
-        public void CreateNewInstanceOfQuantitiesTaggerWithValidInputData()
-        {
-            string xmlText = "<article></article>";
-
-            Config config = ConfigBuilder.CreateConfig(pathToConfigFile);
-
-            QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, xmlText);
-            Assert.AreEqual(quantitiesTagger.Xml, xmlText);
-        }
-
-        [TestMethod]
+        [Ignore]
         public void  CreateNewInstanceOfDataProviderWithValidInputData()
         {
             string xmlText = "<article></article>";
@@ -39,6 +22,7 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void CreateNewInstanceOfDataProviderWithValidInputDataInUsingBlock()
         {
             string xmlText = "<article></article>";
