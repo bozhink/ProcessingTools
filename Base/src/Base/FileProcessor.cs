@@ -45,7 +45,7 @@
                 {
                     if (!File.Exists(value))
                     {
-                        Alert.Die(1, "\nERROR: The input file '{0}' does not exist.\n", value);
+                        throw new FileNotFoundException(string.Format("The input file '{0}' does not exist.", value));
                     }
                     else
                     {
@@ -100,7 +100,7 @@
             }
             catch (Exception e)
             {
-                Alert.Die(1, "Cannot read file {0}\n{1}", inputFileName, e.Message);
+                throw new IOException(string.Format("Cannot read file {0}\n{1}", inputFileName, e.Message), e);
             }
 
             return result;
@@ -137,9 +137,9 @@
                 readerSettings.DtdProcessing = DtdProcessing.Ignore;
                 reader = XmlTextReader.Create(stream, readerSettings);
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1, 1);
+                throw;
             }
 
             return reader;
@@ -216,9 +216,9 @@
 
                 this.XmlDocument = readXml;
             }
-            catch (Exception otherException)
+            catch
             {
-                Alert.RaiseExceptionForMethod(otherException, this.GetType().Name, 1);
+                throw;
             }
         }
 
@@ -230,9 +230,9 @@
                 writer = new StreamWriter(this.OutputFileName, false, ProcessingTools.Config.DefaultEncoding);
                 writer.Write(this.Xml);
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 2, "Output file: " + this.OutputFileName);
+                throw;
             }
             finally
             {
