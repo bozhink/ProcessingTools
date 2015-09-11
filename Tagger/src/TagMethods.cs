@@ -8,7 +8,11 @@
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
+    using BaseLibrary.Dates;
+    using BaseLibrary.Measurements;
+    using BaseLibrary.References;
     using BaseLibrary.ZooBank;
+    using BaseLibrary.HyperLinks;
 
     public partial class MainProcessingTool
     {
@@ -349,7 +353,7 @@
 
                 try
                 {
-                    BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
+                    BaseLibrary.HyperLinks.DoiLinksTagger linksTagger = new BaseLibrary.HyperLinks.DoiLinksTagger(config, fp.Xml);
 
                     linksTagger.TagDOI();
                     linksTagger.TagPMCLinks();
@@ -514,8 +518,8 @@
 
                 try
                 {
-                    BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
-                    linksTagger.TagWWW();
+                    IBaseTagger linksTagger = new UrlLinksTagger(config, fp.Xml);
+                    linksTagger.Tag();
                     fp.Xml = linksTagger.Xml;
                 }
                 catch (Exception e)

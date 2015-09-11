@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Morphology
 {
     public class MorphologyTagger : TaggerBase
     {

@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.Xml;
     using BaseLibrary;
+    using BaseLibrary.Floats;
     using BaseLibrary.Taxonomy;
 
     public partial class MainProcessingTool
@@ -486,8 +487,8 @@
 
             try
             {
-                Floats fl = new Floats(config, xmlContent);
-                fl.TagAllFloats();
+                FloatsTagger fl = new FloatsTagger(config, xmlContent);
+                fl.Tag();
                 xmlContent = fl.Xml;
             }
             catch (Exception e)
@@ -557,8 +558,8 @@
 
             try
             {
-                Floats fl = new Floats(config, xmlContent);
-                fl.TagTableFootNotes();
+                IBaseTagger fl = new TableFootNotesTagger(config, xmlContent);
+                fl.Tag();
                 xmlContent = fl.Xml;
             }
             catch (Exception e)

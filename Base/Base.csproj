@@ -90,6 +90,8 @@
     <Compile Include="src\Base\TaggerBase.cs" />
     <Compile Include="src\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
+    <Compile Include="src\Floats\FloatsReferenceType.cs" />
+    <Compile Include="src\Floats\TableFootNotesTagger.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
     <Compile Include="src\Interfaces\IBaseCloner.cs" />
@@ -147,7 +149,7 @@
     <Compile Include="src\Special\QuentinFlora.cs" />
     <Compile Include="src\Base\QueryReplace.cs" />
     <Compile Include="src\References\References.cs" />
-    <Compile Include="src\Codes\SpecimenCountTagger.cs" />
+    <Compile Include="src\SpecimentCount\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="src\Taxonomy\Species.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="src\Taxonomy\TaxaTagger\TaxaTagger.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
+    <Compile Include="src\WebLinks\UrlLinksTagger.cs" />
     <Compile Include="src\XPathProvider\XPathProvider.cs" />
     <Compile Include="src\ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="src\ZooBank\Cloner\ZoobankXmlCloner.cs" />

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Measurements
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;

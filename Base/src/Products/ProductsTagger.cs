@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Products
 {
     public class ProductsTagger : TaggerBase
     {

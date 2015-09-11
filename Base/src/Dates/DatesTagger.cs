@@ -10,7 +10,7 @@
  29th of April, 2015
 */
 
-namespace ProcessingTools.BaseLibrary
+namespace ProcessingTools.BaseLibrary.Dates
 {
     using System.Collections.Generic;
     using System.Linq;

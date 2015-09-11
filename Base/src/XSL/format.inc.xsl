@@ -47,4 +47,13 @@
     <xsl:apply-templates/>
   </xsl:template>
 
+  <xsl:template match="email|self-uri|uri|ext-link">
+    <xsl:element name="{name()}">
+      <xsl:attribute name="xlink:type">
+        <xsl:text>simple</xsl:text>
+      </xsl:attribute>
+      <xsl:apply-templates select="@* | node()"/>
+    </xsl:element>
+  </xsl:template>
+
 </xsl:stylesheet>

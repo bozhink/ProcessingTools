@@ -7,6 +7,9 @@
     using ProcessingTools;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Abbreviations;
+    using ProcessingTools.BaseLibrary.Dates;
+    using ProcessingTools.BaseLibrary.Geo;
+    using ProcessingTools.BaseLibrary.Measurements;
 
     [TestClass]
     public class CodesTests

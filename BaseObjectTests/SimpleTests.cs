@@ -3,6 +3,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools;
     using ProcessingTools.BaseLibrary;
+    using ProcessingTools.BaseLibrary.Measurements;
 
     [TestClass]
     public class SimpleTests

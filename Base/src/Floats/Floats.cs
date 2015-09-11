@@ -1,38 +1,14 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Floats
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public enum ReferenceType
-    {
-        Affiliation, ////"aff"
-        Appendix, ////"app"
-        AuthorNotes, ////"author-notes"
-        BibliographiReference, ////"bibr"
-        ChemicalStructure, ////"chem"
-        Contributor, ////"contrib"
-        CorrespondingAuthor, ////"corresp"
-        DisplayFormula, ////"disp-formula"
-        Figure, ////"fig"
-        Footnote, ////"fn"
-        Keyword, ////"kwd"
-        List, ////"list"
-        Other, ////"other"
-        Plate, ////"plate"
-        Scheme, ////"scheme"
-        Section, ////"sec"
-        Statement, ////"statement"
-        SupplementaryMaterial, ////"supplementary-material"
-        Table, ////"table"
-        TableFootnote, ////"table-fn"
-        Textbox ////"boxed-text"
-    }
-
-    public class Floats : TaggerBase
+    public class FloatsTagger : Base, IBaseTagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 30;
@@ -42,200 +18,169 @@
         private readonly Regex selectNaNChar = new Regex(@"\D");
 
         private Hashtable floatIdByLabel = null;
+        private Hashtable floatLabelById = null;
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
-        private Hashtable floatLabelById = null;
 
-        public Floats(Config config, string xml)
+        public FloatsTagger(Config config, string xml)
             : base(config, xml)
         {
             this.InitFloats();
         }
 
-        public Floats(IBase baseObject)
+        public FloatsTagger(IBase baseObject)
             : base(baseObject)
         {
             this.InitFloats();
         }
 
-        public void TagAllFloats()
+        public void Tag()
         {
             // Force Fig. and Figs
             this.Xml = Regex.Replace(
-                Regex.Replace(this.Xml, @"(Fig)\s", "$1. "),
+                Regex.Replace(this.Xml, @"(Fig)\s+", "$1. "),
                 @"(Figs)\.",
                 "$1");
 
-            {
-                /*
-                 * Tag Figures
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Figure, "Figure");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("fig", "Fig\\.|Figs|Figures?");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "fig");
-                    this.FormatXrefGroup("fig");
-                }
-            }
-
-            {
-                /*
-                 * Tag Maps
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Figure, "Map");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("map", "Maps?");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "map");
-                    this.FormatXrefGroup("map");
-                }
-            }
-
-            {
-                /*
-                 * Tag Plates
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Figure, "Plate");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("plate", "Plates?");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "plate");
-                    this.FormatXrefGroup("plate");
-                }
-            }
-
-            {
-                /*
-                 * Tag Habitus
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Figure, "Habitus");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("habitus", "Habitus");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "habitus");
-                    this.FormatXrefGroup("habitus");
-                }
-            }
-
-            {
-                /*
-                 * Tag Tables
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Table, "Table");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("table", "Tab\\.|Tabs|Tables?");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "table");
-                    this.FormatXrefGroup("table");
-                }
-            }
-
-            {
-                /*
-                 * Tag Boxes of type table
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Table, "Box");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("table", "Box|Boxes");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "table");
-                    this.FormatXrefGroup("table");
-                }
-            }
-
-            {
-                /*
-                 * Tag Boxes of type boxed-text
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.Textbox, "Box");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("boxed-text", "Box|Boxes");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "boxed-text");
-                    this.FormatXrefGroup("boxed-text");
-                }
-            }
-
-            {
-                /*
-                 * Tag Supplementary materials
-                 */
-                this.InitFloats();
-                int numberOfFloatsOfType = this.GetFloats(ReferenceType.SupplementaryMaterial, "Supplementary material");
-                if (numberOfFloatsOfType > 0)
-                {
-                    this.TagFloatsOfType("supplementary-material", @"Suppl\.\s*materials?");
-                    this.FormatXref();
-                    this.ProcessFloatsRid(numberOfFloatsOfType, "supplementary-material");
-                    this.FormatXrefGroup("supplementary-material");
-                }
-            }
-
+            this.TagFigures();
+            this.TagMaps();
+            this.TagPlates();
+            this.TagHabitus();
+            this.TagTables();
+            this.TagTableBoxes();
+            this.TagTextBoxes();
+            this.TagSupplementaryMaterials();
             this.RemoveXrefInTitles();
 
             this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
         }
 
-        public void TagTableFootNotes()
+        /// <summary>
+        /// Tags Supplementary materials.
+        /// </summary>
+        private void TagSupplementaryMaterials()
         {
-            // Get list of table-wrap with correctly formatted foot-notes
-            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
-            if (tableWrapList.Count < 1)
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.SupplementaryMaterial, "Supplementary material");
+            if (numberOfFloatsOfType > 0)
             {
-                Alert.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                this.TagFloatsOfType("supplementary-material", @"Suppl\.\s*materials?");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "supplementary-material");
+                this.FormatXrefGroup("supplementary-material");
             }
-            else
+        }
+
+        /// <summary>
+        /// Tags Boxes of type boxed-text.
+        /// </summary>
+        private void TagTextBoxes()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Textbox, "Box");
+            if (numberOfFloatsOfType > 0)
             {
-                Console.WriteLine("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
-                foreach (XmlNode tableWrap in tableWrapList)
-                {
-                    Hashtable tableFootnotes = new Hashtable();
-
-                    // Get foot-note's label and corresponding @id-s
-                    foreach (XmlNode fn in tableWrap.SelectNodes("//fn[label][@id]", this.NamespaceManager))
-                    {
-                        tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
-                    }
-
-                    foreach (string tableFootnoteKey in tableFootnotes.Keys)
-                    {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + tableFootnoteKey + "']", this.NamespaceManager))
-                        {
-                            // <xref ref-type="table-fn" rid="TN1"></xref>
-                            XmlNode xrefTableFootNote = this.XmlDocument.CreateElement("xref");
-
-                            XmlAttribute refType = this.XmlDocument.CreateAttribute("ref-type");
-                            refType.InnerXml = "table-fn";
-                            xrefTableFootNote.Attributes.Append(refType);
-
-                            XmlAttribute rid = this.XmlDocument.CreateAttribute("rid");
-                            rid.InnerXml = tableFootnotes[tableFootnoteKey].ToString();
-                            xrefTableFootNote.Attributes.Append(rid);
-
-                            xrefTableFootNote.InnerXml = footnoteSup.OuterXml;
-
-                            footnoteSup.InnerXml = xrefTableFootNote.OuterXml;
-                        }
-                    }
-                }
+                this.TagFloatsOfType("boxed-text", "Box|Boxes");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "boxed-text");
+                this.FormatXrefGroup("boxed-text");
             }
+        }
 
-            this.Xml = Regex.Replace(this.Xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
+        /// <summary>
+        /// Tags Boxes of type table.
+        /// </summary>
+        private void TagTableBoxes()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Table, "Box");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("table", "Box|Boxes");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "table");
+                this.FormatXrefGroup("table");
+            }
+        }
+
+        /// <summary>
+        /// Tags Tables.
+        /// </summary>
+        private void TagTables()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Table, "Table");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("table", "Tab\\.|Tabs|Tables?");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "table");
+                this.FormatXrefGroup("table");
+            }
+        }
+
+        /// <summary>
+        /// Tags Habitus.
+        /// </summary>
+        private void TagHabitus()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Habitus");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("habitus", "Habitus");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "habitus");
+                this.FormatXrefGroup("habitus");
+            }
+        }
+
+        /// <summary>
+        /// Tags Plates.
+        /// </summary>
+        private void TagPlates()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Plate");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("plate", "Plates?");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "plate");
+                this.FormatXrefGroup("plate");
+            }
+        }
+
+        /// <summary>
+        /// Tags Maps.
+        /// </summary>
+        private void TagMaps()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Map");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("map", "Maps?");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "map");
+                this.FormatXrefGroup("map");
+            }
+        }
+
+        /// <summary>
+        /// Tags Figures.
+        /// </summary>
+        private void TagFigures()
+        {
+            this.InitFloats();
+            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Figure");
+            if (numberOfFloatsOfType > 0)
+            {
+                this.TagFloatsOfType("fig", "Fig\\.|Figs|Figures?");
+                this.FormatXref();
+                this.ProcessFloatsRid(numberOfFloatsOfType, "fig");
+                this.FormatXrefGroup("fig");
+            }
         }
 
         private string FloatsFirstOccurencePattern(string labelPattern)
@@ -289,7 +234,8 @@
                     string xrefGroup = xrefGroupNode.InnerXml;
 
                     // <xref-group>Figures 109–112
-                    for (Match dashed = Regex.Match(xrefGroup, "<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>[–—−-]<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>"); dashed.Success; dashed = dashed.NextMatch())
+                    Regex matchDashed = new Regex("<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>[–—−-]<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>");
+                    for (Match dashed = matchDashed.Match(xrefGroup); dashed.Success; dashed = dashed.NextMatch())
                     {
                         string xref_replace = dashed.Value;
 
@@ -366,7 +312,7 @@
             }
         }
 
-        private string GetFloatId(ReferenceType refType, XmlNode node)
+        private string GetFloatId(FloatsReferenceType refType, XmlNode node)
         {
             string id = string.Empty;
             if (node.Attributes["id"] != null)
@@ -377,7 +323,7 @@
             {
                 switch (refType)
                 {
-                    case ReferenceType.Table:
+                    case FloatsReferenceType.Table:
                         try
                         {
                             id = node["table"].Attributes["id"].InnerText;
@@ -417,7 +363,7 @@
         /// <param name="refType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
         /// <param name="floatType">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
         /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
-        private int GetFloats(ReferenceType refType = ReferenceType.Figure, string floatType = "Figure")
+        private int GetFloats(FloatsReferenceType refType = FloatsReferenceType.Figure, string floatType = "Figure")
         {
             this.floatIdByLabel = new Hashtable();
             this.floatLabelById = new Hashtable();
@@ -451,21 +397,21 @@
             return numberOfFloatsOfType;
         }
 
-        private string GetFloatsXPath(ReferenceType refType, string floatType)
+        private string GetFloatsXPath(FloatsReferenceType refType, string floatType)
         {
             string xpath = string.Empty;
             switch (refType)
             {
-                case ReferenceType.Figure:
+                case FloatsReferenceType.Figure:
                     xpath = "//fig[contains(string(label),'" + floatType + "')]";
                     break;
-                case ReferenceType.Table:
+                case FloatsReferenceType.Table:
                     xpath = "//table-wrap[contains(string(label),'" + floatType + "')]";
                     break;
-                case ReferenceType.Textbox:
+                case FloatsReferenceType.Textbox:
                     xpath = "//box[contains(string(title),'" + floatType + "')]|//boxed-text[contains(string(label),'" + floatType + "')]";
                     break;
-                case ReferenceType.SupplementaryMaterial:
+                case FloatsReferenceType.SupplementaryMaterial:
                     xpath = "//supplementary-material[contains(string(label),'" + floatType + "')]";
                     break;
                 default:
@@ -525,12 +471,12 @@
             }
         }
 
-        private void PrintFloatsDistributionById(ReferenceType refType)
+        private void PrintFloatsDistributionById(FloatsReferenceType refType)
         {
-            Console.WriteLine();
+            Alert.Log();
             foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
             {
-                Console.WriteLine("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
+                Alert.Log("{2}\t#{0}\tis in float\t#{1}\n", floatId, this.floatIdByLabel[floatId], refType.ToString());
             }
         }
 
@@ -543,7 +489,7 @@
                 xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
             }
 
-            foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct().ToList())
+            foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct())
             {
                 for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
                 {
@@ -610,6 +556,11 @@
             {
                 this.floatLabelById.Add(id, Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1"));
             }
+        }
+
+        public void Tag(IXPathProvider xpathProvider)
+        {
+            this.Tag();
         }
     }
 }

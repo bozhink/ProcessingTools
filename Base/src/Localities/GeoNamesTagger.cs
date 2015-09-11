@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Geo
 {
     public class GeoNamesTagger : TaggerBase
     {

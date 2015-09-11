@@ -36,9 +36,9 @@
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, "QueryReplace", 2);
+                throw;
             }
 
             return text;
