@@ -12,6 +12,139 @@
         private static TaxonomicBlackList blackList;
         private static TaxonomicWhiteList whiteList;
 
+        public static void ValidateTaxa(string xmlContent)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Alert.Log("\n\tTaxa validation using Global names resolver.\n");
+
+            IValidator validator = new TaxonomicNamesValidator(config, xmlContent);
+
+            validator.Validate();
+
+            PrintElapsedTime(timer);
+        }
+
+        private static string ExpandTaxa(string xmlContent)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Alert.Log("\n\tExpand taxa.\n");
+
+            BaseLibrary.Taxonomy.Nlm.Expander expand = new BaseLibrary.Taxonomy.Nlm.Expander(config, xmlContent);
+            Expander exp = new Expander(config, xmlContent);
+
+            for (int i = 0; i < NumberOfExpandingIterations; ++i)
+            {
+                if (taxaE)
+                {
+                    exp.Xml = expand.Xml;
+                    exp.StableExpand();
+                    expand.Xml = exp.Xml;
+                }
+
+                if (flag1)
+                {
+                    expand.UnstableExpand1();
+                }
+
+                if (flag2)
+                {
+                    expand.UnstableExpand2();
+                }
+
+                if (flag3)
+                {
+                    exp.Xml = expand.Xml;
+                    exp.UnstableExpand3();
+                    expand.Xml = exp.Xml;
+                }
+
+                if (flag4)
+                {
+                    expand.UnstableExpand4();
+                }
+
+                if (flag5)
+                {
+                    expand.UnstableExpand5();
+                }
+
+                if (flag6)
+                {
+                    expand.UnstableExpand6();
+                }
+
+                if (flag7)
+                {
+                    expand.UnstableExpand7();
+                }
+
+                if (flag8)
+                {
+                    exp.Xml = expand.Xml;
+                    exp.UnstableExpand8();
+                    expand.Xml = exp.Xml;
+                }
+
+                xmlContent = expand.Xml;
+                PrintElapsedTime(timer);
+            }
+
+            return xmlContent;
+        }
+
+        private static void ExtractTaxa(string xmlContent)
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(xmlContent);
+            IEnumerable<string> taxaList;
+
+            if (extractTaxa)
+            {
+                Alert.Log("\n\t\tExtract all taxa\n");
+                taxaList = xmlDocument.ExtractTaxa(true);
+                foreach (string taxon in taxaList)
+                {
+                    Alert.Log(taxon);
+                }
+            }
+
+            if (extractLowerTaxa)
+            {
+                Alert.Log("\n\t\tExtract lower taxa\n");
+                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Lower);
+                foreach (string taxon in taxaList)
+                {
+                    Alert.Log(taxon);
+                }
+            }
+
+            if (extractHigherTaxa)
+            {
+                Alert.Log("\n\t\tExtract higher taxa\n");
+                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Higher);
+                foreach (string taxon in taxaList)
+                {
+                    Alert.Log(taxon);
+                }
+            }
+        }
+
+        private static string FormatTreatments(string xmlContent)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Alert.Log("\n\tFormat treatments.\n");
+
+            IBaseFormatter formatter = new TreatmentFormatter(config, xmlContent);
+            formatter.Format();
+            xmlContent = formatter.Xml;
+
+            PrintElapsedTime(timer);
+            return xmlContent;
+        }
+
         private static string MainProcessing(string xml)
         {
             string xmlContent = xml;
@@ -174,33 +307,6 @@
             return xmlContent;
         }
 
-        private static string TagHigherTaxa(string xmlContent)
-        {
-            if (taxaB)
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.Log("\n\tTag higher taxa.\n");
-
-                try
-                {
-                    IBaseTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
-
-                    tagger.Tag();
-
-                    xmlContent = tagger.Xml;
-                }
-                catch (Exception e)
-                {
-                    Alert.RaiseExceptionForMethod(e, 0);
-                }
-
-                PrintElapsedTime(timer);
-            }
-
-            return xmlContent;
-        }
-
         private static string ParseLowerTaxa(string xmlContent)
         {
             if (taxaC)
@@ -213,32 +319,6 @@
                 parser.Parse();
 
                 xmlContent = parser.Xml;
-                PrintElapsedTime(timer);
-            }
-
-            return xmlContent;
-        }
-
-        private static string TagLowerTaxa(string xmlContent)
-        {
-            if (taxaA)
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.Log("\n\tTag lower taxa.\n");
-                try
-                {
-                    IBaseTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
-
-                    tagger.Tag();
-
-                    xmlContent = tagger.Xml;
-                }
-                catch (Exception e)
-                {
-                    Alert.RaiseExceptionForMethod(e, 0);
-                }
-
                 PrintElapsedTime(timer);
             }
 
@@ -289,20 +369,6 @@
             return xmlContent;
         }
 
-        private static string FormatTreatments(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            Alert.Log("\n\tFormat treatments.\n");
-
-            IBaseFormatter formatter = new TreatmentFormatter(config, xmlContent);
-            formatter.Format();
-            xmlContent = formatter.Xml;
-
-            PrintElapsedTime(timer);
-            return xmlContent;
-        }
-
         private static string RemoveAllTaxaTags(string xmlContent)
         {
             IBaseParser parser = new LowerTaxaParser(config, xmlContent);
@@ -311,119 +377,65 @@
             return xmlContent;
         }
 
-        private static void ExtractTaxa(string xmlContent)
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlContent);
-            IEnumerable<string> taxaList;
-
-            if (extractTaxa)
-            {
-                Alert.Log("\n\t\tExtract all taxa\n");
-                taxaList = xmlDocument.ExtractTaxa(true);
-                foreach (string taxon in taxaList)
-                {
-                    Alert.Log(taxon);
-                }
-            }
-
-            if (extractLowerTaxa)
-            {
-                Alert.Log("\n\t\tExtract lower taxa\n");
-                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Lower);
-                foreach (string taxon in taxaList)
-                {
-                    Alert.Log(taxon);
-                }
-            }
-
-            if (extractHigherTaxa)
-            {
-                Alert.Log("\n\t\tExtract higher taxa\n");
-                taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Higher);
-                foreach (string taxon in taxaList)
-                {
-                    Alert.Log(taxon);
-                }
-            }
-        }
-
-        public static void ValidateTaxa(string xmlContent)
+        private static string TagFloats(string xmlContent)
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tTaxa validation using Global names resolver.\n");
-
-            IValidator validator = new TaxonomicNamesValidator(config, xmlContent);
-
-            validator.Validate();
-
+            Alert.Log("\n\tTag floats.\n");
+            Floats fl = new Floats(config, xmlContent);
+            fl.TagAllFloats();
+            xmlContent = fl.Xml;
             PrintElapsedTime(timer);
+            return xmlContent;
         }
 
-        private static string ExpandTaxa(string xmlContent)
+        private static string TagHigherTaxa(string xmlContent)
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            Alert.Log("\n\tExpand taxa.\n");
-
-            BaseLibrary.Taxonomy.Nlm.Expander expand = new BaseLibrary.Taxonomy.Nlm.Expander(config, xmlContent);
-            Expander exp = new Expander(config, xmlContent);
-
-            for (int i = 0; i < NumberOfExpandingIterations; i++)
+            if (taxaB)
             {
-                if (taxaE)
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tTag higher taxa.\n");
+
+                try
                 {
-                    exp.Xml = expand.Xml;
-                    exp.StableExpand();
-                    expand.Xml = exp.Xml;
+                    IBaseTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
+
+                    tagger.Tag();
+
+                    xmlContent = tagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
                 }
 
-                if (flag1)
+                PrintElapsedTime(timer);
+            }
+
+            return xmlContent;
+        }
+
+        private static string TagLowerTaxa(string xmlContent)
+        {
+            if (taxaA)
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                Alert.Log("\n\tTag lower taxa.\n");
+                try
                 {
-                    expand.UnstableExpand1();
+                    IBaseTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
+
+                    tagger.Tag();
+
+                    xmlContent = tagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
                 }
 
-                if (flag2)
-                {
-                    expand.UnstableExpand2();
-                }
-
-                if (flag3)
-                {
-                    exp.Xml = expand.Xml;
-                    exp.UnstableExpand3();
-                    expand.Xml = exp.Xml;
-                }
-
-                if (flag4)
-                {
-                    expand.UnstableExpand4();
-                }
-
-                if (flag5)
-                {
-                    expand.UnstableExpand5();
-                }
-
-                if (flag6)
-                {
-                    expand.UnstableExpand6();
-                }
-
-                if (flag7)
-                {
-                    expand.UnstableExpand7();
-                }
-
-                if (flag8)
-                {
-                    exp.Xml = expand.Xml;
-                    exp.UnstableExpand8();
-                    expand.Xml = exp.Xml;
-                }
-
-                xmlContent = expand.Xml;
                 PrintElapsedTime(timer);
             }
 
@@ -437,18 +449,6 @@
             Alert.Log("\n\tTag table foot-notes.\n");
             Floats fl = new Floats(config, xmlContent);
             fl.TagTableFootNotes();
-            xmlContent = fl.Xml;
-            PrintElapsedTime(timer);
-            return xmlContent;
-        }
-
-        private static string TagFloats(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            Alert.Log("\n\tTag floats.\n");
-            Floats fl = new Floats(config, xmlContent);
-            fl.TagAllFloats();
             xmlContent = fl.Xml;
             PrintElapsedTime(timer);
             return xmlContent;

@@ -22,7 +22,6 @@
         private static bool flora = false;
         private static bool formatInit = false;
         private static bool formatTreat = false;
-        private static bool generateZooBankNlm = false;
         private static string higherStructrureXpath = "//article";
         private static string inputFileName = string.Empty;
         private static string outputFileName = string.Empty;
@@ -61,10 +60,9 @@
         private static bool testFlag = false;
         private static bool untagSplit = false;
         private static bool validateTaxa = false;
-        private static bool zoobank = false;
-        private static bool zoobankJson = false;
-        
-        //// "//sec[name(..)!='sec']";
+        private static bool zoobankCloneJson = false;
+        private static bool zoobankCloneXml = false;
+        private static bool zoobankGenerateRegistrationXml = false;
 
         private static void ParseDoubleDashedOptions(string[] args)
         {
@@ -112,15 +110,15 @@
                 }
                 else if (args[item].CompareTo("--zoobank-nlm") == 0)
                 {
-                    generateZooBankNlm = true;
+                    zoobankGenerateRegistrationXml = true;
                 }
                 else if (args[item].CompareTo("--zoobank-json") == 0)
                 {
-                    zoobankJson = true;
+                    zoobankCloneJson = true;
                 }
                 else if (args[item].CompareTo("--zoobank-clone") == 0)
                 {
-                    zoobank = true;
+                    zoobankCloneXml = true;
                 }
                 else if (args[item].CompareTo("--parse-treatment-meta-with-aphia") == 0 || args[item].CompareTo("--ptm-aphia") == 0)
                 {
@@ -273,7 +271,7 @@
                             break;
 
                         case 'z':
-                            zoobank = true;
+                            zoobankCloneXml = true;
                             break;
 
                         case 'r':

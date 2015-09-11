@@ -3,10 +3,8 @@
     using System.Configuration;
     using System.Diagnostics;
     using System.IO;
-    using System.Text.RegularExpressions;
     using System.Xml;
     using BaseLibrary;
-    using BaseLibrary.ZooBank;
 
     public partial class MainProcessingTool
     {
@@ -23,9 +21,6 @@
             ParseSingleDashedOptions(args);
             ParseDoubleDashedOptions(args);
 
-            /*
-             * Main processing part
-             */
             FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
             Alert.Log(
                 "Input file name: {0}\nOutput file name: {1}\n{2}",
@@ -64,185 +59,36 @@
 
             TagCodes(fp);
 
-            if (zoobank)
+            if (zoobankCloneXml)
             {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.ZoobankCloneMessage();
-                if (arguments.Count > 2)
-                {
-                    FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
-                    fileProcessorNlm.Read();
-                    ZoobankCloner zb = new ZoobankCloner(fileProcessorNlm.Xml, fp.Xml);
-                    zb.Clone();
-                    fp.Xml = zb.Xml;
-                }
-
-                PrintElapsedTime(timer);
+                ZooBankCloneXml(fp);
             }
-            else if (zoobankJson)
+            else if (zoobankCloneJson)
             {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.ZoobankCloneMessage();
-                if (arguments.Count > 2)
-                {
-                    string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
-                    ZoobankCloner zb = new ZoobankCloner(fp.Xml);
-                    zb.CloneJsonToXml(jsonStringContent);
-                    fp.Xml = zb.Xml;
-                }
-
-                PrintElapsedTime(timer);
+                ZooBankCloneJson(fp);
+            }
+            else if (zoobankGenerateRegistrationXml)
+            {
+                ZooBankGenerateRegistrationXml(fp);
             }
             else if (quentinSpecificActions)
             {
-                QuentinFlora qf = new QuentinFlora(fp.Xml);
-                if (formatInit)
-                {
-                    qf.InitialFormat();
-                }
-                else if (flag1)
-                {
-                    qf.Split1();
-                }
-                else if (flag2)
-                {
-                    qf.Split2();
-                }
-                else
-                {
-                    qf.FinalFormat();
-                }
-
-                fp.Xml = qf.Xml;
+                QuentinSpecific(fp);
+            }
+            else if (flora)
+            {
+                FloraSpecific(fp);
+            }
+            else if (tagReferences)
+            {
+                TagReferences(fp);
             }
             else if (queryReplace && queryFileName.Length > 0)
             {
                 fp.Xml = QueryReplace.Replace(config, fp.Xml, queryFileName);
             }
-            else if (flora)
-            {
-                FileProcessor flp = new FileProcessor(config, inputFileName, config.floraExtractedTaxaListPath);
-                FileProcessor flpp = new FileProcessor(config, inputFileName, config.floraExtractTaxaPartsOutputPath);
-                Flora fl = new Flora(config, fp.Xml);
-
-                fl.ExtractTaxa();
-                fl.DistinctTaxa();
-                fl.GenerateTagTemplate();
-
-                flp.Xml = fl.Xml;
-                flp.Write();
-
-                fl.Xml = fp.Xml;
-                if (taxaA)
-                {
-                    fl.PerformReplace();
-                }
-
-                if (taxaB)
-                {
-                    ////fl.TagHigherTaxa();
-                }
-
-                if (taxaC)
-                {
-                    if (flag1)
-                    {
-                        fl.ParseInfra();
-                    }
-
-                    if (flag2)
-                    {
-                        fl.ParseTn();
-                    }
-
-                    if (flag3)
-                    {
-                        ////fl.SplitLowerTaxa();
-                    }
-                }
-
-                fp.Xml = fl.Xml;
-
-                flpp.Xml = fl.ExtractTaxaParts();
-                flpp.Write();
-            }
             else if (testFlag)
             {
-            }
-            else if (generateZooBankNlm)
-            {
-                ZooBank zb = new ZooBank(config, fp.Xml);
-                zb.GenerateZooBankNlm();
-                fp.Xml = zb.Xml;
-            }
-            else if (tagReferences)
-            {
-                Alert.Log("\n\tTag references.\n");
-                if (parseBySection)
-                {
-                    XmlDocument xmlDocument = new XmlDocument();
-                    xmlDocument.PreserveWhitespace = true;
-                    XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
-
-                    try
-                    {
-                        xmlDocument.LoadXml(fp.Xml);
-                    }
-                    catch (XmlException)
-                    {
-                        Alert.Log("Tagger: XmlException");
-                        Alert.Exit(10);
-                    }
-
-                    try
-                    {
-                        foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
-                        {
-                            string templateFileName = string.Empty;
-                            if (node.Attributes["sec-type"] != null)
-                            {
-                                templateFileName = node.Attributes["sec-type"].InnerText;
-                            }
-
-                            if (node["front"]["article-meta"]["article-id"] != null)
-                            {
-                                templateFileName = Regex.Replace(node["front"]["article-meta"]["article-id"].InnerText, @"\d+\.\d+/", string.Empty);
-                            }
-
-                            templateFileName = Regex.Replace(templateFileName, @"\W+", "_");
-                            templateFileName = Regex.Replace(templateFileName, @"^(.{0,30}).*$", "$1_" + node.GetHashCode());
-
-                            Alert.Log(templateFileName);
-
-                            XmlNode newNode = node;
-                            newNode.InnerXml = TagReferences(node.OuterXml, templateFileName);
-                            node.InnerXml = newNode.FirstChild.InnerXml;
-                        }
-                    }
-                    catch (System.Xml.XPath.XPathException)
-                    {
-                        Alert.Log("Tagger: XPathException");
-                        Alert.Exit(1);
-                    }
-                    catch (System.InvalidOperationException)
-                    {
-                        Alert.Log("Tagger: InvalidOperationException");
-                        Alert.Exit(1);
-                    }
-                    catch (XmlException)
-                    {
-                        Alert.Log("Tagger: XmlException");
-                        Alert.Exit(1);
-                    }
-
-                    fp.Xml = xmlDocument.OuterXml;
-                }
-                else
-                {
-                    fp.Xml = TagReferences(fp.Xml, fp.OutputFileName);
-                }
             }
             else
             {
@@ -298,23 +144,14 @@
                 }
             }
 
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                Alert.WriteOutputFileMessage();
-
-                fp.NormalizeSystemXmlToCurrent();
-                fp.Write();
-
-                PrintElapsedTime(timer);
-            }
+            WriteOutputFile(fp);
 
             Alert.Log("Main timer: " + mainTimer.Elapsed);
         }
 
         private static void InitialCheckOfInputParameters(string[] args)
         {
-            for (int i = 0; i < args.Length; i++)
+            for (int i = 0; i < args.Length; ++i)
             {
                 char[] arg = args[i].ToCharArray();
                 if (arg[0] == '-' && arg[1] == '-')
@@ -342,11 +179,6 @@
             config.TagWholeDocument = false;
         }
 
-        private static void PrintElapsedTime(Stopwatch timer)
-        {
-            Alert.Log("Elapsed time " + timer.Elapsed);
-        }
-
         private static void ParseFileNames(string[] args)
         {
             if (arguments.Count < 1)
@@ -370,6 +202,23 @@
                 outputFileName = args[arguments[1]];
                 queryFileName = args[arguments[2]];
             }
+        }
+
+        private static void PrintElapsedTime(Stopwatch timer)
+        {
+            Alert.Log("Elapsed time " + timer.Elapsed);
+        }
+
+        private static void WriteOutputFile(FileProcessor fp)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Alert.WriteOutputFileMessage();
+
+            fp.NormalizeSystemXmlToCurrent();
+            fp.Write();
+
+            PrintElapsedTime(timer);
         }
     }
 }
