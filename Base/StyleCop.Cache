@@ -1913,29 +1913,6 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="ZoobankCloner.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2015-08-26 18:01:28.703</styleCop>
-      <settingsFile>2015-08-27 09:26:35.663</settingsFile>
-      <sourceFile>2015-08-27 14:05:31.093</sourceFile>
-      <parser>2015-08-26 18:01:28.703</parser>
-      <StyleCop.CSharp.DocumentationRules>2015-08-26 18:01:28.703</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-898381609</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2015-08-26 18:01:28.703</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2015-08-26 18:01:28.703</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2015-08-26 18:01:28.703</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2015-08-26 18:01:28.703</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2015-08-26 18:01:28.703</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2015-08-26 18:01:28.703</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations />
-  </sourcecode>
   <sourcecode name="Links.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-08-26 18:01:28.703</styleCop>
@@ -2164,9 +2141,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="-1006022180">
-    <configuration>TRACE</configuration>
-  </project>
   <sourcecode name="IBaseFormatter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-09-07 10:32:34.772</styleCop>
@@ -2190,4 +2164,88 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <sourcecode name="ZoobankXmlCloner.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2015-09-07 10:32:34.772</styleCop>
+      <settingsFile>2015-09-07 10:32:34.732</settingsFile>
+      <sourceFile>2015-09-11 10:15:30.596</sourceFile>
+      <parser>2015-09-07 10:32:34.772</parser>
+      <StyleCop.CSharp.DocumentationRules>2015-09-07 10:32:34.772</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-310450637</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2015-09-07 10:32:34.772</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ZoobankCloner.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2015-09-07 10:32:34.772</styleCop>
+      <settingsFile>2015-09-07 10:32:34.732</settingsFile>
+      <sourceFile>2015-09-11 10:35:33.975</sourceFile>
+      <parser>2015-09-07 10:32:34.772</parser>
+      <StyleCop.CSharp.DocumentationRules>2015-09-07 10:32:34.772</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-310450637</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2015-09-07 10:32:34.772</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ZoobankJsonCloner.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2015-09-07 10:32:34.772</styleCop>
+      <settingsFile>2015-09-07 10:32:34.732</settingsFile>
+      <sourceFile>2015-09-11 11:07:29.851</sourceFile>
+      <parser>2015-09-07 10:32:34.772</parser>
+      <StyleCop.CSharp.DocumentationRules>2015-09-07 10:32:34.772</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-310450637</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2015-09-07 10:32:34.772</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2015-09-07 10:32:34.772</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2015-09-07 10:32:34.772</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixCallsCorrectly" ruleCheckId="SA1126">
+        <context>The call to ZooBankPrefix must begin with the 'this.', 'base.', 'object.' or 'ZoobankJsonCloner.' or 'ZoobankCloner.' prefix to indicate the intended method call. </context>
+        <line>130</line>
+        <index>4855</index>
+        <endIndex>4867</endIndex>
+        <startLine>130</startLine>
+        <startColumn>42</startColumn>
+        <endLine>130</endLine>
+        <endColumn>54</endColumn>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <project key="-1006022180">
+    <configuration>TRACE</configuration>
+  </project>
 </stylecopresultscache>

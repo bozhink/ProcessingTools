@@ -453,8 +453,8 @@
             if (arguments.Count > 2)
             {
                 string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
-                ZoobankCloner zoobankCloner = new ZoobankCloner(fp.Xml);
-                zoobankCloner.CloneJsonToXml(jsonStringContent);
+                IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml);
+                zoobankCloner.Clone();
                 fp.Xml = zoobankCloner.Xml;
             }
 
@@ -470,7 +470,7 @@
             {
                 FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
                 fileProcessorNlm.Read();
-                ZoobankCloner zoobankCloner = new ZoobankCloner(fileProcessorNlm.Xml, fp.Xml);
+                IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml);
                 zoobankCloner.Clone();
                 fp.Xml = zoobankCloner.Xml;
             }
@@ -480,8 +480,8 @@
 
         private static void ZooBankGenerateRegistrationXml(FileProcessor fp)
         {
-            ZooBank zoobankRegistrationXmlGenerator = new ZooBank(config, fp.Xml);
-            zoobankRegistrationXmlGenerator.GenerateZooBankNlm();
+            IBaseGenerator zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(config, fp.Xml);
+            zoobankRegistrationXmlGenerator.Generate();
             fp.Xml = zoobankRegistrationXmlGenerator.Xml;
         }
     }

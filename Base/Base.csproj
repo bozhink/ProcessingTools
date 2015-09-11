@@ -7,7 +7,7 @@
     <ProjectGuid>{25195D4B-EBD2-487F-84A6-C2CD8850450D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BaseLibrary</RootNamespace>
+    <RootNamespace>ProcessingTools.BaseLibrary</RootNamespace>
     <AssemblyName>Base</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -90,10 +90,14 @@
     <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />
     <Compile Include="src\Base\MimeResolver.cs" />
+    <Compile Include="src\Interfaces\IBaseCloner.cs" />
     <Compile Include="src\Interfaces\IBaseFormatter.cs" />
+    <Compile Include="src\Interfaces\IBaseGenerator.cs" />
     <Compile Include="src\Interfaces\IBaseParser.cs" />
     <Compile Include="src\Interfaces\IBaseTagger.cs" />
     <Compile Include="src\Interfaces\IBaseValidator.cs" />
+    <Compile Include="src\Interfaces\ICloner.cs" />
+    <Compile Include="src\Interfaces\IGenerator.cs" />
     <Compile Include="src\Interfaces\IStringDataList.cs" />
     <Compile Include="src\Interfaces\IFormatter.cs" />
     <Compile Include="src\Interfaces\IValidator.cs" />
@@ -150,8 +154,10 @@
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
     <Compile Include="src\Test\Test.cs" />
     <Compile Include="src\XPathProvider\XPathProvider.cs" />
-    <Compile Include="src\ZooBank\ZooBank.cs" />
-    <Compile Include="src\ZooBank\ZoobankCloner.cs" />
+    <Compile Include="src\ZooBank\Cloner\ZoobankJsonCloner.cs" />
+    <Compile Include="src\ZooBank\Cloner\ZoobankXmlCloner.cs" />
+    <Compile Include="src\ZooBank\Generator\ZoobankRegistrationXmlGenerator.cs" />
+    <Compile Include="src\ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\english-common-words.txt" />

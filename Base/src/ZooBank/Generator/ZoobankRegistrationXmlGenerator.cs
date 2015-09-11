@@ -1,23 +1,23 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
-    public class ZooBank : TaggerBase
+    public class ZoobankRegistrationXmlGenerator : Base, IBaseGenerator
     {
-        public ZooBank(string xml)
+        public ZoobankRegistrationXmlGenerator(string xml)
             : base(xml)
         {
         }
 
-        public ZooBank(Config config, string xml)
+        public ZoobankRegistrationXmlGenerator(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public ZooBank(IBase baseObject)
+        public ZoobankRegistrationXmlGenerator(IBase baseObject)
             : base(baseObject)
         {
         }
 
-        public void GenerateZooBankNlm()
+        public void Generate()
         {
             this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.zoobankNlmXslPath);
         }
