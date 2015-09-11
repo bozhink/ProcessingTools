@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram
 {
+    using System;
     using System.Configuration;
     using System.Diagnostics;
     using System.IO;
@@ -14,207 +15,233 @@
             mainTimer.Start();
 
             ParseConfigFiles();
-
             InitialCheckOfInputParameters(args);
-
             ParseFileNames(args);
 
-            FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
-
-            Alert.Log(
-                "Input file name: {0}\nOutput file name: {1}\n{2}",
-                fp.InputFileName,
-                fp.OutputFileName,
-                queryFileName);
-
-            config.EnvoResponseOutputXmlFileName = string.Format(
-                "{0}\\envo-{1}.xml",
-                config.tempDirectoryPath,
-                Path.GetFileNameWithoutExtension(fp.OutputFileName));
-
-            config.GnrOutputFileName = string.Format(
-                "{0}\\gnr-{1}.xml",
-                config.tempDirectoryPath,
-                Path.GetFileNameWithoutExtension(fp.OutputFileName));
-
-            fp.Read();
-
-            switch (fp.XmlDocument.DocumentElement.Name)
+            try
             {
-                case "article":
-                    config.NlmStyle = true;
-                    break;
+                FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
 
-                default:
-                    config.NlmStyle = false;
-                    break;
-            }
+                Alert.Log(
+                    "Input file name: {0}\nOutput file name: {1}\n{2}",
+                    fp.InputFileName,
+                    fp.OutputFileName,
+                    queryFileName);
 
-            fp.NormalizeXmlToSystemXml();
+                config.EnvoResponseOutputXmlFileName = string.Format(
+                    "{0}\\envo-{1}.xml",
+                    config.tempDirectoryPath,
+                    Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
-            ParseSingleDashedOptions(args);
-            ParseDoubleDashedOptions(args);
+                config.GnrOutputFileName = string.Format(
+                    "{0}\\gnr-{1}.xml",
+                    config.tempDirectoryPath,
+                    Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
-            InitialFormat(fp);
+                fp.Read();
 
-            ParseReferences(fp);
-
-            TagDoi(fp);
-            TagWebLinks(fp);
-
-            TagCoordinates(fp);
-            ParseCoordinates(fp);
-
-            TagEnvo(fp);
-            TagEnvoTerms(fp);
-            TagQuantities(fp);
-            TagDates(fp);
-            TagAbbreviations(fp);
-
-            TagCodes(fp);
-
-            if (zoobankCloneXml)
-            {
-                ZooBankCloneXml(fp);
-            }
-            else if (zoobankCloneJson)
-            {
-                ZooBankCloneJson(fp);
-            }
-            else if (zoobankGenerateRegistrationXml)
-            {
-                ZooBankGenerateRegistrationXml(fp);
-            }
-            else if (quentinSpecificActions)
-            {
-                QuentinSpecific(fp);
-            }
-            else if (flora)
-            {
-                FloraSpecific(fp);
-            }
-            else if (tagReferences)
-            {
-                TagReferences(fp);
-            }
-            else if (queryReplace && queryFileName.Length > 0)
-            {
-                fp.Xml = QueryReplace.Replace(config, fp.Xml, queryFileName);
-            }
-            else if (testFlag)
-            {
-            }
-            else
-            {
-                /*
-                 * Main Tagging part of the program
-                 */
-                if (parseBySection)
+                switch (fp.XmlDocument.DocumentElement.Name)
                 {
-                    XmlDocument xmlDocument = new XmlDocument();
-                    xmlDocument.PreserveWhitespace = true;
-                    XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
+                    case "article":
+                        config.NlmStyle = true;
+                        break;
 
-                    try
-                    {
-                        xmlDocument.LoadXml(fp.Xml);
-                    }
-                    catch (XmlException)
-                    {
-                        Alert.Log("Tagger: XmlException");
-                        Alert.Exit(10);
-                    }
+                    default:
+                        config.NlmStyle = false;
+                        break;
+                }
 
-                    try
-                    {
-                        foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
-                        {
-                            XmlNode newNode = node;
-                            newNode.InnerXml = MainProcessing(node.OuterXml);
-                            node.InnerXml = newNode.FirstChild.InnerXml;
-                        }
-                    }
-                    catch (System.Xml.XPath.XPathException)
-                    {
-                        Alert.Log("Tagger: XPathException trying to tag taxa.");
-                        Alert.Exit(1);
-                    }
-                    catch (System.InvalidOperationException)
-                    {
-                        Alert.Log("Tagger: InvalidOperationException trying to tag taxa.");
-                        Alert.Exit(1);
-                    }
-                    catch (XmlException)
-                    {
-                        Alert.Log("Tagger: XmlException trying to tag taxa.");
-                        Alert.Exit(1);
-                    }
+                fp.NormalizeXmlToSystemXml();
 
-                    fp.Xml = xmlDocument.OuterXml;
+                ParseSingleDashedOptions(args);
+                ParseDoubleDashedOptions(args);
+
+                InitialFormat(fp);
+
+                ParseReferences(fp);
+
+                TagDoi(fp);
+                TagWebLinks(fp);
+
+                TagCoordinates(fp);
+                ParseCoordinates(fp);
+
+                TagEnvo(fp);
+                TagEnvoTerms(fp);
+                TagQuantities(fp);
+                TagDates(fp);
+                TagAbbreviations(fp);
+
+                TagCodes(fp);
+
+                if (zoobankCloneXml)
+                {
+                    ZooBankCloneXml(fp);
+                }
+                else if (zoobankCloneJson)
+                {
+                    ZooBankCloneJson(fp);
+                }
+                else if (zoobankGenerateRegistrationXml)
+                {
+                    ZooBankGenerateRegistrationXml(fp);
+                }
+                else if (quentinSpecificActions)
+                {
+                    QuentinSpecific(fp);
+                }
+                else if (flora)
+                {
+                    FloraSpecific(fp);
+                }
+                else if (tagReferences)
+                {
+                    TagReferences(fp);
+                }
+                else if (queryReplace && queryFileName.Length > 0)
+                {
+                    fp.Xml = QueryReplace.Replace(config, fp.Xml, queryFileName);
+                }
+                else if (testFlag)
+                {
                 }
                 else
                 {
-                    fp.Xml = MainProcessing(fp.Xml);
-                }
-            }
+                    /*
+                     * Main Tagging part of the program
+                     */
+                    if (parseBySection)
+                    {
+                        XmlDocument xmlDocument = new XmlDocument();
+                        xmlDocument.PreserveWhitespace = true;
+                        XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
 
-            WriteOutputFile(fp);
+                        try
+                        {
+                            xmlDocument.LoadXml(fp.Xml);
+                        }
+                        catch (XmlException)
+                        {
+                            Alert.Log("Tagger: XmlException");
+                            Alert.Exit(10);
+                        }
+
+                        try
+                        {
+                            foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
+                            {
+                                XmlNode newNode = node;
+                                newNode.InnerXml = MainProcessing(node.OuterXml);
+                                node.InnerXml = newNode.FirstChild.InnerXml;
+                            }
+                        }
+                        catch (System.Xml.XPath.XPathException)
+                        {
+                            Alert.Log("Tagger: XPathException trying to tag taxa.");
+                            Alert.Exit(1);
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            Alert.Log("Tagger: InvalidOperationException trying to tag taxa.");
+                            Alert.Exit(1);
+                        }
+                        catch (XmlException)
+                        {
+                            Alert.Log("Tagger: XmlException trying to tag taxa.");
+                            Alert.Exit(1);
+                        }
+
+                        fp.Xml = xmlDocument.OuterXml;
+                    }
+                    else
+                    {
+                        fp.Xml = MainProcessing(fp.Xml);
+                    }
+                }
+
+                WriteOutputFile(fp);
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 0);
+            }
 
             Alert.Log("Main timer: " + mainTimer.Elapsed);
         }
 
         private static void InitialCheckOfInputParameters(string[] args)
         {
-            for (int i = 0; i < args.Length; ++i)
+            try
             {
-                char[] arg = args[i].ToCharArray();
-                if (arg[0] == '-' && arg[1] == '-')
+                for (int i = 0; i < args.Length; ++i)
                 {
-                    doubleDashedOptions.Add(i);
+                    char[] arg = args[i].ToCharArray();
+                    if (arg[0] == '-' && arg[1] == '-')
+                    {
+                        doubleDashedOptions.Add(i);
+                    }
+                    else if (arg[0] == '-' || arg[0] == '/')
+                    {
+                        singleDashedOptions.Add(i);
+                    }
+                    else
+                    {
+                        arguments.Add(i);
+                    }
                 }
-                else if (arg[0] == '-' || arg[0] == '/')
-                {
-                    singleDashedOptions.Add(i);
-                }
-                else
-                {
-                    arguments.Add(i);
-                }
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
             }
         }
 
         private static void ParseConfigFiles()
         {
-            AppSettingsReader appConfigReader = new AppSettingsReader();
-            string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
+            try
+            {
+                AppSettingsReader appConfigReader = new AppSettingsReader();
+                string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
 
-            config = ConfigBuilder.CreateConfig(configJsonFilePath);
-            config.NlmStyle = true;
-            config.TagWholeDocument = false;
+                config = ConfigBuilder.CreateConfig(configJsonFilePath);
+                config.NlmStyle = true;
+                config.TagWholeDocument = false;
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
+            }
         }
 
         private static void ParseFileNames(string[] args)
         {
-            if (arguments.Count < 1)
+            try
             {
-                Alert.PrintHelp();
-                Alert.Exit(1);
+                if (arguments.Count < 1)
+                {
+                    Alert.PrintHelp();
+                    Alert.Exit(1);
+                }
+                else if (arguments.Count == 1)
+                {
+                    inputFileName = args[arguments[0]];
+                    outputFileName = null;
+                }
+                else if (arguments.Count == 2)
+                {
+                    inputFileName = args[arguments[0]];
+                    outputFileName = args[arguments[1]];
+                }
+                else
+                {
+                    inputFileName = args[arguments[0]];
+                    outputFileName = args[arguments[1]];
+                    queryFileName = args[arguments[2]];
+                }
             }
-            else if (arguments.Count == 1)
+            catch (Exception e)
             {
-                inputFileName = args[arguments[0]];
-                outputFileName = null;
-            }
-            else if (arguments.Count == 2)
-            {
-                inputFileName = args[arguments[0]];
-                outputFileName = args[arguments[1]];
-            }
-            else
-            {
-                inputFileName = args[arguments[0]];
-                outputFileName = args[arguments[1]];
-                queryFileName = args[arguments[2]];
+                Alert.RaiseExceptionForMethod(e, 1);
             }
         }
 
@@ -229,8 +256,15 @@
             timer.Start();
             Alert.WriteOutputFileMessage();
 
-            fp.NormalizeSystemXmlToCurrent();
-            fp.Write();
+            try
+            {
+                fp.NormalizeSystemXmlToCurrent();
+                fp.Write();
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
+            }
 
             PrintElapsedTime(timer);
         }

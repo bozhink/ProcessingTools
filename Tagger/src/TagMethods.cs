@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Text.RegularExpressions;
@@ -13,50 +14,57 @@
     {
         private static void FloraSpecific(FileProcessor fp)
         {
-            FileProcessor flp = new FileProcessor(config, inputFileName, config.floraExtractedTaxaListPath);
-            FileProcessor flpp = new FileProcessor(config, inputFileName, config.floraExtractTaxaPartsOutputPath);
-            Flora fl = new Flora(config, fp.Xml);
-
-            fl.ExtractTaxa();
-            fl.DistinctTaxa();
-            fl.GenerateTagTemplate();
-
-            flp.Xml = fl.Xml;
-            flp.Write();
-
-            fl.Xml = fp.Xml;
-            if (taxaA)
+            try
             {
-                fl.PerformReplace();
-            }
+                FileProcessor flp = new FileProcessor(config, inputFileName, config.floraExtractedTaxaListPath);
+                FileProcessor flpp = new FileProcessor(config, inputFileName, config.floraExtractTaxaPartsOutputPath);
+                Flora fl = new Flora(config, fp.Xml);
 
-            if (taxaB)
-            {
-                ////fl.TagHigherTaxa();
-            }
+                fl.ExtractTaxa();
+                fl.DistinctTaxa();
+                fl.GenerateTagTemplate();
 
-            if (taxaC)
-            {
-                if (flag1)
+                flp.Xml = fl.Xml;
+                flp.Write();
+
+                fl.Xml = fp.Xml;
+                if (taxaA)
                 {
-                    fl.ParseInfra();
+                    fl.PerformReplace();
                 }
 
-                if (flag2)
+                if (taxaB)
                 {
-                    fl.ParseTn();
+                    ////fl.TagHigherTaxa();
                 }
 
-                if (flag3)
+                if (taxaC)
                 {
-                    ////fl.SplitLowerTaxa();
+                    if (flag1)
+                    {
+                        fl.ParseInfra();
+                    }
+
+                    if (flag2)
+                    {
+                        fl.ParseTn();
+                    }
+
+                    if (flag3)
+                    {
+                        ////fl.SplitLowerTaxa();
+                    }
                 }
+
+                fp.Xml = fl.Xml;
+
+                flpp.Xml = fl.ExtractTaxaParts();
+                flpp.Write();
             }
-
-            fp.Xml = fl.Xml;
-
-            flpp.Xml = fl.ExtractTaxaParts();
-            flpp.Write();
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
+            }
         }
 
         private static void InitialFormat(FileProcessor fp)
@@ -67,19 +75,26 @@
                 timer.Start();
                 Alert.Log("\n\tInitial format.\n");
 
-                if (!config.NlmStyle)
+                try
                 {
-                    string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
-                    BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(config, xml);
-                    fmt.Format();
-                    fp.Xml = fmt.Xml;
+                    if (!config.NlmStyle)
+                    {
+                        string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
+                        BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(config, xml);
+                        fmt.Format();
+                        fp.Xml = fmt.Xml;
+                    }
+                    else
+                    {
+                        string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
+                        BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(config, xml);
+                        fmt.Format();
+                        fp.Xml = fmt.Xml;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
-                    BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(config, xml);
-                    fmt.Format();
-                    fp.Xml = fmt.Xml;
+                    Alert.RaiseExceptionForMethod(e, 1);
                 }
 
                 PrintElapsedTime(timer);
@@ -93,11 +108,18 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse coordinates.\n");
-                IBaseParser cooredinatesParser = new CoordinatesParser(config, fp.Xml);
 
-                cooredinatesParser.Parse();
+                try
+                {
+                    IBaseParser cooredinatesParser = new CoordinatesParser(config, fp.Xml);
+                    cooredinatesParser.Parse();
+                    fp.Xml = cooredinatesParser.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
-                fp.Xml = cooredinatesParser.Xml;
                 PrintElapsedTime(timer);
             }
         }
@@ -109,36 +131,50 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tParse references.\n");
-                References referencesParser = new References(config, fp.Xml);
 
-                referencesParser.SplitReferences();
+                try
+                {
+                    References referencesParser = new References(config, fp.Xml);
+                    referencesParser.SplitReferences();
+                    fp.Xml = referencesParser.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
-                fp.Xml = referencesParser.Xml;
                 PrintElapsedTime(timer);
             }
         }
 
         private static void QuentinSpecific(FileProcessor fp)
         {
-            QuentinFlora qf = new QuentinFlora(fp.Xml);
-            if (formatInit)
+            try
             {
-                qf.InitialFormat();
-            }
-            else if (flag1)
-            {
-                qf.Split1();
-            }
-            else if (flag2)
-            {
-                qf.Split2();
-            }
-            else
-            {
-                qf.FinalFormat();
-            }
+                QuentinFlora qf = new QuentinFlora(fp.Xml);
+                if (formatInit)
+                {
+                    qf.InitialFormat();
+                }
+                else if (flag1)
+                {
+                    qf.Split1();
+                }
+                else if (flag2)
+                {
+                    qf.Split2();
+                }
+                else
+                {
+                    qf.FinalFormat();
+                }
 
-            fp.Xml = qf.Xml;
+                fp.Xml = qf.Xml;
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
+            }
         }
 
         private static void TagAbbreviations(FileProcessor fp)
@@ -149,9 +185,16 @@
                 timer.Start();
                 Alert.Log("\n\tTag abbreviations.\n");
 
-                IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
-                abbreviationsTagger.Tag();
-                fp.Xml = abbreviationsTagger.Xml;
+                try
+                {
+                    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                    abbreviationsTagger.Tag();
+                    fp.Xml = abbreviationsTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
                 PrintElapsedTime(timer);
             }
@@ -165,78 +208,85 @@
                 timer.Start();
                 Alert.Log("\n\tTag codes.\n");
 
-                IXPathProvider xpathProvider = new XPathProvider(config);
-
-                ////{
-                ////    Codes codes = new Codes(config, fp.Xml);
-                ////    codes.TagKnownSpecimenCodes(xpathProvider);
-                ////    fp.Xml = codes.Xml;
-                ////}
-
+                try
                 {
-                    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
-                    abbreviationsTagger.Tag();
-                    fp.Xml = abbreviationsTagger.Xml;
-                }
-
-                ////{
-                ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
-                ////    specimenCountTagger.TagSpecimenCount(xpathProvider);
-                ////    fp.Xml = specimenCountTagger.Xml;
-                ////}
-
-                ////{
-                ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
-                ////    quantitiesTagger.TagQuantities(xpathProvider);
-                ////    quantitiesTagger.TagDeviation(xpathProvider);
-                ////    quantitiesTagger.TagAltitude(xpathProvider);
-                ////    fp.Xml = quantitiesTagger.Xml;
-                ////}
-
-                ////{
-                ////    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
-                ////    datesTagger.TagDates(xpathProvider);
-                ////    fp.Xml = datesTagger.Xml;
-                ////}
-
-                {
-                    config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
-                    Envo envo = new Envo(config, fp.Xml);
-                    envo.Tag(xpathProvider);
-                    fp.Xml = envo.Xml;
-                }
-
-                using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
-                {
-                    ////{
-                    ////    ProductsTagger products = new ProductsTagger(config, fp.Xml);
-                    ////    products.TagProducts(xpathProvider, dataProvider);
-                    ////    fp.Xml = products.Xml;
-                    ////}
+                    IXPathProvider xpathProvider = new XPathProvider(config);
 
                     ////{
-                    ////    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
-                    ////    geonames.TagGeonames(xpathProvider, dataProvider);
-                    ////    fp.Xml = geonames.Xml;
-                    ////}
-
-                    ////{
-                    ////    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
-                    ////    morphology.TagMorphology(xpathProvider, dataProvider);
-                    ////    fp.Xml = morphology.Xml;
+                    ////    Codes codes = new Codes(config, fp.Xml);
+                    ////    codes.TagKnownSpecimenCodes(xpathProvider);
+                    ////    fp.Xml = codes.Xml;
                     ////}
 
                     {
-                        Codes codes = new Codes(config, fp.Xml);
-                        codes.TagInstitutions(xpathProvider, dataProvider);
-                        codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-                        ////codes.TagSpecimenCodes(xpathProvider);
-
-                        fp.Xml = codes.Xml;
+                        IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                        abbreviationsTagger.Tag();
+                        fp.Xml = abbreviationsTagger.Xml;
                     }
-                }
 
-                ////fp.XmlDocument.ClearTagsInWrongPositions();
+                    ////{
+                    ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
+                    ////    specimenCountTagger.TagSpecimenCount(xpathProvider);
+                    ////    fp.Xml = specimenCountTagger.Xml;
+                    ////}
+
+                    ////{
+                    ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                    ////    quantitiesTagger.TagQuantities(xpathProvider);
+                    ////    quantitiesTagger.TagDeviation(xpathProvider);
+                    ////    quantitiesTagger.TagAltitude(xpathProvider);
+                    ////    fp.Xml = quantitiesTagger.Xml;
+                    ////}
+
+                    ////{
+                    ////    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
+                    ////    datesTagger.TagDates(xpathProvider);
+                    ////    fp.Xml = datesTagger.Xml;
+                    ////}
+
+                    {
+                        config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                        Envo envo = new Envo(config, fp.Xml);
+                        envo.Tag(xpathProvider);
+                        fp.Xml = envo.Xml;
+                    }
+
+                    using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
+                    {
+                        ////{
+                        ////    ProductsTagger products = new ProductsTagger(config, fp.Xml);
+                        ////    products.TagProducts(xpathProvider, dataProvider);
+                        ////    fp.Xml = products.Xml;
+                        ////}
+
+                        ////{
+                        ////    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
+                        ////    geonames.TagGeonames(xpathProvider, dataProvider);
+                        ////    fp.Xml = geonames.Xml;
+                        ////}
+
+                        ////{
+                        ////    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
+                        ////    morphology.TagMorphology(xpathProvider, dataProvider);
+                        ////    fp.Xml = morphology.Xml;
+                        ////}
+
+                        {
+                            Codes codes = new Codes(config, fp.Xml);
+                            codes.TagInstitutions(xpathProvider, dataProvider);
+                            codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                            ////codes.TagSpecimenCodes(xpathProvider);
+
+                            fp.Xml = codes.Xml;
+                        }
+                    }
+
+                    ////fp.XmlDocument.ClearTagsInWrongPositions();
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
                 PrintElapsedTime(timer);
             }
@@ -249,11 +299,18 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag coordinates.\n");
-                IBaseTagger coordinatesTagger = new CoordinatesTagger(config, fp.Xml);
 
-                coordinatesTagger.Tag();
+                try
+                {
+                    IBaseTagger coordinatesTagger = new CoordinatesTagger(config, fp.Xml);
+                    coordinatesTagger.Tag();
+                    fp.Xml = coordinatesTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
-                fp.Xml = coordinatesTagger.Xml;
                 PrintElapsedTime(timer);
             }
         }
@@ -266,10 +323,17 @@
                 timer.Start();
                 Alert.Log("\n\tTag dates.\n");
 
-                IXPathProvider xpathProvider = new XPathProvider(config);
-                IBaseTagger datesTagger = new DatesTagger(config, fp.Xml);
-                datesTagger.Tag(xpathProvider);
-                fp.Xml = datesTagger.Xml;
+                try
+                {
+                    IXPathProvider xpathProvider = new XPathProvider(config);
+                    IBaseTagger datesTagger = new DatesTagger(config, fp.Xml);
+                    datesTagger.Tag(xpathProvider);
+                    fp.Xml = datesTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
                 PrintElapsedTime(timer);
             }
@@ -282,12 +346,21 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag DOI.\n");
-                BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
 
-                linksTagger.TagDOI();
-                linksTagger.TagPMCLinks();
+                try
+                {
+                    BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
 
-                fp.Xml = linksTagger.Xml;
+                    linksTagger.TagDOI();
+                    linksTagger.TagPMCLinks();
+
+                    fp.Xml = linksTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
+
                 PrintElapsedTime(timer);
             }
         }
@@ -299,13 +372,19 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tUse greek tagger.\n");
-                Envo envo = new Envo(config, fp.Xml);
 
-                IXPathProvider xpathProvider = new XPathProvider(config);
+                try
+                {
+                    IXPathProvider xpathProvider = new XPathProvider(config);
+                    Envo envo = new Envo(config, fp.Xml);
+                    envo.Tag(xpathProvider);
+                    fp.Xml = envo.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 1);
+                }
 
-                envo.Tag(xpathProvider);
-
-                fp.Xml = envo.Xml;
                 PrintElapsedTime(timer);
             }
         }
@@ -317,11 +396,18 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag environments.\n");
-                Environments environments = new Environments(config, fp.Xml);
 
-                environments.Tag();
+                try
+                {
+                    Environments environments = new Environments(config, fp.Xml);
+                    environments.Tag();
+                    fp.Xml = environments.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
-                fp.Xml = environments.Xml;
                 PrintElapsedTime(timer);
             }
         }
@@ -334,12 +420,19 @@
                 timer.Start();
                 Alert.Log("\n\tTag quantities.\n");
 
-                IXPathProvider xpathProvider = new XPathProvider(config);
-                QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
-                quantitiesTagger.TagQuantities(xpathProvider);
-                quantitiesTagger.TagDeviation(xpathProvider);
-                quantitiesTagger.TagAltitude(xpathProvider);
-                fp.Xml = quantitiesTagger.Xml;
+                try
+                {
+                    IXPathProvider xpathProvider = new XPathProvider(config);
+                    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                    quantitiesTagger.TagQuantities(xpathProvider);
+                    quantitiesTagger.TagDeviation(xpathProvider);
+                    quantitiesTagger.TagAltitude(xpathProvider);
+                    fp.Xml = quantitiesTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
                 PrintElapsedTime(timer);
             }
@@ -364,24 +457,17 @@
         private static void TagReferences(FileProcessor fp)
         {
             Alert.Log("\n\tTag references.\n");
-            if (parseBySection)
+
+            try
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.PreserveWhitespace = true;
-                XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
-
-                try
+                if (parseBySection)
                 {
+                    XmlDocument xmlDocument = new XmlDocument();
+                    xmlDocument.PreserveWhitespace = true;
+                    XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
+
                     xmlDocument.LoadXml(fp.Xml);
-                }
-                catch (XmlException)
-                {
-                    Alert.Log("Tagger: XmlException");
-                    Alert.Exit(10);
-                }
 
-                try
-                {
                     foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
                     {
                         string templateFileName = string.Empty;
@@ -404,28 +490,17 @@
                         newNode.InnerXml = TagReferences(node.OuterXml, templateFileName);
                         node.InnerXml = newNode.FirstChild.InnerXml;
                     }
-                }
-                catch (System.Xml.XPath.XPathException)
-                {
-                    Alert.Log("Tagger: XPathException");
-                    Alert.Exit(1);
-                }
-                catch (System.InvalidOperationException)
-                {
-                    Alert.Log("Tagger: InvalidOperationException");
-                    Alert.Exit(1);
-                }
-                catch (XmlException)
-                {
-                    Alert.Log("Tagger: XmlException");
-                    Alert.Exit(1);
-                }
 
-                fp.Xml = xmlDocument.OuterXml;
+                    fp.Xml = xmlDocument.OuterXml;
+                }
+                else
+                {
+                    fp.Xml = TagReferences(fp.Xml, fp.OutputFileName);
+                }
             }
-            else
+            catch (Exception e)
             {
-                fp.Xml = TagReferences(fp.Xml, fp.OutputFileName);
+                Alert.RaiseExceptionForMethod(e, 0);
             }
         }
 
@@ -436,11 +511,18 @@
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 Alert.Log("\n\tTag web links.\n");
-                BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
 
-                linksTagger.TagWWW();
+                try
+                {
+                    BaseLibrary.Nlm.LinksTagger linksTagger = new BaseLibrary.Nlm.LinksTagger(config, fp.Xml);
+                    linksTagger.TagWWW();
+                    fp.Xml = linksTagger.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 0);
+                }
 
-                fp.Xml = linksTagger.Xml;
                 PrintElapsedTime(timer);
             }
         }
@@ -452,10 +534,17 @@
             Alert.ZoobankCloneMessage();
             if (arguments.Count > 2)
             {
-                string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
-                IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml);
-                zoobankCloner.Clone();
-                fp.Xml = zoobankCloner.Xml;
+                try
+                {
+                    string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
+                    IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml);
+                    zoobankCloner.Clone();
+                    fp.Xml = zoobankCloner.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 1);
+                }
             }
 
             PrintElapsedTime(timer);
@@ -468,11 +557,18 @@
             Alert.ZoobankCloneMessage();
             if (arguments.Count > 2)
             {
-                FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
-                fileProcessorNlm.Read();
-                IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml);
-                zoobankCloner.Clone();
-                fp.Xml = zoobankCloner.Xml;
+                try
+                {
+                    FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
+                    fileProcessorNlm.Read();
+                    IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml);
+                    zoobankCloner.Clone();
+                    fp.Xml = zoobankCloner.Xml;
+                }
+                catch (Exception e)
+                {
+                    Alert.RaiseExceptionForMethod(e, 1);
+                }
             }
 
             PrintElapsedTime(timer);
@@ -480,9 +576,16 @@
 
         private static void ZooBankGenerateRegistrationXml(FileProcessor fp)
         {
-            IBaseGenerator zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(config, fp.Xml);
-            zoobankRegistrationXmlGenerator.Generate();
-            fp.Xml = zoobankRegistrationXmlGenerator.Xml;
+            try
+            {
+                IBaseGenerator zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(config, fp.Xml);
+                zoobankRegistrationXmlGenerator.Generate();
+                fp.Xml = zoobankRegistrationXmlGenerator.Xml;
+            }
+            catch (Exception e)
+            {
+                Alert.RaiseExceptionForMethod(e, 1);
+            }
         }
     }
 }
