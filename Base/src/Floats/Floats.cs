@@ -476,7 +476,7 @@
             Alert.Log();
             foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
             {
-                Alert.Log("{2}\t#{0}\tis in float\t#{1}\n", floatId, this.floatIdByLabel[floatId], refType.ToString());
+                Alert.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
             }
         }
 
