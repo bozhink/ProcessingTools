@@ -112,18 +112,17 @@
                      */
                     if (parseBySection)
                     {
-                        XmlDocument xmlDocument = new XmlDocument();
+                        XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager();
+                        XmlDocument xmlDocument = new XmlDocument(namespaceManager.NameTable);
                         xmlDocument.PreserveWhitespace = true;
-                        XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager(xmlDocument);
 
                         try
                         {
                             xmlDocument.LoadXml(fp.Xml);
                         }
-                        catch (XmlException)
+                        catch
                         {
-                            Alert.Log("Tagger: XmlException");
-                            Alert.Exit(10);
+                            throw;
                         }
 
                         try
@@ -134,24 +133,13 @@
                                 newNode.InnerXml = MainProcessing(node.OuterXml);
                                 node.InnerXml = newNode.FirstChild.InnerXml;
                             }
-                        }
-                        catch (System.Xml.XPath.XPathException)
-                        {
-                            Alert.Log("Tagger: XPathException trying to tag taxa.");
-                            Alert.Exit(1);
-                        }
-                        catch (System.InvalidOperationException)
-                        {
-                            Alert.Log("Tagger: InvalidOperationException trying to tag taxa.");
-                            Alert.Exit(1);
-                        }
-                        catch (XmlException)
-                        {
-                            Alert.Log("Tagger: XmlException trying to tag taxa.");
-                            Alert.Exit(1);
-                        }
 
-                        fp.Xml = xmlDocument.OuterXml;
+                            fp.Xml = xmlDocument.OuterXml;
+                        }
+                        catch
+                        {
+                            throw;
+                        }
                     }
                     else
                     {

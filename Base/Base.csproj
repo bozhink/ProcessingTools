@@ -126,6 +126,7 @@
     <Compile Include="src\Json\Pbdb.cs" />
     <Compile Include="src\Json\ZooBank.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
+    <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\SuffixHigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\AboveGenusHigherTaxaParser.cs" />
@@ -152,7 +153,7 @@
     <Compile Include="src\SpecimentCount\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />
-    <Compile Include="src\Taxonomy\Species.cs" />
+    <Compile Include="src\Taxonomy\Species\Species.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\LowerTaxaParser\LowerTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\TaxaTagger.cs" />
     <Compile Include="src\Taxonomy\Taxonomy.cs" />
