@@ -56,4 +56,13 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="tex-math">
+    <xsl:element name="{name()}">
+      <xsl:attribute name="id">
+        <xsl:text>Math</xsl:text>
+        <xsl:value-of select="generate-id()"/>
+      </xsl:attribute>
+    </xsl:element>
+  </xsl:template>
+
 </xsl:stylesheet>

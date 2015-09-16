@@ -8,7 +8,7 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
-  <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no"/>
+  <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" cdata-section-elements="tex-math"/>
   <xsl:preserve-space elements="*"/>
   <xsl:strip-space elements="addr-line aff"/>
 
