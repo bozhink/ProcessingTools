@@ -222,11 +222,11 @@
                     ////    fp.Xml = codes.Xml;
                     ////}
 
-                    {
-                        IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
-                        abbreviationsTagger.Tag();
-                        fp.Xml = abbreviationsTagger.Xml;
-                    }
+                    ////{
+                    ////    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                    ////    abbreviationsTagger.Tag();
+                    ////    fp.Xml = abbreviationsTagger.Xml;
+                    ////}
 
                     ////{
                     ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
@@ -248,12 +248,12 @@
                     ////    fp.Xml = datesTagger.Xml;
                     ////}
 
-                    {
-                        config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
-                        Envo envo = new Envo(config, fp.Xml);
-                        envo.Tag(xpathProvider);
-                        fp.Xml = envo.Xml;
-                    }
+                    ////{
+                    ////    config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                    ////    Envo envo = new Envo(config, fp.Xml);
+                    ////    envo.Tag(xpathProvider);
+                    ////    fp.Xml = envo.Xml;
+                    ////}
 
                     using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
                     {
@@ -275,6 +275,7 @@
                         ////    fp.Xml = morphology.Xml;
                         ////}
 
+                        try
                         {
                             Codes codes = new Codes(config, fp.Xml);
                             codes.TagInstitutions(xpathProvider, dataProvider);
@@ -282,6 +283,10 @@
                             ////codes.TagSpecimenCodes(xpathProvider);
 
                             fp.Xml = codes.Xml;
+                        }
+                        catch
+                        {
+                            throw;
                         }
                     }
 

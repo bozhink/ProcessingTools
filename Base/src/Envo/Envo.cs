@@ -26,6 +26,7 @@
             XmlDocument envoTermsTagSet = new XmlDocument();
             {
                 XmlDocument envoTermsResponse = Net.UseGreekTagger(this.TextContent);
+                envoTermsResponse.SelectNodes("//count").RemoveXmlNodes();
 
                 try
                 {
@@ -44,10 +45,7 @@
                         message);
                 }
 
-                string envoTermsResponseString = Regex.Replace(
-                    envoTermsResponse.OuterXml,
-                    @"\sxmlns=""[^<>""]*""",
-                    string.Empty);
+                string envoTermsResponseString = Regex.Replace(envoTermsResponse.OuterXml, @"\sxmlns=""[^<>""]*""", string.Empty);
 
                 string tagSetString = envoTermsResponseString.ApplyXslTransform(this.Config.envoTermsWebServiceTransformXslPath);
 
@@ -82,7 +80,7 @@
 
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
 
-                this.TagTextInXmlDocument(envoTermsTagSet, nodeList, true, true);
+                this.TagTextInXmlDocument(envoTermsTagSet, nodeList, false, true);
             }
         }
     }

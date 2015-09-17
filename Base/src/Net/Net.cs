@@ -376,46 +376,78 @@
         public static XmlDocument UseGreekTagger(string xmlContent)
         {
             XmlDocument result = new XmlDocument();
+            XmlElement rootElement = result.CreateElement("response");
 
             if (xmlContent != null && xmlContent.Length > 0)
             {
+                StringBuilder responseCollector = new StringBuilder();
+
                 using (HttpClient client = new HttpClient())
                 {
-                    Dictionary<string, string> values = new Dictionary<string, string>();
-                    values.Add("document", xmlContent);
-                    //// values.Add("entity_types", "-2 -25 -26 -27");
-                    values.Add("entity_types", "-25 -26 -27");
-                    //// values.Add("entity_types", "-2 -22 -23 -24 -25 -26 -27");
-                    values.Add("format", "xml");
+                    GreekTaggerSendPartialString(xmlContent, responseCollector, client);
+                }
 
-                    try
-                    {
-                        using (HttpContent content = new FormUrlEncodedContent(values))
-                        {
-                            try
-                            {
-                                Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
-                                Task<string> responseString = response.Result.Content.ReadAsStringAsync();
-                                result.LoadXml(responseString.Result);
-                            }
-                            catch (Exception e)
-                            {
-                                Alert.RaiseExceptionForMethod(e, 0, 1);
-                            }
-                        }
-                    }
-                    catch (Exception contentException)
-                    {
-                        Alert.RaiseExceptionForMethod(contentException, "UseGreekTagger", 1, 1);
-                    }
+                try
+                {
+                    rootElement.InnerXml = responseCollector.ToString();
+                }
+                catch (Exception e)
+                {
+                    throw new XmlException("UseGreekTagger: Builded root element by string builder.", e);
                 }
             }
             else
             {
-                Alert.RaiseExceptionForMethod(new ArgumentNullException("Content string to send is empty."), 0, 1);
+                throw new ArgumentNullException("Content string to send is empty.");
             }
 
+            result.AppendChild(rootElement);
+
             return result;
+        }
+
+        private static int postRequestOrder = 0;
+
+        private static void GreekTaggerSendPartialString(string xmlContent, StringBuilder responseCollector, HttpClient client)
+        {
+            Alert.Log(++postRequestOrder);
+
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add("document", xmlContent);
+            values.Add("entity_types", "-25 -26 -27");
+            values.Add("format", "xml");
+
+            try
+            {
+                using (HttpContent content = new FormUrlEncodedContent(values))
+                {
+                    try
+                    {
+                        Task<HttpResponseMessage> response = client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
+                        Task<string> responseString = response.Result.Content.ReadAsStringAsync();
+                        XmlDocument xmlResponse = new XmlDocument();
+                        xmlResponse.LoadXml(Regex.Replace(responseString.Result, @"xmlns=""[^""]*""", string.Empty));
+                        responseCollector.Append(xmlResponse.DocumentElement.InnerXml);
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+            catch (UriFormatException)
+            {
+                int xmlContentLength = xmlContent.Length;
+                int length = xmlContentLength / 2;
+
+                GreekTaggerSendPartialString(xmlContent.Substring(0, length), responseCollector, client);
+
+                GreekTaggerSendPartialString(xmlContent.Substring(length, length), responseCollector, client);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
