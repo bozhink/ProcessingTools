@@ -90,6 +90,7 @@
     <Compile Include="src\Base\TaggerBase.cs" />
     <Compile Include="src\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
+    <Compile Include="src\Extensions\XmlNormalizer.cs" />
     <Compile Include="src\Floats\FloatsReferenceType.cs" />
     <Compile Include="src\Floats\TableFootNotesTagger.cs" />
     <Compile Include="src\Interfaces\IBase.cs" />

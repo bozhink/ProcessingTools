@@ -106,26 +106,6 @@
             return result;
         }
 
-        public static string NormalizeNlmToSystemXml(Config config, string xml)
-        {
-            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
-        }
-
-        public static string NormalizeNlmToSystemXml(Config config, XmlDocument xml)
-        {
-            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
-        }
-
-        public static string NormalizeSystemToNlmXml(Config config, string xml)
-        {
-            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
-        }
-
-        public static string NormalizeSystemToNlmXml(Config config, XmlDocument xml)
-        {
-            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
-        }
-
         public static XmlReader GetXmlReader(string inputFileName)
         {
             XmlReader reader = null;
@@ -240,23 +220,6 @@
                 {
                     writer.Close();
                 }
-            }
-        }
-
-        public void NormalizeXmlToSystemXml()
-        {
-            this.Xml = NormalizeNlmToSystemXml(this.Config, this.Xml);
-        }
-
-        public void NormalizeSystemXmlToCurrent()
-        {
-            if (this.Config.NlmStyle)
-            {
-                this.Xml = NormalizeSystemToNlmXml(this.Config, this.Xml);
-            }
-            else
-            {
-                this.Xml = NormalizeNlmToSystemXml(this.Config, this.Xml);
             }
         }
 

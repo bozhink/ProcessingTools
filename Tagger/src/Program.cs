@@ -51,7 +51,7 @@
                         break;
                 }
 
-                fp.NormalizeXmlToSystemXml();
+                fp.Xml = fp.Xml.NormalizeXmlToSystemXml(config);
 
                 ParseSingleDashedOptions(args);
                 ParseDoubleDashedOptions(args);
@@ -246,7 +246,7 @@
 
             try
             {
-                fp.NormalizeSystemXmlToCurrent();
+                fp.Xml = fp.Xml.NormalizeXmlToCurrentXml(config);
                 fp.Write();
             }
             catch (Exception e)

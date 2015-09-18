@@ -406,12 +406,8 @@
             return result;
         }
 
-        private static int postRequestOrder = 0;
-
         private static void GreekTaggerSendPartialString(string xmlContent, StringBuilder responseCollector, HttpClient client)
         {
-            Alert.Log(++postRequestOrder);
-
             Dictionary<string, string> values = new Dictionary<string, string>();
             values.Add("document", xmlContent);
             values.Add("entity_types", "-25 -26 -27");
