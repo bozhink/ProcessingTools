@@ -16,7 +16,7 @@
         {
         }
 
-        public static string ReferencePartSplitter(XmlNode reference)
+        public string ReferencePartSplitter(XmlNode reference)
         {
             string result = reference.InnerXml;
             result = Regex.Replace(
@@ -37,7 +37,7 @@
             return result;
         }
 
-        public static string ReferenceJournalMatch(XmlNode reference)
+        public string ReferenceJournalMatch(XmlNode reference)
         {
             string result = reference.InnerXml;
             XmlNodeList nodeList = reference.SelectNodes("//fake_tag_1");
@@ -153,7 +153,7 @@
             return result;
         }
 
-        public static string ReferencePersonGroupSplit(string reference)
+        public string ReferencePersonGroupSplit(string reference)
         {
             string result = reference;
 

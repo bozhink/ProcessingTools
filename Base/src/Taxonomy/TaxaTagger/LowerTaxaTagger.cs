@@ -45,7 +45,7 @@
             this.Tag();
         }
 
-        private static string TagInfraspecificTaxa(string nodeXml)
+        private string TagInfraspecificTaxa(string nodeXml)
         {
             string replace = nodeXml;
 
@@ -139,7 +139,7 @@
             return replace;
         }
 
-        private static string TagItalics(string nodeXml)
+        private string TagItalics(string nodeXml)
         {
             string result = nodeXml;
 

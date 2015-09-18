@@ -4,10 +4,10 @@
 
     public class Species
     {
-        private static Regex genusNameMatchInXml = new Regex("(?<=type=\"genus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
-        private static Regex subgenusNameMatchInXml = new Regex("(?<=type=\"subgenus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
-        private static Regex speciesNameMatchInXml = new Regex("(?<=type=\"species\"[^>]*>)[a-z\\-\\.]+(?=</t)");
-        private static Regex subspeciesNameMatchInXml = new Regex("(?<=type=\"subspecies\"[^>]*>)[a-z\\-]+(?=</t)");
+        private Regex genusNameMatchInXml = new Regex("(?<=type=\"genus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
+        private Regex subgenusNameMatchInXml = new Regex("(?<=type=\"subgenus\"[^>]*>)[A-Z][a-z\\.]+(?=</t)");
+        private Regex speciesNameMatchInXml = new Regex("(?<=type=\"species\"[^>]*>)[a-z\\-\\.]+(?=</t)");
+        private Regex subspeciesNameMatchInXml = new Regex("(?<=type=\"subspecies\"[^>]*>)[a-z\\-]+(?=</t)");
 
         private string genus;
         private string subgenus;
@@ -21,13 +21,13 @@
 
         public Species(string parsedContent)
         {
-            Match m = Species.genusNameMatchInXml.Match(parsedContent);
+            Match m = this.genusNameMatchInXml.Match(parsedContent);
             this.genus = m.Success ? m.Value : string.Empty;
-            m = Species.subgenusNameMatchInXml.Match(parsedContent);
+            m = this.subgenusNameMatchInXml.Match(parsedContent);
             this.subgenus = m.Success ? m.Value : string.Empty;
-            m = Species.speciesNameMatchInXml.Match(parsedContent);
+            m = this.speciesNameMatchInXml.Match(parsedContent);
             this.species = m.Success ? m.Value : string.Empty;
-            m = Species.subspeciesNameMatchInXml.Match(parsedContent);
+            m = this.subspeciesNameMatchInXml.Match(parsedContent);
             this.subspecies = m.Success ? m.Value : string.Empty;
             this.nullGenus = this.CheckIfGenusIsNull();
             this.nullSubgenus = this.CheckIfSubgenusIsNull();

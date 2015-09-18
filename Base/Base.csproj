@@ -138,6 +138,7 @@
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithLocalDataBase.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaType.cs" />
     <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
     <Compile Include="src\Taxonomy\TaxonomicBlackList.cs" />
     <Compile Include="src\Taxonomy\TaxonomicWhiteList.cs" />

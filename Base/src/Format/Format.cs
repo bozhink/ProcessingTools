@@ -122,7 +122,7 @@
                 this.Xml = xml;
             }
 
-            private static string BoldItalicSpaces(string xml)
+            private string BoldItalicSpaces(string xml)
             {
                 string result = xml;
 
@@ -145,7 +145,7 @@
                 return result;
             }
 
-            private static string BoldItalic(string xml)
+            private string BoldItalic(string xml)
             {
                 string result = xml;
 
@@ -185,17 +185,17 @@
                 return result;
             }
 
-            private static string FormatCloseTags(string xml)
+            private string FormatCloseTags(string xml)
             {
                 return Regex.Replace(xml, @"\s+(</(source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)>)", "$1 ");
             }
 
-            private static string FormatOpenTags(string xml)
+            private string FormatOpenTags(string xml)
             {
                 return Regex.Replace(xml, @"(<(source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)([^>]*)>)\s+", " $1");
             }
 
-            private static string FormatPunctuation(string xml)
+            private string FormatPunctuation(string xml)
             {
                 string result = xml;
 
@@ -212,7 +212,7 @@
                 return result;
             }
 
-            private static string FormatPageBreaks(string xml)
+            private string FormatPageBreaks(string xml)
             {
                 string result = xml;
 
@@ -235,7 +235,7 @@
                 return result;
             }
 
-            private static string RemoveEmptyTags(string xml)
+            private string RemoveEmptyTags(string xml)
             {
                 string result = xml;
 
@@ -249,7 +249,7 @@
                 return result;
             }
 
-            private static string FormatReferances(string xml)
+            private string FormatReferances(string xml)
             {
                 string result = xml;
 

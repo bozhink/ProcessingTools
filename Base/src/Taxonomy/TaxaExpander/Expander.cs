@@ -19,8 +19,8 @@
             private const string SubspeciesLeftTag = "<tp:taxon-name-part taxon-name-part-type=\"subspecies\">";
             private const string SubspeciesRightTag = "</tp:taxon-name-part>";
 
-            private static Regex findLowerTaxa = new Regex(@"<italic><tp:taxon-name[^>\-]*>(.*?)</tp:taxon-name></italic>");
-            private static Regex findLowerTaxaMultiLine = new Regex(@"<italic><tp:taxon-name[^>\-]*>([\s\S]*?)</tp:taxon-name></italic>");
+            private Regex findLowerTaxa = new Regex(@"<italic><tp:taxon-name[^>\-]*>(.*?)</tp:taxon-name></italic>");
+            private Regex findLowerTaxaMultiLine = new Regex(@"<italic><tp:taxon-name[^>\-]*>([\s\S]*?)</tp:taxon-name></italic>");
 
             public Expander(string xml)
                 : base(xml)

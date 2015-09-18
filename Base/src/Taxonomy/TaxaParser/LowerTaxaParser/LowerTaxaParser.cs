@@ -21,7 +21,7 @@
         {
         }
 
-        public static string ParseRank(string infraSpecificRank)
+        public string ParseRank(string infraSpecificRank)
         {
             string rank = string.Empty;
             switch (infraSpecificRank)
@@ -122,7 +122,7 @@
             return rank;
         }
 
-        public static string ParseLower(string str)
+        public string ParseLower(string str)
         {
             string replace = str;
 

@@ -2,13 +2,6 @@
 {
     using System;
 
-    public enum TaxaType
-    {
-        Lower,
-        Higher,
-        Any
-    }
-
     public static class Taxonomy
     {
         /*

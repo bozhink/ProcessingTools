@@ -13,7 +13,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    public class Net
+    public static class Net
     {
         public static string XmlHttpRequest(string urlString, string xmlContent)
         {

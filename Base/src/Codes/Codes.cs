@@ -50,7 +50,7 @@ namespace ProcessingTools.BaseLibrary
          * ZUPV/EHU 188
          */
 
-        private static string[] codePrefixes = new string[]
+        private string[] codePrefixes = new string[]
         {
             @"ALP",
             @"AMNH",
@@ -240,7 +240,7 @@ namespace ProcessingTools.BaseLibrary
             this.GuessSequentalPrefixNumericSpecimenCodes(xpathProvider.SelectContentNodesXPathTemplate, this.specimenCodeTag);
         }
 
-        private static void SetAttributesOfSequentalSpecimenCodes(XmlNode node, TagContent tag)
+        private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, TagContent tag)
         {
             Alert.Log("\n{0}", node.OuterXml);
 
