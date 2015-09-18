@@ -86,6 +86,7 @@
     <Compile Include="src\Coordinates\CoordinatePart.cs" />
     <Compile Include="src\Coordinates\CoordinateType.cs" />
     <Compile Include="src\Extensions\ApplyXslTransformExtensions.cs" />
+    <Compile Include="src\Extensions\ContentTagger.cs" />
     <Compile Include="src\Extensions\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
     <Compile Include="src\Coordinates\CoordinatesTagger.cs" />

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -32,7 +31,8 @@
             try
             {
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
-                IEnumerable<string> taxaNames = this.XmlDocument.GetNonTaggedTaxa(matchHigherTaxa);
+
+                var taxaNames = this.XmlDocument.GetNonTaggedTaxa(matchHigherTaxa);
 
                 // Blacklist items
                 taxaNames = this.ClearFakeTaxaNames(taxaNames);
@@ -44,7 +44,7 @@
                 taxaNames = taxaNames.Where(s => s[0] == s.ToUpper()[0]).Distinct();
 
                 // TODO: Optimize peformance.
-                this.TagTextInXmlDocument(taxaNames, this.higherTaxaTag, HigherTaxaXPathTemplate, false, true);
+                taxaNames.TagContentInDocument(this.higherTaxaTag, HigherTaxaXPathTemplate, this.XmlDocument, false, true);
 
                 this.XmlDocument.RemoveTaxaInWrongPlaces();
             }

@@ -86,8 +86,10 @@
                                             //// Here we suppose that there is some tag inside the environment-string in the xml node.
 
                                             // Tag the xml-node-content using non-regex skip-tag matches
-                                            replace = Environments.TagNodeContent(node.InnerXml, contentString, envoOpenTag);
-                                            replace = this.TagOrderNormalizer(replace, envoTagName);
+                                            replace = node.InnerXml.TagNodeContent(contentString, envoOpenTag);
+
+                                            XmlNode envoNode = this.XmlDocument.CreateElement(envoTagName);
+                                            replace = replace.TagOrderNormalizer(envoNode);
                                         }
                                         else
                                         {

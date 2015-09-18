@@ -1,38 +1,82 @@
 ﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
+    using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Xml;
 
-    public class CoordinatesTagger : Base, IBaseTagger
+    public class CoordinatesTagger : TaggerBase, IBaseTagger
     {
+        private const string LocalityCoordinatesTagName = "locality-coordinates";
+        private readonly XmlElement localityCoordinatesNode = null;
+
         public CoordinatesTagger(Config config, string xml)
             : base(config, xml)
         {
+            this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
         }
 
         public CoordinatesTagger(IBase baseObject)
             : base(baseObject)
         {
+            this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
         }
 
         public void Tag()
         {
             string xml = this.Xml;
 
-            xml = Regex.Replace(xml, @"(\d)([º°˚]|<sup>o</sup>)", "$1°");
+            xml = Regex.Replace(xml, @"(?<=\d)([º°˚]|<sup>o</sup>)", "°");
 
-            string replace = @"<locality-coordinates latitude="""" longitude="""">$1</locality-coordinates>";
+            XmlNode replacementNode = this.localityCoordinatesNode.CloneNode(true);
+            replacementNode.InnerText = "$1";
 
-            xml = Regex.Replace(
-                xml,
-                @"(([NSEW])((\d+\.)?\d+°\d+(\.\d+)?\'(\d+(\.\d+)?\&quot;)?)\s*?\W?\s*([NSEW])((\d+\.)?\d+°\d+(\.\d+)?\'(\d+(\.\d+)?\&quot;)?))",
-                replace);
-            xml = Regex.Replace(xml, @"(([NSEW])((\d+\.)?\d+°)\s*?\W?\s*([NSEW])((\d+\.)?\d+°))", replace);
+            string replace = replacementNode.OuterXml;
 
-            xml = Regex.Replace(xml, @"((\d+\.\d+)\s*([NSEW])\s*\,?\s*(\d+\.\d+)\s*([NSEW]))", replace);
-            xml = Regex.Replace(xml, @"(((\d+\.)?\d+°[^<>]{0,20}?[SWNE])\s*?\W?\s*((\d+\.)?\d+°[^</>]{0,20}?[SWNE]))", replace);
-            xml = Regex.Replace(xml, @"((\-?\d{1,3}\.\d{3,6})\s*(;|,)\s*(\-?\d{1,3}\.\d{3,6}))", replace);
+            try
+            {
+                string xmlText = this.TextContent;
 
-            this.Xml = xml;
+                List<string> coordinateStrings = new List<string>();
+
+                {
+                    Regex re = new Regex(@"((?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2})\s*?\W{0,3}?\s*(?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2}))");
+
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                }
+
+                {
+                    Regex re = new Regex(@"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO]))");
+
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                }
+
+                {
+                    Regex re = new Regex(@"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO]))");
+
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                }
+
+                {
+                    Regex re = new Regex(@"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b)\s*[;,]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b))");
+
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                }
+
+                foreach (string coordinateString in coordinateStrings)
+                {
+                    Alert.Log(coordinateString);
+
+                    replacementNode.InnerText = coordinateString;
+
+                    replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true);
+                }
+
+
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void Tag(IXPathProvider xpathProvider)

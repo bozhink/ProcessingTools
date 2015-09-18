@@ -107,10 +107,10 @@
 
         [DataMember]
         public string envoTermsWebServiceTransformXslPath { get; set; }
+    }
 
-        /*
-         * Tagging parameters
-         */
+    public partial class Config
+    {
         public bool NlmStyle { get; set; }
 
         public bool TagWholeDocument { get; set; }
@@ -129,10 +129,27 @@
                 return new UTF8Encoding(false);
             }
         }
+    }
+
+    public partial class Config
+    {
+        private static XmlNamespaceManager taxPubNamespaceManager = null;
 
         public static XmlNamespaceManager TaxPubNamespceManager()
         {
-            return TaxPubNamespceManager(new XmlDocument().NameTable);
+            object syncLock = new object();
+            if (taxPubNamespaceManager == null)
+            {
+                lock (syncLock)
+                {
+                    if (taxPubNamespaceManager == null)
+                    {
+                        taxPubNamespaceManager = TaxPubNamespceManager(new XmlDocument().NameTable);
+                    }
+                }
+            }
+
+            return taxPubNamespaceManager;
         }
 
         public static XmlNamespaceManager TaxPubNamespceManager(XmlDocument xmlDocument)

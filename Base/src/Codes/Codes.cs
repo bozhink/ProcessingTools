@@ -344,7 +344,7 @@ namespace ProcessingTools.BaseLibrary
             {
                 TagContent codeTag = new TagContent(tag);
                 codeTag.Attributes += @" prefix=""" + specimenCode.Prefix + @""" type=""" + specimenCode.Type + @"""";
-                this.TagTextInXmlDocument(specimenCode.Code, codeTag, xpathTemplate);
+                specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument);
             }
 
             /*

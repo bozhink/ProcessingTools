@@ -9,7 +9,6 @@
 
 namespace ProcessingTools.BaseLibrary
 {
-    using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
     public class SpecimenCountTagger : TaggerBase
@@ -30,21 +29,11 @@ namespace ProcessingTools.BaseLibrary
         {
             string pattern = @"(?<!<[^>]+)((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>\(\)\[\]]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)(?![^<>]*>)";
             Regex matchSpecimenCount = new Regex(pattern);
-            IEnumerable<string> specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount, true);
-            this.TagTextInXmlDocument(specimenCountCitations, this.specimenCountTag, xpathProvider.SelectContentNodesXPathTemplate, false, true);
 
-            ////string replacement = specimenCountTag.OpenTag + "$1" + specimenCountTag.CloseTag;
-            ////foreach (XmlNode node in this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPath, this.NamespaceManager))
-            ////{
-            ////    string replace = node.InnerXml;
-            ////    {
-            ////        if (matchSpecimenCount.Match(replace).Success)
-            ////        {
-            ////            replace = matchSpecimenCount.Replace(replace, replacement);
-            ////            node.InnerXml = replace;
-            ////        }
-            ////    }
-            ////}
+            var nodeList = this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPathTemplate, this.NamespaceManager);
+            var specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount, true);
+
+            specimenCountCitations.TagContentInDocument(this.specimenCountTag, nodeList, false, true);
         }
     }
 }
