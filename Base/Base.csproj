@@ -171,6 +171,7 @@
   <ItemGroup>
     <Content Include="Data\english-common-words.txt" />
     <Content Include="Data\geo-epithets.txt" />
+    <Content Include="Data\get-coordinates-out.txt" />
     <Content Include="Data\institutional-codes.txt" />
     <Content Include="Data\institutions.txt" />
     <Content Include="Data\journals.txt" />
@@ -180,6 +181,8 @@
     <Content Include="Data\mime.xml" />
     <Content Include="Data\morphology.txt" />
     <Content Include="Data\products.txt" />
+    <Content Include="Data\sec-types-1.txt" />
+    <Content Include="Data\sec-types.txt" />
     <Content Include="Data\Sql\biorepositories.sql" />
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
@@ -232,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\get-taxa.ps1" />
     <None Include="Data\mime.json" />
     <None Include="Data\select_multi-rank-taxa.xqm" />
     <None Include="Data\taxonomic_ranks.xqm" />
