@@ -175,6 +175,9 @@
     <Content Include="Data\institutions.txt" />
     <Content Include="Data\journals.txt" />
     <Content Include="Data\localities.txt" />
+    <Content Include="Data\mime.out.xml" />
+    <Content Include="Data\mime.vb" />
+    <Content Include="Data\mime.xml" />
     <Content Include="Data\morphology.txt" />
     <Content Include="Data\products.txt" />
     <Content Include="Data\Sql\biorepositories.sql" />
@@ -229,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\mime.json" />
     <None Include="Data\select_multi-rank-taxa.xqm" />
     <None Include="Data\taxonomic_ranks.xqm" />
     <None Include="src\aphia.wsdl" />
