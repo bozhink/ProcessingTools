@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.BaseLibrary</RootNamespace>
     <AssemblyName>Base</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -26,6 +26,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -169,20 +170,20 @@
     <Compile Include="src\ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\english-common-words.txt" />
-    <Content Include="Data\geo-epithets.txt" />
-    <Content Include="Data\get-coordinates-out.txt" />
-    <Content Include="Data\institutional-codes.txt" />
-    <Content Include="Data\institutions.txt" />
-    <Content Include="Data\journals.txt" />
-    <Content Include="Data\localities.txt" />
-    <Content Include="Data\mime.out.xml" />
-    <Content Include="Data\mime.vb" />
-    <Content Include="Data\mime.xml" />
-    <Content Include="Data\morphology.txt" />
-    <Content Include="Data\products.txt" />
-    <Content Include="Data\sec-types-1.txt" />
-    <Content Include="Data\sec-types.txt" />
+    <Content Include="Data\raw\english-common-words.txt" />
+    <Content Include="Data\raw\geo-epithets.txt" />
+    <Content Include="Data\raw\get-coordinates-out.txt" />
+    <Content Include="Data\raw\institutional-codes.txt" />
+    <Content Include="Data\raw\institutions.txt" />
+    <Content Include="Data\raw\journals.txt" />
+    <Content Include="Data\raw\localities.txt" />
+    <Content Include="Data\raw\mime.out.xml" />
+    <Content Include="Data\raw\mime.vb" />
+    <Content Include="Data\raw\mime.xml" />
+    <Content Include="Data\raw\morphology.txt" />
+    <Content Include="Data\raw\products.txt" />
+    <Content Include="Data\raw\sec-types-1.txt" />
+    <Content Include="Data\raw\sec-types.txt" />
     <Content Include="Data\Sql\biorepositories.sql" />
     <Content Include="Data\Sql\environments_entities.sql" />
     <Content Include="Data\Sql\environments_global.sql" />
@@ -193,7 +194,7 @@
     <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
     <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
-    <Content Include="Data\words.txt" />
+    <Content Include="Data\raw\words.txt" />
     <Content Include="src\Test\FloraReplace.txt" />
     <Content Include="src\Test\json-test\example1.txt" />
     <Content Include="src\Test\json-test\example2.txt" />
@@ -235,10 +236,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\get-taxa.ps1" />
-    <None Include="Data\mime.json" />
-    <None Include="Data\select_multi-rank-taxa.xqm" />
-    <None Include="Data\taxonomic_ranks.xqm" />
+    <None Include="Data\raw\get-taxa.ps1" />
+    <None Include="Data\raw\mime.json" />
+    <None Include="Data\raw\select_multi-rank-taxa.xqm" />
+    <None Include="Data\raw\taxonomic_ranks.xqm" />
     <None Include="src\aphia.wsdl" />
   </ItemGroup>
   <ItemGroup>

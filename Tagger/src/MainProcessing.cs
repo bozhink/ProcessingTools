@@ -512,7 +512,7 @@
                 {
                     IBaseTagger tagger = new HigherTaxaTagger(config, xmlContent, whiteList, blackList);
                     tagger.Tag();
-                    xmlContent = tagger.Xml;
+                    xmlContent = tagger.Xml.NormalizeXmlToSystemXml(config);
                 }
                 catch (Exception e)
                 {
@@ -537,7 +537,7 @@
                 {
                     IBaseTagger tagger = new LowerTaxaTagger(config, xmlContent, whiteList, blackList);
                     tagger.Tag();
-                    xmlContent = tagger.Xml;
+                    xmlContent = tagger.Xml.NormalizeXmlToSystemXml(config);
                 }
                 catch (Exception e)
                 {

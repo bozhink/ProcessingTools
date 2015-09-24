@@ -96,6 +96,7 @@ Global
 		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|x64.ActiveCfg = Release|Any CPU
 		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
