@@ -376,7 +376,7 @@
                         // TODO
                         for (Match p = Regex.Match(this.Xml, "<p>[\\s\\S]+?" + Regex.Escape(node.InnerXml)); p.Success; p = p.NextMatch())
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
+                            Alert.Log("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
 
                             Species last = new Species();
                             bool matchFound = false;
@@ -427,11 +427,11 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current paragraph.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current paragraph.\n");
                             }
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -456,7 +456,7 @@
                         Match p = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (p.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
+                            Alert.Log("Paragraph content:\n\t{0}\n", p.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
                             bool matchFound = false;
                             for (Match taxon = findLowerTaxaMultiLine.Match(p.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -510,15 +510,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current paragraph.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current paragraph.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a paragraph or is already expanded");
+                            Alert.Log("This species is not in a paragraph or is already expanded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -595,15 +595,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current treatment section.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current treatment section.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a treatment section or is already unfolded");
+                            Alert.Log("This species is not in a treatment section or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -680,15 +680,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current treatment.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current treatment.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a treatment or is already unfolded");
+                            Alert.Log("This species is not in a treatment or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -765,15 +765,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current section.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current section.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a section or is already unfolded");
+                            Alert.Log("This species is not in a section or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -850,15 +850,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the preceding text.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the preceding text.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in the preceding text");
+                            Alert.Log("This species is not in the preceding text");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -935,15 +935,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the article.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the article.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in the article or is already unfolded");
+                            Alert.Log("This species is not in the article or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1093,9 +1093,9 @@
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\tThere is a genus-species coincidence but the subgenus does not match:");
-                                            Console.WriteLine("\t\t{0}\t|\t{1}", sp.SpeciesNameAsString, sp1.SpeciesNameAsString);
-                                            Console.WriteLine("\t\tSubstitution will not be done!");
+                                            Alert.Log("\tThere is a genus-species coincidence but the subgenus does not match:");
+                                            Alert.Log("\t\t{0}\t|\t{1}", sp.SpeciesNameAsString, sp1.SpeciesNameAsString);
+                                            Alert.Log("\t\tSubstitution will not be done!");
                                         }
                                     }
                                 }
@@ -1134,7 +1134,7 @@
                     // Select only shortened taxa with non-zero species name
                     if (sp.IsShortened && !sp.IsSpeciesNull)
                     {
-                        Console.WriteLine("\nNext shortened taxon:\t{0}", sp.AsString());
+                        Alert.Log("\nNext shortened taxon:\t{0}", sp.AsString());
 
                         // Scan all lower-taxon names in the article
                         // TODO
@@ -1142,7 +1142,7 @@
                         if (div.Success)
                         {
                             // TODO
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", div.Value);
+                            Alert.Log("Paragraph content:\n\t{0}\n", div.Value);
                             bool matchFound = false;
                             Species spl = new Species();
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(div.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -1169,12 +1169,12 @@
                                     matchFound = true;
                                 }
 
-                                Console.WriteLine("........ Found: genus {0} | subgenus {1} | species {2}", sp1.GenusName, sp1.SubgenusName, sp1.SpeciesName);
+                                Alert.Log("........ Found: genus {0} | subgenus {1} | species {2}", sp1.GenusName, sp1.SubgenusName, sp1.SpeciesName);
                             }
 
                             if (matchFound)
                             {
-                                Console.WriteLine("________ Substitution '{0}, ({1}), {2}'  by '{3}, ({4}), {5}'.", sp.GenusName, sp.SubgenusName, sp.SpeciesName, spl.GenusName, spl.SubgenusName, spl.SpeciesName);
+                                Alert.Log("________ Substitution '{0}, ({1}), {2}'  by '{3}, ({4}), {5}'.", sp.GenusName, sp.SubgenusName, sp.SpeciesName, spl.GenusName, spl.SubgenusName, spl.SpeciesName);
                                 string replace = Regex.Replace(m.Value, @"<tn[^>\-]*>", "<tn unfold=\"true\">");
                                 if (!spl.IsGenusNull)
                                 {
@@ -1195,15 +1195,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("________ No suitable genus name has been found in the current division.");
+                                Alert.Log("________ No suitable genus name has been found in the current division.");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in such a division or is already unfolded");
+                            Alert.Log("This species is not in such a division or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1412,7 +1412,7 @@
                         Match paragraph = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(m.Value));
                         if (paragraph.Success)
                         {
-                            Console.WriteLine("Paragraph content:\n\t{0}\n", paragraph.Value.RemoveTaxonNamePartTags());
+                            Alert.Log("Paragraph content:\n\t{0}\n", paragraph.Value.RemoveTaxonNamePartTags());
                             Species last = new Species();
                             bool matchFound = false;
                             for (Match taxon = this.findLowerTaxaMultiLine.Match(paragraph.Value); taxon.Success; taxon = taxon.NextMatch())
@@ -1466,15 +1466,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current paragraph.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current paragraph.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a paragraph or is already expanded");
+                            Alert.Log("This species is not in a paragraph or is already expanded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1551,15 +1551,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current treatment section.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current treatment section.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a treatment section or is already unfolded");
+                            Alert.Log("This species is not in a treatment section or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1636,15 +1636,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current treatment.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current treatment.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a treatment or is already unfolded");
+                            Alert.Log("This species is not in a treatment or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1721,15 +1721,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the current section.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the current section.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in a section or is already unfolded");
+                            Alert.Log("This species is not in a section or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1806,15 +1806,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the preceding text.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the preceding text.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in the preceding text");
+                            Alert.Log("This species is not in the preceding text");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1891,15 +1891,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("\n\tNo suitable genus name has been found in the article.\n");
+                                Alert.Log("\n\tNo suitable genus name has been found in the article.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("This species is not in the article or is already unfolded");
+                            Alert.Log("This species is not in the article or is already unfolded");
                         }
 
-                        Console.WriteLine("\n");
+                        Alert.Log("\n");
                     }
                 }
             }
@@ -1913,15 +1913,15 @@
                 string genusSpeciesPattern = "<tn[^>]*?><tn-part type=\"genus\">[A-Z][a-z]*\\.</tn-part>\\s*<tn-part type=\"species\">.*?</tn-part></tn>";
 
                 // Print all recognized genera in the article
-                Console.WriteLine();
+                Alert.Log();
                 Match genus = Regex.Match(this.Xml, genusNPrefix + "[A-Z][a-z\\.]+?" + genusNSuffix);
                 while (genus.Success)
                 {
-                    Console.WriteLine("Found genus: {0}", genus.Value);
+                    Alert.Log("Found genus: {0}", genus.Value);
                     genus = genus.NextMatch();
                 }
 
-                Console.Write("\n\n\n\n\n");
+                Alert.Log("\n\n\n\n\n");
 
                 // Show only genera in the current paragraph
                 Match genSp = Regex.Match(this.Xml, genusSpeciesPattern);
@@ -1929,13 +1929,13 @@
                 {
                     Match genusShort = Regex.Match(genSp.Value, genusNPrefix + "[A-Z][a-z]*?(?=\\.)");
                     Match species = Regex.Match(genSp.Value, "(?<=<tn-part type=\"species\">).*?(?=<)");
-                    Console.WriteLine("Shortened species found:\t{0}. {1}\n", genusShort.Value, species.Value);
+                    Alert.Log("Shortened species found:\t{0}. {1}\n", genusShort.Value, species.Value);
                     bool matchFound = false;
-                    Console.WriteLine("Scanning containing paragraph to find suitable genus...");
+                    Alert.Log("Scanning containing paragraph to find suitable genus...");
                     Match paragraph = Regex.Match(this.Xml, "<p>.*?" + Regex.Escape(genSp.Value));
                     if (paragraph.Success)
                     {
-                        Console.WriteLine("Paragraph content:\n\t{0}\n", paragraph.Value);
+                        Alert.Log("Paragraph content:\n\t{0}\n", paragraph.Value);
                         string lastGenusFound = string.Empty;
                         matchFound = false;
                         Match genusPar = Regex.Match(paragraph.Value, genusNPrefix + Regex.Escape(genusShort.Value) + "[a-z]+?" + genusNSuffix);
@@ -1943,27 +1943,27 @@
                         {
                             matchFound = true;
                             lastGenusFound = genusPar.Value;
-                            Console.WriteLine("........ Found Genus in paragraph: {0}\n", lastGenusFound);
+                            Alert.Log("........ Found Genus in paragraph: {0}\n", lastGenusFound);
                             genusPar = genusPar.NextMatch();
                         }
 
                         if (matchFound)
                         {
-                            Console.WriteLine("\n\tSpecies name '{0}. {1}' will be replaced by '{2} {1}' in the current paragraph.\n", genusShort.Value, species.Value, lastGenusFound);
+                            Alert.Log("\n\tSpecies name '{0}. {1}' will be replaced by '{2} {1}' in the current paragraph.\n", genusShort.Value, species.Value, lastGenusFound);
                             string replace = Regex.Replace(paragraph.Value, ">" + genusPrefix + genusShort.Value + "\\." + genusSuffix, " unfold=\"true\"><tn-part type=\"genus\">" + lastGenusFound + "</tn-part>");
                             this.Xml = Regex.Replace(this.Xml, Regex.Escape(paragraph.Value), replace);
                         }
                         else
                         {
-                            Console.WriteLine("\n\tNo suitable genus name has been found in the current paragraph.\n");
+                            Alert.Log("\n\tNo suitable genus name has been found in the current paragraph.\n");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("This species is not in a paragraph or is already unfolded");
+                        Alert.Log("This species is not in a paragraph or is already unfolded");
                     }
 
-                    Console.WriteLine("\n");
+                    Alert.Log("\n");
                     genSp = genSp.NextMatch();
                 }
             }

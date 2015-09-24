@@ -539,7 +539,7 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.ZoobankCloneMessage();
+            Alert.Log("\n\tZoobank clone JSON.\n");
             if (arguments.Count > 2)
             {
                 try
@@ -562,7 +562,7 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.ZoobankCloneMessage();
+            Alert.Log("\n\tZoobank clone XML.\n");
             if (arguments.Count > 2)
             {
                 try

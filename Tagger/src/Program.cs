@@ -242,7 +242,7 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.WriteOutputFileMessage();
+            Alert.Log("\n\tWriting data to output file.\n");
 
             try
             {

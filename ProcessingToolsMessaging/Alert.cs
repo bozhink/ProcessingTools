@@ -1,9 +1,11 @@
 ﻿namespace ProcessingTools
 {
     using System;
+    using System.IO;
+    using System.Security;
     using ProcessingToolsMessaging.Messages;
 
-    public static class Alert
+    public class Alert
     {
         public static void Log()
         {
@@ -11,40 +13,7 @@
             {
                 Console.WriteLine();
             }
-            catch (System.IO.IOException)
-            {
-            }
-        }
-
-        public static void Log(string message)
-        {
-            try
-            {
-                Console.WriteLine(message);
-            }
-            catch (System.IO.IOException)
-            {
-            }
-        }
-
-        public static void Log(int message)
-        {
-            try
-            {
-                Console.WriteLine(message);
-            }
-            catch (System.IO.IOException)
-            {
-            }
-        }
-
-        public static void Log(double message)
-        {
-            try
-            {
-                Console.WriteLine(message);
-            }
-            catch (System.IO.IOException)
+            catch (IOException)
             {
             }
         }
@@ -55,7 +24,7 @@
             {
                 Console.WriteLine(message);
             }
-            catch (System.IO.IOException)
+            catch (IOException)
             {
             }
         }
@@ -66,7 +35,7 @@
             {
                 Console.WriteLine(format, args);
             }
-            catch (System.IO.IOException)
+            catch (IOException)
             {
             }
         }
@@ -75,9 +44,9 @@
         {
             try
             {
-                System.Environment.Exit(exitCode);
+                Environment.Exit(exitCode);
             }
-            catch (System.Security.SecurityException)
+            catch (SecurityException)
             {
             }
         }
@@ -138,16 +107,6 @@
             {
                 Environment.Exit(exitCode);
             }
-        }
-
-        public static void WriteOutputFileMessage()
-        {
-            Alert.Log("\n\t{0}\n", Messages.writeOutputFileMessage);
-        }
-
-        public static void ZoobankCloneMessage()
-        {
-            Alert.Log("\n\t{0}\n", Messages.zoobankCloneMessage);
         }
 
         public static void PrintHelp()

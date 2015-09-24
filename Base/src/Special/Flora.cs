@@ -57,7 +57,6 @@
             template.Load(this.Config.floraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
-            Alert.Log(root.ChildNodes.Count);
 
             {
                 string xml = this.XmlDocument.OuterXml;
@@ -184,10 +183,8 @@
 
             // Get only full-named taxa
             XmlNodeList templateList = root.SelectNodes("//taxon[count(replace/tn/tn-part[normalize-space(.)=''])=0]");
-            Alert.Log(templateList.Count);
 
             XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn");
-            Alert.Log(nodeList.Count);
 
             Parallel.For(0, nodeList.Count, index => ParseTnParallelCallBackFunction(index, templateList, nodeList));
 
