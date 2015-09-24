@@ -24,11 +24,9 @@
                 DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Config));
                 config = (Config)data.ReadObject(stream);
             }
-            catch (Exception e)
+            catch
             {
-                Alert.Log("ReadAllLinesToString Exception:");
-                Alert.Log(e.Message);
-                Alert.Exit(1);
+                throw;
             }
 
             return config;

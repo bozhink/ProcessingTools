@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingToolsMessaging.Messages {
-    using System;
-    
-    
+namespace ProcessingToolsMessaging.Messages
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

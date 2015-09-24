@@ -25,12 +25,12 @@
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod(int stackPosition)
         {
-            StackTrace st = new StackTrace();
-            StackFrame[] sf = st.GetFrames();
+            StackTrace stackTrace = new StackTrace();
+            StackFrame[] stackFrame = stackTrace.GetFrames();
 
-            if (stackPosition < sf.Length)
+            if (stackPosition < stackFrame.Length)
             {
-                return sf[stackPosition].GetMethod().Name;
+                return stackFrame[stackPosition].GetMethod().Name;
             }
             else
             {
