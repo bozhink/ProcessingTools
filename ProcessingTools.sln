@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsConfig", "Pr
 		{76BEF8BF-631B-4C9D-B0D4-986718D5C859} = {76BEF8BF-631B-4C9D-B0D4-986718D5C859}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsMessaging", "ProcessingToolsMessaging\ProcessingToolsMessaging.csproj", "{76BEF8BF-631B-4C9D-B0D4-986718D5C859}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsGlobals", "ProcessingToolsMessaging\ProcessingToolsGlobals.csproj", "{76BEF8BF-631B-4C9D-B0D4-986718D5C859}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseObjectTests", "BaseObjectTests\BaseObjectTests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
 EndProject

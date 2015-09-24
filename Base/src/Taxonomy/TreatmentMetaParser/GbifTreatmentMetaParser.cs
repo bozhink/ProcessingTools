@@ -6,19 +6,24 @@
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
     {
-        public GbifTreatmentMetaParser(string xml)
-            : base(xml)
+        private ILogger logger;
+
+        public GbifTreatmentMetaParser(string xml, ILogger logger)
+            : base(xml, logger)
         {
+            this.logger = logger;
         }
 
-        public GbifTreatmentMetaParser(Config config, string xml)
-            : base(config, xml)
+        public GbifTreatmentMetaParser(Config config, string xml, ILogger logger)
+            : base(config, xml, logger)
         {
+            this.logger = logger;
         }
 
-        public GbifTreatmentMetaParser(IBase baseObject)
-            : base(baseObject)
+        public GbifTreatmentMetaParser(IBase baseObject, ILogger logger)
+            : base(baseObject, logger)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -31,12 +36,12 @@
                 {
                     this.Delay();
 
-                    Alert.Log("\n{0}\n", genus);
+                    this.logger?.Log("\n{0}\n", genus);
 
                     GbifResult gbifResult = Net.SearchGbif(genus);
                     if ((gbifResult != null) && (gbifResult.canonicalName != null || gbifResult.scientificName != null))
                     {
-                        Alert.Log(
+                        this.logger?.Log(
                             "{0} .... {1} .... {2}",
                             genus,
                             gbifResult.scientificName,
@@ -44,11 +49,11 @@
 
                         if (!gbifResult.canonicalName.Equals(genus) && !gbifResult.scientificName.Contains(genus))
                         {
-                            Alert.Log("No match.");
+                            this.logger?.Log("No match.");
                         }
                         else
                         {
-                            Alert.Log(
+                            this.logger?.Log(
                                 "Kingdom: {0}\nOrder: {1}\nFamily: {2}\n",
                                 gbifResult.kingdom,
                                 gbifResult.order,

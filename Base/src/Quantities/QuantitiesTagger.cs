@@ -10,14 +10,18 @@
         private TagContent deviationTag = new TagContent("deviation");
         private TagContent altitudeTag = new TagContent("altitude");
 
-        public QuantitiesTagger(Config config, string xml)
+        private ILogger logger;
+
+        public QuantitiesTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public QuantitiesTagger(IBase baseObject)
+        public QuantitiesTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         /*
@@ -46,7 +50,7 @@
             IEnumerable<string> quantities = this.TextContent.GetMatchesInText(matchQuantities, true);
             foreach (string quantity in quantities)
             {
-                Alert.Log(quantity);
+                this.logger?.Log(quantity);
                 quantity.TagContentInDocument(this.quantityTag, xpathProvider.SelectContentNodesXPathTemplate, this.XmlDocument, true);
             }
         }

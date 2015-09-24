@@ -41,14 +41,18 @@
                 "inae|ina"
             };
 
-        public SuffixHigherTaxaParser(string xml)
+        private ILogger logger;
+
+        public SuffixHigherTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public SuffixHigherTaxaParser(Config config, string xml)
+        public SuffixHigherTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
         public SuffixHigherTaxaParser(IBase baseObject)
@@ -62,7 +66,7 @@
             IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
-                Alert.Log(scientificName);
+                this.logger?.Log(scientificName);
                 string scientificNameReplacement = scientificName;
                 for (int i = 0; i < this.higherTaxaRanks.Length; ++i)
                 {

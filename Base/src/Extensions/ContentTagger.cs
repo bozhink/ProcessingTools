@@ -123,11 +123,8 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
-
                     replace = node.InnerXml;
-
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    Alert.RaiseExceptionForMethod(e, "TagContentInDocument", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
                 }
                 finally
                 {
@@ -202,11 +199,8 @@
                     }
                     catch (Exception tagOrderNormalizerException)
                     {
-                        Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
-
                         replace = node.InnerXml;
-
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        Alert.RaiseExceptionForMethod(e, "TagContentInDocument", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
                         Alert.RaiseExceptionForMethod(tagOrderNormalizerException, 0);
                     }
                 }

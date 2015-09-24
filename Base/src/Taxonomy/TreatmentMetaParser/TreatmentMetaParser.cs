@@ -13,19 +13,24 @@
 
         private static bool delay = false;
 
-        public TreatmentMetaParser(string xml)
+        private ILogger logger;
+
+        public TreatmentMetaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public TreatmentMetaParser(Config config, string xml)
+        public TreatmentMetaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public TreatmentMetaParser(IBase baseObject)
+        public TreatmentMetaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public abstract void Parse();
@@ -48,7 +53,7 @@
             {
                 string taxonName = higherTaxaOfType.First();
 
-                Alert.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
+                this.logger?.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
 
                 string xpath = string.Format(TreatmentMetaReplaceXPathTemplate, genus, type);
                 foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
@@ -58,13 +63,13 @@
             }
             else
             {
-                Alert.Log("WARNING: Multiple or zero matches of type {0}:", type);
+                this.logger?.Log("WARNING: Multiple or zero matches of type {0}:", type);
                 foreach (string taxonName in higherTaxaOfType)
                 {
-                    Alert.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
+                    this.logger?.Log("{0}: {1}\t--\t{2}", genus, type, taxonName);
                 }
 
-                Alert.Log();
+                this.logger?.Log();
             }
         }
     }

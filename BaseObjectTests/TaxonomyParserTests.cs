@@ -7,11 +7,13 @@
     public class TaxonomyParserTests
     {
         private static Config config;
+        private static ILogger logger;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
             config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
+            logger = new ConsoleLogger();
         }
 
         [TestMethod]
@@ -19,7 +21,7 @@
         public void SuffixHigherTaxaParser_CreateNewInstance_SchouldSucceed()
         {
             string xml = "<article></article>";
-            var parser = new SuffixHigherTaxaParser(config, xml);
+            var parser = new SuffixHigherTaxaParser(config, xml, logger);
 
             Assert.IsTrue(parser is SuffixHigherTaxaParser, "Parser is not a SuffixHigherTaxaParser object.");
             Assert.IsTrue(parser is HigherTaxaParser, "Parser is not a HigherTaxaParser object.");

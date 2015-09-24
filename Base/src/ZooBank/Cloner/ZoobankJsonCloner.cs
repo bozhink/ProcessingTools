@@ -12,15 +12,19 @@
     {
         private string jsonString;
 
-        public ZoobankJsonCloner(string xmlContent)
+        private ILogger logger;
+
+        public ZoobankJsonCloner(string xmlContent, ILogger logger)
             : base(xmlContent)
         {
+            this.logger = logger;
             this.JsonString = null;
         }
 
-        public ZoobankJsonCloner(string jsonString, string xmlContent)
+        public ZoobankJsonCloner(string jsonString, string xmlContent, ILogger logger)
             : base(xmlContent)
         {
+            this.logger = logger;
             this.JsonString = jsonString;
         }
 
@@ -90,7 +94,7 @@
             {
                 if (zoobankRegistrationList.Count > 1)
                 {
-                    Alert.Log("WARNING: More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
+                    this.logger?.Log("WARNING: More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
                 }
 
                 zoobankRegistration = zoobankRegistrationList[0];
@@ -120,7 +124,7 @@
             {
                 this.ResolveEmptyParentNames(zoobankRegistration, nomenclaturalAct);
 
-                Alert.Log("\n\n" + nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
+                this.logger?.Log("\n\n" + nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
 
                 string xpath = this.GetNomenclatureTaxonXPath(nomenclaturalAct);
 
@@ -130,11 +134,11 @@
                     objectId.InnerText = ZooBankPrefix + nomenclaturalAct.tnuuuid;
                     numberOfNewNomenclaturalActs++;
 
-                    Alert.Log(nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
+                    this.logger?.Log(nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
                 }
             }
 
-            Alert.Log("\n\n\nNumber of nomenclatural acts = {0}.\nNumber of new nomenclatural acts = {1}.\n\n\n", numberOfNomenclaturalActs, numberOfNewNomenclaturalActs);
+            this.logger?.Log("\n\n\nNumber of nomenclatural acts = {0}.\nNumber of new nomenclatural acts = {1}.\n\n\n", numberOfNomenclaturalActs, numberOfNewNomenclaturalActs);
         }
 
         private void ResolveEmptyParentNames(ZooBankRegistration zoobankRegistration, NomenclaturalAct nomenclaturalAct)

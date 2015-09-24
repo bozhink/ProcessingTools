@@ -7,19 +7,24 @@
 
     public class LocalDataBaseHigherTaxaParser : HigherTaxaParser
     {
-        public LocalDataBaseHigherTaxaParser(string xml)
+        private ILogger logger;
+
+        public LocalDataBaseHigherTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public LocalDataBaseHigherTaxaParser(Config config, string xml)
+        public LocalDataBaseHigherTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public LocalDataBaseHigherTaxaParser(IBase baseObject)
+        public LocalDataBaseHigherTaxaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -37,22 +42,23 @@
                 int ranksCount = (ranks == null) ? 0 : ranks.Count();
                 if (ranksCount == 0)
                 {
-                    Alert.Log("\n" + scientificName + " --> No match.");
+                    this.logger?.Log("\n" + scientificName + " --> No match.");
                 }
                 else if (ranksCount > 1)
                 {
-                    Alert.Log(scientificName +
+                    this.logger?.Log(scientificName +
                         "\nWARNING: More than one records in local database." +
                         "\n         Substitution will not be performed.");
+
                     foreach (string rank in ranks)
                     {
-                        Alert.Log("\n\t" + rank);
+                        this.logger?.Log("\n\t" + rank);
                     }
                 }
                 else
                 {
                     string rank = ranks.ElementAt(0);
-                    Alert.Log("\n" + scientificName + " --> " + rank);
+                    this.logger?.Log("\n" + scientificName + " --> " + rank);
 
                     string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 

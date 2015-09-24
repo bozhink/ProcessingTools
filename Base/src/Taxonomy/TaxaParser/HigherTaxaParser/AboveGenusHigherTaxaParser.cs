@@ -4,19 +4,24 @@
 
     public class AboveGenusHigherTaxaParser : HigherTaxaParser
     {
-        public AboveGenusHigherTaxaParser(string xml)
+        private ILogger logger;
+
+        public AboveGenusHigherTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public AboveGenusHigherTaxaParser(Config config, string xml)
+        public AboveGenusHigherTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public AboveGenusHigherTaxaParser(IBase baseObject)
+        public AboveGenusHigherTaxaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         /// <summary>
@@ -30,7 +35,7 @@
             IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
-                Alert.Log("\n" + scientificName + " --> " + rank);
+                this.logger?.Log("\n" + scientificName + " --> " + rank);
 
                 this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
             }

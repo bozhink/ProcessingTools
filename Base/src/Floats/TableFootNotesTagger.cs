@@ -6,14 +6,18 @@
 
     public class TableFootNotesTagger : Base, IBaseTagger
     {
-        public TableFootNotesTagger(Config config, string xml)
+        private ILogger logger;
+
+        public TableFootNotesTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public TableFootNotesTagger(IBase baseObject)
+        public TableFootNotesTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void Tag()
@@ -22,11 +26,11 @@
             XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
             {
-                Alert.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                this.logger?.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
             }
             else
             {
-                Alert.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
+                this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
                 foreach (XmlNode tableWrap in tableWrapList)
                 {
                     Hashtable tableFootnotes = new Hashtable();

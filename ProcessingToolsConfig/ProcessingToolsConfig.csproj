@@ -49,12 +49,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsMessaging.csproj">
-      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingToolsMessaging</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

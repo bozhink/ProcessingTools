@@ -8,19 +8,24 @@
 
     public class TaxonomicNamesValidator : Base, IBaseValidator
     {
-        public TaxonomicNamesValidator(string xml)
+        private ILogger logger;
+
+        public TaxonomicNamesValidator(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public TaxonomicNamesValidator(Config config, string xml)
+        public TaxonomicNamesValidator(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public TaxonomicNamesValidator(IBase baseObject)
+        public TaxonomicNamesValidator(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void Validate()
@@ -53,11 +58,11 @@
                     }
                     catch
                     {
-                        Alert.Log("Error: Invalid content in response: {0}", datumNode.InnerXml);
+                        this.logger?.Log("Error: Invalid content in response: {0}", datumNode.InnerXml);
                     }
                 }
 
-                Alert.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
+                this.logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
 
                 try
                 {

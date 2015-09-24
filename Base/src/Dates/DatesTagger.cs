@@ -20,14 +20,18 @@ namespace ProcessingTools.BaseLibrary.Dates
     {
         private TagContent dateTag = new TagContent("date");
 
-        public DatesTagger(Config config, string xml)
+        private ILogger logger;
+
+        public DatesTagger(Config config, string xml, ILogger logger = null)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public DatesTagger(IBase baseObject)
+        public DatesTagger(IBase baseObject, ILogger logger = null)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void Tag()
@@ -55,7 +59,7 @@ namespace ProcessingTools.BaseLibrary.Dates
 
                 foreach (string date in dates)
                 {
-                    Alert.Log(date);
+                    this.logger?.Log(date);
                     date.TagContentInDocument(this.dateTag, xpathTemplate, this.XmlDocument, true, true);
                 }
             }

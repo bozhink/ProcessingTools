@@ -19,11 +19,11 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTaxa validation using Global names resolver.\n");
+                consoleLogger.Log("\n\tTaxa validation using Global names resolver.\n");
 
                 try
                 {
-                    IValidator validator = new TaxonomicNamesValidator(config, xmlContent);
+                    IValidator validator = new TaxonomicNamesValidator(config, xmlContent, consoleLogger);
                     validator.Validate();
                 }
                 catch (Exception e)
@@ -39,12 +39,12 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tExpand taxa.\n");
+            consoleLogger.Log("\n\tExpand taxa.\n");
 
             try
             {
-                BaseLibrary.Taxonomy.Nlm.Expander expand = new BaseLibrary.Taxonomy.Nlm.Expander(config, xmlContent);
-                Expander exp = new Expander(config, xmlContent);
+                BaseLibrary.Taxonomy.Nlm.Expander expand = new BaseLibrary.Taxonomy.Nlm.Expander(config, xmlContent, consoleLogger);
+                Expander exp = new Expander(config, xmlContent, consoleLogger);
 
                 for (int i = 0; i < NumberOfExpandingIterations; ++i)
                 {
@@ -121,31 +121,31 @@
 
                 if (extractTaxa)
                 {
-                    Alert.Log("\n\t\tExtract all taxa\n");
+                    consoleLogger.Log("\n\t\tExtract all taxa\n");
                     taxaList = xmlDocument.ExtractTaxa(true);
                     foreach (string taxon in taxaList)
                     {
-                        Alert.Log(taxon);
+                        consoleLogger.Log(taxon);
                     }
                 }
 
                 if (extractLowerTaxa)
                 {
-                    Alert.Log("\n\t\tExtract lower taxa\n");
+                    consoleLogger.Log("\n\t\tExtract lower taxa\n");
                     taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Lower);
                     foreach (string taxon in taxaList)
                     {
-                        Alert.Log(taxon);
+                        consoleLogger.Log(taxon);
                     }
                 }
 
                 if (extractHigherTaxa)
                 {
-                    Alert.Log("\n\t\tExtract higher taxa\n");
+                    consoleLogger.Log("\n\t\tExtract higher taxa\n");
                     taxaList = xmlDocument.ExtractTaxa(true, TaxaType.Higher);
                     foreach (string taxon in taxaList)
                     {
-                        Alert.Log(taxon);
+                        consoleLogger.Log(taxon);
                     }
                 }
             }
@@ -159,7 +159,7 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tFormat treatments.\n");
+            consoleLogger.Log("\n\tFormat treatments.\n");
 
             try
             {
@@ -268,13 +268,13 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse higher taxa.\n");
+                consoleLogger.Log("\n\tParse higher taxa.\n");
 
                 try
                 {
-                    IBaseParser parser = new LocalDataBaseHigherTaxaParser(config, xmlContent);
+                    IBaseParser parser = new LocalDataBaseHigherTaxaParser(config, xmlContent, consoleLogger);
                     parser.Parse();
-                    parser.XmlDocument.PrintNonParsedTaxa();
+                    parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                     xmlContent = parser.Xml;
                 }
                 catch (Exception e)
@@ -284,13 +284,13 @@
 
                 if (splitHigherWithAphia)
                 {
-                    Alert.Log("\n\tSplit higher taxa using Aphia API\n");
+                    consoleLogger.Log("\n\tSplit higher taxa using Aphia API\n");
 
                     try
                     {
-                        IBaseParser parser = new AphiaHigherTaxaParser(config, xmlContent);
+                        IBaseParser parser = new AphiaHigherTaxaParser(config, xmlContent, consoleLogger);
                         parser.Parse();
-                        parser.XmlDocument.PrintNonParsedTaxa();
+                        parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                         xmlContent = parser.Xml;
                     }
                     catch (Exception e)
@@ -301,13 +301,13 @@
 
                 if (splitHigherWithCoL)
                 {
-                    Alert.Log("\n\tSplit higher taxa using CoL API\n");
+                    consoleLogger.Log("\n\tSplit higher taxa using CoL API\n");
 
                     try
                     {
-                        IBaseParser parser = new CoLHigherTaxaParser(config, xmlContent);
+                        IBaseParser parser = new CoLHigherTaxaParser(config, xmlContent, consoleLogger);
                         parser.Parse();
-                        parser.XmlDocument.PrintNonParsedTaxa();
+                        parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                         xmlContent = parser.Xml;
                     }
                     catch (Exception e)
@@ -318,13 +318,13 @@
 
                 if (splitHigherWithGbif)
                 {
-                    Alert.Log("\n\tSplit higher taxa using GBIF API\n");
+                    consoleLogger.Log("\n\tSplit higher taxa using GBIF API\n");
 
                     try
                     {
-                        IBaseParser parser = new GbifHigherTaxaParser(config, xmlContent);
+                        IBaseParser parser = new GbifHigherTaxaParser(config, xmlContent, consoleLogger);
                         parser.Parse();
-                        parser.XmlDocument.PrintNonParsedTaxa();
+                        parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                         xmlContent = parser.Xml;
                     }
                     catch (Exception e)
@@ -335,13 +335,13 @@
 
                 if (splitHigherBySuffix)
                 {
-                    Alert.Log("\n\tSplit higher taxa by suffix\n");
+                    consoleLogger.Log("\n\tSplit higher taxa by suffix\n");
 
                     try
                     {
-                        IBaseParser parser = new SuffixHigherTaxaParser(config, xmlContent);
+                        IBaseParser parser = new SuffixHigherTaxaParser(config, xmlContent, consoleLogger);
                         parser.Parse();
-                        parser.XmlDocument.PrintNonParsedTaxa();
+                        parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                         xmlContent = parser.Xml;
                     }
                     catch (Exception e)
@@ -352,13 +352,13 @@
 
                 if (splitHigherAboveGenus)
                 {
-                    Alert.Log("\n\tMake higher taxa of type 'above-genus'\n");
+                    consoleLogger.Log("\n\tMake higher taxa of type 'above-genus'\n");
 
                     try
                     {
-                        IBaseParser parser = new AboveGenusHigherTaxaParser(config, xmlContent);
+                        IBaseParser parser = new AboveGenusHigherTaxaParser(config, xmlContent, consoleLogger);
                         parser.Parse();
-                        parser.XmlDocument.PrintNonParsedTaxa();
+                        parser.XmlDocument.PrintNonParsedTaxa(consoleLogger);
                         xmlContent = parser.Xml;
                     }
                     catch (Exception e)
@@ -379,7 +379,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse lower taxa.\n");
+                consoleLogger.Log("\n\tParse lower taxa.\n");
 
                 try
                 {
@@ -404,11 +404,11 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse treatment meta with Aphia.\n");
+                consoleLogger.Log("\n\tParse treatment meta with Aphia.\n");
 
                 try
                 {
-                    IBaseParser parser = new AphiaTreatmentMetaParser(config, xmlContent);
+                    IBaseParser parser = new AphiaTreatmentMetaParser(config, xmlContent, consoleLogger);
                     parser.Parse();
                     xmlContent = parser.Xml;
                 }
@@ -424,11 +424,11 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse treatment meta with GBIF.\n");
+                consoleLogger.Log("\n\tParse treatment meta with GBIF.\n");
 
                 try
                 {
-                    IBaseParser parser = new GbifTreatmentMetaParser(config, xmlContent);
+                    IBaseParser parser = new GbifTreatmentMetaParser(config, xmlContent, consoleLogger);
                     parser.Parse();
                     xmlContent = parser.Xml;
                 }
@@ -444,11 +444,11 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse treatment meta with CoL.\n");
+                consoleLogger.Log("\n\tParse treatment meta with CoL.\n");
 
                 try
                 {
-                    IBaseParser parser = new CoLTreatmentMetaParser(config, xmlContent);
+                    IBaseParser parser = new CoLTreatmentMetaParser(config, xmlContent, consoleLogger);
                     parser.Parse();
                     xmlContent = parser.Xml;
                 }
@@ -483,11 +483,11 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tTag floats.\n");
+            consoleLogger.Log("\n\tTag floats.\n");
 
             try
             {
-                FloatsTagger fl = new FloatsTagger(config, xmlContent);
+                FloatsTagger fl = new FloatsTagger(config, xmlContent, consoleLogger);
                 fl.Tag();
                 xmlContent = fl.Xml;
             }
@@ -506,7 +506,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag higher taxa.\n");
+                consoleLogger.Log("\n\tTag higher taxa.\n");
 
                 try
                 {
@@ -531,7 +531,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag lower taxa.\n");
+                consoleLogger.Log("\n\tTag lower taxa.\n");
 
                 try
                 {
@@ -554,11 +554,11 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tTag table foot-notes.\n");
+            consoleLogger.Log("\n\tTag table foot-notes.\n");
 
             try
             {
-                IBaseTagger fl = new TableFootNotesTagger(config, xmlContent);
+                IBaseTagger fl = new TableFootNotesTagger(config, xmlContent, consoleLogger);
                 fl.Tag();
                 xmlContent = fl.Xml;
             }

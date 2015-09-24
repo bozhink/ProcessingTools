@@ -77,7 +77,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tInitial format.\n");
+                consoleLogger.Log("\n\tInitial format.\n");
 
                 try
                 {
@@ -111,11 +111,11 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse coordinates.\n");
+                consoleLogger.Log("\n\tParse coordinates.\n");
 
                 try
                 {
-                    IBaseParser cooredinatesParser = new CoordinatesParser(config, fp.Xml);
+                    IBaseParser cooredinatesParser = new CoordinatesParser(config, fp.Xml, consoleLogger);
                     cooredinatesParser.Parse();
                     fp.Xml = cooredinatesParser.Xml;
                 }
@@ -134,7 +134,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tParse references.\n");
+                consoleLogger.Log("\n\tParse references.\n");
 
                 try
                 {
@@ -187,7 +187,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag abbreviations.\n");
+                consoleLogger.Log("\n\tTag abbreviations.\n");
 
                 try
                 {
@@ -210,7 +210,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag codes.\n");
+                consoleLogger.Log("\n\tTag codes.\n");
 
                 try
                 {
@@ -277,7 +277,7 @@
 
                         try
                         {
-                            Codes codes = new Codes(config, fp.Xml);
+                            Codes codes = new Codes(config, fp.Xml, consoleLogger);
                             codes.TagInstitutions(xpathProvider, dataProvider);
                             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
                             ////codes.TagSpecimenCodes(xpathProvider);
@@ -307,7 +307,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag coordinates.\n");
+                consoleLogger.Log("\n\tTag coordinates.\n");
 
                 try
                 {
@@ -330,7 +330,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag dates.\n");
+                consoleLogger.Log("\n\tTag dates.\n");
 
                 try
                 {
@@ -354,7 +354,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag DOI.\n");
+                consoleLogger.Log("\n\tTag DOI.\n");
 
                 try
                 {
@@ -379,7 +379,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tUse greek tagger.\n");
+                consoleLogger.Log("\n\tUse greek tagger.\n");
 
                 try
                 {
@@ -403,7 +403,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag environments.\n");
+                consoleLogger.Log("\n\tTag environments.\n");
 
                 try
                 {
@@ -426,12 +426,12 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag quantities.\n");
+                consoleLogger.Log("\n\tTag quantities.\n");
 
                 try
                 {
                     IXPathProvider xpathProvider = new XPathProvider(config);
-                    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml, consoleLogger);
                     quantitiesTagger.TagQuantities(xpathProvider);
                     quantitiesTagger.TagDeviation(xpathProvider);
                     quantitiesTagger.TagAltitude(xpathProvider);
@@ -464,7 +464,7 @@
 
         private static void TagReferences(FileProcessor fp)
         {
-            Alert.Log("\n\tTag references.\n");
+            consoleLogger.Log("\n\tTag references.\n");
 
             try
             {
@@ -492,7 +492,7 @@
                         templateFileName = Regex.Replace(templateFileName, @"\W+", "_");
                         templateFileName = Regex.Replace(templateFileName, @"^(.{0,30}).*$", "$1_" + node.GetHashCode());
 
-                        Alert.Log(templateFileName);
+                        consoleLogger.Log(templateFileName);
 
                         XmlNode newNode = node;
                         newNode.InnerXml = TagReferences(node.OuterXml, templateFileName);
@@ -518,7 +518,7 @@
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                Alert.Log("\n\tTag web links.\n");
+                consoleLogger.Log("\n\tTag web links.\n");
 
                 try
                 {
@@ -539,13 +539,13 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tZoobank clone JSON.\n");
+            consoleLogger.Log("\n\tZoobank clone JSON.\n");
             if (arguments.Count > 2)
             {
                 try
                 {
                     string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
-                    IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml);
+                    IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml, consoleLogger);
                     zoobankCloner.Clone();
                     fp.Xml = zoobankCloner.Xml;
                 }
@@ -562,14 +562,14 @@
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tZoobank clone XML.\n");
+            consoleLogger.Log("\n\tZoobank clone XML.\n");
             if (arguments.Count > 2)
             {
                 try
                 {
                     FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
                     fileProcessorNlm.Read();
-                    IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml);
+                    IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml, consoleLogger);
                     zoobankCloner.Clone();
                     fp.Xml = zoobankCloner.Xml;
                 }

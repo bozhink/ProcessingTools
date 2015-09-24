@@ -6,14 +6,18 @@
 
     public class CoordinatesParser : Base, IBaseParser
     {
-        public CoordinatesParser(Config config, string xml)
+        private ILogger logger;
+
+        public CoordinatesParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public CoordinatesParser(IBase baseObject)
+        public CoordinatesParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void Parse()
@@ -32,16 +36,16 @@
 
             foreach (XmlNode coordinate in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
             {
-                Alert.Log("\n{0}\n", coordinate.OuterXml);
+                this.logger?.Log("\n{0}\n", coordinate.OuterXml);
 
                 coordinate.InnerXml = Regex.Replace(coordinate.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 
                 string coordinateText = this.SimplifyCoordinateString(coordinate.InnerText);
 
-                Alert.Log(">> {0}", coordinateText);
+                this.logger?.Log(">> {0}", coordinateText);
 
-                CoordinatePart latitude = new CoordinatePart();
-                CoordinatePart longitude = new CoordinatePart();
+                CoordinatePart latitude = new CoordinatePart(this.logger);
+                CoordinatePart longitude = new CoordinatePart(this.logger);
 
                 bool hasLatitudePart = false;
                 bool hasLongitudePart = false;
@@ -57,7 +61,7 @@
                     {
                         if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") || rightPart.Contains("N") || rightPart.Contains("S"))
                         {
-                            Alert.Log("Can not parse coordinate.");
+                            this.logger?.Log("Can not parse coordinate.");
                             continue;
                         }
                         else
@@ -70,7 +74,7 @@
                     {
                         if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
                         {
-                            Alert.Log("Can not parse coordinate.");
+                            this.logger?.Log("Can not parse coordinate.");
                             continue;
                         }
                         else
@@ -85,7 +89,7 @@
                         longitudeString = rightPart;
                     }
 
-                    Alert.Log("Latitude =\t{0};\tLongitude =\t{1}", latitudeString, longitudeString);
+                    this.logger?.Log("Latitude =\t{0};\tLongitude =\t{1}", latitudeString, longitudeString);
 
                     Match latMatch = Regex.Match(latitudeString, @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SN]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
 
@@ -99,18 +103,18 @@
                     {
                         if (latMatch.NextMatch().Success)
                         {
-                            Alert.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
+                            this.logger?.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
                         }
                         else if (lngMatch.NextMatch().Success)
                         {
-                            Alert.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
+                            this.logger?.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             latitude.ParseString(hasLatitudePart ? latMatch.Value : string.Empty);
                             longitude.ParseString(hasLongitudePart ? lngMatch.Value : string.Empty);
 
-                            Alert.Log(
+                            this.logger?.Log(
                                 "Latitude =\t{0};\tLongitude =\t{1}\n{2} =\t{3};\t{4} =\t{5}",
                                 latitude.CoordinateString,
                                 longitude.CoordinateString,
@@ -131,12 +135,12 @@
                     {
                         if (latMatch.NextMatch().Success)
                         {
-                            Alert.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
+                            this.logger?.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             latitude.ParseString(latMatch.Value);
-                            Alert.Log("{0} =\t{1}", latitude.Type, latitude.CoordinateString);
+                            this.logger?.Log("{0} =\t{1}", latitude.Type, latitude.CoordinateString);
                         }
                     }
                 }
@@ -150,17 +154,17 @@
                     {
                         if (lngMatch.NextMatch().Success)
                         {
-                            Alert.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
+                            this.logger?.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
                         }
                         else
                         {
                             longitude.ParseString(lngMatch.Value);
-                            Alert.Log("{0} =\t{1}", longitude.Type, longitude.CoordinateString);
+                            this.logger?.Log("{0} =\t{1}", longitude.Type, longitude.CoordinateString);
                         }
                     }
                 }
 
-                Alert.Log(
+                this.logger?.Log(
                     "{2} =\t{0};\t{3} =\t{1}\n",
                     latitude.CoordinateValue,
                     longitude.CoordinateValue,

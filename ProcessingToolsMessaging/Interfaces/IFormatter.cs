@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools
 {
     public interface IFormatter
     {

@@ -9,8 +9,11 @@
         private double decimalCoordinateValue;
         private CoordinateType type;
 
-        public CoordinatePart()
+        private ILogger logger;
+
+        public CoordinatePart(ILogger logger)
         {
+            this.logger = logger;
             this.decimalCoordinateSign = 1;
             this.decimalCoordinateValue = 0.0;
             this.coordinateString = string.Empty;
@@ -115,7 +118,7 @@
                 secondsString = " ";
             }
 
-            Alert.Log("DEG: " + Regex.Replace(degreesString, "\\s+", "#") + " MM: " + Regex.Replace(minutesString, "\\s+", "#") + " SS: " + Regex.Replace(secondsString, "\\s+", "#"));
+            this.logger?.Log("DEG: " + Regex.Replace(degreesString, "\\s+", "#") + " MM: " + Regex.Replace(minutesString, "\\s+", "#") + " SS: " + Regex.Replace(secondsString, "\\s+", "#"));
 
             try
             {
@@ -127,17 +130,17 @@
             }
             catch (System.ArgumentNullException)
             {
-                Alert.Log("ArgumentNullException in Coordinate parameter = " + str);
+                this.logger?.Log("ArgumentNullException in Coordinate parameter = " + str);
                 return 0.0;
             }
             catch (System.FormatException)
             {
-                Alert.Log("FormatException in Coordinate parameter = " + str);
+                this.logger?.Log("FormatException in Coordinate parameter = " + str);
                 return 0.0;
             }
             catch (System.OverflowException)
             {
-                Alert.Log("OverflowException in Coordinate parameter = " + str);
+                this.logger?.Log("OverflowException in Coordinate parameter = " + str);
                 return 0.0;
             }
         }

@@ -64,8 +64,6 @@
 
                 foreach (string coordinateString in coordinateStrings)
                 {
-                    Alert.Log(coordinateString);
-
                     replacementNode.InnerText = coordinateString;
 
                     replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true);

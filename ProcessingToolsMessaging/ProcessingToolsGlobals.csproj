@@ -7,8 +7,8 @@
     <ProjectGuid>{76BEF8BF-631B-4C9D-B0D4-986718D5C859}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingToolsMessaging</RootNamespace>
-    <AssemblyName>ProcessingToolsMessaging</AssemblyName>
+    <RootNamespace>ProcessingTools</RootNamespace>
+    <AssemblyName>ProcessingToolsGlobals</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -40,8 +40,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Diagnostics.cs" />
+    <Compile Include="Interfaces\ICloner.cs" />
+    <Compile Include="Interfaces\IFormatter.cs" />
+    <Compile Include="Interfaces\IGenerator.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
+    <Compile Include="Interfaces\IStringDataList.cs" />
+    <Compile Include="Interfaces\ITagger.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
+    <Compile Include="Interfaces\IXPathProvider.cs" />
+    <Compile Include="Loggers\Alert.cs" />
+    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Messages\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="System\Diagnostics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Messages\helpMessage.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

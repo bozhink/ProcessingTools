@@ -1,12 +1,7 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools
 {
     public interface IXPathProvider
     {
-        Config Config
-        {
-            get;
-        }
-
         string SelectContentNodesXPath
         {
             get;

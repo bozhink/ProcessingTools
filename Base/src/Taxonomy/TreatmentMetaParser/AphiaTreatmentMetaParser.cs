@@ -6,19 +6,24 @@
 
     public class AphiaTreatmentMetaParser : TreatmentMetaParser
     {
-        public AphiaTreatmentMetaParser(string xml)
-            : base(xml)
+        private ILogger logger;
+
+        public AphiaTreatmentMetaParser(string xml, ILogger logger)
+            : base(xml, logger)
         {
+            this.logger = logger;
         }
 
-        public AphiaTreatmentMetaParser(Config config, string xml)
-            : base(config, xml)
+        public AphiaTreatmentMetaParser(Config config, string xml, ILogger logger)
+            : base(config, xml, logger)
         {
+            this.logger = logger;
         }
 
-        public AphiaTreatmentMetaParser(IBase baseObject)
-            : base(baseObject)
+        public AphiaTreatmentMetaParser(IBase baseObject, ILogger logger)
+            : base(baseObject, logger)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -31,7 +36,7 @@
                 {
                     this.Delay();
 
-                    Alert.Log("\n{0}\n", genus);
+                    this.logger?.Log("\n{0}\n", genus);
 
                     XmlDocument response = Net.SearchAphia(genus);
 

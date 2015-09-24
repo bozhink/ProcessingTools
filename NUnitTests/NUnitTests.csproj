@@ -58,6 +58,12 @@
   <ItemGroup>
     <Content Include="Coordinates\get-coordinates-out.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsGlobals.csproj">
+      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
+      <Name>ProcessingToolsGlobals</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

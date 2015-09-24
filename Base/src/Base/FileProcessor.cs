@@ -9,23 +9,39 @@
     {
         private string inputFileName;
         private string outputFileName;
+        private ILogger logger;
 
         public FileProcessor(Config config)
-            : base(config)
+            : this(config, null, null, null)
         {
-            this.Initialize(null, null);
+        }
+
+        public FileProcessor(Config config, ILogger logger)
+            : this(config, null, null, logger)
+        {
         }
 
         public FileProcessor(Config config, string inputFileName)
-            : base(config)
+            : this(config, inputFileName, null, null)
         {
-            this.Initialize(inputFileName, null);
+        }
+
+        public FileProcessor(Config config, string inputFileName, ILogger logger)
+            : this(config, inputFileName, null, logger)
+        {
         }
 
         public FileProcessor(Config config, string inputFileName, string outputFileName)
+            : this(config, inputFileName, outputFileName, null)
+        {
+        }
+
+        public FileProcessor(Config config, string inputFileName, string outputFileName, ILogger logger)
             : base(config)
         {
-            this.Initialize(inputFileName, outputFileName);
+            this.logger = logger;
+            this.InputFileName = inputFileName;
+            this.OutputFileName = outputFileName;
         }
 
         public string InputFileName
@@ -72,7 +88,7 @@
 
                 if (File.Exists(fileName))
                 {
-                    Alert.Log("\nWARNING: Output file '{0}' already exists.\n", fileName);
+                    this.logger?.Log("\nWARNING: Output file '{0}' already exists.\n", fileName);
                 }
 
                 this.outputFileName = fileName;
@@ -167,7 +183,7 @@
             }
             catch (XmlException xmlException)
             {
-                Alert.Log(
+                this.logger?.Log(
                     "Input file name '{0}' is not a valid XML document.\n" +
                     "It will be read as text file and will be wrapped in basic XML tags.\n\n" +
                     "{1}\n",
@@ -221,12 +237,6 @@
                     writer.Close();
                 }
             }
-        }
-
-        private void Initialize(string inputFileName, string outputFileName)
-        {
-            this.InputFileName = inputFileName;
-            this.OutputFileName = outputFileName;
         }
 
         private string GenerateOutputFileNameBasedOnInputFileName()

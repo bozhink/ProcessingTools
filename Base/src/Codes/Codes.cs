@@ -110,14 +110,18 @@ namespace ProcessingTools.BaseLibrary
         private TagContent institutionTag = new TagContent("institution");
         private TagContent institutionalCodeTag = new TagContent("institutional_code");
 
-        public Codes(Config config, string xml)
+        private ILogger logger;
+
+        public Codes(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public Codes(IBase baseObject)
+        public Codes(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
@@ -152,13 +156,14 @@ namespace ProcessingTools.BaseLibrary
 
             IEnumerable<string> potentialSpecimenCodes = this.ExtractPotentialSpecimenCodes(CodePattern);
 
-            Alert.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
+            this.logger?.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
+
             foreach (string word in potentialSpecimenCodes)
             {
-                Alert.Log(word);
+                this.logger?.Log(word);
             }
 
-            Alert.Log("\n\nPlausible specimen codes\n\n");
+            this.logger?.Log("\n\nPlausible specimen codes\n\n");
 
             IEnumerable<SpecimenCode> plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
@@ -242,7 +247,7 @@ namespace ProcessingTools.BaseLibrary
 
         private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, TagContent tag)
         {
-            Alert.Log("\n{0}", node.OuterXml);
+            this.logger?.Log("\n{0}", node.OuterXml);
 
             if (node.NextSibling != null)
             {
@@ -280,7 +285,7 @@ namespace ProcessingTools.BaseLibrary
                             next.Attributes.Append(attr);
                         }
 
-                        Alert.Log(next.OuterXml);
+                        this.logger?.Log(next.OuterXml);
                     }
                 }
             }
@@ -354,7 +359,7 @@ namespace ProcessingTools.BaseLibrary
                 string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", tag.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in this.XmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
                 {
-                    Alert.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+                    this.logger?.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
         }

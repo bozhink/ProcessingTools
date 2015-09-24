@@ -159,18 +159,18 @@
             return prefix + rank + suffix;
         }
 
-        public static void PrintNonParsedTaxa(this XmlDocument xmlDocument)
+        public static void PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
         {
             IEnumerable<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
             if (uniqueHigherTaxaList.Count() > 0)
             {
-                Alert.Log("\nNon-parsed taxa:");
+                logger.Log("\nNon-parsed taxa:");
                 foreach (string taxon in uniqueHigherTaxaList)
                 {
-                    Alert.Log("\t" + taxon);
+                    logger.Log("\t" + taxon);
                 }
 
-                Alert.Log();
+                logger.Log();
             }
         }
 

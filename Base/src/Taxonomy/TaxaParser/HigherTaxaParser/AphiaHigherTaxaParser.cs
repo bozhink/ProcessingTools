@@ -6,19 +6,24 @@
 
     public class AphiaHigherTaxaParser : HigherTaxaParser
     {
-        public AphiaHigherTaxaParser(string xml)
+        private ILogger logger;
+
+        public AphiaHigherTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public AphiaHigherTaxaParser(Config config, string xml)
+        public AphiaHigherTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public AphiaHigherTaxaParser(IBase baseObject)
+        public AphiaHigherTaxaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -32,23 +37,23 @@
                 XmlNodeList responseItems = aphiaResponse.SelectNodes("//return/item[normalize-space(translate(scientificname,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='" + scientificName.ToLower() + "']");
                 if (responseItems.Count < 1)
                 {
-                    Alert.Log(scientificName + " --> No match or error.");
+                    this.logger?.Log(scientificName + " --> No match or error.");
                 }
                 else
                 {
                     List<string> ranks = responseItems.Cast<XmlNode>().Select(c => c["rank"].InnerText.ToLower()).Distinct().ToList();
                     if (ranks.Count > 1)
                     {
-                        Alert.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
+                        this.logger?.Log("WARNING:\n" + scientificName + " --> Multiple matches:");
                         foreach (XmlNode item in responseItems)
                         {
-                            Alert.Log(item["scientificname"].InnerText + " --> " + item["rank"].InnerText + ", " + item["authority"].InnerText);
+                            this.logger?.Log(item["scientificname"].InnerText + " --> " + item["rank"].InnerText + ", " + item["authority"].InnerText);
                         }
                     }
                     else
                     {
                         string rank = ranks[0];
-                        Alert.Log(scientificName + " = " + responseItems[0]["scientificname"].InnerText + " --> " + rank);
+                        this.logger?.Log(scientificName + " = " + responseItems[0]["scientificname"].InnerText + " --> " + rank);
 
                         string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 

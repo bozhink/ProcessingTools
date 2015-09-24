@@ -434,8 +434,7 @@
             }
             catch (Exception e)
             {
-                Alert.Log("\nInvalid replacement string:\n" + replace + "\n\n");
-                Alert.RaiseExceptionForMethod(e, 0);
+                Alert.RaiseExceptionForMethod(e, "SafeReplaceInnerXml", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
             }
             finally
             {

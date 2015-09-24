@@ -13,6 +13,7 @@
         private static Config config;
         private static XmlTextWriter writer;
         private static XPathProvider xpathProvider;
+        private static ILogger logger;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
@@ -21,6 +22,7 @@
             xpathProvider = new XPathProvider(config);
             writer = new XmlTextWriter(Console.Out);
             writer.Formatting = Formatting.Indented;
+            logger = new ConsoleLogger();
         }
 
         [ClassCleanup]
@@ -33,7 +35,7 @@
         public void QuantitiesTagger_CreateNewInstance_WithValidConfigAndXml()
         {
             string xml = "<x></x>";
-            QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, xml);
+            QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, xml, logger);
             Assert.AreEqual(config.tempDirectoryPath, quantitiesTagger.Config.tempDirectoryPath, "Temp directory path does not match.");
             Assert.AreEqual(xml, quantitiesTagger.Xml, "Xml content is not valid.");
             Assert.AreEqual(xml, quantitiesTagger.XmlDocument.OuterXml, "Xml content in XmlDocument is not as expected.");
@@ -43,15 +45,15 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void QuantitiesTagger_CreateNewInstance_WithValidConfigAndNullXml()
         {
-            QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, null);
+            QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, null, logger);
         }
 
         [TestMethod]
         public void QuantitiesTagger_CreateNewInstance_WithValidIBaseObject()
         {
             string xml = "<x></x>";
-            QuantitiesTagger quantitiesTagger1 = new QuantitiesTagger(config, xml);
-            QuantitiesTagger quantitiesTagger2 = new QuantitiesTagger(quantitiesTagger1);
+            QuantitiesTagger quantitiesTagger1 = new QuantitiesTagger(config, xml, logger);
+            QuantitiesTagger quantitiesTagger2 = new QuantitiesTagger(quantitiesTagger1, logger);
             Assert.AreEqual(quantitiesTagger1.Config, quantitiesTagger2.Config, "Configs are different.");
             Assert.AreEqual(quantitiesTagger1.Xml, quantitiesTagger2.Xml, "Xml content differs.");
         }
@@ -63,7 +65,7 @@
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 
-            QuantitiesTagger qt = new QuantitiesTagger(config, xml.OuterXml);
+            QuantitiesTagger qt = new QuantitiesTagger(config, xml.OuterXml, logger);
             Assert.AreEqual(
                 xml.SelectNodes("//p").Count,
                 qt.XmlDocument.SelectNodes("//p").Count,
@@ -77,7 +79,7 @@
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 
-            QuantitiesTagger qt = new QuantitiesTagger(config, xml.OuterXml);
+            QuantitiesTagger qt = new QuantitiesTagger(config, xml.OuterXml, logger);
             qt.TagQuantities(xpathProvider);
             qt.TagDeviation(xpathProvider);
             qt.TagAltitude(xpathProvider);

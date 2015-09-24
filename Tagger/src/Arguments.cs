@@ -64,6 +64,8 @@
         private static bool zoobankCloneXml = false;
         private static bool zoobankGenerateRegistrationXml = false;
 
+        private static ILogger consoleLogger = new ConsoleLogger();
+
         private static void ParseDoubleDashedOptions(string[] args)
         {
             foreach (int item in doubleDashedOptions)

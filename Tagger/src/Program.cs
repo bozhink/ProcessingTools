@@ -20,9 +20,9 @@
 
             try
             {
-                FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName);
+                FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName, consoleLogger);
 
-                Alert.Log(
+                consoleLogger.Log(
                     "Input file name: {0}\nOutput file name: {1}\n{2}",
                     fp.InputFileName,
                     fp.OutputFileName,
@@ -154,7 +154,7 @@
                 Alert.RaiseExceptionForMethod(e, 0);
             }
 
-            Alert.Log("Main timer: " + mainTimer.Elapsed);
+            consoleLogger.Log("Main timer: " + mainTimer.Elapsed);
         }
 
         private static void InitialCheckOfInputParameters(string[] args)
@@ -235,14 +235,14 @@
 
         private static void PrintElapsedTime(Stopwatch timer)
         {
-            Alert.Log("Elapsed time " + timer.Elapsed);
+            consoleLogger.Log("Elapsed time " + timer.Elapsed);
         }
 
         private static void WriteOutputFile(FileProcessor fp)
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            Alert.Log("\n\tWriting data to output file.\n");
+            consoleLogger.Log("\n\tWriting data to output file.\n");
 
             try
             {

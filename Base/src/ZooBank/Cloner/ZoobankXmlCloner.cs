@@ -7,16 +7,19 @@
     public class ZoobankXmlCloner : ZoobankCloner
     {
         private XmlDocument nlmDocument;
+        private ILogger logger;
 
-        public ZoobankXmlCloner(string xmlContent)
+        public ZoobankXmlCloner(string xmlContent, ILogger logger)
             : base(xmlContent)
         {
+            this.logger = logger;
             this.Init();
         }
 
-        public ZoobankXmlCloner(string nlmXmlContent, string xmlContent)
+        public ZoobankXmlCloner(string nlmXmlContent, string xmlContent, ILogger logger)
             : base(xmlContent)
         {
+            this.logger = logger;
             this.Init();
             this.NlmXml = nlmXmlContent;
         }
@@ -74,7 +77,7 @@
 
         private void CloneArticleLsid()
         {
-            Alert.Log("Reference:");
+            this.logger?.Log("Reference:");
             try
             {
                 XmlNodeList nlmArticleSelfUriList = this.NlmXmlDocument.SelectNodes(ArticleZooBankSelfUriXPath, this.NamespaceManager);
@@ -88,14 +91,14 @@
                     for (int i = 0; i < xmlArticleSelfUriListCount; ++i)
                     {
                         xmlArticleSelfUriList[i].InnerXml = nlmArticleSelfUriList[i].InnerXml;
-                        Alert.Log(xmlArticleSelfUriList[i].InnerXml);
+                        this.logger?.Log(xmlArticleSelfUriList[i].InnerXml);
                     }
 
-                    Alert.Log();
+                    this.logger?.Log();
                 }
                 else
                 {
-                    Alert.Log("Number of ZooBank self-uri tags in these files does not match.");
+                    this.logger?.Log("Number of ZooBank self-uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -106,7 +109,7 @@
 
         private void CloneAuthorsLsid()
         {
-            Alert.Log("Author(s):");
+            this.logger?.Log("Author(s):");
             try
             {
                 XmlNodeList xmlContributorList = this.XmlDocument.SelectNodes(ContributorZooBankUriXPath, this.NamespaceManager);
@@ -120,14 +123,14 @@
                     for (int i = 0; i < xmlContributorListCount; ++i)
                     {
                         xmlContributorList[i].InnerXml = nlmContributorList[i].InnerXml;
-                        Alert.Log(xmlContributorList[i].InnerXml);
+                        this.logger?.Log(xmlContributorList[i].InnerXml);
                     }
 
-                    Alert.Log();
+                    this.logger?.Log();
                 }
                 else
                 {
-                    Alert.Log("Number of ZooBank uri tags in these files does not match.");
+                    this.logger?.Log("Number of ZooBank uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -138,7 +141,7 @@
 
         private void CloneTaxonomicActsLsid()
         {
-            Alert.Log("Taxonomic acts:");
+            this.logger?.Log("Taxonomic acts:");
             try
             {
                 XmlNodeList nlmNomenclaturesList = this.NlmXmlDocument.SelectNodes(NomenclatureXPath, this.NamespaceManager);
@@ -164,21 +167,21 @@
                                 for (int j = 0; j < xmlObjectIdListCount; ++j)
                                 {
                                     xmlObjecIdList[j].InnerXml = nlmObjecIdList[j].InnerXml;
-                                    Alert.Log(xmlObjecIdList[j].InnerXml);
+                                    this.logger?.Log(xmlObjecIdList[j].InnerXml);
                                 }
                             }
                             else
                             {
-                                Alert.Log("Number of ZooBank object-id tags does not match.");
+                                this.logger?.Log("Number of ZooBank object-id tags does not match.");
                             }
                         }
                     }
 
-                    Alert.Log();
+                    this.logger?.Log();
                 }
                 else
                 {
-                    Alert.Log("Number of nomenclatures tags in these files does not match.");
+                    this.logger?.Log("Number of nomenclatures tags in these files does not match.");
                 }
             }
             catch (Exception e)

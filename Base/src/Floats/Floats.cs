@@ -21,15 +21,19 @@
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
 
-        public FloatsTagger(Config config, string xml)
+        private ILogger logger;
+
+        public FloatsTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
             this.InitFloats();
         }
 
-        public FloatsTagger(IBase baseObject)
+        public FloatsTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
             this.InitFloats();
         }
 
@@ -472,10 +476,10 @@
 
         private void PrintFloatsDistributionById(FloatsReferenceType refType)
         {
-            Alert.Log();
+            this.logger?.Log();
             foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
             {
-                Alert.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
+                this.logger?.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
             }
         }
 

@@ -5,19 +5,24 @@
 
     public class GbifHigherTaxaParser : HigherTaxaParser
     {
-        public GbifHigherTaxaParser(string xml)
+        private ILogger logger;
+
+        public GbifHigherTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public GbifHigherTaxaParser(Config config, string xml)
+        public GbifHigherTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public GbifHigherTaxaParser(IBase baseObject)
+        public GbifHigherTaxaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -30,13 +35,13 @@
                 GbifResult gbifResult = Net.SearchGbif(scientificName);
                 if (gbifResult != null)
                 {
-                    Alert.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
+                    this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
 
                     if (gbifResult.canonicalName != null || gbifResult.scientificName != null)
                     {
                         if (!gbifResult.canonicalName.Equals(scientificName) && !gbifResult.scientificName.Contains(scientificName))
                         {
-                            Alert.Log("No match.");
+                            this.logger?.Log("No match.");
                         }
                         else
                         {
@@ -44,7 +49,7 @@
                             if (rank != null && rank != string.Empty)
                             {
                                 rank = rank.ToLower();
-                                Alert.Log(scientificName + "--> " + rank);
+                                this.logger?.Log(scientificName + "--> " + rank);
 
                                 string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 

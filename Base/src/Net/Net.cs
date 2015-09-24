@@ -193,8 +193,6 @@
                 using (var client = new HttpClient())
                 {
                     string responseString = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/single.txt?name=" + scientificName).Result;
-                    Alert.Log(responseString);
-
                     string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                     string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
                     Match matchKeys = Regex.Match(keys, "(?<=\")[^,\"]*(?=\")");
@@ -206,12 +204,6 @@
                         response.Add(matchKeys.Value, matchValues.Value);
                         matchKeys = matchKeys.NextMatch();
                         matchValues = matchValues.NextMatch();
-                    }
-
-                    ICollection responseKeys = response.Keys;
-                    foreach (var str in responseKeys)
-                    {
-                        Alert.Log(str + " --- " + response[str]);
                     }
 
                     if (response["taxon_name"].ToString().CompareTo(scientificName) == 0)

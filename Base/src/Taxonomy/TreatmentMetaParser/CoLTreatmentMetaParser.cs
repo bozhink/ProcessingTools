@@ -6,19 +6,24 @@
 
     public class CoLTreatmentMetaParser : TreatmentMetaParser
     {
-        public CoLTreatmentMetaParser(string xml)
-            : base(xml)
+        private ILogger logger;
+
+        public CoLTreatmentMetaParser(string xml, ILogger logger)
+            : base(xml, logger)
         {
+            this.logger = logger;
         }
 
-        public CoLTreatmentMetaParser(Config config, string xml)
-            : base(config, xml)
+        public CoLTreatmentMetaParser(Config config, string xml, ILogger logger)
+            : base(config, xml, logger)
         {
+            this.logger = logger;
         }
 
-        public CoLTreatmentMetaParser(IBase baseObject)
-            : base(baseObject)
+        public CoLTreatmentMetaParser(IBase baseObject, ILogger logger)
+            : base(baseObject, logger)
         {
+            this.logger = logger;
         }
 
         public override void Parse()
@@ -31,7 +36,7 @@
                 {
                     this.Delay();
 
-                    Alert.Log("\n{0}\n", genus);
+                    this.logger?.Log("\n{0}\n", genus);
 
                     XmlDocument response = Net.SearchCatalogueOfLife(genus);
                     if (response != null)
