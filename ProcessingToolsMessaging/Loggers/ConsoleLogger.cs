@@ -14,6 +14,10 @@
             catch (IOException)
             {
             }
+            catch
+            {
+                throw;
+            }
         }
 
         public void Log(object message)
@@ -24,6 +28,10 @@
             }
             catch (IOException)
             {
+            }
+            catch
+            {
+                throw;
             }
         }
 
@@ -36,6 +44,30 @@
             catch (IOException)
             {
             }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogException(Exception e, object customMessage)
+        {
+            this.Log(
+                "{0}: ERROR: {1}: {2}\nMESSAGE: {3}",
+                Diagnostics.GetCurrentMethod(2),
+                e.GetType(),
+                e.Message,
+                customMessage);
+        }
+
+        public void LogException(Exception e, string format, params object[] args)
+        {
+            this.Log(
+                "{0}: ERROR: {1}: {2}\nMESSAGE: ",
+                Diagnostics.GetCurrentMethod(2),
+                e.GetType(),
+                e.Message);
+            this.Log(format, args);
         }
     }
 }
