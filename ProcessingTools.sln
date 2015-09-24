@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseObjectTests", "BaseObje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{355A3D86-C710-40F2-8FCB-48F7CD7A429F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{59049DD7-4F4F-4543-BC86-7BC84B81E3D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,5 +104,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A938698-047F-42BB-88CC-0814093C8E16} = {59049DD7-4F4F-4543-BC86-7BC84B81E3D5}
+		{355A3D86-C710-40F2-8FCB-48F7CD7A429F} = {59049DD7-4F4F-4543-BC86-7BC84B81E3D5}
 	EndGlobalSection
 EndGlobal
