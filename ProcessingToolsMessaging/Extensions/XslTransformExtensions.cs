@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools
 {
     using System;
     using System.IO;
@@ -6,7 +6,7 @@
     using System.Xml;
     using System.Xml.Xsl;
 
-    public static class ApplyXslTransformExtrensions
+    public static class XslTransformExtrensions
     {
         /// <summary>
         /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.

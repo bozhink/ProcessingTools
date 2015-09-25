@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ILoggerExtensions.cs" />
+    <Compile Include="Extensions\XslTransformExtensions.cs" />
+    <Compile Include="Extensions\XXmlDocumentExtensions.cs" />
     <Compile Include="Interfaces\ICloner.cs" />
     <Compile Include="Interfaces\IFormatter.cs" />
     <Compile Include="Interfaces\IGenerator.cs" />

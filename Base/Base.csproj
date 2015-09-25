@@ -86,13 +86,12 @@
     <Compile Include="src\Base\Base.cs" />
     <Compile Include="src\Coordinates\CoordinatePart.cs" />
     <Compile Include="src\Coordinates\CoordinateType.cs" />
-    <Compile Include="src\Extensions\ApplyXslTransformExtensions.cs" />
-    <Compile Include="src\Extensions\ContentTagger.cs" />
-    <Compile Include="src\Extensions\DocumentExtensions.cs" />
+    <Compile Include="Extensions\ContentTagger.cs" />
+    <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />
     <Compile Include="src\Coordinates\CoordinatesTagger.cs" />
-    <Compile Include="src\Extensions\TaxonomyExtensions.cs" />
-    <Compile Include="src\Extensions\XmlNormalizer.cs" />
+    <Compile Include="Extensions\TaxonomyExtensions.cs" />
+    <Compile Include="Extensions\XmlNormalizer.cs" />
     <Compile Include="src\Floats\FloatsReferenceType.cs" />
     <Compile Include="src\Floats\TableFootNotesTagger.cs" />
     <Compile Include="Interfaces\IBase.cs" />
