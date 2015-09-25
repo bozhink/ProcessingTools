@@ -13,7 +13,6 @@ namespace NUnitTests
         [Test]
         public void TestTest()
         {
-
         }
     }
 }

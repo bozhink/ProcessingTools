@@ -26,108 +26,7 @@
             this.logger = logger;
         }
 
-        public string ParseRank(string infraSpecificRank)
-        {
-            string rank = string.Empty;
-            switch (infraSpecificRank)
-            {
-                case "subgen":
-                case "Subgen":
-                case "subgenus":
-                case "Subgenus":
-                case "subg":
-                case "Subg":
-                    rank = "subgenus";
-                    break;
-                case "sect":
-                case "Sect":
-                case "section":
-                case "Section":
-                    rank = "section";
-                    break;
-                case "Ser":
-                case "ser":
-                    rank = "series";
-                    break;
-                case "Trib":
-                case "trib":
-                    rank = "tribe";
-                    break;
-                case "subsect":
-                case "Subsect":
-                case "subsection":
-                case "Subsection":
-                    rank = "subsection";
-                    break;
-                case "subvar":
-                case "Subvar":
-                    rank = "subvariety";
-                    break;
-                case "var":
-                case "Var":
-                    rank = "variety";
-                    break;
-                case "subsp":
-                case "Subsp":
-                case "ssp":
-                case "Ssp":
-                case "subspec":
-                case "Subspec":
-                case "Subspecies":
-                case "subspecies":
-                    rank = "subspecies";
-                    break;
-                case "st":
-                case "St":
-                    rank = "stage";
-                    break;
-                case "r":
-                    rank = "rank";
-                    break;
-                case "f":
-                case "fo":
-                case "form":
-                case "Form":
-                case "forma":
-                case "Forma":
-                    rank = "form";
-                    break;
-                case "sf":
-                case "Sf":
-                    rank = "subform";
-                    break;
-                case "a":
-                case "A":
-                case "ab":
-                case "Ab":
-                    rank = "aberration";
-                    break;
-                case "aff":
-                case "Aff":
-                case "prope":
-                case "Prope":
-                case "cf":
-                case "Cf":
-                case "sp":
-                case "Sp":
-                case "nr":
-                case "Nr":
-                case "Near":
-                case "near":
-                case "sp. near":
-                case "×":
-                case "?":
-                    rank = "species";
-                    break;
-                default:
-                    rank = "species";
-                    break;
-            }
-
-            return rank;
-        }
-
-        public string ParseLower(string str)
+        private string ParseLower(string str)
         {
             string replace = str;
 
@@ -314,6 +213,8 @@
 
             try
             {
+                SpeciesPartsPrefixesResolver rankResolver = new SpeciesPartsPrefixesResolver();
+
                 foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
                 {
                     string replace = Regex.Replace(lowerTaxon.InnerXml, "</?i>", string.Empty);
@@ -333,7 +234,9 @@
                     {
                         string replace1 = m.Value;
                         string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", string.Empty);
-                        string rank = ParseRank(infraSpecificRank);
+
+                        string rank = rankResolver.Resolve(infraSpecificRank);
+
                         replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", "<tn-part type=\"infraspecific-rank\">$1</tn-part>");
                         replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", "<tn-part type=\"" + rank + "\">$1</tn-part>");
                         replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)</species>", "<tn-part type=\"species\">$1</tn-part>");
@@ -347,7 +250,7 @@
                     {
                         string replace1 = m.Value;
                         string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", string.Empty);
-                        string rank = ParseRank(infraSpecificRank);
+                        string rank = rankResolver.Resolve(infraSpecificRank);
                         replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", "<tn-part type=\"infraspecific-rank\">$1</tn-part>");
                         replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", "<tn-part type=\"" + rank + "\">$1</tn-part>");
                         ////replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"" + rank + "-authority\">$1</tn-part>");
@@ -381,7 +284,6 @@
 
         private void AddMissingEmptyTagsInTaxonName()
         {
-            // Add missing tags in lower-taxa
             foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
             {
                 XmlNode genus = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
@@ -421,7 +323,6 @@
 
         private void AddFullNameAttribute()
         {
-            // Add @full-name
             foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
             {
                 XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");

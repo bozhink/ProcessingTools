@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
     <Compile Include="src\Abbreviations\AbbreviationsTagger.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="src\Json\ZooBank.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
+    <Compile Include="src\Taxonomy\Species\SpeciesParts.cs" />
+    <Compile Include="src\Taxonomy\Species\SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\SuffixHigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\AboveGenusHigherTaxaParser.cs" />
