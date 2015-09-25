@@ -19,7 +19,7 @@
 
         public void Tag()
         {
-            XmlElement testXmlNode = this.XmlDocument.CreateElement("test");
+            XmlDocumentFragment testXmlNode = this.XmlDocument.CreateDocumentFragment();
 
             // Set the XPath string to select all nodes which may contain environments’ strings
             string xpath = string.Empty;
@@ -104,9 +104,9 @@
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
 
             this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");

@@ -72,7 +72,6 @@
                 Match m = Regex.Match(replace, pattern);
                 if (m.Success)
                 {
-                    //// Alert.Message(m.Value);
                     replace = Regex.Replace(replace, pattern, replacement);
                     node.InnerXml = replace;
                 }
@@ -93,7 +92,6 @@
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }
@@ -105,7 +103,6 @@
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }
@@ -117,7 +114,6 @@
                     Match m = Regex.Match(replace, pattern);
                     if (m.Success)
                     {
-                        //// Alert.Message(m.Value);
                         replace = Regex.Replace(replace, pattern, replacement);
                         node.InnerXml = replace;
                     }

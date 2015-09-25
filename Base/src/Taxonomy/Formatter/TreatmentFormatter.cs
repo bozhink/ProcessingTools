@@ -6,19 +6,24 @@
 
     public class TreatmentFormatter : TaggerBase, IBaseFormatter
     {
-        public TreatmentFormatter(string xml)
+        private ILogger logger;
+
+        public TreatmentFormatter(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public TreatmentFormatter(Config config, string xml)
+        public TreatmentFormatter(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public TreatmentFormatter(IBase baseObject)
+        public TreatmentFormatter(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void Format()
@@ -40,7 +45,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 

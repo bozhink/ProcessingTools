@@ -56,8 +56,8 @@
                 "{0}: ERROR: {1}: {2}\nMESSAGE: {3}",
                 Diagnostics.GetCurrentMethod(2),
                 e.GetType(),
-                e.Message,
-                customMessage);
+                customMessage,
+                e.Message);
         }
 
         public void LogException(Exception e, string format, params object[] args)

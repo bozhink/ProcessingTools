@@ -65,9 +65,9 @@
                 flpp.Xml = fl.ExtractTaxaParts();
                 flpp.Write();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 
@@ -96,9 +96,9 @@
                         fp.Xml = fmt.Xml;
                     }
                 }
-                catch (Exception e)
+                catch
                 {
-                    Alert.RaiseExceptionForMethod(e, 1);
+                    throw;
                 }
 
                 PrintElapsedTime(timer);
@@ -121,7 +121,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -138,13 +138,13 @@
 
                 try
                 {
-                    References referencesParser = new References(config, fp.Xml);
+                    References referencesParser = new References(config, fp.Xml, consoleLogger);
                     referencesParser.SplitReferences();
                     fp.Xml = referencesParser.Xml;
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -175,9 +175,9 @@
 
                 fp.Xml = qf.Xml;
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 
@@ -197,7 +197,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -294,7 +294,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -317,7 +317,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -341,7 +341,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -366,7 +366,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -388,9 +388,9 @@
                     envo.Tag(xpathProvider);
                     fp.Xml = envo.Xml;
                 }
-                catch (Exception e)
+                catch
                 {
-                    Alert.RaiseExceptionForMethod(e, 1);
+                    throw;
                 }
 
                 PrintElapsedTime(timer);
@@ -413,7 +413,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -439,7 +439,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -449,7 +449,7 @@
         private static string TagReferences(string xml, string fileName)
         {
             string xmlContent = xml;
-            References refs = new References(config, xmlContent);
+            References refs = new References(config, xmlContent, consoleLogger);
 
             config.referencesGetReferencesXmlPath = Path.GetDirectoryName(fileName) + "\\zzz-" +
                 Path.GetFileNameWithoutExtension(fileName) + "-references.xml";
@@ -508,7 +508,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
         }
 
@@ -528,7 +528,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -549,9 +549,9 @@
                     zoobankCloner.Clone();
                     fp.Xml = zoobankCloner.Xml;
                 }
-                catch (Exception e)
+                catch
                 {
-                    Alert.RaiseExceptionForMethod(e, 1);
+                    throw;
                 }
             }
 
@@ -573,9 +573,9 @@
                     zoobankCloner.Clone();
                     fp.Xml = zoobankCloner.Xml;
                 }
-                catch (Exception e)
+                catch
                 {
-                    Alert.RaiseExceptionForMethod(e, 1);
+                    throw;
                 }
             }
 
@@ -590,9 +590,9 @@
                 zoobankRegistrationXmlGenerator.Generate();
                 fp.Xml = zoobankRegistrationXmlGenerator.Xml;
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
     }

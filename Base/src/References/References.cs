@@ -6,14 +6,18 @@
 
     public class References : TaggerBase
     {
-        public References(Config config, string xml)
+        private ILogger logger;
+
+        public References(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public References(IBase baseObject)
+        public References(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public string ReferencePartSplitter(XmlNode reference)
@@ -195,7 +199,6 @@
         public void GenerateTagTemplateXml()
         {
             FileProcessor fp = new FileProcessor(this.Config);
-            ////this.Xml = Regex.Replace(this.Xml, "<!DOCTYPE [^>]*>", string.Empty);
             {
                 // References list
                 fp.OutputFileName = this.Config.referencesGetReferencesXmlPath;
@@ -224,9 +227,9 @@
             {
                 xd.Load(this.Config.referencesTagTemplateXmlPath);
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
+                throw;
             }
 
             XmlNode referenceList = xd.DocumentElement.LastChild;
@@ -271,7 +274,7 @@
                         }
                         catch (Exception e)
                         {
-                            Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                            this.logger?.LogException(e, string.Empty);
                         }
                     }
 
@@ -303,7 +306,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                        this.logger?.LogException(e, string.Empty);
                     }
                 }
 
@@ -342,7 +345,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
     }

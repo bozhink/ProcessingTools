@@ -70,7 +70,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    this.logger?.LogException(e, string.Empty);
                 }
             }
             catch

@@ -6,19 +6,24 @@
 
     public class LowerTaxaParser : Base, IBaseParser
     {
-        public LowerTaxaParser(string xml)
+        private ILogger logger;
+
+        public LowerTaxaParser(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public LowerTaxaParser(Config config, string xml)
+        public LowerTaxaParser(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public LowerTaxaParser(IBase baseObject)
+        public LowerTaxaParser(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public string ParseRank(string infraSpecificRank)
@@ -304,7 +309,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Parse lower taxa without basionym.");
+                this.logger?.LogException(e, "Parse lower taxa without basionym.");
             }
 
             try
@@ -364,7 +369,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Parse lower taxa with basionym.");
+                this.logger?.LogException(e, "Parse lower taxa with basionym.");
             }
 
             // Remove wrapping i around tn[tn-part[@type='subgenus']]

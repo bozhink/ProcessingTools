@@ -103,7 +103,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 
@@ -135,7 +135,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 
@@ -186,7 +186,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 

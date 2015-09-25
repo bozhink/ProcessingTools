@@ -28,7 +28,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -105,7 +105,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             return xmlContent;
@@ -151,7 +151,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
         }
 
@@ -163,13 +163,13 @@
 
             try
             {
-                IBaseFormatter formatter = new TreatmentFormatter(config, xmlContent);
+                IBaseFormatter formatter = new TreatmentFormatter(config, xmlContent, consoleLogger);
                 formatter.Format();
                 xmlContent = formatter.Xml;
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             PrintElapsedTime(timer);
@@ -279,7 +279,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 if (splitHigherWithAphia)
@@ -295,7 +295,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        consoleLogger.LogException(e, string.Empty);
                     }
                 }
 
@@ -312,7 +312,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        consoleLogger.LogException(e, string.Empty);
                     }
                 }
 
@@ -329,7 +329,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        consoleLogger.LogException(e, string.Empty);
                     }
                 }
 
@@ -346,7 +346,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        consoleLogger.LogException(e, string.Empty);
                     }
                 }
 
@@ -363,7 +363,7 @@
                     }
                     catch (Exception e)
                     {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        consoleLogger.LogException(e, string.Empty);
                     }
                 }
 
@@ -383,13 +383,13 @@
 
                 try
                 {
-                    IBaseParser parser = new LowerTaxaParser(config, xmlContent);
+                    IBaseParser parser = new LowerTaxaParser(config, xmlContent, consoleLogger);
                     parser.Parse();
                     xmlContent = parser.Xml;
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -414,7 +414,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -434,7 +434,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -454,7 +454,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -467,13 +467,13 @@
         {
             try
             {
-                IBaseParser parser = new LowerTaxaParser(config, xmlContent);
+                IBaseParser parser = new LowerTaxaParser(config, xmlContent, consoleLogger);
                 parser.XmlDocument.RemoveTaxonNamePartTags();
                 xmlContent = parser.Xml;
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             return xmlContent;
@@ -493,7 +493,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             PrintElapsedTime(timer);
@@ -516,7 +516,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -541,7 +541,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, 0);
+                    consoleLogger.LogException(e, string.Empty);
                 }
 
                 PrintElapsedTime(timer);
@@ -564,7 +564,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             PrintElapsedTime(timer);

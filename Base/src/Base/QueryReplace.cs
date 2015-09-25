@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System;
     using System.Text.RegularExpressions;
     using System.Xml;
 

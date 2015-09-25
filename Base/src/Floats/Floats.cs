@@ -311,7 +311,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 
@@ -333,8 +333,7 @@
                         }
                         catch (Exception e)
                         {
-                            Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0,
-                                "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
+                            this.logger?.LogException(e, "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
                         }
 
                         break;
@@ -389,7 +388,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
 
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
@@ -467,9 +466,9 @@
                         throw new Exception("Error in multiple-float's label '" + labelText + "': Label numbers must be strictly increasing.");
                     }
                 }
-                catch (Exception e)
+                catch
                 {
-                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 1);
+                    throw;
                 }
             }
         }
@@ -515,7 +514,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
+                this.logger?.LogException(e, string.Empty);
             }
         }
 

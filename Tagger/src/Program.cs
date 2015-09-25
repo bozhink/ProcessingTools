@@ -151,7 +151,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                consoleLogger.LogException(e, string.Empty);
             }
 
             consoleLogger.Log("Main timer: " + mainTimer.Elapsed);
@@ -178,9 +178,9 @@
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 
@@ -195,9 +195,9 @@
                 config.NlmStyle = true;
                 config.TagWholeDocument = false;
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 
@@ -208,7 +208,7 @@
                 if (arguments.Count < 1)
                 {
                     Alert.PrintHelp();
-                    Alert.Exit(1);
+                    Alert.Exit(0);
                 }
                 else if (arguments.Count == 1)
                 {
@@ -227,9 +227,9 @@
                     queryFileName = args[arguments[2]];
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 
@@ -249,9 +249,9 @@
                 fp.Xml = fp.Xml.NormalizeXmlToCurrentXml(config);
                 fp.Write();
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
 
             PrintElapsedTime(timer);
