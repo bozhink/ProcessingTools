@@ -1,2 +1,0 @@
-PREF_PROCESSOR_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<processorSettings defaultProcessor\="1">\r\n<processor debuggerId\="" id\="1" label\="Saxon HE" supports\="" type\="org.eclipse.wst.xsl.saxon.processorType">\r\n<jars>\r\n<jar>C\:/bin/SaxonHE/saxon9he.jar</jar>\r\n<jar>C\:/bin/SaxonHE/saxon9-test.jar</jar>\r\n<jar>C\:/bin/SaxonHE/saxon9-unpack.jar</jar>\r\n<jar>C\:/bin/SaxonHE/saxon9-xqj.jar</jar>\r\n</jars>\r\n</processor>\r\n</processorSettings>\r\n
-eclipse.preferences.version=1
