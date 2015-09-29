@@ -5,7 +5,7 @@
     using System.Xml;
     using System.Xml.Linq;
 
-    public static class XXmlDocumentExtensions
+    public static class XmlDocumentExtensions
     {
         /// <summary>
         /// Converts XmlDocument to XDocument.
@@ -109,6 +109,29 @@
         {
             node.SelectNodes(xpath, namespaceManager).RemoveXmlNodes();
             return node;
+        }
+
+        /// <summary>
+        /// Strip outer XML tags of an XmlNode object.
+        /// </summary>
+        /// <param name="node">XmlNode object to be stripped.</param>
+        public static void ReplaceXmlNodeByItsInnerXml(this XmlNode node)
+        {
+            XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
+            fragment.InnerXml = node.InnerXml;
+            node.ParentNode.ReplaceChild(fragment, node);
+        }
+
+        /// <summary>
+        /// Strip outer XML tags of an XmlNode object.
+        /// </summary>
+        /// <param name="nodeList">XmlNodeList of XmlNode objects to be stripped.</param>
+        public static void ReplaceXmlNodeByItsInnerXml(this XmlNodeList nodeList)
+        {
+            foreach (XmlNode node in nodeList)
+            {
+                node.ReplaceXmlNodeByItsInnerXml();
+            }
         }
     }
 }

@@ -117,9 +117,9 @@
     <Compile Include="src\Format\Format.cs" />
     <Compile Include="src\Localities\GeoNamesTagger.cs" />
     <Compile Include="Interfaces\IDataProvider.cs" />
-    <Compile Include="src\Json\Gbif.cs" />
-    <Compile Include="src\Json\Pbdb.cs" />
-    <Compile Include="src\Json\ZooBank.cs" />
+    <Compile Include="src\Json\Gbif\Gbif.cs" />
+    <Compile Include="src\Json\Pbdb\Pbdb.cs" />
+    <Compile Include="src\Json\ZooBank\ZooBank.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesParts.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="src\Quantities\QuantitiesTagger.cs" />
     <Compile Include="src\Special\QuentinFlora.cs" />
     <Compile Include="src\Base\QueryReplace.cs" />
-    <Compile Include="src\References\References.cs" />
+    <Compile Include="src\Quantities\References\References.cs" />
     <Compile Include="src\SpecimentCount\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />
@@ -230,6 +230,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\JSON\GeoJSON Examples\ferture-collection.json" />
+    <None Include="Data\JSON\GeoJSON Examples\geometry-point.json" />
     <None Include="Data\raw\get-taxa.ps1" />
     <None Include="Data\raw\mime.json" />
     <None Include="Data\raw\select_multi-rank-taxa.xqm" />

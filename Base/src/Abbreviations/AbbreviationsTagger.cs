@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Xml;
 
     public class AbbreviationsTagger : TaggerBase, IBaseTagger
@@ -34,44 +33,10 @@
             this.Tag();
         }
 
-        private Abbreviation ConvertAbbrevXmlNodeToAbbreviation(XmlNode abbrev)
-        {
-            Abbreviation abbreviation = new Abbreviation();
-
-            abbreviation.Content = Regex.Replace(
-                        Regex.Replace(
-                            Regex.Replace(
-                                abbrev.InnerXml,
-                                @"<def.+</def>",
-                                string.Empty),
-                            @"<def[*>]</def>|</?b[^>]*>",
-                            string.Empty),
-                        @"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z",
-                        string.Empty);
-
-            if (abbrev.Attributes["content-type"] != null)
-            {
-                abbreviation.ContentType = abbrev.Attributes["content-type"].InnerText;
-            }
-
-            if (abbrev["def"] != null)
-            {
-                abbreviation.Definition = Regex.Replace(
-                    Regex.Replace(
-                        abbrev["def"].InnerXml,
-                        "<[^>]*>",
-                        string.Empty),
-                    @"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)",
-                    string.Empty);
-            }
-
-            return abbreviation;
-        }
-
         private void TagAbbreviationsInSpecificNode(XmlNode specificNode)
         {
-            List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
-                                .Cast<XmlNode>().Select(this.ConvertAbbrevXmlNodeToAbbreviation).ToList<Abbreviation>();
+            HashSet<Abbreviation> abbreviationsList = new HashSet<Abbreviation>(specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
+                    .Cast<XmlNode>().Select(x => new Abbreviation(x)));
 
             foreach (Abbreviation abbreviation in abbreviationsList)
             {

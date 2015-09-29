@@ -1,22 +1,39 @@
 ﻿namespace ProcessingTools.BaseLibrary.Abbreviations
 {
     using System.Text.RegularExpressions;
+    using System.Xml;
 
     internal class Abbreviation
     {
+        private string contentType;
+        private string definition;
+
+        public Abbreviation()
+        {
+        }
+
+        public Abbreviation(XmlNode abbrev)
+        {
+            this.Content = abbrev.InnerXml
+                .RegExReplace(@"<def.+</def>", string.Empty)
+                .RegExReplace(@"</?b[^>]*>", string.Empty)
+                .RegExReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
+
+            this.contentType = abbrev.Attributes["content-type"]?.InnerText;
+
+            this.definition = abbrev["def"]?.InnerText
+                .RegExReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty);
+        }
+
         public string Content { get; set; }
-
-        public string ContentType { get; set; }
-
-        public string Definition { get; set; }
 
         public string ReplacePattern
         {
             get
             {
                 return "<abbrev" +
-                    ((this.ContentType == null || this.ContentType == string.Empty) ? string.Empty : @" content-type=""" + this.ContentType + @"""") +
-                    ((this.Definition == null || this.Definition == string.Empty) ? string.Empty : @" xlink:title=""" + this.Definition + @"""") +
+                    ((this.contentType == null || this.contentType.Length < 1) ? string.Empty : @" content-type=""" + this.contentType + @"""") +
+                    ((this.definition == null || this.definition.Length < 1) ? string.Empty : @" xlink:title=""" + this.definition + @"""") +
                     @" xmlns:xlink=""http://www.w3.org/1999/xlink""" +
                     ">$1</abbrev>";
             }

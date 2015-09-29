@@ -372,17 +372,6 @@
         }
 
         /// <summary>
-        /// Strip outer XML tags of an XmlNode object.
-        /// </summary>
-        /// <param name="node">XmlNode object to be stripped.</param>
-        public static void ReplaceXmlNodeByItsInnerXml(this XmlNode node)
-        {
-            XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
-            fragment.InnerXml = node.InnerXml;
-            node.ParentNode.ReplaceChild(fragment, node);
-        }
-
-        /// <summary>
         /// Replaces safely the InnerXml of a given XmlNode. If the replace string is not a valid Xml fragment, replacement will not be done.
         /// </summary>
         /// <param name="node">XmlNode which content would be replaced.</param>
