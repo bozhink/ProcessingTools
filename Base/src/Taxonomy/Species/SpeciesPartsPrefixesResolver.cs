@@ -76,7 +76,7 @@
             string rank;
             try
             {
-                rank = this.speciesPartsRanks[infraSpecificRank.ToLower()].ToString();
+                rank = this.speciesPartsRanks[infraSpecificRank.ToLower()].ToString().ToLower();
             }
             catch
             {

@@ -7,7 +7,7 @@
 
     public class AbbreviationsTagger : TaggerBase, IBaseTagger
     {
-        private const string SelectNodesToTagAbbreviationsXPathTemplate = "//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),'{0}')][count(.//node()[contains(string(.),'{0}')])=0]";
+        private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
 
         public AbbreviationsTagger(Config config, string xml)
             : base(config, xml)
@@ -46,7 +46,7 @@
                                 string.Empty),
                             @"<def[*>]</def>|</?b[^>]*>",
                             string.Empty),
-                        @"\A\W+|\W+\Z",
+                        @"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z",
                         string.Empty);
 
             if (abbrev.Attributes["content-type"] != null)
@@ -71,7 +71,7 @@
         private void TagAbbreviationsInSpecificNode(XmlNode specificNode)
         {
             List<Abbreviation> abbreviationsList = specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
-                                .Cast<XmlNode>().Select(a => this.ConvertAbbrevXmlNodeToAbbreviation(a)).ToList<Abbreviation>();
+                                .Cast<XmlNode>().Select(this.ConvertAbbrevXmlNodeToAbbreviation).ToList<Abbreviation>();
 
             foreach (Abbreviation abbreviation in abbreviationsList)
             {

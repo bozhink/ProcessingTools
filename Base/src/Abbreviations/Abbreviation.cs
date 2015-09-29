@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Abbreviations
 {
+    using System.Text.RegularExpressions;
+
     internal class Abbreviation
     {
         public string Content { get; set; }
@@ -24,7 +26,7 @@
         {
             get
             {
-                return "\\b(" + this.Content + ")\\b";
+                return "\\b(" + Regex.Escape(this.Content) + ")\\b";
             }
         }
     }

@@ -43,7 +43,7 @@
 
                     foreach (string tableFootnoteKey in tableFootnotes.Keys)
                     {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space()='" + tableFootnoteKey + "']", this.NamespaceManager))
+                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
                         {
                             // <xref ref-type="table-fn" rid="TN1"></xref>
                             XmlNode xrefTableFootNote = this.XmlDocument.CreateElement("xref");
