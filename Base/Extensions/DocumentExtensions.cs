@@ -87,9 +87,9 @@
             IEnumerable<string> result = null;
             try
             {
-                HashSet<string> list = new HashSet<string>(compareList);
-                result = from word in wordList
-                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() == 0
+                HashSet<string> list = new HashSet<string>(wordList);
+                result = from word in list
+                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
                          select word;
             }
             catch
@@ -275,18 +275,19 @@
             IEnumerable<string> result = null;
             try
             {
+                HashSet<string> list = new HashSet<string>(compareList);
                 if (treatAsRegex)
                 {
                     if (caseSensitive)
                     {
-                        result = from comparePattern in compareList
-                                 where Regex.Match(word, @"\b" + comparePattern + @"\b").Success
+                        result = from comparePattern in list
+                                 where Regex.IsMatch(word, @"\b" + comparePattern + @"\b")
                                  select comparePattern;
                     }
                     else
                     {
-                        result = from comparePattern in compareList
-                                 where Regex.Match(word, @"\b(?i)" + comparePattern + @"\b").Success
+                        result = from comparePattern in list
+                                 where Regex.IsMatch(word, @"\b(?i)" + comparePattern + @"\b")
                                  select comparePattern;
                     }
                 }
@@ -294,14 +295,14 @@
                 {
                     if (caseSensitive)
                     {
-                        result = from stringToCompare in compareList
+                        result = from stringToCompare in list
                                  where word.Contains(stringToCompare)
                                  select stringToCompare;
                     }
                     else
                     {
                         string wordLowerCase = word.ToLower();
-                        result = from stringToCompare in compareList
+                        result = from stringToCompare in list
                                  where wordLowerCase.Contains(stringToCompare.ToLower())
                                  select stringToCompare;
                     }

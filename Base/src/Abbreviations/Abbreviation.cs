@@ -21,8 +21,10 @@
 
             this.contentType = abbrev.Attributes["content-type"]?.InnerText;
 
-            this.definition = abbrev["def"]?.InnerText
+            var fragment = abbrev.OwnerDocument.CreateDocumentFragment();
+            fragment.InnerText = abbrev["def"]?.InnerText
                 .RegExReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty);
+            this.definition = fragment.InnerXml;
         }
 
         public string Content { get; set; }

@@ -230,7 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\JSON\GeoJSON Examples\ferture-collection.json" />
+    <None Include="Data\JSON\GeoJSON Examples\feature-collection.json" />
     <None Include="Data\JSON\GeoJSON Examples\geometry-point.json" />
     <None Include="Data\raw\get-taxa.ps1" />
     <None Include="Data\raw\mime.json" />

@@ -59,6 +59,7 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void QunatitiesTagger_XPathExecutionTests()
         {
             XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);
@@ -73,6 +74,7 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void QuantitiesTagger_TagTest()
         {
             XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);

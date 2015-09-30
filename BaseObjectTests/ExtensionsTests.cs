@@ -24,36 +24,36 @@
                 IEnumerable<string> matchedValuesCaseInsensitive = wordList.MatchWithStringList(matchesList, false, false);
 
                 Assert.AreEqual(
-                    "east football Football football",
+                    "east football Football",
                     String.Join(" ", matchedValuesCaseInsensitive),
-                    "CaseInsensitive non-regex match failed.");
+                    "1. CaseInsensitive non-regex match failed.");
             }
 
             {
                 IEnumerable<string> matchedValuesCaseSesitive = wordList.MatchWithStringList(matchesList, false, true);
 
                 Assert.AreEqual(
-                    "east football football",
+                    "east football",
                     String.Join(" ", matchedValuesCaseSesitive),
-                    "CaseSensitive non-regex match failed.");
+                    "2. CaseSensitive non-regex match failed.");
             }
 
             {
                 IEnumerable<string> matchedValuesCaseInsensitive = wordList.MatchWithStringList(matchesList, true, false);
 
                 Assert.AreEqual(
-                    "east football Football football",
+                    "east football Football",
                     String.Join(" ", matchedValuesCaseInsensitive),
-                    "CaseInsensitive regex match failed.");
+                    "3. CaseInsensitive regex match failed.");
             }
 
             {
                 IEnumerable<string> matchedValuesCaseSesitive = wordList.MatchWithStringList(matchesList, true, true);
 
                 Assert.AreEqual(
-                    "east football football",
+                    "east football",
                     String.Join(" ", matchedValuesCaseSesitive),
-                    "CaseSensitive regex match failed.");
+                    "4. CaseSensitive regex match failed.");
             }
         }
 
@@ -74,7 +74,7 @@
                 Assert.AreEqual(
                     "City city fire for from",
                     String.Join(" ", matchedValuesCaseInsensitive),
-                    "CaseInsensitive non-regex distinct failed.");
+                    "1. CaseInsensitive non-regex distinct failed.");
             }
 
             {
@@ -83,25 +83,25 @@
                 Assert.AreEqual(
                     "City city FA fire for from",
                     String.Join(" ", matchedValuesCaseSesitive),
-                    "CaseSensitive non-regex distinct failed.");
+                    "2. CaseSensitive non-regex distinct failed.");
             }
 
             {
                 IEnumerable<string> matchedValuesCaseInsensitive = wordList.DistinctWithStringList(matchesList, true, false);
 
                 Assert.AreEqual(
-                    "City city FA far fire football Football football for from",
+                    "City city FA far fire football Football for from",
                     String.Join(" ", matchedValuesCaseInsensitive),
-                    "CaseInsensitive regex distinct failed.");
+                    "3. CaseInsensitive regex distinct failed.");
             }
 
             {
                 IEnumerable<string> matchedValuesCaseSesitive = wordList.DistinctWithStringList(matchesList, true, true);
 
                 Assert.AreEqual(
-                    "City city FA far fire football Football football for from",
+                    "City city FA far fire football Football for from",
                     String.Join(" ", matchedValuesCaseSesitive),
-                    "CaseSensitive regex distinct failed.");
+                    "4. CaseSensitive regex distinct failed.");
             }
         }
     }
