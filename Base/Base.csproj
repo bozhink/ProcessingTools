@@ -164,6 +164,7 @@
     <Compile Include="src\ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\JSON\GeoJSON Examples\spec.txt" />
     <Content Include="Data\raw\english-common-words.txt" />
     <Content Include="Data\raw\geo-epithets.txt" />
     <Content Include="Data\raw\get-coordinates-out.txt" />

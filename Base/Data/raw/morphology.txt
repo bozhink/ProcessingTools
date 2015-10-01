@@ -10,3 +10,5 @@ ventral margin
 ventral umbo
 whorls
 Endocarina
+Column
+Labellum
