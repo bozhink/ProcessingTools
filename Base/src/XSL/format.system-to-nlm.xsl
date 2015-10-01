@@ -10,49 +10,43 @@
 
   <xsl:output method="xml" indent="no" encoding="utf-8"  cdata-section-elements="tex-math" />
 
-  <xsl:include href="format.inc.xsl"/>
-
-  <xsl:template match="@* | node()">
-    <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
-    </xsl:copy>
-  </xsl:template>
+  <xsl:include href="format.inc.xsl" />
 
   <xsl:template match="i | em | italic | Italic">
     <italic>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
     </italic>
   </xsl:template>
 
   <xsl:template match="b | strong | bold | Bold">
     <bold>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
     </bold>
   </xsl:template>
 
   <xsl:template match="bold-italic | Bold-Italic">
     <bold>
       <italic>
-        <xsl:apply-templates select="@* | node()"/>
+        <xsl:apply-templates select="@* | node()" />
       </italic>
     </bold>
   </xsl:template>
 
   <xsl:template match="tp:taxon-name | tn">
     <tp:taxon-name>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
     </tp:taxon-name>
   </xsl:template>
 
   <xsl:template match="tp:taxon-name-part | tn-part">
     <tp:taxon-name-part>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
     </tp:taxon-name-part>
   </xsl:template>
 
   <xsl:template match="tn-part/@type">
     <xsl:attribute name="taxon-name-part-type">
-      <xsl:value-of select="."/>
+      <xsl:value-of select="." />
     </xsl:attribute>
   </xsl:template>
 </xsl:stylesheet>

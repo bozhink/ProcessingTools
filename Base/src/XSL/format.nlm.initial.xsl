@@ -10,7 +10,7 @@
 
   <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" cdata-section-elements="tex-math"/>
   <xsl:preserve-space elements="*"/>
-  <xsl:strip-space elements="addr-line aff"/>
+  <xsl:strip-space elements="addr-line aff article-id"/>
 
   <xsl:template match="@* | node()" mode="strip-label">
     <xsl:copy>
