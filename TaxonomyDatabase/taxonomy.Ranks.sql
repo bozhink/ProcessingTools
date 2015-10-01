@@ -1,0 +1,5 @@
+﻿CREATE TABLE [Taxonomy].[Ranks]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NCHAR(10) NOT NULL
+)
