@@ -66,5 +66,10 @@
     <Build Include="Taxonomy.Ranks.sql" />
     <Build Include="Taxonomy.HigherTaxaNames.sql" />
     <Build Include="Taxonomy.ForeignKey_Ranks_TaxaNames.sql" />
+    <Build Include="Taxonomy.UniqueKeyConstraint_Ranks.sql" />
+    <Build Include="Taxonomy.UniqueKeyConstraint_TaxaNames.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Taxonomy.Ranks.Data.sql" />
   </ItemGroup>
 </Project>

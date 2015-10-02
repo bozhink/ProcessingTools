@@ -185,7 +185,6 @@
     <Content Include="Data\Sql\institution.sql" />
     <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
-    <Content Include="Data\Sql\taxonomy_taxonomic_ranks.sql" />
     <Content Include="Data\Xml\taxonomy.blackList.xml" />
     <Content Include="Data\Xml\taxonomy.rankList.xml" />
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
