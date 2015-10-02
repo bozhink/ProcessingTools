@@ -69,6 +69,7 @@
     <Build Include="Environments.Names.sql" />
     <Build Include="Environments.FK_Names_Entities.sql" />
     <Build Include="Environments.FK_Groups_Entities.sql" />
+    <Build Include="Environments.Envo_Terms_View.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Environments.Entities.Data.sql" />

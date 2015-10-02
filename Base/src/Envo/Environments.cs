@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System;
     using System.Data.SqlClient;
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -42,15 +41,8 @@
                 using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
                 {
                     connection.Open();
-                    string query = @"select
-                                 [dbo].[environments_names].[Content] as content,
-                                 [dbo].[environments_names].[ContentId] as id,
-                                 [dbo].[environments_entities].[EnvoId] as envoId
-                                from [dbo].[environments_names]
-                                inner join [dbo].[environments_entities]
-                                on [dbo].[environments_names].[ContentId]=[dbo].[environments_entities].[Id]
-                                where content not like 'ENVO%'
-                                order by len(content) desc;";
+
+                    string query = @"SELECT * FROM [EnvironmentsDatabase].[Environments].[Envo_Terms_View]";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
