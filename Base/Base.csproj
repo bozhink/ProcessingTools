@@ -226,6 +226,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\Biorepositories\biorepositories.csv" />
+    <None Include="Data\Biorepositories\biorepository_labels.csv" />
+    <None Include="Data\Biorepositories\institution_collections.csv" />
+    <None Include="Data\Biorepositories\institution_collection_labels.csv" />
+    <None Include="Data\Biorepositories\personal_collections.csv" />
+    <None Include="Data\Biorepositories\personal_collection_labels.csv" />
+    <None Include="Data\Biorepositories\staff_members.csv" />
+    <None Include="Data\Biorepositories\staff_member_labels.csv" />
     <None Include="Data\JSON\GeoJSON Examples\feature-collection.json" />
     <None Include="Data\JSON\GeoJSON Examples\geometry-point.json" />
     <None Include="Data\raw\get-taxa.ps1" />
