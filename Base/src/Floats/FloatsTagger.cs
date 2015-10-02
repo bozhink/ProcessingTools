@@ -188,7 +188,7 @@
 
         private string FloatsFirstOccurencePattern(string labelPattern)
         {
-            return "\\b(" + labelPattern + ")\\s*(([A-Z]?\\d+)(" + SubfloatsPattern + ")?)(?=\\W)";
+            return @"(?<!<[^>]*)\b(" + labelPattern + @")\s*(([A-Z]?\d+)(?:" + SubfloatsPattern + @")?)(?=\W)";
         }
 
         private string FloatsFirstOccurenceReplace(string floatType)

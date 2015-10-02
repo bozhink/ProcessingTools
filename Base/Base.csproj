@@ -112,7 +112,7 @@
     <Compile Include="src\Dates\DatesTagger.cs" />
     <Compile Include="src\Envo\Environments.cs" />
     <Compile Include="src\Envo\Envo.cs" />
-    <Compile Include="src\Floats\Floats.cs" />
+    <Compile Include="src\Floats\FloatsTagger.cs" />
     <Compile Include="src\Special\Flora.cs" />
     <Compile Include="src\Format\Format.cs" />
     <Compile Include="src\Localities\GeoNamesTagger.cs" />
