@@ -164,7 +164,7 @@
                 for (int i = 0; i < args.Length; ++i)
                 {
                     char[] arg = args[i].ToCharArray();
-                    if (arg[0] == '-' && arg[1] == '-')
+                    if (arg[0] == '-' && arg.Length > 1 && arg[1] == '-')
                     {
                         doubleDashedOptions.Add(i);
                     }

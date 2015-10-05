@@ -68,241 +68,250 @@
 
         private static void ParseDoubleDashedOptions(string[] args)
         {
-            foreach (int item in doubleDashedOptions)
+            if (doubleDashedOptions?.Count > 0)
             {
-                if (args[item].CompareTo("--split-aphia") == 0)
+                foreach (int item in doubleDashedOptions)
                 {
-                    splitHigherWithAphia = true;
-                }
-                else if (args[item].CompareTo("--split-col") == 0)
-                {
-                    splitHigherWithCoL = true;
-                }
-                else if (args[item].CompareTo("--split-gbif") == 0)
-                {
-                    splitHigherWithGbif = true;
-                }
-                else if (args[item].CompareTo("--split-suffix") == 0)
-                {
-                    splitHigherBySuffix = true;
-                }
-                else if (args[item].CompareTo("--above-genus") == 0)
-                {
-                    splitHigherAboveGenus = true;
-                }
-                else if (args[item].CompareTo("--system") == 0)
-                {
-                    config.NlmStyle = false;
-                }
-                else if (args[item].CompareTo("--nlm") == 0)
-                {
-                    config.NlmStyle = true;
-                }
-                else if (args[item].CompareTo("--test") == 0)
-                {
-                    testFlag = true;
-                }
-                else if (args[item].CompareTo("--extract-taxa") == 0 || args[item].CompareTo("--et") == 0)
-                {
-                    extractTaxa = true;
-                }
-                else if (args[item].CompareTo("--extract-lower-taxa") == 0 || args[item].CompareTo("--elt") == 0)
-                {
-                    extractLowerTaxa = true;
-                }
-                else if (args[item].CompareTo("--extract-higher-taxa") == 0 || args[item].CompareTo("--eht") == 0)
-                {
-                    extractHigherTaxa = true;
-                }
-                else if (args[item].CompareTo("--zoobank-nlm") == 0)
-                {
-                    zoobankGenerateRegistrationXml = true;
-                }
-                else if (args[item].CompareTo("--zoobank-json") == 0)
-                {
-                    zoobankCloneJson = true;
-                }
-                else if (args[item].CompareTo("--zoobank-clone") == 0)
-                {
-                    zoobankCloneXml = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-aphia") == 0 || args[item].CompareTo("--ptm-aphia") == 0)
-                {
-                    parseTreatmentMetaWithAphia = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-gbif") == 0 || args[item].CompareTo("--ptm-gbif") == 0)
-                {
-                    parseTreatmentMetaWithGbif = true;
-                }
-                else if (args[item].CompareTo("--parse-treatment-meta-with-col") == 0 || args[item].CompareTo("--ptm-col") == 0)
-                {
-                    parseTreatmentMetaWithCol = true;
-                }
-                else if (args[item].CompareTo("--table-fn") == 0)
-                {
-                    tagTableFn = true;
-                }
-                else if (args[item].CompareTo("--environments") == 0)
-                {
-                    tagEnvironments = true;
-                }
-                else if (args[item].CompareTo("--codes") == 0)
-                {
-                    tagCodes = true;
-                }
-                else if (args[item].CompareTo("--quantities") == 0)
-                {
-                    tagQuantities = true;
-                }
-                else if (args[item].CompareTo("--dates") == 0)
-                {
-                    tagDates = true;
-                }
-                else if (args[item].CompareTo("--abbrev") == 0)
-                {
-                    tagAbbrev = true;
-                }
-                else if (args[item].CompareTo("--envo") == 0)
-                {
-                    tagEnvo = true;
-                }
-                else if (args[item].CompareTo("--validate-taxa") == 0)
-                {
-                    validateTaxa = true;
+                    if (args[item].CompareTo("--split-aphia") == 0)
+                    {
+                        splitHigherWithAphia = true;
+                    }
+                    else if (args[item].CompareTo("--split-col") == 0)
+                    {
+                        splitHigherWithCoL = true;
+                    }
+                    else if (args[item].CompareTo("--split-gbif") == 0)
+                    {
+                        splitHigherWithGbif = true;
+                    }
+                    else if (args[item].CompareTo("--split-suffix") == 0)
+                    {
+                        splitHigherBySuffix = true;
+                    }
+                    else if (args[item].CompareTo("--above-genus") == 0)
+                    {
+                        splitHigherAboveGenus = true;
+                    }
+                    else if (args[item].CompareTo("--system") == 0)
+                    {
+                        config.NlmStyle = false;
+                    }
+                    else if (args[item].CompareTo("--nlm") == 0)
+                    {
+                        config.NlmStyle = true;
+                    }
+                    else if (args[item].CompareTo("--test") == 0)
+                    {
+                        testFlag = true;
+                    }
+                    else if (args[item].CompareTo("--extract-taxa") == 0 || args[item].CompareTo("--et") == 0)
+                    {
+                        extractTaxa = true;
+                    }
+                    else if (args[item].CompareTo("--extract-lower-taxa") == 0 || args[item].CompareTo("--elt") == 0)
+                    {
+                        extractLowerTaxa = true;
+                    }
+                    else if (args[item].CompareTo("--extract-higher-taxa") == 0 || args[item].CompareTo("--eht") == 0)
+                    {
+                        extractHigherTaxa = true;
+                    }
+                    else if (args[item].CompareTo("--zoobank-nlm") == 0)
+                    {
+                        zoobankGenerateRegistrationXml = true;
+                    }
+                    else if (args[item].CompareTo("--zoobank-json") == 0)
+                    {
+                        zoobankCloneJson = true;
+                    }
+                    else if (args[item].CompareTo("--zoobank-clone") == 0)
+                    {
+                        zoobankCloneXml = true;
+                    }
+                    else if (args[item].CompareTo("--parse-treatment-meta-with-aphia") == 0 || args[item].CompareTo("--ptm-aphia") == 0)
+                    {
+                        parseTreatmentMetaWithAphia = true;
+                    }
+                    else if (args[item].CompareTo("--parse-treatment-meta-with-gbif") == 0 || args[item].CompareTo("--ptm-gbif") == 0)
+                    {
+                        parseTreatmentMetaWithGbif = true;
+                    }
+                    else if (args[item].CompareTo("--parse-treatment-meta-with-col") == 0 || args[item].CompareTo("--ptm-col") == 0)
+                    {
+                        parseTreatmentMetaWithCol = true;
+                    }
+                    else if (args[item].CompareTo("--table-fn") == 0)
+                    {
+                        tagTableFn = true;
+                    }
+                    else if (args[item].CompareTo("--environments") == 0)
+                    {
+                        tagEnvironments = true;
+                    }
+                    else if (args[item].CompareTo("--codes") == 0)
+                    {
+                        tagCodes = true;
+                    }
+                    else if (args[item].CompareTo("--quantities") == 0)
+                    {
+                        tagQuantities = true;
+                    }
+                    else if (args[item].CompareTo("--dates") == 0)
+                    {
+                        tagDates = true;
+                    }
+                    else if (args[item].CompareTo("--abbrev") == 0)
+                    {
+                        tagAbbrev = true;
+                    }
+                    else if (args[item].CompareTo("--envo") == 0)
+                    {
+                        tagEnvo = true;
+                    }
+                    else if (args[item].CompareTo("--validate-taxa") == 0)
+                    {
+                        validateTaxa = true;
+                    }
                 }
             }
         }
 
         private static void ParseSingleDashedOptions(string[] args)
         {
-            foreach (int item in singleDashedOptions)
+            if (singleDashedOptions?.Count > 0)
             {
-                char[] arg = args[item].ToCharArray();
-                for (int i = 1; i < arg.Length; i++)
+                foreach (int item in singleDashedOptions)
                 {
-                    switch (arg[i])
+                    char[] arg = args[item].ToCharArray();
+                    if (arg.Length > 1)
                     {
-                        case 'h':
-                        case '?':
-                            Alert.PrintHelp();
-                            Alert.Exit(0);
-                            break;
+                        for (int i = 1; i < arg.Length; i++)
+                        {
+                            switch (arg[i])
+                            {
+                                case 'h':
+                                case '?':
+                                    Alert.PrintHelp();
+                                    Alert.Exit(0);
+                                    break;
 
-                        case 'i':
-                            formatInit = true;
-                            break;
+                                case 'i':
+                                    formatInit = true;
+                                    break;
 
-                        case 't':
-                            formatTreat = true;
-                            break;
+                                case 't':
+                                    formatTreat = true;
+                                    break;
 
-                        case 'A':
-                            taxaA = true;
-                            break;
+                                case 'A':
+                                    taxaA = true;
+                                    break;
 
-                        case 'B':
-                            taxaB = true;
-                            break;
+                                case 'B':
+                                    taxaB = true;
+                                    break;
 
-                        case 'C':
-                            taxaC = true;
-                            break;
+                                case 'C':
+                                    taxaC = true;
+                                    break;
 
-                        case 'D':
-                            taxaD = true;
-                            break;
+                                case 'D':
+                                    taxaD = true;
+                                    break;
 
-                        case 'E':
-                            taxaE = true;
-                            break;
+                                case 'E':
+                                    taxaE = true;
+                                    break;
 
-                        case 'u':
-                            untagSplit = true;
-                            break;
+                                case 'u':
+                                    untagSplit = true;
+                                    break;
 
-                        case 'w':
-                            tagWWW = true;
-                            break;
+                                case 'w':
+                                    tagWWW = true;
+                                    break;
 
-                        case 'd':
-                            tagDoi = true;
-                            break;
+                                case 'd':
+                                    tagDoi = true;
+                                    break;
 
-                        case 'f':
-                            tagFigTab = true;
-                            break;
+                                case 'f':
+                                    tagFigTab = true;
+                                    break;
 
-                        case 'c':
-                            tagCoords = true;
-                            break;
+                                case 'c':
+                                    tagCoords = true;
+                                    break;
 
-                        case 'k':
-                            parseCoords = true;
-                            break;
+                                case 'k':
+                                    parseCoords = true;
+                                    break;
 
-                        case '1':
-                            flag1 = true;
-                            break;
+                                case '1':
+                                    flag1 = true;
+                                    break;
 
-                        case '2':
-                            flag2 = true;
-                            break;
+                                case '2':
+                                    flag2 = true;
+                                    break;
 
-                        case '3':
-                            flag3 = true;
-                            break;
+                                case '3':
+                                    flag3 = true;
+                                    break;
 
-                        case '4':
-                            flag4 = true;
-                            break;
+                                case '4':
+                                    flag4 = true;
+                                    break;
 
-                        case '5':
-                            flag5 = true;
-                            break;
+                                case '5':
+                                    flag5 = true;
+                                    break;
 
-                        case '6':
-                            flag6 = true;
-                            break;
+                                case '6':
+                                    flag6 = true;
+                                    break;
 
-                        case '7':
-                            flag7 = true;
-                            break;
+                                case '7':
+                                    flag7 = true;
+                                    break;
 
-                        case '8':
-                            flag8 = true;
-                            break;
+                                case '8':
+                                    flag8 = true;
+                                    break;
 
-                        case 'X':
-                            queryReplace = true;
-                            break;
+                                case 'X':
+                                    queryReplace = true;
+                                    break;
 
-                        case 'z':
-                            zoobankCloneXml = true;
-                            break;
+                                case 'z':
+                                    zoobankCloneXml = true;
+                                    break;
 
-                        case 'r':
-                            parseReferences = true;
-                            break;
+                                case 'r':
+                                    parseReferences = true;
+                                    break;
 
-                        case 'R':
-                            tagReferences = true;
-                            break;
+                                case 'R':
+                                    tagReferences = true;
+                                    break;
 
-                        case 'Q':
-                            quentinSpecificActions = true;
-                            break;
+                                case 'Q':
+                                    quentinSpecificActions = true;
+                                    break;
 
-                        case 'F':
-                            flora = true;
-                            break;
+                                case 'F':
+                                    flora = true;
+                                    break;
 
-                        case 's':
-                            parseBySection = true;
-                            break;
+                                case 's':
+                                    parseBySection = true;
+                                    break;
 
-                        case 'V':
-                            validateTaxa = true;
-                            break;
+                                case 'V':
+                                    validateTaxa = true;
+                                    break;
+                            }
+                        }
                     }
                 }
             }
