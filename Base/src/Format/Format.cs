@@ -43,7 +43,7 @@
                 xml = FormatPageBreaks(xml);
 
                 // male and female
-                xml = Regex.Replace(xml, "<i>([♂♀\\s]+)</i>", "$1");
+                xml = Regex.Replace(xml, @"<i>([♂♀\s]+)</i>", "$1");
 
                 // Post-formatting
                 for (int i = 0; i < 3; i++)

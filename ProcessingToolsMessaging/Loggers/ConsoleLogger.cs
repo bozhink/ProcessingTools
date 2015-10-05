@@ -63,7 +63,7 @@
         public void LogException(Exception e, string format, params object[] args)
         {
             this.Log(
-                "{0}: ERROR: {1}: {2}\nMESSAGE: ",
+                "{0}: ERROR: {1}: {2}\n",
                 Diagnostics.GetCurrentMethod(2),
                 e.GetType(),
                 e.Message);

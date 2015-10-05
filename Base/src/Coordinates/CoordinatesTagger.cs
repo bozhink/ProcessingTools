@@ -62,6 +62,12 @@
                     coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
                 }
 
+                {
+                    Regex re = new Regex(@"(?<latitude>(?:\b[–—−-]\W?|\b)[0-9]?[0-9]\b[\s\.]{1,3}[0-9]+)[^\w\.]{1,5}(?<longitude>(?:\b[–—−-]\W?|\b)(?:[0-1][0-8]|[0-9])?[0-9]\b[\s\.]{1,3}[0-9]+)");
+
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                }
+
                 foreach (string coordinateString in coordinateStrings)
                 {
                     replacementNode.InnerText = coordinateString;

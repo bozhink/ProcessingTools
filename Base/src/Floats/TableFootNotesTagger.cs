@@ -36,40 +36,42 @@
                     Hashtable tableFootnotes = new Hashtable();
 
                     // Get foot-note's label and corresponding @id-s
-                    foreach (XmlNode fn in tableWrap.SelectNodes("//fn[label][@id]", this.NamespaceManager))
+                    foreach (XmlNode fn in tableWrap.SelectNodes(".//fn[label][@id]", this.NamespaceManager))
                     {
                         tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
                     }
 
                     foreach (string tableFootnoteKey in tableFootnotes.Keys)
                     {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes("//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
+                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes(".//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
                         {
-                            // <xref ref-type="table-fn" rid="TN1"></xref>
-                            XmlNode xrefTableFootNote = this.XmlDocument.CreateElement("xref");
-
-                            XmlAttribute refType = this.XmlDocument.CreateAttribute("ref-type");
-                            refType.InnerXml = "table-fn";
-                            xrefTableFootNote.Attributes.Append(refType);
-
-                            XmlAttribute rid = this.XmlDocument.CreateAttribute("rid");
-                            rid.InnerXml = tableFootnotes[tableFootnoteKey].ToString();
-                            xrefTableFootNote.Attributes.Append(rid);
-
-                            xrefTableFootNote.InnerXml = footnoteSup.OuterXml;
-
-                            footnoteSup.InnerXml = xrefTableFootNote.OuterXml;
+                            this.TagCitationInXref(tableFootnotes, tableFootnoteKey, footnoteSup);
                         }
                     }
                 }
             }
-
-            this.Xml = Regex.Replace(this.Xml, @"<sup>(<xref ref-type=""table-fn"" [^>]*><sup>[^<>]*?</sup></xref>)</sup>", "$1");
         }
 
         public void Tag(IXPathProvider xpathProvider)
         {
             this.Tag();
+        }
+
+        private void TagCitationInXref(Hashtable tableFootnotes, string tableFootnoteKey, XmlNode footnoteSup)
+        {
+            XmlNode xrefTableFootNote = footnoteSup.OwnerDocument.CreateElement("xref");
+
+            XmlAttribute refType = footnoteSup.OwnerDocument.CreateAttribute("ref-type");
+            refType.InnerXml = "table-fn";
+            xrefTableFootNote.Attributes.Append(refType);
+
+            XmlAttribute rid = footnoteSup.OwnerDocument.CreateAttribute("rid");
+            rid.InnerXml = tableFootnotes[tableFootnoteKey].ToString();
+            xrefTableFootNote.Attributes.Append(rid);
+
+            xrefTableFootNote.InnerXml = footnoteSup.OuterXml;
+
+            footnoteSup.ParentNode.ReplaceChild(xrefTableFootNote, footnoteSup);
         }
     }
 }

@@ -24,6 +24,12 @@
     </bold>
   </xsl:template>
 
+  <xsl:template match="u | underline">
+    <underline>
+      <xsl:apply-templates select="@* | node()" />
+    </underline>
+  </xsl:template>
+
   <xsl:template match="bold-italic | Bold-Italic">
     <bold>
       <italic>
