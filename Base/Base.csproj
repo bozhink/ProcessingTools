@@ -147,7 +147,7 @@
     <Compile Include="src\Quantities\QuantitiesTagger.cs" />
     <Compile Include="src\Special\QuentinFlora.cs" />
     <Compile Include="src\Base\QueryReplace.cs" />
-    <Compile Include="src\Quantities\References\References.cs" />
+    <Compile Include="src\References\References.cs" />
     <Compile Include="src\SpecimentCount\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />
