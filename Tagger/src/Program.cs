@@ -20,22 +20,22 @@
 
             try
             {
-                FileProcessor fp = new FileProcessor(config, inputFileName, outputFileName, consoleLogger);
+                FileProcessor fp = new FileProcessor(settings.Config, settings.InputFileName, settings.OutputFileName, consoleLogger);
 
                 consoleLogger.Log(
                     "Input file name: {0}\nOutput file name: {1}\n{2}",
                     fp.InputFileName,
                     fp.OutputFileName,
-                    queryFileName);
+                    settings.QueryFileName);
 
-                config.EnvoResponseOutputXmlFileName = string.Format(
+                settings.Config.EnvoResponseOutputXmlFileName = string.Format(
                     "{0}\\envo-{1}.xml",
-                    config.tempDirectoryPath,
+                    settings.Config.tempDirectoryPath,
                     Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
-                config.GnrOutputFileName = string.Format(
+                settings.Config.GnrOutputFileName = string.Format(
                     "{0}\\gnr-{1}.xml",
-                    config.tempDirectoryPath,
+                    settings.Config.tempDirectoryPath,
                     Path.GetFileNameWithoutExtension(fp.OutputFileName));
 
                 fp.Read();
@@ -43,15 +43,15 @@
                 switch (fp.XmlDocument.DocumentElement.Name)
                 {
                     case "article":
-                        config.NlmStyle = true;
+                        settings.Config.NlmStyle = true;
                         break;
 
                     default:
-                        config.NlmStyle = false;
+                        settings.Config.NlmStyle = false;
                         break;
                 }
 
-                fp.Xml = fp.Xml.NormalizeXmlToSystemXml(config);
+                fp.Xml = fp.Xml.NormalizeXmlToSystemXml(settings.Config);
 
                 ParseSingleDashedOptions(args);
                 ParseDoubleDashedOptions(args);
@@ -74,35 +74,35 @@
 
                 TagCodes(fp);
 
-                if (zoobankCloneXml)
+                if (settings.ZoobankCloneXml)
                 {
                     ZooBankCloneXml(fp);
                 }
-                else if (zoobankCloneJson)
+                else if (settings.ZoobankCloneJson)
                 {
                     ZooBankCloneJson(fp);
                 }
-                else if (zoobankGenerateRegistrationXml)
+                else if (settings.ZoobankGenerateRegistrationXml)
                 {
                     ZooBankGenerateRegistrationXml(fp);
                 }
-                else if (quentinSpecificActions)
+                else if (settings.QuentinSpecificActions)
                 {
                     QuentinSpecific(fp);
                 }
-                else if (flora)
+                else if (settings.Flora)
                 {
                     FloraSpecific(fp);
                 }
-                else if (tagReferences)
+                else if (settings.TagReferences)
                 {
                     TagReferences(fp);
                 }
-                else if (queryReplace && queryFileName.Length > 0)
+                else if (settings.QueryReplace && settings.QueryFileName.Length > 0)
                 {
-                    fp.Xml = QueryReplace.Replace(config, fp.Xml, queryFileName);
+                    fp.Xml = QueryReplace.Replace(settings.Config, fp.Xml, settings.QueryFileName);
                 }
-                else if (testFlag)
+                else if (settings.TestFlag)
                 {
                 }
                 else
@@ -110,7 +110,7 @@
                     /*
                      * Main Tagging part of the program
                      */
-                    if (parseBySection)
+                    if (settings.ParseBySection)
                     {
                         XmlNamespaceManager namespaceManager = Config.TaxPubNamespceManager();
                         XmlDocument xmlDocument = new XmlDocument(namespaceManager.NameTable);
@@ -127,7 +127,7 @@
 
                         try
                         {
-                            foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
+                            foreach (XmlNode node in xmlDocument.SelectNodes(settings.HigherStructrureXpath, namespaceManager))
                             {
                                 XmlNode newNode = node;
                                 newNode.InnerXml = MainProcessing(node.OuterXml);
@@ -191,9 +191,9 @@
                 AppSettingsReader appConfigReader = new AppSettingsReader();
                 string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
 
-                config = ConfigBuilder.CreateConfig(configJsonFilePath);
-                config.NlmStyle = true;
-                config.TagWholeDocument = false;
+                settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);
+                settings.Config.NlmStyle = true;
+                settings.Config.TagWholeDocument = false;
             }
             catch
             {
@@ -212,19 +212,19 @@
                 }
                 else if (arguments.Count == 1)
                 {
-                    inputFileName = args[arguments[0]];
-                    outputFileName = null;
+                    settings.InputFileName = args[arguments[0]];
+                    settings.OutputFileName = null;
                 }
                 else if (arguments.Count == 2)
                 {
-                    inputFileName = args[arguments[0]];
-                    outputFileName = args[arguments[1]];
+                    settings.InputFileName = args[arguments[0]];
+                    settings.OutputFileName = args[arguments[1]];
                 }
                 else
                 {
-                    inputFileName = args[arguments[0]];
-                    outputFileName = args[arguments[1]];
-                    queryFileName = args[arguments[2]];
+                    settings.InputFileName = args[arguments[0]];
+                    settings.OutputFileName = args[arguments[1]];
+                    settings.QueryFileName = args[arguments[2]];
                 }
             }
             catch
@@ -246,7 +246,7 @@
 
             try
             {
-                fp.Xml = fp.Xml.NormalizeXmlToCurrentXml(config);
+                fp.Xml = fp.Xml.NormalizeXmlToCurrentXml(settings.Config);
                 fp.Write();
             }
             catch

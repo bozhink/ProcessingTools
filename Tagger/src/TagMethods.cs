@@ -20,9 +20,9 @@
         {
             try
             {
-                FileProcessor flp = new FileProcessor(config, inputFileName, config.floraExtractedTaxaListPath);
-                FileProcessor flpp = new FileProcessor(config, inputFileName, config.floraExtractTaxaPartsOutputPath);
-                Flora fl = new Flora(config, fp.Xml);
+                FileProcessor flp = new FileProcessor(settings.Config, settings.InputFileName, settings.Config.floraExtractedTaxaListPath);
+                FileProcessor flpp = new FileProcessor(settings.Config, settings.InputFileName, settings.Config.floraExtractTaxaPartsOutputPath);
+                Flora fl = new Flora(settings.Config, fp.Xml);
 
                 fl.ExtractTaxa();
                 fl.DistinctTaxa();
@@ -32,29 +32,29 @@
                 flp.Write();
 
                 fl.Xml = fp.Xml;
-                if (taxaA)
+                if (settings.TaxaA)
                 {
                     fl.PerformReplace();
                 }
 
-                if (taxaB)
+                if (settings.TaxaB)
                 {
                     ////fl.TagHigherTaxa();
                 }
 
-                if (taxaC)
+                if (settings.TaxaC)
                 {
-                    if (flag1)
+                    if (settings.Flag1)
                     {
                         fl.ParseInfra();
                     }
 
-                    if (flag2)
+                    if (settings.Flag2)
                     {
                         fl.ParseTn();
                     }
 
-                    if (flag3)
+                    if (settings.Flag3)
                     {
                         ////fl.SplitLowerTaxa();
                     }
@@ -73,7 +73,7 @@
 
         private static void InitialFormat(FileProcessor fp)
         {
-            if (formatInit)
+            if (settings.FormatInit)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -81,17 +81,17 @@
 
                 try
                 {
-                    if (!config.NlmStyle)
+                    if (!settings.Config.NlmStyle)
                     {
-                        string xml = fp.XmlReader.ApplyXslTransform(config.systemInitialFormatXslPath);
-                        BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(config, xml);
+                        string xml = fp.XmlReader.ApplyXslTransform(settings.Config.systemInitialFormatXslPath);
+                        BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(settings.Config, xml);
                         fmt.Format();
                         fp.Xml = fmt.Xml;
                     }
                     else
                     {
-                        string xml = fp.XmlReader.ApplyXslTransform(config.nlmInitialFormatXslPath);
-                        BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(config, xml);
+                        string xml = fp.XmlReader.ApplyXslTransform(settings.Config.nlmInitialFormatXslPath);
+                        BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(settings.Config, xml);
                         fmt.Format();
                         fp.Xml = fmt.Xml;
                     }
@@ -107,7 +107,7 @@
 
         private static void ParseCoordinates(FileProcessor fp)
         {
-            if (parseCoords)
+            if (settings.ParseCoords)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -115,7 +115,7 @@
 
                 try
                 {
-                    IBaseParser cooredinatesParser = new CoordinatesParser(config, fp.Xml, consoleLogger);
+                    IBaseParser cooredinatesParser = new CoordinatesParser(settings.Config, fp.Xml, consoleLogger);
                     cooredinatesParser.Parse();
                     fp.Xml = cooredinatesParser.Xml;
                 }
@@ -130,7 +130,7 @@
 
         private static void ParseReferences(FileProcessor fp)
         {
-            if (parseReferences)
+            if (settings.ParseReferences)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -138,7 +138,7 @@
 
                 try
                 {
-                    References referencesParser = new References(config, fp.Xml, consoleLogger);
+                    References referencesParser = new References(settings.Config, fp.Xml, consoleLogger);
                     referencesParser.SplitReferences();
                     fp.Xml = referencesParser.Xml;
                 }
@@ -156,15 +156,15 @@
             try
             {
                 QuentinFlora qf = new QuentinFlora(fp.Xml);
-                if (formatInit)
+                if (settings.FormatInit)
                 {
                     qf.InitialFormat();
                 }
-                else if (flag1)
+                else if (settings.Flag1)
                 {
                     qf.Split1();
                 }
-                else if (flag2)
+                else if (settings.Flag2)
                 {
                     qf.Split2();
                 }
@@ -183,7 +183,7 @@
 
         private static void TagAbbreviations(FileProcessor fp)
         {
-            if (tagAbbrev)
+            if (settings.TagAbbrev)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -191,7 +191,7 @@
 
                 try
                 {
-                    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(settings.Config, fp.Xml);
                     abbreviationsTagger.Tag();
                     fp.Xml = abbreviationsTagger.Xml;
                 }
@@ -206,7 +206,7 @@
 
         private static void TagCodes(FileProcessor fp)
         {
-            if (tagCodes)
+            if (settings.TagCodes)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -214,28 +214,28 @@
 
                 try
                 {
-                    IXPathProvider xpathProvider = new XPathProvider(config);
+                    IXPathProvider xpathProvider = new XPathProvider(settings.Config);
 
                     ////{
-                    ////    Codes codes = new Codes(config, fp.Xml);
+                    ////    Codes codes = new Codes(settings.Config, fp.Xml);
                     ////    codes.TagKnownSpecimenCodes(xpathProvider);
                     ////    fp.Xml = codes.Xml;
                     ////}
 
                     ////{
-                    ////    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(config, fp.Xml);
+                    ////    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(settings.Config, fp.Xml);
                     ////    abbreviationsTagger.Tag();
                     ////    fp.Xml = abbreviationsTagger.Xml;
                     ////}
 
                     ////{
-                    ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(config, fp.Xml);
+                    ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(settings.Config, fp.Xml);
                     ////    specimenCountTagger.TagSpecimenCount(xpathProvider);
                     ////    fp.Xml = specimenCountTagger.Xml;
                     ////}
 
                     ////{
-                    ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml);
+                    ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(settings.Config, fp.Xml);
                     ////    quantitiesTagger.TagQuantities(xpathProvider);
                     ////    quantitiesTagger.TagDeviation(xpathProvider);
                     ////    quantitiesTagger.TagAltitude(xpathProvider);
@@ -243,41 +243,41 @@
                     ////}
 
                     ////{
-                    ////    DatesTagger datesTagger = new DatesTagger(config, fp.Xml);
+                    ////    DatesTagger datesTagger = new DatesTagger(settings.Config, fp.Xml);
                     ////    datesTagger.TagDates(xpathProvider);
                     ////    fp.Xml = datesTagger.Xml;
                     ////}
 
                     ////{
-                    ////    config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
-                    ////    Envo envo = new Envo(config, fp.Xml);
+                    ////    settings.Config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
+                    ////    Envo envo = new Envo(settings.Config, fp.Xml);
                     ////    envo.Tag(xpathProvider);
                     ////    fp.Xml = envo.Xml;
                     ////}
 
-                    using (DataProvider dataProvider = new DataProvider(config, fp.Xml))
+                    using (DataProvider dataProvider = new DataProvider(settings.Config, fp.Xml))
                     {
                         ////{
-                        ////    ProductsTagger products = new ProductsTagger(config, fp.Xml);
+                        ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
                         ////    products.TagProducts(xpathProvider, dataProvider);
                         ////    fp.Xml = products.Xml;
                         ////}
 
                         ////{
-                        ////    GeoNamesTagger geonames = new GeoNamesTagger(config, fp.Xml);
+                        ////    GeoNamesTagger geonames = new GeoNamesTagger(settings.Config, fp.Xml);
                         ////    geonames.TagGeonames(xpathProvider, dataProvider);
                         ////    fp.Xml = geonames.Xml;
                         ////}
 
                         ////{
-                        ////    MorphologyTagger morphology = new MorphologyTagger(config, fp.Xml);
+                        ////    MorphologyTagger morphology = new MorphologyTagger(settings.Config, fp.Xml);
                         ////    morphology.TagMorphology(xpathProvider, dataProvider);
                         ////    fp.Xml = morphology.Xml;
                         ////}
 
                         try
                         {
-                            Codes codes = new Codes(config, fp.Xml, consoleLogger);
+                            Codes codes = new Codes(settings.Config, fp.Xml, consoleLogger);
                             codes.TagInstitutions(xpathProvider, dataProvider);
                             codes.TagInstitutionalCodes(xpathProvider, dataProvider);
                             ////codes.TagSpecimenCodes(xpathProvider);
@@ -303,7 +303,7 @@
 
         private static void TagCoordinates(FileProcessor fp)
         {
-            if (tagCoords)
+            if (settings.TagCoords)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -311,7 +311,7 @@
 
                 try
                 {
-                    IBaseTagger coordinatesTagger = new CoordinatesTagger(config, fp.Xml);
+                    IBaseTagger coordinatesTagger = new CoordinatesTagger(settings.Config, fp.Xml);
                     coordinatesTagger.Tag();
                     fp.Xml = coordinatesTagger.Xml;
                 }
@@ -326,7 +326,7 @@
 
         private static void TagDates(FileProcessor fp)
         {
-            if (tagDates)
+            if (settings.TagDates)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -334,8 +334,8 @@
 
                 try
                 {
-                    IXPathProvider xpathProvider = new XPathProvider(config);
-                    IBaseTagger datesTagger = new DatesTagger(config, fp.Xml);
+                    IXPathProvider xpathProvider = new XPathProvider(settings.Config);
+                    IBaseTagger datesTagger = new DatesTagger(settings.Config, fp.Xml);
                     datesTagger.Tag(xpathProvider);
                     fp.Xml = datesTagger.Xml;
                 }
@@ -350,7 +350,7 @@
 
         private static void TagDoi(FileProcessor fp)
         {
-            if (tagDoi)
+            if (settings.TagDoi)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -358,7 +358,7 @@
 
                 try
                 {
-                    DoiLinksTagger linksTagger = new DoiLinksTagger(config, fp.Xml);
+                    DoiLinksTagger linksTagger = new DoiLinksTagger(settings.Config, fp.Xml);
 
                     linksTagger.Tag();
 
@@ -375,7 +375,7 @@
 
         private static void TagEnvo(FileProcessor fp)
         {
-            if (tagEnvo)
+            if (settings.TagEnvo)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -383,8 +383,8 @@
 
                 try
                 {
-                    IXPathProvider xpathProvider = new XPathProvider(config);
-                    Envo envo = new Envo(config, fp.Xml);
+                    IXPathProvider xpathProvider = new XPathProvider(settings.Config);
+                    Envo envo = new Envo(settings.Config, fp.Xml);
                     envo.Tag(xpathProvider);
                     fp.Xml = envo.Xml;
                 }
@@ -399,7 +399,7 @@
 
         private static void TagEnvoTerms(FileProcessor fp)
         {
-            if (tagEnvironments)
+            if (settings.TagEnvironments)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -407,7 +407,7 @@
 
                 try
                 {
-                    Environments environments = new Environments(config, fp.Xml);
+                    Environments environments = new Environments(settings.Config, fp.Xml);
                     environments.Tag();
                     fp.Xml = environments.Xml;
                 }
@@ -422,7 +422,7 @@
 
         private static void TagQuantities(FileProcessor fp)
         {
-            if (tagQuantities)
+            if (settings.TagQuantities)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -430,8 +430,8 @@
 
                 try
                 {
-                    IXPathProvider xpathProvider = new XPathProvider(config);
-                    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, fp.Xml, consoleLogger);
+                    IXPathProvider xpathProvider = new XPathProvider(settings.Config);
+                    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(settings.Config, fp.Xml, consoleLogger);
                     quantitiesTagger.TagQuantities(xpathProvider);
                     quantitiesTagger.TagDeviation(xpathProvider);
                     quantitiesTagger.TagAltitude(xpathProvider);
@@ -449,11 +449,11 @@
         private static string TagReferences(string xml, string fileName)
         {
             string xmlContent = xml;
-            References refs = new References(config, xmlContent, consoleLogger);
+            References refs = new References(settings.Config, xmlContent, consoleLogger);
 
-            config.referencesGetReferencesXmlPath = Path.GetDirectoryName(fileName) + "\\zzz-" +
+            settings.Config.referencesGetReferencesXmlPath = Path.GetDirectoryName(fileName) + "\\zzz-" +
                 Path.GetFileNameWithoutExtension(fileName) + "-references.xml";
-            config.referencesTagTemplateXmlPath = config.tempDirectoryPath + "\\zzz-" +
+            settings.Config.referencesTagTemplateXmlPath = settings.Config.tempDirectoryPath + "\\zzz-" +
                 Path.GetFileNameWithoutExtension(fileName) + "-references-tag-template.xml";
 
             refs.GenerateTagTemplateXml();
@@ -468,7 +468,7 @@
 
             try
             {
-                if (parseBySection)
+                if (settings.ParseBySection)
                 {
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.PreserveWhitespace = true;
@@ -476,7 +476,7 @@
 
                     xmlDocument.LoadXml(fp.Xml);
 
-                    foreach (XmlNode node in xmlDocument.SelectNodes(higherStructrureXpath, namespaceManager))
+                    foreach (XmlNode node in xmlDocument.SelectNodes(settings.HigherStructrureXpath, namespaceManager))
                     {
                         string templateFileName = string.Empty;
                         if (node.Attributes["sec-type"] != null)
@@ -514,7 +514,7 @@
 
         private static void TagWebLinks(FileProcessor fp)
         {
-            if (tagWWW)
+            if (settings.TagWWW)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -522,7 +522,7 @@
 
                 try
                 {
-                    IBaseTagger linksTagger = new UrlLinksTagger(config, fp.Xml);
+                    IBaseTagger linksTagger = new UrlLinksTagger(settings.Config, fp.Xml);
                     linksTagger.Tag();
                     fp.Xml = linksTagger.Xml;
                 }
@@ -544,7 +544,7 @@
             {
                 try
                 {
-                    string jsonStringContent = FileProcessor.ReadFileContentToString(queryFileName);
+                    string jsonStringContent = FileProcessor.ReadFileContentToString(settings.QueryFileName);
                     IBaseCloner zoobankCloner = new ZoobankJsonCloner(jsonStringContent, fp.Xml, consoleLogger);
                     zoobankCloner.Clone();
                     fp.Xml = zoobankCloner.Xml;
@@ -567,7 +567,7 @@
             {
                 try
                 {
-                    FileProcessor fileProcessorNlm = new FileProcessor(config, queryFileName, outputFileName);
+                    FileProcessor fileProcessorNlm = new FileProcessor(settings.Config, settings.QueryFileName, settings.OutputFileName);
                     fileProcessorNlm.Read();
                     IBaseCloner zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, fp.Xml, consoleLogger);
                     zoobankCloner.Clone();
@@ -586,7 +586,7 @@
         {
             try
             {
-                IBaseGenerator zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(config, fp.Xml);
+                IBaseGenerator zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(settings.Config, fp.Xml);
                 zoobankRegistrationXmlGenerator.Generate();
                 fp.Xml = zoobankRegistrationXmlGenerator.Xml;
             }

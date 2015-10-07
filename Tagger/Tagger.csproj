@@ -81,6 +81,7 @@
     <Compile Include="src\Arguments.cs" />
     <Compile Include="src\MainProcessing.cs" />
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\ProgramSettings.cs" />
     <Compile Include="src\TagMethods.cs" />
   </ItemGroup>
   <ItemGroup>
