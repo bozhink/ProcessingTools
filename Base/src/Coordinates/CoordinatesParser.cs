@@ -181,6 +181,18 @@
                 XmlNode latCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']", this.NamespaceManager);
                 XmlNode lngCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']", this.NamespaceManager);
 
+                if (latCoordinate.Attributes["longitude"] == null)
+                {
+                    XmlAttribute longitudeAttribute = latCoordinate.OwnerDocument.CreateAttribute("longitude");
+                    latCoordinate.Attributes.Append(longitudeAttribute);
+                }
+
+                if (lngCoordinate.Attributes["latitude"] == null)
+                {
+                    XmlAttribute latitudeAttribute = latCoordinate.OwnerDocument.CreateAttribute("latitude");
+                    lngCoordinate.Attributes.Append(latitudeAttribute);
+                }
+
                 latCoordinate.Attributes["longitude"].InnerText = lngCoordinate.Attributes["longitude"].InnerText;
                 lngCoordinate.Attributes["latitude"].InnerText = latCoordinate.Attributes["latitude"].InnerText;
             }
