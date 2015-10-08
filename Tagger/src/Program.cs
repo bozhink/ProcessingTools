@@ -9,17 +9,21 @@
 
     public partial class MainProcessingTool
     {
+
+        private const int NumberOfExpandingIterations = 1;
+        private static ProgramSettings settings = new ProgramSettings();
+        private static ILogger consoleLogger = new ConsoleLogger();
+
         public static void Main(string[] args)
         {
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            ParseConfigFiles();
-            InitialCheckOfInputParameters(args);
-            ParseFileNames(args);
-
             try
             {
+                ProgramSettingsBuilder settingsBuilder = new ProgramSettingsBuilder(args);
+                settings = settingsBuilder.Settings;
+
                 FileProcessor fp = new FileProcessor(settings.Config, settings.InputFileName, settings.OutputFileName, consoleLogger);
 
                 consoleLogger.Log(
@@ -53,8 +57,8 @@
 
                 fp.Xml = fp.Xml.NormalizeXmlToSystemXml(settings.Config);
 
-                ParseSingleDashedOptions(args);
-                ParseDoubleDashedOptions(args);
+                settingsBuilder.ParseProgramOptions();
+                settings = settingsBuilder.Settings;
 
                 InitialFormat(fp);
 
@@ -157,81 +161,6 @@
             consoleLogger.Log("Main timer: " + mainTimer.Elapsed);
         }
 
-        private static void InitialCheckOfInputParameters(string[] args)
-        {
-            try
-            {
-                for (int i = 0; i < args.Length; ++i)
-                {
-                    char[] arg = args[i].ToCharArray();
-                    if (arg[0] == '-' && arg.Length > 1 && arg[1] == '-')
-                    {
-                        doubleDashedOptions.Add(i);
-                    }
-                    else if (arg[0] == '-' || arg[0] == '/')
-                    {
-                        singleDashedOptions.Add(i);
-                    }
-                    else
-                    {
-                        arguments.Add(i);
-                    }
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        private static void ParseConfigFiles()
-        {
-            try
-            {
-                AppSettingsReader appConfigReader = new AppSettingsReader();
-                string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
-
-                settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);
-                settings.Config.NlmStyle = true;
-                settings.Config.TagWholeDocument = false;
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        private static void ParseFileNames(string[] args)
-        {
-            try
-            {
-                if (arguments.Count < 1)
-                {
-                    Alert.PrintHelp();
-                    Alert.Exit(0);
-                }
-                else if (arguments.Count == 1)
-                {
-                    settings.InputFileName = args[arguments[0]];
-                    settings.OutputFileName = null;
-                }
-                else if (arguments.Count == 2)
-                {
-                    settings.InputFileName = args[arguments[0]];
-                    settings.OutputFileName = args[arguments[1]];
-                }
-                else
-                {
-                    settings.InputFileName = args[arguments[0]];
-                    settings.OutputFileName = args[arguments[1]];
-                    settings.QueryFileName = args[arguments[2]];
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
 
         private static void PrintElapsedTime(Stopwatch timer)
         {

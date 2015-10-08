@@ -540,7 +540,7 @@
             Stopwatch timer = new Stopwatch();
             timer.Start();
             consoleLogger.Log("\n\tZoobank clone JSON.\n");
-            if (arguments.Count > 2)
+            if (settings.QueryFileName != null)
             {
                 try
                 {
@@ -563,7 +563,7 @@
             Stopwatch timer = new Stopwatch();
             timer.Start();
             consoleLogger.Log("\n\tZoobank clone XML.\n");
-            if (arguments.Count > 2)
+            if (settings.QueryFileName != null)
             {
                 try
                 {
