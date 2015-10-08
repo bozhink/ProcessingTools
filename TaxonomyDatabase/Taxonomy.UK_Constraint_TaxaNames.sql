@@ -1,3 +1,3 @@
 ﻿ALTER TABLE [Taxonomy].[HigherTaxaNames]
-    ADD CONSTRAINT [UniqueKeyConstraint_TaxaNames]
+    ADD CONSTRAINT [UK_Constraint_TaxaNames]
     UNIQUE ([Name])

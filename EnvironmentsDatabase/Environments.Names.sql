@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Environments].[Names]
 (
     [Id] INT NOT NULL IDENTITY, 
-    [ContentId] NCHAR(10) NOT NULL , 
+    [ContentId] CHAR(10) NOT NULL , 
     [Content] NVARCHAR(MAX) NOT NULL, 
     PRIMARY KEY ([Id])
 )
