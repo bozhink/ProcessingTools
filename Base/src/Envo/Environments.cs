@@ -22,14 +22,16 @@
 
             // Set the XPath string to select all nodes which may contain environments’ strings
             string xpath = string.Empty;
-            if (this.Config.NlmStyle)
+            switch (this.Config.ArticleSchemaType)
             {
-                xpath = "//p|//title|//label|//tp:nomenclature-citation";
-            }
-            else
-            {
-                // TODO
-                xpath = "//p";
+                case SchemaType.Nlm:
+                    xpath = "//p|//title|//label|//tp:nomenclature-citation";
+                    break;
+
+                default:
+                    // TODO
+                    xpath = "//p";
+                    break;
             }
 
             try

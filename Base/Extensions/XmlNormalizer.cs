@@ -59,13 +59,13 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToCurrentXml(this string xml, Config config)
         {
-            if (config.NlmStyle)
+            switch (config.ArticleSchemaType)
             {
-                return xml.NormalizeXmlToNlmXml(config);
-            }
-            else
-            {
-                return xml.NormalizeXmlToSystemXml(config);
+                case SchemaType.Nlm:
+                    return xml.NormalizeXmlToNlmXml(config);
+
+                default:
+                    return xml.NormalizeXmlToSystemXml(config);
             }
         }
 
@@ -77,13 +77,13 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToCurrentXml(this XmlDocument xml, Config config)
         {
-            if (config.NlmStyle)
+            switch (config.ArticleSchemaType)
             {
-                return xml.NormalizeXmlToNlmXml(config);
-            }
-            else
-            {
-                return xml.NormalizeXmlToSystemXml(config);
+                case SchemaType.Nlm:
+                    return xml.NormalizeXmlToNlmXml(config);
+
+                default:
+                    return xml.NormalizeXmlToSystemXml(config);
             }
         }
     }

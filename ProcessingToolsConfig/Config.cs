@@ -8,16 +8,16 @@
     {
         private static XmlNamespaceManager taxPubNamespaceManager = null;
 
-        private bool nlmStyle;
-        private bool nlmStyleIsLockedForModification;
+        private SchemaType articleSchemaType;
+        private bool articleSchemaTypeStyleIsLockedForModification;
 
         private bool tagWholeDocument;
         private bool tagWholeDocumentIsLockedForModification;
 
         public Config()
         {
-            this.nlmStyle = false;
-            this.nlmStyleIsLockedForModification = false;
+            this.articleSchemaType = SchemaType.System;
+            this.articleSchemaTypeStyleIsLockedForModification = false;
 
             this.tagWholeDocument = false;
             this.tagWholeDocumentIsLockedForModification = false;
@@ -35,22 +35,22 @@
 
         public string GnrOutputFileName { get; set; }
 
-        public bool NlmStyle
+        public SchemaType ArticleSchemaType
         {
             get
             {
-                this.nlmStyleIsLockedForModification = true;
-                return this.nlmStyle;
+                this.articleSchemaTypeStyleIsLockedForModification = true;
+                return this.articleSchemaType;
             }
 
             set
             {
-                if (!this.nlmStyleIsLockedForModification)
+                if (!this.articleSchemaTypeStyleIsLockedForModification)
                 {
-                    this.nlmStyle = value;
+                    this.articleSchemaType = value;
                 }
 
-                this.nlmStyleIsLockedForModification = true;
+                this.articleSchemaTypeStyleIsLockedForModification = true;
             }
         }
 

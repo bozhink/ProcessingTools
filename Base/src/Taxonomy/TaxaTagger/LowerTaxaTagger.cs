@@ -186,7 +186,7 @@
                 node.InnerXml = TagInfraspecificTaxa(node.InnerXml);
             }
 
-            if (!this.Config.NlmStyle && !this.Config.TagWholeDocument)
+            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
             {
                 foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
                 {
@@ -215,27 +215,32 @@
         private string SetLowerTaxaMatchXPath()
         {
             string xpath = string.Empty;
-            if (this.Config.NlmStyle)
+
+            switch (this.Config.ArticleSchemaType)
             {
-                if (this.Config.TagWholeDocument)
-                {
-                    xpath = "//*[i]";
-                }
-                else
-                {
-                    xpath = "//p[.//i]|//ref[.//i]|//kwd[.//i]|//article-title[.//i]|//li[.//i]|//th[.//i]|//td[.//i]|//title[.//i]|//label[.//i]|//tp:nomenclature-citation[.//i]";
-                }
-            }
-            else
-            {
-                if (this.Config.TagWholeDocument)
-                {
-                    xpath = "//*[i]";
-                }
-                else
-                {
-                    xpath = "//p[.//i]|//li[.//i]|//td[.//i]|//th[.//i]";
-                }
+                case SchemaType.Nlm:
+                    if (this.Config.TagWholeDocument)
+                    {
+                        xpath = "//*[i]";
+                    }
+                    else
+                    {
+                        xpath = "//p[.//i]|//ref[.//i]|//kwd[.//i]|//article-title[.//i]|//li[.//i]|//th[.//i]|//td[.//i]|//title[.//i]|//label[.//i]|//tp:nomenclature-citation[.//i]";
+                    }
+
+                    break;
+
+                default:
+                    if (this.Config.TagWholeDocument)
+                    {
+                        xpath = "//*[i]";
+                    }
+                    else
+                    {
+                        xpath = "//p[.//i]|//li[.//i]|//td[.//i]|//th[.//i]";
+                    }
+
+                    break;
             }
 
             return xpath;
@@ -251,7 +256,7 @@
                 node.InnerXml = TagItalics(node.InnerXml);
             }
 
-            if (!this.Config.NlmStyle && !this.Config.TagWholeDocument)
+            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
             {
                 foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
                 {

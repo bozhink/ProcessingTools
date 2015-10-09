@@ -21,6 +21,8 @@
             this.ParseConfigFiles();
             this.InitialCheckOfInputParameters(this.args);
             this.ParseFileNames(this.args);
+            this.ParseSingleDashedOptions(this.args);
+            this.ParseDoubleDashedOptions(this.args);
         }
 
         public ProgramSettings Settings
@@ -43,12 +45,6 @@
             }
         }
 
-        public void ParseProgramOptions()
-        {
-            this.ParseSingleDashedOptions(this.args);
-            this.ParseDoubleDashedOptions(this.args);
-        }
-
         private void ParseConfigFiles()
         {
             try
@@ -57,8 +53,6 @@
                 string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
 
                 this.Settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);
-                this.Settings.Config.NlmStyle = true;
-                this.Settings.Config.TagWholeDocument = false;
             }
             catch
             {
@@ -294,11 +288,11 @@
                     }
                     else if (args[item].CompareTo("--system") == 0)
                     {
-                        this.Settings.Config.NlmStyle = false;
+                        this.Settings.Config.ArticleSchemaType = SchemaType.System;
                     }
                     else if (args[item].CompareTo("--nlm") == 0)
                     {
-                        this.Settings.Config.NlmStyle = true;
+                        this.Settings.Config.ArticleSchemaType = SchemaType.Nlm;
                     }
                     else if (args[item].CompareTo("--test") == 0)
                     {

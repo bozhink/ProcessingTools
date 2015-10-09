@@ -40,14 +40,14 @@
         {
             get
             {
-                if (this.Config.NlmStyle)
+                switch (this.Config.ArticleSchemaType)
                 {
-                    return "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
-                }
-                else
-                {
-                    // TODO
-                    return "//p|//li|//th|//td";
+                    case SchemaType.Nlm:
+                        return "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
+
+                    default:
+                        // TODO
+                        return "//p|//li|//th|//td";
                 }
             }
         }
@@ -56,14 +56,14 @@
         {
             get
             {
-                if (this.Config.NlmStyle)
+                switch (this.Config.ArticleSchemaType)
                 {
-                    return "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-                }
-                else
-                {
-                    // TODO
-                    return "//p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]";
+                    case SchemaType.Nlm:
+                        return "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+
+                    default:
+                        // TODO
+                        return "//p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]";
                 }
             }
         }

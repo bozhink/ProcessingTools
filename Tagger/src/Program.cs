@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
-    using System.Configuration;
     using System.Diagnostics;
     using System.IO;
     using System.Xml;
@@ -47,18 +46,15 @@
                 switch (fp.XmlDocument.DocumentElement.Name)
                 {
                     case "article":
-                        settings.Config.NlmStyle = true;
+                        settings.Config.ArticleSchemaType = SchemaType.Nlm;
                         break;
 
                     default:
-                        settings.Config.NlmStyle = false;
+                        settings.Config.ArticleSchemaType = SchemaType.System;
                         break;
                 }
 
                 fp.Xml = fp.Xml.NormalizeXmlToSystemXml(settings.Config);
-
-                settingsBuilder.ParseProgramOptions();
-                settings = settingsBuilder.Settings;
 
                 InitialFormat(fp);
 

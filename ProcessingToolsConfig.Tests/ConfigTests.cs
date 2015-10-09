@@ -481,88 +481,84 @@
         }
 
         [Test]
-        public void Config_NlmStylePropertyInNewInstance_ShouldBeFalse()
+        public void Config_ArticleSchemaTypePropertyInNewInstance_ShouldBeSystem()
         {
-            Assert.IsFalse(this.config.NlmStyle, "Default value of the NlmStyle Property should be false.");
+            Assert.AreEqual(SchemaType.System, this.config.ArticleSchemaType, "Default value of the ArticleSchemaType Property should be System.");
         }
 
         [Test]
-        public void Config_FirstSetValueToFalseOfNlmStylePropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToFalse()
+        public void Config_FirstSetValueToSystemOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToSystem()
         {
-            this.config.NlmStyle = false;
-            Assert.IsFalse(this.config.NlmStyle, "NlmStyle should be false.");
+            this.config.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(SchemaType.System, this.config.ArticleSchemaType, "ArticleSchemaType should be System.");
         }
 
         [Test]
-        public void Config_FirstSetValueToTrueOfNlmStylePropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToTrue()
+        public void Config_FirstSetValueToNlmOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToNlm()
         {
-            this.config.NlmStyle = true;
-            Assert.IsTrue(this.config.NlmStyle, "NlmStyle should be true.");
+            this.config.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(SchemaType.Nlm, this.config.ArticleSchemaType, "ArticleSchemaType should be Nlm.");
         }
 
         [Test]
-        public void Config_SetValueToFalseOfNlmStylePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        public void Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
         {
-            bool dafaultValue = this.config.NlmStyle;
-            this.config.NlmStyle = false;
-            Assert.AreEqual(dafaultValue, this.config.NlmStyle, "NlmStyle should be equal to the default value.");
+            var dafaultValue = this.config.ArticleSchemaType;
+            this.config.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(dafaultValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the default value.");
         }
 
         [Test]
-        public void Config_SetValueToTrueOfNlmStylePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        public void Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
         {
-            bool dafaultValue = this.config.NlmStyle;
-            this.config.NlmStyle = true;
-            Assert.AreEqual(dafaultValue, this.config.NlmStyle, "NlmStyle should be equal to the default value.");
+            var dafaultValue = this.config.ArticleSchemaType;
+            this.config.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(dafaultValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the default value.");
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Config_SetValueToFalseOfNlmStylePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        [TestCase(SchemaType.Nlm)]
+        [TestCase(SchemaType.System)]
+        public void Config_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
         {
-            this.config.NlmStyle = initialValue;
-            this.config.NlmStyle = false;
-            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+            this.config.ArticleSchemaType = initialValue;
+            this.config.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(initialValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Config_SetValueToTrueOfNlmStylePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        [TestCase(SchemaType.Nlm)]
+        [TestCase(SchemaType.System)]
+        public void Config_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
         {
-            this.config.NlmStyle = initialValue;
-            this.config.NlmStyle = true;
-            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+            this.config.ArticleSchemaType = initialValue;
+            this.config.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(initialValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Config_SetValueToFalseOfNlmStylePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        [TestCase(SchemaType.Nlm)]
+        [TestCase(SchemaType.System)]
+        public void Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
         {
-            this.config.NlmStyle = initialValue;
+            this.config.ArticleSchemaType = initialValue;
 
-            bool lastValue = this.config.NlmStyle;
+            var lastValue = this.config.ArticleSchemaType;
             Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
 
-            this.config.NlmStyle = false;
-            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+            this.config.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(initialValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Config_SetValueToTrueOfNlmStylePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        [TestCase(SchemaType.Nlm)]
+        [TestCase(SchemaType.System)]
+        public void Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
         {
-            this.config.NlmStyle = initialValue;
+            this.config.ArticleSchemaType = initialValue;
 
-            bool lastValue = this.config.NlmStyle;
+            var lastValue = this.config.ArticleSchemaType;
             Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
 
-            this.config.NlmStyle = true;
-            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+            this.config.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(initialValue, this.config.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
         }
-
-
-
-
 
         [Test]
         public void Config_TagWholeDocumentPropertyInNewInstance_ShouldBeFalse()
@@ -571,14 +567,14 @@
         }
 
         [Test]
-        public void Config_FirstSetValueToFalseOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToFalse()
+        public void Config_FirstSetValueToFalseOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToFalse()
         {
             this.config.TagWholeDocument = false;
             Assert.IsFalse(this.config.TagWholeDocument, "TagWholeDocument should be false.");
         }
 
         [Test]
-        public void Config_FirstSetValueToTrueOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToTrue()
+        public void Config_FirstSetValueToTrueOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToTrue()
         {
             this.config.TagWholeDocument = true;
             Assert.IsTrue(this.config.TagWholeDocument, "TagWholeDocument should be true.");

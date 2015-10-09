@@ -71,7 +71,7 @@
             }
         }
 
-        private static void InitialFormat(FileProcessor fp)
+        private static void InitialFormat(FileProcessor fileProcessor)
         {
             if (settings.FormatInit)
             {
@@ -81,19 +81,27 @@
 
                 try
                 {
-                    if (!settings.Config.NlmStyle)
+                    switch (settings.Config.ArticleSchemaType)
                     {
-                        string xml = fp.XmlReader.ApplyXslTransform(settings.Config.systemInitialFormatXslPath);
-                        BaseLibrary.Format.NlmSystem.Formatter fmt = new BaseLibrary.Format.NlmSystem.Formatter(settings.Config, xml);
-                        fmt.Format();
-                        fp.Xml = fmt.Xml;
-                    }
-                    else
-                    {
-                        string xml = fp.XmlReader.ApplyXslTransform(settings.Config.nlmInitialFormatXslPath);
-                        BaseLibrary.Format.Nlm.Formatter fmt = new BaseLibrary.Format.Nlm.Formatter(settings.Config, xml);
-                        fmt.Format();
-                        fp.Xml = fmt.Xml;
+                        case SchemaType.Nlm:
+                            {
+                                string xml = fileProcessor.XmlReader.ApplyXslTransform(settings.Config.nlmInitialFormatXslPath);
+                                var formatter = new BaseLibrary.Format.Nlm.Formatter(settings.Config, xml);
+                                formatter.Format();
+                                fileProcessor.Xml = formatter.Xml;
+                            }
+
+                            break;
+
+                        default:
+                            {
+                                string xml = fileProcessor.XmlReader.ApplyXslTransform(settings.Config.systemInitialFormatXslPath);
+                                var formatter = new BaseLibrary.Format.NlmSystem.Formatter(settings.Config, xml);
+                                formatter.Format();
+                                fileProcessor.Xml = formatter.Xml;
+                            }
+
+                            break;
                     }
                 }
                 catch
