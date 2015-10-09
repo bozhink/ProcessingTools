@@ -57,8 +57,8 @@
                 .RemoveXmlNodes("//object-id")
                 .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
                 .InnerXml
-                .RegExReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
-                .RegExReplace(@"<[^>]+>", string.Empty);
+                .RegexReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
+                .RegexReplace(@"<[^>]+>", string.Empty);
 
             return innerXml;
         }

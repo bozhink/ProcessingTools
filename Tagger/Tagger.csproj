@@ -79,10 +79,9 @@
   <ItemGroup>
     <Compile Include="src\ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\MainProcessing.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\ProgramSettings.cs" />
-    <Compile Include="src\TagMethods.cs" />
+    <Compile Include="src\SingleFileProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

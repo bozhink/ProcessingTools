@@ -15,15 +15,15 @@
         public Abbreviation(XmlNode abbrev)
         {
             this.Content = abbrev.InnerXml
-                .RegExReplace(@"<def.+</def>", string.Empty)
-                .RegExReplace(@"</?[ib][^>]*>", string.Empty)
-                .RegExReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
+                .RegexReplace(@"<def.+</def>", string.Empty)
+                .RegexReplace(@"</?[ib][^>]*>", string.Empty)
+                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
 
             this.contentType = abbrev.Attributes["content-type"]?.InnerText;
 
             var fragment = abbrev.OwnerDocument.CreateDocumentFragment();
             fragment.InnerText = abbrev["def"]?.InnerText
-                .RegExReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty);
+                .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty);
             this.definition = fragment.InnerXml;
         }
 
