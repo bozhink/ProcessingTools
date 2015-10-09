@@ -4,110 +4,25 @@
     using System.Text;
     using System.Xml;
 
-    [DataContract]
     public partial class Config
     {
-        [DataMember]
-        public string tempDirectoryPath { get; set; }
+        private static XmlNamespaceManager taxPubNamespaceManager = null;
 
-        [DataMember]
-        public string blackListXmlFilePath { get; set; }
+        private bool nlmStyle;
+        private bool nlmStyleIsLockedForModification;
 
-        [DataMember]
-        public string whiteListXmlFilePath { get; set; }
+        private bool tagWholeDocument;
+        private bool tagWholeDocumentIsLockedForModification;
 
-        [DataMember]
-        public string rankListXmlFilePath { get; set; }
+        public Config()
+        {
+            this.nlmStyle = false;
+            this.nlmStyleIsLockedForModification = false;
 
-        [DataMember]
-        public string rankListCleanXslPath { get; set; }
+            this.tagWholeDocument = false;
+            this.tagWholeDocumentIsLockedForModification = false;
+        }
 
-        [DataMember]
-        public string whiteListCleanXslPath { get; set; }
-
-        [DataMember]
-        public string blackListCleanXslPath { get; set; }
-
-        [DataMember]
-        public string floraDistrinctTaxaXslPath { get; set; }
-
-        [DataMember]
-        public string floraExtractedTaxaListPath { get; set; }
-
-        [DataMember]
-        public string floraExtractTaxaPartsOutputPath { get; set; }
-
-        [DataMember]
-        public string floraExtractTaxaPartsXslPath { get; set; }
-
-        [DataMember]
-        public string floraExtractTaxaXslPath { get; set; }
-
-        [DataMember]
-        public string floraGenerateTemplatesXslPath { get; set; }
-
-        [DataMember]
-        public string floraTemplatesOutputXmlPath { get; set; }
-
-        [DataMember]
-        public string referencesTagTemplateXslPath { get; set; }
-
-        [DataMember]
-        public string referencesTagTemplateXmlPath { get; set; }
-
-        [DataMember]
-        public string referencesGetReferencesXslPath { get; set; }
-
-        [DataMember]
-        public string referencesSortReferencesXslPath { get; set; }
-
-        [DataMember]
-        public string referencesGetReferencesXmlPath { get; set; }
-
-        [DataMember]
-        public string zoobankNlmXslPath { get; set; }
-
-        [DataMember]
-        public string formatXslNlmToSystem { get; set; }
-
-        [DataMember]
-        public string formatXslSystemToNlm { get; set; }
-
-        [DataMember]
-        public string systemInitialFormatXslPath { get; set; }
-
-        [DataMember]
-        public string nlmInitialFormatXslPath { get; set; }
-
-        [DataMember]
-        public string environmentsDataSourceString { get; set; }
-
-        [DataMember]
-        public string mainDictionaryDataSourceString { get; set; }
-
-        [DataMember]
-        public string codesRemoveNonCodeNodes { get; set; }
-
-        [DataMember]
-        public string textContentXslFileName { get; set; }
-
-        [DataMember]
-        public string envoTermsWebServiceTransformXslPath { get; set; }
-    }
-
-    public partial class Config
-    {
-        public bool NlmStyle { get; set; }
-
-        public bool TagWholeDocument { get; set; }
-
-        public string EnvoResponseOutputXmlFileName { get; set; }
-
-        public string GnrOutputFileName { get; set; }
-    }
-
-    public partial class Config
-    {
         public static Encoding DefaultEncoding
         {
             get
@@ -115,11 +30,48 @@
                 return new UTF8Encoding(false);
             }
         }
-    }
 
-    public partial class Config
-    {
-        private static XmlNamespaceManager taxPubNamespaceManager = null;
+        public string EnvoResponseOutputXmlFileName { get; set; }
+
+        public string GnrOutputFileName { get; set; }
+
+        public bool NlmStyle
+        {
+            get
+            {
+                this.nlmStyleIsLockedForModification = true;
+                return this.nlmStyle;
+            }
+
+            set
+            {
+                if (!this.nlmStyleIsLockedForModification)
+                {
+                    this.nlmStyle = value;
+                }
+
+                this.nlmStyleIsLockedForModification = true;
+            }
+        }
+
+        public bool TagWholeDocument
+        {
+            get
+            {
+                this.tagWholeDocumentIsLockedForModification = true;
+                return this.tagWholeDocument;
+            }
+
+            set
+            {
+                if (!this.tagWholeDocumentIsLockedForModification)
+                {
+                    this.tagWholeDocument = value;
+                }
+
+                this.tagWholeDocumentIsLockedForModification = true;
+            }
+        }
 
         public static XmlNamespaceManager TaxPubNamespceManager()
         {
@@ -152,5 +104,94 @@
             nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
             return nspm;
         }
+    }
+
+    [DataContract]
+    public partial class Config
+    {
+        [DataMember]
+        public string blackListCleanXslPath { get; set; }
+
+        [DataMember]
+        public string blackListXmlFilePath { get; set; }
+
+        [DataMember]
+        public string codesRemoveNonCodeNodes { get; set; }
+
+        [DataMember]
+        public string environmentsDataSourceString { get; set; }
+
+        [DataMember]
+        public string envoTermsWebServiceTransformXslPath { get; set; }
+
+        [DataMember]
+        public string floraDistrinctTaxaXslPath { get; set; }
+
+        [DataMember]
+        public string floraExtractedTaxaListPath { get; set; }
+
+        [DataMember]
+        public string floraExtractTaxaPartsOutputPath { get; set; }
+
+        [DataMember]
+        public string floraExtractTaxaPartsXslPath { get; set; }
+
+        [DataMember]
+        public string floraExtractTaxaXslPath { get; set; }
+
+        [DataMember]
+        public string floraGenerateTemplatesXslPath { get; set; }
+
+        [DataMember]
+        public string floraTemplatesOutputXmlPath { get; set; }
+
+        [DataMember]
+        public string formatXslNlmToSystem { get; set; }
+
+        [DataMember]
+        public string formatXslSystemToNlm { get; set; }
+
+        [DataMember]
+        public string mainDictionaryDataSourceString { get; set; }
+
+        [DataMember]
+        public string nlmInitialFormatXslPath { get; set; }
+
+        [DataMember]
+        public string rankListCleanXslPath { get; set; }
+
+        [DataMember]
+        public string rankListXmlFilePath { get; set; }
+
+        [DataMember]
+        public string referencesGetReferencesXmlPath { get; set; }
+
+        [DataMember]
+        public string referencesGetReferencesXslPath { get; set; }
+
+        [DataMember]
+        public string referencesSortReferencesXslPath { get; set; }
+
+        [DataMember]
+        public string referencesTagTemplateXmlPath { get; set; }
+
+        [DataMember]
+        public string referencesTagTemplateXslPath { get; set; }
+
+        [DataMember]
+        public string systemInitialFormatXslPath { get; set; }
+
+        [DataMember]
+        public string tempDirectoryPath { get; set; }
+        [DataMember]
+        public string textContentXslFileName { get; set; }
+
+        [DataMember]
+        public string whiteListCleanXslPath { get; set; }
+
+        [DataMember]
+        public string whiteListXmlFilePath { get; set; }
+        [DataMember]
+        public string zoobankNlmXslPath { get; set; }
     }
 }

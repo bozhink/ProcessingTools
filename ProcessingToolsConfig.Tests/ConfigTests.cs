@@ -481,51 +481,167 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfNlmStyleProperty_SchouldBePersistent()
+        public void Config_NlmStylePropertyInNewInstance_ShouldBeFalse()
         {
-            this.config.NlmStyle = true;
-            Assert.IsTrue(
-                this.config.NlmStyle,
-                "1. NlmStyle should be true.");
-
-            this.config.NlmStyle = false;
-            Assert.IsFalse(
-                this.config.NlmStyle,
-                "2. NlmStyle should be false.");
-
-            this.config.NlmStyle = true;
-            Assert.IsTrue(
-                this.config.NlmStyle,
-                "3. NlmStyle should be true.");
-
-            this.config.NlmStyle = false;
-            Assert.IsFalse(
-                this.config.NlmStyle,
-                "4. NlmStyle should be false.");
+            Assert.IsFalse(this.config.NlmStyle, "Default value of the NlmStyle Property should be false.");
         }
 
         [Test]
-        public void Config_ValidChangesOfTagWholeDocumentProperty_SchouldBePersistent()
+        public void Config_FirstSetValueToFalseOfNlmStylePropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToFalse()
+        {
+            this.config.NlmStyle = false;
+            Assert.IsFalse(this.config.NlmStyle, "NlmStyle should be false.");
+        }
+
+        [Test]
+        public void Config_FirstSetValueToTrueOfNlmStylePropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToTrue()
+        {
+            this.config.NlmStyle = true;
+            Assert.IsTrue(this.config.NlmStyle, "NlmStyle should be true.");
+        }
+
+        [Test]
+        public void Config_SetValueToFalseOfNlmStylePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            bool dafaultValue = this.config.NlmStyle;
+            this.config.NlmStyle = false;
+            Assert.AreEqual(dafaultValue, this.config.NlmStyle, "NlmStyle should be equal to the default value.");
+        }
+
+        [Test]
+        public void Config_SetValueToTrueOfNlmStylePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            bool dafaultValue = this.config.NlmStyle;
+            this.config.NlmStyle = true;
+            Assert.AreEqual(dafaultValue, this.config.NlmStyle, "NlmStyle should be equal to the default value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToFalseOfNlmStylePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.NlmStyle = initialValue;
+            this.config.NlmStyle = false;
+            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToTrueOfNlmStylePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.NlmStyle = initialValue;
+            this.config.NlmStyle = true;
+            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToFalseOfNlmStylePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.NlmStyle = initialValue;
+
+            bool lastValue = this.config.NlmStyle;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
+
+            this.config.NlmStyle = false;
+            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToTrueOfNlmStylePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.NlmStyle = initialValue;
+
+            bool lastValue = this.config.NlmStyle;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
+
+            this.config.NlmStyle = true;
+            Assert.AreEqual(initialValue, this.config.NlmStyle, "NlmStyle should be equal to the initial value.");
+        }
+
+
+
+
+
+        [Test]
+        public void Config_TagWholeDocumentPropertyInNewInstance_ShouldBeFalse()
+        {
+            Assert.IsFalse(this.config.TagWholeDocument, "Default value of the TagWholeDocument Property should be false.");
+        }
+
+        [Test]
+        public void Config_FirstSetValueToFalseOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToFalse()
+        {
+            this.config.TagWholeDocument = false;
+            Assert.IsFalse(this.config.TagWholeDocument, "TagWholeDocument should be false.");
+        }
+
+        [Test]
+        public void Config_FirstSetValueToTrueOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfNlmStylePropertyToTrue()
         {
             this.config.TagWholeDocument = true;
-            Assert.IsTrue(
-                this.config.TagWholeDocument,
-                "1. TagWholeDocument should be true.");
+            Assert.IsTrue(this.config.TagWholeDocument, "TagWholeDocument should be true.");
+        }
+
+        [Test]
+        public void Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            bool dafaultValue = this.config.TagWholeDocument;
+            this.config.TagWholeDocument = false;
+            Assert.AreEqual(dafaultValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the default value.");
+        }
+
+        [Test]
+        public void Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            bool dafaultValue = this.config.TagWholeDocument;
+            this.config.TagWholeDocument = true;
+            Assert.AreEqual(dafaultValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the default value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToFalseOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.TagWholeDocument = initialValue;
+            this.config.TagWholeDocument = false;
+            Assert.AreEqual(initialValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToTrueOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.TagWholeDocument = initialValue;
+            this.config.TagWholeDocument = true;
+            Assert.AreEqual(initialValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.TagWholeDocument = initialValue;
+
+            bool lastValue = this.config.TagWholeDocument;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
 
             this.config.TagWholeDocument = false;
-            Assert.IsFalse(
-                this.config.TagWholeDocument,
-                "2. TagWholeDocument should be false.");
+            Assert.AreEqual(initialValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the initial value.");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(bool initialValue)
+        {
+            this.config.TagWholeDocument = initialValue;
+
+            bool lastValue = this.config.TagWholeDocument;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
 
             this.config.TagWholeDocument = true;
-            Assert.IsTrue(
-                this.config.TagWholeDocument,
-                "3. TagWholeDocument should be true.");
-
-            this.config.TagWholeDocument = false;
-            Assert.IsFalse(
-                this.config.TagWholeDocument,
-                "4. TagWholeDocument should be false.");
+            Assert.AreEqual(initialValue, this.config.TagWholeDocument, "TagWholeDocument should be equal to the initial value.");
         }
     }
 }
