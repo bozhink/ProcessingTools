@@ -12,3 +12,12 @@ whorls
 Endocarina
 Column
 Labellum
+Leaves
+Inflorescences
+Flowers
+Petals
+Stamens
+Disk
+Ovary
+Fruit
+Seed

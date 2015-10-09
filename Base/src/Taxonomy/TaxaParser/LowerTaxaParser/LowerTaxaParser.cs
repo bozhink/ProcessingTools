@@ -38,7 +38,7 @@
 
             replace = Regex.Replace(
                 replace,
-                @"\b([Vv]ar|v)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
+                @"\b([Vv]ar|[Vv]ariety|v)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
                 "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"variety\">$3</tn-part>");
 
             replace = Regex.Replace(
@@ -149,7 +149,7 @@
 
             replace = Regex.Replace(
                 replace,
-                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Vv]ar|[Vv])(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
+                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Vv]ar|[Vv]|[Vv]ariety)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
                 "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"variety\">$4</tn-part>");
 
             replace = Regex.Replace(
