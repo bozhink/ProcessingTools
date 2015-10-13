@@ -29,7 +29,14 @@
             {
                 return this.coordinatePartString;
             }
+
+            set
+            {
+                this.coordinatePartString = value;
+            }
         }
+
+        public bool PartIsPresent { get; set; }
 
         public string Value
         {
@@ -47,9 +54,9 @@
             }
         }
 
-        public void ParseString(string coordinatePartString)
+        public void Parse()
         {
-            this.coordinatePartString = Regex.Replace(coordinatePartString, @"\s+", " ");
+            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\s+", " ");
             this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\s+\-\s*|\s*\-\s+", "-");
 
             if (Regex.IsMatch(this.coordinatePartString, @"\-.*?[NSWEO]|[NSWEO].*?\-"))

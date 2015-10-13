@@ -80,13 +80,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Coordinates\SimpleCoordinate.cs" />
+    <Compile Include="src\Coordinates\ICoordinate.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
     <Compile Include="src\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="src\Base\Base.cs" />
     <Compile Include="src\Coordinates\CoordinatePart.cs" />
-    <Compile Include="src\Coordinates\CoordinateType.cs" />
+    <Compile Include="src\Coordinates\CoordinatePartType.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="src\Base\TaggerBase.cs" />

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
-    using System;
     using System.Text.RegularExpressions;
     using System.Xml;
 
@@ -34,186 +33,152 @@
             ////08º48’23’’S, 115º56’24’’E
             ////20°20.1N 74°33.6W
 
-            foreach (XmlNode coordinate in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
+            foreach (XmlNode coordinateNode in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
             {
-                this.logger?.Log("\n{0}\n", coordinate.OuterXml);
+                this.logger?.Log("\n{0}\n", coordinateNode.OuterXml);
 
-                coordinate.InnerXml = Regex.Replace(coordinate.InnerXml, "(º|˚|<sup>o</sup>)", "°");
+                coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 
-                string coordinateText = this.SimplifyCoordinateString(coordinate.InnerText);
+                string coordinateText = this.SimplifyCoordinateString(coordinateNode.InnerText);
 
                 this.logger?.Log(">> {0}", coordinateText);
 
-                CoordinatePart latitude = new CoordinatePart(this.logger);
-                CoordinatePart longitude = new CoordinatePart(this.logger);
-
-                bool hasLatitudePart = false;
-                bool hasLongitudePart = false;
-                if (coordinate.Attributes["type"] == null)
+                CoordinatePart latitude = new CoordinatePart(this.logger)
                 {
-                    const string Pattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
+                    PartIsPresent = false
+                };
 
-                    string leftPart = Regex.Replace(coordinateText, Pattern, "$1");
-                    string rightPart = Regex.Replace(coordinateText, Pattern, "$16");
-                    string latitudeString, longitudeString;
+                CoordinatePart longitude = new CoordinatePart(this.logger)
+                {
+                    PartIsPresent = false
+                };
 
-                    if ((leftPart.Contains("N") || leftPart.Contains("S")) && (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
+                if (coordinateNode.Attributes["type"] == null)
+                {
+                    Coordinate coordinate = new Coordinate();
+
                     {
-                        if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") || rightPart.Contains("N") || rightPart.Contains("S"))
+                        const string CoordinateParsePattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
+
+                        string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
+                        string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
+
+                        if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
+                            (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
                         {
-                            this.logger?.Log("Can not parse coordinate.");
-                            continue;
+                            if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") ||
+                                rightPart.Contains("N") || rightPart.Contains("S"))
+                            {
+                                this.logger?.Log("Can not parse coordinate.");
+                                continue;
+                            }
+                            else
+                            {
+                                coordinate.Latitude = leftPart;
+                                coordinate.Longitude = rightPart;
+                            }
+                        }
+                        else if ((leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O")) && (rightPart.Contains("N") || rightPart.Contains("S")))
+                        {
+                            if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
+                            {
+                                this.logger?.Log("Can not parse coordinate.");
+                                continue;
+                            }
+                            else
+                            {
+                                coordinate.Latitude = rightPart;
+                                coordinate.Longitude = leftPart;
+                            }
                         }
                         else
                         {
-                            latitudeString = leftPart;
-                            longitudeString = rightPart;
+                            coordinate.Latitude = leftPart;
+                            coordinate.Longitude = rightPart;
                         }
-                    }
-                    else if ((leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O")) && (rightPart.Contains("N") || rightPart.Contains("S")))
-                    {
-                        if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
-                        {
-                            this.logger?.Log("Can not parse coordinate.");
-                            continue;
-                        }
-                        else
-                        {
-                            latitudeString = rightPart;
-                            longitudeString = leftPart;
-                        }
-                    }
-                    else
-                    {
-                        latitudeString = leftPart;
-                        longitudeString = rightPart;
+
+                        this.logger?.Log("Latitude =\t{0};\tLongitude =\t{1}", coordinate.Latitude, coordinate.Longitude);
                     }
 
-                    this.logger?.Log("Latitude =\t{0};\tLongitude =\t{1}", latitudeString, longitudeString);
-
-                    Match latMatch = Regex.Match(latitudeString, @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SN]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
-
-                    hasLatitudePart = latMatch.Success;
-
-                    Match lngMatch = Regex.Match(longitudeString, @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[EWO]?|[EWO]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
-
-                    hasLongitudePart = lngMatch.Success;
-
-                    if (hasLatitudePart || hasLongitudePart)
                     {
-                        if (latMatch.NextMatch().Success)
-                        {
-                            this.logger?.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
-                        }
-                        else if (lngMatch.NextMatch().Success)
-                        {
-                            this.logger?.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
-                        }
-                        else
-                        {
-                            latitude.ParseString(hasLatitudePart ? latMatch.Value : string.Empty);
-                            longitude.ParseString(hasLongitudePart ? lngMatch.Value : string.Empty);
+                        const string LatitudeMatchPattern = @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SN]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-                            this.logger?.Log(
-                                "Latitude =\t{0};\tLongitude =\t{1}\n{2} =\t{3};\t{4} =\t{5}",
-                                latitude.CoordinatePartString,
-                                longitude.CoordinatePartString,
-                                latitude.Type,
-                                latitude.Value,
-                                longitude.Type,
-                                longitude.Value);
-                        }
+                        this.ParseSinglePartTypeCoordinate(coordinate.Latitude, latitude, LatitudeMatchPattern);
+
+                        const string LongitudeMatchPattern = @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[EWO]?|[EWO]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
+
+                        this.ParseSinglePartTypeCoordinate(coordinate.Longitude, longitude, LongitudeMatchPattern);
                     }
                 }
-                else if (coordinate.Attributes["type"].InnerText == "latitude")
+                else if (coordinateNode.Attributes["type"].InnerText == "latitude")
                 {
-                    Match latMatch = Regex.Match(coordinateText, @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
+                    const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-                    hasLatitudePart = latMatch.Success;
-
-                    if (hasLatitudePart)
-                    {
-                        if (latMatch.NextMatch().Success)
-                        {
-                            this.logger?.Log("WARNING!\n\tMultiple matches of latitude.\n\tCurrent coordinate will not be processed!");
-                        }
-                        else
-                        {
-                            latitude.ParseString(latMatch.Value);
-                            this.logger?.Log("{0} =\t{1}", latitude.Type, latitude.CoordinatePartString);
-                        }
-                    }
+                    this.ParseSinglePartTypeCoordinate(coordinateText, latitude, MatchLatitudePartPattern);
                 }
-                else if (coordinate.Attributes["type"].InnerText == "longitude")
+                else if (coordinateNode.Attributes["type"].InnerText == "longitude")
                 {
-                    Match lngMatch = Regex.Match(coordinateText, @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[EWO]?|[EWO]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?");
+                    const string MatchLongitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[EWO]?|[EWO]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-                    hasLongitudePart = lngMatch.Success;
-
-                    if (hasLongitudePart)
-                    {
-                        if (lngMatch.NextMatch().Success)
-                        {
-                            this.logger?.Log("WARNING!\n\tMultiple matches of longitute.\n\tCurrent coordinate will not be processed!");
-                        }
-                        else
-                        {
-                            longitude.ParseString(lngMatch.Value);
-                            this.logger?.Log("{0} =\t{1}", longitude.Type, longitude.CoordinatePartString);
-                        }
-                    }
+                    this.ParseSinglePartTypeCoordinate(coordinateText, longitude, MatchLongitudePartPattern);
                 }
 
-                this.logger?.Log(
-                    "{2} =\t{0};\t{3} =\t{1}\n",
-                    latitude.Value,
-                    longitude.Value,
-                    latitude.Type,
-                    longitude.Type);
+                this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
 
-                this.SetLatitudeAttribute(coordinate, latitude, hasLatitudePart);
-
-                this.SetLongitudeAttribute(coordinate, longitude, hasLongitudePart);
+                this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
+                this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
             }
 
-            foreach (XmlNode node in this.XmlDocument.SelectNodes("//tr[count(.//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)=''])=1][count(.//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!=''])=1]", this.NamespaceManager))
+            this.CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows();
+        }
+
+        private void CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows()
+        {
+            foreach (XmlNode tableRowNode in this.XmlDocument.SelectNodes("//tr[count(.//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)=''])=1][count(.//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!=''])=1]", this.NamespaceManager))
             {
-                XmlNode latCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']", this.NamespaceManager);
-                XmlNode lngCoordinate = node.SelectSingleNode(".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']", this.NamespaceManager);
+                XmlNode latitudeNode = tableRowNode.SelectSingleNode(".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']", this.NamespaceManager);
 
-                if (latCoordinate.Attributes["longitude"] == null)
-                {
-                    XmlAttribute longitudeAttribute = latCoordinate.OwnerDocument.CreateAttribute("longitude");
-                    latCoordinate.Attributes.Append(longitudeAttribute);
-                }
+                XmlNode longitudeNode = tableRowNode.SelectSingleNode(".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']", this.NamespaceManager);
 
-                if (lngCoordinate.Attributes["latitude"] == null)
-                {
-                    XmlAttribute latitudeAttribute = latCoordinate.OwnerDocument.CreateAttribute("latitude");
-                    lngCoordinate.Attributes.Append(latitudeAttribute);
-                }
-
-                latCoordinate.Attributes["longitude"].InnerText = lngCoordinate.Attributes["longitude"].InnerText;
-                lngCoordinate.Attributes["latitude"].InnerText = latCoordinate.Attributes["latitude"].InnerText;
+                this.SetCoordinatePartAttribute(latitudeNode, longitudeNode.Attributes["longitude"].InnerText, "longitude");
+                this.SetCoordinatePartAttribute(longitudeNode, latitudeNode.Attributes["latitude"].InnerText, "latitude");
             }
         }
 
-        private void SetLongitudeAttribute(XmlNode coordinate, CoordinatePart longitude, bool hasLongitudePart)
+        private void ParseSinglePartTypeCoordinate(string coordinateText, CoordinatePart coordinatePart, string matchPartPattern)
+        {
+            Match matchPart = Regex.Match(coordinateText, matchPartPattern);
+
+            coordinatePart.PartIsPresent = matchPart.Success;
+
+            if (coordinatePart.PartIsPresent)
+            {
+                if (matchPart.NextMatch().Success)
+                {
+                    this.logger?.Log("WARNING!\n\tMultiple matches of {0}.\n\tCurrent coordinate will not be processed!", coordinatePart.Type);
+                }
+                else
+                {
+                    coordinatePart.CoordinatePartString = coordinatePart.PartIsPresent ? matchPart.Value : string.Empty;
+                    coordinatePart.Parse();
+                    this.logger?.Log("{0} =\t{1}", coordinatePart.Type, coordinatePart.CoordinatePartString);
+                }
+            }
+        }
+
+        private void SetCoordinatePartAttribute(XmlNode coordinate, string coordinatePartValue, string attributeName)
         {
             try
             {
-                if (hasLongitudePart)
+                if (coordinate.Attributes[attributeName] == null)
                 {
-                    if (coordinate.Attributes["longitude"] == null)
-                    {
-                        XmlAttribute longitudeAttribute = this.XmlDocument.CreateAttribute("longitude");
-                        coordinate.Attributes.Append(longitudeAttribute);
-                    }
+                    XmlAttribute atribute = coordinate.OwnerDocument.CreateAttribute(attributeName);
+                    coordinate.Attributes.Append(atribute);
+                }
 
-                    if (coordinate.Attributes["longitude"].InnerText == string.Empty)
-                    {
-                        coordinate.Attributes["longitude"].InnerText = longitude.Value;
-                    }
+                if (coordinate.Attributes[attributeName].InnerText.Length < 1)
+                {
+                    coordinate.Attributes[attributeName].InnerText = coordinatePartValue;
                 }
             }
             catch
@@ -221,26 +186,11 @@
             }
         }
 
-        private void SetLatitudeAttribute(XmlNode coordinate, CoordinatePart latitude, bool hasLatitudePart)
+        private void SetCoordinatePartAttribute(XmlNode coordinate, CoordinatePart coordinatePart, string attributeName)
         {
-            try
+            if (coordinatePart.PartIsPresent)
             {
-                if (hasLatitudePart)
-                {
-                    if (coordinate.Attributes["latitude"] == null)
-                    {
-                        XmlAttribute latitudeAttribute = this.XmlDocument.CreateAttribute("latitude");
-                        coordinate.Attributes.Append(latitudeAttribute);
-                    }
-
-                    if (coordinate.Attributes["latitude"].InnerText == string.Empty)
-                    {
-                        coordinate.Attributes["latitude"].InnerText = latitude.Value;
-                    }
-                }
-            }
-            catch
-            {
+                this.SetCoordinatePartAttribute(coordinate, coordinatePart.Value, attributeName);
             }
         }
 
