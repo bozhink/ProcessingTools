@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
-    public enum CoordinateType
+    public enum CoordinatePartType
     {
         Latitude,
         Longitude,

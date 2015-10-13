@@ -116,12 +116,12 @@
 
                             this.logger?.Log(
                                 "Latitude =\t{0};\tLongitude =\t{1}\n{2} =\t{3};\t{4} =\t{5}",
-                                latitude.CoordinateString,
-                                longitude.CoordinateString,
+                                latitude.CoordinatePartString,
+                                longitude.CoordinatePartString,
                                 latitude.Type,
-                                latitude.CoordinateValue,
+                                latitude.Value,
                                 longitude.Type,
-                                longitude.CoordinateValue);
+                                longitude.Value);
                         }
                     }
                 }
@@ -140,7 +140,7 @@
                         else
                         {
                             latitude.ParseString(latMatch.Value);
-                            this.logger?.Log("{0} =\t{1}", latitude.Type, latitude.CoordinateString);
+                            this.logger?.Log("{0} =\t{1}", latitude.Type, latitude.CoordinatePartString);
                         }
                     }
                 }
@@ -159,15 +159,15 @@
                         else
                         {
                             longitude.ParseString(lngMatch.Value);
-                            this.logger?.Log("{0} =\t{1}", longitude.Type, longitude.CoordinateString);
+                            this.logger?.Log("{0} =\t{1}", longitude.Type, longitude.CoordinatePartString);
                         }
                     }
                 }
 
                 this.logger?.Log(
                     "{2} =\t{0};\t{3} =\t{1}\n",
-                    latitude.CoordinateValue,
-                    longitude.CoordinateValue,
+                    latitude.Value,
+                    longitude.Value,
                     latitude.Type,
                     longitude.Type);
 
@@ -212,7 +212,7 @@
 
                     if (coordinate.Attributes["longitude"].InnerText == string.Empty)
                     {
-                        coordinate.Attributes["longitude"].InnerText = longitude.CoordinateValue;
+                        coordinate.Attributes["longitude"].InnerText = longitude.Value;
                     }
                 }
             }
@@ -235,7 +235,7 @@
 
                     if (coordinate.Attributes["latitude"].InnerText == string.Empty)
                     {
-                        coordinate.Attributes["latitude"].InnerText = latitude.CoordinateValue;
+                        coordinate.Attributes["latitude"].InnerText = latitude.Value;
                     }
                 }
             }
