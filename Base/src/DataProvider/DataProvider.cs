@@ -44,6 +44,8 @@
             try
             {
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
+
                 using (SqlCommand command = new SqlCommand(query, this.connection))
                 {
                     try
@@ -55,8 +57,12 @@
                                 SetTagAttributes(tag, reader);
 
                                 string replacement = tag.OpenTag + "$1" + tag.CloseTag;
-                                string contentString = reader.GetString(0);
-                                string pattern = string.Format(patternTemplate, Regex.Replace(Regex.Escape(contentString), "'", "\\W"));
+
+                                fragment.InnerText = reader.GetString(0);
+                                string contentString = Regex.Escape(fragment.InnerXml).RegexReplace("'", "\\W");
+
+                                string pattern = string.Format(patternTemplate, contentString);
+
                                 Regex matchEntry = new Regex(pattern);
                                 foreach (XmlNode node in nodeList)
                                 {
