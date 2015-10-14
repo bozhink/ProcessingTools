@@ -23,7 +23,7 @@
 
         public override void Tag()
         {
-            string xpath = SetLowerTaxaMatchXPath();
+            string xpath = this.SetLowerTaxaMatchXPath();
 
             try
             {
@@ -51,8 +51,8 @@
 
             {
                 // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-                const string infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
-                Regex re = new Regex(infraspecificPattern);
+                const string InfraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
+                Regex re = new Regex(InfraspecificPattern);
 
                 replace = re.Replace(
                     replace,
@@ -64,8 +64,8 @@
                 const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|trib|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
                 {
-                    const string infraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + Subpattern;
-                    Regex re = new Regex(infraspecificPattern);
+                    const string InfraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + Subpattern;
+                    Regex re = new Regex(InfraspecificPattern);
 
                     for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
                     {
@@ -78,8 +78,8 @@
                 }
 
                 {
-                    const string infraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + Subpattern;
-                    Regex re = new Regex(infraspecificPattern);
+                    const string InfraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + Subpattern;
+                    Regex re = new Regex(InfraspecificPattern);
 
                     for (int i = 0; i < 3; i++)
                     {
@@ -99,8 +99,8 @@
             // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
             {
                 {
-                    const string infraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|f|forma?|st|r|sf|cf|gr|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
-                    Regex re = new Regex(infraspecificPattern);
+                    const string InfraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|f|forma?|st|r|sf|cf|gr|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                    Regex re = new Regex(InfraspecificPattern);
 
                     for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
                     {
@@ -116,8 +116,8 @@
                 }
 
                 {
-                    const string infraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|subspec|f|fo|forma?|st|r|sf|cf|gr|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
-                    Regex re = new Regex(infraspecificPattern);
+                    const string InfraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|subspec|f|fo|forma?|st|r|sf|cf|gr|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                    Regex re = new Regex(InfraspecificPattern);
 
                     for (int i = 0; i < 4; i++)
                     {
@@ -147,34 +147,34 @@
             result = Regex.Replace(
                 result,
                 @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*)(?=</i>)",
-                LowerRaxaReplacePattern);
+                TaxaTagger.LowerRaxaReplacePattern);
 
             result = Regex.Replace(
                 result,
                 @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)",
-                LowerRaxaReplacePattern);
+                TaxaTagger.LowerRaxaReplacePattern);
 
             result = Regex.Replace(
                 result,
                 @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*)(?=</i>)",
-                LowerRaxaReplacePattern);
+                TaxaTagger.LowerRaxaReplacePattern);
 
             result = Regex.Replace(
                 result,
                 @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)",
-                LowerRaxaReplacePattern);
+                TaxaTagger.LowerRaxaReplacePattern);
 
             result = Regex.Replace(
                 result,
                 @"(?<=<i>)([A-Z\.-]{3,30})(?=</i>)",
-                LowerRaxaReplacePattern);
+                TaxaTagger.LowerRaxaReplacePattern);
 
             result = Regex.Replace(
                 result,
                 @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>",
                 "$1‘$2’ $4$3");
 
-            result = TagInfraspecificTaxa(result);
+            result = this.TagInfraspecificTaxa(result);
 
             return result;
         }
@@ -183,14 +183,14 @@
         {
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
-                node.InnerXml = TagInfraspecificTaxa(node.InnerXml);
+                node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
             }
 
             if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
             {
                 foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
                 {
-                    node.InnerXml = TagInfraspecificTaxa(node.InnerXml);
+                    node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
                 }
             }
         }
@@ -253,14 +253,14 @@
              */
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
-                node.InnerXml = TagItalics(node.InnerXml);
+                node.InnerXml = this.TagItalics(node.InnerXml);
             }
 
             if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
             {
                 foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
                 {
-                    node.InnerXml = TagItalics(node.InnerXml);
+                    node.InnerXml = this.TagItalics(node.InnerXml);
                 }
             }
         }

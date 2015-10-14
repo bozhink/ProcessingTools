@@ -131,7 +131,7 @@
                 XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
                 if (objectId != null)
                 {
-                    objectId.InnerText = ZooBankPrefix + nomenclaturalAct.tnuuuid;
+                    objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.tnuuuid;
                     numberOfNewNomenclaturalActs++;
 
                     this.logger?.Log(nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);

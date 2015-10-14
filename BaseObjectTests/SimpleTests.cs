@@ -17,7 +17,7 @@
 
         [TestMethod]
         [Ignore]
-        public void  CreateNewInstanceOfDataProviderWithValidInputData()
+        public void CreateNewInstanceOfDataProviderWithValidInputData()
         {
             string xmlText = "<article></article>";
 
@@ -32,10 +32,8 @@
             string xmlText = "<article></article>";
             string resultXmlText;
 
-            using (DataProvider dataProvider = new DataProvider(config, xmlText))
-            {
-                resultXmlText = dataProvider.Xml;
-            }
+            DataProvider dataProvider = new DataProvider(config, xmlText);
+            resultXmlText = dataProvider.Xml;
 
             Assert.AreEqual(resultXmlText, xmlText);
         }

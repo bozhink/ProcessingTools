@@ -17,16 +17,14 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
-
+    
     public class SingleFileProcessor
     {
         private TaxonomicBlackList blackList;
-        private TaxonomicWhiteList whiteList;
-
         private FileProcessor fileProcessor;
-
         private ILogger logger;
         private ProgramSettings settings;
+        private TaxonomicWhiteList whiteList;
 
         public SingleFileProcessor(ProgramSettings settings, ILogger logger)
         {
@@ -40,6 +38,25 @@
             {
                 DoFileProcessing();
             });
+        }
+
+        public void ValidateTaxa(string xmlContent)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            this.logger?.Log("\n\tTaxa validation using Global names resolver.\n");
+
+            try
+            {
+                var validator = new TaxonomicNamesValidator(this.settings.Config, xmlContent, this.logger);
+                validator.Validate();
+            }
+            catch (Exception e)
+            {
+                this.logger?.LogException(e, string.Empty);
+            }
+
+            this.PrintElapsedTime(timer);
         }
 
         private void DoFileProcessing()
@@ -197,25 +214,6 @@
             }
 
             this.WriteOutputFile();
-        }
-
-        public void ValidateTaxa(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            this.logger?.Log("\n\tTaxa validation using Global names resolver.\n");
-
-            try
-            {
-                var validator = new TaxonomicNamesValidator(this.settings.Config, xmlContent, this.logger);
-                validator.Validate();
-            }
-            catch (Exception e)
-            {
-                this.logger?.LogException(e, string.Empty);
-            }
-
-            this.PrintElapsedTime(timer);
         }
 
         private string ExpandTaxa(string xmlContent)
@@ -983,39 +981,37 @@
                 ////    fp.Xml = envo.Xml;
                 ////}
 
-                using (DataProvider dataProvider = new DataProvider(this.settings.Config, this.fileProcessor.Xml))
+                DataProvider dataProvider = new DataProvider(this.settings.Config, this.fileProcessor.Xml);
+                ////{
+                ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
+                ////    products.TagProducts(xpathProvider, dataProvider);
+                ////    fp.Xml = products.Xml;
+                ////}
+
+                ////{
+                ////    GeoNamesTagger geonames = new GeoNamesTagger(settings.Config, fp.Xml);
+                ////    geonames.TagGeonames(xpathProvider, dataProvider);
+                ////    fp.Xml = geonames.Xml;
+                ////}
+
+                ////{
+                ////    MorphologyTagger morphology = new MorphologyTagger(settings.Config, fp.Xml);
+                ////    morphology.TagMorphology(xpathProvider, dataProvider);
+                ////    fp.Xml = morphology.Xml;
+                ////}
+
+                try
                 {
-                    ////{
-                    ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
-                    ////    products.TagProducts(xpathProvider, dataProvider);
-                    ////    fp.Xml = products.Xml;
-                    ////}
+                    Codes codes = new Codes(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                    codes.TagInstitutions(xpathProvider, dataProvider);
+                    codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                    ////codes.TagSpecimenCodes(xpathProvider);
 
-                    ////{
-                    ////    GeoNamesTagger geonames = new GeoNamesTagger(settings.Config, fp.Xml);
-                    ////    geonames.TagGeonames(xpathProvider, dataProvider);
-                    ////    fp.Xml = geonames.Xml;
-                    ////}
-
-                    ////{
-                    ////    MorphologyTagger morphology = new MorphologyTagger(settings.Config, fp.Xml);
-                    ////    morphology.TagMorphology(xpathProvider, dataProvider);
-                    ////    fp.Xml = morphology.Xml;
-                    ////}
-
-                    try
-                    {
-                        Codes codes = new Codes(this.settings.Config, this.fileProcessor.Xml, this.logger);
-                        codes.TagInstitutions(xpathProvider, dataProvider);
-                        codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-                        ////codes.TagSpecimenCodes(xpathProvider);
-
-                        this.fileProcessor.Xml = codes.Xml;
-                    }
-                    catch
-                    {
-                        throw;
-                    }
+                    this.fileProcessor.Xml = codes.Xml;
+                }
+                catch
+                {
+                    throw;
                 }
 
                 ////fp.XmlDocument.ClearTagsInWrongPositions();

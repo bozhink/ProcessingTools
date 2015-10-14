@@ -5,7 +5,6 @@
 
     public partial class MainProcessingTool
     {
-
         public const int NumberOfExpandingIterations = 1;
 
         private static ProgramSettings settings = new ProgramSettings();
@@ -24,7 +23,6 @@
                 var singleFileProcessor = new SingleFileProcessor(settings, consoleLogger);
 
                 singleFileProcessor.Run().Wait();
-
             }
             catch (Exception e)
             {

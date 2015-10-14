@@ -8,25 +8,16 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class DataProvider : TaggerBase, IDataProvider, IDisposable
+    public class DataProvider : TaggerBase, IDataProvider
     {
-        private SqlConnection connection;
-
         public DataProvider(Config config, string xml)
             : base(config, xml)
         {
-            this.OpenConnection();
         }
 
         public DataProvider(IBase baseObject)
             : base(baseObject)
         {
-            this.OpenConnection();
-        }
-
-        ~DataProvider()
-        {
-            this.Dispose(false);
         }
 
         public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
@@ -43,40 +34,47 @@
 
             try
             {
+                string connectionString = this.Config.mainDictionaryDataSourceString;
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
 
-                using (SqlCommand command = new SqlCommand(query, this.connection))
+                using (connection)
                 {
-                    try
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        try
                         {
-                            while (reader.Read())
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                SetTagAttributes(tag, reader);
-
-                                string replacement = tag.OpenTag + "$1" + tag.CloseTag;
-
-                                fragment.InnerText = reader.GetString(0);
-                                string contentString = Regex.Escape(fragment.InnerXml).RegexReplace("'", "\\W");
-
-                                string pattern = string.Format(patternTemplate, contentString);
-
-                                Regex matchEntry = new Regex(pattern);
-                                foreach (XmlNode node in nodeList)
+                                while (reader.Read())
                                 {
-                                    if (matchEntry.IsMatch(node.InnerText))
+                                    SetTagAttributes(tag, reader);
+
+                                    string replacement = tag.OpenTag + "$1" + tag.CloseTag;
+
+                                    fragment.InnerText = reader.GetString(0);
+                                    string contentString = Regex.Escape(fragment.InnerXml).RegexReplace("'", "\\W");
+
+                                    string pattern = string.Format(patternTemplate, contentString);
+
+                                    Regex matchEntry = new Regex(pattern);
+                                    foreach (XmlNode node in nodeList)
                                     {
-                                        node.InnerXml = matchEntry.Replace(node.InnerXml, replacement);
+                                        if (matchEntry.IsMatch(node.InnerText))
+                                        {
+                                            node.InnerXml = matchEntry.Replace(node.InnerXml, replacement);
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.RaiseExceptionForMethod(e, 0);
+                        catch (Exception e)
+                        {
+                            Alert.RaiseExceptionForMethod(e, 0);
+                        }
                     }
                 }
             }
@@ -86,38 +84,10 @@
             }
         }
 
-        public IList<string> ListTables()
-        {
-            List<string> tables = new List<string>();
-            DataTable dt = this.connection.GetSchema("Tables");
-            foreach (DataRow row in dt.Rows)
-            {
-                string tablename = (string)row[2];
-                tables.Add(tablename);
-            }
-
-            return tables;
-        }
-
         public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName)
         {
             TagContent tag = new TagContent(tagName);
             this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.connection.Dispose();
-                this.connection.Close();
-            }
         }
 
         private static void SetTagAttributes(TagContent tag, SqlDataReader reader)
@@ -136,20 +106,6 @@
             else
             {
                 tag.Attributes = string.Empty;
-            }
-        }
-
-        private void OpenConnection()
-        {
-            try
-            {
-                string connectionString = this.Config.mainDictionaryDataSourceString;
-                this.connection = new SqlConnection(connectionString);
-                this.connection.Open();
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, 1);
             }
         }
     }

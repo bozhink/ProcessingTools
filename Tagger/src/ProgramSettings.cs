@@ -66,58 +66,111 @@
         public Config Config { get; set; }
 
         public bool ExtractHigherTaxa { get; set; }
+
         public bool ExtractLowerTaxa { get; set; }
+
         public bool ExtractTaxa { get; set; }
+
         public bool Flag1 { get; set; }
+
         public bool Flag2 { get; set; }
+
         public bool Flag3 { get; set; }
+
         public bool Flag4 { get; set; }
+
         public bool Flag5 { get; set; }
+
         public bool Flag6 { get; set; }
+
         public bool Flag7 { get; set; }
+
         public bool Flag8 { get; set; }
+
         public bool Flora { get; set; }
+
         public bool FormatInit { get; set; }
+
         public bool FormatTreat { get; set; }
+
         public string HigherStructrureXpath { get; set; }
+
         public string InputFileName { get; set; }
+
         public string OutputFileName { get; set; }
+
         public bool ParseBySection { get; set; }
+
         public bool ParseCoords { get; set; }
+
         public bool ParseReferences { get; set; }
+
         public bool ParseTreatmentMetaWithAphia { get; set; }
+
         public bool ParseTreatmentMetaWithCol { get; set; }
+
         public bool ParseTreatmentMetaWithGbif { get; set; }
+
         public bool QuentinSpecificActions { get; set; }
+
         public string QueryFileName { get; set; }
+
         public bool QueryReplace { get; set; }
+
         public bool SplitHigherAboveGenus { get; set; }
+
         public bool SplitHigherBySuffix { get; set; }
+
         public bool SplitHigherWithAphia { get; set; }
+
         public bool SplitHigherWithCoL { get; set; }
+
         public bool SplitHigherWithGbif { get; set; }
+
         public bool TagAbbrev { get; set; }
+
         public bool TagCodes { get; set; }
+
         public bool TagCoords { get; set; }
+
         public bool TagDates { get; set; }
+
         public bool TagDoi { get; set; }
+
         public bool TagEnvironments { get; set; }
+
         public bool TagEnvo { get; set; }
+
         public bool TagFigTab { get; set; }
+
         public bool TagQuantities { get; set; }
+
         public bool TagReferences { get; set; }
+
         public bool TagTableFn { get; set; }
+
         public bool TagWWW { get; set; }
+
         public bool TaxaA { get; set; }
+
         public bool TaxaB { get; set; }
+
         public bool TaxaC { get; set; }
+
         public bool TaxaD { get; set; }
+
         public bool TaxaE { get; set; }
+
         public bool TestFlag { get; set; }
+
         public bool UntagSplit { get; set; }
+
         public bool ValidateTaxa { get; set; }
+
         public bool ZoobankCloneJson { get; set; }
+
         public bool ZoobankCloneXml { get; set; }
+
         public bool ZoobankGenerateRegistrationXml { get; set; }
     }
 }

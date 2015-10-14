@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class ExtensionsTests
@@ -25,7 +24,7 @@
 
                 Assert.AreEqual(
                     "east football Football",
-                    String.Join(" ", matchedValuesCaseInsensitive),
+                    string.Join(" ", matchedValuesCaseInsensitive),
                     "1. CaseInsensitive non-regex match failed.");
             }
 
@@ -34,7 +33,7 @@
 
                 Assert.AreEqual(
                     "east football",
-                    String.Join(" ", matchedValuesCaseSesitive),
+                    string.Join(" ", matchedValuesCaseSesitive),
                     "2. CaseSensitive non-regex match failed.");
             }
 
@@ -43,7 +42,7 @@
 
                 Assert.AreEqual(
                     "east football Football",
-                    String.Join(" ", matchedValuesCaseInsensitive),
+                    string.Join(" ", matchedValuesCaseInsensitive),
                     "3. CaseInsensitive regex match failed.");
             }
 
@@ -52,7 +51,7 @@
 
                 Assert.AreEqual(
                     "east football",
-                    String.Join(" ", matchedValuesCaseSesitive),
+                    string.Join(" ", matchedValuesCaseSesitive),
                     "4. CaseSensitive regex match failed.");
             }
         }
@@ -64,7 +63,7 @@
 
             List<string> wordList = words.ToList();
 
-            string[] matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England"};
+            string[] matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
 
             List<string> matchesList = matches.ToList();
 
@@ -73,7 +72,7 @@
 
                 Assert.AreEqual(
                     "City city fire for from",
-                    String.Join(" ", matchedValuesCaseInsensitive),
+                    string.Join(" ", matchedValuesCaseInsensitive),
                     "1. CaseInsensitive non-regex distinct failed.");
             }
 
@@ -82,7 +81,7 @@
 
                 Assert.AreEqual(
                     "City city FA fire for from",
-                    String.Join(" ", matchedValuesCaseSesitive),
+                    string.Join(" ", matchedValuesCaseSesitive),
                     "2. CaseSensitive non-regex distinct failed.");
             }
 
@@ -91,7 +90,7 @@
 
                 Assert.AreEqual(
                     "City city FA far fire football Football for from",
-                    String.Join(" ", matchedValuesCaseInsensitive),
+                    string.Join(" ", matchedValuesCaseInsensitive),
                     "3. CaseInsensitive regex distinct failed.");
             }
 
@@ -100,7 +99,7 @@
 
                 Assert.AreEqual(
                     "City city FA far fire football Football for from",
-                    String.Join(" ", matchedValuesCaseSesitive),
+                    string.Join(" ", matchedValuesCaseSesitive),
                     "4. CaseSensitive regex distinct failed.");
             }
         }

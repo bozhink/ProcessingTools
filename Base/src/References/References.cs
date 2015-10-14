@@ -338,9 +338,9 @@
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", this.NamespaceManager);
                 foreach (XmlNode node in nodeList)
                 {
-                    node.InnerXml = ReferencePartSplitter(node);
-                    node.InnerXml = ReferenceJournalMatch(node);
-                    node.InnerXml = ReferencePersonGroupSplit(node.InnerXml);
+                    node.InnerXml = this.ReferencePartSplitter(node);
+                    node.InnerXml = this.ReferenceJournalMatch(node);
+                    node.InnerXml = this.ReferencePersonGroupSplit(node.InnerXml);
                 }
             }
             catch (Exception e)

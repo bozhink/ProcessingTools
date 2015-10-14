@@ -30,17 +30,17 @@
                 xml = Regex.Replace(xml, @"(?<=<[^>]+\br?id="")\s*([^<>""]*?)\s*(?="")", "$1");
 
                 // Format openeing and closing tags
-                xml = FormatCloseTags(xml);
-                xml = FormatOpenTags(xml);
-                xml = BoldItalic(xml);
+                xml = this.FormatCloseTags(xml);
+                xml = this.FormatOpenTags(xml);
+                xml = this.BoldItalic(xml);
 
                 // Format wrong figures' labels
                 xml = Regex.Replace(xml, @"<caption>\s+<p>", "<caption><p>");
                 xml = Regex.Replace(xml, @"</p>\s+</caption>", "</p></caption>");
                 xml = Regex.Replace(xml, @"(\s*)(<caption><p>)\s*<b>\s*((Figure|Map|Plate|Table|Suppl|Box)[^<>]*?)\s*</b>", "$1<label>$3</label>$1$2");
 
-                xml = FormatReferances(xml);
-                xml = FormatPageBreaks(xml);
+                xml = this.FormatReferances(xml);
+                xml = this.FormatPageBreaks(xml);
 
                 // male and female
                 xml = Regex.Replace(xml, @"<i>([♂♀\s]+)</i>", "$1");
@@ -48,12 +48,12 @@
                 // Post-formatting
                 for (int i = 0; i < 3; i++)
                 {
-                    xml = BoldItalic(xml);
-                    xml = FormatPunctuation(xml);
+                    xml = this.BoldItalic(xml);
+                    xml = this.FormatPunctuation(xml);
                     ////xml = FormatPageBreaks(xml);
-                    xml = RemoveEmptyTags(xml);
-                    xml = FormatCloseTags(xml);
-                    xml = FormatOpenTags(xml);
+                    xml = this.RemoveEmptyTags(xml);
+                    xml = this.FormatCloseTags(xml);
+                    xml = this.FormatOpenTags(xml);
                 }
 
                 {
@@ -102,8 +102,8 @@
 
                 xml = Regex.Replace(xml, @"<\s+/", "</");
 
-                xml = RemoveEmptyTags(xml);
-                xml = FormatPageBreaks(xml);
+                xml = this.RemoveEmptyTags(xml);
+                xml = this.FormatPageBreaks(xml);
 
                 xml = Regex.Replace(xml, "(\\s+)(<tp:nomenclature-citation-list>)(<tp:nomenclature-citation>)", "$1$2$1    $3");
                 xml = Regex.Replace(xml, "(\\s+)(<ref-list>)(<title>)", "$1$2$1    $3");
@@ -149,7 +149,7 @@
             {
                 string result = xml;
 
-                result = BoldItalicSpaces(result);
+                result = this.BoldItalicSpaces(result);
 
                 result = Regex.Replace(result, @"\&lt;\s*br\s*/\s*\&gt;(</i>|</b>)", "$1&lt;br/&gt;");
                 result = Regex.Replace(result, @"(?<!\&[a-z]+)([^\w<>\.\(\)]+)(</i>|</b>)", "$2$1");

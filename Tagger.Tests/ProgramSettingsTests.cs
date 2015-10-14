@@ -12,7 +12,7 @@
         [SetUp]
         public void Init()
         {
-            programSettings = new ProgramSettings();
+            this.programSettings = new ProgramSettings();
         }
 
         [Test]

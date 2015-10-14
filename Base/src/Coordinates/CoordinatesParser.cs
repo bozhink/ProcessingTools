@@ -179,11 +179,6 @@
             }
         }
 
-        //private void SetCoordinatePartAttribute(XmlNode coordinate, string coordinatePartValue, string attributeName)
-        //{
-            
-        //}
-
         private void SetCoordinatePartAttribute(XmlNode coordinate, CoordinatePart coordinatePart, string attributeName)
         {
             if (coordinatePart.PartIsPresent)

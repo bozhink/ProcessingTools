@@ -69,15 +69,15 @@
                     char[] arg = args[i].ToCharArray();
                     if (arg[0] == '-' && arg.Length > 1 && arg[1] == '-')
                     {
-                        doubleDashedOptions.Add(i);
+                        this.doubleDashedOptions.Add(i);
                     }
                     else if (arg[0] == '-' || arg[0] == '/')
                     {
-                        singleDashedOptions.Add(i);
+                        this.singleDashedOptions.Add(i);
                     }
                     else
                     {
-                        arguments.Add(i);
+                        this.arguments.Add(i);
                     }
                 }
             }
@@ -91,26 +91,26 @@
         {
             try
             {
-                if (arguments.Count < 1)
+                if (this.arguments.Count < 1)
                 {
                     Alert.PrintHelp();
                     Alert.Exit(0);
                 }
-                else if (arguments.Count == 1)
+                else if (this.arguments.Count == 1)
                 {
-                    this.Settings.InputFileName = args[arguments[0]];
+                    this.Settings.InputFileName = args[this.arguments[0]];
                     this.Settings.OutputFileName = null;
                 }
-                else if (arguments.Count == 2)
+                else if (this.arguments.Count == 2)
                 {
-                    this.Settings.InputFileName = args[arguments[0]];
-                    this.Settings.OutputFileName = args[arguments[1]];
+                    this.Settings.InputFileName = args[this.arguments[0]];
+                    this.Settings.OutputFileName = args[this.arguments[1]];
                 }
                 else
                 {
-                    this.Settings.InputFileName = args[arguments[0]];
-                    this.Settings.OutputFileName = args[arguments[1]];
-                    this.Settings.QueryFileName = args[arguments[2]];
+                    this.Settings.InputFileName = args[this.arguments[0]];
+                    this.Settings.OutputFileName = args[this.arguments[1]];
+                    this.Settings.QueryFileName = args[this.arguments[2]];
                 }
             }
             catch
@@ -121,9 +121,9 @@
 
         private void ParseSingleDashedOptions(string[] args)
         {
-            if (singleDashedOptions?.Count > 0)
+            if (this.singleDashedOptions?.Count > 0)
             {
-                foreach (int item in singleDashedOptions)
+                foreach (int item in this.singleDashedOptions)
                 {
                     char[] arg = args[item].ToCharArray();
                     if (arg.Length > 1)
@@ -262,9 +262,9 @@
 
         private void ParseDoubleDashedOptions(string[] args)
         {
-            if (doubleDashedOptions?.Count > 0)
+            if (this.doubleDashedOptions?.Count > 0)
             {
-                foreach (int item in doubleDashedOptions)
+                foreach (int item in this.doubleDashedOptions)
                 {
                     if (args[item].CompareTo("--split-aphia") == 0)
                     {

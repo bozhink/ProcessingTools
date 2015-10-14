@@ -126,6 +126,8 @@
     <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesParts.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="src\Taxonomy\TaxaExpander\Expander.Nlm.cs" />
+    <Compile Include="src\Taxonomy\TaxaExpander\Expander.NlmSystem.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\SuffixHigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\AboveGenusHigherTaxaParser.cs" />

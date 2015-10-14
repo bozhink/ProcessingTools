@@ -177,9 +177,9 @@ namespace ProcessingTools.BaseLibrary
             List<SpecimenCode> prefixNumericSpecimenCodes = new List<SpecimenCode>();
             string textContent = this.TextContent;
 
-            for (int i = 0, length = codePrefixes.Length; i < length; ++i)
+            for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {
-                string prefix = codePrefixes[i];
+                string prefix = this.codePrefixes[i];
                 Regex prefixNumericCodes = new Regex(@"(?i)\b(?:" + prefix + @")\W{0,3}(?:\d+(?:[\/\.]\d+)+|\d+)[a-z]?\b");
                 if (prefixNumericCodes.Match(textContent).Success)
                 {
@@ -414,7 +414,7 @@ namespace ProcessingTools.BaseLibrary
                 {
                     foreach (XmlNode specimenCodeNode in node.SelectNodes(xpathToSelectSpecimenCodeTags, this.NamespaceManager))
                     {
-                        SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tag);
+                        this.SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tag);
                     }
                 }
             }

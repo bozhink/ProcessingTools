@@ -74,8 +74,6 @@
 
                     replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true);
                 }
-
-
             }
             catch
             {

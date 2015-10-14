@@ -48,32 +48,6 @@
             return new HashSet<string>(result);
         }
 
-        private static string TaxonNameXmlNodeToString(this XmlNode taxonNameNode)
-        {
-            XmlNode result = taxonNameNode.CloneNode(true);
-            result.Attributes.RemoveAll();
-
-            string innerXml = result
-                .RemoveXmlNodes("//object-id")
-                .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
-                .InnerXml
-                .RegexReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
-                .RegexReplace(@"<[^>]+>", string.Empty);
-
-            return innerXml;
-        }
-
-        public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)
-        {
-            foreach (XmlNode fullNamedPart in node.SelectNodes(".//*[normalize-space(@full-name)!='']"))
-            {
-                fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
-                fullNamedPart.Attributes.RemoveNamedItem("full-name");
-            }
-
-            return node;
-        }
-
         public static string ExtractTaxa(this string xml, Config config)
         {
             return xml.ApplyXslTransform(config.floraExtractTaxaXslPath);
@@ -141,6 +115,24 @@
             return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, Config.TaxPubNamespceManager()));
         }
 
+        public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
+        {
+            ////XmlNode clonedXml = xml.CloneNode(true);
+            ////clonedXml.SelectNodes("//tn|//tn-part|//tp:taxon-name|//tp:taxon-name-part", Config.TaxPubNamespceManager())
+            ////    .Cast<XmlNode>()
+            ////    .Select(node => node.ParentNode.RemoveChild(node));
+
+            IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
+            IEnumerable<string> result = from item in taxaMatchesInText
+                                         where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
+                                         select item;
+            return new HashSet<string>(result);
+
+            ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
+
+            ////return new HashSet<string>(result);
+        }
+
         public static string GetRemplacementStringForTaxonNamePartRank(this string rank, bool taxPub = false)
         {
             string prefix, suffix;
@@ -173,6 +165,18 @@
             }
         }
 
+        public static void RemoveTaxaInWrongPlaces(this XmlDocument xml)
+        {
+            string xpath = "tn[.//tn] | a[.//tn] | ext-link[.//tn] | xref[.//tn] | article/front/notes/sec[.//tn] | tp:treatment-meta/kwd-group/kwd/named-content[.//tn] | *[@object_id='82'][.//tn] | *[@id='41'][.//tn] | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[.//tn]";
+
+            Regex matchTaxonTag = new Regex(@"</?tn[^>]*>");
+
+            foreach (XmlNode node in xml.SelectNodes(xpath, Config.TaxPubNamespceManager()))
+            {
+                node.InnerXml = matchTaxonTag.Replace(node.InnerXml, string.Empty);
+            }
+        }
+
         public static string RemoveTaxonNamePartTags(this string content)
         {
             string result = Regex.Replace(content, @"(?<=full-name=""([^<>""]+)""[^>]*>)[^<>]*(?=</)", "$1");
@@ -187,34 +191,30 @@
             }
         }
 
-        public static void RemoveTaxaInWrongPlaces(this XmlDocument xml)
+        public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)
         {
-            string xpath = "tn[.//tn] | a[.//tn] | ext-link[.//tn] | xref[.//tn] | article/front/notes/sec[.//tn] | tp:treatment-meta/kwd-group/kwd/named-content[.//tn] | *[@object_id='82'][.//tn] | *[@id='41'][.//tn] | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value[.//tn]";
-
-            Regex matchTaxonTag = new Regex(@"</?tn[^>]*>");
-
-            foreach (XmlNode node in xml.SelectNodes(xpath, Config.TaxPubNamespceManager()))
+            foreach (XmlNode fullNamedPart in node.SelectNodes(".//*[normalize-space(@full-name)!='']"))
             {
-                node.InnerXml = matchTaxonTag.Replace(node.InnerXml, string.Empty);
+                fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
+                fullNamedPart.Attributes.RemoveNamedItem("full-name");
             }
+
+            return node;
         }
 
-        public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
+        private static string TaxonNameXmlNodeToString(this XmlNode taxonNameNode)
         {
-            ////XmlNode clonedXml = xml.CloneNode(true);
-            ////clonedXml.SelectNodes("//tn|//tn-part|//tp:taxon-name|//tp:taxon-name-part", Config.TaxPubNamespceManager())
-            ////    .Cast<XmlNode>()
-            ////    .Select(node => node.ParentNode.RemoveChild(node));
+            XmlNode result = taxonNameNode.CloneNode(true);
+            result.Attributes.RemoveAll();
 
-            IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
-            IEnumerable<string> result = from item in taxaMatchesInText
-                                         where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
-                                         select item;
-            return new HashSet<string>(result);
+            string innerXml = result
+                .RemoveXmlNodes("//object-id")
+                .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
+                .InnerXml
+                .RegexReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
+                .RegexReplace(@"<[^>]+>", string.Empty);
 
-            ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
-
-            ////return new HashSet<string>(result);
+            return innerXml;
         }
     }
 }

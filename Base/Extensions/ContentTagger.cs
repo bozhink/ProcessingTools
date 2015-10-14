@@ -8,8 +8,27 @@
 
     public static class ContentTagger
     {
+        public static string GetReplacementOfTagNode(this XmlNode tagNode)
+        {
+            XmlNode replacementNode = tagNode.Clone();
+            replacementNode.InnerText = "$1";
+
+            string replacement = replacementNode.OuterXml;
+            return replacement;
+        }
+
+        public static string GetReplacementOfTagNode(this TagContent tag, string textToTag)
+        {
+            TagContent replacementTag = new TagContent(tag);
+            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
+            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
+
+            string replacement = replacementTag.FullTag;
+            return replacement;
+        }
+
         public static void TagContentInDocument(
-            this IEnumerable<string> textToTagList,
+                            this IEnumerable<string> textToTagList,
             TagContent tag,
             string xpathTemplate,
             XmlDocument document,
@@ -211,6 +230,77 @@
             }
         }
 
+        // TODO: Remove this method
+        public static string TagNodeContent(this string text, string keyString, string openTag)
+        {
+            string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
+            string closeTag = "</" + tagName + ">";
+            openTag = Regex.Replace(openTag, "/", string.Empty);
+
+            StringBuilder sb = new StringBuilder();
+            StringBuilder charStack = new StringBuilder();
+
+            int j = 0, len = keyString.Length;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char ch = text[i];
+                j = 0;
+                if (ch == keyString[j])
+                {
+                    charStack.Clear();
+
+                TestCharInKeyString:
+                    while (ch == keyString[j])
+                    {
+                        charStack.Append(ch);
+                        if (++j >= len)
+                        {
+                            break;
+                        }
+
+                        ch = text[++i];
+                    }
+
+                    if (j < len)
+                    {
+                        // In the loop above we didn’t reach the end of the keyString
+                        // Here we have the ch character which is not appended to the charStack StringBuilder
+                        charStack.Append(ch);
+                        if (ch == '<')
+                        {
+                            while (ch != '>')
+                            {
+                                ch = text[++i];
+                                charStack.Append(ch);
+                            }
+
+                            // Here ch == '>'. Everything is in charStack up to ch = '>'.
+                            ch = text[++i];
+                            goto TestCharInKeyString;
+                        }
+                        else
+                        {
+                            // This means that ch != keyString[j] because here we have no match
+                            // then just append the stored content in charStack and go ahead
+                            sb.Append(charStack.ToString());
+                        }
+                    }
+                    else
+                    {
+                        // Here we have the whole keyString match in the charStack
+                        sb.Append(openTag + charStack.ToString() + closeTag);
+                    }
+                }
+                else
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Normalizes crossed tags where tagName is the name of the tag which must not be splitted.
         /// Example:
@@ -246,23 +336,23 @@
                 /*
                  * Broken block are pieces of xml in which the number of opening and closing tags is equal,
                  * i.e. the problem in broken blocks are crossed tags
-                 * 
+                 *
                  * Example of different broken blocks
-                 * 
+                 *
                  * envo
                  * some-tag x="y"
                  * nested-tag y="z" z="w"
                  * /envo
                  * /nested-tag
                  * /some-tag
-                 * 
+                 *
                  * some-tag
                  * nested-tag y="z" z="w"
                  * envo
                  * /nested-tag
                  * /some-tag
                  * /envo
-                 * 
+                 *
                  */
                 for (int brokenBlockIndex = 0, len = tags.Count; brokenBlockIndex < len; brokenBlockIndex++)
                 {
@@ -356,41 +446,6 @@
             return testXmlNode.InnerXml;
         }
 
-        private static List<TagContent> GetTagModel(string text)
-        {
-            List<TagContent> tags = new List<TagContent>();
-            Regex matchTag = new Regex(@"</?\w[^>]*>");
-            Regex matchTagName = new Regex(@"\A/?[^\s/<>""'!\?]+");
-            Regex matchTagAttributes = new Regex(@"\s+.*\Z");
-            for (Match wholeTag = matchTag.Match(text); wholeTag.Success; wholeTag = wholeTag.NextMatch())
-            {
-                // For every tag name
-                string internalOfTag = wholeTag.Value.Substring(1, wholeTag.Value.Length - 2);
-                string tagName = matchTagName.Match(internalOfTag).Value;
-                string tagAttributes = matchTagAttributes.Match(internalOfTag).Value;
-                TagContent tag = new TagContent(tagName, tagAttributes, wholeTag.Value);
-
-                if (tag.IsClosingTag)
-                {
-                    int lastItemIndex = tags.Count - 1;
-                    if (string.Compare(tags[lastItemIndex].Name, tag.Name.Substring(1)) == 0)
-                    {
-                        tags.RemoveAt(lastItemIndex);
-                    }
-                    else
-                    {
-                        tags.Add(tag);
-                    }
-                }
-                else
-                {
-                    tags.Add(tag);
-                }
-            }
-
-            return tags;
-        }
-
         private static string GenerateSingleBrokenBlockSearchPattern(List<TagContent> tags, ref int initialIndexInTags)
         {
             StringBuilder singleBrokenPattern = new StringBuilder();
@@ -431,94 +486,39 @@
             return singleBrokenPattern.ToString();
         }
 
-        public static string GetReplacementOfTagNode(this XmlNode tagNode)
+        private static List<TagContent> GetTagModel(string text)
         {
-            XmlNode replacementNode = tagNode.Clone();
-            replacementNode.InnerText = "$1";
-
-            string replacement = replacementNode.OuterXml;
-            return replacement;
-        }
-
-        public static string GetReplacementOfTagNode(this TagContent tag, string textToTag)
-        {
-            TagContent replacementTag = new TagContent(tag);
-            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
-            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
-
-            string replacement = replacementTag.FullTag;
-            return replacement;
-        }
-
-        // TODO: Remove this method
-        public static string TagNodeContent(this string text, string keyString, string openTag)
-        {
-            string tagName = Regex.Match(openTag, @"(?<=<)[^\s>/""']+").Value;
-            string closeTag = "</" + tagName + ">";
-            openTag = Regex.Replace(openTag, "/", string.Empty);
-
-            StringBuilder sb = new StringBuilder();
-            StringBuilder charStack = new StringBuilder();
-
-            int j = 0, len = keyString.Length;
-
-            for (int i = 0; i < text.Length; i++)
+            List<TagContent> tags = new List<TagContent>();
+            Regex matchTag = new Regex(@"</?\w[^>]*>");
+            Regex matchTagName = new Regex(@"\A/?[^\s/<>""'!\?]+");
+            Regex matchTagAttributes = new Regex(@"\s+.*\Z");
+            for (Match wholeTag = matchTag.Match(text); wholeTag.Success; wholeTag = wholeTag.NextMatch())
             {
-                char ch = text[i];
-                j = 0;
-                if (ch == keyString[j])
+                // For every tag name
+                string internalOfTag = wholeTag.Value.Substring(1, wholeTag.Value.Length - 2);
+                string tagName = matchTagName.Match(internalOfTag).Value;
+                string tagAttributes = matchTagAttributes.Match(internalOfTag).Value;
+                TagContent tag = new TagContent(tagName, tagAttributes, wholeTag.Value);
+
+                if (tag.IsClosingTag)
                 {
-                    charStack.Clear();
-
-                TestCharInKeyString:
-                    while (ch == keyString[j])
+                    int lastItemIndex = tags.Count - 1;
+                    if (string.Compare(tags[lastItemIndex].Name, tag.Name.Substring(1)) == 0)
                     {
-                        charStack.Append(ch);
-                        if (++j >= len)
-                        {
-                            break;
-                        }
-
-                        ch = text[++i];
-                    }
-
-                    if (j < len)
-                    {
-                        // In the loop above we didn’t reach the end of the keyString
-                        // Here we have the ch character which is not appended to the charStack StringBuilder
-                        charStack.Append(ch);
-                        if (ch == '<')
-                        {
-                            while (ch != '>')
-                            {
-                                ch = text[++i];
-                                charStack.Append(ch);
-                            }
-
-                            // Here ch == '>'. Everything is in charStack up to ch = '>'.
-                            ch = text[++i];
-                            goto TestCharInKeyString;
-                        }
-                        else
-                        {
-                            // This means that ch != keyString[j] because here we have no match
-                            // then just append the stored content in charStack and go ahead
-                            sb.Append(charStack.ToString());
-                        }
+                        tags.RemoveAt(lastItemIndex);
                     }
                     else
                     {
-                        // Here we have the whole keyString match in the charStack
-                        sb.Append(openTag + charStack.ToString() + closeTag);
+                        tags.Add(tag);
                     }
                 }
                 else
                 {
-                    sb.Append(ch);
+                    tags.Add(tag);
                 }
             }
 
-            return sb.ToString();
+            return tags;
         }
     }
 }
