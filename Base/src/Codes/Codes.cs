@@ -185,7 +185,7 @@ namespace ProcessingTools.BaseLibrary
                 {
                     prefixNumericSpecimenCodes.AddRange(
                         textContent
-                            .GetMatchesInText(prefixNumericCodes, true)
+                            .GetMatchesInText(prefixNumericCodes)
                             .Select(s => new SpecimenCode(prefix, "prefix-numeric", s)));
                 }
             }
@@ -304,7 +304,7 @@ namespace ProcessingTools.BaseLibrary
                 cleanedXmlDocument.ApplyXslTransform(this.Config.codesRemoveNonCodeNodes));
 
             Regex matchCodePattern = new Regex(codePattern);
-            return cleanedXmlDocument.InnerText.GetMatchesInText(matchCodePattern, true);
+            return cleanedXmlDocument.InnerText.GetMatchesInText(matchCodePattern);
         }
 
         /// <summary>

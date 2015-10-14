@@ -101,7 +101,7 @@
             text = Regex.Replace(text, @"(?<=\n)\s+", string.Empty);
 
             this.TextContent = text;
-            this.TextWords = text.ExtractWordsFromString(true);
+            this.TextWords = text.ExtractWordsFromString();
         }
     }
 }

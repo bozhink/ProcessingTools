@@ -31,7 +31,7 @@ namespace ProcessingTools.BaseLibrary
             Regex matchSpecimenCount = new Regex(pattern);
 
             var nodeList = this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPathTemplate, this.NamespaceManager);
-            var specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount, true);
+            var specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount);
 
             specimenCountCitations.TagContentInDocument(this.specimenCountTag, nodeList, false, true);
         }

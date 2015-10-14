@@ -19,39 +19,83 @@
         public static bool CheckIfIsPossibleToPerformReplaceInXmlNode(this XmlNode node)
         {
             bool performReplace = false;
-            if (node.InnerXml.Length < 1)
+            switch (node.NodeType)
             {
-                string outerXml = node.OuterXml;
-                if (outerXml.IndexOf("<!--") == 0)
-                {
-                    // This node is a comment. Do not replace matches here.
+                case XmlNodeType.None:
                     performReplace = false;
-                }
-                else if (outerXml.IndexOf("<?") == 0)
-                {
-                    // This node is a processing instruction. Do not replace matches here.
+                    break;
+
+                case XmlNodeType.Element:
                     performReplace = false;
-                }
-                else if (outerXml.IndexOf("<!DOCTYPE") == 0)
-                {
-                    // This node is a DOCTYPE node. Do not replace matches here.
+                    break;
+
+                case XmlNodeType.Attribute:
                     performReplace = false;
-                }
-                else if (outerXml.IndexOf("<![CDATA[") == 0)
-                {
-                    // This node is a CDATA node. Do nothing?
-                    performReplace = false;
-                }
-                else
-                {
-                    // This node is a text node. Tag this text and replace in InnerXml
+                    break;
+
+                case XmlNodeType.Text:
                     performReplace = true;
-                }
-            }
-            else
-            {
-                // This is a named node
-                performReplace = true;
+                    break;
+
+                case XmlNodeType.CDATA:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.EntityReference:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.Entity:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.ProcessingInstruction:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.Comment:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.Document:
+                    performReplace = true;
+                    break;
+
+                case XmlNodeType.DocumentType:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.DocumentFragment:
+                    performReplace = true;
+                    break;
+
+                case XmlNodeType.Notation:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.Whitespace:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.SignificantWhitespace:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.EndElement:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.EndEntity:
+                    performReplace = false;
+                    break;
+
+                case XmlNodeType.XmlDeclaration:
+                    performReplace = false;
+                    break;
+
+                default:
+                    performReplace = false;
+                    break;
             }
 
             return performReplace;
@@ -100,7 +144,7 @@
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> ExtractWordsFromString(this string text, bool distinctWords = true)
+        public static IEnumerable<string> ExtractWordsFromString(this string text)
         {
             List<string> result = new List<string>();
 
@@ -109,12 +153,6 @@
             for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
-            }
-
-            if (distinctWords)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
             }
 
             return new HashSet<string>(result);
@@ -136,7 +174,7 @@
             return new HashSet<string>(list.Select(word => matchWord.Match(word).Value).Distinct());
         }
 
-        public static IEnumerable<string> GetMatchesInText(this string text, Regex search, bool clearList = false)
+        public static IEnumerable<string> GetMatchesInText(this string text, Regex search)
         {
             List<string> result = new List<string>();
 
@@ -145,16 +183,10 @@
                 result.Add(m.Value);
             }
 
-            if (clearList)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
-            }
-
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search, bool clearList = true)
+        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search)
         {
             List<string> result = new List<string>();
 
@@ -163,18 +195,12 @@
                 result.AddRange(node.GetMatchesInXmlText(search, false));
             }
 
-            if (clearList)
-            {
-                result = result.Distinct().ToList();
-                result.Sort();
-            }
-
             return new HashSet<string>(result);
         }
 
         public static IEnumerable<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
         {
-            return node.InnerText.GetMatchesInText(search, clearList);
+            return node.InnerText.GetMatchesInText(search);
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)

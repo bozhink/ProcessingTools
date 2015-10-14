@@ -41,31 +41,31 @@
                 {
                     Regex re = new Regex(@"((?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2})\s*?\W{0,3}?\s*(?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2}))");
 
-                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re));
                 }
 
                 {
                     Regex re = new Regex(@"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO]))");
 
-                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re));
                 }
 
                 {
                     Regex re = new Regex(@"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO]))");
 
-                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re));
                 }
 
                 {
                     Regex re = new Regex(@"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b)\s*[;,]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b))");
 
-                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re));
                 }
 
                 {
                     Regex re = new Regex(@"(?<latitude>(?:\b[–—−-]\W?|\b)[0-9]?[0-9]\b[\s\.]{1,3}[0-9]+)[^\w\.]{1,5}(?<longitude>(?:\b[–—−-]\W?|\b)(?:[0-1][0-8]|[0-9])?[0-9]\b[\s\.]{1,3}[0-9]+)");
 
-                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re, false));
+                    coordinateStrings.AddRange(xmlText.GetMatchesInText(re));
                 }
 
                 foreach (string coordinateString in coordinateStrings)

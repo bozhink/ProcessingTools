@@ -118,7 +118,7 @@ namespace ProcessingTools.BaseLibrary.Dates
 
         private void AddDatesByRegex(List<string> dates, Regex re)
         {
-            dates.AddRange(this.TextContent.GetMatchesInText(re, true));
+            dates.AddRange(this.TextContent.GetMatchesInText(re));
         }
     }
 }

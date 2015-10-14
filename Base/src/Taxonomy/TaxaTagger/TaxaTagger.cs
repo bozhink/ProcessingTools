@@ -66,7 +66,7 @@
 
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
-            IEnumerable<string> result = taxaNames;
+            var result = taxaNames;
             try
             {
                 // Clear taxa-like person names in taxa names list
@@ -94,7 +94,7 @@
         private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
         {
             // Get taxa-like person name parts
-            IEnumerable<string> taxaLikePersonNameParts = this.XmlDocument
+            var taxaLikePersonNameParts = this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
                 .Select(s => s.InnerText)
