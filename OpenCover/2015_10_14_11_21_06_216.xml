@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\bozhin\Documents\GitHub\ProcessingTools\NUnitTests\bin\Release\NUnitTests.dll" total="168" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-10-14" time="23:21:22">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\bozhin\Documents\GitHub\ProcessingTools\OpenCover\87d16dc2-a12d-4e5a-bb1e-1907322a11a2" machine-name="USER-A" user="bozhin" user-domain="USER-A" />
+  <culture-info current-culture="en-US" current-uiculture="en-GB" />
+  <test-suite type="Test Project" name="" executed="True" result="Success" success="True" time="3.140" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\Users\bozhin\Documents\GitHub\ProcessingTools\NUnitTests\bin\Release\NUnitTests.dll" executed="True" result="Success" success="True" time="0.172" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="NUnitTests" executed="True" result="Success" success="True" time="0.155" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="CoordinatesTests" executed="True" result="Success" success="True" time="0.153" asserts="0">
+                <results>
+                  <test-case name="NUnitTests.CoordinatesTests.TestTest" executed="True" result="Success" success="True" time="0.121" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="Assembly" name="C:\Users\bozhin\Documents\GitHub\ProcessingTools\Tagger.Tests\bin\Release\Tagger.Tests.dll" executed="True" result="Success" success="True" time="0.677" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tagger" executed="True" result="Success" success="True" time="0.662" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.661" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="ProgramSettingsTests" executed="True" result="Success" success="True" time="0.657" asserts="0">
+                    <results>
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ConfigPropertyInNewInstance_SchouldBeNull" executed="True" result="Success" success="True" time="0.107" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ExtractHigherTaxaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ExtractLowerTaxaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ExtractTaxaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag1PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag2PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag3PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag4PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag5PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag6PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag7PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_Flag8PropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_FloraPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_FormatInitPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_FormatTreatPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_HigherStructrureXpathPropertyInNewInstance_SchouldBeDefault" executed="True" result="Success" success="True" time="0.015" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_InputFileNamePropertyInNewInstance_SchouldBeNull" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_OutputFileNamePropertyInNewInstance_SchouldBeNull" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseBySectionPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseCoordsPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseReferencesPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseTreatmentMetaWithAphiaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseTreatmentMetaWithColPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ParseTreatmentMetaWithGbifPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_QuentinSpecificActionsPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_QueryFileNamePropertyInNewInstance_SchouldBeNull" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_QueryReplacePropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_SplitHigherAboveGenusPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_SplitHigherBySuffixPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_SplitHigherWithAphiaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_SplitHigherWithCoLPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_SplitHigherWithGbifPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagAbbrevPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagCodesPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagCoordsPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagDatesPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagDoiPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagEnvironmentsPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagEnvoPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagFigTabPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagQuantitiesPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagReferencesPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagTableFnPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TagWWWPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TaxaAPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TaxaBPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TaxaCPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TaxaDPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TaxaEPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_TestFlagPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_UntagSplitPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidateTaxaPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfConfigProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfExtractHigherTaxaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfExtractLowerTaxaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfExtractTaxaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag1Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag2Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag3Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag4Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag5Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag6Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag7Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFlag8Property_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFloraProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFormatInitProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfFormatTreatProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfHigherStructrureXpathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfInputFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfOutputFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseBySectionProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseCoordsProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseReferencesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseTreatmentMetaWithAphiaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseTreatmentMetaWithColProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfParseTreatmentMetaWithGbifProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfQuentinSpecificActionsProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfQueryFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfQueryReplaceProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfSplitHigherAboveGenusProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfSplitHigherBySuffixProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfSplitHigherWithAphiaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfSplitHigherWithCoLProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfSplitHigherWithGbifProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagAbbrevProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagCodesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagCoordsProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagDatesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagDoiProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagEnvironmentsProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagEnvoProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagFigTabProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagQuantitiesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagReferencesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagTableFnProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTagWWWProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTaxaAProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTaxaBProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTaxaCProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTaxaDProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTaxaEProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfTestFlagProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfUntagSplitProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfValidateTaxaProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfZoobankCloneJsonProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfZoobankCloneXmlProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ValidChangesOfZoobankGenerateRegistrationXmlProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ZoobankCloneJsonPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ZoobankCloneXmlPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="Tagger.Tests.ProgramSettingsTests.ProgramSettings_ZoobankGenerateRegistrationXmlPropertyInNewInstance_SchouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="Assembly" name="C:\Users\bozhin\Documents\GitHub\ProcessingTools\ProcessingToolsConfig.Tests\bin\Release\ProcessingToolsConfig.Tests.dll" executed="True" result="Success" success="True" time="0.414" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="ProcessingToolsConfig" executed="True" result="Success" success="True" time="0.398" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.397" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="ConfigTests" executed="True" result="Success" success="True" time="0.395" asserts="0">
+                    <results>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ArticleSchemaTypePropertyInNewInstance_ShouldBeSystem" executed="True" result="Success" success="True" time="0.042" asserts="1" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_FirstSetValueToFalseOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToFalse" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_FirstSetValueToNlmOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToNlm" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_FirstSetValueToSystemOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToSystem" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_FirstSetValueToTrueOfTagWholeDocumentPropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToTrue" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.017" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(True)" executed="True" result="Success" success="True" time="0.008" asserts="2" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(False)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                        </results>
+                      </test-suite>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToFalseOfTagWholeDocumentPropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToFalseOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToFalseOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(True)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToFalseOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(False)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(Nlm)" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(System)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                        </results>
+                      </test-suite>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToNlmOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(Nlm)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(System)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(Nlm)" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(System)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                        </results>
+                      </test-suite>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToSystemOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(Nlm)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(System)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(True)" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(False)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                        </results>
+                      </test-suite>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToTrueOfTagWholeDocumentPropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="Config_SetValueToTrueOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                        <results>
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToTrueOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(True)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_SetValueToTrueOfTagWholeDocumentPropertyAfterInitialSet_ShouldNotChangeTheInitialValue(False)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_TagWholeDocumentPropertyInNewInstance_ShouldBeFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfBlackListCleanXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfBlackListXmlFilePathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfCodesRemoveNonCodeNodesProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfEnvironmentsDataSourceStringProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfEnvoResponseOutputXmlFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraExtractedTaxaListPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraExtractTaxaPartsOutputPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraExtractTaxaPartsXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraExtractTaxaXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraGenerateTemplatesXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFloraTemplatesOutputXmlPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFormatXslNlmToSystemProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfFormatXslSystemToNlmProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfGnrOutputFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfMainDictionaryDataSourceStringProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfNlmInitialFormatXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfRankListCleanXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfRankListXmlFilePathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfReferencesGetReferencesXmlPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfReferencesGetReferencesXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfReferencesSortReferencesXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfReferencesTagTemplateXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfSystemInitialFormatXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfTempDirectoryPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfTextContentXslFileNameProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfWhiteListCleanXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfWhiteListXmlFilePathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="ProcessingToolsConfig.Tests.ConfigTests.Config_ValidChangesOfZoobankNlmXslPathProperty_SchouldBePersistent" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
