@@ -56,21 +56,38 @@
 
         public void Parse()
         {
-            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\s+", " ");
-            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\s+\-\s*|\s*\-\s+", "-");
+            this.coordinatePartString = this.coordinatePartString
+                .RegexReplace(@"\s+", " ")
+                .RegexReplace(@"\s+\-\s*|\s*\-\s+", "-");
 
             if (Regex.IsMatch(this.coordinatePartString, @"\-.*?[NSWEO]|[NSWEO].*?\-"))
             {
-                this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\-", string.Empty);
+                this.coordinatePartString = this.coordinatePartString.RegexReplace(@"\-", string.Empty);
             }
 
             this.DetermineCoordinatePartTypeAndSign();
 
-            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\s*[NSWEO]\s*", string.Empty);
-            this.coordinatePartString = Regex.Replace(Regex.Replace(this.coordinatePartString, @"(\d+),(\d+)", "$1.$2"), @"[^\d\.\-]+", " ");
-            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"(?<=\d)\s+(?=\.)|(?<=\.)\s+(?=\d)", string.Empty);
-            this.coordinatePartString = Regex.Replace(this.coordinatePartString, @"\A(.*?\d+)\.(\d+\.\d+.*)\Z", "$1 $2");
-            this.decimalCoordinatePartValue = this.decimalCoordinatePartSign * this.ParseCoordinatePart(this.coordinatePartString);
+            this.coordinatePartString = this.coordinatePartString
+                .RegexReplace(@"\s*[NSWEO]\s*", string.Empty)
+                .RegexReplace(@"(\d+),(\d+)", "$1.$2")
+                .RegexReplace(@"[^\d\.\-]+", " ")
+                .RegexReplace(@"(?<=\d)\s+(?=\.)|(?<=\.)\s+(?=\d)", string.Empty)
+                .RegexReplace(@"\A(.*?\d+)\.(\d+\.\d+.*)\Z", "$1 $2");
+
+            double coordinatePartUnsignedValue = 0.0;
+            try
+            {
+                coordinatePartUnsignedValue = this.ParseCoordinatePart();
+            }
+            catch (Exception e)
+            {
+                this.logger?.LogException(e, "CoordinatePart.Parse()");
+                coordinatePartUnsignedValue = 0.0;
+            }
+            finally
+            {
+                this.decimalCoordinatePartValue = this.decimalCoordinatePartSign * coordinatePartUnsignedValue;
+            }
         }
 
         private void DetermineCoordinatePartTypeAndSign()
@@ -95,41 +112,45 @@
 
             //// There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
             //// Here is supposed that O = Ost
-            this.decimalCoordinatePartSign = hasS || hasW ? -1 : 1;
+            this.decimalCoordinatePartSign = (hasS || hasW) ? -1 : 1;
         }
 
-        private double ParseCoordinatePart(string str)
+        private double ParseCoordinatePart()
         {
             double degrees, minutes, seconds;
             string degreesString, minutesString, secondsString;
-            if (Regex.IsMatch(str, @"^.*?(\-?\d+(\.\d+)?).*$"))
+
+            Regex matchDegreesString = new Regex(@"^.*?(\-?\d+(\.\d+)?).*$");
+            if (matchDegreesString.IsMatch(this.coordinatePartString))
             {
-                degreesString = Regex.Replace(str, @"^.*?(\-?\d+(\.\d+)?).*$", "$1");
+                degreesString = matchDegreesString.Replace(this.coordinatePartString, "$1");
             }
             else
             {
                 degreesString = " ";
             }
 
-            if (Regex.IsMatch(str, @"^.*?\d+(\.\d+)?\s(\d+(\.\d+)?).*$"))
+            Regex matchMinutesString = new Regex(@"^.*?\d+(\.\d+)?\s(\d+(\.\d+)?).*$");
+            if (matchMinutesString.IsMatch(this.coordinatePartString))
             {
-                minutesString = Regex.Replace(str, @"^.*?\d+(\.\d+)?\s(\d+(\.\d+)?).*$", "$2");
+                minutesString = matchMinutesString.Replace(this.coordinatePartString, "$2");
             }
             else
             {
                 minutesString = " ";
             }
 
-            if (Regex.IsMatch(str, @"^.*\d+(\.\d+)?\s\d+(\.\d+)?\s(\d+(\.\d+)?).*$"))
+            Regex matchSecondsString = new Regex(@"^.*\d+(\.\d+)?\s\d+(\.\d+)?\s(\d+(\.\d+)?).*$");
+            if (matchSecondsString.IsMatch(this.coordinatePartString))
             {
-                secondsString = Regex.Replace(str, @"^.*\d+(\.\d+)?\s\d+(\.\d+)?\s(\d+(\.\d+)?).*$", "$3");
+                secondsString = matchSecondsString.Replace(this.coordinatePartString, "$3");
             }
             else
             {
                 secondsString = " ";
             }
 
-            this.logger?.Log("DEG: " + Regex.Replace(degreesString, "\\s+", "#") + " MM: " + Regex.Replace(minutesString, "\\s+", "#") + " SS: " + Regex.Replace(secondsString, "\\s+", "#"));
+            //// this.logger?.Log($"DEG: {Regex.Replace(degreesString, "\\s+", "#")} MM: {Regex.Replace(minutesString, "\\s+", "#")} SS: {Regex.Replace(secondsString, "\\s+", "#")}");
 
             try
             {
@@ -139,20 +160,9 @@
 
                 return degrees + ((minutes + (seconds / 60.0)) / 60.0);
             }
-            catch (ArgumentNullException)
+            catch (Exception e)
             {
-                this.logger?.Log("ArgumentNullException in Coordinate parameter = " + str);
-                return 0.0;
-            }
-            catch (FormatException)
-            {
-                this.logger?.Log("FormatException in Coordinate parameter = " + str);
-                return 0.0;
-            }
-            catch (OverflowException)
-            {
-                this.logger?.Log("OverflowException in Coordinate parameter = " + str);
-                return 0.0;
+                throw new ApplicationException($"Exception in Coordinate parameter = {this.coordinatePartString}", e);
             }
         }
     }

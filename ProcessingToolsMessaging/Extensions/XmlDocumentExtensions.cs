@@ -133,5 +133,31 @@
                 node.ReplaceXmlNodeByItsInnerXml();
             }
         }
+
+        /// <summary>
+        /// Safely sets the InnerText value of a XmlNode's attributes. Creates it if it does not exist.
+        /// </summary>
+        /// <param name="node">XmlNode object to be set attribte's InnerText value.</param>
+        /// <param name="attributeName">The name of the attribute which InnerText will be set.</param>
+        /// <param name="attributeInnerText">The value of the InnerText of the attribute.</param>
+        public static void SafeSetAttributeValue(this XmlNode node, string attributeName, string attributeInnerText)
+        {
+            try
+            {
+                if (node.Attributes[attributeName] == null)
+                {
+                    XmlAttribute atribute = node.OwnerDocument.CreateAttribute(attributeName);
+                    node.Attributes.Append(atribute);
+                }
+
+                if (node.Attributes[attributeName].InnerText.Length < 1)
+                {
+                    node.Attributes[attributeName].InnerText = attributeInnerText;
+                }
+            }
+            catch
+            {
+            }
+        }
     }
 }

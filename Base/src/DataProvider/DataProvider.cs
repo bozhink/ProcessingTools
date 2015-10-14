@@ -60,7 +60,7 @@
                                 Regex matchEntry = new Regex(pattern);
                                 foreach (XmlNode node in nodeList)
                                 {
-                                    if (matchEntry.Match(node.InnerText).Success)
+                                    if (matchEntry.IsMatch(node.InnerText))
                                     {
                                         node.InnerXml = matchEntry.Replace(node.InnerXml, replacement);
                                     }
