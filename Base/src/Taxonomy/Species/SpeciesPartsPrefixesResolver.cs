@@ -68,7 +68,8 @@
 
             this.speciesPartsRanks.Add("st", SpeciesParts.Stage);
 
-            this.speciesPartsRanks.Add("r", SpeciesParts.Rank);
+            this.speciesPartsRanks.Add("race", SpeciesParts.Race);
+            this.speciesPartsRanks.Add("r", SpeciesParts.Race);
         }
 
         public string Resolve(string infraSpecificRank)

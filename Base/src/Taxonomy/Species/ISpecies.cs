@@ -34,6 +34,6 @@
 
         string Stage { get; set; }
 
-        string Rank { get; set; }
+        string Race { get; set; }
     }
 }

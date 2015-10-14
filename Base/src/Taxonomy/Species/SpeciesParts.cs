@@ -18,6 +18,6 @@
         Subform,
         Aberration,
         Stage,
-        Rank
+        Race
     }
 }
