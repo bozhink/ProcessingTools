@@ -887,7 +887,7 @@
                     this.fileProcessor.OutputFileName,
                     this.settings.QueryFileName);
 
-                this.settings.Config.EnvoResponseOutputXmlFileName = $"{this.settings.Config.tempDirectoryPath}\\envo-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}";
+                this.settings.Config.EnvoResponseOutputXmlFileName = $"{this.settings.Config.tempDirectoryPath}\\envo-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
 
                 this.settings.Config.GnrOutputFileName = $"{this.settings.Config.tempDirectoryPath}\\gnr-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
 
@@ -1096,7 +1096,7 @@
             try
             {
                 var xpathProvider = new XPathProvider(this.settings.Config);
-                var envo = new Envo(this.settings.Config, this.fileProcessor.Xml);
+                var envo = new Envo(this.settings.Config, this.fileProcessor.Xml, this.logger);
                 envo.Tag(xpathProvider);
                 this.fileProcessor.Xml = envo.Xml;
             }

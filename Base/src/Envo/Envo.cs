@@ -4,21 +4,31 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class Envo : TaggerBase
+    public class Envo : TaggerBase, IBaseTagger
     {
-        public Envo(string xml)
+        private ILogger logger;
+
+        public Envo(string xml, ILogger logger)
             : base(xml)
         {
+            this.logger = logger;
         }
 
-        public Envo(Config config, string xml)
+        public Envo(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public Envo(IBase baseObject)
+        public Envo(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
+        }
+
+        public void Tag()
+        {
+            this.Tag(new XPathProvider(this.Config));
         }
 
         public void Tag(IXPathProvider xpathProvider)
@@ -26,6 +36,7 @@
             XmlDocument envoTermsTagSet = new XmlDocument();
             {
                 XmlDocument envoTermsResponse = Net.UseGreekTagger(this.TextContent);
+
                 envoTermsResponse.SelectNodes("//count").RemoveXmlNodes();
 
                 try
@@ -38,11 +49,7 @@
                             "Cannot write envoTermsResponse XML document to file '{0}'",
                             this.Config.EnvoResponseOutputXmlFileName);
 
-                    Alert.RaiseExceptionForMethod(
-                        e,
-                        this.GetType().Name,
-                        0,
-                        message);
+                    this.logger?.LogException(e, message);
                 }
 
                 string envoTermsResponseString = Regex.Replace(envoTermsResponse.OuterXml, @"\sxmlns=""[^<>""]*""", string.Empty);
