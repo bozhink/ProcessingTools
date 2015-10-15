@@ -70,18 +70,19 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
+    <Compile Include="src\Json\Gbif\Gbif.cs" />
+    <Compile Include="src\Json\Pbdb\Pbdb.cs" />
+    <Compile Include="src\Json\ZooBank\ZooBank.cs" />
+    <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
@@ -105,7 +106,6 @@
     <Compile Include="Interfaces\IBaseParser.cs" />
     <Compile Include="Interfaces\IBaseTagger.cs" />
     <Compile Include="Interfaces\IBaseValidator.cs" />
-    <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Codes\Codes.cs" />
     <Compile Include="src\Codes\SpecimenCode.cs" />
     <Compile Include="src\Coordinates\CoordinatesParser.cs" />
@@ -119,9 +119,6 @@
     <Compile Include="src\Format\Format.cs" />
     <Compile Include="src\Localities\GeoNamesTagger.cs" />
     <Compile Include="Interfaces\IDataProvider.cs" />
-    <Compile Include="src\Json\Gbif\Gbif.cs" />
-    <Compile Include="src\Json\Pbdb\Pbdb.cs" />
-    <Compile Include="src\Json\ZooBank\ZooBank.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesParts.cs" />
