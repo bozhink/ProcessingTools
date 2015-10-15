@@ -135,20 +135,7 @@
                     replace = textToTagPatternRegex.Replace(replace, replacement);
                 }
 
-                try
-                {
-                    XmlDocumentFragment testNode = node.OwnerDocument.CreateDocumentFragment();
-                    testNode.InnerXml = replace;
-                }
-                catch (Exception e)
-                {
-                    replace = node.InnerXml;
-                    Alert.RaiseExceptionForMethod(e, "TagContentInDocument", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
-                }
-                finally
-                {
-                    node.InnerXml = replace;
-                }
+                node.SafeReplaceInnerXml(replace);
             }
         }
 
@@ -205,6 +192,7 @@
                     replace = textToTagPatternRegex.Replace(replace, replacement);
                 }
 
+                // TODO SafeReplaceInnerXml
                 try
                 {
                     XmlDocumentFragment testNode = tagNode.OwnerDocument.CreateDocumentFragment();

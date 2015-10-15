@@ -91,13 +91,9 @@
                         this.xmlDocument.LoadXml(value);
                         this.NeedsUpdate = true;
                     }
-                    catch (XmlException)
+                    catch
                     {
                         throw;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
                     }
                 }
                 else
@@ -127,13 +123,9 @@
                         this.xmlDocument = value;
                         this.NeedsUpdate = true;
                     }
-                    catch (XmlException)
+                    catch
                     {
                         throw;
-                    }
-                    catch (Exception e)
-                    {
-                        Alert.RaiseExceptionForType(e, this.GetType().Name, 51);
                     }
                 }
                 else
