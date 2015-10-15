@@ -7,7 +7,7 @@
     <ProjectGuid>{553469FF-345B-4BCD-AACA-3D447B23D80A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tag</RootNamespace>
+    <RootNamespace>ProcessingTools.MainProgram</RootNamespace>
     <AssemblyName>Tagger</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -77,6 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Program.cs" />
@@ -116,6 +121,15 @@
       <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
       <Name>ProcessingToolsGlobals</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Messages\HelpMessage.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,12 +10,15 @@
 
         private ProgramSettings settings;
 
+        private ILogger logger;
+
         private List<int> arguments = new List<int>();
         private List<int> doubleDashedOptions = new List<int>();
         private List<int> singleDashedOptions = new List<int>();
 
-        public ProgramSettingsBuilder(string[] args)
+        public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
+            this.logger = logger;
             this.args = args;
             this.Settings = new ProgramSettings();
             this.ParseConfigFiles();
@@ -93,8 +96,7 @@
             {
                 if (this.arguments.Count < 1)
                 {
-                    Alert.PrintHelp();
-                    Alert.Exit(0);
+                    this.PrintHelp();
                 }
                 else if (this.arguments.Count == 1)
                 {
@@ -134,8 +136,7 @@
                             {
                                 case 'h':
                                 case '?':
-                                    Alert.PrintHelp();
-                                    Alert.Exit(0);
+                                    this.PrintHelp();
                                     break;
 
                                 case 'i':
@@ -368,6 +369,12 @@
                     }
                 }
             }
+        }
+
+        private void PrintHelp()
+        {
+            this.logger?.Log(Messages.Messages.HelpMessage);
+            Environment.Exit(1);
         }
     }
 }

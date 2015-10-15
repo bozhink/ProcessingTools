@@ -117,53 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="coordinatesMessage" xml:space="preserve">
-    <value>Tagging coordinates</value>
-  </data>
-  <data name="doiMessage" xml:space="preserve">
-    <value>Tagging DOI numbers</value>
-  </data>
-  <data name="EmptyString" xml:space="preserve">
-    <value />
-  </data>
-  <data name="finalFormatMessage" xml:space="preserve">
-    <value>Final format</value>
-  </data>
-  <data name="floatsMessage" xml:space="preserve">
-    <value>Tagging figures and tables</value>
-  </data>
-  <data name="htmlProcessMessage" xml:space="preserve">
-    <value>Formating HTML file</value>
-  </data>
-  <data name="initialFormatMessage" xml:space="preserve">
-    <value>Initial format</value>
-  </data>
-  <data name="nlmProcessMessage" xml:space="preserve">
-    <value>Formating NLM XML file</value>
-  </data>
-  <data name="parseReferencesMessage" xml:space="preserve">
-    <value>Parsing references</value>
-  </data>
-  <data name="taxaExpandMessage" xml:space="preserve">
-    <value>Expanding shortened genera with StableExpand[ and UnstableExpand 1, 2, 3]:</value>
-  </data>
-  <data name="taxonomyMessage" xml:space="preserve">
-    <value>Formatting treatements and tagging taxons</value>
-  </data>
-  <data name="webLinksMessage" xml:space="preserve">
-    <value>Tagging web links</value>
-  </data>
-  <data name="writeOutputFileMessage" xml:space="preserve">
-    <value>Writing data to output file</value>
-  </data>
-  <data name="zoobankCloneMessage" xml:space="preserve">
-    <value>Zoobank cloner</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="helpMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="HelpMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>helpmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="tagInstitutionalCodes" xml:space="preserve">
-    <value>Tag Institutional codes</value>
   </data>
 </root>

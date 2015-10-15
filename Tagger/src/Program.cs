@@ -16,7 +16,7 @@
 
             try
             {
-                var settingsBuilder = new ProgramSettingsBuilder(args);
+                var settingsBuilder = new ProgramSettingsBuilder(logger, args);
                 var settings = settingsBuilder.Settings;
 
                 var singleFileProcessor = new SingleFileProcessor(settings, logger);
