@@ -1,15 +1,9 @@
-﻿namespace BaseObjectTests
+﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools;
-    using ProcessingTools.BaseLibrary;
-    using ProcessingTools.BaseLibrary.Abbreviations;
-    using ProcessingTools.BaseLibrary.Dates;
-    using ProcessingTools.BaseLibrary.Geo;
-    using ProcessingTools.BaseLibrary.Measurements;
+    using Configurator;
 
     [TestClass]
     public class CodesTests

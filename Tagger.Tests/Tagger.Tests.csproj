@@ -7,7 +7,7 @@
     <ProjectGuid>{44DF19EE-8FCB-4298-95BC-381F180C1037}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tagger.Tests</RootNamespace>
+    <RootNamespace>ProcessingTools.MainProgram.Tests</RootNamespace>
     <AssemblyName>Tagger.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,9 +45,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>ProcessingToolsConfig</Name>
+      <Name>ProcessingTools.Configurator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>

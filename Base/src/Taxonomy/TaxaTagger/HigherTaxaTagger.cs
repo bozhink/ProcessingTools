@@ -2,6 +2,8 @@
 {
     using System.Linq;
     using System.Text.RegularExpressions;
+    using Configurator;
+    using Globals;
 
     public class HigherTaxaTagger : TaxaTagger
     {

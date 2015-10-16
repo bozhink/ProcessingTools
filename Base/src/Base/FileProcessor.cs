@@ -4,6 +4,8 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class FileProcessor : Base
     {
@@ -194,7 +196,7 @@
                 XmlElement bodyNode = readXml.CreateElement("body");
                 try
                 {
-                    string[] lines = System.IO.File.ReadAllLines(this.InputFileName, ProcessingTools.Config.DefaultEncoding);
+                    string[] lines = System.IO.File.ReadAllLines(this.InputFileName, Config.DefaultEncoding);
                     for (int i = 0, len = lines.Length; i < len; ++i)
                     {
                         XmlElement paragraph = readXml.CreateElement("p");
@@ -223,7 +225,7 @@
             StreamWriter writer = null;
             try
             {
-                writer = new StreamWriter(this.OutputFileName, false, ProcessingTools.Config.DefaultEncoding);
+                writer = new StreamWriter(this.OutputFileName, false, Config.DefaultEncoding);
                 writer.Write(this.Xml);
             }
             catch

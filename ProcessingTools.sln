@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary", "Base\ProcessingTools.BaseLibrary.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{76BEF8BF-631B-4C9D-B0D4-986718D5C859} = {76BEF8BF-631B-4C9D-B0D4-986718D5C859}
 		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {BDE55FC4-E7D2-416D-A220-164CA99BD63B}
@@ -11,18 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsConfig", "ProcessingToolsConfig\ProcessingToolsConfig.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator", "ProcessingToolsConfig\ProcessingTools.Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{76BEF8BF-631B-4C9D-B0D4-986718D5C859} = {76BEF8BF-631B-4C9D-B0D4-986718D5C859}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsGlobals", "ProcessingToolsMessaging\ProcessingToolsGlobals.csproj", "{76BEF8BF-631B-4C9D-B0D4-986718D5C859}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Globals", "ProcessingToolsMessaging\ProcessingTools.Globals.csproj", "{76BEF8BF-631B-4C9D-B0D4-986718D5C859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseObjectTests", "BaseObjectTests\BaseObjectTests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{355A3D86-C710-40F2-8FCB-48F7CD7A429F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{59049DD7-4F4F-4543-BC86-7BC84B81E3D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary.Tests", "BaseObjectTests\ProcessingTools.BaseLibrary.Tests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TaxonomyDatabase", "TaxonomyDatabase\TaxonomyDatabase.sqlproj", "{D91FD8E7-18C6-457A-9649-062E82C57CA7}"
 EndProject
@@ -30,7 +26,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EnvironmentsDatabase", "Env
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingToolsConfig.Tests", "ProcessingToolsConfig.Tests\ProcessingToolsConfig.Tests.csproj", "{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator.Tests", "ProcessingToolsConfig.Tests\ProcessingTools.Configurator.Tests.csproj", "{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,19 +92,6 @@ Global
 		{7A938698-047F-42BB-88CC-0814093C8E16}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7A938698-047F-42BB-88CC-0814093C8E16}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7A938698-047F-42BB-88CC-0814093C8E16}.Release|x64.ActiveCfg = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Debug|x64.Build.0 = Debug|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|x64.ActiveCfg = Release|Any CPU
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F}.Release|x64.Build.0 = Release|Any CPU
 		{D91FD8E7-18C6-457A-9649-062E82C57CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D91FD8E7-18C6-457A-9649-062E82C57CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D91FD8E7-18C6-457A-9649-062E82C57CA7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -172,10 +155,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7A938698-047F-42BB-88CC-0814093C8E16} = {59049DD7-4F4F-4543-BC86-7BC84B81E3D5}
-		{355A3D86-C710-40F2-8FCB-48F7CD7A429F} = {59049DD7-4F4F-4543-BC86-7BC84B81E3D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

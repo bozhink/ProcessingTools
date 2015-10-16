@@ -1,11 +1,11 @@
-﻿namespace BaseObjectTests
+﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using System;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools;
-    using ProcessingTools.BaseLibrary;
-    using ProcessingTools.BaseLibrary.Measurements;
+    using Configurator;
+    using Globals;
+    using Measurements;
 
     [TestClass]
     public class QuantitiesTaggerTests

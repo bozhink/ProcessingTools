@@ -3,6 +3,8 @@
     using System.Data.SqlClient;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class Environments : TaggerBase, IBaseTagger
     {

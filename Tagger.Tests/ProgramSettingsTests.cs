@@ -1,8 +1,7 @@
-﻿namespace Tagger.Tests
+﻿namespace ProcessingTools.MainProgram.Tests
 {
+    using Configurator;
     using NUnit.Framework;
-    using ProcessingTools;
-    using ProcessingTools.MainProgram;
 
     [TestFixture]
     public class ProgramSettingsTests

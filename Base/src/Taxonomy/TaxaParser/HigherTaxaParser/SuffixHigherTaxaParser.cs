@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using Configurator;
+    using Globals;
 
     public class SuffixHigherTaxaParser : HigherTaxaParser
     {

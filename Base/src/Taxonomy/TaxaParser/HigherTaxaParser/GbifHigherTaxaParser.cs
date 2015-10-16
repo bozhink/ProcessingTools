@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System.Collections.Generic;
+    using Configurator;
+    using Globals;
     using Json.Gbif;
 
     public class GbifHigherTaxaParser : HigherTaxaParser
@@ -49,7 +51,7 @@
                             if (rank != null && rank != string.Empty)
                             {
                                 rank = rank.ToLower();
-                                this.logger?.Log(scientificName + "--> " + rank);
+                                this.logger?.Log($"{scientificName} --> {rank}");
 
                                 string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 

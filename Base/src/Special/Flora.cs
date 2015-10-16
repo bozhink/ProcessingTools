@@ -3,6 +3,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class Flora : TaggerBase
     {

@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
+    using Configurator;
+    using Globals;
 
     public class XPathProvider : IXPathProvider
     {

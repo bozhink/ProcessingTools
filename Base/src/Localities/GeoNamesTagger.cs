@@ -1,5 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Geo
 {
+    using Configurator;
+    using Globals;
+
     public class GeoNamesTagger : TaggerBase
     {
         private const string TagName = "geoname";

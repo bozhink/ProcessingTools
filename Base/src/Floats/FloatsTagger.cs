@@ -6,6 +6,8 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class FloatsTagger : Base, IBaseTagger
     {

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools
+﻿namespace ProcessingTools.Globals
 {
     public interface IXPathProvider
     {

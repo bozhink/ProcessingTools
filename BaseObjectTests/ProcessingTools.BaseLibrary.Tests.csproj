@@ -6,8 +6,8 @@
     <ProjectGuid>{7A938698-047F-42BB-88CC-0814093C8E16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BaseObjectTests</RootNamespace>
-    <AssemblyName>BaseObjectTests</AssemblyName>
+    <RootNamespace>ProcessingTools.BaseLibrary.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.BaseLibrary.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodesTests.cs" />
+    <Compile Include="Coordinates\CoordinatesTests.cs" />
     <Compile Include="ExtensionsTests.cs" />
     <Compile Include="QuantitiesTaggerTests.cs" />
     <Compile Include="TaxonomyParserTests.cs" />
@@ -64,18 +69,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base\Base.csproj">
+    <ProjectReference Include="..\Base\ProcessingTools.BaseLibrary.csproj">
       <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
-      <Name>Base</Name>
+      <Name>ProcessingTools.BaseLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>ProcessingToolsConfig</Name>
+      <Name>ProcessingTools.Configurator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsGlobals.csproj">
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
       <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingToolsGlobals</Name>
+      <Name>ProcessingTools.Globals</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Coordinates\get-coordinates.ps1" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Coordinates\get-coordinates-out.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

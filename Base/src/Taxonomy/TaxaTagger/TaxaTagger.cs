@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public abstract class TaxaTagger : TaggerBase, IBaseTagger
     {

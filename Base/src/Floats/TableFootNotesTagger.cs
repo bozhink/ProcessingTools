@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Floats
 {
     using System.Collections;
-    using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class TableFootNotesTagger : Base, IBaseTagger
     {

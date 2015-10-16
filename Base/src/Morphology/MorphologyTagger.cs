@@ -1,5 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Morphology
 {
+    using Configurator;
+    using Globals;
+
     public class MorphologyTagger : TaggerBase
     {
         private const string TagName = "morphology-part";

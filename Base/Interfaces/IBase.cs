@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Xml;
+    using Configurator;
 
     public interface IBase
     {

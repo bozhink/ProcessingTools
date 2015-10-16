@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDE55FC4-E7D2-416D-A220-164CA99BD63B}</ProjectGuid>
+    <ProjectGuid>{76BEF8BF-631B-4C9D-B0D4-986718D5C859}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingToolsConfig</RootNamespace>
-    <AssemblyName>ProcessingToolsConfig</AssemblyName>
+    <RootNamespace>ProcessingTools.Globals</RootNamespace>
+    <AssemblyName>ProcessingTools.Globals</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,20 +32,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SchemaType.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="ConfigBuilder.cs" />
+    <Compile Include="Extensions\ILoggerExtensions.cs" />
+    <Compile Include="Extensions\TextExtensions.cs" />
+    <Compile Include="Extensions\XslTransformExtensions.cs" />
+    <Compile Include="Extensions\XmlDocumentExtensions.cs" />
+    <Compile Include="Interfaces\ICloner.cs" />
+    <Compile Include="Interfaces\IFormatter.cs" />
+    <Compile Include="Interfaces\IGenerator.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
+    <Compile Include="Interfaces\IStringDataList.cs" />
+    <Compile Include="Interfaces\ITagger.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
+    <Compile Include="Interfaces\IXPathProvider.cs" />
+    <Compile Include="Loggers\Alert.cs" />
+    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="System\Diagnostics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,8 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class Envo : TaggerBase, IBaseTagger
     {

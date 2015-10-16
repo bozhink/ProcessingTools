@@ -1,11 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
+    using Globals;
+
     public static class Taxonomy
     {
-        /*
-         * Messages
-         */
-
         public static bool EmptyGenus(string source, Species sp, ILogger logger)
         {
             if (string.Compare(sp.GenusName, string.Empty) == 0)

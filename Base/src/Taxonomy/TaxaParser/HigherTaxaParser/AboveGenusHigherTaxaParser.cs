@@ -1,9 +1,13 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System.Collections.Generic;
+    using Configurator;
+    using Globals;
 
     public class AboveGenusHigherTaxaParser : HigherTaxaParser
     {
+        private const string Rank = "above-genus";
+
         private ILogger logger;
 
         public AboveGenusHigherTaxaParser(string xml, ILogger logger)
@@ -29,13 +33,12 @@
         /// </summary>
         public override void Parse()
         {
-            string rank = "above-genus";
-            string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
+            string scientificNameReplacement = Rank.GetRemplacementStringForTaxonNamePartRank();
 
             IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)
             {
-                this.logger?.Log("\n" + scientificName + " --> " + rank);
+                this.logger?.Log($"\n{scientificName} --> {Rank}");
 
                 this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
             }

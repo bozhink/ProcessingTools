@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools
+﻿namespace ProcessingTools.Configurator
 {
     using System.IO;
     using System.Runtime.Serialization.Json;

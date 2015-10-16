@@ -1,8 +1,7 @@
-﻿namespace BaseObjectTests
+﻿namespace ProcessingTools.BaseLibrary.Tests
 {
+    using Configurator;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools;
-    using ProcessingTools.BaseLibrary;
 
     [TestClass]
     public class SimpleTests

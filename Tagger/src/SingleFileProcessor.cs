@@ -17,6 +17,7 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
+    using Globals;
     
     public class SingleFileProcessor
     {

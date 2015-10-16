@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using Configurator;
+    using Globals;
 
     public class ProgramSettingsBuilder
     {

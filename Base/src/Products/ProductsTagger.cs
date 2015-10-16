@@ -1,5 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Products
 {
+    using Configurator;
+    using Globals;
+
     public class ProductsTagger : TaggerBase
     {
         private const string TagName = "product";

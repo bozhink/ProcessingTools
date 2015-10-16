@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
     using Taxonomy;
 
     public static class TaxonomyExtensions

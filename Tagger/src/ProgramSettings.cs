@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram
 {
+    using Configurator;
+
     public class ProgramSettings
     {
         public ProgramSettings()

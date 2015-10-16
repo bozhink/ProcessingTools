@@ -6,6 +6,7 @@
     using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Xml;
+    using Globals;
     using Json.ZooBank;
 
     public class ZoobankJsonCloner : ZoobankCloner

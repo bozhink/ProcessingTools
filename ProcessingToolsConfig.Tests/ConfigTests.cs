@@ -1,7 +1,6 @@
-﻿namespace ProcessingToolsConfig.Tests
+﻿namespace ProcessingTools.Configurator.Tests
 {
     using NUnit.Framework;
-    using ProcessingTools;
 
     [TestFixture]
     public class ConfigTests

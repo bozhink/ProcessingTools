@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.HyperLinks
 {
     using System.Text.RegularExpressions;
+    using Configurator;
+    using Globals;
 
     public class DoiLinksTagger : Base, IBaseTagger
     {

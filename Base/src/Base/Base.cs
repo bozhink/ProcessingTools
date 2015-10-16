@@ -2,6 +2,7 @@
 {
     using System;
     using System.Xml;
+    using Configurator;
 
     /// <summary>
     /// Base object for all other xml-document-processing objects.

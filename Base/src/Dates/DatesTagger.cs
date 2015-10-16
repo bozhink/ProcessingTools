@@ -16,6 +16,8 @@ namespace ProcessingTools.BaseLibrary.Dates
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using Configurator;
+    using Globals;
 
     public class DatesTagger : TaggerBase, IBaseTagger
     {

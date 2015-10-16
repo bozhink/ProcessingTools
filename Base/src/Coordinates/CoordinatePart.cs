@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using Globals;
 
     public class CoordinatePart
     {

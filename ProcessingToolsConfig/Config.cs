@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools
+﻿namespace ProcessingTools.Configurator
 {
     using System.Runtime.Serialization;
     using System.Text;

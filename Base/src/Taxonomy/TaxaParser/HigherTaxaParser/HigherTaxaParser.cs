@@ -2,6 +2,7 @@
 {
     using System.Text.RegularExpressions;
     using System.Threading;
+    using Configurator;
 
     public abstract class HigherTaxaParser : Base, IBaseParser
     {

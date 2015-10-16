@@ -45,18 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coordinates\CoordinatesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coordinates\get-coordinates.ps1" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Coordinates\get-coordinates-out.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsGlobals.csproj">

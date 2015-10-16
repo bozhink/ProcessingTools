@@ -10,6 +10,8 @@ namespace ProcessingTools.BaseLibrary
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class Codes : TaggerBase
     {

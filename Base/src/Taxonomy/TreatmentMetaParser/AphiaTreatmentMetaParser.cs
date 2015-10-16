@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public class AphiaTreatmentMetaParser : TreatmentMetaParser
     {

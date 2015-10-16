@@ -2,6 +2,7 @@
 {
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Configurator;
 
     public static class QueryReplace
     {

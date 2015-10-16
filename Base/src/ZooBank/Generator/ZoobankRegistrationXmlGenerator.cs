@@ -1,5 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
+    using Configurator;
+    using Globals;
+
     public class ZoobankRegistrationXmlGenerator : Base, IBaseGenerator
     {
         public ZoobankRegistrationXmlGenerator(string xml)

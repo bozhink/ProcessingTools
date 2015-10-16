@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
+    using Configurator;
+    using Globals;
 
     public class LocalDataBaseHigherTaxaParser : HigherTaxaParser
     {
@@ -42,7 +44,7 @@
                 int ranksCount = (ranks == null) ? 0 : ranks.Count();
                 if (ranksCount == 0)
                 {
-                    this.logger?.Log("\n" + scientificName + " --> No match.");
+                    this.logger?.Log($"\n{scientificName} --> No match.");
                 }
                 else if (ranksCount > 1)
                 {
@@ -52,13 +54,13 @@
 
                     foreach (string rank in ranks)
                     {
-                        this.logger?.Log("\n\t" + rank);
+                        this.logger?.Log($"\n\t{rank}");
                     }
                 }
                 else
                 {
                     string rank = ranks.ElementAt(0);
-                    this.logger?.Log("\n" + scientificName + " --> " + rank);
+                    this.logger?.Log($"\n{scientificName} --> {rank}");
 
                     string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 

@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using Configurator;
+    using Globals;
 
     public abstract class TaggerBase : Base
     {

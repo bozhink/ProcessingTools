@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading;
     using System.Xml;
+    using Configurator;
+    using Globals;
 
     public abstract class TreatmentMetaParser : TaggerBase, IBaseParser
     {

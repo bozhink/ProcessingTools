@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{76BEF8BF-631B-4C9D-B0D4-986718D5C859}</ProjectGuid>
+    <ProjectGuid>{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools</RootNamespace>
-    <AssemblyName>ProcessingToolsGlobals</AssemblyName>
+    <RootNamespace>ProcessingTools.Configurator.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Configurator.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,28 +31,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\ILoggerExtensions.cs" />
-    <Compile Include="Extensions\TextExtensions.cs" />
-    <Compile Include="Extensions\XslTransformExtensions.cs" />
-    <Compile Include="Extensions\XmlDocumentExtensions.cs" />
-    <Compile Include="Interfaces\ICloner.cs" />
-    <Compile Include="Interfaces\IFormatter.cs" />
-    <Compile Include="Interfaces\IGenerator.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IParser.cs" />
-    <Compile Include="Interfaces\IStringDataList.cs" />
-    <Compile Include="Interfaces\ITagger.cs" />
-    <Compile Include="Interfaces\IValidator.cs" />
-    <Compile Include="Interfaces\IXPathProvider.cs" />
-    <Compile Include="Loggers\Alert.cs" />
-    <Compile Include="Loggers\ConsoleLogger.cs" />
-    <Compile Include="System\Diagnostics.cs" />
+    <Compile Include="ConfigTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>ProcessingTools.Configurator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

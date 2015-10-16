@@ -105,17 +105,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base\Base.csproj">
+    <ProjectReference Include="..\Base\ProcessingTools.BaseLibrary.csproj">
       <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
-      <Name>Base</Name>
+      <Name>ProcessingTools.BaseLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingToolsConfig.csproj">
+    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>ProcessingToolsConfig</Name>
+      <Name>ProcessingTools.Configurator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingToolsGlobals.csproj">
+    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
       <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingToolsGlobals</Name>
+      <Name>ProcessingTools.Globals</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

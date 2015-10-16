@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using Globals;
 
     public partial class MainProcessingTool
     {

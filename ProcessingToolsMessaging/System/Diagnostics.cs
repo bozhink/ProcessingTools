@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools
+﻿namespace ProcessingTools.Globals
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
