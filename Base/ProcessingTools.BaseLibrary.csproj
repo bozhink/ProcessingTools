@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
+    <Compile Include="src\Format\Format.NlmSystem.cs" />
     <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="src\Envo\Envo.cs" />
     <Compile Include="src\Floats\FloatsTagger.cs" />
     <Compile Include="src\Special\Flora.cs" />
-    <Compile Include="src\Format\Format.cs" />
+    <Compile Include="src\Format\Format.Nlm.cs" />
     <Compile Include="src\Localities\GeoNamesTagger.cs" />
     <Compile Include="Interfaces\IDataProvider.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />

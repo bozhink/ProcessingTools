@@ -9,10 +9,9 @@
 
 namespace ProcessingTools.BaseLibrary
 {
+    using System.Text.RegularExpressions;
     using Configurator;
     using Globals;
-
-    using System.Text.RegularExpressions;
 
     public class SpecimenCountTagger : TaggerBase
     {

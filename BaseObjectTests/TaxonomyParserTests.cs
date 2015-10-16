@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Taxonomy;
     using Configurator;
     using Globals;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Taxonomy;
 
     [TestClass]
     public class TaxonomyParserTests

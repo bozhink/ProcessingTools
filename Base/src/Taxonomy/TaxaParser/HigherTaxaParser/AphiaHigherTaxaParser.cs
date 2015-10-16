@@ -65,7 +65,6 @@
                             this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
                         }
                     }
-
                 }
             }
             catch

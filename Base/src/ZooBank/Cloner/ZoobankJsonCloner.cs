@@ -64,14 +64,14 @@
         private string GetNomenclatureTaxonXPath(NomenclaturalAct nomenclaturalAct)
         {
             string xpath = "//tp:taxon-treatment/tp:nomenclature/tn";
-            switch (nomenclaturalAct.rankgroup)
+            switch (nomenclaturalAct.RankGroup)
             {
                 case "Genus":
-                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.namestring + "'][string(../tp:taxon-status)='gen. n.']/object-id[@content-type='zoobank']";
+                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.NameString + "'][string(../tp:taxon-status)='gen. n.']/object-id[@content-type='zoobank']";
                     break;
 
                 case "Species":
-                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.parentname + "'][tn-part[@type='species']='" + nomenclaturalAct.namestring + "'][string(../tp:taxon-status)='sp. n.']/object-id[@content-type='zoobank']";
+                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.Parentname + "'][tn-part[@type='species']='" + nomenclaturalAct.NameString + "'][string(../tp:taxon-status)='sp. n.']/object-id[@content-type='zoobank']";
                     break;
             }
 
@@ -102,7 +102,7 @@
 
         private void ProcessArticleLsid(ZooBankRegistration zoobankRegistration)
         {
-            string articleLsid = ZooBankPrefix + zoobankRegistration.referenceuuid;
+            string articleLsid = ZooBankPrefix + zoobankRegistration.ReferenceUuid;
             XmlNode selfUri = this.XmlDocument.SelectSingleNode(ArticleZooBankSelfUriXPath, this.NamespaceManager);
             if (selfUri == null)
             {
@@ -121,17 +121,17 @@
             {
                 this.ResolveEmptyParentNames(zoobankRegistration, nomenclaturalAct);
 
-                this.logger?.Log("\n\n" + nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
+                this.logger?.Log("\n\n" + nomenclaturalAct.Parentname + (nomenclaturalAct.Parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.NameString + " " + nomenclaturalAct.TnuUuid);
 
                 string xpath = this.GetNomenclatureTaxonXPath(nomenclaturalAct);
 
                 XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
                 if (objectId != null)
                 {
-                    objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.tnuuuid;
+                    objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.TnuUuid;
                     numberOfNewNomenclaturalActs++;
 
-                    this.logger?.Log(nomenclaturalAct.parentname + (nomenclaturalAct.parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.namestring + " " + nomenclaturalAct.tnuuuid);
+                    this.logger?.Log(nomenclaturalAct.Parentname + (nomenclaturalAct.Parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.NameString + " " + nomenclaturalAct.TnuUuid);
                 }
             }
 
@@ -140,13 +140,13 @@
 
         private void ResolveEmptyParentNames(ZooBankRegistration zoobankRegistration, NomenclaturalAct nomenclaturalAct)
         {
-            if (nomenclaturalAct.parentname == string.Empty && nomenclaturalAct.parentusageuuid != string.Empty)
+            if (nomenclaturalAct.Parentname == string.Empty && nomenclaturalAct.ParentUsageUuid != string.Empty)
             {
                 foreach (NomenclaturalAct n in zoobankRegistration.NomenclaturalActs)
                 {
-                    if (string.Compare(nomenclaturalAct.parentusageuuid, n.tnuuuid) == 0)
+                    if (string.Compare(nomenclaturalAct.ParentUsageUuid, n.TnuUuid) == 0)
                     {
-                        nomenclaturalAct.parentname = n.namestring;
+                        nomenclaturalAct.Parentname = n.NameString;
                         break;
                     }
                 }

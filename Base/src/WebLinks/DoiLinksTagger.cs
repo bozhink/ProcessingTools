@@ -16,6 +16,17 @@
         {
         }
 
+        public void Tag()
+        {
+            this.TagDoi();
+            this.TagPmcLinks();
+        }
+
+        public void Tag(IXPathProvider xpathProvider)
+        {
+            this.Tag();
+        }
+
         private void TagDoi()
         {
             string xml = this.Xml;
@@ -46,17 +57,6 @@
             xml = Regex.Replace(xml, @"(?i)(?<=\bpmcid\W?)(\d+)", "<ext-link ext-link-type=\"pmcid\" xlink:href=\"PMC$1\">$1</ext-link>");
 
             this.Xml = xml;
-        }
-
-        public void Tag()
-        {
-            this.TagDoi();
-            this.TagPmcLinks();
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
         }
     }
 }

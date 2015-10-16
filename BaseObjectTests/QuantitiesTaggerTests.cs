@@ -2,10 +2,10 @@
 {
     using System;
     using System.Xml;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Configurator;
     using Globals;
     using Measurements;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class QuantitiesTaggerTests

@@ -38,7 +38,6 @@
                 {
                     this.Delay();
 
-
                     XmlDocument colResponse = Net.SearchCatalogueOfLife(scientificName);
 
                     this.logger?.Log($"\n{colResponse.OuterXml}\n");

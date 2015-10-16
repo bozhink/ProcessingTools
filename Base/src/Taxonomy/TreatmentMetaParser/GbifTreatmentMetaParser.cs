@@ -40,15 +40,15 @@
                     this.logger?.Log("\n{0}\n", genus);
 
                     GbifResult gbifResult = Net.SearchGbif(genus);
-                    if ((gbifResult != null) && (gbifResult.canonicalName != null || gbifResult.scientificName != null))
+                    if ((gbifResult != null) && (gbifResult.CanonicalName != null || gbifResult.ScientificName != null))
                     {
                         this.logger?.Log(
                             "{0} .... {1} .... {2}",
                             genus,
-                            gbifResult.scientificName,
-                            gbifResult.canonicalName);
+                            gbifResult.ScientificName,
+                            gbifResult.CanonicalName);
 
-                        if (!gbifResult.canonicalName.Equals(genus) && !gbifResult.scientificName.Contains(genus))
+                        if (!gbifResult.CanonicalName.Equals(genus) && !gbifResult.ScientificName.Contains(genus))
                         {
                             this.logger?.Log("No match.");
                         }
@@ -56,28 +56,28 @@
                         {
                             this.logger?.Log(
                                 "Kingdom: {0}\nOrder: {1}\nFamily: {2}\n",
-                                gbifResult.kingdom,
-                                gbifResult.order,
-                                gbifResult.family);
+                                gbifResult.Kingdom,
+                                gbifResult.Order,
+                                gbifResult.Family);
 
                             List<string> responseKingdom = new List<string>();
-                            responseKingdom.Add(gbifResult.kingdom);
+                            responseKingdom.Add(gbifResult.Kingdom);
 
                             List<string> responseOrder = new List<string>();
-                            responseOrder.Add(gbifResult.order);
+                            responseOrder.Add(gbifResult.Order);
 
                             List<string> responseFamily = new List<string>();
-                            responseFamily.Add(gbifResult.family);
+                            responseFamily.Add(gbifResult.Family);
 
-                            if (gbifResult.alternatives != null)
+                            if (gbifResult.Alternatives != null)
                             {
-                                foreach (var alternative in gbifResult.alternatives)
+                                foreach (var alternative in gbifResult.Alternatives)
                                 {
-                                    if (alternative.canonicalName.Equals(genus) || alternative.scientificName.Contains(genus))
+                                    if (alternative.CanonicalName.Equals(genus) || alternative.ScientificName.Contains(genus))
                                     {
-                                        responseKingdom.Add(alternative.kingdom);
-                                        responseOrder.Add(alternative.order);
-                                        responseFamily.Add(alternative.family);
+                                        responseKingdom.Add(alternative.Kingdom);
+                                        responseOrder.Add(alternative.Order);
+                                        responseFamily.Add(alternative.Family);
                                     }
                                 }
                             }

@@ -287,32 +287,6 @@
             }
         }
 
-        private static string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
-        {
-            StringBuilder searchStringBuilder = new StringBuilder();
-            searchStringBuilder.Append("names=");
-
-            if (scientificNames != null && scientificNames.Length > 0)
-            {
-                Regex whiteSpaces = new Regex(@"\s+");
-                searchStringBuilder.Append(string.Join("|", scientificNames.Select(s => whiteSpaces.Replace(s.Trim(), "+"))));
-            }
-            else
-            {
-                throw new ArgumentNullException("scientificNames should be a non-empty array of strings.");
-            }
-
-            if (sourceId != null)
-            {
-                searchStringBuilder.Append("&data_source_ids=");
-                searchStringBuilder.Append(string.Join("|", sourceId));
-            }
-
-            string searchString = searchStringBuilder.ToString();
-
-            return searchString;
-        }
-
         /*
          * https://extract.hcmr.gr/
          * http://tagger.jensenlab.org/GetHTML?document=Both+samples+were+dominated+by+Zetaproteobacteria+Fe+oxidizers.+This+group+was+most+abundant+at+Volcano+1,+where+sediments+were+richer+in+Fe+and+contained+more+crystalline+forms+of+Fe+oxides.&entity_types=-2+-25+-26+-27
@@ -388,6 +362,32 @@
             {
                 throw;
             }
+        }
+
+        private static string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
+        {
+            StringBuilder searchStringBuilder = new StringBuilder();
+            searchStringBuilder.Append("names=");
+
+            if (scientificNames != null && scientificNames.Length > 0)
+            {
+                Regex whiteSpaces = new Regex(@"\s+");
+                searchStringBuilder.Append(string.Join("|", scientificNames.Select(s => whiteSpaces.Replace(s.Trim(), "+"))));
+            }
+            else
+            {
+                throw new ArgumentNullException("scientificNames should be a non-empty array of strings.");
+            }
+
+            if (sourceId != null)
+            {
+                searchStringBuilder.Append("&data_source_ids=");
+                searchStringBuilder.Append(string.Join("|", sourceId));
+            }
+
+            string searchString = searchStringBuilder.ToString();
+
+            return searchString;
         }
     }
 }

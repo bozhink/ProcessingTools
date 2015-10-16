@@ -36,21 +36,20 @@
                 {
                     this.Delay();
 
-
                     GbifResult gbifResult = Net.SearchGbif(scientificName);
                     if (gbifResult != null)
                     {
-                        this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
+                        this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.ScientificName, gbifResult.CanonicalName);
 
-                        if (gbifResult.canonicalName != null || gbifResult.scientificName != null)
+                        if (gbifResult.CanonicalName != null || gbifResult.ScientificName != null)
                         {
-                            if (!gbifResult.canonicalName.Equals(scientificName) && !gbifResult.scientificName.Contains(scientificName))
+                            if (!gbifResult.CanonicalName.Equals(scientificName) && !gbifResult.ScientificName.Contains(scientificName))
                             {
                                 this.logger?.Log("No match.");
                             }
                             else
                             {
-                                string rank = gbifResult.rank;
+                                string rank = gbifResult.Rank;
                                 if (rank != null && rank != string.Empty)
                                 {
                                     rank = rank.ToLower();
