@@ -59,7 +59,7 @@
         {
             XmlNamespaceManager xmlNamespaceManager = Config.TaxPubNamespceManager(xmlDocument);
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]", xmlNamespaceManager);
-            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct());
+            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerXml));
         }
 
         public static string GenerateTagTemplate(this string xml, Config config)

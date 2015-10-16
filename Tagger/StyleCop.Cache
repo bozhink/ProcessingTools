@@ -121,6 +121,9 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="971391838">
+    <configuration>TRACE</configuration>
+  </project>
   <sourcecode name="Messages.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-10-12 12:27:45.918</styleCop>
@@ -217,7 +220,7 @@
     <timestamps>
       <styleCop>2015-10-12 12:27:45.918</styleCop>
       <settingsFile>2015-10-14 12:17:24.948</settingsFile>
-      <sourceFile>2015-10-16 12:44:03.167</sourceFile>
+      <sourceFile>2015-10-16 15:23:07.858</sourceFile>
       <parser>2015-10-12 12:27:45.918</parser>
       <StyleCop.CSharp.DocumentationRules>2015-10-12 12:27:45.918</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1663061330</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -259,7 +262,4 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="971391838">
-    <configuration>TRACE</configuration>
-  </project>
 </stylecopresultscache>

@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Services\AphiaNameService.cs" />
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
     <Compile Include="src\Format\Format.NlmSystem.cs" />
@@ -237,7 +236,6 @@
     <None Include="Data\raw\mime.json" />
     <None Include="Data\raw\select_multi-rank-taxa.xqm" />
     <None Include="Data\raw\taxonomic_ranks.xqm" />
-    <None Include="src\Services\aphia.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
-    using System.Xml;
+    using System.Linq;
     using Configurator;
     using Globals;
+    using Globals.Services;
 
     public class AphiaTreatmentMetaParser : TreatmentMetaParser
     {
@@ -32,6 +32,8 @@
         {
             try
             {
+                var aphiaService = new AphiaNameService();
+
                 IEnumerable<string> genusList = this.XmlDocument.GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
 
                 foreach (string genus in genusList)
@@ -40,16 +42,29 @@
 
                     this.logger?.Log("\n{0}\n", genus);
 
-                    XmlDocument response = Net.SearchAphia(genus);
+                    var aphiaRecords = aphiaService.getAphiaRecords(genus, false, true, false, 0);
 
-                    IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/kingdom", this.NamespaceManager);
-                    this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+                    foreach (var record in aphiaRecords)
+                    {
+                        this.logger?.Log(record?.scientificname);
+                    }
 
-                    IEnumerable<string> responseOrder = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/order", this.NamespaceManager);
-                    this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
+                    if (aphiaRecords != null)
+                    {
+                        var matchedRecords = new HashSet<AphiaRecord>(aphiaRecords.Where(x => string.Compare(x.scientificname, genus, true) == 0));
 
-                    IEnumerable<string> responseFamily = response.GetStringListOfUniqueXmlNodes("//return/item[string(genus)='" + genus + "']/family", this.NamespaceManager);
-                    this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
+                        if (matchedRecords != null)
+                        {
+                            IEnumerable<string> responseKingdom = matchedRecords.Select(x => x.kingdom);
+                            this.ReplaceTreatmentMetaClassificationItem(responseKingdom, genus, "kingdom");
+
+                            IEnumerable<string> responseOrder = matchedRecords.Select(x => x.order);
+                            this.ReplaceTreatmentMetaClassificationItem(responseOrder, genus, "order");
+
+                            IEnumerable<string> responseFamily = matchedRecords.Select(x => x.family);
+                            this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
+                        }
+                    }
                 }
             }
             catch

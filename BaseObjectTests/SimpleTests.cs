@@ -41,13 +41,13 @@
         [Ignore]
         public void TestAphiaService()
         {
-            var server = new Services.AphiaNameService();
+            var server = new Globals.Services.AphiaNameService();
             var records = server.getAphiaRecords("Anodontiglanis", true, true, false, 0);
 
             System.Console.WriteLine(records?.Length);
             if (records != null)
             {
-                foreach (Services.AphiaRecord record in records)
+                foreach (Globals.Services.AphiaRecord record in records)
                 {
                     System.Console.WriteLine(record?.rank);
                     System.Console.WriteLine(record?.scientificname);
