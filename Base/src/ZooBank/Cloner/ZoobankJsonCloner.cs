@@ -2,11 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
     using System.Xml;
     using Globals;
+    using Globals.Json;
     using Json.ZooBank;
 
     public class ZoobankJsonCloner : ZoobankCloner
@@ -82,9 +80,7 @@
 
         private ZooBankRegistration GetZoobankRegistrationObject()
         {
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(this.JsonString));
-            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<ZooBankRegistration>));
-            List<ZooBankRegistration> zoobankRegistrationList = (List<ZooBankRegistration>)jsonSerializer.ReadObject(stream);
+            List<ZooBankRegistration> zoobankRegistrationList = JsonSerializer.Serialize<List<ZooBankRegistration>>(this.JsonString);
             ZooBankRegistration zoobankRegistration = null;
 
             if (zoobankRegistrationList.Count < 1)

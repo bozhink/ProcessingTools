@@ -7,16 +7,17 @@
     using System.Linq;
     using System.Net;
     using System.Net.Http;
-    using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Globals;
+    using Globals.Json;
+    using Json.Gbif;
+    using Json.Pbdb;
 
     public static class Net
     {
-        public static string XmlHttpRequest(string urlString, string xmlContent)
+        public static string XmlHttpRequest(string url, string xmlContent)
         {
             string response = null;
 
@@ -27,7 +28,7 @@
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(xmlContent);
 
-                httpWebRequest = (HttpWebRequest)WebRequest.Create(urlString);
+                httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentLength = bytes.Length;
                 httpWebRequest.ContentType = "text/xml; encoding='utf-8'";
@@ -47,9 +48,9 @@
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
+                throw;
             }
             finally
             {
@@ -61,47 +62,11 @@
             return response;
         }
 
-        public static XmlDocument XmlHttpRequest(string urlString, XmlDocument xml)
+        public static XmlDocument XmlHttpRequest(string url, XmlDocument xml)
         {
             XmlDocument response = new XmlDocument();
 
-            HttpWebRequest httpWebRequest = null;
-            HttpWebResponse httpWebResponse = null;
-
-            try
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(xml.OuterXml);
-
-                httpWebRequest = (HttpWebRequest)WebRequest.Create(urlString);
-                httpWebRequest.Method = "POST";
-                httpWebRequest.ContentLength = bytes.Length;
-                httpWebRequest.ContentType = "text/xml; encoding='utf-8'";
-
-                using (Stream requestStream = httpWebRequest.GetRequestStream())
-                {
-                    requestStream.Write(bytes, 0, bytes.Length);
-                }
-
-                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                if (httpWebResponse.StatusCode == HttpStatusCode.OK)
-                {
-                    Stream responseStream = httpWebResponse.GetResponseStream();
-                    using (StreamReader reader = new StreamReader(responseStream))
-                    {
-                        response.InnerXml = reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                httpWebResponse.Close();
-                httpWebResponse = null;
-                httpWebRequest = null;
-            }
+            response.LoadXml(XmlHttpRequest(url, xml.OuterXml));
 
             return response;
         }
@@ -125,29 +90,24 @@
 
         public static XmlDocument SearchAphia(string scientificName)
         {
-            XmlDocument response = Net.XmlHttpRequest("http://www.marinespecies.org/aphia.php?p=soap", Net.AphiaSoapXml(scientificName));
-            return response;
+            return Net.XmlHttpRequest("http://www.marinespecies.org/aphia.php?p=soap", Net.AphiaSoapXml(scientificName));
         }
 
-        public static Json.Gbif.GbifResult SearchGbif(string scientificName)
+        public static GbifResult SearchGbif(string scientificName)
         {
-            Json.Gbif.GbifResult gbifResult = null;
             try
             {
                 using (var client = new HttpClient())
                 {
-                    string responseString = client.GetStringAsync("http://api.gbif.org/v0.9/species/match?verbose=true&name=" + scientificName).Result;
-                    DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Json.Gbif.GbifResult));
-                    MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseString));
-                    gbifResult = (Json.Gbif.GbifResult)data.ReadObject(stream);
+                    var response = client.GetStringAsync("http://api.gbif.org/v0.9/species/match?verbose=true&name=" + scientificName);
+
+                    return JsonSerializer.Serialize<GbifResult>(response.Result);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                throw;
             }
-
-            return gbifResult;
         }
 
         /// <summary>
@@ -158,22 +118,22 @@
         public static XmlDocument SearchCatalogueOfLife(string scientificName)
         {
             // http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full
-            XmlDocument xml = null;
             try
             {
                 using (var client = new HttpClient())
                 {
-                    string responseString = client.GetStringAsync("http://www.catalogueoflife.org/col/webservice?name=" + scientificName + "&response=full").Result;
-                    xml = new XmlDocument();
-                    xml.LoadXml(responseString);
+                    var response = client.GetStringAsync("http://www.catalogueoflife.org/col/webservice?name=" + scientificName + "&response=full");
+
+                    XmlDocument xml = new XmlDocument();
+                    xml.LoadXml(response.Result);
+
+                    return xml;
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 0);
+                throw;
             }
-
-            return xml;
         }
 
         /// <summary>
@@ -188,12 +148,12 @@
              * "taxon_no","orig_no","record_type","associated_records","rank","taxon_name","common_name","status","parent_no","senior_no","reference_no","is_extant"
              * "69296","69296","taxon","","family","Dascillidae","soft bodied plant beetle","belongs to","69295","69296","5056","1"
              */
-            string result = string.Empty;
             try
             {
                 using (var client = new HttpClient())
                 {
                     string responseString = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/single.txt?name=" + scientificName).Result;
+
                     string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                     string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
                     Match matchKeys = Regex.Match(keys, "(?<=\")[^,\"]*(?=\")");
@@ -207,71 +167,64 @@
                         matchValues = matchValues.NextMatch();
                     }
 
+                    string result = string.Empty;
                     if (response["taxon_name"].ToString().CompareTo(scientificName) == 0)
                     {
                         result = response["rank"].ToString();
                     }
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, 0);
-            }
 
-            return result;
-        }
-
-        public static Json.Pbdb.PbdbAllParents SearchParentsInPaleobiologyDatabase(string scientificName)
-        {
-            //// https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents
-
-            Json.Pbdb.PbdbAllParents pbdbAllParents = null;
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    string responseString = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/list.json?name=" + scientificName + "&rel=all_parents").Result;
-                    DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Json.Pbdb.PbdbAllParents));
-                    MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(responseString));
-                    pbdbAllParents = (Json.Pbdb.PbdbAllParents)data.ReadObject(stream);
-                }
-            }
-            catch (Exception e)
-            {
-                Alert.RaiseExceptionForMethod(e, 0);
-            }
-
-            return pbdbAllParents;
-        }
-
-        public static XmlDocument SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
-        {
-            XmlDocument xmlResult = null;
-            try
-            {
-                string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-
-                using (HttpClient client = new HttpClient())
-                {
-                    string responseString = client.GetStringAsync("http://resolver.globalnames.org/name_resolvers.xml?" + searchString).Result;
-
-                    xmlResult = new XmlDocument();
-                    xmlResult.PreserveWhitespace = true;
-                    xmlResult.LoadXml(responseString);
+                    return result;
                 }
             }
             catch
             {
                 throw;
             }
+        }
 
-            return xmlResult;
+        public static PbdbAllParents SearchParentsInPaleobiologyDatabase(string scientificName)
+        {
+            //// https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = client.GetStringAsync("https://paleobiodb.org/data1.1/taxa/list.json?name=" + scientificName + "&rel=all_parents");
+
+                    return JsonSerializer.Serialize<PbdbAllParents>(response.Result);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static XmlDocument SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
+        {
+            try
+            {
+                string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = client.GetStringAsync("http://resolver.globalnames.org/name_resolvers.xml?" + searchString);
+
+                    XmlDocument xml = new XmlDocument();
+                    xml.PreserveWhitespace = true;
+                    xml.LoadXml(response.Result);
+
+                    return xml;
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public static XmlDocument SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
         {
-            XmlDocument xmlResult = null;
-
             try
             {
                 string postData = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
@@ -289,22 +242,20 @@
 
                 Task<WebResponse> response = request.GetResponseAsync();
 
-                xmlResult = new XmlDocument();
+                XmlDocument xmlResult = new XmlDocument();
                 xmlResult.PreserveWhitespace = true;
                 xmlResult.Load(response.Result.GetResponseStream());
+
+                return xmlResult;
             }
             catch
             {
                 throw;
             }
-
-            return xmlResult;
         }
 
         public static XmlDocument SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
         {
-            XmlDocument xmlResult = null;
-
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -322,9 +273,11 @@
                         Task<HttpResponseMessage> response = client.PostAsync("http://resolver.globalnames.org/name_resolvers.xml", content);
                         Task<string> responseString = response.Result.Content.ReadAsStringAsync();
 
-                        xmlResult = new XmlDocument();
-                        xmlResult.PreserveWhitespace = true;
-                        xmlResult.LoadXml(responseString.Result);
+                        XmlDocument xml = new XmlDocument();
+                        xml.PreserveWhitespace = true;
+                        xml.LoadXml(responseString.Result);
+
+                        return xml;
                     }
                 }
             }
@@ -332,8 +285,6 @@
             {
                 throw;
             }
-
-            return xmlResult;
         }
 
         private static string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
@@ -375,7 +326,7 @@
             {
                 StringBuilder responseCollector = new StringBuilder();
 
-                using (HttpClient client = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     GreekTaggerSendPartialString(xmlContent, responseCollector, client);
                 }

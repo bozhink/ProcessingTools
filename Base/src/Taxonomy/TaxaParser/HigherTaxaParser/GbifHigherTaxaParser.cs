@@ -29,37 +29,45 @@
 
         public override void Parse()
         {
-            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
-            foreach (string scientificName in uniqueHigherTaxaList)
+            try
             {
-                this.Delay();
-
-                GbifResult gbifResult = Net.SearchGbif(scientificName);
-                if (gbifResult != null)
+                IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+                foreach (string scientificName in uniqueHigherTaxaList)
                 {
-                    this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
+                    this.Delay();
 
-                    if (gbifResult.canonicalName != null || gbifResult.scientificName != null)
+
+                    GbifResult gbifResult = Net.SearchGbif(scientificName);
+                    if (gbifResult != null)
                     {
-                        if (!gbifResult.canonicalName.Equals(scientificName) && !gbifResult.scientificName.Contains(scientificName))
+                        this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.scientificName, gbifResult.canonicalName);
+
+                        if (gbifResult.canonicalName != null || gbifResult.scientificName != null)
                         {
-                            this.logger?.Log("No match.");
-                        }
-                        else
-                        {
-                            string rank = gbifResult.rank;
-                            if (rank != null && rank != string.Empty)
+                            if (!gbifResult.canonicalName.Equals(scientificName) && !gbifResult.scientificName.Contains(scientificName))
                             {
-                                rank = rank.ToLower();
-                                this.logger?.Log($"{scientificName} --> {rank}");
+                                this.logger?.Log("No match.");
+                            }
+                            else
+                            {
+                                string rank = gbifResult.rank;
+                                if (rank != null && rank != string.Empty)
+                                {
+                                    rank = rank.ToLower();
+                                    this.logger?.Log($"{scientificName} --> {rank}");
 
-                                string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
+                                    string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
 
-                                this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
+                                    this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch
+            {
+                throw;
             }
         }
     }

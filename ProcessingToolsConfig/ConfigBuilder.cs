@@ -1,8 +1,7 @@
 ﻿namespace ProcessingTools.Configurator
 {
     using System.IO;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
+    using Globals.Json;
 
     public static class ConfigBuilder
     {
@@ -13,20 +12,16 @@
         /// <returns>initialized config object</returns>
         public static Config CreateConfig(string configFilePath)
         {
-            Config config = null;
             try
             {
                 string jsonText = File.ReadAllText(configFilePath);
-                MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonText));
-                DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(Config));
-                config = (Config)data.ReadObject(stream);
+
+                return JsonSerializer.Serialize<Config>(jsonText);
             }
             catch
             {
                 throw;
             }
-
-            return config;
         }
     }
 }

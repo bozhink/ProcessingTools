@@ -613,7 +613,7 @@
                     this.logger?.LogException(e, string.Empty);
                 }
 
-                if (this.settings.SplitHigherWithAphia)
+                if (this.settings.ParseHigherWithAphia)
                 {
                     this.logger?.Log("\n\tSplit higher taxa using Aphia API\n");
 
@@ -630,7 +630,7 @@
                     }
                 }
 
-                if (this.settings.SplitHigherWithCoL)
+                if (this.settings.ParseHigherWithCoL)
                 {
                     this.logger?.Log("\n\tSplit higher taxa using CoL API\n");
 
@@ -647,7 +647,7 @@
                     }
                 }
 
-                if (this.settings.SplitHigherWithGbif)
+                if (this.settings.ParseHigherWithGbif)
                 {
                     this.logger?.Log("\n\tSplit higher taxa using GBIF API\n");
 
@@ -664,7 +664,7 @@
                     }
                 }
 
-                if (this.settings.SplitHigherBySuffix)
+                if (this.settings.ParseHigherBySuffix)
                 {
                     this.logger?.Log("\n\tSplit higher taxa by suffix\n");
 
@@ -681,7 +681,7 @@
                     }
                 }
 
-                if (this.settings.SplitHigherAboveGenus)
+                if (this.settings.ParseHigherAboveGenus)
                 {
                     this.logger?.Log("\n\tMake higher taxa of type 'above-genus'\n");
 

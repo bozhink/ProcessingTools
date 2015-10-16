@@ -35,11 +35,11 @@
             this.ParseTreatmentMetaWithGbif = false;
             this.QuentinSpecificActions = false;
             this.QueryReplace = false;
-            this.SplitHigherAboveGenus = false;
-            this.SplitHigherBySuffix = false;
-            this.SplitHigherWithAphia = false;
-            this.SplitHigherWithCoL = false;
-            this.SplitHigherWithGbif = false;
+            this.ParseHigherAboveGenus = false;
+            this.ParseHigherBySuffix = false;
+            this.ParseHigherWithAphia = false;
+            this.ParseHigherWithCoL = false;
+            this.ParseHigherWithGbif = false;
             this.TagAbbrev = false;
             this.TagCodes = false;
             this.TagCoords = false;
@@ -119,15 +119,15 @@
 
         public bool QueryReplace { get; set; }
 
-        public bool SplitHigherAboveGenus { get; set; }
+        public bool ParseHigherAboveGenus { get; set; }
 
-        public bool SplitHigherBySuffix { get; set; }
+        public bool ParseHigherBySuffix { get; set; }
 
-        public bool SplitHigherWithAphia { get; set; }
+        public bool ParseHigherWithAphia { get; set; }
 
-        public bool SplitHigherWithCoL { get; set; }
+        public bool ParseHigherWithCoL { get; set; }
 
-        public bool SplitHigherWithGbif { get; set; }
+        public bool ParseHigherWithGbif { get; set; }
 
         public bool TagAbbrev { get; set; }
 

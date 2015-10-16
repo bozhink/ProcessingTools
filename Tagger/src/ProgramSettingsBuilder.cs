@@ -271,23 +271,23 @@
                 {
                     if (args[item].CompareTo("--split-aphia") == 0)
                     {
-                        this.Settings.SplitHigherWithAphia = true;
+                        this.Settings.ParseHigherWithAphia = true;
                     }
                     else if (args[item].CompareTo("--split-col") == 0)
                     {
-                        this.Settings.SplitHigherWithCoL = true;
+                        this.Settings.ParseHigherWithCoL = true;
                     }
                     else if (args[item].CompareTo("--split-gbif") == 0)
                     {
-                        this.Settings.SplitHigherWithGbif = true;
+                        this.Settings.ParseHigherWithGbif = true;
                     }
                     else if (args[item].CompareTo("--split-suffix") == 0)
                     {
-                        this.Settings.SplitHigherBySuffix = true;
+                        this.Settings.ParseHigherBySuffix = true;
                     }
                     else if (args[item].CompareTo("--above-genus") == 0)
                     {
-                        this.Settings.SplitHigherAboveGenus = true;
+                        this.Settings.ParseHigherAboveGenus = true;
                     }
                     else if (args[item].CompareTo("--system") == 0)
                     {

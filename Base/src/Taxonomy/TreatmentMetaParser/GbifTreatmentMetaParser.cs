@@ -90,9 +90,9 @@
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                this.logger?.LogException(e, string.Empty);
+                throw;
             }
         }
     }

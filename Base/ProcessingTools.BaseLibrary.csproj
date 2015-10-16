@@ -190,9 +190,6 @@
     <Content Include="Data\Xml\taxonomy.rankList.xml" />
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
     <Content Include="src\Test\FloraReplace.txt" />
-    <Content Include="src\Test\json-test\example1.txt" />
-    <Content Include="src\Test\json-test\example2.txt" />
-    <Content Include="src\Test\json-test\Program.cs.txt" />
     <Content Include="src\XSL\codes.remove-non-code-nodes.xsl" />
     <Content Include="src\XSL\envo-items-to-tagreplace.xsl" />
     <Content Include="src\XSL\Flora\flora.extract-taxa.xsl">

@@ -493,81 +493,81 @@
         [Test]
         public void ProgramSettings_SplitHigherAboveGenusPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.SplitHigherAboveGenus, "Default SplitHigherAboveGenus value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, "Default SplitHigherAboveGenus value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfSplitHigherAboveGenusProperty_SchouldBePersistent()
         {
-            this.programSettings.SplitHigherAboveGenus = true;
-            Assert.IsTrue(this.programSettings.SplitHigherAboveGenus, "1. SplitHigherAboveGenus value should be true.");
+            this.programSettings.ParseHigherAboveGenus = true;
+            Assert.IsTrue(this.programSettings.ParseHigherAboveGenus, "1. SplitHigherAboveGenus value should be true.");
 
-            this.programSettings.SplitHigherAboveGenus = false;
-            Assert.IsFalse(this.programSettings.SplitHigherAboveGenus, "2. SplitHigherAboveGenus value should be false.");
+            this.programSettings.ParseHigherAboveGenus = false;
+            Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, "2. SplitHigherAboveGenus value should be false.");
         }
 
         [Test]
         public void ProgramSettings_SplitHigherBySuffixPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.SplitHigherBySuffix, "Default SplitHigherBySuffix value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherBySuffix, "Default SplitHigherBySuffix value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfSplitHigherBySuffixProperty_SchouldBePersistent()
         {
-            this.programSettings.SplitHigherBySuffix = true;
-            Assert.IsTrue(this.programSettings.SplitHigherBySuffix, "1. SplitHigherBySuffix value should be true.");
+            this.programSettings.ParseHigherBySuffix = true;
+            Assert.IsTrue(this.programSettings.ParseHigherBySuffix, "1. SplitHigherBySuffix value should be true.");
 
-            this.programSettings.SplitHigherBySuffix = false;
-            Assert.IsFalse(this.programSettings.SplitHigherBySuffix, "2. SplitHigherBySuffix value should be false.");
+            this.programSettings.ParseHigherBySuffix = false;
+            Assert.IsFalse(this.programSettings.ParseHigherBySuffix, "2. SplitHigherBySuffix value should be false.");
         }
 
         [Test]
         public void ProgramSettings_SplitHigherWithAphiaPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.SplitHigherWithAphia, "Default SplitHigherWithAphia value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherWithAphia, "Default SplitHigherWithAphia value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfSplitHigherWithAphiaProperty_SchouldBePersistent()
         {
-            this.programSettings.SplitHigherWithAphia = true;
-            Assert.IsTrue(this.programSettings.SplitHigherWithAphia, "1. SplitHigherWithAphia value should be true.");
+            this.programSettings.ParseHigherWithAphia = true;
+            Assert.IsTrue(this.programSettings.ParseHigherWithAphia, "1. SplitHigherWithAphia value should be true.");
 
-            this.programSettings.SplitHigherWithAphia = false;
-            Assert.IsFalse(this.programSettings.SplitHigherWithAphia, "2. SplitHigherWithAphia value should be false.");
+            this.programSettings.ParseHigherWithAphia = false;
+            Assert.IsFalse(this.programSettings.ParseHigherWithAphia, "2. SplitHigherWithAphia value should be false.");
         }
 
         [Test]
         public void ProgramSettings_SplitHigherWithCoLPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.SplitHigherWithCoL, "Default SplitHigherWithCoL value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherWithCoL, "Default SplitHigherWithCoL value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfSplitHigherWithCoLProperty_SchouldBePersistent()
         {
-            this.programSettings.SplitHigherWithCoL = true;
-            Assert.IsTrue(this.programSettings.SplitHigherWithCoL, "1. SplitHigherWithCoL value should be true.");
+            this.programSettings.ParseHigherWithCoL = true;
+            Assert.IsTrue(this.programSettings.ParseHigherWithCoL, "1. SplitHigherWithCoL value should be true.");
 
-            this.programSettings.SplitHigherWithCoL = false;
-            Assert.IsFalse(this.programSettings.SplitHigherWithCoL, "2. SplitHigherWithCoL value should be false.");
+            this.programSettings.ParseHigherWithCoL = false;
+            Assert.IsFalse(this.programSettings.ParseHigherWithCoL, "2. SplitHigherWithCoL value should be false.");
         }
 
         [Test]
         public void ProgramSettings_SplitHigherWithGbifPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.SplitHigherWithGbif, "Default SplitHigherWithGbif value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherWithGbif, "Default SplitHigherWithGbif value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfSplitHigherWithGbifProperty_SchouldBePersistent()
         {
-            this.programSettings.SplitHigherWithGbif = true;
-            Assert.IsTrue(this.programSettings.SplitHigherWithGbif, "1. SplitHigherWithGbif value should be true.");
+            this.programSettings.ParseHigherWithGbif = true;
+            Assert.IsTrue(this.programSettings.ParseHigherWithGbif, "1. SplitHigherWithGbif value should be true.");
 
-            this.programSettings.SplitHigherWithGbif = false;
-            Assert.IsFalse(this.programSettings.SplitHigherWithGbif, "2. SplitHigherWithGbif value should be false.");
+            this.programSettings.ParseHigherWithGbif = false;
+            Assert.IsFalse(this.programSettings.ParseHigherWithGbif, "2. SplitHigherWithGbif value should be false.");
         }
 
         [Test]

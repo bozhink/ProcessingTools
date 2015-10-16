@@ -52,9 +52,9 @@
                     this.ReplaceTreatmentMetaClassificationItem(responseFamily, genus, "family");
                 }
             }
-            catch (Exception e)
+            catch
             {
-                this.logger?.LogException(e, string.Empty);
+                throw;
             }
         }
     }
