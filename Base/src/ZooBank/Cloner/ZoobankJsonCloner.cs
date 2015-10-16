@@ -5,7 +5,7 @@
     using System.Xml;
     using Globals;
     using Globals.Json;
-    using Json.ZooBank;
+    using Globals.Json.ZooBank;
 
     public class ZoobankJsonCloner : ZoobankCloner
     {

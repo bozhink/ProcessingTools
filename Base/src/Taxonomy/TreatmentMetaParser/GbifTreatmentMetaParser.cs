@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
     using Configurator;
     using Globals;
-    using Json.Gbif;
+    using Globals.Json.Gbif;
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
     {

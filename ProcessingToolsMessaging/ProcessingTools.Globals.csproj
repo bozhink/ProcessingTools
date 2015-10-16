@@ -50,7 +50,10 @@
     <Compile Include="Interfaces\ITagger.cs" />
     <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Interfaces\IXPathProvider.cs" />
+    <Compile Include="Json\Gbif\Gbif.cs" />
     <Compile Include="Json\JsonSerializer.cs" />
+    <Compile Include="Json\Pbdb\Pbdb.cs" />
+    <Compile Include="Json\ZooBank\ZooBank.cs" />
     <Compile Include="Loggers\Alert.cs" />
     <Compile Include="Loggers\ConsoleLogger.cs" />
     <Compile Include="System\Diagnostics.cs" />

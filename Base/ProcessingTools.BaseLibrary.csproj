@@ -70,7 +70,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -79,9 +78,6 @@
   <ItemGroup>
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
-    <Compile Include="src\Json\Gbif\Gbif.cs" />
-    <Compile Include="src\Json\Pbdb\Pbdb.cs" />
-    <Compile Include="src\Json\ZooBank\ZooBank.cs" />
     <Compile Include="src\Net\Net.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

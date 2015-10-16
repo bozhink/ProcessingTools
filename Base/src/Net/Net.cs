@@ -12,8 +12,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Globals.Json;
-    using Json.Gbif;
-    using Json.Pbdb;
+    using Globals.Json.Gbif;
+    using Globals.Json.Pbdb;
 
     public static class Net
     {

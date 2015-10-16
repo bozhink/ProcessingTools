@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Configurator;
     using Globals;
-    using Json.Gbif;
+    using Globals.Json.Gbif;
 
     public class GbifHigherTaxaParser : HigherTaxaParser
     {
