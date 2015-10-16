@@ -206,7 +206,7 @@
                 }
                 catch (Exception e)
                 {
-                    Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Input file name: " + this.inputFileName);
+                    this.logger?.LogException(e, "Input file name: {0}", this.inputFileName);
                 }
 
                 rootNode.AppendChild(bodyNode);
