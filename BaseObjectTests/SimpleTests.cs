@@ -36,5 +36,24 @@
 
             Assert.AreEqual(resultXmlText, xmlText);
         }
+
+        [TestMethod]
+        [Ignore]
+        public void TestAphiaService()
+        {
+            var server = new Services.AphiaNameService();
+            var records = server.getAphiaRecords("Anodontiglanis", true, true, false, 0);
+
+            System.Console.WriteLine(records?.Length);
+            if (records != null)
+            {
+                foreach (Services.AphiaRecord record in records)
+                {
+                    System.Console.WriteLine(record?.rank);
+                    System.Console.WriteLine(record?.scientificname);
+                    System.Console.WriteLine(record?.valid_name);
+                }
+            }
+        }
     }
 }
