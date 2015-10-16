@@ -351,7 +351,7 @@ namespace ProcessingTools.BaseLibrary
             {
                 TagContent codeTag = new TagContent(tag);
                 codeTag.Attributes += @" prefix=""" + specimenCode.Prefix + @""" type=""" + specimenCode.Type + @"""";
-                specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument);
+                specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument, true, false, this.logger);
             }
 
             /*
@@ -410,7 +410,7 @@ namespace ProcessingTools.BaseLibrary
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                node.SafeReplaceInnerXml(nodeInnerXml);
+                node.SafeReplaceInnerXml(nodeInnerXml, this.logger);
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {

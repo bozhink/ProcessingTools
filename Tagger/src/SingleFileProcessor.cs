@@ -982,7 +982,7 @@
                 ////    fp.Xml = envo.Xml;
                 ////}
 
-                DataProvider dataProvider = new DataProvider(this.settings.Config, this.fileProcessor.Xml);
+                DataProvider dataProvider = new DataProvider(this.settings.Config, this.fileProcessor.Xml, this.logger);
                 ////{
                 ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
                 ////    products.TagProducts(xpathProvider, dataProvider);
@@ -1033,7 +1033,7 @@
 
             try
             {
-                var coordinatesTagger = new CoordinatesTagger(this.settings.Config, this.fileProcessor.Xml);
+                var coordinatesTagger = new CoordinatesTagger(this.settings.Config, this.fileProcessor.Xml, this.logger);
                 coordinatesTagger.Tag();
                 this.fileProcessor.Xml = coordinatesTagger.Xml;
             }
@@ -1160,7 +1160,7 @@
 
                 try
                 {
-                    var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList);
+                    var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList, this.logger);
                     tagger.Tag();
                     xmlContent = tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
                 }

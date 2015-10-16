@@ -129,20 +129,19 @@
             bool treatAsRegex = false,
             bool caseSensitive = false)
         {
-            IEnumerable<string> result = null;
             try
             {
-                HashSet<string> list = new HashSet<string>(wordList);
-                result = from word in list
-                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
-                         select word;
+                var list = new HashSet<string>(wordList);
+                var result = from word in list
+                             where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
+                             select word;
+
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         public static IEnumerable<string> ExtractWordsFromString(this string text)
@@ -206,7 +205,6 @@
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
         {
-            IEnumerable<string> result = null;
             try
             {
                 XmlNodeList nodeList = null;
@@ -219,34 +217,30 @@
                     nodeList = xml.SelectNodes(xpath, namespaceManager);
                 }
 
-                result = nodeList.GetStringListOfUniqueXmlNodeContent();
+                var result = nodeList.GetStringListOfUniqueXmlNodeContent();
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
         {
-            IEnumerable<string> result = null;
             try
             {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
+                var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
         {
-            IEnumerable<string> result = null;
             try
             {
                 XmlNodeList nodeList = null;
@@ -259,29 +253,27 @@
                     nodeList = xml.SelectNodes(xpath, namespaceManager);
                 }
 
-                result = nodeList.GetStringListOfUniqueXmlNodes();
+                var result = nodeList.GetStringListOfUniqueXmlNodes();
+
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this IEnumerable xmlNodeList)
         {
-            IEnumerable<string> result = null;
             try
             {
-                result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml).Distinct();
+                var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml);
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -302,7 +294,7 @@
             IEnumerable<string> result = null;
             try
             {
-                HashSet<string> list = new HashSet<string>(compareList);
+                var list = new HashSet<string>(compareList);
                 if (treatAsRegex)
                 {
                     if (caseSensitive)
@@ -357,20 +349,19 @@
             bool treatAsRegex = false,
             bool caseSensitive = false)
         {
-            IEnumerable<string> result = null;
             try
             {
-                HashSet<string> list = new HashSet<string>(compareList);
-                result = from word in wordList
-                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() > 0
-                         select word;
+                var list = new HashSet<string>(compareList);
+                var result = from word in wordList
+                             where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() > 0
+                             select word;
+
+                return new HashSet<string>(result);
             }
             catch
             {
                 throw;
             }
-
-            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -404,7 +395,7 @@
         /// </summary>
         /// <param name="node">XmlNode which content would be replaced.</param>
         /// <param name="replace">Replacement string.</param>
-        public static void SafeReplaceInnerXml(this XmlNode node, string replace)
+        public static void SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
         {
             string nodeInnerXml = node.InnerXml;
             bool reset = false;
@@ -416,7 +407,7 @@
             }
             catch (Exception e)
             {
-                Alert.RaiseExceptionForMethod(e, "SafeReplaceInnerXml", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
+                logger?.LogException(e, "\nInvalid replacement string:\n{0}\n\n", replace);
             }
             finally
             {

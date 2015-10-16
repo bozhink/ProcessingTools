@@ -13,14 +13,18 @@
 
         private readonly TagContent higherTaxaTag = new TagContent("tn", @" type=""higher""");
 
-        public HigherTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList)
+        private ILogger logger;
+
+        public HigherTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
             : base(xml, whiteList, blackList)
         {
+            this.logger = logger;
         }
 
-        public HigherTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList)
+        public HigherTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
             : base(config, xml, whiteList, blackList)
         {
+            this.logger = logger;
         }
 
         public HigherTaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList)
@@ -46,7 +50,7 @@
                 taxaNames = taxaNames.Where(s => s[0] == s.ToUpper()[0]).Distinct();
 
                 // TODO: Optimize peformance.
-                taxaNames.TagContentInDocument(this.higherTaxaTag, HigherTaxaXPathTemplate, this.XmlDocument, false, true);
+                taxaNames.TagContentInDocument(this.higherTaxaTag, HigherTaxaXPathTemplate, this.XmlDocument, false, true, this.logger);
 
                 this.XmlDocument.RemoveTaxaInWrongPlaces();
             }

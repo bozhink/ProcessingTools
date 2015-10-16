@@ -61,7 +61,6 @@
     <Compile Include="Json\ZooBank\Author.cs" />
     <Compile Include="Json\ZooBank\NomenclaturalAct.cs" />
     <Compile Include="Json\ZooBank\ZooBankRegistration.cs" />
-    <Compile Include="Loggers\Alert.cs" />
     <Compile Include="Loggers\ConsoleLogger.cs" />
     <Compile Include="Services\AphiaNameService.cs" />
     <Compile Include="System\Diagnostics.cs" />

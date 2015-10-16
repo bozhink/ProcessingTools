@@ -35,11 +35,12 @@
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             foreach (string item in textToTagList)
             {
-                item.TagContentInDocument(tag, xpathTemplate, document, caseSensitive, minimalTextSelect);
+                item.TagContentInDocument(tag, xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
             }
         }
 
@@ -58,12 +59,13 @@
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
             XmlNodeList nodeList = document.SelectNodes(xpath, Config.TaxPubNamespceManager());
 
-            textToTag.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect);
+            textToTag.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
         }
 
         /// <summary>
@@ -79,11 +81,12 @@
             TagContent tag,
             XmlNodeList nodeList,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             foreach (string item in textToTagList)
             {
-                item.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect);
+                item.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
             }
         }
 
@@ -100,7 +103,8 @@
             TagContent tag,
             XmlNodeList nodeList,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             string caseSensitiveness = string.Empty;
             if (!caseSensitive)
@@ -137,7 +141,7 @@
                     replace = textToTagPatternRegex.Replace(replace, replacement);
                 }
 
-                node.SafeReplaceInnerXml(replace);
+                node.SafeReplaceInnerXml(replace, logger);
             }
         }
 
@@ -145,11 +149,12 @@
             this XmlNodeList tagNodeList,
             XmlNodeList documentNodeList,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             foreach (XmlNode tagNode in tagNodeList)
             {
-                tagNode.TagContentInDocument(documentNodeList, caseSensitive, minimalTextSelect);
+                tagNode.TagContentInDocument(documentNodeList, caseSensitive, minimalTextSelect, logger);
             }
         }
 
@@ -157,7 +162,8 @@
             this XmlNode tagNode,
             XmlNodeList documentNodeList,
             bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            bool minimalTextSelect = false,
+            ILogger logger = null)
         {
             string caseSensitiveness = string.Empty;
             if (!caseSensitive)
@@ -209,8 +215,8 @@
                     catch (Exception tagOrderNormalizerException)
                     {
                         replace = node.InnerXml;
-                        Alert.RaiseExceptionForMethod(e, "TagContentInDocument", 0, "\nInvalid replacement string:\n" + replace + "\n\n");
-                        Alert.RaiseExceptionForMethod(tagOrderNormalizerException, 0);
+                        logger?.LogException(e, "\nInvalid replacement string:\n{0}\n\n", replace);
+                        logger?.LogException(tagOrderNormalizerException, string.Empty);
                     }
                 }
                 finally

@@ -11,15 +11,19 @@
         private const string LocalityCoordinatesTagName = "locality-coordinates";
         private readonly XmlElement localityCoordinatesNode = null;
 
-        public CoordinatesTagger(Config config, string xml)
+        private ILogger logger;
+
+        public CoordinatesTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
             this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
         }
 
-        public CoordinatesTagger(IBase baseObject)
+        public CoordinatesTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
             this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
         }
 
@@ -73,8 +77,7 @@
                 foreach (string coordinateString in coordinateStrings)
                 {
                     replacementNode.InnerText = coordinateString;
-
-                    replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true);
+                    replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true, this.logger);
                 }
             }
             catch

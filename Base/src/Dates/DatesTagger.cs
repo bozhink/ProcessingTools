@@ -63,7 +63,7 @@ namespace ProcessingTools.BaseLibrary.Dates
                 foreach (string date in dates)
                 {
                     this.logger?.Log(date);
-                    date.TagContentInDocument(this.dateTag, xpathTemplate, this.XmlDocument, true, true);
+                    date.TagContentInDocument(this.dateTag, xpathTemplate, this.XmlDocument, true, true, this.logger);
                 }
             }
         }

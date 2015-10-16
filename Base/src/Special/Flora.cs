@@ -89,7 +89,7 @@
                 this.Xml = xml;
             }
 
-            // TODO: Here we must remove tn/tn
+            // Here we must remove tn/tn
             {
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn[name(..)!='tn'][count(.//tn)!=0]");
                 foreach (XmlNode node in nodeList)
@@ -123,7 +123,7 @@
                 this.Xml = xml;
             }
 
-            // TODO: Here we must remove tn/tn
+            // Here we must remove tn/tn
             {
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("//tn[name(..)!='tn'][count(.//tn)!=0]");
                 foreach (XmlNode node in nodeList)

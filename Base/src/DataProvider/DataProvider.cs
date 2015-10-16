@@ -10,14 +10,18 @@
 
     public class DataProvider : TaggerBase, IDataProvider
     {
-        public DataProvider(Config config, string xml)
+        private ILogger logger;
+
+        public DataProvider(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public DataProvider(IBase baseObject)
+        public DataProvider(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
@@ -73,14 +77,14 @@
                         }
                         catch (Exception e)
                         {
-                            Alert.RaiseExceptionForMethod(e, 0);
+                            this.logger?.LogException(e, string.Empty);
                         }
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Alert.RaiseExceptionForMethod(e, 1);
+                throw;
             }
         }
 

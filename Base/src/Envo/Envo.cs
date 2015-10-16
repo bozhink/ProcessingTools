@@ -88,7 +88,7 @@
                 ////}
 
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
-                envoTermsTagSet.DocumentElement.ChildNodes.TagContentInDocument(nodeList, false, true);
+                envoTermsTagSet.DocumentElement.ChildNodes.TagContentInDocument(nodeList, false, true, this.logger);
             }
         }
     }

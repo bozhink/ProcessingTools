@@ -48,7 +48,6 @@
                         return "//p|//license-p|//li|//th|//td|//mixed-citation|//element-citation|//nlm-citation|//tp:nomenclature-citation";
 
                     default:
-                        // TODO
                         return "//p|//li|//th|//td";
                 }
             }
@@ -64,7 +63,6 @@
                         return "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
 
                     default:
-                        // TODO
                         return "//p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]";
                 }
             }

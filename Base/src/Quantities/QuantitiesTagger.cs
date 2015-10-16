@@ -53,7 +53,7 @@
             foreach (string quantity in quantities)
             {
                 this.logger?.Log(quantity);
-                quantity.TagContentInDocument(this.quantityTag, xpathProvider.SelectContentNodesXPathTemplate, this.XmlDocument, true);
+                quantity.TagContentInDocument(this.quantityTag, xpathProvider.SelectContentNodesXPathTemplate, this.XmlDocument, true, false, this.logger);
             }
         }
 

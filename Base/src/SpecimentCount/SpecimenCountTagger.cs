@@ -17,14 +17,18 @@ namespace ProcessingTools.BaseLibrary
     {
         private TagContent specimenCountTag = new TagContent("specimen-count");
 
-        public SpecimenCountTagger(Config config, string xml)
+        private ILogger logger;
+
+        public SpecimenCountTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
+            this.logger = logger;
         }
 
-        public SpecimenCountTagger(IBase baseObject)
+        public SpecimenCountTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
+            this.logger = logger;
         }
 
         public void TagSpecimenCount(IXPathProvider xpathProvider)
@@ -34,8 +38,7 @@ namespace ProcessingTools.BaseLibrary
 
             var nodeList = this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPathTemplate, this.NamespaceManager);
             var specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount);
-
-            specimenCountCitations.TagContentInDocument(this.specimenCountTag, nodeList, false, true);
+            specimenCountCitations.TagContentInDocument(this.specimenCountTag, nodeList, false, true, this.logger);
         }
     }
 }

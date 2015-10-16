@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Configurator;
+    using Globals;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
 
     [TestClass]
     public class SimpleTests
@@ -20,7 +22,8 @@
         {
             string xmlText = "<article></article>";
 
-            DataProvider dataProvider = new DataProvider(config, xmlText);
+            var loggerMock = new Mock<ILogger>();
+            DataProvider dataProvider = new DataProvider(config, xmlText, loggerMock.Object);
             Assert.AreEqual(dataProvider.Xml, xmlText);
         }
 
@@ -31,7 +34,8 @@
             string xmlText = "<article></article>";
             string resultXmlText;
 
-            DataProvider dataProvider = new DataProvider(config, xmlText);
+            var loggerMock = new Mock<ILogger>();
+            DataProvider dataProvider = new DataProvider(config, xmlText, loggerMock.Object);
             resultXmlText = dataProvider.Xml;
 
             Assert.AreEqual(resultXmlText, xmlText);
