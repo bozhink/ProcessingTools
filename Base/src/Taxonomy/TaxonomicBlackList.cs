@@ -37,7 +37,7 @@
                     {
                         if (TaxonomicBlackList.stringList == null)
                         {
-                            XElement list = XElement.Load(TaxonomicBlackList.config.blackListXmlFilePath);
+                            XElement list = XElement.Load(TaxonomicBlackList.config.BlackListXmlFilePath);
                             TaxonomicBlackList.stringList = from item in list.Elements()
                                                             select item.Value;
                         }

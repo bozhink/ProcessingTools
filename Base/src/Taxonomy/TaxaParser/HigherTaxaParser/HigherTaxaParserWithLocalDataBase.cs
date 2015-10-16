@@ -31,7 +31,7 @@
 
         public override void Parse()
         {
-            XElement rankList = XElement.Load(this.Config.rankListXmlFilePath);
+            XElement rankList = XElement.Load(this.Config.RankListXmlFilePath);
 
             IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             foreach (string scientificName in uniqueHigherTaxaList)

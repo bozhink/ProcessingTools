@@ -22,7 +22,7 @@
 
         public void Generate()
         {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.zoobankNlmXslPath);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ZoobankNlmXslPath);
         }
     }
 }

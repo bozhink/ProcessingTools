@@ -42,7 +42,7 @@
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
                 // Connect to Environments database and use its records to tag Xml
-                using (SqlConnection connection = new SqlConnection(this.Config.environmentsDataSourceString))
+                using (SqlConnection connection = new SqlConnection(this.Config.EnvironmentsDataSourceString))
                 {
                     connection.Open();
 

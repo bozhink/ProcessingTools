@@ -34,7 +34,7 @@
 
             try
             {
-                string connectionString = this.Config.mainDictionaryDataSourceString;
+                string connectionString = this.Config.MainDictionaryDataSourceString;
                 SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
 

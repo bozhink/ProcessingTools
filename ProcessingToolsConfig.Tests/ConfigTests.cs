@@ -17,435 +17,435 @@
         [Test]
         public void Config_ValidChangesOfBlackListCleanXslPathProperty_SchouldBePersistent()
         {
-            this.config.blackListCleanXslPath = SampleFilePath;
+            this.config.BlackListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.blackListCleanXslPath,
+                this.config.BlackListCleanXslPath,
                 "1. BlackListCleanXslPath should match SampleFilePath.");
 
-            this.config.blackListCleanXslPath = null;
+            this.config.BlackListCleanXslPath = null;
             Assert.IsNull(
-                this.config.blackListCleanXslPath,
+                this.config.BlackListCleanXslPath,
                 "2. BlackListCleanXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfBlackListXmlFilePathProperty_SchouldBePersistent()
         {
-            this.config.blackListXmlFilePath = SampleFilePath;
+            this.config.BlackListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.blackListXmlFilePath,
+                this.config.BlackListXmlFilePath,
                 "1. BlackListXmlFilePath should match SampleFilePath.");
 
-            this.config.blackListXmlFilePath = null;
+            this.config.BlackListXmlFilePath = null;
             Assert.IsNull(
-                this.config.blackListXmlFilePath,
+                this.config.BlackListXmlFilePath,
                 "2. BlackListXmlFilePath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfCodesRemoveNonCodeNodesProperty_SchouldBePersistent()
         {
-            this.config.codesRemoveNonCodeNodes = SampleFilePath;
+            this.config.CodesRemoveNonCodeNodes = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.codesRemoveNonCodeNodes,
+                this.config.CodesRemoveNonCodeNodes,
                 "1. CodesRemoveNonCodeNodes should match SampleFilePath.");
 
-            this.config.codesRemoveNonCodeNodes = null;
+            this.config.CodesRemoveNonCodeNodes = null;
             Assert.IsNull(
-                this.config.codesRemoveNonCodeNodes,
+                this.config.CodesRemoveNonCodeNodes,
                 "2. CodesRemoveNonCodeNodes should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfEnvironmentsDataSourceStringProperty_SchouldBePersistent()
         {
-            this.config.environmentsDataSourceString = SampleFilePath;
+            this.config.EnvironmentsDataSourceString = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.environmentsDataSourceString,
+                this.config.EnvironmentsDataSourceString,
                 "1. EnvironmentsDataSourceString should match SampleFilePath.");
 
-            this.config.environmentsDataSourceString = null;
+            this.config.EnvironmentsDataSourceString = null;
             Assert.IsNull(
-                this.config.environmentsDataSourceString,
+                this.config.EnvironmentsDataSourceString,
                 "2. EnvironmentsDataSourceString should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_SchouldBePersistent()
         {
-            this.config.envoTermsWebServiceTransformXslPath = SampleFilePath;
+            this.config.EnvoTermsWebServiceTransformXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.envoTermsWebServiceTransformXslPath,
+                this.config.EnvoTermsWebServiceTransformXslPath,
                 "1. EnvoTermsWebServiceTransformXslPath should match SampleFilePath.");
 
-            this.config.envoTermsWebServiceTransformXslPath = null;
+            this.config.EnvoTermsWebServiceTransformXslPath = null;
             Assert.IsNull(
-                this.config.envoTermsWebServiceTransformXslPath,
+                this.config.EnvoTermsWebServiceTransformXslPath,
                 "2. EnvoTermsWebServiceTransformXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_SchouldBePersistent()
         {
-            this.config.floraDistrinctTaxaXslPath = SampleFilePath;
+            this.config.FloraDistrinctTaxaXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraDistrinctTaxaXslPath,
+                this.config.FloraDistrinctTaxaXslPath,
                 "1. FloraDistrinctTaxaXslPath should match SampleFilePath.");
 
-            this.config.floraDistrinctTaxaXslPath = null;
+            this.config.FloraDistrinctTaxaXslPath = null;
             Assert.IsNull(
-                this.config.floraDistrinctTaxaXslPath,
+                this.config.FloraDistrinctTaxaXslPath,
                 "2. FloraDistrinctTaxaXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraExtractedTaxaListPathProperty_SchouldBePersistent()
         {
-            this.config.floraExtractedTaxaListPath = SampleFilePath;
+            this.config.FloraExtractedTaxaListPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraExtractedTaxaListPath,
+                this.config.FloraExtractedTaxaListPath,
                 "1. FloraExtractedTaxaListPath should match SampleFilePath.");
 
-            this.config.floraExtractedTaxaListPath = null;
+            this.config.FloraExtractedTaxaListPath = null;
             Assert.IsNull(
-                this.config.floraExtractedTaxaListPath,
+                this.config.FloraExtractedTaxaListPath,
                 "2. FloraExtractedTaxaListPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraExtractTaxaPartsOutputPathProperty_SchouldBePersistent()
         {
-            this.config.floraExtractTaxaPartsOutputPath = SampleFilePath;
+            this.config.FloraExtractTaxaPartsOutputPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraExtractTaxaPartsOutputPath,
+                this.config.FloraExtractTaxaPartsOutputPath,
                 "1. FloraExtractTaxaPartsOutputPath should match SampleFilePath.");
 
-            this.config.floraExtractTaxaPartsOutputPath = null;
+            this.config.FloraExtractTaxaPartsOutputPath = null;
             Assert.IsNull(
-                this.config.floraExtractTaxaPartsOutputPath,
+                this.config.FloraExtractTaxaPartsOutputPath,
                 "2. FloraExtractTaxaPartsOutputPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraExtractTaxaPartsXslPathProperty_SchouldBePersistent()
         {
-            this.config.floraExtractTaxaPartsXslPath = SampleFilePath;
+            this.config.FloraExtractTaxaPartsXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraExtractTaxaPartsXslPath,
+                this.config.FloraExtractTaxaPartsXslPath,
                 "1. FloraExtractTaxaPartsXslPath should match SampleFilePath.");
 
-            this.config.floraExtractTaxaPartsXslPath = null;
+            this.config.FloraExtractTaxaPartsXslPath = null;
             Assert.IsNull(
-                this.config.floraExtractTaxaPartsXslPath,
+                this.config.FloraExtractTaxaPartsXslPath,
                 "2. FloraExtractTaxaPartsXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraExtractTaxaXslPathProperty_SchouldBePersistent()
         {
-            this.config.floraExtractTaxaXslPath = SampleFilePath;
+            this.config.FloraExtractTaxaXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraExtractTaxaXslPath,
+                this.config.FloraExtractTaxaXslPath,
                 "1. FloraExtractTaxaXslPath should match SampleFilePath.");
 
-            this.config.floraExtractTaxaXslPath = null;
+            this.config.FloraExtractTaxaXslPath = null;
             Assert.IsNull(
-                this.config.floraExtractTaxaXslPath,
+                this.config.FloraExtractTaxaXslPath,
                 "2. FloraExtractTaxaXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraGenerateTemplatesXslPathProperty_SchouldBePersistent()
         {
-            this.config.floraGenerateTemplatesXslPath = SampleFilePath;
+            this.config.FloraGenerateTemplatesXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraGenerateTemplatesXslPath,
+                this.config.FloraGenerateTemplatesXslPath,
                 "1. FloraGenerateTemplatesXslPath should match SampleFilePath.");
 
-            this.config.floraGenerateTemplatesXslPath = null;
+            this.config.FloraGenerateTemplatesXslPath = null;
             Assert.IsNull(
-                this.config.floraGenerateTemplatesXslPath,
+                this.config.FloraGenerateTemplatesXslPath,
                 "2. FloraGenerateTemplatesXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFloraTemplatesOutputXmlPathProperty_SchouldBePersistent()
         {
-            this.config.floraTemplatesOutputXmlPath = SampleFilePath;
+            this.config.FloraTemplatesOutputXmlPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.floraTemplatesOutputXmlPath,
+                this.config.FloraTemplatesOutputXmlPath,
                 "1. FloraTemplatesOutputXmlPath should match SampleFilePath.");
 
-            this.config.floraTemplatesOutputXmlPath = null;
+            this.config.FloraTemplatesOutputXmlPath = null;
             Assert.IsNull(
-                this.config.floraTemplatesOutputXmlPath,
+                this.config.FloraTemplatesOutputXmlPath,
                 "2. FloraTemplatesOutputXmlPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFormatXslNlmToSystemProperty_SchouldBePersistent()
         {
-            this.config.formatXslNlmToSystem = SampleFilePath;
+            this.config.FormatXslNlmToSystem = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.formatXslNlmToSystem,
+                this.config.FormatXslNlmToSystem,
                 "1. FormatXslNlmToSystem should match SampleFilePath.");
 
-            this.config.formatXslNlmToSystem = null;
+            this.config.FormatXslNlmToSystem = null;
             Assert.IsNull(
-                this.config.formatXslNlmToSystem,
+                this.config.FormatXslNlmToSystem,
                 "2. FormatXslNlmToSystem should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFormatXslSystemToNlmProperty_SchouldBePersistent()
         {
-            this.config.formatXslSystemToNlm = SampleFilePath;
+            this.config.FormatXslSystemToNlm = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.formatXslSystemToNlm,
+                this.config.FormatXslSystemToNlm,
                 "1. FormatXslSystemToNlm should match SampleFilePath.");
 
-            this.config.formatXslSystemToNlm = null;
+            this.config.FormatXslSystemToNlm = null;
             Assert.IsNull(
-                this.config.formatXslSystemToNlm,
+                this.config.FormatXslSystemToNlm,
                 "2. FormatXslSystemToNlm should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_SchouldBePersistent()
         {
-            this.config.mainDictionaryDataSourceString = SampleFilePath;
+            this.config.MainDictionaryDataSourceString = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.mainDictionaryDataSourceString,
+                this.config.MainDictionaryDataSourceString,
                 "1. MainDictionaryDataSourceString should match SampleFilePath.");
 
-            this.config.mainDictionaryDataSourceString = null;
+            this.config.MainDictionaryDataSourceString = null;
             Assert.IsNull(
-                this.config.mainDictionaryDataSourceString,
+                this.config.MainDictionaryDataSourceString,
                 "2. MainDictionaryDataSourceString should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfNlmInitialFormatXslPathProperty_SchouldBePersistent()
         {
-            this.config.nlmInitialFormatXslPath = SampleFilePath;
+            this.config.NlmInitialFormatXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.nlmInitialFormatXslPath,
+                this.config.NlmInitialFormatXslPath,
                 "1. NlmInitialFormatXslPath should match SampleFilePath.");
 
-            this.config.nlmInitialFormatXslPath = null;
+            this.config.NlmInitialFormatXslPath = null;
             Assert.IsNull(
-                this.config.nlmInitialFormatXslPath,
+                this.config.NlmInitialFormatXslPath,
                 "2. NlmInitialFormatXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfRankListCleanXslPathProperty_SchouldBePersistent()
         {
-            this.config.rankListCleanXslPath = SampleFilePath;
+            this.config.RankListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.rankListCleanXslPath,
+                this.config.RankListCleanXslPath,
                 "1. RankListCleanXslPath should match SampleFilePath.");
 
-            this.config.rankListCleanXslPath = null;
+            this.config.RankListCleanXslPath = null;
             Assert.IsNull(
-                this.config.rankListCleanXslPath,
+                this.config.RankListCleanXslPath,
                 "2. RankListCleanXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfRankListXmlFilePathProperty_SchouldBePersistent()
         {
-            this.config.rankListXmlFilePath = SampleFilePath;
+            this.config.RankListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.rankListXmlFilePath,
+                this.config.RankListXmlFilePath,
                 "1. RankListXmlFilePath should match SampleFilePath.");
 
-            this.config.rankListXmlFilePath = null;
+            this.config.RankListXmlFilePath = null;
             Assert.IsNull(
-                this.config.rankListXmlFilePath,
+                this.config.RankListXmlFilePath,
                 "2. RankListXmlFilePath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfReferencesGetReferencesXmlPathProperty_SchouldBePersistent()
         {
-            this.config.referencesGetReferencesXmlPath = SampleFilePath;
+            this.config.ReferencesGetReferencesXmlPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.referencesGetReferencesXmlPath,
+                this.config.ReferencesGetReferencesXmlPath,
                 "1. ReferencesGetReferencesXmlPath should match SampleFilePath.");
 
-            this.config.referencesGetReferencesXmlPath = null;
+            this.config.ReferencesGetReferencesXmlPath = null;
             Assert.IsNull(
-                this.config.referencesGetReferencesXmlPath,
+                this.config.ReferencesGetReferencesXmlPath,
                 "2. ReferencesGetReferencesXmlPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfReferencesGetReferencesXslPathProperty_SchouldBePersistent()
         {
-            this.config.referencesGetReferencesXslPath = SampleFilePath;
+            this.config.ReferencesGetReferencesXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.referencesGetReferencesXslPath,
+                this.config.ReferencesGetReferencesXslPath,
                 "1. ReferencesGetReferencesXslPath should match SampleFilePath.");
 
-            this.config.referencesGetReferencesXslPath = null;
+            this.config.ReferencesGetReferencesXslPath = null;
             Assert.IsNull(
-                this.config.referencesGetReferencesXslPath,
+                this.config.ReferencesGetReferencesXslPath,
                 "2. ReferencesGetReferencesXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfReferencesSortReferencesXslPathProperty_SchouldBePersistent()
         {
-            this.config.referencesSortReferencesXslPath = SampleFilePath;
+            this.config.ReferencesSortReferencesXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.referencesSortReferencesXslPath,
+                this.config.ReferencesSortReferencesXslPath,
                 "1. ReferencesSortReferencesXslPath should match SampleFilePath.");
 
-            this.config.referencesSortReferencesXslPath = null;
+            this.config.ReferencesSortReferencesXslPath = null;
             Assert.IsNull(
-                this.config.referencesSortReferencesXslPath,
+                this.config.ReferencesSortReferencesXslPath,
                 "2. ReferencesSortReferencesXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_SchouldBePersistent()
         {
-            this.config.referencesTagTemplateXmlPath = SampleFilePath;
+            this.config.ReferencesTagTemplateXmlPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.referencesTagTemplateXmlPath,
+                this.config.ReferencesTagTemplateXmlPath,
                 "1. ReferencesTagTemplateXmlPath should match SampleFilePath.");
 
-            this.config.referencesTagTemplateXmlPath = null;
+            this.config.ReferencesTagTemplateXmlPath = null;
             Assert.IsNull(
-                this.config.referencesTagTemplateXmlPath,
+                this.config.ReferencesTagTemplateXmlPath,
                 "2. ReferencesTagTemplateXmlPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfReferencesTagTemplateXslPathProperty_SchouldBePersistent()
         {
-            this.config.referencesTagTemplateXslPath = SampleFilePath;
+            this.config.ReferencesTagTemplateXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.referencesTagTemplateXslPath,
+                this.config.ReferencesTagTemplateXslPath,
                 "1. ReferencesTagTemplateXslPath should match SampleFilePath.");
 
-            this.config.referencesTagTemplateXslPath = null;
+            this.config.ReferencesTagTemplateXslPath = null;
             Assert.IsNull(
-                this.config.referencesTagTemplateXslPath,
+                this.config.ReferencesTagTemplateXslPath,
                 "2. ReferencesTagTemplateXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfSystemInitialFormatXslPathProperty_SchouldBePersistent()
         {
-            this.config.systemInitialFormatXslPath = SampleFilePath;
+            this.config.SystemInitialFormatXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.systemInitialFormatXslPath,
+                this.config.SystemInitialFormatXslPath,
                 "1. SystemInitialFormatXslPath should match SampleFilePath.");
 
-            this.config.systemInitialFormatXslPath = null;
+            this.config.SystemInitialFormatXslPath = null;
             Assert.IsNull(
-                this.config.systemInitialFormatXslPath,
+                this.config.SystemInitialFormatXslPath,
                 "2. SystemInitialFormatXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfTempDirectoryPathProperty_SchouldBePersistent()
         {
-            this.config.tempDirectoryPath = SampleFilePath;
+            this.config.TempDirectoryPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.tempDirectoryPath,
+                this.config.TempDirectoryPath,
                 "1. TempDirectoryPath should match SampleFilePath.");
 
-            this.config.tempDirectoryPath = null;
+            this.config.TempDirectoryPath = null;
             Assert.IsNull(
-                this.config.tempDirectoryPath,
+                this.config.TempDirectoryPath,
                 "2. TempDirectoryPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfTextContentXslFileNameProperty_SchouldBePersistent()
         {
-            this.config.textContentXslFileName = SampleFilePath;
+            this.config.TextContentXslFileName = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.textContentXslFileName,
+                this.config.TextContentXslFileName,
                 "1. TextContentXslFileName should match SampleFilePath.");
 
-            this.config.textContentXslFileName = null;
+            this.config.TextContentXslFileName = null;
             Assert.IsNull(
-                this.config.textContentXslFileName,
+                this.config.TextContentXslFileName,
                 "2. TextContentXslFileName should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfWhiteListCleanXslPathProperty_SchouldBePersistent()
         {
-            this.config.whiteListCleanXslPath = SampleFilePath;
+            this.config.WhiteListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.whiteListCleanXslPath,
+                this.config.WhiteListCleanXslPath,
                 "1. WhiteListCleanXslPath should match SampleFilePath.");
 
-            this.config.whiteListCleanXslPath = null;
+            this.config.WhiteListCleanXslPath = null;
             Assert.IsNull(
-                this.config.whiteListCleanXslPath,
+                this.config.WhiteListCleanXslPath,
                 "2. WhiteListCleanXslPath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfWhiteListXmlFilePathProperty_SchouldBePersistent()
         {
-            this.config.whiteListXmlFilePath = SampleFilePath;
+            this.config.WhiteListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.whiteListXmlFilePath,
+                this.config.WhiteListXmlFilePath,
                 "1. WhiteListXmlFilePath should match SampleFilePath.");
 
-            this.config.whiteListXmlFilePath = null;
+            this.config.WhiteListXmlFilePath = null;
             Assert.IsNull(
-                this.config.whiteListXmlFilePath,
+                this.config.WhiteListXmlFilePath,
                 "2. WhiteListXmlFilePath should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfZoobankNlmXslPathProperty_SchouldBePersistent()
         {
-            this.config.zoobankNlmXslPath = SampleFilePath;
+            this.config.ZoobankNlmXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.zoobankNlmXslPath,
+                this.config.ZoobankNlmXslPath,
                 "1. ZoobankNlmXslPath should match SampleFilePath.");
 
-            this.config.zoobankNlmXslPath = null;
+            this.config.ZoobankNlmXslPath = null;
             Assert.IsNull(
-                this.config.zoobankNlmXslPath,
+                this.config.ZoobankNlmXslPath,
                 "2. ZoobankNlmXslPath should be null.");
         }
 

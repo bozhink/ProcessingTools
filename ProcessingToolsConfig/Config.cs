@@ -109,89 +109,91 @@
     [DataContract]
     public partial class Config
     {
-        [DataMember]
-        public string blackListCleanXslPath { get; set; }
+        [DataMember(Name = "blackListCleanXslPath")]
+        public string BlackListCleanXslPath { get; set; }
 
-        [DataMember]
-        public string blackListXmlFilePath { get; set; }
+        [DataMember(Name = "blackListXmlFilePath")]
+        public string BlackListXmlFilePath { get; set; }
 
-        [DataMember]
-        public string codesRemoveNonCodeNodes { get; set; }
+        [DataMember(Name = "codesRemoveNonCodeNodes")]
+        public string CodesRemoveNonCodeNodes { get; set; }
 
-        [DataMember]
-        public string environmentsDataSourceString { get; set; }
+        [DataMember(Name = "environmentsDataSourceString")]
+        public string EnvironmentsDataSourceString { get; set; }
 
-        [DataMember]
-        public string envoTermsWebServiceTransformXslPath { get; set; }
+        [DataMember(Name = "envoTermsWebServiceTransformXslPath")]
+        public string EnvoTermsWebServiceTransformXslPath { get; set; }
 
-        [DataMember]
-        public string floraDistrinctTaxaXslPath { get; set; }
+        [DataMember(Name = "floraDistrinctTaxaXslPath")]
+        public string FloraDistrinctTaxaXslPath { get; set; }
 
-        [DataMember]
-        public string floraExtractedTaxaListPath { get; set; }
+        [DataMember(Name = "floraExtractedTaxaListPath")]
+        public string FloraExtractedTaxaListPath { get; set; }
 
-        [DataMember]
-        public string floraExtractTaxaPartsOutputPath { get; set; }
+        [DataMember(Name = "floraExtractTaxaPartsOutputPath")]
+        public string FloraExtractTaxaPartsOutputPath { get; set; }
 
-        [DataMember]
-        public string floraExtractTaxaPartsXslPath { get; set; }
+        [DataMember(Name = "floraExtractTaxaPartsXslPath")]
+        public string FloraExtractTaxaPartsXslPath { get; set; }
 
-        [DataMember]
-        public string floraExtractTaxaXslPath { get; set; }
+        [DataMember(Name = "floraExtractTaxaXslPath")]
+        public string FloraExtractTaxaXslPath { get; set; }
 
-        [DataMember]
-        public string floraGenerateTemplatesXslPath { get; set; }
+        [DataMember(Name = "floraGenerateTemplatesXslPath")]
+        public string FloraGenerateTemplatesXslPath { get; set; }
 
-        [DataMember]
-        public string floraTemplatesOutputXmlPath { get; set; }
+        [DataMember(Name = "floraTemplatesOutputXmlPath")]
+        public string FloraTemplatesOutputXmlPath { get; set; }
 
-        [DataMember]
-        public string formatXslNlmToSystem { get; set; }
+        [DataMember(Name = "formatXslNlmToSystem")]
+        public string FormatXslNlmToSystem { get; set; }
 
-        [DataMember]
-        public string formatXslSystemToNlm { get; set; }
+        [DataMember(Name = "formatXslSystemToNlm")]
+        public string FormatXslSystemToNlm { get; set; }
 
-        [DataMember]
-        public string mainDictionaryDataSourceString { get; set; }
+        [DataMember(Name = "mainDictionaryDataSourceString")]
+        public string MainDictionaryDataSourceString { get; set; }
 
-        [DataMember]
-        public string nlmInitialFormatXslPath { get; set; }
+        [DataMember(Name = "nlmInitialFormatXslPath")]
+        public string NlmInitialFormatXslPath { get; set; }
 
-        [DataMember]
-        public string rankListCleanXslPath { get; set; }
+        [DataMember(Name = "rankListCleanXslPath")]
+        public string RankListCleanXslPath { get; set; }
 
-        [DataMember]
-        public string rankListXmlFilePath { get; set; }
+        [DataMember(Name = "rankListXmlFilePath")]
+        public string RankListXmlFilePath { get; set; }
 
-        [DataMember]
-        public string referencesGetReferencesXmlPath { get; set; }
+        [DataMember(Name = "referencesGetReferencesXmlPath")]
+        public string ReferencesGetReferencesXmlPath { get; set; }
 
-        [DataMember]
-        public string referencesGetReferencesXslPath { get; set; }
+        [DataMember(Name = "referencesGetReferencesXslPath")]
+        public string ReferencesGetReferencesXslPath { get; set; }
 
-        [DataMember]
-        public string referencesSortReferencesXslPath { get; set; }
+        [DataMember(Name = "referencesSortReferencesXslPath")]
+        public string ReferencesSortReferencesXslPath { get; set; }
 
-        [DataMember]
-        public string referencesTagTemplateXmlPath { get; set; }
+        [DataMember(Name = "referencesTagTemplateXmlPath")]
+        public string ReferencesTagTemplateXmlPath { get; set; }
 
-        [DataMember]
-        public string referencesTagTemplateXslPath { get; set; }
+        [DataMember(Name = "referencesTagTemplateXslPath")]
+        public string ReferencesTagTemplateXslPath { get; set; }
 
-        [DataMember]
-        public string systemInitialFormatXslPath { get; set; }
+        [DataMember(Name = "systemInitialFormatXslPath")]
+        public string SystemInitialFormatXslPath { get; set; }
 
-        [DataMember]
-        public string tempDirectoryPath { get; set; }
-        [DataMember]
-        public string textContentXslFileName { get; set; }
+        [DataMember(Name = "tempDirectoryPath")]
+        public string TempDirectoryPath { get; set; }
 
-        [DataMember]
-        public string whiteListCleanXslPath { get; set; }
+        [DataMember(Name = "textContentXslFileName")]
+        public string TextContentXslFileName { get; set; }
 
-        [DataMember]
-        public string whiteListXmlFilePath { get; set; }
-        [DataMember]
-        public string zoobankNlmXslPath { get; set; }
+        [DataMember(Name = "whiteListCleanXslPath")]
+        public string WhiteListCleanXslPath { get; set; }
+
+        [DataMember(Name = "whiteListXmlFilePath")]
+        public string WhiteListXmlFilePath { get; set; }
+
+        [DataMember(Name = "zoobankNlmXslPath")]
+        public string ZoobankNlmXslPath { get; set; }
     }
 }

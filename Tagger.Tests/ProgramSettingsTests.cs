@@ -26,12 +26,12 @@
             string tempDirectoryPath = "/tmp";
 
             Config config = new Config();
-            config.tempDirectoryPath = tempDirectoryPath;
+            config.TempDirectoryPath = tempDirectoryPath;
 
             {
                 this.programSettings.Config = config;
 
-                Assert.AreEqual(tempDirectoryPath, this.programSettings.Config.tempDirectoryPath, "1. Temp Directory path should match.");
+                Assert.AreEqual(tempDirectoryPath, this.programSettings.Config.TempDirectoryPath, "1. Temp Directory path should match.");
             }
 
             {

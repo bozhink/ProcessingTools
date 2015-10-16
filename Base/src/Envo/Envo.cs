@@ -56,7 +56,7 @@
 
                 string envoTermsResponseString = Regex.Replace(envoTermsResponse.OuterXml, @"\sxmlns=""[^<>""]*""", string.Empty);
 
-                string tagSetString = envoTermsResponseString.ApplyXslTransform(this.Config.envoTermsWebServiceTransformXslPath);
+                string tagSetString = envoTermsResponseString.ApplyXslTransform(this.Config.EnvoTermsWebServiceTransformXslPath);
 
                 envoTermsTagSet.LoadXml(tagSetString);
             }

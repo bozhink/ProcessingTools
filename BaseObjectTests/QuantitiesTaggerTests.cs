@@ -36,7 +36,7 @@
         {
             string xml = "<x></x>";
             QuantitiesTagger quantitiesTagger = new QuantitiesTagger(config, xml, logger);
-            Assert.AreEqual(config.tempDirectoryPath, quantitiesTagger.Config.tempDirectoryPath, "Temp directory path does not match.");
+            Assert.AreEqual(config.TempDirectoryPath, quantitiesTagger.Config.TempDirectoryPath, "Temp directory path does not match.");
             Assert.AreEqual(xml, quantitiesTagger.Xml, "Xml content is not valid.");
             Assert.AreEqual(xml, quantitiesTagger.XmlDocument.OuterXml, "Xml content in XmlDocument is not as expected.");
         }

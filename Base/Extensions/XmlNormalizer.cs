@@ -17,7 +17,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
+            return xml.ApplyXslTransform(config.FormatXslNlmToSystem);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this XmlDocument xml, Config config)
         {
-            return xml.ApplyXslTransform(config.formatXslNlmToSystem);
+            return xml.ApplyXslTransform(config.FormatXslNlmToSystem);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
+            return xml.ApplyXslTransform(config.FormatXslSystemToNlm);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this XmlDocument xml, Config config)
         {
-            return xml.ApplyXslTransform(config.formatXslSystemToNlm);
+            return xml.ApplyXslTransform(config.FormatXslSystemToNlm);
         }
 
         /// <summary>

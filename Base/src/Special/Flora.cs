@@ -30,24 +30,24 @@
 
         public void ExtractTaxa()
         {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.floraExtractTaxaXslPath);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaXslPath);
         }
 
         public string ExtractTaxaParts()
         {
-            return this.XmlDocument.ApplyXslTransform(this.Config.floraExtractTaxaPartsXslPath);
+            return this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaPartsXslPath);
         }
 
         public void DistinctTaxa()
         {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.floraDistrinctTaxaXslPath);
+            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraDistrinctTaxaXslPath);
         }
 
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(this.XmlDocument.ApplyXslTransform(this.Config.floraGenerateTemplatesXslPath)));
-            generatedTemplate.Save(this.Config.floraTemplatesOutputXmlPath);
+            generatedTemplate.LoadXml(Flora.DistinctTaxa(this.XmlDocument.ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)));
+            generatedTemplate.Save(this.Config.FloraTemplatesOutputXmlPath);
         }
 
         public void PerformReplace()
@@ -56,7 +56,7 @@
             const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
 
             XmlDocument template = new XmlDocument();
-            template.Load(this.Config.floraTemplatesOutputXmlPath);
+            template.Load(this.Config.FloraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
 
@@ -179,7 +179,7 @@
         public void ParseTn()
         {
             XmlDocument template = new XmlDocument();
-            template.Load(this.Config.floraTemplatesOutputXmlPath);
+            template.Load(this.Config.FloraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
 

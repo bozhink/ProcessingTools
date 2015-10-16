@@ -203,16 +203,16 @@
             FileProcessor fp = new FileProcessor(this.Config);
             {
                 // References list
-                fp.OutputFileName = this.Config.referencesGetReferencesXmlPath;
-                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.referencesGetReferencesXslPath);
+                fp.OutputFileName = this.Config.ReferencesGetReferencesXmlPath;
+                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ReferencesGetReferencesXslPath);
                 fp.Write();
             }
 
             {
                 // References template
-                fp.OutputFileName = this.Config.referencesTagTemplateXmlPath;
-                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.referencesTagTemplateXslPath);
-                fp.Xml = fp.XmlDocument.ApplyXslTransform(this.Config.referencesSortReferencesXslPath);
+                fp.OutputFileName = this.Config.ReferencesTagTemplateXmlPath;
+                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ReferencesTagTemplateXslPath);
+                fp.Xml = fp.XmlDocument.ApplyXslTransform(this.Config.ReferencesSortReferencesXslPath);
                 fp.Write();
             }
         }
@@ -227,7 +227,7 @@
             XmlDocument xd = new XmlDocument();
             try
             {
-                xd.Load(this.Config.referencesTagTemplateXmlPath);
+                xd.Load(this.Config.ReferencesTagTemplateXmlPath);
             }
             catch
             {

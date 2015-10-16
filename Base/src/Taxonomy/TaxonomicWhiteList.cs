@@ -37,7 +37,7 @@
                     {
                         if (TaxonomicWhiteList.stringList == null)
                         {
-                            XElement list = XElement.Load(TaxonomicWhiteList.config.whiteListXmlFilePath);
+                            XElement list = XElement.Load(TaxonomicWhiteList.config.WhiteListXmlFilePath);
                             TaxonomicWhiteList.stringList = from item in list.Elements()
                                                             select item.Value;
                         }

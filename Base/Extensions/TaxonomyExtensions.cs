@@ -12,7 +12,7 @@
     {
         public static string DistinctTaxa(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.floraDistrinctTaxaXslPath);
+            return xml.ApplyXslTransform(config.FloraDistrinctTaxaXslPath);
         }
 
         public static IEnumerable<string> ExtractTaxa(this XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
@@ -52,7 +52,7 @@
 
         public static string ExtractTaxa(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.floraExtractTaxaXslPath);
+            return xml.ApplyXslTransform(config.FloraExtractTaxaXslPath);
         }
 
         public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
@@ -64,7 +64,7 @@
 
         public static string GenerateTagTemplate(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.floraGenerateTemplatesXslPath);
+            return xml.ApplyXslTransform(config.FloraGenerateTemplatesXslPath);
         }
 
         public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode xml)

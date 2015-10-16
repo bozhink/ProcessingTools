@@ -344,8 +344,8 @@
         {
             try
             {
-                var flp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.floraExtractedTaxaListPath);
-                var flpp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.floraExtractTaxaPartsOutputPath);
+                var flp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
+                var flpp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
                 var floraProcessor = new Flora(this.settings.Config, this.fileProcessor.Xml);
 
                 floraProcessor.ExtractTaxa();
@@ -452,7 +452,7 @@
                 {
                     case SchemaType.Nlm:
                         {
-                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.nlmInitialFormatXslPath);
+                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslPath);
                             var formatter = new BaseLibrary.Format.Nlm.Formatter(this.settings.Config, xml);
                             formatter.Format();
                             this.fileProcessor.Xml = formatter.Xml;
@@ -462,7 +462,7 @@
 
                     default:
                         {
-                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.systemInitialFormatXslPath);
+                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslPath);
                             var formatter = new BaseLibrary.Format.NlmSystem.Formatter(this.settings.Config, xml);
                             formatter.Format();
                             this.fileProcessor.Xml = formatter.Xml;
@@ -867,9 +867,9 @@
 
         private void SetRefencesTemplateFileNamesToConfig(string fileName)
         {
-            this.settings.Config.referencesGetReferencesXmlPath = $"{Path.GetDirectoryName(fileName)}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references.xml";
+            this.settings.Config.ReferencesGetReferencesXmlPath = $"{Path.GetDirectoryName(fileName)}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references.xml";
 
-            this.settings.Config.referencesTagTemplateXmlPath = $"{this.settings.Config.tempDirectoryPath}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references-tag-template.xml";
+            this.settings.Config.ReferencesTagTemplateXmlPath = $"{this.settings.Config.TempDirectoryPath}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references-tag-template.xml";
         }
 
         private void SetUpFileProcessor()
@@ -888,9 +888,9 @@
                     this.fileProcessor.OutputFileName,
                     this.settings.QueryFileName);
 
-                this.settings.Config.EnvoResponseOutputXmlFileName = $"{this.settings.Config.tempDirectoryPath}\\envo-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
+                this.settings.Config.EnvoResponseOutputXmlFileName = $"{this.settings.Config.TempDirectoryPath}\\envo-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
 
-                this.settings.Config.GnrOutputFileName = $"{this.settings.Config.tempDirectoryPath}\\gnr-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
+                this.settings.Config.GnrOutputFileName = $"{this.settings.Config.TempDirectoryPath}\\gnr-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
 
                 this.fileProcessor.Read();
 

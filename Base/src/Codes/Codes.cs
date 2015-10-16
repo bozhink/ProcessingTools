@@ -303,7 +303,7 @@ namespace ProcessingTools.BaseLibrary
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
             cleanedXmlDocument.LoadXml(
-                cleanedXmlDocument.ApplyXslTransform(this.Config.codesRemoveNonCodeNodes));
+                cleanedXmlDocument.ApplyXslTransform(this.Config.CodesRemoveNonCodeNodes));
 
             Regex matchCodePattern = new Regex(codePattern);
             return cleanedXmlDocument.InnerText.GetMatchesInText(matchCodePattern);
