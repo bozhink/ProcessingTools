@@ -1,11 +1,47 @@
 ﻿namespace ProcessingTools.ListsManager
 {
-    partial class MainForm
+    public partial class MainForm
     {
+        private ListManagerControl blackListManager;
+
+        private System.Windows.Forms.TabPage blackListTabPage;
+
+        private System.Windows.Forms.ToolStripMenuItem closeConfigFileToolStripMenuItem;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+
+        private System.Windows.Forms.MenuStrip menuStrip;
+
+        private System.Windows.Forms.OpenFileDialog openConfigFileDialog;
+
+        private System.Windows.Forms.ToolStripMenuItem openConfigFileToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem openDefaultConfigFileToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem qiutToolStripMenuItem;
+
+        private ListManagerControl rankListManager;
+
+        private System.Windows.Forms.TabPage rankListTabPage;
+
+        private System.Windows.Forms.StatusStrip statusStrip;
+
+        private System.Windows.Forms.TabControl tabControl;
+
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelConfigOutput;
+
+        private ListManagerControl whiteListManager;
+
+        private System.Windows.Forms.TabPage whiteListTabPage;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -13,10 +49,11 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -105,7 +142,7 @@
             this.openConfigFileToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O);
             this.openConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.openConfigFileToolStripMenuItem.Text = "&Open config file";
-            this.openConfigFileToolStripMenuItem.Click += new System.EventHandler(this.openConfigFileToolStripMenuItem_Click);
+            this.openConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenConfigFileToolStripMenuItem_Click);
             // 
             // openDefaultConfigFileToolStripMenuItem
             // 
@@ -114,7 +151,7 @@
             | System.Windows.Forms.Keys.O);
             this.openDefaultConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.openDefaultConfigFileToolStripMenuItem.Text = "Open default config file";
-            this.openDefaultConfigFileToolStripMenuItem.Click += new System.EventHandler(this.openDefaultConfigFileToolStripMenuItem_Click);
+            this.openDefaultConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenDefaultConfigFileToolStripMenuItem_Click);
             // 
             // closeConfigFileToolStripMenuItem
             // 
@@ -122,7 +159,7 @@
             this.closeConfigFileToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4);
             this.closeConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.closeConfigFileToolStripMenuItem.Text = "&Close config file";
-            this.closeConfigFileToolStripMenuItem.Click += new System.EventHandler(this.closeConfigFileToolStripMenuItem_Click);
+            this.closeConfigFileToolStripMenuItem.Click += new System.EventHandler(this.CloseConfigFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -135,7 +172,7 @@
             this.qiutToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q);
             this.qiutToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.qiutToolStripMenuItem.Text = "&Qiut";
-            this.qiutToolStripMenuItem.Click += new System.EventHandler(this.qiutToolStripMenuItem_Click);
+            this.qiutToolStripMenuItem.Click += new System.EventHandler(this.QiutToolStripMenuItem_Click);
             // 
             // openConfigFileDialog
             // 
@@ -173,15 +210,15 @@
             this.whiteListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.whiteListManager.cleanXslFileName = null;
-            this.whiteListManager.isRankList = false;
-            this.whiteListManager.listFileName = "";
-            this.whiteListManager.listGroupBoxLabel = "listManagerGroupBox";
+            this.whiteListManager.CleanXslFileName = null;
+            this.whiteListManager.IsRankList = false;
+            this.whiteListManager.ListFileName = string.Empty;
+            this.whiteListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.whiteListManager.Location = new System.Drawing.Point(6, 6);
             this.whiteListManager.Name = "whiteListManager";
             this.whiteListManager.Size = new System.Drawing.Size(594, 525);
             this.whiteListManager.TabIndex = 0;
-            this.whiteListManager.tempDirectory = null;
+            this.whiteListManager.TempDirectory = null;
             // 
             // blackListTabPage
             // 
@@ -200,15 +237,15 @@
             this.blackListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.blackListManager.cleanXslFileName = null;
-            this.blackListManager.isRankList = false;
-            this.blackListManager.listFileName = "";
-            this.blackListManager.listGroupBoxLabel = "listManagerGroupBox";
+            this.blackListManager.CleanXslFileName = null;
+            this.blackListManager.IsRankList = false;
+            this.blackListManager.ListFileName = string.Empty;
+            this.blackListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.blackListManager.Location = new System.Drawing.Point(6, 6);
             this.blackListManager.Name = "blackListManager";
             this.blackListManager.Size = new System.Drawing.Size(594, 525);
             this.blackListManager.TabIndex = 0;
-            this.blackListManager.tempDirectory = null;
+            this.blackListManager.TempDirectory = null;
             // 
             // rankListTabPage
             // 
@@ -225,15 +262,15 @@
             this.rankListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rankListManager.cleanXslFileName = "";
-            this.rankListManager.isRankList = false;
-            this.rankListManager.listFileName = "";
-            this.rankListManager.listGroupBoxLabel = "listManagerGroupBox";
+            this.rankListManager.CleanXslFileName = string.Empty;
+            this.rankListManager.IsRankList = false;
+            this.rankListManager.ListFileName = string.Empty;
+            this.rankListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.rankListManager.Location = new System.Drawing.Point(3, 3);
             this.rankListManager.Name = "rankListManager";
             this.rankListManager.Size = new System.Drawing.Size(600, 531);
             this.rankListManager.TabIndex = 0;
-            this.rankListManager.tempDirectory = "";
+            this.rankListManager.TempDirectory = string.Empty;
             // 
             // MainForm
             // 
@@ -261,25 +298,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelConfigOutput;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openConfigFileToolStripMenuItem;
-        private System.Windows.Forms.OpenFileDialog openConfigFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem closeConfigFileToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage whiteListTabPage;
-        private System.Windows.Forms.TabPage blackListTabPage;
-        private System.Windows.Forms.ToolStripMenuItem qiutToolStripMenuItem;
-        private ListManagerControl blackListManager;
-        private System.Windows.Forms.TabPage rankListTabPage;
-        private ListManagerControl whiteListManager;
-        private ListManagerControl rankListManager;
-        private System.Windows.Forms.ToolStripMenuItem openDefaultConfigFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
-

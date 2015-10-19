@@ -1,11 +1,49 @@
 ﻿namespace ProcessingTools.ListsManager
 {
-    partial class ListManagerControl
+    public partial class ListManagerControl
     {
+        private System.Windows.Forms.Button addToListViewButton;
+
+        private System.Windows.Forms.Button clearListViewButton;
+
+        private System.Windows.Forms.Button clearTextBoxButton;
+
+        private System.Windows.Forms.Button clearXmlListFileButton;
+
+        private System.Windows.Forms.ColumnHeader columnHeader;
+
         /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+
+        private System.Windows.Forms.TextBox listEntriesTextBox;
+
+        private System.Windows.Forms.GroupBox listGroupBox;
+
+        private System.Windows.Forms.Button listImportButton;
+
+        private System.Windows.Forms.GroupBox listManagerGroupBox;
+
+        private System.Windows.Forms.Button listParseButton;
+
+        private System.Windows.Forms.Button listSearchButton;
+
+        private System.Windows.Forms.TextBox listSearchTextBox;
+
+        private System.Windows.Forms.ListView listView;
+
+        private System.Windows.Forms.ContextMenuStrip listViewContextMenuStrip;
+
+        private System.Windows.Forms.Button loadWholeListButton;
+
+        private System.Windows.Forms.GroupBox parseTextGroupBox;
+
+        private System.Windows.Forms.ColumnHeader rankColumnHeader;
+
+        private System.Windows.Forms.GroupBox searchGroupBox;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -13,10 +51,11 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -96,7 +135,7 @@
             this.clearListViewButton.TabIndex = 17;
             this.clearListViewButton.Text = "Clear list view";
             this.clearListViewButton.UseVisualStyleBackColor = true;
-            this.clearListViewButton.Click += new System.EventHandler(this.clearListViewButton_Click);
+            this.clearListViewButton.Click += new System.EventHandler(this.ClearListViewButton_Click);
             // 
             // listImportButton
             // 
@@ -109,7 +148,7 @@
             this.listImportButton.TabIndex = 16;
             this.listImportButton.Text = "Import to List";
             this.listImportButton.UseVisualStyleBackColor = false;
-            this.listImportButton.Click += new System.EventHandler(this.listImportButton_Click);
+            this.listImportButton.Click += new System.EventHandler(this.ListImportButton_Click);
             // 
             // listView
             // 
@@ -160,7 +199,7 @@
             this.addToListViewButton.TabIndex = 14;
             this.addToListViewButton.Text = "Add to List View";
             this.addToListViewButton.UseVisualStyleBackColor = true;
-            this.addToListViewButton.Click += new System.EventHandler(this.addToListViewButton_Click);
+            this.addToListViewButton.Click += new System.EventHandler(this.AddToListViewButton_Click);
             // 
             // listParseButton
             // 
@@ -170,7 +209,7 @@
             this.listParseButton.TabIndex = 13;
             this.listParseButton.Text = "Parse";
             this.listParseButton.UseVisualStyleBackColor = true;
-            this.listParseButton.Click += new System.EventHandler(this.listParseButton_Click);
+            this.listParseButton.Click += new System.EventHandler(this.ListParseButton_Click);
             // 
             // listEntriesTextBox
             // 
@@ -209,7 +248,7 @@
             this.listSearchButton.TabIndex = 15;
             this.listSearchButton.Text = "Search";
             this.listSearchButton.UseVisualStyleBackColor = false;
-            this.listSearchButton.Click += new System.EventHandler(this.listSearchButton_Click);
+            this.listSearchButton.Click += new System.EventHandler(this.ListSearchButton_Click);
             // 
             // listSearchTextBox
             // 
@@ -220,7 +259,7 @@
             this.listSearchTextBox.Name = "listSearchTextBox";
             this.listSearchTextBox.Size = new System.Drawing.Size(177, 23);
             this.listSearchTextBox.TabIndex = 14;
-            this.listSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listSearchTextBox_KeyPress);
+            this.listSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListSearchTextBox_KeyPress);
             // 
             // clearXmlListFileButton
             // 
@@ -233,7 +272,7 @@
             this.clearXmlListFileButton.TabIndex = 18;
             this.clearXmlListFileButton.Text = "Clear Xml list file";
             this.clearXmlListFileButton.UseVisualStyleBackColor = false;
-            this.clearXmlListFileButton.Click += new System.EventHandler(this.clearXmlListFileButton_Click);
+            this.clearXmlListFileButton.Click += new System.EventHandler(this.ClearXmlListFileButton_Click);
             // 
             // rankColumnHeader
             // 
@@ -248,7 +287,7 @@
             this.clearTextBoxButton.TabIndex = 15;
             this.clearTextBoxButton.Text = "Clear";
             this.clearTextBoxButton.UseVisualStyleBackColor = true;
-            this.clearTextBoxButton.Click += new System.EventHandler(this.clearTextBoxButton_Click);
+            this.clearTextBoxButton.Click += new System.EventHandler(this.ClearTextBoxButton_Click);
             // 
             // listViewContextMenuStrip
             // 
@@ -262,7 +301,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // loadWholeListButton
             // 
@@ -273,7 +312,7 @@
             this.loadWholeListButton.TabIndex = 19;
             this.loadWholeListButton.Text = "Load whole list";
             this.loadWholeListButton.UseVisualStyleBackColor = true;
-            this.loadWholeListButton.Click += new System.EventHandler(this.loadWholeListButton_Click);
+            this.loadWholeListButton.Click += new System.EventHandler(this.LoadWholeListButton_Click);
             // 
             // ListManager
             // 
@@ -294,25 +333,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox listManagerGroupBox;
-        private System.Windows.Forms.GroupBox searchGroupBox;
-        private System.Windows.Forms.Button listSearchButton;
-        private System.Windows.Forms.TextBox listSearchTextBox;
-        private System.Windows.Forms.GroupBox parseTextGroupBox;
-        private System.Windows.Forms.Button listParseButton;
-        private System.Windows.Forms.TextBox listEntriesTextBox;
-        private System.Windows.Forms.GroupBox listGroupBox;
-        private System.Windows.Forms.Button listImportButton;
-        private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.ColumnHeader columnHeader;
-        private System.Windows.Forms.Button clearListViewButton;
-        private System.Windows.Forms.Button addToListViewButton;
-        private System.Windows.Forms.Button clearXmlListFileButton;
-        private System.Windows.Forms.ColumnHeader rankColumnHeader;
-        private System.Windows.Forms.Button clearTextBoxButton;
-        private System.Windows.Forms.ContextMenuStrip listViewContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.Button loadWholeListButton;
     }
 }

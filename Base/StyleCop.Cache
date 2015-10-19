@@ -1331,9 +1331,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="-1006022180">
-    <configuration>TRACE</configuration>
-  </project>
   <sourcecode name="ContentTagger.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-10-12 12:27:45.918</styleCop>
@@ -3266,4 +3263,7 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="-1006022180">
+    <configuration>TRACE</configuration>
+  </project>
 </stylecopresultscache>

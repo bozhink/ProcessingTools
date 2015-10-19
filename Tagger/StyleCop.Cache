@@ -121,9 +121,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="971391838">
-    <configuration>TRACE</configuration>
-  </project>
   <sourcecode name="Messages.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2015-10-12 12:27:45.918</styleCop>
@@ -262,4 +259,7 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="971391838">
+    <configuration>TRACE</configuration>
+  </project>
 </stylecopresultscache>

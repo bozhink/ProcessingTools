@@ -22,15 +22,5 @@ namespace ProcessingTools.ListsManager.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BOZHIN\\SQLEXPRESS;Initial Catalog=tempdb;Integrated Security=True")]
-        public string tempdbConnectionString {
-            get {
-                return ((string)(this["tempdbConnectionString"]));
-            }
-        }
     }
 }

@@ -6,150 +6,150 @@
 
     public partial class MainForm : Form
     {
-        public string configFileName
-        {
-            get;
-            set;
-        }
-
-        public string blackListFileName
-        {
-            get;
-            set;
-        }
-
-        public string whiteListFileName
-        {
-            get;
-            set;
-        }
-
-        public string rankListFileName
-        {
-            get;
-            set;
-        }
-
-        public string cleanRankListFileName
-        {
-            get;
-            set;
-        }
-
-        public string cleanWhiteListFileName
-        {
-            get;
-            set;
-        }
-
-        public string cleanBlackListFileName
-        {
-            get;
-            set;
-        }
-
-        public string tempDir
-        {
-            get;
-            set;
-        }
-
         public MainForm()
         {
-            InitializeComponent();
-            configFileName = string.Empty;
-            blackListFileName = string.Empty;
-            whiteListFileName = string.Empty;
-            rankListFileName = string.Empty;
-            cleanRankListFileName = string.Empty;
-            cleanWhiteListFileName = string.Empty;
-            cleanBlackListFileName = string.Empty;
-            tempDir = string.Empty;
+            this.InitializeComponent();
+            this.ConfigFileName = string.Empty;
+            this.BlackListFileName = string.Empty;
+            this.WhiteListFileName = string.Empty;
+            this.RankListFileName = string.Empty;
+            this.CleanRankListFileName = string.Empty;
+            this.CleanWhiteListFileName = string.Empty;
+            this.CleanBlackListFileName = string.Empty;
+            this.TempDir = string.Empty;
 
-            blackListManager.listGroupBoxLabel = "Black List";
-            blackListManager.isRankList = false;
+            this.blackListManager.ListGroupBoxLabel = "Black List";
+            this.blackListManager.IsRankList = false;
 
-            whiteListManager.listGroupBoxLabel = "White List";
-            whiteListManager.isRankList = false;
+            this.whiteListManager.ListGroupBoxLabel = "White List";
+            this.whiteListManager.IsRankList = false;
 
-            rankListManager.listGroupBoxLabel = "Rank List";
-            rankListManager.isRankList = true;
+            this.rankListManager.ListGroupBoxLabel = "Rank List";
+            this.rankListManager.IsRankList = true;
         }
 
-        private void openConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
+        public string BlackListFileName
         {
-            // Try to open the config file as xml
-            try
-            {
-                openConfigFileDialog.ShowDialog();
-                if (openConfigFileDialog.FileName.Length > 0)
-                {
-                    OpenConfigFile(openConfigFileDialog.FileName);
-                }
-            }
-            catch (Exception configException)
-            {
-                MessageBox.Show(configException.Message, "Error during opening the config file \'" + configFileName + "\'");
-            }
+            get;
+            set;
         }
 
-        private void openDefaultConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
+        public string CleanBlackListFileName
         {
-            try
-            {
-                OpenConfigFile(@"C:\bin\config.xml");
-            }
-            catch (Exception configException)
-            {
-                MessageBox.Show(configException.Message, "Error during opening the config file \'" + configFileName + "\'");
-            }
+            get;
+            set;
+        }
+
+        public string CleanRankListFileName
+        {
+            get;
+            set;
+        }
+
+        public string CleanWhiteListFileName
+        {
+            get;
+            set;
+        }
+
+        public string ConfigFileName
+        {
+            get;
+            set;
+        }
+
+        public string RankListFileName
+        {
+            get;
+            set;
+        }
+
+        public string TempDir
+        {
+            get;
+            set;
+        }
+
+        public string WhiteListFileName
+        {
+            get;
+            set;
+        }
+
+        private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ConfigFileName = string.Empty;
+            this.rankListManager.ListFileName = string.Empty;
+            this.whiteListManager.ListFileName = string.Empty;
+            this.blackListManager.ListFileName = string.Empty;
+            this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
         }
 
         private void OpenConfigFile(string fileName)
         {
-            configFileName = fileName;
-            toolStripStatusLabelConfigOutput.Text = configFileName;
+            this.ConfigFileName = fileName;
+            this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
 
             XmlDocument configXml = new XmlDocument();
-            configXml.Load(configFileName);
+            configXml.Load(this.ConfigFileName);
 
             // Parse config file
-            blackListFileName = configXml.ChildNodes.Item(1)["black-list-xml-file-path"].InnerText;
-            whiteListFileName = configXml.ChildNodes.Item(1)["white-list-xml-file-path"].InnerText;
-            rankListFileName = configXml.ChildNodes.Item(1)["rank-list-xml-file-path"].InnerText;
-            cleanRankListFileName = configXml.ChildNodes.Item(1)["rank-list-clean-xsl-path"].InnerText;
-            cleanWhiteListFileName = configXml.ChildNodes.Item(1)["white-list-clean-xsl-path"].InnerText;
-            cleanBlackListFileName = configXml.ChildNodes.Item(1)["black-list-clean-xsl-path"].InnerText;
-            tempDir = configXml.ChildNodes.Item(1)["temp"].InnerText;
+            this.BlackListFileName = configXml.ChildNodes.Item(1)["black-list-xml-file-path"].InnerText;
+            this.WhiteListFileName = configXml.ChildNodes.Item(1)["white-list-xml-file-path"].InnerText;
+            this.RankListFileName = configXml.ChildNodes.Item(1)["rank-list-xml-file-path"].InnerText;
+            this.CleanRankListFileName = configXml.ChildNodes.Item(1)["rank-list-clean-xsl-path"].InnerText;
+            this.CleanWhiteListFileName = configXml.ChildNodes.Item(1)["white-list-clean-xsl-path"].InnerText;
+            this.CleanBlackListFileName = configXml.ChildNodes.Item(1)["black-list-clean-xsl-path"].InnerText;
+            this.TempDir = configXml.ChildNodes.Item(1)["temp"].InnerText;
 
             // Set BlackList file paths
-            blackListManager.listFileName = blackListFileName;
-            blackListManager.cleanXslFileName = cleanBlackListFileName;
-            blackListManager.tempDirectory = tempDir;
+            this.blackListManager.ListFileName = this.BlackListFileName;
+            this.blackListManager.CleanXslFileName = this.CleanBlackListFileName;
+            this.blackListManager.TempDirectory = this.TempDir;
 
             // Set WhiteList file paths
-            whiteListManager.listFileName = whiteListFileName;
-            whiteListManager.cleanXslFileName = cleanWhiteListFileName;
-            whiteListManager.tempDirectory = tempDir;
+            this.whiteListManager.ListFileName = this.WhiteListFileName;
+            this.whiteListManager.CleanXslFileName = this.CleanWhiteListFileName;
+            this.whiteListManager.TempDirectory = this.TempDir;
 
             // Set RankList file paths
-            rankListManager.listFileName = rankListFileName;
-            rankListManager.cleanXslFileName = cleanRankListFileName;
-            rankListManager.tempDirectory = tempDir;
+            this.rankListManager.ListFileName = this.RankListFileName;
+            this.rankListManager.CleanXslFileName = this.CleanRankListFileName;
+            this.rankListManager.TempDirectory = this.TempDir;
         }
 
-        private void closeConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configFileName = string.Empty;
-            rankListManager.listFileName = string.Empty;
-            whiteListManager.listFileName = string.Empty;
-            blackListManager.listFileName = string.Empty;
-            toolStripStatusLabelConfigOutput.Text = configFileName;
+            // Try to open the config file as xml
+            try
+            {
+                this.openConfigFileDialog.ShowDialog();
+                if (this.openConfigFileDialog.FileName.Length > 0)
+                {
+                    this.OpenConfigFile(this.openConfigFileDialog.FileName);
+                }
+            }
+            catch (Exception configException)
+            {
+                MessageBox.Show(configException.Message, $"Error during opening the config file '{this.ConfigFileName}.'");
+            }
         }
 
-        private void qiutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenDefaultConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                this.OpenConfigFile(@"C:\bin\config.xml");
+            }
+            catch (Exception configException)
+            {
+                MessageBox.Show(configException.Message, $"Error during opening the config file '{this.ConfigFileName}.'");
+            }
+        }
+
+        private void QiutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
