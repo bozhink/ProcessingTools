@@ -62,159 +62,167 @@
 
         private void DoFileProcessing()
         {
-            this.SetUpFileProcessor();
-
-            if (this.settings.ZoobankCloneXml)
+            try
             {
-                this.ZooBankCloneXml();
-            }
-            else if (this.settings.ZoobankCloneJson)
-            {
-                this.ZooBankCloneJson();
-            }
-            else if (this.settings.ZoobankGenerateRegistrationXml)
-            {
-                this.ZooBankGenerateRegistrationXml();
-            }
-            else if (this.settings.QuentinSpecificActions)
-            {
-                this.QuentinSpecific();
-            }
-            else if (this.settings.Flora)
-            {
-                this.FloraSpecific();
-            }
-            else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
-            {
-                this.fileProcessor.Xml = QueryReplace.Replace(this.settings.Config, this.fileProcessor.Xml, this.settings.QueryFileName);
-            }
-            else
-            {
-                // Initial format
-                if (this.settings.FormatInit)
+                this.SetUpFileProcessor();
+
+                if (this.settings.ZoobankCloneXml)
                 {
-                    this.InitialFormat();
+                    this.ZooBankCloneXml();
                 }
-
-                // Parse reference's parts
-                if (this.settings.ParseReferences)
+                else if (this.settings.ZoobankCloneJson)
                 {
-                    this.ParseReferences();
+                    this.ZooBankCloneJson();
                 }
-
-                // Tag DOI
-                if (this.settings.TagDoi)
+                else if (this.settings.ZoobankGenerateRegistrationXml)
                 {
-                    this.TagDoi();
+                    this.ZooBankGenerateRegistrationXml();
                 }
-
-                // Tag web links
-                if (this.settings.TagWWW)
+                else if (this.settings.QuentinSpecificActions)
                 {
-                    this.TagWebLinks();
+                    this.QuentinSpecific();
                 }
-
-                // Tag coordinates
-                if (this.settings.TagCoords)
+                else if (this.settings.Flora)
                 {
-                    this.TagCoordinates();
+                    this.FloraSpecific();
                 }
-
-                // Parse coordinates
-                if (this.settings.ParseCoords)
+                else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
                 {
-                    this.ParseCoordinates();
-                }
-
-                // Tag envo terms using the greek tagger
-                if (this.settings.TagEnvo)
-                {
-                    this.TagEnvo();
-                }
-
-                // Tag envo terms using envornment database
-                if (this.settings.TagEnvironments)
-                {
-                    this.TagEnvoTerms();
-                }
-
-                // Tag quatities
-                if (this.settings.TagQuantities)
-                {
-                    this.TagQuantities();
-                }
-
-                // Tag dates
-                if (this.settings.TagDates)
-                {
-                    this.TagDates();
-                }
-
-                // Tag abbreviations
-                if (this.settings.TagAbbrev)
-                {
-                    this.TagAbbreviations();
-                }
-
-                // Tag institutions, institutional codes, and specimen codes
-                if (this.settings.TagCodes)
-                {
-                    this.TagCodes();
-                }
-
-                // Do something as an experimental feature
-                if (this.settings.TestFlag)
-                {
-                }
-
-                // Main Tagging part of the program
-                if (this.settings.ParseBySection)
-                {
-                    XmlDocument xmlDocument = new XmlDocument(this.fileProcessor.NamespaceManager.NameTable);
-                    xmlDocument.PreserveWhitespace = true;
-
-                    try
-                    {
-                        xmlDocument.LoadXml(this.fileProcessor.Xml);
-                    }
-                    catch
-                    {
-                        throw;
-                    }
-
-                    try
-                    {
-                        foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.fileProcessor.NamespaceManager))
-                        {
-                            if (this.settings.TagReferences)
-                            {
-                                this.SetRefencesTemplateFileNamesToConfig(this.GenerateReferencesTemplateFileName(node));
-                            }
-
-                            XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
-                            fragment.InnerXml = this.MainProcessing(node.OuterXml);
-                            node.ParentNode.ReplaceChild(fragment, node);
-                        }
-
-                        this.fileProcessor.Xml = xmlDocument.OuterXml;
-                    }
-                    catch
-                    {
-                        throw;
-                    }
+                    this.fileProcessor.Xml = QueryReplace.Replace(this.settings.Config, this.fileProcessor.Xml, this.settings.QueryFileName);
                 }
                 else
                 {
-                    if (this.settings.TagReferences)
+                    // Initial format
+                    if (this.settings.FormatInit)
                     {
-                        this.SetRefencesTemplateFileNamesToConfig(this.fileProcessor.OutputFileName);
+                        this.InitialFormat();
                     }
 
-                    this.fileProcessor.Xml = this.MainProcessing(this.fileProcessor.Xml);
-                }
-            }
+                    // Parse reference's parts
+                    if (this.settings.ParseReferences)
+                    {
+                        this.ParseReferences();
+                    }
 
-            this.WriteOutputFile();
+                    // Tag DOI
+                    if (this.settings.TagDoi)
+                    {
+                        this.TagDoi();
+                    }
+
+                    // Tag web links
+                    if (this.settings.TagWWW)
+                    {
+                        this.TagWebLinks();
+                    }
+
+                    // Tag coordinates
+                    if (this.settings.TagCoords)
+                    {
+                        this.TagCoordinates();
+                    }
+
+                    // Parse coordinates
+                    if (this.settings.ParseCoords)
+                    {
+                        this.ParseCoordinates();
+                    }
+
+                    // Tag envo terms using the greek tagger
+                    if (this.settings.TagEnvo)
+                    {
+                        this.TagEnvo();
+                    }
+
+                    // Tag envo terms using envornment database
+                    if (this.settings.TagEnvironments)
+                    {
+                        this.TagEnvoTerms();
+                    }
+
+                    // Tag quatities
+                    if (this.settings.TagQuantities)
+                    {
+                        this.TagQuantities();
+                    }
+
+                    // Tag dates
+                    if (this.settings.TagDates)
+                    {
+                        this.TagDates();
+                    }
+
+                    // Tag abbreviations
+                    if (this.settings.TagAbbrev)
+                    {
+                        this.TagAbbreviations();
+                    }
+
+                    // Tag institutions, institutional codes, and specimen codes
+                    if (this.settings.TagCodes)
+                    {
+                        this.TagCodes();
+                    }
+
+                    // Do something as an experimental feature
+                    if (this.settings.TestFlag)
+                    {
+                    }
+
+                    // Main Tagging part of the program
+                    if (this.settings.ParseBySection)
+                    {
+                        XmlDocument xmlDocument = new XmlDocument(this.fileProcessor.NamespaceManager.NameTable);
+                        xmlDocument.PreserveWhitespace = true;
+
+                        try
+                        {
+                            xmlDocument.LoadXml(this.fileProcessor.Xml);
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+
+                        try
+                        {
+                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.fileProcessor.NamespaceManager))
+                            {
+                                if (this.settings.TagReferences)
+                                {
+                                    this.SetRefencesTemplateFileNamesToConfig(this.GenerateReferencesTemplateFileName(node));
+                                }
+
+                                XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
+                                fragment.InnerXml = this.MainProcessing(node.OuterXml);
+                                node.ParentNode.ReplaceChild(fragment, node);
+                            }
+
+                            this.fileProcessor.Xml = xmlDocument.OuterXml;
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        if (this.settings.TagReferences)
+                        {
+                            this.SetRefencesTemplateFileNamesToConfig(this.fileProcessor.OutputFileName);
+                        }
+
+                        this.fileProcessor.Xml = this.MainProcessing(this.fileProcessor.Xml);
+                    }
+                }
+
+                this.WriteOutputFile();
+            }
+            catch (Exception e)
+            {
+                this.logger?.LogException(e, string.Empty);
+                throw e;
+            }
         }
 
         private string ExpandTaxa(string xmlContent)
