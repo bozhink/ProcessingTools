@@ -63,7 +63,7 @@
                 {
                     if (!File.Exists(value))
                     {
-                        throw new FileNotFoundException(string.Format("The input file '{0}' does not exist.", value));
+                        throw new FileNotFoundException($"The input file '{value}' does not exist.");
                     }
                     else
                     {
@@ -90,7 +90,7 @@
 
                 if (File.Exists(fileName))
                 {
-                    this.logger?.Log("\nWARNING: Output file '{0}' already exists.\n", fileName);
+                    this.logger?.LogWarning("Output file '{0}' already exists.\n", fileName);
                 }
 
                 this.outputFileName = fileName;
@@ -118,7 +118,7 @@
             }
             catch (Exception e)
             {
-                throw new IOException(string.Format("Cannot read file {0}\n{1}", inputFileName, e.Message), e);
+                throw new IOException($"Cannot read file {inputFileName}.", e);
             }
 
             return result;
@@ -185,18 +185,17 @@
             }
             catch (XmlException xmlException)
             {
-                this.logger?.Log(
+                this.logger?.LogInfo(
+                    xmlException,
                     "Input file name '{0}' is not a valid XML document.\n" +
-                    "It will be read as text file and will be wrapped in basic XML tags.\n\n" +
-                    "{1}\n",
-                    this.InputFileName,
-                    xmlException.Message);
+                    "It will be read as text file and will be wrapped in basic XML tags.\n",
+                    this.InputFileName);
 
                 XmlElement rootNode = readXml.CreateElement("article");
                 XmlElement bodyNode = readXml.CreateElement("body");
                 try
                 {
-                    string[] lines = System.IO.File.ReadAllLines(this.InputFileName, Config.DefaultEncoding);
+                    string[] lines = File.ReadAllLines(this.InputFileName, Config.DefaultEncoding);
                     for (int i = 0, len = lines.Length; i < len; ++i)
                     {
                         XmlElement paragraph = readXml.CreateElement("p");

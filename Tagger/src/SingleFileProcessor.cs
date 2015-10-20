@@ -228,7 +228,7 @@
                 var expand = new BaseLibrary.Taxonomy.Nlm.Expander(this.settings.Config, xmlContent, this.logger);
                 var exp = new Expander(this.settings.Config, xmlContent, this.logger);
 
-                for (int i = 0; i < MainProcessingTool.NumberOfExpandingIterations; ++i)
+                for (int i = 0; i < Program.NumberOfExpandingIterations; ++i)
                 {
                     if (this.settings.TaxaE)
                     {
@@ -816,7 +816,7 @@
 
         private void PrintElapsedTime(Stopwatch timer)
         {
-            this.logger?.Log("Elapsed time " + timer.Elapsed);
+            this.logger?.LogInfo("Elapsed time {0}.", timer.Elapsed);
         }
 
         private void QuentinSpecific()

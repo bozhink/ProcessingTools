@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using Globals;
 
-    public partial class MainProcessingTool
+    public class Program
     {
         public const int NumberOfExpandingIterations = 1;
 
@@ -29,7 +29,7 @@
                 logger.LogException(e, string.Empty);
             }
 
-            logger.Log("Main timer: " + mainTimer.Elapsed);
+            logger.LogInfo("Main timer {0}.", mainTimer.Elapsed);
         }
     }
 }

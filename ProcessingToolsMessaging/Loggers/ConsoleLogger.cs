@@ -50,24 +50,254 @@
             }
         }
 
-        public void LogException(Exception e, object customMessage)
+        public void LogError(object message)
         {
-            this.Log(
-                "{0}: ERROR: {1}: {2}\nMESSAGE: {3}",
-                Diagnostics.GetCurrentMethod(2),
-                e.GetType(),
-                customMessage,
-                e.Message);
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("{0}: Error", Diagnostics.GetCurrentMethod(2));
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogError(Exception e, object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("{0}: Error: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogError(string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("{0}: Error", Diagnostics.GetCurrentMethod(2));
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogError(Exception e, string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("{0}: Error: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogException(Exception e, object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("{0}: Exception: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void LogException(Exception e, string format, params object[] args)
         {
-            this.Log(
-                "{0}: ERROR: {1}: {2}\n",
-                Diagnostics.GetCurrentMethod(2),
-                e.GetType(),
-                e.Message);
-            this.Log(format, args);
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("{0}: Exception: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogInfo(object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogInfo(Exception e, object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("{0}: Info: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogInfo(string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogInfo(Exception e, string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("{0}: Info: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogWarning(object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("{0}: Warning", Diagnostics.GetCurrentMethod(2));
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogWarning(Exception e, object message)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("{0}: Warning: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogWarning(string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("{0}: Warning", Diagnostics.GetCurrentMethod(2));
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void LogWarning(Exception e, string format, params object[] args)
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("{0}: Warning: {1}: {2}", Diagnostics.GetCurrentMethod(2), e.GetType(), e.Message);
+                Console.WriteLine(format, args);
+                Console.ResetColor();
+            }
+            catch (IOException)
+            {
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
