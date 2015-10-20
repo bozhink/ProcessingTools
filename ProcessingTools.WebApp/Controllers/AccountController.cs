@@ -1,22 +1,20 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using ProcessingTools.WebApp.Models;
-
-namespace ProcessingTools.WebApp.Controllers
+﻿namespace ProcessingTools.WebApp.Controllers
 {
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using ProcessingTools.WebApp.Models;
+
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationSignInManager signInManager;
+        private ApplicationUserManager userManager;
 
         public AccountController()
         {
@@ -32,11 +30,12 @@ namespace ProcessingTools.WebApp.Controllers
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
+
             private set
             {
-                _signInManager = value;
+                signInManager = value;
             }
         }
 
@@ -44,17 +43,18 @@ namespace ProcessingTools.WebApp.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
-                _userManager = value;
+                userManager = value;
             }
         }
 
-        // The Authorize Action is the end point which gets called when you access any
-        // protected Web API. If the user is not logged in then they will be redirected to 
-        // the Login page. After a successful login you can call a Web API.
+        //// The Authorize Action is the end point which gets called when you access any
+        //// protected Web API. If the user is not logged in then they will be redirected to 
+        //// the Login page. After a successful login you can call a Web API.
         [HttpGet]
         public ActionResult Authorize()
         {
@@ -64,8 +64,8 @@ namespace ProcessingTools.WebApp.Controllers
             return new EmptyResult();
         }
 
-        //
-        // GET: /Account/Login
+        ////
+        //// GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -73,8 +73,8 @@ namespace ProcessingTools.WebApp.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
+        ////
+        //// POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -85,8 +85,8 @@ namespace ProcessingTools.WebApp.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            //// This doesn't count login failures towards account lockout
+            //// To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -98,13 +98,13 @@ namespace ProcessingTools.WebApp.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
             }
         }
 
-        //
-        // GET: /Account/VerifyCode
+        ////
+        //// GET: /Account/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -113,11 +113,12 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return View("Error");
             }
+
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
-        // POST: /Account/VerifyCode
+        ////
+        //// POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -128,10 +129,10 @@ namespace ProcessingTools.WebApp.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
+            //// The following code protects for brute force attacks against the two factor codes. 
+            //// If a user enters incorrect codes for a specified amount of time then the user account 
+            //// will be locked out for a specified amount of time. 
+            //// You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -141,21 +142,21 @@ namespace ProcessingTools.WebApp.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError(string.Empty, "Invalid code.");
                     return View(model);
             }
         }
 
-        //
-        // GET: /Account/Register
+        ////
+        //// GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
+        ////
+        //// POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -169,23 +170,24 @@ namespace ProcessingTools.WebApp.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    //// Send an email with this link
+                    //// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
+
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            //// If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
+        ////
+        //// GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -193,20 +195,21 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return View("Error");
             }
+
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
-        // GET: /Account/ForgotPassword
+        ////
+        //// GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ForgotPassword
+        ////
+        //// POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -221,36 +224,36 @@ namespace ProcessingTools.WebApp.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                //// Send an email with this link
+                //// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //// var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //// await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //// return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/ForgotPasswordConfirmation
+        ////
+        //// GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
 
-        //
-        // GET: /Account/ResetPassword
+        ////
+        //// GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
 
-        //
-        // POST: /Account/ResetPassword
+        ////
+        //// POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -260,31 +263,34 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return View(model);
             }
+
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+
             AddErrors(result);
             return View();
         }
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
+        ////
+        //// GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ExternalLogin
+        ////
+        //// POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -294,8 +300,8 @@ namespace ProcessingTools.WebApp.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        //
-        // GET: /Account/SendCode
+        ////
+        //// GET: /Account/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -304,13 +310,14 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return View("Error");
             }
+
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
-        // POST: /Account/SendCode
+        ////
+        //// POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -326,11 +333,12 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return View("Error");
             }
+
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
-        //
-        // GET: /Account/ExternalLoginCallback
+        ////
+        //// GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -346,10 +354,13 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
@@ -359,8 +370,8 @@ namespace ProcessingTools.WebApp.Controllers
             }
         }
 
-        //
-        // POST: /Account/ExternalLoginConfirmation
+        ////
+        //// POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -379,6 +390,7 @@ namespace ProcessingTools.WebApp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -390,6 +402,7 @@ namespace ProcessingTools.WebApp.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -397,8 +410,8 @@ namespace ProcessingTools.WebApp.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
+        ////
+        //// POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -407,8 +420,8 @@ namespace ProcessingTools.WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
+        ////
+        //// GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
@@ -419,16 +432,16 @@ namespace ProcessingTools.WebApp.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (userManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    userManager.Dispose();
+                    userManager = null;
                 }
 
-                if (_signInManager != null)
+                if (signInManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    signInManager.Dispose();
+                    signInManager = null;
                 }
             }
 
@@ -451,7 +464,7 @@ namespace ProcessingTools.WebApp.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
         }
 
@@ -461,6 +474,7 @@ namespace ProcessingTools.WebApp.Controllers
             {
                 return Redirect(returnUrl);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -479,7 +493,9 @@ namespace ProcessingTools.WebApp.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -489,6 +505,7 @@ namespace ProcessingTools.WebApp.Controllers
                 {
                     properties.Dictionary[XsrfKey] = UserId;
                 }
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

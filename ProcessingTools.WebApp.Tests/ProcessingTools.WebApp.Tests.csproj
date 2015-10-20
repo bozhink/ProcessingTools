@@ -6,12 +6,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A7CDAB3C-F35C-49AD-BA97-7FEF3523A365}</ProjectGuid>
+    <ProjectGuid>{A847A9CD-B107-4D37-8CB8-745F2CBAF53C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.WebApp.Tests</RootNamespace>
     <AssemblyName>ProcessingTools.WebApp.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.WebApp\ProcessingTools.WebApp.csproj">
-      <Project>{EE4F0C6A-F1C5-455D-AF64-B6DF6E9DBA6E}</Project>
+      <Project>{179CB2CF-1B8C-461E-9B34-6F362577E867}</Project>
       <Name>ProcessingTools.WebApp</Name>
     </ProjectReference>
   </ItemGroup>
