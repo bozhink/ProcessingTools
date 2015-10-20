@@ -213,6 +213,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\ProcessPage\Controllers\ProcessPageController.cs" />
     <Compile Include="Areas\ProcessPage\ProcessPageAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -363,7 +364,7 @@
     <Content Include="Scripts\codemirror-2.37\mode\pascal\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\mode\coffeescript\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\LICENSE" />
-    <Content Include="Areas\ProcessPage\Views\web.config" />
+    <Content Include="Areas\ProcessPage\Views\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance-mobile.css" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance.css" />
@@ -434,11 +435,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\ProcessPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ProcessPage\Controllers\" />
     <Folder Include="Areas\ProcessPage\Models\" />
+    <Folder Include="Areas\ProcessPage\Views\ProcessPage\" />
     <Folder Include="Areas\ProcessPage\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
