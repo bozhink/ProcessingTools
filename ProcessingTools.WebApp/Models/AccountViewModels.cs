@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace ProcessingTools.WebApp.Models
+﻿namespace ProcessingTools.WebApp.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     // Models returned by AccountController actions.
     public class ExternalLoginConfirmationViewModel
     {

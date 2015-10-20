@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace ProcessingTools.WebApp.Models
+﻿namespace ProcessingTools.WebApp.Models
 {
     // Models returned by MeController actions.
     public class GetViewModel

@@ -2,22 +2,22 @@
 {
     using System.Web.Mvc;
 
-    public class ProcessPageAreaRegistration : AreaRegistration 
+    public class ProcessPageAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "ProcessPage";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "ProcessPage_default",
                 "ProcessPage/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional });
+                new { controller = "ProcessPage", action = "Index", id = UrlParameter.Optional });
         }
     }
 }
