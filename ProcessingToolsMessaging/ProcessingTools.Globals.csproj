@@ -47,7 +47,7 @@
     <Compile Include="Interfaces\ICloner.cs" />
     <Compile Include="Interfaces\IFormatter.cs" />
     <Compile Include="Interfaces\IGenerator.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Loggers\ILogger.cs" />
     <Compile Include="Interfaces\IParser.cs" />
     <Compile Include="Interfaces\IStringDataList.cs" />
     <Compile Include="Interfaces\ITagger.cs" />
@@ -61,7 +61,8 @@
     <Compile Include="Json\ZooBank\Author.cs" />
     <Compile Include="Json\ZooBank\NomenclaturalAct.cs" />
     <Compile Include="Json\ZooBank\ZooBankRegistration.cs" />
-    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Loggers\TextWriterLogger.cs" />
+    <Compile Include="Loggers\LogType.cs" />
     <Compile Include="Services\AphiaNameService.cs" />
     <Compile Include="System\Diagnostics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,8 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class ZoobankXmlCloner : ZoobankCloner
     {
@@ -105,7 +104,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 
@@ -137,7 +136,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 
@@ -188,7 +187,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 

@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class FileProcessor : Base
     {
@@ -90,7 +90,7 @@
 
                 if (File.Exists(fileName))
                 {
-                    this.logger?.LogWarning("Output file '{0}' already exists.\n", fileName);
+                    this.logger?.Log(LogType.Warning, "Output file '{0}' already exists.\n", fileName);
                 }
 
                 this.outputFileName = fileName;
@@ -185,10 +185,10 @@
             }
             catch (XmlException xmlException)
             {
-                this.logger?.LogInfo(
+                this.logger?.Log(
+                    LogType.Info,
                     xmlException,
-                    "Input file name '{0}' is not a valid XML document.\n" +
-                    "It will be read as text file and will be wrapped in basic XML tags.\n",
+                    "Input file name '{0}' is not a valid XML document.\nIt will be read as text file and will be wrapped in basic XML tags.\n",
                     this.InputFileName);
 
                 XmlElement rootNode = readXml.CreateElement("article");
@@ -205,7 +205,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, "Input file name: {0}", this.inputFileName);
+                    this.logger?.Log(e, "Input file name: {0}", this.inputFileName);
                 }
 
                 rootNode.AppendChild(bodyNode);

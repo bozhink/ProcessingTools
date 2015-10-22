@@ -3,7 +3,7 @@
     using System;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
     using Measurements;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,7 +22,7 @@
             xpathProvider = new XPathProvider(config);
             writer = new XmlTextWriter(Console.Out);
             writer.Formatting = Formatting.Indented;
-            logger = new ConsoleLogger();
+            logger = new TextWriterLogger();
         }
 
         [ClassCleanup]

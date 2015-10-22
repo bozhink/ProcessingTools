@@ -7,6 +7,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
 
     public class DataProvider : TaggerBase, IDataProvider
     {
@@ -77,7 +78,7 @@
                         }
                         catch (Exception e)
                         {
-                            this.logger?.LogException(e, string.Empty);
+                            this.logger?.Log(e, string.Empty);
                         }
                     }
                 }

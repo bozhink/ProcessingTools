@@ -3,6 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
     using Globals;
+    using Globals.Loggers;
 
     public class CoordinatePart
     {
@@ -82,7 +83,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, "CoordinatePart.Parse()");
+                this.logger?.Log(e, "CoordinatePart.Parse()");
                 coordinatePartUnsignedValue = 0.0;
             }
             finally

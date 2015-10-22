@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class LowerTaxaParser : Base, IBaseParser
     {
@@ -39,7 +39,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, "Parse lower taxa without basionym.");
+                this.logger?.Log(e, "Parse lower taxa without basionym.");
             }
 
             try
@@ -103,7 +103,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, "Parse lower taxa with basionym.");
+                this.logger?.Log(e, "Parse lower taxa with basionym.");
             }
 
             // Remove wrapping i around tn[tn-part[@type='subgenus']]

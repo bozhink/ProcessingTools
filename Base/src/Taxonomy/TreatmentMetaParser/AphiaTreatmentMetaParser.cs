@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
     using Globals.Services;
 
     public class AphiaTreatmentMetaParser : TreatmentMetaParser

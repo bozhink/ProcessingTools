@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
-    using Globals;
     using Globals.Json;
     using Globals.Json.ZooBank;
+    using Globals.Loggers;
 
     public class ZoobankJsonCloner : ZoobankCloner
     {

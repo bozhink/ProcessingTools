@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.Globals
 {
+    using Loggers;
+
     public static class ILoggerExtensions
     {
         public static void SendToLogger(this object objectToBeLogged, ILogger logger)

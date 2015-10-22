@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 

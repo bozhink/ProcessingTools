@@ -2,6 +2,7 @@
 {
     using Configurator;
     using Globals;
+    using Globals.Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Taxonomy;
 
@@ -15,7 +16,7 @@
         public static void ClassInit(TestContext context)
         {
             config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
-            logger = new ConsoleLogger();
+            logger = new TextWriterLogger();
         }
 
         [TestMethod]

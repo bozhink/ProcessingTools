@@ -18,7 +18,8 @@
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
     using Globals;
-    
+    using Globals.Loggers;
+
     public class SingleFileProcessor
     {
         private TaxonomicBlackList blackList;
@@ -54,7 +55,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -220,7 +221,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
                 throw e;
             }
         }
@@ -295,7 +296,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             return xmlContent;
@@ -344,7 +345,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 
@@ -417,7 +418,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -595,7 +596,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -618,7 +619,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 if (this.settings.ParseHigherWithAphia)
@@ -634,7 +635,7 @@
                     }
                     catch (Exception e)
                     {
-                        this.logger?.LogException(e, string.Empty);
+                        this.logger?.Log(e, string.Empty);
                     }
                 }
 
@@ -651,7 +652,7 @@
                     }
                     catch (Exception e)
                     {
-                        this.logger?.LogException(e, string.Empty);
+                        this.logger?.Log(e, string.Empty);
                     }
                 }
 
@@ -668,7 +669,7 @@
                     }
                     catch (Exception e)
                     {
-                        this.logger?.LogException(e, string.Empty);
+                        this.logger?.Log(e, string.Empty);
                     }
                 }
 
@@ -685,7 +686,7 @@
                     }
                     catch (Exception e)
                     {
-                        this.logger?.LogException(e, string.Empty);
+                        this.logger?.Log(e, string.Empty);
                     }
                 }
 
@@ -702,7 +703,7 @@
                     }
                     catch (Exception e)
                     {
-                        this.logger?.LogException(e, string.Empty);
+                        this.logger?.Log(e, string.Empty);
                     }
                 }
 
@@ -728,7 +729,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -751,7 +752,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -773,7 +774,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -793,7 +794,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -813,7 +814,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -824,7 +825,7 @@
 
         private void PrintElapsedTime(Stopwatch timer)
         {
-            this.logger?.LogInfo("Elapsed time {0}.", timer.Elapsed);
+            this.logger?.Log(LogType.Info, "Elapsed time {0}.", timer.Elapsed);
         }
 
         private void QuentinSpecific()
@@ -867,7 +868,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             return xmlContent;
@@ -935,7 +936,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1027,7 +1028,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1047,7 +1048,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1068,7 +1069,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1090,7 +1091,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1131,7 +1132,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1151,7 +1152,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1174,7 +1175,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -1199,7 +1200,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
 
                 this.PrintElapsedTime(timer);
@@ -1227,7 +1228,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1263,7 +1264,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);
@@ -1284,7 +1285,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.PrintElapsedTime(timer);

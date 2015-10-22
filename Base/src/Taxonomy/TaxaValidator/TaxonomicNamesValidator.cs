@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class TaxonomicNamesValidator : Base, IBaseValidator
     {
@@ -72,7 +72,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.LogException(e, string.Empty);
+                    this.logger?.Log(e, string.Empty);
                 }
             }
             catch

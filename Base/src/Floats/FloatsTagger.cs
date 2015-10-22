@@ -8,6 +8,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
 
     public class FloatsTagger : Base, IBaseTagger
     {
@@ -189,7 +190,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 
@@ -211,7 +212,7 @@
                         }
                         catch (Exception e)
                         {
-                            this.logger?.LogException(e, "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
+                            this.logger?.Log(e, "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
                         }
 
                         break;
@@ -266,7 +267,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
 
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
@@ -396,7 +397,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.LogException(e, string.Empty);
+                this.logger?.Log(e, string.Empty);
             }
         }
 

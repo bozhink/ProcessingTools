@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class LocalDataBaseHigherTaxaParser : HigherTaxaParser
     {

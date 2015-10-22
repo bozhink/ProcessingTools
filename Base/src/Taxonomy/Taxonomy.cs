@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using Globals;
+    using Globals.Loggers;
 
     public static class Taxonomy
     {

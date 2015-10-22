@@ -4,6 +4,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
 
     public class TableFootNotesTagger : Base, IBaseTagger
     {

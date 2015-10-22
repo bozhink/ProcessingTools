@@ -4,6 +4,7 @@
     using System.Text.RegularExpressions;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
 
     public class HigherTaxaTagger : TaxaTagger
     {

@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Globals;
+    using Globals.Loggers;
 
     public static class DocumentExtensions
     {
@@ -407,7 +408,7 @@
             }
             catch (Exception e)
             {
-                logger?.LogException(e, "\nInvalid replacement string:\n{0}\n\n", replace);
+                logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace);
             }
             finally
             {

@@ -6,6 +6,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
     using Taxonomy;
 
     public static class TaxonomyExtensions

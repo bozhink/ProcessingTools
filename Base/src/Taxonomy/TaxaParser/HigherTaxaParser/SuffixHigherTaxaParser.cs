@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class SuffixHigherTaxaParser : HigherTaxaParser
     {

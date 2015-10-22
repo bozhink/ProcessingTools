@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Loggers;
 
     public class Envo : TaggerBase, IBaseTagger
     {
@@ -51,7 +52,7 @@
                             "Cannot write envoTermsResponse XML document to file '{0}'",
                             this.Config.EnvoResponseOutputXmlFileName);
 
-                    this.logger?.LogException(e, message);
+                    this.logger?.Log(e, message);
                 }
 
                 string envoTermsResponseString = Regex.Replace(envoTermsResponse.OuterXml, @"\sxmlns=""[^<>""]*""", string.Empty);

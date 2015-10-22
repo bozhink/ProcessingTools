@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Configuration;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public class ProgramSettingsBuilder
     {

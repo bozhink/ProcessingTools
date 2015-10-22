@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Loggers;
 
     public static class ContentTagger
     {
@@ -215,8 +215,8 @@
                     catch (Exception tagOrderNormalizerException)
                     {
                         replace = node.InnerXml;
-                        logger?.LogException(e, "\nInvalid replacement string:\n{0}\n\n", replace);
-                        logger?.LogException(tagOrderNormalizerException, string.Empty);
+                        logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace);
+                        logger?.Log(tagOrderNormalizerException, string.Empty);
                     }
                 }
                 finally
