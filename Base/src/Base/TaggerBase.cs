@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using Configurator;
-    using Globals;
+    using Globals.Extensions;
 
     public abstract class TaggerBase : Base
     {

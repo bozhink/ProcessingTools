@@ -8,16 +8,16 @@
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod()
         {
-            StackTrace st = new StackTrace();
-            StackFrame[] sf = st.GetFrames();
+            StackTrace stackTrace = new StackTrace();
+            StackFrame[] stackFrames = stackTrace.GetFrames();
 
             string stackPath = string.Empty;
-            for (int i = sf.Length - 1; i > 1; i--)
+            for (int i = stackFrames.Length - 1; i > 1; i--)
             {
-                stackPath += sf[i].GetMethod().Name + ".";
+                stackPath += stackFrames[i].GetMethod().Name + ".";
             }
 
-            stackPath += sf[1].GetMethod().Name;
+            stackPath += stackFrames[1].GetMethod().Name;
 
             return stackPath;
         }

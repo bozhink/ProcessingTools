@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger
     {

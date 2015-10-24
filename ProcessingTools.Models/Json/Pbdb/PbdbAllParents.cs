@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals.Json.Pbdb
+﻿namespace ProcessingTools.Models.Json.Pbdb
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
@@ -7,6 +7,6 @@
     public class PbdbAllParents
     {
         [DataMember(Name = "records")]
-        public List<PbdbSingleName> Records { get; set; }
+        public ICollection<PbdbSingleName> Records { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals.Json
+﻿namespace ProcessingTools.Models.Json
 {
     using System.IO;
     using System.Runtime.Serialization.Json;

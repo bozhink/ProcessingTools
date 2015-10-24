@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals
+﻿namespace ProcessingTools.Globals.Extensions
 {
     using System.Text.RegularExpressions;
 

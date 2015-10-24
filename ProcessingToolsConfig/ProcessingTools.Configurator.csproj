@@ -48,6 +48,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Models\ProcessingTools.Models.csproj">
+      <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
+      <Name>ProcessingTools.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
       <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
       <Name>ProcessingTools.Globals</Name>

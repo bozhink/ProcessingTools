@@ -2,7 +2,7 @@
 {
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Globals;
+    using Globals.Extensions;
 
     internal class Abbreviation
     {

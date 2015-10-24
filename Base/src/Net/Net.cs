@@ -11,9 +11,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Globals.Json;
-    using Globals.Json.Gbif;
-    using Globals.Json.Pbdb;
+    using Models.Json;
+    using Models.Json.Gbif;
+    using Models.Json.Pbdb;
 
     public static class Net
     {

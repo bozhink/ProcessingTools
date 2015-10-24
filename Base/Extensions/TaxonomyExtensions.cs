@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Globals.Extensions;
     using Globals.Loggers;
     using Taxonomy;
 

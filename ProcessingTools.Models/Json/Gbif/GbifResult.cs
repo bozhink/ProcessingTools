@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals.Json.Gbif
+﻿namespace ProcessingTools.Models.Json.Gbif
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
@@ -31,7 +31,7 @@
         public string MatchType { get; set; }
 
         [DataMember(Name = "alternatives")]
-        public List<Alternative> Alternatives { get; set; }
+        public IEnumerable<Alternative> Alternatives { get; set; }
 
         [DataMember(Name = "kingdom")]
         public string Kingdom { get; set; }

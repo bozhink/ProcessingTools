@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Globals;
+    using Globals.Extensions;
     using Globals.Loggers;
 
     public class Envo : TaggerBase, IBaseTagger

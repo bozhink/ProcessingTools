@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using Configurator;
-    using Globals.Json.Gbif;
     using Globals.Loggers;
+    using Models.Json.Gbif;
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
     {

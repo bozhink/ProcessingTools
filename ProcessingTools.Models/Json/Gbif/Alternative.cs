@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals.Json.Gbif
+﻿namespace ProcessingTools.Models.Json.Gbif
 {
     using System.Runtime.Serialization;
 

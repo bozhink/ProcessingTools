@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
     using Configurator;
-    using Globals;
+    using Globals.Extensions;
 
     public class ZoobankRegistrationXmlGenerator : Base, IBaseGenerator
     {

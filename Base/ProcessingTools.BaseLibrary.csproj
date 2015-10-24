@@ -256,6 +256,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Models\ProcessingTools.Models.csproj">
+      <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
+      <Name>ProcessingTools.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>

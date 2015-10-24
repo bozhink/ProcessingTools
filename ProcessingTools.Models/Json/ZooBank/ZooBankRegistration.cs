@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Globals.Json.ZooBank
+﻿namespace ProcessingTools.Models.Json.ZooBank
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
@@ -70,9 +70,9 @@
         public string ParentReference { get; set; }
 
         [DataMember(Name = "authors")]
-        public List<List<Author>> Authors { get; set; }
+        public ICollection<ICollection<Author>> Authors { get; set; }
 
         [DataMember(Name = "NomenclaturalActs")]
-        public List<NomenclaturalAct> NomenclaturalActs { get; set; }
+        public ICollection<NomenclaturalAct> NomenclaturalActs { get; set; }
     }
 }
