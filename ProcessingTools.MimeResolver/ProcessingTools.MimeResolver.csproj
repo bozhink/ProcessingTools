@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8067A4FB-0F58-4279-B32E-83CCD2768D1C}</ProjectGuid>
+    <ProjectGuid>{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Models</RootNamespace>
-    <AssemblyName>ProcessingTools.Models</AssemblyName>
+    <RootNamespace>ProcessingTools.MimeResolver</RootNamespace>
+    <AssemblyName>ProcessingTools.MimeResolver</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,20 +30,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Json\Gbif\Alternative.cs" />
-    <Compile Include="Json\Gbif\GbifResult.cs" />
-    <Compile Include="Json\JsonSerializer.cs" />
-    <Compile Include="Json\Pbdb\PbdbAllParents.cs" />
-    <Compile Include="Json\Pbdb\PbdbSingleName.cs" />
-    <Compile Include="Json\ZooBank\Author.cs" />
-    <Compile Include="Json\ZooBank\NomenclaturalAct.cs" />
-    <Compile Include="Json\ZooBank\ZooBankRegistration.cs" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\MimeTypesDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\FileExtension.cs" />
+    <Compile Include="Models\MimeSubtype.cs" />
+    <Compile Include="Models\MimeType.cs" />
+    <Compile Include="Models\MimeTypePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.XML" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
