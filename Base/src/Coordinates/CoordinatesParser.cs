@@ -37,7 +37,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, "WARNING! Current coordinate will not be processed!");
+                    this.logger?.Log(LogType.Warning, e, "Current coordinate will not be processed!");
                 }
             }
 
