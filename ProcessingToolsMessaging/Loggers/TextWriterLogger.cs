@@ -21,7 +21,7 @@
         {
             try
             {
-                Console.WriteLine();
+                this.textWriter.WriteLine();
             }
             catch (IOException)
             {
@@ -36,7 +36,7 @@
         {
             try
             {
-                Console.WriteLine(message);
+                textWriter.WriteLine(message);
             }
             catch (IOException)
             {
@@ -51,7 +51,7 @@
         {
             try
             {
-                Console.WriteLine(format, args);
+                textWriter.WriteLine(format, args);
             }
             catch (IOException)
             {
@@ -67,9 +67,13 @@
             try
             {
                 this.SetLogTypeColor(type);
-                Console.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
-                Console.WriteLine(message);
-                Console.ResetColor();
+                if (type != LogType.Info)
+                {
+                    this.textWriter.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
+                }
+
+                this.textWriter.WriteLine(message);
+                this.ResetLogTypeColor();
             }
             catch (IOException)
             {
@@ -90,9 +94,13 @@
             try
             {
                 this.SetLogTypeColor(type);
-                Console.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
-                Console.WriteLine(format, args);
-                Console.ResetColor();
+                if (type != LogType.Info)
+                {
+                    this.textWriter.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
+                }
+
+                this.textWriter.WriteLine(format, args);
+                this.ResetLogTypeColor();
             }
             catch (IOException)
             {
@@ -108,9 +116,9 @@
             try
             {
                 this.SetLogTypeColor(type);
-                Console.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
-                Console.WriteLine(message);
-                Console.ResetColor();
+                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
+                this.textWriter.WriteLine(message);
+                this.ResetLogTypeColor();
             }
             catch (IOException)
             {
@@ -131,9 +139,9 @@
             try
             {
                 this.SetLogTypeColor(type);
-                Console.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
-                Console.WriteLine(format, args);
-                Console.ResetColor();
+                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
+                this.textWriter.WriteLine(format, args);
+                this.ResetLogTypeColor();
             }
             catch (IOException)
             {
@@ -142,6 +150,11 @@
             {
                 throw;
             }
+        }
+
+        private void ResetLogTypeColor()
+        {
+            Console.ResetColor();
         }
 
         private void SetLogTypeColor(LogType type)
