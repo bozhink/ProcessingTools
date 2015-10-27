@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class FileExtension
     {
@@ -12,9 +13,11 @@
             this.mimeTypePairs = new HashSet<MimeTypePair>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
         [MaxLength(10)]
         public string Name { get; set; }
 

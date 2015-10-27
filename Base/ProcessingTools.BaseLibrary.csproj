@@ -175,9 +175,6 @@
     <Content Include="Data\raw\institutions.txt" />
     <Content Include="Data\raw\journals.txt" />
     <Content Include="Data\raw\localities.txt" />
-    <Content Include="Data\raw\mime.out.xml" />
-    <Content Include="Data\raw\mime.vb" />
-    <Content Include="Data\raw\mime.xml" />
     <Content Include="Data\raw\morphology.txt" />
     <Content Include="Data\raw\products.txt" />
     <Content Include="Data\raw\sec-types-1.txt" />
@@ -238,7 +235,6 @@
     <None Include="Data\JSON\GeoJSON Examples\feature-collection.json" />
     <None Include="Data\JSON\GeoJSON Examples\geometry-point.json" />
     <None Include="Data\raw\get-taxa.ps1" />
-    <None Include="Data\raw\mime.json" />
     <None Include="Data\raw\select_multi-rank-taxa.xqm" />
     <None Include="Data\raw\taxonomic_ranks.xqm" />
   </ItemGroup>
