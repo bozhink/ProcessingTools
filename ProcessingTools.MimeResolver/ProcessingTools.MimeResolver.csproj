@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,17 +55,20 @@
   <ItemGroup>
     <Compile Include="Context\MimeTypesDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\FileExtension.cs" />
-    <Compile Include="Models\MimeSubtype.cs" />
-    <Compile Include="Models\MimeType.cs" />
-    <Compile Include="Models\MimeTypePair.cs" />
+    <Compile Include="Models\Database\FileExtension.cs" />
+    <Compile Include="Models\Database\MimeSubtype.cs" />
+    <Compile Include="Models\Database\MimeType.cs" />
+    <Compile Include="Models\Database\MimeTypePair.cs" />
+    <Compile Include="Models\Json\ExtensionJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\mime.json" />
+    <None Include="Data\mime.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

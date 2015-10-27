@@ -4,15 +4,16 @@ namespace ProcessingTools.MimeResolver.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Context;
 
-    public sealed class Configuration : DbMigrationsConfiguration<Context.MimeTypesDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MimeTypesDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Context.MimeTypesDbContext context)
+        protected override void Seed(MimeTypesDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

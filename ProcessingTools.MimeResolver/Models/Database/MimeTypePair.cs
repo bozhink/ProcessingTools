@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MimeResolver.Models
+﻿namespace ProcessingTools.MimeResolver.Models.Database
 {
     using System.Collections.Generic;
 
