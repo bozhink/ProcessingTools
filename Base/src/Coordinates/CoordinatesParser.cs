@@ -217,6 +217,12 @@
             //// S39°34'283"W 71°29'908"
             coordinateText = Regex.Replace(coordinateText, @"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ");
 
+            //// 20. 58139°S, 164.76444°E
+            coordinateText = Regex.Replace(coordinateString, @"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".");
+
+            //// 22.14158°’S, 166.67993 °E
+            coordinateText = Regex.Replace(coordinateString, @"\W*°\W+|W+°\W*", "°");
+
             return coordinateText;
         }
     }

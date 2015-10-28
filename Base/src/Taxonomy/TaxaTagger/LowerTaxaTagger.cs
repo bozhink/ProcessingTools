@@ -1,41 +1,71 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
     using Globals;
-    using Globals.Extensions;
+    using Globals.Loggers;
 
     public class LowerTaxaTagger : TaxaTagger
     {
-        public LowerTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList)
+        private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
+
+        private readonly TagContent lowerTaxaTag = new TagContent("tn", @" type=""lower""");
+
+        private ILogger logger;
+
+        public LowerTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
             : base(xml, whiteList, blackList)
         {
+            this.logger = logger;
         }
 
-        public LowerTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList)
+        public LowerTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
             : base(config, xml, whiteList, blackList)
         {
+            this.logger = logger;
         }
 
-        public LowerTaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList)
+        public LowerTaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
             : base(baseObject, whiteList, blackList)
         {
+            this.logger = logger;
         }
 
         public override void Tag()
         {
-            string xpath = this.SetLowerTaxaMatchXPath();
-
             try
             {
-                this.TagLowerTaxa(xpath);
+                var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes("//i|//italic|//Italic")
+                    .Cast<XmlNode>()
+                    .Select(x => x.InnerText)
+                    .Where(IsMatchingLowerTaxaFormat));
 
-                // TODO: Must be corrected.
-                this.ClearLowerTaxa();
+                plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
 
-                this.AdvancedTagLowerTaxa(xpath);
+                // Add all parts of plausibleLowerTaxa to the plausibleLowerTaxa hashset
+                Regex matchWord = new Regex(@"\b[^\W\d]+\b\.?");
+                
+                // TODO: bottleneck
+                foreach (string item in new HashSet<string>(plausibleLowerTaxa))
+                {
+                    for (Match m = matchWord.Match(item); m.Success; m = m.NextMatch())
+                    {
+                        plausibleLowerTaxa.Add(m.Value);
+                    }
+                }
+
+                plausibleLowerTaxa.TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+
+                // TODO: move to format
+                this.Xml = Regex.Replace(
+                    this.Xml,
+                    @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>",
+                    "$1‘$2’ $4$3");
+
+                this.AdvancedTagLowerTaxa("//*[i]");
             }
             catch
             {
@@ -48,9 +78,26 @@
             this.Tag();
         }
 
-        private string TagInfraspecificTaxa(string nodeXml)
+        // TODO: XPath-s correction needed
+        private void AdvancedTagLowerTaxa(string xpath)
         {
-            string replace = nodeXml;
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            {
+                this.TagInfraspecificTaxa(node);
+            }
+
+            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
+            {
+                foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
+                {
+                    this.TagInfraspecificTaxa(node);
+                }
+            }
+        }
+
+        private void TagInfraspecificTaxa(XmlNode node)
+        {
+            string replace = node.InnerXml;
 
             {
                 // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
@@ -139,133 +186,20 @@
 
             replace = Regex.Replace(replace, " <([a-z-]+)?authority></([a-z-]+)?authority>", string.Empty);
 
-            return replace;
+            node.SafeReplaceInnerXml(replace, this.logger);
         }
 
-        private string TagItalics(string nodeXml)
+        private bool IsMatchingLowerTaxaFormat(string textToCheck)
         {
-            string result = nodeXml;
+            bool result = false;
 
-            // Genus (Subgenus)? species subspecies?
-            result = Regex.Replace(
-                result,
-                @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*)(?=</i>)",
-                TaxaTagger.LowerRaxaReplacePattern);
-
-            result = Regex.Replace(
-                result,
-                @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)",
-                TaxaTagger.LowerRaxaReplacePattern);
-
-            result = Regex.Replace(
-                result,
-                @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*)(?=</i>)",
-                TaxaTagger.LowerRaxaReplacePattern);
-
-            result = Regex.Replace(
-                result,
-                @"(?<=<i>)([A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+)(?=</i>)",
-                TaxaTagger.LowerRaxaReplacePattern);
-
-            result = Regex.Replace(
-                result,
-                @"(?<=<i>)([A-Z\.-]{3,30})(?=</i>)",
-                TaxaTagger.LowerRaxaReplacePattern);
-
-            result = Regex.Replace(
-                result,
-                @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>",
-                "$1‘$2’ $4$3");
-
-            result = this.TagInfraspecificTaxa(result);
+            result |= Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z");
 
             return result;
-        }
-
-        private void AdvancedTagLowerTaxa(string xpath)
-        {
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
-            }
-
-            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
-            {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
-                {
-                    node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
-                }
-            }
-        }
-
-        private void ClearLowerTaxa()
-        {
-            IEnumerable<string> lowerTaxaNames = this.XmlDocument.ExtractTaxa(true, TaxaType.Lower);
-            IEnumerable<string> taxaNames = this.ClearFakeTaxaNames(lowerTaxaNames);
-            IEnumerable<string> fakeTaxaNames = lowerTaxaNames.DistinctWithStringList(taxaNames, true, true);
-
-            foreach (string fakeTaxon in fakeTaxaNames)
-            {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes(".//tn[@type='lower'][contains(string(.), '" + fakeTaxon + "')]", this.NamespaceManager))
-                {
-                    node.ReplaceXmlNodeByItsInnerXml();
-                }
-            }
-
-            this.XmlDocument.RemoveTaxaInWrongPlaces();
-        }
-
-        private string SetLowerTaxaMatchXPath()
-        {
-            string xpath = string.Empty;
-
-            switch (this.Config.ArticleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    if (this.Config.TagWholeDocument)
-                    {
-                        xpath = "//*[i]";
-                    }
-                    else
-                    {
-                        xpath = "//p[.//i]|//ref[.//i]|//kwd[.//i]|//article-title[.//i]|//li[.//i]|//th[.//i]|//td[.//i]|//title[.//i]|//label[.//i]|//tp:nomenclature-citation[.//i]";
-                    }
-
-                    break;
-
-                default:
-                    if (this.Config.TagWholeDocument)
-                    {
-                        xpath = "//*[i]";
-                    }
-                    else
-                    {
-                        xpath = "//p[.//i]|//li[.//i]|//td[.//i]|//th[.//i]";
-                    }
-
-                    break;
-            }
-
-            return xpath;
-        }
-
-        private void TagLowerTaxa(string xpath)
-        {
-            /*
-             * The following piece of code will be executed twice: once for lower-level-content-holding tags, and next for all value tags (System)
-             */
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                node.InnerXml = this.TagItalics(node.InnerXml);
-            }
-
-            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
-            {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
-                {
-                    node.InnerXml = this.TagItalics(node.InnerXml);
-                }
-            }
         }
     }
 }

@@ -190,37 +190,74 @@
     <Content Include="Data\Xml\taxonomy.whiteList.xml" />
     <Content Include="src\Test\FloraReplace.txt" />
     <Content Include="src\Test\Post.txt" />
-    <Content Include="src\XSL\codes.remove-non-code-nodes.xsl" />
-    <Content Include="src\XSL\envo-items-to-tagreplace.xsl" />
-    <Content Include="src\XSL\Flora\flora.extract-taxa.xsl">
-      <SubType>Designer</SubType>
+    <Content Include="XSL\codes.remove-non-code-nodes.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\XSL\Flora\flora.extract.taxa-parts.xsl">
-      <SubType>Designer</SubType>
+    <Content Include="XSL\envo-items-to-tagreplace.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\XSL\Flora\flora.generate-template.xsl">
+    <Content Include="XSL\Flora\flora.extract-taxa.xsl">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\XSL\Flora\taxa.distinct.xsl">
+    <Content Include="XSL\Flora\flora.extract.taxa-parts.xsl">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\XSL\format.nlm-to-system.xsl" />
-    <Content Include="src\XSL\format.inc.xsl" />
-    <Content Include="src\XSL\format.system-to-nlm.xsl" />
-    <Content Include="src\XSL\Special\gavin-laurens-tn.xsl" />
-    <Content Include="src\XSL\Special\gavin-laurens.xsl" />
-    <Content Include="src\XSL\references.get.xsl" />
-    <Content Include="src\XSL\format.nlm.initial.xsl" />
-    <Content Include="src\XSL\format.system.initial.xsl" />
-    <Content Include="src\XSL\references.tag-template.xsl">
+    <Content Include="XSL\Flora\flora.generate-template.xsl">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\XSL\RankListClean.xsl" />
-    <Content Include="src\XSL\Special\set-genus-in-paragraph.xsl" />
-    <Content Include="src\XSL\references.sort.xsl" />
-    <Content Include="src\XSL\text-content.xsl" />
-    <Content Include="src\XSL\WhiteListClean.xsl" />
-    <Content Include="src\XSL\zoobank-nlm.xsl" />
+    <Content Include="XSL\Flora\taxa.distinct.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.nlm-to-system.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.inc.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.system-to-nlm.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\Special\gavin-laurens-tn.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\Special\gavin-laurens.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\references.get.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.nlm.initial.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.system.initial.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\references.tag-template.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\RankListClean.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\Special\set-genus-in-paragraph.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\references.sort.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\text-content.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\WhiteListClean.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\zoobank-nlm.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

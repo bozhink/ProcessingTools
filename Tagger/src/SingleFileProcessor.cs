@@ -1194,7 +1194,7 @@
 
                 try
                 {
-                    var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList);
+                    var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList, this.logger);
                     tagger.Tag();
                     xmlContent = tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
                 }

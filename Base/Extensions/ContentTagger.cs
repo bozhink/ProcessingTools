@@ -30,7 +30,7 @@
         }
 
         public static void TagContentInDocument(
-                            this IEnumerable<string> textToTagList,
+            this IEnumerable<string> textToTagList,
             TagContent tag,
             string xpathTemplate,
             XmlDocument document,

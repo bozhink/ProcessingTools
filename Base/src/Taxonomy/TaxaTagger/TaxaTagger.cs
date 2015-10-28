@@ -88,23 +88,21 @@
         protected IEnumerable<string> GetTaxaItemsByWhiteList()
         {
             string textToMine = string.Join(" ", this.TextWords);
-            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, true, false);
+            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, false, false);
 
             return new HashSet<string>(result);
         }
 
         private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
         {
-            // Get taxa-like person name parts
-            var taxaLikePersonNameParts = this.XmlDocument
+            var personNames = new HashSet<string>(this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
-                .Select(s => s.InnerText)
-                .Distinct()
-                .MatchWithStringList(
-                    taxaNames.GetFirstWord(),
-                    true,
-                    true);
+                .Select(s => s.InnerText));
+
+
+            var taxaLikePersonNameParts = personNames
+                .MatchWithStringList(taxaNames.GetFirstWord(), false, true);
 
             return new HashSet<string>(taxaNames.DistinctWithStringList(taxaLikePersonNameParts.Select(Regex.Escape), true, false));
         }
