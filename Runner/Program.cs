@@ -1,14 +1,14 @@
 ﻿namespace Runner
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
+    using System.IO;
+    using System.Linq;
     using Newtonsoft.Json;
     using ProcessingTools.MimeResolver.Context;
     using ProcessingTools.MimeResolver.Migrations;
-    using System.IO;
     using ProcessingTools.MimeResolver.Models.Json;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class Program
     {
@@ -18,8 +18,6 @@
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var json = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
-
-           
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MimeTypesDbContext, Configuration>());
 

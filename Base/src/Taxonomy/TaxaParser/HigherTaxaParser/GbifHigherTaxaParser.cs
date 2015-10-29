@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
     using Models.Json.Gbif;
 
     public class GbifHigherTaxaParser : HigherTaxaParser

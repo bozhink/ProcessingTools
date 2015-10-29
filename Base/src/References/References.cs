@@ -4,8 +4,8 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals.Extensions;
-    using Globals.Loggers;
+    using Contracts;
+    using Extensions;
 
     public class References : TaggerBase
     {

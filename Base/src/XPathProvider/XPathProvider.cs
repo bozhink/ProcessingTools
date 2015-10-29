@@ -2,7 +2,7 @@
 {
     using System;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class XPathProvider : IXPathProvider
     {

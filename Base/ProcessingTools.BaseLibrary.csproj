@@ -293,17 +293,29 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>ProcessingTools.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Loggers\ProcessingTools.Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>ProcessingTools.Loggers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingTools.Models\ProcessingTools.Models.csproj">
       <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
       <Name>ProcessingTools.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{0e5eccba-47aa-4e50-991e-397ddaa9cfd6}</Project>
+      <Name>ProcessingTools.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
-      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingTools.Globals</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -1,7 +1,7 @@
-using System;
-
 namespace ProcessingTools.WebApp.Areas.HelpPage.ModelDescriptions
 {
+    using System;
+
     public class ParameterAnnotation
     {
         public Attribute AnnotationAttribute { get; set; }

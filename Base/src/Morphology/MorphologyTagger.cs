@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Morphology
 {
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class MorphologyTagger : TaggerBase
     {

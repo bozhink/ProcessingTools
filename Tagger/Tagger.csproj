@@ -109,13 +109,21 @@
       <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
       <Name>ProcessingTools.BaseLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>ProcessingTools.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Loggers\ProcessingTools.Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>ProcessingTools.Loggers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
-      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingTools.Globals</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

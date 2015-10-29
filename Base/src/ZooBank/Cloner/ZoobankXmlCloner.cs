@@ -3,7 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Globals.Loggers;
+    using Contracts;
 
     public class ZoobankXmlCloner : ZoobankCloner
     {

@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Xml;
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
 
     public class CoLHigherTaxaParser : HigherTaxaParser
     {

@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Xml.Linq;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class TaxonomicWhiteList : IStringDataList
     {

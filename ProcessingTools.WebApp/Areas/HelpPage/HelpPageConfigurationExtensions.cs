@@ -1,21 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using ProcessingTools.WebApp.Areas.HelpPage.ModelDescriptions;
-using ProcessingTools.WebApp.Areas.HelpPage.Models;
-
 namespace ProcessingTools.WebApp.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+    using ModelDescriptions;
+    using Models;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";
@@ -223,7 +223,7 @@ namespace ProcessingTools.WebApp.Areas.HelpPage
             if (!config.Properties.TryGetValue(modelId, out model))
             {
                 Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
+                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
                     model = GenerateApiModel(apiDescription, config);
@@ -315,11 +315,11 @@ namespace ProcessingTools.WebApp.Areas.HelpPage
                     }
                     else
                     {
-                        Debug.Assert(parameterDescriptor == null);
+                        ////Debug.Assert(parameterDescriptor == null);
 
-                        // If parameterDescriptor is null, this is an undeclared route parameter which only occurs
-                        // when source is FromUri. Ignored in request model and among resource parameters but listed
-                        // as a simple string here.
+                        //// If parameterDescriptor is null, this is an undeclared route parameter which only occurs
+                        //// when source is FromUri. Ignored in request model and among resource parameters but listed
+                        //// as a simple string here.
                         ModelDescription modelDescription = modelGenerator.GetOrCreateModelDescription(typeof(string));
                         AddParameterDescription(apiModel, apiParameter, modelDescription);
                     }
@@ -337,8 +337,7 @@ namespace ProcessingTools.WebApp.Areas.HelpPage
             return TypeDescriptor.GetConverter(parameterType).CanConvertFrom(typeof(string));
         }
 
-        private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel,
-            ApiParameterDescription apiParameter, ModelDescription typeDescription)
+        private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel, ApiParameterDescription apiParameter, ModelDescription typeDescription)
         {
             ParameterDescription parameterDescription = new ParameterDescription
             {
@@ -404,7 +403,8 @@ namespace ProcessingTools.WebApp.Areas.HelpPage
             }
             catch (Exception e)
             {
-                apiModel.ErrorMessages.Add(String.Format(CultureInfo.CurrentCulture,
+                apiModel.ErrorMessages.Add(string.Format(
+                    CultureInfo.CurrentCulture,
                     "An exception has occurred while generating the sample. Exception message: {0}",
                     HelpPageSampleGenerator.UnwrapException(e).Message));
             }
@@ -452,6 +452,7 @@ namespace ProcessingTools.WebApp.Areas.HelpPage
                     modelGenerator.GetOrCreateModelDescription(parameterType);
                 }
             }
+
             return modelGenerator;
         }
 

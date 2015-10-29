@@ -2,7 +2,7 @@
 {
     using System.Text.RegularExpressions;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class DoiLinksTagger : Base, IBaseTagger
     {

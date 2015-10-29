@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using Globals;
+    using Contracts;
 
     public interface IBaseCloner : IBase, ICloner
     {

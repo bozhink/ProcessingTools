@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using Services.Aphia;
 
     [TestClass]
     public class SimpleTests
@@ -45,13 +46,13 @@
         [Ignore]
         public void TestAphiaService()
         {
-            var server = new Globals.Services.AphiaNameService();
+            var server = new AphiaNameService();
             var records = server.getAphiaRecords("Anodontiglanis", true, true, false, 0);
 
             System.Console.WriteLine(records?.Length);
             if (records != null)
             {
-                foreach (Globals.Services.AphiaRecord record in records)
+                foreach (AphiaRecord record in records)
                 {
                     System.Console.WriteLine(record?.rank);
                     System.Console.WriteLine(record?.scientificname);

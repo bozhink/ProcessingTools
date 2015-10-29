@@ -1,7 +1,7 @@
-using System;
-
 namespace ProcessingTools.WebApp.Areas.HelpPage.ModelDescriptions
 {
+    using System;
+
     /// <summary>
     /// Describes a type model.
     /// </summary>

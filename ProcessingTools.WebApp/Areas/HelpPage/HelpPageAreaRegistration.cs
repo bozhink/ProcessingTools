@@ -1,8 +1,8 @@
-using System.Web.Http;
-using System.Web.Mvc;
-
 namespace ProcessingTools.WebApp.Areas.HelpPage
 {
+    using System.Web.Http;
+    using System.Web.Mvc;
+
     public class HelpPageAreaRegistration : AreaRegistration
     {
         public override string AreaName

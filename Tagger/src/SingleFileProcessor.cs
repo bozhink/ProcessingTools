@@ -17,8 +17,8 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
-    using Globals.Extensions;
-    using Globals.Loggers;
+    using Contracts;
+    using Extensions;
 
     public class SingleFileProcessor
     {

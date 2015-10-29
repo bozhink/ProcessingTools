@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Configurator;
-    using Globals.Extensions;
+    using Extensions;
 
     public class Flora : TaggerBase
     {

@@ -9,7 +9,7 @@ namespace ProcessingTools.WebApp
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }

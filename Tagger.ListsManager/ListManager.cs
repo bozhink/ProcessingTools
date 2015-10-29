@@ -96,7 +96,7 @@
             }
             else
             {
-                for (Match entriesMatch = Regex.Match(listEntriesTextBox.Text, @"\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())
+                for (Match entriesMatch = Regex.Match(this.listEntriesTextBox.Text, @"\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())
                 {
                     this.listView.Items.Add(new ListViewItem(entriesMatch.Value));
                 }
@@ -134,7 +134,7 @@
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listView.SelectedItems)
+            foreach (ListViewItem item in this.listView.SelectedItems)
             {
                 this.listView.Items.Remove(item);
             }
@@ -307,7 +307,7 @@
                                         };
 
                                     var listItem = new ListViewItem(taxonRankPair);
-                                    listView.Items.Add(listItem);
+                                    this.listView.Items.Add(listItem);
                                 }
                             }
                         }

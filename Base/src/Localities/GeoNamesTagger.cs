@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Geo
 {
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class GeoNamesTagger : TaggerBase
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Products
 {
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class ProductsTagger : TaggerBase
     {

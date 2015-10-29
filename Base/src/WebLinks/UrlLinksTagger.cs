@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class UrlLinksTagger : Base, IBaseTagger
     {

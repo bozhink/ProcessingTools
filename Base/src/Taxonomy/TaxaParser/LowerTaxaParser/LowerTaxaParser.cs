@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
 
     public class LowerTaxaParser : Base, IBaseParser
     {

@@ -2,7 +2,7 @@
 {
     using System.Xml;
     using Configurator;
-    using Globals.Extensions;
+    using Extensions;
 
     /// <summary>
     /// This class provides extension methods for transformation of Taxpub NLM to system XML schemas.

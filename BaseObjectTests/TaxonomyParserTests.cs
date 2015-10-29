@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Configurator;
-    using Globals;
-    using Globals.Loggers;
+    using Contracts;
+    using Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Taxonomy;
 

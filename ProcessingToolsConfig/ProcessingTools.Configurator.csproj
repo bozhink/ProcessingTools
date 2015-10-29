@@ -52,10 +52,6 @@
       <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
       <Name>ProcessingTools.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsMessaging\ProcessingTools.Globals.csproj">
-      <Project>{76bef8bf-631b-4c9d-b0d4-986718d5c859}</Project>
-      <Name>ProcessingTools.Globals</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

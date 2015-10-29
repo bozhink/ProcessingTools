@@ -3,8 +3,7 @@
     using System.Collections;
     using System.Xml;
     using Configurator;
-    using Globals;
-    using Globals.Loggers;
+    using Contracts;
 
     public class TableFootNotesTagger : Base, IBaseTagger
     {

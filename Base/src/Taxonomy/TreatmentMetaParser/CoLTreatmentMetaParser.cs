@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
     using System.Xml;
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
 
     public class CoLTreatmentMetaParser : TreatmentMetaParser
     {

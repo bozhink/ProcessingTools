@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public abstract class TaxaTagger : TaggerBase, IBaseTagger
     {
@@ -99,7 +99,6 @@
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
                 .Select(s => s.InnerText));
-
 
             var taxaLikePersonNameParts = personNames
                 .MatchWithStringList(taxaNames.GetFirstWord(), false, true);

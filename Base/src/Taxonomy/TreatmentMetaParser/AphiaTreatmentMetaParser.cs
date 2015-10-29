@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Configurator;
-    using Globals.Loggers;
-    using Globals.Services;
+    using Contracts;
+    using Services.Aphia;
 
     public class AphiaTreatmentMetaParser : TreatmentMetaParser
     {

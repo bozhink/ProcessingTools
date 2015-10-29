@@ -3,8 +3,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using Configurator;
-    using Globals;
-    using Globals.Loggers;
+    using Contracts;
 
     public class HigherTaxaTagger : TaxaTagger
     {

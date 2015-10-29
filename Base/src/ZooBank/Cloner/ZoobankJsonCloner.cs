@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
-    using Globals.Loggers;
+    using Contracts;
     using Models.Json;
     using Models.Json.ZooBank;
 

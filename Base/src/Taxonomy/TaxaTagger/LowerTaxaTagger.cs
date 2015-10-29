@@ -5,8 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
-    using Globals.Loggers;
+    using Contracts;
 
     public class LowerTaxaTagger : TaxaTagger
     {
@@ -41,7 +40,7 @@
                 var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes("//i|//italic|//Italic")
                     .Cast<XmlNode>()
                     .Select(x => x.InnerText)
-                    .Where(IsMatchingLowerTaxaFormat));
+                    .Where(this.IsMatchingLowerTaxaFormat));
 
                 plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
 

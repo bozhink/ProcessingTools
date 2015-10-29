@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.MimeResolver.Context
 {
     using System.Data.Entity;
-    using Models.Database;
     using System.Data.Entity.ModelConfiguration.Conventions;
+    using Models.Database;
 
     public class MimeTypesDbContext : DbContext
     {

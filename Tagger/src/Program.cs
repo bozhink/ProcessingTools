@@ -2,7 +2,8 @@
 {
     using System;
     using System.Diagnostics;
-    using Globals.Loggers;
+    using Contracts;
+    using Loggers;
 
     public class Program
     {

@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Globals;
+    using Contracts;
 
     public class Environments : TaggerBase, IBaseTagger
     {

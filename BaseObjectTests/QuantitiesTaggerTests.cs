@@ -3,7 +3,8 @@
     using System;
     using System.Xml;
     using Configurator;
-    using Globals.Loggers;
+    using Contracts;
+    using Loggers;
     using Measurements;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

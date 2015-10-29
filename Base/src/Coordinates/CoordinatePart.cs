@@ -2,8 +2,8 @@
 {
     using System;
     using System.Text.RegularExpressions;
-    using Globals.Extensions;
-    using Globals.Loggers;
+    using Contracts;
+    using Extensions;
 
     public class CoordinatePart
     {
