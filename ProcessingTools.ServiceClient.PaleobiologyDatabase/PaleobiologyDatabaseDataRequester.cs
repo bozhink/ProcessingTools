@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.PaleobiologyDatabase
+﻿namespace ProcessingTools.ServiceClient.PaleobiologyDatabase
 {
     using System.Collections;
     using System.Net.Http;

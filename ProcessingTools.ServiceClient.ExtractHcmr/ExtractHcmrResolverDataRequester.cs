@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.ExtractHcmr
+﻿namespace ProcessingTools.ServiceClient.ExtractHcmr
 {
     using System;
     using System.Collections.Generic;

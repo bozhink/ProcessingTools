@@ -1,9 +1,10 @@
-﻿namespace ProcessingTools.Services.Gbif.Models
+﻿namespace ProcessingTools.ServiceClient.Gbif.Models
 {
+    using System.Collections.Generic;
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class Alternative
+    public class GbifResult
     {
         [DataMember(Name = "usageKey")]
         public int UsageKey { get; set; }
@@ -28,6 +29,9 @@
 
         [DataMember(Name = "matchType")]
         public string MatchType { get; set; }
+
+        [DataMember(Name = "alternatives")]
+        public IEnumerable<Alternative> Alternatives { get; set; }
 
         [DataMember(Name = "kingdom")]
         public string Kingdom { get; set; }

@@ -5,7 +5,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
-    using Services.CatalogueOfLife;
+    using ServiceClient.CatalogueOfLife;
 
     public class CoLHigherTaxaParser : HigherTaxaParser
     {

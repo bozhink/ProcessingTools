@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.PaleobiologyDatabase.Models
+﻿namespace ProcessingTools.ServiceClient.PaleobiologyDatabase.Models
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

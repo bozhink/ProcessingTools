@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Gbif
+﻿namespace ProcessingTools.ServiceClient.Gbif
 {
     using System.Net.Http;
     using System.Threading.Tasks;

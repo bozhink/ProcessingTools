@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.CatalogueOfLife
+﻿namespace ProcessingTools.ServiceClient.CatalogueOfLife
 {
     using System.Net.Http;
     using System.Threading.Tasks;

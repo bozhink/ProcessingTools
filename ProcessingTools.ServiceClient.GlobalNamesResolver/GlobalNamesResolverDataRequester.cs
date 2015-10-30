@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.GlobalNamesResolver
+﻿namespace ProcessingTools.ServiceClient.GlobalNamesResolver
 {
     using System;
     using System.Collections.Generic;

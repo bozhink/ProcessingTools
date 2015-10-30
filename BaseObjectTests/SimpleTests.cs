@@ -4,7 +4,7 @@
     using Contracts;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using Services.Aphia;
+    using ServiceClient.Aphia;
 
     [TestClass]
     public class SimpleTests

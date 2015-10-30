@@ -7,7 +7,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
-    using Services.GlobalNamesResolver;
+    using ServiceClient.GlobalNamesResolver;
 
     public class TaxonomicNamesValidator : Base, IBaseValidator
     {

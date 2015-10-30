@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Aphia
+﻿namespace ProcessingTools.ServiceClient.Aphia
 {
     using System.IO;
     using System.Net;

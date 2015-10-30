@@ -40,19 +40,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Loggers", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions", "ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{59274696-0BC4-4ADE-86DE-7982FED75BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.Aphia", "ProcessingTools.Services.Aphia\ProcessingTools.Services.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Aphia", "ProcessingTools.ServiceClient.Aphia\ProcessingTools.ServiceClient.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.Gbif", "ProcessingTools.Services.Gbif\ProcessingTools.Services.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Gbif", "ProcessingTools.ServiceClient.Gbif\ProcessingTools.ServiceClient.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.SystemCommons", "ProcessingTools.System\ProcessingTools.SystemCommons.csproj", "{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.CatalogueOfLife", "ProcessingTools.Services.CatalogueOfLife\ProcessingTools.Services.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.CatalogueOfLife", "ProcessingTools.ServiceClient.CatalogueOfLife\ProcessingTools.ServiceClient.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.PaleobiologyDatabase", "ProcessingTools.Services.PaleobiologyDatabase\ProcessingTools.Services.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.PaleobiologyDatabase", "ProcessingTools.ServiceClient.PaleobiologyDatabase\ProcessingTools.ServiceClient.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.GlobalNamesResolver", "ProcessingTools.Services.GlobalNamesResolver\ProcessingTools.Services.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.GlobalNamesResolver", "ProcessingTools.ServiceClient.GlobalNamesResolver\ProcessingTools.ServiceClient.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Services.ExtractHcmr", "ProcessingTools.Services.ExtractHcmr\ProcessingTools.Services.ExtractHcmr.csproj", "{E78C97C4-837F-4C72-8751-970AA744D3A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.ExtractHcmr", "ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj", "{E78C97C4-837F-4C72-8751-970AA744D3A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

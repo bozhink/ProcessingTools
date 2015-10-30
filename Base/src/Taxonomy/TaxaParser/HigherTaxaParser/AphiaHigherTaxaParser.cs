@@ -4,7 +4,7 @@
     using System.Linq;
     using Configurator;
     using Contracts;
-    using Services.Aphia;
+    using ServiceClient.Aphia;
 
     public class AphiaHigherTaxaParser : HigherTaxaParser
     {

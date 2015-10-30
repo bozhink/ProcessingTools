@@ -304,25 +304,25 @@
       <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
       <Name>ProcessingTools.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services.Aphia\ProcessingTools.Services.Aphia.csproj">
+    <ProjectReference Include="..\ProcessingTools.ServiceClient.Aphia\ProcessingTools.ServiceClient.Aphia.csproj">
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>ProcessingTools.Services.Aphia</Name>
+      <Name>ProcessingTools.ServiceClient.Aphia</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services.CatalogueOfLife\ProcessingTools.Services.CatalogueOfLife.csproj">
+    <ProjectReference Include="..\ProcessingTools.ServiceClient.CatalogueOfLife\ProcessingTools.ServiceClient.CatalogueOfLife.csproj">
       <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
-      <Name>ProcessingTools.Services.CatalogueOfLife</Name>
+      <Name>ProcessingTools.ServiceClient.CatalogueOfLife</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services.ExtractHcmr\ProcessingTools.Services.ExtractHcmr.csproj">
+    <ProjectReference Include="..\ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
-      <Name>ProcessingTools.Services.ExtractHcmr</Name>
+      <Name>ProcessingTools.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services.Gbif\ProcessingTools.Services.Gbif.csproj">
+    <ProjectReference Include="..\ProcessingTools.ServiceClient.Gbif\ProcessingTools.ServiceClient.Gbif.csproj">
       <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
-      <Name>ProcessingTools.Services.Gbif</Name>
+      <Name>ProcessingTools.ServiceClient.Gbif</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services.GlobalNamesResolver\ProcessingTools.Services.GlobalNamesResolver.csproj">
+    <ProjectReference Include="..\ProcessingTools.ServiceClient.GlobalNamesResolver\ProcessingTools.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
-      <Name>ProcessingTools.Services.GlobalNamesResolver</Name>
+      <Name>ProcessingTools.ServiceClient.GlobalNamesResolver</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProcessingTools.System\ProcessingTools.SystemCommons.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>

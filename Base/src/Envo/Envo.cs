@@ -5,7 +5,7 @@
     using Configurator;
     using Contracts;
     using Extensions;
-    using Services.ExtractHcmr;
+    using ServiceClient.ExtractHcmr;
 
     public class Envo : TaggerBase, IBaseTagger
     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}</ProjectGuid>
+    <ProjectGuid>{344310AE-C162-4159-AEC1-91821190546F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Services.PaleobiologyDatabase</RootNamespace>
-    <AssemblyName>ProcessingTools.Services.PaleobiologyDatabase</AssemblyName>
+    <RootNamespace>ProcessingTools.ServiceClient.Gbif</RootNamespace>
+    <AssemblyName>ProcessingTools.ServiceClient.Gbif</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,12 +33,11 @@
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\PbdbAllParents.cs" />
-    <Compile Include="Models\PbdbSingleName.cs" />
-    <Compile Include="PaleobiologyDatabaseDataRequester.cs" />
+    <Compile Include="GbifDataRequester.cs" />
+    <Compile Include="Models\Alternative.cs" />
+    <Compile Include="Models\GbifResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

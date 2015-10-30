@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E78C97C4-837F-4C72-8751-970AA744D3A8}</ProjectGuid>
+    <ProjectGuid>{F364BD78-29DE-48BE-9098-B6AE0C468008}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Services.ExtractHcmr</RootNamespace>
-    <AssemblyName>ProcessingTools.Services.ExtractHcmr</AssemblyName>
+    <RootNamespace>ProcessingTools.ServiceClient.Aphia</RootNamespace>
+    <AssemblyName>ProcessingTools.ServiceClient.Aphia</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,19 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtractHcmrResolverDataRequester.cs" />
+    <Compile Include="AphiaDirectSoapRequester.cs" />
+    <Compile Include="AphiaNameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.System\ProcessingTools.SystemCommons.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>ProcessingTools.SystemCommons</Name>
-    </ProjectReference>
+    <None Include="aphia.wsdl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

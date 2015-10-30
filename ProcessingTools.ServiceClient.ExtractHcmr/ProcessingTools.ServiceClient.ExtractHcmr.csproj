@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{436A7881-3C88-4892-885D-29D487A42FA4}</ProjectGuid>
+    <ProjectGuid>{E78C97C4-837F-4C72-8751-970AA744D3A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Services.CatalogueOfLife</RootNamespace>
-    <AssemblyName>ProcessingTools.Services.CatalogueOfLife</AssemblyName>
+    <RootNamespace>ProcessingTools.ServiceClient.ExtractHcmr</RootNamespace>
+    <AssemblyName>ProcessingTools.ServiceClient.ExtractHcmr</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,11 +32,18 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatalogueOfLifeDataRequester.cs" />
+    <Compile Include="ExtractHcmrResolverDataRequester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.System\ProcessingTools.SystemCommons.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>ProcessingTools.SystemCommons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

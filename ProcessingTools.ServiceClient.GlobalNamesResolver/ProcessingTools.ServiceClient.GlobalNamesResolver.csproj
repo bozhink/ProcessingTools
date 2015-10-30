@@ -7,8 +7,8 @@
     <ProjectGuid>{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Services.GlobalNamesResolver</RootNamespace>
-    <AssemblyName>ProcessingTools.Services.GlobalNamesResolver</AssemblyName>
+    <RootNamespace>ProcessingTools.ServiceClient.GlobalNamesResolver</RootNamespace>
+    <AssemblyName>ProcessingTools.ServiceClient.GlobalNamesResolver</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Configurator;
     using Contracts;
-    using Services.Gbif;
+    using ServiceClient.Gbif;
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
     {
