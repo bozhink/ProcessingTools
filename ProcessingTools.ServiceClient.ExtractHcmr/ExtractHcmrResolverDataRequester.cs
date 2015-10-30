@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
@@ -16,52 +15,26 @@
          */
         public static async Task<XmlDocument> UseExtractService(string xmlContent)
         {
-            XmlDocument result = new XmlDocument();
+            const string ApiUrl = "http://tagger.jensenlab.org/GetEntities";
 
             if (string.IsNullOrEmpty(xmlContent))
             {
                 throw new ArgumentNullException("Content string to send is empty.");
             }
 
-            using (var client = new HttpClient())
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add("document", xmlContent);
+            values.Add("entity_types", "-25 -26 -27");
+            values.Add("format", "xml");
+
+            try
             {
-                Dictionary<string, string> values = new Dictionary<string, string>();
-                values.Add("document", xmlContent);
-                values.Add("entity_types", "-25 -26 -27");
-                values.Add("format", "xml");
-
-                try
-                {
-                    using (HttpContent content = new WeakFormUrlEncodedContent(values, Encoding.UTF8))
-                    {
-                        try
-                        {
-                            var response = await client.PostAsync("http://tagger.jensenlab.org/GetEntities", content);
-
-                            XmlReader xmlReader = XmlReader.Create(
-                                await response.Content.ReadAsStreamAsync(),
-                                new XmlReaderSettings
-                                {
-                                    Async = true,
-                                    DtdProcessing = DtdProcessing.Ignore,
-                                    IgnoreProcessingInstructions = true,
-                                });
-
-                            result.Load(xmlReader);
-                        }
-                        catch
-                        {
-                            throw;
-                        }
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
+                return await Net.PostUrlEncodedXmlAsync(ApiUrl, values, Encoding.UTF8);
             }
-
-            return result;
+            catch
+            {
+                throw;
+            }
         }
     }
 }

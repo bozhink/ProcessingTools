@@ -222,7 +222,7 @@
             catch (Exception e)
             {
                 this.logger?.Log(e, string.Empty);
-                throw e;
+                throw;
             }
         }
 

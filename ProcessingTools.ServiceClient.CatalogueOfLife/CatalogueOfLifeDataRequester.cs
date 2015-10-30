@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.ServiceClient.CatalogueOfLife
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Xml;
+    using SystemCommons;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.
@@ -17,17 +17,11 @@
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
         public static async Task<XmlDocument> SearchCatalogueOfLife(string scientificName)
         {
+            string url = $"http://www.catalogueoflife.org/col/webservice?name={scientificName}&response=full";
+
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetStringAsync("http://www.catalogueoflife.org/col/webservice?name=" + scientificName + "&response=full");
-
-                    XmlDocument xml = new XmlDocument();
-                    xml.LoadXml(response);
-
-                    return xml;
-                }
+                return await Net.GetXmlAsync(url);
             }
             catch
             {

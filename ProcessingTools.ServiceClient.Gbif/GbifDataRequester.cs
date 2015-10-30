@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.ServiceClient.Gbif
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using SystemCommons;
     using Models;
@@ -9,14 +8,11 @@
     {
         public static async Task<GbifResult> SearchGbif(string scientificName)
         {
+            string url = $"http://api.gbif.org/v0.9/species/match?verbose=true&name={scientificName}";
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetStringAsync("http://api.gbif.org/v0.9/species/match?verbose=true&name=" + scientificName);
-
-                    return JsonSerializer.Serialize<GbifResult>(response);
-                }
+                string response = await Net.GetStringAsync(url);
+                return JsonSerializer.Serialize<GbifResult>(response);
             }
             catch
             {
