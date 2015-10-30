@@ -36,6 +36,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AphiaDirectSoapRequester.cs" />
     <Compile Include="AphiaNameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

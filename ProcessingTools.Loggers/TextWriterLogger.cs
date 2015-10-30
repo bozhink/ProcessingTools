@@ -2,8 +2,8 @@
 {
     using System;
     using System.IO;
+    using SystemCommons;
     using Contracts;
-    using Diagnostics;
 
     public class TextWriterLogger : ILogger
     {
@@ -71,7 +71,7 @@
                 this.SetLogTypeColor(type);
                 if (type != LogType.Info)
                 {
-                    this.textWriter.WriteLine("{0}: {1}", DiagnosticsProvider.GetCurrentMethod(2), type.ToString());
+                    this.textWriter.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
                 }
 
                 this.textWriter.WriteLine(message);
@@ -98,7 +98,7 @@
                 this.SetLogTypeColor(type);
                 if (type != LogType.Info)
                 {
-                    this.textWriter.WriteLine("{0}: {1}", DiagnosticsProvider.GetCurrentMethod(2), type.ToString());
+                    this.textWriter.WriteLine("{0}: {1}", Diagnostics.GetCurrentMethod(2), type.ToString());
                 }
 
                 this.textWriter.WriteLine(format, args);
@@ -118,7 +118,7 @@
             try
             {
                 this.SetLogTypeColor(type);
-                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", DiagnosticsProvider.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
+                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
                 this.textWriter.WriteLine(message);
                 this.ResetLogTypeColor();
             }
@@ -141,7 +141,7 @@
             try
             {
                 this.SetLogTypeColor(type);
-                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", DiagnosticsProvider.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
+                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Diagnostics.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
                 this.textWriter.WriteLine(format, args);
                 this.ResetLogTypeColor();
             }

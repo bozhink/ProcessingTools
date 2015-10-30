@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Configurator;
     using Contracts;
-    using Models.Json.Gbif;
+    using Services.Gbif;
 
     public class GbifHigherTaxaParser : HigherTaxaParser
     {
@@ -36,7 +36,8 @@
                 {
                     this.Delay();
 
-                    GbifResult gbifResult = Net.SearchGbif(scientificName);
+                    var gbifResult = GbifDataRequester.SearchGbif(scientificName).Result;
+
                     if (gbifResult != null)
                     {
                         this.logger?.Log("\n{0} .... {1} .... {2}", scientificName, gbifResult.ScientificName, gbifResult.CanonicalName);

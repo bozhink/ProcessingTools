@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
-    using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
     using Contracts;
     using Extensions;
+    using Services.ExtractHcmr;
 
     public class Envo : TaggerBase, IBaseTagger
     {
@@ -36,11 +36,15 @@
 
         public void Tag(IXPathProvider xpathProvider)
         {
+            NameTable nameTable = new NameTable();
+            XmlNamespaceManager namespaceManager = new XmlNamespaceManager(nameTable);
+            namespaceManager.AddNamespace("reflect", "Reflect");
+            namespaceManager.PushScope();
+
             XmlDocument envoTermsTagSet = new XmlDocument();
             {
-                XmlDocument envoTermsResponse = Net.UseGreekTagger(this.TextContent);
-
-                envoTermsResponse.SelectNodes("//count").RemoveXmlNodes();
+                XmlDocument envoTermsResponse = ExtractHcmrResolverDataRequester.UseExtractService(this.TextContent).Result;
+                envoTermsResponse.SelectNodes("//reflect:count", namespaceManager).RemoveXmlNodes();
 
                 try
                 {
@@ -55,39 +59,12 @@
                     this.logger?.Log(e, message);
                 }
 
-                string envoTermsResponseString = Regex.Replace(envoTermsResponse.OuterXml, @"\sxmlns=""[^<>""]*""", string.Empty);
-
-                string tagSetString = envoTermsResponseString.ApplyXslTransform(this.Config.EnvoTermsWebServiceTransformXslPath);
-
-                envoTermsTagSet.LoadXml(tagSetString);
+                envoTermsTagSet.LoadXml(
+                    envoTermsResponse
+                        .ApplyXslTransform(this.Config.EnvoTermsWebServiceTransformXslPath));
             }
 
             {
-                ////string xpath = string.Format(xpathProvider.SelectContentNodesXPathTemplate, "normalize-space(.)!=''");
-                //////string xpath = xpathProvider.SelectContentNodesXPath;
-                ////XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-
-                ////foreach(XmlNode envo in envoTermsTagSet.SelectNodes("//envo"))
-                ////{
-                ////    string xml = this.Xml;
-                ////    bool isValid = true;
-                ////    try
-                ////    {
-                ////        isValid = false;
-                ////        this.Xml = Regex.Replace(this.Xml, @"(?<!<[^>]+)\b" + envo.InnerXml + @"\b(?![^<>]*>)", envo.OuterXml);
-                ////        isValid = true;
-                ////    }
-                ////    catch (Exception e)
-                ////    {
-                ////        Alert.RaiseExceptionForMethod(e, 0);
-                ////    }
-
-                ////    if (!isValid)
-                ////    {
-                ////        this.Xml = xml;
-                ////    }
-                ////}
-
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
                 envoTermsTagSet.DocumentElement.ChildNodes.TagContentInDocument(nodeList, false, true, this.logger);
             }

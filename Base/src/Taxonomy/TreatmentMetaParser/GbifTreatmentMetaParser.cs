@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Configurator;
     using Contracts;
-    using Models.Json.Gbif;
+    using Services.Gbif;
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
     {
@@ -39,7 +39,7 @@
 
                     this.logger?.Log("\n{0}\n", genus);
 
-                    GbifResult gbifResult = Net.SearchGbif(genus);
+                    var gbifResult = GbifDataRequester.SearchGbif(genus).Result;
                     if ((gbifResult != null) && (gbifResult.CanonicalName != null || gbifResult.ScientificName != null))
                     {
                         this.logger?.Log(

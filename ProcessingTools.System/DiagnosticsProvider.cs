@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Diagnostics
+﻿namespace ProcessingTools.SystemCommons
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    public class DiagnosticsProvider
+    public class Diagnostics
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod()

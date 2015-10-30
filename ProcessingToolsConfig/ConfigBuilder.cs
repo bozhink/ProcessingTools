@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Configurator
 {
     using System.IO;
-    using Models.Json;
+    using SystemCommons;
 
     public static class ConfigBuilder
     {

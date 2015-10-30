@@ -7,6 +7,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using Services.GlobalNamesResolver;
 
     public class TaxonomicNamesValidator : Base, IBaseValidator
     {
@@ -35,7 +36,7 @@
             string[] scientificNames = this.XmlDocument.ExtractTaxa(true).ToArray<string>();
             try
             {
-                XmlDocument gnrXmlResponse = Net.SearchWithGlobalNamesResolverPost(scientificNames);
+                XmlDocument gnrXmlResponse = GlobalNamesResolverDataRequester.SearchWithGlobalNamesResolverPost(scientificNames).Result;
 
                 List<string> notFoundNames = new List<string>();
 

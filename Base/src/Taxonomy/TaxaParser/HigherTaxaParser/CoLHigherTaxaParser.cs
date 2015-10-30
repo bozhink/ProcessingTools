@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using Services.CatalogueOfLife;
 
     public class CoLHigherTaxaParser : HigherTaxaParser
     {
@@ -38,7 +39,7 @@
                 {
                     this.Delay();
 
-                    XmlDocument colResponse = Net.SearchCatalogueOfLife(scientificName);
+                    XmlDocument colResponse = CatalogueOfLifeDataRequester.SearchCatalogueOfLife(scientificName).Result;
 
                     this.logger?.Log($"\n{colResponse.OuterXml}\n");
 

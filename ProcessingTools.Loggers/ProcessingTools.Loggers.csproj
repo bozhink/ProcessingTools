@@ -41,9 +41,9 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Diagnostics\ProcessingTools.Diagnostics.csproj">
-      <Project>{faa833a1-a1f8-4835-abf6-6bd514368c47}</Project>
-      <Name>ProcessingTools.Diagnostics</Name>
+    <ProjectReference Include="..\ProcessingTools.System\ProcessingTools.SystemCommons.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>ProcessingTools.SystemCommons</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

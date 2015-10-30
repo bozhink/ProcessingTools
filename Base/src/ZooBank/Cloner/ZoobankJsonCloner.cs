@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
+    using SystemCommons;
     using Contracts;
-    using Models.Json;
     using Models.Json.ZooBank;
 
     public class ZoobankJsonCloner : ZoobankCloner
