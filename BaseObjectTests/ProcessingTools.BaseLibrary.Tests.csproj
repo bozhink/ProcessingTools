@@ -90,9 +90,9 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>ProcessingTools.Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Services\ProcessingTools.Services.csproj">
-      <Project>{0e5eccba-47aa-4e50-991e-397ddaa9cfd6}</Project>
-      <Name>ProcessingTools.Services</Name>
+    <ProjectReference Include="..\ProcessingTools.Services.Aphia\ProcessingTools.Services.Aphia.csproj">
+      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
+      <Name>ProcessingTools.Services.Aphia</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProcessingTools.Services")]
+[assembly: AssemblyTitle("ProcessingTools.Services.Aphia")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.Services")]
+[assembly: AssemblyProduct("ProcessingTools.Services.Aphia")]
 [assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0e5eccba-47aa-4e50-991e-397ddaa9cfd6")]
+[assembly: Guid("f364bd78-29de-48be-9098-b6ae0c468008")]
 
 // Version information for an assembly consists of the following four values:
 //

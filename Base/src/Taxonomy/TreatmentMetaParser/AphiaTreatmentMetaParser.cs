@@ -42,12 +42,9 @@
 
                     this.logger?.Log("\n{0}\n", genus);
 
-                    var aphiaRecords = aphiaService.getAphiaRecords(genus, false, true, false, 0);
+                    var aphiaRecords = aphiaService.getAphiaRecords(genus, false, true, false, 0)?.ToList();
 
-                    foreach (var record in aphiaRecords)
-                    {
-                        this.logger?.Log(record?.scientificname);
-                    }
+                    aphiaRecords?.ForEach(record => this.logger?.Log(record?.scientificname));
 
                     if (aphiaRecords != null)
                     {

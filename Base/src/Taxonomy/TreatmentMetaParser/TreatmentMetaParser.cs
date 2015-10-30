@@ -41,7 +41,7 @@
         {
             if (delay)
             {
-                Thread.Sleep(15000);
+                Thread.Sleep(500);
             }
             else
             {

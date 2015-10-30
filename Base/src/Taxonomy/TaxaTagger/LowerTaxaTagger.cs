@@ -61,7 +61,7 @@
                 // TODO: move to format
                 this.Xml = Regex.Replace(
                     this.Xml,
-                    @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>",
+                    @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                     "$1‘$2’ $4$3");
 
                 this.AdvancedTagLowerTaxa("//*[i]");
