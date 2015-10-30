@@ -32,6 +32,9 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+# OpenCover
+[Oo]pen[Cc]over
+
 *_i.c
 *_p.c
 *_i.h
