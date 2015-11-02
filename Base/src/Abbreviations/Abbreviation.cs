@@ -9,38 +9,17 @@
         private string contentType;
         private string definition;
 
-        public Abbreviation()
-        {
-        }
-
         public Abbreviation(XmlNode abbrev)
         {
-            this.Content = abbrev.InnerXml
-                .RegexReplace(@"<def.+</def>", string.Empty)
-                .RegexReplace(@"</?[ib][^>]*>", string.Empty)
-                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
-
-            this.contentType = abbrev.Attributes["content-type"]?.InnerText;
-
-            var fragment = abbrev.OwnerDocument.CreateDocumentFragment();
-            fragment.InnerText = abbrev["def"]?.InnerText
-                .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty);
-            this.definition = fragment.InnerXml;
+            this.SetContent(abbrev);
+            this.SetContentType(abbrev);
+            this.SetDefinition(abbrev);
+            this.SetReplacePattern(abbrev);
         }
 
-        public string Content { get; set; }
+        public string Content { get; private set; }
 
-        public string ReplacePattern
-        {
-            get
-            {
-                return "<abbrev" +
-                    ((this.contentType == null || this.contentType.Length < 1) ? string.Empty : @" content-type=""" + this.contentType + @"""") +
-                    ((this.definition == null || this.definition.Length < 1) ? string.Empty : @" xlink:title=""" + this.definition + @"""") +
-                    @" xmlns:xlink=""http://www.w3.org/1999/xlink""" +
-                    ">$1</abbrev>";
-            }
-        }
+        public string ReplacePattern { get; private set; }
 
         public string SearchPattern
         {
@@ -48,6 +27,52 @@
             {
                 return "\\b(" + Regex.Escape(this.Content) + ")\\b";
             }
+        }
+
+        private void SetContent(XmlNode abbrev)
+        {
+            var abbrevContent = abbrev.CloneNode(true);
+            abbrevContent.SelectNodes("def").RemoveXmlNodes();
+            abbrevContent.SelectNodes("i|b").ReplaceXmlNodeByItsInnerXml();
+
+            this.Content = abbrevContent.InnerXml
+                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
+        }
+
+        private void SetContentType(XmlNode abbrev)
+        {
+            this.contentType = abbrev.Attributes["content-type"]?.InnerText;
+        }
+
+        private void SetDefinition(XmlNode abbrev)
+        {
+            this.definition = abbrev["def"]?.InnerText
+                .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
+                .RegexReplace(@"\((.+)\)", "$1")
+                .RegexReplace(@"\[(.+)\]", "$1");
+        }
+
+        private void SetReplacePattern(XmlNode abbrev)
+        {
+            var replacePatternNode = abbrev.OwnerDocument.CreateElement("abbrev");
+
+            if (!string.IsNullOrEmpty(this.contentType))
+            {
+                var contentTypeAttribute = abbrev.OwnerDocument.CreateAttribute("content-type");
+                contentTypeAttribute.InnerText = this.contentType;
+                replacePatternNode.Attributes.Append(contentTypeAttribute);
+            }
+
+            if (!string.IsNullOrEmpty(this.definition))
+            {
+                var titleAttribute = abbrev.OwnerDocument.CreateAttribute("xlink", "title", "http://www.w3.org/1999/xlink");
+                titleAttribute.InnerText = this.definition;
+                replacePatternNode.Attributes.Append(titleAttribute);
+            }
+
+            replacePatternNode.InnerXml = "$1";
+
+            this.ReplacePattern = replacePatternNode.OuterXml;
         }
     }
 }
