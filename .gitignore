@@ -35,6 +35,9 @@ dlldata.c
 # OpenCover
 [Oo]pen[Cc]over
 
+# StyleCop
+[Ss]tyle[Cc]op.[Cc]ache
+
 *_i.c
 *_p.c
 *_i.h
