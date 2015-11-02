@@ -31,7 +31,7 @@
     "nlmInitialFormatXslPath": "C:\\bin\\Xsl\\format.nlm.initial.xsl",
 
     "environmentsDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
-    "mainDictionaryDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
+    "mainDictionaryDataSourceString": "Data Source=(localdb)\\ProjectsV12;Initial Catalog=TagDataBase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
     "codesRemoveNonCodeNodes": "C:\\bin\\Xsl\\codes.remove-non-code-nodes.xsl",
     "textContentXslFileName": "C:\\bin\\Xsl\\text-content.xsl",
     "envoTermsWebServiceTransformXslPath": "C:\\bin\\Xsl\\envo-items-to-tagreplace.xsl"
