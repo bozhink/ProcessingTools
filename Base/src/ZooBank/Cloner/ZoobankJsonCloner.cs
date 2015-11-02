@@ -36,7 +36,7 @@
 
             set
             {
-                if (value == null || value.Length < 1)
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("JSON string should not be null or empty.");
                 }
@@ -50,9 +50,7 @@
             try
             {
                 ZooBankRegistration zoobankRegistration = this.GetZoobankRegistrationObject();
-
                 this.ProcessArticleLsid(zoobankRegistration);
-
                 this.ProcessTaxonomicActsLsid(zoobankRegistration);
             }
             catch
@@ -61,21 +59,23 @@
             }
         }
 
-        private string GetNomenclatureTaxonXPath(NomenclaturalAct nomenclaturalAct)
+        private string GetNomenclatureTaxonObjectIdXPath(NomenclaturalAct nomenclaturalAct)
         {
-            string xpath = "//tp:taxon-treatment/tp:nomenclature/tn";
-            switch (nomenclaturalAct.RankGroup)
+            const string XPathFormat = "//tp:taxon-treatment/tp:nomenclature/tn[string(../tp:taxon-status)='{0}']{1}/object-id[@content-type='zoobank']";
+            switch (nomenclaturalAct.RankGroup.ToLower())
             {
-                case "Genus":
-                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.NameString + "'][string(../tp:taxon-status)='gen. n.']/object-id[@content-type='zoobank']";
-                    break;
+                case "family":
+                    return string.Format(XPathFormat, "fam. n.", $"[tn-part[@type='family']='{nomenclaturalAct.NameString}']");
 
-                case "Species":
-                    xpath += "[tn-part[@type='genus']='" + nomenclaturalAct.Parentname + "'][tn-part[@type='species']='" + nomenclaturalAct.NameString + "'][string(../tp:taxon-status)='sp. n.']/object-id[@content-type='zoobank']";
-                    break;
+                case "genus":
+                    return string.Format(XPathFormat, "gen. n.", $"[tn-part[@type='genus']='{nomenclaturalAct.NameString}']");
+
+                case "species":
+                    return string.Format(XPathFormat, "sp. n.", $"[tn-part[@type='genus']='{nomenclaturalAct.Parentname}'][tn-part[@type='species']='{nomenclaturalAct.NameString}']");
+
+                default:
+                    return null;
             }
-
-            return xpath;
         }
 
         private ZooBankRegistration GetZoobankRegistrationObject()
@@ -85,13 +85,13 @@
 
             if (zoobankRegistrationList.Count < 1)
             {
-                throw new ApplicationException("No valid ZooBank registation records in JSON File");
+                throw new ApplicationException("No valid ZooBank registation records in JSON file");
             }
             else
             {
                 if (zoobankRegistrationList.Count > 1)
                 {
-                    this.logger?.Log("WARNING: More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
+                    this.logger?.Log(LogType.Warning, "More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
                 }
 
                 zoobankRegistration = zoobankRegistrationList[0];
@@ -121,21 +121,36 @@
             {
                 this.ResolveEmptyParentNames(zoobankRegistration, nomenclaturalAct);
 
-                this.logger?.Log("\n\n" + nomenclaturalAct.Parentname + (nomenclaturalAct.Parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.NameString + " " + nomenclaturalAct.TnuUuid);
+                this.logger?.Log(
+                    "\n\n{0}{1}{2} {3}",
+                    nomenclaturalAct.Parentname,
+                    string.IsNullOrEmpty(nomenclaturalAct.Parentname) ? string.Empty : " ",
+                    nomenclaturalAct.NameString,
+                    nomenclaturalAct.TnuUuid);
 
-                string xpath = this.GetNomenclatureTaxonXPath(nomenclaturalAct);
-
-                XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
-                if (objectId != null)
+                string xpath = this.GetNomenclatureTaxonObjectIdXPath(nomenclaturalAct);
+                if (xpath != null)
                 {
-                    objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.TnuUuid;
-                    numberOfNewNomenclaturalActs++;
+                    XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
+                    if (objectId != null)
+                    {
+                        objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.TnuUuid;
+                        numberOfNewNomenclaturalActs++;
 
-                    this.logger?.Log(nomenclaturalAct.Parentname + (nomenclaturalAct.Parentname == string.Empty ? string.Empty : " ") + nomenclaturalAct.NameString + " " + nomenclaturalAct.TnuUuid);
+                        this.logger?.Log(
+                            "{0}{1}{2} {3}",
+                            nomenclaturalAct.Parentname,
+                            string.IsNullOrEmpty(nomenclaturalAct.Parentname) ? string.Empty : " ",
+                            nomenclaturalAct.NameString,
+                            nomenclaturalAct.TnuUuid);
+                    }
                 }
             }
 
-            this.logger?.Log("\n\n\nNumber of nomenclatural acts = {0}.\nNumber of new nomenclatural acts = {1}.\n\n\n", numberOfNomenclaturalActs, numberOfNewNomenclaturalActs);
+            this.logger?.Log(
+                "\n\n\nNumber of nomenclatural acts = {0}.\nNumber of new nomenclatural acts = {1}.\n\n\n",
+                numberOfNomenclaturalActs,
+                numberOfNewNomenclaturalActs);
         }
 
         private void ResolveEmptyParentNames(ZooBankRegistration zoobankRegistration, NomenclaturalAct nomenclaturalAct)

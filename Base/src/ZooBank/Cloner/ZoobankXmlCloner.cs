@@ -34,15 +34,14 @@
 
             set
             {
-                if (value == null || value.Length < 1)
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException("NLM XmlDocument string content should not be null or empty.");
                 }
 
-                string xmlContent = Regex.Replace(value, @"\s*<!DOCTYPE [^>]*>", string.Empty);
                 try
                 {
-                    this.NlmXmlDocument.LoadXml(xmlContent);
+                    this.NlmXmlDocument.LoadXml(value);
                 }
                 catch
                 {
@@ -99,7 +98,7 @@
                 }
                 else
                 {
-                    this.logger?.Log("Number of ZooBank self-uri tags in these files does not match.");
+                    this.logger?.Log(LogType.Warning, "Number of ZooBank self-uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -131,7 +130,7 @@
                 }
                 else
                 {
-                    this.logger?.Log("Number of ZooBank uri tags in these files does not match.");
+                    this.logger?.Log(LogType.Warning, "Number of ZooBank uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -173,7 +172,7 @@
                             }
                             else
                             {
-                                this.logger?.Log("Number of ZooBank object-id tags does not match.");
+                                this.logger?.Log(LogType.Warning, "Number of ZooBank object-id tags does not match.");
                             }
                         }
                     }
@@ -182,7 +181,7 @@
                 }
                 else
                 {
-                    this.logger?.Log("Number of nomenclatures tags in these files does not match.");
+                    this.logger?.Log(LogType.Warning, "Number of nomenclatures tags in these files does not match.");
                 }
             }
             catch (Exception e)
@@ -193,8 +192,10 @@
 
         private void Init()
         {
-            this.nlmDocument = new XmlDocument();
-            this.nlmDocument.PreserveWhitespace = true;
+            this.nlmDocument = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
         }
     }
 }
