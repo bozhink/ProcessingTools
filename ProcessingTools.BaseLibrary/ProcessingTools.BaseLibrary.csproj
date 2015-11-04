@@ -297,10 +297,6 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>ProcessingTools.Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Models\ProcessingTools.Models.csproj">
-      <Project>{8067a4fb-0f58-4279-b32e-83ccd2768d1c}</Project>
-      <Name>ProcessingTools.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceClients\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj">
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
       <Name>ProcessingTools.ServiceClient.Bio.Aphia</Name>
@@ -308,6 +304,10 @@
     <ProjectReference Include="..\ServiceClients\ProcessingTools.ServiceClient.Bio.CatalogueOfLife\ProcessingTools.ServiceClient.Bio.CatalogueOfLife.csproj">
       <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
       <Name>ProcessingTools.ServiceClient.Bio.CatalogueOfLife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceClients\ProcessingTools.ServiceClient.Bio.ZooBank\ProcessingTools.ServiceClient.Bio.ZooBank.csproj">
+      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.ZooBank</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceClients\ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>

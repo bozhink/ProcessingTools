@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Models.Json.ZooBank
+﻿namespace ProcessingTools.ServiceClient.Bio.ZooBank.Models.Json
 {
     using System.Runtime.Serialization;
 

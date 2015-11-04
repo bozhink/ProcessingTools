@@ -5,7 +5,7 @@
     using System.Xml;
     using Contracts;
     using Infrastructure.Serialization.Json;
-    using Models.Json.ZooBank;
+    using ServiceClient.Bio.ZooBank.Models.Json;
 
     public class ZoobankJsonCloner : ZoobankCloner
     {
