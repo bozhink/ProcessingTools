@@ -120,6 +120,7 @@
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.NlmSystem.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\AboveGenusTaxaRankResolver.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\AphiaTaxaRankResolver.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\ITaxaRankResolver.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\ITaxonRank.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\SimpleTaxonRank.cs" />

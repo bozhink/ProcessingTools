@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class AboveGenusTaxaRankResolver : ITaxaRankResolver
     {
@@ -9,12 +9,16 @@
 
         public IEnumerable<ITaxonRank> Resolve(IEnumerable<string> scientificNames)
         {
-            throw new NotImplementedException();
+            return new HashSet<ITaxonRank>(scientificNames.Select(this.Resolve));
         }
 
         public ITaxonRank Resolve(string scientificName)
         {
-            throw new NotImplementedException();
+            return new SimpleTaxonRank
+            {
+                ScientificName = scientificName,
+                Rank = AboveGenusTaxaRankResolver.Rank
+            };
         }
     }
 }

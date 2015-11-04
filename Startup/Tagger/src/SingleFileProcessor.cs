@@ -696,7 +696,11 @@
 
                     try
                     {
-                        var parser = new AboveGenusHigherTaxaParser(this.settings.Config, xmlContent, this.logger);
+                        var parser = new AboveGenusHigherTaxaParser(
+                            this.settings.Config,
+                            xmlContent,
+                            new AboveGenusTaxaRankResolver(),
+                            this.logger);
                         parser.Parse();
                         parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                         xmlContent = parser.Xml;

@@ -1,31 +1,32 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System.Collections.Generic;
     using Configurator;
     using Contracts;
 
     public class AboveGenusHigherTaxaParser : HigherTaxaParser
     {
-        private const string Rank = "above-genus";
-
         private ILogger logger;
+        private ITaxaRankResolver taxaRankResolver;
 
-        public AboveGenusHigherTaxaParser(string xml, ILogger logger)
+        public AboveGenusHigherTaxaParser(string xml, ITaxaRankResolver taxaRankResolver, ILogger logger)
             : base(xml)
         {
             this.logger = logger;
+            this.taxaRankResolver = taxaRankResolver;
         }
 
-        public AboveGenusHigherTaxaParser(Config config, string xml, ILogger logger)
+        public AboveGenusHigherTaxaParser(Config config, string xml, ITaxaRankResolver taxaRankResolver, ILogger logger)
             : base(config, xml)
         {
             this.logger = logger;
+            this.taxaRankResolver = taxaRankResolver;
         }
 
-        public AboveGenusHigherTaxaParser(IBase baseObject, ILogger logger)
+        public AboveGenusHigherTaxaParser(IBase baseObject, ITaxaRankResolver taxaRankResolver, ILogger logger)
             : base(baseObject)
         {
             this.logger = logger;
+            this.taxaRankResolver = taxaRankResolver;
         }
 
         /// <summary>
@@ -33,14 +34,14 @@
         /// </summary>
         public override void Parse()
         {
-            string scientificNameReplacement = Rank.GetRemplacementStringForTaxonNamePartRank();
-
-            IEnumerable<string> uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
-            foreach (string scientificName in uniqueHigherTaxaList)
+            var uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
+            var resolvedTaxa = this.taxaRankResolver.Resolve(uniqueHigherTaxaList);
+            foreach (var taxon in resolvedTaxa)
             {
-                this.logger?.Log($"\n{scientificName} --> {Rank}");
+                this.logger?.Log($"\n{taxon.ScientificName} --> {taxon.Rank}");
 
-                this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
+                string scientificNameReplacement = taxon.Rank.GetRemplacementStringForTaxonNamePartRank();
+                this.ReplaceTaxonNameByItsParsedContent(taxon.ScientificName, scientificNameReplacement);
             }
         }
     }
