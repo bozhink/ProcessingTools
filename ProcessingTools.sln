@@ -3,60 +3,70 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary", "Base\ProcessingTools.BaseLibrary.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary", "ProcessingTools.BaseLibrary\ProcessingTools.BaseLibrary.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {BDE55FC4-E7D2-416D-A220-164CA99BD63B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Startup\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator", "ProcessingToolsConfig\ProcessingTools.Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary.Tests", "BaseObjectTests\ProcessingTools.BaseLibrary.Tests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary.Tests", "ProcessingTools.BaseLibrary.Tests\ProcessingTools.BaseLibrary.Tests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TaxonomyDatabase", "TaxonomyDatabase\TaxonomyDatabase.sqlproj", "{D91FD8E7-18C6-457A-9649-062E82C57CA7}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TaxonomyDatabase", "Data\TaxonomyDatabase\TaxonomyDatabase.sqlproj", "{D91FD8E7-18C6-457A-9649-062E82C57CA7}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EnvironmentsDatabase", "EnvironmentsDatabase\EnvironmentsDatabase.sqlproj", "{69F54AC5-4EE5-44BD-A072-FE09FE604252}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EnvironmentsDatabase", "Data\EnvironmentsDatabase\EnvironmentsDatabase.sqlproj", "{69F54AC5-4EE5-44BD-A072-FE09FE604252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Startup\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator.Tests", "ProcessingToolsConfig.Tests\ProcessingTools.Configurator.Tests.csproj", "{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Startup\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.WebApp", "ProcessingTools.WebApp\ProcessingTools.WebApp.csproj", "{179CB2CF-1B8C-461E-9B34-6F362577E867}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.WebApp", "Web\ProcessingTools.WebApp\ProcessingTools.WebApp.csproj", "{179CB2CF-1B8C-461E-9B34-6F362577E867}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.WebApp.Tests", "ProcessingTools.WebApp.Tests\ProcessingTools.WebApp.Tests.csproj", "{A847A9CD-B107-4D37-8CB8-745F2CBAF53C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.WebApp.Tests", "Web\ProcessingTools.WebApp.Tests\ProcessingTools.WebApp.Tests.csproj", "{A847A9CD-B107-4D37-8CB8-745F2CBAF53C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Models", "ProcessingTools.Models\ProcessingTools.Models.csproj", "{8067A4FB-0F58-4279-B32E-83CCD2768D1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.MimeResolver", "ProcessingTools.MimeResolver\ProcessingTools.MimeResolver.csproj", "{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Runner\Runner.csproj", "{82B3B741-4695-4710-84BF-9DA456FBE01F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Startup\Runner\Runner.csproj", "{82B3B741-4695-4710-84BF-9DA456FBE01F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts", "ProcessingTools.Contracts\ProcessingTools.Contracts.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts", "Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Loggers", "ProcessingTools.Loggers\ProcessingTools.Loggers.csproj", "{B6E6489B-65DF-4E51-B0F2-86CD7FECA313}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Loggers", "Infrastructure\ProcessingTools.Loggers\ProcessingTools.Loggers.csproj", "{B6E6489B-65DF-4E51-B0F2-86CD7FECA313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions", "ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{59274696-0BC4-4ADE-86DE-7982FED75BBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions", "Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{59274696-0BC4-4ADE-86DE-7982FED75BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Aphia", "ProcessingTools.ServiceClient.Aphia\ProcessingTools.ServiceClient.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Aphia", "ServiceClients\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Gbif", "ProcessingTools.ServiceClient.Gbif\ProcessingTools.ServiceClient.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Gbif", "ServiceClients\ProcessingTools.ServiceClient.Bio.Gbif\ProcessingTools.ServiceClient.Bio.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.SystemCommons", "ProcessingTools.System\ProcessingTools.SystemCommons.csproj", "{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Infrastructure", "Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj", "{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.CatalogueOfLife", "ProcessingTools.ServiceClient.CatalogueOfLife\ProcessingTools.ServiceClient.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.CatalogueOfLife", "ServiceClients\ProcessingTools.ServiceClient.Bio.CatalogueOfLife\ProcessingTools.ServiceClient.Bio.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.PaleobiologyDatabase", "ProcessingTools.ServiceClient.PaleobiologyDatabase\ProcessingTools.ServiceClient.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase", "ServiceClients\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.GlobalNamesResolver", "ProcessingTools.ServiceClient.GlobalNamesResolver\ProcessingTools.ServiceClient.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.GlobalNamesResolver", "ServiceClients\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.ExtractHcmr", "ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj", "{E78C97C4-837F-4C72-8751-970AA744D3A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.ExtractHcmr", "ServiceClients\ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj", "{E78C97C4-837F-4C72-8751-970AA744D3A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Geo", "ProcessingTools.Geo\ProcessingTools.Geo.csproj", "{AEF34763-8DC4-4519-A8FC-F76D6C9C1006}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Geo.Tests", "ProcessingTools.Geo.Tests\ProcessingTools.Geo.Tests.csproj", "{210D2971-98A1-4C9F-8B65-93514BBFEE37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F44B7FBC-A422-4966-837D-D52DF317F82E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{247DAE24-DD89-4C2C-AF49-E3F862485B92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceClients", "ServiceClients", "{8D3D2D75-57E3-4A4A-818A-4DB83CA58575}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{74FB6548-3F17-49C6-A099-882E46BFF85A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Startup", "Startup", "{2D346903-DBD6-46C9-A53B-A33E0C215BB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -556,6 +566,26 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{553469FF-345B-4BCD-AACA-3D447B23D80A} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
+		{D91FD8E7-18C6-457A-9649-062E82C57CA7} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{69F54AC5-4EE5-44BD-A072-FE09FE604252} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{44DF19EE-8FCB-4298-95BC-381F180C1037} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
+		{337C1A6C-C0A7-4C44-938E-35D87757EF7B} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
+		{179CB2CF-1B8C-461E-9B34-6F362577E867} = {74FB6548-3F17-49C6-A099-882E46BFF85A}
+		{A847A9CD-B107-4D37-8CB8-745F2CBAF53C} = {74FB6548-3F17-49C6-A099-882E46BFF85A}
+		{82B3B741-4695-4710-84BF-9DA456FBE01F} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
+		{4C455D90-7433-4853-BC6E-4A726786D253} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{B6E6489B-65DF-4E51-B0F2-86CD7FECA313} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{59274696-0BC4-4ADE-86DE-7982FED75BBE} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{F364BD78-29DE-48BE-9098-B6AE0C468008} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{344310AE-C162-4159-AEC1-91821190546F} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{436A7881-3C88-4892-885D-29D487A42FA4} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{EF98BA2F-6469-4A5D-8B83-1636E98F3E48} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{E78C97C4-837F-4C72-8751-970AA744D3A8} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

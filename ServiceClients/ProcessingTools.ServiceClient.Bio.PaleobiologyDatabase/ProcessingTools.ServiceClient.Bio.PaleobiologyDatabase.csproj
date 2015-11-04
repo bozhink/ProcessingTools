@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDE55FC4-E7D2-416D-A220-164CA99BD63B}</ProjectGuid>
+    <ProjectGuid>{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Configurator</RootNamespace>
-    <AssemblyName>ProcessingTools.Configurator</AssemblyName>
+    <RootNamespace>ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase</RootNamespace>
+    <AssemblyName>ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,19 +35,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SchemaType.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="ConfigBuilder.cs" />
+    <Compile Include="Models\PbdbAllParents.cs" />
+    <Compile Include="Models\PbdbSingleName.cs" />
+    <Compile Include="PaleobiologyDatabaseDataRequester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>ProcessingTools.Infrastructure</Name>
     </ProjectReference>
