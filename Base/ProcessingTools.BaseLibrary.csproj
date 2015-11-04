@@ -162,7 +162,6 @@
     <Compile Include="src\ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\JSON\GeoJSON Examples\spec.txt" />
     <Content Include="Data\raw\english-common-words.txt" />
     <Content Include="Data\raw\geo-epithets.txt" />
     <Content Include="Data\raw\get-coordinates-out.txt" />
@@ -264,8 +263,6 @@
     <None Include="Data\Biorepositories\personal_collection_labels.csv" />
     <None Include="Data\Biorepositories\staff_members.csv" />
     <None Include="Data\Biorepositories\staff_member_labels.csv" />
-    <None Include="Data\JSON\GeoJSON Examples\feature-collection.json" />
-    <None Include="Data\JSON\GeoJSON Examples\geometry-point.json" />
     <None Include="Data\raw\get-taxa.ps1" />
     <None Include="Data\raw\select_multi-rank-taxa.xqm" />
     <None Include="Data\raw\taxonomic_ranks.xqm" />
