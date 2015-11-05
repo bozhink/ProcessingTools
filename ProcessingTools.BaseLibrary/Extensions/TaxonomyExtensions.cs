@@ -125,7 +125,7 @@
             ////    .Cast<XmlNode>()
             ////    .Select(node => node.ParentNode.RemoveChild(node));
 
-            IEnumerable<string> taxaMatchesInText = xml.GetMatchesInXmlText(matchTaxa, true);
+            IEnumerable<string> taxaMatchesInText = xml.InnerText.GetMatches(matchTaxa);
             IEnumerable<string> result = from item in taxaMatchesInText
                                          where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
                                          select item;

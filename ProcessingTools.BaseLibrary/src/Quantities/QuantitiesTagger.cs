@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using Extensions;
 
     public class QuantitiesTagger : TaggerBase
     {
@@ -49,7 +50,7 @@
         {
             string pattern = @"(?<!<[^>]+)((?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b)(?![^<>]*>)";
             Regex matchQuantities = new Regex(pattern);
-            IEnumerable<string> quantities = this.TextContent.GetMatchesInText(matchQuantities);
+            IEnumerable<string> quantities = this.TextContent.GetMatches(matchQuantities);
             foreach (string quantity in quantities)
             {
                 this.logger?.Log(quantity);

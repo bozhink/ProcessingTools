@@ -6,6 +6,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using Extensions;
 
     public abstract class TaxaTagger : TaggerBase, IBaseTagger
     {
@@ -75,7 +76,7 @@
                 result = this.ClearTaxaLikePersonNamesInArticle(result);
 
                 // Apply blacklist
-                result = result.DistinctWithStringList(this.BlackList.StringList, true, false);
+                result = result.DistinctWithStringList(this.BlackList.StringList, true, false, true);
             }
             catch
             {
@@ -88,22 +89,28 @@
         protected IEnumerable<string> GetTaxaItemsByWhiteList()
         {
             string textToMine = string.Join(" ", this.TextWords);
-            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, false, false);
+            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, false, false, false);
 
             return new HashSet<string>(result);
         }
 
         private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
         {
-            var personNames = new HashSet<string>(this.XmlDocument
+            var taxaNamesFirstWord = new HashSet<string>(taxaNames
+                .GetFirstWord()
+                .Select(Regex.Escape));
+
+            var taxaLikePersonNameParts = new HashSet<string>(this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
-                .Select(s => s.InnerText));
+                .Select(s => s.InnerText)
+                .MatchWithStringList(taxaNamesFirstWord, false, true, true)
+                .Select(Regex.Escape));
 
-            var taxaLikePersonNameParts = personNames
-                .MatchWithStringList(taxaNames.GetFirstWord(), false, true);
+            var result = new HashSet<string>(taxaNames
+                .DistinctWithStringList(taxaLikePersonNameParts, true, false, true));
 
-            return new HashSet<string>(taxaNames.DistinctWithStringList(taxaLikePersonNameParts.Select(Regex.Escape), true, false));
+            return result;
         }
     }
 }

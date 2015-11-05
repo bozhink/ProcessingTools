@@ -188,7 +188,7 @@ namespace ProcessingTools.BaseLibrary
                 {
                     prefixNumericSpecimenCodes.AddRange(
                         textContent
-                            .GetMatchesInText(prefixNumericCodes)
+                            .GetMatches(prefixNumericCodes)
                             .Select(s => new SpecimenCode(prefix, "prefix-numeric", s)));
                 }
             }
@@ -216,13 +216,13 @@ namespace ProcessingTools.BaseLibrary
 
             Regex srnpCodes = new Regex(@"(?i)\b\w{1,3}\W{1,3}SRNP\W{1,3}\w{1,8}\b");
             janzenSpecimenCodes.AddRange(
-                this.XmlDocument.GetMatchesInXmlText(srnpCodes, false)
+                this.XmlDocument.InnerText.GetMatches(srnpCodes)
                     .Select(a => new SpecimenCode("SRNP", "Janzen", a))
                     .ToList<SpecimenCode>());
 
             Regex dhjparCodes = new Regex(@"(?i)\bDHJPAR\w{1,8}\b");
             janzenSpecimenCodes.AddRange(
-                this.XmlDocument.GetMatchesInXmlText(dhjparCodes, false)
+                this.XmlDocument.InnerText.GetMatches(dhjparCodes)
                     .Select(a => new SpecimenCode("DHJPAR", "Janzen", a))
                     .ToList<SpecimenCode>());
 
@@ -307,7 +307,7 @@ namespace ProcessingTools.BaseLibrary
                 cleanedXmlDocument.ApplyXslTransform(this.Config.CodesRemoveNonCodeNodes));
 
             Regex matchCodePattern = new Regex(codePattern);
-            return cleanedXmlDocument.InnerText.GetMatchesInText(matchCodePattern);
+            return cleanedXmlDocument.InnerText.GetMatches(matchCodePattern);
         }
 
         /// <summary>

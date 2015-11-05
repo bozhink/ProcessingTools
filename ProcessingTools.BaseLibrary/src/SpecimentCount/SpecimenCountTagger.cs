@@ -12,6 +12,7 @@ namespace ProcessingTools.BaseLibrary
     using System.Text.RegularExpressions;
     using Configurator;
     using Contracts;
+    using Extensions;
 
     public class SpecimenCountTagger : TaggerBase
     {
@@ -37,7 +38,7 @@ namespace ProcessingTools.BaseLibrary
             Regex matchSpecimenCount = new Regex(pattern);
 
             var nodeList = this.XmlDocument.SelectNodes(xpathProvider.SelectContentNodesXPathTemplate, this.NamespaceManager);
-            var specimenCountCitations = this.TextContent.GetMatchesInText(matchSpecimenCount);
+            var specimenCountCitations = this.TextContent.GetMatches(matchSpecimenCount);
             specimenCountCitations.TagContentInDocument(this.specimenCountTag, nodeList, false, true, this.logger);
         }
     }

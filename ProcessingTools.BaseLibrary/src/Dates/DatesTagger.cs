@@ -18,6 +18,7 @@ namespace ProcessingTools.BaseLibrary.Dates
     using System.Text.RegularExpressions;
     using Configurator;
     using Contracts;
+    using Extensions;
 
     public class DatesTagger : TaggerBase, IBaseTagger
     {
@@ -120,7 +121,7 @@ namespace ProcessingTools.BaseLibrary.Dates
 
         private void AddDatesByRegex(List<string> dates, Regex re)
         {
-            dates.AddRange(this.TextContent.GetMatchesInText(re));
+            dates.AddRange(this.TextContent.GetMatches(re));
         }
     }
 }

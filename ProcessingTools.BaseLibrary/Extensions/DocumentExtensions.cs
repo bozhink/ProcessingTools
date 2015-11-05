@@ -103,65 +103,16 @@
             return performReplace;
         }
 
-        public static void ClearTagsInWrongPositions(this XmlDocument xml)
-        {
-            foreach (XmlNode node in xml.SelectNodes("//date//institutional_code | //quantity//quantity"))
-            {
-                node.ReplaceXmlNodeByItsInnerXml();
-            }
-
-            foreach (XmlNode node in xml.SelectNodes("//abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']"))
-            {
-                node.ReplaceXmlNodeByItsInnerXml();
-            }
-        }
-
-        /// <summary>
-        /// Gets all strings which does not contain any string of a comparision list.
-        /// </summary>
-        /// <param name="wordList">IEnumerable object to be distincted.</param>
-        /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
-        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
-        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
-        /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
-        public static IEnumerable<string> DistinctWithStringList(
-            this IEnumerable<string> wordList,
-            IEnumerable<string> compareList,
-            bool treatAsRegex = false,
-            bool caseSensitive = false)
-        {
-            try
-            {
-                var list = new HashSet<string>(wordList);
-                var result = from word in list
-                             where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive).Count() == 0
-                             select word;
-
-                return new HashSet<string>(result);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
         public static IEnumerable<string> ExtractWordsFromString(this string text)
         {
-            List<string> result = new List<string>();
-
             Regex matchWords = new Regex(@"[^\W\d]+");
-            ////result.AddRange(matchWords.Matches(text).Cast<Match>().Select(m => m.Value).ToList<string>());
+            var result = new HashSet<string>();
             for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
             }
 
-            return new HashSet<string>(result);
-        }
-
-        public static IEnumerable<string> ExtractWordsFromXml(this XmlDocument xml)
-        {
-            return ExtractWordsFromString(xml.InnerText);
+            return result;
         }
 
         /// <summary>
@@ -171,37 +122,8 @@
         /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
         public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
         {
-            Regex matchWord = new Regex(@"\A[^\W\d]{2,}");
-            return new HashSet<string>(list.Select(word => matchWord.Match(word).Value).Distinct());
-        }
-
-        public static IEnumerable<string> GetMatchesInText(this string text, Regex search)
-        {
-            List<string> result = new List<string>();
-
-            for (Match m = search.Match(text); m.Success; m = m.NextMatch())
-            {
-                result.Add(m.Value);
-            }
-
-            return new HashSet<string>(result);
-        }
-
-        public static IEnumerable<string> GetMatchesInXmlText(this XmlNodeList nodeList, Regex search)
-        {
-            List<string> result = new List<string>();
-
-            foreach (XmlNode node in nodeList)
-            {
-                result.AddRange(node.GetMatchesInXmlText(search, false));
-            }
-
-            return new HashSet<string>(result);
-        }
-
-        public static IEnumerable<string> GetMatchesInXmlText(this XmlNode node, Regex search, bool clearList = true)
-        {
-            return node.InnerText.GetMatchesInText(search);
+            Regex matchWord = new Regex(@"\A[^\W\d]{2,}(?:\.)?");
+            return new HashSet<string>(list.Select(word => matchWord.Match(word).Value));
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
@@ -231,7 +153,7 @@
         {
             try
             {
-                var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText).Distinct();
+                var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText);
                 return new HashSet<string>(result);
             }
             catch
@@ -269,94 +191,6 @@
             try
             {
                 var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerXml);
-                return new HashSet<string>(result);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Gets all items of an IEnumerable object which are contained in the given string.
-        /// </summary>
-        /// <param name="word">The string which should contain some items of interest.</param>
-        /// <param name="compareList">IEnumerable object which items provides the output items.</param>
-        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
-        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
-        /// <returns>IEnumerable object of all matching string items of compareList in word.</returns>
-        /// <remarks>If match-whole-word-search is needed treatAsRegex should be set to true, and values in compareList should be Regex.Escape-d if needed.</remarks>
-        public static IEnumerable<string> MatchWithStringList(
-            this string word,
-            IEnumerable<string> compareList,
-            bool treatAsRegex = false,
-            bool caseSensitive = false)
-        {
-            IEnumerable<string> result = null;
-            try
-            {
-                var list = new HashSet<string>(compareList);
-                if (treatAsRegex)
-                {
-                    if (caseSensitive)
-                    {
-                        result = from comparePattern in list
-                                 where Regex.IsMatch(word, @"\b" + comparePattern + @"\b")
-                                 select comparePattern;
-                    }
-                    else
-                    {
-                        result = from comparePattern in list
-                                 where Regex.IsMatch(word, @"\b(?i)" + comparePattern + @"\b")
-                                 select comparePattern;
-                    }
-                }
-                else
-                {
-                    if (caseSensitive)
-                    {
-                        result = from stringToCompare in list
-                                 where word.Contains(stringToCompare)
-                                 select stringToCompare;
-                    }
-                    else
-                    {
-                        string wordLowerCase = word.ToLower();
-                        result = from stringToCompare in list
-                                 where wordLowerCase.Contains(stringToCompare.ToLower())
-                                 select stringToCompare;
-                    }
-                }
-            }
-            catch
-            {
-                throw;
-            }
-
-            return new HashSet<string>(result);
-        }
-
-        /// <summary>
-        /// Gets all strings which contains any string of a comparision list.
-        /// </summary>
-        /// <param name="wordList">IEnumerable object to be matches.</param>
-        /// <param name="compareList">IEnumerable object of patterns which must be contained in the wordList.</param>
-        /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
-        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
-        /// <returns>IEnumerable object of all matching with compareList string items in wordList.</returns>
-        public static IEnumerable<string> MatchWithStringList(
-            this IEnumerable<string> wordList,
-            IEnumerable<string> compareList,
-            bool treatAsRegex = false,
-            bool caseSensitive = false)
-        {
-            try
-            {
-                var list = new HashSet<string>(compareList);
-                var result = from word in wordList
-                             where word.MatchWithStringList(list, treatAsRegex, caseSensitive).Count() > 0
-                             select word;
-
                 return new HashSet<string>(result);
             }
             catch
