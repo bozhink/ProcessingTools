@@ -2,12 +2,9 @@
 {
     using System.Runtime.Serialization;
     using System.Text;
-    using System.Xml;
 
     public partial class Config
     {
-        private static XmlNamespaceManager taxPubNamespaceManager = null;
-
         private SchemaType articleSchemaType;
         private bool articleSchemaTypeStyleIsLockedForModification;
 
@@ -71,38 +68,6 @@
 
                 this.tagWholeDocumentIsLockedForModification = true;
             }
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager()
-        {
-            object syncLock = new object();
-            if (taxPubNamespaceManager == null)
-            {
-                lock (syncLock)
-                {
-                    if (taxPubNamespaceManager == null)
-                    {
-                        taxPubNamespaceManager = TaxPubNamespceManager(new XmlDocument().NameTable);
-                    }
-                }
-            }
-
-            return taxPubNamespaceManager;
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager(XmlDocument xmlDocument)
-        {
-            return TaxPubNamespceManager(xmlDocument.NameTable);
-        }
-
-        public static XmlNamespaceManager TaxPubNamespceManager(XmlNameTable nameTable)
-        {
-            XmlNamespaceManager nspm = new XmlNamespaceManager(nameTable);
-            nspm.AddNamespace("tp", "http://www.plazi.org/taxpub");
-            nspm.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            nspm.AddNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-            nspm.AddNamespace("mml", "http://www.w3.org/1998/Math/MathML");
-            return nspm;
         }
     }
 

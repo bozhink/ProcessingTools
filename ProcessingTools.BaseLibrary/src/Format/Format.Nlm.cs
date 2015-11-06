@@ -97,7 +97,11 @@
             xml = Regex.Replace(xml, @"\.</i>(?=</p>)", "</i>.");
 
             // sensu lato & stricto
-            xml = Regex.Replace(xml, @"(<i>)((s\.|sens?u?)\s+[sl][a-z]*)(</i>)\.", "$1$2.$4");
+            {
+                const string SensuSelector = @"(?:(?i)(?:\bs\.\s*|\bsens?u?\.?\s+)[sl][a-z]*\.?)";
+                xml = Regex.Replace(xml, @"(?<=\W" + SensuSelector + @")</i>\.", ".</i>");
+                xml = Regex.Replace(xml, @"(?<=\w)\s+(?=" + SensuSelector + @"</i>)", "</i> <i>");
+            }
 
             xml = Regex.Replace(xml, @"<\s+/", "</");
 

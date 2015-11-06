@@ -4,6 +4,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using DocumentProvider;
     using Loggers;
     using Measurements;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -63,7 +64,7 @@
         [Ignore]
         public void QunatitiesTagger_XPathExecutionTests()
         {
-            XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);
+            XmlDocument xml = new XmlDocument(TaxPubXmlDocument.NamespceManager().NameTable);
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 
@@ -78,7 +79,7 @@
         [Ignore]
         public void QuantitiesTagger_TagTest()
         {
-            XmlDocument xml = new XmlDocument(Config.TaxPubNamespceManager().NameTable);
+            XmlDocument xml = new XmlDocument(TaxPubXmlDocument.NamespceManager().NameTable);
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 

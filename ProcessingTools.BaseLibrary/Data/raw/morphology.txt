@@ -21,3 +21,13 @@ Disk
 Ovary
 Fruit
 Seed
+Lamellae
+Stipe
+Basidiospores
+Basidia
+Pleurocystidia
+Caulocystidia
+Cheilocystidia
+Lamellar trama
+Pileipellis
+Clamp connections

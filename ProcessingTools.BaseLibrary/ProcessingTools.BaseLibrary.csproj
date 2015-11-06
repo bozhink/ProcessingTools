@@ -290,6 +290,10 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\ProcessingTools.DocumentProvider\ProcessingTools.DocumentProvider.csproj">
+      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
+      <Name>ProcessingTools.DocumentProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
       <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
       <Name>ProcessingTools.Extensions</Name>

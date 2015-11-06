@@ -5,8 +5,8 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Configurator;
     using Contracts;
+    using DocumentProvider;
 
     public static class ContentTagger
     {
@@ -63,7 +63,7 @@
             ILogger logger = null)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
-            XmlNodeList nodeList = document.SelectNodes(xpath, Config.TaxPubNamespceManager());
+            XmlNodeList nodeList = document.SelectNodes(xpath, TaxPubXmlDocument.NamespceManager());
 
             textToTag.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
         }

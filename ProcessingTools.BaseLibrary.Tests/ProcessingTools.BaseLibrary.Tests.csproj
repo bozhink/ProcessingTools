@@ -73,6 +73,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\ProcessingTools.DocumentProvider\ProcessingTools.DocumentProvider.csproj">
+      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
+      <Name>ProcessingTools.DocumentProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessingTools.BaseLibrary\ProcessingTools.BaseLibrary.csproj">
       <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
       <Name>ProcessingTools.BaseLibrary</Name>

@@ -3,6 +3,7 @@
     using System;
     using System.Xml;
     using Configurator;
+    using DocumentProvider;
 
     /// <summary>
     /// Base object for all other xml-document-processing objects.
@@ -185,7 +186,7 @@
         /// </summary>
         private void Initialize()
         {
-            this.NamespaceManager = Config.TaxPubNamespceManager();
+            this.NamespaceManager = TaxPubXmlDocument.NamespceManager();
             this.xmlDocument = new XmlDocument(this.namespaceManager.NameTable);
             this.xmlDocument.PreserveWhitespace = true;
             this.config = null;
