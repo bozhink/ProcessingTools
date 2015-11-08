@@ -33,7 +33,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
+    <Compile Include="IComplexResult.cs" />
     <Compile Include="IFormatter.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="ILogger.cs" />

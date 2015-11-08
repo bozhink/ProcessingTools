@@ -6,7 +6,7 @@
 
     public class JsonSerializer
     {
-        public static T Serialize<T>(string jsonString)
+        public static T Deserialize<T>(string jsonString)
         {
             DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(T));
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));

@@ -16,7 +16,7 @@
             {
                 string jsonText = File.ReadAllText(configFilePath);
 
-                return JsonSerializer.Serialize<Config>(jsonText);
+                return JsonSerializer.Deserialize<Config>(jsonText);
             }
             catch
             {

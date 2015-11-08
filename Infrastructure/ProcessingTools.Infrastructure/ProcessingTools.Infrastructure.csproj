@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concurrency\Delayer.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Serialization\Json\JsonSerializer.cs" />
     <Compile Include="Net\Connector.cs" />

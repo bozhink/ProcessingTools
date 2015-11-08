@@ -80,7 +80,7 @@
 
         private ZooBankRegistration GetZoobankRegistrationObject()
         {
-            List<ZooBankRegistration> zoobankRegistrationList = JsonSerializer.Serialize<List<ZooBankRegistration>>(this.JsonString);
+            List<ZooBankRegistration> zoobankRegistrationList = JsonSerializer.Deserialize<List<ZooBankRegistration>>(this.JsonString);
             ZooBankRegistration zoobankRegistration = null;
 
             if (zoobankRegistrationList.Count < 1)

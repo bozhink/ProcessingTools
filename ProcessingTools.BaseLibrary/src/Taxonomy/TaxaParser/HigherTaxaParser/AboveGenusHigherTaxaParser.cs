@@ -36,7 +36,7 @@
         {
             var uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             var resolvedTaxa = this.taxaRankResolver.Resolve(uniqueHigherTaxaList);
-            foreach (var taxon in resolvedTaxa)
+            foreach (var taxon in resolvedTaxa.Result)
             {
                 this.logger?.Log($"\n{taxon.ScientificName} --> {taxon.Rank}");
 

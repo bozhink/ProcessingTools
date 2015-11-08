@@ -25,7 +25,7 @@
 
             try
             {
-                string responseString = await Connector.GetStringAsync(url);
+                string responseString = await Connector.GetXmlAsync(url);
 
                 string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                 string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -66,8 +66,8 @@
 
             try
             {
-                string response = await Connector.GetStringAsync(url);
-                return JsonSerializer.Serialize<PbdbAllParents>(response);
+                string response = await Connector.GetXmlAsync(url);
+                return JsonSerializer.Deserialize<PbdbAllParents>(response);
             }
             catch
             {

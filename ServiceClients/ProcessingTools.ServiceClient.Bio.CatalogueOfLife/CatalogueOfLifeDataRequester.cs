@@ -21,7 +21,7 @@
 
             try
             {
-                return await Connector.GetXmlAsync(url);
+                return await Connector.GetXmlDocumentAsync(url);
             }
             catch
             {

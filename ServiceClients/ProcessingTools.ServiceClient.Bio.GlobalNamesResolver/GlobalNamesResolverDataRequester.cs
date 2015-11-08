@@ -17,7 +17,7 @@
             {
                 string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string url = $"http://resolver.globalnames.org/name_resolvers.xml?{searchString}";
-                return await Connector.GetXmlAsync(url);
+                return await Connector.GetXmlDocumentAsync(url);
             }
             catch
             {
