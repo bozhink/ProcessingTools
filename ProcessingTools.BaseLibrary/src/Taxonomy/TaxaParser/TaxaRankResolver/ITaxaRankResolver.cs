@@ -6,6 +6,6 @@
     {
         ITaxonRank Resolve(string scientificName);
 
-        TaxaRankResolverComplexResult Resolve(IEnumerable<string> scientificNames);
+        TaxaRankResolverInternalResult Resolve(IEnumerable<string> scientificNames);
     }
 }

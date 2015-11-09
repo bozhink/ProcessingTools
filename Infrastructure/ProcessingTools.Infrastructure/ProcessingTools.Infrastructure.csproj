@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Concurrency\Delayer.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
+    <Compile Include="Exceptions\KeyValuePairMultiMessageException.cs" />
+    <Compile Include="Exceptions\MultiMessageException.cs" />
     <Compile Include="Serialization\Json\JsonSerializer.cs" />
     <Compile Include="Net\Connector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

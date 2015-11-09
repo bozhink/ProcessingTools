@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
+    using System;
     using Configurator;
     using Contracts;
 
@@ -36,12 +37,32 @@
         {
             var uniqueHigherTaxaList = this.XmlDocument.ExtractUniqueHigherTaxa();
             var resolvedTaxa = this.taxaRankResolver.Resolve(uniqueHigherTaxaList);
-            foreach (var taxon in resolvedTaxa.Result)
+            if (resolvedTaxa == null)
             {
-                this.logger?.Log($"\n{taxon.ScientificName} --> {taxon.Rank}");
+                throw new ApplicationException("Current taxa rank resolver instance returned null.");
+            }
 
-                string scientificNameReplacement = taxon.Rank.GetRemplacementStringForTaxonNamePartRank();
-                this.ReplaceTaxonNameByItsParsedContent(taxon.ScientificName, scientificNameReplacement);
+            if (resolvedTaxa.Results.Count > 0)
+            {
+                foreach (var taxon in resolvedTaxa.Results)
+                {
+                    this.logger?.Log($"\n{taxon.ScientificName} --> {taxon.Rank}");
+
+                    string scientificNameReplacement = taxon.Rank.GetRemplacementStringForTaxonNamePartRank();
+                    this.ReplaceTaxonNameByItsParsedContent(taxon.ScientificName, scientificNameReplacement);
+                }
+            }
+
+            if (resolvedTaxa.Exceptions.Count > 0)
+            {
+                foreach (var exception in resolvedTaxa.Exceptions)
+                {
+                    this.logger?.Log(exception.Message);
+                    foreach (var message in exception.Messages)
+                    {
+                        this.logger?.Log("\t{0} --> {1}", message.Key, message.Value);
+                    }
+                }
             }
         }
     }

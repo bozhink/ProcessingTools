@@ -4,84 +4,99 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using Contracts;
+    using System.Threading.Tasks;
     using Infrastructure.Concurrency;
     using ServiceClient.Bio.Aphia;
 
     public class AphiaTaxaRankResolver : ITaxaRankResolver
     {
-        public TaxaRankResolverComplexResult Resolve(IEnumerable<string> scientificNames)
+        public TaxaRankResolverInternalResult Resolve(IEnumerable<string> scientificNames)
         {
-            var result = new HashSet<SimpleTaxonRank>();
+            var taxonRanks = new ConcurrentQueue<ITaxonRank>();
+            var taxaExceptions = new ConcurrentQueue<TaxaRankResolverException>();
+            var systemExceptions = new ConcurrentQueue<Exception>();
 
-            var exceptions = new ConcurrentQueue<TaxaRankResolverException>();
-
-            using (var aphiaService = new AphiaNameService())
-            {
-                // TODO: make this foreach parallel
-                foreach (string scientificName in scientificNames)
+            Parallel.ForEach(
+                scientificNames,
+                (scientificName, state) =>
                 {
                     Delayer.Delay();
 
-                    var aphiaRecords = aphiaService.getAphiaRecords(scientificName, false, true, false, 0);
-
-                    if (aphiaRecords == null || aphiaRecords.Length < 1)
+                    using (var aphiaService = new AphiaNameService())
                     {
-                        exceptions.Enqueue(new TaxaRankResolverException() {
-                            Severity = ExceptionSeverity.Exception,
-                            Messages = new List<KeyValuePair<string, string>>
-                            {
-                                new KeyValuePair<string, string>(scientificName, "No match or error.")
-                            }
-                        });
-                    }
-                    else
-                    {
-                        var ranks = new HashSet<string>(aphiaRecords
-                            .Where(x => string.Compare(x.scientificname, scientificName, true) == 0)
-                            .Select(x => x.rank.ToLower()));
-
-                        if (ranks.Count > 1)
+                        var aphiaRecords = aphiaService.getAphiaRecords(scientificName, false, true, false, 0);
+                        try
                         {
-                            var exception = new TaxaRankResolverException("Multiple matches.")
+                            if (aphiaRecords == null || aphiaRecords.Length < 1)
                             {
-                                Severity = ExceptionSeverity.Warning,
-                                Messages = new List<KeyValuePair<string, string>>()
-                            };
+                                var exception = new TaxaRankResolverException("No match or error.")
+                                {
+                                    Messages = new List<KeyValuePair<string, string>>()
+                                };
 
-                            foreach (var record in aphiaRecords)
-                            {
-                                exception.Messages.Add(new KeyValuePair<string, string>(
-                                    record.scientificname,
-                                    $"{record.rank}, {record.authority}"));
+                                exception.Messages
+                                    .Add(new KeyValuePair<string, string>(scientificName, "No match or error."));
+
+                                throw exception;
                             }
 
-                            exceptions.Enqueue(exception);
-                        }
-                        else
-                        {
-                            result.Add(new SimpleTaxonRank
+                            var ranks = new HashSet<string>(aphiaRecords
+                                .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
+                                .Select(s => s.rank.ToLower()));
+
+                            if (ranks.Count > 1)
+                            {
+                                var exception = new TaxaRankResolverException("Multiple matches.")
+                                {
+                                    Messages = new List<KeyValuePair<string, string>>()
+                                };
+
+                                foreach (var record in aphiaRecords)
+                                {
+                                    exception.Messages
+                                        .Add(new KeyValuePair<string, string>(
+                                            record.scientificname,
+                                            $"{record.rank}, {record.authority}"));
+                                }
+
+                                throw exception;
+                            }
+
+                            taxonRanks.Enqueue(new SimpleTaxonRank
                             {
                                 ScientificName = scientificName,
                                 Rank = ranks.FirstOrDefault()
                             });
                         }
+                        catch (TaxaRankResolverException e)
+                        {
+                            taxaExceptions.Enqueue(e);
+                        }
+                        catch (Exception e)
+                        {
+                            systemExceptions.Enqueue(e);
+                            state.Break();
+                        }
                     }
-                }
+                });
+
+            if (systemExceptions.Count > 0)
+            {
+                throw new AggregateException(systemExceptions.ToList());
             }
 
-            var complexResult = new TaxaRankResolverComplexResult
+            var result = new TaxaRankResolverInternalResult
             {
-                Result = result,
-                Error = exceptions.ToList()
+                Results = taxonRanks.ToList(),
+                Exceptions = taxaExceptions.ToList()
             };
 
-            return complexResult;
+            return result;
         }
 
         public ITaxonRank Resolve(string scientificName)
         {
-            return this.Resolve((new string[] { scientificName }).ToList()).Result.FirstOrDefault();
+            return this.Resolve((new string[] { scientificName }).ToList()).Results.FirstOrDefault();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -8,12 +7,12 @@
     {
         private const string Rank = "above-genus";
 
-        public TaxaRankResolverComplexResult Resolve(IEnumerable<string> scientificNames)
+        public TaxaRankResolverInternalResult Resolve(IEnumerable<string> scientificNames)
         {
-            return new TaxaRankResolverComplexResult
+            return new TaxaRankResolverInternalResult
             {
-                Result = new HashSet<ITaxonRank>(scientificNames.Select(this.Resolve)),
-                Error = null
+                Results = new HashSet<ITaxonRank>(scientificNames.Select(this.Resolve)),
+                Exceptions = null
             };
         }
 

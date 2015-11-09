@@ -130,7 +130,7 @@
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\CoLHigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\GbifHigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithLocalDataBase.cs" />
-    <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\TaxaRankResolverComplexResult.cs" />
+    <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\TaxaRankResolverInternalResult.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\TaxaRankResolverException.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />

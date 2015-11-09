@@ -38,6 +38,7 @@
     <Compile Include="IComplexResult.cs" />
     <Compile Include="IFormatter.cs" />
     <Compile Include="IGenerator.cs" />
+    <Compile Include="IInternalResultBag.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IStringDataList.cs" />

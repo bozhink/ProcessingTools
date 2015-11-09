@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
-    using Contracts;
+    using Infrastructure.Exceptions;
 
-    public class TaxaRankResolverException : Exception
+    public class TaxaRankResolverException : KeyValuePairMultiMessageException
     {
         public TaxaRankResolverException()
         {
@@ -19,9 +18,5 @@
             : base(message, innerException)
         {
         }
-
-        public ExceptionSeverity Severity { get; set; }
-
-        public ICollection<KeyValuePair<string, string>> Messages { get; set; }
     }
 }
