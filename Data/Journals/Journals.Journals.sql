@@ -1,0 +1,10 @@
+﻿CREATE TABLE [Journals].[Journals]
+(
+    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] NVARCHAR(100) NOT NULL, 
+    [Abbreviated Name] NVARCHAR(50) NULL, 
+    [PISSN] CHAR(9) NULL, 
+    [EISSN] CHAR(9) NULL, 
+    [GnubId] UNIQUEIDENTIFIER NULL, 
+    [PublisherId] UNIQUEIDENTIFIER NOT NULL,
+)

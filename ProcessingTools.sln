@@ -66,6 +66,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.DocumentProvider", "Infrastructure\ProcessingTools.DocumentProvider\ProcessingTools.DocumentProvider.csproj", "{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "JournalsDataBase", "Data\Journals\JournalsDatabase.sqlproj", "{51059C8A-E656-4752-BB8D-DCEE0CA4695D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -180,6 +182,12 @@ Global
 		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,6 +212,7 @@ Global
 		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{8BD955F2-6208-4247-BE35-8F7581BE7B60} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{51059C8A-E656-4752-BB8D-DCEE0CA4695D} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
