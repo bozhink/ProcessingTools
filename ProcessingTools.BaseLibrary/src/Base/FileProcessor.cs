@@ -253,40 +253,38 @@
                 string extension = Path.GetExtension(this.inputFileName);
                 string name = Path.GetFileNameWithoutExtension(this.inputFileName);
 
-                // TODO
-                if (Regex.Match(name, @"\-out(\-\d+)?\Z").Success)
+                string outputFileNameFormat = null;
+                if (Regex.IsMatch(name, @"\-out(?:\-\d+)?\Z"))
                 {
                     name = Regex.Replace(name, @"\-\d+(?=\Z)", string.Empty);
-                    int i = 0;
-                    do
+
+                    if (string.IsNullOrEmpty(directoryPath))
                     {
-                        if (string.IsNullOrEmpty(directoryPath))
-                        {
-                            fileName = string.Format("{0}-{1}{2}", name, ++i, extension);
-                        }
-                        else
-                        {
-                            fileName = string.Format("{0}\\{1}-{2}{3}", directoryPath, name, ++i, extension);
-                        }
+                        outputFileNameFormat = "{1}-{2}{3}";
                     }
-                    while (File.Exists(fileName));
+                    else
+                    {
+                        outputFileNameFormat = "{0}\\{1}-{2}{3}";
+                    }
                 }
                 else
                 {
-                    int i = 0;
-                    do
+                    if (string.IsNullOrEmpty(directoryPath))
                     {
-                        if (string.IsNullOrEmpty(directoryPath))
-                        {
-                            fileName = string.Format("{0}-out-{1}{2}", name, ++i, extension);
-                        }
-                        else
-                        {
-                            fileName = string.Format("{0}\\{1}-out-{2}{3}", directoryPath, name, ++i, extension);
-                        }
+                        outputFileNameFormat = "{1}-out-{2}{3}";
                     }
-                    while (File.Exists(fileName));
+                    else
+                    {
+                        outputFileNameFormat = "{0}\\{1}-out-{2}{3}";
+                    }
                 }
+
+                int i = 0;
+                do
+                {
+                    fileName = string.Format(outputFileNameFormat, directoryPath, name, ++i, extension);
+                }
+                while (File.Exists(fileName));
             }
 
             return fileName;

@@ -98,9 +98,11 @@
         {
             string replace = node.InnerXml;
 
+            const string SensuPattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
+
             {
                 // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-                const string InfraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>\s*((?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?)\s*<i>([a-z\s-]+)</i>";
+                const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*("+ SensuPattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z\s-]+)(?:</tn>)?</i>";
                 Regex re = new Regex(InfraspecificPattern);
 
                 replace = re.Replace(
@@ -113,7 +115,7 @@
                 const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|trib|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
                 {
-                    const string InfraspecificPattern = @"<i><tn type=""lower"">([A-Za-z\.-]+)</tn></i>" + Subpattern;
+                    const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z\.-]+)</tn></i>" + Subpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
@@ -146,9 +148,12 @@
 
             // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
             // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
+
+            const string InfraSpecificSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|nr|near|sp\.\s*near|n\.?\s*sp|aff|prope|(?:sub)?sect)\b\.?|×|\?)";
+
             {
                 {
-                    const string InfraspecificPattern = @"<i><tn type=""lower"">([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*((?i)(?:\b(?:ab?|sp|var|subvar|subvar|subsp|subspecies|ssp|race|f|forma?|st|r|sf|cf|gr|nr|near|sp\. near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                    const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*(" + InfraSpecificSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z-]+)(?:</tn>)?</i>";
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
@@ -160,12 +165,12 @@
 
                     replace = Regex.Replace(
                         replace,
-                        @"(?<=</infraspecific>\s*\)?)</tn>\s*<i>([A-Za-z\.\s-]+)</i>",
+                        @"(?<=</infraspecific>\s*\)?)</tn>\s*<i>(?:<tn type=""lower""[^>]*>)?([A-Za-z\.\s-]+)(?:</tn>)?</i>",
                         " <species>$1</species></tn>");
                 }
 
                 {
-                    const string InfraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*((?i)(?:\b(?:ab?|n?\.?\s*sp|var|subvar|subsp|subspecies|ssp|race|subspec|f|fo|forma?|st|r|sf|cf|gr|nr|near|aff|prope|(?:sub)?sect)\b\.?)|×|\?)\s*<i>([a-z-]+)</i>";
+                    const string InfraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*(" + InfraSpecificSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z-]+)(?:</tn>)?</i>";
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (int i = 0; i < 4; i++)
