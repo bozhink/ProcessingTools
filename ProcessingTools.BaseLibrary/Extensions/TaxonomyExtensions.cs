@@ -59,8 +59,7 @@
 
         public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
         {
-            XmlNamespaceManager xmlNamespaceManager = TaxPubXmlDocument.NamespceManager(xmlDocument);
-            XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]", xmlNamespaceManager);
+            XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]");
             return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerXml));
         }
 
@@ -189,7 +188,7 @@
 
         public static void RemoveTaxonNamePartTags(this XmlDocument xmlDocument)
         {
-            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubXmlDocument.NamespceManager(xmlDocument)))
+            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubXmlDocument.NamespceManager()))
             {
                 taxonName.InnerXml = taxonName.InnerXml.RemoveTaxonNamePartTags();
             }
