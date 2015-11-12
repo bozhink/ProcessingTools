@@ -64,7 +64,7 @@
         [Ignore]
         public void QunatitiesTagger_XPathExecutionTests()
         {
-            XmlDocument xml = new XmlDocument(TaxPubXmlDocument.NamespceManager().NameTable);
+            XmlDocument xml = new XmlDocument(TaxPubDocument.NamespceManager().NameTable);
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 
@@ -79,7 +79,7 @@
         [Ignore]
         public void QuantitiesTagger_TagTest()
         {
-            XmlDocument xml = new XmlDocument(TaxPubXmlDocument.NamespceManager().NameTable);
+            XmlDocument xml = new XmlDocument(TaxPubDocument.NamespceManager().NameTable);
             xml.PreserveWhitespace = true;
             xml.Load(@"C:\Users\bozhin\SkyDrive\Work\9949-abbrev.xml");
 

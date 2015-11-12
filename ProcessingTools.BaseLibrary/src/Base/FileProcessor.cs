@@ -161,7 +161,7 @@
                     reader = XmlTextReader.Create(stream, readerSettings);
 
                     readXml.Load(reader);
-                    this.XmlDocument = readXml;
+                    this.Xml = readXml.OuterXml;
                 }
                 finally
                 {
@@ -211,7 +211,7 @@
                 rootNode.AppendChild(bodyNode);
                 readXml.AppendChild(rootNode);
 
-                this.XmlDocument = readXml;
+                this.Xml = readXml.OuterXml;
             }
             catch
             {

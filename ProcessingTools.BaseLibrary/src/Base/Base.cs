@@ -116,7 +116,7 @@
                 return this.xmlDocument;
             }
 
-            set
+            private set
             {
                 if (value != null)
                 {
@@ -186,7 +186,7 @@
         /// </summary>
         private void Initialize()
         {
-            this.NamespaceManager = TaxPubXmlDocument.NamespceManager();
+            this.NamespaceManager = TaxPubDocument.NamespceManager();
             this.xmlDocument = new XmlDocument(this.namespaceManager.NameTable);
             this.xmlDocument.PreserveWhitespace = true;
             this.config = null;

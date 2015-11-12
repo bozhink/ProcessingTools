@@ -63,7 +63,7 @@
             ILogger logger = null)
         {
             string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
-            XmlNodeList nodeList = document.SelectNodes(xpath, TaxPubXmlDocument.NamespceManager());
+            XmlNodeList nodeList = document.SelectNodes(xpath, TaxPubDocument.NamespceManager());
 
             textToTag.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
         }

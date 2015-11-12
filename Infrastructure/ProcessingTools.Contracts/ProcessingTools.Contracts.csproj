@@ -36,6 +36,7 @@
     <Compile Include="ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IComplexResult.cs" />
+    <Compile Include="IDocument.cs" />
     <Compile Include="IFormatter.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IInternalResultBag.cs" />
