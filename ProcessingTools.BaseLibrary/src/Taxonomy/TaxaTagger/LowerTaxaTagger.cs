@@ -61,10 +61,11 @@
                 // TODO: move to format
                 this.Xml = Regex.Replace(
                     this.Xml,
-                    @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
+                    @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                     "$1‘$2’ $4$3");
 
-                this.AdvancedTagLowerTaxa("//*[i]");
+                // this.AdvancedTagLowerTaxa("//*[i]");
+                this.Xml = this.TagInfraspecificTaxa(this.Xml);
             }
             catch
             {
@@ -96,36 +97,44 @@
 
         private void TagInfraspecificTaxa(XmlNode node)
         {
-            string replace = node.InnerXml;
+            System.Console.WriteLine(node.InnerText);
+            System.Console.WriteLine();
+
+            string replace = this.TagInfraspecificTaxa(node.InnerXml);
+            node.SafeReplaceInnerXml(replace, this.logger);
+        }
+
+        private string TagInfraspecificTaxa(string content)
+        {
+            string result = content;
 
             const string SensuPattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
-
             {
                 // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-                const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuPattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z\s-]+)(?:</tn>)?</i>";
+                const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuPattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z][a-z\s-]+)(?:</tn>)?</i>";
                 Regex re = new Regex(InfraspecificPattern);
 
-                replace = re.Replace(
-                    replace,
+                result = re.Replace(
+                    result,
                     @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
             }
 
             // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
             {
-                const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|ser|trib|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower"">)?([A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
+                const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+as\b)(?!\s+to\b)\s*([^<>\(\)\[\]]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
                 {
-                    const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z\.-]+)</tn></i>" + Subpattern;
+                    const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z][A-Za-z\.-]+)</tn></i>" + Subpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
-                    for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
+                    for (Match m = re.Match(result); m.Success; m = m.NextMatch())
                     {
-                        replace = re.Replace(
-                            replace,
+                        result = re.Replace(
+                            result,
                             @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
                     }
 
-                    replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
                 }
 
                 {
@@ -134,50 +143,53 @@
 
                     for (int i = 0; i < 3; i++)
                     {
-                        for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
+                        for (Match m = re.Match(result); m.Success; m = m.NextMatch())
                         {
-                            replace = re.Replace(
-                                replace,
+                            result = re.Replace(
+                                result,
                                 " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
                         }
                     }
 
-                    replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
                 }
             }
 
             // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
             // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-            const string InfraSpecificSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|nr|near|sp\.\s*near|n\.?\s*sp|aff|prope|(?:sub)?sect)\b\.?|×|\?)";
+            const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|nr|near|sp\.\s*near|n\.?\s*sp|aff|prope|(?:sub)?sect)\b\.?|×|\?)";
+            const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
             {
                 {
-                    const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)\s*(" + InfraSpecificSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z-]+)(?:</tn>)?</i>";
+                    const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
-                    for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
+                    System.Console.WriteLine(re.Match(result).Length);
+
+                    for (Match m = re.Match(result); m.Success; m = m.NextMatch())
                     {
-                        replace = re.Replace(
-                            replace,
+                        result = re.Replace(
+                            result,
                             @"<tn type=""lower""><basionym>$1</basionym> <basionym-authority>$2</basionym-authority> <infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>");
                     }
 
-                    replace = Regex.Replace(
-                        replace,
-                        @"(?<=</infraspecific>\s*\)?)</tn>\s*<i>(?:<tn type=""lower""[^>]*>)?([A-Za-z\.\s-]+)(?:</tn>)?</i>",
+                    result = Regex.Replace(
+                        result,
+                        @"(?<=</infraspecific>\s*\)?)</tn>\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.\s-]+)(?:</tn>)?</i>",
                         " <species>$1</species></tn>");
                 }
 
                 {
-                    const string InfraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)\s*(" + InfraSpecificSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z-]+)(?:</tn>)?</i>";
+                    const string InfraspecificPattern = @"(?<=(?:</infraspecific>|</species>)\s*\)?)</tn>\s*([^<>]{0,100}?)" + InfraspecificRankNamePairSubpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (int i = 0; i < 4; i++)
                     {
-                        for (Match m = re.Match(replace); m.Success; m = m.NextMatch())
+                        for (Match m = re.Match(result); m.Success; m = m.NextMatch())
                         {
-                            replace = re.Replace(
-                                replace,
+                            result = re.Replace(
+                                result,
                                 " <authority>$1</authority> <infraspecific-rank>$2</infraspecific-rank> <infraspecific>$3</infraspecific></tn>");
                         }
                     }
@@ -185,11 +197,11 @@
             }
 
             // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
-            replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z\.-]+)\s+([a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
+            result = Regex.Replace(result, @"<infraspecific>([A-Za-z][A-Za-z\.-]+)\s+([a-z][a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
 
-            replace = Regex.Replace(replace, " <([a-z-]+)?authority></([a-z-]+)?authority>", string.Empty);
+            result = Regex.Replace(result, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
 
-            node.SafeReplaceInnerXml(replace, this.logger);
+            return result;
         }
 
         private bool IsMatchingLowerTaxaFormat(string textToCheck)
@@ -200,7 +212,8 @@
                       Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
                       Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*\Z") ||
                       Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z");
+                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A[A-Z]+\Z");
 
             return result;
         }
