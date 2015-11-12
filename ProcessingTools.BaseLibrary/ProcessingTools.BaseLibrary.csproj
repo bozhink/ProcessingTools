@@ -134,6 +134,7 @@
     <Compile Include="src\Taxonomy\TaxaParser\TaxaRankResolver\TaxaRankResolverException.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTaggerNext.cs" />
     <Compile Include="src\Taxonomy\TaxaType.cs" />
     <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
     <Compile Include="src\Taxonomy\TaxonomicBlackList.cs" />
@@ -216,6 +217,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\format.system-to-nlm.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\ipni-query.xsl">
+      <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\Special\gavin-laurens-tn.xsl">

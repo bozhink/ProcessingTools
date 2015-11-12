@@ -102,7 +102,7 @@
 
             {
                 // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-                const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*("+ SensuPattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z\s-]+)(?:</tn>)?</i>";
+                const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuPattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z\s-]+)(?:</tn>)?</i>";
                 Regex re = new Regex(InfraspecificPattern);
 
                 replace = re.Replace(
@@ -148,7 +148,6 @@
 
             // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
             // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-
             const string InfraSpecificSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|nr|near|sp\.\s*near|n\.?\s*sp|aff|prope|(?:sub)?sect)\b\.?|×|\?)";
 
             {
