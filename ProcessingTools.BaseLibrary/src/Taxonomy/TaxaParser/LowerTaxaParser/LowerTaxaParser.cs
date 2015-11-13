@@ -165,7 +165,13 @@
         {
             string replace = str;
 
+            // TODO: add other infrageneric ranks
             // Parse different parts of the taxonomic name
+            replace = Regex.Replace(
+                replace,
+                @"\b((?i)sect?|section)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
+                @"<tn-part type=""infraspecific-rank"">$1</tn-part>$2<tn-part type=""" + SpeciesParts.Section.ToString().ToLower() + @""">$3</tn-part>");
+
             replace = Regex.Replace(
                 replace,
                 @"\b([Ss]ubvar)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
