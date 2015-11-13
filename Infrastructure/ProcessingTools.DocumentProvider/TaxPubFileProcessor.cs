@@ -11,6 +11,7 @@
         private string inputFileName;
         private string outputFileName;
         private ILogger logger;
+        private XmlReaderSettings readerSettings;
 
         public TaxPubFileProcessor()
             : this(null, null, null)
@@ -43,6 +44,16 @@
             this.logger = logger;
             this.InputFileName = inputFileName;
             this.OutputFileName = outputFileName;
+
+            this.readerSettings = new XmlReaderSettings()
+            {
+                IgnoreComments = false,
+                IgnoreProcessingInstructions = false,
+                IgnoreWhitespace = false,
+                CloseInput = false,
+                DtdProcessing = DtdProcessing.Ignore,
+                NameTable = this.NameTable
+            };
         }
 
         public string InputFileName
@@ -54,7 +65,7 @@
 
             set
             {
-                if (value == null || value.Length < 1)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     this.inputFileName = null;
                 }
@@ -82,7 +93,7 @@
             set
             {
                 string fileName = value;
-                if (value == null || value.Length < 1)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     fileName = this.GenerateOutputFileNameBasedOnInputFileName();
                 }
@@ -104,60 +115,26 @@
         {
             get
             {
-                return TaxPubFileProcessor.GetXmlReader(this.InputFileName);
+                var stream = new FileStream(this.InputFileName, FileMode.Open);
+                return XmlTextReader.Create(stream, this.readerSettings);
             }
-        }
-
-        public static string ReadFileContentToString(string inputFileName)
-        {
-            string result = string.Empty;
-            try
-            {
-                result = File.ReadAllText(inputFileName);
-            }
-            catch (Exception e)
-            {
-                throw new IOException($"Cannot read file {inputFileName}.", e);
-            }
-
-            return result;
-        }
-
-        public static XmlReader GetXmlReader(string inputFileName)
-        {
-            XmlReader reader = null;
-            try
-            {
-                FileStream stream = new FileStream(inputFileName, FileMode.Open);
-                XmlReaderSettings readerSettings = new XmlReaderSettings();
-                readerSettings.IgnoreWhitespace = false;
-                readerSettings.DtdProcessing = DtdProcessing.Ignore;
-                reader = XmlTextReader.Create(stream, readerSettings);
-            }
-            catch
-            {
-                throw;
-            }
-
-            return reader;
         }
 
         public void Read()
         {
-            XmlDocument readXml = new XmlDocument(this.NamespaceManager.NameTable);
-            readXml.PreserveWhitespace = true;
+            XmlDocument readXml = new XmlDocument(this.NameTable)
+            {
+                PreserveWhitespace = true
+            };
+
             try
             {
-                XmlReaderSettings readerSettings = new XmlReaderSettings();
-                readerSettings.IgnoreWhitespace = false;
-                readerSettings.DtdProcessing = DtdProcessing.Ignore;
-
                 FileStream stream = null;
                 XmlReader reader = null;
                 try
                 {
                     stream = new FileStream(this.inputFileName, FileMode.Open);
-                    reader = XmlTextReader.Create(stream, readerSettings);
+                    reader = XmlTextReader.Create(stream, this.readerSettings);
 
                     readXml.Load(reader);
                     this.Xml = readXml.OuterXml;

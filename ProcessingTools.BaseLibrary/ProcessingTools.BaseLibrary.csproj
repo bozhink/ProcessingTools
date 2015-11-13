@@ -250,6 +250,7 @@
     <Content Include="XSL\references.sort.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\taxpub-to-html.xsl" />
     <Content Include="XSL\text-content.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

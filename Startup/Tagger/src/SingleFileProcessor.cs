@@ -1324,7 +1324,7 @@
             {
                 try
                 {
-                    string jsonStringContent = TaxPubFileProcessor.ReadFileContentToString(this.settings.QueryFileName);
+                    string jsonStringContent = File.ReadAllText(this.settings.QueryFileName);
                     var zoobankCloner = new ZoobankJsonCloner(jsonStringContent, this.fileProcessor.Xml, this.logger);
                     zoobankCloner.Clone();
                     this.fileProcessor.Xml = zoobankCloner.Xml;
