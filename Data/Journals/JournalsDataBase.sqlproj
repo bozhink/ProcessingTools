@@ -70,5 +70,10 @@
     <Build Include="Journals.Journals.sql" />
     <Build Include="Journals.FK_Journals_Publishers.sql" />
     <Build Include="Journals.IX_Journal_Name.sql" />
+    <Build Include="Articles.sql" />
+    <Build Include="Articles.NlmArticleTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.SeedNlmArticleTypes.sql" />
   </ItemGroup>
 </Project>
