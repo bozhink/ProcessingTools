@@ -42,9 +42,69 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.DocumentProvider\ProcessingTools.DocumentProvider.csproj">
+      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
+      <Name>ProcessingTools.DocumentProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>ProcessingTools.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>ProcessingTools.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Loggers\ProcessingTools.Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>ProcessingTools.Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.BaseLibrary\ProcessingTools.BaseLibrary.csproj">
+      <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
+      <Name>ProcessingTools.BaseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Geo\ProcessingTools.Geo.csproj">
+      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
+      <Name>ProcessingTools.Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.MimeResolver\ProcessingTools.MimeResolver.csproj">
+      <Project>{7d390f8f-47ff-44e9-bfa9-f8cad3e10045}</Project>
+      <Name>ProcessingTools.MimeResolver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj">
+      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.Aphia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.CatalogueOfLife\ProcessingTools.ServiceClient.Bio.CatalogueOfLife.csproj">
+      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.CatalogueOfLife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.Gbif\ProcessingTools.ServiceClient.Bio.Gbif.csproj">
+      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.Gbif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver.csproj">
+      <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.GlobalNamesResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase.csproj">
+      <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.Bio.ZooBank\ProcessingTools.ServiceClient.Bio.ZooBank.csproj">
+      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
+      <Name>ProcessingTools.ServiceClient.Bio.ZooBank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj">
+      <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
+      <Name>ProcessingTools.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>

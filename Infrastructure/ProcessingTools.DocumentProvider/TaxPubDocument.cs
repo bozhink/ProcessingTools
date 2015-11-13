@@ -1,8 +1,10 @@
 ﻿namespace ProcessingTools.DocumentProvider
 {
+    using System;
     using System.Xml;
+    using Contracts;
 
-    public class TaxPubXmlDocument
+    public class TaxPubDocument : IDocument
     {
         private const string Xmlns = "xmlns";
 
@@ -28,7 +30,7 @@
 
         private static XmlNamespaceManager namespaceManager = null;
 
-        public TaxPubXmlDocument()
+        public TaxPubDocument()
         {
             this.NameTable = new NameTable();
             this.NamespaceManager = new XmlNamespaceManager(this.NameTable);
@@ -45,48 +47,66 @@
             };
         }
 
-        public TaxPubXmlDocument(string xml)
+        public TaxPubDocument(string xml)
             : this()
         {
-            this.XmlDocument.LoadXml(xml);
-
-            this.XmlDocument.DocumentElement.SetAttribute(
-                TpNamespace,
-                this.NamespaceManager.LookupNamespace(TpPrefix));
-
-            this.XmlDocument.DocumentElement.SetAttribute(
-                XlinkNamespace,
-                this.NamespaceManager.LookupNamespace(XlinkPrefix));
-
-            this.XmlDocument.DocumentElement.SetAttribute(
-                XmlNamespace,
-                this.NamespaceManager.LookupNamespace(XmlPrefix));
-
-            this.XmlDocument.DocumentElement.SetAttribute(
-                XsiNamespace,
-                this.NamespaceManager.LookupNamespace(XsiPrefix));
-
-            this.XmlDocument.DocumentElement.SetAttribute(
-                MmlNamespace,
-                this.NamespaceManager.LookupNamespace(MmlPrefix));
+            this.Xml = xml;
         }
 
-        public TaxPubXmlDocument(XmlDocument xml)
+        public TaxPubDocument(XmlDocument xml)
             : this()
         {
-            this.XmlDocument.LoadXml(xml.OuterXml);
+            if (xml == null)
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            this.Xml = xml.OuterXml;
         }
 
         public NameTable NameTable { get; private set; }
 
         public XmlNamespaceManager NamespaceManager { get; private set; }
 
-        public XmlDocument XmlDocument { get; set; }
-
-        public static XmlDocument Create()
+        public string Xml
         {
-            return new TaxPubXmlDocument().XmlDocument;
+            get
+            {
+                return this.XmlDocument.OuterXml;
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("value", "XmlDocument string is null or whitespace.");
+                }
+
+                this.XmlDocument.LoadXml(value);
+
+                this.XmlDocument.DocumentElement.SetAttribute(
+                    TpNamespace,
+                    this.NamespaceManager.LookupNamespace(TpPrefix));
+
+                this.XmlDocument.DocumentElement.SetAttribute(
+                    XlinkNamespace,
+                    this.NamespaceManager.LookupNamespace(XlinkPrefix));
+
+                this.XmlDocument.DocumentElement.SetAttribute(
+                    XmlNamespace,
+                    this.NamespaceManager.LookupNamespace(XmlPrefix));
+
+                this.XmlDocument.DocumentElement.SetAttribute(
+                    XsiNamespace,
+                    this.NamespaceManager.LookupNamespace(XsiPrefix));
+
+                this.XmlDocument.DocumentElement.SetAttribute(
+                    MmlNamespace,
+                    this.NamespaceManager.LookupNamespace(MmlPrefix));
+            }
         }
+
+        public XmlDocument XmlDocument { get; private set; }
 
         public static XmlNamespaceManager NamespceManager()
         {
@@ -97,7 +117,7 @@
                 {
                     if (namespaceManager == null)
                     {
-                        namespaceManager = new TaxPubXmlDocument().NamespaceManager;
+                        namespaceManager = new TaxPubDocument().NamespaceManager;
                     }
                 }
             }

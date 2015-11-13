@@ -5,26 +5,12 @@
 
     public interface IBase
     {
-        string Xml
-        {
-            get;
-            set;
-        }
+        string Xml { get; set; }
 
-        XmlDocument XmlDocument
-        {
-            get;
-            set;
-        }
+        XmlDocument XmlDocument { get; }
 
-        Config Config
-        {
-            get;
-        }
+        Config Config { get; }
 
-        XmlNamespaceManager NamespaceManager
-        {
-            get;
-        }
+        XmlNamespaceManager NamespaceManager { get; }
     }
 }
