@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.DocumentProvider
 {
     using System;
+    using System.Text;
     using System.Xml;
     using Contracts;
 
@@ -30,7 +31,7 @@
 
         private static XmlNamespaceManager namespaceManager = null;
 
-        public TaxPubDocument()
+        public TaxPubDocument(Encoding encoding)
         {
             this.NameTable = new NameTable();
             this.NamespaceManager = new XmlNamespaceManager(this.NameTable);
@@ -45,16 +46,28 @@
             {
                 PreserveWhitespace = true
             };
+
+            this.Encoding = encoding;
         }
 
-        public TaxPubDocument(string xml)
-            : this()
+        public TaxPubDocument()
+            : this(new UTF8Encoding())
+        {
+        }
+
+        public TaxPubDocument(string xml, Encoding encoding)
+            : this(encoding)
         {
             this.Xml = xml;
         }
 
-        public TaxPubDocument(XmlDocument xml)
-            : this()
+        public TaxPubDocument(string xml)
+            : this(xml, new UTF8Encoding())
+        {
+        }
+
+        public TaxPubDocument(XmlDocument xml, Encoding encoding)
+            : this(encoding)
         {
             if (xml == null)
             {
@@ -63,6 +76,13 @@
 
             this.Xml = xml.OuterXml;
         }
+
+        public TaxPubDocument(XmlDocument xml)
+            : this(xml, new UTF8Encoding())
+        {
+        }
+
+        public Encoding Encoding { get; private set; }
 
         public NameTable NameTable { get; private set; }
 

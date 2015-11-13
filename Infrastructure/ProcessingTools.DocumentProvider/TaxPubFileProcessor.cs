@@ -1,45 +1,44 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.DocumentProvider
 {
     using System;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Configurator;
     using Contracts;
 
-    public class FileProcessor : Base
+    public class TaxPubFileProcessor : TaxPubDocument
     {
         private string inputFileName;
         private string outputFileName;
         private ILogger logger;
 
-        public FileProcessor(Config config)
-            : this(config, null, null, null)
+        public TaxPubFileProcessor()
+            : this(null, null, null)
         {
         }
 
-        public FileProcessor(Config config, ILogger logger)
-            : this(config, null, null, logger)
+        public TaxPubFileProcessor(ILogger logger)
+            : this(null, null, logger)
         {
         }
 
-        public FileProcessor(Config config, string inputFileName)
-            : this(config, inputFileName, null, null)
+        public TaxPubFileProcessor(string inputFileName)
+            : this(inputFileName, null, null)
         {
         }
 
-        public FileProcessor(Config config, string inputFileName, ILogger logger)
-            : this(config, inputFileName, null, logger)
+        public TaxPubFileProcessor(string inputFileName, ILogger logger)
+            : this(inputFileName, null, logger)
         {
         }
 
-        public FileProcessor(Config config, string inputFileName, string outputFileName)
-            : this(config, inputFileName, outputFileName, null)
+        public TaxPubFileProcessor(string inputFileName, string outputFileName)
+            : this(inputFileName, outputFileName, null)
         {
         }
 
-        public FileProcessor(Config config, string inputFileName, string outputFileName, ILogger logger)
-            : base(config)
+        public TaxPubFileProcessor(string inputFileName, string outputFileName, ILogger logger)
+            : base()
         {
             this.logger = logger;
             this.InputFileName = inputFileName;
@@ -105,7 +104,7 @@
         {
             get
             {
-                return FileProcessor.GetXmlReader(this.InputFileName);
+                return TaxPubFileProcessor.GetXmlReader(this.InputFileName);
             }
         }
 
@@ -195,7 +194,7 @@
                 XmlElement bodyNode = readXml.CreateElement("body");
                 try
                 {
-                    string[] lines = File.ReadAllLines(this.InputFileName, Config.DefaultEncoding);
+                    string[] lines = File.ReadAllLines(this.InputFileName, this.Encoding);
                     for (int i = 0, len = lines.Length; i < len; ++i)
                     {
                         XmlElement paragraph = readXml.CreateElement("p");
@@ -224,7 +223,7 @@
             StreamWriter writer = null;
             try
             {
-                writer = new StreamWriter(this.OutputFileName, false, Config.DefaultEncoding);
+                writer = new StreamWriter(this.OutputFileName, false, this.Encoding);
                 writer.Write(this.Xml);
             }
             catch

@@ -5,6 +5,7 @@
     using System.Xml;
     using Configurator;
     using Contracts;
+    using DocumentProvider;
     using Extensions;
 
     public class References : TaggerBase
@@ -201,7 +202,7 @@
 
         public void GenerateTagTemplateXml()
         {
-            FileProcessor fp = new FileProcessor(this.Config);
+            var fp = new TaxPubFileProcessor();
             {
                 // References list
                 fp.OutputFileName = this.Config.ReferencesGetReferencesXmlPath;

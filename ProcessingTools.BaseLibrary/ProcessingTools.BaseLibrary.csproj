@@ -102,7 +102,6 @@
     <Compile Include="src\Codes\Codes.cs" />
     <Compile Include="src\Codes\SpecimenCode.cs" />
     <Compile Include="src\Coordinates\CoordinatesParser.cs" />
-    <Compile Include="src\Base\FileProcessor.cs" />
     <Compile Include="src\DataProvider\DataProvider.cs" />
     <Compile Include="src\Dates\DatesTagger.cs" />
     <Compile Include="src\Envo\Environments.cs" />

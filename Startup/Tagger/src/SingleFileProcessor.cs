@@ -18,12 +18,13 @@
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
     using Contracts;
+    using DocumentProvider;
     using Extensions;
 
     public class SingleFileProcessor
     {
         private TaxonomicBlackList blackList;
-        private FileProcessor fileProcessor;
+        private TaxPubFileProcessor fileProcessor;
         private ILogger logger;
         private ProgramSettings settings;
         private TaxonomicWhiteList whiteList;
@@ -353,8 +354,8 @@
         {
             try
             {
-                var flp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
-                var flpp = new FileProcessor(this.settings.Config, this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
+                var flp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
+                var flpp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
                 var floraProcessor = new Flora(this.settings.Config, this.fileProcessor.Xml);
 
                 floraProcessor.ExtractTaxa();
@@ -889,8 +890,7 @@
         {
             try
             {
-                this.fileProcessor = new FileProcessor(
-                                this.settings.Config,
+                this.fileProcessor = new TaxPubFileProcessor(
                                 this.settings.InputFileName,
                                 this.settings.OutputFileName,
                                 this.logger);
@@ -1324,7 +1324,7 @@
             {
                 try
                 {
-                    string jsonStringContent = FileProcessor.ReadFileContentToString(this.settings.QueryFileName);
+                    string jsonStringContent = TaxPubFileProcessor.ReadFileContentToString(this.settings.QueryFileName);
                     var zoobankCloner = new ZoobankJsonCloner(jsonStringContent, this.fileProcessor.Xml, this.logger);
                     zoobankCloner.Clone();
                     this.fileProcessor.Xml = zoobankCloner.Xml;
@@ -1348,7 +1348,7 @@
             {
                 try
                 {
-                    var fileProcessorNlm = new FileProcessor(this.settings.Config, this.settings.QueryFileName, this.settings.OutputFileName);
+                    var fileProcessorNlm = new TaxPubFileProcessor(this.settings.QueryFileName, this.settings.OutputFileName);
                     fileProcessorNlm.Read();
 
                     var zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, this.fileProcessor.Xml, this.logger);

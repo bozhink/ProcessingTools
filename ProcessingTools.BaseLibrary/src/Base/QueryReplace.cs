@@ -3,6 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
+    using DocumentProvider;
 
     public static class QueryReplace
     {
@@ -15,9 +16,9 @@
         public static string Replace(Config config, string textContent, string queryFileName)
         {
             string text = textContent;
-            FileProcessor queryFileProcessor = new FileProcessor(config, queryFileName);
+            var queryFileProcessor = new TaxPubFileProcessor(queryFileName);
             queryFileProcessor.Read();
-            XmlDocument queryXml = queryFileProcessor.XmlDocument;
+            var queryXml = queryFileProcessor.XmlDocument;
 
             try
             {
