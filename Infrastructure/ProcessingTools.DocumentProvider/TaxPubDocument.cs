@@ -106,7 +106,7 @@
             }
         }
 
-        public XmlDocument XmlDocument { get; set; }
+        public XmlDocument XmlDocument { get; private set; }
 
         public static XmlNamespaceManager NamespceManager()
         {
