@@ -122,8 +122,13 @@
         /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
         public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
         {
+            return new HashSet<string>(list.Select(phrase => phrase.GetFirstWord()));
+        }
+
+        public static string GetFirstWord(this string phrase)
+        {
             Regex matchWord = new Regex(@"\A[^\W\d]{2,}(?:\.)?");
-            return new HashSet<string>(list.Select(word => matchWord.Match(word).Value));
+            return matchWord.Match(phrase).Value;
         }
 
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)

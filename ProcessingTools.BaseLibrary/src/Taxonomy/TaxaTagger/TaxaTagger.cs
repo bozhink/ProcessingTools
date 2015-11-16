@@ -70,13 +70,24 @@
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
             var result = taxaNames;
+
+            // TODO: reorganize this two algorhitms
             try
             {
                 // Clear taxa-like person names in taxa names list
                 result = this.ClearTaxaLikePersonNamesInArticle(result);
 
                 // Apply blacklist
-                result = result.DistinctWithStringList(this.BlackList.StringList, true, false, true);
+                {
+                    var taxaNamesFirstWord = new HashSet<string>(result
+                        .GetFirstWord()
+                        .Select(Regex.Escape));
+                    var blackListedNames = new HashSet<string>(taxaNamesFirstWord
+                        .MatchWithStringList(this.BlackList.StringList, true, false, true));
+
+                    result = result
+                        .Where(name => !blackListedNames.Contains(name.GetFirstWord()));
+                }
             }
             catch
             {
