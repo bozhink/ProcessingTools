@@ -333,17 +333,17 @@
         [Test]
         public void ProgramSettings_FormatInitPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.FormatInit, "Default FormatInit value should be false.");
+            Assert.IsFalse(this.programSettings.InitialFormat, "Default FormatInit value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfFormatInitProperty_SchouldBePersistent()
         {
-            this.programSettings.FormatInit = true;
-            Assert.IsTrue(this.programSettings.FormatInit, "1. FormatInit value should be true.");
+            this.programSettings.InitialFormat = true;
+            Assert.IsTrue(this.programSettings.InitialFormat, "1. FormatInit value should be true.");
 
-            this.programSettings.FormatInit = false;
-            Assert.IsFalse(this.programSettings.FormatInit, "2. FormatInit value should be false.");
+            this.programSettings.InitialFormat = false;
+            Assert.IsFalse(this.programSettings.InitialFormat, "2. FormatInit value should be false.");
         }
 
         [Test]
@@ -381,17 +381,17 @@
         [Test]
         public void ProgramSettings_ParseCoordsPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.ParseCoords, "Default ParseCoords value should be false.");
+            Assert.IsFalse(this.programSettings.ParseCoordinates, "Default ParseCoords value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfParseCoordsProperty_SchouldBePersistent()
         {
-            this.programSettings.ParseCoords = true;
-            Assert.IsTrue(this.programSettings.ParseCoords, "1. ParseCoords value should be true.");
+            this.programSettings.ParseCoordinates = true;
+            Assert.IsTrue(this.programSettings.ParseCoordinates, "1. ParseCoords value should be true.");
 
-            this.programSettings.ParseCoords = false;
-            Assert.IsFalse(this.programSettings.ParseCoords, "2. ParseCoords value should be false.");
+            this.programSettings.ParseCoordinates = false;
+            Assert.IsFalse(this.programSettings.ParseCoordinates, "2. ParseCoords value should be false.");
         }
 
         [Test]
@@ -573,17 +573,17 @@
         [Test]
         public void ProgramSettings_TagAbbrevPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagAbbrev, "Default TagAbbrev value should be false.");
+            Assert.IsFalse(this.programSettings.TagAbbreviations, "Default TagAbbrev value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTagAbbrevProperty_SchouldBePersistent()
         {
-            this.programSettings.TagAbbrev = true;
-            Assert.IsTrue(this.programSettings.TagAbbrev, "1. TagAbbrev value should be true.");
+            this.programSettings.TagAbbreviations = true;
+            Assert.IsTrue(this.programSettings.TagAbbreviations, "1. TagAbbrev value should be true.");
 
-            this.programSettings.TagAbbrev = false;
-            Assert.IsFalse(this.programSettings.TagAbbrev, "2. TagAbbrev value should be false.");
+            this.programSettings.TagAbbreviations = false;
+            Assert.IsFalse(this.programSettings.TagAbbreviations, "2. TagAbbrev value should be false.");
         }
 
         [Test]
@@ -605,17 +605,17 @@
         [Test]
         public void ProgramSettings_TagCoordsPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagCoords, "Default TagCoords value should be false.");
+            Assert.IsFalse(this.programSettings.TagCoordinates, "Default TagCoords value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTagCoordsProperty_SchouldBePersistent()
         {
-            this.programSettings.TagCoords = true;
-            Assert.IsTrue(this.programSettings.TagCoords, "1. TagCoords value should be true.");
+            this.programSettings.TagCoordinates = true;
+            Assert.IsTrue(this.programSettings.TagCoordinates, "1. TagCoords value should be true.");
 
-            this.programSettings.TagCoords = false;
-            Assert.IsFalse(this.programSettings.TagCoords, "2. TagCoords value should be false.");
+            this.programSettings.TagCoordinates = false;
+            Assert.IsFalse(this.programSettings.TagCoordinates, "2. TagCoords value should be false.");
         }
 
         [Test]
@@ -685,17 +685,17 @@
         [Test]
         public void ProgramSettings_TagFigTabPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagFigTab, "Default TagFigTab value should be false.");
+            Assert.IsFalse(this.programSettings.TagFloats, "Default TagFigTab value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTagFigTabProperty_SchouldBePersistent()
         {
-            this.programSettings.TagFigTab = true;
-            Assert.IsTrue(this.programSettings.TagFigTab, "1. TagFigTab value should be true.");
+            this.programSettings.TagFloats = true;
+            Assert.IsTrue(this.programSettings.TagFloats, "1. TagFigTab value should be true.");
 
-            this.programSettings.TagFigTab = false;
-            Assert.IsFalse(this.programSettings.TagFigTab, "2. TagFigTab value should be false.");
+            this.programSettings.TagFloats = false;
+            Assert.IsFalse(this.programSettings.TagFloats, "2. TagFigTab value should be false.");
         }
 
         [Test]
@@ -749,97 +749,97 @@
         [Test]
         public void ProgramSettings_TagWWWPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagWWW, "Default TagWWW value should be false.");
+            Assert.IsFalse(this.programSettings.TagWebLinks, "Default TagWWW value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTagWWWProperty_SchouldBePersistent()
         {
-            this.programSettings.TagWWW = true;
-            Assert.IsTrue(this.programSettings.TagWWW, "1. TagWWW value should be true.");
+            this.programSettings.TagWebLinks = true;
+            Assert.IsTrue(this.programSettings.TagWebLinks, "1. TagWWW value should be true.");
 
-            this.programSettings.TagWWW = false;
-            Assert.IsFalse(this.programSettings.TagWWW, "2. TagWWW value should be false.");
+            this.programSettings.TagWebLinks = false;
+            Assert.IsFalse(this.programSettings.TagWebLinks, "2. TagWWW value should be false.");
         }
 
         [Test]
         public void ProgramSettings_TaxaAPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TaxaA, "Default TaxaA value should be false.");
+            Assert.IsFalse(this.programSettings.TagLowerTaxa, "Default TaxaA value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTaxaAProperty_SchouldBePersistent()
         {
-            this.programSettings.TaxaA = true;
-            Assert.IsTrue(this.programSettings.TaxaA, "1. TaxaA value should be true.");
+            this.programSettings.TagLowerTaxa = true;
+            Assert.IsTrue(this.programSettings.TagLowerTaxa, "1. TaxaA value should be true.");
 
-            this.programSettings.TaxaA = false;
-            Assert.IsFalse(this.programSettings.TaxaA, "2. TaxaA value should be false.");
+            this.programSettings.TagLowerTaxa = false;
+            Assert.IsFalse(this.programSettings.TagLowerTaxa, "2. TaxaA value should be false.");
         }
 
         [Test]
         public void ProgramSettings_TaxaBPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TaxaB, "Default TaxaB value should be false.");
+            Assert.IsFalse(this.programSettings.TagHigherTaxa, "Default TaxaB value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTaxaBProperty_SchouldBePersistent()
         {
-            this.programSettings.TaxaB = true;
-            Assert.IsTrue(this.programSettings.TaxaB, "1. TaxaB value should be true.");
+            this.programSettings.TagHigherTaxa = true;
+            Assert.IsTrue(this.programSettings.TagHigherTaxa, "1. TaxaB value should be true.");
 
-            this.programSettings.TaxaB = false;
-            Assert.IsFalse(this.programSettings.TaxaB, "2. TaxaB value should be false.");
+            this.programSettings.TagHigherTaxa = false;
+            Assert.IsFalse(this.programSettings.TagHigherTaxa, "2. TaxaB value should be false.");
         }
 
         [Test]
         public void ProgramSettings_TaxaCPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TaxaC, "Default TaxaC value should be false.");
+            Assert.IsFalse(this.programSettings.ParseLowerTaxa, "Default TaxaC value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTaxaCProperty_SchouldBePersistent()
         {
-            this.programSettings.TaxaC = true;
-            Assert.IsTrue(this.programSettings.TaxaC, "1. TaxaC value should be true.");
+            this.programSettings.ParseLowerTaxa = true;
+            Assert.IsTrue(this.programSettings.ParseLowerTaxa, "1. TaxaC value should be true.");
 
-            this.programSettings.TaxaC = false;
-            Assert.IsFalse(this.programSettings.TaxaC, "2. TaxaC value should be false.");
+            this.programSettings.ParseLowerTaxa = false;
+            Assert.IsFalse(this.programSettings.ParseLowerTaxa, "2. TaxaC value should be false.");
         }
 
         [Test]
         public void ProgramSettings_TaxaDPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TaxaD, "Default TaxaD value should be false.");
+            Assert.IsFalse(this.programSettings.ParseHigherTaxa, "Default TaxaD value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTaxaDProperty_SchouldBePersistent()
         {
-            this.programSettings.TaxaD = true;
-            Assert.IsTrue(this.programSettings.TaxaD, "1. TaxaD value should be true.");
+            this.programSettings.ParseHigherTaxa = true;
+            Assert.IsTrue(this.programSettings.ParseHigherTaxa, "1. TaxaD value should be true.");
 
-            this.programSettings.TaxaD = false;
-            Assert.IsFalse(this.programSettings.TaxaD, "2. TaxaD value should be false.");
+            this.programSettings.ParseHigherTaxa = false;
+            Assert.IsFalse(this.programSettings.ParseHigherTaxa, "2. TaxaD value should be false.");
         }
 
         [Test]
         public void ProgramSettings_TaxaEPropertyInNewInstance_SchouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TaxaE, "Default TaxaE value should be false.");
+            Assert.IsFalse(this.programSettings.ExpandLowerTaxa, "Default TaxaE value should be false.");
         }
 
         [Test]
         public void ProgramSettings_ValidChangesOfTaxaEProperty_SchouldBePersistent()
         {
-            this.programSettings.TaxaE = true;
-            Assert.IsTrue(this.programSettings.TaxaE, "1. TaxaE value should be true.");
+            this.programSettings.ExpandLowerTaxa = true;
+            Assert.IsTrue(this.programSettings.ExpandLowerTaxa, "1. TaxaE value should be true.");
 
-            this.programSettings.TaxaE = false;
-            Assert.IsFalse(this.programSettings.TaxaE, "2. TaxaE value should be false.");
+            this.programSettings.ExpandLowerTaxa = false;
+            Assert.IsFalse(this.programSettings.ExpandLowerTaxa, "2. TaxaE value should be false.");
         }
 
         [Test]

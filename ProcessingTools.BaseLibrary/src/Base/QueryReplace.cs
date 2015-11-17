@@ -16,9 +16,14 @@
         public static string Replace(Config config, string textContent, string queryFileName)
         {
             string text = textContent;
-            var queryFileProcessor = new TaxPubFileProcessor(queryFileName);
-            queryFileProcessor.Read();
-            var queryXml = queryFileProcessor.XmlDocument;
+
+            // TODO: remove this dependency
+            var queryDocument = new TaxPubDocument();
+
+            var queryFileProcessor = new FileProcessor(queryFileName);
+            queryFileProcessor.Read(queryDocument);
+
+            var queryXml = queryDocument.XmlDocument;
 
             try
             {

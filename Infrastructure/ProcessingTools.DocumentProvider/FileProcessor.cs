@@ -6,39 +6,41 @@
     using System.Xml;
     using Contracts;
 
-    public class TaxPubFileProcessor : TaxPubDocument
+    public class FileProcessor
     {
         private string inputFileName;
         private string outputFileName;
+
         private ILogger logger;
+
         private XmlReaderSettings readerSettings;
 
-        public TaxPubFileProcessor()
+        public FileProcessor()
             : this(null, null, null)
         {
         }
 
-        public TaxPubFileProcessor(ILogger logger)
+        public FileProcessor(ILogger logger)
             : this(null, null, logger)
         {
         }
 
-        public TaxPubFileProcessor(string inputFileName)
+        public FileProcessor(string inputFileName)
             : this(inputFileName, null, null)
         {
         }
 
-        public TaxPubFileProcessor(string inputFileName, ILogger logger)
+        public FileProcessor(string inputFileName, ILogger logger)
             : this(inputFileName, null, logger)
         {
         }
 
-        public TaxPubFileProcessor(string inputFileName, string outputFileName)
+        public FileProcessor(string inputFileName, string outputFileName)
             : this(inputFileName, outputFileName, null)
         {
         }
 
-        public TaxPubFileProcessor(string inputFileName, string outputFileName, ILogger logger)
+        public FileProcessor(string inputFileName, string outputFileName, ILogger logger)
             : base()
         {
             this.logger = logger;
@@ -52,7 +54,8 @@
                 IgnoreWhitespace = false,
                 CloseInput = false,
                 DtdProcessing = DtdProcessing.Ignore,
-                NameTable = this.NameTable
+                ConformanceLevel = ConformanceLevel.Document,
+                ValidationType = ValidationType.None
             };
         }
 
@@ -107,37 +110,20 @@
             }
         }
 
-        /// <summary>
-        /// Try to read the file ‘InputFileName’ as valid XML document.
-        /// </summary>
-        /// <returns>XmlReader of the file ‘InputFileName’</returns>
-        public XmlReader XmlReader
+        public void Read(IDocument document)
         {
-            get
-            {
-                var stream = new FileStream(this.InputFileName, FileMode.Open);
-                return XmlTextReader.Create(stream, this.readerSettings);
-            }
+            this.Read(document, this.readerSettings);
         }
 
-        public void Read()
+        public void Read(IDocument document, XmlReaderSettings readerSettings)
         {
-            XmlDocument readXml = new XmlDocument(this.NameTable)
-            {
-                PreserveWhitespace = true
-            };
-
             try
             {
-                FileStream stream = null;
                 XmlReader reader = null;
                 try
                 {
-                    stream = new FileStream(this.inputFileName, FileMode.Open);
-                    reader = XmlTextReader.Create(stream, this.readerSettings);
-
-                    readXml.Load(reader);
-                    this.Xml = readXml.OuterXml;
+                    reader = XmlReader.Create(this.InputFileName, readerSettings);
+                    document.XmlDocument.Load(reader);
                 }
                 finally
                 {
@@ -145,14 +131,6 @@
                     try
                     {
                         reader.Close();
-                    }
-                    catch (Exception)
-                    {
-                    }
-
-                    try
-                    {
-                        stream.Close();
                     }
                     catch (Exception)
                     {
@@ -167,27 +145,25 @@
                     "Input file name '{0}' is not a valid XML document.\nIt will be read as text file and will be wrapped in basic XML tags.\n",
                     this.InputFileName);
 
-                XmlElement rootNode = readXml.CreateElement("article");
-                XmlElement bodyNode = readXml.CreateElement("body");
+                XmlElement rootNode = document.XmlDocument.CreateElement("article");
+                XmlElement bodyNode = document.XmlDocument.CreateElement("body");
                 try
                 {
-                    string[] lines = File.ReadAllLines(this.InputFileName, this.Encoding);
+                    string[] lines = File.ReadAllLines(this.InputFileName, document.Encoding);
                     for (int i = 0, len = lines.Length; i < len; ++i)
                     {
-                        XmlElement paragraph = readXml.CreateElement("p");
+                        XmlElement paragraph = document.XmlDocument.CreateElement("p");
                         paragraph.InnerText = lines[i];
                         bodyNode.AppendChild(paragraph);
                     }
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, "Input file name: {0}", this.inputFileName);
+                    this.logger?.Log(e, "Input file name: {0}", this.InputFileName);
                 }
 
                 rootNode.AppendChild(bodyNode);
-                readXml.AppendChild(rootNode);
-
-                this.Xml = readXml.OuterXml;
+                document.Xml = rootNode.OuterXml;
             }
             catch
             {
@@ -195,13 +171,13 @@
             }
         }
 
-        public void Write()
+        public void Write(IDocument document)
         {
             StreamWriter writer = null;
             try
             {
-                writer = new StreamWriter(this.OutputFileName, false, this.Encoding);
-                writer.Write(this.Xml);
+                writer = new StreamWriter(this.OutputFileName, false, document.Encoding);
+                writer.Write(document.Xml);
             }
             catch
             {

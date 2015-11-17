@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxPubDocument.cs" />
-    <Compile Include="TaxPubFileProcessor.cs" />
+    <Compile Include="FileProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
