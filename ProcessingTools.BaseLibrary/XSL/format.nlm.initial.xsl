@@ -130,16 +130,14 @@
     <xsl:apply-templates select="." mode="title"/>
   </xsl:template>
 
-  <!--
-    <xsl:template match="article-meta/aff">
-        <xsl:element name="{name()}">
-            <xsl:apply-templates select="label"/>
-            <addr-line>
-                <xsl:apply-templates mode="strip-label"/>
-            </addr-line>
-        </xsl:element>
-    </xsl:template>
--->
+  <xsl:template match="article-meta/aff">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="label"/>
+      <addr-line>
+        <xsl:apply-templates select="node()[name(.)!='label']"/>
+      </addr-line>
+    </xsl:element>
+  </xsl:template>
 
   <!-- Title modes -->
   <xsl:template match="@* | node()" mode="title">
@@ -301,7 +299,7 @@
     <xsl:apply-templates select="comment()"/>
   </xsl:template>
 
-  <xsl:template match="tp:nomenclature/tp:taxon-name">
+  <xsl:template match="tp:nomenclature/tp:taxon-name|tp:nomenclature/tn">
     <title>
       <xsl:apply-templates/>
     </title>
