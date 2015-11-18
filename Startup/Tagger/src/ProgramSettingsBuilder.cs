@@ -142,7 +142,7 @@
                                     break;
 
                                 case 'i':
-                                    this.Settings.FormatInit = true;
+                                    this.Settings.InitialFormat = true;
                                     break;
 
                                 case 't':
@@ -150,23 +150,23 @@
                                     break;
 
                                 case 'A':
-                                    this.Settings.TaxaA = true;
+                                    this.Settings.TagLowerTaxa = true;
                                     break;
 
                                 case 'B':
-                                    this.Settings.TaxaB = true;
+                                    this.Settings.TagHigherTaxa = true;
                                     break;
 
                                 case 'C':
-                                    this.Settings.TaxaC = true;
+                                    this.Settings.ParseLowerTaxa = true;
                                     break;
 
                                 case 'D':
-                                    this.Settings.TaxaD = true;
+                                    this.Settings.ParseHigherTaxa = true;
                                     break;
 
                                 case 'E':
-                                    this.Settings.TaxaE = true;
+                                    this.Settings.ExpandLowerTaxa = true;
                                     break;
 
                                 case 'u':
@@ -174,7 +174,7 @@
                                     break;
 
                                 case 'w':
-                                    this.Settings.TagWWW = true;
+                                    this.Settings.TagWebLinks = true;
                                     break;
 
                                 case 'd':
@@ -182,15 +182,15 @@
                                     break;
 
                                 case 'f':
-                                    this.Settings.TagFigTab = true;
+                                    this.Settings.TagFloats = true;
                                     break;
 
                                 case 'c':
-                                    this.Settings.TagCoords = true;
+                                    this.Settings.TagCoordinates = true;
                                     break;
 
                                 case 'k':
-                                    this.Settings.ParseCoords = true;
+                                    this.Settings.ParseCoordinates = true;
                                     break;
 
                                 case '1':
@@ -359,7 +359,7 @@
                     }
                     else if (args[item].CompareTo("--abbrev") == 0)
                     {
-                        this.Settings.TagAbbrev = true;
+                        this.Settings.TagAbbreviations = true;
                     }
                     else if (args[item].CompareTo("--envo") == 0)
                     {

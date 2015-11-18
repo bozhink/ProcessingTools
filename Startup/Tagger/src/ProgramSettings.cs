@@ -25,10 +25,10 @@
             this.Flag7 = false;
             this.Flag8 = false;
             this.Flora = false;
-            this.FormatInit = false;
+            this.InitialFormat = false;
             this.FormatTreat = false;
             this.ParseBySection = false;
-            this.ParseCoords = false;
+            this.ParseCoordinates = false;
             this.ParseReferences = false;
             this.ParseTreatmentMetaWithAphia = false;
             this.ParseTreatmentMetaWithCol = false;
@@ -40,23 +40,23 @@
             this.ParseHigherWithAphia = false;
             this.ParseHigherWithCoL = false;
             this.ParseHigherWithGbif = false;
-            this.TagAbbrev = false;
+            this.TagAbbreviations = false;
             this.TagCodes = false;
-            this.TagCoords = false;
+            this.TagCoordinates = false;
             this.TagDates = false;
             this.TagDoi = false;
             this.TagEnvironments = false;
             this.TagEnvo = false;
-            this.TagFigTab = false;
+            this.TagFloats = false;
             this.TagQuantities = false;
             this.TagReferences = false;
             this.TagTableFn = false;
-            this.TagWWW = false;
-            this.TaxaA = false;
-            this.TaxaB = false;
-            this.TaxaC = false;
-            this.TaxaD = false;
-            this.TaxaE = false;
+            this.TagWebLinks = false;
+            this.TagLowerTaxa = false;
+            this.TagHigherTaxa = false;
+            this.ParseLowerTaxa = false;
+            this.ParseHigherTaxa = false;
+            this.ExpandLowerTaxa = false;
             this.TestFlag = false;
             this.UntagSplit = false;
             this.ValidateTaxa = false;
@@ -91,7 +91,7 @@
 
         public bool Flora { get; set; }
 
-        public bool FormatInit { get; set; }
+        public bool InitialFormat { get; set; }
 
         public bool FormatTreat { get; set; }
 
@@ -103,7 +103,7 @@
 
         public bool ParseBySection { get; set; }
 
-        public bool ParseCoords { get; set; }
+        public bool ParseCoordinates { get; set; }
 
         public bool ParseReferences { get; set; }
 
@@ -129,11 +129,11 @@
 
         public bool ParseHigherWithGbif { get; set; }
 
-        public bool TagAbbrev { get; set; }
+        public bool TagAbbreviations { get; set; }
 
         public bool TagCodes { get; set; }
 
-        public bool TagCoords { get; set; }
+        public bool TagCoordinates { get; set; }
 
         public bool TagDates { get; set; }
 
@@ -143,7 +143,7 @@
 
         public bool TagEnvo { get; set; }
 
-        public bool TagFigTab { get; set; }
+        public bool TagFloats { get; set; }
 
         public bool TagQuantities { get; set; }
 
@@ -151,17 +151,17 @@
 
         public bool TagTableFn { get; set; }
 
-        public bool TagWWW { get; set; }
+        public bool TagWebLinks { get; set; }
 
-        public bool TaxaA { get; set; }
+        public bool TagLowerTaxa { get; set; }
 
-        public bool TaxaB { get; set; }
+        public bool TagHigherTaxa { get; set; }
 
-        public bool TaxaC { get; set; }
+        public bool ParseLowerTaxa { get; set; }
 
-        public bool TaxaD { get; set; }
+        public bool ParseHigherTaxa { get; set; }
 
-        public bool TaxaE { get; set; }
+        public bool ExpandLowerTaxa { get; set; }
 
         public bool TestFlag { get; set; }
 

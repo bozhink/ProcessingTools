@@ -24,15 +24,19 @@
     public class SingleFileProcessor
     {
         private TaxonomicBlackList blackList;
-        private TaxPubFileProcessor fileProcessor;
+        private TaxonomicWhiteList whiteList;
+
+        private FileProcessor fileProcessor;
+        private TaxPubDocument document;
+
         private ILogger logger;
         private ProgramSettings settings;
-        private TaxonomicWhiteList whiteList;
 
         public SingleFileProcessor(ProgramSettings settings, ILogger logger)
         {
             this.settings = settings;
             this.logger = logger;
+            this.document = new TaxPubDocument();
         }
 
         public Task Run()
@@ -80,22 +84,22 @@
                 {
                     this.ZooBankGenerateRegistrationXml();
                 }
-                else if (this.settings.QuentinSpecificActions)
-                {
-                    this.QuentinSpecific();
-                }
-                else if (this.settings.Flora)
-                {
-                    this.FloraSpecific();
-                }
+                ////else if (this.settings.QuentinSpecificActions)
+                ////{
+                ////    this.QuentinSpecific();
+                ////}
+                ////else if (this.settings.Flora)
+                ////{
+                ////    this.FloraSpecific();
+                ////}
                 else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
                 {
-                    this.fileProcessor.Xml = QueryReplace.Replace(this.settings.Config, this.fileProcessor.Xml, this.settings.QueryFileName);
+                    this.document.Xml = QueryReplace.Replace(this.settings.Config, this.document.Xml, this.settings.QueryFileName);
                 }
                 else
                 {
                     // Initial format
-                    if (this.settings.FormatInit)
+                    if (this.settings.InitialFormat)
                     {
                         this.InitialFormat();
                     }
@@ -113,19 +117,19 @@
                     }
 
                     // Tag web links
-                    if (this.settings.TagWWW)
+                    if (this.settings.TagWebLinks)
                     {
                         this.TagWebLinks();
                     }
 
                     // Tag coordinates
-                    if (this.settings.TagCoords)
+                    if (this.settings.TagCoordinates)
                     {
                         this.TagCoordinates();
                     }
 
                     // Parse coordinates
-                    if (this.settings.ParseCoords)
+                    if (this.settings.ParseCoordinates)
                     {
                         this.ParseCoordinates();
                     }
@@ -155,7 +159,7 @@
                     }
 
                     // Tag abbreviations
-                    if (this.settings.TagAbbrev)
+                    if (this.settings.TagAbbreviations)
                     {
                         this.TagAbbreviations();
                     }
@@ -174,12 +178,12 @@
                     // Main Tagging part of the program
                     if (this.settings.ParseBySection)
                     {
-                        XmlDocument xmlDocument = new XmlDocument(this.fileProcessor.NamespaceManager.NameTable);
+                        XmlDocument xmlDocument = new XmlDocument(this.document.NamespaceManager.NameTable);
                         xmlDocument.PreserveWhitespace = true;
 
                         try
                         {
-                            xmlDocument.LoadXml(this.fileProcessor.Xml);
+                            xmlDocument.LoadXml(this.document.Xml);
                         }
                         catch
                         {
@@ -188,19 +192,14 @@
 
                         try
                         {
-                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.fileProcessor.NamespaceManager))
+                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
                             {
-                                if (this.settings.TagReferences)
-                                {
-                                    this.SetRefencesTemplateFileNamesToConfig(this.GenerateReferencesTemplateFileName(node));
-                                }
-
                                 XmlDocumentFragment fragment = node.OwnerDocument.CreateDocumentFragment();
                                 fragment.InnerXml = this.MainProcessing(node.OuterXml);
                                 node.ParentNode.ReplaceChild(fragment, node);
                             }
 
-                            this.fileProcessor.Xml = xmlDocument.OuterXml;
+                            this.document.Xml = xmlDocument.OuterXml;
                         }
                         catch
                         {
@@ -209,12 +208,7 @@
                     }
                     else
                     {
-                        if (this.settings.TagReferences)
-                        {
-                            this.SetRefencesTemplateFileNamesToConfig(this.fileProcessor.OutputFileName);
-                        }
-
-                        this.fileProcessor.Xml = this.MainProcessing(this.fileProcessor.Xml);
+                        this.document.Xml = this.MainProcessing(this.document.Xml);
                     }
                 }
 
@@ -240,7 +234,7 @@
 
                 for (int i = 0; i < Program.NumberOfExpandingIterations; ++i)
                 {
-                    if (this.settings.TaxaE)
+                    if (this.settings.ExpandLowerTaxa)
                     {
                         exp.Xml = expand.Xml;
                         exp.StableExpand();
@@ -350,60 +344,60 @@
             }
         }
 
-        private void FloraSpecific()
-        {
-            try
-            {
-                var flp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
-                var flpp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
-                var floraProcessor = new Flora(this.settings.Config, this.fileProcessor.Xml);
+        ////private void FloraSpecific()
+        ////{
+        ////    try
+        ////    {
+        ////        var flp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
+        ////        var flpp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
+        ////        var floraProcessor = new Flora(this.settings.Config, this.fileProcessor.Xml);
 
-                floraProcessor.ExtractTaxa();
-                floraProcessor.DistinctTaxa();
-                floraProcessor.GenerateTagTemplate();
+        ////        floraProcessor.ExtractTaxa();
+        ////        floraProcessor.DistinctTaxa();
+        ////        floraProcessor.GenerateTagTemplate();
 
-                flp.Xml = floraProcessor.Xml;
-                flp.Write();
+        ////        flp.Xml = floraProcessor.Xml;
+        ////        flp.Write();
 
-                floraProcessor.Xml = this.fileProcessor.Xml;
-                if (this.settings.TaxaA)
-                {
-                    floraProcessor.PerformReplace();
-                }
+        ////        floraProcessor.Xml = this.fileProcessor.Xml;
+        ////        if (this.settings.TaxaA)
+        ////        {
+        ////            floraProcessor.PerformReplace();
+        ////        }
 
-                if (this.settings.TaxaB)
-                {
-                    ////fl.TagHigherTaxa();
-                }
+        ////        if (this.settings.TaxaB)
+        ////        {
+        ////            ////fl.TagHigherTaxa();
+        ////        }
 
-                if (this.settings.TaxaC)
-                {
-                    if (this.settings.Flag1)
-                    {
-                        floraProcessor.ParseInfra();
-                    }
+        ////        if (this.settings.TaxaC)
+        ////        {
+        ////            if (this.settings.Flag1)
+        ////            {
+        ////                floraProcessor.ParseInfra();
+        ////            }
 
-                    if (this.settings.Flag2)
-                    {
-                        floraProcessor.ParseTn();
-                    }
+        ////            if (this.settings.Flag2)
+        ////            {
+        ////                floraProcessor.ParseTn();
+        ////            }
 
-                    if (this.settings.Flag3)
-                    {
-                        ////fl.SplitLowerTaxa();
-                    }
-                }
+        ////            if (this.settings.Flag3)
+        ////            {
+        ////                ////fl.SplitLowerTaxa();
+        ////            }
+        ////        }
 
-                this.fileProcessor.Xml = floraProcessor.Xml;
+        ////        this.fileProcessor.Xml = floraProcessor.Xml;
 
-                flpp.Xml = floraProcessor.ExtractTaxaParts();
-                flpp.Write();
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        ////        flpp.Xml = floraProcessor.ExtractTaxaParts();
+        ////        flpp.Write();
+        ////    }
+        ////    catch
+        ////    {
+        ////        throw;
+        ////    }
+        ////}
 
         private string FormatTreatments(string xmlContent)
         {
@@ -462,20 +456,20 @@
                 {
                     case SchemaType.Nlm:
                         {
-                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslPath);
+                            string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslPath);
                             var formatter = new BaseLibrary.Format.Nlm.Formatter(this.settings.Config, xml);
                             formatter.Format();
-                            this.fileProcessor.Xml = formatter.Xml;
+                            this.document.Xml = formatter.Xml;
                         }
 
                         break;
 
                     default:
                         {
-                            string xml = this.fileProcessor.XmlReader.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslPath);
+                            string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslPath);
                             var formatter = new BaseLibrary.Format.NlmSystem.Formatter(this.settings.Config, xml);
                             formatter.Format();
-                            this.fileProcessor.Xml = formatter.Xml;
+                            this.document.Xml = formatter.Xml;
                         }
 
                         break;
@@ -493,7 +487,7 @@
         {
             string xmlContent = xml;
 
-            if (this.settings.TagFigTab)
+            if (this.settings.TagFloats)
             {
                 xmlContent = this.TagFloats(xmlContent);
             }
@@ -504,7 +498,7 @@
             }
 
             // Taxonomic part
-            if (this.settings.TaxaA || this.settings.TaxaB)
+            if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
                 this.blackList = new TaxonomicBlackList(this.settings.Config);
                 this.whiteList = new TaxonomicWhiteList(this.settings.Config);
@@ -519,7 +513,7 @@
             xmlContent = this.ParseLowerTaxa(xmlContent);
             xmlContent = this.ParseHigherTaxa(xmlContent);
 
-            if (this.settings.TaxaE || this.settings.Flag1 || this.settings.Flag2 || this.settings.Flag3 || this.settings.Flag4 || this.settings.Flag5 || this.settings.Flag6 || this.settings.Flag7 || this.settings.Flag8)
+            if (this.settings.ExpandLowerTaxa || this.settings.Flag1 || this.settings.Flag2 || this.settings.Flag3 || this.settings.Flag4 || this.settings.Flag5 || this.settings.Flag6 || this.settings.Flag7 || this.settings.Flag8)
             {
                 xmlContent = this.ExpandTaxa(xmlContent);
             }
@@ -591,9 +585,9 @@
 
             try
             {
-                var cooredinatesParser = new CoordinatesParser(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                var cooredinatesParser = new CoordinatesParser(this.settings.Config, this.document.Xml, this.logger);
                 cooredinatesParser.Parse();
-                this.fileProcessor.Xml = cooredinatesParser.Xml;
+                this.document.Xml = cooredinatesParser.Xml;
             }
             catch (Exception e)
             {
@@ -605,7 +599,7 @@
 
         private string ParseHigherTaxa(string xmlContent)
         {
-            if (this.settings.TaxaD)
+            if (this.settings.ParseHigherTaxa)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -720,7 +714,7 @@
 
         private string ParseLowerTaxa(string xmlContent)
         {
-            if (this.settings.TaxaC)
+            if (this.settings.ParseLowerTaxa)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -751,9 +745,9 @@
 
             try
             {
-                var referencesParser = new References(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                var referencesParser = new References(this.settings.Config, this.document.Xml, this.logger);
                 referencesParser.SplitReferences();
-                this.fileProcessor.Xml = referencesParser.Xml;
+                this.document.Xml = referencesParser.Xml;
             }
             catch (Exception e)
             {
@@ -833,35 +827,35 @@
             this.logger?.Log(LogType.Info, "Elapsed time {0}.", timer.Elapsed);
         }
 
-        private void QuentinSpecific()
-        {
-            try
-            {
-                var flora = new QuentinFlora(this.fileProcessor.Xml);
-                if (this.settings.FormatInit)
-                {
-                    flora.InitialFormat();
-                }
-                else if (this.settings.Flag1)
-                {
-                    flora.Split1();
-                }
-                else if (this.settings.Flag2)
-                {
-                    flora.Split2();
-                }
-                else
-                {
-                    flora.FinalFormat();
-                }
+        ////private void QuentinSpecific()
+        ////{
+        ////    try
+        ////    {
+        ////        var flora = new QuentinFlora(this.document.Xml);
+        ////        if (this.settings.FormatInit)
+        ////        {
+        ////            flora.InitialFormat();
+        ////        }
+        ////        else if (this.settings.Flag1)
+        ////        {
+        ////            flora.Split1();
+        ////        }
+        ////        else if (this.settings.Flag2)
+        ////        {
+        ////            flora.Split2();
+        ////        }
+        ////        else
+        ////        {
+        ////            flora.FinalFormat();
+        ////        }
 
-                this.fileProcessor.Xml = flora.Xml;
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        ////        this.document.Xml = flora.Xml;
+        ////    }
+        ////    catch
+        ////    {
+        ////        throw;
+        ////    }
+        ////}
 
         private string RemoveAllTaxaTags(string xmlContent)
         {
@@ -879,18 +873,14 @@
             return xmlContent;
         }
 
-        private void SetRefencesTemplateFileNamesToConfig(string fileName)
-        {
-            this.settings.Config.ReferencesGetReferencesXmlPath = $"{Path.GetDirectoryName(fileName)}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references.xml";
-
-            this.settings.Config.ReferencesTagTemplateXmlPath = $"{this.settings.Config.TempDirectoryPath}\\zzz-{Path.GetFileNameWithoutExtension(fileName)}-references-tag-template.xml";
-        }
-
         private void SetUpFileProcessor()
         {
             try
             {
-                this.fileProcessor = new TaxPubFileProcessor(
+                /*
+                 * Configure fileProcessor.
+                 */
+                this.fileProcessor = new FileProcessor(
                                 this.settings.InputFileName,
                                 this.settings.OutputFileName,
                                 this.logger);
@@ -901,13 +891,24 @@
                     this.fileProcessor.OutputFileName,
                     this.settings.QueryFileName);
 
-                this.settings.Config.EnvoResponseOutputXmlFileName = $"{this.settings.Config.TempDirectoryPath}\\envo-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
+                /*
+                 * Set some fileProcessor-related config parameters.
+                 */
+                string tempDirectory = this.settings.Config.TempDirectoryPath;
+                string outputFileDirectory = Path.GetDirectoryName(this.fileProcessor.OutputFileName);
+                string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
 
-                this.settings.Config.GnrOutputFileName = $"{this.settings.Config.TempDirectoryPath}\\gnr-{Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName)}.xml";
+                this.settings.Config.EnvoResponseOutputXmlFileName = $"{tempDirectory}\\envo-{outputFileName}.xml";
+                this.settings.Config.GnrOutputFileName = $"{tempDirectory}\\gnr-{outputFileName}.xml";
+                this.settings.Config.ReferencesGetReferencesXmlPath = $"{outputFileDirectory}\\zzz-{outputFileName}-references.xml";
+                this.settings.Config.ReferencesTagTemplateXmlPath = $"{tempDirectory}\\zzz-{outputFileName}-references-tag-template.xml";
 
-                this.fileProcessor.Read();
+                /*
+                 * Read document.
+                 */
+                this.fileProcessor.Read(this.document);
 
-                switch (this.fileProcessor.XmlDocument.DocumentElement.Name)
+                switch (this.document.XmlDocument.DocumentElement.Name)
                 {
                     case "article":
                         this.settings.Config.ArticleSchemaType = SchemaType.Nlm;
@@ -918,7 +919,7 @@
                         break;
                 }
 
-                this.fileProcessor.Xml = this.fileProcessor.Xml.NormalizeXmlToSystemXml(this.settings.Config);
+                this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml(this.settings.Config);
             }
             catch
             {
@@ -934,9 +935,9 @@
 
             try
             {
-                var abbreviationsTagger = new AbbreviationsTagger(this.settings.Config, this.fileProcessor.Xml);
+                var abbreviationsTagger = new AbbreviationsTagger(this.settings.Config, this.document.Xml);
                 abbreviationsTagger.Tag();
-                this.fileProcessor.Xml = abbreviationsTagger.Xml;
+                this.document.Xml = abbreviationsTagger.Xml;
             }
             catch (Exception e)
             {
@@ -995,7 +996,7 @@
                 ////    fp.Xml = envo.Xml;
                 ////}
 
-                DataProvider dataProvider = new DataProvider(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                DataProvider dataProvider = new DataProvider(this.settings.Config, this.document.Xml, this.logger);
                 ////{
                 ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
                 ////    products.TagProducts(xpathProvider, dataProvider);
@@ -1016,12 +1017,12 @@
 
                 try
                 {
-                    Codes codes = new Codes(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                    Codes codes = new Codes(this.settings.Config, this.document.Xml, this.logger);
                     codes.TagInstitutions(xpathProvider, dataProvider);
                     codes.TagInstitutionalCodes(xpathProvider, dataProvider);
                     ////codes.TagSpecimenCodes(xpathProvider);
 
-                    this.fileProcessor.Xml = codes.Xml;
+                    this.document.Xml = codes.Xml;
                 }
                 catch
                 {
@@ -1046,9 +1047,9 @@
 
             try
             {
-                var coordinatesTagger = new CoordinatesTagger(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                var coordinatesTagger = new CoordinatesTagger(this.settings.Config, this.document.Xml, this.logger);
                 coordinatesTagger.Tag();
-                this.fileProcessor.Xml = coordinatesTagger.Xml;
+                this.document.Xml = coordinatesTagger.Xml;
             }
             catch (Exception e)
             {
@@ -1067,9 +1068,9 @@
             try
             {
                 var xpathProvider = new XPathProvider(this.settings.Config);
-                var datesTagger = new DatesTagger(this.settings.Config, this.fileProcessor.Xml);
+                var datesTagger = new DatesTagger(this.settings.Config, this.document.Xml);
                 datesTagger.Tag(xpathProvider);
-                this.fileProcessor.Xml = datesTagger.Xml;
+                this.document.Xml = datesTagger.Xml;
             }
             catch (Exception e)
             {
@@ -1087,11 +1088,11 @@
 
             try
             {
-                var linksTagger = new DoiLinksTagger(this.settings.Config, this.fileProcessor.Xml);
+                var linksTagger = new DoiLinksTagger(this.settings.Config, this.document.Xml);
 
                 linksTagger.Tag();
 
-                this.fileProcessor.Xml = linksTagger.Xml;
+                this.document.Xml = linksTagger.Xml;
             }
             catch (Exception e)
             {
@@ -1110,9 +1111,9 @@
             try
             {
                 var xpathProvider = new XPathProvider(this.settings.Config);
-                var envo = new Envo(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                var envo = new Envo(this.settings.Config, this.document.Xml, this.logger);
                 envo.Tag(xpathProvider);
-                this.fileProcessor.Xml = envo.Xml;
+                this.document.Xml = envo.Xml;
             }
             catch
             {
@@ -1130,9 +1131,9 @@
 
             try
             {
-                var environments = new Environments(this.settings.Config, this.fileProcessor.Xml);
+                var environments = new Environments(this.settings.Config, this.document.Xml);
                 environments.Tag();
-                this.fileProcessor.Xml = environments.Xml;
+                this.document.Xml = environments.Xml;
             }
             catch (Exception e)
             {
@@ -1165,7 +1166,7 @@
 
         private string TagHigherTaxa(string xmlContent)
         {
-            if (this.settings.TaxaB)
+            if (this.settings.TagHigherTaxa)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -1190,7 +1191,7 @@
 
         private string TagLowerTaxa(string xmlContent)
         {
-            if (this.settings.TaxaA)
+            if (this.settings.TagLowerTaxa)
             {
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
@@ -1222,13 +1223,13 @@
             try
             {
                 var xpathProvider = new XPathProvider(this.settings.Config);
-                var quantitiesTagger = new QuantitiesTagger(this.settings.Config, this.fileProcessor.Xml, this.logger);
+                var quantitiesTagger = new QuantitiesTagger(this.settings.Config, this.document.Xml, this.logger);
 
                 quantitiesTagger.TagQuantities(xpathProvider);
                 quantitiesTagger.TagDeviation(xpathProvider);
                 quantitiesTagger.TagAltitude(xpathProvider);
 
-                this.fileProcessor.Xml = quantitiesTagger.Xml;
+                this.document.Xml = quantitiesTagger.Xml;
             }
             catch (Exception e)
             {
@@ -1246,7 +1247,6 @@
 
             var references = new References(this.settings.Config, xmlContent, this.logger);
 
-            references.GenerateTagTemplateXml();
             references.TagReferences();
 
             this.PrintElapsedTime(timer);
@@ -1283,9 +1283,9 @@
 
             try
             {
-                var linksTagger = new UrlLinksTagger(this.settings.Config, this.fileProcessor.Xml);
+                var linksTagger = new UrlLinksTagger(this.settings.Config, this.document.Xml);
                 linksTagger.Tag();
-                this.fileProcessor.Xml = linksTagger.Xml;
+                this.document.Xml = linksTagger.Xml;
             }
             catch (Exception e)
             {
@@ -1303,8 +1303,8 @@
 
             try
             {
-                this.fileProcessor.Xml = this.fileProcessor.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
-                this.fileProcessor.Write();
+                this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
+                this.fileProcessor.Write(this.document);
             }
             catch
             {
@@ -1325,9 +1325,9 @@
                 try
                 {
                     string jsonStringContent = File.ReadAllText(this.settings.QueryFileName);
-                    var zoobankCloner = new ZoobankJsonCloner(jsonStringContent, this.fileProcessor.Xml, this.logger);
+                    var zoobankCloner = new ZoobankJsonCloner(jsonStringContent, this.document.Xml, this.logger);
                     zoobankCloner.Clone();
-                    this.fileProcessor.Xml = zoobankCloner.Xml;
+                    this.document.Xml = zoobankCloner.Xml;
                 }
                 catch
                 {
@@ -1348,13 +1348,14 @@
             {
                 try
                 {
-                    var fileProcessorNlm = new TaxPubFileProcessor(this.settings.QueryFileName, this.settings.OutputFileName);
-                    fileProcessorNlm.Read();
+                    var nlmDocument = new TaxPubDocument();
+                    var fileProcessorNlm = new FileProcessor(this.settings.QueryFileName, this.settings.OutputFileName);
+                    fileProcessorNlm.Read(nlmDocument);
 
-                    var zoobankCloner = new ZoobankXmlCloner(fileProcessorNlm.Xml, this.fileProcessor.Xml, this.logger);
+                    var zoobankCloner = new ZoobankXmlCloner(nlmDocument.Xml, this.document.Xml, this.logger);
                     zoobankCloner.Clone();
 
-                    this.fileProcessor.Xml = zoobankCloner.Xml;
+                    this.document.Xml = zoobankCloner.Xml;
                 }
                 catch
                 {
@@ -1369,9 +1370,9 @@
         {
             try
             {
-                var zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(this.settings.Config, this.fileProcessor.Xml);
+                var zoobankRegistrationXmlGenerator = new ZoobankRegistrationXmlGenerator(this.settings.Config, this.document.Xml);
                 zoobankRegistrationXmlGenerator.Generate();
-                this.fileProcessor.Xml = zoobankRegistrationXmlGenerator.Xml;
+                this.document.Xml = zoobankRegistrationXmlGenerator.Xml;
             }
             catch
             {

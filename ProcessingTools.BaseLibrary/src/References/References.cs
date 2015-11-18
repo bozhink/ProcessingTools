@@ -5,11 +5,14 @@
     using System.Xml;
     using Configurator;
     using Contracts;
-    using DocumentProvider;
     using Extensions;
+    using System.Xml.Linq;
+    using System.Linq;
 
     public class References : TaggerBase
     {
+        private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
+
         private ILogger logger;
 
         public References(Config config, string xml, ILogger logger)
@@ -200,89 +203,100 @@
             return reference;
         }
 
-        public void GenerateTagTemplateXml()
-        {
-            var fp = new TaxPubFileProcessor();
-            {
-                // References list
-                fp.OutputFileName = this.Config.ReferencesGetReferencesXmlPath;
-                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ReferencesGetReferencesXslPath);
-                fp.Write();
-            }
-
-            {
-                // References template
-                fp.OutputFileName = this.Config.ReferencesTagTemplateXmlPath;
-                fp.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ReferencesTagTemplateXslPath);
-                fp.Xml = fp.XmlDocument.ApplyXslTransform(this.Config.ReferencesSortReferencesXslPath);
-                fp.Write();
-            }
-        }
-
         public void TagReferences()
         {
-            string xml = this.Xml;
+            {
+                var referencesList = XDocument.Parse(this.Xml
+                    .ApplyXslTransform(this.Config.ReferencesGetReferencesXslPath));
+
+                referencesList.Save(this.Config.ReferencesGetReferencesXmlPath);
+            }
+
+
+            var referencesTemplatesXml = XDocument.Parse(this.XmlDocument
+                .ApplyXslTransform(this.Config.ReferencesTagTemplateXslPath));
+
+            var referencesTemplates = referencesTemplatesXml.Descendants("reference")
+                .OrderByDescending(r => r.Attribute("authors").Value.Length)
+                .ThenBy(r => r.Attribute("year").Value)
+                .Select(r => new
+                {
+                    Id = r.Attribute("id").Value,
+                    Year = Regex.Escape(r.Attribute("year").Value),
+                    Authors = Regex.Replace(r.Attribute("authors").Value, @"\W+", "\\W*")
+                });
 
             /*
              * Tag references using generated template
              */
-            XmlDocument xd = new XmlDocument();
-            try
+            string xml = this.Xml;
+            foreach (var reference in referencesTemplates)
             {
-                xd.Load(this.Config.ReferencesTagTemplateXmlPath);
-            }
-            catch
-            {
-                throw;
-            }
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\(" + reference.Year + "\\))",
+                    $"<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$1</xref>");
 
-            XmlNode referenceList = xd.DocumentElement.LastChild;
-            for (int i = referenceList.ChildNodes.Count - 1; i >= 0; i--)
-            {
-                XmlNode reference = referenceList.ChildNodes.Item(i);
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\[" + reference.Year + "\\])",
+                    $"<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$1</xref>");
 
-                string id = reference.Attributes["id"].Value;
-                string year = Regex.Escape(reference.Attributes["year"].Value);
-                string authors = Regex.Replace(reference.Attributes["authors"].Value, @"\W+", "\\W*");
-                reference.Attributes["authors"].Value = authors;
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*[\\(\\[]" + reference.Year + ")(?=[;:,\\s])",
+                    $"<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$1</xref>");
 
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’´'s]*\\s*\\(" + year + "\\))", "<xref ref-type=\"bibr\" rid=\"" + id + "\">$1</xref>");
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’´'s]*\\s*\\[" + year + "\\])", "<xref ref-type=\"bibr\" rid=\"" + id + "\">$1</xref>");
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’´'s]*\\s*[\\(\\[]" + year + ")(?=[;:,\\s])", "<xref ref-type=\"bibr\" rid=\"" + id + "\">$1</xref>");
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’´'s]*\\s*\\[[a-z\\d\\W]{0,20}\\]\\s*)(" + year + ")", "$1<xref ref-type=\"bibr\" rid=\"" + id + "\">$2</xref>");
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’´'s]*\\s*" + year + ")", "<xref ref-type=\"bibr\" rid=\"" + id + "\">$1</xref>");
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\[[a-z\\d\\W]{0,20}\\]\\s*)(" + reference.Year + ")",
+                    $"$1<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$2</xref>");
+
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*" + reference.Year + ")",
+                    $"<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$1</xref>");
             }
 
             // Polenec 1952, 1954, 1957, 1958, 1959, 1960, 1961a, b, c, d, 1962a
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < NumberOfSequentalReferenceCitationsPerAuthority; ++i)
             {
-                for (Match m = Regex.Match(xml, @"<xref ref-type=""bibr""[^>]+>[^<>]+(?<=[^\)\]])</xref>(\W\s*\b(\d{2,4}(\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*\b\d{2,4}(\W\d{1,4})?[a-z]?\b"); m.Success; m = m.NextMatch())
+                for (Match m = Regex.Match(xml, @"<xref ref-type=""bibr""[^>]+>[^<>]+(?<=[^\)\]])</xref>(\s*(?:and|&amp;|\W)\s*\b(\d{2,4}(\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*\b\d{2,4}(\W\d{1,4})?[a-z]?\b"); m.Success; m = m.NextMatch())
                 {
                     string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w*?)""[^<>]*>.*\Z", "$1");
-                    string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", NamespaceManager).InnerText;
 
-                    string replace = m.Value;
+                    string authors = referencesTemplates
+                        .FirstOrDefault(r => r.Id == rid)
+                        ?.Authors;
 
-                    for (Match l = Regex.Match(m.Value, @"(?<=<xref [^>]+>[^<>]*</xref>(\W\s*\b(\d{2,4}(\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*)\b\d{2,4}(\W\d{1,4})?[a-z]?\b"); l.Success; l = l.NextMatch())
+                    if (!string.IsNullOrWhiteSpace(authors))
                     {
-                        try
+                        string replace = m.Value;
+
+                        for (Match l = Regex.Match(m.Value, @"(?<=<xref [^>]+>[^<>]*</xref>(\s*(?:and|&amp;|\W)\s*\b(\d{2,4}(\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*)\b\d{2,4}(\W\d{1,4})?[a-z]?\b"); l.Success; l = l.NextMatch())
                         {
-                            XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + l.Value + "']", NamespaceManager);
-                            if (node != null)
+                            try
                             {
-                                replace = Regex.Replace(
-                                    replace,
-                                    "(?<=<xref [^>]+>[^<>]*</xref>(\\W\\s*\\b(\\d{2,4}(\\W\\d{1,4})?[a-z]?|[a-z])\\b)*\\W\\s*)\\b" + l.Value + "\\b",
-                                    "<xref ref-type=\"bibr\" rid=\"" + node.Attributes["id"].Value + "\">" + l.Value + "</xref>");
+                                string id = referencesTemplates
+                                    .FirstOrDefault(r => (r.Authors == authors) && (r.Year == l.Value))
+                                    ?.Id;
+
+                                if (!string.IsNullOrWhiteSpace(id))
+                                {
+                                    replace = Regex.Replace(
+                                        replace,
+                                        @"(?<=<xref [^>]+>[^<>]*</xref>(?:\s*(?:and|&amp;|\W)\s*\b(?:\d{2,4}(?:\W\d{1,4})?[a-z]?|[a-z])\b)*\W\s*)\b" + l.Value + @"\b",
+                                        $"<xref ref-type=\"bibr\" rid=\"{id}\">{Regex.Escape(l.Value)}</xref>");
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                this.logger?.Log(e, string.Empty);
                             }
                         }
-                        catch (Exception e)
-                        {
-                            this.logger?.Log(e, string.Empty);
-                        }
-                    }
 
-                    xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
+                        xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
+                    }
                 }
             }
 
@@ -290,45 +304,54 @@
             for (Match m = Regex.Match(xml, @"<xref ref-type=""bibr"" [^>]+>[^<>]*\d+\W*[a-z]\W*</xref>(\W\s*(\b[a-z]\b))+"); m.Success; m = m.NextMatch())
             {
                 string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w+)""[^<>]*>.*\Z", "$1");
-                string authors = referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@authors", NamespaceManager).InnerText;
-                string year = Regex.Replace(referenceList.SelectSingleNode("//reference[@id='" + rid + "']/@year", NamespaceManager).InnerText, "[A-Za-z]", string.Empty);
 
-                string replace = m.Value;
-
-                for (Match l = Regex.Match(m.Value, @"(?<=<xref [^>]+>[^<>]*</xref>(\W\s*\b[a-z]\b)*\W\s*)\b[a-z]\b"); l.Success; l = l.NextMatch())
+                var reference = referencesTemplates.FirstOrDefault(r => r.Id == rid);
+                if (reference != null)
                 {
-                    try
+                    string authors = reference.Authors;
+                    string year = Regex.Replace(reference.Year, "[A-Za-z]", string.Empty);
+
+                    if (!(string.IsNullOrWhiteSpace(authors) && string.IsNullOrWhiteSpace(year)))
                     {
-                        XmlNode node = referenceList.SelectSingleNode("//reference[@authors='" + authors + "'][@year='" + year + l.Value + "']", NamespaceManager);
-                        if (node != null)
+                        string replace = m.Value;
+                        for (Match l = Regex.Match(m.Value, @"(?<=<xref [^>]+>[^<>]*</xref>(\W\s*\b[a-z]\b)*\W\s*)\b[a-z]\b"); l.Success; l = l.NextMatch())
                         {
-                            replace = Regex.Replace(
-                                replace,
-                                "(?<=<xref [^>]+>[^<>]*</xref>(\\W\\s*\\b[a-z]\\b)*\\W\\s*)\\b" + l.Value + "\\b",
-                                "<xref ref-type=\"bibr\" rid=\"" + node.Attributes["id"].Value + "\">" + l.Value + "</xref>");
+                            try
+                            {
+                                string id = referencesTemplates
+                                    .FirstOrDefault(r => (r.Authors == authors) && (r.Year == year + l.Value))
+                                    ?.Id;
+
+                                if (!string.IsNullOrWhiteSpace(id))
+                                {
+                                    replace = Regex.Replace(
+                                        replace,
+                                        @"(?<=<xref [^>]+>[^<>]*</xref>(?:\W\s*\b[a-z]\b)*\W\s*)\b" + l.Value + @"\b",
+                                        $"<xref ref-type=\"bibr\" rid=\"{id}\">{l.Value}</xref>");
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                this.logger?.Log(e, string.Empty);
+                            }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        this.logger?.Log(e, string.Empty);
+
+                        xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
                     }
                 }
-
-                xml = Regex.Replace(xml, Regex.Escape(m.Value), replace);
             }
 
             // This loop must be executed separately because is slow
-            for (int i = referenceList.ChildNodes.Count - 1; i >= 0; i--)
+            foreach (var reference in referencesTemplates)
             {
-                XmlNode reference = referenceList.ChildNodes.Item(i);
-
-                string id = reference.Attributes["id"].Value;
-                string year = Regex.Escape(reference.Attributes["year"].Value);
-                string authors = Regex.Replace(reference.Attributes["authors"].Value, @"\W+", "\\W*");
-                reference.Attributes["authors"].Value = authors;
-
-                xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’'s]*\\s*[\\(\\[]*(\\d{4,4}[a-z]?[,;\\s–-]*(and|&amp;|[a-z])?\\s*)+)(" + year + ")", "$1<xref ref-type=\"bibr\" rid=\"" + id + "\">$4</xref>");
-                ////xml = Regex.Replace(xml, "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + authors + "[’'s]*\\s*[\\(\\[]*(\\d{4,4}[a-z]?[,;\\s–-]*(and|&amp;|[a-z])?\\s*)+([a-z][,;\\s–-]*(and|&amp;|[a-z])?\\s*)*)(" + year + ")", "$1<xref ref-type=\"bibr\" rid=\"" + id + "\">$6</xref>");
+                xml = Regex.Replace(
+                    xml,
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’'s]*\\s*[\\(\\[]*(\\d{4,4}[a-z]?[,;\\s–-]*(and|&amp;|[a-z])?\\s*)+)(" + reference.Year + ")",
+                    $"$1<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$4</xref>");
+                ////xml = Regex.Replace(
+                ////    xml,
+                ////    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’'s]*\\s*[\\(\\[]*(\\d{4,4}[a-z]?[,;\\s–-]*(and|&amp;|[a-z])?\\s*)+([a-z][,;\\s–-]*(and|&amp;|[a-z])?\\s*)*)(" + reference.Year + ")",
+                ////    $"$1<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$6</xref>");
             }
             //// TODO: Call here the two loops above
 

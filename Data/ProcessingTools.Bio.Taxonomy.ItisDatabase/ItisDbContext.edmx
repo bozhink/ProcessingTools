@@ -1,0 +1,937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ItisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comments">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" Nullable="false" />
+          <Property Name="commentator" Type="varchar" MaxLength="100" />
+          <Property Name="comment_detail" Type="char" MaxLength="2000" Nullable="false" />
+          <Property Name="comment_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="experts">
+          <Key>
+            <PropertyRef Name="expert_id_prefix" />
+            <PropertyRef Name="expert_id" />
+          </Key>
+          <Property Name="expert_id_prefix" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="expert_id" Type="int" Nullable="false" />
+          <Property Name="expert" Type="varchar" MaxLength="100" />
+          <Property Name="exp_comment" Type="varchar" MaxLength="500" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="geographic_div">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="geographic_value" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="geographic_value" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="hierarchy">
+          <Key>
+            <PropertyRef Name="hierarchy_string" />
+          </Key>
+          <Property Name="hierarchy_string" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="TSN" Type="int" Nullable="false" />
+          <Property Name="Parent_TSN" Type="int" />
+          <Property Name="level" Type="int" Nullable="false" />
+          <Property Name="ChildrenCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jurisdiction">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="jurisdiction_value" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="jurisdiction_value" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="origin" Type="varchar" MaxLength="19" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="kingdoms">
+          <Key>
+            <PropertyRef Name="kingdom_id" />
+          </Key>
+          <Property Name="kingdom_id" Type="int" Nullable="false" />
+          <Property Name="kingdom_name" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="longnames">
+          <Key>
+            <PropertyRef Name="tsn" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="completename" Type="varchar" MaxLength="164" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ITIS.dbo.nodc_ids' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="nodc_ids">
+          <Property Name="nodc_id" Type="char" MaxLength="12" />
+          <Property Name="update_date" Type="smalldatetime" />
+          <Property Name="tsn" Type="int" />
+        </EntityType>-->
+        <EntityType Name="other_sources">
+          <Key>
+            <PropertyRef Name="source_id_prefix" />
+            <PropertyRef Name="source_id" />
+          </Key>
+          <Property Name="source_id_prefix" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="source_id" Type="int" Nullable="false" />
+          <Property Name="source_type" Type="char" MaxLength="10" />
+          <Property Name="source" Type="varchar" MaxLength="64" />
+          <Property Name="version" Type="char" MaxLength="10" />
+          <Property Name="acquisition_date" Type="smalldatetime" />
+          <Property Name="source_comment" Type="varchar" MaxLength="500" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="publications">
+          <Key>
+            <PropertyRef Name="pub_id_prefix" />
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="pub_id_prefix" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="publication_id" Type="int" Nullable="false" />
+          <Property Name="reference_author" Type="varchar" MaxLength="100" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="publication_name" Type="varchar" MaxLength="255" />
+          <Property Name="listed_pub_date" Type="datetime" />
+          <Property Name="actual_pub_date" Type="datetime" />
+          <Property Name="publisher" Type="varchar" MaxLength="80" />
+          <Property Name="pub_place" Type="varchar" MaxLength="40" />
+          <Property Name="isbn" Type="varchar" MaxLength="16" />
+          <Property Name="issn" Type="varchar" MaxLength="16" />
+          <Property Name="pages" Type="varchar" MaxLength="15" />
+          <Property Name="pub_comment" Type="varchar" MaxLength="500" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="reference_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="doc_id_prefix" />
+            <PropertyRef Name="documentation_id" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="doc_id_prefix" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="documentation_id" Type="int" Nullable="false" />
+          <Property Name="original_desc_ind" Type="char" MaxLength="1" />
+          <Property Name="init_itis_desc_ind" Type="char" MaxLength="1" />
+          <Property Name="change_track_id" Type="int" />
+          <Property Name="vernacular_name" Type="varchar" MaxLength="80" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ITIS.dbo.reviews' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="reviews">
+          <Property Name="tsn" Type="int" />
+          <Property Name="review_start_date" Type="smalldatetime" />
+          <Property Name="review_end_date" Type="smalldatetime" />
+          <Property Name="review_reason" Type="varchar" MaxLength="25" />
+          <Property Name="reviewer" Type="varchar" MaxLength="100" />
+          <Property Name="review_comment" Type="varchar" MaxLength="255" />
+          <Property Name="update_date" Type="smalldatetime" />
+        </EntityType>-->
+        <EntityType Name="strippedauthor">
+          <Key>
+            <PropertyRef Name="taxon_author_id" />
+          </Key>
+          <Property Name="taxon_author_id" Type="int" Nullable="false" />
+          <Property Name="shortauthor" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="synonym_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="tsn_accepted" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="tsn_accepted" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="synonym_names">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="completename" />
+            <PropertyRef Name="tsn_accepted" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="completename" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tsn_accepted" Type="int" Nullable="false" />
+          <Property Name="acceptedname" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="taxon_authors_lkp">
+          <Key>
+            <PropertyRef Name="taxon_author_id" />
+          </Key>
+          <Property Name="taxon_author_id" Type="int" Nullable="false" />
+          <Property Name="taxon_author" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="kingdom_id" Type="smallint" Nullable="false" />
+          <Property Name="short_author" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="taxon_unit_types">
+          <Key>
+            <PropertyRef Name="kingdom_id" />
+            <PropertyRef Name="rank_id" />
+          </Key>
+          <Property Name="kingdom_id" Type="int" Nullable="false" />
+          <Property Name="rank_id" Type="smallint" Nullable="false" />
+          <Property Name="rank_name" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="dir_parent_rank_id" Type="smallint" Nullable="false" />
+          <Property Name="req_parent_rank_id" Type="smallint" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="taxonomic_units">
+          <Key>
+            <PropertyRef Name="tsn" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="unit_ind1" Type="char" MaxLength="1" />
+          <Property Name="unit_name1" Type="char" MaxLength="35" Nullable="false" />
+          <Property Name="unit_ind2" Type="char" MaxLength="1" />
+          <Property Name="unit_name2" Type="varchar" MaxLength="35" />
+          <Property Name="unit_ind3" Type="varchar" MaxLength="7" />
+          <Property Name="unit_name3" Type="varchar" MaxLength="35" />
+          <Property Name="unit_ind4" Type="varchar" MaxLength="7" />
+          <Property Name="unit_name4" Type="varchar" MaxLength="35" />
+          <Property Name="unnamed_taxon_ind" Type="char" MaxLength="1" />
+          <Property Name="usage" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="unaccept_reason" Type="varchar" MaxLength="50" />
+          <Property Name="credibility_rtng" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="completeness_rtng" Type="char" MaxLength="10" />
+          <Property Name="currency_rating" Type="char" MaxLength="7" />
+          <Property Name="phylo_sort_seq" Type="smallint" />
+          <Property Name="initial_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="parent_tsn" Type="int" />
+          <Property Name="taxon_author_id" Type="int" />
+          <Property Name="hybrid_author_id" Type="int" />
+          <Property Name="kingdom_id" Type="smallint" Nullable="false" />
+          <Property Name="rank_id" Type="smallint" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="uncertain_prnt_ind" Type="char" MaxLength="3" />
+          <Property Name="name_usage" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="complete_name" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tu_comments_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="comment_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vern_ref_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="doc_id_prefix" />
+            <PropertyRef Name="documentation_id" />
+            <PropertyRef Name="vern_id" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="doc_id_prefix" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="documentation_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="vern_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vernaculars">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="vern_id" />
+          </Key>
+          <Property Name="tsn" Type="int" Nullable="false" />
+          <Property Name="vernacular_name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="language" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="approved_ind" Type="char" MaxLength="1" />
+          <Property Name="update_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="vern_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="reference_links_fk_taxonomic_units">
+          <End Role="taxonomic_units" Type="Self.taxonomic_units" Multiplicity="1" />
+          <End Role="reference_links" Type="Self.reference_links" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taxonomic_units">
+              <PropertyRef Name="tsn" />
+            </Principal>
+            <Dependent Role="reference_links">
+              <PropertyRef Name="tsn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vern_ref_links_fk_vernaculars">
+          <End Role="vernaculars" Type="Self.vernaculars" Multiplicity="1" />
+          <End Role="vern_ref_links" Type="Self.vern_ref_links" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vernaculars">
+              <PropertyRef Name="tsn" />
+              <PropertyRef Name="vern_id" />
+            </Principal>
+            <Dependent Role="vern_ref_links">
+              <PropertyRef Name="tsn" />
+              <PropertyRef Name="vern_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vernaculars_fk_taxonomic_units">
+          <End Role="taxonomic_units" Type="Self.taxonomic_units" Multiplicity="1" />
+          <End Role="vernaculars" Type="Self.vernaculars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taxonomic_units">
+              <PropertyRef Name="tsn" />
+            </Principal>
+            <Dependent Role="vernaculars">
+              <PropertyRef Name="tsn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ItisModelStoreContainer">
+          <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="experts" EntityType="Self.experts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="geographic_div" EntityType="Self.geographic_div" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hierarchy" EntityType="Self.hierarchy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jurisdiction" EntityType="Self.jurisdiction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kingdoms" EntityType="Self.kingdoms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="longnames" EntityType="Self.longnames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="other_sources" EntityType="Self.other_sources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="publications" EntityType="Self.publications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reference_links" EntityType="Self.reference_links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="strippedauthor" EntityType="Self.strippedauthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="synonym_links" EntityType="Self.synonym_links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taxon_authors_lkp" EntityType="Self.taxon_authors_lkp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taxon_unit_types" EntityType="Self.taxon_unit_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taxonomic_units" EntityType="Self.taxonomic_units" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tu_comments_links" EntityType="Self.tu_comments_links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vern_ref_links" EntityType="Self.vern_ref_links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vernaculars" EntityType="Self.vernaculars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="synonym_names" EntityType="Self.synonym_names" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [synonym_names].[tsn] AS [tsn], 
+    [synonym_names].[completename] AS [completename], 
+    [synonym_names].[tsn_accepted] AS [tsn_accepted], 
+    [synonym_names].[acceptedname] AS [acceptedname]
+    FROM [dbo].[synonym_names] AS [synonym_names]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="reference_links_fk_taxonomic_units" Association="Self.reference_links_fk_taxonomic_units">
+            <End Role="taxonomic_units" EntitySet="taxonomic_units" />
+            <End Role="reference_links" EntitySet="reference_links" />
+          </AssociationSet>
+          <AssociationSet Name="vern_ref_links_fk_vernaculars" Association="Self.vern_ref_links_fk_vernaculars">
+            <End Role="vernaculars" EntitySet="vernaculars" />
+            <End Role="vern_ref_links" EntitySet="vern_ref_links" />
+          </AssociationSet>
+          <AssociationSet Name="vernaculars_fk_taxonomic_units" Association="Self.vernaculars_fk_taxonomic_units">
+            <End Role="taxonomic_units" EntitySet="taxonomic_units" />
+            <End Role="vernaculars" EntitySet="vernaculars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ItisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" />
+          <Property Name="commentator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="comment_detail" Type="String" MaxLength="2000" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="comment_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="expert">
+          <Key>
+            <PropertyRef Name="expert_id_prefix" />
+            <PropertyRef Name="expert_id" />
+          </Key>
+          <Property Name="expert_id_prefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="expert_id" Type="Int32" Nullable="false" />
+          <Property Name="expert1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="exp_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="geographic_div">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="geographic_value" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="geographic_value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="hierarchy">
+          <Key>
+            <PropertyRef Name="hierarchy_string" />
+          </Key>
+          <Property Name="hierarchy_string" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TSN" Type="Int32" Nullable="false" />
+          <Property Name="Parent_TSN" Type="Int32" />
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <Property Name="ChildrenCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jurisdiction">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="jurisdiction_value" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="jurisdiction_value" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="origin" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="kingdom">
+          <Key>
+            <PropertyRef Name="kingdom_id" />
+          </Key>
+          <Property Name="kingdom_id" Type="Int32" Nullable="false" />
+          <Property Name="kingdom_name" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="longname">
+          <Key>
+            <PropertyRef Name="tsn" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="completename" Type="String" MaxLength="164" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="other_sources">
+          <Key>
+            <PropertyRef Name="source_id_prefix" />
+            <PropertyRef Name="source_id" />
+          </Key>
+          <Property Name="source_id_prefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="source_id" Type="Int32" Nullable="false" />
+          <Property Name="source_type" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="source" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="acquisition_date" Type="DateTime" Precision="0" />
+          <Property Name="source_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="publication">
+          <Key>
+            <PropertyRef Name="pub_id_prefix" />
+            <PropertyRef Name="publication_id" />
+          </Key>
+          <Property Name="pub_id_prefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="publication_id" Type="Int32" Nullable="false" />
+          <Property Name="reference_author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="publication_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="listed_pub_date" Type="DateTime" Precision="3" />
+          <Property Name="actual_pub_date" Type="DateTime" Precision="3" />
+          <Property Name="publisher" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pub_place" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="isbn" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="issn" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="pages" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="pub_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="reference_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="doc_id_prefix" />
+            <PropertyRef Name="documentation_id" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="doc_id_prefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="documentation_id" Type="Int32" Nullable="false" />
+          <Property Name="original_desc_ind" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="init_itis_desc_ind" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="change_track_id" Type="Int32" />
+          <Property Name="vernacular_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="taxonomic_units" Relationship="Self.reference_links_fk_taxonomic_units" FromRole="reference_links" ToRole="taxonomic_units" />
+        </EntityType>
+        <EntityType Name="strippedauthor">
+          <Key>
+            <PropertyRef Name="taxon_author_id" />
+          </Key>
+          <Property Name="taxon_author_id" Type="Int32" Nullable="false" />
+          <Property Name="shortauthor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="synonym_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="tsn_accepted" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="tsn_accepted" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="taxon_authors_lkp">
+          <Key>
+            <PropertyRef Name="taxon_author_id" />
+          </Key>
+          <Property Name="taxon_author_id" Type="Int32" Nullable="false" />
+          <Property Name="taxon_author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="kingdom_id" Type="Int16" Nullable="false" />
+          <Property Name="short_author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="taxon_unit_types">
+          <Key>
+            <PropertyRef Name="kingdom_id" />
+            <PropertyRef Name="rank_id" />
+          </Key>
+          <Property Name="kingdom_id" Type="Int32" Nullable="false" />
+          <Property Name="rank_id" Type="Int16" Nullable="false" />
+          <Property Name="rank_name" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="dir_parent_rank_id" Type="Int16" Nullable="false" />
+          <Property Name="req_parent_rank_id" Type="Int16" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="taxonomic_units">
+          <Key>
+            <PropertyRef Name="tsn" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="unit_ind1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="unit_name1" Type="String" MaxLength="35" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="unit_ind2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="unit_name2" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="unit_ind3" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name3" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="unit_ind4" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name4" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="unnamed_taxon_ind" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="usage" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unaccept_reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="credibility_rtng" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="completeness_rtng" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="currency_rating" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="phylo_sort_seq" Type="Int16" />
+          <Property Name="initial_time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="parent_tsn" Type="Int32" />
+          <Property Name="taxon_author_id" Type="Int32" />
+          <Property Name="hybrid_author_id" Type="Int32" />
+          <Property Name="kingdom_id" Type="Int16" Nullable="false" />
+          <Property Name="rank_id" Type="Int16" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="uncertain_prnt_ind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="name_usage" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complete_name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="reference_links" Relationship="Self.reference_links_fk_taxonomic_units" FromRole="taxonomic_units" ToRole="reference_links" />
+          <NavigationProperty Name="vernaculars" Relationship="Self.vernaculars_fk_taxonomic_units" FromRole="taxonomic_units" ToRole="vernaculars" />
+        </EntityType>
+        <EntityType Name="tu_comments_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="comment_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="vern_ref_links">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="doc_id_prefix" />
+            <PropertyRef Name="documentation_id" />
+            <PropertyRef Name="vern_id" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="doc_id_prefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="documentation_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="vern_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vernacular" Relationship="Self.vern_ref_links_fk_vernaculars" FromRole="vern_ref_links" ToRole="vernaculars" />
+        </EntityType>
+        <EntityType Name="vernacular">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="vern_id" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="vernacular_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="approved_ind" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="vern_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="taxonomic_units" Relationship="Self.vernaculars_fk_taxonomic_units" FromRole="vernaculars" ToRole="taxonomic_units" />
+          <NavigationProperty Name="vern_ref_links" Relationship="Self.vern_ref_links_fk_vernaculars" FromRole="vernaculars" ToRole="vern_ref_links" />
+        </EntityType>
+        <EntityType Name="synonym_names">
+          <Key>
+            <PropertyRef Name="tsn" />
+            <PropertyRef Name="completename" />
+            <PropertyRef Name="tsn_accepted" />
+          </Key>
+          <Property Name="tsn" Type="Int32" Nullable="false" />
+          <Property Name="completename" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tsn_accepted" Type="Int32" Nullable="false" />
+          <Property Name="acceptedname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="reference_links_fk_taxonomic_units">
+          <End Role="taxonomic_units" Type="Self.taxonomic_units" Multiplicity="1" />
+          <End Role="reference_links" Type="Self.reference_links" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taxonomic_units">
+              <PropertyRef Name="tsn" />
+            </Principal>
+            <Dependent Role="reference_links">
+              <PropertyRef Name="tsn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vernaculars_fk_taxonomic_units">
+          <End Role="taxonomic_units" Type="Self.taxonomic_units" Multiplicity="1" />
+          <End Role="vernaculars" Type="Self.vernacular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taxonomic_units">
+              <PropertyRef Name="tsn" />
+            </Principal>
+            <Dependent Role="vernaculars">
+              <PropertyRef Name="tsn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vern_ref_links_fk_vernaculars">
+          <End Role="vernaculars" Type="Self.vernacular" Multiplicity="1" />
+          <End Role="vern_ref_links" Type="Self.vern_ref_links" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vernaculars">
+              <PropertyRef Name="tsn" />
+              <PropertyRef Name="vern_id" />
+            </Principal>
+            <Dependent Role="vern_ref_links">
+              <PropertyRef Name="tsn" />
+              <PropertyRef Name="vern_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITISEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="experts" EntityType="Self.expert" />
+          <EntitySet Name="geographic_div" EntityType="Self.geographic_div" />
+          <EntitySet Name="hierarchies" EntityType="Self.hierarchy" />
+          <EntitySet Name="jurisdictions" EntityType="Self.jurisdiction" />
+          <EntitySet Name="kingdoms" EntityType="Self.kingdom" />
+          <EntitySet Name="longnames" EntityType="Self.longname" />
+          <EntitySet Name="other_sources" EntityType="Self.other_sources" />
+          <EntitySet Name="publications" EntityType="Self.publication" />
+          <EntitySet Name="reference_links" EntityType="Self.reference_links" />
+          <EntitySet Name="strippedauthors" EntityType="Self.strippedauthor" />
+          <EntitySet Name="synonym_links" EntityType="Self.synonym_links" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="taxon_authors_lkp" EntityType="Self.taxon_authors_lkp" />
+          <EntitySet Name="taxon_unit_types" EntityType="Self.taxon_unit_types" />
+          <EntitySet Name="taxonomic_units" EntityType="Self.taxonomic_units" />
+          <EntitySet Name="tu_comments_links" EntityType="Self.tu_comments_links" />
+          <EntitySet Name="vern_ref_links" EntityType="Self.vern_ref_links" />
+          <EntitySet Name="vernaculars" EntityType="Self.vernacular" />
+          <EntitySet Name="synonym_names" EntityType="Self.synonym_names" />
+          <AssociationSet Name="reference_links_fk_taxonomic_units" Association="Self.reference_links_fk_taxonomic_units">
+            <End Role="taxonomic_units" EntitySet="taxonomic_units" />
+            <End Role="reference_links" EntitySet="reference_links" />
+          </AssociationSet>
+          <AssociationSet Name="vernaculars_fk_taxonomic_units" Association="Self.vernaculars_fk_taxonomic_units">
+            <End Role="taxonomic_units" EntitySet="taxonomic_units" />
+            <End Role="vernaculars" EntitySet="vernaculars" />
+          </AssociationSet>
+          <AssociationSet Name="vern_ref_links_fk_vernaculars" Association="Self.vern_ref_links_fk_vernaculars">
+            <End Role="vernaculars" EntitySet="vernaculars" />
+            <End Role="vern_ref_links" EntitySet="vern_ref_links" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ItisModelStoreContainer" CdmEntityContainer="ITISEntities">
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="ItisModel.comment">
+              <MappingFragment StoreEntitySet="comments">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="commentator" ColumnName="commentator" />
+                <ScalarProperty Name="comment_detail" ColumnName="comment_detail" />
+                <ScalarProperty Name="comment_time_stamp" ColumnName="comment_time_stamp" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="experts">
+            <EntityTypeMapping TypeName="ItisModel.expert">
+              <MappingFragment StoreEntitySet="experts">
+                <ScalarProperty Name="expert_id_prefix" ColumnName="expert_id_prefix" />
+                <ScalarProperty Name="expert_id" ColumnName="expert_id" />
+                <ScalarProperty Name="expert1" ColumnName="expert" />
+                <ScalarProperty Name="exp_comment" ColumnName="exp_comment" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="geographic_div">
+            <EntityTypeMapping TypeName="ItisModel.geographic_div">
+              <MappingFragment StoreEntitySet="geographic_div">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="geographic_value" ColumnName="geographic_value" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hierarchies">
+            <EntityTypeMapping TypeName="ItisModel.hierarchy">
+              <MappingFragment StoreEntitySet="hierarchy">
+                <ScalarProperty Name="hierarchy_string" ColumnName="hierarchy_string" />
+                <ScalarProperty Name="TSN" ColumnName="TSN" />
+                <ScalarProperty Name="Parent_TSN" ColumnName="Parent_TSN" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="ChildrenCount" ColumnName="ChildrenCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jurisdictions">
+            <EntityTypeMapping TypeName="ItisModel.jurisdiction">
+              <MappingFragment StoreEntitySet="jurisdiction">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="jurisdiction_value" ColumnName="jurisdiction_value" />
+                <ScalarProperty Name="origin" ColumnName="origin" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kingdoms">
+            <EntityTypeMapping TypeName="ItisModel.kingdom">
+              <MappingFragment StoreEntitySet="kingdoms">
+                <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
+                <ScalarProperty Name="kingdom_name" ColumnName="kingdom_name" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="longnames">
+            <EntityTypeMapping TypeName="ItisModel.longname">
+              <MappingFragment StoreEntitySet="longnames">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="completename" ColumnName="completename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="other_sources">
+            <EntityTypeMapping TypeName="ItisModel.other_sources">
+              <MappingFragment StoreEntitySet="other_sources">
+                <ScalarProperty Name="source_id_prefix" ColumnName="source_id_prefix" />
+                <ScalarProperty Name="source_id" ColumnName="source_id" />
+                <ScalarProperty Name="source_type" ColumnName="source_type" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="acquisition_date" ColumnName="acquisition_date" />
+                <ScalarProperty Name="source_comment" ColumnName="source_comment" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publications">
+            <EntityTypeMapping TypeName="ItisModel.publication">
+              <MappingFragment StoreEntitySet="publications">
+                <ScalarProperty Name="pub_id_prefix" ColumnName="pub_id_prefix" />
+                <ScalarProperty Name="publication_id" ColumnName="publication_id" />
+                <ScalarProperty Name="reference_author" ColumnName="reference_author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+                <ScalarProperty Name="listed_pub_date" ColumnName="listed_pub_date" />
+                <ScalarProperty Name="actual_pub_date" ColumnName="actual_pub_date" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="pub_place" ColumnName="pub_place" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="issn" ColumnName="issn" />
+                <ScalarProperty Name="pages" ColumnName="pages" />
+                <ScalarProperty Name="pub_comment" ColumnName="pub_comment" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reference_links">
+            <EntityTypeMapping TypeName="ItisModel.reference_links">
+              <MappingFragment StoreEntitySet="reference_links">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="doc_id_prefix" ColumnName="doc_id_prefix" />
+                <ScalarProperty Name="documentation_id" ColumnName="documentation_id" />
+                <ScalarProperty Name="original_desc_ind" ColumnName="original_desc_ind" />
+                <ScalarProperty Name="init_itis_desc_ind" ColumnName="init_itis_desc_ind" />
+                <ScalarProperty Name="change_track_id" ColumnName="change_track_id" />
+                <ScalarProperty Name="vernacular_name" ColumnName="vernacular_name" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="strippedauthors">
+            <EntityTypeMapping TypeName="ItisModel.strippedauthor">
+              <MappingFragment StoreEntitySet="strippedauthor">
+                <ScalarProperty Name="taxon_author_id" ColumnName="taxon_author_id" />
+                <ScalarProperty Name="shortauthor" ColumnName="shortauthor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="synonym_links">
+            <EntityTypeMapping TypeName="ItisModel.synonym_links">
+              <MappingFragment StoreEntitySet="synonym_links">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="tsn_accepted" ColumnName="tsn_accepted" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ItisModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxon_authors_lkp">
+            <EntityTypeMapping TypeName="ItisModel.taxon_authors_lkp">
+              <MappingFragment StoreEntitySet="taxon_authors_lkp">
+                <ScalarProperty Name="taxon_author_id" ColumnName="taxon_author_id" />
+                <ScalarProperty Name="taxon_author" ColumnName="taxon_author" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
+                <ScalarProperty Name="short_author" ColumnName="short_author" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxon_unit_types">
+            <EntityTypeMapping TypeName="ItisModel.taxon_unit_types">
+              <MappingFragment StoreEntitySet="taxon_unit_types">
+                <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
+                <ScalarProperty Name="rank_id" ColumnName="rank_id" />
+                <ScalarProperty Name="rank_name" ColumnName="rank_name" />
+                <ScalarProperty Name="dir_parent_rank_id" ColumnName="dir_parent_rank_id" />
+                <ScalarProperty Name="req_parent_rank_id" ColumnName="req_parent_rank_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxonomic_units">
+            <EntityTypeMapping TypeName="ItisModel.taxonomic_units">
+              <MappingFragment StoreEntitySet="taxonomic_units">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="unit_ind1" ColumnName="unit_ind1" />
+                <ScalarProperty Name="unit_name1" ColumnName="unit_name1" />
+                <ScalarProperty Name="unit_ind2" ColumnName="unit_ind2" />
+                <ScalarProperty Name="unit_name2" ColumnName="unit_name2" />
+                <ScalarProperty Name="unit_ind3" ColumnName="unit_ind3" />
+                <ScalarProperty Name="unit_name3" ColumnName="unit_name3" />
+                <ScalarProperty Name="unit_ind4" ColumnName="unit_ind4" />
+                <ScalarProperty Name="unit_name4" ColumnName="unit_name4" />
+                <ScalarProperty Name="unnamed_taxon_ind" ColumnName="unnamed_taxon_ind" />
+                <ScalarProperty Name="usage" ColumnName="usage" />
+                <ScalarProperty Name="unaccept_reason" ColumnName="unaccept_reason" />
+                <ScalarProperty Name="credibility_rtng" ColumnName="credibility_rtng" />
+                <ScalarProperty Name="completeness_rtng" ColumnName="completeness_rtng" />
+                <ScalarProperty Name="currency_rating" ColumnName="currency_rating" />
+                <ScalarProperty Name="phylo_sort_seq" ColumnName="phylo_sort_seq" />
+                <ScalarProperty Name="initial_time_stamp" ColumnName="initial_time_stamp" />
+                <ScalarProperty Name="parent_tsn" ColumnName="parent_tsn" />
+                <ScalarProperty Name="taxon_author_id" ColumnName="taxon_author_id" />
+                <ScalarProperty Name="hybrid_author_id" ColumnName="hybrid_author_id" />
+                <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
+                <ScalarProperty Name="rank_id" ColumnName="rank_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="uncertain_prnt_ind" ColumnName="uncertain_prnt_ind" />
+                <ScalarProperty Name="name_usage" ColumnName="name_usage" />
+                <ScalarProperty Name="complete_name" ColumnName="complete_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tu_comments_links">
+            <EntityTypeMapping TypeName="ItisModel.tu_comments_links">
+              <MappingFragment StoreEntitySet="tu_comments_links">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vern_ref_links">
+            <EntityTypeMapping TypeName="ItisModel.vern_ref_links">
+              <MappingFragment StoreEntitySet="vern_ref_links">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="doc_id_prefix" ColumnName="doc_id_prefix" />
+                <ScalarProperty Name="documentation_id" ColumnName="documentation_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="vern_id" ColumnName="vern_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vernaculars">
+            <EntityTypeMapping TypeName="ItisModel.vernacular">
+              <MappingFragment StoreEntitySet="vernaculars">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="vernacular_name" ColumnName="vernacular_name" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="approved_ind" ColumnName="approved_ind" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="vern_id" ColumnName="vern_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="synonym_names">
+            <EntityTypeMapping TypeName="ItisModel.synonym_names">
+              <MappingFragment StoreEntitySet="synonym_names">
+                <ScalarProperty Name="tsn" ColumnName="tsn" />
+                <ScalarProperty Name="completename" ColumnName="completename" />
+                <ScalarProperty Name="tsn_accepted" ColumnName="tsn_accepted" />
+                <ScalarProperty Name="acceptedname" ColumnName="acceptedname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
