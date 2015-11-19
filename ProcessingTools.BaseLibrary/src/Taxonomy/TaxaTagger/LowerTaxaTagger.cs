@@ -9,7 +9,8 @@
 
     public class LowerTaxaTagger : TaxaTagger
     {
-        private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
+        // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
+        private const string LowerTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
 
         private readonly TagContent lowerTaxaTag = new TagContent("tn", @" type=""lower""");
 
@@ -44,19 +45,27 @@
 
                 plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
 
-                // Add all parts of plausibleLowerTaxa to the plausibleLowerTaxa hashset
+                // Tag all direct matches
+                plausibleLowerTaxa
+                    .OrderByDescending(t => t.Length)
+                    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+
+                // Get all word parts of the plausible lower taxa
                 Regex matchWord = new Regex(@"\b[^\W\d]+\b\.?");
-                
-                // TODO: bottleneck
-                foreach (string item in new HashSet<string>(plausibleLowerTaxa))
+                var plausibleLowerTaxaWordTemplates = new HashSet<string>();
+                foreach (string taxon in plausibleLowerTaxa)
                 {
-                    for (Match m = matchWord.Match(item); m.Success; m = m.NextMatch())
+                    for (Match m = matchWord.Match(taxon); m.Success; m = m.NextMatch())
                     {
-                        plausibleLowerTaxa.Add(m.Value);
+                        plausibleLowerTaxaWordTemplates.Add(m.Value);
                     }
                 }
 
-                plausibleLowerTaxa.TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+                // TODO: bottleneck
+                // Tag all word parts of the plausible lower taxa
+                plausibleLowerTaxaWordTemplates
+                    .OrderByDescending(t => t.Length)
+                    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
 
                 // TODO: move to format
                 this.Xml = Regex.Replace(
@@ -208,12 +217,11 @@
         {
             bool result = false;
 
-            result |= Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]*\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]*\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z][a-z\.×]+(\-[A-Z][a-z\.×]+)?\s*\(\s*[A-Za-z][a-z\.×]+\s*\)\s*[a-z\.×-]+\s*[a-z×-]+\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A[A-Z]+\Z");
+            result |= Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]*)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]*)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
+                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z]+[’”]?)\Z");
 
             return result;
         }

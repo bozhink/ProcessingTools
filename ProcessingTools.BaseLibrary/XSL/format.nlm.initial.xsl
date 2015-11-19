@@ -132,6 +132,7 @@
 
   <xsl:template match="article-meta/aff">
     <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*"/>
       <xsl:apply-templates select="label"/>
       <addr-line>
         <xsl:apply-templates select="node()[name(.)!='label']"/>
@@ -304,5 +305,4 @@
       <xsl:apply-templates/>
     </title>
   </xsl:template>
-
 </xsl:stylesheet>

@@ -99,4 +99,11 @@
   <xsl:template match="*" mode="license-p">
     <xsl:apply-templates mode="license-p" />
   </xsl:template>
+
+  <xsl:template match="object-id">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="string(.)" />
+    </xsl:element>
+  </xsl:template>
 </xsl:stylesheet>
