@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.DocumentProvider.Tests
 {
     using System;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,6 +9,8 @@
     [TestClass]
     public class TaxPubDocumentTests
     {
+        #region EmptyConstuctor
+
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateEmptyXmlDocument()
         {
@@ -37,11 +40,110 @@
         }
 
         [TestMethod]
+        public void TaxPubDocument_WithEmptyConstructor_ShouldCreateEncoding()
+        {
+            var document = new TaxPubDocument();
+            Assert.IsNotNull(document.Encoding, "Encoding should not be null.");
+        }
+
+        #endregion EmptyConstuctor
+
+        #region ConstructorWithEncoding
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateEmptyXmlDocument()
+        {
+            var encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(encoding);
+            Assert.AreEqual(string.Empty, document.XmlDocument.OuterXml, "XmlDocument should be empty.");
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNamespaceManager()
+        {
+            var encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(encoding);
+            this.CheckNamespaceManager(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        {
+            var encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(encoding);
+            this.CheckTaxPubNamespaces(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNameTable()
+        {
+            var encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(encoding);
+            this.CheckNameTable(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateEncoding()
+        {
+            var encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(encoding);
+            Assert.IsNotNull(document.Encoding, "Encoding schould not be null.");
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_ConstructorWithEncoding_ShouldSetEncoding()
+        {
+            var encoding = new UTF32Encoding();
+            var type = typeof(UTF32Encoding);
+            var document = new TaxPubDocument(encoding);
+
+            Assert.AreEqual(
+                type,
+                document.Encoding.GetType(),
+                $"Encoding should be {type}");
+
+            Assert.AreEqual(
+                encoding.GetType(),
+                document.Encoding.GetType(),
+                "Encoding is not set properly.");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_ConstructorWithNullEncoding_ShouldThrow()
+        {
+            Encoding encoding = null;
+            var document = new TaxPubDocument(encoding);
+        }
+
+        #endregion ConstructorWithEncoding
+
+        #region ConstuctorWithStringAndEncoding
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyStringInConstructor_ShouldThrow()
         {
             string content = string.Empty;
             var document = new TaxPubDocument(content);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithEmptyStringInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            string content = string.Empty;
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithEmptyStringInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = string.Empty;
+            Encoding encoding = null;
+            var document = new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -54,11 +156,49 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithNullStringInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            string content = null;
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithNullStringInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = null;
+            Encoding encoding = null;
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithWhitespaceStringInConstructor_ShouldThrow()
         {
             string content = @"
                               ";
             var document = new TaxPubDocument(content);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithWhitespaceStringInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            string content = @"
+                              ";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithWhitespaceStringInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = @"
+                              ";
+            Encoding encoding = null;
+            var document = new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -70,6 +210,24 @@
         }
 
         [TestMethod]
+        [ExpectedException(typeof(XmlException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithInvalidXmlStringInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            string content = "a";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithInvalidXmlStringInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = "a";
+            Encoding encoding = null;
+            var document = new TaxPubDocument(content, encoding);
+        }
+
+        [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNonEmptyXmlDocument()
         {
             string content = "<a/>";
@@ -78,14 +236,21 @@
         }
 
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNonEmptyXmlDocument()
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNonEmptyXmlDocument()
         {
             string content = "<a/>";
-            var xmlDocument = new XmlDocument();
-
-            xmlDocument.LoadXml(content);
-            var document = new TaxPubDocument(xmlDocument);
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
             Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = "<a/>";
+            Encoding encoding = null;
+            var document = new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -94,6 +259,128 @@
             string content = "<a/>";
             var document = new TaxPubDocument(content);
             this.CheckNamespaceManager(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNamespaceManager()
+        {
+            string content = "<a/>";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+            this.CheckNamespaceManager(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            var document = new TaxPubDocument(content);
+            this.CheckTaxPubNamespaces(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+            this.CheckTaxPubNamespaces(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNameTable()
+        {
+            string content = "<a/>";
+            var document = new TaxPubDocument(content);
+            this.CheckNameTable(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNameTable()
+        {
+            string content = "<a/>";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+            this.CheckNameTable(document);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            var document = new TaxPubDocument(content);
+            var xml = document.XmlDocument;
+            this.CheckTaxPubNamespaces(xml);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+            var xml = document.XmlDocument;
+            this.CheckTaxPubNamespaces(xml);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_XmlString_ShouldContainValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            var document = new TaxPubDocument(content);
+            var xml = document.Xml;
+            this.CheckTaxPubNamespaces(xml);
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_XmlString_ShouldContainValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(content, encoding);
+            var xml = document.Xml;
+            this.CheckTaxPubNamespaces(xml);
+        }
+
+        #endregion ConstuctorWithStringAndEncoding
+
+        #region ConstuctorWithXmlDocumentAndEncoding
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNonEmptyXmlDocument()
+        {
+            string content = "<a/>";
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            var document = new TaxPubDocument(xmlDocument);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+        }
+
+        [TestMethod]
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNonEmptyXmlDocument()
+        {
+            string content = "<a/>";
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            string content = "<a/>";
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = null;
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
         }
 
         [TestMethod]
@@ -108,11 +395,16 @@
         }
 
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNamespaceManager()
         {
             string content = "<a/>";
-            var document = new TaxPubDocument(content);
-            this.CheckTaxPubNamespaces(document);
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            this.CheckNamespaceManager(document);
         }
 
         [TestMethod]
@@ -127,11 +419,16 @@
         }
 
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNameTable()
+        public void TaxPubDocument_WithValidXmlDocumnetInConstructor_WithValidEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
             string content = "<a/>";
-            var document = new TaxPubDocument(content);
-            this.CheckNameTable(document);
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            this.CheckTaxPubNamespaces(document);
         }
 
         [TestMethod]
@@ -146,12 +443,16 @@
         }
 
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlStringInConstructor_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNameTable()
         {
             string content = "<a/>";
-            var document = new TaxPubDocument(content);
-            var xml = document.XmlDocument;
-            this.CheckTaxPubNamespaces(xml);
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            this.CheckNameTable(document);
         }
 
         [TestMethod]
@@ -167,11 +468,16 @@
         }
 
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlStringInConstructor_XmlString_ShouldContainValidTaxPubNamespaces()
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
         {
             string content = "<a/>";
-            var document = new TaxPubDocument(content);
-            var xml = document.Xml;
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            var xml = document.XmlDocument;
             this.CheckTaxPubNamespaces(xml);
         }
 
@@ -188,6 +494,20 @@
         }
 
         [TestMethod]
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_XmlString_ShouldContainValidTaxPubNamespaces()
+        {
+            string content = "<a/>";
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(content);
+
+            Encoding encoding = new UTF32Encoding();
+
+            var document = new TaxPubDocument(xmlDocument, encoding);
+            var xml = document.Xml;
+            this.CheckTaxPubNamespaces(xml);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullXmlDocumentInConstructor_ShouldThrow()
         {
@@ -197,11 +517,51 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithNullXmlDocumentInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            XmlDocument xml = null;
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(xml, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithNullXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            XmlDocument xml = null;
+            Encoding encoding = null;
+            var document = new TaxPubDocument(xml, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_ShouldThrow()
         {
             XmlDocument xml = new XmlDocument();
             var document = new TaxPubDocument(xml);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_WithValidEncoding_ShouldThrow()
+        {
+            XmlDocument xml = new XmlDocument();
+            Encoding encoding = new UTF32Encoding();
+            var document = new TaxPubDocument(xml, encoding);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
+        {
+            XmlDocument xml = new XmlDocument();
+            Encoding encoding = null;
+            var document = new TaxPubDocument(xml, encoding);
+        }
+
+        #endregion ConstuctorWithXmlDocumentAndEncoding
+
+        #region XmlProperty
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
@@ -235,6 +595,10 @@
             var document = new TaxPubDocument();
             document.Xml = @"a";
         }
+
+        #endregion XmlProperty
+
+        #region Helpers
 
         private void CheckNamespaceManager(TaxPubDocument document)
         {
@@ -273,5 +637,7 @@
             ////Assert.IsTrue(Regex.IsMatch(xml, @"\bxmlns:xsi=""[^<>""]+"""), "Xml string does not contain xsi namespace");
             Assert.IsTrue(Regex.IsMatch(xml, @"\bxmlns:mml=""[^<>""]+"""), "Xml string does not contain mml namespace");
         }
+
+        #endregion Helpers
     }
 }

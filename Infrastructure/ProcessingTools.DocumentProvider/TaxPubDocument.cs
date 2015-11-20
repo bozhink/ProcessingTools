@@ -31,6 +31,8 @@
 
         private static XmlNamespaceManager namespaceManager = null;
 
+        private Encoding encoding;
+
         public TaxPubDocument(Encoding encoding)
         {
             this.NameTable = new NameTable();
@@ -82,7 +84,23 @@
         {
         }
 
-        public Encoding Encoding { get; private set; }
+        public Encoding Encoding
+        {
+            get
+            {
+                return this.encoding;
+            }
+
+            private set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value", "Encoding is null.");
+                }
+
+                this.encoding = value;
+            }
+        }
 
         public NameTable NameTable { get; private set; }
 
