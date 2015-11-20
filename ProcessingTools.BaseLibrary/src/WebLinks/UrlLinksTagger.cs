@@ -3,7 +3,6 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Contracts;
 
     public class UrlLinksTagger : Base, IBaseTagger
     {
@@ -22,11 +21,6 @@
             this.TagWebLinks();
             this.TagIPAddresses();
             this.RefactorEmailTags();
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
         }
 
         private void RefactorEmailTags()

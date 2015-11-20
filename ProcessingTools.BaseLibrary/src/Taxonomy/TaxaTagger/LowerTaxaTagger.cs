@@ -82,11 +82,6 @@
             }
         }
 
-        public override void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
-
         // TODO: XPath-s correction needed
         private void AdvancedTagLowerTaxa(string xpath)
         {

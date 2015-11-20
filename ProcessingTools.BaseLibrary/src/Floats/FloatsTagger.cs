@@ -59,11 +59,6 @@
             this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
         }
 
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
-
         private string FloatsFirstOccurencePattern(string labelPattern)
         {
             return @"(?<!<[^>]*)\b(" + labelPattern + @")\s*(([A-Z]?\d+)(?:" + SubfloatsPattern + @")?)(?=\W)";

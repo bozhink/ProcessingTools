@@ -4,7 +4,6 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Contracts;
 
     public class Environments : TaggerBase, IBaseTagger
     {
@@ -106,11 +105,6 @@
             }
 
             this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
         }
     }
 }

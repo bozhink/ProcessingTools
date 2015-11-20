@@ -59,10 +59,5 @@
                 throw;
             }
         }
-
-        public override void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
     }
 }

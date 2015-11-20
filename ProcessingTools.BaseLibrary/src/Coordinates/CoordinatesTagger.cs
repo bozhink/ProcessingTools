@@ -86,10 +86,5 @@
                 throw;
             }
         }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
     }
 }

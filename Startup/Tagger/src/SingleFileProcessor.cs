@@ -1067,9 +1067,8 @@
 
             try
             {
-                var xpathProvider = new XPathProvider(this.settings.Config);
-                var datesTagger = new DatesTagger(this.settings.Config, this.document.Xml);
-                datesTagger.Tag(xpathProvider);
+                var datesTagger = new DatesTagger(this.settings.Config, this.document.Xml, this.logger);
+                datesTagger.Tag();
                 this.document.Xml = datesTagger.Xml;
             }
             catch (Exception e)
@@ -1110,9 +1109,8 @@
 
             try
             {
-                var xpathProvider = new XPathProvider(this.settings.Config);
                 var envo = new Envo(this.settings.Config, this.document.Xml, this.logger);
-                envo.Tag(xpathProvider);
+                envo.Tag();
                 this.document.Xml = envo.Xml;
             }
             catch

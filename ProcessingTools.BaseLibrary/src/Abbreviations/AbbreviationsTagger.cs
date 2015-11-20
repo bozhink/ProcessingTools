@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Xml;
     using Configurator;
-    using Contracts;
 
     public class AbbreviationsTagger : TaggerBase, IBaseTagger
     {
@@ -28,11 +27,6 @@
             this.TagAbbreviationsInSpecificNodeByXPath("//fig-group|//table-wrap-group");
             this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text");
             this.TagAbbreviationsInSpecificNodeByXPath("/");
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
         }
 
         private void TagAbbreviationsInSpecificNode(XmlNode specificNode)

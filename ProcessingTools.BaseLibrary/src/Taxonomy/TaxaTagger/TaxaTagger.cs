@@ -65,8 +65,6 @@
 
         public abstract void Tag();
 
-        public abstract void Tag(IXPathProvider xpathProvider);
-
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
             var result = taxaNames;

@@ -2,7 +2,6 @@
 {
     using System.Text.RegularExpressions;
     using Configurator;
-    using Contracts;
 
     public class DoiLinksTagger : Base, IBaseTagger
     {
@@ -22,11 +21,6 @@
             this.TagPmcLinks();
         }
 
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
-
         private void TagDoi()
         {
             string xml = this.Xml;
@@ -38,6 +32,7 @@
             ////xml = Regex.Replace(xml, @"doi:(\s*)([^,<\s]*[A-Za-z0-9])", "doi: <ext-link ext-link-type=\"uri\" xlink:href=\"http://dx.doi.org/$2\">$2</ext-link>");
             xml = Regex.Replace(xml, @"(?<!<ext-link [^>]*>)(\b[Dd][Oo][Ii]\b:?)\s*(\d+\.[^,<>\s]+[A-Za-z0-9]((?<=&[A-Za-z0-9#]+);)?)", "$1 <ext-link ext-link-type=\"doi\" xlink:href=\"$2\">$2</ext-link>");
 
+            // TODO: move to format
             // Some format
             xml = Regex.Replace(xml, "(</source>)((?i)doi:?)", "$1 $2");
 

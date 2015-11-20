@@ -26,24 +26,19 @@ namespace ProcessingTools.BaseLibrary.Dates
 
         private ILogger logger;
 
-        public DatesTagger(Config config, string xml, ILogger logger = null)
+        public DatesTagger(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
             this.logger = logger;
         }
 
-        public DatesTagger(IBase baseObject, ILogger logger = null)
+        public DatesTagger(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
             this.logger = logger;
         }
 
         public void Tag()
-        {
-            this.Tag(null);
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
         {
             List<string> dates = new List<string>();
 
@@ -56,10 +51,6 @@ namespace ProcessingTools.BaseLibrary.Dates
 
             {
                 string xpathTemplate = "/*";
-                if (xpathProvider != null)
-                {
-                    xpathTemplate = xpathProvider.SelectContentNodesXPathTemplate;
-                }
 
                 foreach (string date in dates)
                 {

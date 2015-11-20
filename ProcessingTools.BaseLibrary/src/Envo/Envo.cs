@@ -31,11 +31,6 @@
 
         public void Tag()
         {
-            this.Tag(new XPathProvider(this.Config));
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
             NameTable nameTable = new NameTable();
             XmlNamespaceManager namespaceManager = new XmlNamespaceManager(nameTable);
             namespaceManager.AddNamespace("reflect", "Reflect");

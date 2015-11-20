@@ -27,7 +27,7 @@
             XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
             if (tableWrapList.Count < 1)
             {
-                this.logger?.Log("There is no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
             }
             else
             {
@@ -51,11 +51,6 @@
                     }
                 }
             }
-        }
-
-        public void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
         }
 
         private void TagCitationInXref(Hashtable tableFootnotes, string tableFootnoteKey, XmlNode footnoteSup)

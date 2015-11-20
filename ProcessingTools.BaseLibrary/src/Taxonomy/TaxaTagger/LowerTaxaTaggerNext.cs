@@ -89,11 +89,6 @@
             }
         }
 
-        public override void Tag(IXPathProvider xpathProvider)
-        {
-            this.Tag();
-        }
-
         private string CombineSequentalSpaceSeparatedInfraRanks(string content, string infraSubpattern)
         {
             string result = content;
