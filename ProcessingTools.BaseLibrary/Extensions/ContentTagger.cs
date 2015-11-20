@@ -114,13 +114,14 @@
 
             string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
             string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
+
             if (!minimalTextSelect)
             {
                 textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
             }
 
-            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
-            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
+            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)\\b");
+            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)\\b");
 
             string replacement = tag.GetReplacementOfTagNode(textToTag);
 

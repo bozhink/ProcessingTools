@@ -39,7 +39,6 @@
             {
                 Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
 
-                //var taxaNames = this.XmlDocument.GetNonTaggedTaxa(matchHigherTaxa);
                 var taxaNames = this.TextContent.GetMatches(matchHigherTaxa);
 
                 // Blacklist items

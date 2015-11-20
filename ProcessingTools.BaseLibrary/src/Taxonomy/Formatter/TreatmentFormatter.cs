@@ -42,8 +42,6 @@
 
                     nomenclature.InnerXml = Regex.Replace(nomenclature.InnerXml, @"\n\s*\n", "\n");
                 }
-
-                this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(\s*)(    <object-id .*?</object-id>)(</tn>)", "$1$2$1$3");
             }
             catch (Exception e)
             {
@@ -142,8 +140,6 @@
                 {
                     nomenclature["tn"].AppendChild(objectId);
                 }
-
-                nomenclature["tn"].InnerXml = Regex.Replace(nomenclature["tn"].InnerXml, "(?=<object-id)", "    ");
             }
         }
     }

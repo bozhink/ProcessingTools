@@ -187,7 +187,6 @@
             result = Regex.Replace(result, @"([‘“])(<i>)", "$2$1");
             result = Regex.Replace(result, @"(</i>)([’”])", "$2$1");
 
-
             return result;
         }
 
