@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FileProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxPubDocumentTests.cs" />
   </ItemGroup>
@@ -62,6 +67,9 @@
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>ProcessingTools.DocumentProvider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
