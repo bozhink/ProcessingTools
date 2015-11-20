@@ -70,13 +70,15 @@
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
             var result = taxaNames;
+
             try
             {
-                // Clear taxa-like person names in taxa names list
-                result = this.ClearTaxaLikePersonNamesInArticle(result);
+                var taxaNamesFirstWord = new HashSet<string>(result
+                        .GetFirstWord()
+                        .Select(Regex.Escape));
 
-                // Apply blacklist
-                result = result.DistinctWithStringList(this.BlackList.StringList, true, false, true);
+                result = this.ClearFakeTaxaNamesLikePersonNamesInArticle(result, taxaNamesFirstWord);
+                result = this.ClearFakeTaxaNamesUsingBlackList(result, taxaNamesFirstWord);
             }
             catch
             {
@@ -94,12 +96,19 @@
             return new HashSet<string>(result);
         }
 
-        private IEnumerable<string> ClearTaxaLikePersonNamesInArticle(IEnumerable<string> taxaNames)
+        private IEnumerable<string> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
         {
-            var taxaNamesFirstWord = new HashSet<string>(taxaNames
-                .GetFirstWord()
-                .Select(Regex.Escape));
+            var blackListedNames = new HashSet<string>(taxaNamesFirstWord
+                .MatchWithStringList(this.BlackList.StringList, true, false, true));
 
+            var result = taxaNames
+                .Where(name => !blackListedNames.Contains(name.GetFirstWord()));
+
+            return new HashSet<string>(result);
+        }
+
+        private IEnumerable<string> ClearFakeTaxaNamesLikePersonNamesInArticle(IEnumerable<string> taxaNames, IEnumerable<string> taxaNamesFirstWord)
+        {
             var taxaLikePersonNameParts = new HashSet<string>(this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()

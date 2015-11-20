@@ -53,7 +53,7 @@
                 }
             }
 
-            if (resolvedTaxa.Exceptions.Count > 0)
+            if (resolvedTaxa.Exceptions?.Count > 0)
             {
                 foreach (var exception in resolvedTaxa.Exceptions)
                 {

@@ -46,8 +46,14 @@
       <xsl:apply-templates select="email | ext-link | uri | product | supplementary-material"/>
       <xsl:apply-templates select="history"/>
       <xsl:apply-templates select="permissions"/>
-      <!-- <xsl:apply-templates select="self-uri"/> -->
-      <self-uri content-type="zoobank" xlink:type="simple"></self-uri>
+      <xsl:choose>
+        <xsl:when test="count(self-uri[@content-type='zoobank']) != 0">
+          <xsl:apply-templates select="self-uri"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <self-uri content-type="zoobank" xlink:type="simple"></self-uri>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="related-article"/>
       <xsl:apply-templates select="abstract"/>
       <xsl:apply-templates select="trans-abstract"/>
@@ -63,7 +69,9 @@
     <contrib>
       <xsl:apply-templates select="@*"/>
       <xsl:apply-templates/>
-      <uri content-type="zoobank" xlink:type="simple"/>
+      <xsl:if test="count(uri[@content-type='zoobank']) = 0">
+        <uri content-type="zoobank" xlink:type="simple"/>
+      </xsl:if>
     </contrib>
   </xsl:template>
 

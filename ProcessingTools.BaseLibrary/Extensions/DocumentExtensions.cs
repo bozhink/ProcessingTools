@@ -122,24 +122,39 @@
         /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
         public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
         {
-            Regex matchWord = new Regex(@"\A[^\W\d]{2,}(?:\.)?");
-            return new HashSet<string>(list.Select(word => matchWord.Match(word).Value));
+            return new HashSet<string>(list.Select(phrase => phrase.GetFirstWord()));
         }
 
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        /// <summary>
+        /// Gets the first word of a given string.
+        /// </summary>
+        /// <param name="phrase">String frm which to extract the first word.</param>
+        /// <returns>String of the first word.</returns>
+        public static string GetFirstWord(this string phrase)
+        {
+            Regex matchWord = new Regex(@"\A(?:[^\W\d]{1,4}\.|[^\W\d]{2,})");
+            return matchWord.Match(phrase).Value;
+        }
+
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath)
         {
             try
             {
-                XmlNodeList nodeList = null;
-                if (namespaceManager == null)
-                {
-                    nodeList = xml.SelectNodes(xpath);
-                }
-                else
-                {
-                    nodeList = xml.SelectNodes(xpath, namespaceManager);
-                }
+                XmlNodeList nodeList = xml.SelectNodes(xpath);
+                var result = nodeList.GetStringListOfUniqueXmlNodeContent();
+                return new HashSet<string>(result);
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager)
+        {
+            try
+            {
+                XmlNodeList nodeList = xml.SelectNodes(xpath, namespaceManager);
                 var result = nodeList.GetStringListOfUniqueXmlNodeContent();
                 return new HashSet<string>(result);
             }
@@ -162,22 +177,26 @@
             }
         }
 
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager = null)
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath)
         {
             try
             {
-                XmlNodeList nodeList = null;
-                if (namespaceManager == null)
-                {
-                    nodeList = xml.SelectNodes(xpath);
-                }
-                else
-                {
-                    nodeList = xml.SelectNodes(xpath, namespaceManager);
-                }
-
+                XmlNodeList nodeList = xml.SelectNodes(xpath);
                 var result = nodeList.GetStringListOfUniqueXmlNodes();
+                return new HashSet<string>(result);
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
+        public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath, XmlNamespaceManager namespaceManager)
+        {
+            try
+            {
+                XmlNodeList nodeList = xml.SelectNodes(xpath, namespaceManager);
+                var result = nodeList.GetStringListOfUniqueXmlNodes();
                 return new HashSet<string>(result);
             }
             catch
