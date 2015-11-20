@@ -84,57 +84,42 @@
                 {
                     this.ZooBankGenerateRegistrationXml();
                 }
-                ////else if (this.settings.QuentinSpecificActions)
-                ////{
-                ////    this.QuentinSpecific();
-                ////}
-                ////else if (this.settings.Flora)
-                ////{
-                ////    this.FloraSpecific();
-                ////}
                 else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
                 {
                     this.document.Xml = QueryReplace.Replace(this.settings.Config, this.document.Xml, this.settings.QueryFileName);
                 }
                 else
                 {
-                    // Initial format
                     if (this.settings.InitialFormat)
                     {
                         this.InitialFormat();
                     }
 
-                    // Parse reference's parts
                     if (this.settings.ParseReferences)
                     {
                         this.ParseReferences();
                     }
 
-                    // Tag DOI
                     if (this.settings.TagDoi)
                     {
                         this.TagDoi();
                     }
 
-                    // Tag web links
                     if (this.settings.TagWebLinks)
                     {
                         this.TagWebLinks();
                     }
 
-                    // Tag coordinates
                     if (this.settings.TagCoordinates)
                     {
                         this.TagCoordinates();
                     }
 
-                    // Parse coordinates
                     if (this.settings.ParseCoordinates)
                     {
                         this.ParseCoordinates();
                     }
 
-                    // Tag envo terms using the greek tagger
                     if (this.settings.TagEnvo)
                     {
                         this.TagEnvo();
@@ -146,19 +131,16 @@
                         this.TagEnvoTerms();
                     }
 
-                    // Tag quatities
                     if (this.settings.TagQuantities)
                     {
                         this.TagQuantities();
                     }
 
-                    // Tag dates
                     if (this.settings.TagDates)
                     {
                         this.TagDates();
                     }
 
-                    // Tag abbreviations
                     if (this.settings.TagAbbreviations)
                     {
                         this.TagAbbreviations();
@@ -344,61 +326,6 @@
             }
         }
 
-        ////private void FloraSpecific()
-        ////{
-        ////    try
-        ////    {
-        ////        var flp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractedTaxaListPath);
-        ////        var flpp = new TaxPubFileProcessor(this.settings.InputFileName, this.settings.Config.FloraExtractTaxaPartsOutputPath);
-        ////        var floraProcessor = new Flora(this.settings.Config, this.fileProcessor.Xml);
-
-        ////        floraProcessor.ExtractTaxa();
-        ////        floraProcessor.DistinctTaxa();
-        ////        floraProcessor.GenerateTagTemplate();
-
-        ////        flp.Xml = floraProcessor.Xml;
-        ////        flp.Write();
-
-        ////        floraProcessor.Xml = this.fileProcessor.Xml;
-        ////        if (this.settings.TaxaA)
-        ////        {
-        ////            floraProcessor.PerformReplace();
-        ////        }
-
-        ////        if (this.settings.TaxaB)
-        ////        {
-        ////            ////fl.TagHigherTaxa();
-        ////        }
-
-        ////        if (this.settings.TaxaC)
-        ////        {
-        ////            if (this.settings.Flag1)
-        ////            {
-        ////                floraProcessor.ParseInfra();
-        ////            }
-
-        ////            if (this.settings.Flag2)
-        ////            {
-        ////                floraProcessor.ParseTn();
-        ////            }
-
-        ////            if (this.settings.Flag3)
-        ////            {
-        ////                ////fl.SplitLowerTaxa();
-        ////            }
-        ////        }
-
-        ////        this.fileProcessor.Xml = floraProcessor.Xml;
-
-        ////        flpp.Xml = floraProcessor.ExtractTaxaParts();
-        ////        flpp.Write();
-        ////    }
-        ////    catch
-        ////    {
-        ////        throw;
-        ////    }
-        ////}
-
         private string FormatTreatments(string xmlContent)
         {
             Stopwatch timer = new Stopwatch();
@@ -497,7 +424,6 @@
                 xmlContent = this.TagTableFootnote(xmlContent);
             }
 
-            // Taxonomic part
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
                 this.blackList = new TaxonomicBlackList(this.settings.Config);
@@ -505,9 +431,6 @@
 
                 xmlContent = this.TagLowerTaxa(xmlContent);
                 xmlContent = this.TagHigherTaxa(xmlContent);
-
-                ////this.blackList.Clear();
-                ////this.whiteList.Clear();
             }
 
             xmlContent = this.ParseLowerTaxa(xmlContent);
@@ -518,35 +441,6 @@
                 xmlContent = this.ExpandTaxa(xmlContent);
             }
 
-            //// Flora-like tests
-            ////{
-            ////    FileProcessor testFp = new FileProcessor();
-            ////    testFp.Xml = Xml;
-
-            ////    testFp.OutputFileName = @"C:\temp\taxa-0.xml";
-            ////    testFp.Xml = Base.Taxonomy.Tagger.Tagger.ExtractTaxa(config, testFp.Xml);
-            ////    testFp.WriteXMLFile();
-
-            ////    //testFp.OutputFileName = @"C:\temp\taxa-1.xml";
-            ////    //testFp.Xml = Base.Taxonomy.Tagger.Tagger.DistinctTaxa(config, testFp.Xml);
-            ////    //testFp.WriteXMLFile();
-
-            ////    testFp.OutputFileName = @"C:\temp\taxa-2.xml";
-            ////    testFp.Xml = Base.Taxonomy.Tagger.Tagger.GenerateTagTemplate(config, testFp.Xml);
-            ////    testFp.WriteXMLFile();
-
-            ////    Base.Taxonomy.Tagger.Tagger tagger = new Base.Taxonomy.Tagger.Tagger();
-            ////    tagger.Config = config;
-            ////    tagger.Xml = Xml;
-            ////    tagger.PerformFloraReplace(testFp.Xml);
-
-            ////    testFp.OutputFileName = @"C:\temp\taxa-3-replaced.xml";
-            ////    testFp.Xml = tagger.Xml;
-            ////    testFp.WriteXMLFile();
-
-            ////}
-
-            // Extract taxa
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
             {
                 this.ExtractTaxa(xmlContent);
@@ -827,36 +721,6 @@
             this.logger?.Log(LogType.Info, "Elapsed time {0}.", timer.Elapsed);
         }
 
-        ////private void QuentinSpecific()
-        ////{
-        ////    try
-        ////    {
-        ////        var flora = new QuentinFlora(this.document.Xml);
-        ////        if (this.settings.FormatInit)
-        ////        {
-        ////            flora.InitialFormat();
-        ////        }
-        ////        else if (this.settings.Flag1)
-        ////        {
-        ////            flora.Split1();
-        ////        }
-        ////        else if (this.settings.Flag2)
-        ////        {
-        ////            flora.Split2();
-        ////        }
-        ////        else
-        ////        {
-        ////            flora.FinalFormat();
-        ////        }
-
-        ////        this.document.Xml = flora.Xml;
-        ////    }
-        ////    catch
-        ////    {
-        ////        throw;
-        ////    }
-        ////}
-
         private string RemoveAllTaxaTags(string xmlContent)
         {
             try
@@ -957,70 +821,13 @@
             {
                 var xpathProvider = new XPathProvider(this.settings.Config);
 
-                ////{
-                ////    Codes codes = new Codes(settings.Config, fp.Xml);
-                ////    codes.TagKnownSpecimenCodes(xpathProvider);
-                ////    fp.Xml = codes.Xml;
-                ////}
-
-                ////{
-                ////    IBaseTagger abbreviationsTagger = new AbbreviationsTagger(settings.Config, fp.Xml);
-                ////    abbreviationsTagger.Tag();
-                ////    fp.Xml = abbreviationsTagger.Xml;
-                ////}
-
-                ////{
-                ////    SpecimenCountTagger specimenCountTagger = new SpecimenCountTagger(settings.Config, fp.Xml);
-                ////    specimenCountTagger.TagSpecimenCount(xpathProvider);
-                ////    fp.Xml = specimenCountTagger.Xml;
-                ////}
-
-                ////{
-                ////    QuantitiesTagger quantitiesTagger = new QuantitiesTagger(settings.Config, fp.Xml);
-                ////    quantitiesTagger.TagQuantities(xpathProvider);
-                ////    quantitiesTagger.TagDeviation(xpathProvider);
-                ////    quantitiesTagger.TagAltitude(xpathProvider);
-                ////    fp.Xml = quantitiesTagger.Xml;
-                ////}
-
-                ////{
-                ////    DatesTagger datesTagger = new DatesTagger(settings.Config, fp.Xml);
-                ////    datesTagger.TagDates(xpathProvider);
-                ////    fp.Xml = datesTagger.Xml;
-                ////}
-
-                ////{
-                ////    settings.Config.EnvoResponseOutputXmlFileName = @"C:\temp\envo-out.xml";
-                ////    Envo envo = new Envo(settings.Config, fp.Xml);
-                ////    envo.Tag(xpathProvider);
-                ////    fp.Xml = envo.Xml;
-                ////}
-
-                DataProvider dataProvider = new DataProvider(this.settings.Config, this.document.Xml, this.logger);
-                ////{
-                ////    ProductsTagger products = new ProductsTagger(settings.Config, fp.Xml);
-                ////    products.TagProducts(xpathProvider, dataProvider);
-                ////    fp.Xml = products.Xml;
-                ////}
-
-                ////{
-                ////    GeoNamesTagger geonames = new GeoNamesTagger(settings.Config, fp.Xml);
-                ////    geonames.TagGeonames(xpathProvider, dataProvider);
-                ////    fp.Xml = geonames.Xml;
-                ////}
-
-                ////{
-                ////    MorphologyTagger morphology = new MorphologyTagger(settings.Config, fp.Xml);
-                ////    morphology.TagMorphology(xpathProvider, dataProvider);
-                ////    fp.Xml = morphology.Xml;
-                ////}
+                var dataProvider = new DataProvider(this.settings.Config, this.document.Xml, this.logger);
 
                 try
                 {
                     Codes codes = new Codes(this.settings.Config, this.document.Xml, this.logger);
                     codes.TagInstitutions(xpathProvider, dataProvider);
                     codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-                    ////codes.TagSpecimenCodes(xpathProvider);
 
                     this.document.Xml = codes.Xml;
                 }
@@ -1028,8 +835,6 @@
                 {
                     throw;
                 }
-
-                ////fp.XmlDocument.ClearTagsInWrongPositions();
             }
             catch (Exception e)
             {
