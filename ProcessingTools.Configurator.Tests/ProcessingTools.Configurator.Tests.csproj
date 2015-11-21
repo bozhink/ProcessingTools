@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{344310AE-C162-4159-AEC1-91821190546F}</ProjectGuid>
+    <ProjectGuid>{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.ServiceClient.Bio.Gbif</RootNamespace>
-    <AssemblyName>ProcessingTools.ServiceClient.Bio.Gbif</AssemblyName>
+    <RootNamespace>ProcessingTools.Configurator.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Configurator.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,20 +31,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.0.5797.27534, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GbifDataRequester.cs" />
-    <Compile Include="Models\Alternative.cs" />
-    <Compile Include="Models\GbifResult.cs" />
+    <Compile Include="ConfigTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>ProcessingTools.Infrastructure</Name>
+    <ProjectReference Include="..\ProcessingTools.Configurator\ProcessingTools.Configurator.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>ProcessingTools.Configurator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

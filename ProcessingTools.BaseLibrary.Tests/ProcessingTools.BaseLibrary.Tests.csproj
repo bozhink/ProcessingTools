@@ -93,11 +93,11 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>ProcessingTools.Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceClients\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj">
+    <ProjectReference Include="..\ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj">
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
       <Name>ProcessingTools.ServiceClient.Bio.Aphia</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingToolsConfig\ProcessingTools.Configurator.csproj">
+    <ProjectReference Include="..\ProcessingTools.Configurator\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>
     </ProjectReference>

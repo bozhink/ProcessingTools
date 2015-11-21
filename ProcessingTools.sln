@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Startup\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator", "ProcessingToolsConfig\ProcessingTools.Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator", "ProcessingTools.Configurator\ProcessingTools.Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.BaseLibrary.Tests", "ProcessingTools.BaseLibrary.Tests\ProcessingTools.BaseLibrary.Tests.csproj", "{7A938698-047F-42BB-88CC-0814093C8E16}"
 EndProject
@@ -20,7 +20,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EnvironmentsDatabase", "Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Startup\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator.Tests", "ProcessingToolsConfig.Tests\ProcessingTools.Configurator.Tests.csproj", "{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurator.Tests", "ProcessingTools.Configurator.Tests\ProcessingTools.Configurator.Tests.csproj", "{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Startup\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
 EndProject
@@ -34,17 +34,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Loggers", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions", "Infrastructure\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{59274696-0BC4-4ADE-86DE-7982FED75BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Aphia", "ServiceClients\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Aphia", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.Aphia\ProcessingTools.ServiceClient.Bio.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Gbif", "ServiceClients\ProcessingTools.ServiceClient.Bio.Gbif\ProcessingTools.ServiceClient.Bio.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.Gbif", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.Gbif\ProcessingTools.ServiceClient.Bio.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Infrastructure", "Infrastructure\ProcessingTools.Infrastructure\ProcessingTools.Infrastructure.csproj", "{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.CatalogueOfLife", "ServiceClients\ProcessingTools.ServiceClient.Bio.CatalogueOfLife\ProcessingTools.ServiceClient.Bio.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.CatalogueOfLife", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.CatalogueOfLife\ProcessingTools.ServiceClient.Bio.CatalogueOfLife.csproj", "{436A7881-3C88-4892-885D-29D487A42FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase", "ServiceClients\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase\ProcessingTools.ServiceClient.Bio.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.GlobalNamesResolver", "ServiceClients\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.GlobalNamesResolver", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver\ProcessingTools.ServiceClient.Bio.GlobalNamesResolver.csproj", "{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.ExtractHcmr", "ServiceClients\ProcessingTools.ServiceClient.ExtractHcmr\ProcessingTools.ServiceClient.ExtractHcmr.csproj", "{E78C97C4-837F-4C72-8751-970AA744D3A8}"
 EndProject
@@ -60,7 +60,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceClients", "ServiceCl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Startup", "Startup", "{2D346903-DBD6-46C9-A53B-A33E0C215BB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.ZooBank", "ServiceClients\ProcessingTools.ServiceClient.Bio.ZooBank\ProcessingTools.ServiceClient.Bio.ZooBank.csproj", "{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.ServiceClient.Bio.ZooBank", "ServiceClients\Bio\Taxonomy\ProcessingTools.ServiceClient.Bio.ZooBank\ProcessingTools.ServiceClient.Bio.ZooBank.csproj", "{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Extensions.Tests", "Infrastructure\ProcessingTools.Extensions.Tests\ProcessingTools.Extensions.Tests.csproj", "{8BD955F2-6208-4247-BE35-8F7581BE7B60}"
 EndProject
@@ -73,6 +73,10 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Biorepositories", "Data\Biorepositories\Biorepositories.sqlproj", "{1B1C4ECD-B7E9-4294-8D11-8AF4F9791751}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Bio.Taxonomy.ItisDatabase", "Data\ProcessingTools.Bio.Taxonomy.ItisDatabase\ProcessingTools.Bio.Taxonomy.ItisDatabase.csproj", "{9881B3BB-59D3-4201-99F6-E56F0FC74B0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bio", "Bio", "{02C683D2-1120-44A7-9A02-86CFB4F4A368}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Taxonomy", "Taxonomy", "{738CD586-FADE-493F-8D22-8CEA60337A3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -222,20 +226,22 @@ Global
 		{4C455D90-7433-4853-BC6E-4A726786D253} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{B6E6489B-65DF-4E51-B0F2-86CD7FECA313} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{59274696-0BC4-4ADE-86DE-7982FED75BBE} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{F364BD78-29DE-48BE-9098-B6AE0C468008} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{344310AE-C162-4159-AEC1-91821190546F} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{F364BD78-29DE-48BE-9098-B6AE0C468008} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
+		{344310AE-C162-4159-AEC1-91821190546F} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
 		{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{436A7881-3C88-4892-885D-29D487A42FA4} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{EF98BA2F-6469-4A5D-8B83-1636E98F3E48} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{436A7881-3C88-4892-885D-29D487A42FA4} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
+		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
+		{EF98BA2F-6469-4A5D-8B83-1636E98F3E48} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
 		{E78C97C4-837F-4C72-8751-970AA744D3A8} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1} = {738CD586-FADE-493F-8D22-8CEA60337A3C}
 		{8BD955F2-6208-4247-BE35-8F7581BE7B60} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{51059C8A-E656-4752-BB8D-DCEE0CA4695D} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{D8E1383B-937C-4B1E-B9C8-0448C8694D75} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{1B1C4ECD-B7E9-4294-8D11-8AF4F9791751} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{9881B3BB-59D3-4201-99F6-E56F0FC74B0D} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{02C683D2-1120-44A7-9A02-86CFB4F4A368} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{738CD586-FADE-493F-8D22-8CEA60337A3C} = {02C683D2-1120-44A7-9A02-86CFB4F4A368}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
