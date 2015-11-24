@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class CsvObject
     {
+        private Queue<IList<string>> rows;
+
         public CsvObject(
             char fieldTerminator = ',',
             char rowTerminator = '\n',
@@ -17,28 +20,28 @@
             this.FieldTerminator = fieldTerminator;
             this.RowTerminator = rowTerminator;
             this.FirstRow = firstRow;
+            this.SingleCharEscapeSymbol = singleCharEscapeSymbol;
             this.TerminatorEscapeLeftWrapSymbol = terminatorEscapeLeftWrapSymbol;
             this.TerminatorEscapeRightWrapSymbol = terminatorEscapeRightWrapSymbol;
+
+            this.rows = new Queue<IList<string>>();
         }
 
-        public char FieldTerminator { get; private set; }
+        public char FieldTerminator { get; set; }
 
-        public char RowTerminator { get; private set; }
+        public char RowTerminator { get; set; }
 
-        public int FirstRow { get; private set; }
+        public int FirstRow { get; set; }
 
-        public char SingleCharEscapeSymbol { get; private set; }
+        public char SingleCharEscapeSymbol { get; set; }
 
-        public char TerminatorEscapeLeftWrapSymbol { get; private set; }
+        public char TerminatorEscapeLeftWrapSymbol { get; set; }
 
-        public char TerminatorEscapeRightWrapSymbol { get; private set; }
+        public char TerminatorEscapeRightWrapSymbol { get; set; }
 
-        // TODO
-        public Queue<Queue<string>> Deserialize(string text)
+        public IList<IList<string>> ParseToTable(string text)
         {
             char[] textChars = text.ToCharArray();
-
-            Queue<Queue<string>> rows = new Queue<Queue<string>>();
 
             Queue<string> fields = new Queue<string>();
             StringBuilder stringBuilder = new StringBuilder();
@@ -49,8 +52,8 @@
                 char ch = textChars[i];
                 if (ch == this.SingleCharEscapeSymbol)
                 {
-                    stringBuilder.Append(ch);
-
+                    // Do not include the escape char in output
+                    // stringBuilder.Append(ch);
                     if (!(i < len - 1))
                     {
                         throw new ApplicationException("Invalid escape of last character of the text.");
@@ -60,13 +63,14 @@
                 }
                 else if (ch == this.TerminatorEscapeLeftWrapSymbol && ch == this.TerminatorEscapeRightWrapSymbol)
                 {
-                    // Equal TerminatorEscapeLeftWrapSymbol and TerminatorEscapeRightWrapSymbol
-                    stringBuilder.Append(ch);
+                    // Do not include the escape char in output
+                    // stringBuilder.Append(ch);
                     escapeState = !escapeState;
                 }
                 else if (ch == this.TerminatorEscapeLeftWrapSymbol)
                 {
-                    stringBuilder.Append(ch);
+                    // Do not include the escape char in output
+                    // stringBuilder.Append(ch);
                     if (!escapeState)
                     {
                         escapeState = true;
@@ -74,7 +78,8 @@
                 }
                 else if (ch == this.TerminatorEscapeRightWrapSymbol)
                 {
-                    stringBuilder.Append(ch);
+                    // Do not include the escape char in output
+                    // stringBuilder.Append(ch);
                     if (escapeState)
                     {
                         escapeState = false;
@@ -104,8 +109,8 @@
                         fields.Enqueue(stringBuilder.ToString());
                         stringBuilder.Clear();
 
-                        rows.Enqueue(fields);
-                        fields.Clear();
+                        this.rows.Enqueue(fields.ToList());
+                        fields = new Queue<string>();
                     }
                 }
                 else
@@ -117,10 +122,9 @@
             fields.Enqueue(stringBuilder.ToString());
             stringBuilder.Clear();
 
-            rows.Enqueue(fields);
-            fields.Clear();
+            this.rows.Enqueue(fields.ToList());
 
-            return rows;
+            return this.rows.ToList();
         }
     }
 }
