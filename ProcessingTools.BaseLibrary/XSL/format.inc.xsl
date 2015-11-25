@@ -20,7 +20,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="tn//tn | tp:taxon-name//tn | a//tn | ext-link//tn | *[@object_id='82']//tn | *[@id='41']//tn | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tn | xref//tn | tn//xref | tn//abbrev | tp:taxon-name//abbrev | xref//abbrev | aff/abbrev">
+  <xsl:template match="tn//tn | tp:taxon-name//tn | a//tn | ext-link//tn | *[@object_id='82']//tn | *[@id='41']//tn | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tn | xref//tn | tn//xref | tn//abbrev | tp:taxon-name//abbrev | xref//abbrev | aff/abbrev | institution//abbrev | source//abbrev">
     <xsl:apply-templates />
   </xsl:template>
 

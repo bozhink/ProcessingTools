@@ -23,6 +23,7 @@ Fruit
 Seed
 Lamellae
 Stipe
+Aculeus
 Basidiospores
 Basidia
 Pleurocystidia

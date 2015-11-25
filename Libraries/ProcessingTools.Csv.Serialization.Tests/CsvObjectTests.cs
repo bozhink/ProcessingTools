@@ -76,7 +76,7 @@
         [TestMethod]
         public void CsvObject_ShouldDeserializeCsvTextWithEscapedRange()
         {
-            const string CsvText = "Name,Year,Description\n\"Smith, John\",2015,\"No\n desription\" here";
+            const string CsvText = "Name,Year,Description\n\"Smith, \\\"John\\\"\",2015,\"No\n desription\" here";
 
             var csv = new CsvObject();
             var result = csv.ParseToTable(CsvText);
@@ -89,7 +89,7 @@
             Assert.AreEqual("Year", result[0][1], "[0][1]");
             Assert.AreEqual("Description", result[0][2], "[0][2]");
 
-            Assert.AreEqual("Smith, John", result[1][0], "[1][0]");
+            Assert.AreEqual("Smith, \"John\"", result[1][0], "[1][0]");
             Assert.AreEqual("2015", result[1][1], "[1][1]");
             Assert.AreEqual("No\n desription here", result[1][2], "[1][2]");
         }
