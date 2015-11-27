@@ -375,7 +375,7 @@
 
         private void PrintHelp()
         {
-            this.logger?.Log(Messages.Messages.HelpMessage);
+            this.logger?.Log(Messages.HelpMessage);
             Environment.Exit(1);
         }
     }

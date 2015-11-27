@@ -6,7 +6,7 @@
     using System.Xml;
     using Contracts;
 
-    public class FileProcessor
+    public class XmlFileProcessor
     {
         private string inputFileName;
         private string outputFileName;
@@ -15,32 +15,32 @@
 
         private XmlReaderSettings readerSettings;
 
-        public FileProcessor()
+        public XmlFileProcessor()
             : this(null, null, null)
         {
         }
 
-        public FileProcessor(ILogger logger)
+        public XmlFileProcessor(ILogger logger)
             : this(null, null, logger)
         {
         }
 
-        public FileProcessor(string inputFileName)
+        public XmlFileProcessor(string inputFileName)
             : this(inputFileName, null, null)
         {
         }
 
-        public FileProcessor(string inputFileName, ILogger logger)
+        public XmlFileProcessor(string inputFileName, ILogger logger)
             : this(inputFileName, null, logger)
         {
         }
 
-        public FileProcessor(string inputFileName, string outputFileName)
+        public XmlFileProcessor(string inputFileName, string outputFileName)
             : this(inputFileName, outputFileName, null)
         {
         }
 
-        public FileProcessor(string inputFileName, string outputFileName, ILogger logger)
+        public XmlFileProcessor(string inputFileName, string outputFileName, ILogger logger)
             : base()
         {
             this.logger = logger;

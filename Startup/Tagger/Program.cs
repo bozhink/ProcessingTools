@@ -23,7 +23,7 @@
 
                 var singleFileProcessor = new SingleFileProcessor(settings, logger);
 
-                singleFileProcessor.Run().Wait();
+                singleFileProcessor.RunAsync().Wait();
             }
             catch (Exception e)
             {

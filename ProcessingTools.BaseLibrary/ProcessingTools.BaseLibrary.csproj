@@ -76,6 +76,7 @@
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
     <Compile Include="src\Format\Format.NlmSystem.cs" />
+    <Compile Include="src\References\ReferencesParser.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
@@ -148,7 +149,7 @@
     <Compile Include="src\Quantities\QuantitiesTagger.cs" />
     <Compile Include="src\Special\QuentinFlora.cs" />
     <Compile Include="src\Base\QueryReplace.cs" />
-    <Compile Include="src\References\References.cs" />
+    <Compile Include="src\References\ReferencesTagger.cs" />
     <Compile Include="src\SpecimentCount\SpecimenCountTagger.cs" />
     <Compile Include="src\Base\TagContent.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.cs" />

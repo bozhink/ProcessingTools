@@ -73,16 +73,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages\Messages.Designer.cs">
+    <Compile Include="FileProcessor.cs" />
+    <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\ProgramSettingsBuilder.cs" />
+    <Compile Include="ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Program.cs" />
-    <Compile Include="src\ProgramSettings.cs" />
-    <Compile Include="src\SingleFileProcessor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramSettings.cs" />
+    <Compile Include="SingleFileProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -171,10 +172,47 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Messages\HelpMessage.txt" />
+    <Content Include="MessageTexts\CloneZooBankJsonMessage.txt" />
+    <Content Include="MessageTexts\CloneZooBankXmlMessage.txt" />
+    <Content Include="MessageTexts\ExpandTaxa.txt" />
+    <Content Include="MessageTexts\ExtractAllTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractHigherTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractLowerTaxaMessage.txt" />
+    <Content Include="MessageTexts\FormatTreatmentsMessage.txt" />
+    <Content Include="MessageTexts\GenerateRegistrationXmlForZooBankMessage.txt" />
+    <Content Include="MessageTexts\HelpMessage.txt" />
+    <Content Include="MessageTexts\InitialFormatMessage.txt" />
+    <Content Include="MessageTexts\ParseCoordinatesMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaAboveGenusMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaBySuffixMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaWithAphiaMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaWithCoLMessage.txt" />
+    <Content Include="MessageTexts\ParseHigherTaxaWithGbifMessage.txt" />
+    <Content Include="MessageTexts\ParseLowerTaxaMessage.txt" />
+    <Content Include="MessageTexts\ParseReferencesMessage.txt" />
+    <Content Include="MessageTexts\ParseTreatmentMetaWithAphiaMessage.txt" />
+    <Content Include="MessageTexts\ParseTreatmentMetaWithCoLMessage.txt" />
+    <Content Include="MessageTexts\ParseTreatmentMetaWithGbifMessage.txt" />
+    <Content Include="MessageTexts\TagAbbreviationsMessage.txt" />
+    <Content Include="MessageTexts\TagCodesMessage.txt" />
+    <Content Include="MessageTexts\TagCoordinatesMessage.txt" />
+    <Content Include="MessageTexts\TagDatesMessage.txt" />
+    <Content Include="MessageTexts\TagDoiMessage.txt" />
+    <Content Include="MessageTexts\TagEnvironmentsMessage.txt" />
+    <Content Include="MessageTexts\TagEnvoTermsMessage.txt" />
+    <Content Include="MessageTexts\TagFloatsMessage.txt" />
+    <Content Include="MessageTexts\TagHigherTaxaMessage.txt" />
+    <Content Include="MessageTexts\TagLowerTaxaMessage.txt" />
+    <Content Include="MessageTexts\TagQuantitiesMessage.txt" />
+    <Content Include="MessageTexts\TagReferencesMessage.txt" />
+    <Content Include="MessageTexts\TagTableFootNotesMessage.txt" />
+    <Content Include="MessageTexts\TagWebLinksMessage.txt" />
+    <Content Include="MessageTexts\ValidateTaxaUsingGnrMessage.txt" />
+    <Content Include="MessageTexts\WriteOutputFileMessage.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Messages\Messages.resx">
+    <EmbeddedResource Include="Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>

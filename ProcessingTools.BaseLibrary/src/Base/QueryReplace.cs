@@ -20,7 +20,7 @@
             // TODO: remove this dependency
             var queryDocument = new TaxPubDocument();
 
-            var queryFileProcessor = new FileProcessor(queryFileName);
+            var queryFileProcessor = new XmlFileProcessor(queryFileName);
             queryFileProcessor.Read(queryDocument);
 
             var queryXml = queryDocument.XmlDocument;

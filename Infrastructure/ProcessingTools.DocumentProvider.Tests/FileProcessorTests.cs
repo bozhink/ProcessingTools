@@ -9,7 +9,7 @@
         [TestMethod]
         public void FileProcessor_TestMethod1()
         {
-            var fileProcessor = new FileProcessor();
+            var fileProcessor = new XmlFileProcessor();
             Console.WriteLine(Environment.GetEnvironmentVariable("TEMP"));
         }
     }
