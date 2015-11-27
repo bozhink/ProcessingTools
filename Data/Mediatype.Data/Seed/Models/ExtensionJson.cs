@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MimeResolver.Models.Json
+﻿namespace ProcessingTools.Mediatype.Data.Seed.Models
 {
     using Newtonsoft.Json;
 
@@ -12,5 +12,8 @@
 
         [JsonProperty("mimeSubtype")]
         public string MimeSubtype { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
     }
 }

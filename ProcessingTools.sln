@@ -24,8 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Configurato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Startup\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.MimeResolver", "ProcessingTools.MimeResolver\ProcessingTools.MimeResolver.csproj", "{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Startup\Runner\Runner.csproj", "{82B3B741-4695-4710-84BF-9DA456FBE01F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts", "Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
@@ -84,6 +82,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Csv.Seriali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Csv.Serialization.Tests", "Libraries\ProcessingTools.Csv.Serialization.Tests\ProcessingTools.Csv.Serialization.Tests.csproj", "{67F9043B-2B46-4CD2-A7EE-342C1A72C653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data", "Data\Mediatype.Data\Mediatype.Data.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data.Models", "Data\Mediatype.Data.Models\Mediatype.Data.Models.csproj", "{A2883F8F-8408-46CB-9CD9-F56A3452544A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,10 +132,6 @@ Global
 		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337C1A6C-C0A7-4C44-938E-35D87757EF7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D390F8F-47FF-44E9-BFA9-F8CAD3E10045}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82B3B741-4695-4710-84BF-9DA456FBE01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82B3B741-4695-4710-84BF-9DA456FBE01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82B3B741-4695-4710-84BF-9DA456FBE01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -226,6 +224,14 @@ Global
 		{67F9043B-2B46-4CD2-A7EE-342C1A72C653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F9043B-2B46-4CD2-A7EE-342C1A72C653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F9043B-2B46-4CD2-A7EE-342C1A72C653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5796C109-8D2E-4CA9-962C-FC1D5263A57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5796C109-8D2E-4CA9-962C-FC1D5263A57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5796C109-8D2E-4CA9-962C-FC1D5263A57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5796C109-8D2E-4CA9-962C-FC1D5263A57C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -258,6 +264,8 @@ Global
 		{738CD586-FADE-493F-8D22-8CEA60337A3C} = {02C683D2-1120-44A7-9A02-86CFB4F4A368}
 		{697330C6-A916-4442-875A-EF46C6B1CE1A} = {ACA18A73-7650-47C2-A581-FCDB652F4AAA}
 		{67F9043B-2B46-4CD2-A7EE-342C1A72C653} = {ACA18A73-7650-47C2-A581-FCDB652F4AAA}
+		{5796C109-8D2E-4CA9-962C-FC1D5263A57C} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{A2883F8F-8408-46CB-9CD9-F56A3452544A} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

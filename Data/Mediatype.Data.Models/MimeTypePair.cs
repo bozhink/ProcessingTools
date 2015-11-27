@@ -1,6 +1,7 @@
-﻿namespace ProcessingTools.MimeResolver.Models.Database
+﻿namespace ProcessingTools.Mediatype.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class MimeTypePair
     {
@@ -11,7 +12,16 @@
             this.fileExtensions = new HashSet<FileExtension>();
         }
 
+        [Key]
         public int Id { get; set; }
+
+        public virtual int MimeTypeId { get; set; }
+
+        public virtual MimeType MimeType { get; set; }
+
+        public virtual int MimeSubtypeId { get; set; }
+
+        public virtual MimeSubtype MimeSubtype { get; set; }
 
         public virtual ICollection<FileExtension> FileExtensions
         {

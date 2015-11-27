@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.MimeResolver.Context
+﻿namespace ProcessingTools.Mediatype.Data
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-    using Models.Database;
+    using Models;
 
-    public class MimeTypesDbContext : DbContext
+    public class MediatypesDbContext : DbContext
     {
-        public MimeTypesDbContext()
+        public MediatypesDbContext()
             : base("MimeDbContext")
         {
         }

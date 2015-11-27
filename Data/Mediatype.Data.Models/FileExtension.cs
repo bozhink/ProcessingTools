@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MimeResolver.Models.Database
+﻿namespace ProcessingTools.Mediatype.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

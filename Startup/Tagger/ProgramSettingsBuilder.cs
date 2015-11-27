@@ -54,7 +54,7 @@
         {
             try
             {
-                AppSettingsReader appConfigReader = new AppSettingsReader();
+                var appConfigReader = new AppSettingsReader();
                 string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
 
                 this.Settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);

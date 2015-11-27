@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.MimeResolver.Models.Database
+﻿namespace ProcessingTools.Mediatype.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class MimeType
+    public class MimeSubtype
     {
         private ICollection<MimeTypePair> mimeTypePairs;
 
-        public MimeType()
+        public MimeSubtype()
         {
             this.mimeTypePairs = new HashSet<MimeTypePair>();
         }
@@ -18,7 +18,7 @@
 
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(30)]
+        [MaxLength(150)]
         public string Name { get; set; }
 
         public virtual ICollection<MimeTypePair> MimeTypePairs

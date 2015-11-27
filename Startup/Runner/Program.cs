@@ -6,23 +6,27 @@
     using System.IO;
     using System.Linq;
     using Newtonsoft.Json;
-    using ProcessingTools.MimeResolver.Context;
-    using ProcessingTools.MimeResolver.Migrations;
-    using ProcessingTools.MimeResolver.Models.Json;
+    using ProcessingTools.Mediatype.Data.Seed.Models;
+    using ProcessingTools.Mediatype.Data;
+    using ProcessingTools.Mediatype.Data.Migrations;
+    using System.Configuration;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            string jsonFilePath = "Data/mime.json";
+            var appConfigReader = new AppSettingsReader();
+
+            string jsonFilePath = appConfigReader.GetValue("MediatypeDataJsonFilePath", typeof(string)).ToString();
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var json = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MimeTypesDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediatypesDbContext, Configuration>());
 
-            var db = new MimeTypesDbContext();
+            var db = new MediatypesDbContext();
             db.Database.CreateIfNotExists();
+            db.Database.Initialize(true);
 
             var fileExtensionsInDb = new HashSet<string>(db.FileExtensions
                 .Select(e => e.Name)
