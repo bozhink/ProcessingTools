@@ -86,6 +86,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data", "Data\Medi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data.Models", "Data\Mediatype.Data.Models\Mediatype.Data.Models.csproj", "{A2883F8F-8408-46CB-9CD9-F56A3452544A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -232,6 +234,10 @@ Global
 		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2883F8F-8408-46CB-9CD9-F56A3452544A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE48EB2-2387-4D85-A78C-773A300881D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE48EB2-2387-4D85-A78C-773A300881D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE48EB2-2387-4D85-A78C-773A300881D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE48EB2-2387-4D85-A78C-773A300881D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -266,6 +272,7 @@ Global
 		{67F9043B-2B46-4CD2-A7EE-342C1A72C653} = {ACA18A73-7650-47C2-A581-FCDB652F4AAA}
 		{5796C109-8D2E-4CA9-962C-FC1D5263A57C} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{A2883F8F-8408-46CB-9CD9-F56A3452544A} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{8DE48EB2-2387-4D85-A78C-773A300881D5} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

@@ -1,12 +1,23 @@
 ﻿namespace ProcessingTools.Csv.Serialization.Tests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.ComponentModel;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class CsvObjectTests
     {
+        public static T Convert<T>(string input)
+        {
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            if (converter == null)
+            {
+                return default(T);
+            }
+
+            return (T)converter.ConvertFromString(input);
+        }
+
         [TestMethod]
         public void CsvObject_WithEmptyConstuctor_ShouldCreateValidObject()
         {
@@ -92,17 +103,6 @@
             Assert.AreEqual("Smith, \"John\"", result[1][0], "[1][0]");
             Assert.AreEqual("2015", result[1][1], "[1][1]");
             Assert.AreEqual("No\n desription here", result[1][2], "[1][2]");
-        }
-
-        public static T Convert<T>(string input)
-        {
-            var converter = TypeDescriptor.GetConverter(typeof(T));
-            if (converter == null)
-            {
-                return default(T);
-            }
-
-            return (T)converter.ConvertFromString(input);
         }
 
         [TestMethod]

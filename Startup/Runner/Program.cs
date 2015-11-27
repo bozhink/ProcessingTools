@@ -2,14 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Data.Entity;
     using System.IO;
     using System.Linq;
     using Newtonsoft.Json;
-    using ProcessingTools.Mediatype.Data.Seed.Models;
     using ProcessingTools.Mediatype.Data;
     using ProcessingTools.Mediatype.Data.Migrations;
-    using System.Configuration;
+    using ProcessingTools.Mediatype.Data.Seed.Models;
 
     public class Program
     {

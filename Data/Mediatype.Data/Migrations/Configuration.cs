@@ -1,15 +1,15 @@
 namespace ProcessingTools.Mediatype.Data.Migrations
 {
-    using System.Data.Entity.Migrations;
-    using Data;
+    using System;
+    using System.Collections.Generic;
     using System.Configuration;
+    using System.Data.Entity.Migrations;
     using System.IO;
+    using System.Linq;
+    using Data;
+    using Models;
     using Newtonsoft.Json;
     using Seed.Models;
-    using System;
-    using System.Linq;
-    using Models;
-    using System.Collections.Generic;
 
     public sealed class Configuration : DbMigrationsConfiguration<MediatypesDbContext>
     {
@@ -21,19 +21,6 @@ namespace ProcessingTools.Mediatype.Data.Migrations
 
         protected override void Seed(MediatypesDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
             var appConfigReader = new AppSettingsReader();
 
             string jsonFilePath = appConfigReader.GetValue("MediatypeDataJsonFilePath", typeof(string)).ToString();

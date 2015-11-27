@@ -744,11 +744,13 @@
 
         private void WriteOutputFile()
         {
-            this.InvokeProcessor(Messages.WriteOutputFileMessage, () =>
-            {
-                this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
-                this.fileProcessor.Write(this.document);
-            });
+            this.InvokeProcessor(
+                Messages.WriteOutputFileMessage,
+                () =>
+                {
+                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
+                    this.fileProcessor.Write(this.document);
+                });
         }
 
         private void ZooBankCloneJson()
