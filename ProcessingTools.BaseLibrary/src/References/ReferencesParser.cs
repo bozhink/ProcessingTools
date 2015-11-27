@@ -5,7 +5,7 @@
     using System.Xml;
 
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
 
     public class ReferencesParser : TaggerBase, IBaseParser
     {

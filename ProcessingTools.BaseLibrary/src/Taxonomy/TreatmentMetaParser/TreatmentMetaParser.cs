@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
 
     public abstract class TreatmentMetaParser : TaggerBase, IBaseParser
     {

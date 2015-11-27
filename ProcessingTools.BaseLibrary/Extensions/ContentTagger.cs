@@ -5,7 +5,7 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Contracts;
+    using Contracts.Log;
     using DocumentProvider;
 
     public static class ContentTagger

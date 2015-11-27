@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using ServiceClient.Bio.GlobalNamesResolver;
 
     public class TaxonomicNamesValidator : Base, IBaseValidator

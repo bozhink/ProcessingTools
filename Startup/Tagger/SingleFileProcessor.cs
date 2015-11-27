@@ -15,7 +15,7 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
-    using Contracts;
+    using Contracts.Log;
     using DocumentProvider;
     using Extensions;
 

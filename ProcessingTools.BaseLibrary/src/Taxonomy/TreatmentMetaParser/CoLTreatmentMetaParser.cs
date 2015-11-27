@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using ServiceClient.Bio.CatalogueOfLife;
 
     public class CoLTreatmentMetaParser : TreatmentMetaParser

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Diagnostics;
-    using Contracts;
+    using Contracts.Log;
     using Loggers;
 
     public class Program

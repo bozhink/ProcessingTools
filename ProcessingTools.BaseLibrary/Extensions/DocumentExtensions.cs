@@ -6,8 +6,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Contracts;
-    using Extensions;
+    using Contracts.Log;
 
     public static class DocumentExtensions
     {

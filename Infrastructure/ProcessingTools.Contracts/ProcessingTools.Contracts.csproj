@@ -42,13 +42,13 @@
     <Compile Include="IFormatter.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IInternalResultBag.cs" />
-    <Compile Include="ILogger.cs" />
+    <Compile Include="Log\ILogger.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IStringDataList.cs" />
     <Compile Include="ITagger.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="IXPathProvider.cs" />
-    <Compile Include="LogType.cs" />
+    <Compile Include="Log\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

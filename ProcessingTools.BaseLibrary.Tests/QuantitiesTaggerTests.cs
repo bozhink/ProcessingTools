@@ -3,7 +3,7 @@
     using System;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using DocumentProvider;
     using Loggers;
     using Measurements;

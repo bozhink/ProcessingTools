@@ -2,6 +2,7 @@
 {
     using Configurator;
     using Contracts;
+    using Contracts.Log;
     using Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Taxonomy;

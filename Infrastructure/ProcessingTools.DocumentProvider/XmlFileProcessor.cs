@@ -5,6 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Contracts;
+    using Contracts.Log;
 
     public class XmlFileProcessor
     {

@@ -6,7 +6,7 @@
     using System.Xml.Linq;
 
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using Extensions;
 
     public class ReferencesTagger : TaggerBase, IBaseTagger

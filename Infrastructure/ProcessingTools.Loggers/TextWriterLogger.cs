@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO;
-    using Contracts;
+    using Contracts.Log;
     using Infrastructure.Diagnostics;
 
     public class TextWriterLogger : ILogger

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ServiceClient.Bio.Aphia;

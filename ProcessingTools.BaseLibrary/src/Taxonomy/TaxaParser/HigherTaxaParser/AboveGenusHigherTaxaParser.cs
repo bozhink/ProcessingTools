@@ -2,7 +2,7 @@
 {
     using System;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
 
     public class AboveGenusHigherTaxaParser : HigherTaxaParser
     {

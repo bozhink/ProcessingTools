@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using Extensions;
 
     public class CoordinatesTagger : TaggerBase, IBaseTagger

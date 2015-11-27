@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
-    using Contracts;
+    using Contracts.Log;
     using Infrastructure.Serialization.Json;
     using ServiceClient.Bio.ZooBank.Models.Json;
 

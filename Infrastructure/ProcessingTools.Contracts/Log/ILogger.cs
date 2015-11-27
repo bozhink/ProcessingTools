@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts
+﻿namespace ProcessingTools.Contracts.Log
 {
     using System;
 

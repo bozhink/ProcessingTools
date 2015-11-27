@@ -2,7 +2,7 @@
 {
     using System;
     using System.Text.RegularExpressions;
-    using Contracts;
+    using Contracts.Log;
     using Extensions;
 
     public class CoordinatePart

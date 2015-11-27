@@ -12,6 +12,7 @@ namespace ProcessingTools.BaseLibrary
     using System.Text.RegularExpressions;
     using Configurator;
     using Contracts;
+    using Contracts.Log;
     using Extensions;
 
     public class SpecimenCountTagger : TaggerBase

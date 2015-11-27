@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using DocumentProvider;
     using Extensions;
     using Taxonomy;

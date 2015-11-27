@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Configurator;
-    using Contracts;
+    using Contracts.Log;
     using ServiceClient.Bio.Gbif;
 
     public class GbifTreatmentMetaParser : TreatmentMetaParser
