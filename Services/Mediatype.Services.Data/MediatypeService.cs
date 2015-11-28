@@ -15,7 +15,7 @@
             this.fileExtensions = fileExtensions;
         }
 
-        public MediatypeDataServiceResponseModel GetMediatype(string fileExtension)
+        public IQueryable<MediatypeDataServiceResponseModel> GetMediatype(string fileExtension)
         {
             var extension = this.fileExtensions.All()
                 .FirstOrDefault(e => e.Name == fileExtension);
@@ -25,19 +25,20 @@
                 return null;
             }
 
-            var pair = extension.MimeTypePairs.FirstOrDefault();
+            var pairs = extension.MimeTypePairs.AsQueryable();
 
-            if (pair == null)
+            if (pairs == null)
             {
                 return null;
             }
 
-            return new MediatypeDataServiceResponseModel
-            {
-                FileExtension = extension.Name,
-                MimeType = pair.MimeType.Name,
-                MimeSubtype = pair.MimeSubtype.Name
-            };
+            return pairs
+                .Select(p => new MediatypeDataServiceResponseModel
+                {
+                    FileExtension = extension.Name,
+                    MimeType = p.MimeType.Name,
+                    MimeSubtype = p.MimeSubtype.Name
+                });
         }
     }
 }

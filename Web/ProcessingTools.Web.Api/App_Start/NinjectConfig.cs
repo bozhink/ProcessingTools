@@ -6,20 +6,19 @@
     using Common.Constants;
     using Common.Providers;
     using Common.Providers.Contracts;
+    using Data.Common.Contracts;
     using Data.Common.Repositories;
+    using Mediatype.Data;
 
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
-    using Mediatype.Services.Data.Contracts;
-    using Mediatype.Services.Data;
-    using Data.Common.Contracts;
-    using Mediatype.Data;
 
     public static class NinjectConfig
     {
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
+            // TODO Important!
             kernel.Bind<IDbContext>().To<MediatypesDbContext>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
             kernel.Bind<IRandomProvider>().To<RandomProvider>();

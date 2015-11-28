@@ -17,6 +17,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;
+            this.ContextKey = "ProcessingTools.Mediatype.Data.MediatypesDbContext";
         }
 
         protected override void Seed(MediatypesDbContext context)

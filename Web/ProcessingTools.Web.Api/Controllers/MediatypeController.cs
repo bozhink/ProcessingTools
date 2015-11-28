@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Mediatype.Services.Data.Contracts;
-    using Mediatype.Services.Data;
+    using System.Linq;
     using System.Web.Http;
-    using Data.Common.Repositories;
-    using Mediatype.Data.Models;
-    using Mediatype.Data;
+    using AutoMapper.QueryableExtensions;
+    using Mediatype.Services.Data.Contracts;
+    using Models.MediatypeModels;
 
     public class MediatypeController : ApiController
     {
@@ -19,7 +18,10 @@
         [Route("api/Mediatype/{extension}")]
         public IHttpActionResult Get(string extension)
         {
-            var result = this.mediatypeService.GetMediatype(extension);
+            var result = this.mediatypeService
+                ?.GetMediatype(extension)
+                ?.ProjectTo<MediatypeResponseModel>()
+                .ToList();
 
             if (result == null)
             {

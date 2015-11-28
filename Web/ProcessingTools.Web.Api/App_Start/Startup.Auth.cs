@@ -6,7 +6,7 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using Owin;
-    using ProcessingTools.Web.Api.Models;
+    using ProcessingTools.Api.Data;
     using ProcessingTools.Web.Api.Providers;
 
     public partial class Startup

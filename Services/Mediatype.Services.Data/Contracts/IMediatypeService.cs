@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Mediatype.Services.Data.Contracts
 {
+    using System.Linq;
     using Models;
 
     public interface IMediatypeService
     {
-        MediatypeDataServiceResponseModel GetMediatype(string fileExtension);
+        IQueryable<MediatypeDataServiceResponseModel> GetMediatype(string fileExtension);
     }
 }

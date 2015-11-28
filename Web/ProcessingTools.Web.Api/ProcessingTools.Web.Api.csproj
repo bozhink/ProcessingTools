@@ -252,9 +252,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\AccountBindingModels\AddExternalLoginBindingModel.cs" />
+    <Compile Include="Models\AccountBindingModels\ChangePasswordBindingModel.cs" />
+    <Compile Include="Models\AccountBindingModels\RegisterBindingModel.cs" />
+    <Compile Include="Models\AccountBindingModels\RegisterExternalBindingModel.cs" />
+    <Compile Include="Models\AccountBindingModels\RemoveLoginBindingModel.cs" />
+    <Compile Include="Models\AccountBindingModels\SetPasswordBindingModel.cs" />
+    <Compile Include="Models\AccountViewModels\ExternalLoginViewModel.cs" />
+    <Compile Include="Models\AccountViewModels\ManageInfoViewModel.cs" />
+    <Compile Include="Models\AccountViewModels\UserInfoViewModel.cs" />
+    <Compile Include="Models\AccountViewModels\UserLoginInfoViewModel.cs" />
+    <Compile Include="Models\MediatypeModels\MediatypeResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -335,6 +343,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Api.Data.Models\Api.Data.Models.csproj">
+      <Project>{92663249-09de-479f-bca8-fe1cf87decd5}</Project>
+      <Name>Api.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
+      <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
+      <Name>Api.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
