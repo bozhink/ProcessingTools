@@ -40,6 +40,7 @@
             this.ParseHigherWithAphia = false;
             this.ParseHigherWithCoL = false;
             this.ParseHigherWithGbif = false;
+            this.ResolveMediaTypes = false;
             this.TagAbbreviations = false;
             this.TagCodes = false;
             this.TagCoordinates = false;
@@ -128,6 +129,8 @@
         public bool ParseHigherWithCoL { get; set; }
 
         public bool ParseHigherWithGbif { get; set; }
+
+        public bool ResolveMediaTypes { get; set; }
 
         public bool TagAbbreviations { get; set; }
 

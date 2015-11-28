@@ -7,8 +7,8 @@
     <ProjectGuid>{5796C109-8D2E-4CA9-962C-FC1D5263A57C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Mediatype.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.Mediatype.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.MediaType.Data</RootNamespace>
+    <AssemblyName>ProcessingTools.MediaType.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -74,9 +74,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mediatype.Data.Models\Mediatype.Data.Models.csproj">
+    <ProjectReference Include="..\Mediatype.Data.Models\MediaType.Data.Models.csproj">
       <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>Mediatype.Data.Models</Name>
+      <Name>MediaType.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,25 +3,22 @@
     using System.Linq;
     using System.Web.Http;
     using AutoMapper.QueryableExtensions;
-    using Mediatype.Services.Data.Contracts;
-    using Models.MediatypeModels;
+    using MediaType.Services.Data.Contracts;
+    using Models.MediaTypeModels;
 
-    public class MediatypeController : ApiController
+    public class MediaTypeController : ApiController
     {
-        private IMediatypeService mediatypeService;
+        private IMediaTypeDataService mediatypeDataService;
 
-        public MediatypeController(IMediatypeService mediatypeService)
+        public MediaTypeController(IMediaTypeDataService mediatypeService)
         {
-            this.mediatypeService = mediatypeService;
+            this.mediatypeDataService = mediatypeService;
         }
 
-        [Route("api/Mediatype/{extension}")]
+        [Route("api/mediatype/{extension}")]
         public IHttpActionResult Get(string extension)
         {
-            var result = this.mediatypeService
-                ?.GetMediatype(extension)
-                ?.ProjectTo<MediatypeResponseModel>()
-                .ToList();
+            var result = this.mediatypeDataService?.GetMediaType(extension)?.ProjectTo<MediaTypeResponseModel>().ToList();
 
             if (result == null)
             {

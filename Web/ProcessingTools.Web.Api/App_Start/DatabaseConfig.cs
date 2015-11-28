@@ -11,8 +11,8 @@
             ////ProcessingTools.Api.Data.ApplicationDbContext.Create().Database.Initialize(true);
 
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.Mediatype.Data.MediatypesDbContext, ProcessingTools.Mediatype.Data.Migrations.Configuration>());
-            ////ProcessingTools.Mediatype.Data.MediatypesDbContext.Create().Database.Initialize(true);
+                new MigrateDatabaseToLatestVersion<ProcessingTools.MediaType.Data.MediaTypesDbContext, ProcessingTools.MediaType.Data.Migrations.Configuration>());
+            ////ProcessingTools.MediaType.Data.MediaTypesDbContext.Create().Database.Initialize(true);
         }
     }
 }

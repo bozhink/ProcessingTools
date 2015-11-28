@@ -82,9 +82,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Csv.Seriali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Csv.Serialization.Tests", "Libraries\ProcessingTools.Csv.Serialization.Tests\ProcessingTools.Csv.Serialization.Tests.csproj", "{67F9043B-2B46-4CD2-A7EE-342C1A72C653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data", "Data\Mediatype.Data\Mediatype.Data.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data", "Data\MediaType.Data\MediaType.Data.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Data.Models", "Data\Mediatype.Data.Models\Mediatype.Data.Models.csproj", "{A2883F8F-8408-46CB-9CD9-F56A3452544A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Models", "Data\MediaType.Data.Models\MediaType.Data.Models.csproj", "{A2883F8F-8408-46CB-9CD9-F56A3452544A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
 EndProject
@@ -96,7 +96,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21C98DC0-B35C-414E-BC02-D90AF3494DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Services.Data", "Services\Mediatype.Services.Data\Mediatype.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Services.Data", "Services\MediaType.Services.Data\MediaType.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common", "ProcessingTools.Common\ProcessingTools.Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
 EndProject

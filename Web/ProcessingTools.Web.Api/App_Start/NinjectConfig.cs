@@ -8,7 +8,7 @@
     using Common.Providers.Contracts;
     using Data.Common.Contracts;
     using Data.Common.Repositories;
-    using Mediatype.Data;
+    using MediaType.Data;
 
     using Ninject;
     using Ninject.Extensions.Conventions;
@@ -19,7 +19,7 @@
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
             // TODO Important!
-            kernel.Bind<IDbContext>().To<MediatypesDbContext>();
+            kernel.Bind<IDbContext>().To<MediaTypesDbContext>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
             kernel.Bind<IRandomProvider>().To<RandomProvider>();
         };
@@ -47,7 +47,7 @@
             DependenciesRegistration(kernel);
 
             kernel.Bind(b => b
-                .From(Assemblies.MediatypeDataServices)
+                .From(Assemblies.MediaTypeDataServices)
                 .SelectAllClasses()
                 .BindDefaultInterface());
         }

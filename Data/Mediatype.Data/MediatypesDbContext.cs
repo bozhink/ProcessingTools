@@ -1,13 +1,13 @@
-﻿namespace ProcessingTools.Mediatype.Data
+﻿namespace ProcessingTools.MediaType.Data
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Models;
     using ProcessingTools.Data.Common.Contracts;
 
-    public class MediatypesDbContext : DbContext, IDbContext
+    public class MediaTypesDbContext : DbContext, IDbContext
     {
-        public MediatypesDbContext()
+        public MediaTypesDbContext()
             : base("MimeDbContext")
         {
         }
@@ -20,9 +20,9 @@
 
         public IDbSet<MimeTypePair> MimeTypePairs { get; set; }
 
-        public static MediatypesDbContext Create()
+        public static MediaTypesDbContext Create()
         {
-            return new MediatypesDbContext();
+            return new MediaTypesDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

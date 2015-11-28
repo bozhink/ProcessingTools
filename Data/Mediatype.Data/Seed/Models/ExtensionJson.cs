@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Mediatype.Data.Seed.Models
+﻿namespace ProcessingTools.MediaType.Data.Seed.Models
 {
     using Newtonsoft.Json;
 

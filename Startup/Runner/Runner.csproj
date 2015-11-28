@@ -66,13 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Mediatype.Data.Models\Mediatype.Data.Models.csproj">
+    <ProjectReference Include="..\..\Data\Mediatype.Data.Models\MediaType.Data.Models.csproj">
       <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>Mediatype.Data.Models</Name>
+      <Name>MediaType.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatype.Data\Mediatype.Data.csproj">
+    <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>Mediatype.Data</Name>
+      <Name>MediaType.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

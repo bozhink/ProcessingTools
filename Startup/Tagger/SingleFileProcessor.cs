@@ -85,6 +85,11 @@
                         this.TagWebLinks();
                     }
 
+                    if (this.settings.ResolveMediaTypes)
+                    {
+                        this.ResolveMediaTypes();
+                    }
+
                     if (this.settings.TagCoordinates)
                     {
                         this.TagCoordinates();
@@ -426,6 +431,24 @@
         {
             var parser = new CoordinatesParser(this.settings.Config, this.document.Xml, this.logger);
             this.InvokeProcessor(Messages.ParseCoordinatesMessage, parser);
+            this.document.Xml = parser.Xml;
+        }
+
+        private void ResolveMediaTypes()
+        {
+            var context = MediaType.Data.MediaTypesDbContext.Create();
+
+            var repository = new ProcessingTools.Data.Common.Repositories.EfGenericRepository<MediaType.Data.Models.FileExtension>(context);
+
+            var mediatypeDataService = new MediaType.Services.Data.MediaTypeDataService(repository);
+
+            var parser = new MediaTypesResolver(
+                this.settings.Config,
+                this.document.Xml,
+                mediatypeDataService,
+                this.logger);
+
+            this.InvokeProcessor(Messages.ResolveMediaTypesMessage, parser);
             this.document.Xml = parser.Xml;
         }
 

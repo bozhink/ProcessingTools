@@ -7,9 +7,9 @@
     using System.IO;
     using System.Linq;
     using Newtonsoft.Json;
-    using ProcessingTools.Mediatype.Data;
-    using ProcessingTools.Mediatype.Data.Migrations;
-    using ProcessingTools.Mediatype.Data.Seed.Models;
+    using ProcessingTools.MediaType.Data;
+    using ProcessingTools.MediaType.Data.Migrations;
+    using ProcessingTools.MediaType.Data.Seed.Models;
 
     public class Program
     {
@@ -17,14 +17,14 @@
         {
             var appConfigReader = new AppSettingsReader();
 
-            string jsonFilePath = appConfigReader.GetValue("MediatypeDataJsonFilePath", typeof(string)).ToString();
+            string jsonFilePath = appConfigReader.GetValue("MediaTypeDataJsonFilePath", typeof(string)).ToString();
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var json = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediatypesDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediaTypesDbContext, Configuration>());
 
-            var db = new MediatypesDbContext();
+            var db = new MediaTypesDbContext();
             db.Database.CreateIfNotExists();
             db.Database.Initialize(true);
 

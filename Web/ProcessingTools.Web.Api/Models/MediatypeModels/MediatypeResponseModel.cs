@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Web.Api.Models.MediatypeModels
+﻿namespace ProcessingTools.Web.Api.Models.MediaTypeModels
 {
     using Contracts.Mapping;
-    using Mediatype.Services.Data.Models;
+    using MediaType.Services.Data.Models;
 
-    public class MediatypeResponseModel : IMapFrom<MediatypeDataServiceResponseModel>
+    public class MediaTypeResponseModel : IMapFrom<MediaTypeDataServiceResponseModel>
     {
         public string FileExtension { get; set; }
 

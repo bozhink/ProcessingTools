@@ -185,6 +185,10 @@
                                     this.Settings.TagFloats = true;
                                     break;
 
+                                case 'm':
+                                    this.Settings.ResolveMediaTypes = true;
+                                    break;
+
                                 case 'c':
                                     this.Settings.TagCoordinates = true;
                                     break;

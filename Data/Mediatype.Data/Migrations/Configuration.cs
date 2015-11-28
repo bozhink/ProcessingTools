@@ -1,4 +1,4 @@
-namespace ProcessingTools.Mediatype.Data.Migrations
+namespace ProcessingTools.MediaType.Data.Migrations
 {
     using System;
     using System.Collections.Generic;
@@ -11,16 +11,16 @@ namespace ProcessingTools.Mediatype.Data.Migrations
     using Newtonsoft.Json;
     using Seed.Models;
 
-    public sealed class Configuration : DbMigrationsConfiguration<MediatypesDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MediaTypesDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;
-            this.ContextKey = "ProcessingTools.Mediatype.Data.MediatypesDbContext";
+            this.ContextKey = "ProcessingTools.MediaType.Data.MediaTypesDbContext";
         }
 
-        protected override void Seed(MediatypesDbContext context)
+        protected override void Seed(MediaTypesDbContext context)
         {
             if (context.FileExtensions.Count() > 0)
             {
@@ -37,11 +37,11 @@ namespace ProcessingTools.Mediatype.Data.Migrations
             ImportMimeTypesToDatabase(context, mediatypesJson);
             ImportMimeSubtypesToDataBase(context, mediatypesJson);
             ImportFileExtensionsToDatabase(context, mediatypesJson);
-            CreateMediatypePairsInDatabase(context, mediatypesJson);
-            ConnectMediatypePairsToFileExtensions(context, mediatypesJson);
+            CreateMediaTypePairsInDatabase(context, mediatypesJson);
+            ConnectMediaTypePairsToFileExtensions(context, mediatypesJson);
         }
 
-        private static void ConnectMediatypePairsToFileExtensions(MediatypesDbContext context, ExtensionJson[] mediatypesJson)
+        private static void ConnectMediaTypePairsToFileExtensions(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
         {
             var mimeTypePairs = new HashSet<MimeTypePair>(context.MimeTypePairs.ToList());
             var extensions = context.FileExtensions.ToList();
@@ -61,7 +61,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
             context.SaveChanges();
         }
 
-        private static void CreateMediatypePairsInDatabase(MediatypesDbContext context, ExtensionJson[] mediatypesJson)
+        private static void CreateMediaTypePairsInDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
         {
             var mimeTypes = new HashSet<MimeType>(context.MimeTypes.ToList());
             var mimeSubtypes = new HashSet<MimeSubtype>(context.MimeSubtypes.ToList());
@@ -77,7 +77,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
             context.SaveChanges();
         }
 
-        private static void ImportFileExtensionsToDatabase(MediatypesDbContext context, ExtensionJson[] mediatypesJson)
+        private static void ImportFileExtensionsToDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
         {
             var fileExtension = new HashSet<string>(mediatypesJson.Select(e => e.Extension));
             context.FileExtensions.AddOrUpdate(fileExtension
@@ -90,7 +90,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
             context.SaveChanges();
         }
 
-        private static void ImportMimeSubtypesToDataBase(MediatypesDbContext context, ExtensionJson[] mediatypesJson)
+        private static void ImportMimeSubtypesToDataBase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
         {
             var mimeSubtypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeSubtype));
             context.MimeSubtypes.AddOrUpdate(mimeSubtypesNames
@@ -103,7 +103,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
             context.SaveChanges();
         }
 
-        private static void ImportMimeTypesToDatabase(MediatypesDbContext context, ExtensionJson[] mediatypesJson)
+        private static void ImportMimeTypesToDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
         {
             var mimeTypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeType));
             context.MimeTypes.AddOrUpdate(mimeTypesNames
@@ -120,7 +120,7 @@ namespace ProcessingTools.Mediatype.Data.Migrations
         {
             var appConfigReader = new AppSettingsReader();
 
-            string jsonFilePath = appConfigReader.GetValue("MediatypeDataJsonFilePath", typeof(string)).ToString();
+            string jsonFilePath = appConfigReader.GetValue("MediaTypeDataJsonFilePath", typeof(string)).ToString();
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);

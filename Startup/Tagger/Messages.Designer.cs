@@ -169,13 +169,13 @@ namespace ProcessingTools.MainProgram {
         ///    w = tag web links
         ///    d = tag DOI
         ///    f = tag figures and tables
+        ///    m = resolve mediatypes
         ///    --table-fn = tag table foot notes
         ///
         ///    c = tag coordinates
         ///    k = parse coordinates
         ///
-        ///    r = Parse references [under construction]
-        ///   [rest of string was truncated]&quot;;.
+        ///    r = Parse referen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HelpMessage {
             get {
@@ -332,6 +332,17 @@ namespace ProcessingTools.MainProgram {
         internal static string ParseTreatmentMetaWithGbifMessage {
             get {
                 return ResourceManager.GetString("ParseTreatmentMetaWithGbifMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///    Resolve mediatypes.
+        ///.
+        /// </summary>
+        internal static string ResolveMediaTypesMessage {
+            get {
+                return ResourceManager.GetString("ResolveMediaTypesMessage", resourceCulture);
             }
         }
         

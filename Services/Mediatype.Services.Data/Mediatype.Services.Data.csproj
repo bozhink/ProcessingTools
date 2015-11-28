@@ -7,8 +7,8 @@
     <ProjectGuid>{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Mediatype.Services.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.Mediatype.Services.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.MediaType.Services.Data</RootNamespace>
+    <AssemblyName>ProcessingTools.MediaType.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,9 +42,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IMediatypeService.cs" />
-    <Compile Include="MediatypeService.cs" />
-    <Compile Include="Models\MediatypeDataServiceResponseModel.cs" />
+    <Compile Include="Contracts\IMediaTypeDataService.cs" />
+    <Compile Include="MediaTypeDataService.cs" />
+    <Compile Include="Models\MediaTypeDataServiceResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,13 +56,13 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatype.Data.Models\Mediatype.Data.Models.csproj">
+    <ProjectReference Include="..\..\Data\Mediatype.Data.Models\MediaType.Data.Models.csproj">
       <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>Mediatype.Data.Models</Name>
+      <Name>MediaType.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatype.Data\Mediatype.Data.csproj">
+    <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>Mediatype.Data</Name>
+      <Name>MediaType.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

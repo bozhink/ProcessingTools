@@ -315,6 +315,22 @@
         }
 
         [Test]
+        public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.ResolveMediaTypes, "Default ResolveMediaTypes value should be false.");
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfResolveMediaTypesProperty_SchouldBePersistent()
+        {
+            this.programSettings.ResolveMediaTypes = true;
+            Assert.IsTrue(this.programSettings.ResolveMediaTypes, "1. ResolveMediaTypes value should be true.");
+
+            this.programSettings.ResolveMediaTypes = false;
+            Assert.IsFalse(this.programSettings.ResolveMediaTypes, "2. ResolveMediaTypes value should be false.");
+        }
+
+        [Test]
         public void ProgramSettings_FloraPropertyInNewInstance_SchouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flora, "Default Flora value should be false.");

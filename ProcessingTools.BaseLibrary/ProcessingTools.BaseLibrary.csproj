@@ -75,6 +75,8 @@
   <ItemGroup>
     <Compile Include="src\Coordinates\Coordinate.cs" />
     <Compile Include="src\Coordinates\ICoordinate.cs" />
+    <Compile Include="src\Floats\MediaTypesResolver.cs" />
+    <Compile Include="src\Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="src\Format\Format.NlmSystem.cs" />
     <Compile Include="src\References\ReferencesParser.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
@@ -294,6 +296,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Mediatype.Data.Models\MediaType.Data.Models.csproj">
+      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
+      <Name>MediaType.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Mediatype.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -341,6 +351,10 @@
     <ProjectReference Include="..\ProcessingTools.Configurator\ProcessingTools.Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>ProcessingTools.Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

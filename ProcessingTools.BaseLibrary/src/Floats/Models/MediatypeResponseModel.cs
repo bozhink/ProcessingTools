@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Models
+﻿namespace ProcessingTools.BaseLibrary.Floats.Models
 {
-    public class MediaTypeDataServiceResponseModel
+    internal class MediaTypeResponseModel
     {
         public string FileExtension { get; set; }
 

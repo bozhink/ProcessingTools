@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProcessingTools.Mediatype.Data.Models")]
+[assembly: AssemblyTitle("ProcessingTools.MediaType.Data.Models")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.Mediatype.Data.Models")]
+[assembly: AssemblyProduct("ProcessingTools.MediaType.Data.Models")]
 [assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

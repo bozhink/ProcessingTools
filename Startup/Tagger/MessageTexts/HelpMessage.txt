@@ -9,6 +9,7 @@ Options:
     w = tag web links
     d = tag DOI
     f = tag figures and tables
+    m = resolve mediatypes
     --table-fn = tag table foot notes
 
     c = tag coordinates
