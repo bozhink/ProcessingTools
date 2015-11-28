@@ -25,8 +25,8 @@
 
         private IMediaTypeDataService mediatypeDataService;
 
-        public MediaTypesResolver(Config config, string xml, IMediaTypeDataService mediatypeDataService, ILogger logger)
-            : base(config, xml)
+        public MediaTypesResolver(string xml, IMediaTypeDataService mediatypeDataService, ILogger logger)
+            : base(xml)
         {
             this.mediatypeDataService = mediatypeDataService;
             this.logger = logger;

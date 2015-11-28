@@ -18,6 +18,7 @@
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
+    using Bio.Taxonomy.Services.Data;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -442,11 +443,7 @@
 
             var mediatypeDataService = new MediaType.Services.Data.MediaTypeDataService(repository);
 
-            var parser = new MediaTypesResolver(
-                this.settings.Config,
-                this.document.Xml,
-                mediatypeDataService,
-                this.logger);
+            var parser = new MediaTypesResolver(this.document.Xml, mediatypeDataService, this.logger);
 
             this.InvokeProcessor(Messages.ResolveMediaTypesMessage, parser);
             this.document.Xml = parser.Xml;
@@ -467,7 +464,8 @@
 
                 if (this.settings.ParseHigherWithAphia)
                 {
-                    var parser = new AphiaHigherTaxaParser(this.settings.Config, result, this.logger);
+                    var dataService = new AphiaTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -475,7 +473,8 @@
 
                 if (this.settings.ParseHigherWithCoL)
                 {
-                    var parser = new CoLHigherTaxaParser(this.settings.Config, result, this.logger);
+                    var dataService = new CoLTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -483,7 +482,8 @@
 
                 if (this.settings.ParseHigherWithGbif)
                 {
-                    var parser = new GbifHigherTaxaParser(this.settings.Config, result, this.logger);
+                    var dataService = new GbifTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -491,7 +491,8 @@
 
                 if (this.settings.ParseHigherBySuffix)
                 {
-                    var parser = new SuffixHigherTaxaParser(this.settings.Config, result, this.logger);
+                    var dataService = new SuffixHigherTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -499,11 +500,8 @@
 
                 if (this.settings.ParseHigherAboveGenus)
                 {
-                    var parser = new AboveGenusHigherTaxaParser(
-                            this.settings.Config,
-                            result,
-                            new AboveGenusTaxaRankResolver(),
-                            this.logger);
+                    var dataService = new AboveGenusTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;

@@ -188,6 +188,10 @@
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>ProcessingTools.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>MediaType.Services.Data</Name>
