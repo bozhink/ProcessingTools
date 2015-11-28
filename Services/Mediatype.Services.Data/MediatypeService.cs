@@ -1,8 +1,10 @@
 ﻿namespace ProcessingTools.Mediatype.Services.Data
 {
-    using Mediatype.Data.Models;
-    using ProcessingTools.Data.Common.Repositories;
     using System.Linq;
+    using Contracts;
+    using Mediatype.Data.Models;
+    using Models;
+    using ProcessingTools.Data.Common.Repositories;
 
     public class MediatypeService : IMediatypeService
     {
@@ -13,14 +15,29 @@
             this.fileExtensions = fileExtensions;
         }
 
-        public string GetMediatype(string fileExtension)
+        public MediatypeDataServiceResponseModel GetMediatype(string fileExtension)
         {
-            string result =  this.fileExtensions.All()
-                .Where(e => e.Name == fileExtension)
-                .Select(e => e.MimeTypePairs.FirstOrDefault().MimeType + "/" + e.MimeTypePairs.FirstOrDefault().MimeSubtype)
-                .FirstOrDefault();
+            var extension = this.fileExtensions.All()
+                .FirstOrDefault(e => e.Name == fileExtension);
 
-            return result;
+            if (extension == null)
+            {
+                return null;
+            }
+
+            var pair = extension.MimeTypePairs.FirstOrDefault();
+
+            if (pair == null)
+            {
+                return null;
+            }
+
+            return new MediatypeDataServiceResponseModel
+            {
+                FileExtension = extension.Name,
+                MimeType = pair.MimeType.Name,
+                MimeSubtype = pair.MimeSubtype.Name
+            };
         }
     }
 }

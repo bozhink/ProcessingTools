@@ -3,8 +3,9 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Models;
+    using ProcessingTools.Data.Common.Contracts;
 
-    public class MediatypesDbContext : DbContext
+    public class MediatypesDbContext : DbContext, IDbContext
     {
         public MediatypesDbContext()
             : base("MimeDbContext")
@@ -19,9 +20,16 @@
 
         public IDbSet<MimeTypePair> MimeTypePairs { get; set; }
 
+        public static MediatypesDbContext Create()
+        {
+            return new MediatypesDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add<PluralizingTableNameConvention>();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

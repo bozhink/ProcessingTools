@@ -4,11 +4,12 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts;
 
     public class EfGenericRepository<T> : IRepository<T>
         where T : class
     {
-        public EfGenericRepository(DbContext context)
+        public EfGenericRepository(IDbContext context)
         {
             if (context == null)
             {
@@ -21,7 +22,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected DbContext Context { get; set; }
+        protected IDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {

@@ -98,6 +98,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatype.Services.Data", "Services\Mediatype.Services.Data\Mediatype.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common", "ProcessingTools.Common\ProcessingTools.Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -260,6 +262,10 @@ Global
 		{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
