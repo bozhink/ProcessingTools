@@ -387,13 +387,13 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>ProcessingTools.Contracts</Name>
+      <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ProcessingTools.Common\ProcessingTools.Common.csproj">
+    <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>ProcessingTools.Common</Name>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>

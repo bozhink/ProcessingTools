@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Xml;
+
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
@@ -15,10 +16,10 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
+    using Bio.Taxonomy.Services.Data;
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
-    using Bio.Taxonomy.Services.Data;
 
     public class SingleFileProcessor : FileProcessor
     {
