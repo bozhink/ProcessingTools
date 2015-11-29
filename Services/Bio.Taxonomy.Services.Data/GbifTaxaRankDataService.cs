@@ -3,11 +3,17 @@
     using System.Collections.Concurrent;
 
     using Contracts;
+    using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif;
 
     public class GbifTaxaRankDataService : TaxaRankDataService
     {
+        protected override void Delay()
+        {
+            Delayer.Delay();
+        }
+
         protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
             var gbifResult = GbifDataRequester.SearchGbif(scientificName).Result;
@@ -22,7 +28,7 @@
                         string rank = gbifResult.Rank?.ToLower();
                         if (!string.IsNullOrWhiteSpace(rank))
                         {
-                            taxaRanks.Enqueue(new TaxonRank
+                            taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
                             {
                                 ScientificName = scientificName,
                                 Rank = rank

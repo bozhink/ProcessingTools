@@ -13,7 +13,7 @@
         public IQueryable<ITaxonRank> Resolve(params string[] scientificNames)
         {
             var result = new HashSet<ITaxonRank>(scientificNames
-                .Select(s => new TaxonRank
+                .Select(s => new TaxonRankDataServiceResponseModel
                 {
                     ScientificName = s,
                     Rank = Rank

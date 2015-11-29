@@ -5,11 +5,17 @@
     using System.Xml;
 
     using Contracts;
+    using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.CatalogueOfLife;
 
     public class CoLTaxaRankDataService : TaxaRankDataService
     {
+        protected override void Delay()
+        {
+            Delayer.Delay();
+        }
+
         protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
             XmlDocument colResponse = CatalogueOfLifeDataRequester.SearchCatalogueOfLife(scientificName).Result;
@@ -28,7 +34,7 @@
 
                 foreach (var rank in ranks)
                 {
-                    taxaRanks.Enqueue(new TaxonRank
+                    taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
                     {
                         ScientificName = scientificName,
                         Rank = rank

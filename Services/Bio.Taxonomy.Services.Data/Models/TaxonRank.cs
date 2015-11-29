@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class TaxonRank : ITaxonRank
+    public class TaxonRankDataServiceResponseModel : ITaxonRank
     {
         public string ScientificName { get; set; }
 

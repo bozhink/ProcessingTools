@@ -1,15 +1,22 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
 
     using Contracts;
+    using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Aphia;
 
     public class AphiaTaxaRankDataService : TaxaRankDataService
     {
+        protected override void Delay()
+        {
+            Delayer.Delay();
+        }
+
         protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
             using (var aphiaService = new AphiaNameService())
@@ -23,7 +30,7 @@
 
                     foreach (var rank in ranks)
                     {
-                        taxaRanks.Enqueue(new TaxonRank
+                        taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
                         {
                             ScientificName = scientificName,
                             Rank = ranks.FirstOrDefault()

@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Infrastructure.Concurrency;
 
     public abstract class TaxaRankDataService : ITaxaRankDataService
     {
@@ -20,7 +19,7 @@
                 scientificNames,
                 (scientificName, state) =>
                 {
-                    Delayer.Delay();
+                    this.Delay();
                     try
                     {
                         this.ResolveRank(scientificName, taxaRanks);
@@ -41,6 +40,8 @@
 
             return result.AsQueryable();
         }
+
+        protected abstract void Delay();
 
         protected abstract void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks);
     }

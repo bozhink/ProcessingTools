@@ -2,11 +2,13 @@
 {
     using System;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     using Bio.Taxonomy.Services.Data.Contracts;
     using Contracts.Log;
+    using Models;
 
-    public class HigherTaxaParserWithDataService : HigherTaxaParser
+    public class HigherTaxaParserWithDataService : Base, IBaseParser
     {
         private ILogger logger;
         private ITaxaRankDataService taxaRankDataService;
@@ -28,17 +30,24 @@
         /// <summary>
         /// This method parses all non-parsed higher taxa by making then of type 'above-genus'
         /// </summary>
-        public override void Parse()
+        public void Parse()
         {
             var uniqueHigherTaxaList = this.XmlDocument
                 .ExtractUniqueHigherTaxa()
                 .ToArray();
 
-            var resolvedTaxa = this.taxaRankDataService.Resolve(uniqueHigherTaxaList);
-            if (resolvedTaxa == null)
+            var response = this.taxaRankDataService.Resolve(uniqueHigherTaxaList);
+            if (response == null)
             {
                 throw new ApplicationException("Current taxa rank data service instance returned null.");
             }
+
+            var resolvedTaxa = response
+                .Select(t => new TaxonRankResponseModel
+                {
+                    ScientificName = t.ScientificName,
+                    Rank = t.Rank
+                });
 
             if (resolvedTaxa.Count() > 0)
             {
@@ -91,6 +100,11 @@
                     }
                 }
             }
+        }
+
+        private void ReplaceTaxonNameByItsParsedContent(string scientificName, string replacement)
+        {
+            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(scientificName) + ")(?=</tn>)", replacement);
         }
     }
 }

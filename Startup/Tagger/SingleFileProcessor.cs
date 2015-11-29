@@ -457,7 +457,8 @@
             if (this.settings.ParseHigherTaxa)
             {
                 {
-                    var parser = new LocalDataBaseHigherTaxaParser(this.settings.Config, result, this.logger);
+                    var dataService = new LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
+                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;

@@ -79,6 +79,7 @@
     <Compile Include="src\Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="src\Format\Format.NlmSystem.cs" />
     <Compile Include="src\References\ReferencesParser.cs" />
+    <Compile Include="src\Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
@@ -120,9 +121,7 @@
     <Compile Include="src\Taxonomy\Species\SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.Nlm.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.NlmSystem.cs" />
-    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParser.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithDataService.cs" />
-    <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithLocalDataBase.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTaggerNext.cs" />
