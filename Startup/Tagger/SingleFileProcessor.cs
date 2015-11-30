@@ -440,7 +440,7 @@
         {
             var context = MediaType.Data.MediaTypesDbContext.Create();
 
-            var repository = new ProcessingTools.Data.Common.Repositories.EfGenericRepository<MediaType.Data.Models.FileExtension>(context);
+            var repository = new MediaType.Data.Repositories.MediaTypesGenericRepository<MediaType.Data.Models.FileExtension>(context);
 
             var mediatypeDataService = new MediaType.Services.Data.MediaTypeDataService(repository);
 

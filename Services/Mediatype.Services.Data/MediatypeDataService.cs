@@ -4,14 +4,14 @@
     using System.Linq;
     using Contracts;
     using MediaType.Data.Models;
+    using MediaType.Data.Repositories;
     using Models;
-    using ProcessingTools.Data.Common.Repositories;
 
     public class MediaTypeDataService : IMediaTypeDataService
     {
-        private IRepository<FileExtension> fileExtensions;
+        private IMediaTypesRepository<FileExtension> fileExtensions;
 
-        public MediaTypeDataService(IRepository<FileExtension> fileExtensions)
+        public MediaTypeDataService(IMediaTypesRepository<FileExtension> fileExtensions)
         {
             this.fileExtensions = fileExtensions;
         }

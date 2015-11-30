@@ -2,10 +2,11 @@
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-    using Models;
-    using ProcessingTools.Data.Common.Contracts;
 
-    public class MediaTypesDbContext : DbContext, IDbContext
+    using Contracts;
+    using Models;
+
+    public class MediaTypesDbContext : DbContext, IMediaTypesDbContext
     {
         public MediaTypesDbContext()
             : base("MimeDbContext")

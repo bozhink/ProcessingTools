@@ -6,10 +6,11 @@
     using System.Threading.Tasks;
     using Contracts;
 
-    public class EfGenericRepository<T> : IRepository<T>
+    public class EfGenericRepository<IContext, T> : IMediaTypesRepository<T>
+        where IContext : IDbContext
         where T : class
     {
-        public EfGenericRepository(IDbContext context)
+        public EfGenericRepository(IContext context)
         {
             if (context == null)
             {
@@ -22,7 +23,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected IDbContext Context { get; set; }
+        protected IContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
