@@ -39,10 +39,18 @@
         {
             try
             {
+                var knownLowerTaxaNames = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
+                    .Cast<XmlNode>()
+                    .Select(x => x.InnerText));
+
                 var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes("//i|//italic|//Italic")
                     .Cast<XmlNode>()
                     .Select(x => x.InnerText)
                     .Where(this.IsMatchingLowerTaxaFormat));
+
+                knownLowerTaxaNames
+                    .ToList()
+                    .ForEach(t => plausibleLowerTaxa.Add(t));
 
                 plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
 

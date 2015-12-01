@@ -102,6 +102,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data", "Data\Api.Data\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data", "Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj", "{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Pages", "Web\ProcessingTools.Web.Pages\ProcessingTools.Web.Pages.csproj", "{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -454,6 +456,14 @@ Global
 		{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}.Release|x64.ActiveCfg = Release|Any CPU
 		{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}.Release|x64.Build.0 = Release|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Debug|x64.Build.0 = Debug|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Release|x64.ActiveCfg = Release|Any CPU
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -499,6 +509,7 @@ Global
 		{92663249-09DE-479F-BCA8-FE1CF87DECD5} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{E1F82B1B-2F74-402B-B936-EB819625B033} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{89779B0D-46DC-40AE-935D-F2C4CE9F0BF6} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
