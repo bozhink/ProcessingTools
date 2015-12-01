@@ -17,6 +17,7 @@
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
     using Bio.Taxonomy.Services.Data;
+    using Bio.Taxonomy.Types;
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;

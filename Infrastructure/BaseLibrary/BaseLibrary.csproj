@@ -80,7 +80,6 @@
     <Compile Include="src\Format\Format.NlmSystem.cs" />
     <Compile Include="src\References\ReferencesParser.cs" />
     <Compile Include="src\Taxonomy\Models\TaxonRankResponseModel.cs" />
-    <Compile Include="src\Taxonomy\Species\ISpecies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Abbreviations\Abbreviation.cs" />
     <Compile Include="src\Abbreviations\AbbreviationsTagger.cs" />
@@ -117,15 +116,12 @@
     <Compile Include="Interfaces\IDataProvider.cs" />
     <Compile Include="src\Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="src\Taxonomy\Species\SpeciesComparison.cs" />
-    <Compile Include="src\Taxonomy\Species\SpeciesParts.cs" />
-    <Compile Include="src\Taxonomy\Species\SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.Nlm.cs" />
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.NlmSystem.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithDataService.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTaggerNext.cs" />
-    <Compile Include="src\Taxonomy\TaxaType.cs" />
     <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
     <Compile Include="src\Taxonomy\TaxonomicBlackList.cs" />
     <Compile Include="src\Taxonomy\TaxonomicWhiteList.cs" />
@@ -284,6 +280,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>

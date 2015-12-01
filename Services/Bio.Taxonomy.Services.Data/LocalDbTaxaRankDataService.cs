@@ -5,10 +5,10 @@
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
-    using Contracts;
     using Models;
+    using Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : TaxaRankDataService
+    public class LocalDbTaxaRankDataService : TaxaDataService<ITaxonRank>
     {
         private XElement rankList;
 

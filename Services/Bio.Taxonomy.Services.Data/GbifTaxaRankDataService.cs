@@ -2,12 +2,12 @@
 {
     using System.Collections.Concurrent;
 
-    using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif;
+    using Taxonomy.Contracts;
 
-    public class GbifTaxaRankDataService : TaxaRankDataService
+    public class GbifTaxaRankDataService : TaxaDataService<ITaxonRank>
     {
         protected override void Delay()
         {

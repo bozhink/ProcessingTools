@@ -1,16 +1,15 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
-    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Aphia;
+    using Taxonomy.Contracts;
 
-    public class AphiaTaxaRankDataService : TaxaRankDataService
+    public class AphiaTaxaRankDataService : TaxaDataService<ITaxonRank>
     {
         protected override void Delay()
         {

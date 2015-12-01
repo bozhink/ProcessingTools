@@ -4,11 +4,12 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
+
+    using Bio.Taxonomy.Types;
     using Configurator;
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
-    using Taxonomy;
 
     public static class TaxonomyExtensions
     {

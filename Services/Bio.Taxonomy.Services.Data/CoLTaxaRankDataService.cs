@@ -4,12 +4,12 @@
     using System.Linq;
     using System.Xml;
 
-    using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.CatalogueOfLife;
+    using Taxonomy.Contracts;
 
-    public class CoLTaxaRankDataService : TaxaRankDataService
+    public class CoLTaxaRankDataService : TaxaDataService<ITaxonRank>
     {
         protected override void Delay()
         {

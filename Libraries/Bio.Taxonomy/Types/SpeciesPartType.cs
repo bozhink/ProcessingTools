@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Types
 {
-    public enum SpeciesParts
+    public enum SpeciesPartType
     {
         Genus,
         Subgenus,

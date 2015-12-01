@@ -3,6 +3,9 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
+
+    using Bio.Taxonomy;
+    using Bio.Taxonomy.Types;
     using Configurator;
     using Contracts.Log;
 
@@ -44,7 +47,7 @@
 
             try
             {
-                SpeciesPartsPrefixesResolver rankResolver = new SpeciesPartsPrefixesResolver();
+                var rankResolver = new SpeciesPartsPrefixesResolver();
 
                 foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
                 {
@@ -170,7 +173,7 @@
             replace = Regex.Replace(
                 replace,
                 @"\b((?i)sect?|section)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""infraspecific-rank"">$1</tn-part>$2<tn-part type=""" + SpeciesParts.Section.ToString().ToLower() + @""">$3</tn-part>");
+                @"<tn-part type=""infraspecific-rank"">$1</tn-part>$2<tn-part type=""" + SpeciesPartType.Section.ToString().ToLower() + @""">$3</tn-part>");
 
             replace = Regex.Replace(
                 replace,

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Contracts
+﻿namespace ProcessingTools.Bio.Taxonomy.Contracts
 {
     public interface ITaxonRank
     {

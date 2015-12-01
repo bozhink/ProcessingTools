@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Contracts
 {
     public interface ISpecies
     {

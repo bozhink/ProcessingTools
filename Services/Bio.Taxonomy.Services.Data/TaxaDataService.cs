@@ -8,11 +8,11 @@
 
     using Contracts;
 
-    public abstract class TaxaRankDataService : ITaxaRankDataService
+    public abstract class TaxaDataService<T> : ITaxaDataService<T>
     {
-        public IQueryable<ITaxonRank> Resolve(params string[] scientificNames)
+        public IQueryable<T> Resolve(params string[] scientificNames)
         {
-            var taxaRanks = new ConcurrentQueue<ITaxonRank>();
+            var queue = new ConcurrentQueue<T>();
             var exceptions = new ConcurrentQueue<Exception>();
 
             Parallel.ForEach(
@@ -22,7 +22,7 @@
                     this.Delay();
                     try
                     {
-                        this.ResolveRank(scientificName, taxaRanks);
+                        this.ResolveRank(scientificName, queue);
                     }
                     catch (Exception e)
                     {
@@ -36,13 +36,13 @@
                 throw new AggregateException(exceptions.ToList());
             }
 
-            var result = new HashSet<ITaxonRank>(taxaRanks);
+            var result = new HashSet<T>(queue);
 
             return result.AsQueryable();
         }
 
         protected abstract void Delay();
 
-        protected abstract void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks);
+        protected abstract void ResolveRank(string scientificName, ConcurrentQueue<T> taxaRanks);
     }
 }

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
+    using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Contracts.Log;
     using Models;
@@ -11,16 +12,16 @@
     public class HigherTaxaParserWithDataService : Base, IBaseParser
     {
         private ILogger logger;
-        private ITaxaRankDataService taxaRankDataService;
+        private ITaxaDataService<ITaxonRank> taxaRankDataService;
 
-        public HigherTaxaParserWithDataService(string xml, ITaxaRankDataService taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(string xml, ITaxaDataService<ITaxonRank> taxaRankDataService, ILogger logger)
             : base(xml)
         {
             this.logger = logger;
             this.taxaRankDataService = taxaRankDataService;
         }
 
-        public HigherTaxaParserWithDataService(IBase baseObject, ITaxaRankDataService taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(IBase baseObject, ITaxaDataService<ITaxonRank> taxaRankDataService, ILogger logger)
             : base(baseObject)
         {
             this.logger = logger;

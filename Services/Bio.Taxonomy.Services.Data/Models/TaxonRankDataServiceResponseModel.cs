@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Models
 {
-    using Contracts;
+    using Taxonomy.Contracts;
 
     public class TaxonRankDataServiceResponseModel : ITaxonRank
     {
