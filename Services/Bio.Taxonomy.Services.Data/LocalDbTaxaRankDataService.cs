@@ -5,10 +5,11 @@
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
+    using Contracts;
     using Models;
     using Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : TaxaDataService<ITaxonRank>
+    public class LocalDbTaxaRankDataService : TaxaDataService<ITaxonRank>, ILocalDbTaxaRankDataService
     {
         private XElement rankList;
 
@@ -21,7 +22,7 @@
         {
         }
 
-        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
+        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
             Regex searchTaxaName = new Regex($"(?i)\\b{scientificName}\\b");
             var ranks = this.rankList.Elements()

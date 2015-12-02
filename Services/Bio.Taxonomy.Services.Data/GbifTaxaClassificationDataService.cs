@@ -2,19 +2,20 @@
 {
     using System.Collections.Concurrent;
 
+    using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif;
     using Taxonomy.Contracts;
 
-    public class GbifTaxaClassificationDataService : TaxaDataService<ITaxonClassification>
+    public class GbifTaxaClassificationDataService : TaxaDataService<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
         protected override void Delay()
         {
             Delayer.Delay();
         }
 
-        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
+        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
             var gbifResult = GbifDataRequester.SearchGbif(scientificName).Result;
             if (gbifResult != null)

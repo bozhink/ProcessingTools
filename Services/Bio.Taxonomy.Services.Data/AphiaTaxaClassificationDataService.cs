@@ -4,19 +4,20 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Aphia;
     using Taxonomy.Contracts;
 
-    public class AphiaTaxaClassificationDataService : TaxaDataService<ITaxonClassification>
+    public class AphiaTaxaClassificationDataService : TaxaDataService<ITaxonClassification>, IAphiaTaxaClassificationDataService
     {
         protected override void Delay()
         {
             Delayer.Delay();
         }
 
-        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
+        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
             using (var aphiaService = new AphiaNameService())
             {

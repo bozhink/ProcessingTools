@@ -8,7 +8,7 @@
     using Models;
     using Taxonomy.Contracts;
 
-    public class SuffixHigherTaxaRankDataService : ITaxaDataService<ITaxonRank>
+    public class SuffixHigherTaxaRankDataService : ISuffixHigherTaxaRankDataService
     {
         private IDictionary<string, string> rankPerSuffix;
 

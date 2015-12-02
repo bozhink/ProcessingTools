@@ -39,8 +39,13 @@
     <Compile Include="AboveGenusTaxaRankDataService.cs" />
     <Compile Include="AphiaTaxaClassificationDataService.cs" />
     <Compile Include="CoLTaxaRankDataService.cs" />
+    <Compile Include="Contracts\IAphiaTaxaClassificationDataService.cs" />
+    <Compile Include="Contracts\IGbifTaxaClassificationDataService.cs" />
+    <Compile Include="Contracts\ILocalDbTaxaRankDataService.cs" />
+    <Compile Include="Contracts\ISuffixHigherTaxaRankDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
     <Compile Include="GbifTaxaClassificationDataService.cs" />
+    <Compile Include="Contracts\IAboveGenusTaxaRankDataService.cs" />
     <Compile Include="LocalDbTaxaRankDataService.cs" />
     <Compile Include="Models\TaxonClassificationDataServiceResponseModel.cs" />
     <Compile Include="Models\TaxonRankDataServiceResponseModel.cs" />

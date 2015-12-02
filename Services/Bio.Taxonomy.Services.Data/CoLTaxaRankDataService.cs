@@ -16,7 +16,7 @@
             Delayer.Delay();
         }
 
-        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
+        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
             XmlDocument colResponse = CatalogueOfLifeDataRequester.SearchCatalogueOfLife(scientificName).Result;
 

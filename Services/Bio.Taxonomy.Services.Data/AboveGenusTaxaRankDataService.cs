@@ -7,7 +7,7 @@
     using Models;
     using Taxonomy.Contracts;
 
-    public class AboveGenusTaxaRankDataService : ITaxaDataService<ITaxonRank>
+    public class AboveGenusTaxaRankDataService : IAboveGenusTaxaRankDataService
     {
         private const string Rank = "above-genus";
 

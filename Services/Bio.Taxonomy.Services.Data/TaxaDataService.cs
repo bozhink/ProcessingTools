@@ -22,7 +22,7 @@
                     this.Delay();
                     try
                     {
-                        this.ResolveRank(scientificName, queue);
+                        this.ResolveScientificName(scientificName, queue);
                     }
                     catch (Exception e)
                     {
@@ -43,6 +43,6 @@
 
         protected abstract void Delay();
 
-        protected abstract void ResolveRank(string scientificName, ConcurrentQueue<T> taxaRanks);
+        protected abstract void ResolveScientificName(string scientificName, ConcurrentQueue<T> taxaRanks);
     }
 }
