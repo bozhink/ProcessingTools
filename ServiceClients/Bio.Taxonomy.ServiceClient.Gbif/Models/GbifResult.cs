@@ -39,6 +39,9 @@
         [DataMember(Name = "phylum")]
         public string Phylum { get; set; }
 
+        [DataMember(Name = "class")]
+        public string Class { get; set; }
+
         [DataMember(Name = "order")]
         public string Order { get; set; }
 
@@ -65,8 +68,5 @@
 
         [DataMember(Name = "genusKey")]
         public int GenusKey { get; set; }
-
-        [DataMember(Name = "class")]
-        public string Class { get; set; }
     }
 }

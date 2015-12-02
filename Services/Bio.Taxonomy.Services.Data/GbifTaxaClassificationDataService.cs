@@ -7,14 +7,14 @@
     using ServiceClient.Gbif;
     using Taxonomy.Contracts;
 
-    public class GbifTaxaRankDataService : TaxaDataService<ITaxonRank>
+    public class GbifTaxaClassificationDataService : TaxaDataService<ITaxonClassification>
     {
         protected override void Delay()
         {
             Delayer.Delay();
         }
 
-        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
+        protected override void ResolveRank(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
             var gbifResult = GbifDataRequester.SearchGbif(scientificName).Result;
             if (gbifResult != null)
@@ -28,10 +28,18 @@
                         string rank = gbifResult.Rank?.ToLower();
                         if (!string.IsNullOrWhiteSpace(rank))
                         {
-                            taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
+                            taxaRanks.Enqueue(new TaxonClassificationDataServiceResponseModel
                             {
-                                ScientificName = scientificName,
-                                Rank = rank
+                                ScientificName = gbifResult.ScientificName,
+                                CanonicalName = gbifResult.CanonicalName,
+                                Rank = rank,
+
+                                Kingdom = gbifResult.Kingdom,
+                                Phylum = gbifResult.Phylum,
+                                Class = gbifResult.Class,
+                                Order = gbifResult.Order,
+                                Family = gbifResult.Family,
+                                Genus = gbifResult.Genus
                             });
                         }
                     }

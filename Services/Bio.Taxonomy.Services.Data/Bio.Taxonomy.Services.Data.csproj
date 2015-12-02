@@ -37,11 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboveGenusTaxaRankDataService.cs" />
-    <Compile Include="AphiaTaxaRankDataService.cs" />
+    <Compile Include="AphiaTaxaClassificationDataService.cs" />
     <Compile Include="CoLTaxaRankDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
-    <Compile Include="GbifTaxaRankDataService.cs" />
+    <Compile Include="GbifTaxaClassificationDataService.cs" />
     <Compile Include="LocalDbTaxaRankDataService.cs" />
+    <Compile Include="Models\TaxonClassificationDataServiceResponseModel.cs" />
     <Compile Include="Models\TaxonRankDataServiceResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuffixHigherTaxaRankDataService.cs" />

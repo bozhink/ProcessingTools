@@ -18,5 +18,28 @@
                 node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
             }
         }
+
+        public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure()
+        {
+            string xpath = "//tp:nomenclature[tp:taxon-authority][normalize-space(tp:taxon-authority)=''][tn[tn-part[@type='authority']]]";
+
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            {
+                XmlNode taxonAuthority = node.SelectSingleNode("tp:taxon-authority", this.NamespaceManager);
+
+                ////System.Console.WriteLine(taxonAuthority.OuterXml);
+
+                XmlNode authority = node.SelectSingleNode("tn/tn-part[@type='authority'][position()=last()]", this.NamespaceManager);
+
+                ////System.Console.WriteLine(authority.OuterXml);
+
+                taxonAuthority.InnerText = authority.InnerText;
+                authority.ParentNode.RemoveChild(authority);
+
+
+
+                ////System.Console.WriteLine();
+            }
+        }
     }
 }

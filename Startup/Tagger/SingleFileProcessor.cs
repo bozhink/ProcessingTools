@@ -16,12 +16,12 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
+    using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Types;
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
-
     public class SingleFileProcessor : FileProcessor
     {
         private TaxonomicBlackList blackList;
@@ -138,6 +138,12 @@
                     // Do something as an experimental feature
                     if (this.settings.TestFlag)
                     {
+                        this.logger?.Log("\n\n\tTest\n\n");
+                        var test = new Test(this.document.Xml);
+
+                        test.MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure();
+
+                        this.document.Xml = test.Xml;
                     }
 
                     // Main Tagging part of the program
@@ -459,7 +465,7 @@
             {
                 {
                     var dataService = new LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -467,8 +473,8 @@
 
                 if (this.settings.ParseHigherWithAphia)
                 {
-                    var dataService = new AphiaTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var dataService = new AphiaTaxaClassificationDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -477,7 +483,7 @@
                 if (this.settings.ParseHigherWithCoL)
                 {
                     var dataService = new CoLTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -485,8 +491,8 @@
 
                 if (this.settings.ParseHigherWithGbif)
                 {
-                    var dataService = new GbifTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var dataService = new GbifTaxaClassificationDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -495,7 +501,7 @@
                 if (this.settings.ParseHigherBySuffix)
                 {
                     var dataService = new SuffixHigherTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -504,7 +510,7 @@
                 if (this.settings.ParseHigherAboveGenus)
                 {
                     var dataService = new AboveGenusTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService(result, dataService, this.logger);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;

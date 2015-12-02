@@ -9,19 +9,20 @@
     using Contracts.Log;
     using Models;
 
-    public class HigherTaxaParserWithDataService : Base, IBaseParser
+    public class HigherTaxaParserWithDataService<T> : Base, IBaseParser
+        where T : ITaxonRank
     {
         private ILogger logger;
-        private ITaxaDataService<ITaxonRank> taxaRankDataService;
+        private ITaxaDataService<T> taxaRankDataService;
 
-        public HigherTaxaParserWithDataService(string xml, ITaxaDataService<ITaxonRank> taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(string xml, ITaxaDataService<T> taxaRankDataService, ILogger logger)
             : base(xml)
         {
             this.logger = logger;
             this.taxaRankDataService = taxaRankDataService;
         }
 
-        public HigherTaxaParserWithDataService(IBase baseObject, ITaxaDataService<ITaxonRank> taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(IBase baseObject, ITaxaDataService<T> taxaRankDataService, ILogger logger)
             : base(baseObject)
         {
             this.logger = logger;
