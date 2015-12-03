@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Models
+﻿namespace ProcessingTools.Web.Api.Models.TaxonomyDataServices
 {
-    using Taxonomy.Contracts;
+    using Bio.Taxonomy.Contracts;
+    using Contracts.Mapping;
 
-    internal class TaxonClassificationDataServiceResponseModel : ITaxonClassification
+    public class TaxonClassificationResponseModel : IMapFrom<ITaxonClassification>
     {
         public string Aberration { get; set; }
 

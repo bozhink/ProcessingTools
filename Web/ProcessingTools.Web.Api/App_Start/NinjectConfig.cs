@@ -46,6 +46,11 @@
                 .From(Assemblies.MediaTypeDataServices)
                 .SelectAllClasses()
                 .BindDefaultInterface());
+
+            kernel.Bind(b => b
+                .From(Assemblies.TaxonomicDataServices)
+                .SelectAllClasses()
+                .BindDefaultInterface());
         }
     }
 }
