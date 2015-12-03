@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
     using Contracts;
@@ -15,6 +16,7 @@
         private ILogger logger;
 
         private XmlReaderSettings readerSettings;
+        private XmlWriterSettings writerSettings;
 
         public XmlFileProcessor()
             : this(null, null, null)
@@ -57,6 +59,21 @@
                 DtdProcessing = DtdProcessing.Ignore,
                 ConformanceLevel = ConformanceLevel.Document,
                 ValidationType = ValidationType.None
+            };
+
+            this.writerSettings = new XmlWriterSettings()
+            {
+                Async = false,
+                Encoding = Encoding.UTF8,
+                Indent = false,
+                IndentChars = " ",
+                NewLineChars = "\n",
+                NewLineHandling = NewLineHandling.Replace,
+                NewLineOnAttributes = false,
+                NamespaceHandling = NamespaceHandling.OmitDuplicates,
+                OmitXmlDeclaration = false,
+                WriteEndDocumentOnClose = true,
+                CloseOutput = true
             };
         }
 
@@ -191,6 +208,25 @@
                     writer.Close();
                 }
             }
+        }
+
+        public void Write(IDocument document, XmlDocumentType documentType, XmlWriterSettings writerSettings = null)
+        {
+            XmlWriterSettings settings = this.writerSettings;
+            if (writerSettings != null)
+            {
+                settings = writerSettings;
+            }
+
+            XmlWriter writer = XmlWriter.Create(this.OutputFileName, settings);
+            if (documentType != null)
+            {
+                writer.WriteDocType(documentType.Name, documentType.PublicId, documentType.SystemId, documentType.InternalSubset);
+            }
+
+            document.XmlDocument.DocumentElement.WriteTo(writer);
+            writer.Flush();
+            writer.Close();
         }
 
         private string GenerateOutputFileNameBasedOnInputFileName()
