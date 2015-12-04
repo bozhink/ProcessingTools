@@ -1,24 +1,23 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using System.Linq;
-    using System.Web.Http;
-
     using AutoMapper.QueryableExtensions;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Models.TaxonomyDataServices;
+    using System.Linq;
+    using System.Web.Http;
 
-    public class AphiaController : ApiController
+    public class GbifController : ApiController
     {
-        private IAphiaTaxaClassificationDataService aphiaService;
+        private IGbifTaxaClassificationDataService service;
 
-        public AphiaController(IAphiaTaxaClassificationDataService aphiaService)
+        public GbifController(IGbifTaxaClassificationDataService gbifSevice)
         {
-            this.aphiaService = aphiaService;
+            this.service = gbifSevice;
         }
 
         public IHttpActionResult Get(string id)
         {
-            var result = this.aphiaService.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
+            var result = this.service.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
 
             if (result == null)
             {

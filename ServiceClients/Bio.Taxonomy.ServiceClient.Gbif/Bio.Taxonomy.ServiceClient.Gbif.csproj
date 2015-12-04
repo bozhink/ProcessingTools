@@ -36,7 +36,7 @@
   <ItemGroup>
     <Compile Include="GbifDataRequester.cs" />
     <Compile Include="Models\Alternative.cs" />
-    <Compile Include="Models\GbifResult.cs" />
+    <Compile Include="Models\GbifApiResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

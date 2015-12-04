@@ -15,10 +15,9 @@
             this.mediatypeDataService = mediatypeService;
         }
 
-        [Route("api/mediatype/{extension}")]
-        public IHttpActionResult Get(string extension)
+        public IHttpActionResult Get(string id)
         {
-            var result = this.mediatypeDataService?.GetMediaType(extension)?.ProjectTo<MediaTypeResponseModel>().ToList();
+            var result = this.mediatypeDataService?.GetMediaType(id)?.ProjectTo<MediaTypeResponseModel>().ToList();
 
             if (result == null)
             {

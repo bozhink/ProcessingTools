@@ -17,7 +17,8 @@
 
         protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
-            var gbifResult = GbifDataRequester.SearchGbif(scientificName).Result;
+            var gbifResult = GbifDataRequester.SearchGbif(scientificName)?.Result;
+
             if (gbifResult != null)
             {
                 if (!string.IsNullOrWhiteSpace(gbifResult.CanonicalName) ||

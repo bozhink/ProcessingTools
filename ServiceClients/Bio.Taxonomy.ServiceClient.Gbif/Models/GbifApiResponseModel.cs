@@ -4,7 +4,7 @@
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class GbifResult
+    public class GbifApiResponseModel
     {
         [DataMember(Name = "usageKey")]
         public int UsageKey { get; set; }

@@ -8,9 +8,9 @@
     {
         public static T Deserialize<T>(string jsonString)
         {
-            DataContractJsonSerializer data = new DataContractJsonSerializer(typeof(T));
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
-            return (T)data.ReadObject(stream);
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+            var serializer = new DataContractJsonSerializer(typeof(T));
+            return (T)serializer.ReadObject(stream);
         }
     }
 }

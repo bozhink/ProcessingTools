@@ -1,943 +1,941 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <results id="" name="Coleoptera" total_number_of_results="4" number_of_results_returned="4" start="0" error_message="" version="1.9 rev 2126ab0" rank="">
-  <result>
-    <id>464cd2b5f0f3e5742431b9cf84e04bde</id>
-    <name>Coleoptera</name>
-    <rank>Order</rank>
-    <name_status>accepted name</name_status>
-    <name_html>Coleoptera</name_html>
-    <url>http://www.catalogueoflife.org/col/browse/tree/id/464cd2b5f0f3e5742431b9cf84e04bde</url>
-    <is_extinct>false</is_extinct>
-    <classification>
-      <taxon>
-        <id>5ede24b0534ebd5e1f552d5b9f874a6a</id>
-        <name>Animalia</name>
-        <rank>Kingdom</rank>
-        <name_html>Animalia</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/5ede24b0534ebd5e1f552d5b9f874a6a</url>
-      </taxon>
-      <taxon>
-        <id>89ac18bfcf1654a9662a600ba06bb494</id>
-        <name>Arthropoda</name>
-        <rank>Phylum</rank>
-        <name_html>Arthropoda</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/89ac18bfcf1654a9662a600ba06bb494</url>
-      </taxon>
-      <taxon>
-        <id>ae304a1e0beadcfec04932589049bb5a</id>
-        <name>Insecta</name>
-        <rank>Class</rank>
-        <name_html>Insecta</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ae304a1e0beadcfec04932589049bb5a</url>
-      </taxon>
-    </classification>
-    <child_taxa>
-      <taxon>
-        <id>ad1edece70be7edb8cacf31e407be9be</id>
-        <name>Amphizoidae</name>
-        <rank>Family</rank>
-        <name_html>Amphizoidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ad1edece70be7edb8cacf31e407be9be</url>
+    <result>
+        <id>464cd2b5f0f3e5742431b9cf84e04bde</id>
+        <name>Coleoptera</name>
+        <rank>Order</rank>
+        <name_status>accepted name</name_status>
+        <name_html>Coleoptera</name_html>
+        <url>http://www.catalogueoflife.org/col/browse/tree/id/464cd2b5f0f3e5742431b9cf84e04bde</url>
         <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>b6a90a57bb25cf16677e388ab0a26cf4</id>
-        <name>Bostrichoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Bostrichoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/b6a90a57bb25cf16677e388ab0a26cf4</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>ef43e453d4f52edde892507e47a91c9b</id>
-        <name>Buprestoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Buprestoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ef43e453d4f52edde892507e47a91c9b</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>6296deb449fee9563a182aabda0b4831</id>
-        <name>Byrrhoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Byrrhoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/6296deb449fee9563a182aabda0b4831</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>ff12ecdf3643c75d45e24fddb0b38640</id>
-        <name>Caraboidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Caraboidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ff12ecdf3643c75d45e24fddb0b38640</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>ea4b2805dce4b0c3d32c77d97c32b73a</id>
-        <name>Cerambycidae</name>
-        <rank>Family</rank>
-        <name_html>Cerambycidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ea4b2805dce4b0c3d32c77d97c32b73a</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>5fa582ff7728e25cf35bf173fd70687d</id>
-        <name>Chrysomeloidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Chrysomeloidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/5fa582ff7728e25cf35bf173fd70687d</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>103d265cf7f08c9ab6232d9c3365662d</id>
-        <name>Cleroidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Cleroidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/103d265cf7f08c9ab6232d9c3365662d</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>0298bff0f1a08638678b56ee15ed90ca</id>
-        <name>Crowsoniellidae</name>
-        <rank>Family</rank>
-        <name_html>Crowsoniellidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/0298bff0f1a08638678b56ee15ed90ca</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>a2da271e6758124d04c347af0bf63d60</id>
-        <name>Cucujoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Cucujoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/a2da271e6758124d04c347af0bf63d60</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>cdc93d7a09a02c9c5083483d53ebdbab</id>
-        <name>Cupedidae</name>
-        <rank>Family</rank>
-        <name_html>Cupedidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/cdc93d7a09a02c9c5083483d53ebdbab</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>b35e34d50c5da39bdd9fc7907f736453</id>
-        <name>Curculionoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Curculionoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/b35e34d50c5da39bdd9fc7907f736453</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>ba153a525e6d7854be8f612e46e249b9</id>
-        <name>Dascilloidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Dascilloidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/ba153a525e6d7854be8f612e46e249b9</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>6d87103343690ea1058a93c1b281213a</id>
-        <name>Derodontoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Derodontoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/6d87103343690ea1058a93c1b281213a</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>3bffb6a2b7c69900d947b0e569cbfda2</id>
-        <name>Dytiscidae</name>
-        <rank>Family</rank>
-        <name_html>Dytiscidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/3bffb6a2b7c69900d947b0e569cbfda2</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>489bdab1c1693a23bcee8b8b2aa053f7</id>
-        <name>Elateroidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Elateroidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/489bdab1c1693a23bcee8b8b2aa053f7</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>282185177b1017ada467b2b85d4b18b6</id>
-        <name>Gyrinidae</name>
-        <rank>Family</rank>
-        <name_html>Gyrinidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/282185177b1017ada467b2b85d4b18b6</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>1f1fdfb72255c5f5a05fa038a9ef5d1c</id>
-        <name>Haliplidae</name>
-        <rank>Family</rank>
-        <name_html>Haliplidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/1f1fdfb72255c5f5a05fa038a9ef5d1c</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>bb73cba2840a0b602ccbc08480166e25</id>
-        <name>Histeroidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Histeroidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/bb73cba2840a0b602ccbc08480166e25</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>03a855dc806136b6ca88bc1bb916d6e3</id>
-        <name>Hydrophiloidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Hydrophiloidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/03a855dc806136b6ca88bc1bb916d6e3</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>13e346be59906ac270178918d5ad286c</id>
-        <name>Hydroscaphidae</name>
-        <rank>Family</rank>
-        <name_html>Hydroscaphidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/13e346be59906ac270178918d5ad286c</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>9123f127f93a2ede5cb2f2f35eb4a34d</id>
-        <name>Jacobsoniidae</name>
-        <rank>Family</rank>
-        <name_html>Jacobsoniidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/9123f127f93a2ede5cb2f2f35eb4a34d</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>c5e7aa5f96d09d66ab5a58a1c5c6ccc0</id>
-        <name>Jurodidae</name>
-        <rank>Family</rank>
-        <name_html>Jurodidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/c5e7aa5f96d09d66ab5a58a1c5c6ccc0</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>055a46e907d545f8ba5bfdbb54e392c7</id>
-        <name>Lymexyloidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Lymexyloidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/055a46e907d545f8ba5bfdbb54e392c7</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>970e40fe9c05d79727a991b58f67cbd4</id>
-        <name>Micromalthidae</name>
-        <rank>Family</rank>
-        <name_html>Micromalthidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/970e40fe9c05d79727a991b58f67cbd4</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>2346913e80ec8e273a3ded628d0f8818</id>
-        <name>Noteridae</name>
-        <rank>Family</rank>
-        <name_html>Noteridae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/2346913e80ec8e273a3ded628d0f8818</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>6226609036b76afde46971248b62d3d0</id>
-        <name>Ommatidae</name>
-        <rank>Family</rank>
-        <name_html>Ommatidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/6226609036b76afde46971248b62d3d0</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>f92e339bfb41d313cea3ca3b35a78eca</id>
-        <name>Rhysodidae</name>
-        <rank>Family</rank>
-        <name_html>Rhysodidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/f92e339bfb41d313cea3ca3b35a78eca</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>c779ff5001da98c53e1668ddd1ac980d</id>
-        <name>Scarabaeoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Scarabaeoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/c779ff5001da98c53e1668ddd1ac980d</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>f699835aa8091d0c8f2e16ccea025da1</id>
-        <name>Scirtoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Scirtoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/f699835aa8091d0c8f2e16ccea025da1</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>45b4182545c1bf5fd7988837aa7ec5c8</id>
-        <name>Sphaeriusidae</name>
-        <rank>Family</rank>
-        <name_html>Sphaeriusidae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/45b4182545c1bf5fd7988837aa7ec5c8</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>5c0da0d67db6e4fc74d6eba7a5d91792</id>
-        <name>Staphylinoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Staphylinoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/5c0da0d67db6e4fc74d6eba7a5d91792</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-      <taxon>
-        <id>569814565710db47d330a7f0d61a73db</id>
-        <name>Tenebrionoidea</name>
-        <rank>Superfamily</rank>
-        <name_html>Tenebrionoidea</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/569814565710db47d330a7f0d61a73db</url>
-        <is_extinct>false</is_extinct>
-      </taxon>
-    </child_taxa>
-  </result>
-  <result>
-    <id>a0f1165700dbb56559c6978e33d198a6</id>
-    <name>Cortinarius coleoptera</name>
-    <rank>Species</rank>
-    <name_status>accepted name</name_status>
-    <genus>Cortinarius</genus>
-    <subgenus></subgenus>
-    <species>coleoptera</species>
-    <infraspecies_marker></infraspecies_marker>
-    <infraspecies></infraspecies>
-    <author>
-      <![CDATA[H. Lindstr. & Soop 1999]]>
-    </author>
-    <record_scrutiny_date>
-      <scrutiny>2014</scrutiny>
-    </record_scrutiny_date>
-    <online_resource>http://www.speciesfungorum.org</online_resource>
-    <is_extinct>false</is_extinct>
-    <source_database>Species Fungorum</source_database>
-    <source_database_url>http://www.speciesfungorum.org</source_database_url>
-    <bibliographic_citation>
-      <![CDATA[Kirk P.M. (2015). Species Fungorum (version Feb 2014). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
-    </bibliographic_citation>
-    <name_html>
-      <![CDATA[<i>Cortinarius coleoptera</i> H. Lindstr. & Soop 1999]]>
-    </name_html>
-    <url>http://www.catalogueoflife.org/col/details/species/id/a0f1165700dbb56559c6978e33d198a6</url>
-    <distribution></distribution>
-    <references>
-      <reference>
+        <classification>
+            <taxon>
+                <id>5ede24b0534ebd5e1f552d5b9f874a6a</id>
+                <name>Animalia</name>
+                <rank>Kingdom</rank>
+                <name_html>Animalia</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/5ede24b0534ebd5e1f552d5b9f874a6a</url>
+            </taxon>
+            <taxon>
+                <id>89ac18bfcf1654a9662a600ba06bb494</id>
+                <name>Arthropoda</name>
+                <rank>Phylum</rank>
+                <name_html>Arthropoda</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/89ac18bfcf1654a9662a600ba06bb494</url>
+            </taxon>
+            <taxon>
+                <id>ae304a1e0beadcfec04932589049bb5a</id>
+                <name>Insecta</name>
+                <rank>Class</rank>
+                <name_html>Insecta</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ae304a1e0beadcfec04932589049bb5a</url>
+            </taxon>
+        </classification>
+        <child_taxa>
+            <taxon>
+                <id>ad1edece70be7edb8cacf31e407be9be</id>
+                <name>Amphizoidae</name>
+                <rank>Family</rank>
+                <name_html>Amphizoidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ad1edece70be7edb8cacf31e407be9be</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>b6a90a57bb25cf16677e388ab0a26cf4</id>
+                <name>Bostrichoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Bostrichoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/b6a90a57bb25cf16677e388ab0a26cf4</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>ef43e453d4f52edde892507e47a91c9b</id>
+                <name>Buprestoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Buprestoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ef43e453d4f52edde892507e47a91c9b</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>6296deb449fee9563a182aabda0b4831</id>
+                <name>Byrrhoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Byrrhoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/6296deb449fee9563a182aabda0b4831</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>ff12ecdf3643c75d45e24fddb0b38640</id>
+                <name>Caraboidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Caraboidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ff12ecdf3643c75d45e24fddb0b38640</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>ea4b2805dce4b0c3d32c77d97c32b73a</id>
+                <name>Cerambycidae</name>
+                <rank>Family</rank>
+                <name_html>Cerambycidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ea4b2805dce4b0c3d32c77d97c32b73a</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>5fa582ff7728e25cf35bf173fd70687d</id>
+                <name>Chrysomeloidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Chrysomeloidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/5fa582ff7728e25cf35bf173fd70687d</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>103d265cf7f08c9ab6232d9c3365662d</id>
+                <name>Cleroidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Cleroidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/103d265cf7f08c9ab6232d9c3365662d</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>0298bff0f1a08638678b56ee15ed90ca</id>
+                <name>Crowsoniellidae</name>
+                <rank>Family</rank>
+                <name_html>Crowsoniellidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/0298bff0f1a08638678b56ee15ed90ca</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>a2da271e6758124d04c347af0bf63d60</id>
+                <name>Cucujoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Cucujoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/a2da271e6758124d04c347af0bf63d60</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>cdc93d7a09a02c9c5083483d53ebdbab</id>
+                <name>Cupedidae</name>
+                <rank>Family</rank>
+                <name_html>Cupedidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/cdc93d7a09a02c9c5083483d53ebdbab</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>b35e34d50c5da39bdd9fc7907f736453</id>
+                <name>Curculionoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Curculionoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/b35e34d50c5da39bdd9fc7907f736453</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>ba153a525e6d7854be8f612e46e249b9</id>
+                <name>Dascilloidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Dascilloidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/ba153a525e6d7854be8f612e46e249b9</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>6d87103343690ea1058a93c1b281213a</id>
+                <name>Derodontoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Derodontoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/6d87103343690ea1058a93c1b281213a</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>3bffb6a2b7c69900d947b0e569cbfda2</id>
+                <name>Dytiscidae</name>
+                <rank>Family</rank>
+                <name_html>Dytiscidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/3bffb6a2b7c69900d947b0e569cbfda2</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>489bdab1c1693a23bcee8b8b2aa053f7</id>
+                <name>Elateroidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Elateroidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/489bdab1c1693a23bcee8b8b2aa053f7</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>282185177b1017ada467b2b85d4b18b6</id>
+                <name>Gyrinidae</name>
+                <rank>Family</rank>
+                <name_html>Gyrinidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/282185177b1017ada467b2b85d4b18b6</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>1f1fdfb72255c5f5a05fa038a9ef5d1c</id>
+                <name>Haliplidae</name>
+                <rank>Family</rank>
+                <name_html>Haliplidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/1f1fdfb72255c5f5a05fa038a9ef5d1c</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>bb73cba2840a0b602ccbc08480166e25</id>
+                <name>Histeroidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Histeroidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/bb73cba2840a0b602ccbc08480166e25</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>03a855dc806136b6ca88bc1bb916d6e3</id>
+                <name>Hydrophiloidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Hydrophiloidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/03a855dc806136b6ca88bc1bb916d6e3</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>13e346be59906ac270178918d5ad286c</id>
+                <name>Hydroscaphidae</name>
+                <rank>Family</rank>
+                <name_html>Hydroscaphidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/13e346be59906ac270178918d5ad286c</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>9123f127f93a2ede5cb2f2f35eb4a34d</id>
+                <name>Jacobsoniidae</name>
+                <rank>Family</rank>
+                <name_html>Jacobsoniidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/9123f127f93a2ede5cb2f2f35eb4a34d</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>c5e7aa5f96d09d66ab5a58a1c5c6ccc0</id>
+                <name>Jurodidae</name>
+                <rank>Family</rank>
+                <name_html>Jurodidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/c5e7aa5f96d09d66ab5a58a1c5c6ccc0</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>055a46e907d545f8ba5bfdbb54e392c7</id>
+                <name>Lymexyloidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Lymexyloidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/055a46e907d545f8ba5bfdbb54e392c7</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>970e40fe9c05d79727a991b58f67cbd4</id>
+                <name>Micromalthidae</name>
+                <rank>Family</rank>
+                <name_html>Micromalthidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/970e40fe9c05d79727a991b58f67cbd4</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>2346913e80ec8e273a3ded628d0f8818</id>
+                <name>Noteridae</name>
+                <rank>Family</rank>
+                <name_html>Noteridae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/2346913e80ec8e273a3ded628d0f8818</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>6226609036b76afde46971248b62d3d0</id>
+                <name>Ommatidae</name>
+                <rank>Family</rank>
+                <name_html>Ommatidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/6226609036b76afde46971248b62d3d0</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>f92e339bfb41d313cea3ca3b35a78eca</id>
+                <name>Rhysodidae</name>
+                <rank>Family</rank>
+                <name_html>Rhysodidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/f92e339bfb41d313cea3ca3b35a78eca</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>c779ff5001da98c53e1668ddd1ac980d</id>
+                <name>Scarabaeoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Scarabaeoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/c779ff5001da98c53e1668ddd1ac980d</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>f699835aa8091d0c8f2e16ccea025da1</id>
+                <name>Scirtoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Scirtoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/f699835aa8091d0c8f2e16ccea025da1</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>45b4182545c1bf5fd7988837aa7ec5c8</id>
+                <name>Sphaeriusidae</name>
+                <rank>Family</rank>
+                <name_html>Sphaeriusidae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/45b4182545c1bf5fd7988837aa7ec5c8</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>5c0da0d67db6e4fc74d6eba7a5d91792</id>
+                <name>Staphylinoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Staphylinoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/5c0da0d67db6e4fc74d6eba7a5d91792</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+            <taxon>
+                <id>569814565710db47d330a7f0d61a73db</id>
+                <name>Tenebrionoidea</name>
+                <rank>Superfamily</rank>
+                <name_html>Tenebrionoidea</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/569814565710db47d330a7f0d61a73db</url>
+                <is_extinct>false</is_extinct>
+            </taxon>
+        </child_taxa>
+    </result>
+    <result>
+        <id>a0f1165700dbb56559c6978e33d198a6</id>
+        <name>Cortinarius coleoptera</name>
+        <rank>Species</rank>
+        <name_status>accepted name</name_status>
+        <genus>Cortinarius</genus>
+        <subgenus></subgenus>
+        <species>coleoptera</species>
+        <infraspecies_marker></infraspecies_marker>
+        <infraspecies></infraspecies>
         <author>
-          <![CDATA[H. Lindstr. & Soop]]>
+            <![CDATA[H. Lindstr. & Soop 1999]]>
         </author>
-        <year>1999</year>
-        <title>
-          Quelques petits
-          <i>Telamonia</i> calciphiles
-        </title>
-        <source>
-          In:
-          <i>Journal des JEC</i>, Journées Européenes du Cortinaire 2(1): 58
-        </source>
-      </reference>
-    </references>
-    <classification>
-      <taxon>
-        <id>8e43417ba4bde2d9eb861cac5e4bf8b8</id>
-        <name>Fungi</name>
-        <rank>Kingdom</rank>
-        <name_html>Fungi</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/8e43417ba4bde2d9eb861cac5e4bf8b8</url>
-      </taxon>
-      <taxon>
-        <id>f88f6ffa7498d8bebe3e1c58cc327562</id>
-        <name>Basidiomycota</name>
-        <rank>Phylum</rank>
-        <name_html>Basidiomycota</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/f88f6ffa7498d8bebe3e1c58cc327562</url>
-      </taxon>
-      <taxon>
-        <id>bac1a003f733d83d15d323eeaf577087</id>
-        <name>Agaricomycetes</name>
-        <rank>Class</rank>
-        <name_html>Agaricomycetes</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/bac1a003f733d83d15d323eeaf577087</url>
-      </taxon>
-      <taxon>
-        <id>d67b14f8c2d422fc52d71c54f3d0e0f7</id>
-        <name>Agaricales</name>
-        <rank>Order</rank>
-        <name_html>Agaricales</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/d67b14f8c2d422fc52d71c54f3d0e0f7</url>
-      </taxon>
-      <taxon>
-        <id>f0daa27c8b836624d1107f40b520c338</id>
-        <name>Cortinariaceae</name>
-        <rank>Family</rank>
-        <name_html>Cortinariaceae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/f0daa27c8b836624d1107f40b520c338</url>
-      </taxon>
-      <taxon>
-        <id>f37fdc2f0af436d47b7c1912e7ccd318</id>
-        <name>Cortinarius</name>
-        <rank>Genus</rank>
+        <record_scrutiny_date>
+            <scrutiny>2014</scrutiny>
+        </record_scrutiny_date>
+        <online_resource>http://www.speciesfungorum.org</online_resource>
+        <is_extinct>false</is_extinct>
+        <source_database>Species Fungorum</source_database>
+        <source_database_url>http://www.speciesfungorum.org</source_database_url>
+        <bibliographic_citation>
+            <![CDATA[Kirk P.M. (2015). Species Fungorum (version Feb 2014). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
+        </bibliographic_citation>
         <name_html>
-          <i>Cortinarius</i>
+            <![CDATA[<i>Cortinarius coleoptera</i> H. Lindstr. & Soop 1999]]>
         </name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/f37fdc2f0af436d47b7c1912e7ccd318</url>
-      </taxon>
-    </classification>
-    <child_taxa/>
-    <synonyms/>
-    <common_names/>
-  </result>
-  <result>
-    <id>3c79a6a8d7ad8459aa07fee64efb75e9</id>
-    <name>Heteropterys coleoptera</name>
-    <rank>Species</rank>
-    <name_status>accepted name</name_status>
-    <genus>Heteropterys</genus>
-    <subgenus></subgenus>
-    <species>coleoptera</species>
-    <infraspecies_marker></infraspecies_marker>
-    <infraspecies></infraspecies>
-    <author>A. Juss.</author>
-    <record_scrutiny_date>
-      <scrutiny>Sep-2015</scrutiny>
-    </record_scrutiny_date>
-    <online_resource></online_resource>
-    <is_extinct>false</is_extinct>
-    <source_database>World Plants: Synonymic Checklists of the Vascular Plants of the World</source_database>
-    <source_database_url>http://worldplants.webarchiv.kit.edu/</source_database_url>
-    <bibliographic_citation>
-      <![CDATA[Hassler M. (2015). World Plants: Synonymic Checklists of the Vascular Plants of the World (version Sep 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
-    </bibliographic_citation>
-    <name_html>
-      <i>Heteropterys coleoptera</i> A. Juss.
-    </name_html>
-    <url>http://www.catalogueoflife.org/col/details/species/id/3c79a6a8d7ad8459aa07fee64efb75e9</url>
-    <distribution>NE-Brazil (Bahia, Alagoas, Sergipe), SE-Brazil (Espirito Santo, Sao Paulo, Rio de Janeiro), S-Brazil (Parana) 136299 0</distribution>
-    <references>
-      <reference>
+        <url>http://www.catalogueoflife.org/col/details/species/id/a0f1165700dbb56559c6978e33d198a6</url>
+        <distribution></distribution>
+        <references>
+            <reference>
+                <author>
+                    <![CDATA[H. Lindstr. & Soop]]>
+                </author>
+                <year>1999</year>
+                <title>Quelques petits 
+                    <i>Telamonia</i> calciphiles
+                </title>
+                <source>In: 
+                    <i>Journal des JEC</i>, Journées Européenes du Cortinaire 2(1): 58
+                </source>
+            </reference>
+        </references>
+        <classification>
+            <taxon>
+                <id>8e43417ba4bde2d9eb861cac5e4bf8b8</id>
+                <name>Fungi</name>
+                <rank>Kingdom</rank>
+                <name_html>Fungi</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/8e43417ba4bde2d9eb861cac5e4bf8b8</url>
+            </taxon>
+            <taxon>
+                <id>f88f6ffa7498d8bebe3e1c58cc327562</id>
+                <name>Basidiomycota</name>
+                <rank>Phylum</rank>
+                <name_html>Basidiomycota</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/f88f6ffa7498d8bebe3e1c58cc327562</url>
+            </taxon>
+            <taxon>
+                <id>bac1a003f733d83d15d323eeaf577087</id>
+                <name>Agaricomycetes</name>
+                <rank>Class</rank>
+                <name_html>Agaricomycetes</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/bac1a003f733d83d15d323eeaf577087</url>
+            </taxon>
+            <taxon>
+                <id>d67b14f8c2d422fc52d71c54f3d0e0f7</id>
+                <name>Agaricales</name>
+                <rank>Order</rank>
+                <name_html>Agaricales</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/d67b14f8c2d422fc52d71c54f3d0e0f7</url>
+            </taxon>
+            <taxon>
+                <id>f0daa27c8b836624d1107f40b520c338</id>
+                <name>Cortinariaceae</name>
+                <rank>Family</rank>
+                <name_html>Cortinariaceae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/f0daa27c8b836624d1107f40b520c338</url>
+            </taxon>
+            <taxon>
+                <id>f37fdc2f0af436d47b7c1912e7ccd318</id>
+                <name>Cortinarius</name>
+                <rank>Genus</rank>
+                <name_html>
+                    <i>Cortinarius</i>
+                </name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/f37fdc2f0af436d47b7c1912e7ccd318</url>
+            </taxon>
+        </classification>
+        <child_taxa/>
+        <synonyms/>
+        <common_names/>
+    </result>
+    <result>
+        <id>3c79a6a8d7ad8459aa07fee64efb75e9</id>
+        <name>Heteropterys coleoptera</name>
+        <rank>Species</rank>
+        <name_status>accepted name</name_status>
+        <genus>Heteropterys</genus>
+        <subgenus></subgenus>
+        <species>coleoptera</species>
+        <infraspecies_marker></infraspecies_marker>
+        <infraspecies></infraspecies>
         <author>A. Juss.</author>
-        <year>1843</year>
-        <title></title>
-        <source>In: Ann. Sci. Nat. Ser. II. 13: 275 (1840), et Arch. Mus. Par. 3: 448</source>
-      </reference>
-    </references>
-    <classification>
-      <taxon>
-        <id>208cf441fe2e1662376a9ce9e80782e1</id>
-        <name>Plantae</name>
-        <rank>Kingdom</rank>
-        <name_html>Plantae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/208cf441fe2e1662376a9ce9e80782e1</url>
-      </taxon>
-      <taxon>
-        <id>73328ba4e1446e1ee3602956b66eb127</id>
-        <name>Tracheophyta</name>
-        <rank>Phylum</rank>
-        <name_html>Tracheophyta</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/73328ba4e1446e1ee3602956b66eb127</url>
-      </taxon>
-      <taxon>
-        <id>53497bb664b89c28e60f020f7f21f882</id>
-        <name>Magnoliopsida</name>
-        <rank>Class</rank>
-        <name_html>Magnoliopsida</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/53497bb664b89c28e60f020f7f21f882</url>
-      </taxon>
-      <taxon>
-        <id>52bfa9cb692e811d5b177fc914332123</id>
-        <name>Malpighiales</name>
-        <rank>Order</rank>
-        <name_html>Malpighiales</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/52bfa9cb692e811d5b177fc914332123</url>
-      </taxon>
-      <taxon>
-        <id>6bccfdd1396db533e4ad2451b49117d2</id>
-        <name>Malpighiaceae</name>
-        <rank>Family</rank>
-        <name_html>Malpighiaceae</name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/6bccfdd1396db533e4ad2451b49117d2</url>
-      </taxon>
-      <taxon>
-        <id>8524731a132b7f04bd7f8ebc1aa60a3c</id>
-        <name>Heteropterys</name>
-        <rank>Genus</rank>
+        <record_scrutiny_date>
+            <scrutiny>Sep-2015</scrutiny>
+        </record_scrutiny_date>
+        <online_resource></online_resource>
+        <is_extinct>false</is_extinct>
+        <source_database>World Plants: Synonymic Checklists of the Vascular Plants of the World</source_database>
+        <source_database_url>http://worldplants.webarchiv.kit.edu/</source_database_url>
+        <bibliographic_citation>
+            <![CDATA[Hassler M. (2015). World Plants: Synonymic Checklists of the Vascular Plants of the World (version Sep 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
+        </bibliographic_citation>
         <name_html>
-          <i>Heteropterys</i>
+            <i>Heteropterys coleoptera</i> A. Juss.
         </name_html>
-        <url>http://www.catalogueoflife.org/col/browse/tree/id/8524731a132b7f04bd7f8ebc1aa60a3c</url>
-      </taxon>
-    </classification>
-    <child_taxa/>
-    <synonyms/>
-    <common_names/>
-  </result>
-  <result>
-    <id>077fe1ec63535e19b34c6399bdb711c9</id>
-    <name>Lepyronia coleoptera</name>
-    <rank>Species</rank>
-    <name_status>synonym</name_status>
-    <genus>Lepyronia</genus>
-    <subgenus></subgenus>
-    <species>coleoptera</species>
-    <infraspecies_marker></infraspecies_marker>
-    <infraspecies></infraspecies>
-    <author>(Linné, 1758)</author>
-    <record_scrutiny_date></record_scrutiny_date>
-    <online_resource></online_resource>
-    <source_database>COOL: Cercopoidea Organised On Line</source_database>
-    <source_database_url>http://rameau.snv.jussieu.fr/cool/</source_database_url>
-    <bibliographic_citation>
-      <![CDATA[Soulier-Perkins A. (2015). COOL: Cercopoidea Organised On Line (version Feb 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
-    </bibliographic_citation>
-    <name_html>
-      <i>Lepyronia coleoptera</i> (Linné, 1758)
-    </name_html>
-    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/077fe1ec63535e19b34c6399bdb711c9</url>
-    <distribution></distribution>
-    <references/>
-    <accepted_name>
-      <id>c1b8ce5b9226294d397a2ca51daee8f0</id>
-      <name>Lepyronia coleoptrata</name>
-      <rank>Species</rank>
-      <name_status>accepted name</name_status>
-      <genus>Lepyronia</genus>
-      <subgenus></subgenus>
-      <species>coleoptrata</species>
-      <infraspecies_marker></infraspecies_marker>
-      <infraspecies></infraspecies>
-      <author>(Linné, 1758)</author>
-      <record_scrutiny_date>
-        <scrutiny>15-Jan-2015</scrutiny>
-      </record_scrutiny_date>
-      <online_resource>
-        <![CDATA[http://hemiptera-databases.com/cool?lang=en&card=name&id=3677]]>
-      </online_resource>
-      <is_extinct>false</is_extinct>
-      <source_database>COOL: Cercopoidea Organised On Line</source_database>
-      <source_database_url>http://rameau.snv.jussieu.fr/cool/</source_database_url>
-      <bibliographic_citation>
-        <![CDATA[Soulier-Perkins A. (2015). COOL: Cercopoidea Organised On Line (version Feb 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
-      </bibliographic_citation>
-      <name_html>
-        <i>Lepyronia coleoptrata</i> (Linné, 1758)
-      </name_html>
-      <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0</url>
-      <distribution></distribution>
-      <references>
-        <reference>
-          <author>Germar E. F.</author>
-          <year>1821</year>
-          <title>Bemerkungen über einige Gattungen der Cicadarien</title>
-          <source>Magazin der Entomologie. Halle, 4: 1-106.</source>
-        </reference>
-        <reference>
-          <author>Metcalf Z. P.</author>
-          <year>1962</year>
-          <title>Part 3. Aphrophoridae.</title>
-          <source>In:  Metcalf Z. P. 1963 -  General Catalogue of the Homoptera. Fascicule VII., North Carolina State College, Raleigh(United States of America). p. 1-600.</source>
-        </reference>
-        <reference>
-          <author>Stål C.</author>
-          <year>1869</year>
-          <title>Hemiptera Fabriciana. Fabricianska Hemipterarter, efter de Köpenhamn och Kiel förvarade typexemplaren granskade och beskrifne. 2</title>
-          <source>Handlingar. Kongliga Svenska Vetenskaps Akademien. Stockholm, 8(1): 1-130.</source>
-        </reference>
-        <reference>
-          <author>Herrich-Schäffer G. A. W.</author>
-          <year>1835</year>
-          <title>Homoptera</title>
-          <source>Nomenclator Entomologicus. Verzeichnis der europäischen Insecten: zur Erleichterung des Tauschverkehrs mit Preisen versehen, 1: 1-116.</source>
-        </reference>
-        <reference>
-          <author>
-            <![CDATA[Amyot C. J. B. & Serville J. G.]]>
-          </author>
-          <year>1843</year>
-          <title>Deuxième partie. Homoptères. Homoptera Latr</title>
-          <source>Histoire Naturelle des insectes. Hemiptères, 1843: 1-676.</source>
-        </reference>
-        <reference>
-          <author>Burmeister H. C. C.</author>
-          <year>1835</year>
-          <title>Schnabelkerfe. Rhynchota. Fascicule 1</title>
-          <source>In:  Burmeister H. C. C. 1835 -  Handbuch der Entomologie, 2. p. 99-183.</source>
-        </reference>
-        <reference>
-          <author>
-            <![CDATA[Le Peletier de Saint-Fargeau A. L. M. & Serville J. G.]]>
-          </author>
-          <year>1825</year>
-          <title>Tettigomètre, Tettigometra ; Tettigone, Tettigonia ; Tettigonides</title>
-          <source>Encyclopédie méthodique. Histoire naturelle. Entomologie, ou histoire naturelle des Crustacés, des Arachnides et des Insectes, 10: 600-613.</source>
-        </reference>
-        <reference>
-          <author>Fabricius J. C.</author>
-          <year>1794</year>
-          <title>Ryngota</title>
-          <source>In:  Fabricius J. C. 1794 -  Entomologia systematica emendata et aucta. Secundum classas, ordines, genera, species adjectis synonimis, locis, observationibus, descriptionibus, 4. p. 1-57.</source>
-        </reference>
-        <reference>
-          <author>Linné C.</author>
-          <year>1758</year>
-          <title>II. Hemiptera</title>
-          <source>In:  Linné C. 1758 -  Systema Naturae. Editio Decima, reformata, 1. p. 434-439.</source>
-        </reference>
-        <reference>
-          <author>Fabricius J. C.</author>
-          <year>1781</year>
-          <title>Ryngota</title>
-          <source>In:  Fabricius J. C. 1781 -  Species insectorum exhibentes eorum differentias specificas, synonyma auctorum, loca natalia, metamorphosin adiectis observationibus, descriptionibus, 2. p. 313-331.</source>
-        </reference>
-      </references>
-      <classification>
-        <taxon>
-          <id>5ede24b0534ebd5e1f552d5b9f874a6a</id>
-          <name>Animalia</name>
-          <rank>Kingdom</rank>
-          <name_html>Animalia</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/5ede24b0534ebd5e1f552d5b9f874a6a</url>
-        </taxon>
-        <taxon>
-          <id>89ac18bfcf1654a9662a600ba06bb494</id>
-          <name>Arthropoda</name>
-          <rank>Phylum</rank>
-          <name_html>Arthropoda</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/89ac18bfcf1654a9662a600ba06bb494</url>
-        </taxon>
-        <taxon>
-          <id>ae304a1e0beadcfec04932589049bb5a</id>
-          <name>Insecta</name>
-          <rank>Class</rank>
-          <name_html>Insecta</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/ae304a1e0beadcfec04932589049bb5a</url>
-        </taxon>
-        <taxon>
-          <id>8d5dfb968886f536be02b56f350d70f9</id>
-          <name>Hemiptera</name>
-          <rank>Order</rank>
-          <name_html>Hemiptera</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/8d5dfb968886f536be02b56f350d70f9</url>
-        </taxon>
-        <taxon>
-          <id>58867eda9b488f5d2b471c30191e3b0f</id>
-          <name>Cercopoidea</name>
-          <rank>Superfamily</rank>
-          <name_html>Cercopoidea</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/58867eda9b488f5d2b471c30191e3b0f</url>
-        </taxon>
-        <taxon>
-          <id>fe2cc690e2cdca9174596199c04fa99b</id>
-          <name>Aphrophoridae</name>
-          <rank>Family</rank>
-          <name_html>Aphrophoridae</name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/fe2cc690e2cdca9174596199c04fa99b</url>
-        </taxon>
-        <taxon>
-          <id>e6b345171a00ae7d85fa76da80b60668</id>
-          <name>Lepyronia</name>
-          <rank>Genus</rank>
-          <name_html>
-            <i>Lepyronia</i>
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/browse/tree/id/e6b345171a00ae7d85fa76da80b60668</url>
-        </taxon>
-      </classification>
-      <child_taxa/>
-      <synonyms>
-        <synonym>
-          <id>11f3f719da3a55af7fbfe39b0b4a49ab</id>
-          <name>Aphrophora angulata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Aphrophora</genus>
-          <subgenus></subgenus>
-          <species>angulata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Fabricius, 1794)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Aphrophora angulata</i> (Fabricius, 1794)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/11f3f719da3a55af7fbfe39b0b4a49ab</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>2e687fa352f9bf0a6d739f316100ffce</id>
-          <name>Aphrophora coleoptrata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Aphrophora</genus>
-          <subgenus></subgenus>
-          <species>coleoptrata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Aphrophora coleoptrata</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/2e687fa352f9bf0a6d739f316100ffce</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>55f34b18be6406ca6606ae3c2ad04fab</id>
-          <name>Aprophora angulata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Aprophora</genus>
-          <subgenus></subgenus>
-          <species>angulata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Fabricius, 1794)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Aprophora angulata</i> (Fabricius, 1794)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/55f34b18be6406ca6606ae3c2ad04fab</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>330a1c0ba732fc09f95c214100e895fe</id>
-          <name>Cercopis angulata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Cercopis</genus>
-          <subgenus></subgenus>
-          <species>angulata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>Fabricius, 1794</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Cercopis angulata</i> Fabricius, 1794
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/330a1c0ba732fc09f95c214100e895fe</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>7eafde4c0919afdbe37e083f2fd7d082</id>
-          <name>Cercopis unifasciata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Cercopis</genus>
-          <subgenus></subgenus>
-          <species>unifasciata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>Fabricius, 1781</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Cercopis unifasciata</i> Fabricius, 1781
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/7eafde4c0919afdbe37e083f2fd7d082</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>90779e953715e58cc635b4e997b943e2</id>
-          <name>Cicada coleoprata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Cicada</genus>
-          <subgenus></subgenus>
-          <species>coleoprata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>Linne, 1758</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Cicada coleoprata</i> Linne, 1758
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/90779e953715e58cc635b4e997b943e2</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>5cb6b815494dedd09ba2be8644d4dce7</id>
-          <name>Cicada coleopterata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Cicada</genus>
-          <subgenus></subgenus>
-          <species>coleopterata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>Linne, 1758</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Cicada coleopterata</i> Linne, 1758
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/5cb6b815494dedd09ba2be8644d4dce7</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>b0e9597853c9342662c695bd1e79c23b</id>
-          <name>Cicada coleoptrata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Cicada</genus>
-          <subgenus></subgenus>
-          <species>coleoptrata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>Linne, 1758</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Cicada coleoptrata</i> Linne, 1758
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/b0e9597853c9342662c695bd1e79c23b</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>65e428d4b0c7e2f653f5c7a54a0d160a</id>
-          <name>Lepeyronia coleoptrata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Lepeyronia</genus>
-          <subgenus></subgenus>
-          <species>coleoptrata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Lepeyronia coleoptrata</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/65e428d4b0c7e2f653f5c7a54a0d160a</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>077fe1ec63535e19b34c6399bdb711c9</id>
-          <name>Lepyronia coleoptera</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Lepyronia</genus>
-          <subgenus></subgenus>
-          <species>coleoptera</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
+        <url>http://www.catalogueoflife.org/col/details/species/id/3c79a6a8d7ad8459aa07fee64efb75e9</url>
+        <distribution>NE-Brazil (Bahia, Alagoas, Sergipe), SE-Brazil (Espirito Santo, Sao Paulo, Rio de Janeiro), S-Brazil (Parana) 136299 0</distribution>
+        <references>
+            <reference>
+                <author>A. Juss.</author>
+                <year>1843</year>
+                <title></title>
+                <source>In: Ann. Sci. Nat. Ser. II. 13: 275 (1840), et Arch. Mus. Par. 3: 448</source>
+            </reference>
+        </references>
+        <classification>
+            <taxon>
+                <id>208cf441fe2e1662376a9ce9e80782e1</id>
+                <name>Plantae</name>
+                <rank>Kingdom</rank>
+                <name_html>Plantae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/208cf441fe2e1662376a9ce9e80782e1</url>
+            </taxon>
+            <taxon>
+                <id>73328ba4e1446e1ee3602956b66eb127</id>
+                <name>Tracheophyta</name>
+                <rank>Phylum</rank>
+                <name_html>Tracheophyta</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/73328ba4e1446e1ee3602956b66eb127</url>
+            </taxon>
+            <taxon>
+                <id>53497bb664b89c28e60f020f7f21f882</id>
+                <name>Magnoliopsida</name>
+                <rank>Class</rank>
+                <name_html>Magnoliopsida</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/53497bb664b89c28e60f020f7f21f882</url>
+            </taxon>
+            <taxon>
+                <id>52bfa9cb692e811d5b177fc914332123</id>
+                <name>Malpighiales</name>
+                <rank>Order</rank>
+                <name_html>Malpighiales</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/52bfa9cb692e811d5b177fc914332123</url>
+            </taxon>
+            <taxon>
+                <id>6bccfdd1396db533e4ad2451b49117d2</id>
+                <name>Malpighiaceae</name>
+                <rank>Family</rank>
+                <name_html>Malpighiaceae</name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/6bccfdd1396db533e4ad2451b49117d2</url>
+            </taxon>
+            <taxon>
+                <id>8524731a132b7f04bd7f8ebc1aa60a3c</id>
+                <name>Heteropterys</name>
+                <rank>Genus</rank>
+                <name_html>
+                    <i>Heteropterys</i>
+                </name_html>
+                <url>http://www.catalogueoflife.org/col/browse/tree/id/8524731a132b7f04bd7f8ebc1aa60a3c</url>
+            </taxon>
+        </classification>
+        <child_taxa/>
+        <synonyms/>
+        <common_names/>
+    </result>
+    <result>
+        <id>077fe1ec63535e19b34c6399bdb711c9</id>
+        <name>Lepyronia coleoptera</name>
+        <rank>Species</rank>
+        <name_status>synonym</name_status>
+        <genus>Lepyronia</genus>
+        <subgenus></subgenus>
+        <species>coleoptera</species>
+        <infraspecies_marker></infraspecies_marker>
+        <infraspecies></infraspecies>
+        <author>(Linné, 1758)</author>
+        <record_scrutiny_date></record_scrutiny_date>
+        <online_resource></online_resource>
+        <source_database>COOL: Cercopoidea Organised On Line</source_database>
+        <source_database_url>http://rameau.snv.jussieu.fr/cool/</source_database_url>
+        <bibliographic_citation>
+            <![CDATA[Soulier-Perkins A. (2015). COOL: Cercopoidea Organised On Line (version Feb 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
+        </bibliographic_citation>
+        <name_html>
             <i>Lepyronia coleoptera</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/077fe1ec63535e19b34c6399bdb711c9</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>f4dc4dcae260324283fdce8aa4c5c44a</id>
-          <name>Lepyronia coleopterata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Lepyronia</genus>
-          <subgenus></subgenus>
-          <species>coleopterata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Lepyronia coleopterata</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/f4dc4dcae260324283fdce8aa4c5c44a</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>5c46df1091d2a61f21f6de2e1baa0776</id>
-          <name>Lepyronia coleoptroto</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Lepyronia</genus>
-          <subgenus></subgenus>
-          <species>coleoptroto</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Lepyronia coleoptroto</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/5c46df1091d2a61f21f6de2e1baa0776</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>95751cd370e72ecd8af428cef06fee33</id>
-          <name>Ptyelus angulatus</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Ptyelus</genus>
-          <subgenus></subgenus>
-          <species>angulatus</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Fabricius, 1794)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Ptyelus angulatus</i> (Fabricius, 1794)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/95751cd370e72ecd8af428cef06fee33</url>
-          <references/>
-        </synonym>
-        <synonym>
-          <id>133a16f6575bac248345faf74800ae3e</id>
-          <name>Ptyelus coleoptrata</name>
-          <rank>Species</rank>
-          <name_status>synonym</name_status>
-          <genus>Ptyelus</genus>
-          <subgenus></subgenus>
-          <species>coleoptrata</species>
-          <infraspecies_marker></infraspecies_marker>
-          <infraspecies></infraspecies>
-          <author>(Linné, 1758)</author>
-          <record_scrutiny_date></record_scrutiny_date>
-          <online_resource></online_resource>
-          <is_extinct>0</is_extinct>
-          <name_html>
-            <i>Ptyelus coleoptrata</i> (Linné, 1758)
-          </name_html>
-          <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/133a16f6575bac248345faf74800ae3e</url>
-          <references/>
-        </synonym>
-      </synonyms>
-      <common_names>
-        <common_name>
-          <name>Wanst-Schaumzikade</name>
-          <language>German</language>
-          <country>Germany</country>
-          <references/>
-        </common_name>
-      </common_names>
-    </accepted_name>
-  </result>
+        </name_html>
+        <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/077fe1ec63535e19b34c6399bdb711c9</url>
+        <distribution></distribution>
+        <references/>
+        <accepted_name>
+            <id>c1b8ce5b9226294d397a2ca51daee8f0</id>
+            <name>Lepyronia coleoptrata</name>
+            <rank>Species</rank>
+            <name_status>accepted name</name_status>
+            <genus>Lepyronia</genus>
+            <subgenus></subgenus>
+            <species>coleoptrata</species>
+            <infraspecies_marker></infraspecies_marker>
+            <infraspecies></infraspecies>
+            <author>(Linné, 1758)</author>
+            <record_scrutiny_date>
+                <scrutiny>15-Jan-2015</scrutiny>
+            </record_scrutiny_date>
+            <online_resource>
+                <![CDATA[http://hemiptera-databases.com/cool?lang=en&card=name&id=3677]]>
+            </online_resource>
+            <is_extinct>false</is_extinct>
+            <source_database>COOL: Cercopoidea Organised On Line</source_database>
+            <source_database_url>http://rameau.snv.jussieu.fr/cool/</source_database_url>
+            <bibliographic_citation>
+                <![CDATA[Soulier-Perkins A. (2015). COOL: Cercopoidea Organised On Line (version Feb 2015). In: Species 2000 & ITIS Catalogue of Life, 20th November 2015 (Roskov Y., Abucay L., Orrell T., Nicolson D., Kunze T., Flann C., Bailly N., Kirk P., Bourgoin T., DeWalt R.E., Decock W., De Wever A., eds). Digital resource at www.catalogueoflife.org/col. Species 2000: Naturalis, Leiden, the Netherlands. ISSN 2405-8858.]]>
+            </bibliographic_citation>
+            <name_html>
+                <i>Lepyronia coleoptrata</i> (Linné, 1758)
+            </name_html>
+            <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0</url>
+            <distribution></distribution>
+            <references>
+                <reference>
+                    <author>Germar E. F.</author>
+                    <year>1821</year>
+                    <title>Bemerkungen über einige Gattungen der Cicadarien</title>
+                    <source>Magazin der Entomologie. Halle, 4: 1-106.</source>
+                </reference>
+                <reference>
+                    <author>Metcalf Z. P.</author>
+                    <year>1962</year>
+                    <title>Part 3. Aphrophoridae.</title>
+                    <source>In:  Metcalf Z. P. 1963 -  General Catalogue of the Homoptera. Fascicule VII., North Carolina State College, Raleigh(United States of America). p. 1-600.</source>
+                </reference>
+                <reference>
+                    <author>Stål C.</author>
+                    <year>1869</year>
+                    <title>Hemiptera Fabriciana. Fabricianska Hemipterarter, efter de Köpenhamn och Kiel förvarade typexemplaren granskade och beskrifne. 2</title>
+                    <source>Handlingar. Kongliga Svenska Vetenskaps Akademien. Stockholm, 8(1): 1-130.</source>
+                </reference>
+                <reference>
+                    <author>Herrich-Schäffer G. A. W.</author>
+                    <year>1835</year>
+                    <title>Homoptera</title>
+                    <source>Nomenclator Entomologicus. Verzeichnis der europäischen Insecten: zur Erleichterung des Tauschverkehrs mit Preisen versehen, 1: 1-116.</source>
+                </reference>
+                <reference>
+                    <author>
+                        <![CDATA[Amyot C. J. B. & Serville J. G.]]>
+                    </author>
+                    <year>1843</year>
+                    <title>Deuxième partie. Homoptères. Homoptera Latr</title>
+                    <source>Histoire Naturelle des insectes. Hemiptères, 1843: 1-676.</source>
+                </reference>
+                <reference>
+                    <author>Burmeister H. C. C.</author>
+                    <year>1835</year>
+                    <title>Schnabelkerfe. Rhynchota. Fascicule 1</title>
+                    <source>In:  Burmeister H. C. C. 1835 -  Handbuch der Entomologie, 2. p. 99-183.</source>
+                </reference>
+                <reference>
+                    <author>
+                        <![CDATA[Le Peletier de Saint-Fargeau A. L. M. & Serville J. G.]]>
+                    </author>
+                    <year>1825</year>
+                    <title>Tettigomètre, Tettigometra ; Tettigone, Tettigonia ; Tettigonides</title>
+                    <source>Encyclopédie méthodique. Histoire naturelle. Entomologie, ou histoire naturelle des Crustacés, des Arachnides et des Insectes, 10: 600-613.</source>
+                </reference>
+                <reference>
+                    <author>Fabricius J. C.</author>
+                    <year>1794</year>
+                    <title>Ryngota</title>
+                    <source>In:  Fabricius J. C. 1794 -  Entomologia systematica emendata et aucta. Secundum classas, ordines, genera, species adjectis synonimis, locis, observationibus, descriptionibus, 4. p. 1-57.</source>
+                </reference>
+                <reference>
+                    <author>Linné C.</author>
+                    <year>1758</year>
+                    <title>II. Hemiptera</title>
+                    <source>In:  Linné C. 1758 -  Systema Naturae. Editio Decima, reformata, 1. p. 434-439.</source>
+                </reference>
+                <reference>
+                    <author>Fabricius J. C.</author>
+                    <year>1781</year>
+                    <title>Ryngota</title>
+                    <source>In:  Fabricius J. C. 1781 -  Species insectorum exhibentes eorum differentias specificas, synonyma auctorum, loca natalia, metamorphosin adiectis observationibus, descriptionibus, 2. p. 313-331.</source>
+                </reference>
+            </references>
+            <classification>
+                <taxon>
+                    <id>5ede24b0534ebd5e1f552d5b9f874a6a</id>
+                    <name>Animalia</name>
+                    <rank>Kingdom</rank>
+                    <name_html>Animalia</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/5ede24b0534ebd5e1f552d5b9f874a6a</url>
+                </taxon>
+                <taxon>
+                    <id>89ac18bfcf1654a9662a600ba06bb494</id>
+                    <name>Arthropoda</name>
+                    <rank>Phylum</rank>
+                    <name_html>Arthropoda</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/89ac18bfcf1654a9662a600ba06bb494</url>
+                </taxon>
+                <taxon>
+                    <id>ae304a1e0beadcfec04932589049bb5a</id>
+                    <name>Insecta</name>
+                    <rank>Class</rank>
+                    <name_html>Insecta</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/ae304a1e0beadcfec04932589049bb5a</url>
+                </taxon>
+                <taxon>
+                    <id>8d5dfb968886f536be02b56f350d70f9</id>
+                    <name>Hemiptera</name>
+                    <rank>Order</rank>
+                    <name_html>Hemiptera</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/8d5dfb968886f536be02b56f350d70f9</url>
+                </taxon>
+                <taxon>
+                    <id>58867eda9b488f5d2b471c30191e3b0f</id>
+                    <name>Cercopoidea</name>
+                    <rank>Superfamily</rank>
+                    <name_html>Cercopoidea</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/58867eda9b488f5d2b471c30191e3b0f</url>
+                </taxon>
+                <taxon>
+                    <id>fe2cc690e2cdca9174596199c04fa99b</id>
+                    <name>Aphrophoridae</name>
+                    <rank>Family</rank>
+                    <name_html>Aphrophoridae</name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/fe2cc690e2cdca9174596199c04fa99b</url>
+                </taxon>
+                <taxon>
+                    <id>e6b345171a00ae7d85fa76da80b60668</id>
+                    <name>Lepyronia</name>
+                    <rank>Genus</rank>
+                    <name_html>
+                        <i>Lepyronia</i>
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/browse/tree/id/e6b345171a00ae7d85fa76da80b60668</url>
+                </taxon>
+            </classification>
+            <child_taxa/>
+            <synonyms>
+                <synonym>
+                    <id>11f3f719da3a55af7fbfe39b0b4a49ab</id>
+                    <name>Aphrophora angulata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Aphrophora</genus>
+                    <subgenus></subgenus>
+                    <species>angulata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Fabricius, 1794)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Aphrophora angulata</i> (Fabricius, 1794)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/11f3f719da3a55af7fbfe39b0b4a49ab</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>2e687fa352f9bf0a6d739f316100ffce</id>
+                    <name>Aphrophora coleoptrata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Aphrophora</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptrata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Aphrophora coleoptrata</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/2e687fa352f9bf0a6d739f316100ffce</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>55f34b18be6406ca6606ae3c2ad04fab</id>
+                    <name>Aprophora angulata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Aprophora</genus>
+                    <subgenus></subgenus>
+                    <species>angulata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Fabricius, 1794)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Aprophora angulata</i> (Fabricius, 1794)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/55f34b18be6406ca6606ae3c2ad04fab</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>330a1c0ba732fc09f95c214100e895fe</id>
+                    <name>Cercopis angulata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Cercopis</genus>
+                    <subgenus></subgenus>
+                    <species>angulata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>Fabricius, 1794</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Cercopis angulata</i> Fabricius, 1794
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/330a1c0ba732fc09f95c214100e895fe</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>7eafde4c0919afdbe37e083f2fd7d082</id>
+                    <name>Cercopis unifasciata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Cercopis</genus>
+                    <subgenus></subgenus>
+                    <species>unifasciata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>Fabricius, 1781</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Cercopis unifasciata</i> Fabricius, 1781
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/7eafde4c0919afdbe37e083f2fd7d082</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>90779e953715e58cc635b4e997b943e2</id>
+                    <name>Cicada coleoprata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Cicada</genus>
+                    <subgenus></subgenus>
+                    <species>coleoprata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>Linne, 1758</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Cicada coleoprata</i> Linne, 1758
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/90779e953715e58cc635b4e997b943e2</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>5cb6b815494dedd09ba2be8644d4dce7</id>
+                    <name>Cicada coleopterata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Cicada</genus>
+                    <subgenus></subgenus>
+                    <species>coleopterata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>Linne, 1758</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Cicada coleopterata</i> Linne, 1758
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/5cb6b815494dedd09ba2be8644d4dce7</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>b0e9597853c9342662c695bd1e79c23b</id>
+                    <name>Cicada coleoptrata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Cicada</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptrata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>Linne, 1758</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Cicada coleoptrata</i> Linne, 1758
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/b0e9597853c9342662c695bd1e79c23b</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>65e428d4b0c7e2f653f5c7a54a0d160a</id>
+                    <name>Lepeyronia coleoptrata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Lepeyronia</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptrata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Lepeyronia coleoptrata</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/65e428d4b0c7e2f653f5c7a54a0d160a</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>077fe1ec63535e19b34c6399bdb711c9</id>
+                    <name>Lepyronia coleoptera</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Lepyronia</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptera</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Lepyronia coleoptera</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/077fe1ec63535e19b34c6399bdb711c9</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>f4dc4dcae260324283fdce8aa4c5c44a</id>
+                    <name>Lepyronia coleopterata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Lepyronia</genus>
+                    <subgenus></subgenus>
+                    <species>coleopterata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Lepyronia coleopterata</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/f4dc4dcae260324283fdce8aa4c5c44a</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>5c46df1091d2a61f21f6de2e1baa0776</id>
+                    <name>Lepyronia coleoptroto</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Lepyronia</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptroto</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Lepyronia coleoptroto</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/5c46df1091d2a61f21f6de2e1baa0776</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>95751cd370e72ecd8af428cef06fee33</id>
+                    <name>Ptyelus angulatus</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Ptyelus</genus>
+                    <subgenus></subgenus>
+                    <species>angulatus</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Fabricius, 1794)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Ptyelus angulatus</i> (Fabricius, 1794)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/95751cd370e72ecd8af428cef06fee33</url>
+                    <references/>
+                </synonym>
+                <synonym>
+                    <id>133a16f6575bac248345faf74800ae3e</id>
+                    <name>Ptyelus coleoptrata</name>
+                    <rank>Species</rank>
+                    <name_status>synonym</name_status>
+                    <genus>Ptyelus</genus>
+                    <subgenus></subgenus>
+                    <species>coleoptrata</species>
+                    <infraspecies_marker></infraspecies_marker>
+                    <infraspecies></infraspecies>
+                    <author>(Linné, 1758)</author>
+                    <record_scrutiny_date></record_scrutiny_date>
+                    <online_resource></online_resource>
+                    <is_extinct>0</is_extinct>
+                    <name_html>
+                        <i>Ptyelus coleoptrata</i> (Linné, 1758)
+                    </name_html>
+                    <url>http://www.catalogueoflife.org/col/details/species/id/c1b8ce5b9226294d397a2ca51daee8f0/synonym/133a16f6575bac248345faf74800ae3e</url>
+                    <references/>
+                </synonym>
+            </synonyms>
+            <common_names>
+                <common_name>
+                    <name>Wanst-Schaumzikade</name>
+                    <language>German</language>
+                    <country>Germany</country>
+                    <references/>
+                </common_name>
+            </common_names>
+        </accepted_name>
+    </result>
 </results>

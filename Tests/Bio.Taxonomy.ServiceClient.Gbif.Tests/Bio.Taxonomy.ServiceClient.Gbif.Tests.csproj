@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F66D8B5-5C01-44EF-9AE9-AC04E2503B60}</ProjectGuid>
+    <ProjectGuid>{B5D2C63F-70A3-4662-A0EA-B6D3822FD7E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,9 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -55,30 +55,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Models\AcceptedNameModel.cs" />
-    <Compile Include="Models\CatalogOfLifeApiServiceResponseModel.cs" />
-    <Compile Include="Models\CommonNameModel.cs" />
-    <Compile Include="Models\ReferenceModel.cs" />
-    <Compile Include="Models\ResultModel.cs" />
-    <Compile Include="Models\RecordScrutinyDateModel.cs" />
-    <Compile Include="Models\SingleRecordModel.cs" />
-    <Compile Include="Models\TaxonModel.cs" />
-    <Compile Include="ModelTests.cs" />
+    <Compile Include="GbifApiResponseModelDeserializationTests.cs" />
+    <Compile Include="GbifDataRequesterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\classification-taxon.xml">
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
+      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataFiles\Coleoptera-gbif-response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\Coleoptera-example-response.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\default-result.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\reference.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
