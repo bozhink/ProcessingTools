@@ -155,7 +155,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Web.Api\ProcessingTools.Web.Api.csproj">
+    <ProjectReference Include="..\..\Web\ProcessingTools.Web.Api\ProcessingTools.Web.Api.csproj">
       <Project>{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}</Project>
       <Name>ProcessingTools.Web.Api</Name>
     </ProjectReference>

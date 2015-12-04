@@ -60,7 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Csv.Serialization\Csv.Serialization.csproj">
+    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
       <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
       <Name>Csv.Serialization</Name>
     </ProjectReference>

@@ -67,7 +67,7 @@
     <Compile Include="TaxPubDocumentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DocumentProvider\DocumentProvider.csproj">
+    <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>DocumentProvider</Name>
     </ProjectReference>

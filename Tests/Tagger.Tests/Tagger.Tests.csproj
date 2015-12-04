@@ -102,7 +102,7 @@
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tagger\Tagger.csproj">
+    <ProjectReference Include="..\..\Startup\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>
       <Name>Tagger</Name>
     </ProjectReference>

@@ -73,7 +73,7 @@
     <None Include="Samples\geometry-point.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geo\Geo.csproj">
+    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
