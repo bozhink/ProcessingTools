@@ -42,6 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IMediaType.cs" />
     <Compile Include="Contracts\IMediaTypeDataService.cs" />
     <Compile Include="MediaTypeDataService.cs" />
     <Compile Include="Models\MediaTypeDataServiceResponseModel.cs" />

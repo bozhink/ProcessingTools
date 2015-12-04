@@ -9,16 +9,16 @@
 
     public class AphiaController : ApiController
     {
-        private IAphiaTaxaClassificationDataService aphiaService;
+        private IAphiaTaxaClassificationDataService service;
 
-        public AphiaController(IAphiaTaxaClassificationDataService aphiaService)
+        public AphiaController(IAphiaTaxaClassificationDataService service)
         {
-            this.aphiaService = aphiaService;
+            this.service = service;
         }
 
         public IHttpActionResult Get(string id)
         {
-            var result = this.aphiaService.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
+            var result = this.service.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
 
             if (result == null)
             {

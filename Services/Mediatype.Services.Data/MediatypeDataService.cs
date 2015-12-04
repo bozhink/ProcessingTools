@@ -16,7 +16,7 @@
             this.fileExtensions = fileExtensions;
         }
 
-        public IQueryable<MediaTypeDataServiceResponseModel> GetMediaType(string fileExtension)
+        public IQueryable<IMediaType> GetMediaType(string fileExtension)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
             {

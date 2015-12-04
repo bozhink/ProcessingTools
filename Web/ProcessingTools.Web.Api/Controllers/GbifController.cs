@@ -1,18 +1,19 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
+    using System.Linq;
+    using System.Web.Http;
+
     using AutoMapper.QueryableExtensions;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Models.TaxonomyDataServices;
-    using System.Linq;
-    using System.Web.Http;
 
     public class GbifController : ApiController
     {
         private IGbifTaxaClassificationDataService service;
 
-        public GbifController(IGbifTaxaClassificationDataService gbifSevice)
+        public GbifController(IGbifTaxaClassificationDataService service)
         {
-            this.service = gbifSevice;
+            this.service = service;
         }
 
         public IHttpActionResult Get(string id)
