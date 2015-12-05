@@ -3,11 +3,12 @@
     using System;
     using System.Linq;
     using Contracts;
+
     using MediaType.Data.Models;
     using MediaType.Data.Repositories;
     using Models;
 
-    public class MediaTypeDataService : IMediaTypeDataService
+    public class MediaTypeDataService : MediaTypeDataServiceBase
     {
         private IMediaTypesRepository<FileExtension> fileExtensions;
 
@@ -16,32 +17,35 @@
             this.fileExtensions = fileExtensions;
         }
 
-        public IQueryable<IMediaType> GetMediaType(string fileExtension)
+        public override IQueryable<IMediaType> GetMediaType(string fileExtension)
         {
-            if (string.IsNullOrWhiteSpace(fileExtension))
+            string extension = this.GetValidFileExtension(fileExtension);
+
+            FileExtension fileExtensionResult;
+            try
             {
-                throw new ArgumentNullException("fileExtension");
+                fileExtensionResult = this.fileExtensions.All()
+                    .FirstOrDefault(e => e.Name == extension);
+            }
+            catch (ArgumentNullException)
+            {
+                // FirstOrDefault throws because the IRepository returns empty IQueryable.
+                fileExtensionResult = null;
             }
 
-            var extension = this.fileExtensions.All()
-                .FirstOrDefault(e => e.Name == fileExtension);
-
-            if (extension == null)
-            {
-                return null;
-            }
-
-            var pairs = extension.MimeTypePairs.AsQueryable();
+            var pairs = fileExtensionResult?.MimeTypePairs?.AsQueryable();
 
             if (pairs == null)
             {
-                return null;
+                return this.GetSingleStringMediaTypeResultAsQueryable(
+                    fileExtension,
+                    MediaTypeDataServiceBase.DefaultMediaType);
             }
 
             return pairs
-                .Select(p => new MediaTypeDataServiceResponseModel
+                .Select<MimeTypePair, IMediaType>(p => new MediaTypeDataServiceResponseModel
                 {
-                    FileExtension = extension.Name,
+                    FileExtension = fileExtensionResult.Name,
                     MimeType = p.MimeType.Name,
                     MimeSubtype = p.MimeSubtype.Name
                 });

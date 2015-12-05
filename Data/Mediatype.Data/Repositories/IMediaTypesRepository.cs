@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories;
 
-    public interface IMediaTypesRepository<T> : ProcessingTools.Data.Common.Repositories.IMediaTypesRepository<T>
+    public interface IMediaTypesRepository<T> : IRepository<T>
         where T : class
     {
     }

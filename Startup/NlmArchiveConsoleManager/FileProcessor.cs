@@ -1,11 +1,5 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager
 {
-    using Contracts;
-    using DocumentProvider;
-    using Extensions;
-    using Models;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -14,6 +8,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Contracts;
+    using DocumentProvider;
+    using Extensions;
+    using Models;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Log;
 
     public class FileProcessor : IProcessor
     {

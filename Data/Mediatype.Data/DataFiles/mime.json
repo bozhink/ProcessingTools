@@ -1,13 +1,228 @@
 [
   {
-    "extension": "ai",
+    "extension": "123",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "vnd.lotus-1-2-3"
   },
   {
-    "extension": "ai",
+    "extension": "323",
+    "mimeType": "text",
+    "mimeSubtype": "h323"
+  },
+  {
+    "extension": "3dml",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.in3d.3dml"
+  },
+  {
+    "extension": "3g2",
+    "mimeType": "video",
+    "mimeSubtype": "3gpp2"
+  },
+  {
+    "extension": "3gp",
+    "mimeType": "video",
+    "mimeSubtype": "3gpp"
+  },
+  {
+    "extension": "3gp2",
+    "mimeType": "video",
+    "mimeSubtype": "3gpp2"
+  },
+  {
+    "extension": "3gpp",
+    "mimeType": "video",
+    "mimeSubtype": "3gpp"
+  },
+  {
+    "extension": "7z",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "x-7z-compressed"
+  },
+  {
+    "extension": "aa",
+    "mimeType": "audio",
+    "mimeSubtype": "audible"
+  },
+  {
+    "extension": "aab",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-bin"
+  },
+  {
+    "extension": "AAC",
+    "mimeType": "audio",
+    "mimeSubtype": "aac"
+  },
+  {
+    "extension": "aac",
+    "mimeType": "audio",
+    "mimeSubtype": "x-aac"
+  },
+  {
+    "extension": "aaf",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "aam",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-map"
+  },
+  {
+    "extension": "aas",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-seg"
+  },
+  {
+    "extension": "aax",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.audible.aax"
+  },
+  {
+    "extension": "abw",
+    "mimeType": "application",
+    "mimeSubtype": "x-abiword"
+  },
+  {
+    "extension": "ac",
+    "mimeType": "application",
+    "mimeSubtype": "pkix-attr-cert"
+  },
+  {
+    "extension": "ac3",
+    "mimeType": "audio",
+    "mimeSubtype": "ac3"
+  },
+  {
+    "extension": "aca",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "acc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.americandynamics.acc"
+  },
+  {
+    "extension": "accda",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess.addin"
+  },
+  {
+    "extension": "accdb",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "accdc",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess.cab"
+  },
+  {
+    "extension": "accde",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "accdr",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess.runtime"
+  },
+  {
+    "extension": "accdt",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "accdw",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess.webapplication"
+  },
+  {
+    "extension": "accft",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess.ftemplate"
+  },
+  {
+    "extension": "ace",
+    "mimeType": "application",
+    "mimeSubtype": "x-ace-compressed"
+  },
+  {
+    "extension": "acu",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.acucobol"
+  },
+  {
+    "extension": "acutc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.acucorp"
+  },
+  {
+    "extension": "acx",
+    "mimeType": "application",
+    "mimeSubtype": "internet-property-stream"
+  },
+  {
+    "extension": "AddIn",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "ade",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "adobebridge",
+    "mimeType": "application",
+    "mimeSubtype": "x-bridge-url"
+  },
+  {
+    "extension": "adp",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "adp",
+    "mimeType": "audio",
+    "mimeSubtype": "adpcm"
+  },
+  {
+    "extension": "ADT",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dlna.adts"
+  },
+  {
+    "extension": "ADTS",
+    "mimeType": "audio",
+    "mimeSubtype": "aac"
+  },
+  {
+    "extension": "aep",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.audiograph"
+  },
+  {
+    "extension": "afm",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "afm",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-type1"
+  },
+  {
+    "extension": "afp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.modcap"
+  },
+  {
+    "extension": "ahead",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ahead.space"
   },
   {
     "extension": "ai",
@@ -20,24 +235,9 @@
     "mimeSubtype": "x-aiff"
   },
   {
-    "extension": "aif",
-    "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
-  },
-  {
-    "extension": "aif",
-    "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
-  },
-  {
     "extension": "aifc",
     "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
-  },
-  {
-    "extension": "aifc",
-    "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
+    "mimeSubtype": "aiff"
   },
   {
     "extension": "aifc",
@@ -47,7 +247,7 @@
   {
     "extension": "aiff",
     "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
+    "mimeSubtype": "aiff"
   },
   {
     "extension": "aiff",
@@ -55,9 +255,59 @@
     "mimeSubtype": "x-aiff"
   },
   {
-    "extension": "aiff",
-    "mimeType": "audio",
-    "mimeSubtype": "x-aiff"
+    "extension": "air",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.adobe.air-application-installer-package+zip"
+  },
+  {
+    "extension": "ait",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dvb.ait"
+  },
+  {
+    "extension": "amc",
+    "mimeType": "application",
+    "mimeSubtype": "x-mpeg"
+  },
+  {
+    "extension": "ami",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.amiga.ami"
+  },
+  {
+    "extension": "apk",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.android.package-archive"
+  },
+  {
+    "extension": "application",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-application"
+  },
+  {
+    "extension": "apr",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.lotus-approach"
+  },
+  {
+    "extension": "art",
+    "mimeType": "image",
+    "mimeSubtype": "x-jg"
+  },
+  {
+    "extension": "asa",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "asax",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "asc",
+    "mimeType": "application",
+    "mimeSubtype": "pgp-signature"
   },
   {
     "extension": "asc",
@@ -65,14 +315,69 @@
     "mimeSubtype": "plain"
   },
   {
-    "extension": "asc",
+    "extension": "ascx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "asd",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "asf",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-asf"
+  },
+  {
+    "extension": "ashx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "asi",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "asm",
     "mimeType": "text",
     "mimeSubtype": "plain"
   },
   {
-    "extension": "asc",
+    "extension": "asm",
     "mimeType": "text",
-    "mimeSubtype": "plain"
+    "mimeSubtype": "x-asm"
+  },
+  {
+    "extension": "asmx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "aso",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.accpac.simply.aso"
+  },
+  {
+    "extension": "aspx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "asr",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-asf"
+  },
+  {
+    "extension": "asx",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-asf"
+  },
+  {
+    "extension": "atc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.acucorp"
   },
   {
     "extension": "atom",
@@ -80,24 +385,19 @@
     "mimeSubtype": "atom+xml"
   },
   {
-    "extension": "atom",
+    "extension": "atomcat",
     "mimeType": "application",
-    "mimeSubtype": "atom+xml"
+    "mimeSubtype": "atomcat+xml"
   },
   {
-    "extension": "atom",
+    "extension": "atomsvc",
     "mimeType": "application",
-    "mimeSubtype": "atom+xml"
+    "mimeSubtype": "atomsvc+xml"
   },
   {
-    "extension": "au",
-    "mimeType": "audio",
-    "mimeSubtype": "basic"
-  },
-  {
-    "extension": "au",
-    "mimeType": "audio",
-    "mimeSubtype": "basic"
+    "extension": "atx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.antix.game-component"
   },
   {
     "extension": "au",
@@ -110,14 +410,39 @@
     "mimeSubtype": "x-msvideo"
   },
   {
-    "extension": "avi",
-    "mimeType": "video",
-    "mimeSubtype": "x-msvideo"
+    "extension": "aw",
+    "mimeType": "application",
+    "mimeSubtype": "applixware"
   },
   {
-    "extension": "avi",
-    "mimeType": "video",
-    "mimeSubtype": "x-msvideo"
+    "extension": "axs",
+    "mimeType": "application",
+    "mimeSubtype": "olescript"
+  },
+  {
+    "extension": "azf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.airzip.filesecure.azf"
+  },
+  {
+    "extension": "azs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.airzip.filesecure.azs"
+  },
+  {
+    "extension": "azw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.amazon.ebook"
+  },
+  {
+    "extension": "bas",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "bat",
+    "mimeType": "application",
+    "mimeSubtype": "x-msdownload"
   },
   {
     "extension": "bcpio",
@@ -125,14 +450,24 @@
     "mimeSubtype": "x-bcpio"
   },
   {
-    "extension": "bcpio",
+    "extension": "bdf",
     "mimeType": "application",
-    "mimeSubtype": "x-bcpio"
+    "mimeSubtype": "x-font-bdf"
   },
   {
-    "extension": "bcpio",
+    "extension": "bdm",
     "mimeType": "application",
-    "mimeSubtype": "x-bcpio"
+    "mimeSubtype": "vnd.syncml.dm+wbxml"
+  },
+  {
+    "extension": "bed",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.realvnc.bed"
+  },
+  {
+    "extension": "bh2",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujitsu.oasysprs"
   },
   {
     "extension": "bin",
@@ -140,29 +475,164 @@
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "bin",
+    "extension": "bmi",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.bmi"
+  },
+  {
+    "extension": "bmp",
+    "mimeType": "image",
+    "mimeSubtype": "bmp"
+  },
+  {
+    "extension": "book",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.framemaker"
+  },
+  {
+    "extension": "box",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.previewsystems.box"
+  },
+  {
+    "extension": "boz",
+    "mimeType": "application",
+    "mimeSubtype": "x-bzip2"
+  },
+  {
+    "extension": "bpk",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "bin",
+    "extension": "btif",
+    "mimeType": "image",
+    "mimeSubtype": "prs.btif"
+  },
+  {
+    "extension": "bz",
+    "mimeType": "application",
+    "mimeSubtype": "x-bzip"
+  },
+  {
+    "extension": "bz2",
+    "mimeType": "application",
+    "mimeSubtype": "x-bzip2"
+  },
+  {
+    "extension": "c",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "c",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "c11amc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.cluetrust.cartomobile-config"
+  },
+  {
+    "extension": "c11amz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.cluetrust.cartomobile-config-pkg"
+  },
+  {
+    "extension": "c4d",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.clonk.c4group"
+  },
+  {
+    "extension": "c4f",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.clonk.c4group"
+  },
+  {
+    "extension": "c4g",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.clonk.c4group"
+  },
+  {
+    "extension": "c4p",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.clonk.c4group"
+  },
+  {
+    "extension": "c4u",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.clonk.c4group"
+  },
+  {
+    "extension": "cab",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "bmp",
-    "mimeType": "image",
-    "mimeSubtype": "bmp"
+    "extension": "cab",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-cab-compressed"
   },
   {
-    "extension": "bmp",
-    "mimeType": "image",
-    "mimeSubtype": "bmp"
+    "extension": "caf",
+    "mimeType": "audio",
+    "mimeSubtype": "x-caf"
   },
   {
-    "extension": "bmp",
-    "mimeType": "image",
-    "mimeSubtype": "bmp"
+    "extension": "calx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-office.calx"
+  },
+  {
+    "extension": "car",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.curl.car"
+  },
+  {
+    "extension": "cat",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-pki.seccat"
+  },
+  {
+    "extension": "cc",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "cc",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "cct",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "ccxml",
+    "mimeType": "application",
+    "mimeSubtype": "ccxml+xml"
+  },
+  {
+    "extension": "cd",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "cdbcmsg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.contact.cmsg"
+  },
+  {
+    "extension": "cdda",
+    "mimeType": "audio",
+    "mimeSubtype": "aiff"
+  },
+  {
+    "extension": "cdf",
+    "mimeType": "application",
+    "mimeSubtype": "x-cdf"
   },
   {
     "extension": "cdf",
@@ -170,14 +640,59 @@
     "mimeSubtype": "x-netcdf"
   },
   {
-    "extension": "cdf",
+    "extension": "cdkey",
     "mimeType": "application",
-    "mimeSubtype": "x-netcdf"
+    "mimeSubtype": "vnd.mediastation.cdkey"
   },
   {
-    "extension": "cdf",
+    "extension": "cdmia",
     "mimeType": "application",
-    "mimeSubtype": "x-netcdf"
+    "mimeSubtype": "cdmi-capability"
+  },
+  {
+    "extension": "cdmic",
+    "mimeType": "application",
+    "mimeSubtype": "cdmi-container"
+  },
+  {
+    "extension": "cdmid",
+    "mimeType": "application",
+    "mimeSubtype": "cdmi-domain"
+  },
+  {
+    "extension": "cdmio",
+    "mimeType": "application",
+    "mimeSubtype": "cdmi-object"
+  },
+  {
+    "extension": "cdmiq",
+    "mimeType": "application",
+    "mimeSubtype": "cdmi-queue"
+  },
+  {
+    "extension": "cdx",
+    "mimeType": "chemical",
+    "mimeSubtype": "x-cdx"
+  },
+  {
+    "extension": "cdxml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.chemdraw+xml"
+  },
+  {
+    "extension": "cdy",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.cinderella"
+  },
+  {
+    "extension": "cer",
+    "mimeType": "application",
+    "mimeSubtype": "pkix-cert"
+  },
+  {
+    "extension": "cer",
+    "mimeType": "application",
+    "mimeSubtype": "x-x509-ca-cert"
   },
   {
     "extension": "cgm",
@@ -185,14 +700,49 @@
     "mimeSubtype": "cgm"
   },
   {
-    "extension": "cgm",
-    "mimeType": "image",
-    "mimeSubtype": "cgm"
+    "extension": "chat",
+    "mimeType": "application",
+    "mimeSubtype": "x-chat"
   },
   {
-    "extension": "cgm",
-    "mimeType": "image",
-    "mimeSubtype": "cgm"
+    "extension": "chm",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "chm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-htmlhelp"
+  },
+  {
+    "extension": "chrt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kchart"
+  },
+  {
+    "extension": "cif",
+    "mimeType": "chemical",
+    "mimeSubtype": "x-cif"
+  },
+  {
+    "extension": "cii",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.anser-web-certificate-issue-initiation"
+  },
+  {
+    "extension": "cil",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-artgalry"
+  },
+  {
+    "extension": "cla",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.claymore"
+  },
+  {
+    "extension": "class",
+    "mimeType": "application",
+    "mimeSubtype": "java-vm"
   },
   {
     "extension": "class",
@@ -202,72 +752,257 @@
   {
     "extension": "class",
     "mimeType": "application",
+    "mimeSubtype": "x-java-applet"
+  },
+  {
+    "extension": "clkk",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.crick.clicker.keyboard"
+  },
+  {
+    "extension": "clkp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.crick.clicker.palette"
+  },
+  {
+    "extension": "clkt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.crick.clicker.template"
+  },
+  {
+    "extension": "clkw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.crick.clicker.wordbank"
+  },
+  {
+    "extension": "clkx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.crick.clicker"
+  },
+  {
+    "extension": "clp",
+    "mimeType": "application",
+    "mimeSubtype": "x-msclip"
+  },
+  {
+    "extension": "cmc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.cosmocaller"
+  },
+  {
+    "extension": "cmdf",
+    "mimeType": "chemical",
+    "mimeSubtype": "x-cmdf"
+  },
+  {
+    "extension": "cml",
+    "mimeType": "chemical",
+    "mimeSubtype": "x-cml"
+  },
+  {
+    "extension": "cmp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yellowriver-custom-menu"
+  },
+  {
+    "extension": "cmx",
+    "mimeType": "image",
+    "mimeSubtype": "x-cmx"
+  },
+  {
+    "extension": "cnf",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "cod",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.rim.cod"
+  },
+  {
+    "extension": "cod",
+    "mimeType": "image",
+    "mimeSubtype": "cis-cod"
+  },
+  {
+    "extension": "com",
+    "mimeType": "application",
+    "mimeSubtype": "x-msdownload"
+  },
+  {
+    "extension": "conf",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "config",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "contact",
+    "mimeType": "text",
+    "mimeSubtype": "x-ms-contact"
+  },
+  {
+    "extension": "coverage",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "cpio",
+    "mimeType": "application",
+    "mimeSubtype": "x-cpio"
+  },
+  {
+    "extension": "cpp",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "cpp",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "cpt",
+    "mimeType": "application",
+    "mimeSubtype": "mac-compactpro"
+  },
+  {
+    "extension": "crd",
+    "mimeType": "application",
+    "mimeSubtype": "x-mscardfile"
+  },
+  {
+    "extension": "crl",
+    "mimeType": "application",
+    "mimeSubtype": "pkix-crl"
+  },
+  {
+    "extension": "crt",
+    "mimeType": "application",
+    "mimeSubtype": "x-x509-ca-cert"
+  },
+  {
+    "extension": "cryptonote",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.rig.cryptonote"
+  },
+  {
+    "extension": "cs",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "csdproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "csh",
+    "mimeType": "application",
+    "mimeSubtype": "x-csh"
+  },
+  {
+    "extension": "csml",
+    "mimeType": "chemical",
+    "mimeSubtype": "x-csml"
+  },
+  {
+    "extension": "csp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.commonspace"
+  },
+  {
+    "extension": "csproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "css",
+    "mimeType": "text",
+    "mimeSubtype": "css"
+  },
+  {
+    "extension": "cst",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "csv",
+    "mimeType": "text",
+    "mimeSubtype": "csv"
+  },
+  {
+    "extension": "cu",
+    "mimeType": "application",
+    "mimeSubtype": "cu-seeme"
+  },
+  {
+    "extension": "cur",
+    "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "class",
+    "extension": "curl",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.curl"
+  },
+  {
+    "extension": "cww",
+    "mimeType": "application",
+    "mimeSubtype": "prs.cww"
+  },
+  {
+    "extension": "cxt",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "cxx",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "cxx",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "dae",
+    "mimeType": "model",
+    "mimeSubtype": "vnd.collada+xml"
+  },
+  {
+    "extension": "daf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mobius.daf"
+  },
+  {
+    "extension": "dat",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "cpio",
+    "extension": "dataless",
     "mimeType": "application",
-    "mimeSubtype": "x-cpio"
+    "mimeSubtype": "vnd.fdsn.seed"
   },
   {
-    "extension": "cpio",
+    "extension": "datasource",
     "mimeType": "application",
-    "mimeSubtype": "x-cpio"
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "cpio",
+    "extension": "davmount",
     "mimeType": "application",
-    "mimeSubtype": "x-cpio"
+    "mimeSubtype": "davmount+xml"
   },
   {
-    "extension": "cpt",
-    "mimeType": "application",
-    "mimeSubtype": "mac-compactpro"
-  },
-  {
-    "extension": "cpt",
-    "mimeType": "application",
-    "mimeSubtype": "mac-compactpro"
-  },
-  {
-    "extension": "cpt",
-    "mimeType": "application",
-    "mimeSubtype": "mac-compactpro"
-  },
-  {
-    "extension": "csh",
-    "mimeType": "application",
-    "mimeSubtype": "x-csh"
-  },
-  {
-    "extension": "csh",
-    "mimeType": "application",
-    "mimeSubtype": "x-csh"
-  },
-  {
-    "extension": "csh",
-    "mimeType": "application",
-    "mimeSubtype": "x-csh"
-  },
-  {
-    "extension": "css",
+    "extension": "dbproj",
     "mimeType": "text",
-    "mimeSubtype": "css"
-  },
-  {
-    "extension": "css",
-    "mimeType": "text",
-    "mimeSubtype": "css"
-  },
-  {
-    "extension": "css",
-    "mimeType": "text",
-    "mimeSubtype": "css"
+    "mimeSubtype": "plain"
   },
   {
     "extension": "dcr",
@@ -275,24 +1010,59 @@
     "mimeSubtype": "x-director"
   },
   {
-    "extension": "dcr",
+    "extension": "dcurl",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.curl.dcurl"
+  },
+  {
+    "extension": "dd2",
     "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "mimeSubtype": "vnd.oma.dd2+xml"
   },
   {
-    "extension": "dcr",
+    "extension": "ddd",
     "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "mimeSubtype": "vnd.fujixerox.ddd"
   },
   {
-    "extension": "dif",
-    "mimeType": "video",
-    "mimeSubtype": "x-dv"
+    "extension": "deb",
+    "mimeType": "application",
+    "mimeSubtype": "x-debian-package"
   },
   {
-    "extension": "dif",
-    "mimeType": "video",
-    "mimeSubtype": "x-dv"
+    "extension": "def",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "deploy",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "der",
+    "mimeType": "application",
+    "mimeSubtype": "x-x509-ca-cert"
+  },
+  {
+    "extension": "dfac",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dreamfactory"
+  },
+  {
+    "extension": "dgml",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "dib",
+    "mimeType": "image",
+    "mimeSubtype": "bmp"
+  },
+  {
+    "extension": "dic",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
   },
   {
     "extension": "dif",
@@ -305,37 +1075,27 @@
     "mimeSubtype": "x-director"
   },
   {
-    "extension": "dir",
+    "extension": "dis",
     "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "mimeSubtype": "vnd.mobius.dis"
   },
   {
-    "extension": "dir",
+    "extension": "disco",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "dist",
     "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "distz",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "djv",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.djvu"
-  },
-  {
-    "extension": "djv",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.djvu"
-  },
-  {
-    "extension": "djv",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.djvu"
-  },
-  {
-    "extension": "djvu",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.djvu"
-  },
-  {
-    "extension": "djvu",
     "mimeType": "image",
     "mimeSubtype": "vnd.djvu"
   },
@@ -352,22 +1112,17 @@
   {
     "extension": "dll",
     "mimeType": "application",
-    "mimeSubtype": "octet-stream"
+    "mimeSubtype": "x-msdownload"
   },
   {
-    "extension": "dll",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
+    "extension": "dll.config",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "dmg",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "dmg",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
+    "extension": "dlm",
+    "mimeType": "text",
+    "mimeSubtype": "dlm"
   },
   {
     "extension": "dmg",
@@ -380,24 +1135,9 @@
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "dms",
+    "extension": "dna",
     "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "dms",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "doc",
-    "mimeType": "application",
-    "mimeSubtype": "msword"
-  },
-  {
-    "extension": "doc",
-    "mimeType": "application",
-    "mimeSubtype": "msword"
+    "mimeSubtype": "vnd.dna"
   },
   {
     "extension": "doc",
@@ -410,24 +1150,14 @@
     "mimeSubtype": "vnd.ms-word.document.macroEnabled.12"
   },
   {
-    "extension": "docm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-word.document.macroEnabled.12"
-  },
-  {
     "extension": "docx",
     "mimeType": "application",
     "mimeSubtype": "vnd.openxmlformats-officedocument.wordprocessingml.document"
   },
   {
-    "extension": "docx",
+    "extension": "dot",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.wordprocessingml.document"
-  },
-  {
-    "extension": "dotm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-word.template.macroEnabled.12"
+    "mimeSubtype": "msword"
   },
   {
     "extension": "dotm",
@@ -440,9 +1170,44 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.wordprocessingml.template"
   },
   {
-    "extension": "dotx",
+    "extension": "dp",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.wordprocessingml.template"
+    "mimeSubtype": "vnd.osgi.dp"
+  },
+  {
+    "extension": "dpg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dpgraph"
+  },
+  {
+    "extension": "dra",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dra"
+  },
+  {
+    "extension": "dsc",
+    "mimeType": "text",
+    "mimeSubtype": "prs.lines.tag"
+  },
+  {
+    "extension": "dsp",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "dssc",
+    "mimeType": "application",
+    "mimeSubtype": "dssc+der"
+  },
+  {
+    "extension": "dsw",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "dtb",
+    "mimeType": "application",
+    "mimeSubtype": "x-dtbook+xml"
   },
   {
     "extension": "dtd",
@@ -451,23 +1216,28 @@
   },
   {
     "extension": "dtd",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "dts",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dts"
+  },
+  {
+    "extension": "dtsConfig",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "dtshd",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dts.hd"
+  },
+  {
+    "extension": "dump",
     "mimeType": "application",
-    "mimeSubtype": "xml-dtd"
-  },
-  {
-    "extension": "dtd",
-    "mimeType": "application",
-    "mimeSubtype": "xml-dtd"
-  },
-  {
-    "extension": "dv",
-    "mimeType": "video",
-    "mimeSubtype": "x-dv"
-  },
-  {
-    "extension": "dv",
-    "mimeType": "video",
-    "mimeSubtype": "x-dv"
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "dv",
@@ -480,14 +1250,34 @@
     "mimeSubtype": "x-dvi"
   },
   {
-    "extension": "dvi",
-    "mimeType": "application",
-    "mimeSubtype": "x-dvi"
+    "extension": "dwf",
+    "mimeType": "drawing",
+    "mimeSubtype": "x-dwf"
   },
   {
-    "extension": "dvi",
+    "extension": "dwf",
+    "mimeType": "model",
+    "mimeSubtype": "vnd.dwf"
+  },
+  {
+    "extension": "dwg",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dwg"
+  },
+  {
+    "extension": "dwp",
     "mimeType": "application",
-    "mimeSubtype": "x-dvi"
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "dxf",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dxf"
+  },
+  {
+    "extension": "dxp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.spotfire.dxp"
   },
   {
     "extension": "dxr",
@@ -495,14 +1285,79 @@
     "mimeSubtype": "x-director"
   },
   {
-    "extension": "dxr",
-    "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "extension": "ecelp4800",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.nuera.ecelp4800"
   },
   {
-    "extension": "dxr",
+    "extension": "ecelp7470",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.nuera.ecelp7470"
+  },
+  {
+    "extension": "ecelp9600",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.nuera.ecelp9600"
+  },
+  {
+    "extension": "ecma",
     "mimeType": "application",
-    "mimeSubtype": "x-director"
+    "mimeSubtype": "ecmascript"
+  },
+  {
+    "extension": "edm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.novadigm.edm"
+  },
+  {
+    "extension": "edx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.novadigm.edx"
+  },
+  {
+    "extension": "efif",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.picsel"
+  },
+  {
+    "extension": "ei6",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pg.osasli"
+  },
+  {
+    "extension": "elc",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "eml",
+    "mimeType": "message",
+    "mimeSubtype": "rfc822"
+  },
+  {
+    "extension": "emma",
+    "mimeType": "application",
+    "mimeSubtype": "emma+xml"
+  },
+  {
+    "extension": "emz",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "eol",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.digital-winds"
+  },
+  {
+    "extension": "eot",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "eot",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-fontobject"
   },
   {
     "extension": "eps",
@@ -510,14 +1365,29 @@
     "mimeSubtype": "postscript"
   },
   {
-    "extension": "eps",
+    "extension": "epub",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "epub+zip"
   },
   {
-    "extension": "eps",
+    "extension": "es3",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "vnd.eszigno3+xml"
+  },
+  {
+    "extension": "esf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.epson.esf"
+  },
+  {
+    "extension": "et3",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.eszigno3+xml"
+  },
+  {
+    "extension": "etl",
+    "mimeType": "application",
+    "mimeSubtype": "etl"
   },
   {
     "extension": "etx",
@@ -525,14 +1395,9 @@
     "mimeSubtype": "x-setext"
   },
   {
-    "extension": "etx",
-    "mimeType": "text",
-    "mimeSubtype": "x-setext"
-  },
-  {
-    "extension": "etx",
-    "mimeType": "text",
-    "mimeSubtype": "x-setext"
+    "extension": "evy",
+    "mimeType": "application",
+    "mimeSubtype": "envoy"
   },
   {
     "extension": "exe",
@@ -542,102 +1407,487 @@
   {
     "extension": "exe",
     "mimeType": "application",
+    "mimeSubtype": "x-msdownload"
+  },
+  {
+    "extension": "exe.config",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "exi",
+    "mimeType": "application",
+    "mimeSubtype": "exi"
+  },
+  {
+    "extension": "ext",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.novadigm.ext"
+  },
+  {
+    "extension": "ez",
+    "mimeType": "application",
+    "mimeSubtype": "andrew-inset"
+  },
+  {
+    "extension": "ez2",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ezpix-album"
+  },
+  {
+    "extension": "ez3",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ezpix-package"
+  },
+  {
+    "extension": "f",
+    "mimeType": "text",
+    "mimeSubtype": "x-fortran"
+  },
+  {
+    "extension": "f4v",
+    "mimeType": "video",
+    "mimeSubtype": "x-f4v"
+  },
+  {
+    "extension": "f77",
+    "mimeType": "text",
+    "mimeSubtype": "x-fortran"
+  },
+  {
+    "extension": "f90",
+    "mimeType": "text",
+    "mimeSubtype": "x-fortran"
+  },
+  {
+    "extension": "fbs",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.fastbidsheet"
+  },
+  {
+    "extension": "fcs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.isac.fcs"
+  },
+  {
+    "extension": "fdf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fdf"
+  },
+  {
+    "extension": "fe_launch",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.denovo.fcselayout-link"
+  },
+  {
+    "extension": "fg5",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujitsu.oasysgp"
+  },
+  {
+    "extension": "fgd",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "fh",
+    "mimeType": "image",
+    "mimeSubtype": "x-freehand"
+  },
+  {
+    "extension": "fh4",
+    "mimeType": "image",
+    "mimeSubtype": "x-freehand"
+  },
+  {
+    "extension": "fh5",
+    "mimeType": "image",
+    "mimeSubtype": "x-freehand"
+  },
+  {
+    "extension": "fh7",
+    "mimeType": "image",
+    "mimeSubtype": "x-freehand"
+  },
+  {
+    "extension": "fhc",
+    "mimeType": "image",
+    "mimeSubtype": "x-freehand"
+  },
+  {
+    "extension": "fif",
+    "mimeType": "application",
+    "mimeSubtype": "fractals"
+  },
+  {
+    "extension": "fig",
+    "mimeType": "application",
+    "mimeSubtype": "x-xfig"
+  },
+  {
+    "extension": "filters",
+    "mimeType": "Application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "fla",
+    "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "exe",
+    "extension": "fli",
+    "mimeType": "video",
+    "mimeSubtype": "x-fli"
+  },
+  {
+    "extension": "flo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.micrografx.flo"
+  },
+  {
+    "extension": "flr",
+    "mimeType": "x-world",
+    "mimeSubtype": "x-vrml"
+  },
+  {
+    "extension": "flv",
+    "mimeType": "video",
+    "mimeSubtype": "x-flv"
+  },
+  {
+    "extension": "flw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kivio"
+  },
+  {
+    "extension": "flx",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.fmi.flexstor"
+  },
+  {
+    "extension": "fly",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.fly"
+  },
+  {
+    "extension": "fm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.framemaker"
+  },
+  {
+    "extension": "fnc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.frogans.fnc"
+  },
+  {
+    "extension": "for",
+    "mimeType": "text",
+    "mimeSubtype": "x-fortran"
+  },
+  {
+    "extension": "fpx",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.fpx"
+  },
+  {
+    "extension": "frame",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.framemaker"
+  },
+  {
+    "extension": "fsc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fsc.weblaunch"
+  },
+  {
+    "extension": "fsscript",
+    "mimeType": "application",
+    "mimeSubtype": "fsharp-script"
+  },
+  {
+    "extension": "fst",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.fst"
+  },
+  {
+    "extension": "fsx",
+    "mimeType": "application",
+    "mimeSubtype": "fsharp-script"
+  },
+  {
+    "extension": "ftc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fluxtime.clip"
+  },
+  {
+    "extension": "fti",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.anser-web-funds-transfer-initiation"
+  },
+  {
+    "extension": "fvt",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.fvt"
+  },
+  {
+    "extension": "fxp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.adobe.fxp"
+  },
+  {
+    "extension": "fxpl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.adobe.fxp"
+  },
+  {
+    "extension": "fzs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fuzzysheet"
+  },
+  {
+    "extension": "g2w",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geoplan"
+  },
+  {
+    "extension": "g3",
+    "mimeType": "image",
+    "mimeSubtype": "g3fax"
+  },
+  {
+    "extension": "g3w",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geospace"
+  },
+  {
+    "extension": "gac",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-account"
+  },
+  {
+    "extension": "gdl",
+    "mimeType": "model",
+    "mimeSubtype": "vnd.gdl"
+  },
+  {
+    "extension": "generictest",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "geo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dynageo"
+  },
+  {
+    "extension": "gex",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geometry-explorer"
+  },
+  {
+    "extension": "ggb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geogebra.file"
+  },
+  {
+    "extension": "ggt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geogebra.tool"
+  },
+  {
+    "extension": "ghf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-help"
+  },
+  {
+    "extension": "gif",
+    "mimeType": "image",
+    "mimeSubtype": "gif"
+  },
+  {
+    "extension": "gim",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-identity-message"
+  },
+  {
+    "extension": "gmx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.gmx"
+  },
+  {
+    "extension": "gnumeric",
+    "mimeType": "application",
+    "mimeSubtype": "x-gnumeric"
+  },
+  {
+    "extension": "gph",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.flographit"
+  },
+  {
+    "extension": "gqf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.grafeq"
+  },
+  {
+    "extension": "gqs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.grafeq"
+  },
+  {
+    "extension": "gram",
+    "mimeType": "application",
+    "mimeSubtype": "srgs"
+  },
+  {
+    "extension": "gre",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geometry-explorer"
+  },
+  {
+    "extension": "group",
+    "mimeType": "text",
+    "mimeSubtype": "x-ms-group"
+  },
+  {
+    "extension": "grv",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-injector"
+  },
+  {
+    "extension": "grxml",
+    "mimeType": "application",
+    "mimeSubtype": "srgs+xml"
+  },
+  {
+    "extension": "gsf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-ghostscript"
+  },
+  {
+    "extension": "gsm",
+    "mimeType": "audio",
+    "mimeSubtype": "x-gsm"
+  },
+  {
+    "extension": "gtar",
+    "mimeType": "application",
+    "mimeSubtype": "x-gtar"
+  },
+  {
+    "extension": "gtm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-tool-message"
+  },
+  {
+    "extension": "gtw",
+    "mimeType": "model",
+    "mimeSubtype": "vnd.gtw"
+  },
+  {
+    "extension": "gv",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.graphviz"
+  },
+  {
+    "extension": "gxt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.geonext"
+  },
+  {
+    "extension": "gz",
+    "mimeType": "application",
+    "mimeSubtype": "x-gzip"
+  },
+  {
+    "extension": "h",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "h",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "h261",
+    "mimeType": "video",
+    "mimeSubtype": "h261"
+  },
+  {
+    "extension": "h263",
+    "mimeType": "video",
+    "mimeSubtype": "h263"
+  },
+  {
+    "extension": "h264",
+    "mimeType": "video",
+    "mimeSubtype": "h264"
+  },
+  {
+    "extension": "hal",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hal+xml"
+  },
+  {
+    "extension": "hbci",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hbci"
+  },
+  {
+    "extension": "hdf",
+    "mimeType": "application",
+    "mimeSubtype": "x-hdf"
+  },
+  {
+    "extension": "hdml",
+    "mimeType": "text",
+    "mimeSubtype": "x-hdml"
+  },
+  {
+    "extension": "hh",
+    "mimeType": "text",
+    "mimeSubtype": "x-c"
+  },
+  {
+    "extension": "hhc",
+    "mimeType": "application",
+    "mimeSubtype": "x-oleobject"
+  },
+  {
+    "extension": "hhk",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "ez",
+    "extension": "hhp",
     "mimeType": "application",
-    "mimeSubtype": "andrew-inset"
+    "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "ez",
+    "extension": "hlp",
     "mimeType": "application",
-    "mimeSubtype": "andrew-inset"
+    "mimeSubtype": "winhlp"
   },
   {
-    "extension": "ez",
+    "extension": "hpgl",
     "mimeType": "application",
-    "mimeSubtype": "andrew-inset"
+    "mimeSubtype": "vnd.hp-hpgl"
   },
   {
-    "extension": "gif",
-    "mimeType": "image",
-    "mimeSubtype": "gif"
-  },
-  {
-    "extension": "gif",
-    "mimeType": "image",
-    "mimeSubtype": "gif"
-  },
-  {
-    "extension": "gif",
-    "mimeType": "image",
-    "mimeSubtype": "gif"
-  },
-  {
-    "extension": "gram",
+    "extension": "hpid",
     "mimeType": "application",
-    "mimeSubtype": "srgs"
+    "mimeSubtype": "vnd.hp-hpid"
   },
   {
-    "extension": "gram",
-    "mimeType": "application",
-    "mimeSubtype": "srgs"
+    "extension": "hpp",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "gram",
+    "extension": "hps",
     "mimeType": "application",
-    "mimeSubtype": "srgs"
-  },
-  {
-    "extension": "grxml",
-    "mimeType": "application",
-    "mimeSubtype": "srgs+xml"
-  },
-  {
-    "extension": "grxml",
-    "mimeType": "application",
-    "mimeSubtype": "srgs+xml"
-  },
-  {
-    "extension": "grxml",
-    "mimeType": "application",
-    "mimeSubtype": "srgs+xml"
-  },
-  {
-    "extension": "gtar",
-    "mimeType": "application",
-    "mimeSubtype": "x-gtar"
-  },
-  {
-    "extension": "gtar",
-    "mimeType": "application",
-    "mimeSubtype": "x-gtar"
-  },
-  {
-    "extension": "gtar",
-    "mimeType": "application",
-    "mimeSubtype": "x-gtar"
-  },
-  {
-    "extension": "hdf",
-    "mimeType": "application",
-    "mimeSubtype": "x-hdf"
-  },
-  {
-    "extension": "hdf",
-    "mimeType": "application",
-    "mimeSubtype": "x-hdf"
-  },
-  {
-    "extension": "hdf",
-    "mimeType": "application",
-    "mimeSubtype": "x-hdf"
+    "mimeSubtype": "vnd.hp-hps"
   },
   {
     "extension": "hqx",
@@ -645,14 +1895,9 @@
     "mimeSubtype": "mac-binhex40"
   },
   {
-    "extension": "hqx",
+    "extension": "hta",
     "mimeType": "application",
-    "mimeSubtype": "mac-binhex40"
-  },
-  {
-    "extension": "hqx",
-    "mimeType": "application",
-    "mimeSubtype": "mac-binhex40"
+    "mimeSubtype": "hta"
   },
   {
     "extension": "htc",
@@ -660,14 +1905,9 @@
     "mimeSubtype": "x-component"
   },
   {
-    "extension": "htm",
-    "mimeType": "text",
-    "mimeSubtype": "html"
-  },
-  {
-    "extension": "htm",
-    "mimeType": "text",
-    "mimeSubtype": "html"
+    "extension": "htke",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kenameaapp"
   },
   {
     "extension": "htm",
@@ -680,14 +1920,114 @@
     "mimeSubtype": "html"
   },
   {
-    "extension": "html",
+    "extension": "htt",
+    "mimeType": "text",
+    "mimeSubtype": "webviewhtml"
+  },
+  {
+    "extension": "hvd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.hv-dic"
+  },
+  {
+    "extension": "hvp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.hv-voice"
+  },
+  {
+    "extension": "hvs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.hv-script"
+  },
+  {
+    "extension": "hxa",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxc",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxd",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxe",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxf",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxh",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxi",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxk",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxq",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxr",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxs",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxt",
     "mimeType": "text",
     "mimeSubtype": "html"
   },
   {
-    "extension": "html",
+    "extension": "hxv",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "hxw",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "hxx",
     "mimeType": "text",
-    "mimeSubtype": "html"
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "i",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "i2g",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.intergeo"
+  },
+  {
+    "extension": "icc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.iccprofile"
   },
   {
     "extension": "ice",
@@ -695,24 +2035,9 @@
     "mimeSubtype": "x-cooltalk"
   },
   {
-    "extension": "ice",
-    "mimeType": "x-conference",
-    "mimeSubtype": "x-cooltalk"
-  },
-  {
-    "extension": "ice",
-    "mimeType": "x-conference",
-    "mimeSubtype": "x-cooltalk"
-  },
-  {
-    "extension": "ico",
-    "mimeType": "image",
-    "mimeSubtype": "x-icon"
-  },
-  {
-    "extension": "ico",
-    "mimeType": "image",
-    "mimeSubtype": "x-icon"
+    "extension": "icm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.iccprofile"
   },
   {
     "extension": "ico",
@@ -721,8 +2046,8 @@
   },
   {
     "extension": "ics",
-    "mimeType": "text",
-    "mimeSubtype": "calendar"
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "ics",
@@ -730,19 +2055,9 @@
     "mimeSubtype": "calendar"
   },
   {
-    "extension": "ics",
+    "extension": "idl",
     "mimeType": "text",
-    "mimeSubtype": "calendar"
-  },
-  {
-    "extension": "ief",
-    "mimeType": "image",
-    "mimeSubtype": "ief"
-  },
-  {
-    "extension": "ief",
-    "mimeType": "image",
-    "mimeSubtype": "ief"
+    "mimeSubtype": "plain"
   },
   {
     "extension": "ief",
@@ -755,44 +2070,224 @@
     "mimeSubtype": "calendar"
   },
   {
-    "extension": "ifb",
+    "extension": "ifm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.shana.informed.formdata"
+  },
+  {
+    "extension": "iges",
+    "mimeType": "model",
+    "mimeSubtype": "iges"
+  },
+  {
+    "extension": "igl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.igloader"
+  },
+  {
+    "extension": "igm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.insors.igm"
+  },
+  {
+    "extension": "igs",
+    "mimeType": "model",
+    "mimeSubtype": "iges"
+  },
+  {
+    "extension": "igx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.micrografx.igx"
+  },
+  {
+    "extension": "iif",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.shana.informed.interchange"
+  },
+  {
+    "extension": "iii",
+    "mimeType": "application",
+    "mimeSubtype": "x-iphone"
+  },
+  {
+    "extension": "imp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.accpac.simply.imp"
+  },
+  {
+    "extension": "ims",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-ims"
+  },
+  {
+    "extension": "in",
     "mimeType": "text",
-    "mimeSubtype": "calendar"
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "ifb",
+    "extension": "inc",
     "mimeType": "text",
-    "mimeSubtype": "calendar"
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "iges",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "inf",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "iges",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "inl",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "iges",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "ins",
+    "mimeType": "application",
+    "mimeSubtype": "x-internet-signup"
   },
   {
-    "extension": "igs",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "ipa",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-ipa"
   },
   {
-    "extension": "igs",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "ipfix",
+    "mimeType": "application",
+    "mimeSubtype": "ipfix"
   },
   {
-    "extension": "igs",
-    "mimeType": "model",
-    "mimeSubtype": "iges"
+    "extension": "ipg",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-ipg"
+  },
+  {
+    "extension": "ipk",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.shana.informed.package"
+  },
+  {
+    "extension": "ipproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "ipsw",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-ipsw"
+  },
+  {
+    "extension": "iqy",
+    "mimeType": "text",
+    "mimeSubtype": "x-ms-iqy"
+  },
+  {
+    "extension": "irm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.rights-management"
+  },
+  {
+    "extension": "irp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.irepository.package+xml"
+  },
+  {
+    "extension": "iso",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "isp",
+    "mimeType": "application",
+    "mimeSubtype": "x-internet-signup"
+  },
+  {
+    "extension": "ite",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-ite"
+  },
+  {
+    "extension": "itlp",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-itlp"
+  },
+  {
+    "extension": "itms",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-itms"
+  },
+  {
+    "extension": "itp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.shana.informed.formtemplate"
+  },
+  {
+    "extension": "itpc",
+    "mimeType": "application",
+    "mimeSubtype": "x-itunes-itpc"
+  },
+  {
+    "extension": "IVF",
+    "mimeType": "video",
+    "mimeSubtype": "x-ivf"
+  },
+  {
+    "extension": "ivp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.immervision-ivp"
+  },
+  {
+    "extension": "ivu",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.immervision-ivu"
+  },
+  {
+    "extension": "jad",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.sun.j2me.app-descriptor"
+  },
+  {
+    "extension": "jam",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.jam"
+  },
+  {
+    "extension": "jar",
+    "mimeType": "application",
+    "mimeSubtype": "java-archive"
+  },
+  {
+    "extension": "java",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "java",
+    "mimeType": "text",
+    "mimeSubtype": "x-java-source"
+  },
+  {
+    "extension": "jck",
+    "mimeType": "application",
+    "mimeSubtype": "liquidmotion"
+  },
+  {
+    "extension": "jcz",
+    "mimeType": "application",
+    "mimeSubtype": "liquidmotion"
+  },
+  {
+    "extension": "jfif",
+    "mimeType": "image",
+    "mimeSubtype": "pjpeg"
+  },
+  {
+    "extension": "jisp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.jisp"
+  },
+  {
+    "extension": "jlt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hp-jlyt"
   },
   {
     "extension": "jnlp",
@@ -800,52 +2295,22 @@
     "mimeSubtype": "x-java-jnlp-file"
   },
   {
-    "extension": "jnlp",
+    "extension": "joda",
     "mimeType": "application",
-    "mimeSubtype": "x-java-jnlp-file"
+    "mimeSubtype": "vnd.joost.joda-archive"
   },
   {
-    "extension": "jnlp",
+    "extension": "jp2",
+    "mimeType": "image",
+    "mimeSubtype": "jp2"
+  },
+  {
+    "extension": "jpb",
     "mimeType": "application",
-    "mimeSubtype": "x-java-jnlp-file"
-  },
-  {
-    "extension": "jp2",
-    "mimeType": "image",
-    "mimeSubtype": "jp2"
-  },
-  {
-    "extension": "jp2",
-    "mimeType": "image",
-    "mimeSubtype": "jp2"
-  },
-  {
-    "extension": "jp2",
-    "mimeType": "image",
-    "mimeSubtype": "jp2"
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "jpe",
-    "mimeType": "image",
-    "mimeSubtype": "jpeg"
-  },
-  {
-    "extension": "jpe",
-    "mimeType": "image",
-    "mimeSubtype": "jpeg"
-  },
-  {
-    "extension": "jpe",
-    "mimeType": "image",
-    "mimeSubtype": "jpeg"
-  },
-  {
-    "extension": "jpeg",
-    "mimeType": "image",
-    "mimeSubtype": "jpeg"
-  },
-  {
-    "extension": "jpeg",
     "mimeType": "image",
     "mimeSubtype": "jpeg"
   },
@@ -860,44 +2325,134 @@
     "mimeSubtype": "jpeg"
   },
   {
-    "extension": "jpg",
-    "mimeType": "image",
+    "extension": "jpgm",
+    "mimeType": "video",
+    "mimeSubtype": "jpm"
+  },
+  {
+    "extension": "jpgv",
+    "mimeType": "video",
     "mimeSubtype": "jpeg"
   },
   {
-    "extension": "jpg",
+    "extension": "jpm",
+    "mimeType": "video",
+    "mimeSubtype": "jpm"
+  },
+  {
+    "extension": "js",
+    "mimeType": "application",
+    "mimeSubtype": "javascript"
+  },
+  {
+    "extension": "js",
+    "mimeType": "application",
+    "mimeSubtype": "x-javascript"
+  },
+  {
+    "extension": "json",
+    "mimeType": "application",
+    "mimeSubtype": "json"
+  },
+  {
+    "extension": "jsx",
+    "mimeType": "text",
+    "mimeSubtype": "jscript"
+  },
+  {
+    "extension": "jsxbin",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "kar",
+    "mimeType": "audio",
+    "mimeSubtype": "midi"
+  },
+  {
+    "extension": "karbon",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.karbon"
+  },
+  {
+    "extension": "kfo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kformula"
+  },
+  {
+    "extension": "kia",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kidspiration"
+  },
+  {
+    "extension": "kml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.google-earth.kml+xml"
+  },
+  {
+    "extension": "kmz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.google-earth.kmz"
+  },
+  {
+    "extension": "kne",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kinar"
+  },
+  {
+    "extension": "knp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kinar"
+  },
+  {
+    "extension": "kon",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kontour"
+  },
+  {
+    "extension": "kpr",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kpresenter"
+  },
+  {
+    "extension": "kpt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kpresenter"
+  },
+  {
+    "extension": "ksp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kde.kspread"
+  },
+  {
+    "extension": "ktr",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kahootz"
+  },
+  {
+    "extension": "ktx",
     "mimeType": "image",
-    "mimeSubtype": "jpeg"
+    "mimeSubtype": "ktx"
   },
   {
-    "extension": "js",
+    "extension": "ktz",
     "mimeType": "application",
-    "mimeSubtype": "x-javascript"
+    "mimeSubtype": "vnd.kahootz"
   },
   {
-    "extension": "js",
+    "extension": "kwd",
     "mimeType": "application",
-    "mimeSubtype": "x-javascript"
+    "mimeSubtype": "vnd.kde.kword"
   },
   {
-    "extension": "js",
+    "extension": "kwt",
     "mimeType": "application",
-    "mimeSubtype": "x-javascript"
+    "mimeSubtype": "vnd.kde.kword"
   },
   {
-    "extension": "kar",
-    "mimeType": "audio",
-    "mimeSubtype": "midi"
-  },
-  {
-    "extension": "kar",
-    "mimeType": "audio",
-    "mimeSubtype": "midi"
-  },
-  {
-    "extension": "kar",
-    "mimeType": "audio",
-    "mimeSubtype": "midi"
+    "extension": "lasxml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.las.las+xml"
   },
   {
     "extension": "latex",
@@ -905,14 +2460,19 @@
     "mimeSubtype": "x-latex"
   },
   {
-    "extension": "latex",
+    "extension": "lbd",
     "mimeType": "application",
-    "mimeSubtype": "x-latex"
+    "mimeSubtype": "vnd.llamagraphics.life-balance.desktop"
   },
   {
-    "extension": "latex",
+    "extension": "lbe",
     "mimeType": "application",
-    "mimeSubtype": "x-latex"
+    "mimeSubtype": "vnd.llamagraphics.life-balance.exchange+xml"
+  },
+  {
+    "extension": "les",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hhe.lesson-player"
   },
   {
     "extension": "lha",
@@ -920,99 +2480,194 @@
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "lha",
+    "extension": "library-ms",
+    "mimeType": "application",
+    "mimeSubtype": "windows-library+xml"
+  },
+  {
+    "extension": "link66",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.route66.link66+xml"
+  },
+  {
+    "extension": "list",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "list3820",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.modcap"
+  },
+  {
+    "extension": "listafp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.modcap"
+  },
+  {
+    "extension": "lit",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-reader"
+  },
+  {
+    "extension": "loadtest",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "log",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "lostxml",
+    "mimeType": "application",
+    "mimeSubtype": "lost+xml"
+  },
+  {
+    "extension": "lpk",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "lha",
+    "extension": "lrf",
     "mimeType": "application",
     "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "lzh",
+    "extension": "lrm",
     "mimeType": "application",
-    "mimeSubtype": "octet-stream"
+    "mimeSubtype": "vnd.ms-lrm"
   },
   {
-    "extension": "lzh",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "lzh",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "m3u",
-    "mimeType": "audio",
-    "mimeSubtype": "x-mpegurl"
-  },
-  {
-    "extension": "m3u",
-    "mimeType": "audio",
-    "mimeSubtype": "x-mpegurl"
-  },
-  {
-    "extension": "m3u",
-    "mimeType": "audio",
-    "mimeSubtype": "x-mpegurl"
-  },
-  {
-    "extension": "m4a",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4a",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4a",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4b",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4b",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4b",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4p",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4p",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4p",
-    "mimeType": "audio",
-    "mimeSubtype": "mp4a-latm"
-  },
-  {
-    "extension": "m4u",
+    "extension": "lsf",
     "mimeType": "video",
-    "mimeSubtype": "vnd.mpegurl"
+    "mimeSubtype": "x-la-asf"
   },
   {
-    "extension": "m4u",
+    "extension": "lst",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "lsx",
     "mimeType": "video",
-    "mimeSubtype": "vnd.mpegurl"
+    "mimeSubtype": "x-la-asf"
+  },
+  {
+    "extension": "ltf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.frogans.ltf"
+  },
+  {
+    "extension": "lvp",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.lucent.voice"
+  },
+  {
+    "extension": "lwp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.lotus-wordpro"
+  },
+  {
+    "extension": "lzh",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "m13",
+    "mimeType": "application",
+    "mimeSubtype": "x-msmediaview"
+  },
+  {
+    "extension": "m14",
+    "mimeType": "application",
+    "mimeSubtype": "x-msmediaview"
+  },
+  {
+    "extension": "m1v",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "m21",
+    "mimeType": "application",
+    "mimeSubtype": "mp21"
+  },
+  {
+    "extension": "m2a",
+    "mimeType": "audio",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "m2t",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dlna.mpeg-tts"
+  },
+  {
+    "extension": "m2ts",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dlna.mpeg-tts"
+  },
+  {
+    "extension": "m2v",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "m3a",
+    "mimeType": "audio",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "m3u",
+    "mimeType": "audio",
+    "mimeSubtype": "x-mpegurl"
+  },
+  {
+    "extension": "m3u8",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.apple.mpegurl"
+  },
+  {
+    "extension": "m3u8",
+    "mimeType": "audio",
+    "mimeSubtype": "x-mpegurl"
+  },
+  {
+    "extension": "m4a",
+    "mimeType": "audio",
+    "mimeSubtype": "m4a"
+  },
+  {
+    "extension": "m4a",
+    "mimeType": "audio",
+    "mimeSubtype": "mp4a-latm"
+  },
+  {
+    "extension": "m4b",
+    "mimeType": "audio",
+    "mimeSubtype": "m4b"
+  },
+  {
+    "extension": "m4b",
+    "mimeType": "audio",
+    "mimeSubtype": "mp4a-latm"
+  },
+  {
+    "extension": "m4p",
+    "mimeType": "audio",
+    "mimeSubtype": "m4p"
+  },
+  {
+    "extension": "m4p",
+    "mimeType": "audio",
+    "mimeSubtype": "mp4a-latm"
+  },
+  {
+    "extension": "m4r",
+    "mimeType": "audio",
+    "mimeSubtype": "x-m4r"
   },
   {
     "extension": "m4u",
@@ -1025,14 +2680,9 @@
     "mimeSubtype": "x-m4v"
   },
   {
-    "extension": "m4v",
-    "mimeType": "video",
-    "mimeSubtype": "x-m4v"
-  },
-  {
-    "extension": "m4v",
-    "mimeType": "video",
-    "mimeSubtype": "x-m4v"
+    "extension": "ma",
+    "mimeType": "application",
+    "mimeSubtype": "mathematica"
   },
   {
     "extension": "mac",
@@ -1040,14 +2690,24 @@
     "mimeSubtype": "x-macpaint"
   },
   {
-    "extension": "mac",
-    "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
+    "extension": "mads",
+    "mimeType": "application",
+    "mimeSubtype": "mads+xml"
   },
   {
-    "extension": "mac",
-    "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
+    "extension": "mag",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ecowin.chart"
+  },
+  {
+    "extension": "mak",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "maker",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.framemaker"
   },
   {
     "extension": "man",
@@ -1056,13 +2716,23 @@
   },
   {
     "extension": "man",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff-man"
+    "mimeType": "text",
+    "mimeSubtype": "troff"
   },
   {
-    "extension": "man",
+    "extension": "manifest",
     "mimeType": "application",
-    "mimeSubtype": "x-troff-man"
+    "mimeSubtype": "x-ms-manifest"
+  },
+  {
+    "extension": "map",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "master",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
   },
   {
     "extension": "mathml",
@@ -1070,14 +2740,59 @@
     "mimeSubtype": "mathml+xml"
   },
   {
-    "extension": "mathml",
+    "extension": "mb",
     "mimeType": "application",
-    "mimeSubtype": "mathml+xml"
+    "mimeSubtype": "mathematica"
   },
   {
-    "extension": "mathml",
+    "extension": "mbk",
     "mimeType": "application",
-    "mimeSubtype": "mathml+xml"
+    "mimeSubtype": "vnd.mobius.mbk"
+  },
+  {
+    "extension": "mbox",
+    "mimeType": "application",
+    "mimeSubtype": "mbox"
+  },
+  {
+    "extension": "mc1",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.medcalcdata"
+  },
+  {
+    "extension": "mcd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mcd"
+  },
+  {
+    "extension": "mcurl",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.curl.mcurl"
+  },
+  {
+    "extension": "mda",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "mdb",
+    "mimeType": "application",
+    "mimeSubtype": "x-msaccess"
+  },
+  {
+    "extension": "mde",
+    "mimeType": "application",
+    "mimeSubtype": "msaccess"
+  },
+  {
+    "extension": "mdi",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.ms-modi"
+  },
+  {
+    "extension": "mdp",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "me",
@@ -1086,38 +2801,58 @@
   },
   {
     "extension": "me",
+    "mimeType": "text",
+    "mimeSubtype": "troff"
+  },
+  {
+    "extension": "mesh",
+    "mimeType": "model",
+    "mimeSubtype": "mesh"
+  },
+  {
+    "extension": "meta4",
     "mimeType": "application",
-    "mimeSubtype": "x-troff-me"
+    "mimeSubtype": "metalink4+xml"
   },
   {
-    "extension": "me",
+    "extension": "mets",
     "mimeType": "application",
-    "mimeSubtype": "x-troff-me"
+    "mimeSubtype": "mets+xml"
   },
   {
-    "extension": "mesh",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "mfm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mfmp"
   },
   {
-    "extension": "mesh",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "mfp",
+    "mimeType": "application",
+    "mimeSubtype": "x-shockwave-flash"
   },
   {
-    "extension": "mesh",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "mgp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.osgeo.mapguide.package"
+  },
+  {
+    "extension": "mgz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.proteus.magazine"
+  },
+  {
+    "extension": "mht",
+    "mimeType": "message",
+    "mimeSubtype": "rfc822"
+  },
+  {
+    "extension": "mhtml",
+    "mimeType": "message",
+    "mimeSubtype": "rfc822"
   },
   {
     "extension": "mid",
     "mimeType": "audio",
-    "mimeSubtype": "midi"
-  },
-  {
-    "extension": "mid",
-    "mimeType": "audio",
-    "mimeSubtype": "midi"
+    "mimeSubtype": "mid"
   },
   {
     "extension": "mid",
@@ -1127,12 +2862,7 @@
   {
     "extension": "midi",
     "mimeType": "audio",
-    "mimeSubtype": "midi"
-  },
-  {
-    "extension": "midi",
-    "mimeType": "audio",
-    "mimeSubtype": "midi"
+    "mimeSubtype": "mid"
   },
   {
     "extension": "midi",
@@ -1145,39 +2875,84 @@
     "mimeSubtype": "vnd.mif"
   },
   {
-    "extension": "mif",
+    "extension": "mime",
+    "mimeType": "message",
+    "mimeSubtype": "rfc822"
+  },
+  {
+    "extension": "mix",
     "mimeType": "application",
-    "mimeSubtype": "vnd.mif"
+    "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "mif",
+    "extension": "mj2",
+    "mimeType": "video",
+    "mimeSubtype": "mj2"
+  },
+  {
+    "extension": "mjp2",
+    "mimeType": "video",
+    "mimeSubtype": "mj2"
+  },
+  {
+    "extension": "mk",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "mlp",
     "mimeType": "application",
-    "mimeSubtype": "vnd.mif"
+    "mimeSubtype": "vnd.dolby.mlp"
+  },
+  {
+    "extension": "mmd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.chipnuts.karaoke-mmd"
+  },
+  {
+    "extension": "mmf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.smaf"
+  },
+  {
+    "extension": "mmf",
+    "mimeType": "application",
+    "mimeSubtype": "x-smaf"
+  },
+  {
+    "extension": "mmr",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.fujixerox.edmics-mmr"
+  },
+  {
+    "extension": "mno",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "mny",
+    "mimeType": "application",
+    "mimeSubtype": "x-msmoney"
+  },
+  {
+    "extension": "mobi",
+    "mimeType": "application",
+    "mimeSubtype": "x-mobipocket-ebook"
+  },
+  {
+    "extension": "mod",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mods",
+    "mimeType": "application",
+    "mimeSubtype": "mods+xml"
   },
   {
     "extension": "mov",
     "mimeType": "video",
     "mimeSubtype": "quicktime"
-  },
-  {
-    "extension": "mov",
-    "mimeType": "video",
-    "mimeSubtype": "quicktime"
-  },
-  {
-    "extension": "mov",
-    "mimeType": "video",
-    "mimeSubtype": "quicktime"
-  },
-  {
-    "extension": "movie",
-    "mimeType": "video",
-    "mimeSubtype": "x-sgi-movie"
-  },
-  {
-    "extension": "movie",
-    "mimeType": "video",
-    "mimeSubtype": "x-sgi-movie"
   },
   {
     "extension": "movie",
@@ -1191,22 +2966,22 @@
   },
   {
     "extension": "mp2",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mp21",
+    "mimeType": "application",
+    "mimeSubtype": "mp21"
+  },
+  {
+    "extension": "mp2a",
     "mimeType": "audio",
     "mimeSubtype": "mpeg"
   },
   {
-    "extension": "mp2",
-    "mimeType": "audio",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mp3",
-    "mimeType": "audio",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mp3",
-    "mimeType": "audio",
+    "extension": "mp2v",
+    "mimeType": "video",
     "mimeSubtype": "mpeg"
   },
   {
@@ -1220,74 +2995,114 @@
     "mimeSubtype": "mp4"
   },
   {
-    "extension": "mp4",
+    "extension": "mp4a",
+    "mimeType": "audio",
+    "mimeSubtype": "mp4"
+  },
+  {
+    "extension": "mp4s",
+    "mimeType": "application",
+    "mimeSubtype": "mp4"
+  },
+  {
+    "extension": "mp4v",
     "mimeType": "video",
     "mimeSubtype": "mp4"
   },
   {
-    "extension": "mp4",
+    "extension": "mpa",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mpc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mophun.certificate"
+  },
+  {
+    "extension": "mpe",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mpeg",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mpf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-mediapackage"
+  },
+  {
+    "extension": "mpg",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "mpg4",
     "mimeType": "video",
     "mimeSubtype": "mp4"
   },
   {
-    "extension": "mpe",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpe",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpe",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpeg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpeg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpeg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
-    "extension": "mpg",
-    "mimeType": "video",
-    "mimeSubtype": "mpeg"
-  },
-  {
     "extension": "mpga",
     "mimeType": "audio",
     "mimeSubtype": "mpeg"
   },
   {
-    "extension": "mpga",
-    "mimeType": "audio",
+    "extension": "mpkg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.apple.installer+xml"
+  },
+  {
+    "extension": "mpm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.blueice.multipass"
+  },
+  {
+    "extension": "mpn",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mophun.application"
+  },
+  {
+    "extension": "mpp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-project"
+  },
+  {
+    "extension": "mpt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-project"
+  },
+  {
+    "extension": "mpv2",
+    "mimeType": "video",
     "mimeSubtype": "mpeg"
   },
   {
-    "extension": "mpga",
-    "mimeType": "audio",
-    "mimeSubtype": "mpeg"
+    "extension": "mpy",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.minipay"
+  },
+  {
+    "extension": "mqv",
+    "mimeType": "video",
+    "mimeSubtype": "quicktime"
+  },
+  {
+    "extension": "mqy",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mobius.mqy"
+  },
+  {
+    "extension": "mrc",
+    "mimeType": "application",
+    "mimeSubtype": "marc"
+  },
+  {
+    "extension": "mrcx",
+    "mimeType": "application",
+    "mimeSubtype": "marcxml+xml"
   },
   {
     "extension": "ms",
@@ -1296,13 +3111,28 @@
   },
   {
     "extension": "ms",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff-ms"
+    "mimeType": "text",
+    "mimeSubtype": "troff"
   },
   {
-    "extension": "ms",
+    "extension": "mscml",
     "mimeType": "application",
-    "mimeSubtype": "x-troff-ms"
+    "mimeSubtype": "mediaservercontrol+xml"
+  },
+  {
+    "extension": "mseed",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fdsn.mseed"
+  },
+  {
+    "extension": "mseq",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mseq"
+  },
+  {
+    "extension": "msf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.epson.msf"
   },
   {
     "extension": "msh",
@@ -1310,14 +3140,94 @@
     "mimeSubtype": "mesh"
   },
   {
-    "extension": "msh",
+    "extension": "msi",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "msi",
+    "mimeType": "application",
+    "mimeSubtype": "x-msdownload"
+  },
+  {
+    "extension": "msl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mobius.msl"
+  },
+  {
+    "extension": "mso",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "msty",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.muvee.style"
+  },
+  {
+    "extension": "mts",
     "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "mimeSubtype": "vnd.mts"
   },
   {
-    "extension": "msh",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "mts",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dlna.mpeg-tts"
+  },
+  {
+    "extension": "mtx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "mus",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.musician"
+  },
+  {
+    "extension": "musicxml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.recordare.musicxml+xml"
+  },
+  {
+    "extension": "mvb",
+    "mimeType": "application",
+    "mimeSubtype": "x-msmediaview"
+  },
+  {
+    "extension": "mvc",
+    "mimeType": "application",
+    "mimeSubtype": "x-miva-compiled"
+  },
+  {
+    "extension": "mwf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mfer"
+  },
+  {
+    "extension": "mxf",
+    "mimeType": "application",
+    "mimeSubtype": "mxf"
+  },
+  {
+    "extension": "mxl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.recordare.musicxml"
+  },
+  {
+    "extension": "mxml",
+    "mimeType": "application",
+    "mimeSubtype": "xv+xml"
+  },
+  {
+    "extension": "mxp",
+    "mimeType": "application",
+    "mimeSubtype": "x-mmxp"
+  },
+  {
+    "extension": "mxs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.triscape.mxs"
   },
   {
     "extension": "mxu",
@@ -1325,29 +3235,109 @@
     "mimeSubtype": "vnd.mpegurl"
   },
   {
-    "extension": "mxu",
+    "extension": "n3",
+    "mimeType": "text",
+    "mimeSubtype": "n3"
+  },
+  {
+    "extension": "nb",
+    "mimeType": "application",
+    "mimeSubtype": "mathematica"
+  },
+  {
+    "extension": "nbp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wolfram.player"
+  },
+  {
+    "extension": "nc",
+    "mimeType": "application",
+    "mimeSubtype": "x-netcdf"
+  },
+  {
+    "extension": "ncx",
+    "mimeType": "application",
+    "mimeSubtype": "x-dtbncx+xml"
+  },
+  {
+    "extension": "n-gage",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.nokia.n-gage.symbian.install"
+  },
+  {
+    "extension": "ngdat",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.nokia.n-gage.data"
+  },
+  {
+    "extension": "nlu",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.neurolanguage.nlu"
+  },
+  {
+    "extension": "nml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.enliven"
+  },
+  {
+    "extension": "nnd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.noblenet-directory"
+  },
+  {
+    "extension": "nns",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.noblenet-sealer"
+  },
+  {
+    "extension": "nnw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.noblenet-web"
+  },
+  {
+    "extension": "npx",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.net-fpx"
+  },
+  {
+    "extension": "nsc",
     "mimeType": "video",
-    "mimeSubtype": "vnd.mpegurl"
+    "mimeSubtype": "x-ms-asf"
   },
   {
-    "extension": "mxu",
-    "mimeType": "video",
-    "mimeSubtype": "vnd.mpegurl"
-  },
-  {
-    "extension": "nc",
+    "extension": "nsf",
     "mimeType": "application",
-    "mimeSubtype": "x-netcdf"
+    "mimeSubtype": "vnd.lotus-notes"
   },
   {
-    "extension": "nc",
-    "mimeType": "application",
-    "mimeSubtype": "x-netcdf"
+    "extension": "nws",
+    "mimeType": "message",
+    "mimeSubtype": "rfc822"
   },
   {
-    "extension": "nc",
+    "extension": "oa2",
     "mimeType": "application",
-    "mimeSubtype": "x-netcdf"
+    "mimeSubtype": "vnd.fujitsu.oasys2"
+  },
+  {
+    "extension": "oa3",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujitsu.oasys3"
+  },
+  {
+    "extension": "oas",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujitsu.oasys"
+  },
+  {
+    "extension": "obd",
+    "mimeType": "application",
+    "mimeSubtype": "x-msbinder"
+  },
+  {
+    "extension": "ocx",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "oda",
@@ -1355,18 +3345,78 @@
     "mimeSubtype": "oda"
   },
   {
-    "extension": "oda",
+    "extension": "odb",
     "mimeType": "application",
-    "mimeSubtype": "oda"
+    "mimeSubtype": "vnd.oasis.opendocument.database"
   },
   {
-    "extension": "oda",
+    "extension": "odc",
     "mimeType": "application",
-    "mimeSubtype": "oda"
+    "mimeSubtype": "vnd.oasis.opendocument.chart"
   },
   {
-    "extension": "ogg",
+    "extension": "odc",
+    "mimeType": "text",
+    "mimeSubtype": "x-ms-odc"
+  },
+  {
+    "extension": "odf",
     "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.formula"
+  },
+  {
+    "extension": "odft",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.formula-template"
+  },
+  {
+    "extension": "odg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.graphics"
+  },
+  {
+    "extension": "odh",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "odi",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.image"
+  },
+  {
+    "extension": "odl",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "odm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.text-master"
+  },
+  {
+    "extension": "odp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.presentation"
+  },
+  {
+    "extension": "ods",
+    "mimeType": "application",
+    "mimeSubtype": "oleobject"
+  },
+  {
+    "extension": "ods",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.spreadsheet"
+  },
+  {
+    "extension": "odt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.text"
+  },
+  {
+    "extension": "oga",
+    "mimeType": "audio",
     "mimeSubtype": "ogg"
   },
   {
@@ -1376,13 +3426,188 @@
   },
   {
     "extension": "ogg",
+    "mimeType": "audio",
+    "mimeSubtype": "ogg"
+  },
+  {
+    "extension": "ogv",
+    "mimeType": "video",
+    "mimeSubtype": "ogg"
+  },
+  {
+    "extension": "ogx",
     "mimeType": "application",
     "mimeSubtype": "ogg"
   },
   {
-    "extension": "pbm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-bitmap"
+    "extension": "one",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "onea",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "onepkg",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "onetmp",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "onetoc",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "onetoc2",
+    "mimeType": "application",
+    "mimeSubtype": "onenote"
+  },
+  {
+    "extension": "opf",
+    "mimeType": "application",
+    "mimeSubtype": "oebps-package+xml"
+  },
+  {
+    "extension": "oprc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.palm"
+  },
+  {
+    "extension": "orderedtest",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "org",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.lotus-organizer"
+  },
+  {
+    "extension": "osdx",
+    "mimeType": "application",
+    "mimeSubtype": "opensearchdescription+xml"
+  },
+  {
+    "extension": "osf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.openscoreformat"
+  },
+  {
+    "extension": "osfpvg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.openscoreformat.osfpvg+xml"
+  },
+  {
+    "extension": "otc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.chart-template"
+  },
+  {
+    "extension": "otf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-otf"
+  },
+  {
+    "extension": "otg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.graphics-template"
+  },
+  {
+    "extension": "oth",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.text-web"
+  },
+  {
+    "extension": "oti",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.image-template"
+  },
+  {
+    "extension": "otp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.presentation-template"
+  },
+  {
+    "extension": "ots",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.spreadsheet-template"
+  },
+  {
+    "extension": "ott",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.oasis.opendocument.text-template"
+  },
+  {
+    "extension": "oxt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.openofficeorg.extension"
+  },
+  {
+    "extension": "p",
+    "mimeType": "text",
+    "mimeSubtype": "x-pascal"
+  },
+  {
+    "extension": "p10",
+    "mimeType": "application",
+    "mimeSubtype": "pkcs10"
+  },
+  {
+    "extension": "p12",
+    "mimeType": "application",
+    "mimeSubtype": "x-pkcs12"
+  },
+  {
+    "extension": "p7b",
+    "mimeType": "application",
+    "mimeSubtype": "x-pkcs7-certificates"
+  },
+  {
+    "extension": "p7c",
+    "mimeType": "application",
+    "mimeSubtype": "pkcs7-mime"
+  },
+  {
+    "extension": "p7m",
+    "mimeType": "application",
+    "mimeSubtype": "pkcs7-mime"
+  },
+  {
+    "extension": "p7r",
+    "mimeType": "application",
+    "mimeSubtype": "x-pkcs7-certreqresp"
+  },
+  {
+    "extension": "p7s",
+    "mimeType": "application",
+    "mimeSubtype": "pkcs7-signature"
+  },
+  {
+    "extension": "p8",
+    "mimeType": "application",
+    "mimeSubtype": "pkcs8"
+  },
+  {
+    "extension": "pas",
+    "mimeType": "text",
+    "mimeSubtype": "x-pascal"
+  },
+  {
+    "extension": "paw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pawaafile"
+  },
+  {
+    "extension": "pbd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.powerbuilder6"
   },
   {
     "extension": "pbm",
@@ -1390,9 +3615,24 @@
     "mimeSubtype": "x-portable-bitmap"
   },
   {
-    "extension": "pbm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-bitmap"
+    "extension": "pcast",
+    "mimeType": "application",
+    "mimeSubtype": "x-podcast"
+  },
+  {
+    "extension": "pcf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-pcf"
+  },
+  {
+    "extension": "pcl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hp-pcl"
+  },
+  {
+    "extension": "pclxl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hp-pclxl"
   },
   {
     "extension": "pct",
@@ -1402,22 +3642,32 @@
   {
     "extension": "pct",
     "mimeType": "image",
-    "mimeSubtype": "pict"
+    "mimeSubtype": "x-pict"
   },
   {
-    "extension": "pct",
+    "extension": "pcurl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.curl.pcurl"
+  },
+  {
+    "extension": "pcx",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "pcx",
     "mimeType": "image",
-    "mimeSubtype": "pict"
+    "mimeSubtype": "x-pcx"
+  },
+  {
+    "extension": "pcz",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "pdb",
-    "mimeType": "chemical",
-    "mimeSubtype": "x-pdb"
-  },
-  {
-    "extension": "pdb",
-    "mimeType": "chemical",
-    "mimeSubtype": "x-pdb"
+    "mimeType": "application",
+    "mimeSubtype": "vnd.palm"
   },
   {
     "extension": "pdb",
@@ -1430,24 +3680,39 @@
     "mimeSubtype": "pdf"
   },
   {
-    "extension": "pdf",
+    "extension": "pfa",
     "mimeType": "application",
-    "mimeSubtype": "pdf"
+    "mimeSubtype": "x-font-type1"
   },
   {
-    "extension": "pdf",
+    "extension": "pfb",
     "mimeType": "application",
-    "mimeSubtype": "pdf"
+    "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "pgm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-graymap"
+    "extension": "pfb",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-type1"
   },
   {
-    "extension": "pgm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-graymap"
+    "extension": "pfm",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "pfm",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-type1"
+  },
+  {
+    "extension": "pfr",
+    "mimeType": "application",
+    "mimeSubtype": "font-tdpfr"
+  },
+  {
+    "extension": "pfx",
+    "mimeType": "application",
+    "mimeSubtype": "x-pkcs12"
   },
   {
     "extension": "pgm",
@@ -1460,54 +3725,109 @@
     "mimeSubtype": "x-chess-pgn"
   },
   {
-    "extension": "pgn",
+    "extension": "pgp",
     "mimeType": "application",
-    "mimeSubtype": "x-chess-pgn"
+    "mimeSubtype": "pgp-encrypted"
   },
   {
-    "extension": "pgn",
+    "extension": "pic",
+    "mimeType": "image",
+    "mimeSubtype": "pict"
+  },
+  {
+    "extension": "pic",
+    "mimeType": "image",
+    "mimeSubtype": "x-pict"
+  },
+  {
+    "extension": "pict",
+    "mimeType": "image",
+    "mimeSubtype": "pict"
+  },
+  {
+    "extension": "pkg",
     "mimeType": "application",
-    "mimeSubtype": "x-chess-pgn"
+    "mimeSubtype": "octet-stream"
   },
   {
-    "extension": "pic",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "pkgdef",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "pic",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "pkgundef",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
   },
   {
-    "extension": "pic",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "pki",
+    "mimeType": "application",
+    "mimeSubtype": "pkixcmp"
   },
   {
-    "extension": "pict",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "pkipath",
+    "mimeType": "application",
+    "mimeSubtype": "pkix-pkipath"
   },
   {
-    "extension": "pict",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "pko",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-pki.pko"
   },
   {
-    "extension": "pict",
-    "mimeType": "image",
-    "mimeSubtype": "pict"
+    "extension": "plb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.3gpp.pic-bw-large"
   },
   {
-    "extension": "png",
-    "mimeType": "image",
-    "mimeSubtype": "png"
+    "extension": "plc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mobius.plc"
   },
   {
-    "extension": "png",
-    "mimeType": "image",
-    "mimeSubtype": "png"
+    "extension": "plf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pocketlearn"
+  },
+  {
+    "extension": "pls",
+    "mimeType": "application",
+    "mimeSubtype": "pls+xml"
+  },
+  {
+    "extension": "pls",
+    "mimeType": "audio",
+    "mimeSubtype": "scpls"
+  },
+  {
+    "extension": "pma",
+    "mimeType": "application",
+    "mimeSubtype": "x-perfmon"
+  },
+  {
+    "extension": "pmc",
+    "mimeType": "application",
+    "mimeSubtype": "x-perfmon"
+  },
+  {
+    "extension": "pml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ctc-posml"
+  },
+  {
+    "extension": "pml",
+    "mimeType": "application",
+    "mimeSubtype": "x-perfmon"
+  },
+  {
+    "extension": "pmr",
+    "mimeType": "application",
+    "mimeSubtype": "x-perfmon"
+  },
+  {
+    "extension": "pmw",
+    "mimeType": "application",
+    "mimeSubtype": "x-perfmon"
   },
   {
     "extension": "png",
@@ -1520,26 +3840,6 @@
     "mimeSubtype": "x-portable-anymap"
   },
   {
-    "extension": "pnm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-anymap"
-  },
-  {
-    "extension": "pnm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-anymap"
-  },
-  {
-    "extension": "pnt",
-    "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
-  },
-  {
-    "extension": "pnt",
-    "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
-  },
-  {
     "extension": "pnt",
     "mimeType": "image",
     "mimeSubtype": "x-macpaint"
@@ -1550,19 +3850,19 @@
     "mimeSubtype": "x-macpaint"
   },
   {
-    "extension": "pntg",
+    "extension": "pnz",
     "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
+    "mimeSubtype": "png"
   },
   {
-    "extension": "pntg",
-    "mimeType": "image",
-    "mimeSubtype": "x-macpaint"
-  },
-  {
-    "extension": "potm",
+    "extension": "portpkg",
     "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint.template.macroEnabled.12"
+    "mimeSubtype": "vnd.macports.portpkg"
+  },
+  {
+    "extension": "pot",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-powerpoint"
   },
   {
     "extension": "potm",
@@ -1575,9 +3875,9 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.template"
   },
   {
-    "extension": "potx",
+    "extension": "ppa",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.template"
+    "mimeSubtype": "vnd.ms-powerpoint"
   },
   {
     "extension": "ppam",
@@ -1585,9 +3885,9 @@
     "mimeSubtype": "vnd.ms-powerpoint.addin.macroEnabled.12"
   },
   {
-    "extension": "ppam",
+    "extension": "ppd",
     "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint.addin.macroEnabled.12"
+    "mimeSubtype": "vnd.cups-ppd"
   },
   {
     "extension": "ppm",
@@ -1595,19 +3895,9 @@
     "mimeSubtype": "x-portable-pixmap"
   },
   {
-    "extension": "ppm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-pixmap"
-  },
-  {
-    "extension": "ppm",
-    "mimeType": "image",
-    "mimeSubtype": "x-portable-pixmap"
-  },
-  {
-    "extension": "ppsm",
+    "extension": "pps",
     "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint.slideshow.macroEnabled.12"
+    "mimeSubtype": "vnd.ms-powerpoint"
   },
   {
     "extension": "ppsm",
@@ -1620,29 +3910,9 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.slideshow"
   },
   {
-    "extension": "ppsx",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.slideshow"
-  },
-  {
     "extension": "ppt",
     "mimeType": "application",
     "mimeSubtype": "vnd.ms-powerpoint"
-  },
-  {
-    "extension": "ppt",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint"
-  },
-  {
-    "extension": "ppt",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint"
-  },
-  {
-    "extension": "pptm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-powerpoint.presentation.macroEnabled.12"
   },
   {
     "extension": "pptm",
@@ -1655,9 +3925,34 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.presentation"
   },
   {
-    "extension": "pptx",
+    "extension": "pqa",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.presentation"
+    "mimeSubtype": "vnd.palm"
+  },
+  {
+    "extension": "prc",
+    "mimeType": "application",
+    "mimeSubtype": "x-mobipocket-ebook"
+  },
+  {
+    "extension": "pre",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.lotus-freelance"
+  },
+  {
+    "extension": "prf",
+    "mimeType": "application",
+    "mimeSubtype": "pics-rules"
+  },
+  {
+    "extension": "prm",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "prx",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "ps",
@@ -1665,24 +3960,114 @@
     "mimeSubtype": "postscript"
   },
   {
-    "extension": "ps",
+    "extension": "psb",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "vnd.3gpp.pic-bw-small"
   },
   {
-    "extension": "ps",
+    "extension": "psc1",
     "mimeType": "application",
-    "mimeSubtype": "postscript"
+    "mimeSubtype": "PowerShell"
   },
   {
-    "extension": "qt",
+    "extension": "psd",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "psd",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.adobe.photoshop"
+  },
+  {
+    "extension": "psess",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "psf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-linux-psf"
+  },
+  {
+    "extension": "pskcxml",
+    "mimeType": "application",
+    "mimeSubtype": "pskc+xml"
+  },
+  {
+    "extension": "psm",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "psp",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "ptid",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pvi.ptid1"
+  },
+  {
+    "extension": "pub",
+    "mimeType": "application",
+    "mimeSubtype": "x-mspublisher"
+  },
+  {
+    "extension": "pvb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.3gpp.pic-bw-var"
+  },
+  {
+    "extension": "pwn",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.3m.post-it-notes"
+  },
+  {
+    "extension": "pwz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-powerpoint"
+  },
+  {
+    "extension": "pya",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.ms-playready.media.pya"
+  },
+  {
+    "extension": "pyv",
     "mimeType": "video",
-    "mimeSubtype": "quicktime"
+    "mimeSubtype": "vnd.ms-playready.media.pyv"
   },
   {
-    "extension": "qt",
-    "mimeType": "video",
-    "mimeSubtype": "quicktime"
+    "extension": "qam",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.epson.quickanime"
+  },
+  {
+    "extension": "qbo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.intu.qbo"
+  },
+  {
+    "extension": "qfx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.intu.qfx"
+  },
+  {
+    "extension": "qht",
+    "mimeType": "text",
+    "mimeSubtype": "x-html-insertion"
+  },
+  {
+    "extension": "qhtm",
+    "mimeType": "text",
+    "mimeSubtype": "x-html-insertion"
+  },
+  {
+    "extension": "qps",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.publishare-delta-tree"
   },
   {
     "extension": "qt",
@@ -1695,39 +4080,49 @@
     "mimeSubtype": "x-quicktime"
   },
   {
-    "extension": "qti",
-    "mimeType": "image",
-    "mimeSubtype": "x-quicktime"
-  },
-  {
-    "extension": "qti",
-    "mimeType": "image",
-    "mimeSubtype": "x-quicktime"
-  },
-  {
     "extension": "qtif",
     "mimeType": "image",
     "mimeSubtype": "x-quicktime"
   },
   {
-    "extension": "qtif",
-    "mimeType": "image",
-    "mimeSubtype": "x-quicktime"
+    "extension": "qtl",
+    "mimeType": "application",
+    "mimeSubtype": "x-quicktimeplayer"
   },
   {
-    "extension": "qtif",
-    "mimeType": "image",
-    "mimeSubtype": "x-quicktime"
+    "extension": "qwd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
   },
   {
-    "extension": "ra",
-    "mimeType": "audio",
-    "mimeSubtype": "x-pn-realaudio"
+    "extension": "qwt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
   },
   {
-    "extension": "ra",
-    "mimeType": "audio",
-    "mimeSubtype": "x-pn-realaudio"
+    "extension": "qxb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
+  },
+  {
+    "extension": "qxd",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "qxd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
+  },
+  {
+    "extension": "qxl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
+  },
+  {
+    "extension": "qxt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.quark.quarkxpress"
   },
   {
     "extension": "ra",
@@ -1740,74 +4135,149 @@
     "mimeSubtype": "x-pn-realaudio"
   },
   {
-    "extension": "ram",
+    "extension": "rar",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "rar",
+    "mimeType": "application",
+    "mimeSubtype": "x-rar-compressed"
+  },
+  {
+    "extension": "ras",
+    "mimeType": "image",
+    "mimeSubtype": "x-cmu-raster"
+  },
+  {
+    "extension": "rat",
+    "mimeType": "application",
+    "mimeSubtype": "rat-file"
+  },
+  {
+    "extension": "rc",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "rc2",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "rcprofile",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ipunplugged.rcprofile"
+  },
+  {
+    "extension": "rct",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "rdf",
+    "mimeType": "application",
+    "mimeSubtype": "rdf+xml"
+  },
+  {
+    "extension": "rdlc",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "rdz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.data-vision.rdz"
+  },
+  {
+    "extension": "rep",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.businessobjects"
+  },
+  {
+    "extension": "res",
+    "mimeType": "application",
+    "mimeSubtype": "x-dtbresource+xml"
+  },
+  {
+    "extension": "resx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "rf",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.rn-realflash"
+  },
+  {
+    "extension": "rgb",
+    "mimeType": "image",
+    "mimeSubtype": "x-rgb"
+  },
+  {
+    "extension": "rgs",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "rif",
+    "mimeType": "application",
+    "mimeSubtype": "reginfo+xml"
+  },
+  {
+    "extension": "rip",
     "mimeType": "audio",
-    "mimeSubtype": "x-pn-realaudio"
+    "mimeSubtype": "vnd.rip"
   },
   {
-    "extension": "ram",
+    "extension": "rl",
+    "mimeType": "application",
+    "mimeSubtype": "resource-lists+xml"
+  },
+  {
+    "extension": "rlc",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.fujixerox.edmics-rlc"
+  },
+  {
+    "extension": "rld",
+    "mimeType": "application",
+    "mimeSubtype": "resource-lists-diff+xml"
+  },
+  {
+    "extension": "rm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.rn-realmedia"
+  },
+  {
+    "extension": "rmi",
     "mimeType": "audio",
-    "mimeSubtype": "x-pn-realaudio"
+    "mimeSubtype": "mid"
   },
   {
-    "extension": "ras",
-    "mimeType": "image",
-    "mimeSubtype": "x-cmu-raster"
+    "extension": "rmi",
+    "mimeType": "audio",
+    "mimeSubtype": "midi"
   },
   {
-    "extension": "ras",
-    "mimeType": "image",
-    "mimeSubtype": "x-cmu-raster"
-  },
-  {
-    "extension": "ras",
-    "mimeType": "image",
-    "mimeSubtype": "x-cmu-raster"
-  },
-  {
-    "extension": "rdf",
+    "extension": "rmp",
     "mimeType": "application",
-    "mimeSubtype": "rdf+xml"
+    "mimeSubtype": "vnd.rn-rn_music_package"
   },
   {
-    "extension": "rdf",
+    "extension": "rmp",
+    "mimeType": "audio",
+    "mimeSubtype": "x-pn-realaudio-plugin"
+  },
+  {
+    "extension": "rms",
     "mimeType": "application",
-    "mimeSubtype": "rdf+xml"
+    "mimeSubtype": "vnd.jcp.javame.midlet-rms"
   },
   {
-    "extension": "rdf",
+    "extension": "rnc",
     "mimeType": "application",
-    "mimeSubtype": "rdf+xml"
-  },
-  {
-    "extension": "rgb",
-    "mimeType": "image",
-    "mimeSubtype": "x-rgb"
-  },
-  {
-    "extension": "rgb",
-    "mimeType": "image",
-    "mimeSubtype": "x-rgb"
-  },
-  {
-    "extension": "rgb",
-    "mimeType": "image",
-    "mimeSubtype": "x-rgb"
-  },
-  {
-    "extension": "rm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.rn-realmedia"
-  },
-  {
-    "extension": "rm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.rn-realmedia"
-  },
-  {
-    "extension": "rm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.rn-realmedia"
+    "mimeSubtype": "relax-ng-compact-syntax"
   },
   {
     "extension": "roff",
@@ -1816,22 +4286,57 @@
   },
   {
     "extension": "roff",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
+    "mimeType": "text",
+    "mimeSubtype": "troff"
   },
   {
-    "extension": "roff",
+    "extension": "rp9",
     "mimeType": "application",
-    "mimeSubtype": "x-troff"
+    "mimeSubtype": "vnd.cloanto.rp9"
+  },
+  {
+    "extension": "rpm",
+    "mimeType": "audio",
+    "mimeSubtype": "x-pn-realaudio-plugin"
+  },
+  {
+    "extension": "rpss",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.nokia.radio-presets"
+  },
+  {
+    "extension": "rpst",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.nokia.radio-preset"
+  },
+  {
+    "extension": "rq",
+    "mimeType": "application",
+    "mimeSubtype": "sparql-query"
+  },
+  {
+    "extension": "rqy",
+    "mimeType": "text",
+    "mimeSubtype": "x-ms-rqy"
+  },
+  {
+    "extension": "rs",
+    "mimeType": "application",
+    "mimeSubtype": "rls-services+xml"
+  },
+  {
+    "extension": "rsd",
+    "mimeType": "application",
+    "mimeSubtype": "rsd+xml"
+  },
+  {
+    "extension": "rss",
+    "mimeType": "application",
+    "mimeSubtype": "rss+xml"
   },
   {
     "extension": "rtf",
-    "mimeType": "text",
-    "mimeSubtype": "rtf"
-  },
-  {
-    "extension": "rtf",
-    "mimeType": "text",
+    "mimeType": "application",
     "mimeSubtype": "rtf"
   },
   {
@@ -1845,37 +4350,187 @@
     "mimeSubtype": "richtext"
   },
   {
-    "extension": "rtx",
-    "mimeType": "text",
-    "mimeSubtype": "richtext"
+    "extension": "ruleset",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "rtx",
+    "extension": "s",
     "mimeType": "text",
-    "mimeSubtype": "richtext"
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "s",
+    "mimeType": "text",
+    "mimeSubtype": "x-asm"
+  },
+  {
+    "extension": "saf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.smaf-audio"
+  },
+  {
+    "extension": "safariextz",
+    "mimeType": "application",
+    "mimeSubtype": "x-safari-safariextz"
+  },
+  {
+    "extension": "sbml",
+    "mimeType": "application",
+    "mimeSubtype": "sbml+xml"
+  },
+  {
+    "extension": "sc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ibm.secure-container"
+  },
+  {
+    "extension": "scd",
+    "mimeType": "application",
+    "mimeSubtype": "x-msschedule"
+  },
+  {
+    "extension": "scm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.lotus-screencam"
+  },
+  {
+    "extension": "scq",
+    "mimeType": "application",
+    "mimeSubtype": "scvp-cv-request"
+  },
+  {
+    "extension": "scs",
+    "mimeType": "application",
+    "mimeSubtype": "scvp-cv-response"
+  },
+  {
+    "extension": "sct",
+    "mimeType": "text",
+    "mimeSubtype": "scriptlet"
+  },
+  {
+    "extension": "scurl",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.curl.scurl"
+  },
+  {
+    "extension": "sd2",
+    "mimeType": "audio",
+    "mimeSubtype": "x-sd2"
+  },
+  {
+    "extension": "sda",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.draw"
+  },
+  {
+    "extension": "sdc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.calc"
+  },
+  {
+    "extension": "sdd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.impress"
+  },
+  {
+    "extension": "sdkd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.solent.sdkm+xml"
+  },
+  {
+    "extension": "sdkm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.solent.sdkm+xml"
+  },
+  {
+    "extension": "sdp",
+    "mimeType": "application",
+    "mimeSubtype": "sdp"
+  },
+  {
+    "extension": "sdw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.writer"
+  },
+  {
+    "extension": "sea",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "searchConnector-ms",
+    "mimeType": "application",
+    "mimeSubtype": "windows-search-connector+xml"
+  },
+  {
+    "extension": "see",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.seemail"
+  },
+  {
+    "extension": "seed",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fdsn.seed"
+  },
+  {
+    "extension": "sema",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sema"
+  },
+  {
+    "extension": "semd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.semd"
+  },
+  {
+    "extension": "semf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.semf"
+  },
+  {
+    "extension": "ser",
+    "mimeType": "application",
+    "mimeSubtype": "java-serialized-object"
+  },
+  {
+    "extension": "setpay",
+    "mimeType": "application",
+    "mimeSubtype": "set-payment-initiation"
+  },
+  {
+    "extension": "setreg",
+    "mimeType": "application",
+    "mimeSubtype": "set-registration-initiation"
+  },
+  {
+    "extension": "settings",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "sfd-hdstx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hydrostatix.sof-data"
+  },
+  {
+    "extension": "sfs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.spotfire.sfs"
+  },
+  {
+    "extension": "sgimb",
+    "mimeType": "application",
+    "mimeSubtype": "x-sgimb"
+  },
+  {
+    "extension": "sgl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.writer-global"
   },
   {
     "extension": "sgm",
-    "mimeType": "text",
-    "mimeSubtype": "sgml"
-  },
-  {
-    "extension": "sgm",
-    "mimeType": "text",
-    "mimeSubtype": "sgml"
-  },
-  {
-    "extension": "sgm",
-    "mimeType": "text",
-    "mimeSubtype": "sgml"
-  },
-  {
-    "extension": "sgml",
-    "mimeType": "text",
-    "mimeSubtype": "sgml"
-  },
-  {
-    "extension": "sgml",
     "mimeType": "text",
     "mimeSubtype": "sgml"
   },
@@ -1890,29 +4545,24 @@
     "mimeSubtype": "x-sh"
   },
   {
-    "extension": "sh",
-    "mimeType": "application",
-    "mimeSubtype": "x-sh"
-  },
-  {
-    "extension": "sh",
-    "mimeType": "application",
-    "mimeSubtype": "x-sh"
-  },
-  {
     "extension": "shar",
     "mimeType": "application",
     "mimeSubtype": "x-shar"
   },
   {
-    "extension": "shar",
+    "extension": "shf",
     "mimeType": "application",
-    "mimeSubtype": "x-shar"
+    "mimeSubtype": "shf+xml"
   },
   {
-    "extension": "shar",
+    "extension": "shtml",
+    "mimeType": "text",
+    "mimeSubtype": "html"
+  },
+  {
+    "extension": "sig",
     "mimeType": "application",
-    "mimeSubtype": "x-shar"
+    "mimeSubtype": "pgp-signature"
   },
   {
     "extension": "silo",
@@ -1920,14 +4570,14 @@
     "mimeSubtype": "mesh"
   },
   {
-    "extension": "silo",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "sis",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.symbian.install"
   },
   {
-    "extension": "silo",
-    "mimeType": "model",
-    "mimeSubtype": "mesh"
+    "extension": "sisx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.symbian.install"
   },
   {
     "extension": "sit",
@@ -1935,14 +4585,19 @@
     "mimeSubtype": "x-stuffit"
   },
   {
-    "extension": "sit",
+    "extension": "sitemap",
     "mimeType": "application",
-    "mimeSubtype": "x-stuffit"
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "sit",
+    "extension": "sitx",
     "mimeType": "application",
-    "mimeSubtype": "x-stuffit"
+    "mimeSubtype": "x-stuffitx"
+  },
+  {
+    "extension": "skd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.koan"
   },
   {
     "extension": "skd",
@@ -1950,24 +4605,14 @@
     "mimeSubtype": "x-koan"
   },
   {
-    "extension": "skd",
+    "extension": "skin",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
-  },
-  {
-    "extension": "skd",
-    "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "xml"
   },
   {
     "extension": "skm",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
-  },
-  {
-    "extension": "skm",
-    "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "vnd.koan"
   },
   {
     "extension": "skm",
@@ -1977,7 +4622,7 @@
   {
     "extension": "skp",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "vnd.koan"
   },
   {
     "extension": "skp",
@@ -1985,9 +4630,9 @@
     "mimeSubtype": "x-koan"
   },
   {
-    "extension": "skp",
+    "extension": "skt",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "vnd.koan"
   },
   {
     "extension": "skt",
@@ -1995,572 +4640,1442 @@
     "mimeSubtype": "x-koan"
   },
   {
-    "extension": "skt",
+    "extension": "sldm",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "vnd.ms-powerpoint.slide.macroEnabled.12"
   },
   {
-    "extension": "skt",
+    "extension": "sldx",
     "mimeType": "application",
-    "mimeSubtype": "x-koan"
+    "mimeSubtype": "vnd.openxmlformats-officedocument.presentationml.slide"
   },
   {
-    "extension": "smi",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "smi",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "smi",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "smil",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "smil",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "smil",
-    "mimeType": "application",
-    "mimeSubtype": "smil"
-  },
-  {
-    "extension": "snd",
-    "mimeType": "audio",
-    "mimeSubtype": "basic"
-  },
-  {
-    "extension": "snd",
-    "mimeType": "audio",
-    "mimeSubtype": "basic"
-  },
-  {
-    "extension": "snd",
-    "mimeType": "audio",
-    "mimeSubtype": "basic"
-  },
-  {
-    "extension": "so",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "so",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "so",
-    "mimeType": "application",
-    "mimeSubtype": "octet-stream"
-  },
-  {
-    "extension": "spl",
-    "mimeType": "application",
-    "mimeSubtype": "x-futuresplash"
-  },
-  {
-    "extension": "spl",
-    "mimeType": "application",
-    "mimeSubtype": "x-futuresplash"
-  },
-  {
-    "extension": "spl",
-    "mimeType": "application",
-    "mimeSubtype": "x-futuresplash"
-  },
-  {
-    "extension": "src",
-    "mimeType": "application",
-    "mimeSubtype": "x-wais-source"
-  },
-  {
-    "extension": "src",
-    "mimeType": "application",
-    "mimeSubtype": "x-wais-source"
-  },
-  {
-    "extension": "src",
-    "mimeType": "application",
-    "mimeSubtype": "x-wais-source"
-  },
-  {
-    "extension": "sv4cpio",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4cpio"
-  },
-  {
-    "extension": "sv4cpio",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4cpio"
-  },
-  {
-    "extension": "sv4cpio",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4cpio"
-  },
-  {
-    "extension": "sv4crc",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4crc"
-  },
-  {
-    "extension": "sv4crc",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4crc"
-  },
-  {
-    "extension": "sv4crc",
-    "mimeType": "application",
-    "mimeSubtype": "x-sv4crc"
-  },
-  {
-    "extension": "svg",
-    "mimeType": "image",
-    "mimeSubtype": "svg+xml"
-  },
-  {
-    "extension": "svg",
-    "mimeType": "image",
-    "mimeSubtype": "svg+xml"
-  },
-  {
-    "extension": "svg",
-    "mimeType": "image",
-    "mimeSubtype": "svg+xml"
-  },
-  {
-    "extension": "swf",
-    "mimeType": "application",
-    "mimeSubtype": "x-shockwave-flash"
-  },
-  {
-    "extension": "swf",
-    "mimeType": "application",
-    "mimeSubtype": "x-shockwave-flash"
-  },
-  {
-    "extension": "swf",
-    "mimeType": "application",
-    "mimeSubtype": "x-shockwave-flash"
-  },
-  {
-    "extension": "t",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "t",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "t",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "tar",
-    "mimeType": "application",
-    "mimeSubtype": "x-tar"
-  },
-  {
-    "extension": "tar",
-    "mimeType": "application",
-    "mimeSubtype": "x-tar"
-  },
-  {
-    "extension": "tar",
-    "mimeType": "application",
-    "mimeSubtype": "x-tar"
-  },
-  {
-    "extension": "tcl",
-    "mimeType": "application",
-    "mimeSubtype": "x-tcl"
-  },
-  {
-    "extension": "tcl",
-    "mimeType": "application",
-    "mimeSubtype": "x-tcl"
-  },
-  {
-    "extension": "tcl",
-    "mimeType": "application",
-    "mimeSubtype": "x-tcl"
-  },
-  {
-    "extension": "tex",
-    "mimeType": "application",
-    "mimeSubtype": "x-tex"
-  },
-  {
-    "extension": "tex",
-    "mimeType": "application",
-    "mimeSubtype": "x-tex"
-  },
-  {
-    "extension": "tex",
-    "mimeType": "application",
-    "mimeSubtype": "x-tex"
-  },
-  {
-    "extension": "texi",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "texi",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "texi",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "texinfo",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "texinfo",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "texinfo",
-    "mimeType": "application",
-    "mimeSubtype": "x-texinfo"
-  },
-  {
-    "extension": "tif",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tif",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tif",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tiff",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tiff",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tiff",
-    "mimeType": "image",
-    "mimeSubtype": "tiff"
-  },
-  {
-    "extension": "tr",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "tr",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "tr",
-    "mimeType": "application",
-    "mimeSubtype": "x-troff"
-  },
-  {
-    "extension": "tsv",
-    "mimeType": "text",
-    "mimeSubtype": "tab-separated-values"
-  },
-  {
-    "extension": "tsv",
-    "mimeType": "text",
-    "mimeSubtype": "tab-separated-values"
-  },
-  {
-    "extension": "tsv",
-    "mimeType": "text",
-    "mimeSubtype": "tab-separated-values"
-  },
-  {
-    "extension": "txt",
-    "mimeType": "text",
-    "mimeSubtype": "plain"
-  },
-  {
-    "extension": "txt",
-    "mimeType": "text",
-    "mimeSubtype": "plain"
-  },
-  {
-    "extension": "txt",
-    "mimeType": "text",
-    "mimeSubtype": "plain"
-  },
-  {
-    "extension": "ustar",
-    "mimeType": "application",
-    "mimeSubtype": "x-ustar"
-  },
-  {
-    "extension": "ustar",
-    "mimeType": "application",
-    "mimeSubtype": "x-ustar"
-  },
-  {
-    "extension": "ustar",
-    "mimeType": "application",
-    "mimeSubtype": "x-ustar"
-  },
-  {
-    "extension": "vcd",
-    "mimeType": "application",
-    "mimeSubtype": "x-cdlink"
-  },
-  {
-    "extension": "vcd",
-    "mimeType": "application",
-    "mimeSubtype": "x-cdlink"
-  },
-  {
-    "extension": "vcd",
-    "mimeType": "application",
-    "mimeSubtype": "x-cdlink"
-  },
-  {
-    "extension": "vrml",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "vrml",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "vrml",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "vxml",
-    "mimeType": "application",
-    "mimeSubtype": "voicexml+xml"
-  },
-  {
-    "extension": "vxml",
-    "mimeType": "application",
-    "mimeSubtype": "voicexml+xml"
-  },
-  {
-    "extension": "vxml",
-    "mimeType": "application",
-    "mimeSubtype": "voicexml+xml"
-  },
-  {
-    "extension": "wav",
-    "mimeType": "audio",
-    "mimeSubtype": "x-wav"
-  },
-  {
-    "extension": "wav",
-    "mimeType": "audio",
-    "mimeSubtype": "x-wav"
-  },
-  {
-    "extension": "wav",
-    "mimeType": "audio",
-    "mimeSubtype": "x-wav"
-  },
-  {
-    "extension": "wbmp",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.wap.wbmp"
-  },
-  {
-    "extension": "wbmp",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.wap.wbmp"
-  },
-  {
-    "extension": "wbmp",
-    "mimeType": "image",
-    "mimeSubtype": "vnd.wap.wbmp"
-  },
-  {
-    "extension": "wbmxl",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wbxml"
-  },
-  {
-    "extension": "wbmxl",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wbxml"
-  },
-  {
-    "extension": "wbmxl",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wbxml"
-  },
-  {
-    "extension": "wml",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wml"
-  },
-  {
-    "extension": "wml",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wml"
-  },
-  {
-    "extension": "wml",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wml"
-  },
-  {
-    "extension": "wmlc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlc"
-  },
-  {
-    "extension": "wmlc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlc"
-  },
-  {
-    "extension": "wmlc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlc"
-  },
-  {
-    "extension": "wmls",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wmlscript"
-  },
-  {
-    "extension": "wmls",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wmlscript"
-  },
-  {
-    "extension": "wmls",
-    "mimeType": "text",
-    "mimeSubtype": "vnd.wap.wmlscript"
-  },
-  {
-    "extension": "wmlsc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlscriptc"
-  },
-  {
-    "extension": "wmlsc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlscriptc"
-  },
-  {
-    "extension": "wmlsc",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.wap.wmlscriptc"
-  },
-  {
-    "extension": "wrl",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "wrl",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "wrl",
-    "mimeType": "model",
-    "mimeSubtype": "vrml"
-  },
-  {
-    "extension": "xbm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xbitmap"
-  },
-  {
-    "extension": "xbm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xbitmap"
-  },
-  {
-    "extension": "xbm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xbitmap"
-  },
-  {
-    "extension": "xht",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xht",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xht",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xhtml",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xhtml",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xhtml",
-    "mimeType": "application",
-    "mimeSubtype": "xhtml+xml"
-  },
-  {
-    "extension": "xlam",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-excel.addin.macroEnabled.12"
-  },
-  {
-    "extension": "xlam",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-excel.addin.macroEnabled.12"
-  },
-  {
-    "extension": "xls",
+    "extension": "slk",
     "mimeType": "application",
     "mimeSubtype": "vnd.ms-excel"
   },
   {
-    "extension": "xls",
+    "extension": "sln",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "slt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.epson.salt"
+  },
+  {
+    "extension": "slupkg-ms",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-license"
+  },
+  {
+    "extension": "sm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stepmania.stepchart"
+  },
+  {
+    "extension": "smd",
+    "mimeType": "audio",
+    "mimeSubtype": "x-smd"
+  },
+  {
+    "extension": "smf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.math"
+  },
+  {
+    "extension": "smi",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "smi",
+    "mimeType": "application",
+    "mimeSubtype": "smil"
+  },
+  {
+    "extension": "smi",
+    "mimeType": "application",
+    "mimeSubtype": "smil+xml"
+  },
+  {
+    "extension": "smil",
+    "mimeType": "application",
+    "mimeSubtype": "smil"
+  },
+  {
+    "extension": "smil",
+    "mimeType": "application",
+    "mimeSubtype": "smil+xml"
+  },
+  {
+    "extension": "smx",
+    "mimeType": "audio",
+    "mimeSubtype": "x-smd"
+  },
+  {
+    "extension": "smz",
+    "mimeType": "audio",
+    "mimeSubtype": "x-smd"
+  },
+  {
+    "extension": "snd",
+    "mimeType": "audio",
+    "mimeSubtype": "basic"
+  },
+  {
+    "extension": "snf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-snf"
+  },
+  {
+    "extension": "snippet",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "snp",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "so",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "sol",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "sor",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "spc",
+    "mimeType": "application",
+    "mimeSubtype": "x-pkcs7-certificates"
+  },
+  {
+    "extension": "spf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.yamaha.smaf-phrase"
+  },
+  {
+    "extension": "spl",
+    "mimeType": "application",
+    "mimeSubtype": "futuresplash"
+  },
+  {
+    "extension": "spl",
+    "mimeType": "application",
+    "mimeSubtype": "x-futuresplash"
+  },
+  {
+    "extension": "spot",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.in3d.spot"
+  },
+  {
+    "extension": "spp",
+    "mimeType": "application",
+    "mimeSubtype": "scvp-vp-response"
+  },
+  {
+    "extension": "spq",
+    "mimeType": "application",
+    "mimeSubtype": "scvp-vp-request"
+  },
+  {
+    "extension": "spx",
+    "mimeType": "audio",
+    "mimeSubtype": "ogg"
+  },
+  {
+    "extension": "src",
+    "mimeType": "application",
+    "mimeSubtype": "x-wais-source"
+  },
+  {
+    "extension": "srf",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "sru",
+    "mimeType": "application",
+    "mimeSubtype": "sru+xml"
+  },
+  {
+    "extension": "srx",
+    "mimeType": "application",
+    "mimeSubtype": "sparql-results+xml"
+  },
+  {
+    "extension": "sse",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.kodak-descriptor"
+  },
+  {
+    "extension": "ssf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.epson.ssf"
+  },
+  {
+    "extension": "SSISDeploymentManifest",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "ssm",
+    "mimeType": "application",
+    "mimeSubtype": "streamingmedia"
+  },
+  {
+    "extension": "ssml",
+    "mimeType": "application",
+    "mimeSubtype": "ssml+xml"
+  },
+  {
+    "extension": "sst",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-pki.certstore"
+  },
+  {
+    "extension": "st",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sailingtracker.track"
+  },
+  {
+    "extension": "stc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.calc.template"
+  },
+  {
+    "extension": "std",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.draw.template"
+  },
+  {
+    "extension": "stf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wt.stf"
+  },
+  {
+    "extension": "sti",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.impress.template"
+  },
+  {
+    "extension": "stk",
+    "mimeType": "application",
+    "mimeSubtype": "hyperstudio"
+  },
+  {
+    "extension": "stl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-pki.stl"
+  },
+  {
+    "extension": "str",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pg.format"
+  },
+  {
+    "extension": "stw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.writer.template"
+  },
+  {
+    "extension": "sub",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dvb.subtitle"
+  },
+  {
+    "extension": "sus",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sus-calendar"
+  },
+  {
+    "extension": "susp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sus-calendar"
+  },
+  {
+    "extension": "sv4cpio",
+    "mimeType": "application",
+    "mimeSubtype": "x-sv4cpio"
+  },
+  {
+    "extension": "sv4crc",
+    "mimeType": "application",
+    "mimeSubtype": "x-sv4crc"
+  },
+  {
+    "extension": "svc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dvb.service"
+  },
+  {
+    "extension": "svc",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "svd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.svd"
+  },
+  {
+    "extension": "svg",
+    "mimeType": "image",
+    "mimeSubtype": "svg+xml"
+  },
+  {
+    "extension": "svgz",
+    "mimeType": "image",
+    "mimeSubtype": "svg+xml"
+  },
+  {
+    "extension": "swa",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "swf",
+    "mimeType": "application",
+    "mimeSubtype": "x-shockwave-flash"
+  },
+  {
+    "extension": "swi",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.aristanetworks.swi"
+  },
+  {
+    "extension": "sxc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.calc"
+  },
+  {
+    "extension": "sxd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.draw"
+  },
+  {
+    "extension": "sxg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.writer.global"
+  },
+  {
+    "extension": "sxi",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.impress"
+  },
+  {
+    "extension": "sxm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.math"
+  },
+  {
+    "extension": "sxw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.sun.xml.writer"
+  },
+  {
+    "extension": "t",
+    "mimeType": "application",
+    "mimeSubtype": "x-troff"
+  },
+  {
+    "extension": "t",
+    "mimeType": "text",
+    "mimeSubtype": "troff"
+  },
+  {
+    "extension": "tao",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.tao.intent-module-archive"
+  },
+  {
+    "extension": "tar",
+    "mimeType": "application",
+    "mimeSubtype": "x-tar"
+  },
+  {
+    "extension": "tcap",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.3gpp2.tcap"
+  },
+  {
+    "extension": "tcl",
+    "mimeType": "application",
+    "mimeSubtype": "x-tcl"
+  },
+  {
+    "extension": "teacher",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.smart.teacher"
+  },
+  {
+    "extension": "tei",
+    "mimeType": "application",
+    "mimeSubtype": "tei+xml"
+  },
+  {
+    "extension": "teicorpus",
+    "mimeType": "application",
+    "mimeSubtype": "tei+xml"
+  },
+  {
+    "extension": "testrunconfig",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "testsettings",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "tex",
+    "mimeType": "application",
+    "mimeSubtype": "x-tex"
+  },
+  {
+    "extension": "texi",
+    "mimeType": "application",
+    "mimeSubtype": "x-texinfo"
+  },
+  {
+    "extension": "texinfo",
+    "mimeType": "application",
+    "mimeSubtype": "x-texinfo"
+  },
+  {
+    "extension": "text",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "tfi",
+    "mimeType": "application",
+    "mimeSubtype": "thraud+xml"
+  },
+  {
+    "extension": "tfm",
+    "mimeType": "application",
+    "mimeSubtype": "x-tex-tfm"
+  },
+  {
+    "extension": "tgz",
+    "mimeType": "application",
+    "mimeSubtype": "x-compressed"
+  },
+  {
+    "extension": "thmx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-officetheme"
+  },
+  {
+    "extension": "thn",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "tif",
+    "mimeType": "image",
+    "mimeSubtype": "tiff"
+  },
+  {
+    "extension": "tiff",
+    "mimeType": "image",
+    "mimeSubtype": "tiff"
+  },
+  {
+    "extension": "tlh",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "tli",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "tmo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.tmobile-livetv"
+  },
+  {
+    "extension": "toc",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "torrent",
+    "mimeType": "application",
+    "mimeSubtype": "x-bittorrent"
+  },
+  {
+    "extension": "tpl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-tool-template"
+  },
+  {
+    "extension": "tpt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.trid.tpt"
+  },
+  {
+    "extension": "tr",
+    "mimeType": "application",
+    "mimeSubtype": "x-troff"
+  },
+  {
+    "extension": "tr",
+    "mimeType": "text",
+    "mimeSubtype": "troff"
+  },
+  {
+    "extension": "tra",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.trueapp"
+  },
+  {
+    "extension": "trm",
+    "mimeType": "application",
+    "mimeSubtype": "x-msterminal"
+  },
+  {
+    "extension": "trx",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "ts",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dlna.mpeg-tts"
+  },
+  {
+    "extension": "tsd",
+    "mimeType": "application",
+    "mimeSubtype": "timestamped-data"
+  },
+  {
+    "extension": "tsv",
+    "mimeType": "text",
+    "mimeSubtype": "tab-separated-values"
+  },
+  {
+    "extension": "ttc",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-ttf"
+  },
+  {
+    "extension": "ttf",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "ttf",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-ttf"
+  },
+  {
+    "extension": "ttl",
+    "mimeType": "text",
+    "mimeSubtype": "turtle"
+  },
+  {
+    "extension": "tts",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dlna.mpeg-tts"
+  },
+  {
+    "extension": "twd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.simtech-mindmapper"
+  },
+  {
+    "extension": "twds",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.simtech-mindmapper"
+  },
+  {
+    "extension": "txd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.genomatix.tuxedo"
+  },
+  {
+    "extension": "txf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.mobius.txf"
+  },
+  {
+    "extension": "txt",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "u32",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "u32",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-bin"
+  },
+  {
+    "extension": "udeb",
+    "mimeType": "application",
+    "mimeSubtype": "x-debian-package"
+  },
+  {
+    "extension": "ufd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ufdl"
+  },
+  {
+    "extension": "ufdl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ufdl"
+  },
+  {
+    "extension": "uls",
+    "mimeType": "text",
+    "mimeSubtype": "iuls"
+  },
+  {
+    "extension": "umj",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.umajin"
+  },
+  {
+    "extension": "unityweb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.unity"
+  },
+  {
+    "extension": "uoml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.uoml+xml"
+  },
+  {
+    "extension": "uri",
+    "mimeType": "text",
+    "mimeSubtype": "uri-list"
+  },
+  {
+    "extension": "uris",
+    "mimeType": "text",
+    "mimeSubtype": "uri-list"
+  },
+  {
+    "extension": "urls",
+    "mimeType": "text",
+    "mimeSubtype": "uri-list"
+  },
+  {
+    "extension": "user",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "ustar",
+    "mimeType": "application",
+    "mimeSubtype": "x-ustar"
+  },
+  {
+    "extension": "utz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.uiq.theme"
+  },
+  {
+    "extension": "uu",
+    "mimeType": "text",
+    "mimeSubtype": "x-uuencode"
+  },
+  {
+    "extension": "uva",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dece.audio"
+  },
+  {
+    "extension": "uvd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.data"
+  },
+  {
+    "extension": "uvf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.data"
+  },
+  {
+    "extension": "uvg",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dece.graphic"
+  },
+  {
+    "extension": "uvh",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.hd"
+  },
+  {
+    "extension": "uvi",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dece.graphic"
+  },
+  {
+    "extension": "uvm",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.mobile"
+  },
+  {
+    "extension": "uvp",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.pd"
+  },
+  {
+    "extension": "uvs",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.sd"
+  },
+  {
+    "extension": "uvt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.ttml+xml"
+  },
+  {
+    "extension": "uvu",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.uvvu.mp4"
+  },
+  {
+    "extension": "uvv",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.video"
+  },
+  {
+    "extension": "uvva",
+    "mimeType": "audio",
+    "mimeSubtype": "vnd.dece.audio"
+  },
+  {
+    "extension": "uvvd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.data"
+  },
+  {
+    "extension": "uvvf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.data"
+  },
+  {
+    "extension": "uvvg",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dece.graphic"
+  },
+  {
+    "extension": "uvvh",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.hd"
+  },
+  {
+    "extension": "uvvi",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.dece.graphic"
+  },
+  {
+    "extension": "uvvm",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.mobile"
+  },
+  {
+    "extension": "uvvp",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.pd"
+  },
+  {
+    "extension": "uvvs",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.sd"
+  },
+  {
+    "extension": "uvvt",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.ttml+xml"
+  },
+  {
+    "extension": "uvvu",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.uvvu.mp4"
+  },
+  {
+    "extension": "uvvv",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.dece.video"
+  },
+  {
+    "extension": "uvvx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.unspecified"
+  },
+  {
+    "extension": "uvx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.dece.unspecified"
+  },
+  {
+    "extension": "vb",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vbdproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vbk",
+    "mimeType": "video",
+    "mimeSubtype": "mpeg"
+  },
+  {
+    "extension": "vbproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vbs",
+    "mimeType": "text",
+    "mimeSubtype": "vbscript"
+  },
+  {
+    "extension": "vcd",
+    "mimeType": "application",
+    "mimeSubtype": "x-cdlink"
+  },
+  {
+    "extension": "vcf",
+    "mimeType": "text",
+    "mimeSubtype": "x-vcard"
+  },
+  {
+    "extension": "vcg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.groove-vcard"
+  },
+  {
+    "extension": "vcproj",
+    "mimeType": "Application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vcs",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vcs",
+    "mimeType": "text",
+    "mimeSubtype": "x-vcalendar"
+  },
+  {
+    "extension": "vcx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.vcx"
+  },
+  {
+    "extension": "vcxproj",
+    "mimeType": "Application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vddproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vdp",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vdproj",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vdx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-visio.viewer"
+  },
+  {
+    "extension": "vis",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visionary"
+  },
+  {
+    "extension": "viv",
+    "mimeType": "video",
+    "mimeSubtype": "vnd.vivo"
+  },
+  {
+    "extension": "vml",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vor",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.stardivision.writer"
+  },
+  {
+    "extension": "vox",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-bin"
+  },
+  {
+    "extension": "vrml",
+    "mimeType": "model",
+    "mimeSubtype": "vrml"
+  },
+  {
+    "extension": "vscontent",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vsct",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vsd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vsf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.vsf"
+  },
+  {
+    "extension": "vsi",
+    "mimeType": "application",
+    "mimeSubtype": "ms-vsi"
+  },
+  {
+    "extension": "vsix",
+    "mimeType": "application",
+    "mimeSubtype": "vsix"
+  },
+  {
+    "extension": "vsixlangpack",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vsixmanifest",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vsmdi",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vspscc",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vss",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vsscc",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vssettings",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vssscc",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "vst",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vstemplate",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "vsto",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-vsto"
+  },
+  {
+    "extension": "vsw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vsx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vtu",
+    "mimeType": "model",
+    "mimeSubtype": "vnd.vtu"
+  },
+  {
+    "extension": "vtx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.visio"
+  },
+  {
+    "extension": "vxml",
+    "mimeType": "application",
+    "mimeSubtype": "voicexml+xml"
+  },
+  {
+    "extension": "w3d",
+    "mimeType": "application",
+    "mimeSubtype": "x-director"
+  },
+  {
+    "extension": "wad",
+    "mimeType": "application",
+    "mimeSubtype": "x-doom"
+  },
+  {
+    "extension": "wav",
+    "mimeType": "audio",
+    "mimeSubtype": "wav"
+  },
+  {
+    "extension": "wav",
+    "mimeType": "audio",
+    "mimeSubtype": "x-wav"
+  },
+  {
+    "extension": "wave",
+    "mimeType": "audio",
+    "mimeSubtype": "wav"
+  },
+  {
+    "extension": "wax",
+    "mimeType": "audio",
+    "mimeSubtype": "x-ms-wax"
+  },
+  {
+    "extension": "wbk",
+    "mimeType": "application",
+    "mimeSubtype": "msword"
+  },
+  {
+    "extension": "wbmp",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.wap.wbmp"
+  },
+  {
+    "extension": "wbmxl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wap.wbxml"
+  },
+  {
+    "extension": "wbs",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.criticaltools.wbs+xml"
+  },
+  {
+    "extension": "wbxml",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wap.wbxml"
+  },
+  {
+    "extension": "wcm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-works"
+  },
+  {
+    "extension": "wdb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-works"
+  },
+  {
+    "extension": "wdp",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.ms-photo"
+  },
+  {
+    "extension": "weba",
+    "mimeType": "audio",
+    "mimeSubtype": "webm"
+  },
+  {
+    "extension": "webarchive",
+    "mimeType": "application",
+    "mimeSubtype": "x-safari-webarchive"
+  },
+  {
+    "extension": "webm",
+    "mimeType": "video",
+    "mimeSubtype": "webm"
+  },
+  {
+    "extension": "webp",
+    "mimeType": "image",
+    "mimeSubtype": "webp"
+  },
+  {
+    "extension": "webtest",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "wg",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.pmi.widget"
+  },
+  {
+    "extension": "wgt",
+    "mimeType": "application",
+    "mimeSubtype": "widget"
+  },
+  {
+    "extension": "wiq",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "wiz",
+    "mimeType": "application",
+    "mimeSubtype": "msword"
+  },
+  {
+    "extension": "wks",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-works"
+  },
+  {
+    "extension": "WLMP",
+    "mimeType": "application",
+    "mimeSubtype": "wlmoviemaker"
+  },
+  {
+    "extension": "wlpginstall",
+    "mimeType": "application",
+    "mimeSubtype": "x-wlpg-detect"
+  },
+  {
+    "extension": "wlpginstall3",
+    "mimeType": "application",
+    "mimeSubtype": "x-wlpg3-detect"
+  },
+  {
+    "extension": "wm",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-wm"
+  },
+  {
+    "extension": "wma",
+    "mimeType": "audio",
+    "mimeSubtype": "x-ms-wma"
+  },
+  {
+    "extension": "wmd",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-wmd"
+  },
+  {
+    "extension": "wmf",
+    "mimeType": "application",
+    "mimeSubtype": "x-msmetafile"
+  },
+  {
+    "extension": "wml",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.wap.wml"
+  },
+  {
+    "extension": "wmlc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wap.wmlc"
+  },
+  {
+    "extension": "wmls",
+    "mimeType": "text",
+    "mimeSubtype": "vnd.wap.wmlscript"
+  },
+  {
+    "extension": "wmlsc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wap.wmlscriptc"
+  },
+  {
+    "extension": "wmp",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-wmp"
+  },
+  {
+    "extension": "wmv",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-wmv"
+  },
+  {
+    "extension": "wmx",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-wmx"
+  },
+  {
+    "extension": "wmz",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-wmz"
+  },
+  {
+    "extension": "woff",
+    "mimeType": "application",
+    "mimeSubtype": "x-font-woff"
+  },
+  {
+    "extension": "wpd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wordperfect"
+  },
+  {
+    "extension": "wpl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-wpl"
+  },
+  {
+    "extension": "wps",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-works"
+  },
+  {
+    "extension": "wqd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.wqd"
+  },
+  {
+    "extension": "wri",
+    "mimeType": "application",
+    "mimeSubtype": "x-mswrite"
+  },
+  {
+    "extension": "wrl",
+    "mimeType": "model",
+    "mimeSubtype": "vrml"
+  },
+  {
+    "extension": "wrl",
+    "mimeType": "x-world",
+    "mimeSubtype": "x-vrml"
+  },
+  {
+    "extension": "wrz",
+    "mimeType": "x-world",
+    "mimeSubtype": "x-vrml"
+  },
+  {
+    "extension": "wsc",
+    "mimeType": "text",
+    "mimeSubtype": "scriptlet"
+  },
+  {
+    "extension": "wsdl",
+    "mimeType": "application",
+    "mimeSubtype": "wsdl+xml"
+  },
+  {
+    "extension": "wsdl",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "wspolicy",
+    "mimeType": "application",
+    "mimeSubtype": "wspolicy+xml"
+  },
+  {
+    "extension": "wtb",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.webturbo"
+  },
+  {
+    "extension": "wvx",
+    "mimeType": "video",
+    "mimeSubtype": "x-ms-wvx"
+  },
+  {
+    "extension": "x",
+    "mimeType": "application",
+    "mimeSubtype": "directx"
+  },
+  {
+    "extension": "x32",
+    "mimeType": "application",
+    "mimeSubtype": "x-authorware-bin"
+  },
+  {
+    "extension": "x3d",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.hzn-3d-crossword"
+  },
+  {
+    "extension": "xaf",
+    "mimeType": "x-world",
+    "mimeSubtype": "x-vrml"
+  },
+  {
+    "extension": "xaml",
+    "mimeType": "application",
+    "mimeSubtype": "xaml+xml"
+  },
+  {
+    "extension": "xap",
+    "mimeType": "application",
+    "mimeSubtype": "x-silverlight-app"
+  },
+  {
+    "extension": "xar",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.xara"
+  },
+  {
+    "extension": "xbap",
+    "mimeType": "application",
+    "mimeSubtype": "x-ms-xbap"
+  },
+  {
+    "extension": "xbd",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujixerox.docuworks.binder"
+  },
+  {
+    "extension": "xbm",
+    "mimeType": "image",
+    "mimeSubtype": "x-xbitmap"
+  },
+  {
+    "extension": "xdf",
+    "mimeType": "application",
+    "mimeSubtype": "xcap-diff+xml"
+  },
+  {
+    "extension": "xdm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.syncml.dm+xml"
+  },
+  {
+    "extension": "xdp",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.adobe.xdp+xml"
+  },
+  {
+    "extension": "xdr",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "xdssc",
+    "mimeType": "application",
+    "mimeSubtype": "dssc+xml"
+  },
+  {
+    "extension": "xdw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.fujixerox.docuworks"
+  },
+  {
+    "extension": "xenc",
+    "mimeType": "application",
+    "mimeSubtype": "xenc+xml"
+  },
+  {
+    "extension": "xer",
+    "mimeType": "application",
+    "mimeSubtype": "patch-ops-error+xml"
+  },
+  {
+    "extension": "xfdf",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.adobe.xfdf"
+  },
+  {
+    "extension": "xfdl",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.xfdl"
+  },
+  {
+    "extension": "xht",
+    "mimeType": "application",
+    "mimeSubtype": "xhtml+xml"
+  },
+  {
+    "extension": "xhtml",
+    "mimeType": "application",
+    "mimeSubtype": "xhtml+xml"
+  },
+  {
+    "extension": "xhvml",
+    "mimeType": "application",
+    "mimeSubtype": "xv+xml"
+  },
+  {
+    "extension": "xif",
+    "mimeType": "image",
+    "mimeSubtype": "vnd.xiff"
+  },
+  {
+    "extension": "xla",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel"
+  },
+  {
+    "extension": "xlam",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel.addin.macroEnabled.12"
+  },
+  {
+    "extension": "xlc",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel"
+  },
+  {
+    "extension": "xld",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel"
+  },
+  {
+    "extension": "xlk",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel"
+  },
+  {
+    "extension": "xll",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-excel"
+  },
+  {
+    "extension": "xlm",
     "mimeType": "application",
     "mimeSubtype": "vnd.ms-excel"
   },
@@ -2575,16 +6090,6 @@
     "mimeSubtype": "vnd.ms-excel.sheet.binary.macroEnabled.12"
   },
   {
-    "extension": "xlsb",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-excel.sheet.binary.macroEnabled.12"
-  },
-  {
-    "extension": "xlsm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-excel.sheet.macroEnabled.12"
-  },
-  {
     "extension": "xlsm",
     "mimeType": "application",
     "mimeSubtype": "vnd.ms-excel.sheet.macroEnabled.12"
@@ -2595,14 +6100,9 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   },
   {
-    "extension": "xlsx",
+    "extension": "xlt",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  },
-  {
-    "extension": "xltm",
-    "mimeType": "application",
-    "mimeSubtype": "vnd.ms-excel.template.macroEnabled.12"
+    "mimeSubtype": "vnd.ms-excel"
   },
   {
     "extension": "xltm",
@@ -2615,9 +6115,9 @@
     "mimeSubtype": "vnd.openxmlformats-officedocument.spreadsheetml.template"
   },
   {
-    "extension": "xltx",
+    "extension": "xlw",
     "mimeType": "application",
-    "mimeSubtype": "vnd.openxmlformats-officedocument.spreadsheetml.template"
+    "mimeSubtype": "vnd.ms-excel"
   },
   {
     "extension": "xml",
@@ -2626,28 +6126,83 @@
   },
   {
     "extension": "xml",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "xmta",
     "mimeType": "application",
     "mimeSubtype": "xml"
   },
   {
-    "extension": "xml",
+    "extension": "xo",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.olpc-sugar"
+  },
+  {
+    "extension": "xof",
+    "mimeType": "x-world",
+    "mimeSubtype": "x-vrml"
+  },
+  {
+    "extension": "XOML",
+    "mimeType": "text",
+    "mimeSubtype": "plain"
+  },
+  {
+    "extension": "xop",
+    "mimeType": "application",
+    "mimeSubtype": "xop+xml"
+  },
+  {
+    "extension": "xpi",
+    "mimeType": "application",
+    "mimeSubtype": "x-xpinstall"
+  },
+  {
+    "extension": "xpm",
+    "mimeType": "image",
+    "mimeSubtype": "x-xpixmap"
+  },
+  {
+    "extension": "xpr",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.is-xpr"
+  },
+  {
+    "extension": "xps",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.ms-xpsdocument"
+  },
+  {
+    "extension": "xpw",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.intercon.formnet"
+  },
+  {
+    "extension": "xpx",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.intercon.formnet"
+  },
+  {
+    "extension": "xrm-ms",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "xsc",
     "mimeType": "application",
     "mimeSubtype": "xml"
   },
   {
-    "extension": "xpm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xpixmap"
+    "extension": "xsd",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "xpm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xpixmap"
-  },
-  {
-    "extension": "xpm",
-    "mimeType": "image",
-    "mimeSubtype": "x-xpixmap"
+    "extension": "xsf",
+    "mimeType": "text",
+    "mimeSubtype": "xml"
   },
   {
     "extension": "xsl",
@@ -2656,12 +6211,7 @@
   },
   {
     "extension": "xsl",
-    "mimeType": "application",
-    "mimeSubtype": "xml"
-  },
-  {
-    "extension": "xsl",
-    "mimeType": "application",
+    "mimeType": "text",
     "mimeSubtype": "xml"
   },
   {
@@ -2671,13 +6221,33 @@
   },
   {
     "extension": "xslt",
-    "mimeType": "application",
-    "mimeSubtype": "xslt+xml"
+    "mimeType": "text",
+    "mimeSubtype": "xml"
   },
   {
-    "extension": "xslt",
+    "extension": "xsm",
     "mimeType": "application",
-    "mimeSubtype": "xslt+xml"
+    "mimeSubtype": "vnd.syncml+xml"
+  },
+  {
+    "extension": "xsn",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
+  },
+  {
+    "extension": "xspf",
+    "mimeType": "application",
+    "mimeSubtype": "xspf+xml"
+  },
+  {
+    "extension": "xss",
+    "mimeType": "application",
+    "mimeSubtype": "xml"
+  },
+  {
+    "extension": "xtp",
+    "mimeType": "application",
+    "mimeSubtype": "octet-stream"
   },
   {
     "extension": "xul",
@@ -2685,24 +6255,14 @@
     "mimeSubtype": "vnd.mozilla.xul+xml"
   },
   {
-    "extension": "xul",
+    "extension": "xvm",
     "mimeType": "application",
-    "mimeSubtype": "vnd.mozilla.xul+xml"
+    "mimeSubtype": "xv+xml"
   },
   {
-    "extension": "xul",
+    "extension": "xvml",
     "mimeType": "application",
-    "mimeSubtype": "vnd.mozilla.xul+xml"
-  },
-  {
-    "extension": "xwd",
-    "mimeType": "image",
-    "mimeSubtype": "x-xwindowdump"
-  },
-  {
-    "extension": "xwd",
-    "mimeType": "image",
-    "mimeSubtype": "x-xwindowdump"
+    "mimeSubtype": "xv+xml"
   },
   {
     "extension": "xwd",
@@ -2715,14 +6275,29 @@
     "mimeSubtype": "x-xyz"
   },
   {
-    "extension": "xyz",
-    "mimeType": "chemical",
-    "mimeSubtype": "x-xyz"
+    "extension": "yang",
+    "mimeType": "application",
+    "mimeSubtype": "yang"
   },
   {
-    "extension": "xyz",
-    "mimeType": "chemical",
-    "mimeSubtype": "x-xyz"
+    "extension": "yin",
+    "mimeType": "application",
+    "mimeSubtype": "yin+xml"
+  },
+  {
+    "extension": "z",
+    "mimeType": "application",
+    "mimeSubtype": "x-compress"
+  },
+  {
+    "extension": "zaz",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.zzazz.deck+xml"
+  },
+  {
+    "extension": "zip",
+    "mimeType": "application",
+    "mimeSubtype": "x-zip-compressed"
   },
   {
     "extension": "zip",
@@ -2730,13 +6305,18 @@
     "mimeSubtype": "zip"
   },
   {
-    "extension": "zip",
+    "extension": "zir",
     "mimeType": "application",
-    "mimeSubtype": "zip"
+    "mimeSubtype": "vnd.zul"
   },
   {
-    "extension": "zip",
+    "extension": "zirz",
     "mimeType": "application",
-    "mimeSubtype": "zip"
+    "mimeSubtype": "vnd.zul"
   },
+  {
+    "extension": "zmm",
+    "mimeType": "application",
+    "mimeSubtype": "vnd.handheld-entertainment+xml"
+  }
 ]

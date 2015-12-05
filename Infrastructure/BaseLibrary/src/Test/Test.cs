@@ -27,18 +27,10 @@
             {
                 XmlNode taxonAuthority = node.SelectSingleNode("tp:taxon-authority", this.NamespaceManager);
 
-                ////System.Console.WriteLine(taxonAuthority.OuterXml);
-
                 XmlNode authority = node.SelectSingleNode("tn/tn-part[@type='authority'][position()=last()]", this.NamespaceManager);
-
-                ////System.Console.WriteLine(authority.OuterXml);
 
                 taxonAuthority.InnerText = authority.InnerText;
                 authority.ParentNode.RemoveChild(authority);
-
-
-
-                ////System.Console.WriteLine();
             }
         }
     }

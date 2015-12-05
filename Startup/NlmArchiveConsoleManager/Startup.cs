@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+
     using Contracts;
     using Loggers;
     using Models;
     using ProcessingTools.Contracts.Log;
-    using System;
-    using System.IO;
-    using System.Linq;
 
     public class Startup
     {

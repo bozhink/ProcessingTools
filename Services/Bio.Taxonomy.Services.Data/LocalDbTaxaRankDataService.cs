@@ -9,7 +9,7 @@
     using Models;
     using Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : TaxaDataService<ITaxonRank>, ILocalDbTaxaRankDataService
+    public class LocalDbTaxaRankDataService : TaxaDataServiceFactory<ITaxonRank>, ILocalDbTaxaRankDataService
     {
         private XElement rankList;
 

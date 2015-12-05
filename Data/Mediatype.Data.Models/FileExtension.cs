@@ -18,7 +18,7 @@
 
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(10)]
+        [MaxLength(20)]
         public string Name { get; set; }
 
         [MaxLength(100)]

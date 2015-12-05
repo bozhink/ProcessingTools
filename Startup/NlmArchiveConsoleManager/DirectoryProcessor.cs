@@ -1,14 +1,14 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager
 {
-    using Contracts;
-    using Loggers;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
     using System;
     using System.Collections.Concurrent;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Contracts;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Log;
 
     public class DirectoryProcessor : IProcessor
     {

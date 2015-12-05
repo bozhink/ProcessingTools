@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IMediaTypesRepository<T> : IDisposable
+    public interface IRepository<T> : IDisposable
         where T : class
     {
         IQueryable<T> All();

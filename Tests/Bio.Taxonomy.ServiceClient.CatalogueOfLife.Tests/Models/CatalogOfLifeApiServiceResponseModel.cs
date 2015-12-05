@@ -32,7 +32,7 @@
         [XmlAttribute("rank")]
         public string Rank { get; set; }
 
-        //[XmlArray]
+        ////[XmlArray]
         [XmlArrayItem("result", typeof(ResultModel))]
         public ResultModel[] Results { get; set; }
     }

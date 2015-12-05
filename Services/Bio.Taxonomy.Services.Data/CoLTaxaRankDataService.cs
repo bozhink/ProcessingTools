@@ -9,7 +9,7 @@
     using ServiceClient.CatalogueOfLife;
     using Taxonomy.Contracts;
 
-    public class CoLTaxaRankDataService : TaxaDataService<ITaxonRank>
+    public class CoLTaxaRankDataService : TaxaDataServiceFactory<ITaxonRank>
     {
         protected override void Delay()
         {

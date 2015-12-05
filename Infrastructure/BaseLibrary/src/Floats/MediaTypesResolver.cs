@@ -12,8 +12,8 @@
 
     public class MediaTypesResolver : Base, IBaseParser
     {
-        private const string DefaultMimeType = "unknown";
-        private const string DefaultMimeSubtype = "unknown";
+        private const string DefaultMimeType = "application";
+        private const string DefaultMimeSubtype = "octet-stream";
 
         private const string MediaElementXPath = "//media";
 

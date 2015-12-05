@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFiles\mime.out.xml" />
-    <Content Include="DataFiles\mime.vb" />
     <Content Include="DataFiles\mime.xml" />
   </ItemGroup>
   <ItemGroup>

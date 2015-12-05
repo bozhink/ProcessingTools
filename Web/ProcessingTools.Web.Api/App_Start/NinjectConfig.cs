@@ -6,6 +6,8 @@
     using Common.Constants;
     using Common.Providers;
     using Common.Providers.Contracts;
+    using MediaType.Services.Data;
+    using MediaType.Services.Data.Contracts;
 
     using Ninject;
     using Ninject.Extensions.Conventions;
@@ -18,6 +20,9 @@
             kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
             kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
             kernel.Bind<IRandomProvider>().To<RandomProvider>();
+            ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceStaticDictionary>();
+            ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceWindowsRegistry>();
+            kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataService>();
         };
 
         public static IKernel CreateKernel()
@@ -42,10 +47,10 @@
         {
             DependenciesRegistration(kernel);
 
-            kernel.Bind(b => b
-                .From(Assemblies.MediaTypeDataServices)
-                .SelectAllClasses()
-                .BindDefaultInterface());
+            ////kernel.Bind(b => b
+            ////    .From(Assemblies.MediaTypeDataServices)
+            ////    .SelectAllClasses()
+            ////    .BindDefaultInterface());
 
             kernel.Bind(b => b
                 .From(Assemblies.TaxonomicDataServices)

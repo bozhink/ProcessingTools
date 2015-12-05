@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Contracts;
 
-    public class EfGenericRepository<IContext, T> : IMediaTypesRepository<T>
+    public class EfGenericRepository<IContext, T> : IRepository<T>
         where IContext : IDbContext
         where T : class
     {

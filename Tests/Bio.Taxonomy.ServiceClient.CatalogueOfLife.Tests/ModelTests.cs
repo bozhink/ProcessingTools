@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
-    using System;
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Models;
 
     [TestClass]
     public class ModelTests

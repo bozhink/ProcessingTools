@@ -22,6 +22,7 @@
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
+
     public class SingleFileProcessor : FileProcessor
     {
         private TaxonomicBlackList blackList;

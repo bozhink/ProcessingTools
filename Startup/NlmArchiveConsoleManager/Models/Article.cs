@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Contracts;
+
     public class Article : IArticle
     {
         public ICollection<IAuthor> Authors { get; set; }

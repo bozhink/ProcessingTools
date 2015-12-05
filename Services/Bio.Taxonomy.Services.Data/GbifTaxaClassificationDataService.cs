@@ -8,7 +8,7 @@
     using ServiceClient.Gbif;
     using Taxonomy.Contracts;
 
-    public class GbifTaxaClassificationDataService : TaxaDataService<ITaxonClassification>, IGbifTaxaClassificationDataService
+    public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
         protected override void Delay()
         {

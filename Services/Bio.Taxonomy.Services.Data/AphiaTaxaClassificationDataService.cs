@@ -10,7 +10,7 @@
     using ServiceClient.Aphia;
     using Taxonomy.Contracts;
 
-    public class AphiaTaxaClassificationDataService : TaxaDataService<ITaxonClassification>, IAphiaTaxaClassificationDataService
+    public class AphiaTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationDataService
     {
         protected override void Delay()
         {
