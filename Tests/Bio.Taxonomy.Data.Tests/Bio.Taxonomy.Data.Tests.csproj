@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F66D8B5-5C01-44EF-9AE9-AC04E2503B60}</ProjectGuid>
+    <ProjectGuid>{E8B81116-0144-430B-831C-9B37C7344697}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Bio.Taxonomy.Data.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Bio.Taxonomy.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -48,35 +48,34 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Models\AcceptedNameModel.cs" />
-    <Compile Include="Models\CatalogOfLifeApiServiceResponseModel.cs" />
-    <Compile Include="Models\CommonNameModel.cs" />
-    <Compile Include="Models\ReferenceModel.cs" />
-    <Compile Include="Models\ResultModel.cs" />
-    <Compile Include="Models\RecordScrutinyDateModel.cs" />
-    <Compile Include="Models\SingleRecordModel.cs" />
-    <Compile Include="Models\TaxonModel.cs" />
-    <Compile Include="CatalogOfLifeModelTests.cs" />
+    <Compile Include="BlackListXmlModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RankListXmlModelTests.cs" />
+    <Compile Include="WhiteListXmlModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\classification-taxon.xml">
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
+      <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
+      <Name>Bio.Taxonomy.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFiles\ranklist-sample.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataFiles\Coleoptera-example-response.xml">
+    <Content Include="DataFiles\whitelist-sample.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataFiles\default-result.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\reference.xml">
+    <Content Include="DataFiles\blacklist-sample.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -8,7 +8,7 @@
     using Models;
 
     [TestClass]
-    public class ModelTests
+    public class CatalogOfLifeModelTests
     {
         // TODO
         [TestMethod]

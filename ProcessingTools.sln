@@ -118,6 +118,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Services.Data.Tests", "Tests\MediaType.Services.Data.Tests\MediaType.Services.Data.Tests.csproj", "{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data", "Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Models", "Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj", "{6D918DF4-617A-453E-A807-A2D152340A03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Tests", "Tests\Bio.Taxonomy.Data.Tests\Bio.Taxonomy.Data.Tests.csproj", "{E8B81116-0144-430B-831C-9B37C7344697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -526,6 +532,30 @@ Global
 		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|x64.ActiveCfg = Release|Any CPU
 		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|x64.Build.0 = Release|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Debug|x64.Build.0 = Debug|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Release|x64.ActiveCfg = Release|Any CPU
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00}.Release|x64.Build.0 = Release|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Debug|x64.Build.0 = Debug|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D918DF4-617A-453E-A807-A2D152340A03}.Release|x64.Build.0 = Release|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Debug|x64.Build.0 = Debug|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Release|x64.ActiveCfg = Release|Any CPU
+		{E8B81116-0144-430B-831C-9B37C7344697}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -578,6 +608,9 @@ Global
 		{B5D2C63F-70A3-4662-A0EA-B6D3822FD7E3} = {FB9BC3CD-3A11-4AF2-AE5B-7E54667683A0}
 		{4FE65E47-27ED-4308-B677-00FBB5B349D0} = {FB9BC3CD-3A11-4AF2-AE5B-7E54667683A0}
 		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D} = {FB9BC3CD-3A11-4AF2-AE5B-7E54667683A0}
+		{6EA0B244-B449-442A-8F88-262FFB0B5B00} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{6D918DF4-617A-453E-A807-A2D152340A03} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{E8B81116-0144-430B-831C-9B37C7344697} = {FB9BC3CD-3A11-4AF2-AE5B-7E54667683A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

@@ -169,9 +169,6 @@
     <Content Include="Data\Sql\institution.sql" />
     <Content Include="Data\Sql\morphology.sql" />
     <Content Include="Data\Sql\products.sql" />
-    <Content Include="Data\Xml\taxonomy.blackList.xml" />
-    <Content Include="Data\Xml\taxonomy.rankList.xml" />
-    <Content Include="Data\Xml\taxonomy.whiteList.xml" />
     <Content Include="src\Test\FloraReplace.txt" />
     <Content Include="src\Test\Post.txt" />
     <Content Include="XSL\codes.remove-non-code-nodes.xsl">

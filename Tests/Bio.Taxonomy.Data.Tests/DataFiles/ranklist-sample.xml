@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<taxa>
+  <taxon>
+    <part>
+      <value>Aaroniellinae</value>
+      <rank>
+        <value>subfamily</value>
+      </rank>
+    </part>
+  </taxon>
+  <taxon>
+    <part>
+      <value>Abacetini</value>
+      <rank>
+        <value>tribe</value>
+      </rank>
+    </part>
+  </taxon>
+</taxa>
