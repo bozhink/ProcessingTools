@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Xml;
 
-    using Configurator;
     using Contracts.Log;
     using MediaType.Services.Data.Contracts;
     using Models;
