@@ -38,8 +38,9 @@
   <ItemGroup>
     <Compile Include="AboveGenusTaxaRankDataService.cs" />
     <Compile Include="AphiaTaxaClassificationDataService.cs" />
-    <Compile Include="CoLTaxaRankDataService.cs" />
+    <Compile Include="CatalogueOfLifeTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IAphiaTaxaClassificationDataService.cs" />
+    <Compile Include="Contracts\ICatalogueOfLifeTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IGbifTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\ILocalDbTaxaRankDataService.cs" />
     <Compile Include="Contracts\ISuffixHigherTaxaRankDataService.cs" />

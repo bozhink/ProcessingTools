@@ -14,9 +14,11 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void GbifTaxaClassificationDataService_Resolve_ShouldWork()
         {
             const string CanonicalName = "Coleoptera";
+            const string Rank = "order";
 
             var service = new GbifTaxaClassificationDataService();
             var response = service.Resolve(CanonicalName);
@@ -24,6 +26,7 @@
             var defaultClassification = response.FirstOrDefault();
 
             Assert.AreEqual(CanonicalName, defaultClassification.CanonicalName, "CanonicalName should match.");
+            Assert.AreEqual(Rank, defaultClassification.Rank, "Rank schould match.");
         }
     }
 }

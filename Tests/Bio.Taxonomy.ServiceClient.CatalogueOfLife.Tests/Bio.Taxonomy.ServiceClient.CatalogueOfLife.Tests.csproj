@@ -55,15 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Models\AcceptedNameModel.cs" />
-    <Compile Include="Models\CatalogOfLifeApiServiceResponseModel.cs" />
-    <Compile Include="Models\CommonNameModel.cs" />
-    <Compile Include="Models\ReferenceModel.cs" />
-    <Compile Include="Models\ResultModel.cs" />
-    <Compile Include="Models\RecordScrutinyDateModel.cs" />
-    <Compile Include="Models\SingleRecordModel.cs" />
-    <Compile Include="Models\TaxonModel.cs" />
-    <Compile Include="CatalogOfLifeModelTests.cs" />
+    <Compile Include="CatalogueOfLifeModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +71,12 @@
     <Content Include="DataFiles\reference.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
+      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

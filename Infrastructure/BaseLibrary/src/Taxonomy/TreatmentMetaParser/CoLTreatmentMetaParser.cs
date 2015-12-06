@@ -41,7 +41,7 @@
 
                     this.logger?.Log("\n{0}\n", genus);
 
-                    XmlDocument response = CatalogueOfLifeDataRequester.SearchCatalogueOfLife(genus).Result;
+                    XmlDocument response = CatalogueOfLifeDataRequester.RequestXmlFromCatalogueOfLife(genus).Result;
                     if (response != null)
                     {
                         IEnumerable<string> responseKingdom = response.GetStringListOfUniqueXmlNodes("/results/result[string(name)='" + genus + "']/classification/taxon[string(rank)='Kingdom']/name", this.NamespaceManager);

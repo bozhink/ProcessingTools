@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
     using System.Xml;
@@ -7,7 +7,7 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "reference")]
-    public partial class ReferenceModel
+    public partial class Reference
     {
         [XmlElement("author")]
         public string Author { get; set; }

@@ -8,18 +8,17 @@
     using Models;
 
     [TestClass]
-    public class CatalogOfLifeModelTests
+    public class CatalogueOfLifeModelTests
     {
-        // TODO
         [TestMethod]
         public void CoLModel_Test_Deserialization()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(CatalogOfLifeApiServiceResponseModel));
-            CatalogOfLifeApiServiceResponseModel response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponse));
+            CatalogueOfLifeApiServiceResponse response = null;
 
-            using (var stream = new FileStream(@"DataFiles\\Coleoptera-example-response.xml", FileMode.Open))
+            using (var stream = new FileStream(@"DataFiles\Coleoptera-example-response.xml", FileMode.Open))
             {
-                response = serializer.Deserialize(stream) as CatalogOfLifeApiServiceResponseModel;
+                response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceResponse;
             }
 
             const string ScientificName = "Coleoptera";
@@ -34,12 +33,12 @@
         [TestMethod]
         public void ClassificationTaxonModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TaxonModel));
-            TaxonModel response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Taxon));
+            Taxon response = null;
 
             using (var reader = new StreamReader(@"DataFiles\classification-taxon.xml"))
             {
-                response = (TaxonModel)serializer.Deserialize(reader);
+                response = (Taxon)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object schould not be null.");
@@ -49,12 +48,12 @@
         [TestMethod]
         public void ReferenceModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(ReferenceModel));
-            ReferenceModel response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Reference));
+            Reference response = null;
 
             using (var reader = new StreamReader(@"DataFiles\reference.xml"))
             {
-                response = (ReferenceModel)serializer.Deserialize(reader);
+                response = (Reference)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object schould not be null.");
@@ -65,12 +64,12 @@
         [TestMethod]
         public void ResultModel_Deserialization_ShouldWork()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(ResultModel));
-            ResultModel response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Result));
+            Result response = null;
 
             using (var reader = new StreamReader(@"DataFiles\default-result.xml"))
             {
-                response = (ResultModel)serializer.Deserialize(reader);
+                response = (Result)serializer.Deserialize(reader);
             }
 
             Assert.IsNotNull(response, "Deserialized object schould not be null.");

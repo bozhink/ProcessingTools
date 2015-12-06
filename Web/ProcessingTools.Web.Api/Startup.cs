@@ -21,6 +21,7 @@ namespace ProcessingTools.Web.Api
             this.ConfigureAuth(app);
 
             var httpConfig = new HttpConfiguration();
+            httpConfig.EnableCors();
             WebApiConfig.Register(httpConfig);
 
             httpConfig.EnsureInitialized();

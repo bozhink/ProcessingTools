@@ -34,7 +34,7 @@
                             Order = s.order,
                             Family = s.family,
                             Genus = s.genus,
-                            Rank = s.rank.ToLower(),
+                            Rank = s.rank?.ToLower(),
                             ScientificName = s.scientificname,
                             Authority = s.authority,
                             CanonicalName = s.valid_name

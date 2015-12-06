@@ -3,6 +3,7 @@
     using System.Xml.Serialization;
 
     [XmlType(AnonymousType = true)]
+    [XmlRoot(Namespace = "", IsNullable = false, ElementName = "part")]
     public class TaxonPart
     {
         [XmlElement("value")]

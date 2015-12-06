@@ -5,9 +5,9 @@
     using Factories;
 
     [EnableCors("*", "*", "*")]
-    public class GbifController : TaxaClassificationDataServiceControllerFactory
+    public class CoLController : TaxaClassificationDataServiceControllerFactory
     {
-        public GbifController(IGbifTaxaClassificationDataService service)
+        public CoLController(ICatalogueOfLifeTaxaClassificationDataService service)
         {
             this.service = service;
         }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
     using System.Xml.Serialization;
@@ -6,7 +6,7 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "common_name")]
-    public class CommonNameModel
+    public class CommonName
     {
         [XmlElement("name")]
         public string Name { get; set; }
@@ -18,7 +18,7 @@
         public string Country { get; set; }
 
         [XmlArray("references")]
-        [XmlArrayItem("reference", typeof(ReferenceModel))]
-        public ReferenceModel[] References { get; set; }
+        [XmlArrayItem("reference", typeof(Reference))]
+        public Reference[] References { get; set; }
     }
 }

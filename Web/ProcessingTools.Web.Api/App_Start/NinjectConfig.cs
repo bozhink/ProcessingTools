@@ -3,14 +3,13 @@
     using System;
     using System.Web;
 
-    using Common.Constants;
+    using Bio.Taxonomy.Services.Data;
+    using Bio.Taxonomy.Services.Data.Contracts;
     using Common.Providers;
     using Common.Providers.Contracts;
     using MediaType.Services.Data;
     using MediaType.Services.Data.Contracts;
-
     using Ninject;
-    using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
 
     public static class NinjectConfig
@@ -19,10 +18,17 @@
         {
             kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
             kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
-            kernel.Bind<IRandomProvider>().To<RandomProvider>();
             ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceStaticDictionary>();
             ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceWindowsRegistry>();
             kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataService>();
+
+            kernel.Bind<IRandomProvider>().To<RandomProvider>();
+
+            kernel.Bind<IAphiaTaxaClassificationDataService>().To<AphiaTaxaClassificationDataService>();
+
+            kernel.Bind<ICatalogueOfLifeTaxaClassificationDataService>().To<CatalogueOfLifeTaxaClassificationDataService>();
+
+            kernel.Bind<IGbifTaxaClassificationDataService>().To<GbifTaxaClassificationDataService>();
         };
 
         public static IKernel CreateKernel()
@@ -52,10 +58,10 @@
             ////    .SelectAllClasses()
             ////    .BindDefaultInterface());
 
-            kernel.Bind(b => b
-                .From(Assemblies.TaxonomicDataServices)
-                .SelectAllClasses()
-                .BindDefaultInterface());
+            ////kernel.Bind(b => b
+            ////    .From(Assemblies.TaxonomicDataServices)
+            ////    .SelectAllClasses()
+            ////    .BindDefaultInterface());
         }
     }
 }

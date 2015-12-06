@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
     using System.Xml.Serialization;
@@ -6,7 +6,7 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "taxon")]
-    public class TaxonModel
+    public class Taxon
     {
         [XmlElement("id")]
         public string Id { get; set; }

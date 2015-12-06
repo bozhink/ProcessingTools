@@ -35,7 +35,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogueOfLifeDataRequester.cs" />
-    <Compile Include="Models\CatalogOfLifeWebserviceResponseModel.cs" />
+    <Compile Include="Models\AcceptedName.cs" />
+    <Compile Include="Models\CatalogueOfLifeApiServiceResponse.cs" />
+    <Compile Include="Models\CommonName.cs" />
+    <Compile Include="Models\RecordScrutinyDate.cs" />
+    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\SingleRecord.cs" />
+    <Compile Include="Models\Taxon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

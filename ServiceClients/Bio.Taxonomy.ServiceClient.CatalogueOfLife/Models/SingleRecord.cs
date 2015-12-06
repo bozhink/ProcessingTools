@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
     using System.Xml;
@@ -7,7 +7,7 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class SingleRecordModel
+    public abstract class SingleRecord
     {
         [XmlElement("id")]
         public string Id { get; set; }
@@ -37,7 +37,7 @@
         public string Author { get; set; }
 
         [XmlElement("record_scrutiny_date")]
-        public RecordScrutinyDateModel RecordScrutinyDate { get; set; }
+        public RecordScrutinyDate RecordScrutinyDate { get; set; }
 
         [XmlElement("online_resource")]
         public string OnlineResource { get; set; }
@@ -67,7 +67,7 @@
         public string Url { get; set; }
 
         [XmlArray("references")]
-        [XmlArrayItem("reference", typeof(ReferenceModel))]
-        public ReferenceModel[] References { get; set; }
+        [XmlArrayItem("reference", typeof(Reference))]
+        public Reference[] References { get; set; }
     }
 }

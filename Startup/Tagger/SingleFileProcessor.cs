@@ -483,8 +483,8 @@
 
                 if (this.settings.ParseHigherWithCoL)
                 {
-                    var dataService = new CoLTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
+                    var dataService = new CatalogueOfLifeTaxaClassificationDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;

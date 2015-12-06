@@ -27,23 +27,19 @@
                     if (gbifResult.CanonicalName.Equals(scientificName) ||
                         gbifResult.ScientificName.Contains(scientificName))
                     {
-                        string rank = gbifResult.Rank?.ToLower();
-                        if (!string.IsNullOrWhiteSpace(rank))
+                        taxaRanks.Enqueue(new TaxonClassificationDataServiceResponseModel
                         {
-                            taxaRanks.Enqueue(new TaxonClassificationDataServiceResponseModel
-                            {
-                                ScientificName = gbifResult.ScientificName,
-                                CanonicalName = gbifResult.CanonicalName,
-                                Rank = rank,
+                            ScientificName = gbifResult.ScientificName,
+                            CanonicalName = gbifResult.CanonicalName,
+                            Rank = gbifResult.Rank?.ToLower(),
 
-                                Kingdom = gbifResult.Kingdom,
-                                Phylum = gbifResult.Phylum,
-                                Class = gbifResult.Class,
-                                Order = gbifResult.Order,
-                                Family = gbifResult.Family,
-                                Genus = gbifResult.Genus
-                            });
-                        }
+                            Kingdom = gbifResult.Kingdom,
+                            Phylum = gbifResult.Phylum,
+                            Class = gbifResult.Class,
+                            Order = gbifResult.Order,
+                            Family = gbifResult.Family,
+                            Genus = gbifResult.Genus
+                        });
                     }
                 }
             }

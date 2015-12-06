@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
     using System.Xml.Serialization;
@@ -6,7 +6,7 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "results")]
-    public class CatalogOfLifeApiServiceResponseModel
+    public class CatalogueOfLifeApiServiceResponse
     {
         [XmlAttribute("id")]
         public string Id { get; set; }
@@ -32,8 +32,7 @@
         [XmlAttribute("rank")]
         public string Rank { get; set; }
 
-        ////[XmlArray]
-        [XmlArrayItem("result", typeof(ResultModel))]
-        public ResultModel[] Results { get; set; }
+        [XmlElement("result")]
+        public Result[] Results { get; set; }
     }
 }
