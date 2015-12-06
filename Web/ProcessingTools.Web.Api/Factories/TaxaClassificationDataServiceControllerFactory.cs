@@ -11,12 +11,12 @@
 
     public abstract class TaxaClassificationDataServiceControllerFactory : ApiController
     {
-        protected ITaxaDataService<ITaxonClassification> service;
+        protected ITaxaDataService<ITaxonClassification> Service { get; set; }
 
         [EnableCors("*", "*", "*")]
         public IHttpActionResult Get(string id)
         {
-            var result = this.service.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
+            var result = this.Service.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
 
             if (result == null)
             {

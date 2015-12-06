@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
     using System.Collections.Concurrent;
+    using System.Linq;
 
     using Contracts;
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif;
+    using ServiceClient.Gbif.Contracts;
     using Taxonomy.Contracts;
 
     public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
@@ -17,32 +19,43 @@
 
         protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
-            var gbifResult = GbifDataRequester.SearchGbif(scientificName)?.Result;
+            var response = GbifDataRequester.SearchGbif(scientificName)?.Result;
 
-            if (gbifResult != null)
+            if ((response != null) &&
+                (!string.IsNullOrWhiteSpace(response.CanonicalName) ||
+                 !string.IsNullOrWhiteSpace(response.ScientificName)))
             {
-                if (!string.IsNullOrWhiteSpace(gbifResult.CanonicalName) ||
-                    !string.IsNullOrWhiteSpace(gbifResult.ScientificName))
+                if (response.CanonicalName.Equals(scientificName) ||
+                    response.ScientificName.Contains(scientificName))
                 {
-                    if (gbifResult.CanonicalName.Equals(scientificName) ||
-                        gbifResult.ScientificName.Contains(scientificName))
-                    {
-                        taxaRanks.Enqueue(new TaxonClassificationDataServiceResponseModel
-                        {
-                            ScientificName = gbifResult.ScientificName,
-                            CanonicalName = gbifResult.CanonicalName,
-                            Rank = gbifResult.Rank?.ToLower(),
+                    taxaRanks.Enqueue(this.MapGbifTaxonToTaxonClassification(response));
 
-                            Kingdom = gbifResult.Kingdom,
-                            Phylum = gbifResult.Phylum,
-                            Class = gbifResult.Class,
-                            Order = gbifResult.Order,
-                            Family = gbifResult.Family,
-                            Genus = gbifResult.Genus
-                        });
+                    if (response.Alternatives != null)
+                    {
+                        response.Alternatives
+                            .Where(a => a.CanonicalName.Equals(scientificName) || a.ScientificName.Contains(scientificName))
+                            .ToList()
+                            .ForEach(a => taxaRanks.Enqueue(this.MapGbifTaxonToTaxonClassification(a)));
                     }
                 }
             }
+        }
+
+        private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
+        {
+            return new TaxonClassificationDataServiceResponseModel
+            {
+                ScientificName = taxon.ScientificName,
+                CanonicalName = taxon.CanonicalName,
+                Rank = taxon.Rank?.ToLower(),
+
+                Kingdom = taxon.Kingdom,
+                Phylum = taxon.Phylum,
+                Class = taxon.Class,
+                Order = taxon.Order,
+                Family = taxon.Family,
+                Genus = taxon.Genus
+            };
         }
     }
 }

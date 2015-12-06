@@ -546,21 +546,24 @@
 
             if (this.settings.ParseTreatmentMetaWithAphia)
             {
-                var parser = new AphiaTreatmentMetaParser(this.settings.Config, result, this.logger);
+                var service = new AphiaTaxaClassificationDataService();
+                var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser);
                 result = parser.Xml;
             }
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                var parser = new GbifTreatmentMetaParser(this.settings.Config, result, this.logger);
+                var service = new GbifTaxaClassificationDataService();
+                var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser);
                 result = parser.Xml;
             }
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                var parser = new CoLTreatmentMetaParser(this.settings.Config, result, this.logger);
+                var service = new CatalogueOfLifeTaxaClassificationDataService();
+                var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser);
                 result = parser.Xml;
             }

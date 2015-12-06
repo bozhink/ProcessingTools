@@ -9,7 +9,7 @@
     {
         public CoLController(ICatalogueOfLifeTaxaClassificationDataService service)
         {
-            this.service = service;
+            this.Service = service;
         }
     }
 }

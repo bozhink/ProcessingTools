@@ -9,7 +9,7 @@
     {
         public GbifController(IGbifTaxaClassificationDataService service)
         {
-            this.service = service;
+            this.Service = service;
         }
     }
 }

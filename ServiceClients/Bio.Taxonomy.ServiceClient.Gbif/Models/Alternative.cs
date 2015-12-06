@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models
 {
     using System.Runtime.Serialization;
+    using Contracts;
 
     [DataContract]
-    public class Alternative
+    public class Alternative : IGbifTaxon
     {
         [DataMember(Name = "usageKey")]
         public int UsageKey { get; set; }
@@ -35,6 +36,9 @@
         [DataMember(Name = "phylum")]
         public string Phylum { get; set; }
 
+        [DataMember(Name = "class")]
+        public string Class { get; set; }
+
         [DataMember(Name = "order")]
         public string Order { get; set; }
 
@@ -61,8 +65,5 @@
 
         [DataMember(Name = "genusKey")]
         public int GenusKey { get; set; }
-
-        [DataMember(Name = "class")]
-        public string Class { get; set; }
     }
 }

@@ -125,9 +125,6 @@
     <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
     <Compile Include="src\Taxonomy\TaxonomicBlackList.cs" />
     <Compile Include="src\Taxonomy\TaxonomicWhiteList.cs" />
-    <Compile Include="src\Taxonomy\TreatmentMetaParser\AphiaTreatmentMetaParser.cs" />
-    <Compile Include="src\Taxonomy\TreatmentMetaParser\CoLTreatmentMetaParser.cs" />
-    <Compile Include="src\Taxonomy\TreatmentMetaParser\GbifTreatmentMetaParser.cs" />
     <Compile Include="src\Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="src\WebLinks\DoiLinksTagger.cs" />
     <Compile Include="src\Morphology\MorphologyTagger.cs" />
@@ -297,14 +294,6 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
-      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
@@ -312,10 +301,6 @@
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
-      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>

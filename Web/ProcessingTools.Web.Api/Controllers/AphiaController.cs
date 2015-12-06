@@ -7,7 +7,7 @@
     {
         public AphiaController(IAphiaTaxaClassificationDataService service)
         {
-            this.service = service;
+            this.Service = service;
         }
     }
 }
