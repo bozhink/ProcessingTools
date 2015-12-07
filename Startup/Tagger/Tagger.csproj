@@ -90,7 +90,7 @@
     </Compile>
     <Compile Include="ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="TaggerStartup.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="SingleFileProcessor.cs" />
   </ItemGroup>

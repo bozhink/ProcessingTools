@@ -124,6 +124,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Models", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Tests", "Tests\Bio.Taxonomy.Data.Tests\Bio.Taxonomy.Data.Tests.csproj", "{E8B81116-0144-430B-831C-9B37C7344697}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data", "Data\Geo.Data\Geo.Data.csproj", "{91A87E76-6AE4-4E63-9689-B129DB752BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Models", "Data\Geo.Data.Models\Geo.Data.Models.csproj", "{E131920B-8AE9-467D-BC0B-861438AAF130}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -556,6 +560,22 @@ Global
 		{E8B81116-0144-430B-831C-9B37C7344697}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8B81116-0144-430B-831C-9B37C7344697}.Release|x64.ActiveCfg = Release|Any CPU
 		{E8B81116-0144-430B-831C-9B37C7344697}.Release|x64.Build.0 = Release|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Debug|x64.Build.0 = Debug|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Release|x64.ActiveCfg = Release|Any CPU
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5}.Release|x64.Build.0 = Release|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Debug|x64.Build.0 = Debug|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Release|x64.ActiveCfg = Release|Any CPU
+		{E131920B-8AE9-467D-BC0B-861438AAF130}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -611,6 +631,8 @@ Global
 		{6EA0B244-B449-442A-8F88-262FFB0B5B00} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{6D918DF4-617A-453E-A807-A2D152340A03} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{E8B81116-0144-430B-831C-9B37C7344697} = {FB9BC3CD-3A11-4AF2-AE5B-7E54667683A0}
+		{91A87E76-6AE4-4E63-9689-B129DB752BD5} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{E131920B-8AE9-467D-BC0B-861438AAF130} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

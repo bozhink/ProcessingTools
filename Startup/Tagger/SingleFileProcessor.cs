@@ -230,7 +230,7 @@
                 var expand = new BaseLibrary.Taxonomy.Nlm.Expander(this.settings.Config, xmlContent, this.logger);
                 var exp = new Expander(this.settings.Config, xmlContent, this.logger);
 
-                for (int i = 0; i < Program.NumberOfExpandingIterations; ++i)
+                for (int i = 0; i < TaggerStartup.NumberOfExpandingIterations; ++i)
                 {
                     if (this.settings.ExpandLowerTaxa)
                     {

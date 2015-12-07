@@ -11,7 +11,7 @@
     using ProcessingTools.MediaType.Data.Migrations;
     using ProcessingTools.MediaType.Data.Seed.Models;
 
-    public class Program
+    public class RunnerStartup
     {
         public static void Main(string[] args)
         {

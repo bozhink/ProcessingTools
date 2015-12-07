@@ -5,7 +5,7 @@
     using Contracts.Log;
     using Loggers;
 
-    public class Program
+    public class TaggerStartup
     {
         public const int NumberOfExpandingIterations = 1;
 
