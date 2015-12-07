@@ -27,7 +27,7 @@
         {
             const string ApiUrl = "http://www.marinespecies.org/aphia.php?p=soap";
 
-            return await Connector.PostXmlAsync(
+            return await Connector.PostToXmlAsync(
                 ApiUrl,
                 AphiaDirectSoapRequester.AphiaSoapXml(scientificName).OuterXml,
                 "text/xml; encoding='utf-8'");

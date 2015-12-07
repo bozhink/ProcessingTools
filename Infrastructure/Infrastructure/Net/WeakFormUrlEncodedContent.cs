@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+
+    using Exceptions;
 
     public class WeakFormUrlEncodedContent : ByteArrayContent
     {
@@ -45,7 +46,7 @@
                 return string.Empty;
             }
 
-            return WebUtility.UrlEncode(data).Replace("%20", "+");
+            return data.UrlEncode();
         }
     }
 }

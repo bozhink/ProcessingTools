@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IMediaTypesRepository.cs" />
     <Compile Include="Repositories\MediaTypesGenericRepository.cs" />
-    <Compile Include="Seed\Models\ExtensionJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

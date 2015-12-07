@@ -17,7 +17,7 @@
             {
                 string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string url = $"http://resolver.globalnames.org/name_resolvers.xml?{searchString}";
-                return await Connector.GetXmlDocumentAsync(url);
+                return await Connector.GetToXmlAsync(url);
             }
             catch
             {
@@ -33,7 +33,7 @@
                 string postData = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string contentType = "application/x-www-form-urlencoded";
 
-                return await Connector.PostXmlAsync(ApiUrl, postData, contentType);
+                return await Connector.PostToXmlAsync(ApiUrl, postData, contentType);
             }
             catch
             {
@@ -55,7 +55,7 @@
                     values.Add("data_source_ids", string.Join("|", sourceId));
                 }
 
-                return await Connector.PostUrlEncodedXmlAsync(ApiUrl, values, Encoding.UTF8);
+                return await Connector.PostUrlEncodedToXmlAsync(ApiUrl, values, Encoding.UTF8);
             }
             catch
             {

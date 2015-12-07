@@ -1,11 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife
 {
-    using System.IO;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
-    using System.Xml.Serialization;
 
+    using Infrastructure.Exceptions;
     using Infrastructure.Net;
     using Models;
 
@@ -26,7 +24,7 @@
 
             try
             {
-                return await Connector.GetXmlDocumentAsync(url);
+                return await Connector.GetToXmlAsync(url);
             }
             catch
             {
@@ -42,17 +40,13 @@
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
         public static async Task<CatalogueOfLifeApiServiceResponse> RequestDataFromCatalogueOfLife(string scientificName)
         {
+            string requestName = scientificName.UrlEncode();
+            string url = $"http://www.catalogueoflife.org/col/webservice?name={requestName}&response=full";
+
             try
             {
-                XmlDocument response = await RequestXmlFromCatalogueOfLife(scientificName);
-
-                CatalogueOfLifeApiServiceResponse result = null;
-                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(response.OuterXml)))
-                {
-                    var serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponse));
-                    result = (CatalogueOfLifeApiServiceResponse)serializer.Deserialize(stream);
-                }
-
+                var connector = new Connector();
+                var result = await connector.GetDeserializedXmlAsync<CatalogueOfLifeApiServiceResponse>(url);
                 return result;
             }
             catch

@@ -9,7 +9,7 @@
     using Newtonsoft.Json;
     using ProcessingTools.MediaType.Data;
     using ProcessingTools.MediaType.Data.Migrations;
-    using ProcessingTools.MediaType.Data.Seed.Models;
+    using ProcessingTools.MediaType.Data.Models.Json;
 
     public class RunnerStartup
     {

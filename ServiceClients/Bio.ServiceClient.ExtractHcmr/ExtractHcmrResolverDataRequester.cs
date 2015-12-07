@@ -29,7 +29,7 @@
 
             try
             {
-                return await Connector.PostUrlEncodedXmlAsync(ApiUrl, values, Encoding.UTF8);
+                return await Connector.PostUrlEncodedToXmlAsync(ApiUrl, values, Encoding.UTF8);
             }
             catch
             {

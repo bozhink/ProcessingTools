@@ -9,8 +9,8 @@ namespace ProcessingTools.MediaType.Data.Migrations
 
     using Data;
     using Models;
+    using Models.Json;
     using Newtonsoft.Json;
-    using Seed.Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<MediaTypesDbContext>
     {

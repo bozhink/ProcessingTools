@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4C3D09F-E9FC-4155-9573-A1FEBB4A914A}</ProjectGuid>
+    <ProjectGuid>{FF1297AD-9DD1-4565-9B7C-319EC5B0DA7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Infrastructure</RootNamespace>
-    <AssemblyName>ProcessingTools.Infrastructure</AssemblyName>
+    <RootNamespace>ProcessingTools.Bio.Biorepositories.Data.Models</RootNamespace>
+    <AssemblyName>ProcessingTools.Bio.Biorepositories.Data.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,26 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Concurrency\Delayer.cs" />
-    <Compile Include="Diagnostics\Tracer.cs" />
-    <Compile Include="Exceptions\KeyValuePairMultiMessageException.cs" />
-    <Compile Include="Exceptions\MultiMessageException.cs" />
-    <Compile Include="Exceptions\Url.cs" />
-    <Compile Include="Net\Connector.Common.cs" />
-    <Compile Include="Net\Connector.Post.cs" />
-    <Compile Include="Serialization\Json\JsonSerializer.cs" />
-    <Compile Include="Net\Connector.Get.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Net\WeakFormUrlEncodedContent.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
