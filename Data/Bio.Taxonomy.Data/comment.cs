@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class vern_ref_links
+    public partial class comment
     {
-        public int tsn { get; set; }
-        public string doc_id_prefix { get; set; }
-        public int documentation_id { get; set; }
+        public int comment_id { get; set; }
+        public string commentator { get; set; }
+        public string comment_detail { get; set; }
+        public System.DateTime comment_time_stamp { get; set; }
         public System.DateTime update_date { get; set; }
-        public int vern_id { get; set; }
-    
-        public virtual vernacular vernacular { get; set; }
     }
 }

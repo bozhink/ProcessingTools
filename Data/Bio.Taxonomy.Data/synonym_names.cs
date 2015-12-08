@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class synonym_links
+    public partial class synonym_names
     {
         public int tsn { get; set; }
+        public string completename { get; set; }
         public int tsn_accepted { get; set; }
-        public System.DateTime update_date { get; set; }
+        public string acceptedname { get; set; }
     }
 }

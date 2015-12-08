@@ -7,17 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class expert
+    public partial class tu_comments_links
     {
-        public string expert_id_prefix { get; set; }
-        public int expert_id { get; set; }
-        public string expert1 { get; set; }
-        public string exp_comment { get; set; }
-        public Nullable<System.DateTime> update_date { get; set; }
+        public int tsn { get; set; }
+        public int comment_id { get; set; }
+        public System.DateTime update_date { get; set; }
     }
 }

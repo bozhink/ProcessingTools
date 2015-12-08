@@ -7,20 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class other_sources
+    public partial class jurisdiction
     {
-        public string source_id_prefix { get; set; }
-        public int source_id { get; set; }
-        public string source_type { get; set; }
-        public string source { get; set; }
-        public string version { get; set; }
-        public Nullable<System.DateTime> acquisition_date { get; set; }
-        public string source_comment { get; set; }
+        public int tsn { get; set; }
+        public string jurisdiction_value { get; set; }
+        public string origin { get; set; }
         public Nullable<System.DateTime> update_date { get; set; }
     }
 }

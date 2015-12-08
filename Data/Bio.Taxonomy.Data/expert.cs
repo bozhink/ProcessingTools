@@ -7,16 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class synonym_names
+    public partial class expert
     {
-        public int tsn { get; set; }
-        public string completename { get; set; }
-        public int tsn_accepted { get; set; }
-        public string acceptedname { get; set; }
+        public string expert_id_prefix { get; set; }
+        public int expert_id { get; set; }
+        public string expert1 { get; set; }
+        public string exp_comment { get; set; }
+        public Nullable<System.DateTime> update_date { get; set; }
     }
 }

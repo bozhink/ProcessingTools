@@ -7,22 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class reference_links
+    public partial class synonym_links
     {
         public int tsn { get; set; }
-        public string doc_id_prefix { get; set; }
-        public int documentation_id { get; set; }
-        public string original_desc_ind { get; set; }
-        public string init_itis_desc_ind { get; set; }
-        public Nullable<int> change_track_id { get; set; }
-        public string vernacular_name { get; set; }
+        public int tsn_accepted { get; set; }
         public System.DateTime update_date { get; set; }
-    
-        public virtual taxonomic_units taxonomic_units { get; set; }
     }
 }

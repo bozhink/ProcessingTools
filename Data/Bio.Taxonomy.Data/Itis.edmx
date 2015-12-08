@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ItisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ItisModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="comments">
           <Key>
             <PropertyRef Name="comment_id" />
@@ -301,7 +301,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ItisModelStoreContainer">
+        <EntityContainer Name="ItisModelsStoreContainer">
           <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="experts" EntityType="Self.experts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="geographic_div" EntityType="Self.geographic_div" Schema="dbo" store:Type="Tables" />
@@ -346,7 +346,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ItisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ItisModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="comment">
           <Key>
             <PropertyRef Name="comment_id" />
@@ -629,7 +629,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ITISEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ItisDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="comments" EntityType="Self.comment" />
           <EntitySet Name="experts" EntityType="Self.expert" />
           <EntitySet Name="geographic_div" EntityType="Self.geographic_div" />
@@ -668,9 +668,9 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ItisModelStoreContainer" CdmEntityContainer="ITISEntities">
+        <EntityContainerMapping StorageEntityContainer="ItisModelsStoreContainer" CdmEntityContainer="ItisDbContext">
           <EntitySetMapping Name="comments">
-            <EntityTypeMapping TypeName="ItisModel.comment">
+            <EntityTypeMapping TypeName="ItisModels.comment">
               <MappingFragment StoreEntitySet="comments">
                 <ScalarProperty Name="comment_id" ColumnName="comment_id" />
                 <ScalarProperty Name="commentator" ColumnName="commentator" />
@@ -681,7 +681,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="experts">
-            <EntityTypeMapping TypeName="ItisModel.expert">
+            <EntityTypeMapping TypeName="ItisModels.expert">
               <MappingFragment StoreEntitySet="experts">
                 <ScalarProperty Name="expert_id_prefix" ColumnName="expert_id_prefix" />
                 <ScalarProperty Name="expert_id" ColumnName="expert_id" />
@@ -692,7 +692,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="geographic_div">
-            <EntityTypeMapping TypeName="ItisModel.geographic_div">
+            <EntityTypeMapping TypeName="ItisModels.geographic_div">
               <MappingFragment StoreEntitySet="geographic_div">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="geographic_value" ColumnName="geographic_value" />
@@ -701,7 +701,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="hierarchies">
-            <EntityTypeMapping TypeName="ItisModel.hierarchy">
+            <EntityTypeMapping TypeName="ItisModels.hierarchy">
               <MappingFragment StoreEntitySet="hierarchy">
                 <ScalarProperty Name="hierarchy_string" ColumnName="hierarchy_string" />
                 <ScalarProperty Name="TSN" ColumnName="TSN" />
@@ -712,7 +712,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="jurisdictions">
-            <EntityTypeMapping TypeName="ItisModel.jurisdiction">
+            <EntityTypeMapping TypeName="ItisModels.jurisdiction">
               <MappingFragment StoreEntitySet="jurisdiction">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="jurisdiction_value" ColumnName="jurisdiction_value" />
@@ -722,7 +722,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="kingdoms">
-            <EntityTypeMapping TypeName="ItisModel.kingdom">
+            <EntityTypeMapping TypeName="ItisModels.kingdom">
               <MappingFragment StoreEntitySet="kingdoms">
                 <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
                 <ScalarProperty Name="kingdom_name" ColumnName="kingdom_name" />
@@ -731,7 +731,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="longnames">
-            <EntityTypeMapping TypeName="ItisModel.longname">
+            <EntityTypeMapping TypeName="ItisModels.longname">
               <MappingFragment StoreEntitySet="longnames">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="completename" ColumnName="completename" />
@@ -739,7 +739,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="other_sources">
-            <EntityTypeMapping TypeName="ItisModel.other_sources">
+            <EntityTypeMapping TypeName="ItisModels.other_sources">
               <MappingFragment StoreEntitySet="other_sources">
                 <ScalarProperty Name="source_id_prefix" ColumnName="source_id_prefix" />
                 <ScalarProperty Name="source_id" ColumnName="source_id" />
@@ -753,7 +753,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="publications">
-            <EntityTypeMapping TypeName="ItisModel.publication">
+            <EntityTypeMapping TypeName="ItisModels.publication">
               <MappingFragment StoreEntitySet="publications">
                 <ScalarProperty Name="pub_id_prefix" ColumnName="pub_id_prefix" />
                 <ScalarProperty Name="publication_id" ColumnName="publication_id" />
@@ -773,7 +773,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="reference_links">
-            <EntityTypeMapping TypeName="ItisModel.reference_links">
+            <EntityTypeMapping TypeName="ItisModels.reference_links">
               <MappingFragment StoreEntitySet="reference_links">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="doc_id_prefix" ColumnName="doc_id_prefix" />
@@ -787,7 +787,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="strippedauthors">
-            <EntityTypeMapping TypeName="ItisModel.strippedauthor">
+            <EntityTypeMapping TypeName="ItisModels.strippedauthor">
               <MappingFragment StoreEntitySet="strippedauthor">
                 <ScalarProperty Name="taxon_author_id" ColumnName="taxon_author_id" />
                 <ScalarProperty Name="shortauthor" ColumnName="shortauthor" />
@@ -795,7 +795,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="synonym_links">
-            <EntityTypeMapping TypeName="ItisModel.synonym_links">
+            <EntityTypeMapping TypeName="ItisModels.synonym_links">
               <MappingFragment StoreEntitySet="synonym_links">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="tsn_accepted" ColumnName="tsn_accepted" />
@@ -804,7 +804,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ItisModel.sysdiagram">
+            <EntityTypeMapping TypeName="ItisModels.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -815,7 +815,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="taxon_authors_lkp">
-            <EntityTypeMapping TypeName="ItisModel.taxon_authors_lkp">
+            <EntityTypeMapping TypeName="ItisModels.taxon_authors_lkp">
               <MappingFragment StoreEntitySet="taxon_authors_lkp">
                 <ScalarProperty Name="taxon_author_id" ColumnName="taxon_author_id" />
                 <ScalarProperty Name="taxon_author" ColumnName="taxon_author" />
@@ -826,7 +826,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="taxon_unit_types">
-            <EntityTypeMapping TypeName="ItisModel.taxon_unit_types">
+            <EntityTypeMapping TypeName="ItisModels.taxon_unit_types">
               <MappingFragment StoreEntitySet="taxon_unit_types">
                 <ScalarProperty Name="kingdom_id" ColumnName="kingdom_id" />
                 <ScalarProperty Name="rank_id" ColumnName="rank_id" />
@@ -838,7 +838,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="taxonomic_units">
-            <EntityTypeMapping TypeName="ItisModel.taxonomic_units">
+            <EntityTypeMapping TypeName="ItisModels.taxonomic_units">
               <MappingFragment StoreEntitySet="taxonomic_units">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="unit_ind1" ColumnName="unit_ind1" />
@@ -870,7 +870,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tu_comments_links">
-            <EntityTypeMapping TypeName="ItisModel.tu_comments_links">
+            <EntityTypeMapping TypeName="ItisModels.tu_comments_links">
               <MappingFragment StoreEntitySet="tu_comments_links">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="comment_id" ColumnName="comment_id" />
@@ -879,7 +879,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vern_ref_links">
-            <EntityTypeMapping TypeName="ItisModel.vern_ref_links">
+            <EntityTypeMapping TypeName="ItisModels.vern_ref_links">
               <MappingFragment StoreEntitySet="vern_ref_links">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="doc_id_prefix" ColumnName="doc_id_prefix" />
@@ -890,7 +890,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vernaculars">
-            <EntityTypeMapping TypeName="ItisModel.vernacular">
+            <EntityTypeMapping TypeName="ItisModels.vernacular">
               <MappingFragment StoreEntitySet="vernaculars">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="vernacular_name" ColumnName="vernacular_name" />
@@ -902,7 +902,7 @@ warning 6002: The table/view 'ITIS.dbo.synonym_names' does not have a primary ke
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="synonym_names">
-            <EntityTypeMapping TypeName="ItisModel.synonym_names">
+            <EntityTypeMapping TypeName="ItisModels.synonym_names">
               <MappingFragment StoreEntitySet="synonym_names">
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="completename" ColumnName="completename" />

@@ -7,15 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class kingdom
+    public partial class longname
     {
-        public int kingdom_id { get; set; }
-        public string kingdom_name { get; set; }
-        public System.DateTime update_date { get; set; }
+        public int tsn { get; set; }
+        public string completename { get; set; }
     }
 }

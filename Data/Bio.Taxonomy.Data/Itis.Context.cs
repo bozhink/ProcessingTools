@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ITISEntities : DbContext
+    public partial class ItisDbContext : DbContext
     {
-        public ITISEntities()
-            : base("name=ITISEntities")
+        public ItisDbContext()
+            : base("name=ItisDbContext")
         {
         }
     

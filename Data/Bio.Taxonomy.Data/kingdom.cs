@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tu_comments_links
+    public partial class kingdom
     {
-        public int tsn { get; set; }
-        public int comment_id { get; set; }
+        public int kingdom_id { get; set; }
+        public string kingdom_name { get; set; }
         public System.DateTime update_date { get; set; }
     }
 }

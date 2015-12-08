@@ -7,16 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class jurisdiction
+    public partial class hierarchy
     {
-        public int tsn { get; set; }
-        public string jurisdiction_value { get; set; }
-        public string origin { get; set; }
-        public Nullable<System.DateTime> update_date { get; set; }
+        public string hierarchy_string { get; set; }
+        public int TSN { get; set; }
+        public Nullable<int> Parent_TSN { get; set; }
+        public int level { get; set; }
+        public int ChildrenCount { get; set; }
     }
 }

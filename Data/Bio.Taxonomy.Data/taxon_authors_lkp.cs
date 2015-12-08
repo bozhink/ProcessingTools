@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Bio.Taxonomy.Data.Itis
+namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class comment
+    public partial class taxon_authors_lkp
     {
-        public int comment_id { get; set; }
-        public string commentator { get; set; }
-        public string comment_detail { get; set; }
-        public System.DateTime comment_time_stamp { get; set; }
+        public int taxon_author_id { get; set; }
+        public string taxon_author { get; set; }
         public System.DateTime update_date { get; set; }
+        public short kingdom_id { get; set; }
+        public string short_author { get; set; }
     }
 }
