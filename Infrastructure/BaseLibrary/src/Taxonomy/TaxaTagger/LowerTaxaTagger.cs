@@ -147,11 +147,12 @@
                             @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
                     }
 
-                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+                    // Move closing bracket in tn if it is outside
+                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
                 }
 
                 {
-                    const string InfraspecificPattern = @"(?<=</infraspecific>\s*\)?)</tn>" + Subpattern;
+                    const string InfraspecificPattern = @"(?<=</infraspecific>[\s\)]*)</tn>" + Subpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (int i = 0; i < 3; i++)
@@ -163,8 +164,9 @@
                                 " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
                         }
                     }
-
-                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
+ 
+                    // Move closing bracket in tn if it is outside
+                    result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
                 }
             }
 
