@@ -14,8 +14,6 @@ namespace ProcessingTools.MediaType.Data.Migrations
 
     public sealed class Configuration : DbMigrationsConfiguration<MediaTypesDbContext>
     {
-        private const int NumberOfInsertedItemsToResetContext = 100;
-
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
