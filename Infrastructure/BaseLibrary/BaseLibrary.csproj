@@ -120,6 +120,7 @@
     <Compile Include="src\Taxonomy\TaxaExpander\Expander.NlmSystem.cs" />
     <Compile Include="src\Taxonomy\TaxaParser\HigherTaxaParser\HigherTaxaParserWithDataService.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
+    <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTaggerThis.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="src\Taxonomy\TaxaTagger\LowerTaxaTaggerNext.cs" />
     <Compile Include="src\Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />

@@ -1,13 +1,16 @@
 ﻿namespace ProcessingTools.BaseLibrary.Coordinates
 {
     using System;
+    using System.Globalization;
     using System.Text.RegularExpressions;
+
     using Contracts.Log;
     using Extensions;
 
     public class CoordinatePart
     {
         private const string CoordinatePartDecimalFormat = "f6";
+        private readonly string numberDecimalSeparator;
 
         private string coordinatePartString;
         private int decimalCoordinatePartSign;
@@ -23,6 +26,8 @@
             this.decimalCoordinatePartValue = 0.0;
             this.coordinatePartString = string.Empty;
             this.type = CoordinatePartType.Undefined;
+
+            this.numberDecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         }
 
         public string CoordinatePartString
@@ -44,7 +49,9 @@
         {
             get
             {
-                return this.decimalCoordinatePartValue.ToString(CoordinatePartDecimalFormat);
+                return this.decimalCoordinatePartValue
+                    .ToString(CoordinatePartDecimalFormat)
+                    .Replace(this.numberDecimalSeparator, ".");
             }
         }
 
@@ -112,53 +119,45 @@
                 this.type = CoordinatePartType.Undefined;
             }
 
-            //// There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
-            //// Here is supposed that O = Ost
+            // There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
+            // Here is supposed that O = Ost
             this.decimalCoordinatePartSign = (hasS || hasW) ? -1 : 1;
         }
 
         private double ParseCoordinatePart()
         {
-            double degrees, minutes, seconds;
-            string degreesString, minutesString, secondsString;
-
-            Regex matchDegreesString = new Regex(@"^.*?(\-?\d+(\.\d+)?).*$");
+            Regex matchDegreesString = new Regex(@"\A.*?(\-?\d+(?:\.\d+)?).*\Z");
+            string degreesString = null;
             if (matchDegreesString.IsMatch(this.coordinatePartString))
             {
-                degreesString = matchDegreesString.Replace(this.coordinatePartString, "$1");
-            }
-            else
-            {
-                degreesString = " ";
+                degreesString = matchDegreesString
+                    .Replace(this.coordinatePartString, "$1")
+                    .Replace(".", this.numberDecimalSeparator);
             }
 
-            Regex matchMinutesString = new Regex(@"^.*?\d+(\.\d+)?\s(\d+(\.\d+)?).*$");
+            Regex matchMinutesString = new Regex(@"\A.*?(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?).*\Z");
+            string minutesString = null;
             if (matchMinutesString.IsMatch(this.coordinatePartString))
             {
-                minutesString = matchMinutesString.Replace(this.coordinatePartString, "$2");
-            }
-            else
-            {
-                minutesString = " ";
+                minutesString = matchMinutesString
+                    .Replace(this.coordinatePartString, "$2")
+                    .Replace(".", this.numberDecimalSeparator);
             }
 
-            Regex matchSecondsString = new Regex(@"^.*\d+(\.\d+)?\s\d+(\.\d+)?\s(\d+(\.\d+)?).*$");
+            Regex matchSecondsString = new Regex(@"\A.*(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?).*\Z");
+            string secondsString = null;
             if (matchSecondsString.IsMatch(this.coordinatePartString))
             {
-                secondsString = matchSecondsString.Replace(this.coordinatePartString, "$3");
+                secondsString = matchSecondsString
+                    .Replace(this.coordinatePartString, "$3")
+                    .Replace(".", this.numberDecimalSeparator);
             }
-            else
-            {
-                secondsString = " ";
-            }
-
-            //// this.logger?.Log($"DEG: {Regex.Replace(degreesString, "\\s+", "#")} MM: {Regex.Replace(minutesString, "\\s+", "#")} SS: {Regex.Replace(secondsString, "\\s+", "#")}");
 
             try
             {
-                degrees = degreesString.Contains(" ") ? 0.0 : double.Parse(degreesString);
-                minutes = minutesString.Contains(" ") ? 0.0 : double.Parse(minutesString);
-                seconds = secondsString.Contains(" ") ? 0.0 : double.Parse(secondsString);
+                double degrees = degreesString == null ? 0.0 : double.Parse(degreesString);
+                double minutes = minutesString == null ? 0.0 : double.Parse(minutesString);
+                double seconds = secondsString == null ? 0.0 : double.Parse(secondsString);
 
                 return degrees + ((minutes + (seconds / 60.0)) / 60.0);
             }
