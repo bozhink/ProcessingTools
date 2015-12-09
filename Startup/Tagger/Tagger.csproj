@@ -225,6 +225,7 @@
     <Content Include="MessageTexts\ParseTreatmentMetaWithCoLMessage.txt" />
     <Content Include="MessageTexts\ParseTreatmentMetaWithGbifMessage.txt" />
     <Content Include="MessageTexts\ResolveMediaTypesMessage.txt" />
+    <Content Include="MessageTexts\RunCustomXslTransformMessage.txt" />
     <Content Include="MessageTexts\TagAbbreviationsMessage.txt" />
     <Content Include="MessageTexts\TagCodesMessage.txt" />
     <Content Include="MessageTexts\TagCoordinatesMessage.txt" />

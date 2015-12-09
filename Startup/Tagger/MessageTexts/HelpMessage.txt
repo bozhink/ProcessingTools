@@ -57,3 +57,5 @@ Options:
     --envo = use greek tagger
 
     -V, --validate-taxa = valdate taxonomic names with Global Names Resolver
+
+    --xsl = run custom XSL transform; syntax: <in xml> <out xml> <xsl file path>

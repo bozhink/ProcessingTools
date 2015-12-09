@@ -195,6 +195,9 @@ Output file name: {1}
   <data name="ResolveMediaTypesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\resolvemediatypesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="RunCustomXslTransformMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\runcustomxsltransformmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="TagAbbreviationsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagabbreviationsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

@@ -69,6 +69,11 @@
                 }
                 else
                 {
+                    if (this.settings.RunXslTransform)
+                    {
+                        this.RunCustomXslTransform();
+                    }
+
                     if (this.settings.InitialFormat)
                     {
                         this.InitialFormat();
@@ -334,6 +339,13 @@
             {
                 this.logger?.Log(e, string.Empty);
             }
+        }
+
+        private void RunCustomXslTransform()
+        {
+            var processor = new CustomXslRunner(this.settings.QueryFileName, this.document.Xml);
+            this.InvokeProcessor(Messages.RunCustomXslTransformMessage, processor);
+            this.document.Xml = processor.Xml;
         }
 
         private string FormatTreatments(string xmlContent)

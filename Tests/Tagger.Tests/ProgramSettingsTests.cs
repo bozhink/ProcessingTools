@@ -747,6 +747,22 @@
         }
 
         [Test]
+        public void ProgramSettings_RunXslTransformPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.RunXslTransform, "Default RunXslTransform value should be false.");
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfRunXslTransformProperty_SchouldBePersistent()
+        {
+            this.programSettings.RunXslTransform = true;
+            Assert.IsTrue(this.programSettings.RunXslTransform, "1. RunXslTransform value should be true.");
+
+            this.programSettings.RunXslTransform = false;
+            Assert.IsFalse(this.programSettings.RunXslTransform, "2. RunXslTransform value should be false.");
+        }
+
+        [Test]
         public void ProgramSettings_TagTableFnPropertyInNewInstance_SchouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagTableFn, "Default TagTableFn value should be false.");

@@ -184,7 +184,9 @@ namespace ProcessingTools.MainProgram {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 
+        ///    Initial format.
+        ///.
         /// </summary>
         internal static string InitialFormatMessage {
             get {
@@ -343,6 +345,17 @@ namespace ProcessingTools.MainProgram {
         internal static string ResolveMediaTypesMessage {
             get {
                 return ResourceManager.GetString("ResolveMediaTypesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///    Custom XSL transform.
+        ///.
+        /// </summary>
+        internal static string RunCustomXslTransformMessage {
+            get {
+                return ResourceManager.GetString("RunCustomXslTransformMessage", resourceCulture);
             }
         }
         

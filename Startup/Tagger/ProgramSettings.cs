@@ -61,6 +61,7 @@
             this.TestFlag = false;
             this.UntagSplit = false;
             this.ValidateTaxa = false;
+            this.RunXslTransform = false;
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
@@ -171,6 +172,8 @@
         public bool UntagSplit { get; set; }
 
         public bool ValidateTaxa { get; set; }
+
+        public bool RunXslTransform { get; set; }
 
         public bool ZoobankCloneJson { get; set; }
 

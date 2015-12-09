@@ -47,5 +47,10 @@
         {
             this.InvokeProcessor(message, cloner.Clone);
         }
+
+        protected void InvokeProcessor(string message, IProcessor processor)
+        {
+            this.InvokeProcessor(message, processor.Process);
+        }
     }
 }

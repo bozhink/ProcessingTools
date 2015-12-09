@@ -373,6 +373,10 @@
                     {
                         this.Settings.ValidateTaxa = true;
                     }
+                    else if (args[item].CompareTo("--xsl") == 0)
+                    {
+                        this.Settings.RunXslTransform = true;
+                    }
                 }
             }
         }
