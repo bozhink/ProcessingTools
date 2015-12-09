@@ -1,18 +1,21 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
+
     using Configurator;
     using Contracts;
     using Contracts.Log;
-    using System;
-    using System.Xml.Linq;
+
     public class LowerTaxaTagger : TaxaTagger
     {
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
         private const string LowerTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
+
+        private const string ItalicXPath = "//i|//italic|//Italic";
 
         private readonly TagContent lowerTaxaTag = new TagContent("tn", @" type=""lower""");
 
@@ -44,38 +47,51 @@
                     .Cast<XmlNode>()
                     .Select(x => x.InnerText));
 
-                var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes("//i|//italic|//Italic")
+                var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes(ItalicXPath)
                     .Cast<XmlNode>()
                     .Select(x => x.InnerText)
                     .Where(this.IsMatchingLowerTaxaFormat));
 
-                knownLowerTaxaNames
-                    .ToList()
-                    .ForEach(t => plausibleLowerTaxa.Add(t));
+                foreach (string taxon in knownLowerTaxaNames)
+                {
+                    plausibleLowerTaxa.Add(taxon);
+                }
 
                 plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
 
                 // Tag all direct matches
-                plausibleLowerTaxa
-                    .OrderByDescending(t => t.Length)
-                    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
-
-                // Get all word parts of the plausible lower taxa
-                Regex matchWord = new Regex(@"\b[^\W\d]+\b\.?");
-                var plausibleLowerTaxaWordTemplates = new HashSet<string>();
-                foreach (string taxon in plausibleLowerTaxa)
+                var orderedPlausibleLowerTaxa = plausibleLowerTaxa.OrderByDescending(t => t.Length);
+                foreach (XmlNode node in this.XmlDocument.SelectNodes(ItalicXPath))
                 {
-                    for (Match m = matchWord.Match(taxon); m.Success; m = m.NextMatch())
+                    foreach (string taxon in orderedPlausibleLowerTaxa)
                     {
-                        plausibleLowerTaxaWordTemplates.Add(m.Value);
+                        if (string.Compare(node.InnerText, taxon, true) == 0)
+                        {
+                            XmlElement tn = node.OwnerDocument.CreateElement("tn");
+                            tn.SetAttribute("type", "lower");
+                            tn.InnerXml = node.InnerXml;
+                            node.InnerXml = tn.OuterXml;
+                            break;
+                        }
                     }
                 }
 
-                // TODO: bottleneck
-                // Tag all word parts of the plausible lower taxa
-                plausibleLowerTaxaWordTemplates
-                    .OrderByDescending(t => t.Length)
-                    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+                //////// Get all word parts of the plausible lower taxa
+                //////Regex matchWord = new Regex(@"\b[^\W\d]+\b\.?");
+                //////var plausibleLowerTaxaWordTemplates = new HashSet<string>();
+                //////foreach (string taxon in plausibleLowerTaxa)
+                //////{
+                //////    for (Match m = matchWord.Match(taxon); m.Success; m = m.NextMatch())
+                //////    {
+                //////        plausibleLowerTaxaWordTemplates.Add(m.Value);
+                //////    }
+                //////}
+
+                //////// TODO: bottleneck
+                //////// Tag all word parts of the plausible lower taxa
+                //////plausibleLowerTaxaWordTemplates
+                //////    .OrderByDescending(t => t.Length)
+                //////    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
 
                 // TODO: move to format
                 this.Xml = Regex.Replace(
@@ -83,7 +99,7 @@
                     @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                     "$1‘$2’ $4$3");
 
-                // this.AdvancedTagLowerTaxa("//*[i]");
+                //////// this.AdvancedTagLowerTaxa("//*[i]");
                 this.Xml = this.TagInfraspecificTaxa(this.Xml);
             }
             catch
@@ -111,9 +127,6 @@
 
         private void TagInfraspecificTaxa(XmlNode node)
         {
-            System.Console.WriteLine(node.InnerText);
-            System.Console.WriteLine();
-
             string replace = this.TagInfraspecificTaxa(node.InnerXml);
             node.SafeReplaceInnerXml(replace, this.logger);
         }
@@ -165,7 +178,7 @@
                                 " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
                         }
                     }
- 
+
                     // Move closing bracket in tn if it is outside
                     result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
                 }
@@ -180,8 +193,6 @@
                 {
                     const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
                     Regex re = new Regex(InfraspecificPattern);
-
-                    System.Console.WriteLine(re.Match(result).Length);
 
                     for (Match m = re.Match(result); m.Success; m = m.NextMatch())
                     {
@@ -235,12 +246,7 @@
 
         public class TaxaTagger : TaggerBase
         {
-            public const string HigherTaxaMatchPattern = "\\b([A-Z](?i)[a-z]*(morphae?|mida|toda|ideae|oida|genea|formes|ales|lifera|ieae|indeae|eriae|idea|aceae|oidea|oidae|inae|ini|ina|anae|ineae|acea|oideae|mycota|mycotina|mycetes|mycetidae|phyta|phytina|opsida|phyceae|idae|phycidae|ptera|poda|phaga|itae|odea|alia|ntia|osauria))\\b";
-            private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
-            private const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
             private const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
-            private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
-            private const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
             public TaxaTagger(string xml)
                 : base(xml)
@@ -257,7 +263,7 @@
             {
             }
 
-            public static string TagItalics(string nodeXml)
+            public string TagItalics(string nodeXml)
             {
                 string result = nodeXml;
 
@@ -275,7 +281,7 @@
                 return result;
             }
 
-            public static string TagInfraspecificTaxa(string nodeXml)
+            public string TagInfraspecificTaxa(string nodeXml)
             {
                 string replace = nodeXml;
                 string infraspecificPattern;
@@ -355,7 +361,7 @@
                 return replace;
             }
 
-            public void TagLowerTaxa(bool tagBasionym = false)
+            public void TagLowerTaxa()
             {
                 string xpath = string.Empty;
                 if (this.Config.ArticleSchemaType == SchemaType.Nlm)
@@ -388,73 +394,36 @@
                 {
                     foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                     {
-                        node.InnerXml = TaxaTagger.TagItalics(node.InnerXml);
+                        node.InnerXml = this.TagItalics(node.InnerXml);
                     }
 
                     if (this.Config.ArticleSchemaType != SchemaType.Nlm && !this.Config.TagWholeDocument)
                     {
                         foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//i]", this.NamespaceManager))
                         {
-                            node.InnerXml = TaxaTagger.TagItalics(node.InnerXml);
+                            node.InnerXml = this.TagItalics(node.InnerXml);
                         }
                     }
 
                     this.RemoveTaxaInWrongPlaces();
 
-                    if (tagBasionym)
+                    // Tag basionym.
+                    foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
                     {
-                        foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-                        {
-                            node.InnerXml = TaxaTagger.TagInfraspecificTaxa(node.InnerXml);
-                        }
+                        node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
+                    }
 
-                        if (this.Config.ArticleSchemaType != SchemaType.Nlm && !this.Config.TagWholeDocument)
+                    if (this.Config.ArticleSchemaType != SchemaType.Nlm && !this.Config.TagWholeDocument)
+                    {
+                        foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
                         {
-                            foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
-                            {
-                                node.InnerXml = TaxaTagger.TagInfraspecificTaxa(node.InnerXml);
-                            }
+                            node.InnerXml = this.TagInfraspecificTaxa(node.InnerXml);
                         }
                     }
                 }
                 catch (Exception e)
                 {
                     ////Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag taxa.");
-                }
-            }
-
-            private void RemoveFalseTaxaOfPersonNames()
-            {
-                try
-                {
-                    List<string> firstWordTaxaList = this.GetFirstWordOfTaxaNames();
-
-                    char[] charsToSplit = new char[] { ' ', ',', ';' };
-                    List<string> personNameParts = this.XmlDocument.SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
-                        .Cast<XmlNode>().Select(s => s.InnerText).Distinct().ToList();
-
-                    foreach (string taxon in firstWordTaxaList)
-                    {
-                        if (taxon.IndexOf('.') < 0)
-                        {
-                            Regex matchTaxonInName = new Regex("(?i)\\b" + Regex.Escape(taxon) + "\\b");
-                            IEnumerable<string> queryResult = from item in personNameParts
-                                                              where matchTaxonInName.Match(item).Success
-                                                              select matchTaxonInName.Match(item).Value;
-
-                            foreach (string item in queryResult)
-                            {
-                                if (item.IndexOf('.') < 0)
-                                {
-                                    this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    ////Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0);
                 }
             }
 
@@ -466,46 +435,6 @@
                 {
                     node.InnerXml = matchTaxonTag.Replace(node.InnerXml, string.Empty);
                 }
-            }
-
-            private XElement GetBlackList()
-            {
-                return XElement.Load(this.Config.BlackListXmlFilePath);
-            }
-
-            private void ApplyBlackList()
-            {
-                try
-                {
-                    List<string> firstWordTaxaList = this.GetFirstWordOfTaxaNames();
-
-                    XElement blackList = this.GetBlackList();
-
-                    string xml = this.XmlDocument.InnerXml;
-                    foreach (string taxon in firstWordTaxaList)
-                    {
-                        IEnumerable<string> queryResult = from item in blackList.Elements()
-                                                          where Regex.Match(taxon, "(?i)" + item.Value).Success
-                                                          select item.Value;
-                        foreach (string item in queryResult)
-                        {
-                            xml = Regex.Replace(xml, "<tn [^>]*>((?i)" + item + "(\\s+.*?)?(\\.?))</tn>", "$1");
-                        }
-                    }
-
-                    this.XmlDocument.InnerXml = xml;
-                }
-                catch (Exception e)
-                {
-                    ////Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Apply black list.");
-                }
-            }
-
-            private List<string> GetFirstWordOfTaxaNames()
-            {
-                List<string> firstWordTaxaList = this.XmlDocument.GetStringListOfUniqueXmlNodes("//tn", this.NamespaceManager)
-                    .Cast<string>().Select(c => Regex.Match(c, @"\w+\.|\w+\b").Value).Distinct().ToList();
-                return firstWordTaxaList;
             }
         }
     }
