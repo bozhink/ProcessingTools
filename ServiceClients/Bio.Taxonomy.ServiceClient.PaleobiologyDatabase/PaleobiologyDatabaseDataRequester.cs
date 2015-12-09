@@ -3,12 +3,14 @@
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+
     using Infrastructure.Net;
-    using Infrastructure.Serialization.Json;
     using Models;
 
     public class PaleobiologyDatabaseDataRequester
     {
+        private const string PaleobiologyDatabaseBaseAddress = "https://paleobiodb.org";
+
         /// <summary>
         /// Search scientific name in The Paleobiology Database (PBDB).
         /// </summary>
@@ -21,11 +23,12 @@
              * "taxon_no","orig_no","record_type","associated_records","rank","taxon_name","common_name","status","parent_no","senior_no","reference_no","is_extant"
              * "69296","69296","taxon","","family","Dascillidae","soft bodied plant beetle","belongs to","69295","69296","5056","1"
              */
-            string url = $"https://paleobiodb.org/data1.1/taxa/single.txt?name={scientificName}";
+            string url = $"data1.1/taxa/single.txt?name={scientificName}";
 
             try
             {
-                string responseString = await Connector.GetXmlAsync(url);
+                var connector = new Connector(PaleobiologyDatabaseBaseAddress);
+                string responseString = await connector.GetXmlStringAsync(url);
 
                 string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                 string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -62,12 +65,13 @@
         /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents</example>
         public static async Task<PbdbAllParents> SearchParentsInPaleobiologyDatabase(string scientificName)
         {
-            string url = $"https://paleobiodb.org/data1.1/taxa/list.json?name={scientificName}&rel=all_parents";
+            string url = $"data1.1/taxa/list.json?name={scientificName}&rel=all_parents";
 
             try
             {
-                string response = await Connector.GetXmlAsync(url);
-                return JsonSerializer.Deserialize<PbdbAllParents>(response);
+                var connector = new Connector(PaleobiologyDatabaseBaseAddress);
+                var result = await connector.GetDeserializedDataContractJsonAsync<PbdbAllParents>(url);
+                return result;
             }
             catch
             {

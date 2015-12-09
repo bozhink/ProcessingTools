@@ -44,9 +44,9 @@
     <Compile Include="Exceptions\MultiMessageException.cs" />
     <Compile Include="Exceptions\Url.cs" />
     <Compile Include="Net\Connector.Common.cs" />
+    <Compile Include="Net\Connector.cs" />
     <Compile Include="Net\Connector.Post.cs" />
     <Compile Include="Serialization\Json\JsonSerializer.cs" />
-    <Compile Include="Net\Connector.Get.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Net\WeakFormUrlEncodedContent.cs" />
   </ItemGroup>

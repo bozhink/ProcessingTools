@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Extensions;
     using Infrastructure.Exceptions;
     using Infrastructure.Net;
     using Models;
@@ -12,6 +13,8 @@
     /// </summary>
     public class CatalogueOfLifeDataRequester
     {
+        private const string CatalogueOfLifeBaseAddress = "http://www.catalogueoflife.org";
+
         /// <summary>
         /// Search scientific name in Catalogue Of Life (CoL).
         /// </summary>
@@ -20,11 +23,13 @@
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
         public static async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
-            string url = $"http://www.catalogueoflife.org/col/webservice?name={scientificName}&response=full";
+            string url = $"col/webservice?name={scientificName}&response=full";
 
             try
             {
-                return await Connector.GetToXmlAsync(url);
+                var connector = new Connector(CatalogueOfLifeBaseAddress);
+                string response = await connector.GetXmlStringAsync(url);
+                return response.AsXmlDocument();
             }
             catch
             {
@@ -41,11 +46,11 @@
         public static async Task<CatalogueOfLifeApiServiceResponse> RequestDataFromCatalogueOfLife(string scientificName)
         {
             string requestName = scientificName.UrlEncode();
-            string url = $"http://www.catalogueoflife.org/col/webservice?name={requestName}&response=full";
+            string url = $"/col/webservice?name={requestName}&response=full";
 
             try
             {
-                var connector = new Connector();
+                var connector = new Connector(CatalogueOfLifeBaseAddress);
                 var result = await connector.GetDeserializedXmlAsync<CatalogueOfLifeApiServiceResponse>(url);
                 return result;
             }

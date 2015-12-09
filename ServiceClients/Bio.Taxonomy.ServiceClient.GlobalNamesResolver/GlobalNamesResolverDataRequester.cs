@@ -7,17 +7,24 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Extensions;
     using Infrastructure.Net;
 
     public class GlobalNamesResolverDataRequester
     {
+        private const string GlobalNamesResolverBaseAddress = "http://resolver.globalnames.org";
+
         public static async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
         {
             try
             {
                 string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-                string url = $"http://resolver.globalnames.org/name_resolvers.xml?{searchString}";
-                return await Connector.GetToXmlAsync(url);
+                string url = $"name_resolvers.xml?{searchString}";
+
+                var connector = new Connector(GlobalNamesResolverBaseAddress);
+                string response = await connector.GetXmlStringAsync(url);
+                return response.AsXmlDocument();
             }
             catch
             {
