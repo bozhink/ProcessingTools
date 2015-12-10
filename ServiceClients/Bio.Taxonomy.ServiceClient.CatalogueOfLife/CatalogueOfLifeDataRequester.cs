@@ -29,7 +29,7 @@
             {
                 var connector = new Connector(CatalogueOfLifeBaseAddress);
                 string response = await connector.GetXmlStringAsync(url);
-                return response.AsXmlDocument();
+                return response.ToXmlDocument();
             }
             catch
             {

@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="xmlDocument">XmlDocument instance to be converted.</param>
         /// <returns></returns>
-        public static XDocument ToXDocument(this XmlDocument xmlDocument)
+        public static XDocument XmlToXDocument(this XmlDocument xmlDocument)
         {
             using (XmlNodeReader nodeReader = new XmlNodeReader(xmlDocument))
             {
@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="document">XDocument instance to be converted.</param>
         /// <returns></returns>
-        public static XmlDocument ToXmlDocument(this XDocument document)
+        public static XmlDocument XToXmlDocument(this XDocument document)
         {
             XmlDocument xmlDocument = new XmlDocument();
             using (XmlReader xmlReader = document.CreateReader())
@@ -39,7 +39,7 @@
             return xmlDocument;
         }
 
-        public static XmlDocument AsXmlDocument(this string document)
+        public static XmlDocument ToXmlDocument(this string document)
         {
             XmlDocument result = new XmlDocument
             {
