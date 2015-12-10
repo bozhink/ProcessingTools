@@ -9,7 +9,7 @@
     using Configurator;
     using Contracts;
     using Contracts.Log;
-
+    using Extensions;
     public class LowerTaxaTagger : TaxaTagger
     {
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
@@ -76,31 +76,16 @@
                     }
                 }
 
-                //////// Get all word parts of the plausible lower taxa
-                //////Regex matchWord = new Regex(@"\b[^\W\d]+\b\.?");
-                //////var plausibleLowerTaxaWordTemplates = new HashSet<string>();
-                //////foreach (string taxon in plausibleLowerTaxa)
-                //////{
-                //////    for (Match m = matchWord.Match(taxon); m.Success; m = m.NextMatch())
-                //////    {
-                //////        plausibleLowerTaxaWordTemplates.Add(m.Value);
-                //////    }
-                //////}
-
-                //////// TODO: bottleneck
-                //////// Tag all word parts of the plausible lower taxa
-                //////plausibleLowerTaxaWordTemplates
-                //////    .OrderByDescending(t => t.Length)
-                //////    .TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
-
                 // TODO: move to format
                 this.Xml = Regex.Replace(
                     this.Xml,
                     @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                     "$1‘$2’ $4$3");
 
-                //////// this.AdvancedTagLowerTaxa("//*[i]");
+                //// this.AdvancedTagLowerTaxa("//*[i]");
                 this.Xml = this.TagInfraspecificTaxa(this.Xml);
+
+                this.DeepTag();
             }
             catch
             {
@@ -158,7 +143,7 @@
                     {
                         result = re.Replace(
                             result,
-                            @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
+                            @"<tn type=""lower""><genus>$1</genus> <authority>$2</authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
                     }
 
                     // Move closing bracket in tn if it is outside
@@ -244,6 +229,31 @@
             return result;
         }
 
+        private void DeepTag()
+        {
+            var knownLowerTaxaNamesXml = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
+                .Cast<XmlNode>()
+                .Select(x => x.InnerXml));
+
+            // TODO: This algorithm must be refined: generate smaller pattern strings from the original.
+            var taxa = knownLowerTaxaNamesXml
+                .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>", string.Empty))
+                .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty))
+                .Select(t => t.RegexReplace(@"[^\w\.]+", " "))
+                .ToList();
+
+            Regex matchLetterDotWord = new Regex(@"\A([A-Z]\.|[A-Za-z])\Z");
+            var orderedTaxaParts = new HashSet<string>(taxa.Where(t => !matchLetterDotWord.IsMatch(t)))
+                .OrderByDescending(t => t.Length);
+
+            foreach (string taxon in orderedTaxaParts)
+            {
+                Console.WriteLine(taxon);
+            }
+
+            orderedTaxaParts.TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+        }
+
         public class TaxaTagger : TaggerBase
         {
             private const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
@@ -276,7 +286,7 @@
 
                 result = Regex.Replace(result, @"‘<i>(<tn type=""lower"">)([A-Z][a-z\.×]+)(</tn>)</i>’\s*<i>([a-z\.×-]+)</i>", "$1‘$2’ $4$3");
 
-                result = TagInfraspecificTaxa(result);
+                result = this.TagInfraspecificTaxa(result);
 
                 return result;
             }
@@ -303,7 +313,7 @@
                         replace = Regex.Replace(
                             replace,
                             infraspecificPattern,
-                            @"<tn type=""lower""><genus>$1</genus> <genus-authority>$2</genus-authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
+                            @"<tn type=""lower""><genus>$1</genus> <authority>$2</authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
                     }
 
                     replace = Regex.Replace(replace, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1"); // Move closing bracket in tn if it is outside
@@ -421,9 +431,8 @@
                         }
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    ////Alert.RaiseExceptionForMethod(e, this.GetType().Name, 0, "Tag taxa.");
                 }
             }
 
