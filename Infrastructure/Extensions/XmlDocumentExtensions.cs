@@ -39,6 +39,17 @@
             return xmlDocument;
         }
 
+        public static XmlDocument AsXmlDocument(this string document)
+        {
+            XmlDocument result = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+
+            result.LoadXml(document);
+            return result;
+        }
+
         /// <summary>
         /// Creates XmlReader object from a text content.
         /// </summary>
