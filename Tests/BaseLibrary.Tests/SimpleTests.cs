@@ -1,10 +1,11 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using Bio.Taxonomy.ServiceClient.Aphia;
+
     using Configurator;
-    using Contracts.Log;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using ProcessingTools.Contracts.Log;
 
     [TestClass]
     public class SimpleTests

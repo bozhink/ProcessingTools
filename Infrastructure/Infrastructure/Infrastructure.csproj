@@ -42,7 +42,7 @@
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Exceptions\KeyValuePairMultiMessageException.cs" />
     <Compile Include="Exceptions\MultiMessageException.cs" />
-    <Compile Include="Exceptions\Url.cs" />
+    <Compile Include="Net\Url.cs" />
     <Compile Include="Net\Connector.Common.cs" />
     <Compile Include="Net\Connector.cs" />
     <Compile Include="Net\Connector.Post.cs" />

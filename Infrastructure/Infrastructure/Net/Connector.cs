@@ -5,7 +5,6 @@
     using System.Net.Http.Headers;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using System.Xml;
     using System.Xml.Serialization;
 
     public partial class Connector

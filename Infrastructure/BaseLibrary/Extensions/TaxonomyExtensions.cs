@@ -7,9 +7,9 @@
 
     using Bio.Taxonomy.Types;
     using Configurator;
-    using Contracts.Log;
     using DocumentProvider;
     using Extensions;
+    using ProcessingTools.Contracts.Log;
 
     public static class TaxonomyExtensions
     {

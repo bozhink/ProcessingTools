@@ -2,12 +2,13 @@
 {
     using System;
     using System.Xml;
+
     using Configurator;
-    using Contracts.Log;
     using DocumentProvider;
     using Loggers;
     using Measurements;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Contracts.Log;
 
     [TestClass]
     public class QuantitiesTaggerTests
