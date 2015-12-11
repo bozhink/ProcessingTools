@@ -6,6 +6,6 @@
     {
         IQueryable<T> Data { get; }
 
-        void Harvester();
+        void Harvest(string content);
     }
 }

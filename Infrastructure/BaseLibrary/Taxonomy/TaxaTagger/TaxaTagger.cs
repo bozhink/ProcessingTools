@@ -5,41 +5,37 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
     using Contracts;
     using Extensions;
-    using ProcessingTools.Contracts;
-
+    
     public abstract class TaxaTagger : TaggerBase, IBaseTagger
     {
         protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
 
-        private IStringDataList blackList;
-        private IStringDataList whiteList;
+        private IRepositoryDataService<string> blackList;
 
-        public TaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList)
+        public TaxaTagger(string xml, IRepositoryDataService<string> blackList)
             : base(xml)
         {
-            this.WhiteList = whiteList;
             this.BlackList = blackList;
         }
 
-        public TaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList)
+        public TaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList)
             : base(config, xml)
         {
-            this.WhiteList = whiteList;
             this.BlackList = blackList;
         }
 
-        public TaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList)
+        public TaxaTagger(IBase baseObject, IRepositoryDataService<string> blackList)
             : base(baseObject)
         {
-            this.WhiteList = whiteList;
             this.BlackList = blackList;
         }
 
-        protected IStringDataList BlackList
+        protected IRepositoryDataService<string> BlackList
         {
             get
             {
@@ -49,19 +45,6 @@
             private set
             {
                 this.blackList = value;
-            }
-        }
-
-        protected IStringDataList WhiteList
-        {
-            get
-            {
-                return this.whiteList;
-            }
-
-            private set
-            {
-                this.whiteList = value;
             }
         }
 
@@ -88,18 +71,10 @@
             return new HashSet<string>(result);
         }
 
-        protected IEnumerable<string> GetTaxaItemsByWhiteList()
-        {
-            string textToMine = string.Join(" ", this.TextWords);
-            IEnumerable<string> result = textToMine.MatchWithStringList(this.WhiteList.StringList, false, false, false);
-
-            return new HashSet<string>(result);
-        }
-
         private IEnumerable<string> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
         {
             var blackListedNames = new HashSet<string>(taxaNamesFirstWord
-                .MatchWithStringList(this.BlackList.StringList, true, false, true));
+                .MatchWithStringList(this.BlackList.All().ToList(), true, false, true));
 
             var result = taxaNames
                 .Where(name => !blackListedNames.Contains(name.GetFirstWord()));

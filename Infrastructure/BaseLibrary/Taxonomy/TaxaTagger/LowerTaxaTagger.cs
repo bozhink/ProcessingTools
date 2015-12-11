@@ -5,10 +5,10 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
     using Contracts;
     using Extensions;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
     public class LowerTaxaTagger : TaxaTagger
@@ -22,20 +22,20 @@
 
         private ILogger logger;
 
-        public LowerTaxaTagger(string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
-            : base(xml, whiteList, blackList)
+        public LowerTaxaTagger(string xml, IRepositoryDataService<string> blackList, ILogger logger)
+            : base(xml, blackList)
         {
             this.logger = logger;
         }
 
-        public LowerTaxaTagger(Config config, string xml, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
-            : base(config, xml, whiteList, blackList)
+        public LowerTaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList, ILogger logger)
+            : base(config, xml, blackList)
         {
             this.logger = logger;
         }
 
-        public LowerTaxaTagger(IBase baseObject, IStringDataList whiteList, IStringDataList blackList, ILogger logger)
-            : base(baseObject, whiteList, blackList)
+        public LowerTaxaTagger(IBase baseObject, IRepositoryDataService<string> blackList, ILogger logger)
+            : base(baseObject, blackList)
         {
             this.logger = logger;
         }

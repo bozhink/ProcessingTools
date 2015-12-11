@@ -122,8 +122,6 @@
     <Compile Include="Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
-    <Compile Include="Taxonomy\TaxonomicBlackList.cs" />
-    <Compile Include="Taxonomy\TaxonomicWhiteList.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="WebLinks\DoiLinksTagger.cs" />
     <Compile Include="Morphology\MorphologyTagger.cs" />
@@ -248,6 +246,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
+      <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
+      <Name>Bio.Taxonomy.Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>

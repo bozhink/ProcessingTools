@@ -128,6 +128,10 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
+      <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
+      <Name>Bio.Taxonomy.Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>DocumentProvider</Name>

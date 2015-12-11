@@ -102,18 +102,6 @@
             return performReplace;
         }
 
-        public static IEnumerable<string> ExtractWordsFromString(this string text)
-        {
-            Regex matchWords = new Regex(@"[^\W\d]+");
-            var result = new HashSet<string>();
-            for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
-            {
-                result.Add(word.Value);
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Gets list of first words of a given list of strings.
         /// </summary>

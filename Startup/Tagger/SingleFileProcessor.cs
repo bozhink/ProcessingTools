@@ -22,12 +22,9 @@
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
-
+    using Bio.Taxonomy.Harvesters;
     public class SingleFileProcessor : FileProcessor
     {
-        private TaxonomicBlackList blackList;
-        private TaxonomicWhiteList whiteList;
-
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
 
@@ -397,17 +394,17 @@
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
-                this.blackList = new TaxonomicBlackList(this.settings.Config);
-                this.whiteList = new TaxonomicWhiteList(this.settings.Config);
+                var blackList = new XmlListDataService(this.settings.Config.BlackListXmlFilePath);
+                var whiteList = new XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
 
                 if (this.settings.TagLowerTaxa)
                 {
-                    xmlContent = this.TagLowerTaxa(xmlContent);
+                    xmlContent = this.TagLowerTaxa(xmlContent, blackList);
                 }
 
                 if (this.settings.TagHigherTaxa)
                 {
-                    xmlContent = this.TagHigherTaxa(xmlContent);
+                    xmlContent = this.TagHigherTaxa(xmlContent, blackList, whiteList);
                 }
             }
 
@@ -727,16 +724,17 @@
             return tagger.Xml;
         }
 
-        private string TagHigherTaxa(string xmlContent)
+        private string TagHigherTaxa(string xmlContent, XmlListDataService blackList, XmlListDataService whiteList)
         {
-            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList, this.logger);
+            var harvester = new HigherTaxaHarvester(whiteList);
+            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, harvester, blackList, this.logger);
             this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger);
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
-        private string TagLowerTaxa(string xmlContent)
+        private string TagLowerTaxa(string xmlContent, XmlListDataService blackList)
         {
-            var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, this.whiteList, this.blackList, this.logger);
+            var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
             this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger);
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
