@@ -354,10 +354,17 @@
 
         private void PrintFloatsDistributionById(FloatsReferenceType refType)
         {
-            this.logger?.Log();
-            foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().ToArray().OrderBy(s => s))
+            try
             {
-                this.logger?.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
+                this.logger?.Log();
+                foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().OrderBy(s => int.Parse(Regex.Match(s, @"\d+").Value ?? "1")))
+                {
+                    this.logger?.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                this.logger?.Log(e, "Cannot print the table of floats.");
             }
         }
 
