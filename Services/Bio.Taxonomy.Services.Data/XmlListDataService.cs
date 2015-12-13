@@ -16,9 +16,8 @@
         {
             this.ListFilePath = listFilePath;
 
-            this.dataList = new HashSet<string>(XDocument
-                .Load(this.ListFilePath)
-                .Elements()
+            this.dataList = new HashSet<string>(XDocument.Load(this.ListFilePath)
+                .Descendants()
                 .Select(item => item.Value));
         }
 
