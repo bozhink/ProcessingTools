@@ -39,6 +39,18 @@
   <xsl:template match="tn-part[name(..)!='tn'][name(..)!='tp:taxon-name']|tp:taxon-name-part[name(..)!='tn'][name(..)!='tp:taxon-name']|tn-part//tn-part|tn-part//tp:*|tp:taxon-name-part//tp:*">
     <xsl:apply-templates />
   </xsl:template>
+  
+  <xsl:template match="tn-part/node()[name(.)!='i' and name(.)!='b']">
+    <xsl:value-of select="."/>
+  </xsl:template>
+  
+  <xsl:template match="locality-coordinates/node()[name(.)!='i' and name(.)!='b']">
+    <xsl:value-of select="."/>
+  </xsl:template>
+  
+  <xsl:template match="xref/institutional_code">
+    <xsl:value-of select="."/>
+  </xsl:template>
 
   <xsl:template match="a//a|a//ext-link|ext-link//a|ext-link//ext-link|a//xref|ext-link//xref|xref//xref|xref//a|xref//ext-link">
     <xsl:apply-templates />
@@ -55,6 +67,10 @@
 
   <xsl:template match="ref//institutional_code | ref//institution[@url]">
     <xsl:apply-templates />
+  </xsl:template>
+  
+  <xsl:template match="author-notes/fn/p/node()[name(.)!='email' and name(.)!='ext-link']">
+    <xsl:value-of select="."/>
   </xsl:template>
 
   <xsl:template match="email|self-uri|uri|ext-link">
