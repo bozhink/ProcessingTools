@@ -86,7 +86,7 @@
                 //// this.AdvancedTagLowerTaxa("//*[i]");
                 this.Xml = this.TagInfraspecificTaxa(this.Xml);
 
-                this.DeepTag();
+                //this.DeepTag();
             }
             catch
             {

@@ -61,7 +61,7 @@
         public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
         {
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]");
-            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerXml));
+            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerText));
         }
 
         public static string GenerateTagTemplate(this string xml, Config config)
@@ -135,23 +135,6 @@
             ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
 
             ////return new HashSet<string>(result);
-        }
-
-        public static string GetRemplacementStringForTaxonNamePartRank(this string rank, bool taxPub = false)
-        {
-            string prefix, suffix;
-            if (taxPub)
-            {
-                prefix = "<tp:taxon-name-part taxon-name-part-type=\"";
-                suffix = "\">$1</tp:taxon-name-part>";
-            }
-            else
-            {
-                prefix = "<tn-part type=\"";
-                suffix = "\">$1</tn-part>";
-            }
-
-            return prefix + rank + suffix;
         }
 
         public static void PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)

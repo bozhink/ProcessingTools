@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using System.Text.RegularExpressions;
+    using System.Xml;
 
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
@@ -82,8 +82,15 @@
                             {
                                 string rank = ranks.FirstOrDefault();
                                 this.logger?.Log("{0} --> {1}\n", scientificName, rank);
-                                string scientificNameReplacement = rank.GetRemplacementStringForTaxonNamePartRank();
-                                this.ReplaceTaxonNameByItsParsedContent(scientificName, scientificNameReplacement);
+
+                                string xpath = $"//tn[@type='higher'][not(tn-part)][normalize-space(.)='{scientificName}']";
+                                foreach (XmlNode tn in this.XmlDocument.SelectNodes(xpath))
+                                {
+                                    XmlElement tnPart = tn.OwnerDocument.CreateElement("tn-part");
+                                    tnPart.SetAttribute("type", rank);
+                                    tnPart.InnerXml = tn.InnerXml;
+                                    tn.InnerXml = tnPart.OuterXml;
+                                }
                             }
 
                             break;
@@ -103,11 +110,6 @@
                     }
                 }
             }
-        }
-
-        private void ReplaceTaxonNameByItsParsedContent(string scientificName, string replacement)
-        {
-            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, "(?<=<tn [^>]*>)(" + Regex.Escape(scientificName) + ")(?=</tn>)", replacement);
         }
     }
 }

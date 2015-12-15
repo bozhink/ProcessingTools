@@ -27,16 +27,8 @@
         {
             string xml = this.Xml;
 
-            // Remove blanks around brackets spanning numbers
-            xml = Regex.Replace(xml, @"(\d)\s(\(|\[)([A-Z0-9]+)(\]|\))\s(\d)", "$1$2$3$4$5");
-
-            // Tag DOI
             ////xml = Regex.Replace(xml, @"doi:(\s*)([^,<\s]*[A-Za-z0-9])", "doi: <ext-link ext-link-type=\"uri\" xlink:href=\"http://dx.doi.org/$2\">$2</ext-link>");
             xml = Regex.Replace(xml, @"(?<!<ext-link [^>]*>)(\b[Dd][Oo][Ii]\b:?)\s*(\d+\.[^,<>\s]+[A-Za-z0-9]((?<=&[A-Za-z0-9#]+);)?)", "$1 <ext-link ext-link-type=\"doi\" xlink:href=\"$2\">$2</ext-link>");
-
-            // TODO: move to format
-            // Some format
-            xml = Regex.Replace(xml, "(</source>)((?i)doi:?)", "$1 $2");
 
             this.Xml = xml;
         }
