@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    public class TagContent
+    using Contracts;
+
+    public class TagContent : ITagContent
     {
         private string name;
 
@@ -11,7 +13,7 @@
             this.FullTag = fullTag;
         }
 
-        public TagContent(TagContent tag)
+        public TagContent(ITagContent tag)
         {
             this.Name = tag.Name;
             this.Attributes = tag.Attributes;

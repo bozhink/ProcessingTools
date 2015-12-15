@@ -6,6 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Contracts;
     using DocumentProvider;
     using ProcessingTools.Contracts.Log;
 
@@ -20,9 +21,9 @@
             return replacement;
         }
 
-        public static string GetReplacementOfTagNode(this TagContent tag, string textToTag)
+        public static string GetReplacementOfTagNode(this ITagContent tag, string textToTag)
         {
-            TagContent replacementTag = new TagContent(tag);
+            ITagContent replacementTag = new TagContent(tag);
             replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
             replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
 
@@ -32,7 +33,7 @@
 
         public static void TagContentInDocument(
             this IEnumerable<string> textToTagList,
-            TagContent tag,
+            ITagContent tag,
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
@@ -56,7 +57,7 @@
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         public static void TagContentInDocument(
             this string textToTag,
-            TagContent tag,
+            ITagContent tag,
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
@@ -79,7 +80,7 @@
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         public static void TagContentInDocument(
             this IEnumerable<string> textToTagList,
-            TagContent tag,
+            ITagContent tag,
             XmlNodeList nodeList,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
@@ -101,7 +102,7 @@
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         public static void TagContentInDocument(
             this string textToTag,
-            TagContent tag,
+            ITagContent tag,
             XmlNodeList nodeList,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
@@ -329,7 +330,7 @@
                 //// will become
                 //// </x3></x4><tagName><x4><x3> ... <x1> ...<x2> ... </x2> ... </x1> ... </x3> ... </x4> ... </tagName>
 
-                List<TagContent> tags = GetTagModel(text);
+                List<ITagContent> tags = GetTagModel(text);
 
                 /*
                  * Broken block are pieces of xml in which the number of opening and closing tags is equal,
@@ -379,7 +380,7 @@
                         }
 
                         string replace = matchValue;
-                        List<TagContent> localTags = GetTagModel(replace);
+                        List<ITagContent> localTags = GetTagModel(replace);
 
                         // Here we have 2 cases: localTags[0].Name == 'tagName' and localTags[localTags.Count - 1].Name == '/tagName'
                         int firstLocalItem = 0;
@@ -444,7 +445,7 @@
             return testXmlNode.InnerXml;
         }
 
-        private static string GenerateSingleBrokenBlockSearchPattern(List<TagContent> tags, ref int initialIndexInTags)
+        private static string GenerateSingleBrokenBlockSearchPattern(List<ITagContent> tags, ref int initialIndexInTags)
         {
             StringBuilder singleBrokenPattern = new StringBuilder();
             List<string> brokenStack = new List<string>();
@@ -484,9 +485,9 @@
             return singleBrokenPattern.ToString();
         }
 
-        private static List<TagContent> GetTagModel(string text)
+        private static List<ITagContent> GetTagModel(string text)
         {
-            List<TagContent> tags = new List<TagContent>();
+            var tags = new List<ITagContent>();
             Regex matchTag = new Regex(@"</?\w[^>]*>");
             Regex matchTagName = new Regex(@"\A/?[^\s/<>""'!\?]+");
             Regex matchTagAttributes = new Regex(@"\s+.*\Z");
@@ -496,7 +497,7 @@
                 string internalOfTag = wholeTag.Value.Substring(1, wholeTag.Value.Length - 2);
                 string tagName = matchTagName.Match(internalOfTag).Value;
                 string tagAttributes = matchTagAttributes.Match(internalOfTag).Value;
-                TagContent tag = new TagContent(tagName, tagAttributes, wholeTag.Value);
+                var tag = new TagContent(tagName, tagAttributes, wholeTag.Value);
 
                 if (tag.IsClosingTag)
                 {

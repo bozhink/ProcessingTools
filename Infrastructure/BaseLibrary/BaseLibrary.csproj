@@ -79,6 +79,7 @@
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\Format.NlmSystem.cs" />
+    <Compile Include="Contracts\ITagContent.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,7 +131,7 @@
     <Compile Include="Special\QuentinFlora.cs" />
     <Compile Include="QueryReplace.cs" />
     <Compile Include="References\ReferencesTagger.cs" />
-    <Compile Include="SpecimentCount\SpecimenCountTagger.cs" />
+    <Compile Include="StringHarvestTagger.cs" />
     <Compile Include="TagContent.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="Taxonomy\Species\Species.cs" />
@@ -256,6 +257,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
+      <Name>Bio.Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
       <Name>Bio.Taxonomy.Harvesters</Name>
