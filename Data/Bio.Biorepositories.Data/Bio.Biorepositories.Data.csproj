@@ -53,19 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataFiles\biorepositories.csv" />
-    <None Include="DataFiles\biorepository_labels.csv" />
-    <None Include="DataFiles\institution_collections.csv" />
-    <None Include="DataFiles\institution_collection_labels.csv" />
-    <None Include="DataFiles\personal_collections.csv" />
-    <None Include="DataFiles\personal_collection_labels.csv" />
-    <None Include="DataFiles\staff_members.csv" />
-    <None Include="DataFiles\staff_member_labels.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\biorepositories.sql" />
-    <Content Include="DataFiles\institutional-codes.txt" />
+    <Folder Include="DataFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,11 +52,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Biorepositories\biorepositories.sql" />
+    <Content Include="DataFiles\Biorepositories\institutional-codes.txt" />
     <Content Include="DataFiles\morphology.sql" />
     <Content Include="DataFiles\morphology.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DataFiles\Biorepositories\biorepositories.csv" />
+    <None Include="DataFiles\Biorepositories\biorepository_labels.csv" />
+    <None Include="DataFiles\Biorepositories\institution_collections.csv" />
+    <None Include="DataFiles\Biorepositories\institution_collection_labels.csv" />
+    <None Include="DataFiles\Biorepositories\personal_collections.csv" />
+    <None Include="DataFiles\Biorepositories\personal_collection_labels.csv" />
+    <None Include="DataFiles\Biorepositories\staff_members.csv" />
+    <None Include="DataFiles\Biorepositories\staff_member_labels.csv" />
+    <None Include="DataFiles\Environments\environments_entities.tsv" />
+    <None Include="DataFiles\Environments\environments_global.tsv" />
+    <None Include="DataFiles\Environments\environments_groups.tsv" />
+    <None Include="DataFiles\Environments\environments_names.tsv" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IExtractHcmrHarvester.cs" />
     <Compile Include="Contracts\IInstitutionalCodesHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCodesHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCountHarvester.cs" />
