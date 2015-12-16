@@ -40,11 +40,11 @@
     <xsl:apply-templates />
   </xsl:template>
   
-  <xsl:template match="tn-part/node()[name(.)!='i' and name(.)!='b']">
+  <xsl:template match="tn-part/*[name(.)!='i' and name(.)!='b']">
     <xsl:value-of select="."/>
   </xsl:template>
   
-  <xsl:template match="locality-coordinates/node()[name(.)!='i' and name(.)!='b']">
+  <xsl:template match="locality-coordinates/*[name(.)!='i' and name(.)!='b']">
     <xsl:value-of select="."/>
   </xsl:template>
   
@@ -69,7 +69,7 @@
     <xsl:apply-templates />
   </xsl:template>
   
-  <xsl:template match="author-notes/fn/p/node()[name(.)!='email' and name(.)!='ext-link']">
+  <xsl:template match="author-notes/fn/p/*[name(.)!='email' and name(.)!='ext-link']">
     <xsl:value-of select="."/>
   </xsl:template>
 

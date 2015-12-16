@@ -86,7 +86,7 @@
                 //// this.AdvancedTagLowerTaxa("//*[i]");
                 this.Xml = this.TagInfraspecificTaxa(this.Xml);
 
-                //this.DeepTag();
+                this.DeepTag();
             }
             catch
             {
@@ -245,7 +245,8 @@
 
             foreach (string taxon in new HashSet<string>(taxa))
             {
-                taxa.AddRange(taxon.Split(' '));
+                taxa.AddRange(taxon.Split(' ')
+                    .Where(s => !string.IsNullOrWhiteSpace(s)));
             }
 
             Regex matchLetterDotWord = new Regex(@"\A([A-Z]\.|[A-Za-z])\Z");

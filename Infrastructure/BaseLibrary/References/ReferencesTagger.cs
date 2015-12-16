@@ -48,8 +48,9 @@
                 {
                     Id = r.Attribute("id").Value,
                     Year = Regex.Escape(r.Attribute("year").Value),
-                    Authors = Regex.Replace(r.Attribute("authors").Value, @"\W+", "\\W*")
-                });
+                    Authors = Regex.Replace(r.Attribute("authors").Value, @"\W+", "\\W*") + "\\W{0,3}"
+                })
+                .Where(s => !string.IsNullOrWhiteSpace(s.Id) && !string.IsNullOrWhiteSpace(s.Year) && !string.IsNullOrWhiteSpace(s.Authors));
 
             /*
              * Tag references using generated template

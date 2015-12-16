@@ -127,8 +127,6 @@
             // Remove blanks around brackets spanning numbers
             xml = Regex.Replace(xml, @"(\d)\s(\(|\[)([A-Z0-9]+)(\]|\))\s(\d)", "$1$2$3$4$5");
 
-            xml = Regex.Replace(xml, "(</source>)((?i)doi:?)", "$1 $2");
-
             this.Xml = xml;
         }
 
@@ -191,8 +189,8 @@
 
             result = Regex.Replace(result, @"(</i>)(\()", "$1 $2");
             result = Regex.Replace(result, @"(<i>)([\.,;:\s]+)", "$2$1");
-            result = Regex.Replace(result, @"([‘“])(<i>)", "$2$1");
-            result = Regex.Replace(result, @"(</i>)([’”])", "$2$1");
+            ////result = Regex.Replace(result, @"([‘“])(<i>)", "$2$1");
+            ////result = Regex.Replace(result, @"(</i>)([’”])", "$2$1");
 
             return result;
         }
@@ -274,6 +272,8 @@
 
             ////result = Regex.Replace(result, @"<role>Ed\.</role>", "<role>Ed</role>");
             result = Regex.Replace(result, @"</role>\)(\.|,|;|:)", "</role>)");
+
+            result = Regex.Replace(result, "(</source>)((?i)doi:?)", "$1 $2");
 
             return result;
         }

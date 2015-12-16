@@ -55,4 +55,11 @@
       <xsl:value-of select="." />
     </xsl:attribute>
   </xsl:template>
+
+  <xsl:template match="addr-line[count(node()) = count(text())]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space(.)" />
+    </xsl:element>
+  </xsl:template>
 </xsl:stylesheet>
