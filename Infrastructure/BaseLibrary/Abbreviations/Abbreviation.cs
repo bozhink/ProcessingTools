@@ -25,7 +25,7 @@
         {
             get
             {
-                return "\\b(" + Regex.Escape(this.Content) + ")\\b";
+                return $"\\b({Regex.Escape(this.Content)})\\b";
             }
         }
 

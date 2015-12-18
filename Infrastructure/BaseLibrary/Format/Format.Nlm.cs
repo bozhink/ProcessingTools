@@ -124,8 +124,8 @@
             // Remove empty lines
             xml = Regex.Replace(xml, "\n\\s*(?=\n)", string.Empty);
 
-            // Remove blanks around brackets spanning numbers
-            xml = Regex.Replace(xml, @"(\d)\s(\(|\[)([A-Z0-9]+)(\]|\))\s(\d)", "$1$2$3$4$5");
+            ////// Remove blanks around brackets spanning numbers
+            ////xml = Regex.Replace(xml, @"(\d)\s(\(|\[)([A-Z0-9]+)(\]|\))\s(\d)", "$1$2$3$4$5");
 
             this.Xml = xml;
         }
