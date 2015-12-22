@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Contracts
+﻿namespace ProcessingTools.MediaType.Services.Data.Models.Contracts
 {
     public interface IMediaType
     {

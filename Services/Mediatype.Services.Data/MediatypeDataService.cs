@@ -2,11 +2,11 @@
 {
     using System;
     using System.Linq;
-    using Contracts;
 
     using MediaType.Data.Models;
     using MediaType.Data.Repositories;
     using Models;
+    using Models.Contracts;
 
     public class MediaTypeDataService : MediaTypeDataServiceBase
     {

@@ -37,7 +37,7 @@
     <Compile Include="GbifDataRequester.cs" />
     <Compile Include="Models\Alternative.cs" />
     <Compile Include="Models\GbifApiResponseModel.cs" />
-    <Compile Include="Contracts\IGbifTaxon.cs" />
+    <Compile Include="Models\Contracts\IGbifTaxon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

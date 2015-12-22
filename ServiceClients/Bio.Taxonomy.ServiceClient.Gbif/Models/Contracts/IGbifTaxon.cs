@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts
+﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts
 {
     public interface IGbifTaxon
     {

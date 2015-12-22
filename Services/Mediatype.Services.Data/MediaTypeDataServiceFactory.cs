@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using Contracts;
+    using Models.Contracts;
 
     public abstract class MediaTypeDataServiceFactory : MediaTypeDataServiceBase
     {

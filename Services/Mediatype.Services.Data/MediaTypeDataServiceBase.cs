@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Models;
+    using Models.Contracts;
     using ProcessingTools.MediaType.Services.Data.Contracts;
 
     public abstract class MediaTypeDataServiceBase : IMediaTypeDataService

@@ -2,6 +2,8 @@
 {
     using System.Linq;
 
+    using Models.Contracts;
+
     public interface IMediaTypeDataService
     {
         IQueryable<IMediaType> GetMediaType(string fileExtension);

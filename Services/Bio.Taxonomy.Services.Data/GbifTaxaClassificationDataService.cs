@@ -7,7 +7,7 @@
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif;
-    using ServiceClient.Gbif.Contracts;
+    using ServiceClient.Gbif.Models.Contracts;
     using Taxonomy.Contracts;
 
     public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
