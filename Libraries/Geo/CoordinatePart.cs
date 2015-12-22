@@ -4,8 +4,8 @@
     using System.Globalization;
     using System.Text.RegularExpressions;
 
-    using ProcessingTools.Extensions;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Extensions;
     using Types;
 
     public class CoordinatePart

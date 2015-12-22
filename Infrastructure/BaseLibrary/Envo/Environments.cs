@@ -1,22 +1,30 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System.Data.SqlClient;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Bio.Harvesters.Contracts;
+
     using Configurator;
     using Contracts;
+    using Models;
 
     public class Environments : TaggerBase, IBaseTagger
     {
-        public Environments(string xml)
+        private const string EnvoTagName = "envo";
+        private IEnvoTermsHarvester harvester;
+
+        public Environments(string xml, IEnvoTermsHarvester harvester)
             : base(xml)
         {
+            this.harvester = harvester;
         }
 
-        public Environments(Config config, string xml)
+        public Environments(Config config, string xml, IEnvoTermsHarvester harvester)
             : base(config, xml)
         {
+            this.harvester = harvester;
         }
 
         public void Tag()
@@ -39,64 +47,59 @@
 
             try
             {
-                // Select all nodes which potentioaly contains environments’ records
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-
-                // Connect to Environments database and use its records to tag Xml
-                using (SqlConnection connection = new SqlConnection(this.Config.EnvironmentsDataSourceString))
-                {
-                    connection.Open();
-
-                    string query = @"SELECT * FROM [EnvironmentsDatabase].[Environments].[Envo_Terms_View]";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                this.harvester.Harvest(this.TextContent);
+                var terms = this.harvester.Data
+                    .Select(t => new EnvoTermResponseModel
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        EntityId = t.EntityId,
+                        EnvoId = t.EnvoId,
+                        Content = t.Content
+                    })
+                    .ToList();
+
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
+                foreach (var term in terms)
+                {
+                    testXmlNode.InnerText = term.Content;
+                    term.Content = testXmlNode.InnerXml;
+
+                    string envoOpenTag = "<" + EnvoTagName +
+                        @" EnvoTermUri=""" + term.Uri + @"""" +
+                        @" ID=""" + term.EntityId + @"""" +
+                        @" EnvoID=""" + term.EnvoId + @"""" +
+                        @" VerbatimTerm=""" + term.Content + @"""" +
+                        @">";
+
+                    string envoCloseTag = "</" + EnvoTagName + ">";
+
+                    foreach (XmlNode node in nodeList)
+                    {
+                        string pattern = "\\b((?i)" + Regex.Escape(term.Content).Replace("'", "\\W") + ")\\b";
+                        if (Regex.IsMatch(node.InnerXml, pattern))
                         {
-                            while (reader.Read())
+                            // The text content of the current node contains this environment string
+                            pattern = "(?<!<[^>]+)" + pattern + "(?![^<>]*>)";
+                            string replace = node.InnerXml;
+
+                            if (!Regex.IsMatch(node.InnerXml, pattern))
                             {
-                                // For each environments’ record in database try to tag the Xml content
-                                foreach (XmlNode node in nodeList)
-                                {
-                                    testXmlNode.InnerText = reader.GetString(0);
-                                    string contentString = testXmlNode.InnerText;
-                                    string envoId = "ENVO_" + reader.GetString(2).Substring(5);
-                                    string envoTagName = "envo";
-                                    string envoOpenTag = "<" + envoTagName +
-                                        ////@" EnvoTermUri=""http://purl.obolibrary.org/obo/" + envoId + @"""" + 
-                                        @" EnvoTermUri=""" + envoId + @"""" +
-                                        @" ID=""" + reader.GetInt32(1) + @"""" +
-                                        @" EnvoID=""" + envoId + @"""" +
-                                        @" VerbatimTerm=""" + reader.GetString(0) + @"""" +
-                                        @">";
+                                /*
+                                 * The xml-as-string content of the current node does not contain this environment string.
+                                 * Here we suppose that there is some tag inside the environment-string in the xml node.
+                                 */
 
-                                    string pattern = "\\b((?i)" + Regex.Replace(Regex.Escape(contentString), "'", "\\W") + ")\\b";
-                                    if (Regex.Match(node.InnerText, pattern).Success)
-                                    {
-                                        // The text content of the current node contains this environment string
-                                        pattern = "(?<!<[^>]+)" + pattern + "(?![^<>]*>)";
-                                        string replace = node.InnerXml;
+                                // Tag the xml-node-content using non-regex skip-tag matches
+                                replace = node.InnerXml.TagNodeContent(term.Content, envoOpenTag);
 
-                                        if (!Regex.Match(node.InnerXml, pattern).Success)
-                                        {
-                                            //// The xml-as-string content of the current node soes not contain this environment string
-                                            //// Here we suppose that there is some tag inside the environment-string in the xml node.
-
-                                            // Tag the xml-node-content using non-regex skip-tag matches
-                                            replace = node.InnerXml.TagNodeContent(contentString, envoOpenTag);
-
-                                            XmlNode envoNode = this.XmlDocument.CreateElement(envoTagName);
-                                            replace = replace.TagOrderNormalizer(envoNode);
-                                        }
-                                        else
-                                        {
-                                            replace = Regex.Replace(node.InnerXml, pattern, envoOpenTag + "$1</" + envoTagName + ">");
-                                        }
-
-                                        node.InnerXml = replace;
-                                    }
-                                }
+                                XmlNode envoNode = this.XmlDocument.CreateElement(EnvoTagName);
+                                replace = replace.TagOrderNormalizer(envoNode);
                             }
+                            else
+                            {
+                                replace = Regex.Replace(node.InnerXml, pattern, envoOpenTag + "$1" + envoCloseTag);
+                            }
+
+                            node.InnerXml = replace;
                         }
                     }
                 }
@@ -105,8 +108,6 @@
             {
                 throw;
             }
-
-            this.XmlDocument.InnerXml = Regex.Replace(this.XmlDocument.InnerXml, @"(?<=\sEnvoTermUri="")", "http://purl.obolibrary.org/obo/");
         }
     }
 }

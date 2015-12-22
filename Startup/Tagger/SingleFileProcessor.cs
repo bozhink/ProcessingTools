@@ -16,13 +16,22 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
+
+    using Bio.Environments.Data;
+    using Bio.Environments.Data.Models;
+    using Bio.Environments.Data.Repositories;
+    using Bio.Environments.Services.Data;
+    using Bio.Harvesters;
+
     using Bio.Taxonomy.Contracts;
+    using Bio.Taxonomy.Harvesters;
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Types;
+
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
-    using Bio.Taxonomy.Harvesters;
+
     public class SingleFileProcessor : FileProcessor
     {
         private XmlFileProcessor fileProcessor;
@@ -712,7 +721,11 @@
 
         private void TagEnvoTerms()
         {
-            var tagger = new Environments(this.settings.Config, this.document.Xml);
+            var context = new BioEnvironmentsDbContext();
+            var repository = new BioEnvironmentsGenericRepository<EnvoName>(context);
+            var service = new EnvoTermsDataService(repository);
+            var harvester = new EnvoTermsHarvester(service);
+            var tagger = new Environments(this.settings.Config, this.document.Xml, harvester);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

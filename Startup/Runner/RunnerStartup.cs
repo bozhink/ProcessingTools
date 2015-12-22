@@ -11,7 +11,8 @@
             timer.Start();
 
             InitializeMediaTypeDatabase();
-            InitializeTaxonomyDatabase();
+            ////InitializeTaxonomyDatabase();
+            InitializeBioEnvironmentsDatabase();
 
             Console.WriteLine(timer.Elapsed);
         }

@@ -41,7 +41,7 @@
             string textToMine = string.Join(" ", content.ExtractWordsFromString());
 
             // Match plausible higher taxa by pattern.
-            this.data = new HashSet<string>(textToMine.GetMatches(matchHigherTaxa));
+            this.data = new HashSet<string>(textToMine.GetMatches(this.matchHigherTaxa));
 
             if (this.whiteList != null)
             {

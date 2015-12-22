@@ -78,6 +78,7 @@
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\Format.NlmSystem.cs" />
     <Compile Include="Contracts\ITagContent.cs" />
+    <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

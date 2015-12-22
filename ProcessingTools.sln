@@ -140,6 +140,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters", "Harvester
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters", "Harvesters\Geo.Harvesters\Geo.Harvesters.csproj", "{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data", "Data\Bio.Environments.Data\Bio.Environments.Data.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data.Models", "Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj", "{A9005EC2-E1DF-4814-A4DF-212F49800FE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Services.Data", "Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj", "{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -620,6 +626,30 @@ Global
 		{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}.Release|x64.ActiveCfg = Release|Any CPU
 		{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}.Release|x64.Build.0 = Release|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}.Release|x64.Build.0 = Release|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Debug|x64.Build.0 = Debug|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Release|x64.ActiveCfg = Release|Any CPU
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8}.Release|x64.Build.0 = Release|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Debug|x64.Build.0 = Debug|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -682,6 +712,9 @@ Global
 		{68165C17-4F06-4652-B1F6-AECF7F44CA5A} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{12D8DD48-A053-45CE-94B8-F1182EE28EF8} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{B48536C1-3EB5-41A1-B9E0-66F03F3882F9} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
+		{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{A9005EC2-E1DF-4814-A4DF-212F49800FE8} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{0B476257-30BC-4E11-B1A5-EC3DE4ACF702} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

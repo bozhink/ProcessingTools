@@ -13,6 +13,10 @@
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.MediaType.Data.MediaTypesDbContext, ProcessingTools.MediaType.Data.Migrations.Configuration>());
             ////ProcessingTools.MediaType.Data.MediaTypesDbContext.Create().Database.Initialize(true);
+
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Environments.Data.BioEnvironmentsDbContext, ProcessingTools.Bio.Environments.Data.Migrations.Configuration>());
+            ////ProcessingTools.Bio.Environments.Data.BioEnvironmentsDbContext.Create().Database.Initialize(true);
         }
     }
 }

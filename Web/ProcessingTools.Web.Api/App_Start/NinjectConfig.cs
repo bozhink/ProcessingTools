@@ -3,12 +3,18 @@
     using System;
     using System.Web;
 
+    using Bio.Environments.Services.Data;
+    using Bio.Environments.Services.Data.Contracts;
+
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Services.Data.Contracts;
+
     using Common.Providers;
     using Common.Providers.Contracts;
+
     using MediaType.Services.Data;
     using MediaType.Services.Data.Contracts;
+
     using Ninject;
     using Ninject.Web.Common;
 
@@ -29,6 +35,10 @@
             kernel.Bind<ICatalogueOfLifeTaxaClassificationDataService>().To<CatalogueOfLifeTaxaClassificationDataService>();
 
             kernel.Bind<IGbifTaxaClassificationDataService>().To<GbifTaxaClassificationDataService>();
+
+            kernel.Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>().To<Bio.Environments.Data.BioEnvironmentsDbContext>();
+            kernel.Bind(typeof(Bio.Environments.Data.Repositories.IBioEnvironmentsRepository<>)).To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<>));
+            kernel.Bind<IEnvoTermsDataService>().To<EnvoTermsDataService>();
         };
 
         public static IKernel CreateKernel()

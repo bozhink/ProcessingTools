@@ -116,6 +116,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
+      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
+      <Name>Bio.Environments.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
@@ -127,6 +135,10 @@
     <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
+      <Name>Bio.Harvesters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
@@ -195,6 +207,10 @@
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>

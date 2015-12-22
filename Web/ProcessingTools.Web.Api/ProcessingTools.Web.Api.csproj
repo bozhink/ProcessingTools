@@ -280,6 +280,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AphiaController.cs" />
     <Compile Include="Controllers\CoLController.cs" />
+    <Compile Include="Controllers\EnvoTermsController.cs" />
     <Compile Include="Controllers\GbifController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaTypeController.cs" />
@@ -287,6 +288,11 @@
     <Compile Include="Factories\TaxaClassificationDataServiceControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels\AddExternalLoginBindingModel.cs" />
     <Compile Include="Models\AccountBindingModels\ChangePasswordBindingModel.cs" />
@@ -298,6 +304,7 @@
     <Compile Include="Models\AccountViewModels\ManageInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels\UserInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels\UserLoginInfoViewModel.cs" />
+    <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\MediaTypeModels\MediaTypeResponseModel.cs" />
     <Compile Include="Models\TaxonomyDataServices\TaxonClassificationResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -388,6 +395,14 @@
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
+      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
+      <Name>Bio.Environments.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
@@ -412,6 +427,10 @@
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
@@ -420,6 +439,12 @@
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>MediaType.Services.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
