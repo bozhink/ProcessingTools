@@ -74,8 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomXslRunner.cs" />
-    <Compile Include="Coordinates\Coordinate.cs" />
-    <Compile Include="Coordinates\ICoordinate.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\Format.NlmSystem.cs" />
@@ -86,8 +84,6 @@
     <Compile Include="Abbreviations\Abbreviation.cs" />
     <Compile Include="Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Base.cs" />
-    <Compile Include="Coordinates\CoordinatePart.cs" />
-    <Compile Include="Coordinates\CoordinatePartType.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="TaggerBase.cs" />
@@ -268,6 +264,10 @@
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
+      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
+      <Name>Geo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>

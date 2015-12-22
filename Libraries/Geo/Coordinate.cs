@@ -1,5 +1,7 @@
-﻿namespace ProcessingTools.BaseLibrary.Coordinates
+﻿namespace ProcessingTools.Geo
 {
+    using Contracts;
+
     public class Coordinate : ICoordinate
     {
         public Coordinate()

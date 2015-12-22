@@ -34,13 +34,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDatesHarvester.cs" />
+    <Compile Include="Contracts\IDoiHarvester.cs" />
+    <Compile Include="Contracts\IPmcIdsHarvester.cs" />
     <Compile Include="Contracts\IQuantitiesHarvester.cs" />
+    <Compile Include="Contracts\IUrlHarvester.cs" />
+    <Compile Include="DoiHarvester.cs" />
+    <Compile Include="PmcIdsHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlHarvester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

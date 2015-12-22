@@ -1,11 +1,12 @@
-﻿namespace ProcessingTools.BaseLibrary.Coordinates
+﻿namespace ProcessingTools.Geo
 {
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
 
-    using Extensions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Contracts.Log;
+    using Types;
 
     public class CoordinatePart
     {
@@ -90,6 +91,7 @@
             }
             catch (Exception e)
             {
+                // TODO: coordinate part
                 this.logger?.Log(e, "CoordinatePart.Parse()");
                 coordinatePartUnsignedValue = 0.0;
             }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Coordinates
+﻿namespace ProcessingTools.Geo.Types
 {
     public enum CoordinatePartType
     {

@@ -4,10 +4,11 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using Configurator;
     using Contracts;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Geo;
 
     public class CoordinatesParser : Base, IBaseParser
     {
