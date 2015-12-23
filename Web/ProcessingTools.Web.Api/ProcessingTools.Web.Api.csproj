@@ -427,6 +427,34 @@
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
+      <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
+      <Name>Bio.ServiceClient.ExtractHcmr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
+      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
+      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
+      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
+      <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.csproj">
+      <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.PaleobiologyDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
+      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>

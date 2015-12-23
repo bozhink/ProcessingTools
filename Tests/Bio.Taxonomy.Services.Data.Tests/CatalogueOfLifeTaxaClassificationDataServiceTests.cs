@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ServiceClient.CatalogueOfLife;
 
     [TestClass]
     public class CatalogueOfLifeTaxaClassificationDataServiceTests
@@ -9,7 +10,8 @@
         [TestMethod]
         public void CatalogueOfLifeTaxaClassificationDataService_DefaultConstructor_ShouldWork()
         {
-            var service = new CatalogueOfLifeTaxaClassificationDataService();
+            var requester = new CatalogueOfLifeDataRequester();
+            var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
 
@@ -19,7 +21,8 @@
             const string ScientificName = "Coleoptera";
             const string Rank = "order";
 
-            var service = new CatalogueOfLifeTaxaClassificationDataService();
+            var requester = new CatalogueOfLifeDataRequester();
+            var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
             var response = service.Resolve(ScientificName);
 
             var defaultClassification = response.FirstOrDefault();

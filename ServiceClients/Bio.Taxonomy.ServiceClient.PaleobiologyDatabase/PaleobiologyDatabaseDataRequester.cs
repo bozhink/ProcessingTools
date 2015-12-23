@@ -4,10 +4,11 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
+    using Contracts;
     using Infrastructure.Net;
     using Models;
 
-    public class PaleobiologyDatabaseDataRequester
+    public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
         private const string PaleobiologyDatabaseBaseAddress = "https://paleobiodb.org";
 
@@ -17,7 +18,7 @@
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>Taxonomic rank of the scientific name.</returns>
         /// <example>https://paleobiodb.org/data1.1/taxa/single.txt?name=Dascillidae</example>
-        public static async Task<string> SearchNameInPaleobiologyDatabase(string scientificName)
+        public async Task<string> SearchNameInPaleobiologyDatabase(string scientificName)
         {
             /*
              * "taxon_no","orig_no","record_type","associated_records","rank","taxon_name","common_name","status","parent_no","senior_no","reference_no","is_extant"
@@ -28,7 +29,7 @@
             try
             {
                 var connector = new Connector(PaleobiologyDatabaseBaseAddress);
-                string responseString = await connector.GetXmlStringAsync(url);
+                string responseString = await connector.GetAsync(url, Connector.XmlContentType);
 
                 string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                 string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -63,14 +64,14 @@
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>PbdbAllParents object which provides information about the scientific name.</returns>
         /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents</example>
-        public static async Task<PbdbAllParents> SearchParentsInPaleobiologyDatabase(string scientificName)
+        public async Task<PbdbAllParents> RequestData(string scientificName)
         {
             string url = $"data1.1/taxa/list.json?name={scientificName}&rel=all_parents";
 
             try
             {
                 var connector = new Connector(PaleobiologyDatabaseBaseAddress);
-                var result = await connector.GetDeserializedDataContractJsonAsync<PbdbAllParents>(url);
+                var result = await connector.GetAndDeserializeDataContractJsonAsync<PbdbAllParents>(url);
                 return result;
             }
             catch

@@ -290,10 +290,6 @@
       <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
-      <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
-      <Name>Bio.ServiceClient.ExtractHcmr</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>

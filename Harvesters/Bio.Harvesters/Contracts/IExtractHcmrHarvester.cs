@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Harvesters.Contracts
 {
+    using Models.Contracts;
     using ProcessingTools.Contracts;
 
-    public interface IExtractHcmrHarvester<T> : IHarvester<T>
+    public interface IExtractHcmrHarvester : IHarvester<IExtractHcmrEnvoTerm>
     {
     }
 }

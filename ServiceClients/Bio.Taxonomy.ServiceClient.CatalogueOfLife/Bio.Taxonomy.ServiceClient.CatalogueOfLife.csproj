@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CatalogueOfLifeDataRequester.cs" />
+    <Compile Include="Contracts\ICatalogueOfLifeDataRequester.cs" />
     <Compile Include="Models\AcceptedName.cs" />
     <Compile Include="Models\CatalogueOfLifeApiServiceResponse.cs" />
     <Compile Include="Models\CommonName.cs" />
@@ -46,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
       <Name>Extensions</Name>

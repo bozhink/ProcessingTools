@@ -9,11 +9,13 @@
         [Ignore]
         public void GbifDataRequester_SearchGbif_WithValidTaxonName_ShouldReturnResult()
         {
-            string scientificName = "Coleoptera";
-            var result = GbifDataRequester.SearchGbif(scientificName).Result;
+            const string ScientificName = "Coleoptera";
+
+            var requester = new GbifDataRequester();
+            var result = requester.RequestData(ScientificName)?.Result;
 
             Assert.IsNotNull(result, "Result schould not be null.");
-            Assert.AreEqual(scientificName, result.CanonicalName, "CanonicalName schould match.");
+            Assert.AreEqual(ScientificName, result.CanonicalName, "CanonicalName schould match.");
         }
     }
 }

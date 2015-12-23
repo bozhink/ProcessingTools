@@ -1,14 +1,21 @@
 ﻿namespace ProcessingTools.Infrastructure.Net
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Runtime.Serialization.Json;
+    using System.Text;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
 
-    public partial class Connector
+    public class Connector
     {
+        public const string DefaultContentType = "text/plain; encoding='utf-8'";
+        public const string JsonContentType = "application/json";
+        public const string XmlContentType = "application/xml";
+        public static readonly Encoding DefaultEncoding = Encoding.UTF8;
+
         private string baseAddress;
 
         public Connector()
@@ -42,7 +49,7 @@
 
         public Uri BaseAddressUri { get; private set; }
 
-        public async Task<T> GetDeserializedXmlAsync<T>(string url)
+        public async Task<T> GetAndDeserializeXmlAsync<T>(string url)
             where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -53,7 +60,7 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(XmlMediaType));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(XmlContentType));
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
@@ -67,26 +74,7 @@
             return result;
         }
 
-        public async Task<string> GetXmlStringAsync(string url)
-        {
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                throw new ArgumentNullException("url");
-            }
-
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(XmlMediaType));
-                if (this.BaseAddressUri != null)
-                {
-                    client.BaseAddress = this.BaseAddressUri;
-                }
-
-                return await client.GetStringAsync(url);
-            }
-        }
-
-        public async Task<T> GetDeserializedDataContractJsonAsync<T>(string url)
+        public async Task<T> GetAndDeserializeDataContractJsonAsync<T>(string url)
             where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -97,7 +85,7 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonMediaType));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonContentType));
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
@@ -111,7 +99,7 @@
             return result;
         }
 
-        public async Task<string> GetJsonStringAsync(string url)
+        public async Task<string> GetAsync(string url, string acceptContentType)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -120,13 +108,99 @@
 
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonMediaType));
+                if (!string.IsNullOrWhiteSpace(acceptContentType))
+                {
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptContentType));
+                }
+
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
                 return await client.GetStringAsync(url);
+            }
+        }
+
+        public async Task<string> PostAsync(string url, string content, string contentType, Encoding encoding)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentNullException("url");
+            }
+
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                throw new ArgumentNullException("content");
+            }
+
+            using (var client = new HttpClient())
+            using (var postContent = new StringContent(content, encoding))
+            {
+                if (!string.IsNullOrWhiteSpace(contentType))
+                {
+                    postContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+                }
+
+                if (this.BaseAddressUri != null)
+                {
+                    client.BaseAddress = this.BaseAddressUri;
+                }
+
+                var response = await client.PostAsync(url, postContent);
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        public async Task<string> PostAsync(string url, Dictionary<string, string> values, Encoding encoding)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentNullException("url");
+            }
+
+            if (values == null)
+            {
+                throw new ArgumentNullException("values");
+            }
+
+            using (var client = new HttpClient())
+            using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
+            {
+                if (this.BaseAddressUri != null)
+                {
+                    client.BaseAddress = this.BaseAddressUri;
+                }
+
+                var response = await client.PostAsync(url, content);
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        public async Task<T> PostAndDeserializeXmlAsync<T>(string url, Dictionary<string, string> values, Encoding encoding)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentNullException("url");
+            }
+
+            if (values == null)
+            {
+                throw new ArgumentNullException("values");
+            }
+
+            using (var client = new HttpClient())
+            using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
+            {
+                if (this.BaseAddressUri != null)
+                {
+                    client.BaseAddress = this.BaseAddressUri;
+                }
+
+                var response = await client.PostAsync(url, content);
+                var stream = await response.Content.ReadAsStreamAsync();
+                var serializer = new XmlSerializer(typeof(T));
+                return (T)serializer.Deserialize(stream);
             }
         }
     }

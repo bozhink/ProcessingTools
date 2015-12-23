@@ -1,15 +1,22 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia
 {
+    using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Extensions;
     using Infrastructure.Net;
 
     public class AphiaDirectSoapRequester
     {
-        public static XmlDocument AphiaSoapXml(string scientificName)
+        private const string BaseAddress = "http://www.marinespecies.org";
+        private const string ApiUrl = "aphia.php?p=soap";
+        private readonly Encoding encoding = Encoding.UTF8;
+
+        public XmlDocument AphiaSoapXml(string scientificName)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(@"<?xml version=""1.0""?>
+            xml.LoadXml(@"<?xml version=""1.0""?>
 <soap:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
     xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
     xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">
@@ -23,14 +30,16 @@
             return xml;
         }
 
-        public static async Task<XmlDocument> SearchAphia(string scientificName)
+        public async Task<XmlDocument> SearchAphia(string scientificName)
         {
-            const string ApiUrl = "http://www.marinespecies.org/aphia.php?p=soap";
-
-            return await Connector.PostToXmlAsync(
+            var connector = new Connector(BaseAddress);
+            var response = await connector.PostAsync(
                 ApiUrl,
-                AphiaDirectSoapRequester.AphiaSoapXml(scientificName).OuterXml,
-                "text/xml; encoding='utf-8'");
+                this.AphiaSoapXml(scientificName).OuterXml,
+                Connector.XmlContentType,
+                this.encoding);
+
+            return response.ToXmlDocument();
         }
     }
 }

@@ -16,18 +16,18 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
-
     using Bio.Environments.Data;
     using Bio.Environments.Data.Models;
     using Bio.Environments.Data.Repositories;
     using Bio.Environments.Services.Data;
     using Bio.Harvesters;
-
+    using Bio.ServiceClient.ExtractHcmr;
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Harvesters;
+    using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
+    using Bio.Taxonomy.ServiceClient.Gbif;
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Types;
-
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
@@ -483,8 +483,8 @@
             if (this.settings.ParseHigherTaxa)
             {
                 {
-                    var dataService = new LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
+                    var service = new LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -492,8 +492,8 @@
 
                 if (this.settings.ParseHigherWithAphia)
                 {
-                    var dataService = new AphiaTaxaClassificationDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
+                    var service = new AphiaTaxaClassificationDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -501,8 +501,9 @@
 
                 if (this.settings.ParseHigherWithCoL)
                 {
-                    var dataService = new CatalogueOfLifeTaxaClassificationDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
+                    var requester = new CatalogueOfLifeDataRequester();
+                    var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -510,8 +511,9 @@
 
                 if (this.settings.ParseHigherWithGbif)
                 {
-                    var dataService = new GbifTaxaClassificationDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, dataService, this.logger);
+                    var requester = new GbifDataRequester();
+                    var service = new GbifTaxaClassificationDataService(requester);
+                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -519,8 +521,8 @@
 
                 if (this.settings.ParseHigherBySuffix)
                 {
-                    var dataService = new SuffixHigherTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
+                    var service = new SuffixHigherTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -528,8 +530,8 @@
 
                 if (this.settings.ParseHigherAboveGenus)
                 {
-                    var dataService = new AboveGenusTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, dataService, this.logger);
+                    var service = new AboveGenusTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -572,7 +574,8 @@
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                var service = new GbifTaxaClassificationDataService();
+                var requester = new GbifDataRequester();
+                var service = new GbifTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser);
                 result = parser.Xml;
@@ -580,7 +583,8 @@
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                var service = new CatalogueOfLifeTaxaClassificationDataService();
+                var requester = new CatalogueOfLifeDataRequester();
+                var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser);
                 result = parser.Xml;
@@ -714,7 +718,9 @@
 
         private void TagEnvo()
         {
-            var tagger = new Envo(this.settings.Config, this.document.Xml, this.logger);
+            var requester = new ExtractHcmrDataRequester();
+            var harvester = new ExtractHcmrHarvester(requester);
+            var tagger = new Envo(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

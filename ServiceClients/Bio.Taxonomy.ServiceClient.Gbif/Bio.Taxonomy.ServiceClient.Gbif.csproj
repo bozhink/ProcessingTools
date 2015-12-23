@@ -34,6 +34,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IGbifDataRequester.cs" />
     <Compile Include="GbifDataRequester.cs" />
     <Compile Include="Models\Alternative.cs" />
     <Compile Include="Models\GbifApiResponseModel.cs" />
@@ -41,6 +42,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>

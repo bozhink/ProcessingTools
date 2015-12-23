@@ -13,17 +13,19 @@
 
     public class GlobalNamesResolverDataRequester
     {
-        private const string GlobalNamesResolverBaseAddress = "http://resolver.globalnames.org";
+        private const string BaseAddress = "http://resolver.globalnames.org";
+        private const string ApiUrl = "name_resolvers.xml";
+        private readonly Encoding encoding = Encoding.UTF8;
 
-        public static async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
         {
             try
             {
-                string searchString = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-                string url = $"name_resolvers.xml?{searchString}";
+                string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+                string url = $"{ApiUrl}?{searchString}";
 
-                var connector = new Connector(GlobalNamesResolverBaseAddress);
-                string response = await connector.GetXmlStringAsync(url);
+                var connector = new Connector(BaseAddress);
+                string response = await connector.GetAsync(url, Connector.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch
@@ -32,15 +34,16 @@
             }
         }
 
-        public static async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
         {
-            const string ApiUrl = "http://resolver.globalnames.org/name_resolvers.xml";
             try
             {
-                string postData = BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+                string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string contentType = "application/x-www-form-urlencoded";
 
-                return await Connector.PostToXmlAsync(ApiUrl, postData, contentType);
+                var connector = new Connector(BaseAddress);
+                var response = await connector.PostAsync(ApiUrl, postData, contentType, encoding);
+                return response.ToXmlDocument();
             }
             catch
             {
@@ -48,10 +51,8 @@
             }
         }
 
-        public static async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
         {
-            const string ApiUrl = "http://resolver.globalnames.org/name_resolvers.xml";
-
             try
             {
                 Dictionary<string, string> values = new Dictionary<string, string>();
@@ -62,7 +63,9 @@
                     values.Add("data_source_ids", string.Join("|", sourceId));
                 }
 
-                return await Connector.PostUrlEncodedToXmlAsync(ApiUrl, values, Encoding.UTF8);
+                var connector = new Connector(BaseAddress);
+                var response = await connector.PostAsync(ApiUrl, values, this.encoding);
+                return response.ToXmlDocument();
             }
             catch
             {
@@ -70,7 +73,7 @@
             }
         }
 
-        private static string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
+        private string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
         {
             StringBuilder searchStringBuilder = new StringBuilder();
             searchStringBuilder.Append("names=");

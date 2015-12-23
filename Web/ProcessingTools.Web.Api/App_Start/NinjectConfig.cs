@@ -5,16 +5,18 @@
 
     using Bio.Environments.Services.Data;
     using Bio.Environments.Services.Data.Contracts;
-
+    using Bio.ServiceClient.ExtractHcmr;
+    using Bio.ServiceClient.ExtractHcmr.Contracts;
+    using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
+    using Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
+    using Bio.Taxonomy.ServiceClient.Gbif;
+    using Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Services.Data.Contracts;
-
     using Common.Providers;
     using Common.Providers.Contracts;
-
     using MediaType.Services.Data;
     using MediaType.Services.Data.Contracts;
-
     using Ninject;
     using Ninject.Web.Common;
 
@@ -22,6 +24,10 @@
     {
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
+            kernel.Bind<IExtractHcmrDataRequester>().To<ExtractHcmrDataRequester>();
+            kernel.Bind<ICatalogueOfLifeDataRequester>().To<CatalogueOfLifeDataRequester>();
+            kernel.Bind<IGbifDataRequester>().To<GbifDataRequester>();
+
             kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
             kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
             ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceStaticDictionary>();

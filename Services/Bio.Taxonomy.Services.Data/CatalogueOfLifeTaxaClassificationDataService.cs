@@ -4,18 +4,24 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Xml;
 
     using Contracts;
     using Infrastructure.Concurrency;
     using Models;
-    using ServiceClient.CatalogueOfLife;
+    using ServiceClient.CatalogueOfLife.Contracts;
     using ServiceClient.CatalogueOfLife.Models;
     using Taxonomy.Contracts;
     using Types;
 
     public class CatalogueOfLifeTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
     {
+        private ICatalogueOfLifeDataRequester requester;
+
+        public CatalogueOfLifeTaxaClassificationDataService(ICatalogueOfLifeDataRequester requester)
+        {
+            this.requester = requester;
+        }
+
         protected override void Delay()
         {
             Delayer.Delay();
@@ -23,7 +29,7 @@
 
         protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaQueue)
         {
-            var response = CatalogueOfLifeDataRequester.RequestDataFromCatalogueOfLife(scientificName).Result;
+            var response = requester.RequestData(scientificName).Result;
 
             try
             {
@@ -40,33 +46,6 @@
                 // Linq queries failed.
                 // There are no matching response items.
                 // Do nothing.
-            }
-        }
-
-        protected void ResolveScientificNameXml(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
-        {
-            XmlDocument response = CatalogueOfLifeDataRequester.RequestXmlFromCatalogueOfLife(scientificName).Result;
-
-            string xpath = $"/results/result[normalize-space(translate(name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))='{scientificName.ToLower()}']";
-
-            XmlNodeList responseItems = response.SelectNodes(xpath);
-
-            if (responseItems != null && responseItems.Count > 0)
-            {
-                var ranks = responseItems
-                    .Cast<XmlNode>()
-                    .Select(c => c["rank"].InnerText.ToLower())
-                    .Distinct()
-                    .ToList();
-
-                foreach (var rank in ranks)
-                {
-                    taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
-                    {
-                        ScientificName = scientificName,
-                        Rank = rank
-                    });
-                }
             }
         }
 

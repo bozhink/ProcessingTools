@@ -32,12 +32,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtractHcmrResolverDataRequester.cs" />
+    <Compile Include="Contracts\IExtractHcmrDataRequester.cs" />
+    <Compile Include="ExtractHcmrDataRequester.cs" />
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\ExtractHcmrResponseModel.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>

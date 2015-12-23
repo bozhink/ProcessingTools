@@ -1,17 +1,24 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
+    using ServiceClient.Gbif.Models.Contracts;
     using System.Collections.Concurrent;
     using System.Linq;
 
     using Contracts;
     using Infrastructure.Concurrency;
     using Models;
-    using ServiceClient.Gbif;
-    using ServiceClient.Gbif.Models.Contracts;
+    using ServiceClient.Gbif.Contracts;
     using Taxonomy.Contracts;
 
     public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
+        private IGbifDataRequester requester;
+
+        public GbifTaxaClassificationDataService(IGbifDataRequester requester)
+        {
+            this.requester = requester;
+        }
+
         protected override void Delay()
         {
             Delayer.Delay();
@@ -19,7 +26,7 @@
 
         protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
-            var response = GbifDataRequester.SearchGbif(scientificName)?.Result;
+            var response = this.requester?.RequestData(scientificName)?.Result;
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) ||

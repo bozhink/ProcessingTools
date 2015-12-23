@@ -38,7 +38,8 @@
             string[] scientificNames = this.XmlDocument.ExtractTaxa(true).ToArray<string>();
             try
             {
-                XmlDocument gnrXmlResponse = GlobalNamesResolverDataRequester.SearchWithGlobalNamesResolverPost(scientificNames).Result;
+                var resolver = new GlobalNamesResolverDataRequester();
+                XmlDocument gnrXmlResponse = resolver.SearchWithGlobalNamesResolverPost(scientificNames).Result;
 
                 List<string> notFoundNames = new List<string>();
 

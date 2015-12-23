@@ -1,70 +1,67 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System;
+    using System.Linq;
     using System.Xml;
-    using Bio.ServiceClient.ExtractHcmr;
 
+    using Bio.Harvesters.Contracts;
     using Configurator;
     using Contracts;
-    using Extensions;
     using ProcessingTools.Contracts.Log;
 
     public class Envo : TaggerBase, IBaseTagger
     {
+        private const string EnvoTagName = "envo";
+
+        private IExtractHcmrHarvester harvester;
         private ILogger logger;
 
-        public Envo(string xml, ILogger logger)
-            : base(xml)
-        {
-            this.logger = logger;
-        }
-
-        public Envo(Config config, string xml, ILogger logger)
+        public Envo(Config config, string xml, IExtractHcmrHarvester harvester, ILogger logger)
             : base(config, xml)
         {
+            this.harvester = harvester;
             this.logger = logger;
         }
 
-        public Envo(IBase baseObject, ILogger logger)
+        public Envo(IBase baseObject, IExtractHcmrHarvester harvester, ILogger logger)
             : base(baseObject)
         {
+            this.harvester = harvester;
             this.logger = logger;
         }
 
         public void Tag()
         {
-            NameTable nameTable = new NameTable();
-            XmlNamespaceManager namespaceManager = new XmlNamespaceManager(nameTable);
-            namespaceManager.AddNamespace("reflect", "Reflect");
-            namespaceManager.PushScope();
+            XmlDocument envoTermsTagSet = GenerateEnvoTagSet();
 
+            XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
+            envoTermsTagSet
+                .DocumentElement
+                .ChildNodes
+                .TagContentInDocument(nodeList, false, true, this.logger);
+        }
+
+        private XmlDocument GenerateEnvoTagSet()
+        {
             XmlDocument envoTermsTagSet = new XmlDocument();
-            {
-                XmlDocument envoTermsResponse = ExtractHcmrResolverDataRequester.UseExtractService(this.TextContent).Result;
-                envoTermsResponse.SelectNodes("//reflect:count", namespaceManager).RemoveXmlNodes();
+            envoTermsTagSet.LoadXml("<items />");
 
-                try
+            this.harvester.Harvest(this.TextContent);
+            this.harvester.Data
+                .ToList()
+                .ForEach(t =>
                 {
-                    envoTermsResponse.Save(this.Config.EnvoResponseOutputXmlFileName);
-                }
-                catch (Exception e)
-                {
-                    string message = string.Format(
-                            "Cannot write envoTermsResponse XML document to file '{0}'",
-                            this.Config.EnvoResponseOutputXmlFileName);
+                    XmlElement node = envoTermsTagSet.CreateElement(EnvoTagName);
+                    for (int i = 0, len = t.Types.Length; i < len; ++i)
+                    {
+                        node.SetAttribute($"type{i + 1}", t.Types[i].ToString());
+                        node.SetAttribute($"identifier{i + 1}", t.Identifiers[i]);
+                    }
 
-                    this.logger?.Log(e, message);
-                }
+                    node.InnerText = t.Content;
+                    envoTermsTagSet.DocumentElement.AppendChild(node);
+                });
 
-                envoTermsTagSet.LoadXml(
-                    envoTermsResponse
-                        .ApplyXslTransform(this.Config.EnvoTermsWebServiceTransformXslPath));
-            }
-
-            {
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
-                envoTermsTagSet.DocumentElement.ChildNodes.TagContentInDocument(nodeList, false, true, this.logger);
-            }
+            return envoTermsTagSet;
         }
     }
 }

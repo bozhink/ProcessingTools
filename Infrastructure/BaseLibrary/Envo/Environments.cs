@@ -15,12 +15,6 @@
         private const string EnvoTagName = "envo";
         private IEnvoTermsHarvester harvester;
 
-        public Environments(string xml, IEnvoTermsHarvester harvester)
-            : base(xml)
-        {
-            this.harvester = harvester;
-        }
-
         public Environments(Config config, string xml, IEnvoTermsHarvester harvester)
             : base(config, xml)
         {
