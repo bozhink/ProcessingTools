@@ -19,14 +19,17 @@
     using MediaType.Services.Data.Contracts;
     using Ninject;
     using Ninject.Web.Common;
+    using Services.Data;
+    using Services.Data.Contracts;
 
     public static class NinjectConfig
     {
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
-            kernel.Bind<IExtractHcmrDataRequester>().To<ExtractHcmrDataRequester>();
-            kernel.Bind<ICatalogueOfLifeDataRequester>().To<CatalogueOfLifeDataRequester>();
-            kernel.Bind<IGbifDataRequester>().To<GbifDataRequester>();
+            kernel.Bind<Data.Contracts.IDataDbContext>().To<Data.DataDbContext>();
+            kernel.Bind(typeof(Data.Repositories.IDataRepository<>)).To(typeof(Data.Repositories.DataGenericRepository<>));
+            kernel.Bind<IInstitutionsDataService>().To<InstitutionsDataService>();
+            kernel.Bind<IProductsDataService>().To<ProductsDataService>();
 
             kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
             kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
@@ -34,17 +37,19 @@
             ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceWindowsRegistry>();
             kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataService>();
 
-            kernel.Bind<IRandomProvider>().To<RandomProvider>();
-
-            kernel.Bind<IAphiaTaxaClassificationDataService>().To<AphiaTaxaClassificationDataService>();
-
-            kernel.Bind<ICatalogueOfLifeTaxaClassificationDataService>().To<CatalogueOfLifeTaxaClassificationDataService>();
-
-            kernel.Bind<IGbifTaxaClassificationDataService>().To<GbifTaxaClassificationDataService>();
-
             kernel.Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>().To<Bio.Environments.Data.BioEnvironmentsDbContext>();
             kernel.Bind(typeof(Bio.Environments.Data.Repositories.IBioEnvironmentsRepository<>)).To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<>));
             kernel.Bind<IEnvoTermsDataService>().To<EnvoTermsDataService>();
+
+            kernel.Bind<IRandomProvider>().To<RandomProvider>();
+
+            kernel.Bind<IExtractHcmrDataRequester>().To<ExtractHcmrDataRequester>();
+            kernel.Bind<ICatalogueOfLifeDataRequester>().To<CatalogueOfLifeDataRequester>();
+            kernel.Bind<IGbifDataRequester>().To<GbifDataRequester>();
+
+            kernel.Bind<IAphiaTaxaClassificationDataService>().To<AphiaTaxaClassificationDataService>();
+            kernel.Bind<ICatalogueOfLifeTaxaClassificationDataService>().To<CatalogueOfLifeTaxaClassificationDataService>();
+            kernel.Bind<IGbifTaxaClassificationDataService>().To<GbifTaxaClassificationDataService>();
         };
 
         public static IKernel CreateKernel()

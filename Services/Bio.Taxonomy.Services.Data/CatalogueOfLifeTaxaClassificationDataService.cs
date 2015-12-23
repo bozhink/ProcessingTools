@@ -29,7 +29,7 @@
 
         protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaQueue)
         {
-            var response = requester.RequestData(scientificName).Result;
+            var response = this.requester.RequestData(scientificName).Result;
 
             try
             {

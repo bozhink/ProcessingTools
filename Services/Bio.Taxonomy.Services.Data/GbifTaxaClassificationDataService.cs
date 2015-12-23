@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
-    using ServiceClient.Gbif.Models.Contracts;
     using System.Collections.Concurrent;
     using System.Linq;
 
@@ -8,6 +7,7 @@
     using Infrastructure.Concurrency;
     using Models;
     using ServiceClient.Gbif.Contracts;
+    using ServiceClient.Gbif.Models.Contracts;
     using Taxonomy.Contracts;
 
     public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService

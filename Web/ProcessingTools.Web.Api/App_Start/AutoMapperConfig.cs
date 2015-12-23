@@ -30,10 +30,15 @@
             var maps = types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
                 .Where(
                     type =>
-                        type.i.IsGenericType && type.i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                        !type.t.IsAbstract
-                        && !type.t.IsInterface)
-                .Select(type => new { Source = type.i.GetGenericArguments()[0], Destination = type.t });
+                        type.i.IsGenericType &&
+                        type.i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
+                        !type.t.IsAbstract &&
+                        !type.t.IsInterface)
+                .Select(type => new
+                {
+                    Source = type.i.GetGenericArguments()[0],
+                    Destination = type.t
+                });
 
             foreach (var map in maps)
             {
@@ -48,7 +53,8 @@
                 types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
                     .Where(
                         type =>
-                            typeof(IHaveCustomMappings).IsAssignableFrom(type.t) && !type.t.IsAbstract &&
+                            typeof(IHaveCustomMappings).IsAssignableFrom(type.t) &&
+                            !type.t.IsAbstract &&
                             !type.t.IsInterface)
                     .Select(type => (IHaveCustomMappings)Activator.CreateInstance(type.t));
 

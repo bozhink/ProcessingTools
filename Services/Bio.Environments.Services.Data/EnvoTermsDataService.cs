@@ -1,29 +1,28 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data
 {
-    using System;
     using System.Linq;
 
+    using Common.Exceptions;
     using Contracts;
     using Models;
     using Models.Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Models;
     using ProcessingTools.Bio.Environments.Data.Repositories;
-
     using ProcessingTools.Common.Constants;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
-        private IBioEnvironmentsRepository<EnvoName> envoNames;
+        private IBioEnvironmentsRepository<EnvoName> repository;
 
-        public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> envoNames)
+        public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {
-            this.envoNames = envoNames;
+            this.repository = repository;
         }
 
         public IQueryable<IEnvoTerm> All()
         {
-            var result = this.envoNames.All()
+            var result = this.repository.All()
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Select(n => new EnvoTermDataServiceResponseModel
@@ -40,15 +39,15 @@
         {
             if (skip < 0)
             {
-                throw new ArgumentException("Skip schould be non-negative.", "skip");
+                throw new InvalidSkipValuePagingException();
             }
 
             if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
             {
-                throw new ArgumentException($"Take schould be non-negative and less than {DefaultPagingConstants.MaximalItemsPerPageAllowed}.", "take");
+                throw new InvalidTakeValuePagingException();
             }
 
-            var result = this.envoNames.All()
+            var result = this.repository.All()
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Skip(skip)

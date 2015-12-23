@@ -42,7 +42,7 @@
                 string contentType = "application/x-www-form-urlencoded";
 
                 var connector = new Connector(BaseAddress);
-                var response = await connector.PostAsync(ApiUrl, postData, contentType, encoding);
+                var response = await connector.PostAsync(ApiUrl, postData, contentType, this.encoding);
                 return response.ToXmlDocument();
             }
             catch

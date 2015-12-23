@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BioEnvironmentsDbInit.cs" />
+    <Compile Include="DataDbInit.cs" />
     <Compile Include="MediaTypesDbInit.cs" />
     <Compile Include="RunnerStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +85,14 @@
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Models\Data.Models.csproj">
+      <Project>{95f68506-491b-4d92-a8d0-778bc08ae2c2}</Project>
+      <Name>Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data\Data.csproj">
+      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
+      <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Mediatype.Data.Models\MediaType.Data.Models.csproj">
       <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>

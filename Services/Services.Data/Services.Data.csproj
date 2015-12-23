@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95F68506-491B-4D92-A8D0-778BC08AE2C2}</ProjectGuid>
+    <ProjectGuid>{CCBBBB18-D57A-45AD-A676-E5585880081D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Data.Models</RootNamespace>
-    <AssemblyName>ProcessingTools.Data.Models</AssemblyName>
+    <RootNamespace>ProcessingTools.Services.Data</RootNamespace>
+    <AssemblyName>ProcessingTools.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,10 +42,36 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Institution.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Contracts\IGenericDataService.cs" />
+    <Compile Include="Contracts\IInstitutionsDataService.cs" />
+    <Compile Include="Contracts\IProductsDataService.cs" />
+    <Compile Include="InstitutionsDataService.cs" />
+    <Compile Include="Models\Contracts\IInstitution.cs" />
+    <Compile Include="Models\Contracts\IProduct.cs" />
+    <Compile Include="Models\InstitutionResponseModel.cs" />
+    <Compile Include="Models\ProductResponseModel.cs" />
+    <Compile Include="ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Models\Data.Models.csproj">
+      <Project>{95f68506-491b-4d92-a8d0-778bc08ae2c2}</Project>
+      <Name>Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data\Data.csproj">
+      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

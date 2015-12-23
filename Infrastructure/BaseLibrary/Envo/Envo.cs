@@ -31,7 +31,7 @@
 
         public void Tag()
         {
-            XmlDocument envoTermsTagSet = GenerateEnvoTagSet();
+            XmlDocument envoTermsTagSet = this.GenerateEnvoTagSet();
 
             XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
             envoTermsTagSet

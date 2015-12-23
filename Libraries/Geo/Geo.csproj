@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ICoordinate.cs" />
     <Compile Include="Coordinate.cs" />
+    <Compile Include="Coordinate2DParser.cs" />
     <Compile Include="CoordinatePart.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystem.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystemProperties.cs" />

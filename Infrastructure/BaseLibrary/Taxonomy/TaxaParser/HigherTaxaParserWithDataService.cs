@@ -86,10 +86,10 @@
                                 string xpath = $"//tn[@type='higher'][not(tn-part)][normalize-space(.)='{scientificName}']";
                                 foreach (XmlNode tn in this.XmlDocument.SelectNodes(xpath))
                                 {
-                                    XmlElement tnPart = tn.OwnerDocument.CreateElement("tn-part");
-                                    tnPart.SetAttribute("type", rank);
-                                    tnPart.InnerXml = tn.InnerXml;
-                                    tn.InnerXml = tnPart.OuterXml;
+                                    XmlElement taxonNamePart = tn.OwnerDocument.CreateElement("tn-part");
+                                    taxonNamePart.SetAttribute("type", rank);
+                                    taxonNamePart.InnerXml = tn.InnerXml;
+                                    tn.InnerXml = taxonNamePart.OuterXml;
                                 }
                             }
 
