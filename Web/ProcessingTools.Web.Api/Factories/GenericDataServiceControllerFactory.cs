@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Web.Api.Factories
 {
+    using System;
     using System.Linq;
     using System.Web.Http;
 
@@ -7,18 +8,28 @@
     using AutoMapper.QueryableExtensions;
 
     using Common.Constants;
-    using Services.Data.Contracts;
+    using Services.Common.Contracts;
 
     public abstract class GenericDataServiceControllerFactory<TServiceModel, TRequestModel, TResponseModel> : ApiController
         where TServiceModel : class
         where TRequestModel : class
         where TResponseModel : class
     {
-        protected IGenericDataService<TServiceModel> Service { get; set; }
+        private ICrudDataService<TServiceModel> service;
+
+        public GenericDataServiceControllerFactory(ICrudDataService<TServiceModel> service)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException("service");
+            }
+
+            this.service = service;
+        }
 
         public IHttpActionResult GetAll()
         {
-            var result = this.Service?.All()
+            var result = this.service.All()
                 .ProjectTo<TResponseModel>()
                 .ToList();
 
@@ -38,7 +49,7 @@
                 return this.BadRequest("Invalid id.");
             }
 
-            var result = this.Service?.Get(parsedId)
+            var result = this.service.Get(parsedId)
                 .ProjectTo<TResponseModel>()
                 .FirstOrDefault();
 
@@ -64,7 +75,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = this.Service?.Get(skipItemsCount, takeItemsCount)
+            var result = this.service.Get(skipItemsCount, takeItemsCount)
                 .ProjectTo<TResponseModel>()
                 .ToList();
 
@@ -86,7 +97,7 @@
             var item = Mapper.Map<TServiceModel>(entity);
             try
             {
-                this.Service.Add(item);
+                this.service.Add(item);
             }
             catch
             {
@@ -106,7 +117,7 @@
             var item = Mapper.Map<TServiceModel>(entity);
             try
             {
-                this.Service.Update(item);
+                this.service.Update(item);
             }
             catch
             {
@@ -126,7 +137,7 @@
             var item = Mapper.Map<TServiceModel>(entity);
             try
             {
-                this.Service.Delete(item);
+                this.service.Delete(item);
             }
             catch
             {
@@ -151,7 +162,7 @@
 
             try
             {
-                this.Service.Delete(id);
+                this.service.Delete(id);
             }
             catch
             {

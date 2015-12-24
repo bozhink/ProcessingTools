@@ -8,8 +8,8 @@
     public class ProductController : GenericDataServiceControllerFactory<IProduct, ProductRequestModel, ProductResponseModel>
     {
         public ProductController(IProductsDataService service)
+            : base(service)
         {
-            this.Service = service;
         }
     }
 }

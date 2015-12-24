@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Contracts
 {
-    public interface IInstitution
-    {
-        int Id { get; set; }
+    using ProcessingTools.Services.Common.Models.Contracts;
 
+    public interface IInstitution : IDataServiceModel
+    {
         string Name { get; set; }
     }
 }

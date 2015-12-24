@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Contracts
+﻿namespace ProcessingTools.Services.Common.Contracts
 {
     using System.Linq;
 
-    public interface IGenericDataService<T>
+    public interface ICrudDataService<T>
     {
         IQueryable<T> All();
 

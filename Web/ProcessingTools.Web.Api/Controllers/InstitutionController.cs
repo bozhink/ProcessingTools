@@ -8,8 +8,8 @@
     public class InstitutionController : GenericDataServiceControllerFactory<IInstitution, InstitutionRequestModel, InstitutionResponseModel>
     {
         public InstitutionController(IInstitutionsDataService service)
+            : base(service)
         {
-            this.Service = service;
         }
     }
 }
