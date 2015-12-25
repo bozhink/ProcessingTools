@@ -7,6 +7,8 @@
     using Bio.Environments.Services.Data.Contracts;
     using Bio.ServiceClient.ExtractHcmr;
     using Bio.ServiceClient.ExtractHcmr.Contracts;
+    using Bio.Services.Data;
+    using Bio.Services.Data.Contracts;
     using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
     using Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using Bio.Taxonomy.ServiceClient.Gbif;
@@ -30,6 +32,10 @@
             kernel.Bind(typeof(Data.Repositories.IDataRepository<>)).To(typeof(Data.Repositories.EfDataGenericRepository<>));
             kernel.Bind<IInstitutionsDataService>().To<InstitutionsDataService>();
             kernel.Bind<IProductsDataService>().To<ProductsDataService>();
+
+            kernel.Bind<Bio.Data.Contracts.IBioDbContext>().To<Bio.Data.BioDbContext>();
+            kernel.Bind(typeof(Bio.Data.Repositories.IBioDataRepository<>)).To(typeof(Bio.Data.Repositories.EfBioDataGenericRepository<>));
+            kernel.Bind<IMorphologicalEpithetsDataService>().To<MorphologicalEpithetsDataService>();
 
             kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
             kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));

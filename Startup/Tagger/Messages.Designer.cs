@@ -482,6 +482,17 @@ namespace ProcessingTools.MainProgram {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///    Tag morphological epithets.
+        ///.
+        /// </summary>
+        internal static string TagMorphologicalEpithetsMessage {
+            get {
+                return ResourceManager.GetString("TagMorphologicalEpithetsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///    Tag products.
         ///.
         /// </summary>

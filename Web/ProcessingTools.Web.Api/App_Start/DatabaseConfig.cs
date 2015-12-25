@@ -11,6 +11,10 @@
             ////ProcessingTools.Api.Data.ApplicationDbContext.Create().Database.Initialize(true);
 
             ////Database.SetInitializer(
+            ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Data.BioDbContext, ProcessingTools.Bio.Data.Migrations.Configuration>());
+            ////ProcessingTools.Bio.Data.BioDbContext.Create().Database.Initialize(true);
+
+            ////Database.SetInitializer(
             ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Data.DataDbContext, ProcessingTools.Data.Migrations.Configuration>());
             ////ProcessingTools.Data.DataDbContext.Create().Database.Initialize(true);
 

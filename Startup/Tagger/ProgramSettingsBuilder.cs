@@ -385,6 +385,10 @@
                     {
                         this.Settings.TagInstitutions = true;
                     }
+                    else if (args[item].CompareTo("--morphology") == 0)
+                    {
+                        this.Settings.TagMorphologicalEpithets = true;
+                    }
                 }
             }
         }

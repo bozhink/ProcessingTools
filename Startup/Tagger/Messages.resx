@@ -231,6 +231,9 @@ Output file name: {1}
   <data name="TagLowerTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\taglowertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="TagMorphologicalEpithetsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\tagmorphologicalepithetsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="TagProductsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagproductsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

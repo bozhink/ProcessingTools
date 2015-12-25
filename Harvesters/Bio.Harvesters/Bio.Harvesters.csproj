@@ -36,6 +36,7 @@
     <Compile Include="Contracts\IEnvoTermsHarvester.cs" />
     <Compile Include="Contracts\IExtractHcmrHarvester.cs" />
     <Compile Include="Contracts\IInstitutionalCodesHarvester.cs" />
+    <Compile Include="Contracts\IMorphologicalEpithetHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCodesHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCountHarvester.cs" />
     <Compile Include="EnvoTermsHarvester.cs" />
@@ -44,10 +45,15 @@
     <Compile Include="Models\Contracts\IExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\EnvoTerm.cs" />
     <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
+    <Compile Include="MorphologicalEpithetsHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecimenCountHarvester.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
       <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
       <Name>Bio.Environments.Data.Models</Name>
@@ -71,6 +77,14 @@
     <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Services.Data\Bio.Services.Data.csproj">
+      <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
+      <Name>Bio.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>

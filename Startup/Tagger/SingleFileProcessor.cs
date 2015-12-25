@@ -16,12 +16,14 @@
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
+    using Bio.Data.Repositories;
     using Bio.Environments.Data;
     using Bio.Environments.Data.Models;
     using Bio.Environments.Data.Repositories;
     using Bio.Environments.Services.Data;
     using Bio.Harvesters;
     using Bio.ServiceClient.ExtractHcmr;
+    using Bio.Services.Data;
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Harvesters;
     using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
@@ -116,6 +118,11 @@
                     if (this.settings.ParseCoordinates)
                     {
                         this.ParseCoordinates();
+                    }
+
+                    if (this.settings.TagMorphologicalEpithets)
+                    {
+                        this.TagMorphologicalEpithets();
                     }
 
                     if (this.settings.TagInstitutions)
@@ -746,6 +753,26 @@
             var harvester = new EnvoTermsHarvester(service);
             var tagger = new Environments(this.settings.Config, this.document.Xml, harvester);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
+            this.document.Xml = tagger.Xml;
+        }
+
+        private void TagMorphologicalEpithets()
+        {
+            var context = new ProcessingTools.Bio.Data.BioDbContext();
+            var repository = new EfBioDataGenericRepository<ProcessingTools.Bio.Data.Models.MorphologicalEpithet>(context);
+            var service = new MorphologicalEpithetsDataService(repository);
+            var harvester = new MorphologicalEpithetsHarvester(service);
+
+            var tag = new TagContent
+            {
+                Name = "named-content",
+                Attributes = @" content-type=""morphological epithet"""
+            };
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
 
