@@ -15,7 +15,6 @@ micro basin
 north
 northern
 ocean
-ocean
 oceans
 province
 provinces
@@ -24,8 +23,8 @@ south
 south american
 southern
 southward
-sub-areas
 subantarctic
+sub-areas
 west
 western
 western entrance

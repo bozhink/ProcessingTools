@@ -13,8 +13,9 @@
             InitializeMediaTypeDatabase();
             ////InitializeTaxonomyDatabase();
             InitializeBioEnvironmentsDatabase();
-            InitializeDataDatabase();
+            InitializeGeoDatabase();
             InitializeBioDatabase();
+            InitializeDataDatabase();
 
             Console.WriteLine(timer.Elapsed);
         }
