@@ -46,6 +46,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IGeoEpithetsDataService.cs" />
+    <Compile Include="Contracts\IGeoNamesDataService.cs" />
+    <Compile Include="GeoEpithetsDataService.cs" />
+    <Compile Include="GeoNamesDataService.cs" />
+    <Compile Include="Models\Contracts\IGeoEpithet.cs" />
+    <Compile Include="Models\Contracts\IGeoName.cs" />
+    <Compile Include="Models\GeoEpithetResponseModel.cs" />
+    <Compile Include="Models\GeoNameResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
