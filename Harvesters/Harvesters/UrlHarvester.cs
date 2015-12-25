@@ -1,30 +1,16 @@
 ﻿namespace ProcessingTools.Harvesters
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text.RegularExpressions;
 
     using Contracts;
     using Extensions;
 
-    public class UrlHarvester : IUrlHarvester
+    using ProcessingTools.Harvesters.Common.Factories;
+
+    public class UrlHarvester : StringHarvesterFactory, IUrlHarvester
     {
-        private ICollection<string> data;
-
-        public UrlHarvester()
-        {
-            this.data = new HashSet<string>();
-        }
-
-        public IQueryable<string> Data
-        {
-            get
-            {
-                return this.data.AsQueryable();
-            }
-        }
-
-        public void Harvest(string content)
+        public override void Harvest(string content)
         {
             var links = new List<string>();
 
@@ -36,7 +22,7 @@
             Regex matchIPAddress = new Regex(IPAddressPattern);
             links.AddRange(content.GetMatches(matchIPAddress));
 
-            this.data = new HashSet<string>(links);
+            this.Items = new HashSet<string>(links);
         }
     }
 }

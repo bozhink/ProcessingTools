@@ -35,22 +35,38 @@
   <ItemGroup>
     <Compile Include="Contracts\IDatesHarvester.cs" />
     <Compile Include="Contracts\IDoiHarvester.cs" />
+    <Compile Include="Contracts\IInstitutionsHarvester.cs" />
     <Compile Include="Contracts\IPmcIdsHarvester.cs" />
+    <Compile Include="Contracts\IProductsHarvester.cs" />
     <Compile Include="Contracts\IQuantitiesHarvester.cs" />
     <Compile Include="Contracts\IUrlHarvester.cs" />
     <Compile Include="DoiHarvester.cs" />
+    <Compile Include="InstitutionsHarvester.cs" />
     <Compile Include="PmcIdsHarvester.cs" />
+    <Compile Include="ProductsHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlHarvester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
       <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

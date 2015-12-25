@@ -7,28 +7,21 @@
     using Contracts;
     using Models;
     using Models.Contracts;
+
+    using ProcessingTools.Harvesters.Common.Factories;
     using ServiceClient.ExtractHcmr.Contracts;
 
-    public class ExtractHcmrHarvester : IExtractHcmrHarvester
+    public class ExtractHcmrHarvester : GenericHarvesterFactory<IExtractHcmrEnvoTerm>, IExtractHcmrHarvester
     {
         private IExtractHcmrDataRequester requester;
-        private ICollection<IExtractHcmrEnvoTerm> data;
 
         public ExtractHcmrHarvester(IExtractHcmrDataRequester requester)
+            : base()
         {
             this.requester = requester;
-            this.data = new HashSet<IExtractHcmrEnvoTerm>();
         }
 
-        public IQueryable<IExtractHcmrEnvoTerm> Data
-        {
-            get
-            {
-                return this.data.AsQueryable();
-            }
-        }
-
-        public void Harvest(string content)
+        public override void Harvest(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -50,7 +43,7 @@
                     Identifiers = i.Entities?.Select(e => e.Identifier)?.ToArray()
                 });
 
-            this.data = new HashSet<IExtractHcmrEnvoTerm>(result);
+            this.Items = new HashSet<IExtractHcmrEnvoTerm>(result);
         }
     }
 }

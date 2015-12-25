@@ -18,13 +18,6 @@
         private ILogger logger;
         private IHigherTaxaHarvester harvester;
 
-        public HigherTaxaTagger(string xml, IHigherTaxaHarvester harvester, IRepositoryDataService<string> blackList, ILogger logger)
-            : base(xml, blackList)
-        {
-            this.logger = logger;
-            this.harvester = harvester;
-        }
-
         public HigherTaxaTagger(Config config, string xml, IHigherTaxaHarvester harvester, IRepositoryDataService<string> blackList, ILogger logger)
             : base(config, xml, blackList)
         {

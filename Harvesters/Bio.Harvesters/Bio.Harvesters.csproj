@@ -72,6 +72,10 @@
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

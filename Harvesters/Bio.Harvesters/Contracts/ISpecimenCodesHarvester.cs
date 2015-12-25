@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Harvesters.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Common.Contracts;
 
-    public interface ISpecimenCodesHarvester : IHarvester<string>
+    public interface ISpecimenCodesHarvester : IStringHarvester
     {
     }
 }

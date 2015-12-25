@@ -123,7 +123,6 @@
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="WebLinks\DoiLinksTagger.cs" />
     <Compile Include="Morphology\MorphologyTagger.cs" />
-    <Compile Include="Products\ProductsTagger.cs" />
     <Compile Include="Quantities\QuantitiesTagger.cs" />
     <Compile Include="Special\QuentinFlora.cs" />
     <Compile Include="QueryReplace.cs" />
@@ -262,6 +261,18 @@
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
       <Name>Bio.Taxonomy.Harvesters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
+      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
+      <Name>Geo.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
+      <Name>Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
@@ -269,6 +280,10 @@
     <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>

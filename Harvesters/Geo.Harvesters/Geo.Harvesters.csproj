@@ -37,9 +37,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

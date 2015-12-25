@@ -49,6 +49,8 @@
             this.TagEnvironments = false;
             this.TagEnvo = false;
             this.TagFloats = false;
+            this.TagInstitutions = false;
+            this.TagProducts = false;
             this.TagQuantities = false;
             this.TagReferences = false;
             this.TagTableFn = false;
@@ -148,6 +150,10 @@
         public bool TagEnvo { get; set; }
 
         public bool TagFloats { get; set; }
+
+        public bool TagInstitutions { get; set; }
+
+        public bool TagProducts { get; set; }
 
         public bool TagQuantities { get; set; }
 

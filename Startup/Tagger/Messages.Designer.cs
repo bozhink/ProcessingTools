@@ -460,12 +460,34 @@ namespace ProcessingTools.MainProgram {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///    Tag institutions.
+        ///.
+        /// </summary>
+        internal static string TagInstitutionsMessage {
+            get {
+                return ResourceManager.GetString("TagInstitutionsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///    Tag lower taxa.
         ///.
         /// </summary>
         internal static string TagLowerTaxaMessage {
             get {
                 return ResourceManager.GetString("TagLowerTaxaMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///    Tag products.
+        ///.
+        /// </summary>
+        internal static string TagProductsMessage {
+            get {
+                return ResourceManager.GetString("TagProductsMessage", resourceCulture);
             }
         }
         

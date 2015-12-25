@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5082DAE-3DBE-48EE-AC25-A29F7C38EC3C}</ProjectGuid>
+    <ProjectGuid>{E95AA4EC-C0F8-4DB4-B9C5-C2AEC671F484}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Bio.Taxonomy.Harvesters</RootNamespace>
-    <AssemblyName>ProcessingTools.Bio.Taxonomy.Harvesters</AssemblyName>
+    <RootNamespace>ProcessingTools.Harvesters.Common</RootNamespace>
+    <AssemblyName>ProcessingTools.Harvesters.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,27 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IHigherTaxaHarvester.cs" />
-    <Compile Include="HigherTaxaHarvester.cs" />
+    <Compile Include="Contracts\IHarvester.cs" />
+    <Compile Include="Contracts\IStringHarvester.cs" />
+    <Compile Include="Factories\GenericHarvesterFactory.cs" />
+    <Compile Include="Factories\StringHarvesterFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
-      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
-      <Name>Bio.Taxonomy.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

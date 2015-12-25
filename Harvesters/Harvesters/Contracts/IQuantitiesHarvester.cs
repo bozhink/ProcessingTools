@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Common.Contracts;
 
-    public interface IQuantitiesHarvester : IHarvester<string>
+    public interface IQuantitiesHarvester : IStringHarvester
     {
     }
 }

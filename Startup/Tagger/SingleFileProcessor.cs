@@ -29,8 +29,11 @@
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Types;
     using Contracts.Log;
+    using Data.Repositories;
     using DocumentProvider;
     using Extensions;
+    using Harvesters;
+    using Services.Data;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -113,6 +116,16 @@
                     if (this.settings.ParseCoordinates)
                     {
                         this.ParseCoordinates();
+                    }
+
+                    if (this.settings.TagInstitutions)
+                    {
+                        this.TagInstitutions();
+                    }
+
+                    if (this.settings.TagProducts)
+                    {
+                        this.TagProducts();
                     }
 
                     if (this.settings.TagEnvo)
@@ -733,6 +746,46 @@
             var harvester = new EnvoTermsHarvester(service);
             var tagger = new Environments(this.settings.Config, this.document.Xml, harvester);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
+            this.document.Xml = tagger.Xml;
+        }
+
+        private void TagInstitutions()
+        {
+            var context = new ProcessingTools.Data.DataDbContext();
+            var repository = new DataGenericRepository<ProcessingTools.Data.Models.Institution>(context);
+            var service = new InstitutionsDataService(repository);
+            var harvester = new InstitutionsHarvester(service);
+
+            var tag = new TagContent
+            {
+                Name = "named-content",
+                Attributes = @" content-type=""institution"""
+            };
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger);
+            this.document.Xml = tagger.Xml;
+        }
+
+        private void TagProducts()
+        {
+            var context = new ProcessingTools.Data.DataDbContext();
+            var repository = new DataGenericRepository<ProcessingTools.Data.Models.Product>(context);
+            var service = new ProductsDataService(repository);
+            var harvester = new ProductsHarvester(service);
+
+            var tag = new TagContent
+            {
+                Name = "named-content",
+                Attributes = @" content-type=""product"""
+            };
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            this.InvokeProcessor(Messages.TagProductsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
 

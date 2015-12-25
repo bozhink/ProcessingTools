@@ -377,6 +377,14 @@
                     {
                         this.Settings.RunXslTransform = true;
                     }
+                    else if (args[item].CompareTo("--products") == 0)
+                    {
+                        this.Settings.TagProducts = true;
+                    }
+                    else if (args[item].CompareTo("--institutions") == 0)
+                    {
+                        this.Settings.TagInstitutions = true;
+                    }
                 }
             }
         }

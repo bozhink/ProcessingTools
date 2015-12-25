@@ -50,6 +50,8 @@ Options:
     -z or --zoobank-clone = clone zoobank lsid; syntax: <in xml> <out xml> <nlm xml>
 
     --environments = tag environments (ENVO ID-s)
+    --products = tag known products
+    --institutions = tag known institutional names
     --codes = tag institutional and specimen codes
     --quantities = tag quantities
     --dates = tag dates

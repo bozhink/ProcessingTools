@@ -7,24 +7,11 @@
     using Contracts;
     using Extensions;
 
-    public class DoiHarvester : IDoiHarvester
+    using ProcessingTools.Harvesters.Common.Factories;
+
+    public class DoiHarvester : StringHarvesterFactory, IDoiHarvester
     {
-        private ICollection<string> data;
-
-        public DoiHarvester()
-        {
-            this.data = new HashSet<string>();
-        }
-
-        public IQueryable<string> Data
-        {
-            get
-            {
-                return this.data.AsQueryable();
-            }
-        }
-
-        public void Harvest(string content)
+        public override void Harvest(string content)
         {
             var items = new List<string>();
 
@@ -38,7 +25,7 @@
 
             const string StripDoiPrefixPattern = @"\A(?i)\bdoi\b\W{1,5}";
             Regex stripDoiPrefix = new Regex(StripDoiPrefixPattern);
-            this.data = new HashSet<string>(items
+            this.Items = new HashSet<string>(items
                 .Select(d => stripDoiPrefix.Replace(d, string.Empty)));
         }
     }

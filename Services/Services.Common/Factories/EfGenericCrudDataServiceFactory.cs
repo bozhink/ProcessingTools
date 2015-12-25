@@ -66,11 +66,7 @@
 
         public virtual IQueryable<TServiceModel> All()
         {
-            return this.repository.All()
-                .OrderByDescending(this.orderExpression)
-                .ToList()
-                .Select(Mapper.Map<TServiceModel>)
-                .AsQueryable();
+            return this.Get(0, DefaultPagingConstants.MaximalItemsPerPageAllowed);
         }
 
         public virtual IQueryable<TServiceModel> Get(object id)

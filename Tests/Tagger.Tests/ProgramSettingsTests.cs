@@ -315,6 +315,38 @@
         }
 
         [Test]
+        public void ProgramSettings_TagProductsPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.TagProducts, "Default TagProducts value should be false.");
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfTagProductsProperty_SchouldBePersistent()
+        {
+            this.programSettings.TagProducts = true;
+            Assert.IsTrue(this.programSettings.TagProducts, "1. TagProducts value should be true.");
+
+            this.programSettings.TagProducts = false;
+            Assert.IsFalse(this.programSettings.TagProducts, "2. TagProducts value should be false.");
+        }
+
+        [Test]
+        public void ProgramSettings_TagInstitutionsPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.TagInstitutions, "Default TagInstitutions value should be false.");
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfTagInstitutionsProperty_SchouldBePersistent()
+        {
+            this.programSettings.TagInstitutions = true;
+            Assert.IsTrue(this.programSettings.TagInstitutions, "1. TagInstitutions value should be true.");
+
+            this.programSettings.TagInstitutions = false;
+            Assert.IsFalse(this.programSettings.TagInstitutions, "2. TagInstitutions value should be false.");
+        }
+
+        [Test]
         public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_SchouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, "Default ResolveMediaTypes value should be false.");

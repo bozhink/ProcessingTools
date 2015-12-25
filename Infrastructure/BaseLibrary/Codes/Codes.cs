@@ -131,14 +131,8 @@ namespace ProcessingTools.BaseLibrary
 
         public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
-            string query = @"select [Name] as [name] from [dbo].[institutions] order by len([Name]) desc;";
-
-            dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionTag);
-            this.Xml = dataProvider.Xml;
-
             // WARNING: here is set len(name) > 1!
-            query = @"select [NameOfInstitution] as [name], [URL] as [url] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
+            string query = @"select [NameOfInstitution] as [name], [URL] as [url] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionTag);

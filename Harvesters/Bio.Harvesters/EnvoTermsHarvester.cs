@@ -8,26 +8,19 @@
     using Models;
     using Models.Contracts;
 
-    public class EnvoTermsHarvester : IEnvoTermsHarvester
+    using ProcessingTools.Harvesters.Common.Factories;
+
+    public class EnvoTermsHarvester : GenericHarvesterFactory<IEnvoTerm>, IEnvoTermsHarvester
     {
-        private ICollection<IEnvoTerm> data;
         private IEnvoTermsDataService service;
 
         public EnvoTermsHarvester(IEnvoTermsDataService service)
+            : base()
         {
-            this.data = new HashSet<IEnvoTerm>();
             this.service = service;
         }
 
-        public IQueryable<IEnvoTerm> Data
-        {
-            get
-            {
-                return this.data.AsQueryable();
-            }
-        }
-
-        public void Harvest(string content)
+        public override void Harvest(string content)
         {
             string text = content.ToLower();
 
@@ -41,7 +34,7 @@
                 .ToList()
                 .Where(t => text.Contains(t.Content.ToLower()));
 
-            this.data = new HashSet<IEnvoTerm>(terms);
+            this.Items = new HashSet<IEnvoTerm>(terms);
         }
     }
 }

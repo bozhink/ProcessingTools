@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Geo.Harvesters.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Common.Contracts;
 
-    public interface ICoordinatesHarvester : IHarvester<string>
+    public interface ICoordinatesHarvester : IStringHarvester
     {
     }
 }

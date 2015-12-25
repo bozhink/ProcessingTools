@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts
+﻿namespace ProcessingTools.Harvesters.Common.Contracts
 {
     using System.Linq;
 
