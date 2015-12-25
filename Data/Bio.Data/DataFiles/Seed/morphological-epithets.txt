@@ -1,0 +1,101 @@
+﻿aculeus
+aedeagus
+anthers
+apex
+basal colleter
+basidia
+basidiospores
+basistipes
+buds
+calyx
+canthus rostralis
+cardo
+caudicle
+caudicles
+caulocystidia
+cheilocystidia
+clamp connections
+colleters
+column
+corolla
+corolla lobes
+corona
+corona lobes
+corpusculum
+costa
+costae
+disk
+elytra
+endocarina
+epipharynx
+first whorl
+flowers
+foramen
+foramina
+frond
+fronds
+fruit
+fruits
+globular whorls
+gynostegium
+head
+hoya
+inflorescence
+inflorescences
+interstrial costae
+labellum
+labial palpus
+lamellae
+lamellar trama
+lamina
+lateral costa
+leaves
+legs
+longitudinal costae
+mandibles
+marginal costa
+maxillae
+maxillary palpus
+median costa
+mesocoxa
+mesocoxae
+mesosternum
+mesotarsi
+metasternum
+metatarsi
+metatibia
+ovary
+palpus
+paramedian costa
+pedicel
+pedicels
+peduncle
+peduncles
+petals
+petioles
+pileipellis
+pleurocystidia
+pollinia
+procoxa
+profemur
+pronotal surface
+pronotum
+protarsus
+prothorax
+protibia
+pygidium
+root
+seed
+seeds
+segment
+spiral whorls
+stamens
+stems
+stipe
+stripes
+sublateral costa
+tibial apex
+uncini
+ventral margin
+ventral umbo
+whorls

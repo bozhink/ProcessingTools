@@ -3,10 +3,10 @@
     using Contracts;
     using ProcessingTools.Data.Common.Repositories;
 
-    public class DataGenericRepository<T> : EfGenericRepository<IDataDbContext, T>, IDataRepository<T>
+    public class EfDataGenericRepository<T> : EfGenericRepository<IDataDbContext, T>, IDataRepository<T>
         where T : class
     {
-        public DataGenericRepository(IDataDbContext context)
+        public EfDataGenericRepository(IDataDbContext context)
             : base(context)
         {
         }

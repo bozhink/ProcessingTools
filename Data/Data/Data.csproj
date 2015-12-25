@@ -46,7 +46,7 @@
     <Compile Include="DataDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DataGenericRepository.cs" />
+    <Compile Include="Repositories\EfDataGenericRepository.cs" />
     <Compile Include="Repositories\IDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>

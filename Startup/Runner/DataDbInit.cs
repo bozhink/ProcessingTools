@@ -12,7 +12,7 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>());
             var db = new DataDbContext();
             db.Database.Delete();
-            db.Database.Create();
+            db.Database.CreateIfNotExists();
             db.Database.Initialize(true);
             db.SaveChanges();
             db.Dispose();

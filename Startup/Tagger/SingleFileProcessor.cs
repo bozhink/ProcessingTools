@@ -752,7 +752,7 @@
         private void TagInstitutions()
         {
             var context = new ProcessingTools.Data.DataDbContext();
-            var repository = new DataGenericRepository<ProcessingTools.Data.Models.Institution>(context);
+            var repository = new EfDataGenericRepository<ProcessingTools.Data.Models.Institution>(context);
             var service = new InstitutionsDataService(repository);
             var harvester = new InstitutionsHarvester(service);
 
@@ -772,7 +772,7 @@
         private void TagProducts()
         {
             var context = new ProcessingTools.Data.DataDbContext();
-            var repository = new DataGenericRepository<ProcessingTools.Data.Models.Product>(context);
+            var repository = new EfDataGenericRepository<ProcessingTools.Data.Models.Product>(context);
             var service = new ProductsDataService(repository);
             var harvester = new ProductsHarvester(service);
 

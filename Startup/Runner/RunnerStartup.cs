@@ -14,6 +14,7 @@
             ////InitializeTaxonomyDatabase();
             InitializeBioEnvironmentsDatabase();
             InitializeDataDatabase();
+            InitializeBioDatabase();
 
             Console.WriteLine(timer.Elapsed);
         }

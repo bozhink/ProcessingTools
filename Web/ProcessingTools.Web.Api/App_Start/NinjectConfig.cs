@@ -27,7 +27,7 @@
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
             kernel.Bind<Data.Contracts.IDataDbContext>().To<Data.DataDbContext>();
-            kernel.Bind(typeof(Data.Repositories.IDataRepository<>)).To(typeof(Data.Repositories.DataGenericRepository<>));
+            kernel.Bind(typeof(Data.Repositories.IDataRepository<>)).To(typeof(Data.Repositories.EfDataGenericRepository<>));
             kernel.Bind<IInstitutionsDataService>().To<InstitutionsDataService>();
             kernel.Bind<IProductsDataService>().To<ProductsDataService>();
 

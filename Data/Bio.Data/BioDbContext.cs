@@ -4,6 +4,7 @@
     using System.Data.Entity.ModelConfiguration.Conventions;
 
     using Contracts;
+    using Models;
 
     public class BioDbContext : DbContext, IBioDbContext
     {
@@ -11,6 +12,8 @@
             : base("BioDbContext")
         {
         }
+
+        public IDbSet<MorphologicalEpithet> MorphologicalEpithets { get; set; }
 
         public static BioDbContext Create()
         {
