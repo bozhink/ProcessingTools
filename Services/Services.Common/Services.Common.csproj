@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICrudDataService.cs" />
-    <Compile Include="Factories\GenericCrudDataServiceFactory.cs" />
+    <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
     <Compile Include="Models\Contracts\IDataServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

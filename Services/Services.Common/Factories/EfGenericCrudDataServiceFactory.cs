@@ -12,14 +12,14 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Repositories;
 
-    public abstract class GenericCrudDataServiceFactory<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
+    public abstract class EfGenericCrudDataServiceFactory<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
         where TDbModel : class
         where TServiceModel : IDataServiceModel
     {
-        private IRepository<TDbModel> repository;
         private Expression<Func<TDbModel, TOrderKey>> orderExpression;
+        private IRepository<TDbModel> repository;
 
-        public GenericCrudDataServiceFactory(IRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
+        public EfGenericCrudDataServiceFactory(IRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
         {
             if (repository == null)
             {
@@ -42,15 +42,6 @@
             this.repository.SaveChanges();
         }
 
-        public IQueryable<TServiceModel> All()
-        {
-            return this.repository.All()
-                .OrderByDescending(this.orderExpression)
-                .ToList()
-                .Select(Mapper.Map<TServiceModel>)
-                .AsQueryable();
-        }
-
         public void Delete(object id)
         {
             this.repository.Delete(id);
@@ -64,7 +55,25 @@
             this.repository.SaveChanges();
         }
 
-        public IQueryable<TServiceModel> Get(object id)
+        public virtual void Update(TServiceModel entity)
+        {
+            var item = this.repository.GetById(entity.Id);
+            item = Mapper.Map<TServiceModel, TDbModel>(entity, item);
+
+            this.repository.Update(item);
+            this.repository.SaveChanges();
+        }
+
+        public virtual IQueryable<TServiceModel> All()
+        {
+            return this.repository.All()
+                .OrderByDescending(this.orderExpression)
+                .ToList()
+                .Select(Mapper.Map<TServiceModel>)
+                .AsQueryable();
+        }
+
+        public virtual IQueryable<TServiceModel> Get(object id)
         {
             var item = this.repository.GetById(id);
             return new List<TServiceModel>
@@ -74,7 +83,7 @@
             .AsQueryable();
         }
 
-        public IQueryable<TServiceModel> Get(int skip, int take)
+        public virtual IQueryable<TServiceModel> Get(int skip, int take)
         {
             if (skip < 0)
             {
@@ -93,15 +102,6 @@
                 .ToList()
                 .Select(Mapper.Map<TServiceModel>)
                 .AsQueryable();
-        }
-
-        public void Update(TServiceModel entity)
-        {
-            var item = this.repository.GetById(entity.Id);
-            item = Mapper.Map<TServiceModel, TDbModel>(entity, item);
-
-            this.repository.Update(item);
-            this.repository.SaveChanges();
         }
     }
 }
