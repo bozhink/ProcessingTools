@@ -11,6 +11,10 @@
             ////ProcessingTools.Api.Data.ApplicationDbContext.Create().Database.Initialize(true);
 
             ////Database.SetInitializer(
+            ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Geo.Data.GeoDbContext, ProcessingTools.Geo.Data.Migrations.Configuration>());
+            ////ProcessingTools.Geo.Data.GeoDbContext.Create().Database.Initialize(true);
+
+            ////Database.SetInitializer(
             ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Data.BioDbContext, ProcessingTools.Bio.Data.Migrations.Configuration>());
             ////ProcessingTools.Bio.Data.BioDbContext.Create().Database.Initialize(true);
 
@@ -18,12 +22,12 @@
             ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Data.DataDbContext, ProcessingTools.Data.Migrations.Configuration>());
             ////ProcessingTools.Data.DataDbContext.Create().Database.Initialize(true);
 
-            Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.MediaType.Data.MediaTypesDbContext, ProcessingTools.MediaType.Data.Migrations.Configuration>());
+            ////Database.SetInitializer(
+            ////    new MigrateDatabaseToLatestVersion<ProcessingTools.MediaType.Data.MediaTypesDbContext, ProcessingTools.MediaType.Data.Migrations.Configuration>());
             ////ProcessingTools.MediaType.Data.MediaTypesDbContext.Create().Database.Initialize(true);
 
-            Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Environments.Data.BioEnvironmentsDbContext, ProcessingTools.Bio.Environments.Data.Migrations.Configuration>());
+            ////Database.SetInitializer(
+            ////    new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Environments.Data.BioEnvironmentsDbContext, ProcessingTools.Bio.Environments.Data.Migrations.Configuration>());
             ////ProcessingTools.Bio.Environments.Data.BioEnvironmentsDbContext.Create().Database.Initialize(true);
         }
     }

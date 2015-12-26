@@ -54,7 +54,7 @@ namespace ProcessingTools.Geo.Data.Migrations
                 string line = stream.ReadLine();
                 for (int i = 0; line != null; ++i, line = stream.ReadLine())
                 {
-                    createObject(context, line);
+                    createObject(context, line.Trim(' ', ',', ';', '/', '\\'));
 
                     if (i % NumberOfItemsToResetContext == 0)
                     {

@@ -2,60 +2,100 @@
 {
     using System;
     using System.Web;
-
-    using Bio.Environments.Services.Data;
-    using Bio.Environments.Services.Data.Contracts;
-    using Bio.ServiceClient.ExtractHcmr;
-    using Bio.ServiceClient.ExtractHcmr.Contracts;
-    using Bio.Services.Data;
-    using Bio.Services.Data.Contracts;
-    using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
-    using Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
-    using Bio.Taxonomy.ServiceClient.Gbif;
-    using Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using Bio.Taxonomy.Services.Data;
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using Common.Providers;
-    using Common.Providers.Contracts;
-    using MediaType.Services.Data;
-    using MediaType.Services.Data.Contracts;
     using Ninject;
     using Ninject.Web.Common;
-    using Services.Data;
-    using Services.Data.Contracts;
 
     public static class NinjectConfig
     {
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
-            kernel.Bind<Data.Contracts.IDataDbContext>().To<Data.DataDbContext>();
-            kernel.Bind(typeof(Data.Repositories.IDataRepository<>)).To(typeof(Data.Repositories.EfDataGenericRepository<>));
-            kernel.Bind<IInstitutionsDataService>().To<InstitutionsDataService>();
-            kernel.Bind<IProductsDataService>().To<ProductsDataService>();
+            kernel
+                .Bind<Data.Contracts.IDataDbContext>()
+                .To<Data.DataDbContext>();
+            kernel
+                .Bind(typeof(Data.Repositories.IDataRepository<>))
+                .To(typeof(Data.Repositories.EfDataGenericRepository<>));
+            kernel
+                .Bind<Services.Data.Contracts.IInstitutionsDataService>()
+                .To<Services.Data.InstitutionsDataService>();
+            kernel
+                .Bind<Services.Data.Contracts.IProductsDataService>()
+                .To<Services.Data.ProductsDataService>();
 
-            kernel.Bind<Bio.Data.Contracts.IBioDbContext>().To<Bio.Data.BioDbContext>();
-            kernel.Bind(typeof(Bio.Data.Repositories.IBioDataRepository<>)).To(typeof(Bio.Data.Repositories.EfBioDataGenericRepository<>));
-            kernel.Bind<IMorphologicalEpithetsDataService>().To<MorphologicalEpithetsDataService>();
+            kernel
+                .Bind<Geo.Data.Contracts.IGeoDbContext>()
+                .To<Geo.Data.GeoDbContext>();
+            kernel
+                .Bind(typeof(Geo.Data.Repositories.IGeoDataRepository<>))
+                .To(typeof(Geo.Data.Repositories.EfGeoDataGenericRepository<>));
+            kernel
+                .Bind<Geo.Services.Data.Contracts.IGeoEpithetsDataService>()
+                .To<Geo.Services.Data.GeoEpithetsDataService>();
+            kernel
+                .Bind<Geo.Services.Data.Contracts.IGeoNamesDataService>()
+                .To<Geo.Services.Data.GeoNamesDataService>();
 
-            kernel.Bind<MediaType.Data.Contracts.IMediaTypesDbContext>().To<MediaType.Data.MediaTypesDbContext>();
-            kernel.Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>)).To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
-            ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceStaticDictionary>();
-            ////kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataServiceWindowsRegistry>();
-            kernel.Bind<IMediaTypeDataService>().To<MediaTypeDataService>();
+            kernel
+                .Bind<Bio.Data.Contracts.IBioDbContext>()
+                .To<Bio.Data.BioDbContext>();
+            kernel
+                .Bind(typeof(Bio.Data.Repositories.IBioDataRepository<>))
+                .To(typeof(Bio.Data.Repositories.EfBioDataGenericRepository<>));
+            kernel
+                .Bind<Bio.Services.Data.Contracts.IMorphologicalEpithetsDataService>()
+                .To<Bio.Services.Data.MorphologicalEpithetsDataService>();
 
-            kernel.Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>().To<Bio.Environments.Data.BioEnvironmentsDbContext>();
-            kernel.Bind(typeof(Bio.Environments.Data.Repositories.IBioEnvironmentsRepository<>)).To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<>));
-            kernel.Bind<IEnvoTermsDataService>().To<EnvoTermsDataService>();
+            kernel
+                .Bind<MediaType.Data.Contracts.IMediaTypesDbContext>()
+                .To<MediaType.Data.MediaTypesDbContext>();
+            kernel
+                .Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>))
+                .To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
+            ////kernel
+            ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
+            ////    .To<MediaType.Services.Data.MediaTypeDataServiceStaticDictionary>();
+            ////kernel
+            ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
+            ////    .To<MediaType.Services.Data.MediaTypeDataServiceWindowsRegistry>();
+            kernel
+                .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
+                .To<MediaType.Services.Data.MediaTypeDataService>();
 
-            kernel.Bind<IRandomProvider>().To<RandomProvider>();
+            kernel
+                .Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>()
+                .To<Bio.Environments.Data.BioEnvironmentsDbContext>();
+            kernel
+                .Bind(typeof(Bio.Environments.Data.Repositories.IBioEnvironmentsRepository<>))
+                .To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<>));
+            kernel
+                .Bind<Bio.Environments.Services.Data.Contracts.IEnvoTermsDataService>()
+                .To<Bio.Environments.Services.Data.EnvoTermsDataService>();
 
-            kernel.Bind<IExtractHcmrDataRequester>().To<ExtractHcmrDataRequester>();
-            kernel.Bind<ICatalogueOfLifeDataRequester>().To<CatalogueOfLifeDataRequester>();
-            kernel.Bind<IGbifDataRequester>().To<GbifDataRequester>();
+            kernel
+                .Bind<Common.Providers.Contracts.IRandomProvider>()
+                .To<Common.Providers.RandomProvider>();
 
-            kernel.Bind<IAphiaTaxaClassificationDataService>().To<AphiaTaxaClassificationDataService>();
-            kernel.Bind<ICatalogueOfLifeTaxaClassificationDataService>().To<CatalogueOfLifeTaxaClassificationDataService>();
-            kernel.Bind<IGbifTaxaClassificationDataService>().To<GbifTaxaClassificationDataService>();
+            kernel
+                .Bind<Bio.ServiceClient.ExtractHcmr.Contracts.IExtractHcmrDataRequester>()
+                .To<Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester>();
+
+            kernel
+                .Bind<Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts.ICatalogueOfLifeDataRequester>()
+                .To<Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester>();
+
+            kernel
+                .Bind<Bio.Taxonomy.ServiceClient.Gbif.Contracts.IGbifDataRequester>()
+                .To<Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester>();
+
+            kernel
+                .Bind<Bio.Taxonomy.Services.Data.Contracts.IAphiaTaxaClassificationDataService>()
+                .To<Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService>();
+            kernel
+                .Bind<Bio.Taxonomy.Services.Data.Contracts.ICatalogueOfLifeTaxaClassificationDataService>()
+                .To<Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService>();
+            kernel
+                .Bind<Bio.Taxonomy.Services.Data.Contracts.IGbifTaxaClassificationDataService>()
+                .To<Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService>();
         };
 
         public static IKernel CreateKernel()

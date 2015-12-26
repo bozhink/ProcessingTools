@@ -282,6 +282,8 @@
     <Compile Include="Controllers\CoLController.cs" />
     <Compile Include="Controllers\EnvoTermsController.cs" />
     <Compile Include="Controllers\GbifController.cs" />
+    <Compile Include="Controllers\GeoEpithetController.cs" />
+    <Compile Include="Controllers\GeoNameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\MediaTypeController.cs" />
@@ -309,6 +311,10 @@
     <Compile Include="Models\AccountViewModels\UserInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
+    <Compile Include="Models\GeoEpithetModels\GeoEpithetRequestModel.cs" />
+    <Compile Include="Models\GeoEpithetModels\GeoEpithetResponseModel.cs" />
+    <Compile Include="Models\GeoNameModels\GeoNameRequestModel.cs" />
+    <Compile Include="Models\GeoNameModels\GeoNameResponseModel.cs" />
     <Compile Include="Models\InstitutionModels\InstitutionRequestModel.cs" />
     <Compile Include="Models\InstitutionModels\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypeModels\MediaTypeResponseModel.cs" />
@@ -461,14 +467,6 @@
       <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
       <Name>Geo.Harvesters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
-      <Name>Harvesters</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -484,10 +482,6 @@
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
-      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
-      <Name>Geo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
@@ -528,6 +522,10 @@
     <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
+      <Name>Geo.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
