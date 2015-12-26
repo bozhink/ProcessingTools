@@ -2,8 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface IProduct : IDataServiceModel
+    public interface IProduct : INamedDataServiceModel
     {
-        string Name { get; set; }
     }
 }

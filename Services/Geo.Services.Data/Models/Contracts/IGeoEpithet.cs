@@ -2,8 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface IGeoEpithet : IDataServiceModel
+    public interface IGeoEpithet : INamedDataServiceModel
     {
-        string Name { get; set; }
     }
 }

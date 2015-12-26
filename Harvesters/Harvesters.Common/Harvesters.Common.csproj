@@ -36,8 +36,19 @@
     <Compile Include="Contracts\IHarvester.cs" />
     <Compile Include="Contracts\IStringHarvester.cs" />
     <Compile Include="Factories\GenericHarvesterFactory.cs" />
+    <Compile Include="Factories\SimpleServiceStringHarvesterFactory.cs" />
     <Compile Include="Factories\StringHarvesterFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,8 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface IMorphologicalEpithet : IDataServiceModel
+    public interface IMorphologicalEpithet : INamedDataServiceModel
     {
-        string Name { get; set; }
     }
 }
