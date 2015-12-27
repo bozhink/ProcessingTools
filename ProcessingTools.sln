@@ -194,6 +194,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters.Tests", "Harvest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Tests", "Libraries.Tests\Bio.Taxonomy.Tests\Bio.Taxonomy.Tests.csproj", "{04DFBB74-7AE5-4CC9-B549-E052886EF43B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests\Infrastructure.Tests.csproj", "{65A25202-0514-4B3E-B1DC-9D965BE7E67A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loggers.Tests", "Infrastructure.Tests\Loggers.Tests\Loggers.Tests.csproj", "{066626FA-4095-4A26-BEDC-B8F6D903CC8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -834,6 +838,22 @@ Global
 		{04DFBB74-7AE5-4CC9-B549-E052886EF43B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04DFBB74-7AE5-4CC9-B549-E052886EF43B}.Release|x64.ActiveCfg = Release|Any CPU
 		{04DFBB74-7AE5-4CC9-B549-E052886EF43B}.Release|x64.Build.0 = Release|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Debug|x64.Build.0 = Debug|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Release|x64.ActiveCfg = Release|Any CPU
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A}.Release|x64.Build.0 = Release|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Debug|x64.Build.0 = Debug|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Release|x64.ActiveCfg = Release|Any CPU
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -916,6 +936,8 @@ Global
 		{C448E837-3AC5-44FC-965E-FD39962F326B} = {2F0C6A00-97F3-4679-8363-E0DA1D332091}
 		{0F968970-6C68-4932-849F-7EB791AEFEED} = {2F0C6A00-97F3-4679-8363-E0DA1D332091}
 		{04DFBB74-7AE5-4CC9-B549-E052886EF43B} = {E757A233-A56D-41CF-8719-4F84C0292E0C}
+		{65A25202-0514-4B3E-B1DC-9D965BE7E67A} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
+		{066626FA-4095-4A26-BEDC-B8F6D903CC8D} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
