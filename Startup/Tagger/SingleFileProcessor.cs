@@ -34,6 +34,9 @@
     using Data.Repositories;
     using DocumentProvider;
     using Extensions;
+    using Geo.Data.Repositories;
+    using Geo.Harvesters;
+    using Geo.Services.Data;
     using Harvesters;
     using Services.Data;
 
@@ -123,6 +126,16 @@
                     if (this.settings.TagMorphologicalEpithets)
                     {
                         this.TagMorphologicalEpithets();
+                    }
+
+                    if (this.settings.TagGeoNames)
+                    {
+                        this.TagGeoNames();
+                    }
+
+                    if (this.settings.TagGeoEpithets)
+                    {
+                        this.TagGeoEpithets();
                     }
 
                     if (this.settings.TagInstitutions)
@@ -773,6 +786,46 @@
 
             var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger);
+            this.document.Xml = tagger.Xml;
+        }
+
+        private void TagGeoEpithets()
+        {
+            var context = new ProcessingTools.Geo.Data.GeoDbContext();
+            var repository = new EfGeoDataGenericRepository<ProcessingTools.Geo.Data.Models.GeoEpithet>(context);
+            var service = new GeoEpithetsDataService(repository);
+            var harvester = new GeoEpithetsHarvester(service);
+
+            var tag = new TagContent
+            {
+                Name = "named-content",
+                Attributes = @" content-type=""geo epithet"""
+            };
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger);
+            this.document.Xml = tagger.Xml;
+        }
+
+        private void TagGeoNames()
+        {
+            var context = new ProcessingTools.Geo.Data.GeoDbContext();
+            var repository = new EfGeoDataGenericRepository<ProcessingTools.Geo.Data.Models.GeoName>(context);
+            var service = new GeoNamesDataService(repository);
+            var harvester = new GeoNamesHarvester(service);
+
+            var tag = new TagContent
+            {
+                Name = "named-content",
+                Attributes = @" content-type=""geo name"""
+            };
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
 

@@ -50,6 +50,8 @@
             this.TagEnvo = false;
             this.TagFloats = false;
             this.TagMorphologicalEpithets = false;
+            this.TagGeoNames = false;
+            this.TagGeoEpithets = false;
             this.TagInstitutions = false;
             this.TagProducts = false;
             this.TagQuantities = false;
@@ -153,6 +155,10 @@
         public bool TagFloats { get; set; }
 
         public bool TagMorphologicalEpithets { get; set; }
+
+        public bool TagGeoNames { get; set; }
+
+        public bool TagGeoEpithets { get; set; }
 
         public bool TagInstitutions { get; set; }
 

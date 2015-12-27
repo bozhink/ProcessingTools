@@ -51,6 +51,8 @@ Options:
 
     --environments = tag environments (ENVO ID-s)
     --morphology = tag morphological epithets
+    --geo-names = tag geo names
+    --geo-epithets = tag geo epithets
     --products = tag known products
     --institutions = tag known institutional names
     --codes = tag institutional and specimen codes

@@ -222,6 +222,12 @@ Output file name: {1}
   <data name="TagFloatsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagfloatsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="TagGeoEpithetsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\taggeoepithetsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TagGeoNamesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\taggeonamesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="TagHigherTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\taghighertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

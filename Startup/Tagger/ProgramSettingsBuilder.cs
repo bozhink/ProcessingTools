@@ -389,6 +389,14 @@
                     {
                         this.Settings.TagMorphologicalEpithets = true;
                     }
+                    else if (args[item].CompareTo("--geo-names") == 0)
+                    {
+                        this.Settings.TagGeoNames = true;
+                    }
+                    else if (args[item].CompareTo("--geo-epithets") == 0)
+                    {
+                        this.Settings.TagGeoEpithets = true;
+                    }
                 }
             }
         }

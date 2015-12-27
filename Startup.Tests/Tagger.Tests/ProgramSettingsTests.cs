@@ -319,6 +319,38 @@
         }
 
         [Test]
+        public void ProgramSettings_TagGeoNamesPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.TagGeoNames, DefaultValueShouldBeFalseMessage);
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfTagGeoNamesProperty_SchouldBePersistent()
+        {
+            this.programSettings.TagGeoNames = true;
+            Assert.IsTrue(this.programSettings.TagGeoNames, ValueSchouldBeTrueMessage);
+
+            this.programSettings.TagGeoNames = false;
+            Assert.IsFalse(this.programSettings.TagGeoNames, ValueSchouldBeFalseMessage);
+        }
+
+        [Test]
+        public void ProgramSettings_TagGeoEpithetsPropertyInNewInstance_SchouldBeFalse()
+        {
+            Assert.IsFalse(this.programSettings.TagGeoEpithets, DefaultValueShouldBeFalseMessage);
+        }
+
+        [Test]
+        public void ProgramSettings_ValidChangesOfTagGeoEpithetsProperty_SchouldBePersistent()
+        {
+            this.programSettings.TagGeoEpithets = true;
+            Assert.IsTrue(this.programSettings.TagGeoEpithets, ValueSchouldBeTrueMessage);
+
+            this.programSettings.TagGeoEpithets = false;
+            Assert.IsFalse(this.programSettings.TagGeoEpithets, ValueSchouldBeFalseMessage);
+        }
+
+        [Test]
         public void ProgramSettings_TagMorphologicalEpithetsPropertyInNewInstance_SchouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagMorphologicalEpithets, "Default value should be false.");

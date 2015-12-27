@@ -110,7 +110,6 @@
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />
     <Compile Include="Format\Format.Nlm.cs" />
-    <Compile Include="Localities\GeoNamesTagger.cs" />
     <Compile Include="Contracts\IDataProvider.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
