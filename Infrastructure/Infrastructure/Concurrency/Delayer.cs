@@ -23,7 +23,7 @@
         {
             if (milliseconds < 0)
             {
-                throw new ArgumentException("Delay time schould not be negative.", "milliseconds");
+                throw new ArgumentException("Delay time should not be negative.", "milliseconds");
             }
 
             Thread.Sleep(milliseconds);

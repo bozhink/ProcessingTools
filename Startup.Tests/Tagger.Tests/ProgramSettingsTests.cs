@@ -7,8 +7,8 @@
     public class ProgramSettingsTests
     {
         private const string DefaultValueShouldBeFalseMessage = "Default value should be false.";
-        private const string ValueSchouldBeTrueMessage = "1. Value should be true.";
-        private const string ValueSchouldBeFalseMessage = "2. Value should be false.";
+        private const string ValueShouldBeTrueMessage = "1. Value should be true.";
+        private const string ValueShouldBeFalseMessage = "2. Value should be false.";
 
         private ProgramSettings programSettings;
 
@@ -19,13 +19,13 @@
         }
 
         [Test]
-        public void ProgramSettings_ConfigPropertyInNewInstance_SchouldBeNull()
+        public void ProgramSettings_ConfigPropertyInNewInstance_ShouldBeNull()
         {
             Assert.IsNull(this.programSettings.Config, "Default Config value should be null.");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfConfigProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfConfigProperty_ShouldBePersistent()
         {
             string tempDirectoryPath = "/tmp";
 
@@ -46,13 +46,13 @@
         }
 
         [Test]
-        public void ProgramSettings_InputFileNamePropertyInNewInstance_SchouldBeNull()
+        public void ProgramSettings_InputFileNamePropertyInNewInstance_ShouldBeNull()
         {
             Assert.IsNull(this.programSettings.InputFileName, "Default InputFileName value should be null.");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfInputFileNameProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfInputFileNameProperty_ShouldBePersistent()
         {
             string fileNamePath = "/tmp/file";
 
@@ -70,13 +70,13 @@
         }
 
         [Test]
-        public void ProgramSettings_OutputFileNamePropertyInNewInstance_SchouldBeNull()
+        public void ProgramSettings_OutputFileNamePropertyInNewInstance_ShouldBeNull()
         {
             Assert.IsNull(this.programSettings.OutputFileName, "Default OutputFileName value should be null.");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfOutputFileNameProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfOutputFileNameProperty_ShouldBePersistent()
         {
             string fileNamePath = "/tmp/file";
 
@@ -94,13 +94,13 @@
         }
 
         [Test]
-        public void ProgramSettings_QueryFileNamePropertyInNewInstance_SchouldBeNull()
+        public void ProgramSettings_QueryFileNamePropertyInNewInstance_ShouldBeNull()
         {
             Assert.IsNull(this.programSettings.QueryFileName, "Default QueryFileName value should be null.");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfQueryFileNameProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfQueryFileNameProperty_ShouldBePersistent()
         {
             string fileNamePath = "/tmp/file";
 
@@ -118,14 +118,14 @@
         }
 
         [Test]
-        public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_SchouldBeDefault()
+        public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_ShouldBeDefault()
         {
             string defaultXpath = "//article";
             Assert.AreEqual(defaultXpath, this.programSettings.HigherStructrureXpath, "Default HigherStructrureXpath value should be //article");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfHigherStructrureXpathProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfHigherStructrureXpathProperty_ShouldBePersistent()
         {
             string xpath = "//i";
 
@@ -143,221 +143,221 @@
         }
 
         [Test]
-        public void ProgramSettings_ExtractHigherTaxaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ExtractHigherTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfExtractHigherTaxaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfExtractHigherTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractHigherTaxa = true;
-            Assert.IsTrue(this.programSettings.ExtractHigherTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ExtractHigherTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ExtractHigherTaxa = false;
-            Assert.IsFalse(this.programSettings.ExtractHigherTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ExtractHigherTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ExtractLowerTaxaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ExtractLowerTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfExtractLowerTaxaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfExtractLowerTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractLowerTaxa = true;
-            Assert.IsTrue(this.programSettings.ExtractLowerTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ExtractLowerTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ExtractLowerTaxa = false;
-            Assert.IsFalse(this.programSettings.ExtractLowerTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ExtractLowerTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ExtractTaxaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ExtractTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfExtractTaxaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfExtractTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractTaxa = true;
-            Assert.IsTrue(this.programSettings.ExtractTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ExtractTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ExtractTaxa = false;
-            Assert.IsFalse(this.programSettings.ExtractTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ExtractTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag1PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag1PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag1, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag1Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag1Property_ShouldBePersistent()
         {
             this.programSettings.Flag1 = true;
-            Assert.IsTrue(this.programSettings.Flag1, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag1, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag1 = false;
-            Assert.IsFalse(this.programSettings.Flag1, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag1, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag2PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag2PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag2, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag2Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag2Property_ShouldBePersistent()
         {
             this.programSettings.Flag2 = true;
-            Assert.IsTrue(this.programSettings.Flag2, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag2, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag2 = false;
-            Assert.IsFalse(this.programSettings.Flag2, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag2, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag3PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag3PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag3, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag3Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag3Property_ShouldBePersistent()
         {
             this.programSettings.Flag3 = true;
-            Assert.IsTrue(this.programSettings.Flag3, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag3, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag3 = false;
-            Assert.IsFalse(this.programSettings.Flag3, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag3, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag4PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag4PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag4, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag4Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag4Property_ShouldBePersistent()
         {
             this.programSettings.Flag4 = true;
-            Assert.IsTrue(this.programSettings.Flag4, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag4, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag4 = false;
-            Assert.IsFalse(this.programSettings.Flag4, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag4, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag5PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag5PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag5, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag5Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag5Property_ShouldBePersistent()
         {
             this.programSettings.Flag5 = true;
-            Assert.IsTrue(this.programSettings.Flag5, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag5, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag5 = false;
-            Assert.IsFalse(this.programSettings.Flag5, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag5, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag6PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag6PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag6, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag6Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag6Property_ShouldBePersistent()
         {
             this.programSettings.Flag6 = true;
-            Assert.IsTrue(this.programSettings.Flag6, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag6, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag6 = false;
-            Assert.IsFalse(this.programSettings.Flag6, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag6, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag7PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag7PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag7, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag7Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag7Property_ShouldBePersistent()
         {
             this.programSettings.Flag7 = true;
-            Assert.IsTrue(this.programSettings.Flag7, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag7, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag7 = false;
-            Assert.IsFalse(this.programSettings.Flag7, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag7, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_Flag8PropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_Flag8PropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flag8, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFlag8Property_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFlag8Property_ShouldBePersistent()
         {
             this.programSettings.Flag8 = true;
-            Assert.IsTrue(this.programSettings.Flag8, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flag8, ValueShouldBeTrueMessage);
 
             this.programSettings.Flag8 = false;
-            Assert.IsFalse(this.programSettings.Flag8, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flag8, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagGeoNamesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagGeoNamesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagGeoNames, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagGeoNamesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagGeoNamesProperty_ShouldBePersistent()
         {
             this.programSettings.TagGeoNames = true;
-            Assert.IsTrue(this.programSettings.TagGeoNames, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagGeoNames, ValueShouldBeTrueMessage);
 
             this.programSettings.TagGeoNames = false;
-            Assert.IsFalse(this.programSettings.TagGeoNames, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagGeoNames, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagGeoEpithetsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagGeoEpithetsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagGeoEpithets, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagGeoEpithetsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagGeoEpithetsProperty_ShouldBePersistent()
         {
             this.programSettings.TagGeoEpithets = true;
-            Assert.IsTrue(this.programSettings.TagGeoEpithets, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagGeoEpithets, ValueShouldBeTrueMessage);
 
             this.programSettings.TagGeoEpithets = false;
-            Assert.IsFalse(this.programSettings.TagGeoEpithets, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagGeoEpithets, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagMorphologicalEpithetsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagMorphologicalEpithetsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagMorphologicalEpithets, "Default value should be false.");
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagMorphologicalEpithetsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagMorphologicalEpithetsProperty_ShouldBePersistent()
         {
             this.programSettings.TagMorphologicalEpithets = true;
             Assert.IsTrue(this.programSettings.TagMorphologicalEpithets, "1. Value should be true.");
@@ -367,691 +367,691 @@
         }
 
         [Test]
-        public void ProgramSettings_TagProductsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagProductsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagProducts, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagProductsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagProductsProperty_ShouldBePersistent()
         {
             this.programSettings.TagProducts = true;
-            Assert.IsTrue(this.programSettings.TagProducts, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagProducts, ValueShouldBeTrueMessage);
 
             this.programSettings.TagProducts = false;
-            Assert.IsFalse(this.programSettings.TagProducts, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagProducts, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagInstitutionsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagInstitutionsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagInstitutions, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagInstitutionsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagInstitutionsProperty_ShouldBePersistent()
         {
             this.programSettings.TagInstitutions = true;
-            Assert.IsTrue(this.programSettings.TagInstitutions, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagInstitutions, ValueShouldBeTrueMessage);
 
             this.programSettings.TagInstitutions = false;
-            Assert.IsFalse(this.programSettings.TagInstitutions, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagInstitutions, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfResolveMediaTypesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfResolveMediaTypesProperty_ShouldBePersistent()
         {
             this.programSettings.ResolveMediaTypes = true;
-            Assert.IsTrue(this.programSettings.ResolveMediaTypes, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ResolveMediaTypes, ValueShouldBeTrueMessage);
 
             this.programSettings.ResolveMediaTypes = false;
-            Assert.IsFalse(this.programSettings.ResolveMediaTypes, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ResolveMediaTypes, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_FloraPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_FloraPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.Flora, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFloraProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFloraProperty_ShouldBePersistent()
         {
             this.programSettings.Flora = true;
-            Assert.IsTrue(this.programSettings.Flora, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.Flora, ValueShouldBeTrueMessage);
 
             this.programSettings.Flora = false;
-            Assert.IsFalse(this.programSettings.Flora, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.Flora, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_FormatInitPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_FormatInitPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.InitialFormat, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFormatInitProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFormatInitProperty_ShouldBePersistent()
         {
             this.programSettings.InitialFormat = true;
-            Assert.IsTrue(this.programSettings.InitialFormat, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.InitialFormat, ValueShouldBeTrueMessage);
 
             this.programSettings.InitialFormat = false;
-            Assert.IsFalse(this.programSettings.InitialFormat, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.InitialFormat, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_FormatTreatPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_FormatTreatPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.FormatTreat, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfFormatTreatProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfFormatTreatProperty_ShouldBePersistent()
         {
             this.programSettings.FormatTreat = true;
-            Assert.IsTrue(this.programSettings.FormatTreat, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.FormatTreat, ValueShouldBeTrueMessage);
 
             this.programSettings.FormatTreat = false;
-            Assert.IsFalse(this.programSettings.FormatTreat, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.FormatTreat, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseBySectionPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseBySectionPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseBySection, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseBySectionProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseBySectionProperty_ShouldBePersistent()
         {
             this.programSettings.ParseBySection = true;
-            Assert.IsTrue(this.programSettings.ParseBySection, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseBySection, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseBySection = false;
-            Assert.IsFalse(this.programSettings.ParseBySection, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseBySection, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseCoordsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseCoordsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseCoordinates, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseCoordsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseCoordsProperty_ShouldBePersistent()
         {
             this.programSettings.ParseCoordinates = true;
-            Assert.IsTrue(this.programSettings.ParseCoordinates, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseCoordinates, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseCoordinates = false;
-            Assert.IsFalse(this.programSettings.ParseCoordinates, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseCoordinates, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseReferencesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseReferencesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseReferences, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseReferencesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseReferencesProperty_ShouldBePersistent()
         {
             this.programSettings.ParseReferences = true;
-            Assert.IsTrue(this.programSettings.ParseReferences, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseReferences, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseReferences = false;
-            Assert.IsFalse(this.programSettings.ParseReferences, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseReferences, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseTreatmentMetaWithAphiaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseTreatmentMetaWithAphiaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithAphia, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithAphiaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithAphiaProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithAphia = true;
-            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithAphia, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithAphia, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseTreatmentMetaWithAphia = false;
-            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithAphia, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithAphia, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseTreatmentMetaWithColPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseTreatmentMetaWithColPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithCol, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithColProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithColProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithCol = true;
-            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithCol, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithCol, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseTreatmentMetaWithCol = false;
-            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithCol, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithCol, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ParseTreatmentMetaWithGbifPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ParseTreatmentMetaWithGbifPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithGbifProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithGbifProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithGbif = true;
-            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithGbif, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseTreatmentMetaWithGbif, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseTreatmentMetaWithGbif = false;
-            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_QuentinSpecificActionsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_QuentinSpecificActionsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.QuentinSpecificActions, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfQuentinSpecificActionsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfQuentinSpecificActionsProperty_ShouldBePersistent()
         {
             this.programSettings.QuentinSpecificActions = true;
-            Assert.IsTrue(this.programSettings.QuentinSpecificActions, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.QuentinSpecificActions, ValueShouldBeTrueMessage);
 
             this.programSettings.QuentinSpecificActions = false;
-            Assert.IsFalse(this.programSettings.QuentinSpecificActions, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.QuentinSpecificActions, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_QueryReplacePropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_QueryReplacePropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.QueryReplace, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfQueryReplaceProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfQueryReplaceProperty_ShouldBePersistent()
         {
             this.programSettings.QueryReplace = true;
-            Assert.IsTrue(this.programSettings.QueryReplace, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.QueryReplace, ValueShouldBeTrueMessage);
 
             this.programSettings.QueryReplace = false;
-            Assert.IsFalse(this.programSettings.QueryReplace, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.QueryReplace, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_SplitHigherAboveGenusPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_SplitHigherAboveGenusPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfSplitHigherAboveGenusProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfSplitHigherAboveGenusProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherAboveGenus = true;
-            Assert.IsTrue(this.programSettings.ParseHigherAboveGenus, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherAboveGenus, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherAboveGenus = false;
-            Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_SplitHigherBySuffixPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_SplitHigherBySuffixPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherBySuffix, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfSplitHigherBySuffixProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfSplitHigherBySuffixProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherBySuffix = true;
-            Assert.IsTrue(this.programSettings.ParseHigherBySuffix, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherBySuffix, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherBySuffix = false;
-            Assert.IsFalse(this.programSettings.ParseHigherBySuffix, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherBySuffix, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_SplitHigherWithAphiaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_SplitHigherWithAphiaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithAphia, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfSplitHigherWithAphiaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfSplitHigherWithAphiaProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithAphia = true;
-            Assert.IsTrue(this.programSettings.ParseHigherWithAphia, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherWithAphia, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherWithAphia = false;
-            Assert.IsFalse(this.programSettings.ParseHigherWithAphia, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherWithAphia, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_SplitHigherWithCoLPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_SplitHigherWithCoLPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithCoL, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfSplitHigherWithCoLProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfSplitHigherWithCoLProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithCoL = true;
-            Assert.IsTrue(this.programSettings.ParseHigherWithCoL, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherWithCoL, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherWithCoL = false;
-            Assert.IsFalse(this.programSettings.ParseHigherWithCoL, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherWithCoL, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_SplitHigherWithGbifPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_SplitHigherWithGbifPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithGbif, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfSplitHigherWithGbifProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfSplitHigherWithGbifProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithGbif = true;
-            Assert.IsTrue(this.programSettings.ParseHigherWithGbif, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherWithGbif, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherWithGbif = false;
-            Assert.IsFalse(this.programSettings.ParseHigherWithGbif, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherWithGbif, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagAbbrevPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagAbbrevPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagAbbreviations, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagAbbrevProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagAbbrevProperty_ShouldBePersistent()
         {
             this.programSettings.TagAbbreviations = true;
-            Assert.IsTrue(this.programSettings.TagAbbreviations, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagAbbreviations, ValueShouldBeTrueMessage);
 
             this.programSettings.TagAbbreviations = false;
-            Assert.IsFalse(this.programSettings.TagAbbreviations, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagAbbreviations, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagCodesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagCodesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagCodes, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagCodesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagCodesProperty_ShouldBePersistent()
         {
             this.programSettings.TagCodes = true;
-            Assert.IsTrue(this.programSettings.TagCodes, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagCodes, ValueShouldBeTrueMessage);
 
             this.programSettings.TagCodes = false;
-            Assert.IsFalse(this.programSettings.TagCodes, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagCodes, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagCoordsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagCoordsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagCoordinates, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagCoordsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagCoordsProperty_ShouldBePersistent()
         {
             this.programSettings.TagCoordinates = true;
-            Assert.IsTrue(this.programSettings.TagCoordinates, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagCoordinates, ValueShouldBeTrueMessage);
 
             this.programSettings.TagCoordinates = false;
-            Assert.IsFalse(this.programSettings.TagCoordinates, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagCoordinates, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagDatesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagDatesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagDates, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagDatesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagDatesProperty_ShouldBePersistent()
         {
             this.programSettings.TagDates = true;
-            Assert.IsTrue(this.programSettings.TagDates, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagDates, ValueShouldBeTrueMessage);
 
             this.programSettings.TagDates = false;
-            Assert.IsFalse(this.programSettings.TagDates, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagDates, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagDoiPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagDoiPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagDoi, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagDoiProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagDoiProperty_ShouldBePersistent()
         {
             this.programSettings.TagDoi = true;
-            Assert.IsTrue(this.programSettings.TagDoi, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagDoi, ValueShouldBeTrueMessage);
 
             this.programSettings.TagDoi = false;
-            Assert.IsFalse(this.programSettings.TagDoi, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagDoi, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagEnvironmentsPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagEnvironmentsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagEnvironments, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagEnvironmentsProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagEnvironmentsProperty_ShouldBePersistent()
         {
             this.programSettings.TagEnvironments = true;
-            Assert.IsTrue(this.programSettings.TagEnvironments, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagEnvironments, ValueShouldBeTrueMessage);
 
             this.programSettings.TagEnvironments = false;
-            Assert.IsFalse(this.programSettings.TagEnvironments, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagEnvironments, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagEnvoPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagEnvoPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagEnvo, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagEnvoProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagEnvoProperty_ShouldBePersistent()
         {
             this.programSettings.TagEnvo = true;
-            Assert.IsTrue(this.programSettings.TagEnvo, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagEnvo, ValueShouldBeTrueMessage);
 
             this.programSettings.TagEnvo = false;
-            Assert.IsFalse(this.programSettings.TagEnvo, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagEnvo, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagFigTabPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagFigTabPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagFloats, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagFigTabProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagFigTabProperty_ShouldBePersistent()
         {
             this.programSettings.TagFloats = true;
-            Assert.IsTrue(this.programSettings.TagFloats, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagFloats, ValueShouldBeTrueMessage);
 
             this.programSettings.TagFloats = false;
-            Assert.IsFalse(this.programSettings.TagFloats, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagFloats, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagQuantitiesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagQuantitiesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagQuantities, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagQuantitiesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagQuantitiesProperty_ShouldBePersistent()
         {
             this.programSettings.TagQuantities = true;
-            Assert.IsTrue(this.programSettings.TagQuantities, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagQuantities, ValueShouldBeTrueMessage);
 
             this.programSettings.TagQuantities = false;
-            Assert.IsFalse(this.programSettings.TagQuantities, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagQuantities, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagReferencesPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagReferencesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagReferences, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagReferencesProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagReferencesProperty_ShouldBePersistent()
         {
             this.programSettings.TagReferences = true;
-            Assert.IsTrue(this.programSettings.TagReferences, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagReferences, ValueShouldBeTrueMessage);
 
             this.programSettings.TagReferences = false;
-            Assert.IsFalse(this.programSettings.TagReferences, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagReferences, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_RunXslTransformPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_RunXslTransformPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.RunXslTransform, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfRunXslTransformProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfRunXslTransformProperty_ShouldBePersistent()
         {
             this.programSettings.RunXslTransform = true;
-            Assert.IsTrue(this.programSettings.RunXslTransform, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.RunXslTransform, ValueShouldBeTrueMessage);
 
             this.programSettings.RunXslTransform = false;
-            Assert.IsFalse(this.programSettings.RunXslTransform, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.RunXslTransform, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagTableFnPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagTableFnPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagTableFn, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagTableFnProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagTableFnProperty_ShouldBePersistent()
         {
             this.programSettings.TagTableFn = true;
-            Assert.IsTrue(this.programSettings.TagTableFn, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagTableFn, ValueShouldBeTrueMessage);
 
             this.programSettings.TagTableFn = false;
-            Assert.IsFalse(this.programSettings.TagTableFn, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagTableFn, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TagWWWPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TagWWWPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagWebLinks, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagWWWProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagWWWProperty_ShouldBePersistent()
         {
             this.programSettings.TagWebLinks = true;
-            Assert.IsTrue(this.programSettings.TagWebLinks, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagWebLinks, ValueShouldBeTrueMessage);
 
             this.programSettings.TagWebLinks = false;
-            Assert.IsFalse(this.programSettings.TagWebLinks, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagWebLinks, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TaxaAPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TaxaAPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTaxaAProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTaxaAProperty_ShouldBePersistent()
         {
             this.programSettings.TagLowerTaxa = true;
-            Assert.IsTrue(this.programSettings.TagLowerTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagLowerTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.TagLowerTaxa = false;
-            Assert.IsFalse(this.programSettings.TagLowerTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagLowerTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TaxaBPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TaxaBPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTaxaBProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTaxaBProperty_ShouldBePersistent()
         {
             this.programSettings.TagHigherTaxa = true;
-            Assert.IsTrue(this.programSettings.TagHigherTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TagHigherTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.TagHigherTaxa = false;
-            Assert.IsFalse(this.programSettings.TagHigherTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagHigherTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TaxaCPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TaxaCPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTaxaCProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTaxaCProperty_ShouldBePersistent()
         {
             this.programSettings.ParseLowerTaxa = true;
-            Assert.IsTrue(this.programSettings.ParseLowerTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseLowerTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseLowerTaxa = false;
-            Assert.IsFalse(this.programSettings.ParseLowerTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseLowerTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TaxaDPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TaxaDPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTaxaDProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTaxaDProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherTaxa = true;
-            Assert.IsTrue(this.programSettings.ParseHigherTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ParseHigherTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ParseHigherTaxa = false;
-            Assert.IsFalse(this.programSettings.ParseHigherTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ParseHigherTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TaxaEPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TaxaEPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExpandLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTaxaEProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTaxaEProperty_ShouldBePersistent()
         {
             this.programSettings.ExpandLowerTaxa = true;
-            Assert.IsTrue(this.programSettings.ExpandLowerTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ExpandLowerTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ExpandLowerTaxa = false;
-            Assert.IsFalse(this.programSettings.ExpandLowerTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ExpandLowerTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_TestFlagPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_TestFlagPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TestFlag, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTestFlagProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTestFlagProperty_ShouldBePersistent()
         {
             this.programSettings.TestFlag = true;
-            Assert.IsTrue(this.programSettings.TestFlag, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.TestFlag, ValueShouldBeTrueMessage);
 
             this.programSettings.TestFlag = false;
-            Assert.IsFalse(this.programSettings.TestFlag, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TestFlag, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_UntagSplitPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_UntagSplitPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.UntagSplit, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfUntagSplitProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfUntagSplitProperty_ShouldBePersistent()
         {
             this.programSettings.UntagSplit = true;
-            Assert.IsTrue(this.programSettings.UntagSplit, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.UntagSplit, ValueShouldBeTrueMessage);
 
             this.programSettings.UntagSplit = false;
-            Assert.IsFalse(this.programSettings.UntagSplit, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.UntagSplit, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidateTaxaPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ValidateTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ValidateTaxa, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfValidateTaxaProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfValidateTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ValidateTaxa = true;
-            Assert.IsTrue(this.programSettings.ValidateTaxa, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ValidateTaxa, ValueShouldBeTrueMessage);
 
             this.programSettings.ValidateTaxa = false;
-            Assert.IsFalse(this.programSettings.ValidateTaxa, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ValidateTaxa, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ZoobankCloneJsonPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ZoobankCloneJsonPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankCloneJson, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfZoobankCloneJsonProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfZoobankCloneJsonProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankCloneJson = true;
-            Assert.IsTrue(this.programSettings.ZoobankCloneJson, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ZoobankCloneJson, ValueShouldBeTrueMessage);
 
             this.programSettings.ZoobankCloneJson = false;
-            Assert.IsFalse(this.programSettings.ZoobankCloneJson, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ZoobankCloneJson, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ZoobankCloneXmlPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ZoobankCloneXmlPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankCloneXml, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfZoobankCloneXmlProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfZoobankCloneXmlProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankCloneXml = true;
-            Assert.IsTrue(this.programSettings.ZoobankCloneXml, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ZoobankCloneXml, ValueShouldBeTrueMessage);
 
             this.programSettings.ZoobankCloneXml = false;
-            Assert.IsFalse(this.programSettings.ZoobankCloneXml, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ZoobankCloneXml, ValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ZoobankGenerateRegistrationXmlPropertyInNewInstance_SchouldBeFalse()
+        public void ProgramSettings_ZoobankGenerateRegistrationXmlPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankGenerateRegistrationXml, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfZoobankGenerateRegistrationXmlProperty_SchouldBePersistent()
+        public void ProgramSettings_ValidChangesOfZoobankGenerateRegistrationXmlProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankGenerateRegistrationXml = true;
-            Assert.IsTrue(this.programSettings.ZoobankGenerateRegistrationXml, ValueSchouldBeTrueMessage);
+            Assert.IsTrue(this.programSettings.ZoobankGenerateRegistrationXml, ValueShouldBeTrueMessage);
 
             this.programSettings.ZoobankGenerateRegistrationXml = false;
-            Assert.IsFalse(this.programSettings.ZoobankGenerateRegistrationXml, ValueSchouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.ZoobankGenerateRegistrationXml, ValueShouldBeFalseMessage);
         }
     }
 }

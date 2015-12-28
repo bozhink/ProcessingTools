@@ -15,7 +15,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfBlackListCleanXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfBlackListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.BlackListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -30,7 +30,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfBlackListXmlFilePathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfBlackListXmlFilePathProperty_ShouldBePersistent()
         {
             this.config.BlackListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
@@ -45,7 +45,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfCodesRemoveNonCodeNodesProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfCodesRemoveNonCodeNodesProperty_ShouldBePersistent()
         {
             this.config.CodesRemoveNonCodeNodes = SampleFilePath;
             Assert.AreEqual(
@@ -60,7 +60,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvironmentsDataSourceStringProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfEnvironmentsDataSourceStringProperty_ShouldBePersistent()
         {
             this.config.EnvironmentsDataSourceString = SampleFilePath;
             Assert.AreEqual(
@@ -75,7 +75,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_ShouldBePersistent()
         {
             this.config.EnvoTermsWebServiceTransformXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -90,7 +90,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraDistrinctTaxaXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -105,7 +105,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraExtractedTaxaListPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraExtractedTaxaListPathProperty_ShouldBePersistent()
         {
             this.config.FloraExtractedTaxaListPath = SampleFilePath;
             Assert.AreEqual(
@@ -120,7 +120,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraExtractTaxaPartsOutputPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraExtractTaxaPartsOutputPathProperty_ShouldBePersistent()
         {
             this.config.FloraExtractTaxaPartsOutputPath = SampleFilePath;
             Assert.AreEqual(
@@ -135,7 +135,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraExtractTaxaPartsXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraExtractTaxaPartsXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraExtractTaxaPartsXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -150,7 +150,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraExtractTaxaXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraExtractTaxaXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraExtractTaxaXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -165,7 +165,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraGenerateTemplatesXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraGenerateTemplatesXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraGenerateTemplatesXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -180,7 +180,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraTemplatesOutputXmlPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFloraTemplatesOutputXmlPathProperty_ShouldBePersistent()
         {
             this.config.FloraTemplatesOutputXmlPath = SampleFilePath;
             Assert.AreEqual(
@@ -195,7 +195,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFormatXslNlmToSystemProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFormatXslNlmToSystemProperty_ShouldBePersistent()
         {
             this.config.FormatXslNlmToSystem = SampleFilePath;
             Assert.AreEqual(
@@ -210,7 +210,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFormatXslSystemToNlmProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfFormatXslSystemToNlmProperty_ShouldBePersistent()
         {
             this.config.FormatXslSystemToNlm = SampleFilePath;
             Assert.AreEqual(
@@ -225,7 +225,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_ShouldBePersistent()
         {
             this.config.MainDictionaryDataSourceString = SampleFilePath;
             Assert.AreEqual(
@@ -240,7 +240,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfNlmInitialFormatXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfNlmInitialFormatXslPathProperty_ShouldBePersistent()
         {
             this.config.NlmInitialFormatXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -255,7 +255,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfRankListCleanXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfRankListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.RankListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -270,7 +270,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfRankListXmlFilePathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfRankListXmlFilePathProperty_ShouldBePersistent()
         {
             this.config.RankListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
@@ -285,7 +285,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesGetReferencesXmlPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfReferencesGetReferencesXmlPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesGetReferencesXmlPath = SampleFilePath;
             Assert.AreEqual(
@@ -300,7 +300,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesGetReferencesXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfReferencesGetReferencesXslPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesGetReferencesXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -315,7 +315,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesSortReferencesXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfReferencesSortReferencesXslPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesSortReferencesXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -330,7 +330,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesTagTemplateXmlPath = SampleFilePath;
             Assert.AreEqual(
@@ -345,7 +345,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesTagTemplateXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfReferencesTagTemplateXslPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesTagTemplateXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -360,7 +360,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfSystemInitialFormatXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfSystemInitialFormatXslPathProperty_ShouldBePersistent()
         {
             this.config.SystemInitialFormatXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -375,7 +375,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfTempDirectoryPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfTempDirectoryPathProperty_ShouldBePersistent()
         {
             this.config.TempDirectoryPath = SampleFilePath;
             Assert.AreEqual(
@@ -390,7 +390,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfTextContentXslFileNameProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfTextContentXslFileNameProperty_ShouldBePersistent()
         {
             this.config.TextContentXslFileName = SampleFilePath;
             Assert.AreEqual(
@@ -405,7 +405,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfWhiteListCleanXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfWhiteListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.WhiteListCleanXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -420,7 +420,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfWhiteListXmlFilePathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfWhiteListXmlFilePathProperty_ShouldBePersistent()
         {
             this.config.WhiteListXmlFilePath = SampleFilePath;
             Assert.AreEqual(
@@ -435,7 +435,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfZoobankNlmXslPathProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfZoobankNlmXslPathProperty_ShouldBePersistent()
         {
             this.config.ZoobankNlmXslPath = SampleFilePath;
             Assert.AreEqual(
@@ -450,7 +450,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvoResponseOutputXmlFileNameProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfEnvoResponseOutputXmlFileNameProperty_ShouldBePersistent()
         {
             this.config.EnvoResponseOutputXmlFileName = SampleFilePath;
             Assert.AreEqual(
@@ -465,7 +465,7 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfGnrOutputFileNameProperty_SchouldBePersistent()
+        public void Config_ValidChangesOfGnrOutputFileNameProperty_ShouldBePersistent()
         {
             this.config.GnrOutputFileName = SampleFilePath;
             Assert.AreEqual(

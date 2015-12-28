@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Common.Factories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -19,6 +20,11 @@
 
         public SimpleServiceStringHarvesterFactory(TDataService service)
         {
+            if (service == null)
+            {
+                throw new ArgumentNullException("service");
+            }
+
             this.service = service;
             this.items = new HashSet<string>();
         }

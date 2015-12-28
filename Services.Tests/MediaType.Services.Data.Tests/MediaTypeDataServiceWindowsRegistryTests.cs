@@ -11,7 +11,7 @@
         public void MediaTypeDataServiceWindowsRegistry_WithDefaultConstructor_ShouldReturnValidObject()
         {
             var service = new MediaTypeDataServiceWindowsRegistry();
-            Assert.IsNotNull(service, "Object schould not be null.");
+            Assert.IsNotNull(service, "Object should not be null.");
         }
 
         [TestMethod]
@@ -24,9 +24,9 @@
             var service = new MediaTypeDataServiceWindowsRegistry();
             var type = service.GetMediaType(FileExtension).FirstOrDefault();
 
-            Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension schould match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType schould match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype schould match.");
+            Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
+            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]
@@ -39,9 +39,9 @@
             var service = new MediaTypeDataServiceWindowsRegistry();
             var type = service.GetMediaType(FileExtension).FirstOrDefault();
 
-            Assert.AreEqual(FileExtension.TrimStart('.'), type.FileExtension, "FileExtension schould match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType schould match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype schould match.");
+            Assert.AreEqual(FileExtension.TrimStart('.'), type.FileExtension, "FileExtension should match.");
+            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]
@@ -54,9 +54,9 @@
             var service = new MediaTypeDataServiceWindowsRegistry();
             var type = service.GetMediaType(FileExtension).FirstOrDefault();
 
-            Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension schould match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType schould match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype schould match.");
+            Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
+            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]

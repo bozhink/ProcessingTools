@@ -87,7 +87,7 @@
         {
             var encoding = new UTF32Encoding();
             var document = new TaxPubDocument(encoding);
-            Assert.IsNotNull(document.Encoding, "Encoding schould not be null.");
+            Assert.IsNotNull(document.Encoding, "Encoding should not be null.");
         }
 
         [TestMethod]
@@ -232,7 +232,7 @@
         {
             string content = "<a/>";
             var document = new TaxPubDocument(content);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
         [TestMethod]
@@ -241,7 +241,7 @@
             string content = "<a/>";
             Encoding encoding = new UTF32Encoding();
             var document = new TaxPubDocument(content, encoding);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
         [TestMethod]
@@ -354,7 +354,7 @@
             xmlDocument.LoadXml(content);
 
             var document = new TaxPubDocument(xmlDocument);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
         [TestMethod]
@@ -367,7 +367,7 @@
             Encoding encoding = new UTF32Encoding();
 
             var document = new TaxPubDocument(xmlDocument, encoding);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument schould not be null or whitespace.");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
         [TestMethod]

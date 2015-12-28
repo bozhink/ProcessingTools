@@ -60,7 +60,7 @@
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("NLM XmlDocument schould not be null");
+                    throw new ArgumentNullException("NLM XmlDocument should not be null");
                 }
 
                 this.nlmDocument = value;

@@ -55,7 +55,7 @@
         /// </summary>
         /// <param name="text">Valid XML node as text.</param>
         /// <returns>XmlReader object.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException">Input document string schould be UFT8 encoded.</exception>
+        /// <exception cref="System.Text.EncoderFallbackException">Input document string should be UFT8 encoded.</exception>
         public static XmlReader ToXmlReader(this string text)
         {
             XmlReader xmlReader = null;
@@ -66,7 +66,7 @@
             }
             catch (EncoderFallbackException e)
             {
-                throw new EncoderFallbackException("Input document string schould be UFT8 encoded.", e);
+                throw new EncoderFallbackException("Input document string should be UFT8 encoded.", e);
             }
             catch
             {

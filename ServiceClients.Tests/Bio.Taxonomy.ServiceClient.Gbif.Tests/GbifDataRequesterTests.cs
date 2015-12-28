@@ -14,8 +14,8 @@
             var requester = new GbifDataRequester();
             var result = requester.RequestData(ScientificName)?.Result;
 
-            Assert.IsNotNull(result, "Result schould not be null.");
-            Assert.AreEqual(ScientificName, result.CanonicalName, "CanonicalName schould match.");
+            Assert.IsNotNull(result, "Result should not be null.");
+            Assert.AreEqual(ScientificName, result.CanonicalName, "CanonicalName should match.");
         }
     }
 }

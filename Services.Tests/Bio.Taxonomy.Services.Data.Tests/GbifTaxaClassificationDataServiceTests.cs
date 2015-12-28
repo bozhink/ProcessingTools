@@ -29,7 +29,7 @@
             var defaultClassification = response.FirstOrDefault();
 
             Assert.AreEqual(CanonicalName, defaultClassification.CanonicalName, "CanonicalName should match.");
-            Assert.AreEqual(Rank, defaultClassification.Rank, "Rank schould match.");
+            Assert.AreEqual(Rank, defaultClassification.Rank, "Rank should match.");
         }
     }
 }

@@ -21,14 +21,14 @@
                 list = serializer.Deserialize(stream) as WhiteList;
             }
 
-            Assert.IsNotNull(list, "WhiteList object schould not be null.");
+            Assert.IsNotNull(list, "WhiteList object should not be null.");
 
             Assert.IsTrue(list.Items.Length > 0, "Number of items should be greater than zero.");
 
-            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of WhiteList items schould be {NumberOfListItems}.");
+            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of WhiteList items should be {NumberOfListItems}.");
 
-            Assert.AreEqual("Acalyptrata", list.Items[0], "First item schould match.");
-            Assert.AreEqual("Amycoida", list.Items[1], "Second item schould match.");
+            Assert.AreEqual("Acalyptrata", list.Items[0], "First item should match.");
+            Assert.AreEqual("Amycoida", list.Items[1], "Second item should match.");
         }
     }
 }

@@ -21,14 +21,14 @@
                 list = serializer.Deserialize(stream) as BlackList;
             }
 
-            Assert.IsNotNull(list, "BlackList object schould not be null.");
+            Assert.IsNotNull(list, "BlackList object should not be null.");
 
             Assert.IsTrue(list.Items.Length > 0, "Number of items should be greater than zero.");
 
-            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of BlackList items schould be {NumberOfListItems}.");
+            Assert.AreEqual(NumberOfListItems, list.Items.Length, $"The number of BlackList items should be {NumberOfListItems}.");
 
-            Assert.AreEqual("Abdominal", list.Items[0], "First item schould match.");
-            Assert.AreEqual("Abbreviations", list.Items[1], "Second item schould match.");
+            Assert.AreEqual("Abdominal", list.Items[0], "First item should match.");
+            Assert.AreEqual("Abbreviations", list.Items[1], "Second item should match.");
         }
     }
 }

@@ -28,7 +28,7 @@
             var defaultClassification = response.FirstOrDefault();
 
             Assert.AreEqual(ScientificName, defaultClassification.ScientificName, "ScientificName should match.");
-            Assert.AreEqual(Rank, defaultClassification.Rank, "Rank schould match.");
+            Assert.AreEqual(Rank, defaultClassification.Rank, "Rank should match.");
         }
     }
 }

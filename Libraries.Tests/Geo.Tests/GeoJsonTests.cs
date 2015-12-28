@@ -16,14 +16,14 @@
             }";
 
         [TestMethod]
-        public void GeoJson_DeserializationOfSampleGeometryPoint_SchouldWork()
+        public void GeoJson_DeserializationOfSampleGeometryPoint_ShouldWork()
         {
             var point = JsonConvert.DeserializeObject<GeoJsonFeature>(JsonGeometryPointStringSample);
 
             Assert.AreEqual(
                 GeoJsonType.Feature.ToString(),
                 point.Type,
-                "point.Type schould be 'Feature'.");
+                "point.Type should be 'Feature'.");
 
             Assert.AreEqual(
                 GeoJsonType.Point.ToString(),
@@ -36,15 +36,15 @@
                 .Select(c => c as double?)
                 .ToArray();
 
-            Assert.AreEqual(2, coordinates.Length, "The number of coordinate points schould be equal to 2.");
+            Assert.AreEqual(2, coordinates.Length, "The number of coordinate points should be equal to 2.");
 
-            Assert.AreEqual(125.6, coordinates[0], "coordinates[0] schould be equal to 125.6.");
+            Assert.AreEqual(125.6, coordinates[0], "coordinates[0] should be equal to 125.6.");
 
-            Assert.AreEqual(10.1, coordinates[1], "coordinates[1] schould be equal to 10.1.");
+            Assert.AreEqual(10.1, coordinates[1], "coordinates[1] should be equal to 10.1.");
         }
 
         [TestMethod]
-        public void GeoJson_SerializationOfSampleGeometryPoint_SchouldWork()
+        public void GeoJson_SerializationOfSampleGeometryPoint_ShouldWork()
         {
             var point = new GeoJsonFeature
             {
