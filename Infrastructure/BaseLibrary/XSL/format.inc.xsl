@@ -338,6 +338,13 @@
   </xsl:template>
 
   <!-- other -->
+  
+  <xsl:template match="td[count(node()) = 1 and count(text()) = 1] | th[count(node()) = 1 and count(text()) = 1] | title[count(node()) = 1 and count(text()) = 1] | label[count(node()) = 1 and count(text()) = 1] | p[count(node()) = 1 and count(text()) = 1] | article-title[count(node()) = 1 and count(text()) = 1] | li[count(node()) = 1 and count(text()) = 1] | kwd[count(node()) = 1 and count(text()) = 1] | xref-group[count(node()) = 1 and count(text()) = 1]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space()"/>
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template match="tex-math">
     <xsl:element name="{name()}">

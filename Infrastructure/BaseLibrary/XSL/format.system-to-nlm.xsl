@@ -8,7 +8,10 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
-  <xsl:output method="xml" indent="no" encoding="utf-8"  cdata-section-elements="tex-math" />
+  <xsl:output method="xml" indent="yes" encoding="utf-8"  cdata-section-elements="tex-math" />
+
+  <xsl:strip-space elements="*"/>
+  <xsl:preserve-space elements="p label title article-title td th email ext-link uri preformat bold italic monospace overline roman sans-serif sc strike underline award-id funding-source private-char tex-math abbrev def milestone-end milestone-start named-content styled-content disp-quote speech statement target xref xref-group sub sup tp:taxon-name source institution institutional_code envo mixed-citation"/>
 
   <xsl:include href="format.inc.xsl" />
 
