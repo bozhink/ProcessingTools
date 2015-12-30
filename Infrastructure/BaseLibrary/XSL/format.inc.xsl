@@ -8,51 +8,42 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
+  <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
+
   <xsl:template match="@* | node()">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="surname|given-names|prefix|suffix|anonymous|etal">
+  <xsl:template match="tn//tn | tp:taxon-name//tn | a//tn | *[@object_id='82']//tn | *[@id='41']//tn | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tn | xref//tn | tn//xref | tn//abbrev | tp:taxon-name//abbrev | xref//abbrev | aff/abbrev | institution//abbrev | source//abbrev">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="tp:treatment-meta/kwd-group/kwd/named-content">
     <xsl:element name="{name()}">
-      <xsl:value-of select="normalize-space()" />
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="string()" />
     </xsl:element>
-  </xsl:template>
-
-  <xsl:template match="tn//tn | tp:taxon-name//tn | a//tn | ext-link//tn | *[@object_id='82']//tn | *[@id='41']//tn | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tn | xref//tn | tn//xref | tn//abbrev | tp:taxon-name//abbrev | xref//abbrev | aff/abbrev | institution//abbrev | source//abbrev">
-    <xsl:apply-templates />
-  </xsl:template>
-
-  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | ext-link//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref">
-    <xsl:apply-templates />
-  </xsl:template>
-
-  <xsl:template match="tp:treatment-meta/kwd-group/kwd/named-content//tn">
-    <xsl:value-of select="string(.)" />
-  </xsl:template>
-
-  <xsl:template match="article/front/notes/sec//p//*[name()!='i'][name()!='italic'][name()!='sup'][name()!='sub'][name()!='ext-link']">
-    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="tn-part[name(..)!='tn'][name(..)!='tp:taxon-name']|tp:taxon-name-part[name(..)!='tn'][name(..)!='tp:taxon-name']|tn-part//tn-part|tn-part//tp:*|tp:taxon-name-part//tp:*">
     <xsl:apply-templates />
   </xsl:template>
-  
+
   <xsl:template match="tn-part/*[name(.)!='i' and name(.)!='b']">
-    <xsl:value-of select="."/>
-  </xsl:template>
-  
-  <xsl:template match="locality-coordinates/*[name(.)!='i' and name(.)!='b']">
-    <xsl:value-of select="."/>
-  </xsl:template>
-  
-  <xsl:template match="xref/institutional_code">
-    <xsl:value-of select="."/>
+    <xsl:value-of select="." />
   </xsl:template>
 
-  <xsl:template match="a//a|a//ext-link|ext-link//a|ext-link//ext-link|a//xref|ext-link//xref|xref//xref|xref//a|xref//ext-link">
+  <xsl:template match="xref/institutional_code">
+    <xsl:value-of select="." />
+  </xsl:template>
+
+  <xsl:template match="a//a|a//ext-link|a//xref|xref//xref|xref//a|xref//ext-link">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -68,32 +59,262 @@
   <xsl:template match="ref//institutional_code | ref//institution[@url]">
     <xsl:apply-templates />
   </xsl:template>
-  
-  <xsl:template match="author-notes/fn/p/*[name(.)!='email' and name(.)!='ext-link']">
-    <xsl:value-of select="."/>
+
+  <xsl:template match="surname | given-names | prefix | suffix | anonymous | etal">
+    <xsl:element name="{name()}">
+      <xsl:value-of select="normalize-space()" />
+    </xsl:element>
   </xsl:template>
 
-  <xsl:template match="email|self-uri|uri|ext-link">
+  <!-- person-group model -->
+
+  <xsl:template match="person-group">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" mode="person-group" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="person-group">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" mode="person-group" />
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="comment()" mode="person-group">
+    <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template match="text()" mode="person-group">
+    <xsl:choose>
+      <xsl:when test="normalize-space()=''"/>
+      <xsl:when test="normalize-space()=','"/>
+      <xsl:otherwise>
+        <xsl:element name="{$invalid-tag-name}">
+          <xsl:value-of select="string()" />
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="anonymous | collab | name | aff | etal | string-name" mode="person-group">
+    <xsl:apply-templates select="." />
+  </xsl:template>
+
+  <xsl:template match="*" mode="person-group">
+    <xsl:apply-templates mode="person-group" />
+  </xsl:template>
+
+  <!-- front/notes/sec/p model -->
+
+  <xsl:template match="article/front/notes/sec//p">
+    <p>
+      <xsl:apply-templates mode="front-notes-sec-p" />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="front-notes-sec-p">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" mode="front-notes-sec-p" />
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="text() | comment()" mode="front-notes-sec-p">
+    <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup | ext-link" mode="front-notes-sec-p">
+    <xsl:apply-templates select="." />
+  </xsl:template>
+
+  <xsl:template match="*" mode="front-notes-sec-p">
+    <xsl:apply-templates mode="front-notes-sec-p" />
+  </xsl:template>
+
+  <!-- author-notes/fn/p model -->
+
+  <xsl:template match="author-notes/fn/p">
+    <p>
+      <xsl:apply-templates mode="author-notes-fn-p" />
+    </p>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="author-notes-fn-p">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" mode="author-notes-fn-p" />
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="text()" mode="author-notes-fn-p">
+    <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template match="email | ext-link" mode="author-notes-fn-p">
+    <xsl:apply-templates select="." />
+  </xsl:template>
+
+  <xsl:template match="*" mode="author-notes-fn-p">
+    <xsl:apply-templates mode="author-notes-fn-p" />
+  </xsl:template>
+
+  <!-- locality-coordinates model -->
+
+  <xsl:template match="locality-coordinates">
+    <xsl:element name="{name()}">
+      <xsl:attribute name="latitude" />
+      <xsl:attribute name="longitude" />
+      <xsl:apply-templates select="@* | node()" mode="locality-coordinates" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="locality-coordinates">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" mode="locality-coordinates" />
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="text() | comment()" mode="locality-coordinates">
+    <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup" mode="locality-coordinates">
+    <xsl:apply-templates select="." />
+  </xsl:template>
+
+  <xsl:template match="*" mode="locality-coordinates">
+    <xsl:apply-templates mode="locality-coordinates" />
+  </xsl:template>
+
+
+  <!-- Links and ids -->
+
+  <xsl:template match="object-id">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space()" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="email | self-uri | uri">
     <xsl:element name="{name()}">
       <xsl:attribute name="xlink:type">
         <xsl:text>simple</xsl:text>
       </xsl:attribute>
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space()" />
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="tex-math">
+  <!-- ext-link model -->
+
+  <xsl:template match="ext-link">
     <xsl:element name="{name()}">
-      <xsl:attribute name="id">
-        <xsl:text>Math</xsl:text>
-        <xsl:value-of select="generate-id()" />
+      <xsl:attribute name="xlink:type">
+        <xsl:text>simple</xsl:text>
       </xsl:attribute>
+      <xsl:apply-templates select="@* | node()" mode="ext-link" />
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="ext-link[@ext-link-type][not(@xlink:href)]">
+    <xsl:element name="{name()}">
+      <xsl:attribute name="xlink:type">
+        <xsl:text>simple</xsl:text>
+      </xsl:attribute>
+
+      <xsl:apply-templates select="@*" mode="ext-link" />
+
+      <xsl:attribute name="xlink:href">
+        <xsl:variable name="content" select="normalize-space(.)" />
+        <xsl:choose>
+          <xsl:when test="@ext-link-type='uri'">
+            <xsl:choose>
+              <xsl:when test="translate(substring($content, 1, 4), 'HTP', 'htp') = 'http'">
+                <xsl:value-of select="$content" />
+              </xsl:when>
+              <xsl:when test="contains($content,'://')">
+                <xsl:text>http://</xsl:text>
+                <xsl:value-of select="normalize-space(substring-after($content,'://'))" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>http://</xsl:text>
+                <xsl:value-of select="$content" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@ext-link-type='ftp'">
+            <xsl:choose>
+              <xsl:when test="contains(translate(substring($content, 1, 4), 'FTP', 'ftp'), 'ftp')">
+                <xsl:value-of select="$content" />
+              </xsl:when>
+              <xsl:when test="contains($content,'://')">
+                <xsl:text>ftp://</xsl:text>
+                <xsl:value-of select="normalize-space(substring-after($content,'://'))" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>ftp://</xsl:text>
+                <xsl:value-of select="$content" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@ext-link-type='doi'">
+            <xsl:choose>
+              <xsl:when test="contains($content,'10.')">
+                <xsl:text>10.</xsl:text>
+                <xsl:value-of select="normalize-space(substring-after($content,'10.'))" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message terminate="no">
+                  <xsl:text>INVALID DOI: </xsl:text>
+                  <xsl:value-of select="$content" />
+                </xsl:message>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@ext-link-type='pmid'">
+            <xsl:call-template name="get-number-content">
+              <xsl:with-param name="content" select="$content" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="@ext-link-type='pmcid'">
+            <xsl:text>PMC</xsl:text>
+            <xsl:call-template name="get-number-content">
+              <xsl:with-param name="content" select="$content" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$content" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+
+      <xsl:apply-templates select="@node()" mode="ext-link" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="ext-link">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" mode="ext-link" />
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="text() | comment()" mode="ext-link">
+    <xsl:copy-of select="." />
+  </xsl:template>
+
+  <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup" mode="ext-link">
+    <xsl:apply-templates select="." />
+  </xsl:template>
+
+  <xsl:template match="*" mode="ext-link">
+    <xsl:apply-templates mode="ext-link" />
   </xsl:template>
 
   <!-- license-p model -->
+
   <xsl:template match="license-p">
-    <xsl:apply-templates select="." mode="license-p" />
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" mode="license-p" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="@*" mode="license-p">
@@ -106,7 +327,7 @@
     <xsl:copy-of select="." />
   </xsl:template>
 
-  <xsl:template match="license-p | email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | italic | monospace | overline | roman | sans-serif | sc | strike | underline | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
+  <xsl:template match="license-p | email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" mode="license-p" />
     </xsl:copy>
@@ -116,10 +337,28 @@
     <xsl:apply-templates mode="license-p" />
   </xsl:template>
 
-  <xsl:template match="object-id">
+  <!-- other -->
+
+  <xsl:template match="tex-math">
     <xsl:element name="{name()}">
-      <xsl:apply-templates select="@*" />
-      <xsl:value-of select="string(.)" />
+      <xsl:attribute name="id">
+        <xsl:text>Math</xsl:text>
+        <xsl:value-of select="generate-id()" />
+      </xsl:attribute>
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template name="get-number-content">
+    <xsl:param name="content" />
+    <xsl:variable name="masked-number" select="translate($content, '0123456789', '¶¶¶¶¶¶¶¶¶¶')" />
+    <xsl:variable name="prefix" select="substring-before($content, '¶')" />
+    <xsl:choose>
+      <xsl:when test="string-length($prefix) = 0">
+        <xsl:value-of select="$content" />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="substring-after($content, $prefix)" />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 </xsl:stylesheet>
