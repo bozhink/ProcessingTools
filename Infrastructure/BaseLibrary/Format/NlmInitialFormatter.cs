@@ -36,6 +36,8 @@
 
             this.InitialRefactor();
 
+            this.RefactorEmailTags();
+
             this.FinalRefactor();
 
             this.TrimBlockElements();
@@ -228,6 +230,23 @@
                 .RegexReplace(@"(?<=</role>\))[\.,;:]", string.Empty);
 
             return result;
+        }
+
+        private void RefactorEmailTags()
+        {
+            Regex matchMultipleEmails = new Regex(@"(?<!<[^<>]+)(?<=\w)(\W*\s+\W*)(?=\w)(?![^<>]+>)");
+            foreach (XmlNode email in this.XmlDocument.SelectNodes("//email", this.NamespaceManager))
+            {
+                email.InnerXml = email.InnerXml
+                    .RegexReplace(@"\A\s+|\s+\Z", string.Empty);
+
+                if (matchMultipleEmails.IsMatch(email.InnerXml))
+                {
+                    XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
+                    fragment.InnerXml = matchMultipleEmails.Replace(email.OuterXml, @"</email>$1<email>");
+                    email.ParentNode.ReplaceChild(fragment, email);
+                }
+            }
         }
     }
 }

@@ -22,23 +22,6 @@
         {
             this.TagWebLinks();
             this.TagIPAddresses();
-            this.RefactorEmailTags();
-        }
-
-        private void RefactorEmailTags()
-        {
-            Regex matchMultipleEmails = new Regex(@"(?<!<[^<>]+)(?<=\w)(\W*\s+\W*)(?=\w)(?![^<>]+>)");
-            foreach (XmlNode email in this.XmlDocument.SelectNodes("//email", this.NamespaceManager))
-            {
-                email.InnerXml = Regex.Replace(email.InnerXml, @"\A\s+|\s+\Z", string.Empty);
-
-                if (matchMultipleEmails.IsMatch(email.InnerXml))
-                {
-                    XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
-                    fragment.InnerXml = matchMultipleEmails.Replace(email.OuterXml, @"</email>$1<email>");
-                    email.ParentNode.ReplaceChild(fragment, email);
-                }
-            }
         }
 
         private void TagIPAddresses()
