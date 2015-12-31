@@ -16,9 +16,9 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-        private readonly int loremIpsumLength = LoremIpsum.Length;
-
         private static readonly Random Random = new Random();
+
+        private readonly int loremIpsumLength = LoremIpsum.Length;
 
         public int GetRandomNumber(int min, int max)
         {
