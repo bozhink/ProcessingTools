@@ -76,7 +76,7 @@
     <Compile Include="CustomXslRunner.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
-    <Compile Include="Format\Format.NlmSystem.cs" />
+    <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="Contracts\ITagContent.cs" />
     <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="References\ReferencesParser.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="Envo\Envo.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />
-    <Compile Include="Format\Format.Nlm.cs" />
+    <Compile Include="Format\NlmInitialFormatter.cs" />
     <Compile Include="Contracts\IDataProvider.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />

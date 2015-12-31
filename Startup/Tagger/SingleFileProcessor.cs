@@ -11,6 +11,7 @@
     using BaseLibrary.Coordinates;
     using BaseLibrary.Dates;
     using BaseLibrary.Floats;
+    using BaseLibrary.Format;
     using BaseLibrary.HyperLinks;
     using BaseLibrary.Measurements;
     using BaseLibrary.References;
@@ -401,7 +402,7 @@
                 case SchemaType.Nlm:
                     {
                         string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslPath);
-                        var formatter = new BaseLibrary.Format.Nlm.Formatter(this.settings.Config, xml);
+                        var formatter = new NlmInitialFormatter(this.settings.Config, xml);
                         this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
                         this.document.Xml = formatter.Xml;
                     }
@@ -411,7 +412,7 @@
                 default:
                     {
                         string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslPath);
-                        var formatter = new BaseLibrary.Format.NlmSystem.Formatter(this.settings.Config, xml);
+                        var formatter = new SystemInitialFormatter(this.settings.Config, xml);
                         this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
                         this.document.Xml = formatter.Xml;
                     }

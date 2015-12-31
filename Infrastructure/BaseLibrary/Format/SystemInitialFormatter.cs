@@ -1,23 +1,23 @@
-﻿namespace ProcessingTools.BaseLibrary.Format.NlmSystem
+﻿namespace ProcessingTools.BaseLibrary.Format
 {
     using System.Text.RegularExpressions;
 
     using Configurator;
     using Contracts;
 
-    public class Formatter : Base, IBaseFormatter
+    public class SystemInitialFormatter : Base, IBaseFormatter
     {
-        public Formatter(string xml)
+        public SystemInitialFormatter(string xml)
             : base(xml)
         {
         }
 
-        public Formatter(Config config, string xml)
+        public SystemInitialFormatter(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public Formatter(IBase baseObject)
+        public SystemInitialFormatter(IBase baseObject)
             : base(baseObject)
         {
         }
@@ -188,7 +188,7 @@
             xml = Regex.Replace(xml, @"([\(\[])(\s+)([\(\[])", "$2$1$3");
 
             // Format other punctuation
-            xml = Regex.Replace(xml, @"(\s+)([,;\.])", "$2$1");
+            xml = Regex.Replace(xml, @"(\s+)([,;])", "$2$1");
             xml = Regex.Replace(xml, @"([,\.\;])(<i>|<b>)", "$1 $2");
 
             this.Xml = xml;

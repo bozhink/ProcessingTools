@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Format.Nlm
+﻿namespace ProcessingTools.BaseLibrary.Format
 {
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -7,19 +7,19 @@
     using Contracts;
     using Extensions;
 
-    public class Formatter : Base, IBaseFormatter
+    public class NlmInitialFormatter : Base, IBaseFormatter
     {
-        public Formatter(string xml)
+        public NlmInitialFormatter(string xml)
             : base(xml)
         {
         }
 
-        public Formatter(Config config, string xml)
+        public NlmInitialFormatter(Config config, string xml)
             : base(config, xml)
         {
         }
 
-        public Formatter(IBase baseObject)
+        public NlmInitialFormatter(IBase baseObject)
             : base(baseObject)
         {
         }
