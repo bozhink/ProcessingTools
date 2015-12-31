@@ -945,7 +945,7 @@
                 () =>
                 {
                     this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
-                    this.fileProcessor.Write(this.document);
+                    this.fileProcessor.Write(this.document, null, null);
                 });
         }
 

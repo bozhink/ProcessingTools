@@ -9,10 +9,18 @@
   exclude-result-prefixes="xs">
 
   <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" cdata-section-elements="tex-math"/>
+
   <xsl:preserve-space elements="*"/>
+
   <xsl:strip-space elements="addr-line aff article-id"/>
 
-  <xsl:template match="@* | node()" mode="strip-label">
+  <xsl:template match="@*" mode="strip-label">
+    <xsl:attribute name="{name()}">
+      <xsl:value-of select="normalize-space()"/>
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match="node()" mode="strip-label">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" mode="strip-label"/>
     </xsl:copy>
@@ -20,7 +28,13 @@
 
   <xsl:template match="label | title" mode="strip-label"/>
 
-  <xsl:template match="@* | node()">
+  <xsl:template match="@*">
+    <xsl:attribute name="{name()}">
+      <xsl:value-of select="normalize-space()"/>
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match="node()">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
@@ -141,7 +155,13 @@
   </xsl:template>
 
   <!-- Title modes -->
-  <xsl:template match="@* | node()" mode="title">
+  <xsl:template match="@*" mode="title">
+    <xsl:attribute name="{name()}">
+      <xsl:value-of select="normalize-space()"/>
+    </xsl:attribute>
+  </xsl:template>
+  
+  <xsl:template match="node()" mode="title">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" mode="title"/>
     </xsl:copy>
