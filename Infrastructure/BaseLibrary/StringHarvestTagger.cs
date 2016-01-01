@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Linq;
+    using System.Xml;
 
     using Configurator;
     using Contracts;
@@ -11,26 +12,26 @@
 
     public class StringHarvestTagger : HarvestableDocument, IBaseTagger
     {
-        private ITagContent tag;
+        private XmlElement tagModel;
 
         private IStringHarvester harvester;
         private IXPathProvider xpathProvider;
         private ILogger logger;
 
-        public StringHarvestTagger(Config config, string xml, IStringHarvester harvester, ITagContent tag, IXPathProvider xpathProvider, ILogger logger)
+        public StringHarvestTagger(Config config, string xml, IStringHarvester harvester, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
             : base(config, xml)
         {
             this.harvester = harvester;
-            this.tag = tag;
+            this.tagModel = tagModel;
             this.xpathProvider = xpathProvider;
             this.logger = logger;
         }
 
-        public StringHarvestTagger(IBase baseObject, IStringHarvester harvester, ITagContent tag, IXPathProvider xpathProvider, ILogger logger)
+        public StringHarvestTagger(IBase baseObject, IStringHarvester harvester, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
             : base(baseObject)
         {
             this.harvester = harvester;
-            this.tag = tag;
+            this.tagModel = tagModel;
             this.xpathProvider = xpathProvider;
             this.logger = logger;
         }
@@ -42,7 +43,7 @@
             this.harvester.Data
                 .ToList()
                 .TagContentInDocument(
-                    this.tag,
+                    this.tagModel,
                     this.xpathProvider.SelectContentNodesXPathTemplate,
                     this.XmlDocument,
                     false,

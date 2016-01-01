@@ -34,18 +34,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDatesHarvester.cs" />
-    <Compile Include="Contracts\IDoiHarvester.cs" />
     <Compile Include="Contracts\IInstitutionsHarvester.cs" />
     <Compile Include="Contracts\INlmExternalLinksHarvester.cs" />
-    <Compile Include="Contracts\IPmcIdsHarvester.cs" />
     <Compile Include="Contracts\IProductsHarvester.cs" />
     <Compile Include="Contracts\IQuantitiesHarvester.cs" />
-    <Compile Include="DoiHarvester.cs" />
     <Compile Include="InstitutionsHarvester.cs" />
     <Compile Include="Models\Contracts\INlmExternalLink.cs" />
     <Compile Include="Models\NlmExternalLinkResponseModel.cs" />
     <Compile Include="NlmExternalLinksHarvester.cs" />
-    <Compile Include="PmcIdsHarvester.cs" />
     <Compile Include="ProductsHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

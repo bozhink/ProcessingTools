@@ -119,7 +119,7 @@
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
-    <Compile Include="WebLinks\DoiLinksTagger.cs" />
+    <Compile Include="Uri\DoiLinksTagger.cs" />
     <Compile Include="Quantities\QuantitiesTagger.cs" />
     <Compile Include="Special\QuentinFlora.cs" />
     <Compile Include="QueryReplace.cs" />
@@ -132,7 +132,8 @@
     <Compile Include="Taxonomy\TaxaTagger\TaxaTagger.cs" />
     <Compile Include="Taxonomy\Taxonomy.cs" />
     <Compile Include="Test\Test.cs" />
-    <Compile Include="WebLinks\UrlLinksTagger.cs" />
+    <Compile Include="Uri\NlmExternalLinksTagger.cs" />
+    <Compile Include="Uri\UrlLinksTagger.cs" />
     <Compile Include="XPathProvider\XPathProvider.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankXmlCloner.cs" />

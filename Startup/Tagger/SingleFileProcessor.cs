@@ -17,6 +17,7 @@
     using BaseLibrary.Measurements;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
+    using BaseLibrary.Uri;
     using BaseLibrary.ZooBank;
     using Bio.Data.Repositories;
     using Bio.Environments.Data;
@@ -747,15 +748,10 @@
         private void TagDoi()
         {
             var harvester = new NlmExternalLinksHarvester();
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            harvester.Harvest(harvestableDocument.TextContent);
 
-            foreach (var item in harvester.Data.ToList())
-            {
-                this.logger?.Log("{0}: {1}", item.Type.GetValue(), item.Content);
-            }
+            var tagger = new NlmExternalLinksTagger(this.settings.Config, this.document.Xml, harvester, this.logger);
 
-            var tagger = new DoiLinksTagger(this.settings.Config, this.document.Xml);
+            //var tagger = new DoiLinksTagger(this.settings.Config, this.document.Xml);
             this.InvokeProcessor(Messages.TagDoiMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -787,15 +783,12 @@
             var service = new MorphologicalEpithetsDataService(repository);
             var harvester = new MorphologicalEpithetsHarvester(service);
 
-            var tag = new TagContent
-            {
-                Name = "named-content",
-                Attributes = @" content-type=""morphological epithet"""
-            };
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "morphological epithet");
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -807,15 +800,12 @@
             var service = new GeoEpithetsDataService(repository);
             var harvester = new GeoEpithetsHarvester(service);
 
-            var tag = new TagContent
-            {
-                Name = "named-content",
-                Attributes = @" content-type=""geo epithet"""
-            };
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "geo epithet");
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -827,15 +817,12 @@
             var service = new GeoNamesDataService(repository);
             var harvester = new GeoNamesHarvester(service);
 
-            var tag = new TagContent
-            {
-                Name = "named-content",
-                Attributes = @" content-type=""geo name"""
-            };
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "geo name");
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -847,15 +834,12 @@
             var service = new InstitutionsDataService(repository);
             var harvester = new InstitutionsHarvester(service);
 
-            var tag = new TagContent
-            {
-                Name = "named-content",
-                Attributes = @" content-type=""institution"""
-            };
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "institution");
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -867,15 +851,12 @@
             var service = new ProductsDataService(repository);
             var harvester = new ProductsHarvester(service);
 
-            var tag = new TagContent
-            {
-                Name = "named-content",
-                Attributes = @" content-type=""product"""
-            };
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "product");
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tag, xpathProvider, this.logger);
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagProductsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -944,9 +925,9 @@
 
         private void TagWebLinks()
         {
-            var tagger = new UrlLinksTagger(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
-            this.document.Xml = tagger.Xml;
+            ////var tagger = new UrlLinksTagger(this.settings.Config, this.document.Xml);
+            ////this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
+            ////this.document.Xml = tagger.Xml;
         }
 
         private void WriteOutputFile()

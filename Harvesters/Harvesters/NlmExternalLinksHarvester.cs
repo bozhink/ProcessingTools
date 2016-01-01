@@ -22,7 +22,7 @@
 
         private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternPostfix;
 
-        private const string DoiPattern = @"(?i)(?<=\bdoi:?\s*)\d+\S+" + UriPatternPostfix + @"|" +
+        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternPostfix + @"|" +
             @"10\.\d{4,5}/\S+" + UriPatternPostfix;
 
         private const string PmidPattern = @"(?i)(?<=\bpmid\W?)\d+";

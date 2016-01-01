@@ -12,97 +12,66 @@
 
     public static class ContentTagger
     {
-        public static string GetReplacementOfTagNode(this XmlNode tagNode)
+        public static string GetReplacementOfTagNode(this XmlNode item)
         {
-            XmlNode replacementNode = tagNode.Clone();
+            XmlNode replacementNode = item.CloneNode(true);
+
+            ////XmlAttribute fullStringAttribute = replacementNode.OwnerDocument.CreateAttribute("full-string");
+            ////fullStringAttribute.InnerText = replacementNode.InnerText;
+            ////replacementNode.Attributes.Append(fullStringAttribute);
+
             replacementNode.InnerText = "$1";
-
-            string replacement = replacementNode.OuterXml;
-            return replacement;
-        }
-
-        public static string GetReplacementOfTagNode(this ITagContent tag, string textToTag)
-        {
-            ITagContent replacementTag = new TagContent(tag);
-            replacementTag.Attributes += @" full-string=""" + textToTag + @"""";
-            replacementTag.FullTag = replacementTag.OpenTag + "$1" + replacementTag.CloseTag;
-
-            string replacement = replacementTag.FullTag;
-            return replacement;
+            return replacementNode.OuterXml;
         }
 
         public static void TagContentInDocument(
             this IEnumerable<string> textToTagList,
-            ITagContent tag,
+            XmlElement tagModel,
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            foreach (string item in textToTagList)
+            foreach (string textToTag in textToTagList)
             {
-                item.TagContentInDocument(tag, xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
+                XmlNode item = tagModel.CloneNode(true);
+                item.InnerText = textToTag;
+                item.TagContentInDocument(xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
             }
         }
 
         /// <summary>
         /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
-        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
-        /// <param name="tag">The tag model.</param>
+        /// <param name="item">XmlNode to be set in the XmlDocument.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <param name="document">XmlDocument object to be tagged.</param>
         /// <param name="caseSensitive">Must be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         public static void TagContentInDocument(
-            this string textToTag,
-            ITagContent tag,
+            this XmlNode item,
             string xpathTemplate,
             XmlDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + textToTag + "')");
+            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + item.InnerText + "')");
             XmlNodeList nodeList = document.SelectNodes(xpath, TaxPubDocument.NamespceManager());
 
-            textToTag.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
-        }
-
-        /// <summary>
-        /// Tags IEnumerable of plain text string (no regex) in XmlDocument.
-        /// </summary>
-        /// <param name="textToTagList">The IEnumerable object of plain text string to be tagged in the XML.</param>
-        /// <param name="tag">The tag model.</param>
-        /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
-        /// <param name="caseSensitive">Should be the search case sensitive?</param>
-        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
-        public static void TagContentInDocument(
-            this IEnumerable<string> textToTagList,
-            ITagContent tag,
-            XmlNodeList nodeList,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false,
-            ILogger logger = null)
-        {
-            foreach (string item in textToTagList)
-            {
-                item.TagContentInDocument(tag, nodeList, caseSensitive, minimalTextSelect, logger);
-            }
+            item.TagContentInDocument(nodeList, caseSensitive, minimalTextSelect, logger);
         }
 
         /// <summary>
         /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
-        /// <param name="textToTag">The plain text string to be tagged in the XML.</param>
-        /// <param name="tag">The tag model.</param>
-        /// <param name="nodeList">The list of nodes where we try to tag textToTag.</param>
+        /// <param name="item">XmlNode to be set in the XmlDocument.</param>
+        /// <param name="nodeList">The list of nodes where we try to tag item.InnerXml.</param>
         /// <param name="caseSensitive">Should be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         public static void TagContentInDocument(
-            this string textToTag,
-            ITagContent tag,
+            this XmlNode item,
             XmlNodeList nodeList,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
@@ -114,6 +83,7 @@
                 caseSensitiveness = "(?i)";
             }
 
+            string textToTag = item.InnerXml;
             string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
             string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
 
@@ -125,7 +95,7 @@
             Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)\\b");
             Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)\\b");
 
-            string replacement = tag.GetReplacementOfTagNode(textToTag);
+            string replacement = item.GetReplacementOfTagNode();
 
             foreach (XmlNode node in nodeList)
             {
@@ -145,87 +115,6 @@
                 }
 
                 node.SafeReplaceInnerXml(replace, logger);
-            }
-        }
-
-        public static void TagContentInDocument(
-            this XmlNodeList tagNodeList,
-            XmlNodeList documentNodeList,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false,
-            ILogger logger = null)
-        {
-            foreach (XmlNode tagNode in tagNodeList)
-            {
-                tagNode.TagContentInDocument(documentNodeList, caseSensitive, minimalTextSelect, logger);
-            }
-        }
-
-        public static void TagContentInDocument(
-            this XmlNode tagNode,
-            XmlNodeList documentNodeList,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false,
-            ILogger logger = null)
-        {
-            string caseSensitiveness = string.Empty;
-            if (!caseSensitive)
-            {
-                caseSensitiveness = "(?i)";
-            }
-
-            string textToTagEscaped = Regex.Replace(Regex.Escape(tagNode.InnerText), "'", "\\W");
-            string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
-            if (!minimalTextSelect)
-            {
-                textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
-            }
-
-            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)");
-            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)");
-
-            string replacement = GetReplacementOfTagNode(tagNode);
-
-            foreach (XmlNode node in documentNodeList)
-            {
-                string replace = node.InnerXml;
-
-                /*
-                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
-                 * this is dynamically generated regex which might be too complex and slow.
-                 */
-                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
-                {
-                    replace = textToTagRegex.Replace(replace, replacement);
-                }
-                else
-                {
-                    replace = textToTagPatternRegex.Replace(replace, replacement);
-                }
-
-                // TODO SafeReplaceInnerXml
-                try
-                {
-                    XmlDocumentFragment testNode = tagNode.OwnerDocument.CreateDocumentFragment();
-                    testNode.InnerXml = replace;
-                }
-                catch (Exception e)
-                {
-                    try
-                    {
-                        replace = replace.TagOrderNormalizer(tagNode);
-                    }
-                    catch (Exception tagOrderNormalizerException)
-                    {
-                        replace = node.InnerXml;
-                        logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace);
-                        logger?.Log(tagOrderNormalizerException, string.Empty);
-                    }
-                }
-                finally
-                {
-                    node.InnerXml = replace;
-                }
             }
         }
 

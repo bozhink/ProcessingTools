@@ -247,7 +247,10 @@
             var orderedTaxaParts = new HashSet<string>(taxa.Where(t => !matchLetterDotWord.IsMatch(t)))
                 .OrderByDescending(t => t.Length);
 
-            orderedTaxaParts.TagContentInDocument(this.lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+            XmlElement lowerTaxaTag = this.XmlDocument.CreateElement("tn");
+            lowerTaxaTag.SetAttribute("type", "lower");
+
+            orderedTaxaParts.TagContentInDocument(lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
         }
     }
 }

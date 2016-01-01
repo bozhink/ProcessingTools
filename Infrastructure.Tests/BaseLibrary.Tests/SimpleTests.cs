@@ -1,5 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
+    using System;
+    using System.Xml;
+
     using Bio.Taxonomy.ServiceClient.Aphia;
 
     using Configurator;
@@ -60,6 +63,23 @@
                     System.Console.WriteLine(record?.valid_name);
                 }
             }
+        }
+
+        [TestMethod]
+        public void XmlElementAsXmlNode()
+        {
+            XmlDocument document = new XmlDocument();
+            XmlDocumentFragment fragment = document.CreateDocumentFragment();
+            fragment.InnerXml = @"<fragment attribute=""xx xx"">Inner <b>Xml</b></fragment>";
+            NeedsXmlNode(fragment);
+        }
+
+        public void NeedsXmlNode(XmlNode node)
+        {
+            Console.WriteLine(node.Name);
+            Console.WriteLine(node.OuterXml);
+            Console.WriteLine(node.InnerText);
+            Console.WriteLine(node.InnerXml);
         }
     }
 }

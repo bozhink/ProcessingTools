@@ -37,7 +37,9 @@
             envoTermsTagSet
                 .DocumentElement
                 .ChildNodes
-                .TagContentInDocument(nodeList, false, true, this.logger);
+                .Cast<XmlNode>()
+                .ToList()
+                .ForEach(term => term.TagContentInDocument(nodeList, false, true, this.logger));
         }
 
         private XmlDocument GenerateEnvoTagSet()

@@ -20,11 +20,7 @@
             this.FullTag = tag.FullTag;
         }
 
-        public bool IsClosingTag
-        {
-            get;
-            set;
-        }
+        public bool IsClosingTag { get; set; }
 
         public string Name
         {
@@ -40,17 +36,9 @@
             }
         }
 
-        public string Attributes
-        {
-            get;
-            set;
-        }
+        public string Attributes { get; set; }
 
-        public string FullTag
-        {
-            get;
-            set;
-        }
+        public string FullTag { get; set; }
 
         public string OpenTag
         {
