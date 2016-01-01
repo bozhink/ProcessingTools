@@ -9,7 +9,7 @@
     using Extensions;
     using ProcessingTools.Contracts.Log;
 
-    public class CoordinatesTagger : TaggerBase, IBaseTagger
+    public class CoordinatesTagger : HarvestableDocument, IBaseTagger
     {
         private const string LocalityCoordinatesTagName = "locality-coordinates";
         private readonly XmlElement localityCoordinatesNode = null;

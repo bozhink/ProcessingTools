@@ -87,7 +87,7 @@
     <Compile Include="Base.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
-    <Compile Include="TaggerBase.cs" />
+    <Compile Include="HarvestableDocument.cs" />
     <Compile Include="Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
     <Compile Include="Extensions\XmlNormalizer.cs" />
@@ -276,6 +276,10 @@
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
       <Name>Harvesters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Attributes\Attributes.csproj">
+      <Project>{cf625704-b4b0-45fd-9093-812b5d880e9c}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
@@ -283,6 +287,10 @@
     <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

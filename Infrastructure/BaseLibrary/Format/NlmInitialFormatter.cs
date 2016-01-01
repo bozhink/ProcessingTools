@@ -87,6 +87,9 @@
 
             xml = this.FormatReferances(xml);
 
+            // Format DOI notations
+            xml = Regex.Replace(xml, @"(?<=\b[Dd][Oo][Ii]\b:?)\s*(?=\d)", " ");
+
             xml = this.FormatPageBreaks(xml);
 
             // male and female

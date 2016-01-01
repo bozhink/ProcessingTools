@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Envo : TaggerBase, IBaseTagger
+    public class Envo : HarvestableDocument, IBaseTagger
     {
         private const string EnvoTagName = "envo";
 

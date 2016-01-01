@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class QuantitiesTagger : TaggerBase
+    public class QuantitiesTagger : HarvestableDocument
     {
         private TagContent quantityTag = new TagContent("quantity");
         private TagContent deviationTag = new TagContent("deviation");

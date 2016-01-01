@@ -22,7 +22,7 @@ namespace ProcessingTools.BaseLibrary.Dates
     using Extensions;
     using ProcessingTools.Contracts.Log;
 
-    public class DatesTagger : TaggerBase, IBaseTagger
+    public class DatesTagger : HarvestableDocument, IBaseTagger
     {
         private TagContent dateTag = new TagContent("date");
 

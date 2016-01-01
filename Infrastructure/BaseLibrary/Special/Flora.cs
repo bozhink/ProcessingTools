@@ -8,13 +8,8 @@
     using Contracts;
     using Extensions;
 
-    public class Flora : TaggerBase
+    public class Flora : HarvestableDocument
     {
-        public Flora(string xml)
-            : base(xml)
-        {
-        }
-
         public Flora(Config config, string xml)
             : base(config, xml)
         {

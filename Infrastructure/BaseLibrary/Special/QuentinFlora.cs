@@ -4,13 +4,8 @@
 
     using Contracts;
 
-    public class QuentinFlora : TaggerBase
+    public class QuentinFlora : HarvestableDocument
     {
-        public QuentinFlora(string xml)
-            : base(xml)
-        {
-        }
-
         public QuentinFlora(IBase baseObject)
             : base(baseObject)
         {

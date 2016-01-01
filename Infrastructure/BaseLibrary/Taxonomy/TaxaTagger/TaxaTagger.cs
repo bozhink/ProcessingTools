@@ -10,18 +10,12 @@
     using Contracts;
     using Extensions;
     
-    public abstract class TaxaTagger : TaggerBase, IBaseTagger
+    public abstract class TaxaTagger : HarvestableDocument, IBaseTagger
     {
         protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
 
         private IRepositoryDataService<string> blackList;
-
-        public TaxaTagger(string xml, IRepositoryDataService<string> blackList)
-            : base(xml)
-        {
-            this.BlackList = blackList;
-        }
 
         public TaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList)
             : base(config, xml)

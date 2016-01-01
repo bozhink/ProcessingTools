@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class TreatmentFormatter : TaggerBase, IBaseFormatter
+    public class TreatmentFormatter : Base, IBaseFormatter
     {
         private ILogger logger;
 

@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class Test : TaggerBase
+    public class Test : Base
     {
         public Test(string xml)
             : base(xml)

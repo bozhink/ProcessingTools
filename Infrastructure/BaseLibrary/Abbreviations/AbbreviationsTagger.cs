@@ -7,7 +7,7 @@
     using Configurator;
     using Contracts;
 
-    public class AbbreviationsTagger : TaggerBase, IBaseTagger
+    public class AbbreviationsTagger : HarvestableDocument, IBaseTagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
 

@@ -11,7 +11,7 @@
     using Extensions;
     using ProcessingTools.Contracts.Log;
 
-    public class DataProvider : TaggerBase, IDataProvider
+    public class DataProvider : HarvestableDocument, IDataProvider
     {
         private ILogger logger;
 

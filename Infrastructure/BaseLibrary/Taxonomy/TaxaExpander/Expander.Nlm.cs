@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Expander : TaggerBase
+    public class Expander : Base
     {
         private Regex findLowerTaxa = new Regex(@"<italic><tp:taxon-name[^>\-]*>(.*?)</tp:taxon-name></italic>");
         private Regex findLowerTaxaMultiLine = new Regex(@"<italic><tp:taxon-name[^>\-]*>([\s\S]*?)</tp:taxon-name></italic>");

@@ -289,7 +289,7 @@
         </xsl:choose>
       </xsl:attribute>
 
-      <xsl:apply-templates select="@node()" mode="ext-link" />
+      <xsl:apply-templates select="node()" mode="ext-link" />
     </xsl:element>
   </xsl:template>
 

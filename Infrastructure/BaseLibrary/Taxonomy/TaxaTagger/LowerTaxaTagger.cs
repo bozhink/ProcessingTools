@@ -22,12 +22,6 @@
 
         private ILogger logger;
 
-        public LowerTaxaTagger(string xml, IRepositoryDataService<string> blackList, ILogger logger)
-            : base(xml, blackList)
-        {
-            this.logger = logger;
-        }
-
         public LowerTaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList, ILogger logger)
             : base(config, xml, blackList)
         {

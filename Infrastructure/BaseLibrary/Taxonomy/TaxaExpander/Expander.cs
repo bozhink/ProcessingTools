@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Expander : TaggerBase
+    public class Expander : Base
     {
         private ILogger logger;
 

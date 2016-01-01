@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     public static class StringExtensions
     {
@@ -37,6 +38,14 @@
             }
 
             return result;
+        }
+
+        public static Task<IEnumerable<string>> GetMatchesAsync(this string text, Regex search)
+        {
+            return Task.Run(() =>
+            {
+                return text.GetMatches(search);
+            });
         }
 
         public static IEnumerable<string> ExtractWordsFromString(this string text)

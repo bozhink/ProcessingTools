@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class ReferencesParser : TaggerBase, IBaseParser
+    public class ReferencesParser : HarvestableDocument, IBaseParser
     {
         private ILogger logger;
 

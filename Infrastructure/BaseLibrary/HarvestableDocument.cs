@@ -9,24 +9,18 @@
     using Contracts;
     using Extensions;
 
-    public abstract class TaggerBase : Base
+    public class HarvestableDocument : Base
     {
         private string textContent;
         private IEnumerable<string> textWords;
 
-        public TaggerBase(string xml)
-            : base(xml)
-        {
-            this.Initialize();
-        }
-
-        public TaggerBase(Config config, string xml)
+        public HarvestableDocument(Config config, string xml)
             : base(config, xml)
         {
             this.Initialize();
         }
 
-        public TaggerBase(IBase baseObject)
+        public HarvestableDocument(IBase baseObject)
             : base(baseObject)
         {
             this.Initialize();
@@ -36,7 +30,7 @@
         /// Gets the text content of the xml document.
         /// </summary>
         /// <exception cref="System.ArgumentNullException">Throws when the xml document does not contain text content.</exception>
-        protected string TextContent
+        public string TextContent
         {
             get
             {
@@ -64,7 +58,7 @@
         /// Gets the HashSet of words in the xml document.
         /// </summary>
         /// <exception cref="System.ArgumentNullException">Throws when the xml document does not contain valid words.</exception>
-        protected IEnumerable<string> TextWords
+        public IEnumerable<string> TextWords
         {
             get
             {

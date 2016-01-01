@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts.Log;
     using ProcessingTools.Harvesters.Common.Contracts;
 
-    public class StringHarvestTagger : TaggerBase, IBaseTagger
+    public class StringHarvestTagger : HarvestableDocument, IBaseTagger
     {
         private ITagContent tag;
 

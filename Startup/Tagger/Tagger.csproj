@@ -218,6 +218,10 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Attributes\Attributes.csproj">
+      <Project>{cf625704-b4b0-45fd-9093-812b5d880e9c}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
@@ -233,6 +237,10 @@
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>

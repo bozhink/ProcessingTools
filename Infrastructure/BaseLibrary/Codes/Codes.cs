@@ -16,7 +16,7 @@ namespace ProcessingTools.BaseLibrary
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Codes : TaggerBase
+    public class Codes : HarvestableDocument
     {
         /*
          * ANSP 22529

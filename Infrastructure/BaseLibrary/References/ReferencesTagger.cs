@@ -10,7 +10,7 @@
     using Extensions;
     using ProcessingTools.Contracts.Log;
 
-    public class ReferencesTagger : TaggerBase, IBaseTagger
+    public class ReferencesTagger : HarvestableDocument, IBaseTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 

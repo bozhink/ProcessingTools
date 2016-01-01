@@ -10,7 +10,7 @@
     using Contracts;
     using Models;
 
-    public class Environments : TaggerBase, IBaseTagger
+    public class Environments : HarvestableDocument, IBaseTagger
     {
         private const string EnvoTagName = "envo";
         private IEnvoTermsHarvester harvester;

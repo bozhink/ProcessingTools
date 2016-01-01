@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Xml;
 
+    using Attributes;
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
@@ -745,6 +746,15 @@
 
         private void TagDoi()
         {
+            var harvester = new NlmExternalLinksHarvester();
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            harvester.Harvest(harvestableDocument.TextContent);
+
+            foreach (var item in harvester.Data.ToList())
+            {
+                this.logger?.Log("{0}: {1}", item.Type.GetValue(), item.Content);
+            }
+
             var tagger = new DoiLinksTagger(this.settings.Config, this.document.Xml);
             this.InvokeProcessor(Messages.TagDoiMessage, tagger);
             this.document.Xml = tagger.Xml;

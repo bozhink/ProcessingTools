@@ -1,12 +1,15 @@
 ﻿namespace ProcessingTools.BaseLibrary.HyperLinks
 {
-    using System.Text.RegularExpressions;
-
+    using Attributes;
     using Configurator;
     using Contracts;
+    using Extensions;
+    using Nlm.Publishing.Types;
 
     public class DoiLinksTagger : Base, IBaseTagger
     {
+        private const string ReplacementTagTemplate = @"<ext-link ext-link-type=""{0}"">$1</ext-link>";
+
         public DoiLinksTagger(Config config, string xml)
             : base(config, xml)
         {
@@ -27,8 +30,10 @@
         {
             string xml = this.Xml;
 
-            ////xml = Regex.Replace(xml, @"doi:(\s*)([^,<\s]*[A-Za-z0-9])", "doi: <ext-link ext-link-type=\"uri\" xlink:href=\"http://dx.doi.org/$2\">$2</ext-link>");
-            xml = Regex.Replace(xml, @"(?<!<ext-link [^>]*>)(\b[Dd][Oo][Ii]\b:?)\s*(\d+\.[^,<>\s]+[A-Za-z0-9]((?<=&[A-Za-z0-9#]+);)?)", "$1 <ext-link ext-link-type=\"doi\" xlink:href=\"$2\">$2</ext-link>");
+            xml = xml
+                .RegexReplace(
+                    @"(?i)(?<!<ext-link [^>]*>)(?<=\bdoi:?\s*)(\d+\.[^,<>\s]+[A-Za-z0-9]((?<=&[A-Za-z0-9#]+);)?)",
+                    string.Format(ReplacementTagTemplate, ExternalLinkType.Doi.GetValue()));
 
             this.Xml = xml;
         }
@@ -37,13 +42,16 @@
         {
             string xml = this.Xml;
 
-            // PMid
-            xml = Regex.Replace(xml, @"(?i)(?<=\bpmid\W?)(\d+)", "<ext-link ext-link-type=\"pmid\" xlink:href=\"$1\">$1</ext-link>");
-
-            // PMCid
-            xml = Regex.Replace(xml, @"(?i)(pmc\W?(\d+))", "<ext-link ext-link-type=\"pmcid\" xlink:href=\"PMC$2\">$1</ext-link>");
-
-            xml = Regex.Replace(xml, @"(?i)(?<=\bpmcid\W?)(\d+)", "<ext-link ext-link-type=\"pmcid\" xlink:href=\"PMC$1\">$1</ext-link>");
+            xml = xml
+                .RegexReplace(
+                    @"(?i)(?<=\bpmid\W?)(\d+)",
+                    string.Format(ReplacementTagTemplate, ExternalLinkType.Pmid.GetValue()))
+                .RegexReplace(
+                    @"(?i)(\bpmc\W?\d+)",
+                    string.Format(ReplacementTagTemplate, ExternalLinkType.Pmcid.GetValue()))
+                .RegexReplace(
+                    @"(?i)(?<=\bpmcid\W?)(\d+)",
+                    string.Format(ReplacementTagTemplate, ExternalLinkType.Pmcid.GetValue()));
 
             this.Xml = xml;
         }
