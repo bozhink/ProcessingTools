@@ -38,6 +38,7 @@
     <Compile Include="Contracts\INlmExternalLinksHarvester.cs" />
     <Compile Include="Contracts\IProductsHarvester.cs" />
     <Compile Include="Contracts\IQuantitiesHarvester.cs" />
+    <Compile Include="DatesHarvester.cs" />
     <Compile Include="InstitutionsHarvester.cs" />
     <Compile Include="Models\Contracts\INlmExternalLink.cs" />
     <Compile Include="Models\NlmExternalLinkResponseModel.cs" />

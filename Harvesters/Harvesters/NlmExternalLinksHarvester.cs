@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -35,6 +36,11 @@
 
         public async Task<IQueryable<INlmExternalLink>> Harvest(string content)
         {
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                throw new ArgumentNullException("content");
+            }
+
             var internalHarvester = new InternalHarvester(content);
 
             var doiItems = await internalHarvester.HarvestDoi();

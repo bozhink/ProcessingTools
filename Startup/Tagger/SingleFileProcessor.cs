@@ -9,7 +9,6 @@
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
-    using BaseLibrary.Dates;
     using BaseLibrary.Floats;
     using BaseLibrary.Format;
     using BaseLibrary.Measurements;
@@ -733,7 +732,14 @@
 
         private void TagDates()
         {
-            var tagger = new DatesTagger(this.settings.Config, this.document.Xml, this.logger);
+            var harvester = new DatesHarvester();
+
+            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            tagModel.SetAttribute("content-type", "date");
+
+            var xpathProvider = new XPathProvider(this.settings.Config);
+
+            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

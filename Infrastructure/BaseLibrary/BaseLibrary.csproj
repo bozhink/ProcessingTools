@@ -104,7 +104,6 @@
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Coordinates\CoordinatesParser.cs" />
     <Compile Include="DataProvider\DataProvider.cs" />
-    <Compile Include="Dates\DatesTagger.cs" />
     <Compile Include="Envo\Environments.cs" />
     <Compile Include="Envo\Envo.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
