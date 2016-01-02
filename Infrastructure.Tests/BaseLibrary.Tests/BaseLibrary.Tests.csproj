@@ -67,7 +67,6 @@
   <ItemGroup>
     <Compile Include="CodesTests.cs" />
     <Compile Include="Coordinates\CoordinatesTests.cs" />
-    <Compile Include="QuantitiesTaggerTests.cs" />
     <Compile Include="TaxonomyParserTests.cs" />
     <Compile Include="SimpleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

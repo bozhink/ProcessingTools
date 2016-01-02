@@ -372,6 +372,17 @@ namespace ProcessingTools.MainProgram {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///    Tag altitudes.
+        ///.
+        /// </summary>
+        internal static string TagAltitudesMessage {
+            get {
+                return ResourceManager.GetString("TagAltitudesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///    Tag codes.
         ///.
         /// </summary>
@@ -455,6 +466,17 @@ namespace ProcessingTools.MainProgram {
         internal static string TagGeoEpithetsMessage {
             get {
                 return ResourceManager.GetString("TagGeoEpithetsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///    Tag geographic deviations.
+        ///.
+        /// </summary>
+        internal static string TagGeographicDeviationsMessage {
+            get {
+                return ResourceManager.GetString("TagGeographicDeviationsMessage", resourceCulture);
             }
         }
         

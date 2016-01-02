@@ -325,6 +325,7 @@
     <Content Include="MessageTexts\ResolveMediaTypesMessage.txt" />
     <Content Include="MessageTexts\RunCustomXslTransformMessage.txt" />
     <Content Include="MessageTexts\TagAbbreviationsMessage.txt" />
+    <Content Include="MessageTexts\TagAltitudesMessage.txt" />
     <Content Include="MessageTexts\TagCodesMessage.txt" />
     <Content Include="MessageTexts\TagCoordinatesMessage.txt" />
     <Content Include="MessageTexts\TagDatesMessage.txt" />
@@ -333,6 +334,7 @@
     <Content Include="MessageTexts\TagEnvoTermsMessage.txt" />
     <Content Include="MessageTexts\TagFloatsMessage.txt" />
     <Content Include="MessageTexts\TagGeoEpithetsMessage.txt" />
+    <Content Include="MessageTexts\TagGeographicDeviationsMessage.txt" />
     <Content Include="MessageTexts\TagGeoNamesMessage.txt" />
     <Content Include="MessageTexts\TagHigherTaxaMessage.txt" />
     <Content Include="MessageTexts\TagInstitutionsMessage.txt" />

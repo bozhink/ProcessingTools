@@ -201,6 +201,9 @@ Output file name: {1}
   <data name="TagAbbreviationsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagabbreviationsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="TagAltitudesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\tagaltitudesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="TagCodesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagcodesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -224,6 +227,9 @@ Output file name: {1}
   </data>
   <data name="TagGeoEpithetsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\taggeoepithetsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TagGeographicDeviationsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\taggeographicdeviationsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TagGeoNamesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\taggeonamesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

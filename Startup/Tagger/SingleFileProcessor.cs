@@ -11,7 +11,6 @@
     using BaseLibrary.Coordinates;
     using BaseLibrary.Floats;
     using BaseLibrary.Format;
-    using BaseLibrary.Measurements;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.Uri;
@@ -871,30 +870,45 @@
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
-        // TODO
         private void TagQuantities()
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            this.logger?.Log(Messages.TagQuantitiesMessage);
+            var xpathProvider = new XPathProvider(this.settings.Config);
 
-            try
             {
-                var xpathProvider = new XPathProvider(this.settings.Config);
-                var quantitiesTagger = new QuantitiesTagger(this.settings.Config, this.document.Xml, this.logger);
+                var harvester = new AltitudesHarvester();
 
-                quantitiesTagger.TagQuantities(xpathProvider);
-                quantitiesTagger.TagDeviation(xpathProvider);
-                quantitiesTagger.TagAltitude(xpathProvider);
+                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+                tagModel.SetAttribute("content-type", "altitude");
 
-                this.document.Xml = quantitiesTagger.Xml;
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
+                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+
+                this.InvokeProcessor(Messages.TagAltitudesMessage, tagger);
+                this.document.Xml = tagger.Xml;
             }
 
-            this.PrintElapsedTime(timer);
+            {
+                var harvester = new GeographicDeviationsHarvester();
+
+                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+                tagModel.SetAttribute("content-type", "geographic deviation");
+
+                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+
+                this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger);
+                this.document.Xml = tagger.Xml;
+            }
+
+            {
+                var harvester = new QuantitiesHarvester();
+
+                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+                tagModel.SetAttribute("content-type", "quantity");
+
+                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+
+                this.InvokeProcessor(Messages.TagQuantitiesMessage, tagger);
+                this.document.Xml = tagger.Xml;
+            }
         }
 
         private string TagReferences(string xmlContent)
