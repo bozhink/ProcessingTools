@@ -32,9 +32,10 @@
 
         public void Tag()
         {
-            this.harvester.Harvest(this.TextContent);
+            var data = this.harvester.Harvest(this.TextContent).Result;
 
-            var items = this.harvester.Data.ToList().OrderByDescending(i => i.Content.Length);
+            var items = data.ToList()
+                .OrderByDescending(i => i.Content.Length);
 
             foreach (var item in items)
             {

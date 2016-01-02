@@ -38,17 +38,16 @@
 
         public void Tag()
         {
-            this.harvester.Harvest(this.TextContent);
+            var data = this.harvester.Harvest(this.TextContent).Result;
 
-            this.harvester.Data
-                .ToList()
+            data.ToList()
                 .TagContentInDocument(
-                    this.tagModel,
-                    this.xpathProvider.SelectContentNodesXPathTemplate,
-                    this.XmlDocument,
-                    false,
-                    true,
-                    this.logger);
+                this.tagModel,
+                this.xpathProvider.SelectContentNodesXPathTemplate,
+                this.XmlDocument,
+                false,
+                true,
+                this.logger);
         }
     }
 }

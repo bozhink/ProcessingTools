@@ -8,7 +8,7 @@
     using Services.Fakes;
 
     [TestClass]
-    public class InstitutionsHarvesterTests
+    public class InstitutionsHarvesterRegressionTests
     {
         private static FakeInstitutionsDataService service;
         private static HashSet<string> dataItems;
@@ -34,27 +34,17 @@
             var harvester = new InstitutionsHarvester(service);
 
             Assert.IsNotNull(harvester, "Harvester should not be null.");
-
-            Assert.IsNotNull(harvester.Data.ToList(), "Data should not be null.");
         }
 
         [TestMethod]
-        public void InstitutionsHarvester_WithNonRunnedHarvestMethod_ShouldHaveEmptyData()
-        {
-            var harvester = new InstitutionsHarvester(service);
-
-            Assert.AreEqual(0, harvester.Data.ToList().Count, "Data should be empty.");
-        }
-
-        [TestMethod]
-        public void InstitutionsHarvester_HarvestContentWithNoMatchingItems_ShouldHaveEmptyData()
+        public void InstitutionsHarvester_HarvestContentWithNoMatchingItems_ShouldReturnEmptyResult()
         {
             string content = " ";
 
             var harvester = new InstitutionsHarvester(service);
-            harvester.Harvest(content);
+            var data = harvester.Harvest(content).Result.ToList();
 
-            Assert.AreEqual(0, harvester.Data.ToList().Count, "Data should be empty.");
+            Assert.AreEqual(0, data.Count, "Data should be empty.");
         }
 
         [TestMethod]
@@ -66,9 +56,8 @@
             string content = item;
 
             var harvester = new InstitutionsHarvester(service);
-            harvester.Harvest(content);
 
-            var data = harvester.Data.ToList();
+            var data = harvester.Harvest(content).Result.ToList();
 
             Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
 
@@ -84,9 +73,8 @@
             string content = item;
 
             var harvester = new InstitutionsHarvester(service);
-            harvester.Harvest(content);
 
-            var data = harvester.Data.ToList();
+            var data = harvester.Harvest(content).Result.ToList();
 
             Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
 

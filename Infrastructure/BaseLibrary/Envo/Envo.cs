@@ -31,39 +31,24 @@
 
         public void Tag()
         {
-            XmlDocument envoTermsTagSet = this.GenerateEnvoTagSet();
+            const string XPath = "/*";
+            XmlNodeList nodeList = this.XmlDocument.SelectNodes(XPath, this.NamespaceManager);
 
-            XmlNodeList nodeList = this.XmlDocument.SelectNodes("/*", this.NamespaceManager);
-            envoTermsTagSet
-                .DocumentElement
-                .ChildNodes
-                .Cast<XmlNode>()
-                .ToList()
-                .ForEach(term => term.TagContentInDocument(nodeList, false, true, this.logger));
-        }
+            var data = this.harvester.Harvest(this.TextContent).Result;
 
-        private XmlDocument GenerateEnvoTagSet()
-        {
-            XmlDocument envoTermsTagSet = new XmlDocument();
-            envoTermsTagSet.LoadXml("<items />");
-
-            this.harvester.Harvest(this.TextContent);
-            this.harvester.Data
-                .ToList()
+            data.ToList()
                 .ForEach(t =>
                 {
-                    XmlElement node = envoTermsTagSet.CreateElement(EnvoTagName);
+                    XmlElement element = this.XmlDocument.CreateElement(EnvoTagName);
+                    element.InnerText = t.Content;
                     for (int i = 0, len = t.Types.Length; i < len; ++i)
                     {
-                        node.SetAttribute($"type{i + 1}", t.Types[i].ToString());
-                        node.SetAttribute($"identifier{i + 1}", t.Identifiers[i]);
+                        element.SetAttribute($"type{i + 1}", t.Types[i].ToString());
+                        element.SetAttribute($"identifier{i + 1}", t.Identifiers[i]);
                     }
 
-                    node.InnerText = t.Content;
-                    envoTermsTagSet.DocumentElement.AppendChild(node);
+                    element.TagContentInDocument(nodeList, false, true, this.logger);
                 });
-
-            return envoTermsTagSet;
         }
     }
 }

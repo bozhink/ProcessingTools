@@ -20,13 +20,5 @@
         }
 
         public string Content { get; set; }
-
-        public string Uri
-        {
-            get
-            {
-                return "http://purl.obolibrary.org/obo/" + this.envoId;
-            }
-        }
     }
 }

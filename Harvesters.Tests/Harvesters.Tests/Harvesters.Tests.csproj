@@ -55,8 +55,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegressionTests\InstitutionsHarvesterTests.cs" />
-    <Compile Include="RegressionTests\ProductsHarvesterTests.cs" />
+    <Compile Include="RegressionTests\InstitutionsHarvesterRegressionTests.cs" />
+    <Compile Include="RegressionTests\ProductsHarvesterRegressionTests.cs" />
     <Compile Include="RegressionTests\Services\Fakes\FakeInstitutionsDataService.cs" />
     <Compile Include="RegressionTests\Services\Fakes\FakeProductsDataService.cs" />
   </ItemGroup>

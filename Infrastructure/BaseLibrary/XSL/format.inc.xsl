@@ -18,6 +18,24 @@
 
   <xsl:template match="p//break" />
 
+  <xsl:template match="article-meta/article-id">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space()" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="envo[@EnvoID]">
+    <xsl:element name="{name()}">
+      <xsl:attribute name="EnvoTermUri">
+        <xsl:text>http://purl.obolibrary.org/obo/</xsl:text>
+        <xsl:value-of select="normalize-space(@EnvoID)" />
+      </xsl:attribute>
+
+      <xsl:apply-templates select="@* | node()" />
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="tn//tn | tp:taxon-name//tn | a//tn | *[@object_id='82']//tn | *[@id='41']//tn | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tn | xref//tn | tn//xref | tn//abbrev | tp:taxon-name//abbrev | xref//abbrev | aff/abbrev | institution//abbrev | source//abbrev">
     <xsl:apply-templates />
   </xsl:template>
@@ -88,8 +106,8 @@
 
   <xsl:template match="text()" mode="person-group">
     <xsl:choose>
-      <xsl:when test="normalize-space()=''"/>
-      <xsl:when test="normalize-space()=','"/>
+      <xsl:when test="normalize-space()=''" />
+      <xsl:when test="normalize-space()=','" />
       <xsl:otherwise>
         <xsl:element name="{$invalid-tag-name}">
           <xsl:value-of select="string()" />
@@ -185,7 +203,6 @@
   <xsl:template match="*" mode="locality-coordinates">
     <xsl:apply-templates mode="locality-coordinates" />
   </xsl:template>
-
 
   <!-- Links and ids -->
 
@@ -340,11 +357,11 @@
   </xsl:template>
 
   <!-- other -->
-  
+
   <xsl:template match="td[count(node()) = 1 and count(text()) = 1] | th[count(node()) = 1 and count(text()) = 1] | title[count(node()) = 1 and count(text()) = 1] | label[count(node()) = 1 and count(text()) = 1] | p[count(node()) = 1 and count(text()) = 1] | article-title[count(node()) = 1 and count(text()) = 1] | li[count(node()) = 1 and count(text()) = 1] | kwd[count(node()) = 1 and count(text()) = 1] | xref-group[count(node()) = 1 and count(text()) = 1]">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
-      <xsl:value-of select="normalize-space()"/>
+      <xsl:value-of select="normalize-space()" />
     </xsl:element>
   </xsl:template>
 

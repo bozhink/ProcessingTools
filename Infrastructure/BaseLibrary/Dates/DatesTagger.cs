@@ -52,12 +52,12 @@ namespace ProcessingTools.BaseLibrary.Dates
             dates = dates.Distinct().ToList();
 
             {
-                //string xpathTemplate = "/*";
+                ////string xpathTemplate = "/*";
 
                 foreach (string date in dates)
                 {
                     this.logger?.Log(date);
-                    //date.TagContentInDocument(this.dateTag, xpathTemplate, this.XmlDocument, true, true, this.logger);
+                    ////date.TagContentInDocument(this.dateTag, xpathTemplate, this.XmlDocument, true, true, this.logger);
                 }
             }
         }

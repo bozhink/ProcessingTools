@@ -10,21 +10,22 @@
 namespace ProcessingTools.Bio.Harvesters
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Extensions;
 
-    using ProcessingTools.Harvesters.Common.Factories;
-
-    public class SpecimenCountHarvester : StringHarvesterFactory, ISpecimenCountHarvester
+    public class SpecimenCountHarvester : ISpecimenCountHarvester
     {
-        public override void Harvest(string content)
-        {
-            const string Pattern = @"((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>\(\)\[\]]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)";
-            Regex matchSpecimenCount = new Regex(Pattern);
+        private const string Pattern = @"((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>\(\)\[\]]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)";
 
-            this.Items = new HashSet<string>(content.GetMatches(matchSpecimenCount));
+        public async Task<IQueryable<string>> Harvest(string content)
+        {
+            Regex matchSpecimenCount = new Regex(Pattern);
+            var result = new HashSet<string>(await content.GetMatchesAsync(matchSpecimenCount));
+            return result.AsQueryable();
         }
     }
 }

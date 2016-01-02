@@ -1,106 +1,60 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Xml;
 
     using Bio.Harvesters.Contracts;
-
     using Configurator;
     using Contracts;
     using Models;
+    using ProcessingTools.Contracts.Log;
 
     public class Environments : HarvestableDocument, IBaseTagger
     {
         private const string EnvoTagName = "envo";
         private IEnvoTermsHarvester harvester;
+        private ILogger logger;
 
-        public Environments(Config config, string xml, IEnvoTermsHarvester harvester)
+        public Environments(Config config, string xml, IEnvoTermsHarvester harvester, ILogger logger)
             : base(config, xml)
         {
             this.harvester = harvester;
+            this.logger = logger;
         }
 
         public void Tag()
         {
-            XmlDocumentFragment testXmlNode = this.XmlDocument.CreateDocumentFragment();
+            const string XPath = "/*";
+            XmlNodeList nodeList = this.XmlDocument.SelectNodes(XPath, this.NamespaceManager);
 
-            // Set the XPath string to select all nodes which may contain environments’ strings
-            string xpath = string.Empty;
-            switch (this.Config.ArticleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    xpath = "//p|//title|//label|//tp:nomenclature-citation";
-                    break;
-
-                default:
-                    // TODO
-                    xpath = "//p";
-                    break;
-            }
-
-            try
-            {
-                this.harvester.Harvest(this.TextContent);
-                var terms = this.harvester.Data
-                    .Select(t => new EnvoTermResponseModel
-                    {
-                        EntityId = t.EntityId,
-                        EnvoId = t.EnvoId,
-                        Content = t.Content
-                    })
-                    .ToList();
-
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-                foreach (var term in terms)
+            var data = this.harvester.Harvest(this.TextContent).Result;
+            var terms = data
+                .Select(t => new EnvoTermResponseModel
                 {
-                    testXmlNode.InnerText = term.Content;
-                    term.Content = testXmlNode.InnerXml;
+                    EntityId = t.EntityId,
+                    EnvoId = t.EnvoId,
+                    Content = t.Content
+                })
+                .ToList();
 
-                    string envoOpenTag = "<" + EnvoTagName +
-                        @" EnvoTermUri=""" + term.Uri + @"""" +
-                        @" ID=""" + term.EntityId + @"""" +
-                        @" EnvoID=""" + term.EnvoId + @"""" +
-                        @" VerbatimTerm=""" + term.Content + @"""" +
-                        @">";
-
-                    string envoCloseTag = "</" + EnvoTagName + ">";
-
-                    foreach (XmlNode node in nodeList)
-                    {
-                        string pattern = "\\b((?i)" + Regex.Escape(term.Content).Replace("'", "\\W") + ")\\b";
-                        if (Regex.IsMatch(node.InnerXml, pattern))
-                        {
-                            // The text content of the current node contains this environment string
-                            pattern = "(?<!<[^>]+)" + pattern + "(?![^<>]*>)";
-                            string replace = node.InnerXml;
-
-                            if (!Regex.IsMatch(node.InnerXml, pattern))
-                            {
-                                /*
-                                 * The xml-as-string content of the current node does not contain this environment string.
-                                 * Here we suppose that there is some tag inside the environment-string in the xml node.
-                                 */
-
-                                // Tag the xml-node-content using non-regex skip-tag matches
-                                replace = node.InnerXml.TagNodeContent(term.Content, envoOpenTag);
-
-                                XmlNode envoNode = this.XmlDocument.CreateElement(EnvoTagName);
-                                replace = replace.TagOrderNormalizer(envoNode);
-                            }
-                            else
-                            {
-                                replace = Regex.Replace(node.InnerXml, pattern, envoOpenTag + "$1" + envoCloseTag);
-                            }
-
-                            node.InnerXml = replace;
-                        }
-                    }
-                }
-            }
-            catch
+            foreach (var term in terms)
             {
-                throw;
+                XmlElement element = this.XmlDocument.CreateElement(EnvoTagName);
+                element.InnerText = term.Content;
+
+                XmlAttribute entityIdAttribute = element.OwnerDocument.CreateAttribute("ID");
+                entityIdAttribute.InnerText = term.EntityId;
+                element.Attributes.Append(entityIdAttribute);
+
+                XmlAttribute envoIdAttribute = element.OwnerDocument.CreateAttribute("EnvoID");
+                envoIdAttribute.InnerText = term.EnvoId;
+                element.Attributes.Append(envoIdAttribute);
+
+                XmlAttribute contentAttribute = element.OwnerDocument.CreateAttribute("VerbatimTerm");
+                contentAttribute.InnerText = term.Content;
+                element.Attributes.Append(contentAttribute);
+
+                element.TagContentInDocument(nodeList, false, false, this.logger);
             }
         }
     }

@@ -64,22 +64,5 @@
                 }
             }
         }
-
-        [TestMethod]
-        public void XmlElementAsXmlNode()
-        {
-            XmlDocument document = new XmlDocument();
-            XmlDocumentFragment fragment = document.CreateDocumentFragment();
-            fragment.InnerXml = @"<fragment attribute=""xx xx"">Inner <b>Xml</b></fragment>";
-            NeedsXmlNode(fragment);
-        }
-
-        public void NeedsXmlNode(XmlNode node)
-        {
-            Console.WriteLine(node.Name);
-            Console.WriteLine(node.OuterXml);
-            Console.WriteLine(node.InnerText);
-            Console.WriteLine(node.InnerXml);
-        }
     }
 }

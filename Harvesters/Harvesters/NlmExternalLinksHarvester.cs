@@ -29,29 +29,14 @@
 
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
 
-        private HashSet<INlmExternalLink> data;
-
         public NlmExternalLinksHarvester()
         {
-            this.data = new HashSet<INlmExternalLink>();
         }
 
-        public IQueryable<INlmExternalLink> Data
-        {
-            get
-            {
-                return this.data.AsQueryable();
-            }
-        }
-
-        public void Harvest(string content)
-        {
-            this.data = new HashSet<INlmExternalLink>(this.HarvestAsync(content).Result);
-        }
-
-        private async Task<IEnumerable<INlmExternalLink>> HarvestAsync(string content)
+        public async Task<IQueryable<INlmExternalLink>> Harvest(string content)
         {
             var internalHarvester = new InternalHarvester(content);
+
             var doiItems = await internalHarvester.HarvestDoi();
             var uriItems = await internalHarvester.HarvestUri();
             var ftpItems = await internalHarvester.HarvestFtp();
@@ -65,7 +50,8 @@
             items.AddRange(uriItems);
             items.AddRange(doiItems);
 
-            return items;
+            var result = new HashSet<INlmExternalLink>(items);
+            return result.AsQueryable();
         }
 
         private class InternalHarvester

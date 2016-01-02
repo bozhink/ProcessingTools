@@ -35,8 +35,9 @@
         {
             try
             {
-                this.harvester.Harvest(this.TextContent);
-                IEnumerable<string> taxaNames = new HashSet<string>(this.harvester.Data.Where(s => s[0] == s.ToUpper()[0]));
+                var data = this.harvester.Harvest(this.TextContent).Result;
+
+                IEnumerable<string> taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
 
                 // Blacklist items
                 taxaNames = this.ClearFakeTaxaNames(taxaNames);

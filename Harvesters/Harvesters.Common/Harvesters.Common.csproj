@@ -35,9 +35,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IHarvester.cs" />
     <Compile Include="Contracts\IStringHarvester.cs" />
-    <Compile Include="Factories\GenericHarvesterFactory.cs" />
     <Compile Include="Factories\SimpleServiceStringHarvesterFactory.cs" />
-    <Compile Include="Factories\StringHarvesterFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

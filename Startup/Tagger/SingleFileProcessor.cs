@@ -755,7 +755,7 @@
             var repository = new BioEnvironmentsGenericRepository<EnvoName>(context);
             var service = new EnvoTermsDataService(repository);
             var harvester = new EnvoTermsHarvester(service);
-            var tagger = new Environments(this.settings.Config, this.document.Xml, harvester);
+            var tagger = new Environments(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
