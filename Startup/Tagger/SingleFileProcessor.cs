@@ -101,12 +101,7 @@
                         this.ParseReferences();
                     }
 
-                    if (this.settings.TagDoi)
-                    {
-                        this.TagDoi();
-                    }
-
-                    if (this.settings.TagWebLinks)
+                    if (this.settings.TagDoi || this.settings.TagWebLinks)
                     {
                         this.TagWebLinks();
                     }
@@ -745,17 +740,6 @@
             this.document.Xml = tagger.Xml;
         }
 
-        private void TagDoi()
-        {
-            var harvester = new NlmExternalLinksHarvester();
-
-            var tagger = new NlmExternalLinksTagger(this.settings.Config, this.document.Xml, harvester, this.logger);
-
-            //var tagger = new DoiLinksTagger(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.TagDoiMessage, tagger);
-            this.document.Xml = tagger.Xml;
-        }
-
         private void TagEnvo()
         {
             var requester = new ExtractHcmrDataRequester();
@@ -925,9 +909,10 @@
 
         private void TagWebLinks()
         {
-            ////var tagger = new UrlLinksTagger(this.settings.Config, this.document.Xml);
-            ////this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
-            ////this.document.Xml = tagger.Xml;
+            var harvester = new NlmExternalLinksHarvester();
+            var tagger = new NlmExternalLinksTagger(this.settings.Config, this.document.Xml, harvester, this.logger);
+            this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
+            this.document.Xml = tagger.Xml;
         }
 
         private void WriteOutputFile()
