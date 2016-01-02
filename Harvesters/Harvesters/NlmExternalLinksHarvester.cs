@@ -51,11 +51,12 @@
 
         private async Task<IEnumerable<INlmExternalLink>> HarvestAsync(string content)
         {
-            var doiItems = await this.DoiHarvest(content);
-            var uriItems = await this.UriHarvest(content);
-            var ftpItems = await this.FtpHarvest(content);
-            var pmidItems = await this.PmidHarvest(content);
-            var pmcidItems = await this.PmcidHarvest(content);
+            var internalHarvester = new InternalHarvester(content);
+            var doiItems = await internalHarvester.HarvestDoi();
+            var uriItems = await internalHarvester.HarvestUri();
+            var ftpItems = await internalHarvester.HarvestFtp();
+            var pmidItems = await internalHarvester.HarvestPmid();
+            var pmcidItems = await internalHarvester.HarvestPmcid();
 
             var items = new List<INlmExternalLink>();
             items.AddRange(pmcidItems);
@@ -67,54 +68,64 @@
             return items;
         }
 
-        private async Task<IEnumerable<INlmExternalLink>> UriHarvest(string content)
+        private class InternalHarvester
         {
-            var matches = await content.GetMatchesAsync(new Regex(HttpPattern));
-            return matches.Select(item => new NlmExternalLinkResponseModel
-            {
-                Content = item,
-                Type = ExternalLinkType.Uri
-            });
-        }
+            private string content;
 
-        private async Task<IEnumerable<INlmExternalLink>> FtpHarvest(string content)
-        {
-            var matches = await content.GetMatchesAsync(new Regex(FtpPattern));
-            return matches.Select(item => new NlmExternalLinkResponseModel
+            public InternalHarvester(string content)
             {
-                Content = item,
-                Type = ExternalLinkType.Ftp
-            });
-        }
+                this.content = content;
+            }
 
-        private async Task<IEnumerable<INlmExternalLink>> DoiHarvest(string content)
-        {
-            var matches = await content.GetMatchesAsync(new Regex(DoiPattern));
-            return matches.Select(item => new NlmExternalLinkResponseModel
+            public async Task<IEnumerable<INlmExternalLink>> HarvestUri()
             {
-                Content = item,
-                Type = ExternalLinkType.Doi
-            });
-        }
+                var matches = await this.content.GetMatchesAsync(new Regex(HttpPattern));
+                return matches.Select(item => new NlmExternalLinkResponseModel
+                {
+                    Content = item,
+                    Type = ExternalLinkType.Uri
+                });
+            }
 
-        private async Task<IEnumerable<INlmExternalLink>> PmidHarvest(string content)
-        {
-            var matches = await content.GetMatchesAsync(new Regex(PmidPattern));
-            return matches.Select(item => new NlmExternalLinkResponseModel
+            public async Task<IEnumerable<INlmExternalLink>> HarvestFtp()
             {
-                Content = item,
-                Type = ExternalLinkType.Pmid
-            });
-        }
+                var matches = await this.content.GetMatchesAsync(new Regex(FtpPattern));
+                return matches.Select(item => new NlmExternalLinkResponseModel
+                {
+                    Content = item,
+                    Type = ExternalLinkType.Ftp
+                });
+            }
 
-        private async Task<IEnumerable<INlmExternalLink>> PmcidHarvest(string content)
-        {
-            var matches = await content.GetMatchesAsync(new Regex(PmcidPattern));
-            return matches.Select(item => new NlmExternalLinkResponseModel
+            public async Task<IEnumerable<INlmExternalLink>> HarvestDoi()
             {
-                Content = item,
-                Type = ExternalLinkType.Pmcid
-            });
+                var matches = await this.content.GetMatchesAsync(new Regex(DoiPattern));
+                return matches.Select(item => new NlmExternalLinkResponseModel
+                {
+                    Content = item,
+                    Type = ExternalLinkType.Doi
+                });
+            }
+
+            public async Task<IEnumerable<INlmExternalLink>> HarvestPmid()
+            {
+                var matches = await this.content.GetMatchesAsync(new Regex(PmidPattern));
+                return matches.Select(item => new NlmExternalLinkResponseModel
+                {
+                    Content = item,
+                    Type = ExternalLinkType.Pmid
+                });
+            }
+
+            public async Task<IEnumerable<INlmExternalLink>> HarvestPmcid()
+            {
+                var matches = await this.content.GetMatchesAsync(new Regex(PmcidPattern));
+                return matches.Select(item => new NlmExternalLinkResponseModel
+                {
+                    Content = item,
+                    Type = ExternalLinkType.Pmcid
+                });
+            }
         }
     }
 }

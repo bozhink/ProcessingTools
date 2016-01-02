@@ -11,7 +11,7 @@
 
     public class NlmExternalLinksTagger : HarvestableDocument, IBaseTagger
     {
-        private const string SelectNodesToTagExternalLinksXPathTemplate = "//*[{0}]";
+        private const string SelectNodesToTagExternalLinksXPathTemplate = "/*";
 
         private INlmExternalLinksHarvester harvester;
         private ILogger logger;
@@ -41,7 +41,7 @@
                 XmlElement tag = this.XmlDocument.CreateElement("ext-link");
                 tag.SetAttribute("ext-link-type", item.Type.GetValue());
 
-                tag.InnerText = item.Content;
+                tag.InnerXml = item.Content;
                 tag.TagContentInDocument(
                     SelectNodesToTagExternalLinksXPathTemplate,
                     this.XmlDocument,
