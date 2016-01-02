@@ -6,14 +6,12 @@
     using System.Linq;
     using System.Xml;
 
-    using Attributes;
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
     using BaseLibrary.Dates;
     using BaseLibrary.Floats;
     using BaseLibrary.Format;
-    using BaseLibrary.HyperLinks;
     using BaseLibrary.Measurements;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
