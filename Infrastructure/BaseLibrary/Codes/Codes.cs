@@ -18,6 +18,10 @@ namespace ProcessingTools.BaseLibrary
 
     public class Codes : HarvestableDocument
     {
+        private const string SpecimenCodeTagName = "specimen_code";
+        private const string InstitutionTagName = "institution";
+        private const string InstitutionalCodeTagName = "institutional_code";
+
         /*
          * ANSP 22529
          * B 10 0154930
@@ -111,9 +115,9 @@ namespace ProcessingTools.BaseLibrary
             @"ZUTC",
         };
 
-        private TagContent specimenCodeTag = new TagContent("specimen_code");
-        private TagContent institutionTag = new TagContent("institution");
-        private TagContent institutionalCodeTag = new TagContent("institutional_code");
+        private TagContent specimenCodeTag = new TagContent(SpecimenCodeTagName);
+        private TagContent institutionTag = new TagContent(InstitutionTagName);
+        private TagContent institutionalCodeTag = new TagContent(InstitutionalCodeTagName);
 
         private ILogger logger;
 

@@ -91,12 +91,6 @@
             }
         }
 
-        public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName)
-        {
-            TagContent tag = new TagContent(tagName);
-            this.ExecuteSimpleReplaceUsingDatabase(xpath, query, tag);
-        }
-
         private static void SetTagAttributes(TagContent tag, SqlDataReader reader)
         {
             if (reader.FieldCount > 1)
