@@ -35,10 +35,22 @@
         {
             foreach (string textToTag in textToTagList)
             {
-                XmlNode item = tagModel.CloneNode(true);
-                item.InnerText = textToTag;
-                item.TagContentInDocument(xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
+                textToTag.TagContentInDocument(tagModel, xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
             }
+        }
+
+        public static void TagContentInDocument(
+            this string textToTag,
+            XmlElement tagModel,
+            string xpathTemplate,
+            XmlDocument document,
+            bool caseSensitive = true,
+            bool minimalTextSelect = false,
+            ILogger logger = null)
+        {
+            XmlNode item = tagModel.CloneNode(true);
+            item.InnerText = textToTag;
+            item.TagContentInDocument(xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
         }
 
         /// <summary>
