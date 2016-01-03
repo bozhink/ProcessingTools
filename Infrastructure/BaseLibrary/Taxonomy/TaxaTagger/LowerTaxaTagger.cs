@@ -18,8 +18,6 @@
 
         private const string ItalicXPath = "//i|//italic|//Italic";
 
-        private readonly TagContent lowerTaxaTag = new TagContent("tn", @" type=""lower""");
-
         private ILogger logger;
 
         public LowerTaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList, ILogger logger)
