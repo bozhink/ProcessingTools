@@ -36,7 +36,7 @@
 
             xml = Regex.Replace(xml, @"(?<=\d)([º°˚]|<sup>o</sup>)", "°");
 
-            XmlNode replacementNode = this.localityCoordinatesNode.CloneNode(true);
+            XmlElement replacementNode = (XmlElement)this.localityCoordinatesNode.CloneNode(true);
             replacementNode.InnerText = "$1";
 
             string replace = replacementNode.OuterXml;

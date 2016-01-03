@@ -2,7 +2,6 @@
 {
     using System;
     using System.Data.SqlClient;
-    using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
 
@@ -27,7 +26,7 @@
             this.logger = logger;
         }
 
-        public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, TagContent tag, bool caseSensitive = false)
+        public void ExecuteSimpleReplaceUsingDatabase(string xpath, string query, string tagName, bool caseSensitive = false)
         {
             string patternTemplate = string.Empty;
             if (caseSensitive)
@@ -41,13 +40,11 @@
 
             try
             {
+                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
+
                 string connectionString = this.Config.MainDictionaryDataSourceString;
                 SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
-
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-                XmlDocumentFragment fragment = this.XmlDocument.CreateDocumentFragment();
-
                 using (connection)
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -58,12 +55,14 @@
                             {
                                 while (reader.Read())
                                 {
-                                    SetTagAttributes(tag, reader);
+                                    XmlElement element = this.XmlDocument.CreateElement(tagName);
+                                    SetTagAttributes(element, reader);
 
-                                    string replacement = tag.OpenTag + "$1" + tag.CloseTag;
+                                    element.InnerText = "$1";
+                                    string replacement = element.OuterXml;
 
-                                    fragment.InnerText = reader.GetString(0);
-                                    string contentString = Regex.Escape(fragment.InnerXml).RegexReplace("'", "\\W");
+                                    element.InnerText = reader.GetString(0);
+                                    string contentString = Regex.Escape(element.InnerXml).RegexReplace("'", "\\W");
 
                                     string pattern = string.Format(patternTemplate, contentString);
 
@@ -91,22 +90,17 @@
             }
         }
 
-        private static void SetTagAttributes(TagContent tag, SqlDataReader reader)
+        private static void SetTagAttributes(XmlNode node, SqlDataReader reader)
         {
+            node.Attributes.RemoveAll();
             if (reader.FieldCount > 1)
             {
-                StringBuilder attributes = new StringBuilder();
                 for (int i = 1, len = reader.FieldCount; i < len; ++i)
                 {
-                    string xmlEscapedContent = Regex.Replace(Regex.Replace(reader.GetString(i), "&", "&amp;"), @"""", "&quot;");
-                    attributes.Append(string.Format(@" {0}=""{1}""", reader.GetName(i), xmlEscapedContent));
+                    XmlAttribute attribute = node.OwnerDocument.CreateAttribute(reader.GetName(i));
+                    attribute.InnerText = reader.GetString(i);
+                    node.Attributes.Append(attribute);
                 }
-
-                tag.Attributes = attributes.ToString();
-            }
-            else
-            {
-                tag.Attributes = string.Empty;
             }
         }
     }

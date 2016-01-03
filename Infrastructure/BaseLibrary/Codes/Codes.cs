@@ -22,6 +22,8 @@ namespace ProcessingTools.BaseLibrary
         private const string InstitutionTagName = "institution";
         private const string InstitutionalCodeTagName = "institutional_code";
 
+        private readonly XmlElement specimenCodeTagModel;
+
         /*
          * ANSP 22529
          * B 10 0154930
@@ -115,22 +117,20 @@ namespace ProcessingTools.BaseLibrary
             @"ZUTC",
         };
 
-        private TagContent specimenCodeTag = new TagContent(SpecimenCodeTagName);
-        private TagContent institutionTag = new TagContent(InstitutionTagName);
-        private TagContent institutionalCodeTag = new TagContent(InstitutionalCodeTagName);
-
         private ILogger logger;
 
         public Codes(Config config, string xml, ILogger logger)
             : base(config, xml)
         {
             this.logger = logger;
+            this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
         }
 
         public Codes(IBase baseObject, ILogger logger)
             : base(baseObject)
         {
             this.logger = logger;
+            this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
         }
 
         public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
@@ -139,7 +139,7 @@ namespace ProcessingTools.BaseLibrary
             string query = @"select [NameOfInstitution] as [name], [URL] as [url] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
 
             dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionTag);
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionTagName);
             this.Xml = dataProvider.Xml;
         }
 
@@ -149,7 +149,7 @@ namespace ProcessingTools.BaseLibrary
             string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [URL] as [url] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
 
             dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, this.institutionalCodeTag, true);
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionalCodeTagName, true);
             this.Xml = dataProvider.Xml;
         }
 
@@ -170,9 +170,9 @@ namespace ProcessingTools.BaseLibrary
 
             IEnumerable<SpecimenCode> plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
-            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, this.specimenCodeTag);
+            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, this.specimenCodeTagModel);
 
-            this.GuessSequentalSpecimenCodes(this.specimenCodeTag, xpathProvider.SelectContentNodesXPathTemplate);
+            this.GuessSequentalSpecimenCodes(this.specimenCodeTagModel, xpathProvider.SelectContentNodesXPathTemplate);
         }
 
         public List<SpecimenCode> GetPrefixNumericCodes()
@@ -243,12 +243,12 @@ namespace ProcessingTools.BaseLibrary
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
-            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, this.specimenCodeTag);
+            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, this.specimenCodeTagModel);
 
-            this.GuessSequentalPrefixNumericSpecimenCodes(xpathProvider.SelectContentNodesXPathTemplate, this.specimenCodeTag);
+            this.GuessSequentalPrefixNumericSpecimenCodes(xpathProvider.SelectContentNodesXPathTemplate, this.specimenCodeTagModel);
         }
 
-        private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, TagContent tag)
+        private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, string tagName)
         {
             this.logger?.Log("\n{0}", node.OuterXml);
 
@@ -259,7 +259,7 @@ namespace ProcessingTools.BaseLibrary
 
                 for (XmlNode next = node.NextSibling; next != null; next = next.NextSibling)
                 {
-                    if (next.Name == tag.Name)
+                    if (next.Name == tagName)
                     {
                         if (next.Attributes.Count > 0)
                         {
@@ -346,22 +346,22 @@ namespace ProcessingTools.BaseLibrary
         private void ReplaceSpecimenCodesInXml(
             string xpathTemplate,
             IEnumerable<SpecimenCode> specimenCodes,
-            TagContent tag)
+            XmlElement tagModel)
         {
             foreach (SpecimenCode specimenCode in specimenCodes)
             {
-                TagContent codeTag = new TagContent(tag);
-                codeTag.Attributes += @" prefix=""" + specimenCode.Prefix + @""" type=""" + specimenCode.Type + @"""";
-                
-                // TODO: Tag
-                ////specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument, true, false, this.logger);
+                XmlElement codeTag = (XmlElement)tagModel.CloneNode(true);
+                codeTag.SetAttribute("prefix", specimenCode.Prefix);
+                codeTag.SetAttribute("type", specimenCode.Type);
+
+                specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument, true, false, this.logger);
             }
 
             /*
              * Here we might have nested <specimen_code> which probably is due to mistaken codes.
              */
             {
-                string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", tag.Name);
+                string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", tagModel.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in this.XmlDocument.SelectNodes(nestedSpecimenCodesXpath, this.NamespaceManager))
                 {
                     this.logger?.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
@@ -369,42 +369,46 @@ namespace ProcessingTools.BaseLibrary
             }
         }
 
-        private void GuessSequentalPrefixNumericSpecimenCodes(string xpathTemplate, TagContent tag)
+        private void GuessSequentalPrefixNumericSpecimenCodes(string xpathTemplate, XmlElement tagModel)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="UQIC 221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
 
-            string guessNextCodePattern = @"(?<=" + tag.CloseTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
+            string closeTag = $"</{tagModel.Name}>";
+            string guessNextCodePattern = @"(?<=" + closeTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
+            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tagModel, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
         }
 
         /// <summary>
         /// Tags next specimen codes when we have some tagged ones.
         /// </summary>
-        /// <param name="tag">The tag model.</param>
+        /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        private void GuessSequentalSpecimenCodes(TagContent tag, string xpathTemplate)
+        private void GuessSequentalSpecimenCodes(XmlElement tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, <specimenCode full-string="UQIC 221452">221452</specimenCode>, 221447, 221448, 221450, 221454, 221456
 
-            string guessNextCodePattern = "(?<=" + tag.CloseTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
+            string closeTag = $"</{tagModel.Name}>";
+            string guessNextCodePattern = "(?<=" + closeTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tag, guessNextCode, string.Format("//{0}[count(@*)!=0]", tag.Name));
+            this.GuessNextSpecimenCodesByRegex(xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name));
         }
 
-        private void GuessNextSpecimenCodesByRegex(string xpathTemplate, TagContent tag, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
+        private void GuessNextSpecimenCodesByRegex(string xpathTemplate, XmlElement tagModel, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
         {
-            string replacement = tag.OpenTag + "$1" + tag.CloseTag;
+            XmlNode replacementNode = tagModel.CloneNode(true);
+            replacementNode.InnerText = "$1";
+            string replacement = replacementNode.OuterXml;
 
-            string xpath = string.Format(xpathTemplate, tag.Name);
+            string xpath = string.Format(xpathTemplate, tagModel.Name);
             foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
                 string nodeInnerXml = node.InnerXml;
@@ -419,7 +423,7 @@ namespace ProcessingTools.BaseLibrary
                 {
                     foreach (XmlNode specimenCodeNode in node.SelectNodes(xpathToSelectSpecimenCodeTags, this.NamespaceManager))
                     {
-                        this.SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tag);
+                        this.SetAttributesOfSequentalSpecimenCodes(specimenCodeNode, tagModel.Name);
                     }
                 }
             }
