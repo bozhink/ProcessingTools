@@ -248,7 +248,7 @@
             }
             catch (Exception e)
             {
-                logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace);
+                logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace.Substring(0, 300));
             }
             finally
             {
