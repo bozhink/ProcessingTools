@@ -18,6 +18,8 @@
 
   <xsl:template match="p//break" />
 
+  <xsl:template match="article_figs_and_tables[not(*)]" />
+
   <xsl:template match="article-meta/article-id">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
@@ -80,48 +82,34 @@
     <xsl:apply-templates />
   </xsl:template>
 
+  <xsl:template match="person-group">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | comment() | anonymous | collab | name | aff | etal | string-name" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="person-group/name">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | comment() | surname | given-names | prefix | suffix | anonymous | etal" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="mixed-citation/person-group/name">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:for-each select="comment() | surname | given-names | prefix | suffix | anonymous | etal">
+        <xsl:apply-templates select="." />
+        <xsl:if test="position()!= last() and name()!=''">
+          <xsl:text> </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="surname | given-names | prefix | suffix | anonymous | etal">
     <xsl:element name="{name()}">
       <xsl:value-of select="normalize-space()" />
     </xsl:element>
-  </xsl:template>
-
-  <!-- person-group model -->
-
-  <xsl:template match="person-group">
-    <xsl:element name="{name()}">
-      <xsl:apply-templates select="@* | node()" mode="person-group" />
-    </xsl:element>
-  </xsl:template>
-
-  <xsl:template match="@*" mode="person-group">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="person-group" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="comment()" mode="person-group">
-    <xsl:copy-of select="." />
-  </xsl:template>
-
-  <xsl:template match="text()" mode="person-group">
-    <xsl:choose>
-      <xsl:when test="normalize-space()=''" />
-      <xsl:when test="normalize-space()=','" />
-      <xsl:otherwise>
-        <xsl:element name="{$invalid-tag-name}">
-          <xsl:value-of select="string()" />
-        </xsl:element>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="anonymous | collab | name | aff | etal | string-name" mode="person-group">
-    <xsl:apply-templates select="." />
-  </xsl:template>
-
-  <xsl:template match="*" mode="person-group">
-    <xsl:apply-templates mode="person-group" />
   </xsl:template>
 
   <!-- front/notes/sec/p model -->

@@ -65,7 +65,7 @@
             {
                 Async = false,
                 Encoding = Encoding.UTF8,
-                Indent = false,
+                Indent = true,
                 IndentChars = " ",
                 NewLineChars = "\n",
                 NewLineHandling = NewLineHandling.Replace,

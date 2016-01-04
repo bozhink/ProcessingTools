@@ -52,7 +52,8 @@
             {
                 return this.decimalCoordinatePartValue
                     .ToString(CoordinatePartDecimalFormat)
-                    .Replace(this.numberDecimalSeparator, ".");
+                    .Replace(this.numberDecimalSeparator, ".")
+                    .Trim('0');
             }
         }
 

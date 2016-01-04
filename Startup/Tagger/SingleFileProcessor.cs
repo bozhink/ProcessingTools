@@ -662,13 +662,13 @@
         private void SetUpConfigParameters()
         {
             string tempDirectory = this.settings.Config.TempDirectoryPath;
-            string outputFileDirectory = Path.GetDirectoryName(this.fileProcessor.OutputFileName);
             string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
 
             this.settings.Config.EnvoResponseOutputXmlFileName = $"{tempDirectory}\\envo-{outputFileName}.xml";
             this.settings.Config.GnrOutputFileName = $"{tempDirectory}\\gnr-{outputFileName}.xml";
-            this.settings.Config.ReferencesGetReferencesXmlPath = $"{outputFileDirectory}\\zzz-{outputFileName}-references.xml";
-            this.settings.Config.ReferencesTagTemplateXmlPath = $"{tempDirectory}\\zzz-{outputFileName}-references-tag-template.xml";
+            this.settings.Config.ReferencesTagTemplateXmlPath = $"{tempDirectory}\\{outputFileName}-references-tag-template.xml";
+
+            this.settings.Config.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
         }
 
         private void ConfigureFileProcessor()

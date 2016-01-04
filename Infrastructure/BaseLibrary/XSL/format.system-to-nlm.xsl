@@ -15,6 +15,10 @@
 
   <xsl:include href="format.inc.xsl" />
 
+  <!--<xsl:template match="i[count(text()[normalize-space()!=''])=0][(count(*) = count(tn[@type='lower'])) or (count(*) = count(tp:taxon-name[@type='lower']))]">
+    <xsl:apply-templates />
+  </xsl:template>-->
+  
   <xsl:template match="i | em | italic | Italic">
     <italic>
       <xsl:apply-templates select="@* | node()" />
@@ -51,6 +55,9 @@
     <tp:taxon-name-part>
       <xsl:apply-templates select="@* | node()" />
     </tp:taxon-name-part>
+    <xsl:if test="name(following-sibling::node()) = name() and normalize-space() != ''">
+      <xsl:text> </xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="tn-part/@type">

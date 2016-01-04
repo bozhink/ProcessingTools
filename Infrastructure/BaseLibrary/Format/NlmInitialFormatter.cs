@@ -60,7 +60,7 @@
 
             // sensu lato & stricto
             {
-                const string SensuSelector = @"(?:(?i)(?:\bs\.\s*|\bsens?u?\.?\s+)[sl][a-z]*\.?)";
+                const string SensuSelector = @"(?:(?i)(?:\bs\.\s*|\bsens?u?\.?\s+)[sl][a-z]*\.?|\bsensu\b)";
                 xml = xml
                     .RegexReplace(@"(?<=\W" + SensuSelector + @")</i>\.", ".</i>")
                     .RegexReplace(@"(?<=\w)\s+(?=" + SensuSelector + @"</i>)", "</i> <i>");
@@ -223,10 +223,10 @@
             string result = xml;
 
             result = result
-                .RegexReplace(@"(\S)(<article-title>|<source>)", "$1 $2")
-                .RegexReplace(@"(</article-title>|</source>)(\S)", "$1 $2")
+                ////.RegexReplace(@"(\S)(<article-title>|<source>)", "$1 $2")
+                ////.RegexReplace(@"(</article-title>|</source>)(\S)", "$1 $2")
                 .RegexReplace(@"(</source>)((?i)doi:?)", "$1 $2")
-                .RegexReplace(@"(?<=</surname>)\s*(?=<given-names>)", " ")
+                ////.RegexReplace(@"(?<=</surname>)\s*(?=<given-names>)", " ")
                 .RegexReplace(@"</volume>\s+\(<issue>", "</volume>(<issue>")
                 .RegexReplace(@"</issue>(\))+", "</issue>)")
                 .RegexReplace(@"<role>Ed</role>", "<role>Ed.</role>")
