@@ -1,5 +1,7 @@
 ﻿/*
  * 6–8 m depth
+ * Elevation: 2880 m
+ * Elevation: 2900
  */
 
 namespace ProcessingTools.Harvesters
