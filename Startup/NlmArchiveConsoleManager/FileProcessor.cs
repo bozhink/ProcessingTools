@@ -88,10 +88,10 @@
 
             string fileNameReplacementPrefix = string.Format(
                 this.journal.FileNamePattern,
-                article.Volume?.Convert<int>(),
-                article.Issue?.Convert<int>(),
+                article.Volume?.ConvertTo<int>(),
+                article.Issue?.ConvertTo<int>(),
                 article.Id,
-                article.FirstPage?.Convert<int>());
+                article.FirstPage?.ConvertTo<int>());
 
             this.logger?.Log(fileNameReplacementPrefix);
 

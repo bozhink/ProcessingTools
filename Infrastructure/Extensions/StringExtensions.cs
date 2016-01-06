@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Extensions
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text.RegularExpressions;
@@ -7,7 +8,7 @@
 
     public static class StringExtensions
     {
-        public static T Convert<T>(this string input)
+        public static T ConvertTo<T>(this string input)
         {
             var converter = TypeDescriptor.GetConverter(typeof(T));
             if (converter == null)
@@ -16,6 +17,24 @@
             }
 
             return (T)converter.ConvertFromString(input);
+        }
+
+        public static object ConvertTo(this string input, Type type)
+        {
+            var converter = TypeDescriptor.GetConverter(type);
+            if (converter == null)
+            {
+                if (type.IsValueType)
+                {
+                    return Activator.CreateInstance(type);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            return converter.ConvertFromString(input);
         }
 
         public static string RegexReplace(this string target, string regexPattern, string regexReplacement)

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Configurator
 {
     using System.Runtime.Serialization;
-    using System.Text;
 
     public partial class Config
     {
