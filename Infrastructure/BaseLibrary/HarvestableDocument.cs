@@ -95,7 +95,7 @@
                 throw new NullReferenceException("Null config.");
             }
 
-            string text = this.XmlDocument.ApplyXslTransform(this.Config.TextContentXslFileName);
+            string text = this.XmlDocument.ApplyXslTransform(this.Config.TextContentXslTransform);
             text = Regex.Replace(text, @"(?<=\n)\s+", string.Empty);
 
             this.TextContent = text;

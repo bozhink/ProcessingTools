@@ -394,7 +394,7 @@
             {
                 case SchemaType.Nlm:
                     {
-                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslPath);
+                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslTransform);
                         var formatter = new NlmInitialFormatter(this.settings.Config, xml);
                         this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
                         this.document.Xml = formatter.Xml;
@@ -404,7 +404,7 @@
 
                 default:
                     {
-                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslPath);
+                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslTransform);
                         var formatter = new SystemInitialFormatter(this.settings.Config, xml);
                         this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
                         this.document.Xml = formatter.Xml;

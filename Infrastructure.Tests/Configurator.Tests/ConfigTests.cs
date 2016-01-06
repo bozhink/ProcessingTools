@@ -5,7 +5,7 @@
     [TestFixture]
     public class ConfigTests
     {
-        private const string SampleFilePath = "/tmp/path";
+        private const string SampleFilePath = @"C:\temp\DataFiles\sample.xsl";
         private Config config;
 
         [SetUp]
@@ -197,30 +197,30 @@
         [Test]
         public void Config_ValidChangesOfFormatXslNlmToSystemProperty_ShouldBePersistent()
         {
-            this.config.FormatXslNlmToSystem = SampleFilePath;
+            this.config.FormatNlmToSystemXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.FormatXslNlmToSystem,
+                this.config.FormatNlmToSystemXslPath,
                 "1. FormatXslNlmToSystem should match SampleFilePath.");
 
-            this.config.FormatXslNlmToSystem = null;
+            this.config.FormatNlmToSystemXslPath = null;
             Assert.IsNull(
-                this.config.FormatXslNlmToSystem,
+                this.config.FormatNlmToSystemXslPath,
                 "2. FormatXslNlmToSystem should be null.");
         }
 
         [Test]
         public void Config_ValidChangesOfFormatXslSystemToNlmProperty_ShouldBePersistent()
         {
-            this.config.FormatXslSystemToNlm = SampleFilePath;
+            this.config.FormatSystemToNlmXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.FormatXslSystemToNlm,
+                this.config.FormatSystemToNlmXslPath,
                 "1. FormatXslSystemToNlm should match SampleFilePath.");
 
-            this.config.FormatXslSystemToNlm = null;
+            this.config.FormatSystemToNlmXslPath = null;
             Assert.IsNull(
-                this.config.FormatXslSystemToNlm,
+                this.config.FormatSystemToNlmXslPath,
                 "2. FormatXslSystemToNlm should be null.");
         }
 
@@ -315,21 +315,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesSortReferencesXslPathProperty_ShouldBePersistent()
-        {
-            this.config.ReferencesSortReferencesXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.ReferencesSortReferencesXslPath,
-                "1. ReferencesSortReferencesXslPath should match SampleFilePath.");
-
-            this.config.ReferencesSortReferencesXslPath = null;
-            Assert.IsNull(
-                this.config.ReferencesSortReferencesXslPath,
-                "2. ReferencesSortReferencesXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesTagTemplateXmlPath = SampleFilePath;
@@ -392,15 +377,15 @@
         [Test]
         public void Config_ValidChangesOfTextContentXslFileNameProperty_ShouldBePersistent()
         {
-            this.config.TextContentXslFileName = SampleFilePath;
+            this.config.TextContentXslPath = SampleFilePath;
             Assert.AreEqual(
                 SampleFilePath,
-                this.config.TextContentXslFileName,
+                this.config.TextContentXslPath,
                 "1. TextContentXslFileName should match SampleFilePath.");
 
-            this.config.TextContentXslFileName = null;
+            this.config.TextContentXslPath = null;
             Assert.IsNull(
-                this.config.TextContentXslFileName,
+                this.config.TextContentXslPath,
                 "2. TextContentXslFileName should be null.");
         }
 

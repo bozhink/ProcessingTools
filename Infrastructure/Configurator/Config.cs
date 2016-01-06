@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Configurator
 {
     using System.Runtime.Serialization;
+    using System.Xml.Xsl;
 
     public partial class Config
     {
@@ -18,10 +19,6 @@
             this.tagWholeDocument = false;
             this.tagWholeDocumentIsLockedForModification = false;
         }
-
-        public string EnvoResponseOutputXmlFileName { get; set; }
-
-        public string GnrOutputFileName { get; set; }
 
         public SchemaType ArticleSchemaType
         {
@@ -41,6 +38,10 @@
                 this.articleSchemaTypeStyleIsLockedForModification = true;
             }
         }
+
+        public string EnvoResponseOutputXmlFileName { get; set; }
+
+        public string GnrOutputFileName { get; set; }
 
         public bool TagWholeDocument
         {
@@ -65,6 +66,16 @@
     [DataContract]
     public partial class Config
     {
+        private string formatNlmToSystemXslPath;
+
+        private string formatSystemToNlmXslPath;
+
+        private string nlmInitialFormatXslPath;
+
+        private string systemInitialFormatXslPath;
+
+        private string textContentXslPath;
+
         [DataMember(Name = "blackListCleanXslPath")]
         public string BlackListCleanXslPath { get; set; }
 
@@ -102,16 +113,61 @@
         public string FloraTemplatesOutputXmlPath { get; set; }
 
         [DataMember(Name = "formatXslNlmToSystem")]
-        public string FormatXslNlmToSystem { get; set; }
+        public string FormatNlmToSystemXslPath
+        {
+            get
+            {
+                return this.formatNlmToSystemXslPath;
+            }
+
+            set
+            {
+                this.formatNlmToSystemXslPath = value;
+                this.FormatNlmToSystemXslTransform = new XslCompiledTransform();
+                this.FormatNlmToSystemXslTransform.Load(value);
+            }
+        }
+
+        public XslCompiledTransform FormatNlmToSystemXslTransform { get; set; }
 
         [DataMember(Name = "formatXslSystemToNlm")]
-        public string FormatXslSystemToNlm { get; set; }
+        public string FormatSystemToNlmXslPath
+        {
+            get
+            {
+                return this.formatSystemToNlmXslPath;
+            }
+
+            set
+            {
+                this.formatSystemToNlmXslPath = value;
+                this.FormatSystemToNlmXslTransform = new XslCompiledTransform();
+                this.FormatSystemToNlmXslTransform.Load(value);
+            }
+        }
+
+        public XslCompiledTransform FormatSystemToNlmXslTransform { get; set; }
 
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 
         [DataMember(Name = "nlmInitialFormatXslPath")]
-        public string NlmInitialFormatXslPath { get; set; }
+        public string NlmInitialFormatXslPath
+        {
+            get
+            {
+                return this.nlmInitialFormatXslPath;
+            }
+
+            set
+            {
+                this.nlmInitialFormatXslPath = value;
+                this.NlmInitialFormatXslTransform = new XslCompiledTransform();
+                this.NlmInitialFormatXslTransform.Load(value);
+            }
+        }
+
+        public XslCompiledTransform NlmInitialFormatXslTransform { get; set; }
 
         [DataMember(Name = "rankListCleanXslPath")]
         public string RankListCleanXslPath { get; set; }
@@ -125,9 +181,6 @@
         [DataMember(Name = "referencesGetReferencesXslPath")]
         public string ReferencesGetReferencesXslPath { get; set; }
 
-        [DataMember(Name = "referencesSortReferencesXslPath")]
-        public string ReferencesSortReferencesXslPath { get; set; }
-
         [DataMember(Name = "referencesTagTemplateXmlPath")]
         public string ReferencesTagTemplateXmlPath { get; set; }
 
@@ -135,13 +188,43 @@
         public string ReferencesTagTemplateXslPath { get; set; }
 
         [DataMember(Name = "systemInitialFormatXslPath")]
-        public string SystemInitialFormatXslPath { get; set; }
+        public string SystemInitialFormatXslPath
+        {
+            get
+            {
+                return this.systemInitialFormatXslPath;
+            }
+
+            set
+            {
+                this.systemInitialFormatXslPath = value;
+                this.SystemInitialFormatXslTransform = new XslCompiledTransform();
+                this.SystemInitialFormatXslTransform.Load(value);
+            }
+        }
+
+        public XslCompiledTransform SystemInitialFormatXslTransform { get; set; }
 
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }
 
         [DataMember(Name = "textContentXslFileName")]
-        public string TextContentXslFileName { get; set; }
+        public string TextContentXslPath
+        {
+            get
+            {
+                return this.textContentXslPath;
+            }
+
+            set
+            {
+                this.textContentXslPath = value;
+                this.TextContentXslTransform = new XslCompiledTransform();
+                this.TextContentXslTransform.Load(value);
+            }
+        }
+
+        public XslCompiledTransform TextContentXslTransform { get; set; }
 
         [DataMember(Name = "whiteListCleanXslPath")]
         public string WhiteListCleanXslPath { get; set; }
