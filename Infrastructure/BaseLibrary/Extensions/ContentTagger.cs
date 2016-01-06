@@ -93,8 +93,21 @@
             }
 
             string textToTag = item.InnerXml;
+            bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
+            bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
+
             string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = @"\b" + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + @"\b";
+            string textToTagPattern = Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*");
+
+            if (!firstCharIsSpecial)
+            {
+                textToTagPattern = @"\b" + textToTagPattern;
+            }
+
+            if (!lastCharIsSpecial)
+            {
+                textToTagPattern = textToTagPattern + @"\b";
+            }
 
             if (!minimalTextSelect)
             {
