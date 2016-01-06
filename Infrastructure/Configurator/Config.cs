@@ -20,14 +20,6 @@
             this.tagWholeDocumentIsLockedForModification = false;
         }
 
-        public static Encoding DefaultEncoding
-        {
-            get
-            {
-                return new UTF8Encoding(false);
-            }
-        }
-
         public string EnvoResponseOutputXmlFileName { get; set; }
 
         public string GnrOutputFileName { get; set; }
