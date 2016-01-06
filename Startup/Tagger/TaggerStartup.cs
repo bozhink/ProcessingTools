@@ -8,8 +8,6 @@
 
     public class TaggerStartup
     {
-        public const int NumberOfExpandingIterations = 1;
-
         private static ILogger logger = new TextWriterLogger();
 
         public static void Main(string[] args)

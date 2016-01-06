@@ -29,6 +29,7 @@
     using Bio.Taxonomy.ServiceClient.Gbif;
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Types;
+    using Common.Constants;
     using Contracts.Log;
     using Data.Repositories;
     using DocumentProvider;
@@ -268,7 +269,7 @@
                 var expand = new BaseLibrary.Taxonomy.Nlm.Expander(this.settings.Config, xmlContent, this.logger);
                 var exp = new Expander(this.settings.Config, xmlContent, this.logger);
 
-                for (int i = 0; i < TaggerStartup.NumberOfExpandingIterations; ++i)
+                for (int i = 0; i < ProcessingConstants.NumberOfExpandingIterations; ++i)
                 {
                     if (this.settings.ExpandLowerTaxa)
                     {
