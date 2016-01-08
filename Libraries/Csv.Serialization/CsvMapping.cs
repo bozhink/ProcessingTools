@@ -13,7 +13,7 @@
     /// </remarks>
     public class CsvMapping
     {
-        //use reflection to parse the CSV survey input
+        // use reflection to parse the CSV survey input
         public bool ParseCSV(string csvString, CSVMapping propertiesMapping)
         {
             if (propertiesMapping == null)
@@ -25,10 +25,10 @@
                 Type t = this.GetType();
                 IList<PropertyInfo> properties = t.GetProperties();
 
-                //Split the CSV values
+                // Split the CSV values
                 string[] values = csvString.Split(new char[1] { ',' });
 
-                //for each property set its value from the CSV
+                // for each property set its value from the CSV
                 foreach (PropertyInfo property in properties)
                 {
                     if (propertiesMapping.Mapping.Keys.Contains(property.Name))

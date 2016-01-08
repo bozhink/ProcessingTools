@@ -93,29 +93,25 @@
             }
 
             string textToTag = item.InnerXml;
+
             bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
             bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
 
+            string startWordBound = firstCharIsSpecial ? string.Empty : @"\b";
+            string endWordBound = lastCharIsSpecial ? string.Empty : @"\b";
+
             string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*");
-
-            if (!firstCharIsSpecial)
-            {
-                textToTagPattern = @"\b" + textToTagPattern;
-            }
-
-            if (!lastCharIsSpecial)
-            {
-                textToTagPattern = textToTagPattern + @"\b";
-            }
+            string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
 
             if (!minimalTextSelect)
             {
                 textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
             }
 
-            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)\\b");
-            Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)\\b");
+            ////Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)\\b");
+            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness + textToTagPattern + ")" + endWordBound + "(?![^<>]*>)");
+            ////Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)\\b");
+            Regex textToTagRegex = new Regex("(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness + textToTagEscaped + ")" + endWordBound + "(?![^<>]*>)");
 
             string replacement = item.GetReplacementOfTagNode();
 

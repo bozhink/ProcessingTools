@@ -94,7 +94,7 @@
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <xsl:if test="name(../../node()[position()=1]) != 'def'">
-        <xsl:if test="name(node()[position()=1])='' and not(starts-with(normalize-space(node()[position()=1]),':'))">
+        <xsl:if test="name(node()[position()=1])='' and not(starts-with(normalize-space(node()[position()=1]),':')) and not(starts-with(normalize-space(node()[position()=1]),','))">
           <xsl:text> </xsl:text>
         </xsl:if>
       </xsl:if>
