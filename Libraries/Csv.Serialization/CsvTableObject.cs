@@ -2,14 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
 
-    public class CsvObject
+    public class CsvTableObject
     {
-        private Queue<IList<string>> rows;
+        private Queue<string[]> rows;
 
-        public CsvObject(
+        public CsvTableObject(
             char fieldTerminator = ',',
             char rowTerminator = '\n',
             int firstRow = 1,
@@ -24,7 +23,7 @@
             this.TerminatorEscapeLeftWrapSymbol = terminatorEscapeLeftWrapSymbol;
             this.TerminatorEscapeRightWrapSymbol = terminatorEscapeRightWrapSymbol;
 
-            this.rows = new Queue<IList<string>>();
+            this.rows = new Queue<string[]>();
         }
 
         public char FieldTerminator { get; set; }
@@ -39,7 +38,7 @@
 
         public char TerminatorEscapeRightWrapSymbol { get; set; }
 
-        public IList<IList<string>> ParseToTable(string text)
+        public string[][] ReadToTable(string text)
         {
             char[] textChars = text.ToCharArray();
 
@@ -109,7 +108,7 @@
                         fields.Enqueue(stringBuilder.ToString());
                         stringBuilder.Clear();
 
-                        this.rows.Enqueue(fields.ToList());
+                        this.rows.Enqueue(fields.ToArray());
                         fields = new Queue<string>();
                     }
                 }
@@ -122,9 +121,9 @@
             fields.Enqueue(stringBuilder.ToString());
             stringBuilder.Clear();
 
-            this.rows.Enqueue(fields.ToList());
+            this.rows.Enqueue(fields.ToArray());
 
-            return this.rows.ToList();
+            return this.rows.ToArray();
         }
     }
 }

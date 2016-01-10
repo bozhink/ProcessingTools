@@ -8,6 +8,8 @@
 
     public static class StringExtensions
     {
+        private static readonly Regex MatchWord = new Regex(@"[^\W\d]+");
+
         public static T ConvertTo<T>(this string input)
         {
             var converter = TypeDescriptor.GetConverter(typeof(T));
@@ -24,14 +26,7 @@
             var converter = TypeDescriptor.GetConverter(type);
             if (converter == null)
             {
-                if (type.IsValueType)
-                {
-                    return Activator.CreateInstance(type);
-                }
-                else
-                {
-                    return null;
-                }
+                return type.Default();
             }
 
             return converter.ConvertFromString(input);
@@ -69,9 +64,8 @@
 
         public static IEnumerable<string> ExtractWordsFromString(this string text)
         {
-            Regex matchWords = new Regex(@"[^\W\d]+");
             var result = new HashSet<string>();
-            for (Match word = matchWords.Match(text); word.Success; word = word.NextMatch())
+            for (Match word = MatchWord.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
             }

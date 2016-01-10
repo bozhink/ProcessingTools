@@ -52,7 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CsvMapperTests.cs" />
     <Compile Include="CsvObjectTests.cs" />
+    <Compile Include="Models\NameYearDescriptionSampleObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

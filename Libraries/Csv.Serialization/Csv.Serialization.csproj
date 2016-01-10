@@ -33,10 +33,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsvMapping.cs" />
-    <Compile Include="CSVMapping1.cs" />
-    <Compile Include="CsvObject.cs" />
+    <Compile Include="CsvMapper.cs" />
+    <Compile Include="CsvToObjectMapping.cs" />
+    <Compile Include="CsvTableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
