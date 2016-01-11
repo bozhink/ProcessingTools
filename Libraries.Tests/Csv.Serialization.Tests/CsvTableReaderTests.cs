@@ -4,12 +4,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class CsvTableObjectTests
+    public class CsvTableReaderTests
     {
         [TestMethod]
         public void CsvObject_WithEmptyConstuctor_ShouldCreateValidObject()
         {
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.FieldTerminator.ToString()), "FieldTerminator");
             Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.FirstRow.ToString()), "FirstRow");
             Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.RowTerminator.ToString()), "RowTerminator");
@@ -23,7 +23,7 @@
         {
             const string CsvText = "Name,Year,Description\nJohn Smith,2015,No desription here";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var result = csv.ReadToTable(CsvText);
 
             Assert.AreEqual(2, result.Length, "Invalid number of rows.");
@@ -44,7 +44,7 @@
         {
             const string CsvText = "Name,Year,Description\nSmith\\, John,2015,No desription here";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var result = csv.ReadToTable(CsvText);
 
             Assert.AreEqual(2, result.Length, "Invalid number of rows.");
@@ -66,7 +66,7 @@
         {
             const string CsvText = "Name,Year,Description\nSmith\\, John,2015,No desription here\\";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var result = csv.ReadToTable(CsvText);
 
             Assert.Fail();
@@ -77,7 +77,7 @@
         {
             const string CsvText = "Name,Year,Description\n\"Smith, \\\"John\\\"\",2015,\"No\n desription\" here";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var result = csv.ReadToTable(CsvText);
 
             Assert.AreEqual(2, result.Length, "Invalid number of rows.");

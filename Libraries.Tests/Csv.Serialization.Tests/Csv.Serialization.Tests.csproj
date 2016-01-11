@@ -53,8 +53,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CsvMapperTests.cs" />
-    <Compile Include="CsvTableObjectTests.cs" />
+    <Compile Include="CsvSerializerTests.cs" />
+    <Compile Include="CsvTableReaderTests.cs" />
+    <Compile Include="Models\NameYearDescriptionSampleCsvObject.cs" />
     <Compile Include="Models\NameYearDescriptionSampleObject.cs" />
+    <Compile Include="Models\PersonCsvObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

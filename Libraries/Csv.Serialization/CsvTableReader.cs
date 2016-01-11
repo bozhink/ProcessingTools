@@ -4,16 +4,16 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class CsvTableObject
+    public class CsvTableReader
     {
         private Queue<string[]> rows;
 
-        public CsvTableObject()
+        public CsvTableReader()
             : this(new CsvObjectConfiguration())
         {
         }
 
-        public CsvTableObject(CsvObjectConfiguration configuration)
+        public CsvTableReader(CsvObjectConfiguration configuration)
         {
             this.Configuration = configuration;
             this.rows = new Queue<string[]>();

@@ -13,7 +13,7 @@
         {
             const string CsvText = "Name,Year,Description\nJohn Smith,2015,No desription here";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var csvRow = csv.ReadToTable(CsvText).Skip(1).ToArray()[0];
 
             var csvMapper = new CsvMapper();
@@ -39,7 +39,7 @@
         {
             const string CsvText = "Name,Year,Description\nJohn Smith,2015,No desription here";
 
-            var csv = new CsvTableObject();
+            var csv = new CsvTableReader();
             var csvRow = csv.ReadToTable(CsvText).Skip(1).ToArray()[0];
 
             var csvMapper = new CsvMapper();

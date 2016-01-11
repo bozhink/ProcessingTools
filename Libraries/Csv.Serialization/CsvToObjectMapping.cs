@@ -8,6 +8,14 @@
     public class CsvToObjectMapping
     {
         /// <summary>
+        /// Initializes new object with empty Mapping dictionary.
+        /// </summary>
+        public CsvToObjectMapping()
+        {
+            this.Mapping = new Dictionary<string, int>();
+        }
+
+        /// <summary>
         /// A dictionary holding Property Names (Key) and CSV column indexes (Value).
         /// </summary>
         /// <remarks>

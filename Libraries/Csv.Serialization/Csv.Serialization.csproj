@@ -39,7 +39,7 @@
     <Compile Include="CsvObjectConfiguration.cs" />
     <Compile Include="CsvSerializer.cs" />
     <Compile Include="CsvToObjectMapping.cs" />
-    <Compile Include="CsvTableObject.cs" />
+    <Compile Include="CsvTableReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
