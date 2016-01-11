@@ -36,6 +36,7 @@
             abbrevContent.SelectNodes("i|b").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
+                .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
         }
 
@@ -47,6 +48,7 @@
         private void SetDefinition(XmlNode abbrev)
         {
             this.definition = abbrev["def"]?.InnerText
+                .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
                 .RegexReplace(@"\((.+)\)", "$1")
                 .RegexReplace(@"\[(.+)\]", "$1");

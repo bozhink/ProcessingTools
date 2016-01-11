@@ -53,7 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CsvMapperTests.cs" />
-    <Compile Include="CsvObjectTests.cs" />
+    <Compile Include="CsvTableObjectTests.cs" />
     <Compile Include="Models\NameYearDescriptionSampleObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

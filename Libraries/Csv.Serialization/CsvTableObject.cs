@@ -8,35 +8,18 @@
     {
         private Queue<string[]> rows;
 
-        public CsvTableObject(
-            char fieldTerminator = ',',
-            char rowTerminator = '\n',
-            int firstRow = 1,
-            char singleCharEscapeSymbol = '\\',
-            char terminatorEscapeLeftWrapSymbol = '"',
-            char terminatorEscapeRightWrapSymbol = '"')
+        public CsvTableObject()
+            : this(new CsvObjectConfiguration())
         {
-            this.FieldTerminator = fieldTerminator;
-            this.RowTerminator = rowTerminator;
-            this.FirstRow = firstRow;
-            this.SingleCharEscapeSymbol = singleCharEscapeSymbol;
-            this.TerminatorEscapeLeftWrapSymbol = terminatorEscapeLeftWrapSymbol;
-            this.TerminatorEscapeRightWrapSymbol = terminatorEscapeRightWrapSymbol;
+        }
 
+        public CsvTableObject(CsvObjectConfiguration configuration)
+        {
+            this.Configuration = configuration;
             this.rows = new Queue<string[]>();
         }
 
-        public char FieldTerminator { get; set; }
-
-        public char RowTerminator { get; set; }
-
-        public int FirstRow { get; set; }
-
-        public char SingleCharEscapeSymbol { get; set; }
-
-        public char TerminatorEscapeLeftWrapSymbol { get; set; }
-
-        public char TerminatorEscapeRightWrapSymbol { get; set; }
+        public CsvObjectConfiguration Configuration { get; private set; }
 
         public string[][] ReadToTable(string text)
         {
@@ -49,7 +32,7 @@
             for (int i = 0, len = textChars.Length; i < len; ++i)
             {
                 char ch = textChars[i];
-                if (ch == this.SingleCharEscapeSymbol)
+                if (ch == this.Configuration.SingleCharEscapeSymbol)
                 {
                     // Do not include the escape char in output
                     // stringBuilder.Append(ch);
@@ -60,13 +43,13 @@
 
                     stringBuilder.Append(textChars[++i]);
                 }
-                else if (ch == this.TerminatorEscapeLeftWrapSymbol && ch == this.TerminatorEscapeRightWrapSymbol)
+                else if (ch == this.Configuration.TerminatorEscapeLeftWrapSymbol && ch == this.Configuration.TerminatorEscapeRightWrapSymbol)
                 {
                     // Do not include the escape char in output
                     // stringBuilder.Append(ch);
                     escapeState = !escapeState;
                 }
-                else if (ch == this.TerminatorEscapeLeftWrapSymbol)
+                else if (ch == this.Configuration.TerminatorEscapeLeftWrapSymbol)
                 {
                     // Do not include the escape char in output
                     // stringBuilder.Append(ch);
@@ -75,7 +58,7 @@
                         escapeState = true;
                     }
                 }
-                else if (ch == this.TerminatorEscapeRightWrapSymbol)
+                else if (ch == this.Configuration.TerminatorEscapeRightWrapSymbol)
                 {
                     // Do not include the escape char in output
                     // stringBuilder.Append(ch);
@@ -84,7 +67,7 @@
                         escapeState = false;
                     }
                 }
-                else if (ch == this.FieldTerminator)
+                else if (ch == this.Configuration.FieldTerminator)
                 {
                     if (escapeState)
                     {
@@ -96,7 +79,7 @@
                         stringBuilder.Clear();
                     }
                 }
-                else if (ch == this.RowTerminator)
+                else if (ch == this.Configuration.RowTerminator)
                 {
                     if (escapeState)
                     {

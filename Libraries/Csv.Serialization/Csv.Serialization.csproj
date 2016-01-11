@@ -33,7 +33,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvColumnAttribute.cs" />
     <Compile Include="CsvMapper.cs" />
+    <Compile Include="CsvObjectAttribute.cs" />
+    <Compile Include="CsvObjectConfiguration.cs" />
+    <Compile Include="CsvSerializer.cs" />
     <Compile Include="CsvToObjectMapping.cs" />
     <Compile Include="CsvTableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

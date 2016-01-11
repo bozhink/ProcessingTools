@@ -4,18 +4,18 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class CsvObjectTests
+    public class CsvTableObjectTests
     {
         [TestMethod]
         public void CsvObject_WithEmptyConstuctor_ShouldCreateValidObject()
         {
             var csv = new CsvTableObject();
-            Assert.IsFalse(string.IsNullOrEmpty(csv.FieldTerminator.ToString()), "FieldTerminator");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.FirstRow.ToString()), "FirstRow");
-            Assert.IsFalse(string.IsNullOrEmpty(csv.RowTerminator.ToString()), "RowTerminator");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.SingleCharEscapeSymbol.ToString()), "SingleCharEscapeSymbol");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.TerminatorEscapeLeftWrapSymbol.ToString()), "TerminatorEscapeLeftWrapSymbol");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.TerminatorEscapeRightWrapSymbol.ToString()), "TerminatorEscapeRightWrapSymbol");
+            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.FieldTerminator.ToString()), "FieldTerminator");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.FirstRow.ToString()), "FirstRow");
+            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.RowTerminator.ToString()), "RowTerminator");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.SingleCharEscapeSymbol.ToString()), "SingleCharEscapeSymbol");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.TerminatorEscapeLeftWrapSymbol.ToString()), "TerminatorEscapeLeftWrapSymbol");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.TerminatorEscapeRightWrapSymbol.ToString()), "TerminatorEscapeRightWrapSymbol");
         }
 
         [TestMethod]
