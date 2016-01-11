@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
+      <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
+      <Name>Csv.Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Data.Models\Bio.Data.Models.csproj">
       <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
       <Name>Bio.Data.Models</Name>
