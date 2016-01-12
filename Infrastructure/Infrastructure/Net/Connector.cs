@@ -11,6 +11,9 @@
 
     public class Connector
     {
+        public const string CorsHeaderName = "Access-Control-Allow-Origin";
+        public const string CorsHeaderDefaultValue = "*";
+
         public const string DefaultContentType = "text/plain; encoding='utf-8'";
         public const string JsonContentType = "application/json";
         public const string XmlContentType = "application/xml";
@@ -60,7 +63,9 @@
             T result = null;
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(XmlContentType));
+
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
@@ -85,7 +90,9 @@
             T result = null;
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonContentType));
+
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
@@ -108,6 +115,8 @@
 
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+
                 if (!string.IsNullOrWhiteSpace(acceptContentType))
                 {
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptContentType));
@@ -137,6 +146,8 @@
             using (var client = new HttpClient())
             using (var postContent = new StringContent(content, encoding))
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+
                 if (!string.IsNullOrWhiteSpace(contentType))
                 {
                     postContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
@@ -167,6 +178,8 @@
             using (var client = new HttpClient())
             using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
@@ -192,6 +205,8 @@
             using (var client = new HttpClient())
             using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
             {
+                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+
                 if (this.BaseAddressUri != null)
                 {
                     client.BaseAddress = this.BaseAddressUri;
