@@ -10,7 +10,7 @@
     using Contracts;
     using Extensions;
     using ProcessingTools.Contracts.Log;
-
+    using Bio.Taxonomy;
     public class LowerTaxaTagger : TaxaTagger
     {
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
@@ -228,9 +228,16 @@
                 .Cast<XmlNode>()
                 .Select(x => x.InnerXml));
 
+            //////string clearUselessTaxonNamePartsSubpattern = string.Join(
+            //////    "|",
+            //////    SpeciesPartsPrefixesResolver
+            //////        .SpeciesPartsRanks
+            //////        .Keys
+            //////        .Select(k => $"\\b{Regex.Escape(k)}\\b\\."));
+
             // TODO: This algorithm must be refined: generate smaller pattern strings from the original.
             var taxa = knownLowerTaxaNamesXml
-                .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>", string.Empty))
+                .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>|\bcf\b\.|\bvar\b\.", string.Empty))
                 .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty))
                 .Select(t => t.RegexReplace(@"[^\w\.]+", " "))
                 .ToList();
