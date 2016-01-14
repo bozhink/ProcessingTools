@@ -7,9 +7,10 @@
 
     using Contracts;
     using Extensions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class CoordinatesTagger : HarvestableDocument, IBaseTagger
+    public class CoordinatesTagger : HarvestableDocument, ITagger
     {
         private const string LocalityCoordinatesTagName = "locality-coordinates";
         private readonly XmlElement localityCoordinatesNode = null;

@@ -3,14 +3,10 @@
     using Configurator;
     using Contracts;
     using Extensions;
+    using ProcessingTools.Contracts;
 
-    public class ZoobankRegistrationXmlGenerator : Base, IBaseGenerator
+    public class ZoobankRegistrationXmlGenerator : Base, IGenerator
     {
-        public ZoobankRegistrationXmlGenerator(string xml)
-            : base(xml)
-        {
-        }
-
         public ZoobankRegistrationXmlGenerator(Config config, string xml)
             : base(config, xml)
         {

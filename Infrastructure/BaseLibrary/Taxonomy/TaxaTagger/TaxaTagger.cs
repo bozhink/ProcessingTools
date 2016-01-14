@@ -9,8 +9,9 @@
     using Configurator;
     using Contracts;
     using Extensions;
-    
-    public abstract class TaxaTagger : HarvestableDocument, IBaseTagger
+    using ProcessingTools.Contracts;
+
+    public abstract class TaxaTagger : HarvestableDocument, ITagger
     {
         protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
         protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";

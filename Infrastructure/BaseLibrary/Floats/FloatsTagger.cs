@@ -9,9 +9,10 @@
 
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class FloatsTagger : Base, IBaseTagger
+    public class FloatsTagger : Base, ITagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 30;

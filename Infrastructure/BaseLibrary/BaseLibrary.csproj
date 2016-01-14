@@ -97,7 +97,6 @@
     <Compile Include="Contracts\IBaseFormatter.cs" />
     <Compile Include="Contracts\IBaseGenerator.cs" />
     <Compile Include="Contracts\IBaseParser.cs" />
-    <Compile Include="Contracts\IBaseTagger.cs" />
     <Compile Include="Contracts\IBaseValidator.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />

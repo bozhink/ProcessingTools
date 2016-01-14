@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts.Log;
     using ProcessingTools.Harvesters.Common.Contracts;
 
-    public class StringHarvestTagger : HarvestableDocument, IBaseTagger
+    public class StringHarvestTagger : HarvestableDocument, ITagger
     {
         private XmlElement tagModel;
 

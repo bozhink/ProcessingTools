@@ -7,9 +7,10 @@
     using Configurator;
     using Contracts;
     using Harvesters.Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class NlmExternalLinksTagger : HarvestableDocument, IBaseTagger
+    public class NlmExternalLinksTagger : HarvestableDocument, ITagger
     {
         private const string SelectNodesToTagExternalLinksXPathTemplate = "/*";
 

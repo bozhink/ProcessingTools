@@ -323,13 +323,6 @@
       <FileName>Contracts\IBaseParser.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseTagger" Collapsed="true">
-    <Position X="12.5" Y="14" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Contracts\IBaseTagger.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseValidator" Collapsed="true">
     <Position X="14.75" Y="14" Width="1.5" />
     <TypeIdentifier>

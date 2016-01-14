@@ -6,9 +6,10 @@
 
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class TreatmentFormatter : Base, IBaseFormatter
+    public class TreatmentFormatter : Base, IFormatter
     {
         private ILogger logger;
 

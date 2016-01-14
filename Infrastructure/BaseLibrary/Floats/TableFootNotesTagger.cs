@@ -5,9 +5,10 @@
 
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class TableFootNotesTagger : Base, IBaseTagger
+    public class TableFootNotesTagger : Base, ITagger
     {
         private ILogger logger;
 

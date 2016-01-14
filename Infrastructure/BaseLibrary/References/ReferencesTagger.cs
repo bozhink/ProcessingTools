@@ -8,9 +8,10 @@
     using Configurator;
     using Contracts;
     using Extensions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class ReferencesTagger : HarvestableDocument, IBaseTagger
+    public class ReferencesTagger : HarvestableDocument, ITagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 

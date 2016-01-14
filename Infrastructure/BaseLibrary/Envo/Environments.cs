@@ -5,11 +5,11 @@
 
     using Bio.Harvesters.Contracts;
     using Configurator;
-    using Contracts;
     using Models;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Environments : HarvestableDocument, IBaseTagger
+    public class Environments : HarvestableDocument, ITagger
     {
         private const string EnvoTagName = "envo";
         private IEnvoTermsHarvester harvester;

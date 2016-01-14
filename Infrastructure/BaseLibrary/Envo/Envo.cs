@@ -6,9 +6,10 @@
     using Bio.Harvesters.Contracts;
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Envo : HarvestableDocument, IBaseTagger
+    public class Envo : HarvestableDocument, ITagger
     {
         private const string EnvoTagName = "envo";
 
