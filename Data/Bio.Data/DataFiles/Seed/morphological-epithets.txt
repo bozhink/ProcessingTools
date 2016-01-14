@@ -111,3 +111,11 @@ thorax
 trochanter
 ventral tube
 chaetae
+
+        General morphology: abd. – abdomen, ant. – antenna, AOIII – sensory organ of antennal segment III, Cx – coxa, Fe – femur, Scx2 – subcoxa 2, T – tibiotarsus, th. – thorax, Tr – trochanter, VT – ventral tube.
+
+        Groups of chaetae: Ag – antegenital, An – chaetae of anal lobes, ap – apical, ca – centroapical, cm – centromedial, cp – centroposterior, d – dorsal, Fu – furcal, vc – ventrocentral, Ve or ve – ventroexternal, Vea – ventroexternoanterior, Vem – ventroexternomedial, Vep – ventroexternoposterior, Vel – ventroexternolateral, Vec – ventroexternocentral, Vei – ventroexternointernal, Vi or vi – ventrointernal, Vl – ventrolateral.
+
+        Tubercles: Af – antenno–frontal, Cl – clypeal, De – dorsoexternal, Di – dorsointernal, Dl – dorsolateral, L – lateral, Oc – ocular, So – subocular.
+
+        Types of chaetae: Ml – long macrochaeta, Mc – short macrochaeta, Mcc – very short macrochaeta, me – mesochaeta, mi – microchaeta, ms – s–microchaeta or microsensillum, S or s – chaeta s, bs – border s–chaeta on ant. IV, miA – microchaetae on ant. IV, iv – ordinary chaetae on ventral ant. IV, or – organite of ant. IV, brs – border s–chaeta on ant. IV, i – ordinary chaeta on ant. IV, mou – cylindrical s–chaetae on ant. IV („soies mousses”), x – labial papilla x, L’ – ordinary lateral chaeta on abd. V, B4, B5 – ordinary chaetae on tibiotarsi.
