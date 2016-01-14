@@ -309,13 +309,6 @@
       <FileName>Contracts\IBaseFormatter.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseGenerator" Collapsed="true">
-    <Position X="8" Y="14" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Contracts\IBaseGenerator.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseParser" Collapsed="true">
     <Position X="10.25" Y="14" Width="1.5" />
     <TypeIdentifier>
