@@ -99,3 +99,15 @@ uncini
 ventral margin
 ventral umbo
 whorls
+
+abdomen
+antenna
+sensory organ of antennal segment III
+coxa
+femur
+subcoxa 2
+tibiotarsus
+thorax
+trochanter
+ventral tube
+chaetae

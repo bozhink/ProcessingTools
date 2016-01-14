@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProcessingTools.Bio.Biorepositories.Data")]
+[assembly: AssemblyTitle("ProcessingTools.Bio.Biorepositories.Data.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.Bio.Biorepositories.Data")]
+[assembly: AssemblyProduct("ProcessingTools.Bio.Biorepositories.Data.Tests")]
 [assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6830d5c5-6ba8-4ac9-9250-db3d6735e8fb")]
+[assembly: Guid("1e1a701b-3c6a-4d98-825b-2670a5eb44f8")]
 
 // Version information for an assembly consists of the following four values:
 //

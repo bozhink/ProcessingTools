@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ProcessingTools.Bio.Biorepositories.Data.Models")]
-[assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2015")]
+[assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ff1297ad-9dd1-4565-9b7c-319ec5b0da7b")]
+[assembly: Guid("5a6e7c61-1809-44d8-be58-a76aa82af2bf")]
 
 // Version information for an assembly consists of the following four values:
 //

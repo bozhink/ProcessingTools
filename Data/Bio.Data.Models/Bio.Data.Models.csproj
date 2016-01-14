@@ -42,34 +42,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Biorepositories\Biorepository.cs" />
-    <Compile Include="Biorepositories\BiorepositoryLabel.cs" />
-    <Compile Include="Biorepositories\InstitutionCollection.cs" />
-    <Compile Include="Biorepositories\InstitutionCollectionLabel.cs" />
-    <Compile Include="Biorepositories\PersonalCollection.cs" />
-    <Compile Include="Biorepositories\PersonalCollectionLabel.cs" />
-    <Compile Include="Biorepositories\StaffMember.cs" />
-    <Compile Include="Biorepositories\StaffMemberLabel.cs" />
     <Compile Include="MorphologicalEpithet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\Biorepository.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\BiorepositoryLabel.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\InstitutionCollection.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\InstitutionCollectionLabel.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\PersonalCollection.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\PersonalCollectionLabel.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\StaffMember.cs" />
-    <Compile Include="Seed\Csv\Biorepositories\StaffMemberLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
-      <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
-      <Name>Csv.Serialization</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

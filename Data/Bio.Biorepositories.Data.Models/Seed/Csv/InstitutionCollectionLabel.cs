@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Models.Seed.Csv.Biorepositories
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
 {
     using ProcessingTools.Csv.Serialization;
 

@@ -50,29 +50,16 @@
     <Compile Include="Repositories\IBioDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\Biorepositories\biorepositories.sql" />
-    <Content Include="DataFiles\Biorepositories\institutional-codes.txt" />
     <Content Include="DataFiles\Seed\morphological-epithets.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="DataFiles\Seed\Types.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataFiles\Biorepositories\biorepositories.csv" />
-    <None Include="DataFiles\Biorepositories\biorepository_labels.csv" />
-    <None Include="DataFiles\Biorepositories\institution_collections.csv" />
-    <None Include="DataFiles\Biorepositories\institution_collection_labels.csv" />
-    <None Include="DataFiles\Biorepositories\personal_collections.csv" />
-    <None Include="DataFiles\Biorepositories\personal_collection_labels.csv" />
-    <None Include="DataFiles\Biorepositories\staff_members.csv" />
-    <None Include="DataFiles\Biorepositories\staff_member_labels.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
-      <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
-      <Name>Csv.Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Data.Models\Bio.Data.Models.csproj">
       <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
       <Name>Bio.Data.Models</Name>
