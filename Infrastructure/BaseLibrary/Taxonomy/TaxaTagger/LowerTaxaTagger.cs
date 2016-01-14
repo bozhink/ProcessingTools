@@ -10,7 +10,7 @@
     using Contracts;
     using Extensions;
     using ProcessingTools.Contracts.Log;
-    using Bio.Taxonomy;
+
     public class LowerTaxaTagger : TaxaTagger
     {
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";

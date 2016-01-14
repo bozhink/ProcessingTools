@@ -9,9 +9,10 @@
     using Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class TaxonomicNamesValidator : Base, IBaseValidator
+    public class TaxonomicNamesValidator : Base, IValidator
     {
         private ILogger logger;
 
