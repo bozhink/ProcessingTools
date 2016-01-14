@@ -8,9 +8,10 @@
     using Bio.Taxonomy.Types;
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class LowerTaxaParser : Base, IBaseParser
+    public class LowerTaxaParser : Base, IParser
     {
         private ILogger logger;
 

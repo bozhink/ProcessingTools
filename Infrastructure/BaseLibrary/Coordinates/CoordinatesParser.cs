@@ -6,11 +6,12 @@
 
     using Contracts;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
 
-    public class CoordinatesParser : Base, IBaseParser
+    public class CoordinatesParser : Base, IParser
     {
         private ILogger logger;
 

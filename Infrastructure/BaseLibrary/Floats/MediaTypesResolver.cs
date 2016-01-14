@@ -8,9 +8,10 @@
     using Contracts;
     using MediaType.Services.Data.Contracts;
     using Models;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class MediaTypesResolver : Base, IBaseParser
+    public class MediaTypesResolver : Base, IParser
     {
         private const string DefaultMimeType = "application";
         private const string DefaultMimeSubtype = "octet-stream";

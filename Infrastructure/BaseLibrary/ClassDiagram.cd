@@ -295,13 +295,6 @@
       <FileName>Contracts\IBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseParser" Collapsed="true">
-    <Position X="10.25" Y="14" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Contracts\IBaseParser.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IDataProvider" Collapsed="true">
     <Position X="17" Y="14" Width="1.5" />
     <TypeIdentifier>

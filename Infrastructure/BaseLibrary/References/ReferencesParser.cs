@@ -6,9 +6,10 @@
 
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class ReferencesParser : HarvestableDocument, IBaseParser
+    public class ReferencesParser : HarvestableDocument, IParser
     {
         private ILogger logger;
 

@@ -9,9 +9,10 @@
     using Bio.Taxonomy.Services.Data.Contracts;
     using Bio.Taxonomy.Types;
     using Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class TreatmentMetaParser : Base, IBaseParser
+    public class TreatmentMetaParser : Base, IParser
     {
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

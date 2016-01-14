@@ -8,9 +8,10 @@
     using Bio.Taxonomy.Services.Data.Contracts;
     using Contracts;
     using Models;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class HigherTaxaParserWithDataService<T> : Base, IBaseParser
+    public class HigherTaxaParserWithDataService<T> : Base, IParser
         where T : ITaxonRank
     {
         private ILogger logger;
