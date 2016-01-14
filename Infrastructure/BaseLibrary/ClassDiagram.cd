@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProcessingTools.BaseLibrary.Base" Collapsed="true">
+    <Position X="36" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAABAgAAAQAAAAgAAAABAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.HarvestableDocument" Collapsed="true">
+    <Position X="20.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAQAAAAEAA=</HashCode>
+      <FileName>HarvestableDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.StringHarvestTagger" Collapsed="true">
+    <Position X="10.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAACAAAAABAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>StringHarvestTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Codes" Collapsed="true">
+    <Position X="14.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SAAAAAAgAAAQACACAAARACAAAAIAAAQCAAAAQIDACBI=</HashCode>
+      <FileName>Codes\Codes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.SpecimenCode" Collapsed="true">
+    <Position X="70.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAgAAACIAABAgAAAQAAAAAAEAA=</HashCode>
+      <FileName>Codes\SpecimenCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.DataProvider" Collapsed="true">
+    <Position X="17" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAgAAAAAAAAA=</HashCode>
+      <FileName>DataProvider\DataProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Abbreviations.AbbreviationsTagger" Collapsed="true">
+    <Position X="19.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abbreviations\AbbreviationsTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Abbreviations.Abbreviation" Collapsed="true">
+    <Position X="66.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAgIAgAAAAAAAAAAAAAAAgBAAAAAAAACIAAA=</HashCode>
+      <FileName>Abbreviations\Abbreviation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Coordinates.CoordinatesParser" Collapsed="true">
+    <Position X="53" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgCAEBAAgAAAACEAAAAAAAAAgAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Coordinates\CoordinatesParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Coordinates.CoordinatesTagger" Collapsed="true">
+    <Position X="28.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAAAgAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Coordinates\CoordinatesTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Floats.FloatsTagger" Collapsed="true">
+    <Position X="62" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>yQAAIIggAKEhA4ACIEDwgQREAAAAkpAAAAAAAAACCCA=</HashCode>
+      <FileName>Floats\FloatsTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Floats.MediaTypesResolver" Collapsed="true">
+    <Position X="8" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgQAAAAAAAAAACAAAAAIAAAIABAAAAEAAAAAEAABE=</HashCode>
+      <FileName>Floats\MediaTypesResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Floats.TableFootNotesTagger" Collapsed="true">
+    <Position X="32.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Floats\TableFootNotesTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Floats.Models.MediaTypeResponseModel" Collapsed="true">
+    <Position X="70.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Floats\Models\MediaTypeResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Format.NlmInitialFormatter" Collapsed="true">
+    <Position X="41.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAABAAAAAAAAAgAgBAAAAEBgAAAAAAEAAAAIAAKA=</HashCode>
+      <FileName>Format\NlmInitialFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Format.SystemInitialFormatter" Collapsed="true">
+    <Position X="50.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABBAAAAAAAAAAAAAAACEAgAAAAAABAAAAAAAKA=</HashCode>
+      <FileName>Format\SystemInitialFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Models.EnvoTermResponseModel" Collapsed="true">
+    <Position X="68.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgIAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Models\EnvoTermResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.References.ReferencesParser" Collapsed="true">
+    <Position X="21.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAAAAAAACAAAAAABAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>References\ReferencesParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.References.ReferencesTagger" Collapsed="true">
+    <Position X="30.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>References\ReferencesTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TreatmentFormatter" Collapsed="true">
+    <Position X="59.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACACAAAAAAAAgAAAAACAAAAAAAAAE=</HashCode>
+      <FileName>Taxonomy\Formatter\TreatmentFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Species" Collapsed="true">
+    <Position X="66.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RBhAIQAYAAUAAAwQBgAICAVABEAIBEUpEQAQQIUgBBA=</HashCode>
+      <FileName>Taxonomy\Species\Species.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.SpeciesComparison" Collapsed="true">
+    <Position X="68.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAEAAAAAEAAAEAAAAJAAAACAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\Species\SpeciesComparison.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Expander" Collapsed="true">
+    <Position X="35" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAACAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Taxonomy\TaxaExpander\Expander.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.HigherTaxaParserWithDataService&lt;T&gt;" Collapsed="true">
+    <Position X="39.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Taxonomy\TaxaParser\HigherTaxaParserWithDataService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.LowerTaxaParser" Collapsed="true">
+    <Position X="44" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAABCAAA=</HashCode>
+      <FileName>Taxonomy\TaxaParser\LowerTaxaParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.HigherTaxaTagger" Collapsed="true">
+    <Position X="23.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAACAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\TaxaTagger\HigherTaxaTagger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.LowerTaxaTagger" Collapsed="true">
+    <Position X="26" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAgEAAGAAAAAAAAAAAAAAQAAAAAAAAEAAI=</HashCode>
+      <FileName>Taxonomy\TaxaTagger\LowerTaxaTagger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TaxaTagger" Collapsed="true">
+    <Position X="24.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAhAAAAAAQAAAAAAAAAAAAAAAABwAAAAEA=</HashCode>
+      <FileName>Taxonomy\TaxaTagger\TaxaTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TaxonomicNamesValidator" Collapsed="true">
+    <Position X="57.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Taxonomy" Collapsed="true">
+    <Position X="66.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAGAAAAAAAAAICACAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\Taxonomy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TreatmentMetaParser" Collapsed="true">
+    <Position X="64.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAgAAABAAAAAAACAAAAAAAAAAAAABAAAEAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Models.TaxonRankResponseModel" Collapsed="true">
+    <Position X="68.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\Models\TaxonRankResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Nlm.Expander" Collapsed="true">
+    <Position X="37.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAACAAAACAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Taxonomy\TaxaExpander\Expander.Nlm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Uri.NlmExternalLinksTagger" Collapsed="true">
+    <Position X="12.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAACBAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Uri\NlmExternalLinksTagger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankCloner" Collapsed="true">
+    <Position X="47.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAQAABAAUAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>ZooBank\Cloner\ZoobankCloner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankJsonCloner" Collapsed="true">
+    <Position X="46.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAFAAAwAAAAECAAAIAAAAAAAAAAAAAAAAAEAAABA=</HashCode>
+      <FileName>ZooBank\Cloner\ZoobankJsonCloner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankXmlCloner" Collapsed="true">
+    <Position X="48.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACQAAAAAAAAAAACAAAAAAAAAAABgAAAAAACAkAAABA=</HashCode>
+      <FileName>ZooBank\Cloner\ZoobankXmlCloner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankRegistrationXmlGenerator" Collapsed="true">
+    <Position X="55.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ZooBank\Generator\ZoobankRegistrationXmlGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBase" Collapsed="true">
+    <Position X="12.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseCloner" Collapsed="true">
+    <Position X="19.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseCloner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseFormatter" Collapsed="true">
+    <Position X="5.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseFormatter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseGenerator" Collapsed="true">
+    <Position X="8" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseParser" Collapsed="true">
+    <Position X="10.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseParser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseTagger" Collapsed="true">
+    <Position X="12.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseTagger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBaseValidator" Collapsed="true">
+    <Position X="14.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBaseValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.BaseLibrary.Contracts.IDataProvider" Collapsed="true">
+    <Position X="17" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IDataProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ProcessingTools.BaseLibrary.Floats.FloatsReferenceType" Collapsed="true">
+    <Position X="66.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABBBAAQAAAAAQAAggEAQAAGAAQQEQAAAAAAAIwAAAI=</HashCode>
+      <FileName>Floats\FloatsReferenceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
