@@ -4,8 +4,9 @@
 
     using Configurator;
     using Contracts;
+    using ProcessingTools.Contracts;
 
-    public class SystemInitialFormatter : Base, IBaseFormatter
+    public class SystemInitialFormatter : Base, IFormatter
     {
         public SystemInitialFormatter(string xml)
             : base(xml)

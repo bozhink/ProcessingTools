@@ -6,8 +6,9 @@
     using Configurator;
     using Contracts;
     using Extensions;
+    using ProcessingTools.Contracts;
 
-    public class NlmInitialFormatter : Base, IBaseFormatter
+    public class NlmInitialFormatter : Base, IFormatter
     {
         public NlmInitialFormatter(string xml)
             : base(xml)
