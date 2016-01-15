@@ -3,8 +3,6 @@
     using System.Linq;
     using System.Xml;
 
-    using Contracts;
-
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 

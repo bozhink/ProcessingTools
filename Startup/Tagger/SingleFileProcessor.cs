@@ -16,11 +16,13 @@
     using BaseLibrary.Uri;
     using BaseLibrary.ZooBank;
 
+    using Attributes;
     using Bio.Taxonomy.Types;
     using Common.Constants;
     using Contracts.Log;
     using DocumentProvider;
     using Extensions;
+    using Models;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -937,8 +939,16 @@
 
         private void TagWebLinks()
         {
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
             var harvester = new Harvesters.NlmExternalLinksHarvester();
-            var tagger = new NlmExternalLinksTagger(this.settings.Config, this.document.Xml, harvester, this.logger);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result
+                .Select(i => new ExternalLinkSerializableModel
+                {
+                    ExternalLinkType = i.Type.GetValue(),
+                    Value = i.Content
+                });
+
+            var tagger = new XmlSerializableObjectTagger<ExternalLinkSerializableModel>(this.document.Xml, data, "/*", this.logger);
             this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

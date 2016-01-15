@@ -8,23 +8,21 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
-  <xsl:output method="xml" indent="yes"/>
+  <xsl:output method="text" indent="yes" />
 
   <xsl:template match="text()">
-    <xsl:copy>
-      <xsl:apply-templates select="node()"/>
-    </xsl:copy>
+    <xsl:value-of select="string()" />
   </xsl:template>
 
   <xsl:template match="*">
-    <xsl:apply-templates select="node()"/>
+    <xsl:apply-templates select="node()" />
   </xsl:template>
 
-  <xsl:template match="@* | comment()"/>
+  <xsl:template match="@* | comment()" />
 
   <xsl:template match="value">
     <xsl:text> </xsl:text>
-    <xsl:apply-templates select="node()"/>
+    <xsl:apply-templates select="node()" />
   </xsl:template>
 
   <xsl:template match="journal-meta | article-id | article-categories | author-notes | pub-date | history | permissions | tp:treatment-meta | xref-group | graphic | media | ext-link" />

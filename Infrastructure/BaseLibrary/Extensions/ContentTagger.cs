@@ -53,7 +53,29 @@
         /// <summary>
         /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
-        /// <param name="item">XmlNode to be set in the XmlDocument.</param>
+        /// <param name="items">IEnumerable of XmlElement to be set in the XmlDocument.</param>
+        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <param name="document">XmlDocument object to be tagged.</param>
+        /// <param name="caseSensitive">Must be the search case sensitive?</param>
+        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
+        public static void TagContentInDocument(
+            this IEnumerable<XmlElement> items,
+            string xpathTemplate,
+            XmlDocument document,
+            bool caseSensitive = true,
+            bool minimalTextSelect = false,
+            ILogger logger = null)
+        {
+            foreach (var item in items)
+            {
+                item.TagContentInDocument(xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
+            }
+        }
+
+        /// <summary>
+        /// Tags plain text string (no regex) in XmlDocument.
+        /// </summary>
+        /// <param name="item">XmlElement to be set in the XmlDocument.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <param name="document">XmlDocument object to be tagged.</param>
         /// <param name="caseSensitive">Must be the search case sensitive?</param>
