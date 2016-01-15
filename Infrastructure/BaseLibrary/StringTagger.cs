@@ -38,12 +38,12 @@
             this.data.ToList()
                 .OrderByDescending(i => i.Length)
                 .TagContentInDocument(
-                this.tagModel,
-                this.contentNodesXPathTemplate,
-                this.XmlDocument,
-                false,
-                true,
-                this.logger);
+                    this.tagModel,
+                    this.contentNodesXPathTemplate,
+                    this.XmlDocument,
+                    false,
+                    true,
+                    this.logger);
         }
     }
 }

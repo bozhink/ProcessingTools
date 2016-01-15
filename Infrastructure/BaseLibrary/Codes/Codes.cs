@@ -136,7 +136,7 @@ namespace ProcessingTools.BaseLibrary
         public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             // WARNING: here is set len(name) > 1!
-            string query = @"select [NameOfInstitution] as [name], [URL] as [url] from [dbo].[biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
+            string query = @"select [NameOfInstitution] as [name], [Url] as [url] from [grbio].[Biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionTagName);
@@ -146,7 +146,7 @@ namespace ProcessingTools.BaseLibrary
         public void TagInstitutionalCodes(IXPathProvider xpathProvider, IDataProvider dataProvider)
         {
             // WARNING: here is set len(name) > 1!
-            string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [URL] as [url] from [dbo].[biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
+            string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [Url] as [url] from [grbio].[Biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
 
             dataProvider.Xml = this.Xml;
             dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionalCodeTagName, true);
