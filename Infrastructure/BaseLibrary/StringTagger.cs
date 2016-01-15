@@ -24,15 +24,6 @@
             this.logger = logger;
         }
 
-        public StringTagger(IBase baseObject, IQueryable<string> data, XmlElement tagModel, string contentNodesXPathTemplate, ILogger logger)
-            : base(baseObject)
-        {
-            this.data = data;
-            this.tagModel = tagModel;
-            this.contentNodesXPathTemplate = contentNodesXPathTemplate;
-            this.logger = logger;
-        }
-
         public void Tag()
         {
             this.data.ToList()
