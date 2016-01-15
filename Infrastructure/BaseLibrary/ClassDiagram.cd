@@ -31,7 +31,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.SpecimenCode" Collapsed="true">
-    <Position X="70.25" Y="9.75" Width="1.5" />
+    <Position X="4.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAAAAAAAgAAACIAABAgAAAQAAAAAAEAA=</HashCode>
       <FileName>Codes\SpecimenCode.cs</FileName>
@@ -54,7 +54,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Abbreviations.Abbreviation" Collapsed="true">
-    <Position X="66.75" Y="8.75" Width="1.5" />
+    <Position X="0.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAgIAgAAAAAAAAAAAAAAAgBAAAAAAAACIAAA=</HashCode>
       <FileName>Abbreviations\Abbreviation.cs</FileName>
@@ -101,7 +101,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.MediaTypeResponseModel" Collapsed="true">
-    <Position X="70.25" Y="8.75" Width="1.5" />
+    <Position X="4.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Floats\Models\MediaTypeResponseModel.cs</FileName>
@@ -124,7 +124,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Models.EnvoTermResponseModel" Collapsed="true">
-    <Position X="68.5" Y="8.75" Width="1.5" />
+    <Position X="2.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgIAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA=</HashCode>
       <FileName>Models\EnvoTermResponseModel.cs</FileName>
@@ -155,14 +155,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Species" Collapsed="true">
-    <Position X="66.75" Y="9.75" Width="1.5" />
+    <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>RBhAIQAYAAUAAAwQBgAICAVABEAIBEUpEQAQQIUgBBA=</HashCode>
       <FileName>Taxonomy\Species\Species.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.SpeciesComparison" Collapsed="true">
-    <Position X="68.5" Y="9.75" Width="1.5" />
+    <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAACAAAAAAAEAAAAAEAAAEAAAAJAAAACAAAAAAAA=</HashCode>
       <FileName>Taxonomy\Species\SpeciesComparison.cs</FileName>
@@ -222,7 +222,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Taxonomy" Collapsed="true">
-    <Position X="66.75" Y="10.75" Width="1.5" />
+    <Position X="0.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAGAAAAAAAAAICACAAAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\Taxonomy.cs</FileName>
@@ -237,7 +237,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Models.TaxonRankResponseModel" Collapsed="true">
-    <Position X="68.5" Y="10.75" Width="1.5" />
+    <Position X="2.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\Models\TaxonRankResponseModel.cs</FileName>
@@ -289,21 +289,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IBase" Collapsed="true">
-    <Position X="12.5" Y="12.75" Width="1.5" />
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAgAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IDataProvider" Collapsed="true">
-    <Position X="17" Y="14" Width="1.5" />
+    <Position X="7" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IDataProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ProcessingTools.BaseLibrary.Floats.FloatsReferenceType" Collapsed="true">
-    <Position X="66.75" Y="12" Width="1.5" />
+    <Position X="0.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BABBBAAQAAAAAQAAggEAQAAGAAQQEQAAAAAAAIwAAAI=</HashCode>
       <FileName>Floats\FloatsReferenceType.cs</FileName>
