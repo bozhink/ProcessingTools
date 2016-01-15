@@ -13,7 +13,7 @@
         [XmlAttribute(attributeName: "href", Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/1999/xlink")]
         public string Href { get; set; }
 
-        [XmlText()]
+        [XmlText]
         public string Value { get; set; }
     }
 }

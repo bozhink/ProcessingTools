@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
     using System.IO;
     using System.Linq;
     using System.Xml;
     using System.Xml.Serialization;
+
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Log;
 
     public class XmlSerializableObjectTagger<T> : Base, ITagger
     {
@@ -47,7 +48,7 @@
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                serializer.Serialize(stream, obj);
+                this.serializer.Serialize(stream, obj);
                 stream.Flush();
                 stream.Position = 0;
 

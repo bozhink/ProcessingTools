@@ -121,7 +121,6 @@
     <Compile Include="Taxonomy\TaxaTagger\TaxaTagger.cs" />
     <Compile Include="Taxonomy\Taxonomy.cs" />
     <Compile Include="Test\Test.cs" />
-    <Compile Include="Uri\NlmExternalLinksTagger.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="XPathProvider\XPathProvider.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />

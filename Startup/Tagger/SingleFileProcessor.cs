@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Xml;
 
+    using Attributes;
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
@@ -13,10 +14,7 @@
     using BaseLibrary.Format;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
-    using BaseLibrary.Uri;
     using BaseLibrary.ZooBank;
-
-    using Attributes;
     using Bio.Taxonomy.Types;
     using Common.Constants;
     using Contracts.Log;
