@@ -36,6 +36,7 @@
         public void Tag()
         {
             this.data.ToList()
+                .OrderByDescending(i => i.Length)
                 .TagContentInDocument(
                 this.tagModel,
                 this.contentNodesXPathTemplate,
