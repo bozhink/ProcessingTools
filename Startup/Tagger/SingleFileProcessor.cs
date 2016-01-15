@@ -15,30 +15,12 @@
     using BaseLibrary.Taxonomy;
     using BaseLibrary.Uri;
     using BaseLibrary.ZooBank;
-    using Bio.Data.Repositories;
-    using Bio.Environments.Data;
-    using Bio.Environments.Data.Models;
-    using Bio.Environments.Data.Repositories;
-    using Bio.Environments.Services.Data;
-    using Bio.Harvesters;
-    using Bio.ServiceClient.ExtractHcmr;
-    using Bio.Services.Data;
-    using Bio.Taxonomy.Contracts;
-    using Bio.Taxonomy.Harvesters;
-    using Bio.Taxonomy.ServiceClient.CatalogueOfLife;
-    using Bio.Taxonomy.ServiceClient.Gbif;
-    using Bio.Taxonomy.Services.Data;
+
     using Bio.Taxonomy.Types;
     using Common.Constants;
     using Contracts.Log;
-    using Data.Repositories;
     using DocumentProvider;
     using Extensions;
-    using Geo.Data.Repositories;
-    using Geo.Harvesters;
-    using Geo.Services.Data;
-    using Harvesters;
-    using Services.Data;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -431,8 +413,8 @@
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
-                var blackList = new XmlListDataService(this.settings.Config.BlackListXmlFilePath);
-                var whiteList = new XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
+                var blackList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.BlackListXmlFilePath);
+                var whiteList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
 
                 if (this.settings.TagLowerTaxa)
                 {
@@ -511,8 +493,8 @@
             if (this.settings.ParseHigherTaxa)
             {
                 {
-                    var service = new LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
+                    var service = new Bio.Taxonomy.Services.Data.LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -520,8 +502,8 @@
 
                 if (this.settings.ParseHigherWithAphia)
                 {
-                    var service = new AphiaTaxaClassificationDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
+                    var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -529,9 +511,9 @@
 
                 if (this.settings.ParseHigherWithCoL)
                 {
-                    var requester = new CatalogueOfLifeDataRequester();
-                    var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
+                    var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
+                    var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -539,9 +521,9 @@
 
                 if (this.settings.ParseHigherWithGbif)
                 {
-                    var requester = new GbifDataRequester();
-                    var service = new GbifTaxaClassificationDataService(requester);
-                    var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(result, service, this.logger);
+                    var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
+                    var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -549,8 +531,8 @@
 
                 if (this.settings.ParseHigherBySuffix)
                 {
-                    var service = new SuffixHigherTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
+                    var service = new Bio.Taxonomy.Services.Data.SuffixHigherTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -558,8 +540,8 @@
 
                 if (this.settings.ParseHigherAboveGenus)
                 {
-                    var service = new AboveGenusTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<ITaxonRank>(result, service, this.logger);
+                    var service = new Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService();
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser);
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
@@ -594,7 +576,7 @@
 
             if (this.settings.ParseTreatmentMetaWithAphia)
             {
-                var service = new AphiaTaxaClassificationDataService();
+                var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
                 var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser);
                 result = parser.Xml;
@@ -602,8 +584,8 @@
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                var requester = new GbifDataRequester();
-                var service = new GbifTaxaClassificationDataService(requester);
+                var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
+                var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser);
                 result = parser.Xml;
@@ -611,8 +593,8 @@
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                var requester = new CatalogueOfLifeDataRequester();
-                var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
+                var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
+                var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
                 this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser);
                 result = parser.Xml;
@@ -732,7 +714,7 @@
 
         private void TagDates()
         {
-            var harvester = new DatesHarvester();
+            var harvester = new Harvesters.DatesHarvester();
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "date");
@@ -749,8 +731,8 @@
 
         private void TagEnvo()
         {
-            var requester = new ExtractHcmrDataRequester();
-            var harvester = new ExtractHcmrHarvester(requester);
+            var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
+            var harvester = new Bio.Harvesters.ExtractHcmrHarvester(requester);
             var tagger = new Envo(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger);
             this.document.Xml = tagger.Xml;
@@ -758,10 +740,10 @@
 
         private void TagEnvoTerms()
         {
-            var context = new BioEnvironmentsDbContext();
-            var repository = new BioEnvironmentsGenericRepository<EnvoName>(context);
-            var service = new EnvoTermsDataService(repository);
-            var harvester = new EnvoTermsHarvester(service);
+            var context = new Bio.Environments.Data.BioEnvironmentsDbContext();
+            var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(context);
+            var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
+            var harvester = new Bio.Harvesters.EnvoTermsHarvester(service);
             var tagger = new Environments(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
             this.document.Xml = tagger.Xml;
@@ -769,10 +751,10 @@
 
         private void TagMorphologicalEpithets()
         {
-            var context = new ProcessingTools.Bio.Data.BioDbContext();
-            var repository = new EfBioDataGenericRepository<ProcessingTools.Bio.Data.Models.MorphologicalEpithet>(context);
-            var service = new MorphologicalEpithetsDataService(repository);
-            var harvester = new MorphologicalEpithetsHarvester(service);
+            var context = new Bio.Data.BioDbContext();
+            var repository = new Bio.Data.Repositories.EfBioDataGenericRepository<Bio.Data.Models.MorphologicalEpithet>(context);
+            var service = new Bio.Services.Data.MorphologicalEpithetsDataService(repository);
+            var harvester = new Bio.Harvesters.MorphologicalEpithetsHarvester(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "morphological epithet");
@@ -789,10 +771,10 @@
 
         private void TagGeoEpithets()
         {
-            var context = new ProcessingTools.Geo.Data.GeoDbContext();
-            var repository = new EfGeoDataGenericRepository<ProcessingTools.Geo.Data.Models.GeoEpithet>(context);
-            var service = new GeoEpithetsDataService(repository);
-            var harvester = new GeoEpithetsHarvester(service);
+            var context = new Geo.Data.GeoDbContext();
+            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoEpithet>(context);
+            var service = new Geo.Services.Data.GeoEpithetsDataService(repository);
+            var harvester = new Geo.Harvesters.GeoEpithetsHarvester(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "geo epithet");
@@ -809,10 +791,10 @@
 
         private void TagGeoNames()
         {
-            var context = new ProcessingTools.Geo.Data.GeoDbContext();
-            var repository = new EfGeoDataGenericRepository<ProcessingTools.Geo.Data.Models.GeoName>(context);
-            var service = new GeoNamesDataService(repository);
-            var harvester = new GeoNamesHarvester(service);
+            var context = new Geo.Data.GeoDbContext();
+            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(context);
+            var service = new Geo.Services.Data.GeoNamesDataService(repository);
+            var harvester = new Geo.Harvesters.GeoNamesHarvester(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "geo name");
@@ -829,10 +811,10 @@
 
         private void TagInstitutions()
         {
-            var context = new ProcessingTools.Data.DataDbContext();
-            var repository = new EfDataGenericRepository<ProcessingTools.Data.Models.Institution>(context);
-            var service = new InstitutionsDataService(repository);
-            var harvester = new InstitutionsHarvester(service);
+            var context = new Data.DataDbContext();
+            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Institution>(context);
+            var service = new Services.Data.InstitutionsDataService(repository);
+            var harvester = new Harvesters.InstitutionsHarvester(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "institution");
@@ -849,10 +831,10 @@
 
         private void TagProducts()
         {
-            var context = new ProcessingTools.Data.DataDbContext();
-            var repository = new EfDataGenericRepository<ProcessingTools.Data.Models.Product>(context);
-            var service = new ProductsDataService(repository);
-            var harvester = new ProductsHarvester(service);
+            var context = new Data.DataDbContext();
+            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Product>(context);
+            var service = new Services.Data.ProductsDataService(repository);
+            var harvester = new Harvesters.ProductsHarvester(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "product");
@@ -874,15 +856,15 @@
             return tagger.Xml;
         }
 
-        private string TagHigherTaxa(string xmlContent, XmlListDataService blackList, XmlListDataService whiteList)
+        private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList, Bio.Taxonomy.Services.Data.XmlListDataService whiteList)
         {
-            var harvester = new HigherTaxaHarvester(whiteList);
+            var harvester = new Bio.Taxonomy.Harvesters.HigherTaxaHarvester(whiteList);
             var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, harvester, blackList, this.logger);
             this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger);
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
-        private string TagLowerTaxa(string xmlContent, XmlListDataService blackList)
+        private string TagLowerTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList)
         {
             var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
             this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger);
@@ -894,7 +876,7 @@
             var xpathProvider = new XPathProvider(this.settings.Config);
 
             {
-                var harvester = new AltitudesHarvester();
+                var harvester = new Harvesters.AltitudesHarvester();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "altitude");
@@ -909,7 +891,7 @@
             }
 
             {
-                var harvester = new GeographicDeviationsHarvester();
+                var harvester = new Harvesters.GeographicDeviationsHarvester();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "geographic deviation");
@@ -924,7 +906,7 @@
             }
 
             {
-                var harvester = new QuantitiesHarvester();
+                var harvester = new Harvesters.QuantitiesHarvester();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "quantity");
@@ -955,7 +937,7 @@
 
         private void TagWebLinks()
         {
-            var harvester = new NlmExternalLinksHarvester();
+            var harvester = new Harvesters.NlmExternalLinksHarvester();
             var tagger = new NlmExternalLinksTagger(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
             this.document.Xml = tagger.Xml;

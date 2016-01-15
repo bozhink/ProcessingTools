@@ -2,7 +2,7 @@
 {
     using Taxonomy.Contracts;
 
-    internal interface ISuffixHigherTaxaRankDataService : ITaxaDataService<ITaxonRank>
+    public interface ISuffixHigherTaxaRankDataService : ITaxaDataService<ITaxonRank>
     {
     }
 }

@@ -2,9 +2,12 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Reflection;
 
     using Contracts.Log;
     using Loggers;
+
+    using Ninject;
 
     public class TaggerStartup
     {
@@ -14,6 +17,9 @@
         {
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
+
+            IKernel kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
 
             try
             {

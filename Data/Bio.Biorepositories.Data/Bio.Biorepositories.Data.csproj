@@ -66,6 +66,7 @@
       <DependentUpon>BiorepositoriesDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IBiorepositoriesDbContext.cs" />
+    <Compile Include="Contracts\IBiorepositoriesDbFirstDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfBiorepositoriesDbFirstGenericRepository.cs" />
