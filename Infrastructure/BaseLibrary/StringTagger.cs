@@ -10,27 +10,26 @@
 
     public class StringTagger : Base, ITagger
     {
+        private string contentNodesXPathTemplate;
         private XmlElement tagModel;
         private IQueryable<string> data;
-
-        private IXPathProvider xpathProvider;
         private ILogger logger;
 
-        public StringTagger(string xml, IQueryable<string> data, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
+        public StringTagger(string xml, IQueryable<string> data, XmlElement tagModel, string contentNodesXPathTemplate, ILogger logger)
             : base(xml)
         {
             this.data = data;
             this.tagModel = tagModel;
-            this.xpathProvider = xpathProvider;
+            this.contentNodesXPathTemplate = contentNodesXPathTemplate;
             this.logger = logger;
         }
 
-        public StringTagger(IBase baseObject, IQueryable<string> data, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
+        public StringTagger(IBase baseObject, IQueryable<string> data, XmlElement tagModel, string contentNodesXPathTemplate, ILogger logger)
             : base(baseObject)
         {
             this.data = data;
             this.tagModel = tagModel;
-            this.xpathProvider = xpathProvider;
+            this.contentNodesXPathTemplate = contentNodesXPathTemplate;
             this.logger = logger;
         }
 
@@ -39,7 +38,7 @@
             this.data.ToList()
                 .TagContentInDocument(
                 this.tagModel,
-                this.xpathProvider.SelectContentNodesXPathTemplate,
+                this.contentNodesXPathTemplate,
                 this.XmlDocument,
                 false,
                 true,
