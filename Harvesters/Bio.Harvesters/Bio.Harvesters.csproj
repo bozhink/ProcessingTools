@@ -33,14 +33,22 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiorepositoryInstitutionalCodesHarvester.cs" />
+    <Compile Include="BiorepositoryInstitutionHarvester.cs" />
+    <Compile Include="Contracts\IBiorepositoryInstitutionalCodesHarvester.cs" />
     <Compile Include="Contracts\IEnvoTermsHarvester.cs" />
     <Compile Include="Contracts\IExtractHcmrHarvester.cs" />
+    <Compile Include="Contracts\IBiorepositoryInstitutionHarvester.cs" />
     <Compile Include="Contracts\IInstitutionalCodesHarvester.cs" />
     <Compile Include="Contracts\IMorphologicalEpithetHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCodesHarvester.cs" />
     <Compile Include="Contracts\ISpecimenCountHarvester.cs" />
     <Compile Include="EnvoTermsHarvester.cs" />
     <Compile Include="ExtractHcmrHarvester.cs" />
+    <Compile Include="Models\BiorepositoryInstitution.cs" />
+    <Compile Include="Models\BiorepositoryInstitutionalCode.cs" />
+    <Compile Include="Models\Contracts\IBiorepositoryInstitution.cs" />
+    <Compile Include="Models\Contracts\IBiorepositoryInstitutionalCode.cs" />
     <Compile Include="Models\Contracts\IEnvoTerm.cs" />
     <Compile Include="Models\Contracts\IExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\EnvoTerm.cs" />
@@ -50,6 +58,10 @@
     <Compile Include="SpecimenCountHarvester.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
       <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
       <Name>Bio.Environments.Data.Models</Name>
@@ -69,6 +81,10 @@
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+      <Project>{b22dd52c-95d5-47d3-b48c-0ec692ab8051}</Project>
+      <Name>Bio.Biorepositories.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
