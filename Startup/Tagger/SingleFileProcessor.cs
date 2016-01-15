@@ -739,7 +739,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -776,7 +779,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -793,7 +799,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -810,7 +819,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -827,7 +839,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -844,7 +859,10 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
             this.InvokeProcessor(Messages.TagProductsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
@@ -881,7 +899,10 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "altitude");
 
-                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
 
                 this.InvokeProcessor(Messages.TagAltitudesMessage, tagger);
                 this.document.Xml = tagger.Xml;
@@ -893,7 +914,10 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "geographic deviation");
 
-                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
 
                 this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger);
                 this.document.Xml = tagger.Xml;
@@ -905,7 +929,10 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "quantity");
 
-                var tagger = new StringHarvestTagger(this.settings.Config, this.document.Xml, harvester, tagModel, xpathProvider, this.logger);
+                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+
+                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider, this.logger);
 
                 this.InvokeProcessor(Messages.TagQuantitiesMessage, tagger);
                 this.document.Xml = tagger.Xml;

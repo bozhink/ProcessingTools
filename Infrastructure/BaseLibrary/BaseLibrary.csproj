@@ -114,7 +114,7 @@
     <Compile Include="Special\QuentinFlora.cs" />
     <Compile Include="QueryReplace.cs" />
     <Compile Include="References\ReferencesTagger.cs" />
-    <Compile Include="StringHarvestTagger.cs" />
+    <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="Taxonomy\Species\Species.cs" />
     <Compile Include="Taxonomy\TaxaParser\LowerTaxaParser.cs" />

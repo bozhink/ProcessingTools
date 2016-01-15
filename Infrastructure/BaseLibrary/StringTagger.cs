@@ -3,34 +3,32 @@
     using System.Linq;
     using System.Xml;
 
-    using Configurator;
     using Contracts;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
-    using ProcessingTools.Harvesters.Common.Contracts;
 
-    public class StringHarvestTagger : HarvestableDocument, ITagger
+    public class StringTagger : Base, ITagger
     {
         private XmlElement tagModel;
+        private IQueryable<string> data;
 
-        private IStringHarvester harvester;
         private IXPathProvider xpathProvider;
         private ILogger logger;
 
-        public StringHarvestTagger(Config config, string xml, IStringHarvester harvester, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
-            : base(config, xml)
+        public StringTagger(string xml, IQueryable<string> data, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
+            : base(xml)
         {
-            this.harvester = harvester;
+            this.data = data;
             this.tagModel = tagModel;
             this.xpathProvider = xpathProvider;
             this.logger = logger;
         }
 
-        public StringHarvestTagger(IBase baseObject, IStringHarvester harvester, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
+        public StringTagger(IBase baseObject, IQueryable<string> data, XmlElement tagModel, IXPathProvider xpathProvider, ILogger logger)
             : base(baseObject)
         {
-            this.harvester = harvester;
+            this.data = data;
             this.tagModel = tagModel;
             this.xpathProvider = xpathProvider;
             this.logger = logger;
@@ -38,9 +36,7 @@
 
         public void Tag()
         {
-            var data = this.harvester.Harvest(this.TextContent).Result;
-
-            data.ToList()
+            this.data.ToList()
                 .TagContentInDocument(
                 this.tagModel,
                 this.xpathProvider.SelectContentNodesXPathTemplate,
