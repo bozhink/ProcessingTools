@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomXslRunner.cs" />
+    <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\SystemInitialFormatter.cs" />
@@ -332,6 +333,7 @@
       <Name>MediaType.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
