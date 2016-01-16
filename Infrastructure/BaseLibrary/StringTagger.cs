@@ -10,6 +10,7 @@
     {
         private string contentNodesXPathTemplate;
         private XmlElement tagModel;
+        private XmlDocumentFragment bufferXml;
         private IQueryable<string> data;
         private ILogger logger;
 
@@ -20,11 +21,14 @@
             this.tagModel = tagModel;
             this.contentNodesXPathTemplate = contentNodesXPathTemplate;
             this.logger = logger;
+
+            this.bufferXml = this.XmlDocument.CreateDocumentFragment();
         }
 
         public void Tag()
         {
             this.data.ToList()
+                .Select(this.XmlEncode)
                 .OrderByDescending(i => i.Length)
                 .TagContentInDocument(
                     this.tagModel,
@@ -33,6 +37,12 @@
                     false,
                     true,
                     this.logger);
+        }
+
+        private string XmlEncode(string text)
+        {
+            this.bufferXml.InnerText = text;
+            return this.bufferXml.InnerXml;
         }
     }
 }
