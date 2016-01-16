@@ -78,7 +78,6 @@
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\SystemInitialFormatter.cs" />
-    <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Coordinates\CoordinatesParser.cs" />
     <Compile Include="DataProvider\DataProvider.cs" />
-    <Compile Include="Envo\Environments.cs" />
     <Compile Include="Envo\EnvoExtractHcmr.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />

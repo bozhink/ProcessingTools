@@ -743,8 +743,25 @@
             var context = new Bio.Environments.Data.BioEnvironmentsDbContext();
             var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(context);
             var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
+
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
             var harvester = new Bio.Harvesters.EnvoTermsHarvester(service);
-            var tagger = new Environments(this.settings.Config, this.document.Xml, harvester, this.logger);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result
+                .Select(t => new EnvoTermResponseModel
+                {
+                    EntityId = t.EntityId,
+                    EnvoId = t.EnvoId,
+                    Content = t.Content
+                })
+                .Select(t => new EnvoTermSerializableModel
+                {
+                    Value = t.Content,
+                    EnvoId = t.EnvoId,
+                    Id = t.EntityId,
+                    VerbatimTerm = t.Content
+                });
+
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, false, this.logger);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }
