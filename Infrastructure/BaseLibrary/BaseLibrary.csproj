@@ -80,6 +80,7 @@
     <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="References\ReferencesParser.cs" />
+    <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
