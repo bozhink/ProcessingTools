@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.MainProgram.Models
 {
-    using System.Xml.Schema;
     using System.Xml.Serialization;
 
     [XmlType(AnonymousType = true)]

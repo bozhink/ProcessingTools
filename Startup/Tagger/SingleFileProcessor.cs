@@ -732,8 +732,19 @@
         private void TagEnvo()
         {
             var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
+
+            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
             var harvester = new Bio.Harvesters.ExtractHcmrHarvester(requester);
-            var tagger = new EnvoExtractHcmr(this.settings.Config, this.document.Xml, harvester, this.logger);
+            var data = harvester.Harvest(harvestableDocument.TextContent).Result
+                .Select(t => new EnvoExtractHcmrSerializableModel
+                {
+                    Value = t.Content,
+                    Type = string.Join("|", t.Types),
+                    Identifier = string.Join("|", t.Identifiers)
+                });
+
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
+
             this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

@@ -92,6 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="Models\EnvoTermSerializableModel.cs" />
     <Compile Include="Models\ExternalLinkSerializableModel.cs" />

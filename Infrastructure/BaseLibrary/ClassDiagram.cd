@@ -115,13 +115,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ProcessingTools.BaseLibrary.Models.EnvoTermResponseModel" Collapsed="true">
-    <Position X="59.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAgIAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA=</HashCode>
-      <FileName>Models\EnvoTermResponseModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ProcessingTools.BaseLibrary.References.ReferencesParser" Collapsed="true">
     <Position X="12.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
