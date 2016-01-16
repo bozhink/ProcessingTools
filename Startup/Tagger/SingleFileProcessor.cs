@@ -946,7 +946,7 @@
                     Value = i.Content
                 });
 
-            var tagger = new XmlSerializableObjectTagger<ExternalLinkSerializableModel>(this.document.Xml, data, "/*", this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
             this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

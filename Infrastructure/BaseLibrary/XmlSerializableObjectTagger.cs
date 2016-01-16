@@ -10,13 +10,17 @@
         private string contentNodesXPathTemplate;
         private IQueryable<T> data;
         private ILogger logger;
+        private bool caseSensitive;
+        private bool minimalTextSelect;
 
-        public XmlSerializableObjectTagger(string xml, IQueryable<T> data, string contentNodesXPathTemplate, ILogger logger)
+        public XmlSerializableObjectTagger(string xml, IQueryable<T> data, string contentNodesXPathTemplate, bool caseSensitive, bool minimalTextSelect, ILogger logger)
             : base(xml)
         {
             this.data = data;
             this.contentNodesXPathTemplate = contentNodesXPathTemplate;
             this.logger = logger;
+            this.caseSensitive = caseSensitive;
+            this.minimalTextSelect = minimalTextSelect;
         }
 
         public override void Tag()
@@ -27,8 +31,8 @@
                 .TagContentInDocument(
                     this.contentNodesXPathTemplate,
                     this.XmlDocument,
-                    false,
-                    true,
+                    this.caseSensitive,
+                    this.minimalTextSelect,
                     this.logger);
         }
     }
