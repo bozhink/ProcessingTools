@@ -733,7 +733,7 @@
         {
             var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
             var harvester = new Bio.Harvesters.ExtractHcmrHarvester(requester);
-            var tagger = new Envo(this.settings.Config, this.document.Xml, harvester, this.logger);
+            var tagger = new EnvoExtractHcmr(this.settings.Config, this.document.Xml, harvester, this.logger);
             this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger);
             this.document.Xml = tagger.Xml;
         }

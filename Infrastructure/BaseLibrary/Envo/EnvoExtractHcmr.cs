@@ -9,21 +9,21 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
-    public class Envo : HarvestableDocument, ITagger
+    public class EnvoExtractHcmr : HarvestableDocument, ITagger
     {
         private const string EnvoTagName = "envo";
 
         private IExtractHcmrHarvester harvester;
         private ILogger logger;
 
-        public Envo(Config config, string xml, IExtractHcmrHarvester harvester, ILogger logger)
+        public EnvoExtractHcmr(Config config, string xml, IExtractHcmrHarvester harvester, ILogger logger)
             : base(config, xml)
         {
             this.harvester = harvester;
             this.logger = logger;
         }
 
-        public Envo(IBase baseObject, IExtractHcmrHarvester harvester, ILogger logger)
+        public EnvoExtractHcmr(IBase baseObject, IExtractHcmrHarvester harvester, ILogger logger)
             : base(baseObject)
         {
             this.harvester = harvester;
