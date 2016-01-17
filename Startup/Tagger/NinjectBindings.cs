@@ -149,8 +149,8 @@
              * Infrastructure bindings.
              */
 
-            this.Bind<Contracts.IXPathProvider>()
-                .To<BaseLibrary.XPathProvider>();
+            this.Bind<ProcessingTools.Contracts.IXPathProvider>()
+                .To<ProcessingTools.BaseLibrary.XPathProvider>();
         }
     }
 }

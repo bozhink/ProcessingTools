@@ -4,10 +4,9 @@
     using System.Diagnostics;
     using System.Reflection;
 
-    using Contracts.Log;
-    using Loggers;
-
     using Ninject;
+    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Loggers;
 
     public class TaggerStartup
     {

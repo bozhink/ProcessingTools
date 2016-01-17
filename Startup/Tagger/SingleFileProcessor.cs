@@ -17,10 +17,10 @@
     using BaseLibrary.ZooBank;
     using Bio.Taxonomy.Types;
     using Common.Constants;
-    using Contracts.Log;
     using DocumentProvider;
     using Extensions;
     using Models;
+    using ProcessingTools.Contracts.Log;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -474,9 +474,9 @@
 
         private void ResolveMediaTypes()
         {
-            var context = MediaType.Data.MediaTypesDbContext.Create();
+            var db = MediaType.Data.MediaTypesDbContext.Create();
 
-            var repository = new MediaType.Data.Repositories.MediaTypesGenericRepository<MediaType.Data.Models.FileExtension>(context);
+            var repository = new MediaType.Data.Repositories.MediaTypesGenericRepository<MediaType.Data.Models.FileExtension>(db);
 
             var mediatypeDataService = new MediaType.Services.Data.MediaTypeDataService(repository);
 

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
+    using ProcessingTools.Contracts;
 
     public abstract class FileProcessor
     {
