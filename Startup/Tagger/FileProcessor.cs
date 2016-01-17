@@ -6,51 +6,43 @@
 
     public abstract class FileProcessor
     {
-        public abstract void Run();
+        public abstract Task Run();
 
-        public Task RunAsync()
+        protected abstract Task InvokeProcessor(string message, Action action);
+
+        protected async Task InvokeProcessor(string message, IValidator validator)
         {
-            return Task.Run(() =>
-            {
-                this.Run();
-            });
+            await this.InvokeProcessor(message, async () => await validator.Validate());
         }
 
-        protected abstract void InvokeProcessor(string message, Action action);
-
-        protected void InvokeProcessor(string message, IValidator validator)
+        protected async Task InvokeProcessor(string message, ITagger tagger)
         {
-            this.InvokeProcessor(message, () => validator.Validate().Wait());
+            await this.InvokeProcessor(message, async () => await tagger.Tag());
         }
 
-        protected void InvokeProcessor(string message, ITagger tagger)
+        protected async Task InvokeProcessor(string message, IParser parser)
         {
-            this.InvokeProcessor(message, () => tagger.Tag().Wait());
+            await this.InvokeProcessor(message, async () => await parser.Parse());
         }
 
-        protected void InvokeProcessor(string message, IParser parser)
+        protected async Task InvokeProcessor(string message, IGenerator generator)
         {
-            this.InvokeProcessor(message, () => parser.Parse().Wait());
+            await this.InvokeProcessor(message, async () => await generator.Generate());
         }
 
-        protected void InvokeProcessor(string message, IGenerator generator)
+        protected async Task InvokeProcessor(string message, IFormatter formatter)
         {
-            this.InvokeProcessor(message, () => generator.Generate().Wait());
+            await this.InvokeProcessor(message, async () => await formatter.Format());
         }
 
-        protected void InvokeProcessor(string message, IFormatter formatter)
+        protected async Task InvokeProcessor(string message, ICloner cloner)
         {
-            this.InvokeProcessor(message, () => formatter.Format().Wait());
+            await this.InvokeProcessor(message, async () => await cloner.Clone());
         }
 
-        protected void InvokeProcessor(string message, ICloner cloner)
+        protected async Task InvokeProcessor(string message, IProcessor processor)
         {
-            this.InvokeProcessor(message, () => cloner.Clone().Wait());
-        }
-
-        protected void InvokeProcessor(string message, IProcessor processor)
-        {
-            this.InvokeProcessor(message, () => processor.Process().Wait());
+            await this.InvokeProcessor(message, async () => await processor.Process());
         }
     }
 }

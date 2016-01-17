@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Attributes;
@@ -37,7 +38,7 @@
             this.document = new TaxPubDocument();
         }
 
-        public override void Run()
+        public override async Task Run()
         {
             try
             {
@@ -176,38 +177,23 @@
                             PreserveWhitespace = true
                         };
 
-                        try
+                        xmlDocument.LoadXml(this.document.Xml);
+                        foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
                         {
-                            xmlDocument.LoadXml(this.document.Xml);
-                        }
-                        catch
-                        {
-                            throw;
+                            var fragment = node.OwnerDocument.CreateDocumentFragment();
+                            fragment.InnerXml = await this.MainProcessing(node.OuterXml);
+                            node.ParentNode.ReplaceChild(fragment, node);
                         }
 
-                        try
-                        {
-                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                            {
-                                var fragment = node.OwnerDocument.CreateDocumentFragment();
-                                fragment.InnerXml = this.MainProcessing(node.OuterXml);
-                                node.ParentNode.ReplaceChild(fragment, node);
-                            }
-
-                            this.document.Xml = xmlDocument.OuterXml;
-                        }
-                        catch
-                        {
-                            throw;
-                        }
+                        this.document.Xml = xmlDocument.OuterXml;
                     }
                     else
                     {
-                        this.document.Xml = this.MainProcessing(this.document.Xml);
+                        this.document.Xml = await this.MainProcessing(this.document.Xml);
                     }
                 }
 
-                this.WriteOutputFile();
+                await this.WriteOutputFile();
             }
             catch (Exception e)
             {
@@ -216,28 +202,31 @@
             }
         }
 
-        protected override void InvokeProcessor(string message, Action action)
+        protected override Task InvokeProcessor(string message, Action action)
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            this.logger?.Log(message);
-
-            try
+            return Task.Run(() =>
             {
-                action.Invoke();
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                this.logger?.Log(message);
 
-            this.PrintElapsedTime(timer);
+                try
+                {
+                    action.Invoke();
+                }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                }
+
+                this.PrintElapsedTime(timer);
+            });
         }
 
-        private void ValidateTaxa(string xmlContent)
+        private async Task ValidateTaxa(string xmlContent)
         {
             var validator = new TaxonomicNamesValidator(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.ValidateTaxaUsingGnrMessage, validator);
+            await this.InvokeProcessor(Messages.ValidateTaxaUsingGnrMessage, validator);
         }
 
         private string ExpandTaxa(string xmlContent)
@@ -316,58 +305,61 @@
             return xmlContent;
         }
 
-        private void ExtractTaxa(string xmlContent)
+        private Task ExtractTaxa(string xmlContent)
         {
-            try
+            return Task.Run(() =>
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.LoadXml(xmlContent);
-
-                if (this.settings.ExtractTaxa)
+                try
                 {
-                    this.logger?.Log(Messages.ExtractAllTaxaMessage);
-                    xmlDocument
-                        .ExtractTaxa(true)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
-                    return;
-                }
+                    XmlDocument xmlDocument = new XmlDocument();
+                    xmlDocument.LoadXml(xmlContent);
 
-                if (this.settings.ExtractLowerTaxa)
-                {
-                    this.logger?.Log(Messages.ExtractLowerTaxaMessage);
-                    xmlDocument
-                        .ExtractTaxa(true, TaxaType.Lower)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
-                }
+                    if (this.settings.ExtractTaxa)
+                    {
+                        this.logger?.Log(Messages.ExtractAllTaxaMessage);
+                        xmlDocument
+                            .ExtractTaxa(true)
+                            .ToList()
+                            .ForEach(t => this.logger?.Log(t));
+                        return;
+                    }
 
-                if (this.settings.ExtractHigherTaxa)
-                {
-                    this.logger?.Log(Messages.ExtractHigherTaxaMessage);
-                    xmlDocument
-                        .ExtractTaxa(true, TaxaType.Higher)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
+                    if (this.settings.ExtractLowerTaxa)
+                    {
+                        this.logger?.Log(Messages.ExtractLowerTaxaMessage);
+                        xmlDocument
+                            .ExtractTaxa(true, TaxaType.Lower)
+                            .ToList()
+                            .ForEach(t => this.logger?.Log(t));
+                    }
+
+                    if (this.settings.ExtractHigherTaxa)
+                    {
+                        this.logger?.Log(Messages.ExtractHigherTaxaMessage);
+                        xmlDocument
+                            .ExtractTaxa(true, TaxaType.Higher)
+                            .ToList()
+                            .ForEach(t => this.logger?.Log(t));
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                }
+            });
         }
 
         private void RunCustomXslTransform()
         {
             var processor = new CustomXslRunner(this.settings.QueryFileName, this.document.Xml);
-            this.InvokeProcessor(Messages.RunCustomXslTransformMessage, processor);
+            this.InvokeProcessor(Messages.RunCustomXslTransformMessage, processor).Wait();
             this.document.Xml = processor.Xml;
         }
 
         private string FormatTreatments(string xmlContent)
         {
             var formatter = new TreatmentFormatter(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.FormatTreatmentsMessage, formatter);
+            this.InvokeProcessor(Messages.FormatTreatmentsMessage, formatter).Wait();
             return formatter.Xml;
         }
 
@@ -379,7 +371,7 @@
                     {
                         string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslTransform);
                         var formatter = new NlmInitialFormatter(this.settings.Config, xml);
-                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
+                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter).Wait();
                         this.document.Xml = formatter.Xml;
                     }
 
@@ -389,7 +381,7 @@
                     {
                         string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslTransform);
                         var formatter = new SystemInitialFormatter(this.settings.Config, xml);
-                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter);
+                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter).Wait();
                         this.document.Xml = formatter.Xml;
                     }
 
@@ -397,7 +389,7 @@
             }
         }
 
-        private string MainProcessing(string xml)
+        private async Task<string> MainProcessing(string xml)
         {
             string xmlContent = xml;
 
@@ -437,12 +429,12 @@
 
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
             {
-                this.ExtractTaxa(xmlContent);
+                await this.ExtractTaxa(xmlContent);
             }
 
             if (this.settings.ValidateTaxa)
             {
-                this.ValidateTaxa(xmlContent);
+                await this.ValidateTaxa(xmlContent);
             }
 
             if (this.settings.UntagSplit)
@@ -468,7 +460,7 @@
         private void ParseCoordinates()
         {
             var parser = new CoordinatesParser(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.ParseCoordinatesMessage, parser);
+            this.InvokeProcessor(Messages.ParseCoordinatesMessage, parser).Wait();
             this.document.Xml = parser.Xml;
         }
 
@@ -482,7 +474,7 @@
 
             var parser = new MediaTypesResolver(this.document.Xml, mediatypeDataService, this.logger);
 
-            this.InvokeProcessor(Messages.ResolveMediaTypesMessage, parser);
+            this.InvokeProcessor(Messages.ResolveMediaTypesMessage, parser).Wait();
             this.document.Xml = parser.Xml;
         }
 
@@ -495,7 +487,7 @@
                 {
                     var service = new Bio.Taxonomy.Services.Data.LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -504,7 +496,7 @@
                 {
                     var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaWithAphiaMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -514,7 +506,7 @@
                     var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
                     var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -524,7 +516,7 @@
                     var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
                     var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -533,7 +525,7 @@
                 {
                     var service = new Bio.Taxonomy.Services.Data.SuffixHigherTaxaRankDataService();
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -542,7 +534,7 @@
                 {
                     var service = new Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService();
                     var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser);
+                    this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;
                 }
@@ -556,7 +548,7 @@
             if (this.settings.ParseLowerTaxa)
             {
                 var parser = new LowerTaxaParser(this.settings.Config, xmlContent, this.logger);
-                this.InvokeProcessor(Messages.ParseLowerTaxaMessage, parser);
+                this.InvokeProcessor(Messages.ParseLowerTaxaMessage, parser).Wait();
                 xmlContent = parser.Xml;
             }
 
@@ -566,7 +558,7 @@
         private void ParseReferences()
         {
             var parser = new ReferencesTagger(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.ParseReferencesMessage, parser);
+            this.InvokeProcessor(Messages.ParseReferencesMessage, parser).Wait();
             this.document.Xml = parser.Xml;
         }
 
@@ -578,7 +570,7 @@
             {
                 var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
                 var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser);
+                this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser).Wait();
                 result = parser.Xml;
             }
 
@@ -587,7 +579,7 @@
                 var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
                 var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser);
+                this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser).Wait();
                 result = parser.Xml;
             }
 
@@ -596,7 +588,7 @@
                 var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
                 var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
                 var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser);
+                this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser).Wait();
                 result = parser.Xml;
             }
 
@@ -668,7 +660,7 @@
         private void TagAbbreviations()
         {
             var tagger = new AbbreviationsTagger(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.TagAbbreviationsMessage, tagger);
+            this.InvokeProcessor(Messages.TagAbbreviationsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -708,7 +700,7 @@
         private void TagCoordinates()
         {
             var tagger = new CoordinatesTagger(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.TagCoordinatesMessage, tagger);
+            this.InvokeProcessor(Messages.TagCoordinatesMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -725,7 +717,7 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagDatesMessage, tagger);
+            this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -745,7 +737,7 @@
 
             var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
 
-            this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger);
+            this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -773,7 +765,7 @@
                 });
 
             var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, false, this.logger);
-            this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger);
+            this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -793,7 +785,7 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger);
+            this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -813,7 +805,7 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger);
+            this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -833,7 +825,7 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger);
+            this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -853,7 +845,7 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger);
+            this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
@@ -873,14 +865,14 @@
             var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagProductsMessage, tagger);
+            this.InvokeProcessor(Messages.TagProductsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
         private string TagFloats(string xmlContent)
         {
             var tagger = new FloatsTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagFloatsMessage, tagger);
+            this.InvokeProcessor(Messages.TagFloatsMessage, tagger).Wait();
             return tagger.Xml;
         }
 
@@ -888,14 +880,14 @@
         {
             var harvester = new Bio.Taxonomy.Harvesters.HigherTaxaHarvester(whiteList);
             var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, harvester, blackList, this.logger);
-            this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger);
+            this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
         private string TagLowerTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList)
         {
             var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
-            this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger);
+            this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
@@ -914,7 +906,7 @@
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
-                this.InvokeProcessor(Messages.TagAltitudesMessage, tagger);
+                this.InvokeProcessor(Messages.TagAltitudesMessage, tagger).Wait();
                 this.document.Xml = tagger.Xml;
             }
 
@@ -929,7 +921,7 @@
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
-                this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger);
+                this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger).Wait();
                 this.document.Xml = tagger.Xml;
             }
 
@@ -944,7 +936,7 @@
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
-                this.InvokeProcessor(Messages.TagQuantitiesMessage, tagger);
+                this.InvokeProcessor(Messages.TagQuantitiesMessage, tagger).Wait();
                 this.document.Xml = tagger.Xml;
             }
         }
@@ -952,14 +944,14 @@
         private string TagReferences(string xmlContent)
         {
             var tagger = new ReferencesTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagReferencesMessage, tagger);
+            this.InvokeProcessor(Messages.TagReferencesMessage, tagger).Wait();
             return tagger.Xml;
         }
 
         private string TagTableFootnote(string xmlContent)
         {
             var tagger = new TableFootNotesTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagTableFootNotesMessage, tagger);
+            this.InvokeProcessor(Messages.TagTableFootNotesMessage, tagger).Wait();
             return tagger.Xml;
         }
 
@@ -975,13 +967,13 @@
                 });
 
             var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
-            this.InvokeProcessor(Messages.TagWebLinksMessage, tagger);
+            this.InvokeProcessor(Messages.TagWebLinksMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
-        private void WriteOutputFile()
+        private async Task WriteOutputFile()
         {
-            this.InvokeProcessor(
+            await this.InvokeProcessor(
                 Messages.WriteOutputFileMessage,
                 () =>
                 {
@@ -994,7 +986,7 @@
         {
             string jsonStringContent = File.ReadAllText(this.settings.QueryFileName);
             var cloner = new ZoobankJsonCloner(jsonStringContent, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.CloneZooBankJsonMessage, cloner);
+            this.InvokeProcessor(Messages.CloneZooBankJsonMessage, cloner).Wait();
             this.document.Xml = cloner.Xml;
         }
 
@@ -1005,14 +997,14 @@
             fileProcessorNlm.Read(nlmDocument);
 
             var cloner = new ZoobankXmlCloner(nlmDocument.Xml, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.CloneZooBankXmlMessage, cloner);
+            this.InvokeProcessor(Messages.CloneZooBankXmlMessage, cloner).Wait();
             this.document.Xml = cloner.Xml;
         }
 
         private void ZooBankGenerateRegistrationXml()
         {
             var generator = new ZoobankRegistrationXmlGenerator(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.GenerateRegistrationXmlForZooBankMessage, generator);
+            this.InvokeProcessor(Messages.GenerateRegistrationXmlForZooBankMessage, generator).Wait();
             this.document.Xml = generator.Xml;
         }
     }
