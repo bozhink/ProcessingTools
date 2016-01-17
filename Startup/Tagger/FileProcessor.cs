@@ -45,7 +45,7 @@
 
         protected void InvokeProcessor(string message, ICloner cloner)
         {
-            this.InvokeProcessor(message, cloner.Clone);
+            this.InvokeProcessor(message, () => cloner.Clone().Wait());
         }
 
         protected void InvokeProcessor(string message, IProcessor processor)

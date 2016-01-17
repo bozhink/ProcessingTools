@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
     using System;
+    using System.Threading.Tasks;
     using System.Xml;
+
     using ProcessingTools.Contracts.Log;
 
     public class ZoobankXmlCloner : ZoobankCloner
@@ -67,11 +69,14 @@
             }
         }
 
-        public override void Clone()
+        public override Task Clone()
         {
-            this.CloneTaxonomicActsLsid();
-            this.CloneArticleLsid();
-            this.CloneAuthorsLsid();
+            return Task.Run(() =>
+            {
+                this.CloneTaxonomicActsLsid();
+                this.CloneArticleLsid();
+                this.CloneAuthorsLsid();
+            });
         }
 
         private void CloneArticleLsid()

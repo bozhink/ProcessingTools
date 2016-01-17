@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
+    using System.Threading.Tasks;
+
     using ProcessingTools.Contracts;
 
     public abstract class ZoobankCloner : Base, ICloner
@@ -17,6 +19,6 @@
         {
         }
 
-        public abstract void Clone();
+        public abstract Task Clone();
     }
 }

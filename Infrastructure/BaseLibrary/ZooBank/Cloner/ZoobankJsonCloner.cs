@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
@@ -46,18 +47,14 @@
             }
         }
 
-        public override void Clone()
+        public override Task Clone()
         {
-            try
+            return Task.Run(() =>
             {
                 ZooBankRegistration zoobankRegistration = this.GetZoobankRegistrationObject();
                 this.ProcessArticleLsid(zoobankRegistration);
                 this.ProcessTaxonomicActsLsid(zoobankRegistration);
-            }
-            catch
-            {
-                throw;
-            }
+            });
         }
 
         private string GetNomenclatureTaxonObjectIdXPath(NomenclaturalAct nomenclaturalAct)
