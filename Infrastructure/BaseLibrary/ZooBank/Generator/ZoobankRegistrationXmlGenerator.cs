@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
+    using System.Threading.Tasks;
+
     using Configurator;
     using Contracts;
     using Extensions;
@@ -12,14 +14,9 @@
         {
         }
 
-        public ZoobankRegistrationXmlGenerator(IBase baseObject)
-            : base(baseObject)
+        public Task Generate()
         {
-        }
-
-        public void Generate()
-        {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ZoobankNlmXslPath);
+            return Task.Run(() => this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.ZoobankNlmXslPath));
         }
     }
 }

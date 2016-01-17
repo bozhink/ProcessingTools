@@ -35,7 +35,7 @@
 
         protected void InvokeProcessor(string message, IGenerator generator)
         {
-            this.InvokeProcessor(message, generator.Generate);
+            this.InvokeProcessor(message, () => generator.Generate().Wait());
         }
 
         protected void InvokeProcessor(string message, IFormatter formatter)
