@@ -20,7 +20,7 @@
 
         protected void InvokeProcessor(string message, IValidator validator)
         {
-            this.InvokeProcessor(message, validator.Validate);
+            this.InvokeProcessor(message, () => validator.Validate().Wait());
         }
 
         protected void InvokeProcessor(string message, ITagger tagger)
