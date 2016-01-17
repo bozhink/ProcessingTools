@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary.Format
 {
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
 
     public class SystemInitialFormatter : Base, IFormatter
@@ -18,53 +18,56 @@
         {
         }
 
-        public void Format()
+        public Task Format()
         {
-            this.FormatCloseTags();
-            this.FormatOpenTags();
-            this.BoldItalic();
-
+            return Task.Run(() =>
             {
-                string xml = this.Xml;
-
-                Regex matchParagraphs = new Regex("<p>[\\S\\s]*?</p>");
-                for (Match paragraph = matchParagraphs.Match(xml); paragraph.Success; paragraph = paragraph.NextMatch())
-                {
-                    string replace = Regex.Replace(paragraph.Value, "\n", " ");
-                    xml = Regex.Replace(xml, Regex.Escape(paragraph.Value), replace);
-                }
-
-                this.Xml = xml;
-            }
-
-            // male and female
-            this.Xml = Regex.Replace(this.Xml, "<i>([♂♀\\s]+)</i>", "$1");
-
-            // Post-formatting
-            for (int i = 0; i < 3; i++)
-            {
-                this.BoldItalic();
-                this.FormatPunctuation();
-                this.RemoveEmptyTags();
                 this.FormatCloseTags();
                 this.FormatOpenTags();
-            }
+                this.BoldItalic();
 
-            {
-                string xml = this.Xml;
+                {
+                    string xml = this.Xml;
 
-                xml = Regex.Replace(xml, @"<\s+/", "</");
+                    Regex matchParagraphs = new Regex("<p>[\\S\\s]*?</p>");
+                    for (Match paragraph = matchParagraphs.Match(xml); paragraph.Success; paragraph = paragraph.NextMatch())
+                    {
+                        string replace = Regex.Replace(paragraph.Value, "\n", " ");
+                        xml = Regex.Replace(xml, Regex.Escape(paragraph.Value), replace);
+                    }
 
-                // Remove empty lines
-                xml = Regex.Replace(xml, @"\n\s*\n", "\n");
+                    this.Xml = xml;
+                }
 
-                // sensu lato & stricto
-                xml = Regex.Replace(xml, @"(<i>)((s\.|sens?u?)\s+[sl][a-z]*)(</i>)\.", "$1$2.$4");
+                // male and female
+                this.Xml = Regex.Replace(this.Xml, "<i>([♂♀\\s]+)</i>", "$1");
 
-                xml = Regex.Replace(xml, @"<\s+/", "</");
+                // Post-formatting
+                for (int i = 0; i < 3; i++)
+                {
+                    this.BoldItalic();
+                    this.FormatPunctuation();
+                    this.RemoveEmptyTags();
+                    this.FormatCloseTags();
+                    this.FormatOpenTags();
+                }
 
-                this.Xml = xml;
-            }
+                {
+                    string xml = this.Xml;
+
+                    xml = Regex.Replace(xml, @"<\s+/", "</");
+
+                    // Remove empty lines
+                    xml = Regex.Replace(xml, @"\n\s*\n", "\n");
+
+                    // sensu lato & stricto
+                    xml = Regex.Replace(xml, @"(<i>)((s\.|sens?u?)\s+[sl][a-z]*)(</i>)\.", "$1$2.$4");
+
+                    xml = Regex.Replace(xml, @"<\s+/", "</");
+
+                    this.Xml = xml;
+                }
+            });
         }
 
         private void BoldItalicSpaces()

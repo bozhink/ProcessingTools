@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Format
 {
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
@@ -19,23 +20,26 @@
         {
         }
 
-        public void Format()
+        public Task Format()
         {
-            this.TrimBlockElements();
+            return Task.Run(() =>
+            {
+                this.TrimBlockElements();
 
-            this.Xml = this.Xml
-                .RegexReplace(@"[^\S\r\n ]+", " ")
-                .RegexReplace(@"\&lt;\s*br\s*/\s*\&gt;", "<break />");
+                this.Xml = this.Xml
+                    .RegexReplace(@"[^\S\r\n ]+", " ")
+                    .RegexReplace(@"\&lt;\s*br\s*/\s*\&gt;", "<break />");
 
-            this.XmlDocument.RemoveXmlNodes("//break[count(ancestor::aff) + count(ancestor::alt-title) + count(ancestor::article-title) + count(ancestor::chem-struct) + count(ancestor::disp-formula) + count(ancestor::product) + count(ancestor::sig) + count(ancestor::sig-block) + count(ancestor::subtitle) + count(ancestor::td) + count(ancestor::th) + count(ancestor::title) + count(ancestor::trans-subtitle) + count(ancestor::trans-title) = 0]");
+                this.XmlDocument.RemoveXmlNodes("//break[count(ancestor::aff) + count(ancestor::alt-title) + count(ancestor::article-title) + count(ancestor::chem-struct) + count(ancestor::disp-formula) + count(ancestor::product) + count(ancestor::sig) + count(ancestor::sig-block) + count(ancestor::subtitle) + count(ancestor::td) + count(ancestor::th) + count(ancestor::title) + count(ancestor::trans-subtitle) + count(ancestor::trans-title) = 0]");
 
-            this.InitialRefactor();
+                this.InitialRefactor();
 
-            this.RefactorEmailTags();
+                this.RefactorEmailTags();
 
-            this.FinalRefactor();
+                this.FinalRefactor();
 
-            this.TrimBlockElements();
+                this.TrimBlockElements();
+            });
         }
 
         private void FinalRefactor()

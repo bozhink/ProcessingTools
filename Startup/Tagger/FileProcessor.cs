@@ -40,7 +40,7 @@
 
         protected void InvokeProcessor(string message, IFormatter formatter)
         {
-            this.InvokeProcessor(message, formatter.Format);
+            this.InvokeProcessor(message, () => formatter.Format().Wait());
         }
 
         protected void InvokeProcessor(string message, ICloner cloner)

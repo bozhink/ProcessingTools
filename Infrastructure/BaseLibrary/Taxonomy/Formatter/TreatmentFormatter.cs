@@ -2,10 +2,10 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
@@ -25,31 +25,28 @@
             this.logger = logger;
         }
 
-        public TreatmentFormatter(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Format()
         {
-            this.logger = logger;
-        }
-
-        public void Format()
-        {
-            try
+            return Task.Run(() =>
             {
-                foreach (XmlNode nomenclature in this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
+                try
                 {
-                    this.FormatNomenclatureTitle(nomenclature);
+                    foreach (XmlNode nomenclature in this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
+                    {
+                        this.FormatNomenclatureTitle(nomenclature);
 
-                    nomenclature.InnerXml = this.FormatNomencatureContent(nomenclature.InnerXml);
+                        nomenclature.InnerXml = this.FormatNomencatureContent(nomenclature.InnerXml);
 
-                    this.FormatObjectIdInNomenclature(nomenclature);
+                        this.FormatObjectIdInNomenclature(nomenclature);
 
-                    nomenclature.InnerXml = Regex.Replace(nomenclature.InnerXml, @"\n\s*\n", "\n");
+                        nomenclature.InnerXml = Regex.Replace(nomenclature.InnerXml, @"\n\s*\n", "\n");
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                }
+            });
         }
 
         private string FormatNomencatureContent(string nomenclatureContent)
