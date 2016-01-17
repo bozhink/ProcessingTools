@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Bio.Taxonomy.Types;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
@@ -22,13 +22,6 @@
 
         private ITaxaDataService<ITaxonClassification> service;
 
-        public TreatmentMetaParser(ITaxaDataService<ITaxonClassification> service, IBase baseObject, ILogger logger)
-            : base(baseObject)
-        {
-            this.logger = logger;
-            this.service = service;
-        }
-
         public TreatmentMetaParser(ITaxaDataService<ITaxonClassification> service, string xml, ILogger logger)
             : base(xml)
         {
@@ -36,9 +29,9 @@
             this.service = service;
         }
 
-        public void Parse()
+        public Task Parse()
         {
-            try
+            return Task.Run(() =>
             {
                 var genusList = this.XmlDocument
                     .GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
@@ -72,11 +65,7 @@
                         genus,
                         TaxonRanksType.Family);
                 }
-            }
-            catch
-            {
-                throw;
-            }
+            });
         }
 
         private void ReplaceTreatmentMetaClassificationItem(

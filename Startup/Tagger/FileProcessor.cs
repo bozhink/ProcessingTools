@@ -30,7 +30,7 @@
 
         protected void InvokeProcessor(string message, IParser parser)
         {
-            this.InvokeProcessor(message, parser.Parse);
+            this.InvokeProcessor(message, () => parser.Parse().Wait());
         }
 
         protected void InvokeProcessor(string message, IGenerator generator)

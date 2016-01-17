@@ -2,10 +2,10 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
@@ -19,22 +19,25 @@
             this.logger = logger;
         }
 
-        public void Parse()
+        public Task Parse()
         {
-            try
+            return Task.Run(() =>
             {
-                XmlNodeList nodeList = this.XmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", this.NamespaceManager);
-                foreach (XmlNode node in nodeList)
+                try
                 {
-                    node.InnerXml = this.ReferencePartSplitter(node);
-                    node.InnerXml = this.ReferenceJournalMatch(node);
-                    node.InnerXml = this.ReferencePersonGroupSplit(node.InnerXml);
+                    XmlNodeList nodeList = this.XmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", this.NamespaceManager);
+                    foreach (XmlNode node in nodeList)
+                    {
+                        node.InnerXml = this.ReferencePartSplitter(node);
+                        node.InnerXml = this.ReferenceJournalMatch(node);
+                        node.InnerXml = this.ReferencePersonGroupSplit(node.InnerXml);
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                }
+            });
         }
 
         private string ReferencePartSplitter(XmlNode reference)

@@ -2,12 +2,12 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy;
     using Bio.Taxonomy.Types;
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
@@ -27,13 +27,17 @@
             this.logger = logger;
         }
 
-        public LowerTaxaParser(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Parse()
         {
-            this.logger = logger;
+            return Task.Run(() =>
+            {
+                this.ParseLowerTaxaWithBasionym();
+                this.ParseLowerTaxaWithoutBasionym();
+                this.RemoveWrappingItalics();
+            });
         }
 
-        public void Parse()
+        private void ParseLowerTaxaWithBasionym()
         {
             try
             {
@@ -46,7 +50,10 @@
             {
                 this.logger?.Log(e, "Parse lower taxa without basionym.");
             }
+        }
 
+        private void ParseLowerTaxaWithoutBasionym()
+        {
             try
             {
                 var rankResolver = new SpeciesPartsPrefixesResolver();
@@ -110,7 +117,10 @@
             {
                 this.logger?.Log(e, "Parse lower taxa with basionym.");
             }
+        }
 
+        private void RemoveWrappingItalics()
+        {
             // Remove wrapping i around tn[tn-part[@type='subgenus']]
             this.XmlDocument.InnerXml = Regex.Replace(
                 this.XmlDocument.InnerXml,

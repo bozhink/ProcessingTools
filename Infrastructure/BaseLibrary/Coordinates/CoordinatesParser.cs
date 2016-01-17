@@ -2,9 +2,9 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
@@ -21,70 +21,67 @@
             this.logger = logger;
         }
 
-        public CoordinatesParser(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Parse()
         {
-            this.logger = logger;
-        }
-
-        public void Parse()
-        {
-            foreach (XmlNode coordinateNode in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
+            return Task.Run(() =>
             {
-                this.logger?.Log("\n{0}", coordinateNode.OuterXml);
-
-                coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
-
-                try
+                foreach (XmlNode coordinateNode in this.XmlDocument.SelectNodes("//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']", this.NamespaceManager))
                 {
-                    this.ParseSingleCoordinateXmlNode(coordinateNode);
-                }
-                catch (ApplicationException)
-                {
+                    this.logger?.Log("\n{0}", coordinateNode.OuterXml);
+
+                    coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
+
                     try
                     {
-                        string coordinateText = this.SimplifyCoordinateString(coordinateNode.InnerText);
-
-                        var latitudeString = Regex.Replace(coordinateText, @"\A.*([NS])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
-                        var longitudeString = Regex.Replace(coordinateText, @"\A.*([EW])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
-
-                        Console.WriteLine(latitudeString);
-                        Console.WriteLine(longitudeString);
-
-                        CoordinatePart latitude = new CoordinatePart(this.logger)
-                        {
-                            PartIsPresent = false
-                        };
-
-                        CoordinatePart longitude = new CoordinatePart(this.logger)
-                        {
-                            PartIsPresent = false
-                        };
-
-                        Coordinate coordinate = new Coordinate
-                        {
-                            Latitude = latitudeString,
-                            Longitude = longitudeString
-                        };
-
-                        this.ParseCoordinateObject(latitude, longitude, coordinate);
-                        this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
-
-                        this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
-                        this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
+                        this.ParseSingleCoordinateXmlNode(coordinateNode);
                     }
-                    catch (ApplicationException e)
+                    catch (ApplicationException)
+                    {
+                        try
+                        {
+                            string coordinateText = this.SimplifyCoordinateString(coordinateNode.InnerText);
+
+                            var latitudeString = Regex.Replace(coordinateText, @"\A.*([NS])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
+                            var longitudeString = Regex.Replace(coordinateText, @"\A.*([EW])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
+
+                            Console.WriteLine(latitudeString);
+                            Console.WriteLine(longitudeString);
+
+                            CoordinatePart latitude = new CoordinatePart(this.logger)
+                            {
+                                PartIsPresent = false
+                            };
+
+                            CoordinatePart longitude = new CoordinatePart(this.logger)
+                            {
+                                PartIsPresent = false
+                            };
+
+                            Coordinate coordinate = new Coordinate
+                            {
+                                Latitude = latitudeString,
+                                Longitude = longitudeString
+                            };
+
+                            this.ParseCoordinateObject(latitude, longitude, coordinate);
+                            this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
+
+                            this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
+                            this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
+                        }
+                        catch (ApplicationException e)
+                        {
+                            this.logger?.Log(LogType.Warning, e, "Current coordinate will not be processed!");
+                        }
+                    }
+                    catch (Exception e)
                     {
                         this.logger?.Log(LogType.Warning, e, "Current coordinate will not be processed!");
                     }
                 }
-                catch (Exception e)
-                {
-                    this.logger?.Log(LogType.Warning, e, "Current coordinate will not be processed!");
-                }
-            }
 
-            this.CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows();
+                this.CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows();
+            });
         }
 
         private void CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows()
