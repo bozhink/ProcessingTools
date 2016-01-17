@@ -50,7 +50,7 @@
 
         protected void InvokeProcessor(string message, IProcessor processor)
         {
-            this.InvokeProcessor(message, processor.Process);
+            this.InvokeProcessor(message, () => processor.Process().Wait());
         }
     }
 }

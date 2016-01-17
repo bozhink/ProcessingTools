@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
+    using System.Threading.Tasks;
     using System.Xml.Xsl;
 
     using Contracts;
@@ -38,9 +39,9 @@
             }
         }
 
-        public void Process()
+        public Task Process()
         {
-            this.Xml = this.Xml.ApplyXslTransform(this.xslTransform);
+            return Task.Run(() => this.Xml = this.Xml.ApplyXslTransform(this.xslTransform));
         }
     }
 }

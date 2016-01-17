@@ -51,42 +51,45 @@
             }
         }
 
-        public void Process()
+        public Task Process()
         {
-            var exceptions = new ConcurrentQueue<Exception>();
-
-            var initialDirectory = Directory.GetCurrentDirectory();
-
-            Directory.SetCurrentDirectory(this.DirectoryName);
-
+            return Task.Run(() =>
             {
-                var files = Directory.GetFiles(Directory.GetCurrentDirectory());
+                var exceptions = new ConcurrentQueue<Exception>();
 
-                var xmlFiles = files.Where(f => Path.GetExtension(f).TrimStart('.') == "xml");
+                var initialDirectory = Directory.GetCurrentDirectory();
 
-                Parallel.ForEach(
-                    xmlFiles,
-                    (fileName, state) =>
-                    {
-                        try
+                Directory.SetCurrentDirectory(this.DirectoryName);
+
+                {
+                    var files = Directory.GetFiles(Directory.GetCurrentDirectory());
+
+                    var xmlFiles = files.Where(f => Path.GetExtension(f).TrimStart('.') == "xml");
+
+                    Parallel.ForEach(
+                        xmlFiles,
+                        (fileName, state) =>
                         {
-                            var fileProcessor = new FileProcessor(fileName, journal, logger);
-                            fileProcessor.Process();
-                        }
-                        catch (Exception e)
-                        {
-                            exceptions.Enqueue(e);
-                            ////state.Break();
-                        }
-                    });
-            }
+                            try
+                            {
+                                var fileProcessor = new FileProcessor(fileName, journal, logger);
+                                fileProcessor.Process();
+                            }
+                            catch (Exception e)
+                            {
+                                exceptions.Enqueue(e);
+                                ////state.Break();
+                            }
+                        });
+                }
 
-            Directory.SetCurrentDirectory(initialDirectory);
+                Directory.SetCurrentDirectory(initialDirectory);
 
-            if (exceptions.Count > 0)
-            {
-                throw new AggregateException(exceptions.ToList());
-            }
+                if (exceptions.Count > 0)
+                {
+                    throw new AggregateException(exceptions.ToList());
+                }
+            });
         }
     }
 }

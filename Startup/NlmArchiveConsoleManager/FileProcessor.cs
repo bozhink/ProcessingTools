@@ -63,47 +63,50 @@
             }
         }
 
-        public void Process()
+        public Task Process()
         {
-            this.logger?.Log(this.FileName);
-
-            var document = new TaxPubDocument(Encoding.UTF8);
-            var xmlFileProcessor = new XmlFileProcessor(this.FileName, this.logger);
-            xmlFileProcessor.Read(document);
-
-            if (document.XmlDocument.DocumentElement.Name != "article")
+            return Task.Run(() =>
             {
-                throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
-            }
+                this.logger?.Log(this.FileName);
 
-            var article = new Article
-            {
-                Doi = document.XmlDocument.SelectSingleNode("/article/front/article-meta/article-id[@pub-id-type='doi']")?.InnerText,
-                Volume = document.XmlDocument.SelectSingleNode("/article/front/article-meta/volume")?.InnerText,
-                Issue = document.XmlDocument.SelectSingleNode("/article/front/article-meta/issue")?.InnerText,
-                FirstPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/fpage")?.InnerText,
-                LastPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/lpage")?.InnerText,
-                Id = document.XmlDocument.SelectSingleNode("/article/front/article-meta/elocation-id")?.InnerText,
-            };
+                var document = new TaxPubDocument(Encoding.UTF8);
+                var xmlFileProcessor = new XmlFileProcessor(this.FileName, this.logger);
+                xmlFileProcessor.Read(document);
 
-            string fileNameReplacementPrefix = string.Format(
-                this.journal.FileNamePattern,
-                article.Volume?.ConvertTo<int>(),
-                article.Issue?.ConvertTo<int>(),
-                article.Id,
-                article.FirstPage?.ConvertTo<int>());
+                if (document.XmlDocument.DocumentElement.Name != "article")
+                {
+                    throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
+                }
 
-            this.logger?.Log(fileNameReplacementPrefix);
+                var article = new Article
+                {
+                    Doi = document.XmlDocument.SelectSingleNode("/article/front/article-meta/article-id[@pub-id-type='doi']")?.InnerText,
+                    Volume = document.XmlDocument.SelectSingleNode("/article/front/article-meta/volume")?.InnerText,
+                    Issue = document.XmlDocument.SelectSingleNode("/article/front/article-meta/issue")?.InnerText,
+                    FirstPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/fpage")?.InnerText,
+                    LastPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/lpage")?.InnerText,
+                    Id = document.XmlDocument.SelectSingleNode("/article/front/article-meta/elocation-id")?.InnerText,
+                };
 
-            xmlFileProcessor.OutputFileName = $"{fileNameReplacementPrefix}.xml";
+                string fileNameReplacementPrefix = string.Format(
+                    this.journal.FileNamePattern,
+                    article.Volume?.ConvertTo<int>(),
+                    article.Issue?.ConvertTo<int>(),
+                    article.Id,
+                    article.FirstPage?.ConvertTo<int>());
 
-            this.ProcessExternalFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
+                this.logger?.Log(fileNameReplacementPrefix);
 
-            this.MoveXmlFile(fileNameReplacementPrefix);
+                xmlFileProcessor.OutputFileName = $"{fileNameReplacementPrefix}.xml";
 
-            XmlDocumentType taxpubDtd = document.XmlDocument.CreateDocumentType("article", "-//TaxonX//DTD Taxonomic Treatment Publishing DTD v0 20100105//EN", "tax-treatment-NS0.dtd", null);
+                this.ProcessExternalFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
 
-            xmlFileProcessor.Write(document, taxpubDtd);
+                this.MoveXmlFile(fileNameReplacementPrefix);
+
+                XmlDocumentType taxpubDtd = document.XmlDocument.CreateDocumentType("article", "-//TaxonX//DTD Taxonomic Treatment Publishing DTD v0 20100105//EN", "tax-treatment-NS0.dtd", null);
+
+                xmlFileProcessor.Write(document, taxpubDtd);
+            });
         }
 
         // Move other files with name FileName and different extensions to corresponding destination.
