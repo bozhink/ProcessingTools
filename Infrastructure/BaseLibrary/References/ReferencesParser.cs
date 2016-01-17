@@ -19,12 +19,6 @@
             this.logger = logger;
         }
 
-        public ReferencesParser(IBase baseObject, ILogger logger)
-            : base(baseObject)
-        {
-            this.logger = logger;
-        }
-
         public void Parse()
         {
             try

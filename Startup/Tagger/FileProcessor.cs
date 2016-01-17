@@ -25,7 +25,7 @@
 
         protected void InvokeProcessor(string message, ITagger tagger)
         {
-            this.InvokeProcessor(message, tagger.Tag);
+            this.InvokeProcessor(message, () => tagger.Tag().Wait());
         }
 
         protected void InvokeProcessor(string message, IParser parser)

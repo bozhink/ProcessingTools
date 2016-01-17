@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
@@ -34,32 +35,28 @@
             this.InitFloats();
         }
 
-        public FloatsTagger(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Tag()
         {
-            this.logger = logger;
-            this.InitFloats();
-        }
+            return Task.Run(() =>
+            {
+                // Force Fig. and Figs
+                this.Xml = Regex.Replace(
+                    Regex.Replace(this.Xml, @"(Fig)\s+", "$1. "),
+                    @"(Figs)\.",
+                    "$1");
 
-        public void Tag()
-        {
-            // Force Fig. and Figs
-            this.Xml = Regex.Replace(
-                Regex.Replace(this.Xml, @"(Fig)\s+", "$1. "),
-                @"(Figs)\.",
-                "$1");
+                this.TagFigures();
+                this.TagMaps();
+                this.TagPlates();
+                this.TagHabitus();
+                this.TagTables();
+                this.TagTableBoxes();
+                this.TagTextBoxes();
+                this.TagSupplementaryMaterials();
+                this.RemoveXrefInTitles();
 
-            this.TagFigures();
-            this.TagMaps();
-            this.TagPlates();
-            this.TagHabitus();
-            this.TagTables();
-            this.TagTableBoxes();
-            this.TagTextBoxes();
-            this.TagSupplementaryMaterials();
-            this.RemoveXrefInTitles();
-
-            this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
+                this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|plate|habitus)\"", " ref-type=\"fig\"");
+            });
         }
 
         private string FloatsFirstOccurencePattern(string labelPattern)

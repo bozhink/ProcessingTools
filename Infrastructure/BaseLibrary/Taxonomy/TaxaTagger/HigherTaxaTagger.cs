@@ -2,12 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.Harvesters.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts.Log;
 
     public class HigherTaxaTagger : TaxaTagger
@@ -24,16 +24,9 @@
             this.harvester = harvester;
         }
 
-        public HigherTaxaTagger(IBase baseObject, IHigherTaxaHarvester harvester, IRepositoryDataService<string> blackList, ILogger logger)
-            : base(baseObject, blackList)
+        public override Task Tag()
         {
-            this.logger = logger;
-            this.harvester = harvester;
-        }
-
-        public override void Tag()
-        {
-            try
+            return Task.Run(() =>
             {
                 var data = this.harvester.Harvest(this.TextContent).Result;
 
@@ -46,12 +39,16 @@
                 higherTaxaTag.SetAttribute("type", "higher");
 
                 // TODO: Optimize peformance.
-                taxaNames.TagContentInDocument(higherTaxaTag, HigherTaxaXPathTemplate, this.XmlDocument, false, true, this.logger);
-            }
-            catch
-            {
-                throw;
-            }
+                taxaNames.TagContentInDocument(
+                    higherTaxaTag,
+                    HigherTaxaXPathTemplate,
+                    this.NamespaceManager,
+                    this.XmlDocument,
+                    false,
+                    true,
+                    this.logger)
+                    .Wait();
+            });
         }
     }
 }

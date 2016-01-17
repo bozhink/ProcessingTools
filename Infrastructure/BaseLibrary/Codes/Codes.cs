@@ -9,7 +9,9 @@ namespace ProcessingTools.BaseLibrary
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
+
     using Configurator;
     using Contracts;
     using Extensions;
@@ -121,13 +123,6 @@ namespace ProcessingTools.BaseLibrary
 
         public Codes(Config config, string xml, ILogger logger)
             : base(config, xml)
-        {
-            this.logger = logger;
-            this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
-        }
-
-        public Codes(IBase baseObject, ILogger logger)
-            : base(baseObject)
         {
             this.logger = logger;
             this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
@@ -354,7 +349,9 @@ namespace ProcessingTools.BaseLibrary
                 codeTag.SetAttribute("prefix", specimenCode.Prefix);
                 codeTag.SetAttribute("type", specimenCode.Type);
 
-                specimenCode.Code.TagContentInDocument(codeTag, xpathTemplate, this.XmlDocument, true, false, this.logger);
+                specimenCode.Code
+                    .TagContentInDocument(codeTag, xpathTemplate, this.NamespaceManager, this.XmlDocument, true, false, this.logger)
+                    .Wait();
             }
 
             /*

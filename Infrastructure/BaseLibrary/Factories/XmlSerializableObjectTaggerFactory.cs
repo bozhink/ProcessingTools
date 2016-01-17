@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Factories
 {
     using System.IO;
+    using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
 
@@ -22,7 +23,7 @@
             this.serializer = new XmlSerializer(typeof(T));
         }
 
-        public abstract void Tag();
+        public abstract Task Tag();
 
         protected XmlElement SerializeObject(T obj)
         {

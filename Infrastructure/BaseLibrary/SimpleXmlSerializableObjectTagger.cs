@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Factories;
@@ -26,14 +27,26 @@
             this.minimalTextSelect = minimalTextSelect;
         }
 
-        public override void Tag()
+        public override Task Tag()
         {
             XmlNodeList nodeList = this.XmlDocument.SelectNodes(this.contentNodesXPath, this.namespaceManager);
 
-            this.data.ToList()
+            var items = this.data.ToList()
                 .Select(this.SerializeObject)
-                .OrderByDescending(i => i.InnerText.Length)
-                .TagContentInDocument(nodeList, this.caseSensitive, this.minimalTextSelect, this.logger);
+                .OrderByDescending(i => i.InnerText.Length);
+
+            return Task.Run(() =>
+            {
+                foreach (var item in items)
+                {
+                    item.TagContentInDocument(
+                        nodeList, 
+                        this.caseSensitive, 
+                        this.minimalTextSelect, 
+                        this.logger)
+                        .Wait();
+                }
+            });
         }
     }
 }

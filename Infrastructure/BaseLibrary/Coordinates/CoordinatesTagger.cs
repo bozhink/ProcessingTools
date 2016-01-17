@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
-    using Configurator;
 
-    using Contracts;
+    using Configurator;
     using Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
@@ -24,26 +24,19 @@
             this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
         }
 
-        public CoordinatesTagger(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Tag()
         {
-            this.logger = logger;
-            this.localityCoordinatesNode = this.XmlDocument.CreateElement(LocalityCoordinatesTagName);
-        }
-
-        public void Tag()
-        {
-            string xml = this.Xml;
-
-            xml = Regex.Replace(xml, @"(?<=\d)([º°˚]|<sup>o</sup>)", "°");
-
-            XmlElement replacementNode = (XmlElement)this.localityCoordinatesNode.CloneNode(true);
-            replacementNode.InnerText = "$1";
-
-            string replace = replacementNode.OuterXml;
-
-            try
+            return Task.Run(() =>
             {
+                string xml = this.Xml;
+
+                xml = Regex.Replace(xml, @"(?<=\d)([º°˚]|<sup>o</sup>)", "°");
+
+                XmlElement replacementNode = (XmlElement)this.localityCoordinatesNode.CloneNode(true);
+                replacementNode.InnerText = "$1";
+
+                string replace = replacementNode.OuterXml;
+
                 string xmlText = this.TextContent;
 
                 List<string> coordinateStrings = new List<string>();
@@ -83,11 +76,7 @@
                     replacementNode.InnerText = coordinateString;
                     replacementNode.TagContentInDocument(this.XmlDocument.SelectNodes("/*"), true, true, this.logger);
                 }
-            }
-            catch
-            {
-                throw;
-            }
+            });
         }
     }
 }

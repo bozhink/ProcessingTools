@@ -18,11 +18,6 @@
         {
         }
 
-        public SystemInitialFormatter(IBase baseObject)
-            : base(baseObject)
-        {
-        }
-
         public void Format()
         {
             this.FormatCloseTags();

@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.BaseLibrary.Floats
 {
     using System.Collections;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
 
@@ -18,22 +18,18 @@
             this.logger = logger;
         }
 
-        public TableFootNotesTagger(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Tag()
         {
-            this.logger = logger;
-        }
+            return Task.Run(() =>
+            {
+                // Get list of table-wrap with correctly formatted foot-notes
+                XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
+                if (tableWrapList.Count < 1)
+                {
+                    this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                    return;
+                }
 
-        public void Tag()
-        {
-            // Get list of table-wrap with correctly formatted foot-notes
-            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
-            if (tableWrapList.Count < 1)
-            {
-                this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
-            }
-            else
-            {
                 this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
                 foreach (XmlNode tableWrap in tableWrapList)
                 {
@@ -53,7 +49,7 @@
                         }
                     }
                 }
-            }
+            });
         }
 
         private void TagCitationInXref(Hashtable tableFootnotes, string tableFootnoteKey, XmlNode footnoteSup)

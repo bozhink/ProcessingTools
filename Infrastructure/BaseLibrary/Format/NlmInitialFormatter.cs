@@ -4,7 +4,6 @@
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using Extensions;
     using ProcessingTools.Contracts;
 
@@ -17,11 +16,6 @@
 
         public NlmInitialFormatter(Config config, string xml)
             : base(config, xml)
-        {
-        }
-
-        public NlmInitialFormatter(IBase baseObject)
-            : base(baseObject)
         {
         }
 

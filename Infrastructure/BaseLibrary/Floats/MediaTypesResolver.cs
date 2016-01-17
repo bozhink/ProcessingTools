@@ -33,13 +33,6 @@
             this.logger = logger;
         }
 
-        public MediaTypesResolver(IBase baseObject, IMediaTypeDataService mediatypeDataService, ILogger logger)
-            : base(baseObject)
-        {
-            this.mediatypeDataService = mediatypeDataService;
-            this.logger = logger;
-        }
-
         public void Parse()
         {
             XmlNodeList mediaElements = this.XmlDocument.SelectNodes(MediaElementXPath, this.NamespaceManager);

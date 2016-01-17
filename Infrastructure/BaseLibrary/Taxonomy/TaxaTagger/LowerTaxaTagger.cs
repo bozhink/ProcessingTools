@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.Services.Data.Contracts;
@@ -26,15 +27,9 @@
             this.logger = logger;
         }
 
-        public LowerTaxaTagger(IBase baseObject, IRepositoryDataService<string> blackList, ILogger logger)
-            : base(baseObject, blackList)
+        public override Task Tag()
         {
-            this.logger = logger;
-        }
-
-        public override void Tag()
-        {
-            try
+            return Task.Run(() =>
             {
                 var knownLowerTaxaNames = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
                     .Cast<XmlNode>()
@@ -79,11 +74,7 @@
                 this.Xml = this.TagInfraspecificTaxa(this.Xml);
 
                 this.DeepTag();
-            }
-            catch
-            {
-                throw;
-            }
+            });
         }
 
         // TODO: XPath-s correction needed
@@ -255,7 +246,18 @@
             XmlElement lowerTaxaTag = this.XmlDocument.CreateElement("tn");
             lowerTaxaTag.SetAttribute("type", "lower");
 
-            orderedTaxaParts.TagContentInDocument(lowerTaxaTag, LowerTaxaXPathTemplate, this.XmlDocument, true, true, this.logger);
+            foreach (var item in orderedTaxaParts)
+            {
+                item.TagContentInDocument(
+                    lowerTaxaTag,
+                    LowerTaxaXPathTemplate,
+                    this.NamespaceManager,
+                    this.XmlDocument,
+                    true,
+                    true,
+                    this.logger)
+                    .Wait();
+            }
         }
     }
 }

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.Services.Data.Contracts;
@@ -13,19 +14,10 @@
 
     public abstract class TaxaTagger : HarvestableDocument, ITagger
     {
-        protected const string HigherTaxaReplacePattern = "<tn type=\"higher\">$1</tn>";
-        protected const string LowerRaxaReplacePattern = "<tn type=\"lower\">$1</tn>";
-
         private IRepositoryDataService<string> blackList;
 
         public TaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList)
             : base(config, xml)
-        {
-            this.BlackList = blackList;
-        }
-
-        public TaxaTagger(IBase baseObject, IRepositoryDataService<string> blackList)
-            : base(baseObject)
         {
             this.BlackList = blackList;
         }
@@ -43,7 +35,7 @@
             }
         }
 
-        public abstract void Tag();
+        public abstract Task Tag();
 
         protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {

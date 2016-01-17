@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Configurator;
@@ -17,25 +18,25 @@
         {
         }
 
-        public AbbreviationsTagger(IBase baseObject)
-            : base(baseObject)
+        public Task Tag()
         {
-        }
-
-        public void Tag()
-        {
-            // Do not change this sequence
-            this.TagAbbreviationsInSpecificNodeByXPath("//graphic|//media|//disp-formula-group");
-            this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
-            this.TagAbbreviationsInSpecificNodeByXPath("//fig-group|//table-wrap-group");
-            this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text");
-            this.TagAbbreviationsInSpecificNodeByXPath("/");
+            return Task.Run(() =>
+            {
+                // Do not change this sequence
+                this.TagAbbreviationsInSpecificNodeByXPath("//graphic|//media|//disp-formula-group");
+                this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
+                this.TagAbbreviationsInSpecificNodeByXPath("//fig-group|//table-wrap-group");
+                this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text");
+                this.TagAbbreviationsInSpecificNodeByXPath("/");
+            });
         }
 
         private void TagAbbreviationsInSpecificNode(XmlNode specificNode)
         {
-            HashSet<Abbreviation> abbreviationsList = new HashSet<Abbreviation>(specificNode.SelectNodes(".//abbrev", this.NamespaceManager)
-                    .Cast<XmlNode>().Select(x => new Abbreviation(x)));
+            var abbreviationsList = new HashSet<Abbreviation>(specificNode
+                .SelectNodes(".//abbrev", this.NamespaceManager)
+                .Cast<XmlNode>()
+                .Select(x => new Abbreviation(x)));
 
             foreach (Abbreviation abbreviation in abbreviationsList)
             {

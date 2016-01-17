@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml.Linq;
 
     using Configurator;
@@ -23,13 +24,12 @@
             this.logger = logger;
         }
 
-        public ReferencesTagger(IBase baseObject, ILogger logger)
-            : base(baseObject)
+        public Task Tag()
         {
-            this.logger = logger;
+            return Task.Run(() => Run());
         }
 
-        public void Tag()
+        private void Run()
         {
             {
                 var referencesList = XDocument.Parse(this.Xml
