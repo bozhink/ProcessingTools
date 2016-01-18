@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram
+﻿namespace ProcessingTools.MainProgram.Settings
 {
     using Ninject.Modules;
 
