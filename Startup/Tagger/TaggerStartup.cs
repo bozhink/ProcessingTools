@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Reflection;
+    using System.Threading.Tasks;
 
     using Ninject;
     using ProcessingTools.Contracts.Log;
@@ -13,6 +14,11 @@
         private static ILogger logger = new TextWriterLogger();
 
         public static void Main(string[] args)
+        {
+            Run(args).Wait();
+        }
+
+        private static async Task Run(string[] args)
         {
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
@@ -27,7 +33,7 @@
 
                 var singleFileProcessor = new SingleFileProcessor(settings, logger);
 
-                singleFileProcessor.Run().Wait();
+                await singleFileProcessor.Run();
             }
             catch (Exception e)
             {
