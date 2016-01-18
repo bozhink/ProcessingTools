@@ -3,7 +3,7 @@
     using Configurator;
     using Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     [TestClass]
     public class TaxonomyParserTests

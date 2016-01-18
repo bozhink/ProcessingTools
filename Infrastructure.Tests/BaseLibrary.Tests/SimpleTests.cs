@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
     using System;
-    using System.Xml;
 
     using Bio.Taxonomy.ServiceClient.Aphia;
 
     using Configurator;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     [TestClass]
     public class SimpleTests
@@ -53,14 +52,14 @@
             var server = new AphiaNameService();
             var records = server.getAphiaRecords("Anodontiglanis", true, true, false, 0);
 
-            System.Console.WriteLine(records?.Length);
+            Console.WriteLine(records?.Length);
             if (records != null)
             {
                 foreach (AphiaRecord record in records)
                 {
-                    System.Console.WriteLine(record?.rank);
-                    System.Console.WriteLine(record?.scientificname);
-                    System.Console.WriteLine(record?.valid_name);
+                    Console.WriteLine(record?.rank);
+                    Console.WriteLine(record?.scientificname);
+                    Console.WriteLine(record?.valid_name);
                 }
             }
         }

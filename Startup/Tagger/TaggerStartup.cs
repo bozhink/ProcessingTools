@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     using Ninject;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
 

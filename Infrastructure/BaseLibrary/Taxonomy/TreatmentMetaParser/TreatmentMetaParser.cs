@@ -10,7 +10,6 @@
     using Bio.Taxonomy.Services.Data.Contracts;
     using Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class TreatmentMetaParser : Base, IParser
     {

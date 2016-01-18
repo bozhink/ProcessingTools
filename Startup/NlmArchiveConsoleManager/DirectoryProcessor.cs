@@ -8,7 +8,6 @@
 
     using Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class DirectoryProcessor : IProcessor
     {

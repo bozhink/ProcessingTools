@@ -8,7 +8,7 @@
     using Bio.Taxonomy.Harvesters.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public class HigherTaxaTagger : TaxaTagger
     {

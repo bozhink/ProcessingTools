@@ -48,7 +48,7 @@
     <Compile Include="IDocument.cs" />
     <Compile Include="IFormatter.cs" />
     <Compile Include="IGenerator.cs" />
-    <Compile Include="Log\ILogger.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="ITagger.cs" />
     <Compile Include="IValidator.cs" />

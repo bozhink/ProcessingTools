@@ -8,7 +8,7 @@
     using Configurator;
     using Contracts;
     using Extensions;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public class DataProvider : HarvestableDocument, IDataProvider
     {

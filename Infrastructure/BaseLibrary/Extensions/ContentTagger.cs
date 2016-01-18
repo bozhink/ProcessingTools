@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public static class ContentTagger
     {

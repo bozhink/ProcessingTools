@@ -10,7 +10,6 @@
     using Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using Configurator;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class TaxonomicNamesValidator : Base, IValidator
     {

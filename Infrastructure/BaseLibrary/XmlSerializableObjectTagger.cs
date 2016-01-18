@@ -5,7 +5,7 @@
     using System.Xml;
 
     using Factories;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public class XmlSerializableObjectTagger<T> : XmlSerializableObjectTaggerFactory<T>
     {

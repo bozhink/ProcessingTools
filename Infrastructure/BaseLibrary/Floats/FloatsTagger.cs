@@ -9,9 +9,7 @@
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class FloatsTagger : Base, ITagger
     {

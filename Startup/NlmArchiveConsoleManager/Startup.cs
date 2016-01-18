@@ -9,7 +9,7 @@
     using Contracts;
     using Loggers;
     using Models;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public class Startup
     {

@@ -9,7 +9,7 @@
     using Configurator;
     using DocumentProvider;
     using Extensions;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public static class TaxonomyExtensions
     {

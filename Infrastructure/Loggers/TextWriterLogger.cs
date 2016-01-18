@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO;
-    using Contracts.Log;
+    using Contracts;
     using Contracts.Types;
     using Infrastructure.Diagnostics;
 

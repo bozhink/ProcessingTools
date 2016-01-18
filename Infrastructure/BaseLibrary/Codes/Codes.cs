@@ -16,7 +16,6 @@ namespace ProcessingTools.BaseLibrary
     using Contracts;
     using Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class Codes : HarvestableDocument
     {

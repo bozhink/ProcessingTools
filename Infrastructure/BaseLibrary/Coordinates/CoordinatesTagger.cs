@@ -8,7 +8,6 @@
     using Configurator;
     using Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class CoordinatesTagger : HarvestableDocument, ITagger
     {

@@ -9,7 +9,6 @@
     using Bio.Taxonomy.Services.Data.Contracts;
     using Models;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
     using ProcessingTools.Contracts.Types;
 
     public class HigherTaxaParserWithDataService<T> : Base, IParser

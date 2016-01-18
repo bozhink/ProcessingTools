@@ -5,7 +5,6 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class StringTagger : Base, ITagger
     {

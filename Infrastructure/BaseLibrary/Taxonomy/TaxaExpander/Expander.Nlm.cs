@@ -6,7 +6,7 @@
 
     using Configurator;
     using Contracts;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
 
     public class Expander : Base
     {

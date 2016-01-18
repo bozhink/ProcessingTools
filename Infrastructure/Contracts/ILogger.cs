@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Log
+﻿namespace ProcessingTools.Contracts
 {
     using System;
-
     using Types;
 
     public interface ILogger

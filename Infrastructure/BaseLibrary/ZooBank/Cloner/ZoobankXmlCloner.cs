@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class ZoobankXmlCloner : ZoobankCloner

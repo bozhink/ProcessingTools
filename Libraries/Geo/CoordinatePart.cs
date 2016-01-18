@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Text.RegularExpressions;
 
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using Types;
 

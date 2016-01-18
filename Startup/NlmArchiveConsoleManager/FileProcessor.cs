@@ -14,7 +14,6 @@
     using Extensions;
     using Models;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class FileProcessor : IProcessor
     {

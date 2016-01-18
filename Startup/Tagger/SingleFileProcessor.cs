@@ -21,7 +21,7 @@
     using DocumentProvider;
     using Extensions;
     using Models;
-    using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class SingleFileProcessor : FileProcessor

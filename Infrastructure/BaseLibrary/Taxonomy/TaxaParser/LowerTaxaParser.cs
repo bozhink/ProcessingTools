@@ -9,7 +9,6 @@
     using Bio.Taxonomy.Types;
     using Configurator;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Log;
 
     public class LowerTaxaParser : Base, IParser
     {
