@@ -246,36 +246,20 @@
 
         private string SimplifyCoordinateString(string coordinateString)
         {
-            string coordinateText = Regex.Replace(coordinateString, "[–—−-]", "-");
-
-            coordinateText = Regex.Replace(coordinateText, @"[^EWONS\d\W]+", " "); // Remove text
-            coordinateText = Regex.Replace(coordinateText, @"\s[a-z]+\s", " ");
-            coordinateText = Regex.Replace(coordinateText, @"\-\s+(?=\d)", "-");
-
-            //// 29.63527EN, 82.37111EW
-            coordinateText = Regex.Replace(coordinateText, "E(?=[EWONS])", " ");
-
-            // Remove some unused special characters
-            coordinateText = Regex.Replace(coordinateText, @"[\\\/\|<>\!\?\*:;]", " ");
-            coordinateText = Regex.Replace(coordinateText, @"\s{2,}", " ");
-
-            //// N33.50.13, E107.48.52 --> N33 50 13, E107 48 52
-            coordinateText = Regex.Replace(coordinateText, @"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9])\s*\.\s*([0-5][0-9](\s*\.\s*\d+)?(?!\.)(?!\d))", "$1 $2 $3");
-
-            //// N33.50.613, E107.48.524 --> N33 50.613, E107 48.524
-            coordinateText = Regex.Replace(coordinateText, @"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2");
-
-            //// S39°34 283, W71°29 908
-            coordinateText = Regex.Replace(coordinateText, @"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".");
-
-            //// S39°34'283"W 71°29'908"
-            coordinateText = Regex.Replace(coordinateText, @"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ");
-
-            //// 20. 58139°S, 164.76444°E
-            coordinateText = Regex.Replace(coordinateString, @"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".");
-
-            //// 22.14158°’S, 166.67993 °E
-            coordinateText = Regex.Replace(coordinateString, @"\W*°\W+|W+°\W*", "°");
+            string coordinateText = coordinateString
+                .RegexReplace("[–—−-]", "-")
+                .RegexReplace(@"[^EWONS\d\W]+", " ") //// Remove text
+                .RegexReplace(@"\s[a-z]+\s", " ")
+                .RegexReplace(@"\-\s+(?=\d)", "-")
+                .RegexReplace("E(?=[EWONS])", " ") //// 29.63527EN, 82.37111EW
+                .RegexReplace(@"[\\\/\|<>\!\?\*:;=]+", " ") //// Remove some unused special characters
+                .RegexReplace(@"\s{2,}", " ")
+                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9])\s*\.\s*([0-5][0-9](\s*\.\s*\d+)?(?!\.)(?!\d))", "$1 $2 $3") //// N33.50.13, E107.48.52 --> N33 50 13, E107 48 52
+                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2") //// N33.50.613, E107.48.524 --> N33 50.613, E107 48.524
+                .RegexReplace(@"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".") //// S39°34 283, W71°29 908
+                .RegexReplace(@"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ") //// S39°34'283"W 71°29'908"
+                .RegexReplace(@"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".") //// 20. 58139°S, 164.76444°E
+                .RegexReplace(@"\W*°\W+|W+°\W*", "°"); //// 22.14158°’S, 166.67993 °E
 
             return coordinateText;
         }
