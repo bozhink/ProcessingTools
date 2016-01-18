@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Ninject;
     using Attributes;
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
@@ -23,18 +24,20 @@
     using Models;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-
+    using Contracts;
     public class SingleFileProcessor : FileProcessor
     {
+        private IKernel kernel;
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
 
         private ILogger logger;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(ProgramSettings settings, ILogger logger)
+        public SingleFileProcessor(ProgramSettings settings, IKernel kernel, ILogger logger)
         {
             this.settings = settings;
+            this.kernel = kernel;
             this.logger = logger;
             this.document = new TaxPubDocument();
         }
@@ -84,7 +87,11 @@
 
                     if (this.settings.TagDoi || this.settings.TagWebLinks)
                     {
-                        this.TagWebLinks();
+                        this.InvokeProcessor(Messages.TagWebLinksMessage, () =>
+                        {
+                            var controller = kernel.Get<ITagWebLinksController>();
+                            controller.Run(this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, this.settings, this.logger).Wait();
+                        }).Wait();
                     }
 
                     if (this.settings.ResolveMediaTypes)
@@ -954,22 +961,6 @@
             var tagger = new TableFootNotesTagger(this.settings.Config, xmlContent, this.logger);
             this.InvokeProcessor(Messages.TagTableFootNotesMessage, tagger).Wait();
             return tagger.Xml;
-        }
-
-        private void TagWebLinks()
-        {
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var harvester = new Harvesters.NlmExternalLinksHarvester();
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result
-                .Select(i => new ExternalLinkSerializableModel
-                {
-                    ExternalLinkType = i.Type.GetValue(),
-                    Value = i.Content
-                });
-
-            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
-            this.InvokeProcessor(Messages.TagWebLinksMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
         }
 
         private async Task WriteOutputFile()

@@ -30,7 +30,7 @@
                 var settingsBuilder = new ProgramSettingsBuilder(logger, args);
                 var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = new SingleFileProcessor(settings, logger);
+                var singleFileProcessor = new SingleFileProcessor(settings, kernel, logger);
 
                 await singleFileProcessor.Run();
             }

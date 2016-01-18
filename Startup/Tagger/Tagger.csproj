@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Contracts\ITaggerController.cs" />
+    <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Controllers\TagWebLinksController.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -102,6 +104,11 @@
     <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="Models\EnvoTermSerializableModel.cs" />
     <Compile Include="Models\ExternalLinkSerializableModel.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -374,16 +381,19 @@
     <Content Include="MessageTexts\TagWebLinksMessage.txt" />
     <Content Include="MessageTexts\ValidateTaxaUsingGnrMessage.txt" />
     <Content Include="MessageTexts\WriteOutputFileMessage.txt" />
+    <Content Include="Resources\ContextWrapper.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
