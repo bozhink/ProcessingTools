@@ -6,6 +6,7 @@
 
     using Ninject;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
 
     public class TaggerStartup

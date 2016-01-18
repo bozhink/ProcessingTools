@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Log
+﻿namespace ProcessingTools.Contracts.Types
 {
     public enum LogType
     {

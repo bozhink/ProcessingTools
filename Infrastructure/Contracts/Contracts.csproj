@@ -53,7 +53,7 @@
     <Compile Include="ITagger.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="IXPathProvider.cs" />
-    <Compile Include="Log\LogType.cs" />
+    <Compile Include="Types\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

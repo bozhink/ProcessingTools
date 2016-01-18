@@ -10,6 +10,7 @@
     using Models;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
 
     public class MediaTypesResolver : Base, IParser
     {

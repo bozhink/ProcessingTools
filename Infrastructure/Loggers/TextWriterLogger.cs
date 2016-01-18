@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using Contracts.Log;
+    using Contracts.Types;
     using Infrastructure.Diagnostics;
 
     public class TextWriterLogger : ILogger

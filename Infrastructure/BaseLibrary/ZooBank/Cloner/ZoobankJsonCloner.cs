@@ -8,6 +8,7 @@
     using Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using Infrastructure.Serialization.Json;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
 
     public class ZoobankJsonCloner : ZoobankCloner
     {

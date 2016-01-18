@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Types;
+
     public interface ILogger
     {
         void Log();

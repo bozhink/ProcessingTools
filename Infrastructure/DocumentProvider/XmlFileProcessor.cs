@@ -7,6 +7,7 @@
     using System.Xml;
     using Contracts;
     using Contracts.Log;
+    using Contracts.Types;
 
     public class XmlFileProcessor
     {

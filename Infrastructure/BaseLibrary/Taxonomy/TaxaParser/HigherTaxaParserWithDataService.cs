@@ -10,6 +10,7 @@
     using Models;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
 
     public class HigherTaxaParserWithDataService<T> : Base, IParser
         where T : ITaxonRank

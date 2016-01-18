@@ -8,6 +8,7 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
 

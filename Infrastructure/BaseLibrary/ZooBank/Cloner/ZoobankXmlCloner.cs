@@ -5,6 +5,7 @@
     using System.Xml;
 
     using ProcessingTools.Contracts.Log;
+    using ProcessingTools.Contracts.Types;
 
     public class ZoobankXmlCloner : ZoobankCloner
     {
