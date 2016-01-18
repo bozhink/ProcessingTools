@@ -99,6 +99,8 @@ uncini
 ventral margin
 ventral umbo
 whorls
+Rhopalia
+
 
 abdomen
 antenna
