@@ -743,8 +743,8 @@
 
         private void TagEnvoTerms()
         {
-            var context = new Bio.Environments.Data.BioEnvironmentsDbContext();
-            var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(context);
+            var db = new Bio.Environments.Data.BioEnvironmentsDbContext();
+            var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(db);
             var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
 
             var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
@@ -771,8 +771,8 @@
 
         private void TagMorphologicalEpithets()
         {
-            var context = new Bio.Data.BioDbContext();
-            var repository = new Bio.Data.Repositories.EfBioDataGenericRepository<Bio.Data.Models.MorphologicalEpithet>(context);
+            var db = new Bio.Data.BioDbContext();
+            var repository = new Bio.Data.Repositories.EfBioDataGenericRepository<Bio.Data.Models.MorphologicalEpithet>(db);
             var service = new Bio.Services.Data.MorphologicalEpithetsDataService(repository);
             var harvester = new Bio.Harvesters.MorphologicalEpithetsHarvester(service);
 
@@ -791,8 +791,8 @@
 
         private void TagGeoEpithets()
         {
-            var context = new Geo.Data.GeoDbContext();
-            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoEpithet>(context);
+            var db = new Geo.Data.GeoDbContext();
+            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoEpithet>(db);
             var service = new Geo.Services.Data.GeoEpithetsDataService(repository);
             var harvester = new Geo.Harvesters.GeoEpithetsHarvester(service);
 
@@ -811,8 +811,8 @@
 
         private void TagGeoNames()
         {
-            var context = new Geo.Data.GeoDbContext();
-            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(context);
+            var db = new Geo.Data.GeoDbContext();
+            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(db);
             var service = new Geo.Services.Data.GeoNamesDataService(repository);
             var harvester = new Geo.Harvesters.GeoNamesHarvester(service);
 
@@ -831,8 +831,8 @@
 
         private void TagInstitutions()
         {
-            var context = new Data.DataDbContext();
-            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Institution>(context);
+            var db = new Data.DataDbContext();
+            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Institution>(db);
             var service = new Services.Data.InstitutionsDataService(repository);
             var harvester = new Harvesters.InstitutionsHarvester(service);
 
@@ -851,8 +851,8 @@
 
         private void TagProducts()
         {
-            var context = new Data.DataDbContext();
-            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Product>(context);
+            var db = new Data.DataDbContext();
+            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Product>(db);
             var service = new Services.Data.ProductsDataService(repository);
             var harvester = new Harvesters.ProductsHarvester(service);
 
