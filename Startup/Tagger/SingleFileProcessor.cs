@@ -9,7 +9,6 @@
 
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
-    using BaseLibrary.Coordinates;
     using BaseLibrary.Floats;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
@@ -105,12 +104,12 @@
 
                         if (this.settings.TagMorphologicalEpithets)
                         {
-                            this.TagMorphologicalEpithets();
+                            this.InvokeProcessor<ITagMorphologicalEpithetsController>(Messages.TagMorphologicalEpithetsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagGeoNames)
                         {
-                            this.TagGeoNames();
+                            this.InvokeProcessor<ITagGeoNamesController>(Messages.TagGeoNamesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagGeoEpithets)
@@ -723,26 +722,6 @@
             this.document.Xml = tagger.Xml;
         }
 
-        private void TagMorphologicalEpithets()
-        {
-            var db = new Bio.Data.BioDbContext();
-            var repository = new Bio.Data.Repositories.EfBioDataGenericRepository<Bio.Data.Models.MorphologicalEpithet>(db);
-            var service = new Bio.Services.Data.MorphologicalEpithetsDataService(repository);
-            var harvester = new Bio.Harvesters.MorphologicalEpithetsHarvester(service);
-
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "morphological epithet");
-
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
-
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagMorphologicalEpithetsMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
         private void TagGeoEpithets()
         {
             var db = new Geo.Data.GeoDbContext();
@@ -763,25 +742,25 @@
             this.document.Xml = tagger.Xml;
         }
 
-        private void TagGeoNames()
-        {
-            var db = new Geo.Data.GeoDbContext();
-            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(db);
-            var service = new Geo.Services.Data.GeoNamesDataService(repository);
-            var harvester = new Geo.Harvesters.GeoNamesHarvester(service);
+        ////private void TagGeoNames()
+        ////{
+        ////    var db = new Geo.Data.GeoDbContext();
+        ////    var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(db);
+        ////    var service = new Geo.Services.Data.GeoNamesDataService(repository);
+        ////    var harvester = new Geo.Harvesters.GeoNamesHarvester(service);
 
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "geo name");
+        ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+        ////    tagModel.SetAttribute("content-type", "geo name");
 
-            var xpathProvider = new XPathProvider(this.settings.Config);
+        ////    var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+        ////    var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+        ////    var data = harvester.Harvest(harvestableDocument.TextContent).Result;
 
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
+        ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
+        ////    this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger).Wait();
+        ////    this.document.Xml = tagger.Xml;
+        ////}
 
         private void TagInstitutions()
         {
