@@ -90,7 +90,7 @@
 
                         if (this.settings.ResolveMediaTypes)
                         {
-                            this.ResolveMediaTypes();
+                            this.InvokeProcessor<IResolveMediaTypesController>(Messages.ResolveMediaTypesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
                         }
 
                         if (this.settings.TagCoordinates)
@@ -450,20 +450,6 @@
         {
             var parser = new CoordinatesParser(this.settings.Config, this.document.Xml, this.logger);
             this.InvokeProcessor(Messages.ParseCoordinatesMessage, parser).Wait();
-            this.document.Xml = parser.Xml;
-        }
-
-        private void ResolveMediaTypes()
-        {
-            var db = MediaType.Data.MediaTypesDbContext.Create();
-
-            var repository = new MediaType.Data.Repositories.MediaTypesGenericRepository<MediaType.Data.Models.FileExtension>(db);
-
-            var mediatypeDataService = new MediaType.Services.Data.MediaTypeDataService(repository);
-
-            var parser = new MediaTypesResolver(this.document.Xml, mediatypeDataService, this.logger);
-
-            this.InvokeProcessor(Messages.ResolveMediaTypesMessage, parser).Wait();
             this.document.Xml = parser.Xml;
         }
 
