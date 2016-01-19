@@ -114,7 +114,7 @@
 
                         if (this.settings.TagGeoEpithets)
                         {
-                            this.TagGeoEpithets();
+                            this.InvokeProcessor<ITagGeoEpithetsController>(Messages.TagGeoEpithetsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagInstitutions)
@@ -721,46 +721,6 @@
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
-
-        private void TagGeoEpithets()
-        {
-            var db = new Geo.Data.GeoDbContext();
-            var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoEpithet>(db);
-            var service = new Geo.Services.Data.GeoEpithetsDataService(repository);
-            var harvester = new Geo.Harvesters.GeoEpithetsHarvester(service);
-
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "geo epithet");
-
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
-
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagGeoEpithetsMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
-        ////private void TagGeoNames()
-        ////{
-        ////    var db = new Geo.Data.GeoDbContext();
-        ////    var repository = new Geo.Data.Repositories.EfGeoDataGenericRepository<Geo.Data.Models.GeoName>(db);
-        ////    var service = new Geo.Services.Data.GeoNamesDataService(repository);
-        ////    var harvester = new Geo.Harvesters.GeoNamesHarvester(service);
-
-        ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-        ////    tagModel.SetAttribute("content-type", "geo name");
-
-        ////    var xpathProvider = new XPathProvider(this.settings.Config);
-
-        ////    var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-        ////    var data = harvester.Harvest(harvestableDocument.TextContent).Result;
-
-        ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-        ////    this.InvokeProcessor(Messages.TagGeoNamesMessage, tagger).Wait();
-        ////    this.document.Xml = tagger.Xml;
-        ////}
 
         private void TagInstitutions()
         {

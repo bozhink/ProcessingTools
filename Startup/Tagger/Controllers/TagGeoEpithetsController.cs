@@ -9,11 +9,11 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Geo.Harvesters.Contracts;
 
-    public class TagGeoNamesController : TaggerControllerFactory, ITagGeoNamesController
+    public class TagGeoEpithetsController : TaggerControllerFactory, ITagGeoEpithetsController
     {
-        private IGeoNamesHarvester harvester;
+        private IGeoEpithetsHarvester harvester;
 
-        public TagGeoNamesController(IGeoNamesHarvester harvester)
+        public TagGeoEpithetsController(IGeoEpithetsHarvester harvester)
         {
             this.harvester = harvester;
         }
@@ -21,7 +21,7 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             XmlElement tagModel = document.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "geo name");
+            tagModel.SetAttribute("content-type", "geo epithet");
 
             var xpathProvider = new XPathProvider(settings.Config);
 
