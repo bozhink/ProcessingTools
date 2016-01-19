@@ -23,20 +23,21 @@
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            IKernel kernel = NinjectConfig.CreateKernel();
-
-            try
+            using (IKernel kernel = NinjectConfig.CreateKernel())
             {
-                var settingsBuilder = new ProgramSettingsBuilder(logger, args);
-                var settings = settingsBuilder.Settings;
+                try
+                {
+                    var settingsBuilder = new ProgramSettingsBuilder(logger, args);
+                    var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = new SingleFileProcessor(settings, kernel, logger);
+                    var singleFileProcessor = new SingleFileProcessor(settings, kernel, logger);
 
-                await singleFileProcessor.Run();
-            }
-            catch (Exception e)
-            {
-                logger.Log(e, string.Empty);
+                    await singleFileProcessor.Run();
+                }
+                catch (Exception e)
+                {
+                    logger.Log(e, string.Empty);
+                }
             }
 
             logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);

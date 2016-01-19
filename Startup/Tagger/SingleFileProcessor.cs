@@ -7,8 +7,6 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Ninject;
-    using Attributes;
     using BaseLibrary;
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
@@ -19,12 +17,14 @@
     using BaseLibrary.ZooBank;
     using Bio.Taxonomy.Types;
     using Common.Constants;
+    using Contracts;
     using DocumentProvider;
     using Extensions;
     using Models;
+    using Ninject;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using Contracts;
+
     public class SingleFileProcessor : FileProcessor
     {
         private IKernel kernel;
