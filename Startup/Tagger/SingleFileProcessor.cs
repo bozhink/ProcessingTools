@@ -100,7 +100,7 @@
 
                         if (this.settings.ParseCoordinates)
                         {
-                            this.ParseCoordinates();
+                            this.InvokeProcessor<IParseCoordinatesController>(Messages.ParseCoordinatesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
                         }
 
                         if (this.settings.TagMorphologicalEpithets)
@@ -444,13 +444,6 @@
             }
 
             return xmlContent;
-        }
-
-        private void ParseCoordinates()
-        {
-            var parser = new CoordinatesParser(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.ParseCoordinatesMessage, parser).Wait();
-            this.document.Xml = parser.Xml;
         }
 
         private string ParseHigherTaxa(string xmlContent)
