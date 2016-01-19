@@ -4,7 +4,6 @@
     using System.Diagnostics;
     using System.Threading.Tasks;
 
-    using Ninject;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
@@ -23,21 +22,18 @@
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            using (IKernel kernel = NinjectConfig.CreateKernel())
+            try
             {
-                try
-                {
-                    var settingsBuilder = new ProgramSettingsBuilder(logger, args);
-                    var settings = settingsBuilder.Settings;
+                var settingsBuilder = new ProgramSettingsBuilder(logger, args);
+                var settings = settingsBuilder.Settings;
 
-                    var singleFileProcessor = new SingleFileProcessor(settings, kernel, logger);
+                var singleFileProcessor = new SingleFileProcessor(settings, logger);
 
-                    await singleFileProcessor.Run();
-                }
-                catch (Exception e)
-                {
-                    logger.Log(e, string.Empty);
-                }
+                await singleFileProcessor.Run();
+            }
+            catch (Exception e)
+            {
+                logger.Log(e, string.Empty);
             }
 
             logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);

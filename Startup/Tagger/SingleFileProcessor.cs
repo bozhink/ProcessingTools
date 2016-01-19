@@ -27,17 +27,15 @@
 
     public class SingleFileProcessor : FileProcessor
     {
-        private IKernel kernel;
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
 
         private ILogger logger;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(ProgramSettings settings, IKernel kernel, ILogger logger)
+        public SingleFileProcessor(ProgramSettings settings, ILogger logger)
         {
             this.settings = settings;
-            this.kernel = kernel;
             this.logger = logger;
             this.document = new TaxPubDocument();
         }
@@ -52,152 +50,152 @@
 
                 this.ReadDocument();
 
-                if (this.settings.ZoobankCloneXml)
+                using (IKernel kernel = NinjectConfig.CreateKernel())
                 {
-                    this.ZooBankCloneXml();
-                }
-                else if (this.settings.ZoobankCloneJson)
-                {
-                    this.ZooBankCloneJson();
-                }
-                else if (this.settings.ZoobankGenerateRegistrationXml)
-                {
-                    this.ZooBankGenerateRegistrationXml();
-                }
-                else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
-                {
-                    this.document.Xml = QueryReplace.Replace(this.settings.Config, this.document.Xml, this.settings.QueryFileName);
-                }
-                else
-                {
-                    if (this.settings.RunXslTransform)
+
+                    if (this.settings.ZoobankCloneXml)
                     {
-                        this.RunCustomXslTransform();
+                        this.ZooBankCloneXml();
                     }
-
-                    if (this.settings.InitialFormat)
+                    else if (this.settings.ZoobankCloneJson)
                     {
-                        this.InitialFormat();
+                        this.ZooBankCloneJson();
                     }
-
-                    if (this.settings.ParseReferences)
+                    else if (this.settings.ZoobankGenerateRegistrationXml)
                     {
-                        this.ParseReferences();
+                        this.ZooBankGenerateRegistrationXml();
                     }
-
-                    if (this.settings.TagDoi || this.settings.TagWebLinks)
+                    else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
                     {
-                        this.InvokeProcessor(Messages.TagWebLinksMessage, () =>
-                        {
-                            var controller = kernel.Get<ITagWebLinksController>();
-                            controller.Run(this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, this.settings, this.logger).Wait();
-                        }).Wait();
-                    }
-
-                    if (this.settings.ResolveMediaTypes)
-                    {
-                        this.ResolveMediaTypes();
-                    }
-
-                    if (this.settings.TagCoordinates)
-                    {
-                        this.TagCoordinates();
-                    }
-
-                    if (this.settings.ParseCoordinates)
-                    {
-                        this.ParseCoordinates();
-                    }
-
-                    if (this.settings.TagMorphologicalEpithets)
-                    {
-                        this.TagMorphologicalEpithets();
-                    }
-
-                    if (this.settings.TagGeoNames)
-                    {
-                        this.TagGeoNames();
-                    }
-
-                    if (this.settings.TagGeoEpithets)
-                    {
-                        this.TagGeoEpithets();
-                    }
-
-                    if (this.settings.TagInstitutions)
-                    {
-                        this.TagInstitutions();
-                    }
-
-                    if (this.settings.TagProducts)
-                    {
-                        this.TagProducts();
-                    }
-
-                    if (this.settings.TagEnvo)
-                    {
-                        this.TagEnvo();
-                    }
-
-                    // Tag envo terms using envornment database
-                    if (this.settings.TagEnvironments)
-                    {
-                        this.TagEnvoTerms();
-                    }
-
-                    if (this.settings.TagQuantities)
-                    {
-                        this.TagQuantities();
-                    }
-
-                    if (this.settings.TagDates)
-                    {
-                        this.TagDates();
-                    }
-
-                    if (this.settings.TagAbbreviations)
-                    {
-                        this.TagAbbreviations();
-                    }
-
-                    // Tag institutions, institutional codes, and specimen codes
-                    if (this.settings.TagCodes)
-                    {
-                        this.TagCodes();
-                    }
-
-                    // Do something as an experimental feature
-                    if (this.settings.TestFlag)
-                    {
-                        this.logger?.Log("\n\n\tTest\n\n");
-                        var test = new Test(this.document.Xml);
-
-                        test.MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure();
-
-                        this.document.Xml = test.Xml;
-                    }
-
-                    // Main Tagging part of the program
-                    if (this.settings.ParseBySection)
-                    {
-                        var xmlDocument = new XmlDocument(this.document.NamespaceManager.NameTable)
-                        {
-                            PreserveWhitespace = true
-                        };
-
-                        xmlDocument.LoadXml(this.document.Xml);
-                        foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                        {
-                            var fragment = node.OwnerDocument.CreateDocumentFragment();
-                            fragment.InnerXml = await this.MainProcessing(node.OuterXml);
-                            node.ParentNode.ReplaceChild(fragment, node);
-                        }
-
-                        this.document.Xml = xmlDocument.OuterXml;
+                        this.document.Xml = QueryReplace.Replace(this.settings.Config, this.document.Xml, this.settings.QueryFileName);
                     }
                     else
                     {
-                        this.document.Xml = await this.MainProcessing(this.document.Xml);
+                        if (this.settings.RunXslTransform)
+                        {
+                            this.RunCustomXslTransform();
+                        }
+
+                        if (this.settings.InitialFormat)
+                        {
+                            this.InitialFormat();
+                        }
+
+                        if (this.settings.ParseReferences)
+                        {
+                            this.ParseReferences();
+                        }
+
+                        if (this.settings.TagDoi || this.settings.TagWebLinks)
+                        {
+                            this.InvokeProcessor<ITagWebLinksController>(Messages.TagWebLinksMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                        }
+
+                        if (this.settings.ResolveMediaTypes)
+                        {
+                            this.ResolveMediaTypes();
+                        }
+
+                        if (this.settings.TagCoordinates)
+                        {
+                            this.TagCoordinates();
+                        }
+
+                        if (this.settings.ParseCoordinates)
+                        {
+                            this.ParseCoordinates();
+                        }
+
+                        if (this.settings.TagMorphologicalEpithets)
+                        {
+                            this.TagMorphologicalEpithets();
+                        }
+
+                        if (this.settings.TagGeoNames)
+                        {
+                            this.TagGeoNames();
+                        }
+
+                        if (this.settings.TagGeoEpithets)
+                        {
+                            this.TagGeoEpithets();
+                        }
+
+                        if (this.settings.TagInstitutions)
+                        {
+                            this.TagInstitutions();
+                        }
+
+                        if (this.settings.TagProducts)
+                        {
+                            this.TagProducts();
+                        }
+
+                        if (this.settings.TagEnvo)
+                        {
+                            this.TagEnvo();
+                        }
+
+                        // Tag envo terms using envornment database
+                        if (this.settings.TagEnvironments)
+                        {
+                            this.TagEnvoTerms();
+                        }
+
+                        if (this.settings.TagQuantities)
+                        {
+                            this.TagQuantities();
+                        }
+
+                        if (this.settings.TagDates)
+                        {
+                            this.TagDates();
+                        }
+
+                        if (this.settings.TagAbbreviations)
+                        {
+                            this.TagAbbreviations();
+                        }
+
+                        // Tag institutions, institutional codes, and specimen codes
+                        if (this.settings.TagCodes)
+                        {
+                            this.TagCodes();
+                        }
+
+                        // Do something as an experimental feature
+                        if (this.settings.TestFlag)
+                        {
+                            this.logger?.Log("\n\n\tTest\n\n");
+                            var test = new Test(this.document.Xml);
+
+                            test.MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure();
+
+                            this.document.Xml = test.Xml;
+                        }
+
+                        // Main Tagging part of the program
+                        if (this.settings.ParseBySection)
+                        {
+                            var xmlDocument = new XmlDocument(this.document.NamespaceManager.NameTable)
+                            {
+                                PreserveWhitespace = true
+                            };
+
+                            xmlDocument.LoadXml(this.document.Xml);
+                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
+                            {
+                                var fragment = node.OwnerDocument.CreateDocumentFragment();
+                                fragment.InnerXml = await this.MainProcessing(node.OuterXml);
+                                node.ParentNode.ReplaceChild(fragment, node);
+                            }
+
+                            this.document.Xml = xmlDocument.OuterXml;
+                        }
+                        else
+                        {
+                            this.document.Xml = await this.MainProcessing(this.document.Xml);
+                        }
                     }
                 }
 
@@ -228,6 +226,16 @@
                 }
 
                 this.PrintElapsedTime(timer);
+            });
+        }
+
+        protected async Task InvokeProcessor<TController>(string message, XmlNode context, XmlNamespaceManager namespaceManager, IKernel kernel)
+            where TController : ITaggerController
+        {
+            await this.InvokeProcessor(message, () =>
+            {
+                var controller = kernel.Get<TController>();
+                controller.Run(context, namespaceManager, this.settings, this.logger).Wait();
             });
         }
 
