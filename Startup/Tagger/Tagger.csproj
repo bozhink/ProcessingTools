@@ -98,9 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
+    <Compile Include="Contracts\IInitialFormatController.cs" />
     <Compile Include="Contracts\ITaggerController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Controllers\InitialFormatController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
+    <Compile Include="Factories\TaggerControllerFactory.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>

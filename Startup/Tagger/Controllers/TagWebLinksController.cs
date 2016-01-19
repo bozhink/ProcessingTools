@@ -7,11 +7,12 @@
     using Attributes;
     using BaseLibrary;
     using Contracts;
+    using Factories;
     using Harvesters.Contracts;
     using Models;
     using ProcessingTools.Contracts;
 
-    public class TagWebLinksController : ITagWebLinksController
+    public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
     {
         private const string XPath = "/*";
         private INlmExternalLinksHarvester harvester;
@@ -21,16 +22,8 @@
             this.harvester = harvester;
         }
 
-        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            XmlDocument document = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
-
-            document.LoadXml(Resources.ContextWrapper);
-            document.DocumentElement.InnerXml = context.InnerXml;
-
             var harvestableDocument = new HarvestableDocument(settings.Config, document.OuterXml);
             var data = (await this.harvester.Harvest(harvestableDocument.TextContent))
                 .Select(i => new ExternalLinkSerializableModel
@@ -43,7 +36,7 @@
 
             await tagger.Tag();
 
-            context.InnerXml = tagger.XmlDocument.DocumentElement.InnerXml;
+            document.LoadXml(tagger.Xml);
         }
     }
 }

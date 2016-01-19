@@ -11,7 +11,6 @@
     using BaseLibrary.Abbreviations;
     using BaseLibrary.Coordinates;
     using BaseLibrary.Floats;
-    using BaseLibrary.Format;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using BaseLibrary.ZooBank;
@@ -19,7 +18,6 @@
     using Common.Constants;
     using Contracts;
     using DocumentProvider;
-    using Extensions;
     using Models;
     using Ninject;
     using ProcessingTools.Contracts;
@@ -52,7 +50,6 @@
 
                 using (IKernel kernel = NinjectConfig.CreateKernel())
                 {
-
                     if (this.settings.ZoobankCloneXml)
                     {
                         this.ZooBankCloneXml();
@@ -78,7 +75,7 @@
 
                         if (this.settings.InitialFormat)
                         {
-                            this.InitialFormat();
+                            this.InvokeProcessor<IInitialFormatController>(Messages.InitialFormatMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
                         }
 
                         if (this.settings.ParseReferences)
@@ -232,11 +229,13 @@
         protected async Task InvokeProcessor<TController>(string message, XmlNode context, XmlNamespaceManager namespaceManager, IKernel kernel)
             where TController : ITaggerController
         {
-            await this.InvokeProcessor(message, () =>
-            {
-                var controller = kernel.Get<TController>();
-                controller.Run(context, namespaceManager, this.settings, this.logger).Wait();
-            });
+            await this.InvokeProcessor(
+                message,
+                () =>
+                {
+                    var controller = kernel.Get<TController>();
+                    controller.Run(context, namespaceManager, this.settings, this.logger).Wait();
+                });
         }
 
         private async Task ValidateTaxa(string xmlContent)
@@ -377,32 +376,6 @@
             var formatter = new TreatmentFormatter(this.settings.Config, xmlContent, this.logger);
             this.InvokeProcessor(Messages.FormatTreatmentsMessage, formatter).Wait();
             return formatter.Xml;
-        }
-
-        private void InitialFormat()
-        {
-            switch (this.settings.Config.ArticleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    {
-                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.NlmInitialFormatXslTransform);
-                        var formatter = new NlmInitialFormatter(this.settings.Config, xml);
-                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter).Wait();
-                        this.document.Xml = formatter.Xml;
-                    }
-
-                    break;
-
-                default:
-                    {
-                        string xml = this.document.Xml.ApplyXslTransform(this.settings.Config.SystemInitialFormatXslTransform);
-                        var formatter = new SystemInitialFormatter(this.settings.Config, xml);
-                        this.InvokeProcessor(Messages.InitialFormatMessage, formatter).Wait();
-                        this.document.Xml = formatter.Xml;
-                    }
-
-                    break;
-            }
         }
 
         private async Task<string> MainProcessing(string xml)
