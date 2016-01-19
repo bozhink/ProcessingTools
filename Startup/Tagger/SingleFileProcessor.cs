@@ -119,7 +119,7 @@
 
                         if (this.settings.TagInstitutions)
                         {
-                            this.TagInstitutions();
+                            this.InvokeProcessor<ITagInstitutionsController>(Messages.TagInstitutionsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagProducts)
@@ -719,26 +719,6 @@
 
             var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, false, this.logger);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
-        private void TagInstitutions()
-        {
-            var db = new Data.DataDbContext();
-            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Institution>(db);
-            var service = new Services.Data.InstitutionsDataService(repository);
-            var harvester = new Harvesters.InstitutionsHarvester(service);
-
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "institution");
-
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
-
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagInstitutionsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
