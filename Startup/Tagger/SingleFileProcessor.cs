@@ -80,7 +80,7 @@
 
                         if (this.settings.ParseReferences)
                         {
-                            this.ParseReferences();
+                            this.InvokeProcessor<IParseReferencesController>(Messages.ParseReferencesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
                         }
 
                         if (this.settings.TagDoi || this.settings.TagWebLinks)
@@ -542,13 +542,6 @@
             }
 
             return xmlContent;
-        }
-
-        private void ParseReferences()
-        {
-            var parser = new ReferencesTagger(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.ParseReferencesMessage, parser).Wait();
-            this.document.Xml = parser.Xml;
         }
 
         private string ParseTreatmentMeta(string xmlContent)
