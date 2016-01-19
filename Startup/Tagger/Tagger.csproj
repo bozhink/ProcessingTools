@@ -101,11 +101,13 @@
     <Compile Include="Contracts\IInitialFormatController.cs" />
     <Compile Include="Contracts\IParseReferencesController.cs" />
     <Compile Include="Contracts\IResolveMediaTypesController.cs" />
+    <Compile Include="Contracts\ITagCoordinatesController.cs" />
     <Compile Include="Contracts\ITaggerController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
     <Compile Include="Controllers\InitialFormatController.cs" />
     <Compile Include="Controllers\ParseReferencesController.cs" />
     <Compile Include="Controllers\ResolveMediaTypesController.cs" />
+    <Compile Include="Controllers\TagCoordinatesController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
     <Compile Include="FileProcessor.cs" />

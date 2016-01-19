@@ -95,7 +95,7 @@
 
                         if (this.settings.TagCoordinates)
                         {
-                            this.TagCoordinates();
+                            this.InvokeProcessor<ITagCoordinatesController>(Messages.TagCoordinatesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
                         }
 
                         if (this.settings.ParseCoordinates)
@@ -663,13 +663,6 @@
             }
 
             this.PrintElapsedTime(timer);
-        }
-
-        private void TagCoordinates()
-        {
-            var tagger = new CoordinatesTagger(this.settings.Config, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.TagCoordinatesMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
         }
 
         private void TagDates()
