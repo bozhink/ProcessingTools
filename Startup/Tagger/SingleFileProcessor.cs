@@ -75,32 +75,32 @@
 
                         if (this.settings.InitialFormat)
                         {
-                            this.InvokeProcessor<IInitialFormatController>(Messages.InitialFormatMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<IInitialFormatController>(Messages.InitialFormatMessage, kernel).Wait();
                         }
 
                         if (this.settings.ParseReferences)
                         {
-                            this.InvokeProcessor<IParseReferencesController>(Messages.ParseReferencesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<IParseReferencesController>(Messages.ParseReferencesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagDoi || this.settings.TagWebLinks)
                         {
-                            this.InvokeProcessor<ITagWebLinksController>(Messages.TagWebLinksMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<ITagWebLinksController>(Messages.TagWebLinksMessage, kernel).Wait();
                         }
 
                         if (this.settings.ResolveMediaTypes)
                         {
-                            this.InvokeProcessor<IResolveMediaTypesController>(Messages.ResolveMediaTypesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<IResolveMediaTypesController>(Messages.ResolveMediaTypesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagCoordinates)
                         {
-                            this.InvokeProcessor<ITagCoordinatesController>(Messages.TagCoordinatesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<ITagCoordinatesController>(Messages.TagCoordinatesMessage, kernel).Wait();
                         }
 
                         if (this.settings.ParseCoordinates)
                         {
-                            this.InvokeProcessor<IParseCoordinatesController>(Messages.ParseCoordinatesMessage, this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, kernel).Wait();
+                            this.InvokeProcessor<IParseCoordinatesController>(Messages.ParseCoordinatesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagMorphologicalEpithets)
@@ -226,7 +226,7 @@
             });
         }
 
-        protected async Task InvokeProcessor<TController>(string message, XmlNode context, XmlNamespaceManager namespaceManager, IKernel kernel)
+        protected async Task InvokeProcessor<TController>(string message, IKernel kernel)
             where TController : ITaggerController
         {
             await this.InvokeProcessor(
@@ -234,7 +234,7 @@
                 () =>
                 {
                     var controller = kernel.Get<TController>();
-                    controller.Run(context, namespaceManager, this.settings, this.logger).Wait();
+                    controller.Run(this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, this.settings, this.logger).Wait();
                 });
         }
 
