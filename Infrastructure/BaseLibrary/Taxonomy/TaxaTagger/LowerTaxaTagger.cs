@@ -241,6 +241,7 @@
 
             Regex matchLetterDotWord = new Regex(@"\A([A-Z]\.|[A-Za-z])\Z");
             var orderedTaxaParts = new HashSet<string>(taxa.Where(t => !matchLetterDotWord.IsMatch(t)))
+                .Where(t => t.Length > 2)
                 .OrderByDescending(t => t.Length);
 
             XmlElement lowerTaxaTag = this.XmlDocument.CreateElement("tn");

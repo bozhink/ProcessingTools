@@ -121,3 +121,5 @@ chaetae
         Tubercles: Af – antenno–frontal, Cl – clypeal, De – dorsoexternal, Di – dorsointernal, Dl – dorsolateral, L – lateral, Oc – ocular, So – subocular.
 
         Types of chaetae: Ml – long macrochaeta, Mc – short macrochaeta, Mcc – very short macrochaeta, me – mesochaeta, mi – microchaeta, ms – s–microchaeta or microsensillum, S or s – chaeta s, bs – border s–chaeta on ant. IV, miA – microchaetae on ant. IV, iv – ordinary chaetae on ventral ant. IV, or – organite of ant. IV, brs – border s–chaeta on ant. IV, i – ordinary chaeta on ant. IV, mou – cylindrical s–chaetae on ant. IV („soies mousses”), x – labial papilla x, L’ – ordinary lateral chaeta on abd. V, B4, B5 – ordinary chaetae on tibiotarsi.
+
+        DCS = distal cheliceral segment, GO = genital operculum, LII = leg II, OC = ocularium, PCS = proximal cheliceral segment, PF = pedipalpal femur, PT = pedipalpal trochanter, SBT = seta-bearing tubercle
