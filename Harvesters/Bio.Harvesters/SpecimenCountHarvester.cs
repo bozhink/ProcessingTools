@@ -3,6 +3,8 @@
  * 2 spec.
  * 2 exx.
  * 2 spp.
+ * 2 exx
+ * 1 ex
  * 1 ex.
  * 1♂&amp;1♀
  */

@@ -14,17 +14,17 @@
 
     public class NlmExternalLinksHarvester : INlmExternalLinksHarvester
     {
-        private const string UriPatternPostfix = @"(?=(?:&gt;|>)?\]?[,;\.]?[\)\s]|[\.;\)]$|$)";
+        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?\]?[,;\.]*[\)\s]+|[\.;\)]$|$)";
         private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b";
 
-        private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternPostfix + @"|" +
-            @"(?i)(?<!://)www\S+?" + UriPatternPostfix + @"|" +
-            IPAddressPattern + @"(?:\D\S*)" + UriPatternPostfix;
+        private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
+            @"(?i)(?<!://)www\S+?" + UriPatternSuffix + @"|" +
+            IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix;
 
-        private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternPostfix;
+        private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
 
-        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternPostfix + @"|" +
-            @"10\.\d{4,5}/\S+" + UriPatternPostfix;
+        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternSuffix + @"|" +
+            @"10\.\d{4,5}/\S+" + UriPatternSuffix;
 
         private const string PmidPattern = @"(?i)(?<=\bpmid\W?)\d+";
 

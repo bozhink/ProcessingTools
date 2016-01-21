@@ -123,3 +123,16 @@ chaetae
         Types of chaetae: Ml – long macrochaeta, Mc – short macrochaeta, Mcc – very short macrochaeta, me – mesochaeta, mi – microchaeta, ms – s–microchaeta or microsensillum, S or s – chaeta s, bs – border s–chaeta on ant. IV, miA – microchaetae on ant. IV, iv – ordinary chaetae on ventral ant. IV, or – organite of ant. IV, brs – border s–chaeta on ant. IV, i – ordinary chaeta on ant. IV, mou – cylindrical s–chaetae on ant. IV („soies mousses”), x – labial papilla x, L’ – ordinary lateral chaeta on abd. V, B4, B5 – ordinary chaetae on tibiotarsi.
 
         DCS = distal cheliceral segment, GO = genital operculum, LII = leg II, OC = ocularium, PCS = proximal cheliceral segment, PF = pedipalpal femur, PT = pedipalpal trochanter, SBT = seta-bearing tubercle
+
+
+        Leg I
+        Femur
+        Genu
+        Tibia
+        Tasus
+        Claw
+        setae
+        solenidia
+
+        <p>1.) <italic>Body Length </italic>= From central ocellus to distal terminus of body or wing (whichever is longer); 2. <italic>Forewing Length </italic>= From convergence of vannal veins to apex of forewings; 3.) <italic>Hindwing Length </italic>= From convergence of vannal veins to apex of hindwings; 4.) <italic>Pronotum Length </italic>= From anteromedial margin of pronotum to posteromedial margin; 5.) <italic>Prozone Length </italic>= From anteromedial margin of pronotum to supracoxal sulcus; 6.) <italic>Pronotum Maximum Width = </italic>From lateral edge of pronotum to opposing edge, across widest region; 7.) <italic>Pronotum Maximum Width </italic>= From lateral edge of pronotum to opposing edge, across narrowest region posterior to supracoxal sulcus; 8.) <italic>Head Width </italic>= From lateral edge of compound eye to opposing edge of contralateral eye, perpendicular to central axis of the head, across widest point; 9.) <italic>Head Vertex to Clypeus </italic>= From center of the cranial vertex to base of clypeus; 10.) <italic>Lower Frons Width </italic>= From lateral margin of lower frons at widest point to opposing outer margin; 11.) <italic>Lower Frons Height </italic>= From lower margin of unpaired, median ocellus to middle of epistomal suture; 12.) <italic>Prothoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal apex of genicular lobe; 13.) <italic>Mesothoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal terminus; 14.) <italic>Mesothoracic Tibia Length </italic>= From proximal bend of the tibia to distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia; 15.) <italic>Mesothoracic Tarsus Length </italic>= From most-proximal margin of basitarsus to distal terminus of the segment before the ungues; 16.) <italic>Metathoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal terminus; 17.) <italic>Metathoracic <!--PageBreak-->Tibia Length </italic>= From proximal bend of the tibia to distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia; 18.) <italic>Metathoracic Tarsus Length </italic>= From most-proximal margin of basitarsus to distal terminus of the segment before the ungues.
+                </p>
