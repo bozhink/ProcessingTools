@@ -14,14 +14,16 @@
 
         public static void Main(string[] args)
         {
+            Stopwatch mainTimer = new Stopwatch();
+            mainTimer.Start();
+
             Run(args).Wait();
+
+            logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
         }
 
         private static async Task Run(string[] args)
         {
-            Stopwatch mainTimer = new Stopwatch();
-            mainTimer.Start();
-
             try
             {
                 var settingsBuilder = new ProgramSettingsBuilder(logger, args);
@@ -35,8 +37,6 @@
             {
                 logger.Log(e, string.Empty);
             }
-
-            logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
         }
     }
 }
