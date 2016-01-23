@@ -134,7 +134,7 @@
                         }
 
                         // Tag envo terms using envornment database
-                        if (this.settings.TagEnvironments)
+                        if (this.settings.TagEnvironmentTerms)
                         {
                             this.TagEnvoTerms();
                         }

@@ -46,7 +46,7 @@
             this.TagCoordinates = false;
             this.TagDates = false;
             this.TagDoi = false;
-            this.TagEnvironments = false;
+            this.TagEnvironmentTerms = false;
             this.TagEnvironmentTermsWithExtract = false;
             this.TagFloats = false;
             this.TagMorphologicalEpithets = false;
@@ -148,7 +148,7 @@
 
         public bool TagDoi { get; set; }
 
-        public bool TagEnvironments { get; set; }
+        public bool TagEnvironmentTerms { get; set; }
 
         public bool TagEnvironmentTermsWithExtract { get; set; }
 

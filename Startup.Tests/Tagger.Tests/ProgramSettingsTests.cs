@@ -751,19 +751,19 @@
         }
 
         [Test]
-        public void ProgramSettings_TagEnvironmentsPropertyInNewInstance_ShouldBeFalse()
+        public void ProgramSettings_TagEnvironmentTermsPropertyInNewInstance_ShouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagEnvironments, DefaultValueShouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagEnvironmentTerms, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagEnvironmentsProperty_ShouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagEnvironmentTermsProperty_ShouldBePersistent()
         {
-            this.programSettings.TagEnvironments = true;
-            Assert.IsTrue(this.programSettings.TagEnvironments, ValueShouldBeTrueMessage);
+            this.programSettings.TagEnvironmentTerms = true;
+            Assert.IsTrue(this.programSettings.TagEnvironmentTerms, ValueShouldBeTrueMessage);
 
-            this.programSettings.TagEnvironments = false;
-            Assert.IsFalse(this.programSettings.TagEnvironments, ValueShouldBeFalseMessage);
+            this.programSettings.TagEnvironmentTerms = false;
+            Assert.IsFalse(this.programSettings.TagEnvironmentTerms, ValueShouldBeFalseMessage);
         }
 
         [Test]

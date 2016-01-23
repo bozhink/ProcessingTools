@@ -349,7 +349,7 @@
                     }
                     else if (args[item].CompareTo("--environments") == 0)
                     {
-                        this.Settings.TagEnvironments = true;
+                        this.Settings.TagEnvironmentTerms = true;
                     }
                     else if (args[item].CompareTo("--codes") == 0)
                     {
