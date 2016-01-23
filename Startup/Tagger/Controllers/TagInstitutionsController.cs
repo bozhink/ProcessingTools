@@ -1,39 +1,34 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
-    using System.Threading.Tasks;
+    using System;
     using System.Xml;
 
     using Contracts;
-    using Extensions;
     using Factories;
-    using ProcessingTools.BaseLibrary;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Common.Contracts;
 
-    public class TagInstitutionsController : TaggerControllerFactory, ITagInstitutionsController
+    public class TagInstitutionsController : StringTaggerControllerFactory, ITagInstitutionsController
     {
-        private IInstitutionsDataMiner miner;
+        private readonly IInstitutionsDataMiner miner;
+        private readonly XmlElement tagModel;
 
         public TagInstitutionsController(IInstitutionsDataMiner miner)
         {
+            if (miner == null)
+            {
+                throw new ArgumentNullException("miner");
+            }
+
             this.miner = miner;
+
+            XmlDocument document = new XmlDocument();
+            this.tagModel = document.CreateElement("named-content");
+            this.tagModel.SetAttribute("content-type", "institution");
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
-        {
-            XmlElement tagModel = document.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "institution");
+        protected override IStringDataMiner Miner => this.miner;
 
-            var xpathProvider = new XPathProvider(settings.Config);
-
-            var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
-            var data = await this.miner.Mine(textContent);
-
-            var tagger = new StringTagger(document.OuterXml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
-
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
-        }
+        protected override XmlElement TagModel => this.tagModel;
     }
 }

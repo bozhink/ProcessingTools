@@ -10,8 +10,8 @@
 
     public class TagMorphologicalEpithetsController : StringTaggerControllerFactory, ITagMorphologicalEpithetsController
     {
-        private readonly XmlElement tagModel;
         private readonly IMorphologicalEpithetsDataMiner miner;
+        private readonly XmlElement tagModel;
 
         public TagMorphologicalEpithetsController(IMorphologicalEpithetsDataMiner miner)
         {
