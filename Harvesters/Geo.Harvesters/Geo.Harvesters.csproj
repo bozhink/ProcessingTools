@@ -36,14 +36,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
-      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
-      <Name>Geo.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
       <Name>Harvesters.Common</Name>
