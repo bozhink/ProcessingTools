@@ -53,7 +53,7 @@
                     }
                     else if (this.settings.ZoobankCloneJson)
                     {
-                        this.ZooBankCloneJson();
+                        this.InvokeProcessor<IZooBankCloneJsonController>(Messages.CloneZooBankJsonMessage, kernel).Wait();
                     }
                     else if (this.settings.ZoobankGenerateRegistrationXml)
                     {
@@ -664,14 +664,6 @@
                     this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
                     this.fileProcessor.Write(this.document, null, null);
                 });
-        }
-
-        private void ZooBankCloneJson()
-        {
-            string jsonStringContent = File.ReadAllText(this.settings.QueryFileName);
-            var cloner = new ZoobankJsonCloner(jsonStringContent, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.CloneZooBankJsonMessage, cloner).Wait();
-            this.document.Xml = cloner.Xml;
         }
 
         private void ZooBankGenerateRegistrationXml()

@@ -118,6 +118,7 @@
     <Compile Include="Contracts\ITagProductsController.cs" />
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Controllers\TagAbbreviationsController.cs" />
     <Compile Include="Controllers\TagCodesController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Controllers\TagProductsController.cs" />
     <Compile Include="Controllers\TagQuantitiesController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
+    <Compile Include="Controllers\ZooBankCloneJsonController.cs" />
     <Compile Include="Controllers\ZooBankCloneXmlController.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
