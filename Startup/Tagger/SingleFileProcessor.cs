@@ -49,7 +49,7 @@
                 {
                     if (this.settings.ZoobankCloneXml)
                     {
-                        this.ZooBankCloneXml();
+                        this.InvokeProcessor<IZooBankCloneXmlController>(Messages.CloneZooBankXmlMessage, kernel).Wait();
                     }
                     else if (this.settings.ZoobankCloneJson)
                     {
@@ -671,17 +671,6 @@
             string jsonStringContent = File.ReadAllText(this.settings.QueryFileName);
             var cloner = new ZoobankJsonCloner(jsonStringContent, this.document.Xml, this.logger);
             this.InvokeProcessor(Messages.CloneZooBankJsonMessage, cloner).Wait();
-            this.document.Xml = cloner.Xml;
-        }
-
-        private void ZooBankCloneXml()
-        {
-            var nlmDocument = new TaxPubDocument();
-            var fileProcessorNlm = new XmlFileProcessor(this.settings.QueryFileName, this.settings.OutputFileName);
-            fileProcessorNlm.Read(nlmDocument);
-
-            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, this.document.Xml, this.logger);
-            this.InvokeProcessor(Messages.CloneZooBankXmlMessage, cloner).Wait();
             this.document.Xml = cloner.Xml;
         }
 
