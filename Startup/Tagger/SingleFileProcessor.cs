@@ -659,7 +659,7 @@
 
         private void TagDates()
         {
-            var harvester = new Harvesters.DatesHarvester();
+            var miner = new Data.Miners.DatesDataMiner();
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "date");
@@ -667,7 +667,7 @@
             var xpathProvider = new XPathProvider(this.settings.Config);
 
             var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+            var data = miner.Mine(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
@@ -727,7 +727,7 @@
             var db = new Data.DataDbContext();
             var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Product>(db);
             var service = new Services.Data.ProductsDataService(repository);
-            var harvester = new Harvesters.ProductsHarvester(service);
+            var miner = new Data.Miners.ProductsDataMiner(service);
 
             XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
             tagModel.SetAttribute("content-type", "product");
@@ -735,7 +735,7 @@
             var xpathProvider = new XPathProvider(this.settings.Config);
 
             var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+            var data = miner.Mine(harvestableDocument.TextContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagProductsMessage, tagger).Wait();
@@ -769,13 +769,13 @@
             var xpathProvider = new XPathProvider(this.settings.Config);
 
             {
-                var harvester = new Harvesters.AltitudesHarvester();
+                var miner = new Data.Miners.AltitudesDataMiner();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "altitude");
 
                 var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+                var data = miner.Mine(harvestableDocument.TextContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
@@ -784,13 +784,13 @@
             }
 
             {
-                var harvester = new Harvesters.GeographicDeviationsHarvester();
+                var miner = new Data.Miners.GeographicDeviationsDataMiner();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "geographic deviation");
 
                 var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+                var data = miner.Mine(harvestableDocument.TextContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
@@ -799,13 +799,13 @@
             }
 
             {
-                var harvester = new Harvesters.QuantitiesHarvester();
+                var miner = new Data.Miners.QuantitiesDataMiner();
 
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "quantity");
 
                 var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = harvester.Harvest(harvestableDocument.TextContent).Result;
+                var data = miner.Mine(harvestableDocument.TextContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models
+﻿namespace ProcessingTools.Data.Miners.Models
 {
     using Contracts;
     using Nlm.Publishing.Types;

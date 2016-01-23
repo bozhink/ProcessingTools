@@ -33,7 +33,45 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltitudesDataMiner.cs" />
+    <Compile Include="Contracts\IAltitudesDataMiner.cs" />
+    <Compile Include="Contracts\IDatesDataMiner.cs" />
+    <Compile Include="Contracts\IGeographicDeviationsDataMiner.cs" />
+    <Compile Include="Contracts\IInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\INlmExternalLinksDataMiner.cs" />
+    <Compile Include="Contracts\IProductsDataMiner.cs" />
+    <Compile Include="Contracts\IQuantitiesDataMiner.cs" />
+    <Compile Include="DatesDataMiner.cs" />
+    <Compile Include="GeographicDeviationsDataMiner.cs" />
+    <Compile Include="InstitutionsDataMiner.cs" />
+    <Compile Include="Models\Contracts\INlmExternalLink.cs" />
+    <Compile Include="Models\NlmExternalLinkResponseModel.cs" />
+    <Compile Include="NlmExternalLinksDataMiner.cs" />
+    <Compile Include="ProductsDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuantitiesDataMiner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

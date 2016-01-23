@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -51,12 +55,35 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegressionTests\InstitutionsDataMinerRegressionTests.cs" />
+    <Compile Include="RegressionTests\ProductsDataMinerRegressionTests.cs" />
+    <Compile Include="RegressionTests\Services\Fakes\FakeInstitutionsDataService.cs" />
+    <Compile Include="RegressionTests\Services\Fakes\FakeProductsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

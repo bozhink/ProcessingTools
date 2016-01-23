@@ -4,7 +4,7 @@
  * Elevation: 2900
  */
 
-namespace ProcessingTools.Harvesters
+namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Generic;
@@ -15,20 +15,20 @@ namespace ProcessingTools.Harvesters
     using Contracts;
     using Extensions;
 
-    public class AltitudesHarvester : IAltitudesHarvester
+    public class AltitudesDataMiner : IAltitudesDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IQueryable<string>> Harvest(string content)
+        public async Task<IQueryable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
                 throw new ArgumentNullException("content");
             }
 
-            var internalHarvester = new InternalHarvester(content);
-            var distanceAltitude = await internalHarvester.HarvestDistenceAltitude();
-            var altitudeDistance = await internalHarvester.HarvestAltitudeDistence();
+            var internalMiner = new InternalMiner(content);
+            var distanceAltitude = await internalMiner.MineDistenceAltitude();
+            var altitudeDistance = await internalMiner.MineAltitudeDistence();
 
             var items = new List<string>();
             items.AddRange(distanceAltitude);
@@ -39,11 +39,11 @@ namespace ProcessingTools.Harvesters
             return result.AsQueryable();
         }
 
-        private class InternalHarvester
+        private class InternalMiner
         {
             private string content;
 
-            public InternalHarvester(string content)
+            public InternalMiner(string content)
             {
                 this.content = content;
             }
@@ -54,7 +54,7 @@ namespace ProcessingTools.Harvesters
             /// <returns>IEnumerable of matches items.</returns>
             /// <example>510–650 m a.s.l.</example>
             /// <example>58 m alt.</example>
-            public async Task<IEnumerable<string>> HarvestDistenceAltitude()
+            public async Task<IEnumerable<string>> MineDistenceAltitude()
             {
                 const string Pattern = DistancePattern + @"\W{0,4}(?i)(?:a\W*s\W*l|a\W*l\W*t)[^\w<>]?";
 
@@ -66,7 +66,7 @@ namespace ProcessingTools.Harvesters
             /// </summary>
             /// <returns>IEnumerable of matches items.</returns>
             /// <example>alt. ca. 271 m</example>
-            public async Task<IEnumerable<string>> HarvestAltitudeDistence()
+            public async Task<IEnumerable<string>> MineAltitudeDistence()
             {
                 const string Pattern = @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern;
 

@@ -7,25 +7,25 @@
     using Attributes;
     using BaseLibrary;
     using Contracts;
+    using Data.Miners.Contracts;
     using Factories;
-    using Harvesters.Contracts;
     using Models;
     using ProcessingTools.Contracts;
 
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
     {
         private const string XPath = "/*";
-        private INlmExternalLinksHarvester harvester;
+        private INlmExternalLinksDataMiner miner;
 
-        public TagWebLinksController(INlmExternalLinksHarvester harvester)
+        public TagWebLinksController(INlmExternalLinksDataMiner miner)
         {
-            this.harvester = harvester;
+            this.miner = miner;
         }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var harvestableDocument = new HarvestableDocument(settings.Config, document.OuterXml);
-            var data = (await this.harvester.Harvest(harvestableDocument.TextContent))
+            var data = (await this.miner.Mine(harvestableDocument.TextContent))
                 .Select(i => new ExternalLinkSerializableModel
                 {
                     ExternalLinkType = i.Type.GetValue(),

@@ -4,7 +4,7 @@
  * 24 km W
  */
 
-namespace ProcessingTools.Harvesters
+namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Generic;
@@ -15,11 +15,11 @@ namespace ProcessingTools.Harvesters
     using Contracts;
     using Extensions;
 
-    public class GeographicDeviationsHarvester : IGeographicDeviationsHarvester
+    public class GeographicDeviationsDataMiner : IGeographicDeviationsDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IQueryable<string>> Harvest(string content)
+        public async Task<IQueryable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

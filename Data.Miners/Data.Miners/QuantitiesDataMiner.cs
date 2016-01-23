@@ -18,7 +18,7 @@
  * 2.2–2.6 mm
  */
 
-namespace ProcessingTools.Harvesters
+namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Generic;
@@ -29,9 +29,9 @@ namespace ProcessingTools.Harvesters
     using Contracts;
     using Extensions;
 
-    public class QuantitiesHarvester : IQuantitiesHarvester
+    public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
-        public async Task<IQueryable<string>> Harvest(string content)
+        public async Task<IQueryable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

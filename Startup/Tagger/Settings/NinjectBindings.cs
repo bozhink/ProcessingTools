@@ -99,7 +99,7 @@
                 .To<Services.Data.ProductsDataService>();
 
             /*
-             * Harvesters bindings.
+             * Miners bindings.
              */
 
             this.Bind<Bio.Data.Miners.Contracts.IBiorepositoryInstitutionalCodesDataMiner>()
@@ -129,20 +129,20 @@
             this.Bind<Geo.Data.Miners.Contracts.IGeoNamesDataMiner>()
                 .To<Geo.Data.Miners.GeoNamesDataMiner>();
 
-            this.Bind<Harvesters.Contracts.IAltitudesHarvester>()
-                .To<Harvesters.AltitudesHarvester>();
-            this.Bind<Harvesters.Contracts.IDatesHarvester>()
-                .To<Harvesters.DatesHarvester>();
-            this.Bind<Harvesters.Contracts.IGeographicDeviationsHarvester>()
-                .To<Harvesters.GeographicDeviationsHarvester>();
-            this.Bind<Harvesters.Contracts.IInstitutionsHarvester>()
-                .To<Harvesters.InstitutionsHarvester>();
-            this.Bind<Harvesters.Contracts.INlmExternalLinksHarvester>()
-                .To<Harvesters.NlmExternalLinksHarvester>();
-            this.Bind<Harvesters.Contracts.IProductsHarvester>()
-                .To<Harvesters.ProductsHarvester>();
-            this.Bind<Harvesters.Contracts.IQuantitiesHarvester>()
-                .To<Harvesters.QuantitiesHarvester>();
+            this.Bind<Data.Miners.Contracts.IAltitudesDataMiner>()
+                .To<Data.Miners.AltitudesDataMiner>();
+            this.Bind<Data.Miners.Contracts.IDatesDataMiner>()
+                .To<Data.Miners.DatesDataMiner>();
+            this.Bind<Data.Miners.Contracts.IGeographicDeviationsDataMiner>()
+                .To<Data.Miners.GeographicDeviationsDataMiner>();
+            this.Bind<Data.Miners.Contracts.IInstitutionsDataMiner>()
+                .To<Data.Miners.InstitutionsDataMiner>();
+            this.Bind<Data.Miners.Contracts.INlmExternalLinksDataMiner>()
+                .To<Data.Miners.NlmExternalLinksDataMiner>();
+            this.Bind<Data.Miners.Contracts.IProductsDataMiner>()
+                .To<Data.Miners.ProductsDataMiner>();
+            this.Bind<Data.Miners.Contracts.IQuantitiesDataMiner>()
+                .To<Data.Miners.QuantitiesDataMiner>();
 
             /*
              * Infrastructure bindings.

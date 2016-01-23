@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Tests.RegressionTests
+﻿namespace ProcessingTools.Data.Miners.Tests.RegressionTests
 {
     using System;
     using System.Collections.Generic;
@@ -8,56 +8,56 @@
     using Services.Fakes;
 
     [TestClass]
-    public class ProductsHarvesterRegressionTests
+    public class InstitutionsDataMinerRegressionTests
     {
-        private static FakeProductsDataService service;
+        private static FakeInstitutionsDataService service;
         private static HashSet<string> dataItems;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            service = new FakeProductsDataService();
+            service = new FakeInstitutionsDataService();
             dataItems = new HashSet<string>(service.Items
                 .Select(i => i.Name));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ProductsHarvester_WithNullServiceInConstructor_ShouldThrow()
+        public void InstitutionsDataMiner_WithNullServiceInConstructor_ShouldThrow()
         {
-            var harvester = new ProductsHarvester(null);
+            var miner = new InstitutionsDataMiner(null);
         }
 
         [TestMethod]
-        public void ProductsHarvester_WithValidServiceInConstructor_ShouldReturnValidHarvester()
+        public void InstitutionsDataMiner_WithValidServiceInConstructor_ShouldReturnValidMiner()
         {
-            var harvester = new ProductsHarvester(service);
+            var miner = new InstitutionsDataMiner(service);
 
-            Assert.IsNotNull(harvester, "Harvester should not be null.");
+            Assert.IsNotNull(miner, "Miner should not be null.");
         }
 
         [TestMethod]
-        public void ProductsHarvester_HarvestContentWithNoMatchingItems_ShouldReturnEmptyResult()
+        public void InstitutionsDataMiner_MineContentWithNoMatchingItems_ShouldReturnEmptyResult()
         {
             string content = " ";
 
-            var harvester = new ProductsHarvester(service);
-            var data = harvester.Harvest(content).Result.ToList();
+            var miner = new InstitutionsDataMiner(service);
+            var data = miner.Mine(content).Result.ToList();
 
             Assert.AreEqual(0, data.Count, "Data should be empty.");
         }
 
         [TestMethod]
-        public void ProductsHarvester_HarvestContentWithMatchingFirstItem_ShouldHaveCorrectNumberOfDataItems()
+        public void InstitutionsDataMiner_MineContentWithMatchingFirstItem_ShouldHaveCorrectNumberOfDataItems()
         {
             string item = dataItems.FirstOrDefault();
             int numberOfMatchingDataItems = dataItems.Where(i => item.Contains(i)).ToList().Count;
 
             string content = item;
 
-            var harvester = new ProductsHarvester(service);
+            var miner = new InstitutionsDataMiner(service);
 
-            var data = harvester.Harvest(content).Result.ToList();
+            var data = miner.Mine(content).Result.ToList();
 
             Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
 
@@ -65,16 +65,16 @@
         }
 
         [TestMethod]
-        public void ProductsHarvester_HarvestContentWithMatchingLastItem_ShouldHaveCorrectNumberOfDataItems()
+        public void InstitutionsDataMiner_MineContentWithMatchingLastItem_ShouldHaveCorrectNumberOfDataItems()
         {
             string item = dataItems.LastOrDefault();
             int numberOfMatchingDataItems = dataItems.Where(i => item.Contains(i)).ToList().Count;
 
             string content = item;
 
-            var harvester = new ProductsHarvester(service);
+            var miner = new InstitutionsDataMiner(service);
 
-            var data = harvester.Harvest(content).Result.ToList();
+            var data = miner.Mine(content).Result.ToList();
 
             Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
 

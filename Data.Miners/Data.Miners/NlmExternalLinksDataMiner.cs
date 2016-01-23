@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters
+﻿namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@
     using Models.Contracts;
     using Nlm.Publishing.Types;
 
-    public class NlmExternalLinksHarvester : INlmExternalLinksHarvester
+    public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner
     {
         private const string UriPatternSuffix = @"(?=(?:&gt;|>)?\]?[,;\.]*[\)\s]+|[\.;\)]$|$)";
         private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b";
@@ -30,24 +30,24 @@
 
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
 
-        public NlmExternalLinksHarvester()
+        public NlmExternalLinksDataMiner()
         {
         }
 
-        public async Task<IQueryable<INlmExternalLink>> Harvest(string content)
+        public async Task<IQueryable<INlmExternalLink>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
                 throw new ArgumentNullException("content");
             }
 
-            var internalHarvester = new InternalHarvester(content);
+            var internalMiner = new InternalMiner(content);
 
-            var doiItems = await internalHarvester.HarvestDoi();
-            var uriItems = await internalHarvester.HarvestUri();
-            var ftpItems = await internalHarvester.HarvestFtp();
-            var pmidItems = await internalHarvester.HarvestPmid();
-            var pmcidItems = await internalHarvester.HarvestPmcid();
+            var doiItems = await internalMiner.MineDoi();
+            var uriItems = await internalMiner.MineUri();
+            var ftpItems = await internalMiner.MineFtp();
+            var pmidItems = await internalMiner.MinePmid();
+            var pmcidItems = await internalMiner.MinePmcid();
 
             var items = new List<INlmExternalLink>();
             items.AddRange(pmcidItems);
@@ -60,16 +60,16 @@
             return result.AsQueryable();
         }
 
-        private class InternalHarvester
+        private class InternalMiner
         {
             private string content;
 
-            public InternalHarvester(string content)
+            public InternalMiner(string content)
             {
                 this.content = content;
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> HarvestUri()
+            public async Task<IEnumerable<INlmExternalLink>> MineUri()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(HttpPattern));
                 return matches.Select(item => new NlmExternalLinkResponseModel
@@ -79,7 +79,7 @@
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> HarvestFtp()
+            public async Task<IEnumerable<INlmExternalLink>> MineFtp()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(FtpPattern));
                 return matches.Select(item => new NlmExternalLinkResponseModel
@@ -89,7 +89,7 @@
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> HarvestDoi()
+            public async Task<IEnumerable<INlmExternalLink>> MineDoi()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(DoiPattern));
                 return matches.Select(item => new NlmExternalLinkResponseModel
@@ -99,7 +99,7 @@
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> HarvestPmid()
+            public async Task<IEnumerable<INlmExternalLink>> MinePmid()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(PmidPattern));
                 return matches.Select(item => new NlmExternalLinkResponseModel
@@ -109,7 +109,7 @@
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> HarvestPmcid()
+            public async Task<IEnumerable<INlmExternalLink>> MinePmcid()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(PmcidPattern));
                 return matches.Select(item => new NlmExternalLinkResponseModel

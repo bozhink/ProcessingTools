@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Tests.RegressionTests.Services.Fakes
+﻿namespace ProcessingTools.Data.Miners.Tests.RegressionTests.Services.Fakes
 {
     using System;
     using System.Collections.Generic;
@@ -8,31 +8,31 @@
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models.Contracts;
 
-    public class FakeInstitutionsDataService : IInstitutionsDataService
+    public class FakeProductsDataService : IProductsDataService
     {
         private const int NumberOfDataItems = 500;
 
-        public FakeInstitutionsDataService()
+        public FakeProductsDataService()
         {
-            this.Items = new HashSet<IInstitution>();
+            this.Items = new HashSet<IProduct>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IInstitution>();
+                var mockProduct = new Mock<IProduct>();
                 mockProduct.Setup(m => m.Id).Returns(i);
-                mockProduct.Setup(m => m.Name).Returns($"Institution {i}");
+                mockProduct.Setup(m => m.Name).Returns($"Product {i}");
 
                 this.Items.Add(mockProduct.Object);
             }
         }
 
-        public HashSet<IInstitution> Items { get; set; }
+        public HashSet<IProduct> Items { get; set; }
 
-        public void Add(IInstitution entity)
+        public void Add(IProduct entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitution> All()
+        public IQueryable<IProduct> All()
         {
             return this.Items.AsQueryable();
         }
@@ -42,19 +42,19 @@
             throw new NotImplementedException();
         }
 
-        public void Delete(IInstitution entity)
+        public void Delete(IProduct entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitution> Get(object id)
+        public IQueryable<IProduct> Get(object id)
         {
             return this.Items
                 .Where(p => p.Id == (int)id)
                 .AsQueryable();
         }
 
-        public IQueryable<IInstitution> Get(int skip, int take)
+        public IQueryable<IProduct> Get(int skip, int take)
         {
             return this.Items
                 .OrderBy(p => p.Id)
@@ -63,7 +63,7 @@
                 .AsQueryable();
         }
 
-        public void Update(IInstitution entity)
+        public void Update(IProduct entity)
         {
             throw new NotImplementedException();
         }
