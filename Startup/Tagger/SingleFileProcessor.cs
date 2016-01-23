@@ -679,8 +679,8 @@
             var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
 
             var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var harvester = new Bio.Harvesters.ExtractHcmrHarvester(requester);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result
+            var miner = new Bio.Data.Miners.ExtractHcmrDataMiner(requester);
+            var data = miner.Mine(harvestableDocument.TextContent).Result
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
                     Value = t.Content,
@@ -701,8 +701,8 @@
             var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
 
             var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var harvester = new Bio.Harvesters.EnvoTermsHarvester(service);
-            var data = harvester.Harvest(harvestableDocument.TextContent).Result
+            var miner = new Bio.Data.Miners.EnvoTermsDataMiner(service);
+            var data = miner.Mine(harvestableDocument.TextContent).Result
                 .Select(t => new EnvoTermResponseModel
                 {
                     EntityId = t.EntityId,

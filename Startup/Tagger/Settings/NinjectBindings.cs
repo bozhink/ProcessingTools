@@ -103,22 +103,22 @@
              * Harvesters bindings.
              */
 
-            this.Bind<Bio.Harvesters.Contracts.IBiorepositoryInstitutionalCodesHarvester>()
-                .To<Bio.Harvesters.BiorepositoryInstitutionalCodesHarvester>();
-            this.Bind<Bio.Harvesters.Contracts.IBiorepositoryInstitutionHarvester>()
-                .To<Bio.Harvesters.BiorepositoryInstitutionHarvester>();
-            this.Bind<Bio.Harvesters.Contracts.IEnvoTermsHarvester>()
-                .To<Bio.Harvesters.EnvoTermsHarvester>();
-            this.Bind<Bio.Harvesters.Contracts.IExtractHcmrHarvester>()
-                .To<Bio.Harvesters.ExtractHcmrHarvester>();
-            ////this.Bind<Bio.Harvesters.Contracts.IInstitutionalCodesHarvester>()
-            ////    .To<Bio.Harvesters.InstitutionalCodesHarvester>();
-            this.Bind<Bio.Harvesters.Contracts.IMorphologicalEpithetHarvester>()
-                .To<Bio.Harvesters.MorphologicalEpithetsHarvester>();
-            ////this.Bind<Bio.Harvesters.Contracts.ISpecimenCodesHarvester>()
-            ////    .To<Bio.Harvesters.SpecimenCodesHarvester>();
-            this.Bind<Bio.Harvesters.Contracts.ISpecimenCountHarvester>()
-                .To<Bio.Harvesters.SpecimenCountHarvester>();
+            this.Bind<Bio.Data.Miners.Contracts.IBiorepositoryInstitutionalCodesDataMiner>()
+                .To<Bio.Data.Miners.BiorepositoryInstitutionalCodesDataMiner>();
+            this.Bind<Bio.Data.Miners.Contracts.IBiorepositoryInstitutionDataMiner>()
+                .To<Bio.Data.Miners.BiorepositoryInstitutionDataMiner>();
+            this.Bind<Bio.Data.Miners.Contracts.IEnvoTermsDataMiner>()
+                .To<Bio.Data.Miners.EnvoTermsDataMiner>();
+            this.Bind<Bio.Data.Miners.Contracts.IExtractHcmrDataMiner>()
+                .To<Bio.Data.Miners.ExtractHcmrDataMiner>();
+            ////this.Bind<Bio.Data.Miners.Contracts.IInstitutionalCodesDataMiner>()
+            ////    .To<Bio.Data.Miners.InstitutionalCodesDataMiner>();
+            this.Bind<Bio.Data.Miners.Contracts.IMorphologicalEpithetDataMiner>()
+                .To<Bio.Data.Miners.MorphologicalEpithetsDataMiner>();
+            ////this.Bind<Bio.Data.Miners.Contracts.ISpecimenCodesDataMiner>()
+            ////    .To<Bio.Data.Miners.SpecimenCodesDataMiner>();
+            this.Bind<Bio.Data.Miners.Contracts.ISpecimenCountDataMiner>()
+                .To<Bio.Data.Miners.SpecimenCountDataMiner>();
 
             this.Bind<Bio.Taxonomy.Harvesters.Contracts.IHigherTaxaHarvester>()
                 .To<Bio.Taxonomy.Harvesters.HigherTaxaHarvester>();

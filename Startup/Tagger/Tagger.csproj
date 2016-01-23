@@ -170,6 +170,10 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
+      <Name>Bio.Data.Miners</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
       <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
       <Name>Data.Miners.Common</Name>
@@ -237,10 +241,6 @@
     <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
-      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
-      <Name>Bio.Harvesters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
