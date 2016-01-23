@@ -130,7 +130,7 @@
 
                         if (this.settings.TagEnvo)
                         {
-                            this.TagEnvo();
+                            this.InvokeProcessor<ITagEnvoController>(Messages.TagEnvironmentsMessage, kernel).Wait();
                         }
 
                         // Tag envo terms using envornment database
@@ -672,26 +672,6 @@
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
-        private void TagEnvo()
-        {
-            var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
-
-            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            var miner = new Bio.Data.Miners.ExtractHcmrDataMiner(requester);
-            var data = miner.Mine(textContent).Result
-                .Select(t => new EnvoExtractHcmrSerializableModel
-                {
-                    Value = t.Content,
-                    Type = string.Join("|", t.Types),
-                    Identifier = string.Join("|", t.Identifiers)
-                });
-
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, true, this.logger);
-
-            this.InvokeProcessor(Messages.TagEnvironmentsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
