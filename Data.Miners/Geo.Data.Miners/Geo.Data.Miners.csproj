@@ -33,7 +33,26 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
+    <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
+    <Compile Include="Contracts\IGeoNamesDataMiner.cs" />
+    <Compile Include="GeoEpithetsDataMiner.cs" />
+    <Compile Include="GeoNamesDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
+      <Name>Geo.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
