@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -11,10 +12,15 @@
 
     public class ResolveMediaTypesController : TaggerControllerFactory, IResolveMediaTypesController
     {
-        private IMediaTypeDataService service;
+        private readonly IMediaTypeDataService service;
 
         public ResolveMediaTypesController(IMediaTypeDataService service)
         {
+            if (service == null)
+            {
+                throw new ArgumentNullException("service");
+            }
+
             this.service = service;
         }
 

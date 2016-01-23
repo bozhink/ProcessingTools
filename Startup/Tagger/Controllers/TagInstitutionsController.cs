@@ -5,8 +5,8 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Data.Miners.Contracts;
 
     public class TagInstitutionsController : StringTaggerControllerFactory, ITagInstitutionsController
     {

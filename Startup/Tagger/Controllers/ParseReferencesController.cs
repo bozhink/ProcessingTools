@@ -17,8 +17,6 @@
             await parser.Parse();
 
             document.LoadXml(parser.Xml);
-
-            System.Console.WriteLine("ref parser");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
@@ -16,10 +17,15 @@
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
     {
         private const string XPath = "/*";
-        private INlmExternalLinksDataMiner miner;
+        private readonly INlmExternalLinksDataMiner miner;
 
         public TagWebLinksController(INlmExternalLinksDataMiner miner)
         {
+            if (miner == null)
+            {
+                throw new ArgumentNullException("miner");
+            }
+
             this.miner = miner;
         }
 
