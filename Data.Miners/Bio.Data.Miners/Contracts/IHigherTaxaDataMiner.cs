@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Miners.Common.Contracts;
 
-    public interface IMorphologicalEpithetDataMiner : IStringDataMiner
+    public interface IHigherTaxaDataMiner : IStringDataMiner
     {
     }
 }

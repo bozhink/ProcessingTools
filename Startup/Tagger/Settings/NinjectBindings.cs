@@ -113,7 +113,7 @@
                 .To<Bio.Data.Miners.ExtractHcmrDataMiner>();
             ////this.Bind<Bio.Data.Miners.Contracts.IInstitutionalCodesDataMiner>()
             ////    .To<Bio.Data.Miners.InstitutionalCodesDataMiner>();
-            this.Bind<Bio.Data.Miners.Contracts.IMorphologicalEpithetDataMiner>()
+            this.Bind<Bio.Data.Miners.Contracts.IMorphologicalEpithetsDataMiner>()
                 .To<Bio.Data.Miners.MorphologicalEpithetsDataMiner>();
             ////this.Bind<Bio.Data.Miners.Contracts.ISpecimenCodesDataMiner>()
             ////    .To<Bio.Data.Miners.SpecimenCodesDataMiner>();

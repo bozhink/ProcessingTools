@@ -11,9 +11,9 @@
 
     public class TagMorphologicalEpithetsController : TaggerControllerFactory, ITagMorphologicalEpithetsController
     {
-        private IMorphologicalEpithetDataMiner miner;
+        private IMorphologicalEpithetsDataMiner miner;
 
-        public TagMorphologicalEpithetsController(IMorphologicalEpithetDataMiner miner)
+        public TagMorphologicalEpithetsController(IMorphologicalEpithetsDataMiner miner)
         {
             this.miner = miner;
         }
