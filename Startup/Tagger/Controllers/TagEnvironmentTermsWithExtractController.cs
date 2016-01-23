@@ -13,12 +13,12 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class TagEnvoController : TaggerControllerFactory, ITagEnvoController
+    public class TagEnvironmentTermsWithExtractController : TaggerControllerFactory, ITagEnvironmentTermsWithExtractController
     {
         private const string XPath = "/*";
         private readonly IExtractHcmrDataMiner miner;
 
-        public TagEnvoController(IExtractHcmrDataMiner miner)
+        public TagEnvironmentTermsWithExtractController(IExtractHcmrDataMiner miner)
         {
             if (miner == null)
             {

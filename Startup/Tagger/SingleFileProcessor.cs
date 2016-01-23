@@ -130,7 +130,7 @@
 
                         if (this.settings.TagEnvo)
                         {
-                            this.InvokeProcessor<ITagEnvoController>(Messages.TagEnvironmentsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(Messages.TagEnvironmentsMessage, kernel).Wait();
                         }
 
                         // Tag envo terms using envornment database
