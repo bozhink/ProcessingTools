@@ -158,7 +158,7 @@
                         // Tag institutions, institutional codes, and specimen codes
                         if (this.settings.TagCodes)
                         {
-                            this.TagCodes();
+                            this.InvokeProcessor<ITagCodesController>(Messages.TagCodesMessage, kernel).Wait();
                         }
 
                         // Do something as an experimental feature
@@ -167,7 +167,7 @@
                             this.logger?.Log("\n\n\tTest\n\n");
                             var test = new Test(this.document.Xml);
 
-                            test.MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure();
+                            ////test... do somethig.
 
                             this.document.Xml = test.Xml;
                         }
@@ -617,39 +617,6 @@
                 this.fileProcessor.InputFileName,
                 this.fileProcessor.OutputFileName,
                 this.settings.QueryFileName);
-        }
-
-        // TODO
-        private void TagCodes()
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            this.logger?.Log(Messages.TagCodesMessage);
-
-            try
-            {
-                var xpathProvider = new XPathProvider(this.settings.Config);
-                var dataProvider = new DataProvider(this.settings.Config, this.document.Xml, this.logger);
-
-                try
-                {
-                    Codes codes = new Codes(this.settings.Config, this.document.Xml, this.logger);
-                    codes.TagInstitutions(xpathProvider, dataProvider);
-                    codes.TagInstitutionalCodes(xpathProvider, dataProvider);
-
-                    this.document.Xml = codes.Xml;
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
-
-            this.PrintElapsedTime(timer);
         }
 
         private string TagFloats(string xmlContent)
