@@ -8,6 +8,7 @@
     using Bio.Data.Miners.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
+    using Extensions;
     using ProcessingTools.Contracts;
 
     public class HigherTaxaTagger : TaxaTagger
@@ -28,7 +29,8 @@
         {
             return Task.Run(() =>
             {
-                var data = this.miner.Mine(this.TextContent).Result;
+                var textContent = this.XmlDocument.GetTextContent(this.Config.TextContentXslTransform);
+                var data = this.miner.Mine(textContent).Result;
 
                 IEnumerable<string> taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
 

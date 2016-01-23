@@ -87,7 +87,6 @@
     <Compile Include="Base.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
-    <Compile Include="HarvestableDocument.cs" />
     <Compile Include="Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
     <Compile Include="Extensions\XmlNormalizer.cs" />

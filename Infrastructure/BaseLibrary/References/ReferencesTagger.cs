@@ -10,7 +10,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class ReferencesTagger : HarvestableDocument, ITagger
+    public class ReferencesTagger : Base, ITagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 

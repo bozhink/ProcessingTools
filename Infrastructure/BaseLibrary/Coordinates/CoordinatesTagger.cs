@@ -9,7 +9,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class CoordinatesTagger : HarvestableDocument, ITagger
+    public class CoordinatesTagger : Base, ITagger
     {
         private const string LocalityCoordinatesTagName = "locality-coordinates";
         private readonly XmlElement localityCoordinatesNode = null;
@@ -36,7 +36,7 @@
 
                 string replace = replacementNode.OuterXml;
 
-                string xmlText = this.TextContent;
+                string xmlText = this.XmlDocument.GetTextContent(this.Config.TextContentXslTransform);
 
                 List<string> coordinateStrings = new List<string>();
 

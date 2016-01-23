@@ -17,7 +17,7 @@ namespace ProcessingTools.BaseLibrary
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class Codes : HarvestableDocument
+    public class Codes : Base
     {
         private const string SpecimenCodeTagName = "specimen_code";
         private const string InstitutionTagName = "institution";
@@ -172,7 +172,7 @@ namespace ProcessingTools.BaseLibrary
         public List<SpecimenCode> GetPrefixNumericCodes()
         {
             List<SpecimenCode> prefixNumericSpecimenCodes = new List<SpecimenCode>();
-            string textContent = this.TextContent;
+            string textContent = this.XmlDocument.GetTextContent(this.Config.TextContentXslTransform);
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {

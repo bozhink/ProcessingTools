@@ -17,6 +17,7 @@
     using Common.Constants;
     using Contracts;
     using DocumentProvider;
+    using Extensions;
     using Models;
     using Ninject;
     using ProcessingTools.Contracts;
@@ -666,8 +667,8 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = miner.Mine(harvestableDocument.TextContent).Result;
+            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+            var data = miner.Mine(textContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
@@ -678,9 +679,9 @@
         {
             var requester = new Bio.ServiceClient.ExtractHcmr.ExtractHcmrDataRequester();
 
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
             var miner = new Bio.Data.Miners.ExtractHcmrDataMiner(requester);
-            var data = miner.Mine(harvestableDocument.TextContent).Result
+            var data = miner.Mine(textContent).Result
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
                     Value = t.Content,
@@ -700,9 +701,9 @@
             var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(db);
             var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
 
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
+            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
             var miner = new Bio.Data.Miners.EnvoTermsDataMiner(service);
-            var data = miner.Mine(harvestableDocument.TextContent).Result
+            var data = miner.Mine(textContent).Result
                 .Select(t => new EnvoTermResponseModel
                 {
                     EntityId = t.EntityId,
@@ -734,8 +735,8 @@
 
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-            var data = miner.Mine(harvestableDocument.TextContent).Result;
+            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+            var data = miner.Mine(textContent).Result;
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagProductsMessage, tagger).Wait();
@@ -774,8 +775,8 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "altitude");
 
-                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = miner.Mine(harvestableDocument.TextContent).Result;
+                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+                var data = miner.Mine(textContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
@@ -789,8 +790,8 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "geographic deviation");
 
-                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = miner.Mine(harvestableDocument.TextContent).Result;
+                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+                var data = miner.Mine(textContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
@@ -804,8 +805,8 @@
                 XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
                 tagModel.SetAttribute("content-type", "quantity");
 
-                var harvestableDocument = new HarvestableDocument(this.settings.Config, this.document.Xml);
-                var data = miner.Mine(harvestableDocument.TextContent).Result;
+                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+                var data = miner.Mine(textContent).Result;
 
                 var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 

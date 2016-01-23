@@ -8,7 +8,7 @@
     using Contracts;
     using Extensions;
 
-    public class Flora : HarvestableDocument
+    public class Flora : Base
     {
         public Flora(Config config, string xml)
             : base(config, xml)

@@ -8,11 +8,10 @@
 
     using Bio.Taxonomy.Services.Data.Contracts;
     using Configurator;
-    using Contracts;
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public abstract class TaxaTagger : HarvestableDocument, ITagger
+    public abstract class TaxaTagger : Base, ITagger
     {
         private IRepositoryDataService<string> blackList;
 

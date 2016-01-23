@@ -8,6 +8,7 @@
     using BaseLibrary;
     using Contracts;
     using Data.Miners.Contracts;
+    using Extensions;
     using Factories;
     using Models;
     using ProcessingTools.Contracts;
@@ -24,8 +25,8 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var harvestableDocument = new HarvestableDocument(settings.Config, document.OuterXml);
-            var data = (await this.miner.Mine(harvestableDocument.TextContent))
+            var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
+            var data = (await this.miner.Mine(textContent))
                 .Select(i => new ExternalLinkSerializableModel
                 {
                     ExternalLinkType = i.Type.GetValue(),

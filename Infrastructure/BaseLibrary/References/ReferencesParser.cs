@@ -8,7 +8,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class ReferencesParser : HarvestableDocument, IParser
+    public class ReferencesParser : Base, IParser
     {
         private ILogger logger;
 

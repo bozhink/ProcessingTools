@@ -4,7 +4,7 @@
 
     using Contracts;
 
-    public class QuentinFlora : HarvestableDocument
+    public class QuentinFlora : Base
     {
         public QuentinFlora(IBase baseObject)
             : base(baseObject)

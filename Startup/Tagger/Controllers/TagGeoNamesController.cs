@@ -4,6 +4,7 @@
     using System.Xml;
 
     using Contracts;
+    using Extensions;
     using Factories;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
@@ -25,8 +26,8 @@
 
             var xpathProvider = new XPathProvider(settings.Config);
 
-            var harvestableDocument = new HarvestableDocument(settings.Config, document.OuterXml);
-            var data = await this.miner.Mine(harvestableDocument.TextContent);
+            var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
+            var data = await this.miner.Mine(textContent);
 
             var tagger = new StringTagger(document.OuterXml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
 

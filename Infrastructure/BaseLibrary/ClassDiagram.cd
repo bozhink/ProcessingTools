@@ -8,13 +8,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ProcessingTools.BaseLibrary.HarvestableDocument" Collapsed="true">
-    <Position X="13.25" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAQAAAAEAA=</HashCode>
-      <FileName>HarvestableDocument.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ProcessingTools.BaseLibrary.Codes" Collapsed="true">
     <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
@@ -126,7 +119,7 @@
   <Class Name="ProcessingTools.BaseLibrary.References.ReferencesTagger" Collapsed="true">
     <Position X="21.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAACAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAACAAAAAAAAABAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>References\ReferencesTagger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -171,7 +164,7 @@
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.LowerTaxaParser" Collapsed="true">
     <Position X="34.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAABCAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAGEAAAEAAAAAAAAAAAAgAAAABCAAA=</HashCode>
       <FileName>Taxonomy\TaxaParser\LowerTaxaParser.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -179,7 +172,7 @@
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.HigherTaxaTagger" Collapsed="true">
     <Position X="14.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAoAAACAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAgAAACAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\TaxaTagger\HigherTaxaTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -193,7 +186,7 @@
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TaxaTagger" Collapsed="true">
     <Position X="15.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAhAAAAAAQAAAAAAAAAAAAAAAABwAAAAEA=</HashCode>
+      <HashCode>EAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAwAAAAEA=</HashCode>
       <FileName>Taxonomy\TaxaTagger\TaxaTagger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

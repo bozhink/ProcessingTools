@@ -10,7 +10,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class DataProvider : HarvestableDocument, IDataProvider
+    public class DataProvider : Base, IDataProvider
     {
         private ILogger logger;
 

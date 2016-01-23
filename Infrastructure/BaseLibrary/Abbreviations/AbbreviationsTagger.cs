@@ -6,10 +6,9 @@
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using ProcessingTools.Contracts;
 
-    public class AbbreviationsTagger : HarvestableDocument, ITagger
+    public class AbbreviationsTagger : Base, ITagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
 
