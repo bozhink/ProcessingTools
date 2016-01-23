@@ -216,12 +216,6 @@ Output file name: {1}
   <data name="TagDoiMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagdoimessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="TagEnvironmentsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagenvironmentsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagEnvoTermsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagenvotermsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="TagFloatsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\tagfloatsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -266,5 +260,11 @@ Output file name: {1}
   </data>
   <data name="WriteOutputFileMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\writeoutputfilemessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TagEnvironmentTermsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\tagenvironmenttermsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TagEnvironmentTermsWithExtractMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>messagetexts\tagenvironmenttermswithextractmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

@@ -129,13 +129,13 @@
 
                         if (this.settings.TagEnvironmentTermsWithExtract)
                         {
-                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(Messages.TagEnvironmentsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(Messages.TagEnvironmentTermsWithExtractMessage, kernel).Wait();
                         }
 
                         // Tag envo terms using envornment database
                         if (this.settings.TagEnvironmentTerms)
                         {
-                            this.InvokeProcessor<ITagEnvironmentTermsController>(Messages.TagEnvoTermsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagEnvironmentTermsController>(Messages.TagEnvironmentTermsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagQuantities)

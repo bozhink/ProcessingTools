@@ -393,8 +393,8 @@
     <Content Include="MessageTexts\TagCoordinatesMessage.txt" />
     <Content Include="MessageTexts\TagDatesMessage.txt" />
     <Content Include="MessageTexts\TagDoiMessage.txt" />
-    <Content Include="MessageTexts\TagEnvironmentsMessage.txt" />
-    <Content Include="MessageTexts\TagEnvoTermsMessage.txt" />
+    <Content Include="MessageTexts\TagEnvironmentTermsWithExtractMessage.txt" />
+    <Content Include="MessageTexts\TagEnvironmentTermsMessage.txt" />
     <Content Include="MessageTexts\TagFloatsMessage.txt" />
     <Content Include="MessageTexts\TagGeoEpithetsMessage.txt" />
     <Content Include="MessageTexts\TagGeographicDeviationsMessage.txt" />

@@ -427,23 +427,23 @@ namespace ProcessingTools.MainProgram {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///    Tag envo terms using EXTRACT.
+        ///    Tag envo terms using local database.
         ///.
         /// </summary>
-        internal static string TagEnvironmentsMessage {
+        internal static string TagEnvironmentTermsMessage {
             get {
-                return ResourceManager.GetString("TagEnvironmentsMessage", resourceCulture);
+                return ResourceManager.GetString("TagEnvironmentTermsMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///    Tag envo terms using local database.
+        ///    Tag envo terms using EXTRACT.
         ///.
         /// </summary>
-        internal static string TagEnvoTermsMessage {
+        internal static string TagEnvironmentTermsWithExtractMessage {
             get {
-                return ResourceManager.GetString("TagEnvoTermsMessage", resourceCulture);
+                return ResourceManager.GetString("TagEnvironmentTermsWithExtractMessage", resourceCulture);
             }
         }
         
