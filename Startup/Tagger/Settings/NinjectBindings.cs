@@ -123,12 +123,12 @@
             this.Bind<Bio.Taxonomy.Harvesters.Contracts.IHigherTaxaHarvester>()
                 .To<Bio.Taxonomy.Harvesters.HigherTaxaHarvester>();
 
-            ////this.Bind<Geo.Harvesters.Contracts.ICoordinatesHarvester>()
-            ////    .To<Geo.Harvesters.CoordinatesHarvester>();
-            this.Bind<Geo.Harvesters.Contracts.IGeoEpithetsHarvester>()
-                .To<Geo.Harvesters.GeoEpithetsHarvester>();
-            this.Bind<Geo.Harvesters.Contracts.IGeoNamesHarvester>()
-                .To<Geo.Harvesters.GeoNamesHarvester>();
+            ////this.Bind<Geo.Data.Miners.Contracts.ICoordinatesDataMiner>()
+            ////    .To<Geo.Data.Miners.Contracts.CoordinatesDataMiner>();
+            this.Bind<Geo.Data.Miners.Contracts.IGeoEpithetsDataMiner>()
+                .To<Geo.Data.Miners.GeoEpithetsDataMiner>();
+            this.Bind<Geo.Data.Miners.Contracts.IGeoNamesDataMiner>()
+                .To<Geo.Data.Miners.GeoNamesDataMiner>();
 
             this.Bind<Harvesters.Contracts.IAltitudesHarvester>()
                 .To<Harvesters.AltitudesHarvester>();

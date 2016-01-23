@@ -170,6 +170,14 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
+      <Name>Geo.Data.Miners</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>
@@ -237,10 +245,6 @@
     <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
       <Name>Bio.Taxonomy.Harvesters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
-      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
-      <Name>Geo.Harvesters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>

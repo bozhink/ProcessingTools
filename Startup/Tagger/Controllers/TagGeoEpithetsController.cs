@@ -7,15 +7,15 @@
     using Factories;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Geo.Harvesters.Contracts;
+    using ProcessingTools.Geo.Data.Miners.Contracts;
 
     public class TagGeoEpithetsController : TaggerControllerFactory, ITagGeoEpithetsController
     {
-        private IGeoEpithetsHarvester harvester;
+        private IGeoEpithetsDataMiner miner;
 
-        public TagGeoEpithetsController(IGeoEpithetsHarvester harvester)
+        public TagGeoEpithetsController(IGeoEpithetsDataMiner miner)
         {
-            this.harvester = harvester;
+            this.miner = miner;
         }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
@@ -26,7 +26,7 @@
             var xpathProvider = new XPathProvider(settings.Config);
 
             var harvestableDocument = new HarvestableDocument(settings.Config, document.OuterXml);
-            var data = await this.harvester.Harvest(harvestableDocument.TextContent);
+            var data = await this.miner.Mine(harvestableDocument.TextContent);
 
             var tagger = new StringTagger(document.OuterXml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
 
