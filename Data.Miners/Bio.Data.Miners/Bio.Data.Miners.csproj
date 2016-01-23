@@ -33,6 +33,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiorepositoryInstitutionalCodesDataMiner.cs" />
+    <Compile Include="BiorepositoryInstitutionDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoryInstitutionalCodesDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoryInstitutionDataMiner.cs" />
     <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
@@ -41,6 +43,8 @@
     <Compile Include="Contracts\IMorphologicalEpithetDataMiner.cs" />
     <Compile Include="Contracts\ISpecimenCodesDataMiner.cs" />
     <Compile Include="Contracts\ISpecimenCountDataMiner.cs" />
+    <Compile Include="EnvoTermsDataMiner.cs" />
+    <Compile Include="ExtractHcmrDataMiner.cs" />
     <Compile Include="Models\BiorepositoryInstitution.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCode.cs" />
     <Compile Include="Models\Contracts\IBiorepositoryInstitution.cs" />
@@ -49,7 +53,9 @@
     <Compile Include="Models\Contracts\IExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\EnvoTerm.cs" />
     <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
+    <Compile Include="MorphologicalEpithetsDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecimenCountDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
