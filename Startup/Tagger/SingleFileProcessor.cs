@@ -140,7 +140,11 @@
 
                         if (this.settings.TagQuantities)
                         {
-                            this.TagQuantities();
+                            this.InvokeProcessor<ITagAltitudesController>(Messages.TagAltitudesMessage, kernel).Wait();
+
+                            this.InvokeProcessor<ITagGeographicDeviationsController>(Messages.TagGeographicDeviationsMessage, kernel).Wait();
+
+                            this.InvokeProcessor<ITagQuantitiesController>(Messages.TagQuantitiesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagDates)
@@ -694,56 +698,6 @@
             var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
             this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
-        }
-
-        private void TagQuantities()
-        {
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            ////{
-            ////    var miner = new Data.Miners.AltitudesDataMiner();
-
-            ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            ////    tagModel.SetAttribute("content-type", "altitude");
-
-            ////    var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            ////    var data = miner.Mine(textContent).Result;
-
-            ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-
-            ////    this.InvokeProcessor(Messages.TagAltitudesMessage, tagger).Wait();
-            ////    this.document.Xml = tagger.Xml;
-            ////}
-
-            ////{
-            ////    var miner = new Data.Miners.GeographicDeviationsDataMiner();
-
-            ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            ////    tagModel.SetAttribute("content-type", "geographic deviation");
-
-            ////    var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            ////    var data = miner.Mine(textContent).Result;
-
-            ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-
-            ////    this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger).Wait();
-            ////    this.document.Xml = tagger.Xml;
-            ////}
-
-            {
-                var miner = new Data.Miners.QuantitiesDataMiner();
-
-                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-                tagModel.SetAttribute("content-type", "quantity");
-
-                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-                var data = miner.Mine(textContent).Result;
-
-                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-
-                this.InvokeProcessor(Messages.TagQuantitiesMessage, tagger).Wait();
-                this.document.Xml = tagger.Xml;
-            }
         }
 
         private string TagReferences(string xmlContent)

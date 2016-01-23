@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
-    <Compile Include="Contracts\ITagGraphicDeviationsController.cs" />
+    <Compile Include="Contracts\ITagGeographicDeviationsController.cs" />
     <Compile Include="Contracts\IInitialFormatController.cs" />
     <Compile Include="Contracts\IParseCoordinatesController.cs" />
     <Compile Include="Contracts\IParseReferencesController.cs" />
@@ -113,8 +113,9 @@
     <Compile Include="Contracts\ITagInstitutionsController.cs" />
     <Compile Include="Contracts\ITagMorphologicalEpithetsController.cs" />
     <Compile Include="Contracts\ITagProductsController.cs" />
+    <Compile Include="Contracts\ITagQuantitiesController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
-    <Compile Include="Controllers\TagGraphicDeviationsController.cs" />
+    <Compile Include="Controllers\TagGeographicDeviationsController.cs" />
     <Compile Include="Controllers\InitialFormatController.cs" />
     <Compile Include="Controllers\ParseCoordinatesController.cs" />
     <Compile Include="Controllers\ParseReferencesController.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Controllers\TagInstitutionsController.cs" />
     <Compile Include="Controllers\TagMorphologicalEpithetsController.cs" />
     <Compile Include="Controllers\TagProductsController.cs" />
+    <Compile Include="Controllers\TagQuantitiesController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />

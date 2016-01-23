@@ -8,12 +8,12 @@
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
 
-    public class TagGraphicDeviationsController : StringTaggerControllerFactory, ITagGraphicDeviationsController
+    public class TagQuantitiesController : StringTaggerControllerFactory, ITagQuantitiesController
     {
-        private readonly IGeographicDeviationsDataMiner miner;
+        private readonly IQuantitiesDataMiner miner;
         private readonly XmlElement tagModel;
 
-        public TagGraphicDeviationsController(IGeographicDeviationsDataMiner miner)
+        public TagQuantitiesController(IQuantitiesDataMiner miner)
         {
             if (miner == null)
             {
@@ -24,7 +24,7 @@
 
             XmlDocument document = new XmlDocument();
             this.tagModel = document.CreateElement("named-content");
-            this.tagModel.SetAttribute("content-type", "geographic deviation");
+            this.tagModel.SetAttribute("content-type", "quantity");
         }
 
         protected override IStringDataMiner Miner => this.miner;
