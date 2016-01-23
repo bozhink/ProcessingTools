@@ -700,35 +700,35 @@
         {
             var xpathProvider = new XPathProvider(this.settings.Config);
 
-            {
-                var miner = new Data.Miners.AltitudesDataMiner();
+            ////{
+            ////    var miner = new Data.Miners.AltitudesDataMiner();
 
-                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-                tagModel.SetAttribute("content-type", "altitude");
+            ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            ////    tagModel.SetAttribute("content-type", "altitude");
 
-                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-                var data = miner.Mine(textContent).Result;
+            ////    var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+            ////    var data = miner.Mine(textContent).Result;
 
-                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
+            ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
-                this.InvokeProcessor(Messages.TagAltitudesMessage, tagger).Wait();
-                this.document.Xml = tagger.Xml;
-            }
+            ////    this.InvokeProcessor(Messages.TagAltitudesMessage, tagger).Wait();
+            ////    this.document.Xml = tagger.Xml;
+            ////}
 
-            {
-                var miner = new Data.Miners.GeographicDeviationsDataMiner();
+            ////{
+            ////    var miner = new Data.Miners.GeographicDeviationsDataMiner();
 
-                XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-                tagModel.SetAttribute("content-type", "geographic deviation");
+            ////    XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
+            ////    tagModel.SetAttribute("content-type", "geographic deviation");
 
-                var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-                var data = miner.Mine(textContent).Result;
+            ////    var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
+            ////    var data = miner.Mine(textContent).Result;
 
-                var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
+            ////    var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
 
-                this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger).Wait();
-                this.document.Xml = tagger.Xml;
-            }
+            ////    this.InvokeProcessor(Messages.TagGeographicDeviationsMessage, tagger).Wait();
+            ////    this.document.Xml = tagger.Xml;
+            ////}
 
             {
                 var miner = new Data.Miners.QuantitiesDataMiner();
