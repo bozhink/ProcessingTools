@@ -119,6 +119,7 @@
     <Compile Include="Controllers\TagInstitutionsController.cs" />
     <Compile Include="Controllers\TagMorphologicalEpithetsController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
+    <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="Messages.Designer.cs">
