@@ -8,11 +8,11 @@
     using Attributes;
     using BaseLibrary;
     using Contracts;
-    using Data.Miners.Contracts;
-    using Extensions;
     using Factories;
     using Models;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Extensions;
 
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
     {

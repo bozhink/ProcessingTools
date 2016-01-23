@@ -8,7 +8,6 @@
     using System.Xml;
 
     using BaseLibrary;
-    using BaseLibrary.Abbreviations;
     using BaseLibrary.Floats;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
@@ -17,7 +16,6 @@
     using Common.Constants;
     using Contracts;
     using DocumentProvider;
-    using Extensions;
     using Ninject;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -154,7 +152,7 @@
 
                         if (this.settings.TagAbbreviations)
                         {
-                            this.TagAbbreviations();
+                            this.InvokeProcessor<ITagAbbreviationsController>(Messages.TagAbbreviationsMessage, kernel).Wait();
                         }
 
                         // Tag institutions, institutional codes, and specimen codes
@@ -619,13 +617,6 @@
                 this.fileProcessor.InputFileName,
                 this.fileProcessor.OutputFileName,
                 this.settings.QueryFileName);
-        }
-
-        private void TagAbbreviations()
-        {
-            var tagger = new AbbreviationsTagger(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.TagAbbreviationsMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
         }
 
         // TODO
