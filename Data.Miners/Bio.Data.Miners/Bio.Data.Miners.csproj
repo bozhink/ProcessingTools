@@ -33,6 +33,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IBiorepositoryInstitutionalCodesDataMiner.cs" />
+    <Compile Include="Contracts\IBiorepositoryInstitutionDataMiner.cs" />
+    <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
+    <Compile Include="Contracts\IExtractHcmrDataMiner.cs" />
+    <Compile Include="Contracts\IInstitutionalCodesDataMiner.cs" />
+    <Compile Include="Contracts\IMorphologicalEpithetDataMiner.cs" />
+    <Compile Include="Contracts\ISpecimenCodesDataMiner.cs" />
+    <Compile Include="Contracts\ISpecimenCountDataMiner.cs" />
     <Compile Include="Models\BiorepositoryInstitution.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCode.cs" />
     <Compile Include="Models\Contracts\IBiorepositoryInstitution.cs" />
@@ -89,9 +97,7 @@
       <Name>Data.Miners.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
