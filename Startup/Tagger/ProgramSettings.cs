@@ -47,7 +47,7 @@
             this.TagDates = false;
             this.TagDoi = false;
             this.TagEnvironments = false;
-            this.TagEnvo = false;
+            this.TagEnvironmentTermsWithExtract = false;
             this.TagFloats = false;
             this.TagMorphologicalEpithets = false;
             this.TagGeoNames = false;
@@ -150,7 +150,7 @@
 
         public bool TagEnvironments { get; set; }
 
-        public bool TagEnvo { get; set; }
+        public bool TagEnvironmentTermsWithExtract { get; set; }
 
         public bool TagFloats { get; set; }
 

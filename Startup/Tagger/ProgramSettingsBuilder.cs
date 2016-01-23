@@ -369,7 +369,7 @@
                     }
                     else if (args[item].CompareTo("--envo") == 0)
                     {
-                        this.Settings.TagEnvo = true;
+                        this.Settings.TagEnvironmentTermsWithExtract = true;
                     }
                     else if (args[item].CompareTo("--validate-taxa") == 0)
                     {

@@ -767,19 +767,19 @@
         }
 
         [Test]
-        public void ProgramSettings_TagEnvoPropertyInNewInstance_ShouldBeFalse()
+        public void ProgramSettings_TagEnvironmentTermsWithExtractPropertyInNewInstance_ShouldBeFalse()
         {
-            Assert.IsFalse(this.programSettings.TagEnvo, DefaultValueShouldBeFalseMessage);
+            Assert.IsFalse(this.programSettings.TagEnvironmentTermsWithExtract, DefaultValueShouldBeFalseMessage);
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfTagEnvoProperty_ShouldBePersistent()
+        public void ProgramSettings_ValidChangesOfTagEnvironmentTermsWithExtractProperty_ShouldBePersistent()
         {
-            this.programSettings.TagEnvo = true;
-            Assert.IsTrue(this.programSettings.TagEnvo, ValueShouldBeTrueMessage);
+            this.programSettings.TagEnvironmentTermsWithExtract = true;
+            Assert.IsTrue(this.programSettings.TagEnvironmentTermsWithExtract, ValueShouldBeTrueMessage);
 
-            this.programSettings.TagEnvo = false;
-            Assert.IsFalse(this.programSettings.TagEnvo, ValueShouldBeFalseMessage);
+            this.programSettings.TagEnvironmentTermsWithExtract = false;
+            Assert.IsFalse(this.programSettings.TagEnvironmentTermsWithExtract, ValueShouldBeFalseMessage);
         }
 
         [Test]

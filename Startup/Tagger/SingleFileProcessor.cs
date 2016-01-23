@@ -128,7 +128,7 @@
                             this.InvokeProcessor<ITagProductsController>(Messages.TagProductsMessage, kernel).Wait();
                         }
 
-                        if (this.settings.TagEnvo)
+                        if (this.settings.TagEnvironmentTermsWithExtract)
                         {
                             this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(Messages.TagEnvironmentsMessage, kernel).Wait();
                         }
