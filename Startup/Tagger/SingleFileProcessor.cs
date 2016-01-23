@@ -11,7 +11,6 @@
     using BaseLibrary.Floats;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
-    using BaseLibrary.ZooBank;
     using Bio.Taxonomy.Types;
     using Common.Constants;
     using Contracts;
@@ -57,7 +56,7 @@
                     }
                     else if (this.settings.ZoobankGenerateRegistrationXml)
                     {
-                        this.ZooBankGenerateRegistrationXml();
+                        this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(Messages.GenerateRegistrationXmlForZooBankMessage, kernel).Wait();
                     }
                     else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
                     {
@@ -664,13 +663,6 @@
                     this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
                     this.fileProcessor.Write(this.document, null, null);
                 });
-        }
-
-        private void ZooBankGenerateRegistrationXml()
-        {
-            var generator = new ZoobankRegistrationXmlGenerator(this.settings.Config, this.document.Xml);
-            this.InvokeProcessor(Messages.GenerateRegistrationXmlForZooBankMessage, generator).Wait();
-            this.document.Xml = generator.Xml;
         }
     }
 }
