@@ -125,7 +125,7 @@
 
                         if (this.settings.TagProducts)
                         {
-                            this.TagProducts();
+                            this.InvokeProcessor<ITagProductsController>(Messages.TagProductsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagEnvo)
@@ -720,26 +720,6 @@
 
             var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, false, this.logger);
             this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
-        private void TagProducts()
-        {
-            var db = new Data.DataDbContext();
-            var repository = new Data.Repositories.EfDataGenericRepository<Data.Models.Product>(db);
-            var service = new Services.Data.ProductsDataService(repository);
-            var miner = new Data.Miners.ProductsDataMiner(service);
-
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "product");
-
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            var data = miner.Mine(textContent).Result;
-
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagProductsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 
