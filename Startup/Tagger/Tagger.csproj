@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
+    <Compile Include="Contracts\ITagDatesController.cs" />
     <Compile Include="Contracts\ITagGeographicDeviationsController.cs" />
     <Compile Include="Contracts\IInitialFormatController.cs" />
     <Compile Include="Contracts\IParseCoordinatesController.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Contracts\ITagProductsController.cs" />
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Controllers\TagDatesController.cs" />
     <Compile Include="Controllers\TagGeographicDeviationsController.cs" />
     <Compile Include="Controllers\InitialFormatController.cs" />
     <Compile Include="Controllers\ParseCoordinatesController.cs" />

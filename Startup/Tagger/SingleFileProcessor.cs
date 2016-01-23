@@ -149,7 +149,7 @@
 
                         if (this.settings.TagDates)
                         {
-                            this.TagDates();
+                            this.InvokeProcessor<ITagDatesController>(Messages.TagDatesMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagAbbreviations)
@@ -659,23 +659,6 @@
             }
 
             this.PrintElapsedTime(timer);
-        }
-
-        private void TagDates()
-        {
-            var miner = new Data.Miners.DatesDataMiner();
-
-            XmlElement tagModel = this.document.XmlDocument.CreateElement("named-content");
-            tagModel.SetAttribute("content-type", "date");
-
-            var xpathProvider = new XPathProvider(this.settings.Config);
-
-            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            var data = miner.Mine(textContent).Result;
-
-            var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
-            this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
         }
 
         private string TagFloats(string xmlContent)
