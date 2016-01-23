@@ -242,10 +242,6 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
-      <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
-      <Name>Bio.Taxonomy.Harvesters</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
       <Name>Harvesters.Common</Name>

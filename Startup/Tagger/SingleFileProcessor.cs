@@ -751,8 +751,8 @@
 
         private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList, Bio.Taxonomy.Services.Data.XmlListDataService whiteList)
         {
-            var harvester = new Bio.Taxonomy.Harvesters.HigherTaxaHarvester(whiteList);
-            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, harvester, blackList, this.logger);
+            var miner = new Bio.Data.Miners.HigherTaxaDataMiner(whiteList);
+            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, miner, blackList, this.logger);
             this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }

@@ -31,27 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IHigherTaxaHarvester.cs" />
-    <Compile Include="HigherTaxaHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
-      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
-      <Name>Bio.Taxonomy.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

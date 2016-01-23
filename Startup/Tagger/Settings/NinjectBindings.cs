@@ -56,7 +56,6 @@
 
             this.Bind<Bio.Taxonomy.ServiceClient.Gbif.Contracts.IGbifDataRequester>()
                 .To<Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester>();
-
             this.Bind<Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Contracts.IPaleobiologyDatabaseDataRequester>()
                 .To<Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.PaleobiologyDatabaseDataRequester>();
 
@@ -120,8 +119,8 @@
             this.Bind<Bio.Data.Miners.Contracts.ISpecimenCountDataMiner>()
                 .To<Bio.Data.Miners.SpecimenCountDataMiner>();
 
-            this.Bind<Bio.Taxonomy.Harvesters.Contracts.IHigherTaxaHarvester>()
-                .To<Bio.Taxonomy.Harvesters.HigherTaxaHarvester>();
+            this.Bind<Bio.Data.Miners.Contracts.IHigherTaxaDataMiner>()
+                .To<Bio.Data.Miners.HigherTaxaDataMiner>();
 
             ////this.Bind<Geo.Data.Miners.Contracts.ICoordinatesDataMiner>()
             ////    .To<Geo.Data.Miners.Contracts.CoordinatesDataMiner>();
