@@ -183,7 +183,7 @@
                             foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
                             {
                                 var fragment = node.OwnerDocument.CreateDocumentFragment();
-                                fragment.InnerXml = await this.MainProcessing(node.OuterXml);
+                                fragment.InnerXml = await this.MainProcessing(node, kernel);
                                 node.ParentNode.ReplaceChild(fragment, node);
                             }
 
@@ -191,7 +191,7 @@
                         }
                         else
                         {
-                            this.document.Xml = await this.MainProcessing(this.document.Xml);
+                            this.document.Xml = await this.MainProcessing(this.document.XmlDocument, kernel);
                         }
                     }
                 }
@@ -378,14 +378,14 @@
             return formatter.Xml;
         }
 
-        private async Task<string> MainProcessing(string xml)
+        private async Task<string> MainProcessing(XmlNode xml, IKernel kernel)
         {
-            string xmlContent = xml;
-
             if (this.settings.TagFloats)
             {
-                xmlContent = this.TagFloats(xmlContent);
+                this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, kernel).Wait();
             }
+
+            string xmlContent = xml.OuterXml;
 
             if (this.settings.TagTableFn)
             {
@@ -616,13 +616,6 @@
                 this.fileProcessor.InputFileName,
                 this.fileProcessor.OutputFileName,
                 this.settings.QueryFileName);
-        }
-
-        private string TagFloats(string xmlContent)
-        {
-            var tagger = new FloatsTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagFloatsMessage, tagger).Wait();
-            return tagger.Xml;
         }
 
         private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList, Bio.Taxonomy.Services.Data.XmlListDataService whiteList)

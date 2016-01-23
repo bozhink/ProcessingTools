@@ -101,6 +101,7 @@
     <Compile Include="Contracts\ITagAbbreviationsController.cs" />
     <Compile Include="Contracts\ITagCodesController.cs" />
     <Compile Include="Contracts\ITagDatesController.cs" />
+    <Compile Include="Contracts\ITagFloatsController.cs" />
     <Compile Include="Contracts\ITagGeographicDeviationsController.cs" />
     <Compile Include="Contracts\IInitialFormatController.cs" />
     <Compile Include="Contracts\IParseCoordinatesController.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Controllers\TagAbbreviationsController.cs" />
     <Compile Include="Controllers\TagCodesController.cs" />
     <Compile Include="Controllers\TagDatesController.cs" />
+    <Compile Include="Controllers\TagFloatsController.cs" />
     <Compile Include="Controllers\TagGeographicDeviationsController.cs" />
     <Compile Include="Controllers\InitialFormatController.cs" />
     <Compile Include="Controllers\ParseCoordinatesController.cs" />
