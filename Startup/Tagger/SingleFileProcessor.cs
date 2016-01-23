@@ -18,7 +18,6 @@
     using Contracts;
     using DocumentProvider;
     using Extensions;
-    using Models;
     using Ninject;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -136,7 +135,7 @@
                         // Tag envo terms using envornment database
                         if (this.settings.TagEnvironmentTerms)
                         {
-                            this.TagEnvoTerms();
+                            this.InvokeProcessor<ITagEnvironmentTermsController>(Messages.TagEnvoTermsMessage, kernel).Wait();
                         }
 
                         if (this.settings.TagQuantities)
@@ -672,34 +671,6 @@
 
             var tagger = new StringTagger(this.document.Xml, data, tagModel, xpathProvider.SelectContentNodesXPathTemplate, this.document.NamespaceManager, this.logger);
             this.InvokeProcessor(Messages.TagDatesMessage, tagger).Wait();
-            this.document.Xml = tagger.Xml;
-        }
-
-        private void TagEnvoTerms()
-        {
-            var db = new Bio.Environments.Data.BioEnvironmentsDbContext();
-            var repository = new Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<Bio.Environments.Data.Models.EnvoName>(db);
-            var service = new Bio.Environments.Services.Data.EnvoTermsDataService(repository);
-
-            var textContent = this.document.XmlDocument.GetTextContent(this.settings.Config.TextContentXslTransform);
-            var miner = new Bio.Data.Miners.EnvoTermsDataMiner(service);
-            var data = miner.Mine(textContent).Result
-                .Select(t => new EnvoTermResponseModel
-                {
-                    EntityId = t.EntityId,
-                    EnvoId = t.EnvoId,
-                    Content = t.Content
-                })
-                .Select(t => new EnvoTermSerializableModel
-                {
-                    Value = t.Content,
-                    EnvoId = t.EnvoId,
-                    Id = t.EntityId,
-                    VerbatimTerm = t.Content
-                });
-
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(this.document.Xml, data, "/*", this.document.NamespaceManager, false, false, this.logger);
-            this.InvokeProcessor(Messages.TagEnvoTermsMessage, tagger).Wait();
             this.document.Xml = tagger.Xml;
         }
 

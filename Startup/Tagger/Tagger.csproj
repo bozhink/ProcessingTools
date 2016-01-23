@@ -103,6 +103,7 @@
     <Compile Include="Contracts\IParseReferencesController.cs" />
     <Compile Include="Contracts\IResolveMediaTypesController.cs" />
     <Compile Include="Contracts\ITagCoordinatesController.cs" />
+    <Compile Include="Contracts\ITagEnvironmentTermsController.cs" />
     <Compile Include="Contracts\ITagEnvironmentTermsWithExtractController.cs" />
     <Compile Include="Contracts\ITagGeoEpithetsController.cs" />
     <Compile Include="Contracts\ITagGeoNamesController.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Controllers\ParseReferencesController.cs" />
     <Compile Include="Controllers\ResolveMediaTypesController.cs" />
     <Compile Include="Controllers\TagCoordinatesController.cs" />
+    <Compile Include="Controllers\TagEnvironmentTermsController.cs" />
     <Compile Include="Controllers\TagEnvironmentTermsWithExtractController.cs" />
     <Compile Include="Controllers\TagGeoEpithetsController.cs" />
     <Compile Include="Controllers\TagGeoNamesController.cs" />
