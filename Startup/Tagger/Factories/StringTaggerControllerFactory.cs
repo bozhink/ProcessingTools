@@ -58,7 +58,7 @@
             }
             catch (Exception e)
             {
-                logger?.Log(e);
+                logger?.Log(e, string.Empty);
             }
         }
     }

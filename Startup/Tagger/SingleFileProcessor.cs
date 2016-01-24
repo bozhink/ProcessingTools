@@ -195,7 +195,12 @@
                         }
                         else
                         {
-                            this.document.Xml = await this.MainProcessing(this.document.XmlDocument, kernel);
+                            this.document.Xml = await this.MainProcessing(this.document.XmlDocument.DocumentElement, kernel);
+                        }
+
+                        if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
+                        {
+                            await this.InvokeProcessor<IExtractTaxaController>(string.Empty, kernel);
                         }
                     }
                 }
@@ -233,12 +238,18 @@
         protected async Task InvokeProcessor<TController>(string message, IKernel kernel)
             where TController : ITaggerController
         {
+            await this.InvokeProcessor<TController>(message, this.document.XmlDocument.DocumentElement, kernel);
+        }
+
+        protected async Task InvokeProcessor<TController>(string message, XmlNode context, IKernel kernel)
+            where TController : ITaggerController
+        {
             await this.InvokeProcessor(
                 message,
                 () =>
                 {
                     var controller = kernel.Get<TController>();
-                    controller.Run(this.document.XmlDocument.DocumentElement, this.document.NamespaceManager, this.settings, this.logger).Wait();
+                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
                 });
         }
 
@@ -324,50 +335,6 @@
             return xmlContent;
         }
 
-        private Task ExtractTaxa(string xmlContent)
-        {
-            return Task.Run(() =>
-            {
-                try
-                {
-                    XmlDocument xmlDocument = new XmlDocument();
-                    xmlDocument.LoadXml(xmlContent);
-
-                    if (this.settings.ExtractTaxa)
-                    {
-                        this.logger?.Log(Messages.ExtractAllTaxaMessage);
-                        xmlDocument
-                            .ExtractTaxa(true)
-                            .ToList()
-                            .ForEach(t => this.logger?.Log(t));
-                        return;
-                    }
-
-                    if (this.settings.ExtractLowerTaxa)
-                    {
-                        this.logger?.Log(Messages.ExtractLowerTaxaMessage);
-                        xmlDocument
-                            .ExtractTaxa(true, TaxaType.Lower)
-                            .ToList()
-                            .ForEach(t => this.logger?.Log(t));
-                    }
-
-                    if (this.settings.ExtractHigherTaxa)
-                    {
-                        this.logger?.Log(Messages.ExtractHigherTaxaMessage);
-                        xmlDocument
-                            .ExtractTaxa(true, TaxaType.Higher)
-                            .ToList()
-                            .ForEach(t => this.logger?.Log(t));
-                    }
-                }
-                catch (Exception e)
-                {
-                    this.logger?.Log(e, string.Empty);
-                }
-            });
-        }
-
         private void RunCustomXslTransform()
         {
             var processor = new CustomXslRunner(this.settings.QueryFileName, this.document.Xml);
@@ -382,43 +349,18 @@
             return formatter.Xml;
         }
 
-        private async Task<string> MainProcessing(XmlNode xml, IKernel kernel)
+        private async Task<string> MainProcessing(XmlNode context, IKernel kernel)
         {
             if (this.settings.TagFloats)
             {
-                this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, kernel).Wait();
+                this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, context, kernel).Wait();
             }
 
-            string xmlContent = xml.OuterXml;
+            string xmlContent = context.OuterXml;
 
-            if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
-            {
-                var blackList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.BlackListXmlFilePath);
-                var whiteList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
+            xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
 
-                if (this.settings.TagLowerTaxa)
-                {
-                    xmlContent = this.TagLowerTaxa(xmlContent, blackList);
-                }
-
-                if (this.settings.TagHigherTaxa)
-                {
-                    xmlContent = this.TagHigherTaxa(xmlContent, blackList, whiteList);
-                }
-            }
-
-            xmlContent = this.ParseLowerTaxa(xmlContent);
-            xmlContent = this.ParseHigherTaxa(xmlContent);
-
-            if (this.settings.ExpandLowerTaxa || this.settings.Flag1 || this.settings.Flag2 || this.settings.Flag3 || this.settings.Flag4 || this.settings.Flag5 || this.settings.Flag6 || this.settings.Flag7 || this.settings.Flag8)
-            {
-                xmlContent = this.ExpandTaxa(xmlContent);
-            }
-
-            if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
-            {
-                await this.ExtractTaxa(xmlContent);
-            }
+            xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
 
             if (this.settings.ValidateTaxa)
             {
@@ -441,6 +383,45 @@
             {
                 xmlContent = this.TagReferences(xmlContent);
             }
+
+            return xmlContent;
+        }
+
+        private string PerformContextSensitiveTaxonomyProcessing(string content)
+        {
+            string xmlContent = content;
+
+            if (this.settings.ExpandLowerTaxa || this.settings.Flag1 || this.settings.Flag2 || this.settings.Flag3 || this.settings.Flag4 || this.settings.Flag5 || this.settings.Flag6 || this.settings.Flag7 || this.settings.Flag8)
+            {
+                xmlContent = this.ExpandTaxa(xmlContent);
+            }
+
+            return xmlContent;
+        }
+
+        private string PerformContextInsensitiveTaxonomyProcessing(string content)
+        {
+            string xmlContent = content;
+
+            if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
+            {
+                var blackList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.BlackListXmlFilePath);
+
+                var whiteList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
+
+                if (this.settings.TagLowerTaxa)
+                {
+                    xmlContent = this.TagLowerTaxa(xmlContent, blackList);
+                }
+
+                if (this.settings.TagHigherTaxa)
+                {
+                    xmlContent = this.TagHigherTaxa(xmlContent, blackList, whiteList);
+                }
+            }
+
+            xmlContent = this.ParseLowerTaxa(xmlContent);
+            xmlContent = this.ParseHigherTaxa(xmlContent);
 
             return xmlContent;
         }
