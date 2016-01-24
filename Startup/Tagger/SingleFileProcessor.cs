@@ -210,7 +210,12 @@
 
                         if (this.settings.UntagSplit)
                         {
-                            await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(string.Empty, kernel);
+                            this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(string.Empty, kernel).Wait();
+                        }
+
+                        if (this.settings.FormatTreat)
+                        {
+                            this.InvokeProcessor<IFormatTreatmentsController>(Messages.FormatTreatmentsMessage, kernel).Wait();
                         }
                     }
                 }
@@ -346,13 +351,6 @@
             this.document.Xml = processor.Xml;
         }
 
-        private string FormatTreatments(string xmlContent)
-        {
-            var formatter = new TreatmentFormatter(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.FormatTreatmentsMessage, formatter).Wait();
-            return formatter.Xml;
-        }
-
         private Task<string> MainProcessing(XmlNode context, IKernel kernel)
         {
             return Task.Run(() =>
@@ -367,11 +365,6 @@
                 xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
 
                 xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
-
-                if (this.settings.FormatTreat)
-                {
-                    xmlContent = this.FormatTreatments(xmlContent);
-                }
 
                 xmlContent = this.ParseTreatmentMeta(xmlContent);
 

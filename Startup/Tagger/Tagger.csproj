@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
+    <Compile Include="Contracts\IFormatTreatmentsController.cs" />
     <Compile Include="Contracts\IRemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Contracts\ITagAbbreviationsController.cs" />
     <Compile Include="Contracts\ITagCodesController.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
+    <Compile Include="Controllers\FormatTreatmentsController.cs" />
     <Compile Include="Controllers\RemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Controllers\TagAbbreviationsController.cs" />
     <Compile Include="Controllers\TagCodesController.cs" />
