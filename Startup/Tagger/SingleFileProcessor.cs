@@ -214,6 +214,21 @@
                         {
                             this.InvokeProcessor<IFormatTreatmentsController>(Messages.FormatTreatmentsMessage, kernel).Wait();
                         }
+
+                        if (this.settings.ParseTreatmentMetaWithAphia)
+                        {
+                            this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>(Messages.ParseTreatmentMetaWithAphiaMessage, kernel).Wait();
+                        }
+
+                        if (this.settings.ParseTreatmentMetaWithGbif)
+                        {
+                            this.InvokeProcessor<IParseTreatmentMetaWithGbifController>(Messages.ParseTreatmentMetaWithGbifMessage, kernel).Wait();
+                        }
+
+                        if (this.settings.ParseTreatmentMetaWithCol)
+                        {
+                            this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>(Messages.ParseTreatmentMetaWithCoLMessage, kernel).Wait();
+                        }
                     }
                 }
 
@@ -368,8 +383,6 @@
 
                 xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
 
-                xmlContent = this.ParseTreatmentMeta(xmlContent);
-
                 return xmlContent;
             });
         }
@@ -488,39 +501,6 @@
             }
 
             return xmlContent;
-        }
-
-        private string ParseTreatmentMeta(string xmlContent)
-        {
-            string result = xmlContent;
-
-            if (this.settings.ParseTreatmentMetaWithAphia)
-            {
-                ////var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
-                ////var parser = new TreatmentMetaParser(service, result, this.logger);
-                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser).Wait();
-                ////result = parser.Xml;
-            }
-
-            if (this.settings.ParseTreatmentMetaWithGbif)
-            {
-                ////var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
-                ////var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
-                ////var parser = new TreatmentMetaParser(service, result, this.logger);
-                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser).Wait();
-                ////result = parser.Xml;
-            }
-
-            if (this.settings.ParseTreatmentMetaWithCol)
-            {
-                ////var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
-                ////var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
-                ////var parser = new TreatmentMetaParser(service, result, this.logger);
-                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser).Wait();
-                ////result = parser.Xml;
-            }
-
-            return result;
         }
 
         private void PrintElapsedTime(Stopwatch timer)
