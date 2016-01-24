@@ -3,14 +3,11 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using BaseLibrary;
-    using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
-    using Bio.Taxonomy.Types;
     using Common.Constants;
     using Contracts;
     using DocumentProvider;
