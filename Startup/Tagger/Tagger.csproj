@@ -101,6 +101,7 @@
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithAphiaController.cs" />
+    <Compile Include="Contracts\IParseTreatmentMetaWithCatalogueOfLifeController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithGbifController.cs" />
     <Compile Include="Contracts\IRemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Contracts\ITagAbbreviationsController.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Controllers\ExtractTaxaController.cs" />
     <Compile Include="Controllers\FormatTreatmentsController.cs" />
     <Compile Include="Controllers\ParseTreatmentMetaWithAphiaController.cs" />
+    <Compile Include="Controllers\ParseTreatmentMetaWithCatalogueOfLifeController.cs" />
     <Compile Include="Controllers\ParseTreatmentMetaWithGbifController.cs" />
     <Compile Include="Controllers\RemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Controllers\TagAbbreviationsController.cs" />

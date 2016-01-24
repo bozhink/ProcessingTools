@@ -504,20 +504,20 @@
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
-                var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
-                var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser).Wait();
-                result = parser.Xml;
+                ////var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
+                ////var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
+                ////var parser = new TreatmentMetaParser(service, result, this.logger);
+                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithGbifMessage, parser).Wait();
+                ////result = parser.Xml;
             }
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
-                var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
-                var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser).Wait();
-                result = parser.Xml;
+                ////var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
+                ////var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
+                ////var parser = new TreatmentMetaParser(service, result, this.logger);
+                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithCoLMessage, parser).Wait();
+                ////result = parser.Xml;
             }
 
             return result;
