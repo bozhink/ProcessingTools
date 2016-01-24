@@ -121,6 +121,7 @@
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
     <Compile Include="Contracts\ITagTableFootnoteController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Contracts\IValidateTaxaController.cs" />
     <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Controllers\TagQuantitiesController.cs" />
     <Compile Include="Controllers\TagTableFootnoteController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
+    <Compile Include="Controllers\ValidateTaxaController.cs" />
     <Compile Include="Controllers\ZooBankCloneJsonController.cs" />
     <Compile Include="Controllers\ZooBankCloneXmlController.cs" />
     <Compile Include="Controllers\ZooBankGenerateRegistrationXmlController.cs" />

@@ -202,6 +202,11 @@
                         {
                             await this.InvokeProcessor<IExtractTaxaController>(string.Empty, kernel);
                         }
+
+                        if (this.settings.ValidateTaxa)
+                        {
+                            await this.InvokeProcessor<IValidateTaxaController>(Messages.ValidateTaxaUsingGnrMessage, kernel);
+                        }
                     }
                 }
 
@@ -251,12 +256,6 @@
                     var controller = kernel.Get<TController>();
                     controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
                 });
-        }
-
-        private async Task ValidateTaxa(string xmlContent)
-        {
-            var validator = new TaxonomicNamesValidator(this.settings.Config, xmlContent, this.logger);
-            await this.InvokeProcessor(Messages.ValidateTaxaUsingGnrMessage, validator);
         }
 
         private string ExpandTaxa(string xmlContent)
@@ -349,42 +348,40 @@
             return formatter.Xml;
         }
 
-        private async Task<string> MainProcessing(XmlNode context, IKernel kernel)
+        private Task<string> MainProcessing(XmlNode context, IKernel kernel)
         {
-            if (this.settings.TagFloats)
+            return Task.Run(() =>
             {
-                this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, context, kernel).Wait();
-            }
+                if (this.settings.TagFloats)
+                {
+                    this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, context, kernel).Wait();
+                }
 
-            string xmlContent = context.OuterXml;
+                string xmlContent = context.OuterXml;
 
-            xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
+                xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
 
-            xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
+                xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
 
-            if (this.settings.ValidateTaxa)
-            {
-                await this.ValidateTaxa(xmlContent);
-            }
+                if (this.settings.UntagSplit)
+                {
+                    xmlContent = this.RemoveAllTaxaTags(xmlContent);
+                }
 
-            if (this.settings.UntagSplit)
-            {
-                xmlContent = this.RemoveAllTaxaTags(xmlContent);
-            }
+                if (this.settings.FormatTreat)
+                {
+                    xmlContent = this.FormatTreatments(xmlContent);
+                }
 
-            if (this.settings.FormatTreat)
-            {
-                xmlContent = this.FormatTreatments(xmlContent);
-            }
+                xmlContent = this.ParseTreatmentMeta(xmlContent);
 
-            xmlContent = this.ParseTreatmentMeta(xmlContent);
+                if (this.settings.TagReferences)
+                {
+                    xmlContent = this.TagReferences(xmlContent);
+                }
 
-            if (this.settings.TagReferences)
-            {
-                xmlContent = this.TagReferences(xmlContent);
-            }
-
-            return xmlContent;
+                return xmlContent;
+            });
         }
 
         private string PerformContextSensitiveTaxonomyProcessing(string content)
