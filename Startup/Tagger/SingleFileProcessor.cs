@@ -8,7 +8,6 @@
     using System.Xml;
 
     using BaseLibrary;
-    using BaseLibrary.Floats;
     using BaseLibrary.References;
     using BaseLibrary.Taxonomy;
     using Bio.Taxonomy.Types;
