@@ -54,9 +54,9 @@
                     {
                         this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(Messages.GenerateRegistrationXmlForZooBankMessage, kernel).Wait();
                     }
-                    else if (this.settings.QueryReplace && this.settings.QueryFileName != null && this.settings.QueryFileName.Length > 0)
+                    else if (this.settings.QueryReplace && !string.IsNullOrWhiteSpace(this.settings.QueryFileName))
                     {
-                        this.document.Xml = QueryReplace.Replace(this.settings.Config, this.document.Xml, this.settings.QueryFileName);
+                        this.InvokeProcessor<IQueryReplaceController>(string.Empty, kernel).Wait();
                     }
                     else
                     {
