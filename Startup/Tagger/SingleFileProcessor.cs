@@ -89,6 +89,11 @@
                             this.InvokeProcessor<IResolveMediaTypesController>(Messages.ResolveMediaTypesMessage, kernel).Wait();
                         }
 
+                        if (this.settings.TagTableFn)
+                        {
+                            this.InvokeProcessor<ITagTableFootnoteController>(Messages.TagTableFootNotesMessage, kernel).Wait();
+                        }
+
                         if (this.settings.TagCoordinates)
                         {
                             this.InvokeProcessor<ITagCoordinatesController>(Messages.TagCoordinatesMessage, kernel).Wait();
@@ -383,11 +388,6 @@
             if (this.settings.TagFloats)
             {
                 this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, kernel).Wait();
-            }
-
-            if (this.settings.TagTableFn)
-            {
-                this.InvokeProcessor<ITagTableFootnoteController>(Messages.TagTableFootNotesMessage, kernel).Wait();
             }
 
             string xmlContent = xml.OuterXml;
