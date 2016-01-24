@@ -496,10 +496,10 @@
 
             if (this.settings.ParseTreatmentMetaWithAphia)
             {
-                var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
-                var parser = new TreatmentMetaParser(service, result, this.logger);
-                this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser).Wait();
-                result = parser.Xml;
+                ////var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();
+                ////var parser = new TreatmentMetaParser(service, result, this.logger);
+                ////this.InvokeProcessor(Messages.ParseTreatmentMetaWithAphiaMessage, parser).Wait();
+                ////result = parser.Xml;
             }
 
             if (this.settings.ParseTreatmentMetaWithGbif)

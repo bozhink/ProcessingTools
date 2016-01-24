@@ -7,11 +7,11 @@
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
-    public class ParseTreatmentMetaWithAphiaController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithAphiaController
+    public class ParseTreatmentMetaWithGbifController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithGbifController
     {
-        private readonly IAphiaTaxaClassificationDataService service;
+        private readonly IGbifTaxaClassificationDataService service;
 
-        public ParseTreatmentMetaWithAphiaController(IAphiaTaxaClassificationDataService service)
+        public ParseTreatmentMetaWithGbifController(IGbifTaxaClassificationDataService service)
         {
             if (service == null)
             {
