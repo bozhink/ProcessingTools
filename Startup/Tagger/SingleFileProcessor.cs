@@ -62,7 +62,7 @@
                     {
                         if (this.settings.RunXslTransform)
                         {
-                            this.RunCustomXslTransform();
+                            this.InvokeProcessor<IRunCustomXslTransformController>(Messages.RunCustomXslTransformMessage, kernel).Wait();
                         }
 
                         if (this.settings.InitialFormat)
@@ -354,13 +354,6 @@
             }
 
             return xmlContent;
-        }
-
-        private void RunCustomXslTransform()
-        {
-            var processor = new CustomXslRunner(this.settings.QueryFileName, this.document.Xml);
-            this.InvokeProcessor(Messages.RunCustomXslTransformMessage, processor).Wait();
-            this.document.Xml = processor.Xml;
         }
 
         private Task<string> MainProcessing(XmlNode context, IKernel kernel)
