@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Factories
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -17,26 +18,48 @@
 
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (namespaceManager == null)
+            {
+                throw new ArgumentNullException("namespaceManager");
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException("settings");
+            }
+
             XmlDocument document = new XmlDocument
             {
                 PreserveWhitespace = true
             };
 
-            document.LoadXml(Resources.ContextWrapper);
-            document.DocumentElement.InnerXml = context.InnerXml;
+            try
+            {
+                document.LoadXml(Resources.ContextWrapper);
+                document.DocumentElement.InnerXml = context.InnerXml;
 
-            var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
-            var data = await this.Miner.Mine(textContent);
+                var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
+                var data = await this.Miner.Mine(textContent);
 
-            var xpathProvider = new XPathProvider(settings.Config);
+                var xpathProvider = new XPathProvider(settings.Config);
 
-            var tagger = new StringTagger(document.OuterXml, data, this.TagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
+                var tagger = new StringTagger(document.OuterXml, data, this.TagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
 
-            await tagger.Tag();
+                await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+                document.LoadXml(tagger.Xml);
 
-            context.InnerXml = document.DocumentElement.InnerXml;
+                context.InnerXml = document.DocumentElement.InnerXml;
+            }
+            catch (Exception e)
+            {
+                logger?.Log(e);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Factories
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -10,17 +11,39 @@
     {
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            XmlDocument document = new XmlDocument
+            if (context == null)
             {
-                PreserveWhitespace = true
-            };
+                throw new ArgumentNullException("context");
+            }
 
-            document.LoadXml(Resources.ContextWrapper);
-            document.DocumentElement.InnerXml = context.InnerXml;
+            if (namespaceManager == null)
+            {
+                throw new ArgumentNullException("namespaceManager");
+            }
 
-            await this.Run(document, namespaceManager, settings, logger);
+            if (settings == null)
+            {
+                throw new ArgumentNullException("settings");
+            }
 
-            context.InnerXml = document.DocumentElement.InnerXml;
+            try
+            {
+                XmlDocument document = new XmlDocument
+                {
+                    PreserveWhitespace = true
+                };
+
+                document.LoadXml(Resources.ContextWrapper);
+                document.DocumentElement.InnerXml = context.InnerXml;
+
+                await this.Run(document, namespaceManager, settings, logger);
+
+                context.InnerXml = document.DocumentElement.InnerXml;
+            }
+            catch (Exception e)
+            {
+                logger?.Log(e);
+            }
         }
 
         protected abstract Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger);
