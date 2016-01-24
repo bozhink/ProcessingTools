@@ -385,12 +385,12 @@
                 this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, kernel).Wait();
             }
 
-            string xmlContent = xml.OuterXml;
-
             if (this.settings.TagTableFn)
             {
-                xmlContent = this.TagTableFootnote(xmlContent);
+                this.InvokeProcessor<ITagTableFootnoteController>(Messages.TagTableFootNotesMessage, kernel).Wait();
             }
+
+            string xmlContent = xml.OuterXml;
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
@@ -637,13 +637,6 @@
         {
             var tagger = new ReferencesTagger(this.settings.Config, xmlContent, this.logger);
             this.InvokeProcessor(Messages.TagReferencesMessage, tagger).Wait();
-            return tagger.Xml;
-        }
-
-        private string TagTableFootnote(string xmlContent)
-        {
-            var tagger = new TableFootNotesTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagTableFootNotesMessage, tagger).Wait();
             return tagger.Xml;
         }
 
