@@ -207,6 +207,11 @@
                         {
                             await this.InvokeProcessor<IValidateTaxaController>(Messages.ValidateTaxaUsingGnrMessage, kernel);
                         }
+
+                        if (this.settings.UntagSplit)
+                        {
+                            await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(string.Empty, kernel);
+                        }
                     }
                 }
 
@@ -362,11 +367,6 @@
                 xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
 
                 xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
-
-                if (this.settings.UntagSplit)
-                {
-                    xmlContent = this.RemoveAllTaxaTags(xmlContent);
-                }
 
                 if (this.settings.FormatTreat)
                 {
@@ -536,22 +536,6 @@
         private void PrintElapsedTime(Stopwatch timer)
         {
             this.logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
-        }
-
-        private string RemoveAllTaxaTags(string xmlContent)
-        {
-            try
-            {
-                var parser = new LowerTaxaParser(this.settings.Config, xmlContent, this.logger);
-                parser.XmlDocument.RemoveTaxonNamePartTags();
-                xmlContent = parser.Xml;
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
-
-            return xmlContent;
         }
 
         private void ReadDocument()
