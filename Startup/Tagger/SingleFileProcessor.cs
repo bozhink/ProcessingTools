@@ -360,6 +360,11 @@
                     this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, context, kernel).Wait();
                 }
 
+                if (this.settings.TagReferences)
+                {
+                    this.InvokeProcessor<ITagReferencesController>(Messages.TagReferencesMessage, context, kernel).Wait();
+                }
+
                 string xmlContent = context.OuterXml;
 
                 xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
@@ -367,11 +372,6 @@
                 xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
 
                 xmlContent = this.ParseTreatmentMeta(xmlContent);
-
-                if (this.settings.TagReferences)
-                {
-                    xmlContent = this.TagReferences(xmlContent);
-                }
 
                 return xmlContent;
             });
@@ -585,13 +585,6 @@
             var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
             this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
-        }
-
-        private string TagReferences(string xmlContent)
-        {
-            var tagger = new ReferencesTagger(this.settings.Config, xmlContent, this.logger);
-            this.InvokeProcessor(Messages.TagReferencesMessage, tagger).Wait();
-            return tagger.Xml;
         }
 
         private async Task WriteOutputFile()

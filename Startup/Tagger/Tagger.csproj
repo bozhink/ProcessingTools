@@ -121,6 +121,7 @@
     <Compile Include="Contracts\ITagMorphologicalEpithetsController.cs" />
     <Compile Include="Contracts\ITagProductsController.cs" />
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
+    <Compile Include="Contracts\ITagReferencesController.cs" />
     <Compile Include="Contracts\ITagTableFootnoteController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
     <Compile Include="Contracts\IValidateTaxaController.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Controllers\TagMorphologicalEpithetsController.cs" />
     <Compile Include="Controllers\TagProductsController.cs" />
     <Compile Include="Controllers\TagQuantitiesController.cs" />
+    <Compile Include="Controllers\TagReferencesController.cs" />
     <Compile Include="Controllers\TagTableFootnoteController.cs" />
     <Compile Include="Controllers\TagWebLinksController.cs" />
     <Compile Include="Controllers\ValidateTaxaController.cs" />
