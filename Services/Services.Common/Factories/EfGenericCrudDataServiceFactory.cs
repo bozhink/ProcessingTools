@@ -17,9 +17,9 @@
         where TServiceModel : IDataServiceModel
     {
         private Expression<Func<TDbModel, TOrderKey>> orderExpression;
-        private IRepository<TDbModel> repository;
+        private IEfRepository<TDbModel> repository;
 
-        public EfGenericCrudDataServiceFactory(IRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
+        public EfGenericCrudDataServiceFactory(IEfRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
         {
             if (repository == null)
             {

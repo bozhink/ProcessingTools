@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories;
 
-    public interface IBiorepositoriesDbFirstGenericRepository<T> : IRepository<T>
+    public interface IBiorepositoriesDbFirstGenericRepository<T> : IEfRepository<T>
         where T : class
     {
     }

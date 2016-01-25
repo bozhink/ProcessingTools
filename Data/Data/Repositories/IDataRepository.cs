@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories;
 
-    public interface IDataRepository<T> : IRepository<T>
+    public interface IDataRepository<T> : IEfRepository<T>
         where T : class
     {
     }
