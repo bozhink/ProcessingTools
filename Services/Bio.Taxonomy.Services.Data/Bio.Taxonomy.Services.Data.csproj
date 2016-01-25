@@ -52,7 +52,7 @@
     <Compile Include="Contracts\ICatalogueOfLifeTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IGbifTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\ILocalDbTaxaRankDataService.cs" />
-    <Compile Include="Contracts\IRepositoryDataService.cs" />
+    <Compile Include="Contracts\ITaxonomicListDataService.cs" />
     <Compile Include="Contracts\ISuffixHigherTaxaRankDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
     <Compile Include="GbifTaxaClassificationDataService.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuffixHigherTaxaRankDataService.cs" />
     <Compile Include="TaxaDataServiceFactory.cs" />
-    <Compile Include="XmlListDataService.cs" />
+    <Compile Include="TaxonomicListDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">

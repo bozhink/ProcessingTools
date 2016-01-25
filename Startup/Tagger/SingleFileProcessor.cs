@@ -393,9 +393,9 @@
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
-                var blackList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.BlackListXmlFilePath);
+                var blackList = new Bio.Taxonomy.Services.Data.TaxonomicListDataService(this.settings.Config.BlackListXmlFilePath);
 
-                var whiteList = new Bio.Taxonomy.Services.Data.XmlListDataService(this.settings.Config.WhiteListXmlFilePath);
+                var whiteList = new Bio.Taxonomy.Services.Data.TaxonomicListDataService(this.settings.Config.WhiteListXmlFilePath);
 
                 if (this.settings.TagLowerTaxa)
                 {
@@ -537,7 +537,7 @@
                 this.settings.QueryFileName);
         }
 
-        private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList, Bio.Taxonomy.Services.Data.XmlListDataService whiteList)
+        private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.TaxonomicListDataService blackList, Bio.Taxonomy.Services.Data.TaxonomicListDataService whiteList)
         {
             var miner = new Bio.Data.Miners.HigherTaxaDataMiner(whiteList);
             var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, miner, blackList, this.logger);
@@ -545,7 +545,7 @@
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
-        private string TagLowerTaxa(string xmlContent, Bio.Taxonomy.Services.Data.XmlListDataService blackList)
+        private string TagLowerTaxa(string xmlContent, Bio.Taxonomy.Services.Data.TaxonomicListDataService blackList)
         {
             var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
             this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger).Wait();

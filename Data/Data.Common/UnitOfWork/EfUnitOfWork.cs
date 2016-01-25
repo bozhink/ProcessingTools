@@ -12,9 +12,9 @@
     {
         private ConcurrentDictionary<string, object> repos;
 
-        public EfUnitOfWork(IContext dbCOntext)
+        public EfUnitOfWork(IContext context)
         {
-            this.DbContext = dbCOntext;
+            this.DbContext = context;
             this.repos = new ConcurrentDictionary<string, object>();
         }
 

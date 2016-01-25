@@ -16,14 +16,14 @@
 
         private readonly Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
 
-        private IRepositoryDataService<string> whiteList;
+        private ITaxonomicListDataService<string> whiteList;
 
         public HigherTaxaDataMiner()
             : this(null)
         {
         }
 
-        public HigherTaxaDataMiner(IRepositoryDataService<string> whiteList)
+        public HigherTaxaDataMiner(ITaxonomicListDataService<string> whiteList)
         {
             this.whiteList = whiteList;
         }

@@ -18,7 +18,7 @@
         private ILogger logger;
         private IHigherTaxaDataMiner miner;
 
-        public HigherTaxaTagger(Config config, string xml, IHigherTaxaDataMiner miner, IRepositoryDataService<string> blackList, ILogger logger)
+        public HigherTaxaTagger(Config config, string xml, IHigherTaxaDataMiner miner, ITaxonomicListDataService<string> blackList, ILogger logger)
             : base(config, xml, blackList)
         {
             this.logger = logger;

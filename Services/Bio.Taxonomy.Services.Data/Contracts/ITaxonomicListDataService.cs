@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    public interface IRepositoryDataService<T>
+    public interface ITaxonomicListDataService<T>
     {
         IQueryable<T> All();
     }

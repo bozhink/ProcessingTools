@@ -7,11 +7,11 @@
 
     using Contracts;
 
-    public class XmlListDataService : IRepositoryDataService<string>
+    public class TaxonomicListDataService : ITaxonomicListDataService<string>
     {
         private ICollection<string> dataList;
 
-        public XmlListDataService(string listFilePath)
+        public TaxonomicListDataService(string listFilePath)
         {
             if (string.IsNullOrWhiteSpace(listFilePath))
             {

@@ -13,15 +13,15 @@
 
     public abstract class TaxaTagger : Base, ITagger
     {
-        private IRepositoryDataService<string> blackList;
+        private ITaxonomicListDataService<string> blackList;
 
-        public TaxaTagger(Config config, string xml, IRepositoryDataService<string> blackList)
+        public TaxaTagger(Config config, string xml, ITaxonomicListDataService<string> blackList)
             : base(config, xml)
         {
             this.BlackList = blackList;
         }
 
-        protected IRepositoryDataService<string> BlackList
+        protected ITaxonomicListDataService<string> BlackList
         {
             get
             {
