@@ -9,34 +9,18 @@
 
     public class XmlListDataService : IRepositoryDataService<string>
     {
-        private string listFilePath;
         private ICollection<string> dataList;
 
         public XmlListDataService(string listFilePath)
         {
-            this.ListFilePath = listFilePath;
+            if (string.IsNullOrWhiteSpace(listFilePath))
+            {
+                throw new ArgumentNullException("listFilePath");
+            }
 
-            this.dataList = new HashSet<string>(XDocument.Load(this.ListFilePath)
+            this.dataList = new HashSet<string>(XDocument.Load(listFilePath)
                 .Descendants()
                 .Select(item => item.Value));
-        }
-
-        private string ListFilePath
-        {
-            get
-            {
-                return this.listFilePath;
-            }
-
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentNullException("ListFilePath");
-                }
-
-                this.listFilePath = value;
-            }
         }
 
         public IQueryable<string> All()
