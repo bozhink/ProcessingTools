@@ -13,8 +13,8 @@
                 .Bind<Data.Contracts.IDataDbContext>()
                 .To<Data.DataDbContext>();
             kernel
-                .Bind(typeof(Data.Repositories.IDataRepository<>))
-                .To(typeof(Data.Repositories.EfDataGenericRepository<>));
+                .Bind(typeof(Data.Repositories.Contracts.IDataRepository<>))
+                .To(typeof(Data.Repositories.DataRepository<>));
             kernel
                 .Bind<Services.Data.Contracts.IInstitutionsDataService>()
                 .To<Services.Data.InstitutionsDataService>();
@@ -26,8 +26,8 @@
                 .Bind<Geo.Data.Contracts.IGeoDbContext>()
                 .To<Geo.Data.GeoDbContext>();
             kernel
-                .Bind(typeof(Geo.Data.Repositories.IGeoDataRepository<>))
-                .To(typeof(Geo.Data.Repositories.EfGeoDataGenericRepository<>));
+                .Bind(typeof(Geo.Data.Repositories.Contracts.IGeoDataRepository<>))
+                .To(typeof(Geo.Data.Repositories.GeoDataRepository<>));
             kernel
                 .Bind<Geo.Services.Data.Contracts.IGeoEpithetsDataService>()
                 .To<Geo.Services.Data.GeoEpithetsDataService>();
@@ -39,8 +39,8 @@
                 .Bind<Bio.Data.Contracts.IBioDbContext>()
                 .To<Bio.Data.BioDbContext>();
             kernel
-                .Bind(typeof(Bio.Data.Repositories.IBioDataRepository<>))
-                .To(typeof(Bio.Data.Repositories.EfBioDataGenericRepository<>));
+                .Bind(typeof(Bio.Data.Repositories.Contracts.IBioDataRepository<>))
+                .To(typeof(Bio.Data.Repositories.BioDataRepository<>));
             kernel
                 .Bind<Bio.Services.Data.Contracts.IMorphologicalEpithetsDataService>()
                 .To<Bio.Services.Data.MorphologicalEpithetsDataService>();
@@ -49,8 +49,8 @@
                 .Bind<MediaType.Data.Contracts.IMediaTypesDbContext>()
                 .To<MediaType.Data.MediaTypesDbContext>();
             kernel
-                .Bind(typeof(MediaType.Data.Repositories.IMediaTypesRepository<>))
-                .To(typeof(MediaType.Data.Repositories.MediaTypesGenericRepository<>));
+                .Bind(typeof(MediaType.Data.Repositories.Contracts.IMediaTypesRepository<>))
+                .To(typeof(MediaType.Data.Repositories.MediaTypesRepository<>));
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
             ////    .To<MediaType.Services.Data.MediaTypeDataServiceStaticDictionary>();
@@ -65,8 +65,8 @@
                 .Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>()
                 .To<Bio.Environments.Data.BioEnvironmentsDbContext>();
             kernel
-                .Bind(typeof(Bio.Environments.Data.Repositories.IBioEnvironmentsRepository<>))
-                .To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsGenericRepository<>));
+                .Bind(typeof(Bio.Environments.Data.Repositories.Contracts.IBioEnvironmentsRepository<>))
+                .To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsRepository<>));
             kernel
                 .Bind<Bio.Environments.Services.Data.Contracts.IEnvoTermsDataService>()
                 .To<Bio.Environments.Services.Data.EnvoTermsDataService>();

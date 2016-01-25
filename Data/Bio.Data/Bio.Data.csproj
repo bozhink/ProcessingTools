@@ -46,8 +46,8 @@
     <Compile Include="Contracts\IBioDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EfBioDataGenericRepository.cs" />
-    <Compile Include="Repositories\IBioDataRepository.cs" />
+    <Compile Include="Repositories\BioDataRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBioDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFiles\Seed\morphological-epithets.txt">

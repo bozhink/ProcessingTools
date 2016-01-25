@@ -6,7 +6,7 @@
     using Models;
     using Models.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data;
-    using ProcessingTools.Bio.Biorepositories.Data.Repositories;
+    using ProcessingTools.Bio.Biorepositories.Data.Repositories.Contracts;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
 

@@ -4,7 +4,9 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
+
+    using ProcessingTools.Data.Common.Contracts;
+    using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class EfGenericRepository<IContext, T> : IEfRepository<T>
         where IContext : IDbContext

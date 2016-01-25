@@ -5,7 +5,7 @@
     using Contracts;
     using Models.Contracts;
     using ProcessingTools.Data.Models;
-    using ProcessingTools.Data.Repositories;
+    using ProcessingTools.Data.Repositories.Contracts;
 
     public class InstitutionsDataService : EfGenericCrudDataServiceFactory<Institution, IInstitution, int>, IInstitutionsDataService
     {

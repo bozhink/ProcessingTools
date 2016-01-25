@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using Bio.Data.Models;
-    using Bio.Data.Repositories;
+    using Bio.Data.Repositories.Contracts;
     using Contracts;
     using Models.Contracts;
     using ProcessingTools.Services.Common.Factories;

@@ -5,7 +5,7 @@
     using System.Linq;
 
     using MediaType.Data.Models;
-    using MediaType.Data.Repositories;
+    using MediaType.Data.Repositories.Contracts;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 

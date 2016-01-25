@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Repositories
+﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
     using System;
     using System.Linq;

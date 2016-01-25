@@ -8,7 +8,7 @@
     using Models.Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Models;
-    using ProcessingTools.Bio.Environments.Data.Repositories;
+    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Common.Constants;
 
     public class EnvoTermsDataService : IEnvoTermsDataService

@@ -3,7 +3,7 @@
     using AutoMapper;
     using Contracts;
     using Geo.Data.Models;
-    using Geo.Data.Repositories;
+    using Geo.Data.Repositories.Contracts;
     using Models.Contracts;
     using ProcessingTools.Services.Common.Factories;
 

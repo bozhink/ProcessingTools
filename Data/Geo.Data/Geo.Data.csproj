@@ -46,8 +46,8 @@
     <Compile Include="GeoDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EfGeoDataGenericRepository.cs" />
-    <Compile Include="Repositories\IGeoDataRepository.cs" />
+    <Compile Include="Repositories\GeoDataRepository.cs" />
+    <Compile Include="Repositories\Contracts\IGeoDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

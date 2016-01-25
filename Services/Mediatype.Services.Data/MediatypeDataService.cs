@@ -4,7 +4,7 @@
     using System.Linq;
 
     using MediaType.Data.Models;
-    using MediaType.Data.Repositories;
+    using MediaType.Data.Repositories.Contracts;
     using Models;
     using Models.Contracts;
 

@@ -69,10 +69,10 @@
     <Compile Include="Contracts\IBiorepositoriesDbFirstDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EfBiorepositoriesDbFirstGenericRepository.cs" />
-    <Compile Include="Repositories\EfBiorepositoriesGenericRepository.cs" />
-    <Compile Include="Repositories\IBiorepositoriesDbFirstGenericRepository.cs" />
-    <Compile Include="Repositories\IBiorepositoriesRepository.cs" />
+    <Compile Include="Repositories\BiorepositoriesDbFirstGenericRepository.cs" />
+    <Compile Include="Repositories\BiorepositoriesRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBiorepositoriesDbFirstGenericRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBiorepositoriesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
