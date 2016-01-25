@@ -164,12 +164,7 @@
                         // Do something as an experimental feature
                         if (this.settings.TestFlag)
                         {
-                            this.logger?.Log("\n\n\tTest\n\n");
-                            var test = new Test(this.document.Xml);
-
-                            ////test... do somethig.
-
-                            this.document.Xml = test.Xml;
+                            this.InvokeProcessor<ITestController>("\n\n\tTest\n\n", kernel).Wait();
                         }
 
                         // Main Tagging part of the program
