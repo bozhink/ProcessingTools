@@ -1,9 +1,14 @@
 ﻿namespace ProcessingTools.MainProgram
 {
+    using System;
     using Configurator;
+    using Bio.Taxonomy.Services.Data;
 
     public class ProgramSettings
     {
+        private Lazy<TaxonomicListDataService> blackList;
+        private Lazy<TaxonomicListDataService> whiteList;
+
         public ProgramSettings()
         {
             this.Config = null;
@@ -70,7 +75,14 @@
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
+
+            this.blackList = new Lazy<TaxonomicListDataService>(() => new TaxonomicListDataService(this.Config.BlackListXmlFilePath));
+            this.whiteList = new Lazy<TaxonomicListDataService>(() => new TaxonomicListDataService(this.Config.WhiteListXmlFilePath));
         }
+
+        public TaxonomicListDataService BlackList => this.blackList.Value;
+
+        public TaxonomicListDataService WhiteList => this.whiteList.Value;
 
         public Config Config { get; set; }
 

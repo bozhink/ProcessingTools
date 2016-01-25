@@ -393,18 +393,14 @@
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
-                var blackList = new Bio.Taxonomy.Services.Data.TaxonomicListDataService(this.settings.Config.BlackListXmlFilePath);
-
-                var whiteList = new Bio.Taxonomy.Services.Data.TaxonomicListDataService(this.settings.Config.WhiteListXmlFilePath);
-
                 if (this.settings.TagLowerTaxa)
                 {
-                    xmlContent = this.TagLowerTaxa(xmlContent, blackList);
+                    xmlContent = this.TagLowerTaxa(xmlContent, this.settings.BlackList);
                 }
 
                 if (this.settings.TagHigherTaxa)
                 {
-                    xmlContent = this.TagHigherTaxa(xmlContent, blackList, whiteList);
+                    xmlContent = this.TagHigherTaxa(xmlContent, this.settings.BlackList, this.settings.WhiteList);
                 }
             }
 
