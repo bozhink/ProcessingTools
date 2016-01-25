@@ -177,6 +177,11 @@
                             this.InvokeProcessor<ITagHigherTaxaController>(Messages.TagHigherTaxaMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseLowerTaxa)
+                        {
+                            this.InvokeProcessor<IParseLowerTaxaController>(Messages.ParseLowerTaxaMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -401,7 +406,6 @@
         {
             string xmlContent = content;
 
-            xmlContent = this.ParseLowerTaxa(xmlContent);
             xmlContent = this.ParseHigherTaxa(xmlContent);
 
             return xmlContent;
@@ -470,18 +474,6 @@
             }
 
             return result;
-        }
-
-        private string ParseLowerTaxa(string xmlContent)
-        {
-            if (this.settings.ParseLowerTaxa)
-            {
-                var parser = new LowerTaxaParser(this.settings.Config, xmlContent, this.logger);
-                this.InvokeProcessor(Messages.ParseLowerTaxaMessage, parser).Wait();
-                xmlContent = parser.Xml;
-            }
-
-            return xmlContent;
         }
 
         private void PrintElapsedTime(Stopwatch timer)
