@@ -123,6 +123,7 @@
     <Compile Include="Contracts\ITagGeoNamesController.cs" />
     <Compile Include="Contracts\ITaggerController.cs" />
     <Compile Include="Contracts\ITagInstitutionsController.cs" />
+    <Compile Include="Contracts\ITagLowerTaxaController.cs" />
     <Compile Include="Contracts\ITagMorphologicalEpithetsController.cs" />
     <Compile Include="Contracts\ITagProductsController.cs" />
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Controllers\TagGeoEpithetsController.cs" />
     <Compile Include="Controllers\TagGeoNamesController.cs" />
     <Compile Include="Controllers\TagInstitutionsController.cs" />
+    <Compile Include="Controllers\TagLowerTaxaController.cs" />
     <Compile Include="Controllers\TagMorphologicalEpithetsController.cs" />
     <Compile Include="Controllers\TagProductsController.cs" />
     <Compile Include="Controllers\TagQuantitiesController.cs" />

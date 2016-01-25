@@ -167,6 +167,11 @@
                             this.InvokeProcessor<ITestController>("\n\n\tTest\n\n", kernel).Wait();
                         }
 
+                        if (this.settings.TagLowerTaxa)
+                        {
+                            this.InvokeProcessor<ITagLowerTaxaController>(Messages.TagLowerTaxaMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -393,14 +398,11 @@
 
             if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
             {
-                if (this.settings.TagLowerTaxa)
-                {
-                    xmlContent = this.TagLowerTaxa(xmlContent, this.settings.BlackList);
-                }
+
 
                 if (this.settings.TagHigherTaxa)
                 {
-                    xmlContent = this.TagHigherTaxa(xmlContent, this.settings.BlackList, this.settings.WhiteList);
+                    xmlContent = this.TagHigherTaxa(xmlContent);
                 }
             }
 
@@ -533,20 +535,15 @@
                 this.settings.QueryFileName);
         }
 
-        private string TagHigherTaxa(string xmlContent, Bio.Taxonomy.Services.Data.TaxonomicListDataService blackList, Bio.Taxonomy.Services.Data.TaxonomicListDataService whiteList)
+        private string TagHigherTaxa(string xmlContent)
         {
-            var miner = new Bio.Data.Miners.HigherTaxaDataMiner(whiteList);
-            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, miner, blackList, this.logger);
+            var miner = new Bio.Data.Miners.HigherTaxaDataMiner(this.settings.WhiteList);
+            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, miner, this.settings.BlackList, this.logger);
             this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger).Wait();
             return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
         }
 
-        private string TagLowerTaxa(string xmlContent, Bio.Taxonomy.Services.Data.TaxonomicListDataService blackList)
-        {
-            var tagger = new LowerTaxaTagger(this.settings.Config, xmlContent, blackList, this.logger);
-            this.InvokeProcessor(Messages.TagLowerTaxaMessage, tagger).Wait();
-            return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
-        }
+
 
         private async Task WriteOutputFile()
         {
