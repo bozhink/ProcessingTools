@@ -172,6 +172,11 @@
                             this.InvokeProcessor<ITagLowerTaxaController>(Messages.TagLowerTaxaMessage, kernel).Wait();
                         }
 
+                        if (this.settings.TagHigherTaxa)
+                        {
+                            this.InvokeProcessor<ITagHigherTaxaController>(Messages.TagHigherTaxaMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -396,16 +401,6 @@
         {
             string xmlContent = content;
 
-            if (this.settings.TagLowerTaxa || this.settings.TagHigherTaxa)
-            {
-
-
-                if (this.settings.TagHigherTaxa)
-                {
-                    xmlContent = this.TagHigherTaxa(xmlContent);
-                }
-            }
-
             xmlContent = this.ParseLowerTaxa(xmlContent);
             xmlContent = this.ParseHigherTaxa(xmlContent);
 
@@ -534,16 +529,6 @@
                 this.fileProcessor.OutputFileName,
                 this.settings.QueryFileName);
         }
-
-        private string TagHigherTaxa(string xmlContent)
-        {
-            var miner = new Bio.Data.Miners.HigherTaxaDataMiner(this.settings.WhiteList);
-            var tagger = new HigherTaxaTagger(this.settings.Config, xmlContent, miner, this.settings.BlackList, this.logger);
-            this.InvokeProcessor(Messages.TagHigherTaxaMessage, tagger).Wait();
-            return tagger.Xml.NormalizeXmlToSystemXml(this.settings.Config);
-        }
-
-
 
         private async Task WriteOutputFile()
         {
