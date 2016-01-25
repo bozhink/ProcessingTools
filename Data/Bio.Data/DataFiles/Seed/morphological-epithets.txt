@@ -1,11 +1,26 @@
-﻿aculeus
+﻿abdomen
+abdomen
+aculeus
 aedeagus
+antegenital | epithet
+antenna
+antenna
+antenno–frontal | epithet
+anteromedial margin
+anteromedial margin of pronotum
 anthers
 apex
+apex of forewings
+apex of hindwings
+apical | epithet
 basal colleter
+base of clypeus
 basidia
 basidiospores
 basistipes
+body
+border s–chaeta on ant. IV
+border s–chaeta on ant. IV
 buds
 calyx
 canthus rostralis
@@ -13,10 +28,26 @@ cardo
 caudicle
 caudicles
 caulocystidia
+center of the cranial vertex
+central axis of the head, across widest point
+central ocellus
+centroapical | epithet
+centromedial | epithet
+centroposterior | epithet
+chaeta s
+chaetae
+chaetae
+chaetae
+chaetae of anal lobes | epithet
 cheilocystidia
 clamp connections
+claw
+clypeal | epithet
+clypeus
 colleters
 column
+convergence of vannal veins
+convergence of vannal veins
 corolla
 corolla lobes
 corona
@@ -24,51 +55,117 @@ corona lobes
 corpusculum
 costa
 costae
+coxa
+coxa
+cylindrical s–chaetae on ant. IV („soies mousses”)
 disk
+distal apex of genicular lobe
+distal cheliceral segment
+distal terminus
+distal terminus
+distal terminus of body or wing (whichever is longer)
+distal terminus of the segment before the ungues
+distal terminus of the segment before the ungues
+distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia
+distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia
+dorsal | epithet
+dorsoexternal | epithet
+dorsointernal | epithet
+dorsolateral | epithet
 elytra
 endocarina
 epipharynx
+femur
+femur
+femur
 first whorl
 flowers
 foramen
 foramina
+forewing
 frond
 fronds
+frons
 fruit
 fruits
+furcal | epithet
+genital operculum
+genu
 globular whorls
 gynostegium
 head
+head
+head
+hindwing
 hoya
 inflorescence
 inflorescences
 interstrial costae
 labellum
 labial palpus
+labial papilla x
 lamellae
 lamellar trama
 lamina
 lateral costa
+lateral edge of compound eye
+lateral edge of pronotum
+lateral edge of pronotum
+lateral margin of lower frons at widest point
+lateral | epithet
 leaves
+leg I
+leg II
 legs
+long macrochaeta
 longitudinal costae
+lower frons
+lower margin of unpaired, median ocellus
 mandibles
 marginal costa
 maxillae
 maxillary palpus
 median costa
+mesochaeta
 mesocoxa
 mesocoxae
 mesosternum
 mesotarsi
+mesothoracic femur
+mesothoracic tarsus
+mesothoracic tibia
 metasternum
 metatarsi
+metathoracic femur
+metathoracic tarsus
+metathoracic tibia
 metatibia
+microchaeta
+microchaetae on ant. IV
+middle of epistomal suture
+most proximal margin abutting the trochanter
+most proximal margin abutting the trochanter
+most proximal margin abutting the trochanter
+most-proximal margin of basitarsus
+most-proximal margin of basitarsus
+ocular | epithet
+ocularium
+opposing edge of contralateral eye, perpendicular
+opposing edge, across narrowest region posterior
+opposing edge, across widest region
+opposing outer margin
+ordinary chaeta on ant. IV
+ordinary chaetae on tibiotarsi
+ordinary chaetae on ventral ant. IV
+ordinary lateral chaeta on abd. V
+organite of ant. IV
 ovary
 palpus
 paramedian costa
 pedicel
 pedicels
+pedipalpal femur
+pedipalpal trochanter
 peduncle
 peduncles
 petals
@@ -76,63 +173,72 @@ petioles
 pileipellis
 pleurocystidia
 pollinia
+posteromedial margin
 procoxa
 profemur
 pronotal surface
 pronotum
+pronotum
+pronotum
+pronotum
+pronotum
 protarsus
+prothoracic femur
 prothorax
 protibia
+proximal bend of the tibia
+proximal bend of the tibia
+proximal cheliceral segment
+prozone
 pygidium
+Rhopalia
 root
 seed
 seeds
 segment
+sensory organ of antennal segment III
+sensory organ of antennal segment III
+seta-bearing tubercle
+setae
+short macrochaeta
+solenidia
 spiral whorls
 stamens
 stems
 stipe
 stripes
+subcoxa 2
+subcoxa 2
 sublateral costa
+subocular | epithet
+supracoxal sulcus
+supracoxal sulcus
+s–microchaeta or microsensillum
+tasus
+thorax
+thorax
+tibia
 tibial apex
+tibiotarsus
+tibiotarsus
+trochanter
+trochanter
+Tubercles
 uncini
 ventral margin
-ventral umbo
-whorls
-Rhopalia
-
-
-abdomen
-antenna
-sensory organ of antennal segment III
-coxa
-femur
-subcoxa 2
-tibiotarsus
-thorax
-trochanter
 ventral tube
-chaetae
-
-        General morphology: abd. – abdomen, ant. – antenna, AOIII – sensory organ of antennal segment III, Cx – coxa, Fe – femur, Scx2 – subcoxa 2, T – tibiotarsus, th. – thorax, Tr – trochanter, VT – ventral tube.
-
-        Groups of chaetae: Ag – antegenital, An – chaetae of anal lobes, ap – apical, ca – centroapical, cm – centromedial, cp – centroposterior, d – dorsal, Fu – furcal, vc – ventrocentral, Ve or ve – ventroexternal, Vea – ventroexternoanterior, Vem – ventroexternomedial, Vep – ventroexternoposterior, Vel – ventroexternolateral, Vec – ventroexternocentral, Vei – ventroexternointernal, Vi or vi – ventrointernal, Vl – ventrolateral.
-
-        Tubercles: Af – antenno–frontal, Cl – clypeal, De – dorsoexternal, Di – dorsointernal, Dl – dorsolateral, L – lateral, Oc – ocular, So – subocular.
-
-        Types of chaetae: Ml – long macrochaeta, Mc – short macrochaeta, Mcc – very short macrochaeta, me – mesochaeta, mi – microchaeta, ms – s–microchaeta or microsensillum, S or s – chaeta s, bs – border s–chaeta on ant. IV, miA – microchaetae on ant. IV, iv – ordinary chaetae on ventral ant. IV, or – organite of ant. IV, brs – border s–chaeta on ant. IV, i – ordinary chaeta on ant. IV, mou – cylindrical s–chaetae on ant. IV („soies mousses”), x – labial papilla x, L’ – ordinary lateral chaeta on abd. V, B4, B5 – ordinary chaetae on tibiotarsi.
-
-        DCS = distal cheliceral segment, GO = genital operculum, LII = leg II, OC = ocularium, PCS = proximal cheliceral segment, PF = pedipalpal femur, PT = pedipalpal trochanter, SBT = seta-bearing tubercle
-
-
-        Leg I
-        Femur
-        Genu
-        Tibia
-        Tasus
-        Claw
-        setae
-        solenidia
-
-        <p>1.) <italic>Body Length </italic>= From central ocellus to distal terminus of body or wing (whichever is longer); 2. <italic>Forewing Length </italic>= From convergence of vannal veins to apex of forewings; 3.) <italic>Hindwing Length </italic>= From convergence of vannal veins to apex of hindwings; 4.) <italic>Pronotum Length </italic>= From anteromedial margin of pronotum to posteromedial margin; 5.) <italic>Prozone Length </italic>= From anteromedial margin of pronotum to supracoxal sulcus; 6.) <italic>Pronotum Maximum Width = </italic>From lateral edge of pronotum to opposing edge, across widest region; 7.) <italic>Pronotum Maximum Width </italic>= From lateral edge of pronotum to opposing edge, across narrowest region posterior to supracoxal sulcus; 8.) <italic>Head Width </italic>= From lateral edge of compound eye to opposing edge of contralateral eye, perpendicular to central axis of the head, across widest point; 9.) <italic>Head Vertex to Clypeus </italic>= From center of the cranial vertex to base of clypeus; 10.) <italic>Lower Frons Width </italic>= From lateral margin of lower frons at widest point to opposing outer margin; 11.) <italic>Lower Frons Height </italic>= From lower margin of unpaired, median ocellus to middle of epistomal suture; 12.) <italic>Prothoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal apex of genicular lobe; 13.) <italic>Mesothoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal terminus; 14.) <italic>Mesothoracic Tibia Length </italic>= From proximal bend of the tibia to distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia; 15.) <italic>Mesothoracic Tarsus Length </italic>= From most-proximal margin of basitarsus to distal terminus of the segment before the ungues; 16.) <italic>Metathoracic Femur Length </italic>= From most proximal margin abutting the trochanter to distal terminus; 17.) <italic>Metathoracic <!--PageBreak-->Tibia Length </italic>= From proximal bend of the tibia to distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia; 18.) <italic>Metathoracic Tarsus Length </italic>= From most-proximal margin of basitarsus to distal terminus of the segment before the ungues.
-                </p>
+ventral tube
+ventral umbo
+ventrocentral | epithet
+ventroexternal | epithet
+ventroexternoanterior | epithet
+ventroexternocentral | epithet
+ventroexternointernal | epithet
+ventroexternolateral | epithet
+ventroexternomedial | epithet
+ventroexternoposterior | epithet
+ventrointernal | epithet
+ventrolateral | epithet
+vertex
+very short macrochaeta
+whorls
