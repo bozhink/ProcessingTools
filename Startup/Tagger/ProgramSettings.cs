@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
-    using Configurator;
+
     using Bio.Taxonomy.Services.Data;
+    using Configurator;
 
     public class ProgramSettings
     {
