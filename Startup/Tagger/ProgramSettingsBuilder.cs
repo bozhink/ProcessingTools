@@ -56,9 +56,6 @@
             {
                 string configJsonFilePath = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
 
-                ////var appConfigReader = new AppSettingsReader();
-                ////string configJsonFilePath = appConfigReader.GetValue("ConfigJsonFilePath", typeof(string)).ToString();
-
                 this.Settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);
             }
             catch
@@ -197,38 +194,6 @@
 
                                 case 'k':
                                     this.Settings.ParseCoordinates = true;
-                                    break;
-
-                                case '1':
-                                    this.Settings.Flag1 = true;
-                                    break;
-
-                                case '2':
-                                    this.Settings.Flag2 = true;
-                                    break;
-
-                                case '3':
-                                    this.Settings.Flag3 = true;
-                                    break;
-
-                                case '4':
-                                    this.Settings.Flag4 = true;
-                                    break;
-
-                                case '5':
-                                    this.Settings.Flag5 = true;
-                                    break;
-
-                                case '6':
-                                    this.Settings.Flag6 = true;
-                                    break;
-
-                                case '7':
-                                    this.Settings.Flag7 = true;
-                                    break;
-
-                                case '8':
-                                    this.Settings.Flag8 = true;
                                     break;
 
                                 case 'X':

@@ -22,15 +22,6 @@
             this.ExtractHigherTaxa = false;
             this.ExtractLowerTaxa = false;
             this.ExtractTaxa = false;
-            this.Flag1 = false;
-            this.Flag2 = false;
-            this.Flag3 = false;
-            this.Flag4 = false;
-            this.Flag5 = false;
-            this.Flag6 = false;
-            this.Flag7 = false;
-            this.Flag8 = false;
-            this.Flora = false;
             this.InitialFormat = false;
             this.FormatTreat = false;
             this.ParseBySection = false;
@@ -92,22 +83,6 @@
         public bool ExtractLowerTaxa { get; set; }
 
         public bool ExtractTaxa { get; set; }
-
-        public bool Flag1 { get; set; }
-
-        public bool Flag2 { get; set; }
-
-        public bool Flag3 { get; set; }
-
-        public bool Flag4 { get; set; }
-
-        public bool Flag5 { get; set; }
-
-        public bool Flag6 { get; set; }
-
-        public bool Flag7 { get; set; }
-
-        public bool Flag8 { get; set; }
 
         public bool Flora { get; set; }
 
