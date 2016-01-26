@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.MainProgram.Contracts
 {
-    public interface IParseHigherTaxaWithAphiaController : ITaggerController
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+
+    public interface IParseHigherTaxaWithAphiaController : IParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaClassificationDataService>
     {
     }
 }
