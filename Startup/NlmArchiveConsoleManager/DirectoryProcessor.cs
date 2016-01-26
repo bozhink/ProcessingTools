@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -63,7 +64,7 @@
                 {
                     var files = Directory.GetFiles(Directory.GetCurrentDirectory());
 
-                    var xmlFiles = files.Where(f => Path.GetExtension(f).TrimStart('.') == "xml");
+                    var xmlFiles = files.Where(f => Path.GetExtension(f).TrimStart('.') == "xml" && !Regex.IsMatch(Path.GetFileNameWithoutExtension(f), @"\-s\d+\Z"));
 
                     Parallel.ForEach(
                         xmlFiles,
