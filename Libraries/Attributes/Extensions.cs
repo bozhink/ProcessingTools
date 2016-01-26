@@ -23,5 +23,10 @@
                 .SelectMany(m => m.GetCustomAttributes<ValueAttribute>(false), (m, v) => v.Value)
                 .FirstOrDefault() ?? item.ToString();
         }
+
+        public static string GetDescription(this object item)
+        {
+            return item.GetType().GetCustomAttribute<DescriptionAttribute>(false)?.Description;
+        }
     }
 }

@@ -3,11 +3,13 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
     using Ninject;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
@@ -300,13 +302,32 @@
         protected async Task InvokeProcessor<TController>(string message, XmlNode context, IKernel kernel)
             where TController : ITaggerController
         {
+            var controller = kernel.Get<TController>();
+
+            message = GetDescriptionMessageForController(controller);
+
             await this.InvokeProcessor(
                 message,
                 () =>
                 {
-                    var controller = kernel.Get<TController>();
                     controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
                 });
+        }
+
+        private static string GetDescriptionMessageForController(ITaggerController controller)
+        {
+            string message = controller.GetDescription();
+
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                var type = controller.GetType();
+                var name = Regex.Replace(type.FullName, @".*?([^\.]+)\Z", "$1");
+                name = Regex.Replace(name, @"Controller\Z", string.Empty);
+
+                message = Regex.Replace(name, "(?=[A-Z])", " ").Trim();
+            }
+
+            return $"\n\t{message}\n";
         }
 
         private Task MainProcessing(XmlNode context, IKernel kernel)
@@ -327,7 +348,7 @@
                 {
                     for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
                     {
-                        this.InvokeProcessor<IExpandLowerTaxaController>(Messages.ExpandTaxa, context, kernel).Wait();
+                        this.InvokeProcessor<IExpandLowerTaxaController>(null, context, kernel).Wait();
                     }
                 }
             });
