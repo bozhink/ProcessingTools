@@ -35,6 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IUrlValidationService.cs" />
+    <Compile Include="Models\Contracts\IUrl.cs" />
+    <Compile Include="Models\Contracts\IUrlValidationServiceModel.cs" />
+    <Compile Include="Models\UrlModel.cs" />
+    <Compile Include="Models\UrlValidationServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

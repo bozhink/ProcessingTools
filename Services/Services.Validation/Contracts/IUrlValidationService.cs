@@ -1,6 +1,9 @@
 ﻿namespace ProcessingTools.Services.Validation.Contracts
 {
-    public interface IUrlValidationService
+    using Models.Contracts;
+    using ProcessingTools.Services.Common.Contracts;
+
+    public interface IUrlValidationService : IValidationService<IUrlValidationServiceModel>
     {
     }
 }
