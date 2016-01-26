@@ -197,6 +197,11 @@
                             this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(Messages.ParseHigherTaxaWithCoLMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseHigherWithGbif)
+                        {
+                            this.InvokeProcessor<IParseHigherTaxaWithGbifController>(Messages.ParseHigherTaxaWithGbifMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -432,15 +437,15 @@
 
             if (this.settings.ParseHigherTaxa)
             {
-                if (this.settings.ParseHigherWithGbif)
-                {
-                    var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
-                    var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser).Wait();
-                    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
-                    result = parser.Xml;
-                }
+                ////if (this.settings.ParseHigherWithGbif)
+                ////{
+                ////    var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();
+                ////    var service = new Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService(requester);
+                ////    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
+                ////    this.InvokeProcessor(Messages.ParseHigherTaxaWithGbifMessage, parser).Wait();
+                ////    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
+                ////    result = parser.Xml;
+                ////}
 
                 if (this.settings.ParseHigherBySuffix)
                 {

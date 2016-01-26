@@ -103,6 +103,7 @@
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithDataServiceGenericController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithGbifController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Contracts\IParseLowerTaxaController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithAphiaController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Controllers\ParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithCatalogueOfLifeController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithDataServiceGenericController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithGbifController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Controllers\ParseLowerTaxaController.cs" />
     <Compile Include="Controllers\ParseTreatmentMetaWithAphiaController.cs" />
