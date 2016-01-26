@@ -202,6 +202,11 @@
                             this.InvokeProcessor<IParseHigherTaxaWithGbifController>(Messages.ParseHigherTaxaWithGbifMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseHigherBySuffix)
+                        {
+                            this.InvokeProcessor<IParseHigherTaxaBySuffixController>(Messages.ParseHigherTaxaBySuffixMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -437,15 +442,6 @@
 
             if (this.settings.ParseHigherTaxa)
             {
-                if (this.settings.ParseHigherBySuffix)
-                {
-                    var service = new Bio.Taxonomy.Services.Data.SuffixHigherTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaBySuffixMessage, parser).Wait();
-                    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
-                    result = parser.Xml;
-                }
-
                 if (this.settings.ParseHigherAboveGenus)
                 {
                     var service = new Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService();
