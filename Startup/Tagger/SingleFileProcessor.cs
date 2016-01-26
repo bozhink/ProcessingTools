@@ -207,6 +207,11 @@
                             this.InvokeProcessor<IParseHigherTaxaBySuffixController>(Messages.ParseHigherTaxaBySuffixMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseHigherAboveGenus)
+                        {
+                            this.InvokeProcessor<IParseHigherTaxaAboveGenusController>(Messages.ParseHigherTaxaAboveGenusMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -407,8 +412,6 @@
 
                 string xmlContent = context.OuterXml;
 
-                xmlContent = this.PerformContextInsensitiveTaxonomyProcessing(xmlContent);
-
                 xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
 
                 return xmlContent;
@@ -425,34 +428,6 @@
             }
 
             return xmlContent;
-        }
-
-        private string PerformContextInsensitiveTaxonomyProcessing(string content)
-        {
-            string xmlContent = content;
-
-            xmlContent = this.ParseHigherTaxa(xmlContent);
-
-            return xmlContent;
-        }
-
-        private string ParseHigherTaxa(string xmlContent)
-        {
-            string result = xmlContent;
-
-            if (this.settings.ParseHigherTaxa)
-            {
-                if (this.settings.ParseHigherAboveGenus)
-                {
-                    var service = new Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser).Wait();
-                    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
-                    result = parser.Xml;
-                }
-            }
-
-            return result;
         }
 
         private void PrintElapsedTime(Stopwatch timer)
