@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectConfig.cs" />
+    <Compile Include="Contracts\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaAboveGenusController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
     <Compile Include="Controllers\FormatTreatmentsController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaAboveGenusController.cs" />

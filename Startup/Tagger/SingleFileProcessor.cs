@@ -214,24 +214,14 @@
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
-                            var xmlDocument = new XmlDocument(this.document.NamespaceManager.NameTable)
+                            foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
                             {
-                                PreserveWhitespace = true
-                            };
-
-                            xmlDocument.LoadXml(this.document.Xml);
-                            foreach (XmlNode node in xmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                            {
-                                var fragment = node.OwnerDocument.CreateDocumentFragment();
-                                fragment.InnerXml = await this.MainProcessing(node, kernel);
-                                node.ParentNode.ReplaceChild(fragment, node);
+                                this.MainProcessing(context, kernel).Wait();
                             }
-
-                            this.document.Xml = xmlDocument.OuterXml;
                         }
                         else
                         {
-                            this.document.Xml = await this.MainProcessing(this.document.XmlDocument.DocumentElement, kernel);
+                            this.MainProcessing(this.document.XmlDocument.DocumentElement, kernel).Wait();
                         }
 
                         if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
@@ -319,36 +309,7 @@
                 });
         }
 
-        private string ExpandTaxa(string xmlContent)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            this.logger?.Log(Messages.ExpandTaxa);
-
-            try
-            {
-                var expand2 = new ProcessingTools.BaseLibrary.Taxonomy.Expander(this.settings.Config, xmlContent, this.logger);
-
-                for (int i = 0; i < ProcessingConstants.NumberOfExpandingIterations; ++i)
-                {
-                    if (this.settings.ExpandLowerTaxa)
-                    {
-                        expand2.StableExpand();
-                    }
-
-                    xmlContent = expand2.Xml;
-                    this.PrintElapsedTime(timer);
-                }
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, string.Empty);
-            }
-
-            return xmlContent;
-        }
-
-        private Task<string> MainProcessing(XmlNode context, IKernel kernel)
+        private Task MainProcessing(XmlNode context, IKernel kernel)
         {
             return Task.Run(() =>
             {
@@ -362,24 +323,14 @@
                     this.InvokeProcessor<ITagReferencesController>(Messages.TagReferencesMessage, context, kernel).Wait();
                 }
 
-                string xmlContent = context.OuterXml;
-
-                xmlContent = this.PerformContextSensitiveTaxonomyProcessing(xmlContent);
-
-                return xmlContent;
+                if (this.settings.ExpandLowerTaxa)
+                {
+                    for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
+                    {
+                        this.InvokeProcessor<IExpandLowerTaxaController>(Messages.ExpandTaxa, context, kernel).Wait();
+                    }
+                }
             });
-        }
-
-        private string PerformContextSensitiveTaxonomyProcessing(string content)
-        {
-            string xmlContent = content;
-
-            if (this.settings.ExpandLowerTaxa || this.settings.Flag1 || this.settings.Flag2 || this.settings.Flag3 || this.settings.Flag4 || this.settings.Flag5 || this.settings.Flag6 || this.settings.Flag7 || this.settings.Flag8)
-            {
-                xmlContent = this.ExpandTaxa(xmlContent);
-            }
-
-            return xmlContent;
         }
 
         private void PrintElapsedTime(Stopwatch timer)

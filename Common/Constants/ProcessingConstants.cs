@@ -2,6 +2,6 @@
 {
     public class ProcessingConstants
     {
-        public const int NumberOfExpandingIterations = 1;
+        public const int NumberOfExpandIterations = 1;
     }
 }
