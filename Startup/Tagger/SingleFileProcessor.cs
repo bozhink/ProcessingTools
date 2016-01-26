@@ -192,6 +192,11 @@
                             this.InvokeProcessor<IParseHigherTaxaWithAphiaController>(Messages.ParseHigherTaxaWithAphiaMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseHigherWithCoL)
+                        {
+                            this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(Messages.ParseHigherTaxaWithCoLMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -427,16 +432,6 @@
 
             if (this.settings.ParseHigherTaxa)
             {
-                if (this.settings.ParseHigherWithCoL)
-                {
-                    var requester = new Bio.Taxonomy.ServiceClient.CatalogueOfLife.CatalogueOfLifeDataRequester();
-                    var service = new Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService(requester);
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaWithCoLMessage, parser).Wait();
-                    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
-                    result = parser.Xml;
-                }
-
                 if (this.settings.ParseHigherWithGbif)
                 {
                     var requester = new Bio.Taxonomy.ServiceClient.Gbif.GbifDataRequester();

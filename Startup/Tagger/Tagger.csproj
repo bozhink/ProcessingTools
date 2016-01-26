@@ -101,6 +101,7 @@
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithDataServiceGenericController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Contracts\IParseLowerTaxaController.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Controllers\ExtractTaxaController.cs" />
     <Compile Include="Controllers\FormatTreatmentsController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithAphiaController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithCatalogueOfLifeController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithDataServiceGenericController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Controllers\ParseLowerTaxaController.cs" />
