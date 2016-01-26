@@ -445,7 +445,7 @@
                 if (this.settings.ParseHigherAboveGenus)
                 {
                     var service = new Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService();
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
+                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonClassification>(result, service, this.logger);
                     this.InvokeProcessor(Messages.ParseHigherTaxaAboveGenusMessage, parser).Wait();
                     parser.XmlDocument.PrintNonParsedTaxa(this.logger);
                     result = parser.Xml;

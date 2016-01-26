@@ -11,10 +11,10 @@
     {
         private const string Rank = "above-genus";
 
-        public IQueryable<ITaxonRank> Resolve(params string[] scientificNames)
+        public IQueryable<ITaxonClassification> Resolve(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonRank>(scientificNames
-                .Select(s => new TaxonRankDataServiceResponseModel
+            var result = new HashSet<ITaxonClassification>(scientificNames
+                .Select(s => new TaxonClassificationDataServiceResponseModel
                 {
                     ScientificName = s,
                     Rank = Rank
