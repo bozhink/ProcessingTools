@@ -33,9 +33,9 @@
             };
         }
 
-        public IQueryable<ITaxonRank> Resolve(params string[] scientificNames)
+        public IQueryable<ITaxonClassification> Resolve(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonRank>();
+            var result = new HashSet<ITaxonClassification>();
 
             foreach (var scientificName in scientificNames)
             {
@@ -44,7 +44,7 @@
                     .Select(k => this.rankPerSuffix[k])
                     .ToList();
 
-                ranks.ForEach(r => result.Add(new TaxonRankDataServiceResponseModel
+                ranks.ForEach(r => result.Add(new TaxonClassificationDataServiceResponseModel
                 {
                     ScientificName = scientificName,
                     Rank = r

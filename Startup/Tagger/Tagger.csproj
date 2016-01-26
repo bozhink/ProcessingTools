@@ -100,6 +100,7 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaBySuffixController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithDataServiceGenericController.cs" />
