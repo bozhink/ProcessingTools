@@ -6,14 +6,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using BaseLibrary;
-    using BaseLibrary.Taxonomy;
-    using Common.Constants;
     using Contracts;
-    using DocumentProvider;
     using Ninject;
+    using ProcessingTools.BaseLibrary;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -328,63 +327,16 @@
 
             try
             {
-                var expand = new BaseLibrary.Taxonomy.Nlm.Expander(this.settings.Config, xmlContent, this.logger);
-                var exp = new Expander(this.settings.Config, xmlContent, this.logger);
+                var expand2 = new ProcessingTools.BaseLibrary.Taxonomy.Expander(this.settings.Config, xmlContent, this.logger);
 
                 for (int i = 0; i < ProcessingConstants.NumberOfExpandingIterations; ++i)
                 {
                     if (this.settings.ExpandLowerTaxa)
                     {
-                        exp.Xml = expand.Xml;
-                        exp.StableExpand();
-                        expand.Xml = exp.Xml;
+                        expand2.StableExpand();
                     }
 
-                    if (this.settings.Flag1)
-                    {
-                        expand.UnstableExpand1();
-                    }
-
-                    if (this.settings.Flag2)
-                    {
-                        expand.UnstableExpand2();
-                    }
-
-                    if (this.settings.Flag3)
-                    {
-                        exp.Xml = expand.Xml;
-                        exp.UnstableExpand3();
-                        expand.Xml = exp.Xml;
-                    }
-
-                    if (this.settings.Flag4)
-                    {
-                        expand.UnstableExpand4();
-                    }
-
-                    if (this.settings.Flag5)
-                    {
-                        expand.UnstableExpand5();
-                    }
-
-                    if (this.settings.Flag6)
-                    {
-                        expand.UnstableExpand6();
-                    }
-
-                    if (this.settings.Flag7)
-                    {
-                        expand.UnstableExpand7();
-                    }
-
-                    if (this.settings.Flag8)
-                    {
-                        exp.Xml = expand.Xml;
-                        exp.UnstableExpand8();
-                        expand.Xml = exp.Xml;
-                    }
-
-                    xmlContent = expand.Xml;
+                    xmlContent = expand2.Xml;
                     this.PrintElapsedTime(timer);
                 }
             }
