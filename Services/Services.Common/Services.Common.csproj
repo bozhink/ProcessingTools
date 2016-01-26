@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICrudDataService.cs" />
-    <Compile Include="Contracts\IStringValidationService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
     <Compile Include="Models\Contracts\IDataServiceModel.cs" />

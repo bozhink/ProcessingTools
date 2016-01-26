@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IUrlValidationService : IValidationService<IUrlValidationServiceModel>
+    public interface IUrlValidationService : IValidationService<IUrl>
     {
     }
 }
