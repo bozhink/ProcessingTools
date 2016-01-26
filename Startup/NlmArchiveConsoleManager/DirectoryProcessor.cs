@@ -72,7 +72,7 @@
                             try
                             {
                                 var fileProcessor = new FileProcessor(fileName, journal, logger);
-                                fileProcessor.Process();
+                                fileProcessor.Process().Wait();
                             }
                             catch (Exception e)
                             {

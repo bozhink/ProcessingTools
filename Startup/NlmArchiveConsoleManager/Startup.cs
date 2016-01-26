@@ -54,7 +54,7 @@
                 Console.WriteLine(directoryName);
 
                 var direcoryProcessor = new DirectoryProcessor(directoryName, journal, logger);
-                direcoryProcessor.Process();
+                direcoryProcessor.Process().Wait();
             }
         }
     }
