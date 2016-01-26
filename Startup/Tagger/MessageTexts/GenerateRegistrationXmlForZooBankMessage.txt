@@ -1,2 +1,0 @@
-﻿
-    Generate xml document for registration in ZooBank.

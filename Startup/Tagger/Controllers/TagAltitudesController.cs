@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
 
+    [Description("Tag altitudes.")]
     public class TagAltitudesController : StringTaggerControllerFactory, ITagAltitudesController
     {
         private readonly IAltitudesDataMiner miner;

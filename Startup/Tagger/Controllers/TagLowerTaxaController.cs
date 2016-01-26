@@ -5,10 +5,12 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
 
+    [Description("Tag lower taxa.")]
     public class TagLowerTaxaController : TaggerControllerFactory, ITagLowerTaxaController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

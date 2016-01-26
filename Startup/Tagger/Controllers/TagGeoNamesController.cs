@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Geo.Data.Miners.Contracts;
 
+    [Description("Tag geo names.")]
     public class TagGeoNamesController : StringTaggerControllerFactory, ITagGeoNamesController
     {
         private readonly IGeoNamesDataMiner miner;

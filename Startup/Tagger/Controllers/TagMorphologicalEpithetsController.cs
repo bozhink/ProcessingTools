@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
 
+    [Description("Tag morphological epithets.")]
     public class TagMorphologicalEpithetsController : StringTaggerControllerFactory, ITagMorphologicalEpithetsController
     {
         private readonly IMorphologicalEpithetsDataMiner miner;

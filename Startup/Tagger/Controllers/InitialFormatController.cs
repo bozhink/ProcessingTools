@@ -5,10 +5,12 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
+    [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

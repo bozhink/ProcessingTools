@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CloneZooBankJsonMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\clonezoobankjsonmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="CloneZooBankXmlMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\clonezoobankxmlmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="ElapsedTimeMessageFormat" xml:space="preserve">
     <value>Elapsed time {0}.</value>
   </data>
-  <data name="ExpandTaxa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\expandtaxa.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ExtractAllTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\extractalltaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -139,132 +130,15 @@
   <data name="ExtractLowerTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\extractlowertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="FormatTreatmentsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\formattreatmentsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GenerateRegistrationXmlForZooBankMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\generateregistrationxmlforzoobankmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="HelpMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\helpmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="InitialFormatMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\initialformatmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InputOutputFileNamesMessageFormat" xml:space="preserve">
     <value>Input file name: {0}
 Output file name: {1}
 {2}</value>
   </data>
-  <data name="ParseCoordinatesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsecoordinatesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaAboveGenusMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxaabovegenusmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaBySuffixMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxabysuffixmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaWithAphiaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxawithaphiamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaWithCoLMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxawithcolmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseHigherTaxaWithGbifMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsehighertaxawithgbifmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseLowerTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parselowertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseReferencesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsereferencesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseTreatmentMetaWithAphiaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsetreatmentmetawithaphiamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseTreatmentMetaWithCoLMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsetreatmentmetawithcolmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ParseTreatmentMetaWithGbifMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\parsetreatmentmetawithgbifmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ResolveMediaTypesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\resolvemediatypesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RunCustomXslTransformMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\runcustomxsltransformmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagAbbreviationsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagabbreviationsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagAltitudesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagaltitudesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagCodesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagcodesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagCoordinatesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagcoordinatesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagDatesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagdatesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagDoiMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagdoimessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagFloatsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagfloatsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagGeoEpithetsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taggeoepithetsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagGeographicDeviationsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taggeographicdeviationsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagGeoNamesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taggeonamesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagHigherTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taghighertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagInstitutionsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taginstitutionsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagLowerTaxaMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\taglowertaxamessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagMorphologicalEpithetsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagmorphologicalepithetsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagProductsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagproductsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagQuantitiesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagquantitiesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagReferencesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagreferencesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagTableFootNotesMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagtablefootnotesmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagWebLinksMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagweblinksmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ValidateTaxaUsingGnrMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\validatetaxausinggnrmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="WriteOutputFileMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>messagetexts\writeoutputfilemessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagEnvironmentTermsMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagenvironmenttermsmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="TagEnvironmentTermsWithExtractMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>messagetexts\tagenvironmenttermswithextractmessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

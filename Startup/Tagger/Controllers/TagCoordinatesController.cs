@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Coordinates;
     using ProcessingTools.Contracts;
 
+    [Description("Tag coordinates.")]
     public class TagCoordinatesController : TaggerControllerFactory, ITagCoordinatesController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

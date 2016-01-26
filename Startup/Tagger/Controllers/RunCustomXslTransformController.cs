@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
 
+    [Description("Custom XSL transform.")]
     public class RunCustomXslTransformController : TaggerControllerFactory, IRunCustomXslTransformController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

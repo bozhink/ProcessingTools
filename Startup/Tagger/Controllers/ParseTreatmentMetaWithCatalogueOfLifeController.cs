@@ -4,9 +4,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
+    [Description("Parse treatment meta with CoL.")]
     public class ParseTreatmentMetaWithCatalogueOfLifeController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithCatalogueOfLifeController
     {
         private readonly ICatalogueOfLifeTaxaClassificationDataService service;

@@ -5,15 +5,16 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Attributes;
-    using BaseLibrary;
     using Contracts;
     using Factories;
     using Models;
+    using ProcessingTools.Attributes;
+    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Extensions;
 
+    [Description("Tag web links and DOI.")]
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
     {
         private const string XPath = "/*";

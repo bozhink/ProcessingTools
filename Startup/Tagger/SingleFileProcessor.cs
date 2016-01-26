@@ -45,172 +45,172 @@
                 {
                     if (this.settings.ZoobankCloneXml)
                     {
-                        this.InvokeProcessor<IZooBankCloneXmlController>(Messages.CloneZooBankXmlMessage, kernel).Wait();
+                        this.InvokeProcessor<IZooBankCloneXmlController>(kernel).Wait();
                     }
                     else if (this.settings.ZoobankCloneJson)
                     {
-                        this.InvokeProcessor<IZooBankCloneJsonController>(Messages.CloneZooBankJsonMessage, kernel).Wait();
+                        this.InvokeProcessor<IZooBankCloneJsonController>(kernel).Wait();
                     }
                     else if (this.settings.ZoobankGenerateRegistrationXml)
                     {
-                        this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(Messages.GenerateRegistrationXmlForZooBankMessage, kernel).Wait();
+                        this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(kernel).Wait();
                     }
                     else if (this.settings.QueryReplace && !string.IsNullOrWhiteSpace(this.settings.QueryFileName))
                     {
-                        this.InvokeProcessor<IQueryReplaceController>(string.Empty, kernel).Wait();
+                        this.InvokeProcessor<IQueryReplaceController>(kernel).Wait();
                     }
                     else
                     {
                         if (this.settings.RunXslTransform)
                         {
-                            this.InvokeProcessor<IRunCustomXslTransformController>(Messages.RunCustomXslTransformMessage, kernel).Wait();
+                            this.InvokeProcessor<IRunCustomXslTransformController>(kernel).Wait();
                         }
 
                         if (this.settings.InitialFormat)
                         {
-                            this.InvokeProcessor<IInitialFormatController>(Messages.InitialFormatMessage, kernel).Wait();
+                            this.InvokeProcessor<IInitialFormatController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseReferences)
                         {
-                            this.InvokeProcessor<IParseReferencesController>(Messages.ParseReferencesMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseReferencesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagDoi || this.settings.TagWebLinks)
                         {
-                            this.InvokeProcessor<ITagWebLinksController>(Messages.TagWebLinksMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagWebLinksController>(kernel).Wait();
                         }
 
                         if (this.settings.ResolveMediaTypes)
                         {
-                            this.InvokeProcessor<IResolveMediaTypesController>(Messages.ResolveMediaTypesMessage, kernel).Wait();
+                            this.InvokeProcessor<IResolveMediaTypesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagTableFn)
                         {
-                            this.InvokeProcessor<ITagTableFootnoteController>(Messages.TagTableFootNotesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagTableFootnoteController>(kernel).Wait();
                         }
 
                         if (this.settings.TagCoordinates)
                         {
-                            this.InvokeProcessor<ITagCoordinatesController>(Messages.TagCoordinatesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagCoordinatesController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseCoordinates)
                         {
-                            this.InvokeProcessor<IParseCoordinatesController>(Messages.ParseCoordinatesMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseCoordinatesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagMorphologicalEpithets)
                         {
-                            this.InvokeProcessor<ITagMorphologicalEpithetsController>(Messages.TagMorphologicalEpithetsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagMorphologicalEpithetsController>(kernel).Wait();
                         }
 
                         if (this.settings.TagGeoNames)
                         {
-                            this.InvokeProcessor<ITagGeoNamesController>(Messages.TagGeoNamesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagGeoNamesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagGeoEpithets)
                         {
-                            this.InvokeProcessor<ITagGeoEpithetsController>(Messages.TagGeoEpithetsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagGeoEpithetsController>(kernel).Wait();
                         }
 
                         if (this.settings.TagInstitutions)
                         {
-                            this.InvokeProcessor<ITagInstitutionsController>(Messages.TagInstitutionsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagInstitutionsController>(kernel).Wait();
                         }
 
                         if (this.settings.TagProducts)
                         {
-                            this.InvokeProcessor<ITagProductsController>(Messages.TagProductsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagProductsController>(kernel).Wait();
                         }
 
                         if (this.settings.TagEnvironmentTermsWithExtract)
                         {
-                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(Messages.TagEnvironmentTermsWithExtractMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(kernel).Wait();
                         }
 
                         // Tag envo terms using envornment database
                         if (this.settings.TagEnvironmentTerms)
                         {
-                            this.InvokeProcessor<ITagEnvironmentTermsController>(Messages.TagEnvironmentTermsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagEnvironmentTermsController>(kernel).Wait();
                         }
 
                         if (this.settings.TagQuantities)
                         {
-                            this.InvokeProcessor<ITagAltitudesController>(Messages.TagAltitudesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagAltitudesController>(kernel).Wait();
 
-                            this.InvokeProcessor<ITagGeographicDeviationsController>(Messages.TagGeographicDeviationsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagGeographicDeviationsController>(kernel).Wait();
 
-                            this.InvokeProcessor<ITagQuantitiesController>(Messages.TagQuantitiesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagQuantitiesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagDates)
                         {
-                            this.InvokeProcessor<ITagDatesController>(Messages.TagDatesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagDatesController>(kernel).Wait();
                         }
 
                         if (this.settings.TagAbbreviations)
                         {
-                            this.InvokeProcessor<ITagAbbreviationsController>(Messages.TagAbbreviationsMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagAbbreviationsController>(kernel).Wait();
                         }
 
                         // Tag institutions, institutional codes, and specimen codes
                         if (this.settings.TagCodes)
                         {
-                            this.InvokeProcessor<ITagCodesController>(Messages.TagCodesMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagCodesController>(kernel).Wait();
                         }
 
                         // Do something as an experimental feature
                         if (this.settings.TestFlag)
                         {
-                            this.InvokeProcessor<ITestController>("\n\n\tTest\n\n", kernel).Wait();
+                            this.InvokeProcessor<ITestController>(kernel).Wait();
                         }
 
                         if (this.settings.TagLowerTaxa)
                         {
-                            this.InvokeProcessor<ITagLowerTaxaController>(Messages.TagLowerTaxaMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagLowerTaxaController>(kernel).Wait();
                         }
 
                         if (this.settings.TagHigherTaxa)
                         {
-                            this.InvokeProcessor<ITagHigherTaxaController>(Messages.TagHigherTaxaMessage, kernel).Wait();
+                            this.InvokeProcessor<ITagHigherTaxaController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseLowerTaxa)
                         {
-                            this.InvokeProcessor<IParseLowerTaxaController>(Messages.ParseLowerTaxaMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseLowerTaxaController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherTaxa)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>(Messages.ParseHigherTaxaMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherWithAphia)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaWithAphiaController>(Messages.ParseHigherTaxaWithAphiaMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaWithAphiaController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherWithCoL)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(Messages.ParseHigherTaxaWithCoLMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherWithGbif)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaWithGbifController>(Messages.ParseHigherTaxaWithGbifMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaWithGbifController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherBySuffix)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaBySuffixController>(Messages.ParseHigherTaxaBySuffixMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaBySuffixController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseHigherAboveGenus)
                         {
-                            this.InvokeProcessor<IParseHigherTaxaAboveGenusController>(Messages.ParseHigherTaxaAboveGenusMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseHigherTaxaAboveGenusController>(kernel).Wait();
                         }
 
                         // Main Tagging part of the program
@@ -228,37 +228,37 @@
 
                         if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
                         {
-                            await this.InvokeProcessor<IExtractTaxaController>(string.Empty, kernel);
+                            await this.InvokeProcessor<IExtractTaxaController>(kernel);
                         }
 
                         if (this.settings.ValidateTaxa)
                         {
-                            await this.InvokeProcessor<IValidateTaxaController>(Messages.ValidateTaxaUsingGnrMessage, kernel);
+                            await this.InvokeProcessor<IValidateTaxaController>(kernel);
                         }
 
                         if (this.settings.UntagSplit)
                         {
-                            this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(string.Empty, kernel).Wait();
+                            this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(kernel).Wait();
                         }
 
                         if (this.settings.FormatTreat)
                         {
-                            this.InvokeProcessor<IFormatTreatmentsController>(Messages.FormatTreatmentsMessage, kernel).Wait();
+                            this.InvokeProcessor<IFormatTreatmentsController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseTreatmentMetaWithAphia)
                         {
-                            this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>(Messages.ParseTreatmentMetaWithAphiaMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseTreatmentMetaWithGbif)
                         {
-                            this.InvokeProcessor<IParseTreatmentMetaWithGbifController>(Messages.ParseTreatmentMetaWithGbifMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseTreatmentMetaWithGbifController>(kernel).Wait();
                         }
 
                         if (this.settings.ParseTreatmentMetaWithCol)
                         {
-                            this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>(Messages.ParseTreatmentMetaWithCoLMessage, kernel).Wait();
+                            this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>(kernel).Wait();
                         }
                     }
                 }
@@ -293,18 +293,18 @@
             });
         }
 
-        protected async Task InvokeProcessor<TController>(string message, IKernel kernel)
+        protected async Task InvokeProcessor<TController>(IKernel kernel)
             where TController : ITaggerController
         {
-            await this.InvokeProcessor<TController>(message, this.document.XmlDocument.DocumentElement, kernel);
+            await this.InvokeProcessor<TController>(this.document.XmlDocument.DocumentElement, kernel);
         }
 
-        protected async Task InvokeProcessor<TController>(string message, XmlNode context, IKernel kernel)
+        protected async Task InvokeProcessor<TController>(XmlNode context, IKernel kernel)
             where TController : ITaggerController
         {
             var controller = kernel.Get<TController>();
 
-            message = GetDescriptionMessageForController(controller);
+            string message = GetDescriptionMessageForController(controller);
 
             await this.InvokeProcessor(
                 message,
@@ -336,19 +336,19 @@
             {
                 if (this.settings.TagFloats)
                 {
-                    this.InvokeProcessor<ITagFloatsController>(Messages.TagFloatsMessage, context, kernel).Wait();
+                    this.InvokeProcessor<ITagFloatsController>(context, kernel).Wait();
                 }
 
                 if (this.settings.TagReferences)
                 {
-                    this.InvokeProcessor<ITagReferencesController>(Messages.TagReferencesMessage, context, kernel).Wait();
+                    this.InvokeProcessor<ITagReferencesController>(context, kernel).Wait();
                 }
 
                 if (this.settings.ExpandLowerTaxa)
                 {
                     for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
                     {
-                        this.InvokeProcessor<IExpandLowerTaxaController>(null, context, kernel).Wait();
+                        this.InvokeProcessor<IExpandLowerTaxaController>(context, kernel).Wait();
                     }
                 }
             });

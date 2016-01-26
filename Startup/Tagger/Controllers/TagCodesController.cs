@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
 
+    [Description("Tag codes.")]
     public class TagCodesController : TaggerControllerFactory, ITagCodesController
     {
         protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

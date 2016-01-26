@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
 
+    [Description("Taxa validation using Global Names Resolver.")]
     public class ValidateTaxaController : TaggerControllerFactory, IValidateTaxaController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

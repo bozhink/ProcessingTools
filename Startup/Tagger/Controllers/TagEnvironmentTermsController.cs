@@ -8,11 +8,13 @@
     using Contracts;
     using Factories;
     using Models;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
+    [Description("Tag envo terms using local database.")]
     public class TagEnvironmentTermsController : TaggerControllerFactory, ITagEnvironmentTermsController
     {
         private const string XPath = "/*";

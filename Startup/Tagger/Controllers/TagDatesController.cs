@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
 
+    [Description("Tag dates.")]
     public class TagDatesController : StringTaggerControllerFactory, ITagDatesController
     {
         private readonly IDatesDataMiner miner;

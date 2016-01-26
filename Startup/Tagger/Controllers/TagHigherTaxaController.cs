@@ -5,11 +5,13 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Data.Miners;
     using ProcessingTools.Contracts;
 
+    [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

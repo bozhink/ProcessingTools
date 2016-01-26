@@ -1,2 +1,0 @@
-﻿
-    Parse higher taxa using GBIF.

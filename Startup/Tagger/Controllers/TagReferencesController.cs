@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.References;
     using ProcessingTools.Contracts;
 
+    [Description("Tag references.")]
     public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)

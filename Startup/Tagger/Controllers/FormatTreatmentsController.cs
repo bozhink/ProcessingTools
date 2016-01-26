@@ -5,9 +5,11 @@
 
     using Contracts;
     using Factories;
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
 
+    [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
