@@ -182,6 +182,11 @@
                             this.InvokeProcessor<IParseLowerTaxaController>(Messages.ParseLowerTaxaMessage, kernel).Wait();
                         }
 
+                        if (this.settings.ParseHigherTaxa)
+                        {
+                            this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>(Messages.ParseHigherTaxaMessage, kernel).Wait();
+                        }
+
                         // Main Tagging part of the program
                         if (this.settings.ParseBySection)
                         {
@@ -417,14 +422,6 @@
 
             if (this.settings.ParseHigherTaxa)
             {
-                {
-                    var service = new Bio.Taxonomy.Services.Data.LocalDbTaxaRankDataService(this.settings.Config.RankListXmlFilePath);
-                    var parser = new HigherTaxaParserWithDataService<Bio.Taxonomy.Contracts.ITaxonRank>(result, service, this.logger);
-                    this.InvokeProcessor(Messages.ParseHigherTaxaMessage, parser).Wait();
-                    parser.XmlDocument.PrintNonParsedTaxa(this.logger);
-                    result = parser.Xml;
-                }
-
                 if (this.settings.ParseHigherWithAphia)
                 {
                     var service = new Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService();

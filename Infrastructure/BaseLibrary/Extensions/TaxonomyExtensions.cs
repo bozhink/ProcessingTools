@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Bio.Taxonomy.Types;
@@ -137,19 +138,24 @@
             ////return new HashSet<string>(result);
         }
 
-        public static void PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
+        public static Task PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
         {
-            IEnumerable<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa();
-            if (uniqueHigherTaxaList.Count() > 0)
+            return Task.Run(() =>
             {
-                logger.Log("\nNon-parsed taxa:");
-                foreach (string taxon in uniqueHigherTaxaList)
-                {
-                    logger.Log("\t" + taxon);
-                }
+                List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa().ToList();
+                uniqueHigherTaxaList.Distinct();
+                uniqueHigherTaxaList.TrimExcess();
 
-                logger.Log();
-            }
+                if (uniqueHigherTaxaList.Count() > 0)
+                {
+                    uniqueHigherTaxaList.Sort();
+
+                    logger.Log("\nNon-parsed taxa:");
+                    uniqueHigherTaxaList
+                        .ForEach(taxon => logger?.Log("\t{0}", taxon));
+                    logger.Log();
+                }
+            });
         }
 
         public static string RemoveTaxonNamePartTags(this string content)
