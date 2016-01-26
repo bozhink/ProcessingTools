@@ -100,6 +100,7 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Contracts\IParseLowerTaxaController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithAphiaController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
     <Compile Include="Controllers\FormatTreatmentsController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Controllers\ParseLowerTaxaController.cs" />
     <Compile Include="Controllers\ParseTreatmentMetaWithAphiaController.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Controllers\ZooBankCloneJsonController.cs" />
     <Compile Include="Controllers\ZooBankCloneXmlController.cs" />
     <Compile Include="Controllers\ZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="Factories\ParseHigherTaxaControllerFactory.cs" />
     <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
