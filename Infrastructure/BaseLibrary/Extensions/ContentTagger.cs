@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
@@ -128,25 +129,47 @@
 
             string replacement = item.GetReplacementOfTagNode();
 
-            foreach (XmlNode node in nodeList)
-            {
-                string replace = node.InnerXml;
-
-                /*
-                 * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
-                 * this is dynamically generated regex which might be too complex and slow.
-                 */
-                if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+            nodeList.Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
                 {
-                    replace = textToTagRegex.Replace(replace, replacement);
-                }
-                else
-                {
-                    replace = textToTagPatternRegex.Replace(replace, replacement);
-                }
+                    string replace = node.InnerXml;
 
-                node.SafeReplaceInnerXml(replace, logger);
-            }
+                    /*
+                     * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
+                     * this is dynamically generated regex which might be too complex and slow.
+                     */
+                    if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+                    {
+                        replace = textToTagRegex.Replace(replace, replacement);
+                    }
+                    else
+                    {
+                        replace = textToTagPatternRegex.Replace(replace, replacement);
+                    }
+
+                    node.SafeReplaceInnerXml(replace, logger);
+                });
+
+            ////foreach (XmlNode node in nodeList)
+            ////{
+            ////    string replace = node.InnerXml;
+
+            ////    /*
+            ////     * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
+            ////     * this is dynamically generated regex which might be too complex and slow.
+            ////     */
+            ////    if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+            ////    {
+            ////        replace = textToTagRegex.Replace(replace, replacement);
+            ////    }
+            ////    else
+            ////    {
+            ////        replace = textToTagPatternRegex.Replace(replace, replacement);
+            ////    }
+
+            ////    node.SafeReplaceInnerXml(replace, logger);
+            ////}
         }
     }
 }
