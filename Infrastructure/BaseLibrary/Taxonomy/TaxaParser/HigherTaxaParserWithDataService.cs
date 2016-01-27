@@ -77,16 +77,27 @@
                             case 1:
                                 {
                                     string rank = ranks.FirstOrDefault();
-                                    this.logger?.Log("{0} --> {1}\n", scientificName, rank);
+                                    ////this.logger?.Log("{0} --> {1}\n", scientificName, rank);
 
                                     string xpath = $"//tn[@type='higher'][not(tn-part)][normalize-space(.)='{scientificName}']";
-                                    foreach (XmlNode tn in this.XmlDocument.SelectNodes(xpath))
-                                    {
-                                        XmlElement taxonNamePart = tn.OwnerDocument.CreateElement("tn-part");
-                                        taxonNamePart.SetAttribute("type", rank);
-                                        taxonNamePart.InnerXml = tn.InnerXml;
-                                        tn.InnerXml = taxonNamePart.OuterXml;
-                                    }
+                                    this.XmlDocument.SelectNodes(xpath)
+                                        .Cast<XmlNode>()
+                                        .AsParallel()
+                                        .ForAll(tn =>
+                                        {
+                                            XmlElement taxonNamePart = tn.OwnerDocument.CreateElement("tn-part");
+                                            taxonNamePart.SetAttribute("type", rank);
+                                            taxonNamePart.InnerXml = tn.InnerXml;
+                                            tn.InnerXml = taxonNamePart.OuterXml;
+                                        });
+
+                                    ////foreach (XmlNode tn in this.XmlDocument.SelectNodes(xpath))
+                                    ////{
+                                    ////    XmlElement taxonNamePart = tn.OwnerDocument.CreateElement("tn-part");
+                                    ////    taxonNamePart.SetAttribute("type", rank);
+                                    ////    taxonNamePart.InnerXml = tn.InnerXml;
+                                    ////    tn.InnerXml = taxonNamePart.OuterXml;
+                                    ////}
                                 }
 
                                 break;
