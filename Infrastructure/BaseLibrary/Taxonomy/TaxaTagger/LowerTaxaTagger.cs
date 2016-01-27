@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -17,7 +18,7 @@
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
         private const string LowerTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//*[@object_id='90'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
 
-        private const string ItalicXPath = "//i|//italic|//Italic";
+        private const string ItalicXPath = "//i[not(tn)]|//italic[not(tn)]|//Italic[not(tn)]";
 
         private ILogger logger;
 
@@ -45,24 +46,25 @@
                     plausibleLowerTaxa.Add(taxon);
                 }
 
-                plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa));
+                plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa)
+                    .Select(name => name.ToLower()));
+
+                var comparer = StringComparer.InvariantCultureIgnoreCase;
 
                 // Tag all direct matches
-                var orderedPlausibleLowerTaxa = plausibleLowerTaxa.OrderByDescending(t => t.Length);
-                foreach (XmlNode node in this.XmlDocument.SelectNodes(ItalicXPath))
-                {
-                    foreach (string taxon in orderedPlausibleLowerTaxa)
+                this.XmlDocument.SelectNodes(ItalicXPath)
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(node =>
                     {
-                        if (string.Compare(node.InnerText, taxon, true) == 0)
+                        if (plausibleLowerTaxa.Contains(node.InnerText, comparer))
                         {
                             XmlElement tn = node.OwnerDocument.CreateElement("tn");
                             tn.SetAttribute("type", "lower");
                             tn.InnerXml = node.InnerXml;
                             node.InnerXml = tn.OuterXml;
-                            break;
                         }
-                    }
-                }
+                    });
 
                 // TODO: move to format
                 this.Xml = Regex.Replace(
@@ -70,8 +72,10 @@
                     @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                     "$1‘$2’ $4$3");
 
-                //// this.AdvancedTagLowerTaxa("//*[i]");
-                this.Xml = this.TagInfraspecificTaxa(this.Xml);
+                const string StructureXPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+
+                this.AdvancedTagLowerTaxa(string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
+                ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
 
                 this.DeepTag();
             });
@@ -80,17 +84,17 @@
         // TODO: XPath-s correction needed
         private void AdvancedTagLowerTaxa(string xpath)
         {
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                this.TagInfraspecificTaxa(node);
-            }
+            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(this.TagInfraspecificTaxa);
 
             if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
             {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager))
-                {
-                    this.TagInfraspecificTaxa(node);
-                }
+                this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(this.TagInfraspecificTaxa);
             }
         }
 
