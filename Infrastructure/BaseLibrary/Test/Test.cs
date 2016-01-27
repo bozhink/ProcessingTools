@@ -33,5 +33,25 @@
                 authority.ParentNode.RemoveChild(authority);
             }
         }
+
+        public void WrapEmptySuperscriptsInFootnoteXrefTag()
+        {
+            string xpath = "//sup[normalize-space()='']";
+
+            int counter = 0;
+
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            {
+                XmlElement sup = (XmlElement)node.CloneNode(true);
+                sup.InnerText = $"{++counter}";
+
+                XmlElement xref = node.OwnerDocument.CreateElement("xref");
+                xref.SetAttribute("ref-type", "fn");
+                xref.SetAttribute("rid", $"FN{counter}");
+                xref.AppendChild(sup);
+
+                node.ParentNode.ReplaceChild(xref, node);
+            }
+        }
     }
 }

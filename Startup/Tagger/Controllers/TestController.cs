@@ -18,7 +18,7 @@
             {
                 var test = new Test(document.OuterXml);
 
-                ////test... do somethig.
+                test.WrapEmptySuperscriptsInFootnoteXrefTag();
 
                 document.LoadXml(test.Xml);
             });
