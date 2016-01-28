@@ -37,9 +37,19 @@
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void InstitutionsDataMiner_MineEmptyContent_ShouldThrow()
+        {
+            string content = "  ";
+
+            var miner = new InstitutionsDataMiner(service);
+            var data = miner.Mine(content).Result;
+        }
+
+        [TestMethod]
         public void InstitutionsDataMiner_MineContentWithNoMatchingItems_ShouldReturnEmptyResult()
         {
-            string content = " ";
+            string content = " no matching content here ";
 
             var miner = new InstitutionsDataMiner(service);
             var data = miner.Mine(content).Result.ToList();

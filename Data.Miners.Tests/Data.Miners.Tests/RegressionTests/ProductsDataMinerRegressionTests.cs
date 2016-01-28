@@ -37,9 +37,19 @@
         }
 
         [TestMethod]
-        public void ProductsDataMiner_MineContentWithNoMatchingItems_ShouldReturnEmptyResult()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ProductsDataMiner_MineEmptyContent_ShouldThrow()
         {
             string content = " ";
+
+            var miner = new ProductsDataMiner(service);
+            var data = miner.Mine(content).Result;
+        }
+
+        [TestMethod]
+        public void ProductsDataMiner_MineContentWithNoMatchingItems_ShouldReturnEmptyResult()
+        {
+            string content = " no matching content here ";
 
             var miner = new ProductsDataMiner(service);
             var data = miner.Mine(content).Result.ToList();
