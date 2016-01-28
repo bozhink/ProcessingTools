@@ -231,12 +231,15 @@
             node.ParentNode.ReplaceChild(nodeFragment, node);
         }
 
+
         /// <summary>
         /// Replaces safely the InnerXml of a given XmlNode. If the replace string is not a valid Xml fragment, replacement will not be done.
         /// </summary>
         /// <param name="node">XmlNode which content would be replaced.</param>
         /// <param name="replace">Replacement string.</param>
-        public static void SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
+        /// <param name="logger">Ilogger object to log exceptions.</param>
+        /// <returns>Status value: is the replacemet performed or not.</returns>
+        public static bool SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
         {
             string nodeInnerXml = node.InnerXml;
             bool reset = false;
@@ -257,6 +260,8 @@
                     node.InnerXml = nodeInnerXml;
                 }
             }
+
+            return !reset;
         }
     }
 }

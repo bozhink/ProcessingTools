@@ -130,8 +130,7 @@
             string replacement = item.GetReplacementOfTagNode();
 
             nodeList.Cast<XmlNode>()
-                .AsParallel()
-                .ForAll(node =>
+                .All(node =>
                 {
                     string replace = node.InnerXml;
 
@@ -148,28 +147,8 @@
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    node.SafeReplaceInnerXml(replace, logger);
+                    return node.SafeReplaceInnerXml(replace, logger);
                 });
-
-            ////foreach (XmlNode node in nodeList)
-            ////{
-            ////    string replace = node.InnerXml;
-
-            ////    /*
-            ////     * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
-            ////     * this is dynamically generated regex which might be too complex and slow.
-            ////     */
-            ////    if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
-            ////    {
-            ////        replace = textToTagRegex.Replace(replace, replacement);
-            ////    }
-            ////    else
-            ////    {
-            ////        replace = textToTagPatternRegex.Replace(replace, replacement);
-            ////    }
-
-            ////    node.SafeReplaceInnerXml(replace, logger);
-            ////}
         }
     }
 }
