@@ -47,6 +47,7 @@
     <Compile Include="UnitTests\ExtractTaxaControllerTests.cs" />
     <Compile Include="UnitTests\FormatTreatmentsControllerTests.cs" />
     <Compile Include="UnitTests\InitialFormatControllerTests.cs" />
+    <Compile Include="UnitTests\ParseCoordinatesControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
