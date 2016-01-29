@@ -6,14 +6,12 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
 
     [TestFixture]
-    public class TagMorphologicalEpithetsControllerTests
+    public class ValidateTaxaControllerTests
     {
         private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException.";
-        private const string CallShouldThrowSystemArgumentNullExceptionMessage = "Call should throw System.ArgumentNullException.";
         private const string InnerExceptionShouldBeArgumentNullExceptionMessage = "InnerException should be System.ArgumentNullException.";
         private const string ContentShouldBeUnchangedMessage = "Content should be unchaged.";
 
@@ -21,8 +19,6 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
-        private IMorphologicalEpithetsDataMiner miner;
 
         [SetUp]
         public void Init()
@@ -35,49 +31,20 @@
 
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
-
-            var minerMock = new Mock<IMorphologicalEpithetsDataMiner>();
-            this.miner = minerMock.Object;
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_WithDefaultCnstructor_ShouldReturnValidObject()
+        public void ValidateTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_WithNullService_ShouldThrowArgumentNullException()
+        public void ValidateTaxaController_RunWithValidParameters_ShouldWork()
         {
-            Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    var controller = new TagMorphologicalEpithetsController(null);
-                },
-                CallShouldThrowSystemArgumentNullExceptionMessage);
-        }
-
-        [Test]
-        public void TagMorphologicalEpithetsController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
-        {
-            try
-            {
-                var controller = new TagMorphologicalEpithetsController(null);
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof(ArgumentNullException), e.GetType(), CallShouldThrowSystemArgumentNullExceptionMessage);
-
-                Assert.AreEqual("miner", ((ArgumentNullException)e).ParamName, @"ParamName should be ""miner"".");
-            }
-        }
-
-        [Test]
-        public void TagMorphologicalEpithetsController_RunWithValidParameters_ShouldWork()
-        {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             string initialContent = this.document.OuterXml;
 
@@ -89,9 +56,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -99,9 +66,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -109,9 +76,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -119,9 +86,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -129,9 +96,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -139,9 +106,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -149,9 +116,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -159,9 +126,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -169,9 +136,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void ValidateTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             try
             {
@@ -189,9 +156,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -199,9 +166,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -209,9 +176,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -219,9 +186,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -229,9 +196,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void ValidateTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             try
             {
@@ -249,9 +216,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -259,9 +226,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ValidateTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -269,9 +236,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void ValidateTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             try
             {
@@ -289,9 +256,9 @@
         }
 
         [Test]
-        public void TagMorphologicalEpithetsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
+        public void ValidateTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagMorphologicalEpithetsController(this.miner);
+            var controller = new ValidateTaxaController();
 
             string initialContent = this.document.OuterXml;
 
