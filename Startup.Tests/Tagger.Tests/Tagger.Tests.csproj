@@ -74,6 +74,8 @@
     <Compile Include="UnitTests\TagEnvironmentTermsWithExtractControllerTests.cs" />
     <Compile Include="UnitTests\TagFloatsControllerTests.cs" />
     <Compile Include="UnitTests\TagGeoEpithetsControllerTests.cs" />
+    <Compile Include="UnitTests\TagGeographicDeviationsControllerTests.cs" />
+    <Compile Include="UnitTests\TagGeoNamesControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
