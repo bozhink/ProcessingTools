@@ -33,7 +33,6 @@
             this.logger = loggerMock.Object;
         }
 
-
         [Test]
         public void ExtractTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {

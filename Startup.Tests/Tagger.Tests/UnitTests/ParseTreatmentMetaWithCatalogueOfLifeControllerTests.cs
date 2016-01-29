@@ -6,8 +6,8 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Contracts;
 
     [TestFixture]
     public class ParseTreatmentMetaWithCatalogueOfLifeControllerTests
@@ -51,8 +51,6 @@
         [Test]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_WithNullService_ShouldThrowArgumentNullException()
         {
-
-
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {

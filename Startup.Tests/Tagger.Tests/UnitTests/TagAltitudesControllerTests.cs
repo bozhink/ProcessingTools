@@ -51,8 +51,6 @@
         [Test]
         public void TagAltitudesController_WithNullService_ShouldThrowArgumentNullException()
         {
-
-
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {

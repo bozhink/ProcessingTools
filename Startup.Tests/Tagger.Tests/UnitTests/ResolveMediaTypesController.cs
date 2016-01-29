@@ -51,8 +51,6 @@
         [Test]
         public void ResolveMediaTypesController_WithNullService_ShouldThrowArgumentNullException()
         {
-
-
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {

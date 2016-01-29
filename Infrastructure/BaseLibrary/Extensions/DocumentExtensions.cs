@@ -231,7 +231,6 @@
             node.ParentNode.ReplaceChild(nodeFragment, node);
         }
 
-
         /// <summary>
         /// Replaces safely the InnerXml of a given XmlNode. If the replace string is not a valid Xml fragment, replacement will not be done.
         /// </summary>

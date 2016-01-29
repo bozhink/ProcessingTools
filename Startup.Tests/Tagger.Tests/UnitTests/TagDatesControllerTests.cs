@@ -51,8 +51,6 @@
         [Test]
         public void TagDatesController_WithNullService_ShouldThrowArgumentNullException()
         {
-
-
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {

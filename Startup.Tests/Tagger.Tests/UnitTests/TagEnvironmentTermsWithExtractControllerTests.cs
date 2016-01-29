@@ -6,8 +6,8 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Bio.Data.Miners.Contracts;
+    using ProcessingTools.Contracts;
 
     [TestFixture]
     public class TagEnvironmentTermsWithExtractControllerTests
@@ -51,8 +51,6 @@
         [Test]
         public void TagEnvironmentTermsWithExtractController_WithNullService_ShouldThrowArgumentNullException()
         {
-
-
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {

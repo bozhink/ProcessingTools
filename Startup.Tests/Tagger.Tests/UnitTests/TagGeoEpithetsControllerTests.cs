@@ -6,11 +6,11 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Geo.Data.Miners.Contracts;
 
     [TestFixture]
-    public class ParseTreatmentMetaWithAphiaControllerTests
+    public class TagGeoEpithetsControllerTests
     {
         private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException.";
         private const string CallShouldThrowSystemArgumentNullExceptionMessage = "Call should throw System.ArgumentNullException.";
@@ -22,7 +22,7 @@
         private ProgramSettings settings;
         private ILogger logger;
 
-        private IAphiaTaxaClassificationDataService service;
+        private IGeoEpithetsDataMiner miner;
 
         [SetUp]
         public void Init()
@@ -36,48 +36,48 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
-            var serviceMock = new Mock<IAphiaTaxaClassificationDataService>();
-            this.service = serviceMock.Object;
+            var minerMock = new Mock<IGeoEpithetsDataMiner>();
+            this.miner = minerMock.Object;
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_WithDefaultCnstructor_ShouldReturnValidObject()
+        public void TagGeoEpithetsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_WithNullService_ShouldThrowArgumentNullException()
+        public void TagGeoEpithetsController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseTreatmentMetaWithAphiaController(null);
+                    var controller = new TagGeoEpithetsController(null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
+        public void TagGeoEpithetsController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {
-                var controller = new ParseTreatmentMetaWithAphiaController(null);
+                var controller = new TagGeoEpithetsController(null);
             }
             catch (Exception e)
             {
                 Assert.AreEqual(typeof(ArgumentNullException), e.GetType(), CallShouldThrowSystemArgumentNullExceptionMessage);
 
-                Assert.AreEqual("service", ((ArgumentNullException)e).ParamName, @"ParamName should be ""service"".");
+                Assert.AreEqual("miner", ((ArgumentNullException)e).ParamName, @"ParamName should be ""miner"".");
             }
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithValidParameters_ShouldWork()
+        public void TagGeoEpithetsController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             string initialContent = this.document.OuterXml;
 
@@ -89,9 +89,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -99,9 +99,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -109,9 +109,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -119,9 +119,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -129,9 +129,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -139,9 +139,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -149,9 +149,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -159,9 +159,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -169,9 +169,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void TagGeoEpithetsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             try
             {
@@ -189,9 +189,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -199,9 +199,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -209,9 +209,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -219,9 +219,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -229,9 +229,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void TagGeoEpithetsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             try
             {
@@ -249,9 +249,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -259,9 +259,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void TagGeoEpithetsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -269,9 +269,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
+        public void TagGeoEpithetsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             try
             {
@@ -289,9 +289,9 @@
         }
 
         [Test]
-        public void ParseTreatmentMetaWithAphiaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
+        public void TagGeoEpithetsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithAphiaController(this.service);
+            var controller = new TagGeoEpithetsController(this.miner);
 
             string initialContent = this.document.OuterXml;
 

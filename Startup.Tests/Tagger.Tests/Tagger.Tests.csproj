@@ -73,6 +73,7 @@
     <Compile Include="UnitTests\TagEnvironmentTermsControllerTests.cs" />
     <Compile Include="UnitTests\TagEnvironmentTermsWithExtractControllerTests.cs" />
     <Compile Include="UnitTests\TagFloatsControllerTests.cs" />
+    <Compile Include="UnitTests\TagGeoEpithetsControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
@@ -82,6 +83,10 @@
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
+      <Name>Geo.Data.Miners</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
