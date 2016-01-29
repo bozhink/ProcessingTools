@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -38,69 +42,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProgramSettingsTests.cs" />
+    <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
-      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
-      <Name>DocumentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
-      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
-      <Name>Loggers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\BaseLibrary\BaseLibrary.csproj">
-      <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
-      <Name>BaseLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
-      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
-      <Name>Geo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>Configurator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
-      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
-      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
-      <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.csproj">
-      <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.PaleobiologyDatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
-      <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
-      <Name>Bio.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Startup\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>

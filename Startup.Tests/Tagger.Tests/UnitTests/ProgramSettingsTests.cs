@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Tests
+﻿namespace ProcessingTools.MainProgram.Tests.UnitTests
 {
     using Configurator;
     using NUnit.Framework;
