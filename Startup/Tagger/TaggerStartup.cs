@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
 
-    public class TaggerStartup
+    public static class TaggerStartup
     {
         private static ILogger logger = new TextWriterLogger();
 
