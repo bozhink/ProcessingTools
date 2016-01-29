@@ -54,6 +54,7 @@
     <Compile Include="UnitTests\ParseHigherTaxaWithCatalogueOfLifeControllerTests.cs" />
     <Compile Include="UnitTests\ParseHigherTaxaWithGbifControllerTests.cs" />
     <Compile Include="UnitTests\ParseHigherTaxaWithLocalDbControllerTests.cs" />
+    <Compile Include="UnitTests\ParseLowerTaxaControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
