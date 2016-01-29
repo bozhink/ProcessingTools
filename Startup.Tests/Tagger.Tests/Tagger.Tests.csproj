@@ -61,6 +61,7 @@
     <Compile Include="UnitTests\ParseTreatmentMetaWithGbifControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\QueryReplaceControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
