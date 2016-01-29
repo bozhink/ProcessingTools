@@ -51,6 +51,7 @@
     <Compile Include="UnitTests\ParseHigherTaxaAboveGenusControllerTests.cs" />
     <Compile Include="UnitTests\ParseHigherTaxaBySuffixControllerTests.cs" />
     <Compile Include="UnitTests\ParseHigherTaxaWithAphiaControllerTests.cs" />
+    <Compile Include="UnitTests\ParseHigherTaxaWithCatalogueOfLifeControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
