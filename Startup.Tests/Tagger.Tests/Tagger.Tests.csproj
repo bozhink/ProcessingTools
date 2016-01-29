@@ -48,6 +48,7 @@
     <Compile Include="UnitTests\FormatTreatmentsControllerTests.cs" />
     <Compile Include="UnitTests\InitialFormatControllerTests.cs" />
     <Compile Include="UnitTests\ParseCoordinatesControllerTests.cs" />
+    <Compile Include="UnitTests\ParseHigherTaxaAboveGenusControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Startup\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>

@@ -11,8 +11,8 @@
     [TestFixture]
     public class ExpandLowerTaxaControllerTests
     {
-        private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException";
-        private const string InnerExceptionShouldBeArgumentNullExceptionMessage = "InnerException should be System.ArgumentNullException";
+        private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException.";
+        private const string InnerExceptionShouldBeArgumentNullExceptionMessage = "InnerException should be System.ArgumentNullException.";
         private const string ContentShouldBeUnchangedMessage = "Content should be unchaged.";
 
         private XmlDocument document;
