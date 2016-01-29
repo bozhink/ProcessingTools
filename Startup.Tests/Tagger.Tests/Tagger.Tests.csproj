@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="UnitTests\ExpandLowerTaxaControllerTests.cs" />
     <Compile Include="UnitTests\ExtractTaxaControllerTests.cs" />
+    <Compile Include="UnitTests\FormatTreatmentsControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
