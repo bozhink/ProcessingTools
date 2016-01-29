@@ -80,6 +80,7 @@
     <Compile Include="UnitTests\TagInstitutionsControllerTests.cs" />
     <Compile Include="UnitTests\TagLowerTaxaControllerTests.cs" />
     <Compile Include="UnitTests\TagMorphologicalEpithetsControllerTests.cs" />
+    <Compile Include="UnitTests\TagProductsControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
