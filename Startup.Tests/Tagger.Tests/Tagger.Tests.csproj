@@ -56,6 +56,7 @@
     <Compile Include="UnitTests\ParseHigherTaxaWithLocalDbControllerTests.cs" />
     <Compile Include="UnitTests\ParseLowerTaxaControllerTests.cs" />
     <Compile Include="UnitTests\ParseReferencesControllerTests.cs" />
+    <Compile Include="UnitTests\ParseTreatmentMetaWithAphiaControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
