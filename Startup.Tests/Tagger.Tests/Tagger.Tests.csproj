@@ -67,6 +67,8 @@
     <Compile Include="UnitTests\RunCustomXslTransformControllerTests.cs" />
     <Compile Include="UnitTests\TagAbbreviationsControllerTests.cs" />
     <Compile Include="UnitTests\TagAltitudesControllerTests.cs" />
+    <Compile Include="UnitTests\TagCodesControllerTests.cs" />
+    <Compile Include="UnitTests\TagCoordinatesControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
