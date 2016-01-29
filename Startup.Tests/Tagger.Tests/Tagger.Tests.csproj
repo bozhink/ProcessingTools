@@ -58,6 +58,7 @@
     <Compile Include="UnitTests\ParseReferencesControllerTests.cs" />
     <Compile Include="UnitTests\ParseTreatmentMetaWithAphiaControllerTests.cs" />
     <Compile Include="UnitTests\ParseTreatmentMetaWithCatalogueOfLifeControllerTests.cs" />
+    <Compile Include="UnitTests\ParseTreatmentMetaWithGbifControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
