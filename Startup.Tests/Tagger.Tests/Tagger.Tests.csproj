@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\QueryReplaceControllerTests.cs" />
     <Compile Include="UnitTests\RemoveAllTaxonNamePartTagsControllerTests.cs" />
+    <Compile Include="UnitTests\ResolveMediaTypesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\MediaType.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Startup\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>
