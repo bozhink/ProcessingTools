@@ -81,6 +81,7 @@
     <Compile Include="UnitTests\TagLowerTaxaControllerTests.cs" />
     <Compile Include="UnitTests\TagMorphologicalEpithetsControllerTests.cs" />
     <Compile Include="UnitTests\TagProductsControllerTests.cs" />
+    <Compile Include="UnitTests\TagQuantitiesControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
