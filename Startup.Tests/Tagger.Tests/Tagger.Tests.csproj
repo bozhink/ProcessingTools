@@ -64,6 +64,7 @@
     <Compile Include="UnitTests\QueryReplaceControllerTests.cs" />
     <Compile Include="UnitTests\RemoveAllTaxonNamePartTagsControllerTests.cs" />
     <Compile Include="UnitTests\ResolveMediaTypesController.cs" />
+    <Compile Include="UnitTests\RunCustomXslTransformControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
