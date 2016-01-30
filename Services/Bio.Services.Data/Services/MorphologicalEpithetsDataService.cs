@@ -1,10 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Services
 {
     using AutoMapper;
-    using Bio.Data.Models;
-    using Bio.Data.Repositories.Contracts;
+
     using Contracts;
     using Models.Contracts;
+
+    using ProcessingTools.Bio.Data.Models;
+    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
     public class MorphologicalEpithetsDataService : EfGenericCrudDataServiceFactory<MorphologicalEpithet, IMorphologicalEpithet, int>, IMorphologicalEpithetsDataService
