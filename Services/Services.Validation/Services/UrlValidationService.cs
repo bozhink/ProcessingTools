@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Validation.Services
+﻿namespace ProcessingTools.Services.Validation
 {
     using System;
     using System.Collections.Concurrent;

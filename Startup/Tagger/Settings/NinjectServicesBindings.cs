@@ -45,8 +45,12 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
-                .To<MediaType.Services.Data.Services.MediaTypeDataService>();
+            this.Bind(b =>
+            {
+                b.From(MediaType.Services.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
 
             this.Bind(b =>
             {

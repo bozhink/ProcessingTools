@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Services
+﻿namespace ProcessingTools.MediaType.Services.Data
 {
     using System;
     using System.Linq;

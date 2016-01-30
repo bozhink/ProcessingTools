@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data
 {
     using System.Linq;
 

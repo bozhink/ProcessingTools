@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram.Settings
 {
-    using Ninject.Modules;
     using Ninject.Extensions.Conventions;
+    using Ninject.Modules;
 
     /// <summary>
     /// NinjectModule to bind database objects.

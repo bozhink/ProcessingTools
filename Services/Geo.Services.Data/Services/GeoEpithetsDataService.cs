@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Services.Data.Services
+﻿namespace ProcessingTools.Geo.Services.Data
 {
     using AutoMapper;
 

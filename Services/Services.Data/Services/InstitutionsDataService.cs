@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Services
+﻿namespace ProcessingTools.Services.Data
 {
     using AutoMapper;
 

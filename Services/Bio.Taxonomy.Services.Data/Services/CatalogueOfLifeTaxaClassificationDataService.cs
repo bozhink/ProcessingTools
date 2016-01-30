@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
     using System;
     using System.Collections.Concurrent;
