@@ -5,6 +5,7 @@
 
     using Contracts;
     using Models;
+
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
     public class AboveGenusTaxaRankDataService : IAboveGenusTaxaRankDataService
