@@ -17,10 +17,10 @@
                 .To(typeof(Data.Repositories.DataRepository<>));
             kernel
                 .Bind<Services.Data.Contracts.IInstitutionsDataService>()
-                .To<Services.Data.InstitutionsDataService>();
+                .To<Services.Data.Services.InstitutionsDataService>();
             kernel
                 .Bind<Services.Data.Contracts.IProductsDataService>()
-                .To<Services.Data.ProductsDataService>();
+                .To<Services.Data.Services.ProductsDataService>();
 
             kernel
                 .Bind<Geo.Data.Contracts.IGeoDbContext>()

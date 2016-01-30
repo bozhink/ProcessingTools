@@ -1,11 +1,13 @@
-﻿namespace ProcessingTools.Services.Data
+﻿namespace ProcessingTools.Services.Data.Services
 {
     using AutoMapper;
-    using Common.Factories;
+
     using Contracts;
     using Models.Contracts;
+
     using ProcessingTools.Data.Models;
     using ProcessingTools.Data.Repositories.Contracts;
+    using ProcessingTools.Services.Common.Factories;
 
     public class InstitutionsDataService : EfGenericCrudDataServiceFactory<Institution, IInstitution, int>, IInstitutionsDataService
     {

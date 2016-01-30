@@ -94,9 +94,9 @@
                 .To<MediaType.Services.Data.Services.MediaTypeDataService>();
 
             this.Bind<Services.Data.Contracts.IInstitutionsDataService>()
-                .To<Services.Data.InstitutionsDataService>();
+                .To<Services.Data.Services.InstitutionsDataService>();
             this.Bind<Services.Data.Contracts.IProductsDataService>()
-                .To<Services.Data.ProductsDataService>();
+                .To<Services.Data.Services.ProductsDataService>();
 
             /*
              * Miners bindings.
