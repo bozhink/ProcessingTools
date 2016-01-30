@@ -70,7 +70,7 @@
                 .To<Bio.Environments.Services.Data.Services.EnvoTermsDataService>();
 
             this.Bind<Bio.Services.Data.Contracts.IMorphologicalEpithetsDataService>()
-                .To<Bio.Services.Data.MorphologicalEpithetsDataService>();
+                .To<Bio.Services.Data.Services.MorphologicalEpithetsDataService>();
 
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IAboveGenusTaxaRankDataService>()
                 .To<Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService>();

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Services.Data
+﻿namespace ProcessingTools.Bio.Services.Data.Services
 {
     using AutoMapper;
     using Bio.Data.Models;

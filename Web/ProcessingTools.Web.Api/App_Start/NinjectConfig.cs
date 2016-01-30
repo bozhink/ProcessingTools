@@ -43,7 +43,7 @@
                 .To(typeof(Bio.Data.Repositories.BioDataRepository<>));
             kernel
                 .Bind<Bio.Services.Data.Contracts.IMorphologicalEpithetsDataService>()
-                .To<Bio.Services.Data.MorphologicalEpithetsDataService>();
+                .To<Bio.Services.Data.Services.MorphologicalEpithetsDataService>();
 
             kernel
                 .Bind<MediaType.Data.Contracts.IMediaTypesDbContext>()
