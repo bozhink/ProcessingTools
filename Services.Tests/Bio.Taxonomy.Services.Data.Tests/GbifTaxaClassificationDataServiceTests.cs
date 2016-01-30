@@ -4,8 +4,8 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Services;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
+    using Services;
 
     [TestClass]
     public class GbifTaxaClassificationDataServiceTests

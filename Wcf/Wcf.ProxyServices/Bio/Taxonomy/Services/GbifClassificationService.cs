@@ -1,11 +1,14 @@
 ﻿namespace ProcessingTools.Wcf.ProxyServices.Bio.Taxonomy.Services
 {
     using System.Linq;
+
     using DataContracts;
+
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
+
     using ServiceContracts;
 
     public class GbifClassificationService : IGbifClassificationService

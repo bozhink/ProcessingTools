@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data.Services
 {
-    using Microsoft.Win32;
-
     using Contracts;
     using Factories;
+
+    using Microsoft.Win32;
 
     public class MediaTypeDataServiceWindowsRegistry : MediaTypeDataServiceFactory, IMediaTypeDataService
     {

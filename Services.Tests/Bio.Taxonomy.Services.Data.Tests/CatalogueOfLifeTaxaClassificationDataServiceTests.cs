@@ -4,8 +4,8 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Services;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
+    using Services;
 
     [TestClass]
     public class CatalogueOfLifeTaxaClassificationDataServiceTests
