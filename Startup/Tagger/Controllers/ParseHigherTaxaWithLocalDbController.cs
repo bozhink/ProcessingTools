@@ -9,7 +9,7 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
     using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa with local database.")]
