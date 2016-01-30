@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Models\Contracts\IEnvoTerm.cs" />
     <Compile Include="Contracts\IEnvoTermsDataService.cs" />
-    <Compile Include="EnvoTermsDataService.cs" />
+    <Compile Include="Services\EnvoTermsDataService.cs" />
     <Compile Include="Models\EnvoTermDataServiceResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

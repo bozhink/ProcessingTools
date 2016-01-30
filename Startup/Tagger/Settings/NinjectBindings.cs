@@ -67,7 +67,7 @@
                 .To<Bio.Biorepositories.Services.Data.Services.BiorepositoriesDataService>();
 
             this.Bind<Bio.Environments.Services.Data.Contracts.IEnvoTermsDataService>()
-                .To<Bio.Environments.Services.Data.EnvoTermsDataService>();
+                .To<Bio.Environments.Services.Data.Services.EnvoTermsDataService>();
 
             this.Bind<Bio.Services.Data.Contracts.IMorphologicalEpithetsDataService>()
                 .To<Bio.Services.Data.MorphologicalEpithetsDataService>();

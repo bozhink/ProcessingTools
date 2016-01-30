@@ -69,7 +69,7 @@
                 .To(typeof(Bio.Environments.Data.Repositories.BioEnvironmentsRepository<>));
             kernel
                 .Bind<Bio.Environments.Services.Data.Contracts.IEnvoTermsDataService>()
-                .To<Bio.Environments.Services.Data.EnvoTermsDataService>();
+                .To<Bio.Environments.Services.Data.Services.EnvoTermsDataService>();
 
             kernel
                 .Bind<Common.Providers.Contracts.IRandomProvider>()
