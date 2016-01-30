@@ -4,11 +4,13 @@
     using System.Linq;
 
     using Contracts;
-    using Infrastructure.Concurrency;
+    using Factories;
     using Models;
-    using ServiceClient.Gbif.Contracts;
-    using ServiceClient.Gbif.Models.Contracts;
-    using Taxonomy.Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
+    using ProcessingTools.Infrastructure.Concurrency;
 
     public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {

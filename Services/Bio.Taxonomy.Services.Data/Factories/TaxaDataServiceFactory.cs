@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Factories
 {
     using System;
     using System.Collections.Concurrent;

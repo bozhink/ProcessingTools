@@ -6,7 +6,8 @@
 
     using Contracts;
     using Models;
-    using Taxonomy.Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Contracts;
 
     public class SuffixHigherTaxaRankDataService : ISuffixHigherTaxaRankDataService
     {

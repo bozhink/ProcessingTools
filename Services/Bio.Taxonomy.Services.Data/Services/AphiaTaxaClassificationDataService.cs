@@ -5,10 +5,12 @@
     using System.Linq;
 
     using Contracts;
-    using Infrastructure.Concurrency;
+    using Factories;
     using Models;
-    using ServiceClient.Aphia;
-    using Taxonomy.Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
+    using ProcessingTools.Infrastructure.Concurrency;
 
     public class AphiaTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationDataService
     {

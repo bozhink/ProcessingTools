@@ -6,12 +6,14 @@
     using System.Linq;
 
     using Contracts;
-    using Infrastructure.Concurrency;
+    using Factories;
     using Models;
-    using ServiceClient.CatalogueOfLife.Contracts;
-    using ServiceClient.CatalogueOfLife.Models;
-    using Taxonomy.Contracts;
-    using Types;
+
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Infrastructure.Concurrency;
 
     public class CatalogueOfLifeTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
     {

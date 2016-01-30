@@ -6,8 +6,10 @@
     using System.Xml.Linq;
 
     using Contracts;
+    using Factories;
     using Models;
-    using Taxonomy.Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Contracts;
 
     public class LocalDbTaxaRankDataService : TaxaDataServiceFactory<ITaxonRank>, ILocalDbTaxaRankDataService
     {
