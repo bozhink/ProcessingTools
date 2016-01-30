@@ -1,8 +1,11 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.MediaType.Services.Data.Services
 {
     using Microsoft.Win32;
 
-    public class MediaTypeDataServiceWindowsRegistry : MediaTypeDataServiceFactory
+    using Contracts;
+    using Factories;
+
+    public class MediaTypeDataServiceWindowsRegistry : MediaTypeDataServiceFactory, IMediaTypeDataService
     {
         protected override string ResolveMediaType(string fileExtension)
         {

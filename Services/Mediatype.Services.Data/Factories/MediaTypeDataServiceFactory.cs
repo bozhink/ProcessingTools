@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.MediaType.Services.Data.Factories
 {
     using System.Linq;
 

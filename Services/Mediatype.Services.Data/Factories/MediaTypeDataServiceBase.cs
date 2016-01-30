@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.MediaType.Services.Data.Factories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
+    using Contracts;
     using Models;
     using Models.Contracts;
-    using ProcessingTools.MediaType.Services.Data.Contracts;
 
     public abstract class MediaTypeDataServiceBase : IMediaTypeDataService
     {

@@ -1,14 +1,17 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.MediaType.Services.Data.Services
 {
     using System;
     using System.Linq;
 
-    using MediaType.Data.Models;
-    using MediaType.Data.Repositories.Contracts;
+    using Contracts;
+    using Factories;
     using Models;
     using Models.Contracts;
 
-    public class MediaTypeDataService : MediaTypeDataServiceBase
+    using ProcessingTools.MediaType.Data.Models;
+    using ProcessingTools.MediaType.Data.Repositories.Contracts;
+
+    public class MediaTypeDataService : MediaTypeDataServiceBase, IMediaTypeDataService
     {
         private IMediaTypesRepository<FileExtension> fileExtensions;
 

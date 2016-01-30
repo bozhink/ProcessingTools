@@ -2,7 +2,10 @@
 {
     using System;
     using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Services;
 
     [TestClass]
     public class MediaTypeDataServiceWindowsRegistryTests

@@ -91,7 +91,7 @@
                 .To<Geo.Services.Data.Services.GeoNamesDataService>();
 
             this.Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
-                .To<MediaType.Services.Data.MediaTypeDataService>();
+                .To<MediaType.Services.Data.Services.MediaTypeDataService>();
 
             this.Bind<Services.Data.Contracts.IInstitutionsDataService>()
                 .To<Services.Data.InstitutionsDataService>();

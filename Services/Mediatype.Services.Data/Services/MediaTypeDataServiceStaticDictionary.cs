@@ -1,8 +1,11 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.MediaType.Services.Data.Services
 {
     using System.Collections.Generic;
 
-    public class MediaTypeDataServiceStaticDictionary : MediaTypeDataServiceFactory
+    using Contracts;
+    using Factories;
+
+    public class MediaTypeDataServiceStaticDictionary : MediaTypeDataServiceFactory, IMediaTypeDataService
     {
         private static Dictionary<string, string> mimeTypes = new Dictionary<string, string>
         {

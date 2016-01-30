@@ -44,11 +44,11 @@
   <ItemGroup>
     <Compile Include="Models\Contracts\IMediaType.cs" />
     <Compile Include="Contracts\IMediaTypeDataService.cs" />
-    <Compile Include="MediaTypeDataServiceBase.cs" />
-    <Compile Include="MediaTypeDataServiceFactory.cs" />
-    <Compile Include="MediaTypeDataServiceStaticDictionary.cs" />
-    <Compile Include="MediaTypeDataService.cs" />
-    <Compile Include="MediaTypeDataServiceWindowsRegistry.cs" />
+    <Compile Include="Factories\MediaTypeDataServiceBase.cs" />
+    <Compile Include="Factories\MediaTypeDataServiceFactory.cs" />
+    <Compile Include="Services\MediaTypeDataServiceStaticDictionary.cs" />
+    <Compile Include="Services\MediaTypeDataService.cs" />
+    <Compile Include="Services\MediaTypeDataServiceWindowsRegistry.cs" />
     <Compile Include="Models\MediaTypeDataServiceResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

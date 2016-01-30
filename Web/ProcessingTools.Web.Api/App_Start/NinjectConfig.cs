@@ -53,13 +53,13 @@
                 .To(typeof(MediaType.Data.Repositories.MediaTypesRepository<>));
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
-            ////    .To<MediaType.Services.Data.MediaTypeDataServiceStaticDictionary>();
+            ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceStaticDictionary>();
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
-            ////    .To<MediaType.Services.Data.MediaTypeDataServiceWindowsRegistry>();
+            ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceWindowsRegistry>();
             kernel
                 .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
-                .To<MediaType.Services.Data.MediaTypeDataService>();
+                .To<MediaType.Services.Data.Services.MediaTypeDataService>();
 
             kernel
                 .Bind<Bio.Environments.Data.Contracts.IBioEnvironmentsDbContext>()
