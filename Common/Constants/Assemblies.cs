@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Common.Constants
 {
-    public class Assemblies
+    public sealed class Assemblies
     {
         public const string MediaTypeDataServices = "ProcessingTools.MediaType.Services.Data";
 

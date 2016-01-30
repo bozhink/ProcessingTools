@@ -6,6 +6,7 @@
 
     using Contracts;
     using ProcessingTools.BaseLibrary;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Extensions;
@@ -46,9 +47,7 @@
                 var textContent = document.GetTextContent(settings.Config.TextContentXslTransform);
                 var data = await this.Miner.Mine(textContent);
 
-                var xpathProvider = new XPathProvider(settings.Config);
-
-                var tagger = new StringTagger(document.OuterXml, data, this.TagModel, xpathProvider.SelectContentNodesXPathTemplate, namespaceManager, logger);
+                var tagger = new StringTagger(document.OuterXml, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate, namespaceManager, logger);
 
                 await tagger.Tag();
 

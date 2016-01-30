@@ -16,12 +16,11 @@
         {
             return Task.Run(() =>
             {
-                var xpathProvider = new XPathProvider(settings.Config);
                 var dataProvider = new DataProvider(settings.Config, document.OuterXml, logger);
 
                 Codes codes = new Codes(settings.Config, document.OuterXml, logger);
-                codes.TagInstitutions(xpathProvider, dataProvider);
-                codes.TagInstitutionalCodes(xpathProvider, dataProvider);
+                codes.TagInstitutions(dataProvider);
+                codes.TagInstitutionalCodes(dataProvider);
 
                 document.LoadXml(codes.Xml);
             });

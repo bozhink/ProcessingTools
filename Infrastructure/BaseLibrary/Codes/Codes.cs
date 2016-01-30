@@ -15,6 +15,7 @@ namespace ProcessingTools.BaseLibrary
     using Configurator;
     using Contracts;
     using Extensions;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
 
     public class Codes : Base
@@ -127,27 +128,27 @@ namespace ProcessingTools.BaseLibrary
             this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
         }
 
-        public void TagInstitutions(IXPathProvider xpathProvider, IDataProvider dataProvider)
+        public void TagInstitutions(IDataProvider dataProvider)
         {
             // WARNING: here is set len(name) > 1!
             string query = @"select [NameOfInstitution] as [name], [Url] as [url] from [grbio].[Biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
 
             dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionTagName);
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(XPathConstants.SelectContentNodesXPath, query, InstitutionTagName);
             this.Xml = dataProvider.Xml;
         }
 
-        public void TagInstitutionalCodes(IXPathProvider xpathProvider, IDataProvider dataProvider)
+        public void TagInstitutionalCodes(IDataProvider dataProvider)
         {
             // WARNING: here is set len(name) > 1!
             string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [Url] as [url] from [grbio].[Biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
 
             dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(xpathProvider.SelectContentNodesXPath, query, InstitutionalCodeTagName, true);
+            dataProvider.ExecuteSimpleReplaceUsingDatabase(XPathConstants.SelectContentNodesXPath, query, InstitutionalCodeTagName, true);
             this.Xml = dataProvider.Xml;
         }
 
-        public void TagSpecimenCodes(IXPathProvider xpathProvider)
+        public void TagSpecimenCodes()
         {
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
@@ -164,9 +165,9 @@ namespace ProcessingTools.BaseLibrary
 
             IEnumerable<SpecimenCode> plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(potentialSpecimenCodes);
 
-            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, this.specimenCodeTagModel);
+            this.ReplaceSpecimenCodesInXml(XPathConstants.SelectContentNodesXPathTemplate, plausibleSpecimenCodes, this.specimenCodeTagModel);
 
-            this.GuessSequentalSpecimenCodes(this.specimenCodeTagModel, xpathProvider.SelectContentNodesXPathTemplate);
+            this.GuessSequentalSpecimenCodes(this.specimenCodeTagModel, XPathConstants.SelectContentNodesXPathTemplate);
         }
 
         public List<SpecimenCode> GetPrefixNumericCodes()
@@ -228,7 +229,7 @@ namespace ProcessingTools.BaseLibrary
             return janzenSpecimenCodes;
         }
 
-        public void TagKnownSpecimenCodes(IXPathProvider xpathProvider)
+        public void TagKnownSpecimenCodes()
         {
             List<SpecimenCode> knownSpecimenCodes = new List<SpecimenCode>();
 
@@ -237,9 +238,9 @@ namespace ProcessingTools.BaseLibrary
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
-            this.ReplaceSpecimenCodesInXml(xpathProvider.SelectContentNodesXPathTemplate, knownSpecimenCodes, this.specimenCodeTagModel);
+            this.ReplaceSpecimenCodesInXml(XPathConstants.SelectContentNodesXPathTemplate, knownSpecimenCodes, this.specimenCodeTagModel);
 
-            this.GuessSequentalPrefixNumericSpecimenCodes(xpathProvider.SelectContentNodesXPathTemplate, this.specimenCodeTagModel);
+            this.GuessSequentalPrefixNumericSpecimenCodes(XPathConstants.SelectContentNodesXPathTemplate, this.specimenCodeTagModel);
         }
 
         private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, string tagName)

@@ -10,13 +10,11 @@
     {
         private static Config config;
         private static XmlTextWriter writer;
-        private static XPathProvider xpathProvider;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
             config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
-            xpathProvider = new XPathProvider(config);
             writer = new XmlTextWriter(Console.Out);
             writer.Formatting = Formatting.Indented;
         }

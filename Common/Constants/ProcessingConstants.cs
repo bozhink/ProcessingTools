@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Common.Constants
 {
-    public class ProcessingConstants
+    public sealed class ProcessingConstants
     {
         public const int NumberOfExpandIterations = 1;
     }

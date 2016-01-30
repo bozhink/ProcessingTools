@@ -10,9 +10,6 @@
     {
         public override void Load()
         {
-            this.Bind<ProcessingTools.Contracts.IXPathProvider>()
-                .To<ProcessingTools.BaseLibrary.XPathProvider>();
-
             this.Bind(b =>
             {
                 b.FromThisAssembly()
