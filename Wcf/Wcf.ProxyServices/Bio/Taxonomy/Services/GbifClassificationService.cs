@@ -4,7 +4,7 @@
     using DataContracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ServiceContracts;
 

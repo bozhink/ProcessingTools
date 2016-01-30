@@ -95,7 +95,7 @@
                 .To<Bio.Taxonomy.Services.Data.Services.CatalogueOfLifeTaxaClassificationDataService>();
             kernel
                 .Bind<Bio.Taxonomy.Services.Data.Contracts.IGbifTaxaClassificationDataService>()
-                .To<Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.GbifTaxaClassificationDataService>();
         };
 
         public static IKernel CreateKernel()

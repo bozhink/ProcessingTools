@@ -79,7 +79,7 @@
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ICatalogueOfLifeTaxaClassificationDataService>()
                 .To<Bio.Taxonomy.Services.Data.Services.CatalogueOfLifeTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IGbifTaxaClassificationDataService>()
-                .To<Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.GbifTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ILocalDbTaxaRankDataService>()
                 .To<Bio.Taxonomy.Services.Data.LocalDbTaxaRankDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ISuffixHigherTaxaRankDataService>()
