@@ -2,7 +2,6 @@
 {
     using System.Linq;
 
-    using Common.Exceptions;
     using Contracts;
     using Models;
     using Models.Contracts;
@@ -10,6 +9,7 @@
     using ProcessingTools.Bio.Environments.Data.Models;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
