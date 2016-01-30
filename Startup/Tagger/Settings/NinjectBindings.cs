@@ -86,9 +86,9 @@
                 .To<Bio.Taxonomy.Services.Data.Services.SuffixHigherTaxaRankDataService>();
 
             this.Bind<Geo.Services.Data.Contracts.IGeoEpithetsDataService>()
-                .To<Geo.Services.Data.GeoEpithetsDataService>();
+                .To<Geo.Services.Data.Services.GeoEpithetsDataService>();
             this.Bind<Geo.Services.Data.Contracts.IGeoNamesDataService>()
-                .To<Geo.Services.Data.GeoNamesDataService>();
+                .To<Geo.Services.Data.Services.GeoNamesDataService>();
 
             this.Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
                 .To<MediaType.Services.Data.MediaTypeDataService>();

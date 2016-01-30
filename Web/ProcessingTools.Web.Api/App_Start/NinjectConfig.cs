@@ -30,10 +30,10 @@
                 .To(typeof(Geo.Data.Repositories.GeoDataRepository<>));
             kernel
                 .Bind<Geo.Services.Data.Contracts.IGeoEpithetsDataService>()
-                .To<Geo.Services.Data.GeoEpithetsDataService>();
+                .To<Geo.Services.Data.Services.GeoEpithetsDataService>();
             kernel
                 .Bind<Geo.Services.Data.Contracts.IGeoNamesDataService>()
-                .To<Geo.Services.Data.GeoNamesDataService>();
+                .To<Geo.Services.Data.Services.GeoNamesDataService>();
 
             kernel
                 .Bind<Bio.Data.Contracts.IBioDbContext>()

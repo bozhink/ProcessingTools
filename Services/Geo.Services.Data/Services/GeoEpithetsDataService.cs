@@ -1,10 +1,12 @@
-﻿namespace ProcessingTools.Geo.Services.Data
+﻿namespace ProcessingTools.Geo.Services.Data.Services
 {
     using AutoMapper;
+
     using Contracts;
-    using Geo.Data.Models;
-    using Geo.Data.Repositories.Contracts;
     using Models.Contracts;
+
+    using ProcessingTools.Geo.Data.Models;
+    using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
     public class GeoEpithetsDataService : EfGenericCrudDataServiceFactory<GeoEpithet, IGeoEpithet, int>, IGeoEpithetsDataService
