@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ProcessingTools.Services.Validation.Tests")]
-[assembly: AssemblyCopyright("Copyright © Bozhin Karaivanov 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
