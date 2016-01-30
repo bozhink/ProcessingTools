@@ -33,15 +33,98 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbSeederStartUp.cs" />
+    <Compile Include="Contracts\IDbSeeder.cs" />
+    <Compile Include="DbSeederStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="Seeders\BioDbSeeder.cs" />
+    <Compile Include="Seeders\BioEnvironmentsDbSeeder.cs" />
+    <Compile Include="Seeders\DataDbSeeder.cs" />
+    <Compile Include="Seeders\GeoDbSeeder.cs" />
+    <Compile Include="Seeders\MediaTypesDbSeeder.cs" />
+    <Compile Include="Seeders\TaxonomyDbSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
+      <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
+      <Name>Bio.Biorepositories.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data\Bio.Biorepositories.Data.csproj">
+      <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
+      <Name>Bio.Biorepositories.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data.Models\Bio.Data.Models.csproj">
+      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
+      <Name>Bio.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
+      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
+      <Name>Bio.Environments.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
+      <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
+      <Name>Bio.Taxonomy.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Models\Data.Models.csproj">
+      <Project>{95f68506-491b-4d92-a8d0-778bc08ae2c2}</Project>
+      <Name>Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data\Data.csproj">
+      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data.Models\Geo.Data.Models.csproj">
+      <Project>{e131920b-8ae9-467d-bc0b-861438aaf130}</Project>
+      <Name>Geo.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
+      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
+      <Name>Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Models\MediaType.Data.Models.csproj">
+      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
+      <Name>MediaType.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

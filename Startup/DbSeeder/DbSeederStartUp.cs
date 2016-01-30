@@ -1,10 +1,19 @@
 ﻿namespace ProcessingTools.DbSeeder
 {
-    public static class DbSeederStartUp
+    using System;
+    using System.Diagnostics;
+
+    public static class DbSeederStartup
     {
         public static void Main()
         {
-            // TODO
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            var runner = new Runner();
+            runner.Run().Wait();
+
+            Console.WriteLine(timer.Elapsed);
         }
     }
 }
