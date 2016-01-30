@@ -3,7 +3,6 @@
     using System.Reflection;
 
     using Ninject;
-    using Ninject.Extensions.Conventions;
 
     public static class NinjectConfig
     {
@@ -14,13 +13,6 @@
             try
             {
                 kernel.Load(Assembly.GetExecutingAssembly());
-
-                kernel.Bind(x =>
-                {
-                    x.FromThisAssembly()
-                     .SelectAllClasses()
-                     .BindDefaultInterface();
-                });
             }
             catch
             {
