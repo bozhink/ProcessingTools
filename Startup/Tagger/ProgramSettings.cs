@@ -3,7 +3,7 @@
     using System;
 
     using Bio.Taxonomy.Services.Data.Contracts;
-    using Bio.Taxonomy.Services.Data;
+    using Bio.Taxonomy.Services.Data.Services;
     using Configurator;
 
     public class ProgramSettings
