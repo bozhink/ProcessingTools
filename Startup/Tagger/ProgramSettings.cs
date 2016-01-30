@@ -7,8 +7,8 @@
 
     public class ProgramSettings
     {
-        private Lazy<TaxonomicListDataService> blackList;
-        private Lazy<TaxonomicListDataService> whiteList;
+        private Lazy<StringTaxonomicListDataService> blackList;
+        private Lazy<StringTaxonomicListDataService> whiteList;
 
         public ProgramSettings()
         {
@@ -68,13 +68,13 @@
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
 
-            this.blackList = new Lazy<TaxonomicListDataService>(() => new TaxonomicListDataService(this.Config.BlackListXmlFilePath));
-            this.whiteList = new Lazy<TaxonomicListDataService>(() => new TaxonomicListDataService(this.Config.WhiteListXmlFilePath));
+            this.blackList = new Lazy<StringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
+            this.whiteList = new Lazy<StringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
         }
 
-        public TaxonomicListDataService BlackList => this.blackList.Value;
+        public StringTaxonomicListDataService BlackList => this.blackList.Value;
 
-        public TaxonomicListDataService WhiteList => this.whiteList.Value;
+        public StringTaxonomicListDataService WhiteList => this.whiteList.Value;
 
         public Config Config { get; set; }
 
