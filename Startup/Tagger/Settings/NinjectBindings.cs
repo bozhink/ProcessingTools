@@ -73,7 +73,7 @@
                 .To<Bio.Services.Data.Services.MorphologicalEpithetsDataService>();
 
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IAboveGenusTaxaRankDataService>()
-                .To<Bio.Taxonomy.Services.Data.AboveGenusTaxaRankDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.AboveGenusTaxaRankDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IAphiaTaxaClassificationDataService>()
                 .To<Bio.Taxonomy.Services.Data.AphiaTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ICatalogueOfLifeTaxaClassificationDataService>()
