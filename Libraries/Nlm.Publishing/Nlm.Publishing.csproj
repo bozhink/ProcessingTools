@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\ArticleType.cs" />
     <Compile Include="Types\ExternalLinkType.cs" />

@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
     <Compile Include="Contracts\IGeoNamesDataMiner.cs" />

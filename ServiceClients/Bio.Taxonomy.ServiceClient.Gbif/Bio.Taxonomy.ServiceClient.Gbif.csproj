@@ -34,6 +34,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IGbifDataRequester.cs" />
     <Compile Include="GbifDataRequester.cs" />
     <Compile Include="Models\Alternative.cs" />

@@ -47,6 +47,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />

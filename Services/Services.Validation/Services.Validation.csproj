@@ -34,6 +34,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IUrlValidationService.cs" />
     <Compile Include="Models\Contracts\IUrl.cs" />
     <Compile Include="Models\Contracts\IUrlValidationServiceModel.cs" />

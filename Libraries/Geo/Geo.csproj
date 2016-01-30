@@ -38,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ICoordinate.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="Coordinate2DParser.cs" />

@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="SchemaType.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigBuilder.cs" />

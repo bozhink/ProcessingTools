@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDataMiner.cs" />
     <Compile Include="Contracts\IStringDataMiner.cs" />
     <Compile Include="Factories\SimpleServiceStringDataMinerFactory.cs" />

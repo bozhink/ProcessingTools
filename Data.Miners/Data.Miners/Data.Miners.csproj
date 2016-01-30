@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AltitudesDataMiner.cs" />
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IAltitudesDataMiner.cs" />
     <Compile Include="Contracts\IDatesDataMiner.cs" />
     <Compile Include="Contracts\IGeographicDeviationsDataMiner.cs" />

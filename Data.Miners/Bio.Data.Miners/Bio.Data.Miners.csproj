@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="BiorepositoryInstitutionalCodesDataMiner.cs" />
     <Compile Include="BiorepositoryInstitutionDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoryInstitutionalCodesDataMiner.cs" />

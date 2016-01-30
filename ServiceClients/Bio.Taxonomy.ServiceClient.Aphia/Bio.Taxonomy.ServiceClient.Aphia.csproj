@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="AphiaDirectSoapRequester.cs" />
     <Compile Include="AphiaNameService.cs" />
+    <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

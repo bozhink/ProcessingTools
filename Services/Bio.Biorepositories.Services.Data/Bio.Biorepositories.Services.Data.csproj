@@ -42,6 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Services\BiorepositoriesDataService.cs" />
     <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCodeDataServiceResponseModel.cs" />

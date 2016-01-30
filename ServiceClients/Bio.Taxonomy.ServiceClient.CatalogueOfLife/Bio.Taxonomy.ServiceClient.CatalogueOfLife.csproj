@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="CatalogueOfLifeDataRequester.cs" />
     <Compile Include="Contracts\ICatalogueOfLifeDataRequester.cs" />
     <Compile Include="Models\AcceptedName.cs" />

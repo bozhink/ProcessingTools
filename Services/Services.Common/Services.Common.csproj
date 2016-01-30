@@ -37,6 +37,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ICrudDataService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />

@@ -46,6 +46,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />

@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IHarvester.cs" />
     <Compile Include="Contracts\IStringHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

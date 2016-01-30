@@ -38,6 +38,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Concurrency\Delayer.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Exceptions\KeyValuePairMultiMessageException.cs" />

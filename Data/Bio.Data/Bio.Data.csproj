@@ -42,6 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="BioDbContext.cs" />
     <Compile Include="Contracts\IBioDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />

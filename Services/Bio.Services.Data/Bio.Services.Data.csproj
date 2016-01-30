@@ -46,6 +46,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IMorphologicalEpithetsDataService.cs" />
     <Compile Include="Models\Contracts\IMorphologicalEpithet.cs" />
     <Compile Include="Models\MorphologicalEpithetResponseModel.cs" />

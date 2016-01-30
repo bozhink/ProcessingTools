@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="CsvColumnAttribute.cs" />
     <Compile Include="CsvMapper.cs" />
     <Compile Include="CsvObjectAttribute.cs" />

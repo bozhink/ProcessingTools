@@ -35,6 +35,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IExtractHcmrDataRequester.cs" />
     <Compile Include="ExtractHcmrDataRequester.cs" />
     <Compile Include="Models\Entity.cs" />
