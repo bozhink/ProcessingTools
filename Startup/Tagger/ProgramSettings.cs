@@ -2,13 +2,14 @@
 {
     using System;
 
+    using Bio.Taxonomy.Services.Data.Contracts;
     using Bio.Taxonomy.Services.Data;
     using Configurator;
 
     public class ProgramSettings
     {
-        private Lazy<StringTaxonomicListDataService> blackList;
-        private Lazy<StringTaxonomicListDataService> whiteList;
+        private Lazy<IStringTaxonomicListDataService> blackList;
+        private Lazy<IStringTaxonomicListDataService> whiteList;
 
         public ProgramSettings()
         {
@@ -68,13 +69,13 @@
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
 
-            this.blackList = new Lazy<StringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
-            this.whiteList = new Lazy<StringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
+            this.blackList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
+            this.whiteList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
         }
 
-        public StringTaxonomicListDataService BlackList => this.blackList.Value;
+        public IStringTaxonomicListDataService BlackList => this.blackList.Value;
 
-        public StringTaxonomicListDataService WhiteList => this.whiteList.Value;
+        public IStringTaxonomicListDataService WhiteList => this.whiteList.Value;
 
         public Config Config { get; set; }
 

@@ -7,7 +7,7 @@
 
     using Contracts;
 
-    public class StringTaxonomicListDataService : ITaxonomicListDataService<string>
+    public class StringTaxonomicListDataService : IStringTaxonomicListDataService
     {
         private ICollection<string> dataList;
 
