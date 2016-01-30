@@ -15,6 +15,8 @@
 
         public IDbSet<MorphologicalEpithet> MorphologicalEpithets { get; set; }
 
+        public IDbSet<TypeStatus> TypesStatuses { get; set; }
+
         public static BioDbContext Create()
         {
             return new BioDbContext();

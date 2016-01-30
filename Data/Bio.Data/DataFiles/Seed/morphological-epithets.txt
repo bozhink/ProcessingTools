@@ -1,9 +1,7 @@
 ﻿abdomen
-abdomen
 aculeus
 aedeagus
 antegenital | epithet
-antenna
 antenna
 antenno–frontal | epithet
 anteromedial margin
@@ -11,7 +9,6 @@ anteromedial margin of pronotum
 anthers
 apex
 apex of forewings
-apex of hindwings
 apical | epithet
 basal colleter
 base of clypeus
@@ -19,7 +16,6 @@ basidia
 basidiospores
 basistipes
 body
-border s–chaeta on ant. IV
 border s–chaeta on ant. IV
 buds
 calyx
@@ -36,8 +32,6 @@ centromedial | epithet
 centroposterior | epithet
 chaeta s
 chaetae
-chaetae
-chaetae
 chaetae of anal lobes | epithet
 cheilocystidia
 clamp connections
@@ -47,7 +41,6 @@ clypeus
 colleters
 column
 convergence of vannal veins
-convergence of vannal veins
 corolla
 corolla lobes
 corona
@@ -56,18 +49,15 @@ corpusculum
 costa
 costae
 coxa
-coxa
 cylindrical s–chaetae on ant. IV („soies mousses”)
 disk
 distal apex of genicular lobe
 distal cheliceral segment
 distal terminus
-distal terminus
 distal terminus of body or wing (whichever is longer)
 distal terminus of the segment before the ungues
-distal terminus of the segment before the ungues
-distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia
-distal terminus, at a point medially positioned between apical spur and cuticular outgrowth of the tibia
+apical spur
+cuticular outgrowth of the tibia
 dorsal | epithet
 dorsoexternal | epithet
 dorsointernal | epithet
@@ -75,8 +65,6 @@ dorsolateral | epithet
 elytra
 endocarina
 epipharynx
-femur
-femur
 femur
 first whorl
 flowers
@@ -94,8 +82,6 @@ genu
 globular whorls
 gynostegium
 head
-head
-head
 hindwing
 hoya
 inflorescence
@@ -109,7 +95,6 @@ lamellar trama
 lamina
 lateral costa
 lateral edge of compound eye
-lateral edge of pronotum
 lateral edge of pronotum
 lateral margin of lower frons at widest point
 lateral | epithet
@@ -144,9 +129,6 @@ microchaeta
 microchaetae on ant. IV
 middle of epistomal suture
 most proximal margin abutting the trochanter
-most proximal margin abutting the trochanter
-most proximal margin abutting the trochanter
-most-proximal margin of basitarsus
 most-proximal margin of basitarsus
 ocular | epithet
 ocularium
@@ -178,15 +160,10 @@ procoxa
 profemur
 pronotal surface
 pronotum
-pronotum
-pronotum
-pronotum
-pronotum
 protarsus
 prothoracic femur
 prothorax
 protibia
-proximal bend of the tibia
 proximal bend of the tibia
 proximal cheliceral segment
 prozone
@@ -196,7 +173,6 @@ root
 seed
 seeds
 segment
-sensory organ of antennal segment III
 sensory organ of antennal segment III
 seta-bearing tubercle
 setae
@@ -208,25 +184,19 @@ stems
 stipe
 stripes
 subcoxa 2
-subcoxa 2
 sublateral costa
 subocular | epithet
-supracoxal sulcus
 supracoxal sulcus
 s–microchaeta or microsensillum
 tasus
 thorax
-thorax
 tibia
 tibial apex
 tibiotarsus
-tibiotarsus
-trochanter
 trochanter
 Tubercles
 uncini
 ventral margin
-ventral tube
 ventral tube
 ventral umbo
 ventrocentral | epithet

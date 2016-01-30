@@ -3,19 +3,23 @@ namespace ProcessingTools.Bio.Data.Migrations
     using System;
     using System.Configuration;
     using System.Data.Entity.Migrations;
-    using System.IO;
-    using System.Text;
 
     using Models;
+    using ProcessingTools.Data.Common.Seed;
 
     public sealed class Configuration : DbMigrationsConfiguration<BioDbContext>
     {
-        private const int NumberOfItemsToResetContext = 100;
-        private readonly Encoding encoding = Encoding.UTF8;
-
         private Action<BioDbContext, string> addOrUpdateMorphologicalEpithet = (context, line) =>
         {
             context.MorphologicalEpithets.AddOrUpdate(new MorphologicalEpithet
+            {
+                Name = line
+            });
+        };
+
+        private Action<BioDbContext, string> addOrUpdateTypeStatus = (context, line) =>
+        {
+            context.TypesStatuses.AddOrUpdate(new TypeStatus
             {
                 Name = line
             });
@@ -33,32 +37,15 @@ namespace ProcessingTools.Bio.Data.Migrations
             var appSettingsReader = new AppSettingsReader();
             var dataFilesDirectoryPath = appSettingsReader.GetValue("DataFilesDirectoryPath", typeof(string)).ToString();
 
-            this.ImportSimpleObjects(dataFilesDirectoryPath + "/morphological-epithets.txt", this.addOrUpdateMorphologicalEpithet);
-        }
+            var seeder = new DbContextSeeder<BioDbContext>();
 
-        private void ImportSimpleObjects(string fileName, Action<BioDbContext, string> createObject)
-        {
-            using (var stream = new StreamReader(fileName, this.encoding))
-            {
-                var context = new BioDbContext();
+            seeder.ImportSingleLineTextObjectsFromFile(
+                $"{dataFilesDirectoryPath}/morphological-epithets.txt",
+                this.addOrUpdateMorphologicalEpithet);
 
-                string line = stream.ReadLine();
-                for (int i = 0; line != null; ++i, line = stream.ReadLine())
-                {
-                    createObject(context, line);
-
-                    if (i % NumberOfItemsToResetContext == 0)
-                    {
-                        context.SaveChanges();
-                        context.Dispose();
-
-                        context = new BioDbContext();
-                    }
-                }
-
-                context.SaveChanges();
-                context.Dispose();
-            }
+            seeder.ImportSingleLineTextObjectsFromFile(
+                $"{dataFilesDirectoryPath}/type-statuses.txt",
+                this.addOrUpdateTypeStatus);
         }
     }
 }

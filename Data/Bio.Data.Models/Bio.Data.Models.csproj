@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="MorphologicalEpithet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
