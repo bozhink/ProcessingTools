@@ -34,8 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="BiorepositoryInstitutionalCodesDataMiner.cs" />
-    <Compile Include="BiorepositoryInstitutionDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoryInstitutionalCodesDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoryInstitutionDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoryInstitutionalCodesDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoryInstitutionDataMiner.cs" />
     <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
@@ -45,9 +45,9 @@
     <Compile Include="Contracts\IMorphologicalEpithetsDataMiner.cs" />
     <Compile Include="Contracts\ISpecimenCodesDataMiner.cs" />
     <Compile Include="Contracts\ISpecimenCountDataMiner.cs" />
-    <Compile Include="EnvoTermsDataMiner.cs" />
-    <Compile Include="ExtractHcmrDataMiner.cs" />
-    <Compile Include="HigherTaxaDataMiner.cs" />
+    <Compile Include="Miners\EnvoTermsDataMiner.cs" />
+    <Compile Include="Miners\ExtractHcmrDataMiner.cs" />
+    <Compile Include="Miners\HigherTaxaDataMiner.cs" />
     <Compile Include="Models\BiorepositoryInstitution.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCode.cs" />
     <Compile Include="Models\Contracts\IBiorepositoryInstitution.cs" />
@@ -56,9 +56,9 @@
     <Compile Include="Models\Contracts\IExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\EnvoTerm.cs" />
     <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
-    <Compile Include="MorphologicalEpithetsDataMiner.cs" />
+    <Compile Include="Miners\MorphologicalEpithetsDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecimenCountDataMiner.cs" />
+    <Compile Include="Miners\SpecimenCountDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

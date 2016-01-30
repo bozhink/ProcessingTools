@@ -37,8 +37,8 @@
     <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
     <Compile Include="Contracts\IGeoNamesDataMiner.cs" />
-    <Compile Include="GeoEpithetsDataMiner.cs" />
-    <Compile Include="GeoNamesDataMiner.cs" />
+    <Compile Include="Miners\GeoEpithetsDataMiner.cs" />
+    <Compile Include="Miners\GeoNamesDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
