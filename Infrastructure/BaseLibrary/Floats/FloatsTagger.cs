@@ -99,10 +99,12 @@
 
         private void FormatXrefGroup(string refType)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             try
             {
-                foreach (XmlNode xrefGroupNode in this.XmlDocument.SelectNodes("//xref-group[xref[@ref-type='" + refType + "']]", this.NamespaceManager))
+                string xrefGroupNodeXPath = $"//xref-group[xref[@ref-type='{refType}']]";
+                XmlNodeList xrefGroupNodes = this.XmlDocument.SelectNodes(xrefGroupNodeXPath, this.NamespaceManager);
+                foreach (XmlNode xrefGroupNode in xrefGroupNodes)
                 {
                     // Format content in xref-group
                     string xrefGroup = xrefGroupNode.InnerXml;
@@ -111,11 +113,11 @@
                     Regex matchDashed = new Regex("<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>[–—−-]<xref ref-type=\"" + refType + "\" [^>]*>[^<>]*?</xref>");
                     for (Match dashed = matchDashed.Match(xrefGroup); dashed.Success; dashed = dashed.NextMatch())
                     {
-                        string xref_replace = dashed.Value;
+                        string xrefReplace = dashed.Value;
 
-                        string prefixId = Regex.Replace(xref_replace, @"<xref .*?rid=\W(.*?)\d+.*?>.*", "$1");
-                        string firstId = Regex.Replace(xref_replace, @"\A<xref .*?(\d+).*?>.*", "$1");
-                        string lastId = Regex.Replace(xref_replace, @".*[–—−-]<xref .*?(\d+).*?>.*", "$1");
+                        string prefixId = Regex.Replace(xrefReplace, @"<xref .*?rid=\W(.*?)\d+.*?>.*", "$1");
+                        string firstId = Regex.Replace(xrefReplace, @"\A<xref .*?(\d+).*?>.*", "$1");
+                        string lastId = Regex.Replace(xrefReplace, @".*[–—−-]<xref .*?(\d+).*?>.*", "$1");
 
                         int first = int.Parse(firstId);
                         int last = int.Parse(lastId);
@@ -123,14 +125,14 @@
                         // Parse the dash
                         // Convert the dash to a sequence of xref
                         {
-                            sb.Clear();
+                            stringBuilder.Clear();
                             for (int i = first + 1; i < last; i++)
                             {
                                 string rid = prefixId + i;
-                                sb.Append(", <xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">" + this.floatLabelById[rid] + "</xref>");
+                                stringBuilder.Append(", <xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">" + this.floatLabelById[rid] + "</xref>");
                             }
 
-                            xref_replace = Regex.Replace(xref_replace, "(</xref>)[–—−-](<xref [^>]*>)", "$1" + sb.ToString() + ", $2");
+                            xrefReplace = Regex.Replace(xrefReplace, "(</xref>)[–—−-](<xref [^>]*>)", "$1" + stringBuilder.ToString() + ", $2");
                         }
 
                         // <xref-group>Figs <xref ref-type="fig" rid="F1">1</xref>, <xref ref-type="F2">5–11</xref>, <xref ref-type="F3">12–18</xref>
@@ -138,7 +140,7 @@
 
                         // Parse left xref
                         {
-                            Match matchLeftXref = Regex.Match(xref_replace, @"\A<xref [^>]*>[^<>]+</xref>, <xref [^>]*>[A-Z]?\d+");
+                            Match matchLeftXref = Regex.Match(xrefReplace, @"\A<xref [^>]*>[^<>]+</xref>, <xref [^>]*>[A-Z]?\d+");
                             string leftXref = matchLeftXref.Value;
                             if (matchLeftXref.Success)
                             {
@@ -152,12 +154,12 @@
                                 }
                             }
 
-                            xref_replace = Regex.Replace(xref_replace, Regex.Escape(matchLeftXref.Value), leftXref);
+                            xrefReplace = Regex.Replace(xrefReplace, Regex.Escape(matchLeftXref.Value), leftXref);
                         }
 
                         // Parse the right xref
                         {
-                            Match matchRightXref = Regex.Match(xref_replace, @"[A-Z]?\d+</xref>, <xref [^>]*>[^<>]+</xref>\Z");
+                            Match matchRightXref = Regex.Match(xrefReplace, @"[A-Z]?\d+</xref>, <xref [^>]*>[^<>]+</xref>\Z");
                             string rightXref = matchRightXref.Value;
                             if (matchRightXref.Success)
                             {
@@ -171,10 +173,10 @@
                                 }
                             }
 
-                            xref_replace = Regex.Replace(xref_replace, Regex.Escape(matchRightXref.Value), rightXref);
+                            xrefReplace = Regex.Replace(xrefReplace, Regex.Escape(matchRightXref.Value), rightXref);
                         }
 
-                        xrefGroup = Regex.Replace(xrefGroup, Regex.Escape(dashed.Value), xref_replace);
+                        xrefGroup = Regex.Replace(xrefGroup, Regex.Escape(dashed.Value), xrefReplace);
                     }
 
                     xrefGroupNode.InnerXml = xrefGroup;
@@ -236,7 +238,7 @@
         /// <param name="refType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
         /// <param name="floatType">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
         /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
-        private int GetFloats(FloatsReferenceType refType = FloatsReferenceType.Figure, string floatType = "Figure")
+        private int GetFloatsOfType(FloatsReferenceType refType, string floatType)
         {
             this.floatIdByLabel = new Hashtable();
             this.floatLabelById = new Hashtable();
@@ -276,19 +278,19 @@
             switch (refType)
             {
                 case FloatsReferenceType.Figure:
-                    xpath = "//fig[contains(string(label),'" + floatType + "')]";
+                    xpath = $"//fig[contains(string(label),'{floatType}')]";
                     break;
 
                 case FloatsReferenceType.Table:
-                    xpath = "//table-wrap[contains(string(label),'" + floatType + "')]";
+                    xpath = $"//table-wrap[contains(string(label),'{floatType}')]";
                     break;
 
                 case FloatsReferenceType.Textbox:
-                    xpath = "//box[contains(string(title),'" + floatType + "')]|//boxed-text[contains(string(label),'" + floatType + "')]";
+                    xpath = $"//box[contains(string(title),'{floatType}')]|//boxed-text[contains(string(label),'{floatType}')]";
                     break;
 
                 case FloatsReferenceType.SupplementaryMaterial:
-                    xpath = "//supplementary-material[contains(string(label),'" + floatType + "')]";
+                    xpath = $"//supplementary-material[contains(string(label),'{floatType}')]";
                     break;
 
                 default:
@@ -352,11 +354,21 @@
         {
             try
             {
+                Regex matchNumber = new Regex(@"\d+");
+
                 this.logger?.Log();
-                foreach (string floatId in this.floatIdByLabelKeys.Cast<string>().OrderBy(s => int.Parse(Regex.Match(s, @"\d+").Value ?? "1")))
-                {
-                    this.logger?.Log("{2}\t#{0}\tis in float\t#{1}", floatId, this.floatIdByLabel[floatId], refType.ToString());
-                }
+                this.floatIdByLabelKeys
+                    .Cast<string>()
+                    .OrderBy(s => int.Parse(matchNumber.Match(s).Value ?? "1"))
+                    .ToList()
+                    .ForEach(id =>
+                    {
+                        this.logger?.Log(
+                            "{2}\t#{0}\tis in float\t#{1}",
+                            id,
+                            this.floatIdByLabel[id],
+                            refType.ToString());
+                    });
             }
             catch (Exception e)
             {
@@ -406,7 +418,7 @@
         private void TagFigures()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Figure");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Figure, "Figure");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("fig", "Fig\\.|Figs|Figures?");
@@ -445,7 +457,7 @@
         private void TagHabitus()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Habitus");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Figure, "Habitus");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("habitus", "Habitus");
@@ -461,7 +473,7 @@
         private void TagMaps()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Map");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Figure, "Map");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("map", "Maps?");
@@ -477,7 +489,7 @@
         private void TagPlates()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Figure, "Plate");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Figure, "Plate");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("plate", "Plates?");
@@ -493,7 +505,7 @@
         private void TagSupplementaryMaterials()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.SupplementaryMaterial, "Supplementary material");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.SupplementaryMaterial, "Supplementary material");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("supplementary-material", @"Suppl\.\s*materials?");
@@ -509,7 +521,7 @@
         private void TagTableBoxes()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Table, "Box");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Table, "Box");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("table", "Box|Boxes");
@@ -525,7 +537,7 @@
         private void TagTables()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Table, "Table");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Table, "Table");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("table", "Tab\\.|Tabs|Tables?");
@@ -541,7 +553,7 @@
         private void TagTextBoxes()
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloats(FloatsReferenceType.Textbox, "Box");
+            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Textbox, "Box");
             if (numberOfFloatsOfType > 0)
             {
                 this.TagFloatsOfType("boxed-text", "Box|Boxes");
