@@ -64,7 +64,7 @@
              */
 
             this.Bind<Bio.Biorepositories.Services.Data.Contracts.IBiorepositoriesDataService>()
-                .To<Bio.Biorepositories.Services.Data.BiorepositoriesDataService>();
+                .To<Bio.Biorepositories.Services.Data.Services.BiorepositoriesDataService>();
 
             this.Bind<Bio.Environments.Services.Data.Contracts.IEnvoTermsDataService>()
                 .To<Bio.Environments.Services.Data.EnvoTermsDataService>();
