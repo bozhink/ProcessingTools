@@ -62,19 +62,19 @@
             return @"(?<!<[^>]*)\b(" + labelPattern + @")\s*(([A-Z]?\d+)(?:" + SubfloatsPattern + @")?)(?=\W)";
         }
 
-        private string FloatsFirstOccurenceReplace(string floatType)
+        private string FloatsFirstOccurenceReplace(string refType)
         {
-            return "$1 <xref ref-type=\"" + floatType + "\" rid=\"$3\">$2</xref>";
+            return "$1 <xref ref-type=\"" + refType + "\" rid=\"$3\">$2</xref>";
         }
 
-        private string FloatsNextOccurencePattern(string floatType)
+        private string FloatsNextOccurencePattern(string refType)
         {
-            return "(<xref ref-type=\"" + floatType + "\" [^>]*>[^<]*</xref>[,\\s]*([,;–−-]|and|\\&amp;)\\s*)(([A-Z]?\\d+)(" + SubfloatsPattern + ")?)(?=\\W)";
+            return "(<xref ref-type=\"" + refType + "\" [^>]*>[^<]*</xref>[,\\s]*([,;–−-]|and|\\&amp;)\\s*)(([A-Z]?\\d+)(" + SubfloatsPattern + ")?)(?=\\W)";
         }
 
-        private string FloatsNextOccurenceReplace(string floatType)
+        private string FloatsNextOccurenceReplace(string refType)
         {
-            return "$1<xref ref-type=\"" + floatType + "\" rid=\"$4\">$3</xref>";
+            return "$1<xref ref-type=\"" + refType + "\" rid=\"$4\">$3</xref>";
         }
 
         private void FormatXref()
@@ -188,7 +188,7 @@
             }
         }
 
-        private string GetFloatId(FloatsReferenceType refType, XmlNode node)
+        private string GetFloatId(FloatsReferenceType floatReferenceType, XmlNode node)
         {
             string id = string.Empty;
             if (node.Attributes["id"] != null)
@@ -197,7 +197,7 @@
             }
             else
             {
-                switch (refType)
+                switch (floatReferenceType)
                 {
                     case FloatsReferenceType.Table:
                         try
@@ -235,10 +235,10 @@
         /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
         /// This method generates the "dictionary" to correctly post-process xref/@rid references.
         /// </summary>
-        /// <param name="refType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
-        /// <param name="floatType">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
+        /// <param name="floatReferenceType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
+        /// <param name="floatTypeNameInLabel">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
         /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
-        private int GetFloatsOfType(FloatsReferenceType refType, string floatType)
+        private int GetFloatsOfType(FloatsReferenceType floatReferenceType, string floatTypeNameInLabel)
         {
             this.floatIdByLabel = new Hashtable();
             this.floatLabelById = new Hashtable();
@@ -246,11 +246,11 @@
             int numberOfFloatsOfType = 0;
             try
             {
-                string xpath = this.GetFloatsXPath(refType, floatType);
+                string xpath = this.GetFloatsXPath(floatReferenceType, floatTypeNameInLabel);
                 XmlNodeList floatsOfTypeNodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
                 foreach (XmlNode floatOfTypeNode in floatsOfTypeNodeList)
                 {
-                    string id = this.GetFloatId(refType, floatOfTypeNode);
+                    string id = this.GetFloatId(floatReferenceType, floatOfTypeNode);
                     string labelText = this.GetFloatLabelText(floatOfTypeNode);
 
                     this.UpdateFloatLabelByIdList(id, labelText);
@@ -267,30 +267,30 @@
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
             this.floatIdByLabelValues = this.floatIdByLabel.Values;
 
-            this.PrintFloatsDistributionById(refType);
+            this.PrintFloatsDistributionById(floatReferenceType);
 
             return numberOfFloatsOfType;
         }
 
-        private string GetFloatsXPath(FloatsReferenceType refType, string floatType)
+        private string GetFloatsXPath(FloatsReferenceType floatReferenceType, string floatTypeNameInLabel)
         {
             string xpath = string.Empty;
-            switch (refType)
+            switch (floatReferenceType)
             {
                 case FloatsReferenceType.Figure:
-                    xpath = $"//fig[contains(string(label),'{floatType}')]";
+                    xpath = $"//fig[contains(string(label),'{floatTypeNameInLabel}')]";
                     break;
 
                 case FloatsReferenceType.Table:
-                    xpath = $"//table-wrap[contains(string(label),'{floatType}')]";
+                    xpath = $"//table-wrap[contains(string(label),'{floatTypeNameInLabel}')]";
                     break;
 
                 case FloatsReferenceType.Textbox:
-                    xpath = $"//box[contains(string(title),'{floatType}')]|//boxed-text[contains(string(label),'{floatType}')]";
+                    xpath = $"//box[contains(string(title),'{floatTypeNameInLabel}')]|//boxed-text[contains(string(label),'{floatTypeNameInLabel}')]";
                     break;
 
                 case FloatsReferenceType.SupplementaryMaterial:
-                    xpath = $"//supplementary-material[contains(string(label),'{floatType}')]";
+                    xpath = $"//supplementary-material[contains(string(label),'{floatTypeNameInLabel}')]";
                     break;
 
                 default:
@@ -350,7 +350,7 @@
             }
         }
 
-        private void PrintFloatsDistributionById(FloatsReferenceType refType)
+        private void PrintFloatsDistributionById(FloatsReferenceType floatReferenceType)
         {
             try
             {
@@ -367,7 +367,7 @@
                             "{2}\t#{0}\tis in float\t#{1}",
                             id,
                             this.floatIdByLabel[id],
-                            refType.ToString());
+                            floatReferenceType.ToString());
                     });
             }
             catch (Exception e)
@@ -380,16 +380,16 @@
         {
             string xml = this.Xml;
 
-            foreach (string s in this.floatIdByLabelKeys)
+            foreach (string rid in this.floatIdByLabelKeys)
             {
-                xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[s] + "\">");
+                xml = Regex.Replace(xml, "<xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">", "<xref ref-type=\"" + refType + "\" rid=\"" + this.floatIdByLabel[rid] + "\">");
             }
 
-            foreach (string s in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct())
+            foreach (string rid in this.floatIdByLabelValues.Cast<string>().Select(c => c).Distinct())
             {
                 for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
                 {
-                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + s + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
+                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
                 }
             }
 
@@ -417,32 +417,34 @@
         /// </summary>
         private void TagFigures()
         {
+            var obj = new Models.FigureFloatObject();
+
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloatsOfType(FloatsReferenceType.Figure, "Figure");
+            int numberOfFloatsOfType = this.GetFloatsOfType(obj.FloatReferenceType, obj.FloatTypeNameInLabel);
             if (numberOfFloatsOfType > 0)
             {
-                this.TagFloatsOfType("fig", "Fig\\.|Figs|Figures?");
+                this.TagFloatsOfType(obj.RefType, obj.LabelPattern);
                 this.FormatXref();
-                this.ProcessFloatsRid(numberOfFloatsOfType, "fig");
-                this.FormatXrefGroup("fig");
+                this.ProcessFloatsRid(numberOfFloatsOfType, obj.RefType);
+                this.FormatXrefGroup(obj.RefType);
             }
         }
 
         /// <summary>
         /// Find and put in xref citations of a floating object of given type.
         /// </summary>
-        /// <param name="floatType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
+        /// <param name="refType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
         /// <param name="labelPattern">Regex pattern to find citations of floating objects of the given type.</param>
-        private void TagFloatsOfType(string floatType, string labelPattern)
+        private void TagFloatsOfType(string refType, string labelPattern)
         {
             string pattern = this.FloatsFirstOccurencePattern(labelPattern);
-            string replace = this.FloatsFirstOccurenceReplace(floatType);
+            string replace = this.FloatsFirstOccurenceReplace(refType);
 
             string xml = this.Xml;
             xml = Regex.Replace(xml, pattern, replace);
 
-            pattern = this.FloatsNextOccurencePattern(floatType);
-            replace = this.FloatsNextOccurenceReplace(floatType);
+            pattern = this.FloatsNextOccurencePattern(refType);
+            replace = this.FloatsNextOccurenceReplace(refType);
             for (int i = 0; i < MaxNumberOfSequentalFloats; i++)
             {
                 xml = Regex.Replace(xml, pattern, replace);

@@ -76,7 +76,9 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="CustomXslRunner.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
+    <Compile Include="Floats\Contracts\IFloatObject.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
+    <Compile Include="Floats\Models\FigureFloatObject.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="References\ReferencesParser.cs" />
