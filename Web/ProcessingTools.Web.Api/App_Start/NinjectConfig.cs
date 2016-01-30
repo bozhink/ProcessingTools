@@ -92,7 +92,7 @@
                 .To<Bio.Taxonomy.Services.Data.Services.AphiaTaxaClassificationDataService>();
             kernel
                 .Bind<Bio.Taxonomy.Services.Data.Contracts.ICatalogueOfLifeTaxaClassificationDataService>()
-                .To<Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.CatalogueOfLifeTaxaClassificationDataService>();
             kernel
                 .Bind<Bio.Taxonomy.Services.Data.Contracts.IGbifTaxaClassificationDataService>()
                 .To<Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService>();

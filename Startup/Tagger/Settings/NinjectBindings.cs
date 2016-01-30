@@ -77,7 +77,7 @@
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IAphiaTaxaClassificationDataService>()
                 .To<Bio.Taxonomy.Services.Data.Services.AphiaTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ICatalogueOfLifeTaxaClassificationDataService>()
-                .To<Bio.Taxonomy.Services.Data.CatalogueOfLifeTaxaClassificationDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.CatalogueOfLifeTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.IGbifTaxaClassificationDataService>()
                 .To<Bio.Taxonomy.Services.Data.GbifTaxaClassificationDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ILocalDbTaxaRankDataService>()

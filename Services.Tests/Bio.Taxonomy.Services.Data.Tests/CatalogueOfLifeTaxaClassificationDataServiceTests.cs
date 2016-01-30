@@ -1,8 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Tests
 {
     using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ServiceClient.CatalogueOfLife;
+
+    using Services;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
 
     [TestClass]
     public class CatalogueOfLifeTaxaClassificationDataServiceTests
