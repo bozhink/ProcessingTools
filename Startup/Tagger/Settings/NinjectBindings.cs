@@ -83,7 +83,7 @@
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ILocalDbTaxaRankDataService>()
                 .To<Bio.Taxonomy.Services.Data.Services.LocalDbTaxaRankDataService>();
             this.Bind<Bio.Taxonomy.Services.Data.Contracts.ISuffixHigherTaxaRankDataService>()
-                .To<Bio.Taxonomy.Services.Data.SuffixHigherTaxaRankDataService>();
+                .To<Bio.Taxonomy.Services.Data.Services.SuffixHigherTaxaRankDataService>();
 
             this.Bind<Geo.Services.Data.Contracts.IGeoEpithetsDataService>()
                 .To<Geo.Services.Data.GeoEpithetsDataService>();
