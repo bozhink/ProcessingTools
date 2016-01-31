@@ -114,7 +114,6 @@
     <Compile Include="Contracts\IDataProvider.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
-    <Compile Include="Taxonomy\TaxaExpander\Expander.Nlm.cs" />
     <Compile Include="Taxonomy\TaxaParser\HigherTaxaParserWithDataService.cs" />
     <Compile Include="Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />

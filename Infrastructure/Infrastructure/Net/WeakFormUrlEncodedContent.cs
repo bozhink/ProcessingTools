@@ -6,8 +6,6 @@
     using System.Net.Http.Headers;
     using System.Text;
 
-    using Exceptions;
-
     public class WeakFormUrlEncodedContent : ByteArrayContent
     {
         public WeakFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
