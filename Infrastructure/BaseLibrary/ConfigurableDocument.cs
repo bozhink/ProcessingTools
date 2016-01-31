@@ -8,7 +8,7 @@
     /// <summary>
     /// Base object for all other xml-document-processing objects.
     /// </summary>
-    public class ConfigurableDocument : TaxPubDocument, IBase
+    public class ConfigurableDocument : TaxPubDocument, IConfigurableDocument
     {
         /// <summary>
         /// Config object to be used as configuration settings provider.

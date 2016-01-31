@@ -103,7 +103,7 @@
     <Compile Include="Extensions\XmlNormalizer.cs" />
     <Compile Include="Floats\FloatsReferenceType.cs" />
     <Compile Include="Floats\TableFootNotesTagger.cs" />
-    <Compile Include="Contracts\IBase.cs" />
+    <Compile Include="Contracts\IConfigurableDocument.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Coordinates\CoordinatesParser.cs" />
