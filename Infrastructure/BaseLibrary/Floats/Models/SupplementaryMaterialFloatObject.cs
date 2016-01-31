@@ -18,5 +18,7 @@
         public string InternalReferenceType => "supplementary-material";
 
         public string ResultantReferenceType => "supplementary-material";
+
+        public string Description => "Supplementary material";
     }
 }

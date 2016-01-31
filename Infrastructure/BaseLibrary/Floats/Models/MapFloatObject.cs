@@ -18,5 +18,7 @@
         public string InternalReferenceType => "map";
 
         public string ResultantReferenceType => "fig";
+
+        public string Description => "Map";
     }
 }

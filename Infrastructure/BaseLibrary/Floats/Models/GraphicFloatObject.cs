@@ -18,5 +18,7 @@
         public string InternalReferenceType => "graphic";
 
         public string ResultantReferenceType => "fig";
+
+        public string Description => "Graphic";
     }
 }

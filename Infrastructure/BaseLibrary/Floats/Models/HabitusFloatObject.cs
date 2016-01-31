@@ -18,5 +18,7 @@
         public string InternalReferenceType => "habitus";
 
         public string ResultantReferenceType => "fig";
+
+        public string Description => "Habitus";
     }
 }

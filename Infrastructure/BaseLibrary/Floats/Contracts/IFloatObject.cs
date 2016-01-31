@@ -3,6 +3,11 @@
     public interface IFloatObject
     {
         /// <summary>
+        /// Gets description of the float object.
+        /// </summary>
+        string Description { get; }
+
+        /// <summary>
         /// Gets the reference type of the floating object according to NLM schema.
         /// </summary>
         FloatsReferenceType FloatReferenceType { get; }

@@ -18,5 +18,7 @@
         public string InternalReferenceType => "table";
 
         public string ResultantReferenceType => "table";
+
+        public string Description => "Table";
     }
 }

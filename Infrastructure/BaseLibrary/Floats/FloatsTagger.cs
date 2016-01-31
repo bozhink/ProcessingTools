@@ -292,7 +292,7 @@
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
             this.floatIdByLabelValues = this.floatIdByLabel.Values;
 
-            this.PrintFloatsDistributionById(floatObject.FloatReferenceType);
+            this.PrintFloatsDistributionById(floatObject);
 
             return numberOfFloatsOfType;
         }
@@ -346,7 +346,7 @@
             }
         }
 
-        private void PrintFloatsDistributionById(FloatsReferenceType floatReferenceType)
+        private void PrintFloatsDistributionById(IFloatObject floatObject)
         {
             try
             {
@@ -363,7 +363,7 @@
                             "{2}\t#{0}\tis in float\t#{1}",
                             id,
                             this.floatIdByLabel[id],
-                            floatReferenceType.ToString());
+                            floatObject.Description);
                     });
             }
             catch (Exception e)
@@ -458,7 +458,7 @@
 
         private void UpdateFloatLabelByIdList(string id, string labelText)
         {
-            if (Regex.Match(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z").Success)
+            if (Regex.IsMatch(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z"))
             {
                 this.floatLabelById.Add(id, Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1"));
             }

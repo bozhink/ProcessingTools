@@ -18,5 +18,7 @@
         public string InternalReferenceType => "plate";
 
         public string ResultantReferenceType => "fig";
+
+        public string Description => "Plate";
     }
 }
