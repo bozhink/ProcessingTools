@@ -18,7 +18,7 @@ namespace ProcessingTools.BaseLibrary
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
 
-    public class Codes : Base
+    public class Codes : ConfigurableDocument
     {
         private const string SpecimenCodeTagName = "specimen_code";
         private const string InstitutionTagName = "institution";

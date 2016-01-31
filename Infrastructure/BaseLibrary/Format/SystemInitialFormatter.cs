@@ -6,7 +6,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class SystemInitialFormatter : Base, IFormatter
+    public class SystemInitialFormatter : ConfigurableDocument, IFormatter
     {
         public SystemInitialFormatter(string xml)
             : base(xml)

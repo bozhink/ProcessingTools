@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class DataProvider : Base, IDataProvider
+    public class DataProvider : ConfigurableDocument, IDataProvider
     {
         private ILogger logger;
 

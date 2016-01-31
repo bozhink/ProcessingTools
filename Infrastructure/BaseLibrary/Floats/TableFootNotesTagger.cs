@@ -7,7 +7,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class TableFootNotesTagger : Base, ITagger
+    public class TableFootNotesTagger : ConfigurableDocument, ITagger
     {
         private ILogger logger;
 

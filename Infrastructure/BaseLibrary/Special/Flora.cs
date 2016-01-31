@@ -7,7 +7,7 @@
     using Configurator;
     using Extensions;
 
-    public class Flora : Base
+    public class Flora : ConfigurableDocument
     {
         public Flora(Config config, string xml)
             : base(config, xml)

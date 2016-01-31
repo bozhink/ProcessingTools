@@ -8,7 +8,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class TreatmentFormatter : Base, IFormatter
+    public class TreatmentFormatter : ConfigurableDocument, IFormatter
     {
         private ILogger logger;
 

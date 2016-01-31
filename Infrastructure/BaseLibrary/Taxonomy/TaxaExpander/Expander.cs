@@ -7,7 +7,7 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
-    public class Expander : Base
+    public class Expander : ConfigurableDocument
     {
         private ILogger logger;
 

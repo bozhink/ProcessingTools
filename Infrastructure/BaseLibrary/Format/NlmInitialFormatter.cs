@@ -8,7 +8,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class NlmInitialFormatter : Base, IFormatter
+    public class NlmInitialFormatter : ConfigurableDocument, IFormatter
     {
         public NlmInitialFormatter(string xml)
             : base(xml)

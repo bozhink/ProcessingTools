@@ -4,7 +4,7 @@
 
     using ProcessingTools.Contracts;
 
-    public abstract class ZoobankCloner : Base, ICloner
+    public abstract class ZoobankCloner : ConfigurableDocument, ICloner
     {
         protected const string ArticleZooBankSelfUriXPath = "/article/front/article-meta/self-uri[@content-type='zoobank']";
         protected const string ContributorZooBankUriXPath = "/article/front/article-meta/contrib-group/contrib/uri[@content-type='zoobank']";

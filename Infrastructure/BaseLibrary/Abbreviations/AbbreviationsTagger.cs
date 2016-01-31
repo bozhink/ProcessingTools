@@ -8,7 +8,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class AbbreviationsTagger : Base, ITagger
+    public class AbbreviationsTagger : ConfigurableDocument, ITagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
 

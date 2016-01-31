@@ -15,7 +15,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class FloatsTagger : Base, ITagger
+    public class FloatsTagger : ConfigurableDocument, ITagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 30;

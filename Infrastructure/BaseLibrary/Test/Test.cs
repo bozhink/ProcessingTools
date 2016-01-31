@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class Test : Base
+    public class Test : ConfigurableDocument
     {
         public Test(string xml)
             : base(xml)

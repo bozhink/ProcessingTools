@@ -11,7 +11,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public abstract class TaxaTagger : Base, ITagger
+    public abstract class TaxaTagger : ConfigurableDocument, ITagger
     {
         private ITaxonomicListDataService<string> blackList;
 

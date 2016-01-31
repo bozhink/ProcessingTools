@@ -7,7 +7,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class ZoobankRegistrationXmlGenerator : Base, IGenerator
+    public class ZoobankRegistrationXmlGenerator : ConfigurableDocument, IGenerator
     {
         public ZoobankRegistrationXmlGenerator(Config config, string xml)
             : base(config, xml)

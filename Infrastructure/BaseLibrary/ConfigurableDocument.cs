@@ -8,7 +8,7 @@
     /// <summary>
     /// Base object for all other xml-document-processing objects.
     /// </summary>
-    public abstract class Base : TaxPubDocument, IBase
+    public class ConfigurableDocument : TaxPubDocument, IBase
     {
         /// <summary>
         /// Config object to be used as configuration settings provider.
@@ -16,20 +16,20 @@
         private Config config;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Base"/> class with null Config and an XmlDocument with xml content.
+        /// Initializes a new instance of the <see cref="ConfigurableDocument"/> class with null Config and an XmlDocument with xml content.
         /// </summary>
         /// <param name="xml">XML content of the XmlDocument.</param>
-        public Base(string xml)
+        public ConfigurableDocument(string xml)
             : this(null, xml)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Base"/> class with given Config and XmlDocument content.
+        /// Initializes a new instance of the <see cref="ConfigurableDocument"/> class with given Config and XmlDocument content.
         /// </summary>
         /// <param name="config">Config object to be used as configuration settings provider.</param>
         /// <param name="xml">XML content of the XmlDocument.</param>
-        public Base(Config config, string xml)
+        public ConfigurableDocument(Config config, string xml)
             : base(xml)
         {
             this.Config = config;

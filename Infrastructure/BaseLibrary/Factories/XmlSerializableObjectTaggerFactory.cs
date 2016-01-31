@@ -7,7 +7,7 @@
 
     using ProcessingTools.Contracts;
 
-    public abstract class XmlSerializableObjectTaggerFactory<T> : Base, ITagger
+    public abstract class XmlSerializableObjectTaggerFactory<T> : ConfigurableDocument, ITagger
     {
         private XmlDocument bufferXml;
         private XmlSerializer serializer;

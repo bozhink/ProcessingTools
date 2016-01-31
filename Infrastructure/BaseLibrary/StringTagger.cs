@@ -6,7 +6,7 @@
 
     using ProcessingTools.Contracts;
 
-    public class StringTagger : Base, ITagger
+    public class StringTagger : ConfigurableDocument, ITagger
     {
         private string contentNodesXPathTemplate;
         private XmlNamespaceManager namespaceManager;

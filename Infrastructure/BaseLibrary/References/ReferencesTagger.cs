@@ -10,7 +10,7 @@
     using Extensions;
     using ProcessingTools.Contracts;
 
-    public class ReferencesTagger : Base, ITagger
+    public class ReferencesTagger : ConfigurableDocument, ITagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 

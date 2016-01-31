@@ -10,7 +10,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class LowerTaxaParser : Base, IParser
+    public class LowerTaxaParser : ConfigurableDocument, IParser
     {
         private ILogger logger;
 

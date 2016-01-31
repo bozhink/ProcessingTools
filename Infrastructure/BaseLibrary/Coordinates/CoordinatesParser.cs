@@ -11,7 +11,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
 
-    public class CoordinatesParser : Base, IParser
+    public class CoordinatesParser : ConfigurableDocument, IParser
     {
         private ILogger logger;
 

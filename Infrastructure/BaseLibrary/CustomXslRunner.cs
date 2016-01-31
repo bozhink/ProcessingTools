@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class CustomXslRunner : Base, IProcessor
+    public class CustomXslRunner : ConfigurableDocument, IProcessor
     {
         private XslCompiledTransform xslTransform;
 

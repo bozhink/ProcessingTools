@@ -4,7 +4,7 @@
 
     using ProcessingTools.Configurator;
 
-    public class QuentinFlora : Base
+    public class QuentinFlora : ConfigurableDocument
     {
         public QuentinFlora(Config config, string xml)
             : base(config, xml)

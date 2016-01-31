@@ -11,7 +11,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class MediaTypesResolver : Base, IParser
+    public class MediaTypesResolver : ConfigurableDocument, IParser
     {
         private const string DefaultMimeType = "application";
         private const string DefaultMimeSubtype = "octet-stream";

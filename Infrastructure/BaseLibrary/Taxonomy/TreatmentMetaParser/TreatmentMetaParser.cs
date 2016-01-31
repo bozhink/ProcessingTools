@@ -11,7 +11,7 @@
     using Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
 
-    public class TreatmentMetaParser : Base, IParser
+    public class TreatmentMetaParser : ConfigurableDocument, IParser
     {
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

@@ -95,7 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
     <Compile Include="Abbreviations\AbbreviationsTagger.cs" />
-    <Compile Include="Base.cs" />
+    <Compile Include="ConfigurableDocument.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Coordinates\CoordinatesTagger.cs" />

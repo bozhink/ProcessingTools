@@ -11,7 +11,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class HigherTaxaParserWithDataService<T> : Base, IParser
+    public class HigherTaxaParserWithDataService<T> : ConfigurableDocument, IParser
         where T : ITaxonRank
     {
         private ILogger logger;

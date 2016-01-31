@@ -11,7 +11,7 @@
     using Configurator;
     using ProcessingTools.Contracts;
 
-    public class TaxonomicNamesValidator : Base, IValidator
+    public class TaxonomicNamesValidator : ConfigurableDocument, IValidator
     {
         private ILogger logger;
 
