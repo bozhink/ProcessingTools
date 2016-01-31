@@ -1,16 +1,12 @@
 ﻿namespace ProcessingTools.BaseLibrary.Contracts
 {
     using System.Xml;
-    using Configurator;
 
-    public interface IBase
+    using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
+
+    public interface IBase : IDocument
     {
-        string Xml { get; set; }
-
-        XmlDocument XmlDocument { get; }
-
         Config Config { get; }
-
-        XmlNamespaceManager NamespaceManager { get; }
     }
 }
