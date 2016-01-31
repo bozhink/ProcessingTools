@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Habitus)";
 
         public string InternalReferenceType => "habitus";
+
+        public string ResultantReferenceType => "fig";
     }
 }

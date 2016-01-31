@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Suppl(?:\.\s*|\s+)materials?|Supplementary\s+materials?)";
 
         public string InternalReferenceType => "supplementary-material";
+
+        public string ResultantReferenceType => "supplementary-material";
     }
 }

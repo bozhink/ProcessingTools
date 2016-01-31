@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Plates?)";
 
         public string InternalReferenceType => "plate";
+
+        public string ResultantReferenceType => "fig";
     }
 }

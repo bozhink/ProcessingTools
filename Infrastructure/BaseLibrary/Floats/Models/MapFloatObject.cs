@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Maps?)";
 
         public string InternalReferenceType => "map";
+
+        public string ResultantReferenceType => "fig";
     }
 }

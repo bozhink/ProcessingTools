@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Box|Boxes)";
 
         public string InternalReferenceType => "boxed-text";
+
+        public string ResultantReferenceType => "boxed-text";
     }
 }

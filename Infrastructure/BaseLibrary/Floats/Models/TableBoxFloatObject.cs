@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Box|Boxes)";
 
         public string InternalReferenceType => "table";
+
+        public string ResultantReferenceType => "table";
     }
 }

@@ -16,5 +16,7 @@
         public string MatchCitationPattern => @"(?:Fig\.|Figs|Figures?)";
 
         public string InternalReferenceType => "fig";
+
+        public string ResultantReferenceType => "fig";
     }
 }
