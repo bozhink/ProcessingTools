@@ -15,6 +15,6 @@
 
         public string MatchCitationPattern => @"(?:Tab\.|Tabs|Tables?)";
 
-        public string RefType => "table";
+        public string InternalReferenceType => "table";
     }
 }

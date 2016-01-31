@@ -399,10 +399,10 @@
 
             if (numberOfFloatsOfType > 0)
             {
-                this.TagFloatsOfType(floatObject.RefType, floatObject.MatchCitationPattern);
+                this.TagFloatsOfType(floatObject.InternalReferenceType, floatObject.MatchCitationPattern);
                 this.FormatXref();
-                this.ProcessFloatsRid(numberOfFloatsOfType, floatObject.RefType);
-                this.FormatXrefGroup(floatObject.RefType);
+                this.ProcessFloatsRid(numberOfFloatsOfType, floatObject.InternalReferenceType);
+                this.FormatXrefGroup(floatObject.InternalReferenceType);
             }
         }
 
@@ -410,10 +410,10 @@
         /// Find and put in xref citations of a floating object of given type.
         /// </summary>
         /// <param name="refType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
-        /// <param name="labelPattern">Regex pattern to find citations of floating objects of the given type.</param>
-        private void TagFloatsOfType(string refType, string labelPattern)
+        /// <param name="matchCitationPattern">Regex pattern to find citations of floating objects of the given type.</param>
+        private void TagFloatsOfType(string refType, string matchCitationPattern)
         {
-            string pattern = this.FloatsFirstOccurencePattern(labelPattern);
+            string pattern = this.FloatsFirstOccurencePattern(matchCitationPattern);
             string replace = this.FloatsFirstOccurenceReplace(refType);
 
             string xml = this.Xml;

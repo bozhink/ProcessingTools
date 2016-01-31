@@ -8,7 +8,7 @@
 
         string MatchCitationPattern { get; }
 
-        string RefType { get; }
+        string InternalReferenceType { get; }
 
         string FloatObjectXPath { get; }
     }

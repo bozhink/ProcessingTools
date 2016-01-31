@@ -15,6 +15,6 @@
 
         public string MatchCitationPattern => @"(?:Maps?)";
 
-        public string RefType => "map";
+        public string InternalReferenceType => "map";
     }
 }
