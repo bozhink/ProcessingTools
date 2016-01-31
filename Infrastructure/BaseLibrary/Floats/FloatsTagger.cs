@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -23,6 +24,8 @@
         private readonly Regex selectDash = new Regex("[–—−-]");
         private readonly Regex selectNaNChar = new Regex(@"\D");
 
+        private ConcurrentDictionary<Type, IFloatObject> floatObjects;
+
         private Hashtable floatIdByLabel = null;
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
@@ -34,6 +37,8 @@
         {
             this.logger = logger;
             this.InitFloats();
+
+            this.floatObjects = new ConcurrentDictionary<Type, IFloatObject>();
         }
 
         public Task Tag()
@@ -54,7 +59,9 @@
 
                 foreach (var floatObjectType in floatOfjectTypes)
                 {
-                    this.TagFloatObjects(Activator.CreateInstance(floatObjectType) as IFloatObject);
+                    var floatObject = this.floatObjects.GetOrAdd(floatObjectType, t => Activator.CreateInstance(t) as IFloatObject);
+
+                    this.TagFloatObjects(floatObject);
                 }
 
                 this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|graphic|plate|habitus)\"", " ref-type=\"fig\"");
@@ -225,11 +232,11 @@
             string labelText = string.Empty;
             if (node["label"] != null)
             {
-                labelText = node["label"].InnerXml;
+                labelText = node["label"].InnerText;
             }
             else if (node["title"] != null)
             {
-                labelText = node["title"].InnerXml;
+                labelText = node["title"].InnerText;
             }
 
             return labelText;
@@ -239,10 +246,9 @@
         /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
         /// This method generates the "dictionary" to correctly post-process xref/@rid references.
         /// </summary>
-        /// <param name="floatReferenceType">"Physical" type of the floating object: &lt;fig /&gt;, &lt;table-wrap /&gt;, &lt;boxed-text /&gt;, etc.</param>
-        /// <param name="floatTypeNameInLabel">"Logical" type of the floating object: This string is supposed to be contained in the &lt;label /&gt; of the object.</param>
-        /// <returns>Number of floating objects of type refType with label containing "floatType"</returns>
-        private int GetFloatsOfType(FloatsReferenceType floatReferenceType, string floatTypeNameInLabel)
+        /// <param name="floatObject">IFloatObject model to provide information for the floating object.</param>
+        /// <returns>Number of floating objects of type refType with label containing "floatType".</returns>
+        private int GetFloatsOfType(IFloatObject floatObject)
         {
             this.floatIdByLabel = new Hashtable();
             this.floatLabelById = new Hashtable();
@@ -250,18 +256,17 @@
             int numberOfFloatsOfType = 0;
             try
             {
-                string xpath = this.GetFloatsXPath(floatReferenceType, floatTypeNameInLabel);
-                XmlNodeList floatsOfTypeNodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
-                foreach (XmlNode floatOfTypeNode in floatsOfTypeNodeList)
+                XmlNodeList floatsNodeList = this.XmlDocument.SelectNodes(floatObject.FloatObjectXPath, this.NamespaceManager);
+                foreach (XmlNode floatNode in floatsNodeList)
                 {
-                    string id = this.GetFloatId(floatReferenceType, floatOfTypeNode);
-                    string labelText = this.GetFloatLabelText(floatOfTypeNode);
+                    string id = this.GetFloatId(floatObject.FloatReferenceType, floatNode);
+                    string labelText = this.GetFloatLabelText(floatNode);
 
                     this.UpdateFloatLabelByIdList(id, labelText);
                     this.UpdateFloatIdByLabelList(id, labelText);
                 }
 
-                numberOfFloatsOfType = floatsOfTypeNodeList.Count;
+                numberOfFloatsOfType = floatsNodeList.Count;
             }
             catch (Exception e)
             {
@@ -271,38 +276,9 @@
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
             this.floatIdByLabelValues = this.floatIdByLabel.Values;
 
-            this.PrintFloatsDistributionById(floatReferenceType);
+            this.PrintFloatsDistributionById(floatObject.FloatReferenceType);
 
             return numberOfFloatsOfType;
-        }
-
-        private string GetFloatsXPath(FloatsReferenceType floatReferenceType, string floatTypeNameInLabel)
-        {
-            string xpath = string.Empty;
-            switch (floatReferenceType)
-            {
-                case FloatsReferenceType.Figure:
-                    xpath = $"//fig[contains(string(label),'{floatTypeNameInLabel}')]";
-                    break;
-
-                case FloatsReferenceType.Table:
-                    xpath = $"//table-wrap[contains(string(label),'{floatTypeNameInLabel}')]";
-                    break;
-
-                case FloatsReferenceType.Textbox:
-                    xpath = $"//box[contains(string(title),'{floatTypeNameInLabel}')]|//boxed-text[contains(string(label),'{floatTypeNameInLabel}')]";
-                    break;
-
-                case FloatsReferenceType.SupplementaryMaterial:
-                    xpath = $"//supplementary-material[contains(string(label),'{floatTypeNameInLabel}')]";
-                    break;
-
-                default:
-                    xpath = string.Empty;
-                    break;
-            }
-
-            return xpath;
         }
 
         private void InitFloats()
@@ -419,7 +395,7 @@
         private void TagFloatObjects(IFloatObject floatObject)
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloatsOfType(floatObject.FloatReferenceType, floatObject.FloatTypeNameInLabel);
+            int numberOfFloatsOfType = this.GetFloatsOfType(floatObject);
 
             if (numberOfFloatsOfType > 0)
             {
