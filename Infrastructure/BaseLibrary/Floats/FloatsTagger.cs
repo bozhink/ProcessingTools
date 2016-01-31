@@ -57,6 +57,7 @@
                     .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
                     .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName));
 
+                // Tag citations in text.
                 foreach (var floatObjectType in floatOfjectTypes)
                 {
                     var floatObject = this.floatObjects.GetOrAdd(floatObjectType, t => Activator.CreateInstance(t) as IFloatObject);
@@ -64,7 +65,22 @@
                     this.TagFloatObjects(floatObject);
                 }
 
-                this.Xml = Regex.Replace(this.Xml, "\\s+ref-type=\"(map|graphic|plate|habitus)\"", " ref-type=\"fig\"");
+                // Set correct values of xref/@ref-type.
+                foreach (var floatObject in this.floatObjects.Values)
+                {
+                    if (floatObject.InternalReferenceType != floatObject.ResultantReferenceType)
+                    {
+                        string xpath = $"//xref[@ref-type='{floatObject.InternalReferenceType}']";
+
+                        this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                            .Cast<XmlNode>()
+                            .AsParallel()
+                            .ForAll(xref =>
+                            {
+                                xref.Attributes["ref-type"].InnerText = floatObject.ResultantReferenceType;
+                            });
+                    }
+                }
             });
         }
 
