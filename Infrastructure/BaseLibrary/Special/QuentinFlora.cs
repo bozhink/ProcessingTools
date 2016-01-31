@@ -2,12 +2,12 @@
 {
     using System.Text.RegularExpressions;
 
-    using Contracts;
+    using ProcessingTools.Configurator;
 
     public class QuentinFlora : Base
     {
-        public QuentinFlora(IBase baseObject)
-            : base(baseObject)
+        public QuentinFlora(Config config, string xml)
+            : base(config, xml)
         {
         }
 

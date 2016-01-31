@@ -5,18 +5,12 @@
     using System.Xml;
 
     using Configurator;
-    using Contracts;
     using Extensions;
 
     public class Flora : Base
     {
         public Flora(Config config, string xml)
             : base(config, xml)
-        {
-        }
-
-        public Flora(IBase baseObject)
-            : base(baseObject)
         {
         }
 

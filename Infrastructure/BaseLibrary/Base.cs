@@ -64,18 +64,6 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Base"/> class copying content from the baseObject.
-        /// </summary>
-        /// <param name="baseObject">IBase object to provide content and settings for this new instance.</param>
-        public Base(IBase baseObject)
-        {
-            this.Initialize();
-            this.Config = baseObject.Config;
-            this.XmlDocument.LoadXml(baseObject.XmlDocument.OuterXml);
-            this.NeedsUpdate = true;
-        }
-
-        /// <summary>
         /// Gets or sets the XML content of the XmlDocument.
         /// </summary>
         /// <value>String with valid XML content.</value>

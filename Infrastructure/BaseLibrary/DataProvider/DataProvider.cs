@@ -5,10 +5,10 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using Configurator;
     using Contracts;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     public class DataProvider : Base, IDataProvider
     {
@@ -16,12 +16,6 @@
 
         public DataProvider(Config config, string xml, ILogger logger)
             : base(config, xml)
-        {
-            this.logger = logger;
-        }
-
-        public DataProvider(IBase baseObject, ILogger logger)
-            : base(baseObject)
         {
             this.logger = logger;
         }

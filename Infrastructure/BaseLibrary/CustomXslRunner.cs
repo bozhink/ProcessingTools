@@ -4,9 +4,8 @@
     using System.Threading.Tasks;
     using System.Xml.Xsl;
 
-    using Contracts;
-    using Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     public class CustomXslRunner : Base, IProcessor
     {
@@ -14,13 +13,6 @@
 
         public CustomXslRunner(string xslPath, string xml)
             : base(xml)
-        {
-            this.xslTransform = new XslCompiledTransform();
-            this.XslPath = xslPath;
-        }
-
-        public CustomXslRunner(string xslPath, IBase baseObject)
-            : base(baseObject)
         {
             this.xslTransform = new XslCompiledTransform();
             this.XslPath = xslPath;

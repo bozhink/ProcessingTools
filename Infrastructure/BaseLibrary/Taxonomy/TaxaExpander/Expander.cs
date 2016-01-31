@@ -4,8 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using Configurator;
-    using Contracts;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     public class Expander : Base
@@ -20,12 +19,6 @@
 
         public Expander(Config config, string xml, ILogger logger)
             : base(config, xml)
-        {
-            this.logger = logger;
-        }
-
-        public Expander(IBase baseObject, ILogger logger)
-            : base(baseObject)
         {
             this.logger = logger;
         }
