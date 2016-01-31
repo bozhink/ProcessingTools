@@ -79,7 +79,15 @@
     <Compile Include="Floats\Contracts\IFloatObject.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
     <Compile Include="Floats\Models\FigureFloatObject.cs" />
+    <Compile Include="Floats\Models\GraphicFloatObject.cs" />
+    <Compile Include="Floats\Models\HabitusFloatObject.cs" />
+    <Compile Include="Floats\Models\MapFloatObject.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
+    <Compile Include="Floats\Models\PlateFloatObject.cs" />
+    <Compile Include="Floats\Models\SupplementaryMaterialFloatObject.cs" />
+    <Compile Include="Floats\Models\TableBoxFloatObject.cs" />
+    <Compile Include="Floats\Models\TableFloatObject.cs" />
+    <Compile Include="Floats\Models\TextBoxFloatObject.cs" />
     <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />

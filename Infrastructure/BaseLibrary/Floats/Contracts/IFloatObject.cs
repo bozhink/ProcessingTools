@@ -6,7 +6,7 @@
 
         string FloatTypeNameInLabel { get; }
 
-        string LabelPattern { get; }
+        string MatchCitationPattern { get; }
 
         string RefType { get; }
 

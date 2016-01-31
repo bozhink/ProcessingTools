@@ -3,18 +3,18 @@
     using Contracts;
 
     /// <summary>
-    /// Figure.
+    /// Habitus.
     /// </summary>
-    public class FigureFloatObject : IFloatObject
+    public class HabitusFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $"//fig[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Figure;
 
-        public string FloatTypeNameInLabel => "Figure";
+        public string FloatTypeNameInLabel => "Habitus";
 
-        public string MatchCitationPattern => @"(?:Fig\.|Figs|Figures?)";
+        public string MatchCitationPattern => @"(?:Habitus)";
 
-        public string RefType => "fig";
+        public string RefType => "habitus";
     }
 }
