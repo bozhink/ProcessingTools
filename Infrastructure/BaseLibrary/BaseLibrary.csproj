@@ -127,7 +127,6 @@
     <Compile Include="Taxonomy\Species\Species.cs" />
     <Compile Include="Taxonomy\TaxaParser\LowerTaxaParser.cs" />
     <Compile Include="Taxonomy\TaxaTagger\TaxaTagger.cs" />
-    <Compile Include="Taxonomy\Taxonomy.cs" />
     <Compile Include="Test\Test.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />

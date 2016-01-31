@@ -30,10 +30,30 @@
             this.logger = logger;
         }
 
+        public static void PrintMethodMessage(string name, ILogger logger)
+        {
+            logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
+        }
+
+        public static void PrintNextShortened(Species sp, ILogger logger)
+        {
+            logger?.Log("\nNext shortened taxon:\t{0}", sp.SpeciesNameAsString);
+        }
+
+        public static void PrintSubstitutionMessage(Species original, Species substitution, ILogger logger)
+        {
+            logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.SpeciesNameAsString, substitution.SpeciesNameAsString);
+        }
+
+        public static void PrintSubstitutionMessageFail(Species original, Species substitution, ILogger logger)
+        {
+            logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.SpeciesNameAsString, substitution.SpeciesNameAsString);
+        }
+
         public void StableExpand()
         {
             // In this method it is supposed that the subspecies name is not shortened
-            Taxonomy.PrintMethodMessage("StableExpand", this.logger);
+            Expander.PrintMethodMessage("StableExpand", this.logger);
 
             IEnumerable<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
             IEnumerable<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
@@ -52,7 +72,7 @@
                 string replace = text;
 
                 Species sp = new Species(shortTaxon);
-                Taxonomy.PrintNextShortened(sp, this.logger);
+                Expander.PrintNextShortened(sp, this.logger);
 
                 foreach (Species sp1 in speciesList)
                 {
@@ -69,13 +89,13 @@
                             {
                                 if (string.Compare(sp1.SubgenusName, string.Empty) == 0)
                                 {
-                                    Taxonomy.PrintSubstitutionMessage(sp, sp1, this.logger);
+                                    Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
                                     replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
                                     replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
                                 }
                                 else
                                 {
-                                    Taxonomy.PrintSubstitutionMessageFail(sp, sp1, this.logger);
+                                    Expander.PrintSubstitutionMessageFail(sp, sp1, this.logger);
                                 }
                             }
                         }
@@ -83,7 +103,7 @@
                         {
                             if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                             {
-                                Taxonomy.PrintSubstitutionMessage(sp, sp1, this.logger);
+                                Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
                                 replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
                                 replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName);
                                 replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
@@ -100,7 +120,7 @@
 
         public void UnstableExpand3()
         {
-            Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs", this.logger);
+            Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs", this.logger);
 
             // Loop over paragraphs containong shortened taxa
             foreach (XmlNode p in this.XmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
@@ -135,7 +155,7 @@
         // TODO
         public void UnstableExpand8()
         {
-            Taxonomy.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article", this.logger);
+            Expander.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article", this.logger);
 
             IEnumerable<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
             IEnumerable<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
@@ -152,7 +172,7 @@
                 string replace = text;
 
                 Species sp = new Species(shortTaxon);
-                Taxonomy.PrintNextShortened(sp, this.logger);
+                Expander.PrintNextShortened(sp, this.logger);
 
                 foreach (Species sp1 in speciesList)
                 {
@@ -162,7 +182,7 @@
 
                     if (matchGenus.Success || matchSubgenus.Success || matchSpecies.Success)
                     {
-                        Taxonomy.PrintSubstitutionMessage(sp, sp1, this.logger);
+                        Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
                         replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
                         replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName);
                         replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
