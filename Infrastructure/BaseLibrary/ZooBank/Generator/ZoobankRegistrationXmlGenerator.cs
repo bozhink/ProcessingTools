@@ -2,10 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using Configurator;
-    using Contracts;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class ZoobankRegistrationXmlGenerator : ConfigurableDocument, IGenerator
     {

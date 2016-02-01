@@ -2,7 +2,8 @@
 {
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Extensions;
+
+    using ProcessingTools.Infrastructure.Extensions;
 
     internal class Abbreviation
     {

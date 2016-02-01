@@ -11,7 +11,6 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Extensions;
 

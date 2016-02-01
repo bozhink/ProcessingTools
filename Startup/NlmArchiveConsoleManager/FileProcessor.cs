@@ -11,9 +11,9 @@
 
     using Contracts;
     using DocumentProvider;
-    using Extensions;
     using Models;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class FileProcessor : IProcessor
     {

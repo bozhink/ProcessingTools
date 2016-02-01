@@ -9,14 +9,13 @@ namespace ProcessingTools.BaseLibrary
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.Xml;
 
-    using Configurator;
     using Contracts;
-    using Extensions;
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class Codes : ConfigurableDocument
     {

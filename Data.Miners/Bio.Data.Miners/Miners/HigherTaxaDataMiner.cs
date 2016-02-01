@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {

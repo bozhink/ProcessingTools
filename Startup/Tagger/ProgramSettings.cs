@@ -4,7 +4,7 @@
 
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Services.Data.Contracts;
-    using Configurator;
+    using ProcessingTools.Configurator;
 
     public class ProgramSettings
     {

@@ -13,7 +13,7 @@
 
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class FloatsTagger : ConfigurableDocument, ITagger
     {

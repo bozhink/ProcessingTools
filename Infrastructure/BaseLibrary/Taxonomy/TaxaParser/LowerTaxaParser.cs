@@ -7,7 +7,7 @@
 
     using Bio.Taxonomy;
     using Bio.Taxonomy.Types;
-    using Configurator;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     public class LowerTaxaParser : ConfigurableDocument, IParser

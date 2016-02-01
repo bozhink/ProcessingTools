@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions
+﻿namespace ProcessingTools.Infrastructure.Extensions
 {
     using System;
     using System.IO;

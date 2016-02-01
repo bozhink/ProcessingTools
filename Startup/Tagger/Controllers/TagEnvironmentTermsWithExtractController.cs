@@ -11,8 +11,8 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Infrastructure.Extensions;
 
     [Description("Tag envo terms using EXTRACT.")]
     public class TagEnvironmentTermsWithExtractController : TaggerControllerFactory, ITagEnvironmentTermsWithExtractController

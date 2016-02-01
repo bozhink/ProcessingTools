@@ -7,8 +7,8 @@
     using Factories;
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Infrastructure.Extensions;
 
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController

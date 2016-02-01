@@ -4,9 +4,9 @@
     using System.Xml;
 
     using Contracts;
-    using Extensions;
-    using Infrastructure.Net;
     using Models;
+    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Infrastructure.Net;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.

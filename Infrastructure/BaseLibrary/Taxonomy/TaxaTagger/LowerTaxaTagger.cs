@@ -8,10 +8,9 @@
     using System.Xml;
 
     using Bio.Taxonomy.Services.Data.Contracts;
-    using Configurator;
-    using Contracts;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger
     {

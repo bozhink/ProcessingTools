@@ -7,9 +7,9 @@
     using System.Xml;
 
     using Bio.Taxonomy.Services.Data.Contracts;
-    using Configurator;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public abstract class TaxaTagger : ConfigurableDocument, ITagger
     {

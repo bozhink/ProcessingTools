@@ -2,8 +2,8 @@
 {
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Configurator;
-    using DocumentProvider;
+    using ProcessingTools.Configurator;
+    using ProcessingTools.DocumentProvider;
 
     public static class QueryReplace
     {

@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary.Tests
 {
-    using Configurator;
     using Loggers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     [TestClass]

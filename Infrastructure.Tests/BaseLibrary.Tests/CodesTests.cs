@@ -2,8 +2,8 @@
 {
     using System;
     using System.Xml;
-    using Configurator;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Configurator;
 
     [TestClass]
     public class CodesTests

@@ -20,8 +20,8 @@ namespace ProcessingTools.Data.Miners
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using Extensions;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class DatesDataMiner : IDatesDataMiner
     {

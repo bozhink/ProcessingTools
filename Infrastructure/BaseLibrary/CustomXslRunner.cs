@@ -5,7 +5,7 @@
     using System.Xml.Xsl;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class CustomXslRunner : ConfigurableDocument, IProcessor
     {

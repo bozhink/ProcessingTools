@@ -7,10 +7,10 @@
     using System.Xml;
 
     using Bio.Taxonomy.Types;
-    using Configurator;
     using DocumentProvider;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public static class TaxonomyExtensions
     {

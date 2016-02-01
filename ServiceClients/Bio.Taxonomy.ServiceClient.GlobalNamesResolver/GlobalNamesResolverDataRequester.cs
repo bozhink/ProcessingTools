@@ -8,8 +8,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Extensions;
-    using Infrastructure.Net;
+    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Infrastructure.Net;
 
     public class GlobalNamesResolverDataRequester
     {

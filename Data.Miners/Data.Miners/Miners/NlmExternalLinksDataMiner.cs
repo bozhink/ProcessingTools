@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Extensions;
     using Models;
     using Models.Contracts;
     using Nlm.Publishing.Types;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner
     {

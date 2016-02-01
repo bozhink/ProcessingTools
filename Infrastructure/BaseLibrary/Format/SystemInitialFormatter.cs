@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using Configurator;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     public class SystemInitialFormatter : ConfigurableDocument, IFormatter

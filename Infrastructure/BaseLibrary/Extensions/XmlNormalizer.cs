@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System.Xml;
-    using Configurator;
-    using Extensions;
+    using ProcessingTools.Configurator;
+    using ProcessingTools.Infrastructure.Extensions;
 
     /// <summary>
     /// This class provides extension methods for transformation of Taxpub NLM to system XML schemas.

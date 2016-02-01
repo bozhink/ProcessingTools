@@ -8,7 +8,7 @@
     using Contracts;
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class DataProvider : ConfigurableDocument, IDataProvider
     {

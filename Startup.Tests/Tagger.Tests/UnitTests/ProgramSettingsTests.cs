@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram.Tests.UnitTests
 {
-    using Configurator;
     using NUnit.Framework;
+    using ProcessingTools.Configurator;
 
     [TestFixture]
     public class ProgramSettingsTests

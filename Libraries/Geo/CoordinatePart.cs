@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
     using Types;
 
     public class CoordinatePart

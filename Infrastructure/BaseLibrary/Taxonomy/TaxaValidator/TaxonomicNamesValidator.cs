@@ -8,7 +8,7 @@
     using System.Xml;
 
     using Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
-    using Configurator;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     public class TaxonomicNamesValidator : ConfigurableDocument, IValidator

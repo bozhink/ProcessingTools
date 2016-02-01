@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Configurator;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     public class TableFootNotesTagger : ConfigurableDocument, ITagger

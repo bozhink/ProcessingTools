@@ -4,9 +4,9 @@
 
     using Bio.Taxonomy.ServiceClient.Aphia;
 
-    using Configurator;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
     [TestClass]

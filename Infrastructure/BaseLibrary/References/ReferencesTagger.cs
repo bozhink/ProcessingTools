@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
-    using Configurator;
-    using Extensions;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class ReferencesTagger : ConfigurableDocument, ITagger
     {

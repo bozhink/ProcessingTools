@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Configurator;
-    using Extensions;
+    using ProcessingTools.Configurator;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class Flora : ConfigurableDocument
     {

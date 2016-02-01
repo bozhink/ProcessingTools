@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Reflection;
 
-    using Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
 
     /// <summary>
     /// Mappings of CSV to object.

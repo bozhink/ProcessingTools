@@ -8,8 +8,8 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class CoordinatesParser : ConfigurableDocument, IParser
     {
