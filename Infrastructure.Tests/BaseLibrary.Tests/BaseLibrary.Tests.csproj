@@ -86,10 +86,6 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>

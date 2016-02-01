@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

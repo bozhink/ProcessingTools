@@ -77,9 +77,9 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>

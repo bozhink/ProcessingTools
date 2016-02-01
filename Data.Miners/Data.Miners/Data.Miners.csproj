@@ -53,9 +53,9 @@
     <Compile Include="Miners\QuantitiesDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{59274696-0bc4-4ade-86de-7982fed75bbe}</Project>
-      <Name>Extensions</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
