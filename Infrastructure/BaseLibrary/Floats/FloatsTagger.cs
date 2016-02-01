@@ -65,6 +65,8 @@
                     this.TagFloatObjects(floatObject);
                 }
 
+                this.RemoveXrefInTitles();
+
                 // Set correct values of xref/@ref-type.
                 foreach (var floatObject in this.floatObjects.Values)
                 {
@@ -397,10 +399,13 @@
             string xpath = "//fig//label[xref]|//fig//title[xref]|//table-wrap//label[xref]|//table-wrap//title[xref]";
             try
             {
-                foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+                this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(t =>
                 {
-                    node.InnerXml = Regex.Replace(node.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
-                }
+                    t.InnerXml = Regex.Replace(t.InnerXml, "<xref [^>]*>|</?xref>", string.Empty);
+                });
             }
             catch (Exception e)
             {
