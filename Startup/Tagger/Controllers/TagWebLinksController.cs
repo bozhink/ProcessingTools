@@ -8,11 +8,12 @@
     using Contracts;
     using Factories;
     using Models;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Infrastructure.Extensions;
 
     [Description("Tag web links and DOI.")]
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController

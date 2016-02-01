@@ -9,12 +9,12 @@
 
     using Contracts;
     using Ninject;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class SingleFileProcessor : FileProcessor
     {

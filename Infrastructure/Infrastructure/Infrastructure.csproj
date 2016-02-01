@@ -39,6 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Attributes\DescriptionAttribute.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
+    <Compile Include="Attributes\ValueAttribute.cs" />
     <Compile Include="Concurrency\Delayer.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Net\Url.cs" />

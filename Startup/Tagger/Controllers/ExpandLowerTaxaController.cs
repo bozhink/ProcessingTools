@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Expand lower taxa.")]
     public class ExpandLowerTaxaController : TaggerControllerFactory, IExpandLowerTaxaController

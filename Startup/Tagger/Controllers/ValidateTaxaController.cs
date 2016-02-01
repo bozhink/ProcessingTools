@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Taxa validation using Global Names Resolver.")]
     public class ValidateTaxaController : TaggerControllerFactory, IValidateTaxaController

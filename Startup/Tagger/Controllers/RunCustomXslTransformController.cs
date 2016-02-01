@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Custom XSL transform.")]
     public class RunCustomXslTransformController : TaggerControllerFactory, IRunCustomXslTransformController

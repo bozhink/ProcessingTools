@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Floats;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController

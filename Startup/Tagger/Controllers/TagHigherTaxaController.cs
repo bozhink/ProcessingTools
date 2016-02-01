@@ -5,11 +5,11 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Data.Miners;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController

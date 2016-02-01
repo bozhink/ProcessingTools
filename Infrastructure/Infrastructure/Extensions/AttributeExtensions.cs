@@ -1,7 +1,9 @@
-﻿namespace ProcessingTools.Attributes
+﻿namespace ProcessingTools.Infrastructure.Extensions
 {
     using System.Linq;
     using System.Reflection;
+
+    using Attributes;
 
     public static class Extensions
     {

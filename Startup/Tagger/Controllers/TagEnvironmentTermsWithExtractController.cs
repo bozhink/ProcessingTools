@@ -8,11 +8,11 @@
     using Contracts;
     using Factories;
     using Models;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag envo terms using EXTRACT.")]
     public class TagEnvironmentTermsWithExtractController : TaggerControllerFactory, ITagEnvironmentTermsWithExtractController

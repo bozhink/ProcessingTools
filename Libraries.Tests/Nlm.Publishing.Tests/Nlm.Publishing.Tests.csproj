@@ -55,9 +55,9 @@
     <Compile Include="RegressionTests\ExternalLinkTypeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Attributes\Attributes.csproj">
-      <Project>{cf625704-b4b0-45fd-9093-812b5d880e9c}</Project>
-      <Name>Attributes</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>

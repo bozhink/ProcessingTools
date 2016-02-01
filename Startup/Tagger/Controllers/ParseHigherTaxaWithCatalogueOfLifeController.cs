@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
     using Contracts;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Parse higher taxa using CoL.")]
     public class ParseHigherTaxaWithCatalogueOfLifeController : ParseHigherTaxaWithDataServiceGenericController<ICatalogueOfLifeTaxaClassificationDataService>, IParseHigherTaxaWithCatalogueOfLifeController

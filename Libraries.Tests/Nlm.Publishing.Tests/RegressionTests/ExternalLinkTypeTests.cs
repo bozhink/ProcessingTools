@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Tests.RegressionTests
 {
-    using Attributes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Types;
+    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Nlm.Publishing.Types;
 
     [TestClass]
     public class ExternalLinkTypeTests

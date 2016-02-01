@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag geographic deviations.")]
     public class TagGeographicDeviationsController : StringTaggerControllerFactory, ITagGeographicDeviationsController

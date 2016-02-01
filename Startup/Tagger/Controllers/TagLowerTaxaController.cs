@@ -5,10 +5,10 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag lower taxa.")]
     public class TagLowerTaxaController : TaggerControllerFactory, ITagLowerTaxaController

@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Coordinates;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag coordinates.")]
     public class TagCoordinatesController : TaggerControllerFactory, ITagCoordinatesController

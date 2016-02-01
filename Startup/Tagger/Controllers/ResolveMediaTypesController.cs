@@ -6,9 +6,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Floats;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.MediaType.Services.Data.Contracts;
 
     [Description("Resolve mediatypes.")]

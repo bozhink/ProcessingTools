@@ -5,9 +5,9 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Abbreviations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag abbreviations.")]
     public class TagAbbreviationsController : TaggerControllerFactory, ITagAbbreviationsController

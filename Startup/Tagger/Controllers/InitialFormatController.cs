@@ -5,10 +5,10 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
