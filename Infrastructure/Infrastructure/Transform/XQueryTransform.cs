@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Infrastructure.Transform
 {
+    using System;
     using System.IO;
     using System.Xml;
     using Saxon.Api;
@@ -26,6 +27,20 @@
         public Stream Evaluate(XmlNode node)
         {
             this.evaluator.ContextItem = this.documentBuilder.Build(node);
+
+            var stream = new MemoryStream();
+
+            Serializer serializer = new Serializer();
+            serializer.SetOutputStream(stream);
+
+            this.evaluator.Run(serializer);
+
+            return stream;
+        }
+
+        public Stream Evaluate(Uri uri)
+        {
+            this.evaluator.ContextItem = this.documentBuilder.Build(uri);
 
             var stream = new MemoryStream();
 
