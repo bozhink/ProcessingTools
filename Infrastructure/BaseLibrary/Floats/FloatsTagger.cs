@@ -27,9 +27,9 @@
         private ConcurrentDictionary<Type, IFloatObject> floatObjects;
 
         private Hashtable floatIdByLabel = null;
+        private Hashtable floatLabelById = null;
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
-        private Hashtable floatLabelById = null;
         private ILogger logger;
 
         public FloatsTagger(Config config, string xml, ILogger logger)

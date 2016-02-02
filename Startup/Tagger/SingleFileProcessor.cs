@@ -3,18 +3,17 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
+    using Extensions;
     using Ninject;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Extensions;
 
     public class SingleFileProcessor : FileProcessor
     {
@@ -304,7 +303,7 @@
         {
             var controller = kernel.Get<TController>();
 
-            string message = GetDescriptionMessageForController(controller);
+            string message = controller.GetDescriptionMessageForController();
 
             await this.InvokeProcessor(
                 message,
@@ -312,22 +311,6 @@
                 {
                     controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
                 });
-        }
-
-        private static string GetDescriptionMessageForController(ITaggerController controller)
-        {
-            string message = controller.GetDescription();
-
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                var type = controller.GetType();
-                var name = Regex.Replace(type.FullName, @".*?([^\.]+)\Z", "$1");
-                name = Regex.Replace(name, @"Controller\Z", string.Empty);
-
-                message = Regex.Replace(name, "(?=[A-Z])", " ").Trim();
-            }
-
-            return $"\n\t{message}\n";
         }
 
         private Task MainProcessing(XmlNode context, IKernel kernel)

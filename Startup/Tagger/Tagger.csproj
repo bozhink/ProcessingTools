@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ZooBankCloneJsonController.cs" />
     <Compile Include="Controllers\ZooBankCloneXmlController.cs" />
     <Compile Include="Controllers\ZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Factories\ParseHigherTaxaControllerFactory.cs" />
     <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />

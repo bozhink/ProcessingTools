@@ -3,6 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+
+    using Contracts;
+    using Extensions;
+
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
 
@@ -371,6 +377,31 @@
         private void PrintHelp()
         {
             this.logger?.Log(Messages.HelpMessage);
+
+            // Print controllers’ information
+            string defaultControllerInterfaceName = typeof(ITaggerController).FullName;
+            var controllerTypes = System.Reflection.Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
+                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultControllerInterfaceName));
+
+            controllerTypes.Select(t =>
+            {
+                string optionName = Regex.Match(t.FullName, @"(?<=\A.*?)([^\.]+)(?=Controller\Z)").Value;
+                return new
+                {
+                    OptionName = optionName,
+                    Description = t.GetDescriptionMessageForController()
+                };
+            })
+            ////.OrderBy(o => o.OptionName.Length)
+            ////.ThenBy(o => o.OptionName)
+            .ToList()
+            .ForEach(o =>
+            {
+                this.logger?.Log("    +{0}\t=\t{1}", o.OptionName, o.Description);
+            });
+
             Environment.Exit(1);
         }
     }
