@@ -101,6 +101,11 @@
                             this.InvokeProcessor<IParseCoordinatesController>(kernel).Wait();
                         }
 
+                        foreach (var controllerType in this.settings.CalledControllers)
+                        {
+                            this.InvokeProcessor(controllerType, kernel).Wait();
+                        }
+
                         if (this.settings.TagMorphologicalEpithets)
                         {
                             this.InvokeProcessor<ITagMorphologicalEpithetsController>(kernel).Wait();
@@ -303,6 +308,25 @@
             where TController : ITaggerController
         {
             var controller = kernel.Get<TController>();
+
+            string message = controller.GetDescriptionMessageForController();
+
+            await this.InvokeProcessor(
+                message,
+                () =>
+                {
+                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
+                });
+        }
+
+        protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
+        {
+            await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+        }
+
+        protected async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
+        {
+            var controller = kernel.Get(controllerType) as ITaggerController;
 
             string message = controller.GetDescriptionMessageForController();
 

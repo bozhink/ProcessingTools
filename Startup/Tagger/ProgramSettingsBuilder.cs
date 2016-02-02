@@ -310,7 +310,7 @@
                     .FirstOrDefault(i => i.Value.Name == controllerName)
                     .Value;
 
-                this.Settings.CalledControllers.Add(controllerInfo);
+                this.Settings.CalledControllers.Add(controllerInfo.ControllerType);
             }
         }
 
