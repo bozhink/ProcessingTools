@@ -10,10 +10,14 @@
     public class ProgramSettingsBuilder
     {
         private ILogger logger;
+        private ControllerInfoProvider controllerInfoProvider;
 
         public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
             this.logger = logger;
+
+            this.controllerInfoProvider = new ControllerInfoProvider();
+            this.controllerInfoProvider.ProcessInformation();
 
             this.Settings = new ProgramSettings
             {
@@ -23,6 +27,7 @@
             this.ParseFileNames(args);
             this.ParseSingleDashedOptions(args);
             this.ParseDoubleDashedOptions(args);
+            this.ParseDirectControllerCalls(args);
         }
 
         public ProgramSettings Settings { get; private set; }
@@ -31,7 +36,12 @@
         {
             Regex matchNonOptions = new Regex(@"\A[^/\-\+]");
 
-            var arguments = args.Where(a => matchNonOptions.IsMatch(a)).ToArray();
+            var arguments = args.Where(a => matchNonOptions.IsMatch(a));
+
+            if (arguments.Count() < 1)
+            {
+                this.PrintHelp();
+            }
 
             foreach (var argument in arguments)
             {
@@ -285,17 +295,33 @@
             }
         }
 
+        private void ParseDirectControllerCalls(string[] args)
+        {
+            Regex matchDirectControllerCall = new Regex(@"\A\+\w+");
+
+            var controllerNames = args
+                .Where(a => matchDirectControllerCall.IsMatch(a))
+                .Select(a => a.Substring(1));
+
+            foreach (var controllerName in controllerNames)
+            {
+                var controllerInfo = this.controllerInfoProvider
+                    .ControllersInformation
+                    .FirstOrDefault(i => i.Value.Name == controllerName)
+                    .Value;
+
+                this.Settings.CalledControllers.Add(controllerInfo);
+            }
+        }
+
         private void PrintHelp()
         {
             this.logger?.Log(Messages.HelpMessage);
 
             // Print controllers’ information
-            var controllerInfoProvider = new ControllerInfoProvider();
-            controllerInfoProvider.ProcessInformation();
-
-            foreach (var contollerType in controllerInfoProvider.ControllersInformation.Keys)
+            foreach (var contollerType in this.controllerInfoProvider.ControllersInformation.Keys)
             {
-                var controllerInfo = controllerInfoProvider.ControllersInformation[contollerType];
+                var controllerInfo = this.controllerInfoProvider.ControllersInformation[contollerType];
                 this.logger?.Log("    +{0}\t=\t{1}", controllerInfo.Name, controllerInfo.Description);
             }
 

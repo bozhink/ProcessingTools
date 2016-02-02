@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
 
-    using Bio.Taxonomy.Services.Data;
-    using Bio.Taxonomy.Services.Data.Contracts;
+    using Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Configurator;
 
     public class ProgramSettings
@@ -15,6 +17,7 @@
         public ProgramSettings()
         {
             this.FileNames = new List<string>();
+            this.CalledControllers = new List<IControllerInfo>();
 
             this.Config = null;
 
@@ -80,6 +83,8 @@
         public Config Config { get; set; }
 
         public ICollection<string> FileNames { get; set; }
+
+        public ICollection<IControllerInfo> CalledControllers { get; set; }
 
         public bool ExtractHigherTaxa { get; set; }
 
