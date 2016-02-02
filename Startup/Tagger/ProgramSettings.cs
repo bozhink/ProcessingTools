@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
+    using System.Collections.Generic;
 
     using Bio.Taxonomy.Services.Data;
     using Bio.Taxonomy.Services.Data.Contracts;
@@ -13,10 +14,9 @@
 
         public ProgramSettings()
         {
+            this.FileNames = new List<string>();
+
             this.Config = null;
-            this.InputFileName = null;
-            this.OutputFileName = null;
-            this.QueryFileName = null;
 
             this.HigherStructrureXpath = "//article";
 
@@ -79,6 +79,8 @@
 
         public Config Config { get; set; }
 
+        public ICollection<string> FileNames { get; set; }
+
         public bool ExtractHigherTaxa { get; set; }
 
         public bool ExtractLowerTaxa { get; set; }
@@ -93,10 +95,6 @@
 
         public string HigherStructrureXpath { get; set; }
 
-        public string InputFileName { get; set; }
-
-        public string OutputFileName { get; set; }
-
         public bool ParseBySection { get; set; }
 
         public bool ParseCoordinates { get; set; }
@@ -110,8 +108,6 @@
         public bool ParseTreatmentMetaWithGbif { get; set; }
 
         public bool QuentinSpecificActions { get; set; }
-
-        public string QueryFileName { get; set; }
 
         public bool QueryReplace { get; set; }
 

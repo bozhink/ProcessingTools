@@ -17,7 +17,7 @@
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            config = ConfigBuilder.CreateConfig(@"C:\bin\config.json");
+            config = ConfigBuilder.Create(@"C:\bin\config.json");
         }
 
         [TestMethod]

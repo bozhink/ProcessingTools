@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
-    using System.Configuration;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -15,8 +14,12 @@
         public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
             this.logger = logger;
-            this.Settings = new ProgramSettings();
-            this.ParseConfigFiles();
+
+            this.Settings = new ProgramSettings
+            {
+                Config = ConfigBuilder.Create()
+            };
+
             this.ParseFileNames(args);
             this.ParseSingleDashedOptions(args);
             this.ParseDoubleDashedOptions(args);
@@ -24,39 +27,15 @@
 
         public ProgramSettings Settings { get; private set; }
 
-        private void ParseConfigFiles()
-        {
-            string configJsonFilePath = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
-
-            this.Settings.Config = ConfigBuilder.CreateConfig(configJsonFilePath);
-        }
-
         private void ParseFileNames(string[] args)
         {
             Regex matchNonOptions = new Regex(@"\A[^/\-\+]");
 
             var arguments = args.Where(a => matchNonOptions.IsMatch(a)).ToArray();
-            int count = arguments.Length;
 
-            if (count < 1)
+            foreach (var argument in arguments)
             {
-                this.PrintHelp();
-            }
-            else if (count == 1)
-            {
-                this.Settings.InputFileName = arguments[0];
-                this.Settings.OutputFileName = null;
-            }
-            else if (count == 2)
-            {
-                this.Settings.InputFileName = arguments[0];
-                this.Settings.OutputFileName = arguments[1];
-            }
-            else
-            {
-                this.Settings.InputFileName = arguments[0];
-                this.Settings.OutputFileName = arguments[1];
-                this.Settings.QueryFileName = arguments[2];
+                this.Settings.FileNames.Add(argument);
             }
         }
 

@@ -1,27 +1,33 @@
 ﻿namespace ProcessingTools.Configurator
 {
+    using System.Configuration;
     using System.IO;
+
     using Infrastructure.Serialization.Json;
 
     public static class ConfigBuilder
     {
         /// <summary>
-        /// This method reads a config Xml file and builds a config object from it.
+        /// Reads the default config JSON file and builds a Config object from it.
         /// </summary>
-        /// <param name="configFilePath">full path of the config fule</param>
-        /// <returns>initialized config object</returns>
-        public static Config CreateConfig(string configFilePath)
+        /// <returns>Initialized Config object.</returns>
+        public static Config Create()
         {
-            try
-            {
-                string jsonText = File.ReadAllText(configFilePath);
+            string configJsonFilePath = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
 
-                return JsonSerializer.Deserialize<Config>(jsonText);
-            }
-            catch
-            {
-                throw;
-            }
+            return Create(configJsonFilePath);
+        }
+
+        /// <summary>
+        /// Reads a config JSON file and builds a Config object from it.
+        /// </summary>
+        /// <param name="configFilePath">Full path of the config file.</param>
+        /// <returns>Initialized Config object.</returns>
+        public static Config Create(string configFilePath)
+        {
+            string jsonText = File.ReadAllText(configFilePath);
+
+            return JsonSerializer.Deserialize<Config>(jsonText);
         }
     }
 }

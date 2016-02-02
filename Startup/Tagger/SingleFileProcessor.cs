@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -54,7 +55,7 @@
                     {
                         this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(kernel).Wait();
                     }
-                    else if (this.settings.QueryReplace && !string.IsNullOrWhiteSpace(this.settings.QueryFileName))
+                    else if (this.settings.QueryReplace)
                     {
                         this.InvokeProcessor<IQueryReplaceController>(kernel).Wait();
                     }
@@ -374,13 +375,19 @@
 
         private void ConfigureFileProcessor()
         {
-            this.fileProcessor = new XmlFileProcessor(this.settings.InputFileName, this.settings.OutputFileName, this.logger);
+            int numberOfFileNames = this.settings.FileNames.Count();
+
+            string inputFileName = numberOfFileNames > 0 ? this.settings.FileNames.ElementAt(0) : string.Empty;
+            string outputFileName = numberOfFileNames > 1 ? this.settings.FileNames.ElementAt(1) : string.Empty;
+            string queryFileName = numberOfFileNames > 2 ? this.settings.FileNames.ElementAt(2) : string.Empty;
+
+            this.fileProcessor = new XmlFileProcessor(inputFileName, outputFileName, this.logger);
 
             this.logger?.Log(
                 Messages.InputOutputFileNamesMessageFormat,
                 this.fileProcessor.InputFileName,
                 this.fileProcessor.OutputFileName,
-                this.settings.QueryFileName);
+                queryFileName);
         }
 
         private async Task WriteOutputFile()
