@@ -34,7 +34,7 @@
         {
             var abbrevContent = abbrev.CloneNode(true);
             abbrevContent.SelectNodes("def").RemoveXmlNodes();
-            abbrevContent.SelectNodes("i|b").ReplaceXmlNodeByItsInnerXml();
+            abbrevContent.SelectNodes("*[name()!='sup'][name()!='sub']").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
                 .RegexReplace(@"\s+", " ")
