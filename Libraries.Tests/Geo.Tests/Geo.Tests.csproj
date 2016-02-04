@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Samples\cartodb.geojson" />
     <None Include="Samples\feature-collection.json" />
     <None Include="Samples\geometry-point.json" />
   </ItemGroup>
