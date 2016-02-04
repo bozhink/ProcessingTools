@@ -36,6 +36,9 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="GlobalNamesResolverDataRequester.cs" />
+    <Compile Include="Models\Xml\Gnr.cs" />
+    <Compile Include="Models\Xml\Hash.cs" />
+    <Compile Include="Models\Xml\HashData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
