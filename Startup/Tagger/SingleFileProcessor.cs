@@ -106,31 +106,6 @@
                             this.InvokeProcessor(controllerType, kernel).Wait();
                         }
 
-                        if (this.settings.TagMorphologicalEpithets)
-                        {
-                            this.InvokeProcessor<ITagMorphologicalEpithetsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagGeoNames)
-                        {
-                            this.InvokeProcessor<ITagGeoNamesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagGeoEpithets)
-                        {
-                            this.InvokeProcessor<ITagGeoEpithetsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagInstitutions)
-                        {
-                            this.InvokeProcessor<ITagInstitutionsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagProducts)
-                        {
-                            this.InvokeProcessor<ITagProductsController>(kernel).Wait();
-                        }
-
                         if (this.settings.TagEnvironmentTermsWithExtract)
                         {
                             this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(kernel).Wait();
@@ -142,20 +117,6 @@
                             this.InvokeProcessor<ITagEnvironmentTermsController>(kernel).Wait();
                         }
 
-                        if (this.settings.TagQuantities)
-                        {
-                            this.InvokeProcessor<ITagAltitudesController>(kernel).Wait();
-
-                            this.InvokeProcessor<ITagGeographicDeviationsController>(kernel).Wait();
-
-                            this.InvokeProcessor<ITagQuantitiesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagDates)
-                        {
-                            this.InvokeProcessor<ITagDatesController>(kernel).Wait();
-                        }
-
                         if (this.settings.TagAbbreviations)
                         {
                             this.InvokeProcessor<ITagAbbreviationsController>(kernel).Wait();
@@ -165,12 +126,6 @@
                         if (this.settings.TagCodes)
                         {
                             this.InvokeProcessor<ITagCodesController>(kernel).Wait();
-                        }
-
-                        // Do something as an experimental feature
-                        if (this.settings.TestFlag)
-                        {
-                            this.InvokeProcessor<ITestController>(kernel).Wait();
                         }
 
                         if (this.settings.TagLowerTaxa)

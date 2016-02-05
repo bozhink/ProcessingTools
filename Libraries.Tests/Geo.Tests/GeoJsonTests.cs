@@ -85,7 +85,7 @@
 
             Assert.AreEqual(1121, features.Features.Count(), "Number of features should match.");
 
-            foreach(var feature in features.Features)
+            foreach (var feature in features.Features)
             {
                 Assert.AreEqual("Feature", feature.Type, "Feature type should be Feature.");
 

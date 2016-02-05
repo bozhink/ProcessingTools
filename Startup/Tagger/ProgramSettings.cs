@@ -32,7 +32,6 @@
             this.ParseTreatmentMetaWithAphia = false;
             this.ParseTreatmentMetaWithCol = false;
             this.ParseTreatmentMetaWithGbif = false;
-            this.QuentinSpecificActions = false;
             this.QueryReplace = false;
             this.ParseHigherAboveGenus = false;
             this.ParseHigherBySuffix = false;
@@ -43,17 +42,10 @@
             this.TagAbbreviations = false;
             this.TagCodes = false;
             this.TagCoordinates = false;
-            this.TagDates = false;
             this.TagDoi = false;
             this.TagEnvironmentTerms = false;
             this.TagEnvironmentTermsWithExtract = false;
             this.TagFloats = false;
-            this.TagMorphologicalEpithets = false;
-            this.TagGeoNames = false;
-            this.TagGeoEpithets = false;
-            this.TagInstitutions = false;
-            this.TagProducts = false;
-            this.TagQuantities = false;
             this.TagReferences = false;
             this.TagTableFn = false;
             this.TagWebLinks = false;
@@ -62,7 +54,6 @@
             this.ParseLowerTaxa = false;
             this.ParseHigherTaxa = false;
             this.ExpandLowerTaxa = false;
-            this.TestFlag = false;
             this.UntagSplit = false;
             this.ValidateTaxa = false;
             this.RunXslTransform = false;
@@ -90,8 +81,6 @@
 
         public bool ExtractTaxa { get; set; }
 
-        public bool Flora { get; set; }
-
         public bool InitialFormat { get; set; }
 
         public bool FormatTreat { get; set; }
@@ -109,8 +98,6 @@
         public bool ParseTreatmentMetaWithCol { get; set; }
 
         public bool ParseTreatmentMetaWithGbif { get; set; }
-
-        public bool QuentinSpecificActions { get; set; }
 
         public bool QueryReplace { get; set; }
 
@@ -132,8 +119,6 @@
 
         public bool TagCoordinates { get; set; }
 
-        public bool TagDates { get; set; }
-
         public bool TagDoi { get; set; }
 
         public bool TagEnvironmentTerms { get; set; }
@@ -141,18 +126,6 @@
         public bool TagEnvironmentTermsWithExtract { get; set; }
 
         public bool TagFloats { get; set; }
-
-        public bool TagMorphologicalEpithets { get; set; }
-
-        public bool TagGeoNames { get; set; }
-
-        public bool TagGeoEpithets { get; set; }
-
-        public bool TagInstitutions { get; set; }
-
-        public bool TagProducts { get; set; }
-
-        public bool TagQuantities { get; set; }
 
         public bool TagReferences { get; set; }
 
@@ -169,8 +142,6 @@
         public bool ParseHigherTaxa { get; set; }
 
         public bool ExpandLowerTaxa { get; set; }
-
-        public bool TestFlag { get; set; }
 
         public bool UntagSplit { get; set; }
 

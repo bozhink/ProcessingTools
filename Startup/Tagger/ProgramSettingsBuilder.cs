@@ -143,14 +143,6 @@
                             this.Settings.TagReferences = true;
                             break;
 
-                        case 'Q':
-                            this.Settings.QuentinSpecificActions = true;
-                            break;
-
-                        case 'F':
-                            this.Settings.Flora = true;
-                            break;
-
                         case 's':
                             this.Settings.ParseBySection = true;
                             break;
@@ -195,10 +187,6 @@
                 else if (item.CompareTo("--nlm") == 0)
                 {
                     this.Settings.Config.ArticleSchemaType = SchemaType.Nlm;
-                }
-                else if (item.CompareTo("--test") == 0)
-                {
-                    this.Settings.TestFlag = true;
                 }
                 else if (item.CompareTo("--extract-taxa") == 0 || item.CompareTo("--et") == 0)
                 {
@@ -248,14 +236,6 @@
                 {
                     this.Settings.TagCodes = true;
                 }
-                else if (item.CompareTo("--quantities") == 0)
-                {
-                    this.Settings.TagQuantities = true;
-                }
-                else if (item.CompareTo("--dates") == 0)
-                {
-                    this.Settings.TagDates = true;
-                }
                 else if (item.CompareTo("--abbrev") == 0)
                 {
                     this.Settings.TagAbbreviations = true;
@@ -271,26 +251,6 @@
                 else if (item.CompareTo("--xsl") == 0)
                 {
                     this.Settings.RunXslTransform = true;
-                }
-                else if (item.CompareTo("--products") == 0)
-                {
-                    this.Settings.TagProducts = true;
-                }
-                else if (item.CompareTo("--institutions") == 0)
-                {
-                    this.Settings.TagInstitutions = true;
-                }
-                else if (item.CompareTo("--morphology") == 0)
-                {
-                    this.Settings.TagMorphologicalEpithets = true;
-                }
-                else if (item.CompareTo("--geo-names") == 0)
-                {
-                    this.Settings.TagGeoNames = true;
-                }
-                else if (item.CompareTo("--geo-epithets") == 0)
-                {
-                    this.Settings.TagGeoEpithets = true;
                 }
             }
         }

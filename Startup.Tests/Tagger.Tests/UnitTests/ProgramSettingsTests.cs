@@ -119,86 +119,6 @@
         }
 
         [Test]
-        public void ProgramSettings_TagGeoNamesPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagGeoNames, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagGeoNamesProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagGeoNames = true;
-            Assert.IsTrue(this.programSettings.TagGeoNames, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagGeoNames = false;
-            Assert.IsFalse(this.programSettings.TagGeoNames, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_TagGeoEpithetsPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagGeoEpithets, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagGeoEpithetsProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagGeoEpithets = true;
-            Assert.IsTrue(this.programSettings.TagGeoEpithets, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagGeoEpithets = false;
-            Assert.IsFalse(this.programSettings.TagGeoEpithets, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_TagMorphologicalEpithetsPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagMorphologicalEpithets, "Default value should be false.");
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagMorphologicalEpithetsProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagMorphologicalEpithets = true;
-            Assert.IsTrue(this.programSettings.TagMorphologicalEpithets, "1. Value should be true.");
-
-            this.programSettings.TagMorphologicalEpithets = false;
-            Assert.IsFalse(this.programSettings.TagMorphologicalEpithets, "2. Value should be false.");
-        }
-
-        [Test]
-        public void ProgramSettings_TagProductsPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagProducts, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagProductsProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagProducts = true;
-            Assert.IsTrue(this.programSettings.TagProducts, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagProducts = false;
-            Assert.IsFalse(this.programSettings.TagProducts, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_TagInstitutionsPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagInstitutions, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagInstitutionsProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagInstitutions = true;
-            Assert.IsTrue(this.programSettings.TagInstitutions, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagInstitutions = false;
-            Assert.IsFalse(this.programSettings.TagInstitutions, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
         public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, DefaultValueShouldBeFalseMessage);
@@ -212,22 +132,6 @@
 
             this.programSettings.ResolveMediaTypes = false;
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_FloraPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.Flora, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfFloraProperty_ShouldBePersistent()
-        {
-            this.programSettings.Flora = true;
-            Assert.IsTrue(this.programSettings.Flora, ValueShouldBeTrueMessage);
-
-            this.programSettings.Flora = false;
-            Assert.IsFalse(this.programSettings.Flora, ValueShouldBeFalseMessage);
         }
 
         [Test]
@@ -356,22 +260,6 @@
 
             this.programSettings.ParseTreatmentMetaWithGbif = false;
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_QuentinSpecificActionsPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.QuentinSpecificActions, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfQuentinSpecificActionsProperty_ShouldBePersistent()
-        {
-            this.programSettings.QuentinSpecificActions = true;
-            Assert.IsTrue(this.programSettings.QuentinSpecificActions, ValueShouldBeTrueMessage);
-
-            this.programSettings.QuentinSpecificActions = false;
-            Assert.IsFalse(this.programSettings.QuentinSpecificActions, ValueShouldBeFalseMessage);
         }
 
         [Test]
@@ -519,22 +407,6 @@
         }
 
         [Test]
-        public void ProgramSettings_TagDatesPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagDates, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagDatesProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagDates = true;
-            Assert.IsTrue(this.programSettings.TagDates, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagDates = false;
-            Assert.IsFalse(this.programSettings.TagDates, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
         public void ProgramSettings_TagDoiPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagDoi, DefaultValueShouldBeFalseMessage);
@@ -596,22 +468,6 @@
 
             this.programSettings.TagFloats = false;
             Assert.IsFalse(this.programSettings.TagFloats, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_TagQuantitiesPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TagQuantities, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTagQuantitiesProperty_ShouldBePersistent()
-        {
-            this.programSettings.TagQuantities = true;
-            Assert.IsTrue(this.programSettings.TagQuantities, ValueShouldBeTrueMessage);
-
-            this.programSettings.TagQuantities = false;
-            Assert.IsFalse(this.programSettings.TagQuantities, ValueShouldBeFalseMessage);
         }
 
         [Test]
@@ -756,22 +612,6 @@
 
             this.programSettings.ExpandLowerTaxa = false;
             Assert.IsFalse(this.programSettings.ExpandLowerTaxa, ValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_TestFlagPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.TestFlag, DefaultValueShouldBeFalseMessage);
-        }
-
-        [Test]
-        public void ProgramSettings_ValidChangesOfTestFlagProperty_ShouldBePersistent()
-        {
-            this.programSettings.TestFlag = true;
-            Assert.IsTrue(this.programSettings.TestFlag, ValueShouldBeTrueMessage);
-
-            this.programSettings.TestFlag = false;
-            Assert.IsFalse(this.programSettings.TestFlag, ValueShouldBeFalseMessage);
         }
 
         [Test]
