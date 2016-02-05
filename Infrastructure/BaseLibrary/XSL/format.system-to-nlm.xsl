@@ -74,14 +74,14 @@
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="tp:nomenclature-citation[not(comment)]">
+  <!--<xsl:template match="tp:nomenclature-citation[not(comment)]">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <comment>
         <xsl:apply-templates select="node()" />
       </comment>
     </xsl:element>
-  </xsl:template>
+  </xsl:template>-->
 
   <xsl:template match="addr-line[count(node()) = count(text())]">
     <xsl:element name="{name()}">
