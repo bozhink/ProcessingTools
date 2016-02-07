@@ -34,6 +34,7 @@
 
             return this.repository.All()
                 .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
+                .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
                 .ToList()
@@ -60,6 +61,7 @@
 
             return this.repository.All()
                 .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
+                .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
                 .ToList()
