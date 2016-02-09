@@ -5,13 +5,13 @@
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ElementName = "data", Namespace = "", IsNullable = false)]
-    public class HashData
+    [XmlRoot(ElementName = "match-type", Namespace = "", IsNullable = false)]
+    public class HashDataDatumResultsResultMatchType
     {
         [XmlAttribute("type")]
         public string Type { get; set; }
 
-        [XmlElement("datum")]
-        public HashDataDatum[] Datum { get; set; }
+        [XmlText]
+        public byte Value { get; set; }
     }
 }

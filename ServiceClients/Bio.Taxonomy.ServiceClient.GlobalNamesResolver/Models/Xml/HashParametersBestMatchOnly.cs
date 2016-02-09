@@ -5,13 +5,13 @@
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ElementName = "data", Namespace = "", IsNullable = false)]
-    public class HashData
+    [XmlRoot(ElementName = "best-match-only", Namespace = "", IsNullable = false)]
+    public class HashParametersBestMatchOnly
     {
         [XmlAttribute("type")]
         public string Type { get; set; }
 
-        [XmlElement("datum")]
-        public HashDataDatum[] Datum { get; set; }
+        [XmlText]
+        public bool Value { get; set; }
     }
 }

@@ -8,25 +8,25 @@
     [XmlRoot(ElementName = "hash", Namespace = "", IsNullable = false)]
     public class Hash
     {
-        [XmlElement("data")]
-        public HashData Data { get; set; }
+        [XmlElement("id")]
+        public HashId Id { get; set; }
+
+        [XmlElement("url")]
+        public HashUrl Url { get; set; }
 
         [XmlElement("data-sources")]
         public HashDataSources DataSources { get; set; }
 
-        [XmlElement("id")]
-        public string Id { get; set; }
+        [XmlElement("data")]
+        public HashData Data { get; set; }
+
+        [XmlElement("status")]
+        public HashStatus Status { get; set; }
 
         [XmlElement("message")]
-        public string Message { get; set; }
+        public HashMessage Message { get; set; }
 
         [XmlElement("parameters")]
         public HashParameters Parameters { get; set; }
-
-        [XmlElement("status")]
-        public string Status { get; set; }
-
-        [XmlElement("url")]
-        public string Url { get; set; }
     }
 }

@@ -36,9 +36,45 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="GlobalNamesResolverDataRequester.cs" />
-    <Compile Include="Models\Xml\Gnr.cs" />
     <Compile Include="Models\Xml\Hash.cs" />
     <Compile Include="Models\Xml\HashData.cs" />
+    <Compile Include="Models\Xml\HashDataDatum.cs" />
+    <Compile Include="Models\Xml\HashDataDatumIsKnownName.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResults.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResult.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultCanonicalForm.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultClassificationPath.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultClassificationPathIds.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultClassificationPathRanks.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultCurrentNameString.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultCurrentTaxonId.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultDataSourceId.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultDataSourceTitle.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultEditDistance.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultGlobalId.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultGniUuid.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultLocalId.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultMatchType.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultNameString.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultPrescore.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultScore.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultTaxonId.cs" />
+    <Compile Include="Models\Xml\HashDataDatumResultsResultUrl.cs" />
+    <Compile Include="Models\Xml\HashDataDatumSuppliedNameString.cs" />
+    <Compile Include="Models\Xml\HashDataSources.cs" />
+    <Compile Include="Models\Xml\HashId.cs" />
+    <Compile Include="Models\Xml\HashMessage.cs" />
+    <Compile Include="Models\Xml\HashParameters.cs" />
+    <Compile Include="Models\Xml\HashParametersBestMatchOnly.cs" />
+    <Compile Include="Models\Xml\HashParametersDataSources.cs" />
+    <Compile Include="Models\Xml\HashParametersHeaderOnly.cs" />
+    <Compile Include="Models\Xml\HashParametersPreferredDataSources.cs" />
+    <Compile Include="Models\Xml\HashParametersResolveOnce.cs" />
+    <Compile Include="Models\Xml\HashParametersWithCanonicalRanks.cs" />
+    <Compile Include="Models\Xml\HashParametersWithContext.cs" />
+    <Compile Include="Models\Xml\HashParametersWithVernaculars.cs" />
+    <Compile Include="Models\Xml\HashStatus.cs" />
+    <Compile Include="Models\Xml\HashUrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

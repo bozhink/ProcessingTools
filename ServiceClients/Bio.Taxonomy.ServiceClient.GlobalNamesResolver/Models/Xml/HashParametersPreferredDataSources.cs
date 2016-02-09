@@ -3,15 +3,13 @@
     using System;
     using System.Xml.Serialization;
 
+    // TODO: <preferred-data-sources type="array" />
     [Serializable]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ElementName = "data", Namespace = "", IsNullable = false)]
-    public class HashData
+    [XmlRoot(ElementName = "preferred-data-sources", Namespace = "", IsNullable = false)]
+    public class HashParametersPreferredDataSources
     {
         [XmlAttribute("type")]
         public string Type { get; set; }
-
-        [XmlElement("datum")]
-        public HashDataDatum[] Datum { get; set; }
     }
 }

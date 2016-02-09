@@ -5,13 +5,13 @@
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ElementName = "data", Namespace = "", IsNullable = false)]
-    public class HashData
+    [XmlRoot(ElementName = "edit-distance", Namespace = "", IsNullable = false)]
+    public class HashDataDatumResultsResultEditDistance
     {
         [XmlAttribute("type")]
         public string Type { get; set; }
 
-        [XmlElement("datum")]
-        public HashDataDatum[] Datum { get; set; }
+        [XmlText]
+        public int Value { get; set; }
     }
 }
