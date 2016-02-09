@@ -2,9 +2,10 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml;
 
     public interface IHarvester<T>
     {
-        Task<IQueryable<T>> Harvest(string content);
+        Task<IQueryable<T>> Harvest(XmlNode context);
     }
 }

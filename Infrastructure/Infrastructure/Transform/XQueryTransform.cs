@@ -7,40 +7,45 @@
 
     public class XQueryTransform
     {
+        private Processor processor;
         private DocumentBuilder documentBuilder;
         private XQueryEvaluator evaluator;
 
-        public XQueryTransform(string query)
+        public XQueryTransform()
         {
-            var processor = new Processor();
-            this.documentBuilder = processor.NewDocumentBuilder();
-            this.evaluator = processor.NewXQueryCompiler().Compile(query).Load();
+            this.processor = new Processor();
+            this.documentBuilder = this.processor.NewDocumentBuilder();
+            this.evaluator = null;
         }
 
-        public XQueryTransform(Stream queryStream)
+        public void Load(string query)
         {
-            var processor = new Processor();
-            this.documentBuilder = processor.NewDocumentBuilder();
-            this.evaluator = processor.NewXQueryCompiler().Compile(queryStream).Load();
+            this.evaluator = this.processor.NewXQueryCompiler().Compile(query).Load();
+        }
+
+        public void Load(Stream queryStream)
+        {
+            this.evaluator = this.processor.NewXQueryCompiler().Compile(queryStream).Load();
         }
 
         public Stream Evaluate(XmlNode node)
         {
             this.evaluator.ContextItem = this.documentBuilder.Build(node);
-
-            var stream = new MemoryStream();
-
-            Serializer serializer = new Serializer();
-            serializer.SetOutputStream(stream);
-
-            this.evaluator.Run(serializer);
-
-            return stream;
+            return this.Evaluate();
         }
 
         public Stream Evaluate(Uri uri)
         {
             this.evaluator.ContextItem = this.documentBuilder.Build(uri);
+            return this.Evaluate();
+        }
+
+        private Stream Evaluate()
+        {
+            if (this.evaluator == null)
+            {
+                throw new NullReferenceException("Evaluator is null. Execute Load() method first.");
+            }
 
             var stream = new MemoryStream();
 
