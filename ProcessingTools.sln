@@ -242,6 +242,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSeeder", "Startup\DbSeede
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests", "ServiceClients.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests.csproj", "{4707CF90-BA41-48C1-9578-879AEE4E2F6E}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "WordNetMongoDbSeeder", "Startup\WordNetMongoDbSeeder\WordNetMongoDbSeeder.njsproj", "{AA2A2023-174F-433B-A734-48F8CFE45D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1042,6 +1044,14 @@ Global
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|x64.ActiveCfg = Release|Any CPU
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|x64.Build.0 = Release|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1144,6 +1154,7 @@ Global
 		{2511DEBD-E702-4CBB-AC09-151DCF1B4CFD} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{A2274DFB-1408-48B0-B31D-EF1FE3613CDF} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
+		{AA2A2023-174F-433B-A734-48F8CFE45D6F} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

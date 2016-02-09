@@ -1,0 +1,10 @@
+{
+  "name": "WordNetMongoDbSeeder",
+  "version": "0.0.0",
+  "description": "WordNetMongoDbSeeder",
+  "main": "app.js",
+  "author": {
+    "name": "Bozhin Karaivanov",
+    "email": ""
+  }
+}
