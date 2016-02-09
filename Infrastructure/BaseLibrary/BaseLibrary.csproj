@@ -232,8 +232,8 @@
     <None Include="Scripts\ranklist.bat" />
     <None Include="Scripts\run.bat" />
     <None Include="Scripts\whiteblacklist.bat" />
-    <None Include="XQuery\select_multi-rank-taxa.xqm" />
-    <None Include="XQuery\taxonomic_ranks.xqm" />
+    <None Include="XQuery\select_multi-rank-taxa.xq" />
+    <None Include="XQuery\taxonomic_ranks.xq" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
