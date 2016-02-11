@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters
 {
     using System;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Linq;
@@ -13,7 +14,7 @@
 
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Infrastructure.Transform;
-
+    
     // TODO
     public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
     {
@@ -26,13 +27,21 @@
 
             var result = transformer.Evaluate(document.DocumentElement);
 
+            if (result.CanSeek)
+            {
+                result.Seek(0, SeekOrigin.Begin);
+            }
+
             using (var reader = new StreamReader(result))
             {
                 Console.WriteLine(reader.ReadToEnd());
             }
 
 
-            return null;
+            return Task.Run(() =>
+            {
+                return new HashSet<IAbbreviationModel>().AsQueryable();
+            });
         }
     }
 }
