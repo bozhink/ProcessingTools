@@ -212,3 +212,24 @@ ventrolateral | epithet
 vertex
 very short macrochaeta
 whorls
+
+
+
+
+
+Appendix A: Definitions of Pollen Terms (as used in this paper)
+As a general rule Vernonieae pollen can be ‘nearly non-lophate’ to ‘sublophate’ to ‘lophate’, however, none of the grains in the Vernonieae are completely non-lophate. Grains can be with or without colpi and they can be tricolporate or triporate to pentaporate.
+Columellae: A rod-like element supporting the tectum.
+Echinolophate: Among lophate types, one variant has prominent lophae (muri) with sharply projecting spines. The lophae have supporting thickened columellae or baculae.
+Lacunae: Areas in lophate pollen surrounded by muri.
+Lophate (in the Vernonieae): Pollen having the perforated tectum non-continuous. There are varying degrees of loss of perforated tectum. Grains can have spines (various types of echinolophate) or not (psilolophate).
+Muri: partitions or walls forming a network on surface of lophate pollen (Figs. 3 A–I, 4 A–C, and 4 D–F).
+Nearly non-lophate: Arrangement of spines is somewhat uneven and the perforated tectum is continuous.
+Non-lophate (truly): Completely evenly spaced spines or columellae; the perforated tectum is continuous. [not found in Vernonieae]
+Pantoporate: Pores on pollen positioned all over the surface, not strictly equatorial. 
+Psilolophate: A variant of the lophate types where the surface of the lophae is without spines [Linzia]
+Sublophate (as used in the Vernonieae): The arrangement of the spines is somewhat to distinctly uneven, leaving incipient lacunae; the perforated tectum is always continuous in all non-colpar areas supported by massive columellae or baculae, and spines being almost always present over the baculae.
+Sub-echinolophate: There are varying forms of lophate grains that are highly perforate and spinose. 
+Tectum: The layer that forms a roof over the columellae. A perforated tectum has perforations smaller than 1μm in diameter
+Tricolporate: Grains with three colpi and a central pore in each colpus. The pore provides a germination point for the emerging pollen tube.
+Triporate: Grains without colpi and with three equatorial pores for possible germination.

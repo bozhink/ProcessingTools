@@ -78,6 +78,7 @@
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="Floats\Contracts\IFloatObject.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
+    <Compile Include="Floats\Models\AppendixFloatObject.cs" />
     <Compile Include="Floats\Models\FigureFloatObject.cs" />
     <Compile Include="Floats\Models\GraphicFloatObject.cs" />
     <Compile Include="Floats\Models\HabitusFloatObject.cs" />
