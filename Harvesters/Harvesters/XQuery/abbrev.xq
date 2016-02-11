@@ -14,7 +14,7 @@ as xs:string
   return replace($result, '^[=,;: –—−\-]+|[=,;: –—−\-]+$', '')
 };
 
-let $abbrev := for $a in //abbrev
+let $abbrev := for $a in document-node()//abbrev
   return <abbrev>
     {for $val in local:clean-conent(string($a/node()[name(.)!='def']))
       return <value>{$val}</value>}
