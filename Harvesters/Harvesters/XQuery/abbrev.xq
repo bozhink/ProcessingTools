@@ -22,5 +22,9 @@ let $abbrev := for $a in document-node()//abbrev
       return <definition>{data($def)}</definition>}
   </abbrev>
 
-for $a in $abbrev
-return $a
+<root>
+{
+    for $a in $abbrev
+    return $a
+}
+</root>
