@@ -14,17 +14,18 @@ as xs:string
   return replace($result, '^[=,;: –—−\-]+|[=,;: –—−\-]+$', '')
 };
 
-let $abbrev := for $a in document-node()//abbrev
-  return <abbrev>
-    {for $val in local:clean-conent(string($a/node()[name(.)!='def']))
-      return <value>{$val}</value>}
-    {for $def in local:clean-conent(string($a/def/p|$a/@xlink:title))
-      return <definition>{data($def)}</definition>}
-  </abbrev>
-
 <root>
 {
-    for $a in $abbrev
-    return $a
+  for $a in document-node()//abbrev
+    return <abbrev>
+      {
+        for $val in local:clean-conent(string($a/node()[name(.)!='def']))
+        return <value>{$val}</value>
+      }
+      {
+        for $def in local:clean-conent(string($a/def/p|$a/@xlink:title))
+        return <definition>{data($def)}</definition>
+      }
+    </abbrev>
 }
 </root>
