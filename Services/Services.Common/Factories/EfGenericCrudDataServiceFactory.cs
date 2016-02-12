@@ -16,6 +16,8 @@
         where TDbModel : class
         where TServiceModel : IDataServiceModel
     {
+        private readonly IMapper mapper;
+
         private Expression<Func<TDbModel, TOrderKey>> orderExpression;
         private IEfRepository<TDbModel> repository;
 
@@ -33,11 +35,19 @@
 
             this.repository = repository;
             this.orderExpression = orderExpression;
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<TDbModel, TServiceModel>();
+                c.CreateMap<TServiceModel, TDbModel>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         public void Add(TServiceModel entity)
         {
-            var item = this.Mapper.Map<TDbModel>(entity);
+            var item = this.mapper.Map<TDbModel>(entity);
             this.repository.Add(item);
             this.repository.SaveChanges();
         }
@@ -58,7 +68,7 @@
         public virtual void Update(TServiceModel entity)
         {
             var item = this.repository.GetById(entity.Id);
-            item = this.Mapper.Map<TServiceModel, TDbModel>(entity, item);
+            item = this.mapper.Map<TServiceModel, TDbModel>(entity, item);
 
             this.repository.Update(item);
             this.repository.SaveChanges();
@@ -74,7 +84,7 @@
             var item = this.repository.GetById(id);
             return new List<TServiceModel>
             {
-                this.Mapper.Map<TServiceModel>(item)
+                this.mapper.Map<TServiceModel>(item)
             }
             .AsQueryable();
         }
@@ -96,10 +106,8 @@
                 .Skip(skip)
                 .Take(take)
                 .ToList()
-                .Select(this.Mapper.Map<TServiceModel>)
+                .Select(this.mapper.Map<TServiceModel>)
                 .AsQueryable();
         }
-
-        protected abstract IMapper Mapper { get; }
     }
 }

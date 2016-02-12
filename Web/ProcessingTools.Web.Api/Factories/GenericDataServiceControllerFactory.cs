@@ -14,8 +14,9 @@
         where TRequestModel : class
         where TResponseModel : class
     {
-        private ICrudDataService<TServiceModel> service;
         private readonly IMapper mapper;
+
+        private ICrudDataService<TServiceModel> service;
 
         public GenericDataServiceControllerFactory(ICrudDataService<TServiceModel> service)
         {
