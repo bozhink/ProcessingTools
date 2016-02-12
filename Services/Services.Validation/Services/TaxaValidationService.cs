@@ -1,18 +1,20 @@
 ﻿namespace ProcessingTools.Services.Validation
 {
     using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Contracts;
-    using Common.Models.Contracts;
-    using Models.Contracts;
-    using System.Linq;
-    using Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
-    using System.Xml;
-    using System.Text.RegularExpressions;
     using System.Collections.Concurrent;
-    using Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+
+    using Common.Models.Contracts;
     using Common.Types;
+    using Contracts;
+    using Models;
+    using Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
+
     public class TaxaValidationService : ITaxaValidationService
     {
         public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(IEnumerable<ITaxonName> items)

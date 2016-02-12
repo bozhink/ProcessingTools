@@ -62,7 +62,13 @@ namespace ProcessingTools.MainProgram {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;x:context xmlns:x=&quot;urn:schemas-processing-tools:context&quot; /&gt;.
+        ///&lt;x:context
+        ///  xmlns:x=&quot;urn:schemas-processing-tools:context&quot;
+        ///  xmlns:tp=&quot;http://www.plazi.org/taxpub&quot;
+        ///  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        ///  xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+        ///  xmlns:mml=&quot;http://www.w3.org/1998/Math/MathML&quot; /&gt;
+        ///.
         /// </summary>
         internal static string ContextWrapper {
             get {

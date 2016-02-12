@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Services.Common</RootNamespace>
     <AssemblyName>ProcessingTools.Services.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -48,9 +50,6 @@
     <Compile Include="Types\ValidationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
@@ -59,6 +58,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

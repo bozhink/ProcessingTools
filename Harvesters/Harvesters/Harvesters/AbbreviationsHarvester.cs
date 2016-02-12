@@ -37,7 +37,6 @@
                 Console.WriteLine(reader.ReadToEnd());
             }
 
-
             return Task.Run(() =>
             {
                 return new HashSet<IAbbreviationModel>().AsQueryable();
