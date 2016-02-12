@@ -239,28 +239,32 @@
             foreach (string taxon in new HashSet<string>(taxa))
             {
                 taxa.AddRange(taxon.Split(' ')
-                    .Where(s => !string.IsNullOrWhiteSpace(s)));
+                    .Where(s => !string.IsNullOrWhiteSpace(s) && s.Length > 2));
             }
 
-            Regex matchLetterDotWord = new Regex(@"\A([A-Z]\.|[A-Za-z])\Z");
-            var orderedTaxaParts = new HashSet<string>(taxa.Where(t => !matchLetterDotWord.IsMatch(t)))
-                .Where(t => t.Length > 2)
-                .OrderByDescending(t => t.Length);
+            var orderedTaxaParts = new HashSet<string>(taxa).OrderByDescending(t => t.Length);
 
-            XmlElement lowerTaxaTag = this.XmlDocument.CreateElement("tn");
-            lowerTaxaTag.SetAttribute("type", "lower");
+            XmlElement lowerTaxaTagModel = this.XmlDocument.CreateElement("tn");
+            lowerTaxaTagModel.SetAttribute("type", "lower");
 
             foreach (var item in orderedTaxaParts)
             {
-                item.TagContentInDocument(
-                    lowerTaxaTag,
-                    LowerTaxaXPathTemplate,
-                    this.NamespaceManager,
-                    this.XmlDocument,
-                    true,
-                    true,
-                    this.logger)
-                    .Wait();
+                try
+                {
+                    item.TagContentInDocument(
+                        lowerTaxaTagModel,
+                        LowerTaxaXPathTemplate,
+                        this.NamespaceManager,
+                        this.XmlDocument,
+                        true,
+                        true,
+                        this.logger)
+                        .Wait();
+                }
+                catch (Exception e)
+                {
+                    this.logger.Log(e, "‘{0}’", item);
+                }
             }
         }
     }
