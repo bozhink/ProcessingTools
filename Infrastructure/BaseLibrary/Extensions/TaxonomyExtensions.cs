@@ -36,7 +36,7 @@
             }
 
             List<string> result = new List<string>();
-            if (xpath != string.Empty)
+            if (!string.IsNullOrWhiteSpace(xpath))
             {
                 XmlNodeList nodeList = xml.SelectNodes(xpath, TaxPubDocument.NamespceManager());
                 if (stripTags)
@@ -193,7 +193,9 @@
                 .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
                 .InnerXml
                 .RegexReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
-                .RegexReplace(@"<[^>]+>", string.Empty);
+                .RegexReplace(@"<[^>]+>", string.Empty)
+                .RegexReplace(@"\s+", " ")
+                .Trim();
 
             return innerXml;
         }
