@@ -11,11 +11,20 @@
 
     public class InstitutionsDataService : EfGenericCrudDataServiceFactory<Institution, IInstitution, int>, IInstitutionsDataService
     {
+        private readonly IMapper mapper;
+
         public InstitutionsDataService(IDataRepository<Institution> repository)
             : base(repository, i => i.Name.Length)
         {
-            Mapper.CreateMap<Institution, IInstitution>();
-            Mapper.CreateMap<IInstitution, Institution>();
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Institution, IInstitution>();
+                c.CreateMap<IInstitution, Institution>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        protected override IMapper Mapper => this.mapper;
     }
 }

@@ -37,7 +37,7 @@
 
         public void Add(TServiceModel entity)
         {
-            var item = Mapper.Map<TDbModel>(entity);
+            var item = this.Mapper.Map<TDbModel>(entity);
             this.repository.Add(item);
             this.repository.SaveChanges();
         }
@@ -58,7 +58,7 @@
         public virtual void Update(TServiceModel entity)
         {
             var item = this.repository.GetById(entity.Id);
-            item = Mapper.Map<TServiceModel, TDbModel>(entity, item);
+            item = this.Mapper.Map<TServiceModel, TDbModel>(entity, item);
 
             this.repository.Update(item);
             this.repository.SaveChanges();
@@ -74,7 +74,7 @@
             var item = this.repository.GetById(id);
             return new List<TServiceModel>
             {
-                Mapper.Map<TServiceModel>(item)
+                this.Mapper.Map<TServiceModel>(item)
             }
             .AsQueryable();
         }
@@ -96,8 +96,10 @@
                 .Skip(skip)
                 .Take(take)
                 .ToList()
-                .Select(Mapper.Map<TServiceModel>)
+                .Select(this.Mapper.Map<TServiceModel>)
                 .AsQueryable();
         }
+
+        protected abstract IMapper Mapper { get; }
     }
 }

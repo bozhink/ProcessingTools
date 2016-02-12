@@ -11,11 +11,20 @@
 
     public class GeoEpithetsDataService : EfGenericCrudDataServiceFactory<GeoEpithet, IGeoEpithet, int>, IGeoEpithetsDataService
     {
+        private readonly IMapper mapper;
+
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
             : base(repository, e => e.Name.Length)
         {
-            Mapper.CreateMap<GeoEpithet, IGeoEpithet>();
-            Mapper.CreateMap<IGeoEpithet, GeoEpithet>();
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<GeoEpithet, IGeoEpithet>();
+                c.CreateMap<IGeoEpithet, GeoEpithet>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        protected override IMapper Mapper => this.mapper;
     }
 }

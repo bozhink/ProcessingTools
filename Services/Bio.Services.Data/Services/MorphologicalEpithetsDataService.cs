@@ -11,11 +11,20 @@
 
     public class MorphologicalEpithetsDataService : EfGenericCrudDataServiceFactory<MorphologicalEpithet, IMorphologicalEpithet, int>, IMorphologicalEpithetsDataService
     {
+        private readonly IMapper mapper;
+
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
             : base(repository, e => e.Name.Length)
         {
-            Mapper.CreateMap<MorphologicalEpithet, IMorphologicalEpithet>();
-            Mapper.CreateMap<IMorphologicalEpithet, MorphologicalEpithet>();
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<MorphologicalEpithet, IMorphologicalEpithet>();
+                c.CreateMap<IMorphologicalEpithet, MorphologicalEpithet>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        protected override IMapper Mapper => this.mapper;
     }
 }
