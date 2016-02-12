@@ -4,7 +4,6 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
 
-    using AutoMapper.QueryableExtensions;
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
     using Models.TaxonomyDataServices;
@@ -16,7 +15,7 @@
         [EnableCors("*", "*", "*")]
         public IHttpActionResult Get(string id)
         {
-            var result = this.Service.Resolve(id)?.ProjectTo<TaxonClassificationResponseModel>().ToList();
+            var result = this.Service.Resolve(id)?.Select(AutoMapperConfig.Mapper.Map<TaxonClassificationResponseModel>).ToList();
 
             if (result == null)
             {

@@ -9,11 +9,16 @@
     using AutoMapper;
     using Contracts.Mapping;
 
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
+        private static IMapper mapper;
+        private static IMapperConfiguration mapperConfiguration;
+
         public static void RegisterMappings(params string[] assemblies)
         {
-            Mapper.Configuration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
+            mapperConfiguration = new MapperConfiguration(c => { });
+
+            mapperConfiguration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
 
             var types = new List<Type>();
             foreach (var assembly in assemblies.Select(a => Assembly.Load(a)))
@@ -23,7 +28,11 @@
 
             LoadStandardMappings(types);
             LoadCustomMappings(types);
+
+            mapper = ((MapperConfiguration)mapperConfiguration).CreateMapper();
         }
+
+        public static IMapper Mapper => mapper;
 
         private static void LoadStandardMappings(IEnumerable<Type> types)
         {
@@ -42,8 +51,8 @@
 
             foreach (var map in maps)
             {
-                Mapper.CreateMap(map.Source, map.Destination);
-                Mapper.CreateMap(map.Destination, map.Source);
+                mapperConfiguration.CreateMap(map.Source, map.Destination);
+                mapperConfiguration.CreateMap(map.Destination, map.Source);
             }
         }
 
@@ -60,7 +69,7 @@
 
             foreach (var map in maps)
             {
-                map.CreateMappings(Mapper.Configuration);
+                map.CreateMappings(mapperConfiguration);
             }
         }
     }

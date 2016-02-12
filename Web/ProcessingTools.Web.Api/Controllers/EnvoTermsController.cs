@@ -3,8 +3,6 @@
     using System.Linq;
     using System.Web.Http;
 
-    using AutoMapper.QueryableExtensions;
-
     using Models.EnvoTerms;
 
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
@@ -34,7 +32,7 @@
             }
 
             var result = this.service?.Get(skipItemsCount, takeItemsCount)
-                .ProjectTo<EnvoTermResponseModel>()
+                .Select(AutoMapperConfig.Mapper.Map<EnvoTermResponseModel>)
                 .ToList();
 
             if (result == null)

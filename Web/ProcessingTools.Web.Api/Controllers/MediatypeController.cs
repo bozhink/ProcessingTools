@@ -3,7 +3,6 @@
     using System.Linq;
     using System.Web.Http;
 
-    using AutoMapper.QueryableExtensions;
     using MediaType.Services.Data.Contracts;
     using Models.MediaTypeModels;
 
@@ -18,7 +17,7 @@
 
         public IHttpActionResult Get(string id)
         {
-            var result = this.mediatypeDataService?.GetMediaType(id)?.ProjectTo<MediaTypeResponseModel>().ToList();
+            var result = this.mediatypeDataService?.GetMediaType(id)?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
 
             if (result == null)
             {
