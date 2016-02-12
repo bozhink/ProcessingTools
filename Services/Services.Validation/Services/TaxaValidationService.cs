@@ -19,9 +19,9 @@
     {
         public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(IEnumerable<ITaxonName> items)
         {
-            var notFoundNames = new HashSet<string>();
             string[] scientificNames = items.Select(i => i.Name).ToArray<string>();
 
+            var exceptions = new ConcurrentQueue<Exception>();
             var result = new ConcurrentQueue<IValidationServiceModel<ITaxonName>>();
 
             var resolver = new GlobalNamesResolverDataRequester();
@@ -72,11 +72,16 @@
                             });
                         }
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        throw new Exception($"Error: Invalid content in response: {datumNode.InnerXml}");
+                        exceptions.Enqueue(new Exception($"Error: Invalid content in response: {datumNode.InnerXml}", e));
                     }
                 });
+
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions);
+            }
 
             return result;
         }
