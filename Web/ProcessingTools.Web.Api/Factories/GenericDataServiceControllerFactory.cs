@@ -5,7 +5,6 @@
     using System.Web.Http;
 
     using AutoMapper;
-    using AutoMapper.QueryableExtensions;
 
     using Common.Constants;
     using Services.Common.Contracts;
@@ -16,6 +15,7 @@
         where TResponseModel : class
     {
         private ICrudDataService<TServiceModel> service;
+        private readonly IMapper mapper;
 
         public GenericDataServiceControllerFactory(ICrudDataService<TServiceModel> service)
         {
@@ -25,17 +25,25 @@
             }
 
             this.service = service;
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<TServiceModel, TResponseModel>();
+                c.CreateMap<TRequestModel, TServiceModel>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         public IHttpActionResult GetAll()
         {
             var result = this.service.All()
-                .ProjectTo<TResponseModel>()
+                .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
             if (result == null)
             {
-                return this.InternalServerError();
+                return this.NotFound();
             }
 
             return this.Ok(result);
@@ -50,12 +58,12 @@
             }
 
             var result = this.service.Get(parsedId)
-                .ProjectTo<TResponseModel>()
+                .Select(this.mapper.Map<TResponseModel>)
                 .FirstOrDefault();
 
             if (result == null)
             {
-                return this.InternalServerError();
+                return this.NotFound();
             }
 
             return this.Ok(result);
@@ -76,12 +84,12 @@
             }
 
             var result = this.service.Get(skipItemsCount, takeItemsCount)
-                .ProjectTo<TResponseModel>()
+                .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
             if (result == null)
             {
-                return this.InternalServerError();
+                return this.NotFound();
             }
 
             return this.Ok(result);
@@ -94,7 +102,7 @@
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
         public IHttpActionResult Post(TRequestModel entity)
         {
-            var item = Mapper.Map<TServiceModel>(entity);
+            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
                 this.service.Add(item);
@@ -114,7 +122,7 @@
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
         public IHttpActionResult Put(TRequestModel entity)
         {
-            var item = Mapper.Map<TServiceModel>(entity);
+            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
                 this.service.Update(item);
@@ -134,7 +142,7 @@
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
         public IHttpActionResult Delete(TRequestModel entity)
         {
-            var item = Mapper.Map<TServiceModel>(entity);
+            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
                 this.service.Delete(item);
