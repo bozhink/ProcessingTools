@@ -14,6 +14,8 @@
         private static IMapper mapper;
         private static IMapperConfiguration mapperConfiguration;
 
+        public static IMapper Mapper => mapper;
+
         public static void RegisterMappings(params string[] assemblies)
         {
             mapperConfiguration = new MapperConfiguration(c => { });
@@ -31,8 +33,6 @@
 
             mapper = ((MapperConfiguration)mapperConfiguration).CreateMapper();
         }
-
-        public static IMapper Mapper => mapper;
 
         private static void LoadStandardMappings(IEnumerable<Type> types)
         {
