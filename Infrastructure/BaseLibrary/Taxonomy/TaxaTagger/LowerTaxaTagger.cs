@@ -158,12 +158,12 @@
 
             // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
             // <i>Lespedeza hirta</i> (L.) Hornem. var. <i>curtissii</i>
-            const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|nr|near|sp\.\s*near|n\.?\s*sp|aff|prope|(?:sub)?sect)\b\.?|×|\?)";
+            const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|sp|var|subvar|subsp|subspec|subspecies|ssp|race|fo?|forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|aff)|prope|(?:sub)?sect)\b\.?|×|\?)";
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
             {
                 {
-                    const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]]{0,3}?\([^<>\(\)\[\]]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
+                    const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]\+]{0,3}?\([^<>\(\)\[\]\+]{0,30}?\)[^<>\(\)\[\]]{0,30}?|[^<>\(\)\[\]\+]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
                     Regex re = new Regex(InfraspecificPattern);
 
                     for (Match m = re.Match(result); m.Success; m = m.NextMatch())
