@@ -236,9 +236,9 @@
             return result;
         }
 
-        public static string GetTextContent(this XmlDocument xmlDocument, XslCompiledTransform xslTransform)
+        public static string GetTextContent(this XmlDocument xmlDocument, string xslFileName)
         {
-            string text = xmlDocument.ApplyXslTransform(xslTransform);
+            string text = xmlDocument.ApplyXslTransform(xslFileName);
             text = Regex.Replace(text, @"(?<=\n)\s+", string.Empty);
 
             return text;
