@@ -195,7 +195,6 @@
         }
 
         [Test]
-        [Ignore("TODO")]
         public void Config_ValidChangesOfFormatXslNlmToSystemProperty_ShouldBePersistent()
         {
             this.config.FormatNlmToSystemXslPath = SampleFilePath;
@@ -211,7 +210,6 @@
         }
 
         [Test]
-        [Ignore("TODO")]
         public void Config_ValidChangesOfFormatXslSystemToNlmProperty_ShouldBePersistent()
         {
             this.config.FormatSystemToNlmXslPath = SampleFilePath;
@@ -242,7 +240,6 @@
         }
 
         [Test]
-        [Ignore("TODO")]
         public void Config_ValidChangesOfNlmInitialFormatXslPathProperty_ShouldBePersistent()
         {
             this.config.NlmInitialFormatXslPath = SampleFilePath;
@@ -348,7 +345,6 @@
         }
 
         [Test]
-        [Ignore("TODO")]
         public void Config_ValidChangesOfSystemInitialFormatXslPathProperty_ShouldBePersistent()
         {
             this.config.SystemInitialFormatXslPath = SampleFilePath;
@@ -379,7 +375,6 @@
         }
 
         [Test]
-        [Ignore("TODO")]
         public void Config_ValidChangesOfTextContentXslFileNameProperty_ShouldBePersistent()
         {
             this.config.TextContentXslPath = SampleFilePath;
