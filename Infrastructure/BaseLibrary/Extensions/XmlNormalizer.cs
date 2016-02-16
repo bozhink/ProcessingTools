@@ -17,7 +17,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatNlmToSystemXslTransform);
+            return xml.ApplyXslTransform(config.FormatNlmToSystemXslPath);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatSystemToNlmXslTransform);
+            return xml.ApplyXslTransform(config.FormatSystemToNlmXslPath);
         }
 
         /// <summary>

@@ -9,17 +9,21 @@
 
     public class CustomXslRunner : ConfigurableDocument, IProcessor
     {
-        private XslCompiledTransform xslTransform;
+        private string xslPath;
 
         public CustomXslRunner(string xslPath, string xml)
             : base(xml)
         {
-            this.xslTransform = new XslCompiledTransform();
             this.XslPath = xslPath;
         }
 
         private string XslPath
         {
+            get
+            {
+                return this.xslPath;
+            }
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -27,13 +31,13 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this.xslTransform.Load(value);
+                this.xslPath = value;
             }
         }
 
         public Task Process()
         {
-            return Task.Run(() => this.Xml = this.Xml.ApplyXslTransform(this.xslTransform));
+            return Task.Run(() => this.Xml = this.Xml.ApplyXslTransform(this.XslPath));
         }
     }
 }

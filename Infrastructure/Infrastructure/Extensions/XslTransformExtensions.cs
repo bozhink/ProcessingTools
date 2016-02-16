@@ -70,46 +70,6 @@
         }
 
         /// <summary>
-        /// Executes XSL transform using the input document specified by the string object and returns the result as a string.
-        /// </summary>
-        /// <param name="xml">Input document to be transformed.</param>
-        /// <param name="xslTransform">XslCompiledTransform object.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this string xml, XslCompiledTransform xslTransform)
-        {
-            if (string.IsNullOrWhiteSpace(xml))
-            {
-                throw new ArgumentNullException("xml");
-            }
-
-            try
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(xml);
-                string result = string.Empty;
-                using (XmlReader reader = XmlReader.Create(new MemoryStream(bytes)))
-                {
-                    result = reader.ApplyXslTransform(xslTransform);
-                }
-
-                return result;
-            }
-            catch (EncoderFallbackException e)
-            {
-                throw new EncoderFallbackException("Input document string must be UFT8 encoded.", e);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
         /// Executes XSL transform using the input document specified by the System.Xml.XmlReader object and returns the result as a string.
         /// </summary>
         /// <param name="reader">Input document to be transformed.</param>
