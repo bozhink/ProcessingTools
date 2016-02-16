@@ -19,7 +19,7 @@
             {
                 case SchemaType.Nlm:
                     {
-                        string xml = document.ApplyXslTransform(settings.Config.NlmInitialFormatXslTransform);
+                        string xml = document.ApplyXslTransform(settings.Config.NlmInitialFormatXslPath);
                         var formatter = new NlmInitialFormatter(settings.Config, xml);
                         await formatter.Format();
                         document.LoadXml(formatter.Xml);
@@ -29,7 +29,7 @@
 
                 default:
                     {
-                        string xml = document.ApplyXslTransform(settings.Config.SystemInitialFormatXslTransform);
+                        string xml = document.ApplyXslTransform(settings.Config.SystemInitialFormatXslPath);
                         var formatter = new SystemInitialFormatter(settings.Config, xml);
                         await formatter.Format();
                         document.LoadXml(formatter.Xml);

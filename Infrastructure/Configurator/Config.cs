@@ -74,8 +74,6 @@
 
         private string systemInitialFormatXslPath;
 
-        private string textContentXslPath;
-
         [DataMember(Name = "blackListCleanXslPath")]
         public string BlackListCleanXslPath { get; set; }
 

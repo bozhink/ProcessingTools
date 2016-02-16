@@ -35,28 +35,6 @@
         }
 
         /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.
-        /// </summary>
-        /// <param name="document">Input document to be transformed.</param>
-        /// <param name="xslTransform">XslCompiledTransform object.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
-        public static string ApplyXslTransform(this XmlDocument document, XslCompiledTransform xslTransform)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException("document");
-            }
-
-            return document.OuterXml.ApplyXslTransform(xslTransform);
-        }
-
-        /// <summary>
         /// Executes XSL transform using the input document specified by the string object and returns the result as a string.
         /// </summary>
         /// <param name="xml">Input document to be transformed.</param>
