@@ -223,15 +223,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram.cd" />
-    <None Include="Scripts\extract-higher-taxa.bat" />
-    <None Include="Scripts\extract-lower-taxa.bat" />
-    <None Include="Scripts\extract-taxa.bat" />
-    <None Include="Scripts\get-coordinates.ps1" />
-    <None Include="Scripts\get-taxa.ps1" />
-    <None Include="Scripts\parse-xml.ps1" />
-    <None Include="Scripts\ranklist.bat" />
-    <None Include="Scripts\run.bat" />
-    <None Include="Scripts\whiteblacklist.bat" />
     <None Include="XQuery\select_multi-rank-taxa.xq" />
     <None Include="XQuery\taxonomic_ranks.xq" />
   </ItemGroup>
