@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Configurator
 {
     using System.Runtime.Serialization;
-    using System.Xml.Xsl;
 
     public partial class Config
     {
@@ -66,14 +65,6 @@
     [DataContract]
     public partial class Config
     {
-        private string formatNlmToSystemXslPath;
-
-        private string formatSystemToNlmXslPath;
-
-        private string nlmInitialFormatXslPath;
-
-        private string systemInitialFormatXslPath;
-
         [DataMember(Name = "blackListCleanXslPath")]
         public string BlackListCleanXslPath { get; set; }
 
@@ -111,61 +102,16 @@
         public string FloraTemplatesOutputXmlPath { get; set; }
 
         [DataMember(Name = "formatXslNlmToSystem")]
-        public string FormatNlmToSystemXslPath
-        {
-            get
-            {
-                return this.formatNlmToSystemXslPath;
-            }
-
-            set
-            {
-                this.formatNlmToSystemXslPath = value;
-                this.FormatNlmToSystemXslTransform = new XslCompiledTransform();
-                this.FormatNlmToSystemXslTransform.Load(value);
-            }
-        }
-
-        public XslCompiledTransform FormatNlmToSystemXslTransform { get; set; }
+        public string FormatNlmToSystemXslPath { get; set; }
 
         [DataMember(Name = "formatXslSystemToNlm")]
-        public string FormatSystemToNlmXslPath
-        {
-            get
-            {
-                return this.formatSystemToNlmXslPath;
-            }
-
-            set
-            {
-                this.formatSystemToNlmXslPath = value;
-                this.FormatSystemToNlmXslTransform = new XslCompiledTransform();
-                this.FormatSystemToNlmXslTransform.Load(value);
-            }
-        }
-
-        public XslCompiledTransform FormatSystemToNlmXslTransform { get; set; }
+        public string FormatSystemToNlmXslPath { get; set; }
 
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 
         [DataMember(Name = "nlmInitialFormatXslPath")]
-        public string NlmInitialFormatXslPath
-        {
-            get
-            {
-                return this.nlmInitialFormatXslPath;
-            }
-
-            set
-            {
-                this.nlmInitialFormatXslPath = value;
-                this.NlmInitialFormatXslTransform = new XslCompiledTransform();
-                this.NlmInitialFormatXslTransform.Load(value);
-            }
-        }
-
-        public XslCompiledTransform NlmInitialFormatXslTransform { get; set; }
+        public string NlmInitialFormatXslPath { get; set; }
 
         [DataMember(Name = "rankListCleanXslPath")]
         public string RankListCleanXslPath { get; set; }
@@ -186,22 +132,7 @@
         public string ReferencesTagTemplateXslPath { get; set; }
 
         [DataMember(Name = "systemInitialFormatXslPath")]
-        public string SystemInitialFormatXslPath
-        {
-            get
-            {
-                return this.systemInitialFormatXslPath;
-            }
-
-            set
-            {
-                this.systemInitialFormatXslPath = value;
-                this.SystemInitialFormatXslTransform = new XslCompiledTransform();
-                this.SystemInitialFormatXslTransform.Load(value);
-            }
-        }
-
-        public XslCompiledTransform SystemInitialFormatXslTransform { get; set; }
+        public string SystemInitialFormatXslPath { get; set; }
 
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }
