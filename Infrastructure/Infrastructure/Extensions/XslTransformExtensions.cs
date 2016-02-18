@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.IO;
-    using System.Text;
-    using System.Text.RegularExpressions;
     using System.Xml;
     using System.Xml.Xsl;
 
@@ -172,14 +170,6 @@
             }
 
             return result;
-        }
-
-        public static string GetTextContent(this XmlDocument xmlDocument, string xslFileName)
-        {
-            string text = xmlDocument.ApplyXslTransform(xslFileName);
-            text = Regex.Replace(text, @"(?<=\n)\s+", string.Empty);
-
-            return text;
         }
     }
 }
