@@ -37,7 +37,7 @@
                         .AsParallel()
                         .ForAll(nomenclature =>
                         {
-                            nomenclature.SelectNodes("i[tn]").ReplaceXmlNodeByItsInnerXml();
+                            nomenclature.SelectNodes(".//i[tn]").ReplaceXmlNodeByItsInnerXml();
 
                             this.FormatNomenclatureTitle(nomenclature);
 
