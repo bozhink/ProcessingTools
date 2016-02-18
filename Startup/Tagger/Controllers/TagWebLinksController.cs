@@ -32,7 +32,7 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var textContent = document.GetTextContent(settings.Config.TextContentXslPath);
+            var textContent = document.GetTextContent();
             var data = (await this.miner.Mine(textContent))
                 .Select(i => new ExternalLinkSerializableModel
                 {

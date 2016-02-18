@@ -36,7 +36,7 @@
 
                 string replace = replacementNode.OuterXml;
 
-                string xmlText = this.XmlDocument.GetTextContent(this.Config.TextContentXslPath);
+                string xmlText = this.XmlDocument.GetTextContent();
 
                 List<string> coordinateStrings = new List<string>();
 

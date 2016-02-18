@@ -29,7 +29,7 @@
         {
             return Task.Run(() =>
             {
-                var textContent = this.XmlDocument.GetTextContent(this.Config.TextContentXslPath);
+                var textContent = this.XmlDocument.GetTextContent();
                 var data = this.miner.Mine(textContent).Result;
 
                 IEnumerable<string> taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));

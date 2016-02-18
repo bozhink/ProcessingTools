@@ -44,7 +44,7 @@
                 document.LoadXml(Resources.ContextWrapper);
                 document.DocumentElement.InnerXml = context.InnerXml;
 
-                var textContent = document.GetTextContent(settings.Config.TextContentXslPath);
+                var textContent = document.GetTextContent();
                 var data = await this.Miner.Mine(textContent);
 
                 var tagger = new StringTagger(document.OuterXml, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate, namespaceManager, logger);
