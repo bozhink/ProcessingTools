@@ -110,22 +110,29 @@
         /// <returns>Parsed text string.</returns>
         private static string ParseFullStringMatch(string text)
         {
+            const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
+            const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
+            const string SpeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
+            const string SubspeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
+
+            const string InternalSignsPattern = @"[\s\?×]+";
+
             string replace = text;
 
             // Genus species subspecies
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
+                $"\\A({GenusPattern})({InternalSignsPattern})({SpeciesPattern})({InternalSignsPattern})({SubspeciesPattern})\\Z",
                 "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>$4<tn-part type=\"subspecies\">$5</tn-part>");
 
             // Genus species
             replace = Regex.Replace(
                 replace,
-                @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
+                $"\\A({GenusPattern})({InternalSignsPattern})({SpeciesPattern})\\Z",
                 "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>");
             replace = Regex.Replace(
                 replace,
-                @"\A‘([A-Z][a-z\.]+)’([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
+                $"\\A‘({GenusPattern})’({InternalSignsPattern})({SpeciesPattern})\\Z",
                 "‘<tn-part type=\"genus\">$1</tn-part>’$2<tn-part type=\"species\">$3</tn-part>");
 
             // Genus (Subgenus) species subspecies
