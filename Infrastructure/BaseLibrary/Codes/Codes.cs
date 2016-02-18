@@ -172,7 +172,7 @@ namespace ProcessingTools.BaseLibrary
         public List<SpecimenCode> GetPrefixNumericCodes()
         {
             List<SpecimenCode> prefixNumericSpecimenCodes = new List<SpecimenCode>();
-            string textContent = this.XmlDocument.GetTextContent(this.Config.TextContentXslTransform);
+            string textContent = this.XmlDocument.GetTextContent();
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {

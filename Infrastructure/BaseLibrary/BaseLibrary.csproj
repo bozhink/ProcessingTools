@@ -210,9 +210,6 @@
     <Content Include="XSL\taxpub-to-html.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XSL\text-content.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="XSL\WhiteListClean.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
