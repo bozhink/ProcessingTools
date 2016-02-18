@@ -1,12 +1,14 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class TreatmentFormatter : ConfigurableDocument, IFormatter
     {
@@ -30,16 +32,19 @@
             {
                 try
                 {
-                    foreach (XmlNode nomenclature in this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager))
-                    {
-                        this.FormatNomenclatureTitle(nomenclature);
+                    this.XmlDocument.SelectNodes("//tp:nomenclature", this.NamespaceManager)
+                        .Cast<XmlNode>()
+                        .AsParallel()
+                        .ForAll(nomenclature =>
+                        {
+                            nomenclature.SelectNodes("i[tn]").ReplaceXmlNodeByItsInnerXml();
 
-                        nomenclature.InnerXml = this.FormatNomencatureContent(nomenclature.InnerXml);
+                            this.FormatNomenclatureTitle(nomenclature);
 
-                        this.FormatObjectIdInNomenclature(nomenclature);
+                            nomenclature.InnerXml = this.FormatNomencatureContent(nomenclature.InnerXml);
 
-                        nomenclature.InnerXml = Regex.Replace(nomenclature.InnerXml, @"\n\s*\n", "\n");
-                    }
+                            this.FormatObjectIdInNomenclature(nomenclature);
+                        });
                 }
                 catch (Exception e)
                 {
@@ -133,11 +138,12 @@
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            if (nomenclature["object-id"] != null && nomenclature["tn"] != null)
+            XmlElement taxonName = nomenclature["tn"];
+            if (taxonName != null && nomenclature["object-id"] != null)
             {
                 foreach (XmlNode objectId in nomenclature.SelectNodes("./object-id", this.NamespaceManager))
                 {
-                    nomenclature["tn"].AppendChild(objectId);
+                    taxonName.AppendChild(objectId);
                 }
             }
         }
