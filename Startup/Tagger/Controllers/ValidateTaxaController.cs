@@ -10,8 +10,8 @@
 
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Services.Common.Types;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 

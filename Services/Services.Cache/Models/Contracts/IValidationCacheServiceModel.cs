@@ -2,8 +2,8 @@
 {
     using System;
 
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Common.Models.Contracts;
-    using ProcessingTools.Services.Common.Types;
 
     public interface IValidationCacheServiceModel : ISimpleServiceModel
     {

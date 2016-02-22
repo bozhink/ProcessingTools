@@ -56,6 +56,7 @@
     <Compile Include="IValidator.cs" />
     <Compile Include="Types\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\ValidationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,8 +2,8 @@
 {
     using System;
 
-    using Common.Types;
     using Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class TaxonNameValidationServiceModel : ITaxonNameValidationServiceModel
     {

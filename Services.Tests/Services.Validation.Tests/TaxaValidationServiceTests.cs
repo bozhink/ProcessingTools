@@ -2,9 +2,9 @@
 {
     using System.Linq;
 
-    using Common.Types;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Contracts.Types;
 
     [TestClass]
     public class TaxaValidationServiceTests

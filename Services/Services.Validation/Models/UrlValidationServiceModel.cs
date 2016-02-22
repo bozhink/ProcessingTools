@@ -3,7 +3,7 @@
     using System;
 
     using Contracts;
-    using ProcessingTools.Services.Common.Types;
+    using ProcessingTools.Contracts.Types;
 
     public class UrlValidationServiceModel : IUrlValidationServiceModel
     {

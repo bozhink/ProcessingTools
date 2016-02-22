@@ -9,11 +9,11 @@
     using System.Xml;
 
     using Common.Models.Contracts;
-    using Common.Types;
     using Contracts;
     using Models;
     using Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
+    using ProcessingTools.Contracts.Types;
 
     public class TaxaValidationService : ITaxaValidationService
     {
