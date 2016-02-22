@@ -2,9 +2,10 @@
 {
     using System;
 
+    using Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class ValidationCacheEntity
+    public class ValidationCacheEntity : IValidationCacheEntity
     {
         public int Id { get; set; }
 
