@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Services.Common.Models.Contracts
 {
-    public interface IDataServiceModel : IGenericServiceModel<int>
+    public interface IGenericServiceModel<T>
     {
+        T Id { get; set; }
     }
 }
