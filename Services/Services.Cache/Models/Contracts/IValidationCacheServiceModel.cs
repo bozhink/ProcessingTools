@@ -7,6 +7,8 @@
 
     public interface IValidationCacheServiceModel : ISimpleServiceModel
     {
+        string Content { get; set; }
+
         DateTime LastUpdate { get; set; }
 
         ValidationStatus Status { get; set; }
