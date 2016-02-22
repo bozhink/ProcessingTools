@@ -155,8 +155,6 @@ AppPackages/
 
 # Others
 sql/
-!Services.Cache/
-*.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
