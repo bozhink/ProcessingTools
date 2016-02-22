@@ -1,6 +1,9 @@
 ﻿namespace ProcessingTools.Cache.Data.Repositories.Contracts
 {
-    public interface IValidationCacheDataRepository : IGenericValidationCacheDataRepository<string>
+    using ProcessingTools.Cache.Data.Models.Contracts;
+    using ProcessingTools.Data.Common.Redis.Repositories.Contracts;
+
+    public interface IValidationCacheDataRepository : IRedisGenericRepository<IValidationCacheEntity>
     {
     }
 }

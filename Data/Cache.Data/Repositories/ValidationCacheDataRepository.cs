@@ -1,47 +1,20 @@
 ﻿namespace ProcessingTools.Cache.Data.Repositories
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using Contracts;
     using Models.Contracts;
+    using ProcessingTools.Data.Common.Redis.Contracts;
+    using ProcessingTools.Data.Common.Redis.Repositories.Factories;
 
-    public class ValidationCacheDataRepository : IValidationCacheDataRepository
+    public class ValidationCacheDataRepository : RedisGenericRepository<IValidationCacheEntity>, IValidationCacheDataRepository
     {
-        public Task Add(string context, IValidationCacheEntity entity)
+        public ValidationCacheDataRepository()
+            : this(new RedisClientProvider())
         {
-            throw new NotImplementedException();
         }
 
-        public Task<IQueryable<IValidationCacheEntity>> All(string context)
+        public ValidationCacheDataRepository(IRedisClientProvider provider)
+            : base(provider)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(string context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(string context, IValidationCacheEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(string context, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IValidationCacheEntity> Get(string context, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(string context, IValidationCacheEntity entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

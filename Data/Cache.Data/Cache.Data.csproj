@@ -52,7 +52,6 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisClientProvider.cs" />
-    <Compile Include="Repositories\Contracts\IGenericValidationCacheDataRepository.cs" />
     <Compile Include="Repositories\Contracts\IValidationCacheDataRepository.cs" />
     <Compile Include="Repositories\ValidationCacheDataRepository.cs" />
   </ItemGroup>
