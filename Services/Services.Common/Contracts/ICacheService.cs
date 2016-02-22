@@ -10,8 +10,6 @@
     {
         Task<IQueryable<TServiceModel>> All(TKey key);
 
-        Task<IQueryable<TServiceModel>> Get(TKey key, int skip, int take);
-
         Task<TServiceModel> Get(TKey key, TId id);
 
         Task Add(TKey key, TServiceModel entity);

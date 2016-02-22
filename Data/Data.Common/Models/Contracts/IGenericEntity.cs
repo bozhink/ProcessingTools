@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Models.Contracts
 {
-    public interface IEntity : IGenericEntity<string>
+    public interface IGenericEntity<T>
     {
+        T Id { get; set; }
     }
 }
