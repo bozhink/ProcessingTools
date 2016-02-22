@@ -84,6 +84,7 @@
     <Compile Include="UnitTests\TagQuantitiesControllerTests.cs" />
     <Compile Include="UnitTests\TagReferencesControllerTests.cs" />
     <Compile Include="UnitTests\TagTableFootnoteControllerTests.cs" />
+    <Compile Include="UnitTests\TagTypeStatusControllerTests.cs" />
     <Compile Include="UnitTests\TagWebLinksControllerTests.cs" />
     <Compile Include="UnitTests\TestControllerTests.cs" />
     <Compile Include="UnitTests\ValidateTaxaControllerTests.cs" />
