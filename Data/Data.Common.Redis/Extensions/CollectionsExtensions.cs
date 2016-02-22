@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Models.Contracts;
+    using ProcessingTools.Data.Common.Models.Contracts;
     using ServiceStack.Redis;
 
     public static class CollectionsExtensions
@@ -13,7 +13,7 @@
 
             if (list.Any())
             {
-                maxId = list.Max(i => i.Deserialize<IRedisEntity>().Id);
+                maxId = list.Max(i => i.Deserialize<IEntity>().Id);
             }
             else
             {
@@ -24,19 +24,19 @@
         }
 
         public static void AddEntity<T>(this IRedisList list, T entity)
-            where T : IRedisEntity
+            where T : IEntity
         {
             list.Add(entity.Serialize());
         }
 
         public static void RemoveEntity<T>(this IRedisList list, T entity)
-            where T : IRedisEntity
+            where T : IEntity
         {
             list.Remove(entity.Serialize());
         }
 
         public static void RemoveEntity<T>(this IRedisList list, int id)
-            where T : IRedisEntity
+            where T : IEntity
         {
             var entityToBeRemoved = list.Select(i => i.Deserialize<T>())
                 .FirstOrDefault(i => i.Id == id);

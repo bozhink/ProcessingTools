@@ -5,11 +5,11 @@
 
     using Contracts;
     using Extensions;
-    using Models.Contracts;
+    using ProcessingTools.Data.Common.Models.Contracts;
     using Redis.Contracts;
 
     public class RedisGenericRepository<TEntity> : IRedisGenericRepository<TEntity>
-        where TEntity : IRedisEntity
+        where TEntity : IEntity
     {
         private IRedisClientProvider provider;
 

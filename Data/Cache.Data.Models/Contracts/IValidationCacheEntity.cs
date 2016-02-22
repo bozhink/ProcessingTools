@@ -3,9 +3,9 @@
     using System;
 
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Data.Common.Redis.Models.Contracts;
+    using ProcessingTools.Data.Common.Models.Contracts;
 
-    public interface IValidationCacheEntity : IRedisEntity
+    public interface IValidationCacheEntity : IEntity
     {
         string Content { get; set; }
 
