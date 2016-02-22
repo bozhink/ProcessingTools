@@ -252,6 +252,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache", "Services\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data", "Data\Cache.Data\Cache.Data.csproj", "{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data.Models", "Data\Cache.Data.Models\Cache.Data.Models.csproj", "{65C6A683-C945-4DE4-A4E8-8C5863F301A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1092,6 +1094,14 @@ Global
 		{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB}.Release|x64.ActiveCfg = Release|Any CPU
 		{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB}.Release|x64.Build.0 = Release|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Debug|x64.Build.0 = Debug|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Release|x64.ActiveCfg = Release|Any CPU
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1199,6 +1209,7 @@ Global
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{65C6A683-C945-4DE4-A4E8-8C5863F301A4} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

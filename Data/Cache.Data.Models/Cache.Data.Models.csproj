@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8CCCBF65-46DD-4DDB-A849-F91353FBA8DB}</ProjectGuid>
+    <ProjectGuid>{65C6A683-C945-4DE4-A4E8-8C5863F301A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Cache.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.Cache.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.Cache.Data.Models</RootNamespace>
+    <AssemblyName>ProcessingTools.Cache.Data.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,18 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cache.Data.Models\Cache.Data.Models.csproj">
-      <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>
-      <Name>Cache.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
