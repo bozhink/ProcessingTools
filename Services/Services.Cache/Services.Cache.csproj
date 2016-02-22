@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IValidationCacheService.cs" />
     <Compile Include="Models\Contracts\IValidationCacheServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
