@@ -14,7 +14,7 @@
 
     public abstract class EfGenericCrudDataServiceFactory<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
         where TDbModel : class
-        where TServiceModel : IDataServiceModel
+        where TServiceModel : ISimpleServiceModel
     {
         private readonly IMapper mapper;
 

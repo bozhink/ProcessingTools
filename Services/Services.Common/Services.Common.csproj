@@ -45,7 +45,7 @@
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
-    <Compile Include="Models\Contracts\IDataServiceModel.cs" />
+    <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
     <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
     <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
