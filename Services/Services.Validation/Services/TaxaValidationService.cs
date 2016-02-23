@@ -14,9 +14,23 @@
     using Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Cache.Contracts;
+    using ProcessingTools.Services.Cache.Models;
 
     public class TaxaValidationService : ITaxaValidationService
     {
+        private IValidationCacheService cacheService;
+
+        public TaxaValidationService(IValidationCacheService cacheService)
+        {
+            if (cacheService == null)
+            {
+                throw new ArgumentNullException("cacheService");
+            }
+
+            this.cacheService = cacheService;
+        }
+
         public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(IEnumerable<ITaxonName> items)
         {
             string[] scientificNames = items.Select(i => i.Name).ToArray<string>();
@@ -36,6 +50,15 @@
                     {
                         string suppliedNameString = datumNode["supplied-name-string"].InnerText;
 
+                        var validatedObject = new TaxonNameValidationServiceModel
+                        {
+                            ValidatedObject = new TaxonName
+                            {
+                                Name = suppliedNameString
+                            },
+                            ValidationException = null
+                        };
+
                         IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
                             .ToLower()
                             .Split(' ')
@@ -49,28 +72,23 @@
                         XmlNodeList taxaMatches = datumNode.SelectNodes(".//results/result/*" + xpathPart);
                         if (taxaMatches.Count < 1)
                         {
-                            result.Enqueue(new TaxonNameValidationServiceModel
-                            {
-                                ValidatedObject = new TaxonName
-                                {
-                                    Name = suppliedNameString
-                                },
-                                ValidationException = null,
-                                ValidationStatus = ValidationStatus.Invalid
-                            });
+                            validatedObject.ValidationStatus = ValidationStatus.Invalid;
                         }
                         else
                         {
-                            result.Enqueue(new TaxonNameValidationServiceModel
-                            {
-                                ValidatedObject = new TaxonName
-                                {
-                                    Name = suppliedNameString
-                                },
-                                ValidationException = null,
-                                ValidationStatus = ValidationStatus.Valid
-                            });
+                            validatedObject.ValidationStatus = ValidationStatus.Valid;
                         }
+
+                        // Cache obtained data.
+                        this.cacheService.Add(
+                            validatedObject.ValidatedObject.Name,
+                            new ValidationCacheServiceModel
+                            {
+                                Status = validatedObject.ValidationStatus,
+                                LastUpdate = DateTime.Now
+                            }).Wait();
+
+                        result.Enqueue(validatedObject);
                     }
                     catch (Exception e)
                     {

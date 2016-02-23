@@ -60,6 +60,10 @@
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.Cache\Services.Cache.csproj">
+      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
+      <Name>Services.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>

@@ -61,6 +61,13 @@
 
             this.Bind(b =>
             {
+                b.From(Services.Cache.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(Services.Validation.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

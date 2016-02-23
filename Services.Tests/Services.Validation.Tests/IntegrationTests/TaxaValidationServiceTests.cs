@@ -1,19 +1,38 @@
-﻿namespace ProcessingTools.Services.Validation.Tests
+﻿namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
 {
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Cache.Contracts;
 
     [TestClass]
     public class TaxaValidationServiceTests
     {
-        [TestMethod]
-        public void TaxaValidationServiceTests_WithDefaultConstructor_ShouldBuildValidObject()
+        private IValidationCacheService cacheService;
+
+        [TestInitialize]
+        public void Initialize()
         {
-            var service = new TaxaValidationService();
+            var repository = new ValidationCacheDataRepository();
+            this.cacheService = new ValidationCacheService(repository);
+        }
+
+        [TestMethod]
+        public void TaxaValidationServiceTests_WithValidParametersInConstructor_ShouldBuildValidObject()
+        {
+            var service = new TaxaValidationService(this.cacheService);
             Assert.IsNotNull(service, "Service should not be null.");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.ArgumentNullException))]
+        public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
+        {
+            var service = new TaxaValidationService(null);
         }
 
         [TestMethod]
@@ -28,7 +47,7 @@
             })
             .ToArray();
 
-            var service = new TaxaValidationService();
+            var service = new TaxaValidationService(this.cacheService);
             var result = service.Validate(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
@@ -58,7 +77,7 @@
             })
             .ToArray();
 
-            var service = new TaxaValidationService();
+            var service = new TaxaValidationService(this.cacheService);
             var result = service.Validate(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
