@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IRedisGenericRepository<TEntity> : IGenericRepository<string, int, TEntity>
+    public interface IRedisGenericRepository<TEntity> : ISimpleGenericRepository<TEntity>
         where TEntity : IEntity
     {
     }
