@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -36,7 +37,14 @@
             {
                 foreach (string textToTag in textToTagList)
                 {
-                    textToTag.TagContentInDocument(tagModel, xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger).Wait();
+                    try
+                    {
+                        textToTag.TagContentInDocument(tagModel, xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger).Wait();
+                    }
+                    catch (Exception e)
+                    {
+                        logger?.Log(e, "Item: {0}.", textToTag);
+                    }
                 }
             });
         }
