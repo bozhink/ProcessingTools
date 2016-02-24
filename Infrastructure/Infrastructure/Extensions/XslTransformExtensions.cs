@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.IO;
     using System.Xml;
+    using System.Xml.Serialization;
     using System.Xml.Xsl;
 
     public static class XslTransformExtrensions
@@ -166,6 +167,122 @@
                     {
                         result = streamReader.ReadToEnd();
                     }
+                }
+            }
+
+            return result;
+        }
+
+        public static T DeserializeXslTransformOutput<T>(this string xml, string xslFileName)
+            where T : class
+        {
+            if (string.IsNullOrWhiteSpace(xml))
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            try
+            {
+                T result = null;
+                using (XmlReader reader = xml.ToXmlReader())
+                {
+                    result = reader.DeserializeXslTransformOutput<T>(xslFileName);
+                }
+
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static T DeserializeXslTransformOutput<T>(this XmlDocument document, string xslFileName)
+            where T : class
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+
+            return document.OuterXml.DeserializeXslTransformOutput<T>(xslFileName);
+        }
+
+        public static T DeserializeXslTransformOutput<T>(this XmlReader reader, string xslFileName)
+            where T : class
+        {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            if (string.IsNullOrWhiteSpace(xslFileName))
+            {
+                throw new ArgumentNullException("xslFileName", "XSL file name is invalid.");
+            }
+
+            try
+            {
+                var xslTransform = XslCompiledTransformObjects.GetOrAdd(
+                    xslFileName,
+                    fileName =>
+                    {
+                        var transform = new XslCompiledTransform();
+                        transform.Load(fileName);
+                        return transform;
+                    });
+
+                return reader.DeserializeXslTransformOutput<T>(xslTransform);
+            }
+            catch (IOException e)
+            {
+                throw new IOException("Cannot read XSL file.", e);
+            }
+            catch (XsltException e)
+            {
+                throw new XsltException("Invalid XSL file.", e);
+            }
+            catch (XmlException e)
+            {
+                throw new XmlException("Invalid XML file.", e);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static T DeserializeXslTransformOutput<T>(this XmlReader reader, XslCompiledTransform xslTransform)
+            where T : class
+        {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            if (xslTransform == null)
+            {
+                throw new ArgumentNullException("xslTransform");
+            }
+
+            T result = null;
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                try
+                {
+                    xslTransform.Transform(reader, null, memoryStream);
+                    memoryStream.Position = 0;
+
+                    var serializer = new XmlSerializer(typeof(T));
+                    result = (T)serializer.Deserialize(memoryStream);
+                }
+                catch (XsltException e)
+                {
+                    throw new XsltException("Invalid XSL file.", e);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("General exception.", e);
                 }
             }
 

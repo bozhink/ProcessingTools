@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using System.Xml.Serialization;
 
     using Contracts;
     using Models;
@@ -34,11 +33,7 @@
 
                 document.DocumentElement.InnerXml = context.InnerXml;
 
-                var serializer = new XmlSerializer(typeof(ExternalLinksModel));
-
-                var links = document.ApplyXslTransform(this.externalLinksXslFileName).ToXmlReader();
-
-                var items = (ExternalLinksModel)serializer.Deserialize(links);
+                var items = document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
 
                 return items.ExternalLinks.AsQueryable();
             });
