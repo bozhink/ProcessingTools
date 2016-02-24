@@ -41,7 +41,6 @@
     <Compile Include="Contracts\IAbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\AbbreviationsHarvester.cs" />
     <Compile Include="Models\AbbreviationModel.cs" />
-    <Compile Include="Models\Contracts\IAbbreviationModel.cs" />
     <Compile Include="Models\ExternalLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
