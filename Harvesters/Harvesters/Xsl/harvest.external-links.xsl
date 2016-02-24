@@ -73,6 +73,9 @@
             <xsl:text>/</xsl:text>
           </xsl:when>
           <xsl:otherwise>
+            <xsl:if test="substring($result, 1, 1) != '/'">
+              <xsl:text>/</xsl:text>
+            </xsl:if>
             <xsl:value-of select="$result" />
           </xsl:otherwise>
         </xsl:choose>
