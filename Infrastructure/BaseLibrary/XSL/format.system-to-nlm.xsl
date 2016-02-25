@@ -44,10 +44,10 @@
       </italic>
     </bold>
   </xsl:template>
-  
+
   <xsl:template match="sec[title][@sec-type][normalize-space(@sec-type)='']/@sec-type">
     <xsl:attribute name="sec-type">
-      <xsl:value-of select="normalize-space(../title[position() = 1])"/>
+      <xsl:value-of select="normalize-space(../title[position() = 1])" />
     </xsl:attribute>
   </xsl:template>
 
@@ -88,6 +88,10 @@
       <xsl:apply-templates select="@*" />
       <xsl:value-of select="normalize-space(.)" />
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="app/title/xref">
+    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="abbrev/def/p">
