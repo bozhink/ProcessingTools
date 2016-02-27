@@ -58,6 +58,7 @@
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
+    <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
     <Compile Include="Net\Url.cs" />
     <Compile Include="Net\Connector.cs" />
