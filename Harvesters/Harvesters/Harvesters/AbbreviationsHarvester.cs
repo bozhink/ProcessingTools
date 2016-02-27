@@ -10,14 +10,15 @@
 
     using Contracts;
     using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Infrastructure.Transform;
     
     // TODO
-    public class AbbreviationsHarvester : GenericHarvesterFactory<AbbreviationModel>, IAbbreviationsHarvester
+    public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
     {
-        protected override Task<IQueryable<AbbreviationModel>> Run(XmlDocument document)
+        protected override Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
             string xqueryFilePath = ConfigurationManager.AppSettings["AbbreviationsXQueryFilePath"];
 
@@ -39,7 +40,7 @@
             // TODO
             return Task.Run(() =>
             {
-                return new HashSet<AbbreviationModel>().AsQueryable();
+                return new HashSet<IAbbreviationModel>().AsQueryable();
             });
         }
     }

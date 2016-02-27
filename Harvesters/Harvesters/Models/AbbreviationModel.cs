@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Harvesters.Models
 {
-    public class AbbreviationModel
+    using Contracts;
+
+    public class AbbreviationModel : IAbbreviationModel
     {
         public string Definition { get; set; }
 

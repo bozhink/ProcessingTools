@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts
 {
-    using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Harvesters.Common.Contracts;
 
-    public interface IAbbreviationsHarvester : IHarvester<AbbreviationModel>
+    public interface IAbbreviationsHarvester : IHarvester<IAbbreviationModel>
     {
     }
 }
