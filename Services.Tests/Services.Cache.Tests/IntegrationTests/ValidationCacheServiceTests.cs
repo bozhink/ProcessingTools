@@ -1,12 +1,11 @@
-﻿namespace ProcessingTools.Services.Cache.Tests.UnitTests
+﻿namespace ProcessingTools.Services.Cache.Tests.IntegrationTests
 {
     using System;
     using System.Linq;
 
-    using Fakes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
-    using Moq;
+    using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
     using ProcessingTools.Contracts.Types;
 
@@ -26,26 +25,24 @@
 
         private static readonly Random Random = new Random();
 
-        private IValidationCacheDataRepository mockedRepository;
-        private IValidationCacheDataRepository fakeRepository;
+        private IValidationCacheDataRepository repository;
 
         [TestInitialize]
         public void Initialize()
         {
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            this.mockedRepository = repositoryMock.Object;
-
-            this.fakeRepository = new FakeValidationCacheDataRepository();
+            this.repository = new ValidationCacheDataRepository();
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_WithValidDefaultConstructor_ShouldReturnValidObject()
         {
-            var service = new ValidationCacheService(this.mockedRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
         }
 
         [TestMethod]
+        [Ignore]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ValidationCacheService_WithNullInDefaultConstructor_ShouldThrow()
         {
@@ -53,11 +50,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddNewItemWithUndefinedStatus_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -88,11 +86,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddNewItemWithValidStatus_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -123,11 +122,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddNewItemWithInValidStatus_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -158,12 +158,13 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddNewMultipleItems_ShouldWork()
         {
             const int NumberOfItems = 100;
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -192,11 +193,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddItemDeleteItem_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -235,11 +237,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddItemDeleteItemById_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -278,11 +281,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddItemDeleteContext_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
@@ -318,11 +322,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_DeleteEmptyContext_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             service.Delete(key).Wait();
@@ -332,11 +337,12 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void ValidationCacheService_AddItemUpdateItem_ShouldWork()
         {
             string key = Guid.NewGuid().ToString();
 
-            var service = new ValidationCacheService(this.fakeRepository);
+            var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
             int initialNumberOfItems = service.All(key).Result.ToList().Count;
