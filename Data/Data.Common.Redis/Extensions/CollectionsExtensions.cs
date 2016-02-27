@@ -2,7 +2,10 @@
 {
     using System;
     using System.Linq;
+
+    using ProcessingTools.Data.Common.Models;
     using ProcessingTools.Data.Common.Models.Contracts;
+
     using ServiceStack.Redis;
 
     public static class CollectionsExtensions
@@ -13,7 +16,7 @@
 
             if (list.Any())
             {
-                maxId = list.Max(i => i.Deserialize<IEntity>().Id);
+                maxId = list.Max(i => i.Deserialize<Entity>().Id);
             }
             else
             {

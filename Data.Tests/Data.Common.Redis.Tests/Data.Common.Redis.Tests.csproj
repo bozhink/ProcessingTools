@@ -71,6 +71,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FakeRedisRepositoryTests.cs" />
+    <Compile Include="Fakes\Models\Contracts\ISimpleTimeRecordModel.cs" />
+    <Compile Include="Fakes\Models\SimpleTimeRecordModel.cs" />
+    <Compile Include="Fakes\RedisClientProvider.cs" />
+    <Compile Include="Fakes\Repositories\FakeMockedRedisRepository.cs" />
+    <Compile Include="Fakes\Repositories\FakeRedisRepository.cs" />
+    <Compile Include="Mocks\RedisClientProviderMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
