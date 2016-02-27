@@ -5,5 +5,7 @@
         string BaseAddress { get; set; }
 
         string Address { get; set; }
+
+        string FullAddress { get; }
     }
 }

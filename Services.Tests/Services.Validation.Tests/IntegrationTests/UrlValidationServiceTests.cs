@@ -1,19 +1,39 @@
-﻿namespace ProcessingTools.Services.Validation.Tests.UnitTests
+﻿namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
 {
+    using System;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Cache.Contracts;
 
     [TestClass]
     public class UrlValidationServiceTests
     {
+        private IValidationCacheService cacheService;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            var repository = new ValidationCacheDataRepository();
+            this.cacheService = new ValidationCacheService(repository);
+        }
+
         [TestMethod]
         public void UrlValidationService_WithDefaultConstructor_ShouldBuildValidObject()
         {
-            var service = new UrlValidationService();
+            var service = new UrlValidationService(this.cacheService);
             Assert.IsNotNull(service, "Service should not be null.");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UrlValidationService_WithNullConstructor_ShouldThrow()
+        {
+            var service = new UrlValidationService(null);
         }
 
         [TestMethod]
@@ -26,7 +46,7 @@
                 Address = $"https://www.google.com/search?q={++i}"
             }).ToList();
 
-            var service = new UrlValidationService();
+            var service = new UrlValidationService(this.cacheService);
             var result = service.Validate(items.ToArray()).Result.ToList();
 
             Assert.AreEqual(2, result.Count, "The number of returned items should be 2.");

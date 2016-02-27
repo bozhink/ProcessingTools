@@ -58,7 +58,7 @@
     <Compile Include="IntegrationTests\TaxaValidationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\TaxaValidationServiceTests.cs" />
-    <Compile Include="UnitTests\UrlValidationServiceTests.cs" />
+    <Compile Include="IntegrationTests\UrlValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Cache.Data.Models\Cache.Data.Models.csproj">

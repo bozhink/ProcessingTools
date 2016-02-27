@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
 {
+    using System;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,7 +30,7 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
             var service = new TaxaValidationService(null);

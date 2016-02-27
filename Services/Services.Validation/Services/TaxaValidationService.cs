@@ -38,13 +38,13 @@
 
             var itemsToCheck = this.ValidateItemsFromCache(items, result);
 
-            string[] scientificNames = itemsToCheck.ToArray<string>();
-
-            if (scientificNames.Length < 1)
+            if (itemsToCheck.Count() < 1)
             {
                 // All requested items are already cached and their status is Valid.
                 return result;
             }
+
+            string[] scientificNames = itemsToCheck.ToArray<string>();
 
             var resolver = new GlobalNamesResolverDataRequester();
             XmlDocument gnrXmlResponse = await resolver.SearchWithGlobalNamesResolverPost(scientificNames);
@@ -107,7 +107,7 @@
 
         private IEnumerable<string> ValidateItemsFromCache(ITaxonName[] items, ConcurrentQueue<IValidationServiceModel<ITaxonName>> validatedItems)
         {
-            var namesToCheck = new ConcurrentQueue<string>();
+            var itemsToCheck = new ConcurrentQueue<string>();
             items.Select(i => i.Name)
                 .AsParallel()
                 .ForAll(name =>
@@ -138,11 +138,11 @@
                     }
                     else
                     {
-                        namesToCheck.Enqueue(name);
+                        itemsToCheck.Enqueue(name);
                     }
                 });
 
-            return namesToCheck;
+            return itemsToCheck;
         }
 
         private void CacheObtainedData(TaxonNameValidationServiceModel validatedObject)
