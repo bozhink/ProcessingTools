@@ -71,6 +71,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Samples\article-with-abbrev.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataFiles\Samples\article-with-external-links.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

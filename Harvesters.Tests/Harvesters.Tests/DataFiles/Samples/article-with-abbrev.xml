@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<article article-type="research-article" dtd-version="3.0" xml:lang="en" xmlns:tp="http://www.plazi.org/taxpub" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <body>
+    <sec sec-type="Introduction">
+      <title>Introduction</title>
+      <p>
+        When material, such as the shells of troglobitic carychiids, is particularly limited and rare, contemporary non-destructive techniques for taxonomic assessment are essential. Applied in taxonomy, contemporary methods used primarily in medicine and industry can provide new opportunities for understanding global and local biodiversity. They can also act as catalysts for igniting dire conservation strategies regarding rare populations and for extracting valuable information sequestered in their organic forms. In this work, one of six known Korean carychiid shells has been examined using Nano-CT imaging to assess and compare the internal shell morphology of <italic>
+          <tp:taxon-name type="lower">
+            <tp:taxon-name-part taxon-name-part-type="genus">Koreozospeum</tp:taxon-name-part>
+            <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+          </tp:taxon-name>
+        </italic> sp. n. with its supposed closest relative, the European genus <italic>
+          <tp:taxon-name type="lower">
+            <tp:taxon-name-part taxon-name-part-type="genus">Zospeum</tp:taxon-name-part>
+          </tp:taxon-name>
+        </italic>. In addition, available shell fragments of <italic>
+          <tp:taxon-name type="lower">
+            <tp:taxon-name-part taxon-name-part-type="genus" full-name="Koreozospeum">K.</tp:taxon-name-part>
+            <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+          </tp:taxon-name>
+        </italic> sp. n. material were examined via <abbrev>
+          <def>
+            <p>scanning electron microscopy </p>
+          </def>(SEM)
+        </abbrev> coupled with <abbrev>
+          <def>
+            <p>energy-dispersive X-ray spectrometry </p>
+          </def>(EDX)
+        </abbrev> to investigate the internal morphology <!--PageBreak-->of the shell and to determine the elemental composition of the shell matrix. In addition, and as a secondary consideration, limited information is available regarding the specific geology and ecology of Nodong cave and adjacent, potentially contiguous caves (i.e. Gosu cave and Cheongong cave) of North Chungcheong Province. SEM-EDX elemental compositional analysis opens windows for inference about the subterranean ecology of <italic>
+          <tp:taxon-name type="lower">
+            <tp:taxon-name-part taxon-name-part-type="genus" full-name="Koreozospeum">K.</tp:taxon-name-part>
+            <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+          </tp:taxon-name>
+        </italic> sp. n. and likely the ecology of adjacent caves for future investigation.
+      </p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Material and methods</title>
+      <p>
+        Similar to conditions known for <italic>
+          <tp:taxon-name type="lower">
+            <tp:taxon-name-part taxon-name-part-type="genus">Zospeum</tp:taxon-name-part>
+          </tp:taxon-name>
+        </italic> (see <xref ref-type="bibr" rid="B11">Jochum et al. 2015</xref>), carychiid snails were collected live on muddy walls in January 2000 by J.-S. Lee in the dark zone of Nodong cave (<xref ref-type="bibr" rid="B19">Prozorova et al. 2010</xref>, <xref ref-type="bibr" rid="B20">2011</xref>).
+      </p>
+      <p>
+        One shell (Holotype NMBE 534197/1) available for examination outside of Vladivostok and Korea (99 lost, see below) and six paratypes located in Vladivostok were measured according to <xref ref-type="bibr" rid="B11">Jochum et al. (2015</xref>, fig. 1). The number of whorls was counted according to the method described in <xref ref-type="bibr" rid="B13">Kerney and Cameron (1979)</xref>. For the species description, shell measurements are expressed as: <abbrev content-type="measurements">
+          <def>
+            <p>shell height </p>
+          </def>(SH)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>shell width </p>
+          </def>(SW)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>height of the last whorl </p>
+          </def>(HLWH)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>peristome height </p>
+          </def>(PH)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>peristome diameter </p>
+          </def>(PD)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>spire Angle </p>
+          </def>(SA)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>number of whorls </p>
+          </def>(W)
+        </abbrev>; <abbrev content-type="measurements">
+          <def>
+            <p>widest diameter </p>
+          </def>(WD)
+        </abbrev> (distance from top to bottom). <abbrev content-type="measurements">
+          <def>
+            <p>Spire angle </p>
+          </def>(SA)
+        </abbrev> is given in degrees. Other measurements are in mm. Measurements of the holotype (NMBE 534197/1) were taken from images obtained using a Leica DFC420 digital camera attached to a Leica M165c stereo microscope, supported by Leica LAS V4.4 software. Measurements of the paratypes (ZIN RAS 1) were taken using the LOMO MBS-10 stereo microscope (Lytkarino, Ru.). Qualitative aspects of shell morphology including peristome shape; whorl profile (whorl convexity); protoconch and teleoconch sculpture; description of the lamella on the parieto-columellar region of the aperture; configuration of the columellar lamella and the independent configuration of the columella are documented.
+      </p>
+      <p>
+        Since the individuals reported by <xref ref-type="bibr" rid="B20">Prozorova et al. (2011)</xref>, which were housed in the Min Molluscan Research Institute in Seoul, South Korea have become regretfully lost to science, as much information as possible was extracted from the holotype (NMBE 534197/1), one paratype (IBSS FEB RAS 7787) and some fragments (paratype NMBE 534361/2) using Nano-CT imaging (whole shell), SEM and SEM-EDX energy-dispersive X-ray spectrometry (fragments). No individuals were preserved in ethanol, precluding molecular analyses and anatomical examination.
+      </p>
+      <sec sec-type="Image acquisition">
+        <title>Image acquisition</title>
+        <p>
+          SEM: <italic>
+            <tp:taxon-name type="lower">
+              <tp:taxon-name-part taxon-name-part-type="genus">Koreozospeum</tp:taxon-name-part>
+              <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+            </tp:taxon-name>
+          </italic> sp. n. (IBSS FEB RAS 7787 paratype) (now damaged) was coated with carbon and imaged (<xref ref-type="bibr" rid="B20">Prozorova et al. 2011</xref>) at the Centers of Collective Use in IBSS and the Institute of Marine Biology FEB RAS using the Zeiss EVO −40 scanning electron microscope (Jena, Germany) implementing the Variable Pressure (VP) mode.
+        </p>
+        <!--PageBreak-->
+        <p>
+          SEM-EDX: Morphological (SEM) and elemental composition (EDX) of <italic>
+            <tp:taxon-name type="lower">
+              <tp:taxon-name-part taxon-name-part-type="genus">Koreozospeum</tp:taxon-name-part>
+              <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+            </tp:taxon-name>
+          </italic> sp. n. paratype (NMBE 534361/2) fragments were assessed using the FEI-Aspex Explorer scanning electron microscope system (Hillsboro, OR, USA), implementing a BE detector for image generation. Non-coated shell material was placed on a cellulose membrane and mounted on a computer-controlled stage for scanning. Elemental composition was detected (i.e. each element shows a multiple-peak pattern in the spectrum) by using an emission current of 29 mA, an electron beam acceleration voltage of 20 kV under sample pressure of 0.15 Torr and a working distance of 22.9 mm at RJL Micro &amp; Analytic GmbH, Karlsdorf-Neuthard, Germany. In our analyses, some peaks overlap, whereby the elemental letters also overlap. Peak height represents the intensity of the element and this is proportional to the mass percentage present in the assessed shell region.
+        </p>
+        <p>
+          Micro-CT: <italic>
+            <tp:taxon-name type="lower">
+              <tp:taxon-name-part taxon-name-part-type="genus">Koreozospeum</tp:taxon-name-part>
+              <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+            </tp:taxon-name>
+          </italic> sp. n. (NMBE 534197/1) was imaged using a nano-computed tomography system (Nano-CT), manufactured and developed by Bruker-Micro-CT/SkyScan (SkyScan 1172, Kontich, Belgium). The video of <italic>
+            <tp:taxon-name type="lower">
+              <tp:taxon-name-part taxon-name-part-type="genus" full-name="Koreozospeum">K.</tp:taxon-name-part>
+              <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+            </tp:taxon-name>
+          </italic> sp. n. was created using a SkyScan 1172 scanner at RJL Micro &amp; Analytic GmbH, Karlsdorf-Neuthard, Germany. The scanner is equipped with a sealed micro focus X-ray source and a 11 Mpx CCD detector. The specimen was scanned with 4 µm voxel size in rotation steps of 0.6° at 59 kV tube voltage and 167 µA tube current. Reconstruction with cross sectional images was performed using a modified Feldkamp cone-beam reconstruction algorithm. Image resolution of the cross sectional images was 4 µm isotropic voxel side length with a grey scale resolution of 8 bit. The animated video was generated using a direct volume rendering method implemented in the software CTvox.
+        </p>
+        <p>
+          Digital images: <italic>
+            <tp:taxon-name type="lower">
+              <tp:taxon-name-part taxon-name-part-type="genus">Koreozospeum</tp:taxon-name-part>
+              <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+            </tp:taxon-name>
+          </italic> sp. n. (holotype NMBE 534197/1) and fragments of the ultimate whorl (paratype NMBE 534361/2) were photographed using a Leica DFC 425 multilayered photography system. All measurements are in mm.
+        </p>
+      </sec>
+      <sec sec-type="Abbreviations">
+        <title>Abbreviations</title>
+        <p>
+          <abbrev content-type="institution">
+            <bold>ANSP</bold>
+            <def>
+              <p> Academy of Natural Sciences, Philadelphia, Pa., USA</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>IBSS FEB RAS</bold>
+            <def>
+              <p> Institute of Biology and Soil Science, Far Eastern Branch of Russian Academy of Sciences, Vladivostok, Russia</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>MHNG</bold>
+            <def>
+              <p> Museum d’Histoire Naturelle de Genève, Geneva, Switzerland</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>MMRI</bold>
+            <def>
+              <p> Min Molluscan Research Institute, Seoul, South Korea</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>MNCN</bold>
+            <def>
+              <p> Museo Nacional de Ciencias Naturales, Madrid, Spain</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>NHMUK</bold>
+            <def>
+              <p> Natural History Museum, London, UK</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>NHMW</bold>
+            <def>
+              <p> Naturhistorisches Museum, Wien, Austria</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>NMBE</bold>
+            <def>
+              <p> Naturhistorisches Museum der Burgergemeinde Bern, Switzerland</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>ZIN RAS</bold>
+            <def>
+              <p> Zoological Institute of the Russian Academy of Sciences, St. Petersburg, Russia</p>
+            </def>
+          </abbrev>
+        </p>
+        <p>
+          <abbrev content-type="institution">
+            <bold>ZUPV/EHU</bold>
+            <def>
+              <p> Colección de Fauna Cavernícola (Departamento de Zoología) de la Universidad del País Vasco-Euskal Herriko Unibertsitatea, Bilbao, Spain</p>
+            </def>
+          </abbrev>
+        </p>
+        <!--PageBreak-->
+      </sec>
+    </sec>
+    <sec sec-type="Taxonomy">
+      <title>Taxonomy</title>
+      <sec sec-type="Family Carychiidae Jeffreys, 1830">
+        <title>
+          Family <tp:taxon-name type="higher" full-string="Carychiidae">
+            <tp:taxon-name-part taxon-name-part-type="family">Carychiidae</tp:taxon-name-part>
+          </tp:taxon-name> Jeffreys, 1830
+        </title>
+        <tp:taxon-treatment>
+          <tp:treatment-sec sec-type="Conservation status">
+            <title>Conservation status.</title>
+            <p>
+              A cursory search through the Internet indicates that the region harboring caves encompassed within the administrative boundaries of Danyang County is greatly threatened. Due to the abundance of limestone in the area, cement factories are big industries there. Of more immediate threat, however, is the frequent human traffic that the caves of Nodong, Gosu and Cheondong receive in light of their popularity as tourist attractions. To exacerbate concerns, a newly built stairway into the deepest, darkest sections of the cave has made Nodong more accessible (<xref ref-type="bibr" rid="B15">Lee 2012</xref>). Since <italic>
+                <tp:taxon-name type="lower">
+                  <tp:taxon-name-part taxon-name-part-type="genus" full-name="Koreozospeum">K.</tp:taxon-name-part>
+                  <tp:taxon-name-part taxon-name-part-type="species">nodongense</tp:taxon-name-part>
+                </tp:taxon-name>
+              </italic> sp. n. is known to live in only one locality and the area is potentially declining due to human encroachment, this species is <abbrev>
+                <def>
+                  <p>Critically Endangered </p>
+                </def>(CR)
+              </abbrev> under IUCN criteria (<xref ref-type="bibr" rid="B8">IUCN 2014</xref>).
+            </p>
+          </tp:treatment-sec>
+        </tp:taxon-treatment>
+      </sec>
+    </sec>
+  </body>
+</article>

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Infrastructure.Transform
 {
-    using System;
     using System.IO;
     using System.Xml;
     using Saxon.Api;
@@ -8,53 +7,38 @@
     public class XQueryTransform
     {
         private Processor processor;
-        private DocumentBuilder documentBuilder;
+        private XQueryCompiler compiler;
         private XQueryEvaluator evaluator;
 
         public XQueryTransform()
         {
             this.processor = new Processor();
-            this.documentBuilder = this.processor.NewDocumentBuilder();
+            this.compiler = processor.NewXQueryCompiler();
             this.evaluator = null;
         }
 
         public void Load(string query)
         {
-            this.evaluator = this.processor.NewXQueryCompiler().Compile(query).Load();
+            this.evaluator = this.compiler.Compile(query).Load();
         }
 
         public void Load(Stream queryStream)
         {
-            this.evaluator = this.processor.NewXQueryCompiler().Compile(queryStream).Load();
+            this.evaluator = this.compiler.Compile(queryStream).Load();
         }
 
-        public Stream Evaluate(XmlNode node)
+        public XmlDocument Evaluate(XmlNode node)
         {
-            this.evaluator.ContextItem = this.documentBuilder.Build(node);
-            return this.Evaluate();
-        }
+            var nodeReader = new XmlNodeReader(node);
+            var documentBuilder = this.processor.NewDocumentBuilder();
 
-        public Stream Evaluate(Uri uri)
-        {
-            this.evaluator.ContextItem = this.documentBuilder.Build(uri);
-            return this.Evaluate();
-        }
+            var document = documentBuilder.Build(nodeReader);
+            this.evaluator.ContextItem = document;
 
-        private Stream Evaluate()
-        {
-            if (this.evaluator == null)
-            {
-                throw new NullReferenceException("Evaluator is null. Execute Load() method first.");
-            }
+            var destination = new DomDestination();
+            this.evaluator.Run(destination);
 
-            var stream = new MemoryStream();
-
-            Serializer serializer = new Serializer();
-            serializer.SetOutputStream(stream);
-
-            this.evaluator.Run(serializer);
-
-            return stream;
+            return destination.XmlDocument;
         }
     }
 }

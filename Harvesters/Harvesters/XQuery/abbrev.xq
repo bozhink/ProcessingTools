@@ -7,25 +7,29 @@ as xs:string
   return $result
 };
 
-declare function local:clean-conent($string as xs:string)
+declare function local:clean-content($string as xs:string)
 as xs:string
 {
   let $result := replace(replace(replace(local:trim($string), '^\((.*?)\)$', '$1'), '^\[(.*?)\]$', '$1'), '^\{(.*?)\}$', '$1')
   return replace($result, '^[=,;: –—−\-]+|[=,;: –—−\-]+$', '')
 };
 
-<root>
+<abbreviations>
 {
-  for $a in document-node()//abbrev
-    return <abbrev>
+  for $a in //abbrev
+    return <abbreviation>
       {
-        for $val in local:clean-conent(string($a/node()[name(.)!='def']))
+        for $val in local:clean-content(string($a/node()[name(.)!='def']))
         return <value>{$val}</value>
       }
       {
-        for $def in local:clean-conent(string($a/def/p|$a/@xlink:title))
+        for $def in local:clean-content(string($a/def/p|$a/@xlink:title))
         return <definition>{data($def)}</definition>
       }
-    </abbrev>
+      {
+        for $type in $a/@content-type
+        return <content-type>{data($type)}</content-type>
+      }
+    </abbreviation>
 }
-</root>
+</abbreviations>

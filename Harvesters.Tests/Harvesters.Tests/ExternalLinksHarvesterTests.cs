@@ -26,6 +26,8 @@
 
             var harvester = new ExternalLinksHarvester();
 
+            Assert.IsNotNull(harvester, "Harvester should not be null.");
+
             var items = harvester.Harvest(document.DocumentElement).Result?.ToList();
 
             Assert.IsNotNull(items, "Items should not be null.");
