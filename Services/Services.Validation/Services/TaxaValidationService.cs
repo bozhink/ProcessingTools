@@ -33,10 +33,18 @@
 
         public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(params ITaxonName[] items)
         {
-            string[] scientificNames = items.Select(i => i.Name).ToArray<string>();
-
             var exceptions = new ConcurrentQueue<Exception>();
             var result = new ConcurrentQueue<IValidationServiceModel<ITaxonName>>();
+
+            var itemsToCheck = this.ValidateItemsFromCache(items, result);
+
+            string[] scientificNames = itemsToCheck.ToArray<string>();
+
+            if (scientificNames.Length < 1)
+            {
+                // All requested items are already cached and their status is Valid.
+                return result;
+            }
 
             var resolver = new GlobalNamesResolverDataRequester();
             XmlDocument gnrXmlResponse = await resolver.SearchWithGlobalNamesResolverPost(scientificNames);
@@ -79,14 +87,7 @@
                             validatedObject.ValidationStatus = ValidationStatus.Valid;
                         }
 
-                        // Cache obtained data.
-                        this.cacheService.Add(
-                            validatedObject.ValidatedObject.Name,
-                            new ValidationCacheServiceModel
-                            {
-                                Status = validatedObject.ValidationStatus,
-                                LastUpdate = DateTime.Now
-                            }).Wait();
+                        this.CacheObtainedData(validatedObject);
 
                         result.Enqueue(validatedObject);
                     }
@@ -102,6 +103,57 @@
             }
 
             return result;
+        }
+
+        private IEnumerable<string> ValidateItemsFromCache(ITaxonName[] items, ConcurrentQueue<IValidationServiceModel<ITaxonName>> validatedItems)
+        {
+            var namesToCheck = new ConcurrentQueue<string>();
+            items.Select(i => i.Name)
+                .AsParallel()
+                .ForAll(name =>
+                {
+                    var cachedItems = this.cacheService.All(name).Result.ToList();
+
+                    int numberOfValidMatches = cachedItems
+                        .Where(i => i.Status == ValidationStatus.Valid)
+                        .Count();
+
+                    int numberOfNonValidMatches = cachedItems
+                        .Where(i => i.Status != ValidationStatus.Valid)
+                        .Count();
+
+                    if (numberOfNonValidMatches == 0 && numberOfValidMatches > 0)
+                    {
+                        var validatedObject = new TaxonNameValidationServiceModel
+                        {
+                            ValidatedObject = new TaxonName
+                            {
+                                Name = name
+                            },
+                            ValidationException = null,
+                            ValidationStatus = ValidationStatus.Valid
+                        };
+
+                        validatedItems.Enqueue(validatedObject);
+                    }
+                    else
+                    {
+                        namesToCheck.Enqueue(name);
+                    }
+                });
+
+            return namesToCheck;
+        }
+
+        private void CacheObtainedData(TaxonNameValidationServiceModel validatedObject)
+        {
+            this.cacheService.Add(
+                validatedObject.ValidatedObject.Name,
+                new ValidationCacheServiceModel
+                {
+                    Status = validatedObject.ValidationStatus,
+                    LastUpdate = DateTime.Now
+                }).Wait();
         }
     }
 }
