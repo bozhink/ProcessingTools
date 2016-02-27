@@ -31,7 +31,7 @@
             this.cacheService = cacheService;
         }
 
-        public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(IEnumerable<ITaxonName> items)
+        public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(params ITaxonName[] items)
         {
             string[] scientificNames = items.Select(i => i.Name).ToArray<string>();
 

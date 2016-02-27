@@ -17,7 +17,7 @@
 
     public class UrlValidationService : IUrlValidationService
     {
-        public Task<IEnumerable<IValidationServiceModel<IUrl>>> Validate(IEnumerable<IUrl> items)
+        public Task<IEnumerable<IValidationServiceModel<IUrl>>> Validate(params IUrl[] items)
         {
             return Task.Run(() =>
             {

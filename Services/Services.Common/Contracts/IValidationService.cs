@@ -7,6 +7,6 @@
 
     public interface IValidationService<T>
     {
-        Task<IEnumerable<IValidationServiceModel<T>>> Validate(IEnumerable<T> items);
+        Task<IEnumerable<IValidationServiceModel<T>>> Validate(params T[] items);
     }
 }

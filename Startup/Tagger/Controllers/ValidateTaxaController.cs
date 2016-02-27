@@ -36,7 +36,8 @@
                 .Select(s => new TaxonName
                 {
                     Name = s
-                });
+                })
+                .ToArray();
 
             var result = await this.service.Validate(scientificNames);
 

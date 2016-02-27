@@ -27,7 +27,7 @@
             }).ToList();
 
             var service = new UrlValidationService();
-            var result = service.Validate(items).Result.ToList();
+            var result = service.Validate(items.ToArray()).Result.ToList();
 
             Assert.AreEqual(2, result.Count, "The number of returned items should be 2.");
 
