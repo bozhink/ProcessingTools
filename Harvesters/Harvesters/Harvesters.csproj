@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Xsl\harvest.external-links.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
