@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters
 {
     using System.Configuration;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
@@ -12,7 +11,6 @@
 
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Infrastructure.Extensions;
-    using ProcessingTools.Infrastructure.Transform;
 
     public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
     {
@@ -25,17 +23,11 @@
             this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePath];
         }
 
-        protected override Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
+        protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            return Task.Run(() =>
-               {
-                   var transformer = new XQueryTransform();
-                   transformer.Load(new FileStream(this.abbreviationsXQueryFileName, FileMode.Open));
+            var items = await document.DeserializeXQueryTransformOutput<AbbreviationsModel>(this.abbreviationsXQueryFileName);
 
-                   var result = transformer.Evaluate(document.DocumentElement);
-                   var items = result.Deserialize<AbbreviationsModel>();
-                   return items.Abbreviations.AsQueryable<IAbbreviationModel>();
-               });
+            return items.Abbreviations.AsQueryable<IAbbreviationModel>();
         }
     }
 }
