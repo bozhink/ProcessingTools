@@ -13,7 +13,7 @@
         public XQueryTransform()
         {
             this.processor = new Processor();
-            this.compiler = processor.NewXQueryCompiler();
+            this.compiler = this.processor.NewXQueryCompiler();
             this.evaluator = null;
         }
 

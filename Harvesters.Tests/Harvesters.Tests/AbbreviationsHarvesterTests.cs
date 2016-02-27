@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Tests
 {
+    using System;
     using System.Configuration;
     using System.Linq;
     using System.Xml;
@@ -31,6 +32,10 @@
             var items = harvester.Harvest(document.DocumentElement).Result?.ToList();
 
             Assert.IsNotNull(items, "Items should not be null.");
+
+            items.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));
+
+            Assert.AreEqual(22, items.Count, "Number of abbreviations should be 22.");
         }
     }
 }

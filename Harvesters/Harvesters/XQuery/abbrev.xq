@@ -17,7 +17,7 @@ as xs:string
 <abbreviations>
 {
   for $a in //abbrev
-    return <abbreviation>
+    return <abbreviation content-type="{data($a/@content-type)}">
       {
         for $val in local:clean-content(string($a/node()[name(.)!='def']))
         return <value>{$val}</value>
@@ -25,10 +25,6 @@ as xs:string
       {
         for $def in local:clean-content(string($a/def/p|$a/@xlink:title))
         return <definition>{data($def)}</definition>
-      }
-      {
-        for $type in $a/@content-type
-        return <content-type>{data($type)}</content-type>
       }
     </abbreviation>
 }

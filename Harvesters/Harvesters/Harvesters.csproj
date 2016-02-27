@@ -43,6 +43,7 @@
     <Compile Include="Harvesters\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinksHarvester.cs" />
     <Compile Include="Models\AbbreviationModel.cs" />
+    <Compile Include="Models\AbbreviationsModel.cs" />
     <Compile Include="Models\Contracts\IAbbreviationModel.cs" />
     <Compile Include="Models\Contracts\IExternalLinkModel.cs" />
     <Compile Include="Models\ExternalLinkModel.cs" />

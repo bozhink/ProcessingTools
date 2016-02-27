@@ -1,7 +1,5 @@
 ﻿namespace ProcessingTools.Harvesters
 {
-    using System;
-    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Linq;
@@ -13,27 +11,31 @@
     using Models.Contracts;
 
     using ProcessingTools.Harvesters.Common.Factories;
+    using ProcessingTools.Infrastructure.Extensions;
     using ProcessingTools.Infrastructure.Transform;
-    
-    // TODO
+
     public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
     {
+        private const string AbbreviationsXQueryFilePath = "AbbreviationsXQueryFilePath";
+
+        private string abbreviationsXQueryFileName;
+
+        public AbbreviationsHarvester()
+        {
+            this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePath];
+        }
+
         protected override Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            string xqueryFilePath = ConfigurationManager.AppSettings["AbbreviationsXQueryFilePath"];
-
-            var transformer = new XQueryTransform();
-            transformer.Load(new FileStream(xqueryFilePath, FileMode.Open));
-
-            var result = transformer.Evaluate(document.DocumentElement);
-
-            Console.WriteLine(result.OuterXml);
-
-            // TODO
             return Task.Run(() =>
-            {
-                return new HashSet<IAbbreviationModel>().AsQueryable();
-            });
+               {
+                   var transformer = new XQueryTransform();
+                   transformer.Load(new FileStream(this.abbreviationsXQueryFileName, FileMode.Open));
+
+                   var result = transformer.Evaluate(document.DocumentElement);
+                   var items = result.Deserialize<AbbreviationsModel>();
+                   return items.Abbreviations.AsQueryable<IAbbreviationModel>();
+               });
         }
     }
 }
