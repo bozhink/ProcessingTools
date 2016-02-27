@@ -8,6 +8,7 @@
     using Contracts;
     using Models;
     using Models.Contracts;
+
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Infrastructure.Extensions;
 
@@ -22,14 +23,11 @@
             this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePath];
         }
 
-        protected override Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
+        protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
         {
-            return Task.Run(() =>
-            {
-                var items = document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
+            var items = await document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
 
-                return items.ExternalLinks.AsQueryable<IExternalLinkModel>();
-            });
+            return items.ExternalLinks.AsQueryable<IExternalLinkModel>();
         }
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.IO;
+    using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
     using System.Xml.Xsl;
@@ -173,31 +174,7 @@
             return result;
         }
 
-        public static T DeserializeXslTransformOutput<T>(this string xml, string xslFileName)
-            where T : class
-        {
-            if (string.IsNullOrWhiteSpace(xml))
-            {
-                throw new ArgumentNullException("xml");
-            }
-
-            try
-            {
-                T result = null;
-                using (XmlReader reader = xml.ToXmlReader())
-                {
-                    result = reader.DeserializeXslTransformOutput<T>(xslFileName);
-                }
-
-                return result;
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public static T DeserializeXslTransformOutput<T>(this XmlDocument document, string xslFileName)
+        public static async Task<T> DeserializeXslTransformOutput<T>(this XmlDocument document, string xslFileName)
             where T : class
         {
             if (document == null)
@@ -205,10 +182,27 @@
                 throw new ArgumentNullException("document");
             }
 
-            return document.OuterXml.DeserializeXslTransformOutput<T>(xslFileName);
+            return await document.OuterXml.DeserializeXslTransformOutput<T>(xslFileName);
         }
 
-        public static T DeserializeXslTransformOutput<T>(this XmlReader reader, string xslFileName)
+        public static async Task<T> DeserializeXslTransformOutput<T>(this string xml, string xslFileName)
+            where T : class
+        {
+            if (string.IsNullOrWhiteSpace(xml))
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            T result = null;
+            using (XmlReader reader = xml.ToXmlReader())
+            {
+                result = await reader.DeserializeXslTransformOutput<T>(xslFileName);
+            }
+
+            return result;
+        }
+
+        public static async Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, string xslFileName)
             where T : class
         {
             if (reader == null)
@@ -232,7 +226,7 @@
                         return transform;
                     });
 
-                return reader.DeserializeXslTransformOutput<T>(xslTransform);
+                return await reader.DeserializeXslTransformOutput<T>(xslTransform);
             }
             catch (IOException e)
             {
@@ -252,7 +246,7 @@
             }
         }
 
-        public static T DeserializeXslTransformOutput<T>(this XmlReader reader, XslCompiledTransform xslTransform)
+        public static Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, XslCompiledTransform xslTransform)
             where T : class
         {
             if (reader == null)
@@ -265,28 +259,31 @@
                 throw new ArgumentNullException("xslTransform");
             }
 
-            T result = null;
-            using (MemoryStream memoryStream = new MemoryStream())
+            return Task.Run(() =>
             {
-                try
+                T result = null;
+                using (MemoryStream memoryStream = new MemoryStream())
                 {
-                    xslTransform.Transform(reader, null, memoryStream);
-                    memoryStream.Position = 0;
+                    try
+                    {
+                        xslTransform.Transform(reader, null, memoryStream);
+                        memoryStream.Position = 0;
 
-                    var serializer = new XmlSerializer(typeof(T));
-                    result = (T)serializer.Deserialize(memoryStream);
+                        var serializer = new XmlSerializer(typeof(T));
+                        result = (T)serializer.Deserialize(memoryStream);
+                    }
+                    catch (XsltException e)
+                    {
+                        throw new XsltException("Invalid XSL file.", e);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("General exception.", e);
+                    }
                 }
-                catch (XsltException e)
-                {
-                    throw new XsltException("Invalid XSL file.", e);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("General exception.", e);
-                }
-            }
 
-            return result;
+                return result;
+            });
         }
     }
 }
