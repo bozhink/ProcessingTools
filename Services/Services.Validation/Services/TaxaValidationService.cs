@@ -33,10 +33,30 @@
 
         public async Task<IEnumerable<IValidationServiceModel<ITaxonName>>> Validate(params ITaxonName[] items)
         {
-            var exceptions = new ConcurrentQueue<Exception>();
+            if (items == null)
+            {
+                throw new ArgumentNullException("items", "Items to validate should not be null.");
+            }
+
+            if (items.Length < 1)
+            {
+                throw new ApplicationException("Number of items to validate should be greater tham zero.");
+            }
+
             var result = new ConcurrentQueue<IValidationServiceModel<ITaxonName>>();
 
-            var itemsToCheck = this.ValidateItemsFromCache(items, result);
+            bool cacheServiceIsUsable;
+            string[] itemsToCheck;
+            try
+            {
+                itemsToCheck = this.ValidateItemsFromCache(items, result);
+                cacheServiceIsUsable = true;
+            }
+            catch
+            {
+                itemsToCheck = items.Select(i => i.Name).ToArray();
+                cacheServiceIsUsable = false;
+            }
 
             if (itemsToCheck.Count() < 1)
             {
@@ -44,10 +64,17 @@
                 return result;
             }
 
-            string[] scientificNames = itemsToCheck.ToArray<string>();
+            await Validate(result, cacheServiceIsUsable, itemsToCheck);
+
+            return result;
+        }
+
+        private async Task Validate(ConcurrentQueue<IValidationServiceModel<ITaxonName>> result, bool cacheServiceIsUsable, string[] itemsToCheck)
+        {
+            var exceptions = new ConcurrentQueue<Exception>();
 
             var resolver = new GlobalNamesResolverDataRequester();
-            XmlDocument gnrXmlResponse = await resolver.SearchWithGlobalNamesResolverPost(scientificNames);
+            XmlDocument gnrXmlResponse = await resolver.SearchWithGlobalNamesResolverPost(itemsToCheck);
 
             gnrXmlResponse.SelectNodes("//datum")
                 .Cast<XmlNode>()
@@ -87,7 +114,10 @@
                             validatedObject.ValidationStatus = ValidationStatus.Valid;
                         }
 
-                        this.CacheObtainedData(validatedObject);
+                        if (cacheServiceIsUsable)
+                        {
+                            this.CacheObtainedData(validatedObject);
+                        }
 
                         result.Enqueue(validatedObject);
                     }
@@ -101,11 +131,9 @@
             {
                 throw new AggregateException(exceptions);
             }
-
-            return result;
         }
 
-        private IEnumerable<string> ValidateItemsFromCache(ITaxonName[] items, ConcurrentQueue<IValidationServiceModel<ITaxonName>> validatedItems)
+        private string[] ValidateItemsFromCache(ITaxonName[] items, ConcurrentQueue<IValidationServiceModel<ITaxonName>> validatedItems)
         {
             var itemsToCheck = new ConcurrentQueue<string>();
             items.Select(i => i.Name)
@@ -142,7 +170,7 @@
                     }
                 });
 
-            return itemsToCheck;
+            return itemsToCheck.ToArray<string>();
         }
 
         private void CacheObtainedData(TaxonNameValidationServiceModel validatedObject)

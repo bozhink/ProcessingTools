@@ -39,6 +39,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ITaxaValidationService.cs" />
     <Compile Include="Contracts\IUrlValidationService.cs" />
+    <Compile Include="Factories\ValidationServiceFactory.cs" />
     <Compile Include="Models\Contracts\ITaxonName.cs" />
     <Compile Include="Models\Contracts\ITaxonNameValidationServiceModel.cs" />
     <Compile Include="Models\Contracts\IUrl.cs" />

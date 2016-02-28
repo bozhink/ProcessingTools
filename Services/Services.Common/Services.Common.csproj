@@ -51,6 +51,7 @@
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
     <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
     <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
+    <Compile Include="Models\ValidationServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
