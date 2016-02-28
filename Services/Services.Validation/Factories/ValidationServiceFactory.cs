@@ -8,6 +8,7 @@
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
+    using ProcessingTools.Services.Cache.Models;
     using ProcessingTools.Services.Common.Contracts;
     using ProcessingTools.Services.Common.Models;
     using ProcessingTools.Services.Common.Models.Contracts;
@@ -35,6 +36,13 @@
         protected abstract Func<TValidatedObject, TItemToCheck> GetItemToCheck { get; }
 
         protected abstract Func<TItemToCheck, TValidatedObject> GetValidatedObject { get; }
+
+        protected Func<TItemToCheck, IValidationServiceModel<TValidatedObject>> GetValidationServiceModel => item => new ValidationServiceModel<TValidatedObject>
+        {
+            ValidatedObject = this.GetValidatedObject.Invoke(item),
+            ValidationException = null,
+            ValidationStatus = ValidationStatus.Valid
+        };
 
         public async Task<IEnumerable<IValidationServiceModel<TValidatedObject>>> Validate(params TValidatedObject[] items)
         {
@@ -73,6 +81,21 @@
             return result;
         }
 
+        protected async Task CacheObtainedData(IValidationServiceModel<TValidatedObject> validatedObject)
+        {
+            if (this.CacheServiceIsUsable)
+            {
+                string context = this.GetContextKey.Invoke(this.GetItemToCheck.Invoke(validatedObject.ValidatedObject));
+                await this.CacheService.Add(
+                    context,
+                    new ValidationCacheServiceModel
+                    {
+                        Status = validatedObject.ValidationStatus,
+                        LastUpdate = DateTime.Now
+                    });
+            }
+        }
+
         protected abstract Task Validate(TItemToCheck[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> output);
 
         private Task<TItemToCheck[]> ValidateItemsFromCache(TValidatedObject[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> validatedItems)
@@ -97,13 +120,7 @@
 
                         if (numberOfNonValidMatches == 0 && numberOfValidMatches > 0)
                         {
-                            var validatedObject = new ValidationServiceModel<TValidatedObject>
-                            {
-                                ValidatedObject = this.GetValidatedObject.Invoke(item),
-                                ValidationException = null,
-                                ValidationStatus = ValidationStatus.Valid
-                            };
-
+                            var validatedObject = this.GetValidationServiceModel.Invoke(item);
                             validatedItems.Enqueue(validatedObject);
                         }
                         else
