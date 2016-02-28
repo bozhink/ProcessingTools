@@ -2,50 +2,38 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
 
     using Contracts;
-    using Models;
+    using Factories;
     using Models.Contracts;
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
-    using ProcessingTools.Services.Cache.Models;
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class UrlValidationService : IUrlValidationService
+    public class UrlValidationService : ValidationServiceFactory<IUrl, IUrl>, IUrlValidationService
     {
-        private IValidationCacheService cacheService;
-
         public UrlValidationService(IValidationCacheService cacheService)
+            : base(cacheService)
         {
-            if (cacheService == null)
-            {
-                throw new ArgumentNullException("cacheService");
-            }
-
-            this.cacheService = cacheService;
         }
 
-        public Task<IEnumerable<IValidationServiceModel<IUrl>>> Validate(params IUrl[] items)
+        protected override Func<IUrl, string> GetContextKey => item => item.FullAddress;
+
+        protected override Func<IUrl, IUrl> GetItemToCheck => item => item;
+
+        protected override Func<IUrl, IUrl> GetValidatedObject => item => item;
+
+        protected override Task Validate(IUrl[] items, ConcurrentQueue<IValidationServiceModel<IUrl>> output)
         {
             return Task.Run(() =>
             {
-                var result = new ConcurrentQueue<IValidationServiceModel<IUrl>>();
-
-                var itemsToCheck = this.ValidateItemsFromCache(items, result);
-
-                if (itemsToCheck.Count() < 1)
-                {
-                    // All requested items are already cached and their status is Valid.
-                    return result;
-                }
-
-                itemsToCheck.GroupBy(i => i.BaseAddress)
+                var exceptions = new ConcurrentQueue<Exception>();
+                items.GroupBy(i => i.BaseAddress)
                     .AsParallel()
                     .ForAll(group =>
                     {
@@ -53,24 +41,29 @@
                         // for equal - sequental.
                         foreach (var item in group)
                         {
-                            var validationResult = MakeRequest(item).Result;
-                            this.CacheObtainedData(validationResult);
-                            result.Enqueue(validationResult);
+                            try
+                            {
+                                var validationResult = this.MakeRequest(item).Result;
+                                this.CacheObtainedData(validationResult).Wait();
+                                output.Enqueue(validationResult);
+                            }
+                            catch (Exception e)
+                            {
+                                exceptions.Enqueue(e);
+                            }
                         }
                     });
 
-                return result.AsEnumerable();
+                if (exceptions.Count > 0)
+                {
+                    throw new AggregateException(exceptions);
+                }
             });
         }
 
-        private static async Task<UrlValidationServiceModel> MakeRequest(IUrl item)
+        private async Task<IValidationServiceModel<IUrl>> MakeRequest(IUrl item)
         {
-            var validationResult = new UrlValidationServiceModel
-            {
-                ValidatedObject = item,
-                ValidationStatus = ValidationStatus.Undefined,
-                ValidationException = null
-            };
+            var validationResult = this.GetValidationServiceModel(item);
 
             try
             {
@@ -111,57 +104,6 @@
             }
 
             return validationResult;
-        }
-
-        private IEnumerable<IUrl> ValidateItemsFromCache(IUrl[] items, ConcurrentQueue<IValidationServiceModel<IUrl>> validatedItems)
-        {
-            var itemsToCheck = new ConcurrentQueue<IUrl>();
-            items.AsParallel()
-                .ForAll(item =>
-                {
-                    var cachedItems = this.cacheService.All(item.FullAddress).Result.ToList();
-
-                    int numberOfValidMatches = cachedItems
-                        .Where(i => i.Status == ValidationStatus.Valid)
-                        .Count();
-
-                    int numberOfNonValidMatches = cachedItems
-                        .Where(i => i.Status != ValidationStatus.Valid)
-                        .Count();
-
-                    if (numberOfNonValidMatches == 0 && numberOfValidMatches > 0)
-                    {
-                        var validatedObject = new UrlValidationServiceModel
-                        {
-                            ValidatedObject = new UrlModel
-                            {
-                                Address = item.Address,
-                                BaseAddress = item.BaseAddress
-                            },
-                            ValidationException = null,
-                            ValidationStatus = ValidationStatus.Valid
-                        };
-
-                        validatedItems.Enqueue(validatedObject);
-                    }
-                    else
-                    {
-                        itemsToCheck.Enqueue(item);
-                    }
-                });
-
-            return itemsToCheck;
-        }
-
-        private void CacheObtainedData(UrlValidationServiceModel validatedObject)
-        {
-            this.cacheService.Add(
-                validatedObject.ValidatedObject.FullAddress,
-                new ValidationCacheServiceModel
-                {
-                    Status = validatedObject.ValidationStatus,
-                    LastUpdate = DateTime.Now
-                }).Wait();
         }
     }
 }
