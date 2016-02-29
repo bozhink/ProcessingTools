@@ -123,5 +123,13 @@
                     });
             });
         }
+
+        public Task<int> SaveChanges(string context)
+        {
+            return Task.Run(() =>
+            {
+                return 0;
+            });
+        }
     }
 }

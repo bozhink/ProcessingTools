@@ -67,5 +67,12 @@
         /// <param name="entity">TEntity object to be deleted in the context.</param>
         /// <returns>Task to be awaited.</returns>
         Task Delete(TContext context, TEntity entity);
+
+        /// <summary>
+        /// Save changed made to context’s items.
+        /// </summary>
+        /// <param name="context">TContext object to be queried.</param>
+        /// <returns>Status code.</returns>
+        Task<int> SaveChanges(TContext context);
     }
 }
