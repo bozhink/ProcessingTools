@@ -98,7 +98,7 @@
 
         protected abstract Task Validate(TItemToCheck[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> output);
 
-        private Task<TItemToCheck[]> ValidateItemsFromCache(TValidatedObject[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> validatedItems)
+        private Task<TItemToCheck[]> ValidateItemsFromCache(TValidatedObject[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> output)
         {
             return Task.Run(() =>
             {
@@ -108,23 +108,30 @@
                     .ForAll(item =>
                     {
                         string context = this.GetContextKey.Invoke(item);
-                        var cachedItems = this.cacheService.All(context).Result.ToList();
-
-                        int numberOfValidMatches = cachedItems
-                            .Where(i => i.Status == ValidationStatus.Valid)
-                            .Count();
-
-                        int numberOfNonValidMatches = cachedItems
-                            .Where(i => i.Status != ValidationStatus.Valid)
-                            .Count();
-
-                        if (numberOfNonValidMatches == 0 && numberOfValidMatches > 0)
+                        if (string.IsNullOrWhiteSpace(context))
                         {
-                            var validatedObject = this.GetValidationServiceModel.Invoke(item);
-                            validatedItems.Enqueue(validatedObject);
+                            throw new ApplicationException("Cache context should be valid string.");
                         }
-                        else
+
+                        try
                         {
+                            var lastCachedItem = this.cacheService.All(context).Result
+                                .OrderByDescending(i => i.LastUpdate)
+                                .FirstOrDefault();
+
+                            if (lastCachedItem?.Status == ValidationStatus.Valid)
+                            {
+                                var validatedObject = this.GetValidationServiceModel.Invoke(item);
+                                output.Enqueue(validatedObject);
+                            }
+                            else
+                            {
+                                itemsToCheck.Enqueue(item);
+                            }
+                        }
+                        catch (ArgumentNullException)
+                        {
+                            // OrderBy does not work.
                             itemsToCheck.Enqueue(item);
                         }
                     });
