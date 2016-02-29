@@ -9,7 +9,7 @@
         where TDbModel : IEntity
         where TServiceModel : ISimpleServiceModel
     {
-        public SimpleCacheServiceFactory(ISimpleGenericRepository<TDbModel> repository)
+        public SimpleCacheServiceFactory(ISimpleGenericContextRepository<TDbModel> repository)
             : base(repository)
         {
         }

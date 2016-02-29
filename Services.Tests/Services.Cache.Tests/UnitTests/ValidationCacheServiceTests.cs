@@ -51,27 +51,6 @@
             }
         }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                try
-                {
-                    this.mockedRepository.Dispose();
-                    this.fakeRepository.Dispose();
-                }
-                catch
-                {
-                }
-            }
-        }
-
         [TestMethod]
         public void ValidationCacheService_WithValidDefaultConstructor_ShouldReturnValidObject()
         {
@@ -410,6 +389,27 @@
             Assert.AreEqual(itemAfterAddition.Id, itemAfterUpdate.Id, IdShouldBeUnchagedMessage);
             Assert.AreEqual(ValidationStatus.Invalid, itemAfterUpdate.Status, StatusShouldMatchMessage);
             Assert.AreEqual(content, itemAfterUpdate.Content, ContentShouldMatchMessage);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                try
+                {
+                    this.mockedRepository.Dispose();
+                    this.fakeRepository.Dispose();
+                }
+                catch
+                {
+                }
+            }
         }
     }
 }

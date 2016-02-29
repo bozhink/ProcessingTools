@@ -2,7 +2,7 @@
 {
     using Models.Contracts;
 
-    public interface ISimpleGenericRepository<TEntity> : IGenericContextRepository<string, int, TEntity>
+    public interface ISimpleGenericContextRepository<TEntity> : IGenericContextRepository<string, int, TEntity>
         where TEntity : IEntity
     {
     }
