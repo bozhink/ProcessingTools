@@ -4,76 +4,20 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Models.Contracts;
-
-    /// <summary>
-    /// Generic repository.
-    /// </summary>
-    /// <typeparam name="TContext">Type of the context object.</typeparam>
-    /// <typeparam name="TId">Type of the Id property of the entity model.</typeparam>
-    /// <typeparam name="TEntity">Type of the entity model.</typeparam>
-    public interface IGenericRepository<TContext, TId, TEntity> : IDisposable
-        where TEntity : IGenericEntity<TId>
+    public interface IGenericRepository<T> : IDisposable
     {
-        /// <summary>
-        /// Gets all entities in the context.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <returns>All entities in the context.</returns>
-        Task<IQueryable<TEntity>> All(TContext context);
+        Task<IQueryable<T>> All();
 
-        /// <summary>
-        /// Gets single entity by its Id.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <param name="id">Value of the Id property of the required entity.</param>
-        /// <returns>Single entity with Id property equal to id.</returns>
-        Task<TEntity> Get(TContext context, TId id);
+        Task<T> GetById(object id);
 
-        /// <summary>
-        /// Adds an entity in the context.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <param name="entity">TEntity object to be added to the context.</param>
-        /// <returns>Task to be awaited.</returns>
-        Task Add(TContext context, TEntity entity);
+        Task Add(T entity);
 
-        /// <summary>
-        /// Updates an entity in the context.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <param name="entity">TEntity object to be updated in the context.</param>
-        /// <returns>Task to be awaited.</returns>
-        Task Update(TContext context, TEntity entity);
+        Task Update(T entity);
 
-        /// <summary>
-        /// Deletes the context or all entities in it.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <returns>Task to be awaited.</returns>
-        Task Delete(TContext context);
+        Task Delete(T entity);
 
-        /// <summary>
-        /// Deletes an entity by its Id in the context.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <param name="id">Value of the Id property of the required entity.</param>
-        /// <returns>Task to be awaited.</returns>
-        Task Delete(TContext context, TId id);
+        Task Delete(object id);
 
-        /// <summary>
-        /// Deletes an entity in the context.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <param name="entity">TEntity object to be deleted in the context.</param>
-        /// <returns>Task to be awaited.</returns>
-        Task Delete(TContext context, TEntity entity);
-
-        /// <summary>
-        /// Save changed made to context’s items.
-        /// </summary>
-        /// <param name="context">TContext object to be queried.</param>
-        /// <returns>Status code.</returns>
-        Task<int> SaveChanges(TContext context);
+        Task<int> SaveChanges();
     }
 }

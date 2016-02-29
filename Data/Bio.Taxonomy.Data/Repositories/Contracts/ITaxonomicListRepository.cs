@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface ITaxonomicListRepository<T> : IRepository<T>
+    public interface ITaxonomicListRepository<T> : IGenericRepository<T>
     {
     }
 }

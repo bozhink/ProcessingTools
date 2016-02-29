@@ -18,9 +18,9 @@
     {
         private readonly IMapper mapper;
 
-        private IGenericRepository<TContext, TId, TDbModel> repository;
+        private IGenericContextRepository<TContext, TId, TDbModel> repository;
 
-        public GenericCacheServiceFactory(IGenericRepository<TContext, TId, TDbModel> repository)
+        public GenericCacheServiceFactory(IGenericContextRepository<TContext, TId, TDbModel> repository)
         {
             if (repository == null)
             {
