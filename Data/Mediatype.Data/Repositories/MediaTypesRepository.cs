@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.MediaType.Data.Repositories
 {
-    using ProcessingTools.Data.Common.Repositories.Factories;
+    using ProcessingTools.Data.Common.Repositories;
     using ProcessingTools.MediaType.Data.Contracts;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
 

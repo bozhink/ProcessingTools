@@ -3,8 +3,8 @@
     using System.Collections.Concurrent;
 
     using ProcessingTools.Data.Common.Contracts;
+    using ProcessingTools.Data.Common.Repositories;
     using ProcessingTools.Data.Common.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Factories;
     using ProcessingTools.Data.Common.UnitOfWork.Contracts;
 
     public class EfUnitOfWork<IContext> : IEfUnitOfWork

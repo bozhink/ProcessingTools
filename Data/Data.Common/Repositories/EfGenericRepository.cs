@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Factories
+﻿namespace ProcessingTools.Data.Common.Repositories
 {
     using System;
     using System.Data.Entity;

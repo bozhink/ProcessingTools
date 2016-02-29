@@ -52,7 +52,7 @@
     <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\ISimpleGenericContextRepository.cs" />
-    <Compile Include="Repositories\Factories\EfGenericRepository.cs" />
+    <Compile Include="Repositories\EfGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\IEfRepository.cs" />
     <Compile Include="Seed\DbContextSeeder.cs" />
     <Compile Include="UnitOfWork\Contracts\IEfUnitOfWork.cs" />

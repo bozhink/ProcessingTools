@@ -51,7 +51,7 @@
     <Compile Include="Contracts\IElasticClientProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IElasticsearchGenericRepository.cs" />
-    <Compile Include="Repositories\Factories\ElasticsearchGenericRepository.cs" />
+    <Compile Include="Repositories\ElasticsearchGenericRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
