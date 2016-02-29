@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Fakes.Repositories
 {
     using Models;
-    using ProcessingTools.Data.Common.Redis.Repositories.Factories;
+    using ProcessingTools.Data.Common.Redis.Repositories;
 
-    public class FakeRedisRepository : RedisRepositoryFactory<SimpleTimeRecordModel>
+    public class FakeRedisRepository : RedisGenericRepository<SimpleTimeRecordModel>
     {
         public FakeRedisRepository()
             : base(new RedisClientProvider())

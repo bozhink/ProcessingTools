@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Repositories.Factories
+﻿namespace ProcessingTools.Data.Common.Redis.Repositories
 {
     using System;
     using System.Linq;
@@ -10,13 +10,13 @@
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;
 
-    public abstract class RedisRepositoryFactory<TEntity> : IRedisGenericRepository<TEntity>
+    public class RedisGenericRepository<TEntity> : IRedisGenericRepository<TEntity>
         where TEntity : IEntity
     {
         private IRedisClientProvider provider;
         private IRedisClient client;
 
-        public RedisRepositoryFactory(IRedisClientProvider provider)
+        public RedisGenericRepository(IRedisClientProvider provider)
         {
             if (provider == null)
             {

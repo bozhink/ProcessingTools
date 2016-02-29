@@ -4,9 +4,9 @@
     using Models;
 
     using ProcessingTools.Data.Common.Redis.Contracts;
-    using ProcessingTools.Data.Common.Redis.Repositories.Factories;
+    using ProcessingTools.Data.Common.Redis.Repositories;
 
-    public class ValidationCacheDataRepository : RedisRepositoryFactory<ValidationCacheEntity>, IValidationCacheDataRepository
+    public class ValidationCacheDataRepository : RedisGenericRepository<ValidationCacheEntity>, IValidationCacheDataRepository
     {
         public ValidationCacheDataRepository()
             : this(new RedisClientProvider())
