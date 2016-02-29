@@ -9,12 +9,12 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using Redis.Contracts;
 
-    public class RedisGenericRepository<TEntity> : IRedisGenericRepository<TEntity>
+    public abstract class RedisRepositoryFactory<TEntity> : IRedisGenericRepository<TEntity>
         where TEntity : IEntity
     {
         private IRedisClientProvider provider;
 
-        public RedisGenericRepository(IRedisClientProvider provider)
+        public RedisRepositoryFactory(IRedisClientProvider provider)
         {
             this.provider = provider;
         }

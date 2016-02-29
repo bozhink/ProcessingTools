@@ -7,7 +7,7 @@
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories.Factories;
 
-    public class FakeMockedRedisRepository : RedisGenericRepository<SimpleTimeRecordModel>
+    public class FakeMockedRedisRepository : RedisRepositoryFactory<SimpleTimeRecordModel>
     {
         public FakeMockedRedisRepository()
             : base(new RedisClientProviderMock())
