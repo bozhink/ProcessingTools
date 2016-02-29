@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Elasticsearch.Repositories.Factories
+﻿namespace ProcessingTools.Data.Common.Elasticsearch.Repositories
 {
     using System;
     using System.Linq;
@@ -16,13 +16,13 @@
     /// </summary>
     /// <typeparam name="TEntity">Type of the model object.</typeparam>
     /// <remarks>The term ‘context’ used bellow corresponds to the ‘index’ in Elasticsearch terminology.</remarks>
-    public abstract class ElasticsearchRepositoryFactory<TEntity> : IElasticsearchGenericRepository<TEntity>
+    public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
         private IElasticClientProvider provider;
         private IElasticClient client;
 
-        public ElasticsearchRepositoryFactory(IElasticClientProvider provider)
+        public ElasticsearchGenericRepository(IElasticClientProvider provider)
         {
             if (provider == null)
             {
