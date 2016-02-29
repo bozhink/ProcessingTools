@@ -8,7 +8,7 @@
     {
         Task<IQueryable<T>> All();
 
-        Task<T> GetById(object id);
+        Task<T> Get(object id);
 
         Task Add(T entity);
 

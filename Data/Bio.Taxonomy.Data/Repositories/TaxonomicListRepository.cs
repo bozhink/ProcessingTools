@@ -27,7 +27,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<T> GetById(object id)
+        public Task<T> Get(object id)
         {
             throw new NotImplementedException();
         }
