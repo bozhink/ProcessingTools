@@ -37,52 +37,123 @@
 
         public async Task Add(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             await this.CreateIndexIfItDoesNotExist(context);
             var response = await this.Client.IndexAsync(entity, idx => idx.Index(context));
         }
 
         public async Task<IQueryable<TEntity>> All(string context)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(0));
             return response.Documents.AsQueryable();
         }
 
         public async Task<IQueryable<TEntity>> All(string context, int skip, int take)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException("Skip should be non-negative.", "skip");
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException("Take should be greater than zero.", "take");
+            }
+
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
             return response.Documents.AsQueryable();
         }
 
         public async Task Delete(string context)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var response = await this.Client.DeleteIndexAsync(context);
         }
 
         public async Task Delete(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
         public async Task Delete(string context, int id)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var entity = await this.Get(context, id);
             await this.Delete(context, entity);
         }
 
         public async Task<TEntity> Get(string context, int id)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var response = await this.Client.GetAsync<TEntity>(id, idx => idx.Index(context));
             return response.Source;
         }
 
         public async Task<int> SaveChanges(string context)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var response = await this.Client.FlushAsync(context);
             return response.IsValid ? 0 : 1;
         }
 
         public Task Update(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            // TODO
             throw new NotImplementedException();
         }
 
