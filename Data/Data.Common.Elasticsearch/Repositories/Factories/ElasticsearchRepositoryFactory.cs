@@ -3,47 +3,78 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Contracts;
+    using Elasticsearch.Contracts;
+
+    using Nest;
 
     using ProcessingTools.Data.Common.Models.Contracts;
 
-    // TODO
+    /// <summary>
+    /// Elasticsearch repository factory.
+    /// </summary>
+    /// <typeparam name="TEntity">Type of the model object.</typeparam>
+    /// <remarks>The term ‘context’ used bellow corresponds to the ‘index’ in Elasticsearch terminology.</remarks>
     public abstract class ElasticsearchRepositoryFactory<TEntity> : IElasticsearchGenericRepository<TEntity>
-        where TEntity : IEntity
+        where TEntity : class, IEntity
     {
-        public Task Add(string context, TEntity entity)
+        private const int MaximalNumberOfItemsToReturn = 10000;
+
+        private IElasticClientProvider provider;
+        private IElasticClient client;
+
+        public ElasticsearchRepositoryFactory(IElasticClientProvider provider)
         {
-            throw new NotImplementedException();
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider");
+            }
+
+            this.provider = provider;
+            this.client = this.provider.Create();
         }
 
-        public Task<IQueryable<TEntity>> All(string context)
+        private IElasticClient Client => this.client;
+
+        public async Task Add(string context, TEntity entity)
         {
-            throw new NotImplementedException();
+            await this.CreateIndexIfItDoesNotExist(context);
+            var response = await this.Client.IndexAsync(entity, idx => idx.Index(context));
         }
 
-        public Task Delete(string context)
+        public async Task<IQueryable<TEntity>> All(string context)
         {
-            throw new NotImplementedException();
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size(MaximalNumberOfItemsToReturn));
+            return response.Documents.AsQueryable();
         }
 
-        public Task Delete(string context, TEntity entity)
+        public async Task Delete(string context)
         {
-            throw new NotImplementedException();
+            var response = await this.Client.DeleteIndexAsync(context);
         }
 
-        public Task Delete(string context, int id)
+        public async Task Delete(string context, TEntity entity)
         {
-            throw new NotImplementedException();
+            var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
-        public Task<TEntity> Get(string context, int id)
+        public async Task Delete(string context, int id)
         {
-            throw new NotImplementedException();
+            var entity = await this.Get(context, id);
+            await this.Delete(context, entity);
         }
 
-        public Task<int> SaveChanges(string context)
+        public async Task<TEntity> Get(string context, int id)
         {
-            throw new NotImplementedException();
+            var response = await this.Client.GetAsync<TEntity>(id, idx => idx.Index(context));
+            return response.Source;
+        }
+
+        public async Task<int> SaveChanges(string context)
+        {
+            var response = await this.Client.FlushAsync(context);
+            return response.IsValid ? 0 : 1;
         }
 
         public Task Update(string context, TEntity entity)
@@ -62,6 +93,21 @@
             if (disposing)
             {
                 // There is nothing to be disposed.
+            }
+        }
+
+        private async Task CreateIndexIfItDoesNotExist(string indexName)
+        {
+            var indexExistsResponse = await this.Client.IndexExistsAsync(indexName);
+            if (!indexExistsResponse.Exists)
+            {
+                var response = await this.Client.CreateIndexAsync(
+                    indexName,
+                    c => c.Settings(s => s
+                        .NumberOfReplicas(1)
+                        .NumberOfShards(10)
+                        .Setting("merge.policy.merge_factor", "10")
+                        .Setting("search.slowlog.threshold.fetch.warn", "1s")));
             }
         }
     }
