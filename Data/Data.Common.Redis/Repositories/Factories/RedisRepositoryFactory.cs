@@ -7,17 +7,27 @@
     using Contracts;
     using Extensions;
     using ProcessingTools.Data.Common.Models.Contracts;
-    using Redis.Contracts;
+    using ProcessingTools.Data.Common.Redis.Contracts;
+    using ServiceStack.Redis;
 
     public abstract class RedisRepositoryFactory<TEntity> : IRedisGenericRepository<TEntity>
         where TEntity : IEntity
     {
         private IRedisClientProvider provider;
+        private IRedisClient client;
 
         public RedisRepositoryFactory(IRedisClientProvider provider)
         {
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider");
+            }
+
             this.provider = provider;
+            this.client = this.provider.Create();
         }
+
+        private IRedisClient Client => this.client;
 
         public Task Add(string context, TEntity entity)
         {
@@ -33,15 +43,12 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
+                var list = this.Client.Lists[context];
 
-                    int id = list.GetMaximalId() + 1;
-                    entity.Id = id;
+                int id = list.GetMaximalId() + 1;
+                entity.Id = id;
 
-                    list.AddEntity(entity);
-                }
+                list.AddEntity(entity);
             });
         }
 
@@ -54,11 +61,8 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-                    return list.Select(i => i.Deserialize<TEntity>()).AsQueryable();
-                }
+                var list = this.Client.Lists[context];
+                return list.Select(i => i.Deserialize<TEntity>()).AsQueryable();
             });
         }
 
@@ -81,11 +85,12 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-                    return list.OrderBy(i => i).Skip(skip).Take(take).Select(i => i.Deserialize<TEntity>()).AsQueryable();
-                }
+                var list = this.Client.Lists[context];
+                return list.OrderBy(i => i)
+                    .Skip(skip)
+                    .Take(take)
+                    .Select(i => i.Deserialize<TEntity>())
+                    .AsQueryable();
             });
         }
 
@@ -98,10 +103,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    client.Remove(context);
-                }
+                this.Client.Remove(context);
             });
         }
 
@@ -119,11 +121,8 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-                    list.RemoveEntity(entity);
-                }
+                var list = this.Client.Lists[context];
+                list.RemoveEntity(entity);
             });
         }
 
@@ -136,11 +135,8 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-                    list.RemoveEntity<TEntity>(id);
-                }
+                var list = this.Client.Lists[context];
+                list.RemoveEntity<TEntity>(id);
             });
         }
 
@@ -153,12 +149,9 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-                    return list.Select(i => i.Deserialize<TEntity>())
-                        .FirstOrDefault(i => i.Id == id);
-                }
+                var list = this.Client.Lists[context];
+                return list.Select(i => i.Deserialize<TEntity>())
+                    .FirstOrDefault(i => i.Id == id);
             });
         }
 
@@ -176,14 +169,9 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
-                {
-                    var list = client.Lists[context];
-
-                    list.RemoveEntity<TEntity>(entity.Id);
-
-                    list.AddEntity(entity);
-                }
+                var list = this.Client.Lists[context];
+                list.RemoveEntity<TEntity>(entity.Id);
+                list.AddEntity(entity);
             });
         }
 
@@ -191,6 +179,7 @@
         {
             return Task.Run(() =>
             {
+                this.Client.FlushAll();
                 return 0;
             });
         }
@@ -205,7 +194,7 @@
         {
             if (disposing)
             {
-                // There is nothing to be disposed.
+                this.client.Dispose();
             }
         }
     }
