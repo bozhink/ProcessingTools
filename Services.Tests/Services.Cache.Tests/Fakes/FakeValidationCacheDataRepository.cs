@@ -54,6 +54,19 @@
             });
         }
 
+        public Task<IQueryable<ValidationCacheEntity>> All(string context, int skip, int take)
+        {
+            return Task.Run(() =>
+            {
+                if (!this.data.ContainsKey(context))
+                {
+                    this.data.Add(context, new HashSet<ValidationCacheEntity>());
+                }
+
+                return this.data[context].OrderBy(i => i.Id).Skip(skip).Take(take).AsQueryable();
+            });
+        }
+
         public Task Delete(string context)
         {
             return Task.Run(() =>

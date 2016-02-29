@@ -23,6 +23,15 @@
         Task<IQueryable<TEntity>> All(TContext context);
 
         /// <summary>
+        /// Gets ‘take’ entities from the context by skipping first ‘skip’ items.
+        /// </summary>
+        /// <param name="context">TContext object to be queried.</param>
+        /// <param name="skip">Number of items to be skipped.</param>
+        /// <param name="take">Number of items to be taken.</param>
+        /// <returns>The first ‘take’ entities from the context after skipping first ‘skip’ items.</returns>
+        Task<IQueryable<TEntity>> All(TContext context, int skip, int take);
+
+        /// <summary>
         /// Gets single entity by its Id.
         /// </summary>
         /// <param name="context">TContext object to be queried.</param>

@@ -8,6 +8,8 @@
     {
         Task<IQueryable<T>> All();
 
+        Task<IQueryable<T>> All(int skip, int take);
+
         Task<T> Get(object id);
 
         Task Add(T entity);

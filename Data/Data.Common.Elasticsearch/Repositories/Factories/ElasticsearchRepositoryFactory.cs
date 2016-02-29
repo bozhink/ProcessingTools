@@ -19,8 +19,6 @@
     public abstract class ElasticsearchRepositoryFactory<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
-        private const int MaximalNumberOfItemsToReturn = 10000;
-
         private IElasticClientProvider provider;
         private IElasticClient client;
 
@@ -45,7 +43,13 @@
 
         public async Task<IQueryable<TEntity>> All(string context)
         {
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size(MaximalNumberOfItemsToReturn));
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0));
+            return response.Documents.AsQueryable();
+        }
+
+        public async Task<IQueryable<TEntity>> All(string context, int skip, int take)
+        {
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
             return response.Documents.AsQueryable();
         }
 

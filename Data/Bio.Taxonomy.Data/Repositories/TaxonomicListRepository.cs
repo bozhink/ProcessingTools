@@ -17,6 +17,11 @@
             throw new NotImplementedException();
         }
 
+        public Task<IQueryable<T>> All(int skip, int take)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Delete(object id)
         {
             throw new NotImplementedException();

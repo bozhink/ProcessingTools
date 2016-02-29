@@ -21,6 +21,16 @@
 
         public Task Add(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -37,6 +47,11 @@
 
         public Task<IQueryable<TEntity>> All(string context)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -47,8 +62,40 @@
             });
         }
 
+        public Task<IQueryable<TEntity>> All(string context, int skip, int take)
+        {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException("Skip should be non-negative.", "skip");
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException("Take should be greater than zero.", "take");
+            }
+
+            return Task.Run(() =>
+            {
+                using (var client = this.provider.Create())
+                {
+                    var list = client.Lists[context];
+                    return list.OrderBy(i => i).Skip(skip).Take(take).Select(i => i.Deserialize<TEntity>()).AsQueryable();
+                }
+            });
+        }
+
         public Task Delete(string context)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -60,6 +107,16 @@
 
         public Task Delete(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -72,6 +129,11 @@
 
         public Task Delete(string context, int id)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -84,6 +146,11 @@
 
         public Task<TEntity> Get(string context, int id)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
@@ -97,6 +164,16 @@
 
         public Task Update(string context, TEntity entity)
         {
+            if (string.IsNullOrWhiteSpace(context))
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             return Task.Run(() =>
             {
                 using (var client = this.provider.Create())
