@@ -7,6 +7,7 @@
 
     using ProcessingTools.Data.Common.Models.Contracts;
 
+    // TODO
     public abstract class ElasticsearchRepositoryFactory<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : IEntity
     {
