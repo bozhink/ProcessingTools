@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IRepository<T>
+    public interface IRepository<T> : IDisposable
     {
         Task<IQueryable<T>> All();
 
