@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Repositories.Factories
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -115,6 +116,20 @@
             {
                 return 0;
             });
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // There is nothing to be disposed.
+            }
         }
     }
 }
