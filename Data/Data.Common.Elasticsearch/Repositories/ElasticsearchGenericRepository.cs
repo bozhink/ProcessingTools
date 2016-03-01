@@ -53,7 +53,8 @@
 
         public async Task<IQueryable<TEntity>> All()
         {
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0));
+            var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
             return response.Documents.AsQueryable();
         }
 
