@@ -2,8 +2,8 @@
 {
     using Nest;
 
-    public interface IElasticClientProvider
+    public interface IElasticContextProvider
     {
-        IElasticClient Client { get; }
+        Indices Context { get; }
     }
 }

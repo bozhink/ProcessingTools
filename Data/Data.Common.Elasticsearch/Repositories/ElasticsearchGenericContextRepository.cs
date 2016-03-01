@@ -20,7 +20,6 @@
         where TEntity : class, IEntity
     {
         private IElasticClientProvider provider;
-        private IElasticClient client;
 
         public ElasticsearchGenericContextRepository(IElasticClientProvider provider)
         {
@@ -30,10 +29,10 @@
             }
 
             this.provider = provider;
-            this.client = this.provider.Create();
+            this.Client = this.provider.Client;
         }
 
-        private IElasticClient Client => this.client;
+        private IElasticClient Client { get; set; }
 
         public async Task Add(string context, TEntity entity)
         {
