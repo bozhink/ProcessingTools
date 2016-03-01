@@ -141,7 +141,7 @@
             return response.IsValid ? 0 : 1;
         }
 
-        public Task Update(string context, TEntity entity)
+        public async Task Update(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -153,8 +153,11 @@
                 throw new ArgumentNullException("entity");
             }
 
-            // TODO
-            throw new NotImplementedException();
+            var dbItem = await this.Get(context, entity.Id);
+
+            var response = await this.Client.UpdateAsync<TEntity, TEntity>(
+                new DocumentPath<TEntity>(dbItem),
+                u => u.Doc(entity).DocAsUpsert(true));
         }
 
         public void Dispose()
