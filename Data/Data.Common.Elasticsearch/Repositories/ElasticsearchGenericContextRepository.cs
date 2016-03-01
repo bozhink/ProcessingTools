@@ -16,13 +16,13 @@
     /// </summary>
     /// <typeparam name="TEntity">Type of the model object.</typeparam>
     /// <remarks>The term ‘context’ used bellow corresponds to the ‘index’ in Elasticsearch terminology.</remarks>
-    public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
+    public class ElasticsearchGenericContextRepository<TEntity> : IElasticsearchGenericContextRepository<TEntity>
         where TEntity : class, IEntity
     {
         private IElasticClientProvider provider;
         private IElasticClient client;
 
-        public ElasticsearchGenericRepository(IElasticClientProvider provider)
+        public ElasticsearchGenericContextRepository(IElasticClientProvider provider)
         {
             if (provider == null)
             {

@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IElasticsearchGenericRepository<TEntity> : ISimpleGenericContextRepository<TEntity>
+    public interface IElasticsearchGenericContextRepository<TEntity> : ISimpleGenericContextRepository<TEntity>
         where TEntity : IEntity
     {
     }
