@@ -152,10 +152,9 @@
                 throw new ArgumentNullException("entity");
             }
 
-            var dbItem = await this.Get(context, entity.Id);
-
+            var documentPath = new DocumentPath<TEntity>(new Id(entity.Id));
             var response = await this.Client.UpdateAsync<TEntity, TEntity>(
-                new DocumentPath<TEntity>(dbItem),
+                documentPath,
                 u => u.Doc(entity).DocAsUpsert(true));
         }
 

@@ -12,6 +12,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
 
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
+        where TEntity : class, IEntity
     {
         private IElasticContextProvider contextProvider;
         private IElasticClientProvider clientProvider;
@@ -35,48 +36,78 @@
             this.Client = this.clientProvider.Client;
         }
 
-        private Indices Context { get; set; }
+        private IndexName Context { get; set; }
 
         private IElasticClient Client { get; set; }
 
-        public Task Add(TEntity entity)
+        public async Task Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            await this.CreateIndexIfItDoesNotExist(this.Context);
+            var response = await this.Client.IndexAsync(entity, idx => idx.Index(this.Context));
         }
 
-        public Task<IQueryable<TEntity>> All()
+        public async Task<IQueryable<TEntity>> All()
         {
-            throw new NotImplementedException();
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0));
+            return response.Documents.AsQueryable();
         }
 
-        public Task<IQueryable<TEntity>> All(int skip, int take)
+        public async Task<IQueryable<TEntity>> All(int skip, int take)
         {
-            throw new NotImplementedException();
+            if (skip < 0)
+            {
+                throw new ArgumentException("Skip should be non-negative.", "skip");
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException("Take should be greater than zero.", "take");
+            }
+
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
+            return response.Documents.AsQueryable();
         }
 
-        public Task Delete(object id)
+        public async Task Delete(object id)
         {
-            throw new NotImplementedException();
+            var entity = await this.Get(id);
+            await this.Delete(entity);
         }
 
-        public Task Delete(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
-        public Task<TEntity> Get(object id)
+        public async Task<TEntity> Get(object id)
         {
-            throw new NotImplementedException();
+            var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
+            var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
+            return response.Source;
         }
 
-        public Task<int> SaveChanges()
+        public async Task<int> SaveChanges()
         {
-            throw new NotImplementedException();
+            var response = await this.Client.FlushAsync(this.Context);
+            return response.IsValid ? 0 : 1;
         }
 
-        public Task Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            var documentPath = new DocumentPath<TEntity>(new Id(entity.Id));
+            var response = await this.Client.UpdateAsync<TEntity, TEntity>(
+                documentPath,
+                u => u.Doc(entity).DocAsUpsert(true));
         }
 
         public void Dispose()
@@ -90,6 +121,21 @@
             if (disposing)
             {
                 // There is nothing to be disposed.
+            }
+        }
+
+        private async Task CreateIndexIfItDoesNotExist(IndexName indexName)
+        {
+            var indexExistsResponse = await this.Client.IndexExistsAsync(indexName);
+            if (!indexExistsResponse.Exists)
+            {
+                var response = await this.Client.CreateIndexAsync(
+                    indexName,
+                    c => c.Settings(s => s
+                        .NumberOfReplicas(1)
+                        .NumberOfShards(10)
+                        .Setting("merge.policy.merge_factor", "10")
+                        .Setting("search.slowlog.threshold.fetch.warn", "1s")));
             }
         }
     }

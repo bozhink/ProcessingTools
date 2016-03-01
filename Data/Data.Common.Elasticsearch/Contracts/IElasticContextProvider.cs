@@ -4,6 +4,6 @@
 
     public interface IElasticContextProvider
     {
-        Indices Context { get; }
+        IndexName Context { get; }
     }
 }
