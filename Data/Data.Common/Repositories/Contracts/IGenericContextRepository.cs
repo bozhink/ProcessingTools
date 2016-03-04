@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -12,7 +11,7 @@
     /// <typeparam name="TContext">Type of the context object.</typeparam>
     /// <typeparam name="TId">Type of the Id property of the entity model.</typeparam>
     /// <typeparam name="TEntity">Type of the entity model.</typeparam>
-    public interface IGenericContextRepository<TContext, TId, TEntity> : IDisposable
+    public interface IGenericContextRepository<TContext, TId, TEntity>
         where TEntity : IGenericEntity<TId>
     {
         /// <summary>

@@ -159,20 +159,6 @@
                 u => u.Doc(entity).DocAsUpsert(true));
         }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // There is nothing to be disposed.
-            }
-        }
-
         private async Task CreateIndexIfItDoesNotExist(string indexName)
         {
             var indexExistsResponse = await this.Client.IndexExistsAsync(indexName);
