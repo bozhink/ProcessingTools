@@ -38,7 +38,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
 
@@ -59,7 +59,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     return list.Select(i => i.Deserialize<TEntity>()).AsQueryable();
@@ -86,7 +86,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     return list.OrderBy(i => i)
@@ -107,7 +107,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     client.Remove(context);
                 }
@@ -128,7 +128,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     list.RemoveEntity(entity);
@@ -145,7 +145,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     list.RemoveEntity<TEntity>(id);
@@ -162,7 +162,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     return list.Select(i => i.Deserialize<TEntity>())
@@ -185,7 +185,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.provider.Client)
                 {
                     var list = client.Lists[context];
                     list.RemoveEntity<TEntity>(entity.Id);

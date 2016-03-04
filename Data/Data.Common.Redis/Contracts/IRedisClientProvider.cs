@@ -4,6 +4,6 @@
 
     public interface IRedisClientProvider
     {
-        IRedisClient Create();
+        IRedisClient Client { get; }
     }
 }

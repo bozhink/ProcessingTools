@@ -1,7 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Mocks
 {
-    using System;
-    using System.Collections.Generic;
 
     using Moq;
     using ProcessingTools.Data.Common.Redis.Contracts;
@@ -9,11 +7,14 @@
 
     public class RedisClientProviderMock : IRedisClientProvider
     {
-        public IRedisClient Create()
+        public IRedisClient Client
         {
-            var redisClientMock = new Mock<IRedisClient>();
+            get
+            {
+                var redisClientMock = new Mock<IRedisClient>();
 
-            return redisClientMock.Object;
+                return redisClientMock.Object;
+            }
         }
     }
 }
