@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IEfRepository<T> : IDisposable
+    public interface IEfRepository<T>
         where T : class
     {
         IQueryable<T> All();

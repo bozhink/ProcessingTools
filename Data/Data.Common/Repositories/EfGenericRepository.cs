@@ -8,7 +8,7 @@
     using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class EfGenericRepository<TContext, TEntity> : IEfRepository<TEntity>
+    public class EfGenericRepository<TContext, TEntity> : IEfRepository<TEntity>, IDisposable
         where TContext : IDbContext
         where TEntity : class
     {
