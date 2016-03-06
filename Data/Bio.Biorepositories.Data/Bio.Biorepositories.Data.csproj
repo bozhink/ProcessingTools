@@ -117,6 +117,10 @@
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>

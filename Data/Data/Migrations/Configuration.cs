@@ -5,7 +5,7 @@ namespace ProcessingTools.Data.Migrations
     using System.Data.Entity.Migrations;
 
     using Models;
-    using ProcessingTools.Data.Common.Seed;
+    using ProcessingTools.Data.Common.Entity.Seed;
 
     public sealed class Configuration : DbMigrationsConfiguration<DataDbContext>
     {

@@ -1,14 +1,13 @@
-﻿namespace ProcessingTools.Data.Common.Seed
+﻿namespace ProcessingTools.Data.Common.Entity.Seed
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Data.Entity;
     using System.IO;
     using System.Text;
 
-    using Contracts;
-
     public class DbContextSeeder<TContext>
-        where TContext : IDbContext
+        where TContext : DbContext
     {
         private const int NumberOfItemsToResetContext = 100;
 
