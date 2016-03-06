@@ -11,7 +11,7 @@
     using ProcessingTools.Contracts.Types;
 
     [TestClass]
-    public class ValidationCacheServiceTests : IDisposable
+    public class ValidationCacheServiceTests
     {
         private const string ServiceShouldNotBeNullMessage = "Service should not be null.";
         private const string StatusShouldMatchMessage = "Status should match.";
@@ -36,19 +36,6 @@
             this.mockedRepository = repositoryMock.Object;
 
             this.fakeRepository = new FakeValidationCacheDataRepository();
-        }
-
-        [TestCleanup]
-        public void CleanUp()
-        {
-            try
-            {
-                this.mockedRepository.Dispose();
-                this.fakeRepository.Dispose();
-            }
-            catch
-            {
-            }
         }
 
         [TestMethod]
@@ -389,27 +376,6 @@
             Assert.AreEqual(itemAfterAddition.Id, itemAfterUpdate.Id, IdShouldBeUnchagedMessage);
             Assert.AreEqual(ValidationStatus.Invalid, itemAfterUpdate.Status, StatusShouldMatchMessage);
             Assert.AreEqual(content, itemAfterUpdate.Content, ContentShouldMatchMessage);
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                try
-                {
-                    this.mockedRepository.Dispose();
-                    this.fakeRepository.Dispose();
-                }
-                catch
-                {
-                }
-            }
         }
     }
 }
