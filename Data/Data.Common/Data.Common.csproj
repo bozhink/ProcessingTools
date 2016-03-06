@@ -55,8 +55,6 @@
     <Compile Include="Repositories\EfGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\IEfRepository.cs" />
     <Compile Include="Seed\DbContextSeeder.cs" />
-    <Compile Include="UnitOfWork\Contracts\IEfUnitOfWork.cs" />
-    <Compile Include="UnitOfWork\EfUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
