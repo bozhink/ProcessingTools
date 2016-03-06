@@ -52,8 +52,6 @@
     <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\ISimpleGenericContextRepository.cs" />
-    <Compile Include="Repositories\EfGenericRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Repositories
 {
-    using ProcessingTools.Data.Common.Repositories;
+    using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Repositories.Contracts;
 

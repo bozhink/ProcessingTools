@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Data.Contracts;
     using ProcessingTools.Bio.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories;
+    using ProcessingTools.Data.Common.Entity.Repositories;
 
     public class BioDataRepository<T> : EfGenericRepository<IBioDbContext, T>, IBioDataRepository<T>
         where T : class

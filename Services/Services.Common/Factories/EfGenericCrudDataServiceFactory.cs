@@ -10,7 +10,7 @@
     using Models.Contracts;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public abstract class EfGenericCrudDataServiceFactory<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
         where TDbModel : class

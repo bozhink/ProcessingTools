@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Data.Common.Repositories
+﻿namespace ProcessingTools.Data.Common.Entity.Repositories
 {
     using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Contracts;
     using ProcessingTools.Data.Common.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class EfGenericRepository<TContext, TEntity> : IEfRepository<TEntity>, IDisposable
         where TContext : IDbContext

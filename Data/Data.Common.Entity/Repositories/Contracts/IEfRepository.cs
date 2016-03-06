@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Data.Common.Entity.Repositories.Contracts
 {
     using System.Linq;
     using System.Threading.Tasks;
