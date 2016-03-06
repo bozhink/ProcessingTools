@@ -319,6 +319,10 @@
       <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
       <Name>Cache.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
