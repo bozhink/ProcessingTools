@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IDbProvider.cs" />
     <Compile Include="Models\Contracts\IEntity.cs" />
     <Compile Include="Models\Contracts\IGenericEntity.cs" />

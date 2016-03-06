@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="BioDbContext.cs" />
-    <Compile Include="Contracts\IBioDbContext.cs" />
+    <Compile Include="BioDbContextProvider.cs" />
+    <Compile Include="Contracts\IBioDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BioDataRepository.cs" />

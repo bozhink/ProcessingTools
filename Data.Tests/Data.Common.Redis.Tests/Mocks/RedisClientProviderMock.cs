@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Mocks
 {
-
     using Moq;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;

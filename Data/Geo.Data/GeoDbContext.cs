@@ -3,10 +3,9 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    using Contracts;
     using Models;
 
-    public class GeoDbContext : DbContext, IGeoDbContext
+    public class GeoDbContext : DbContext
     {
         public GeoDbContext()
             : base("GeoDbContext")

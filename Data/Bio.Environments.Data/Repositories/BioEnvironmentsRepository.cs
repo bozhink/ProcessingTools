@@ -4,11 +4,11 @@
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Repositories;
 
-    public class BioEnvironmentsRepository<T> : EfGenericRepository<IBioEnvironmentsDbContext, T>, IBioEnvironmentsRepository<T>
+    public class BioEnvironmentsRepository<T> : EfGenericRepository<BioEnvironmentsDbContext, T>, IBioEnvironmentsRepository<T>
         where T : class
     {
-        public BioEnvironmentsRepository(IBioEnvironmentsDbContext context)
-            : base(context)
+        public BioEnvironmentsRepository(IBioEnvironmentsDbContextProvider contextProvider)
+            : base(contextProvider)
         {
         }
     }

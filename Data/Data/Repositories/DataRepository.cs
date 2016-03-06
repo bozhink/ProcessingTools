@@ -4,11 +4,11 @@
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Repositories.Contracts;
 
-    public class DataRepository<T> : EfGenericRepository<IDataDbContext, T>, IDataRepository<T>
+    public class DataRepository<T> : EfGenericRepository<DataDbContext, T>, IDataRepository<T>
         where T : class
     {
-        public DataRepository(IDataDbContext context)
-            : base(context)
+        public DataRepository(IDataDbContextProvider contextProvider)
+            : base(contextProvider)
         {
         }
     }

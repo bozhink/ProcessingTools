@@ -13,7 +13,7 @@ namespace ProcessingTools.Bio.Biorepositories.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BiorepositoriesDbFirstDbContext : DbContext, ProcessingTools.Bio.Biorepositories.Data.Contracts.IBiorepositoriesDbFirstDbContext
+    public partial class BiorepositoriesDbFirstDbContext : DbContext
     {
         public BiorepositoriesDbFirstDbContext()
             : base("name=BiorepositoriesDbFirstDbContext")

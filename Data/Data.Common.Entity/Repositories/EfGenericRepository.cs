@@ -6,20 +6,20 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using ProcessingTools.Data.Common.Contracts;
+    using ProcessingTools.Data.Common.Entity.Contracts;
 
     public class EfGenericRepository<TContext, TEntity> : IEfRepository<TEntity>, IDisposable
-        where TContext : IDbContext
+        where TContext : DbContext
         where TEntity : class
     {
-        public EfGenericRepository(TContext context)
+        public EfGenericRepository(IDbContextProvider<TContext> contextProvider)
         {
-            if (context == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
+                throw new ArgumentNullException("contextProvider");
             }
 
-            this.Context = context;
+            this.Context = contextProvider.Create();
             this.DbSet = this.Context.Set<TEntity>();
         }
 

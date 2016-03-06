@@ -3,9 +3,7 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    using Contracts;
-
-    public class BiorepositoriesDbContext : DbContext, IBiorepositoriesDbContext
+    public class BiorepositoriesDbContext : DbContext
     {
         public BiorepositoriesDbContext()
             : base("BiorepositoriesDbContext")

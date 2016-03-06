@@ -54,7 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IMediaTypesDbContext.cs" />
+    <Compile Include="Contracts\IMediaTypesDbContextProvider.cs" />
+    <Compile Include="MediaTypesDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MediatypesDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

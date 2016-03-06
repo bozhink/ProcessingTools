@@ -6,7 +6,7 @@
     using Contracts;
     using Models;
 
-    public class BioDbContext : DbContext, IBioDbContext
+    public class BioDbContext : DbContext
     {
         public BioDbContext()
             : base("BioDbContext")

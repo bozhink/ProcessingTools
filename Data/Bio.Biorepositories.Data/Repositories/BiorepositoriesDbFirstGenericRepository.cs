@@ -6,8 +6,8 @@
     public class BiorepositoriesDbFirstGenericRepository<T> : EfGenericRepository<BiorepositoriesDbFirstDbContext, T>, IBiorepositoriesDbFirstGenericRepository<T>
         where T : class
     {
-        public BiorepositoriesDbFirstGenericRepository(BiorepositoriesDbFirstDbContext context)
-            : base(context)
+        public BiorepositoriesDbFirstGenericRepository(BiorepositoriesDbFirstDbContextProvider contextProvider)
+            : base(contextProvider)
         {
         }
     }

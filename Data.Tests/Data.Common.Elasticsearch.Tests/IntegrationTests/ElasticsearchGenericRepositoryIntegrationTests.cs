@@ -5,6 +5,5 @@
     [TestClass]
     public class ElasticsearchGenericRepositoryIntegrationTests
     {
-
     }
 }

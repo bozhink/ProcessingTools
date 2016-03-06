@@ -3,10 +3,9 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    using Contracts;
     using Models;
 
-    public class BioEnvironmentsDbContext : DbContext, IBioEnvironmentsDbContext
+    public class BioEnvironmentsDbContext : DbContext
     {
         public BioEnvironmentsDbContext()
             : base("BioEnvironmentsDbContext")

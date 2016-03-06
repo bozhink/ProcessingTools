@@ -11,18 +11,24 @@
     {
         public static Action<IKernel> DependenciesRegistration => kernel =>
         {
-            kernel
-                .Bind<MediaType.Data.Contracts.IMediaTypesDbContext>()
-                .To<MediaType.Data.MediaTypesDbContext>();
-            kernel
-                .Bind(typeof(MediaType.Data.Repositories.Contracts.IMediaTypesRepository<>))
-                .To(typeof(MediaType.Data.Repositories.MediaTypesRepository<>));
+            ////kernel
+            ////    .Bind<MediaType.Data.Contracts.IMediaTypesDbContext>()
+            ////    .To<MediaType.Data.MediaTypesDbContext>();
+            ////kernel
+            ////    .Bind(typeof(MediaType.Data.Repositories.Contracts.IMediaTypesRepository<>))
+            ////    .To(typeof(MediaType.Data.Repositories.MediaTypesRepository<>));
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
             ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceStaticDictionary>();
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
             ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceWindowsRegistry>();
+            kernel.Bind(b =>
+            {
+                b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
 
             kernel.Bind(b =>
             {

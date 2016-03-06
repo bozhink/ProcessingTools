@@ -17,7 +17,7 @@
         private const string PostDateShouldBeUnchangedMessage = "PostDate should be unchanged";
         private const string MessageShouldBeUnchangedMessage = "Message should be unchanged";
 
-        private static readonly Random random = new Random((int)DateTime.Now.ToBinary());
+        private static readonly Random Random = new Random((int)DateTime.Now.ToBinary());
 
         private IElasticContextProvider contextProvider;
         private IElasticClientProvider clientProvider;
@@ -38,19 +38,15 @@
             var clientMock = new Mock<IElasticClient>();
             clientMock.Setup(c => c.IndexExists(It.IsAny<Indices>(), null)).Returns(new ExistsResponse());
             clientMock.Setup(c => c.IndexExistsAsync(It.IsAny<Indices>(), null)).Returns(new Task<IExistsResponse>(() => new ExistsResponse()));
-            //clientMock.Setup(c => c.Index())
-
-            
 
             var clientProviderMock = new Mock<IElasticClientProvider>();
             clientProviderMock.Setup(p => p.Client).Returns(clientMock.Object);
-
 
             this.clientProvider = clientProviderMock.Object;
 
             this.tweet = new Tweet
             {
-                Id = random.Next(),
+                Id = Random.Next(),
                 User = "kimchy",
                 PostDate = DateTime.Now,
                 Message = Guid.NewGuid().ToString()
