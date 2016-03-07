@@ -266,6 +266,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Elasticsearch.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Entity", "Data\Data.Common.Entity\Data.Common.Entity.csproj", "{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo", "Data\Data.Common.Mongo\Data.Common.Mongo.csproj", "{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1162,6 +1164,14 @@ Global
 		{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}.Release|x64.ActiveCfg = Release|Any CPU
 		{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}.Release|x64.Build.0 = Release|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1276,6 +1286,7 @@ Global
 		{5BE1907D-3396-4B00-A68E-6B5E637B0736} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{9737C8DF-4969-4A61-BE35-75AE8C79DDDA} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
 		{BFDD00F5-BD56-44DA-B070-DC2FF69E212F} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
