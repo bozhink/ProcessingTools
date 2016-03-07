@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Contracts
 {
+    using ProcessingTools.Data.Common.Contracts;
     using ServiceStack.Redis;
 
-    public interface IRedisClientProvider
+    public interface IRedisClientProvider : IDbProvider<IRedisClient>
     {
-        IRedisClient Client { get; }
     }
 }

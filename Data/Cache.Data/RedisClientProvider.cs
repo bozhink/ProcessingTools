@@ -5,12 +5,9 @@
 
     public class RedisClientProvider : IRedisClientProvider
     {
-        public IRedisClient Client
+        public IRedisClient Create()
         {
-            get
-            {
-                return new RedisClient();
-            }
+            return new RedisClient();
         }
     }
 }

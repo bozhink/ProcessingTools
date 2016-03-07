@@ -6,14 +6,10 @@
 
     public class RedisClientProviderMock : IRedisClientProvider
     {
-        public IRedisClient Client
+        public IRedisClient Create()
         {
-            get
-            {
-                var redisClientMock = new Mock<IRedisClient>();
-
-                return redisClientMock.Object;
-            }
+            var redisClientMock = new Mock<IRedisClient>();
+            return redisClientMock.Object;
         }
     }
 }
