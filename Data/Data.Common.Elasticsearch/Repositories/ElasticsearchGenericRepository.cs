@@ -30,10 +30,10 @@
             }
 
             this.contextProvider = contextProvider;
-            this.Context = this.contextProvider.Context;
+            this.Context = this.contextProvider.Create();
 
             this.clientProvider = clientProvider;
-            this.Client = this.clientProvider.Client;
+            this.Client = this.clientProvider.Create();
         }
 
         private IndexName Context { get; set; }

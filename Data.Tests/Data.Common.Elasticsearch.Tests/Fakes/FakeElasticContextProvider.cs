@@ -6,12 +6,9 @@
 
     public class FakeElasticContextProvider : IElasticContextProvider
     {
-        public IndexName Context
+        public IndexName Create()
         {
-            get
-            {
-                return Guid.NewGuid().ToString();
-            }
+            return Guid.NewGuid().ToString();
         }
     }
 }

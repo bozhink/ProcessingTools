@@ -28,7 +28,7 @@
         public void Initialize()
         {
             var contextProviderMock = new Mock<IElasticContextProvider>();
-            contextProviderMock.Setup(p => p.Context).Returns(new IndexName
+            contextProviderMock.Setup(p => p.Create()).Returns(new IndexName
                 {
                     Name = Guid.NewGuid().ToString()
                 });
@@ -40,7 +40,7 @@
             clientMock.Setup(c => c.IndexExistsAsync(It.IsAny<Indices>(), null)).Returns(new Task<IExistsResponse>(() => new ExistsResponse()));
 
             var clientProviderMock = new Mock<IElasticClientProvider>();
-            clientProviderMock.Setup(p => p.Client).Returns(clientMock.Object);
+            clientProviderMock.Setup(p => p.Create()).Returns(clientMock.Object);
 
             this.clientProvider = clientProviderMock.Object;
 
@@ -121,7 +121,7 @@
                 User = this.tweet.User
             };
 
-            Assert.IsFalse(this.clientProvider.Client.IndexExists(this.contextProvider.Context.Name).Exists, "Index should not exist.");
+            Assert.IsFalse(this.clientProvider.Create().IndexExists(this.contextProvider.Create().Name).Exists, "Index should not exist.");
 
             repository.Add(this.tweet).Wait();
 

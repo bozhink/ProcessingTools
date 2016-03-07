@@ -29,7 +29,7 @@
             }
 
             this.provider = provider;
-            this.Client = this.provider.Client;
+            this.Client = this.provider.Create();
         }
 
         private IElasticClient Client { get; set; }
