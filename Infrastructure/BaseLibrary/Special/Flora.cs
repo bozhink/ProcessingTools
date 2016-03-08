@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Special
 {
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -7,7 +7,7 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class Flora : ConfigurableDocument
+    public class Flora : SpecialFactory
     {
         public Flora(Config config, string xml)
             : base(config, xml)

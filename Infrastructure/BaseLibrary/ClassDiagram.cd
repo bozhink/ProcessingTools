@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ProcessingTools.BaseLibrary.Codes" Collapsed="true">
-    <Position X="4.25" Y="4" Width="1.5" />
+    <Position X="8.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>SAAAAAAgAAAQACACAAARACAAAAIAAAQCAAAAQIDACBI=</HashCode>
       <FileName>Codes\Codes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.SpecimenCode" Collapsed="true">
-    <Position X="75.5" Y="4.5" Width="1.5" />
+    <Position X="79" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAAAAAAAgAAACIAABAgAAAQAAAAAAEAA=</HashCode>
       <FileName>Codes\SpecimenCode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.DataProvider" Collapsed="true">
-    <Position X="20" Y="4" Width="1.5" />
+    <Position X="30.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAgAAAAAAAAA=</HashCode>
       <FileName>DataProvider\DataProvider.cs</FileName>
@@ -23,7 +23,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ConfigurableDocument" Collapsed="true">
-    <Position X="36.75" Y="2.5" Width="1.5" />
+    <Position X="39.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConfigurableDocument.cs</FileName>
@@ -31,71 +31,57 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.CustomXslRunner" Collapsed="true">
-    <Position X="47" Y="4" Width="1.5" />
+    <Position X="37.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AAAAAQAAAAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CustomXslRunner.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ContentTagger" Collapsed="true">
-    <Position X="73.75" Y="2.5" Width="1.5" />
+    <Position X="77.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions\ContentTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.DocumentExtensions" Collapsed="true">
-    <Position X="75.5" Y="2.5" Width="1.5" />
+    <Position X="79" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAQAACAAAAAIAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Extensions\DocumentExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.TaxonomyExtensions" Collapsed="true">
-    <Position X="73.75" Y="5.5" Width="1.5" />
+    <Position X="77.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>UAAAAAAAAAAAAAAYAAAAAQAAAAABAAAAAAgAIAAkAAA=</HashCode>
       <FileName>Extensions\TaxonomyExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.XmlNormalizer" Collapsed="true">
-    <Position X="79" Y="5.5" Width="1.5" />
+    <Position X="73.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Extensions\XmlNormalizer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.QueryReplace" Collapsed="true">
-    <Position X="79" Y="3.5" Width="1.5" />
+    <Position X="73.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
       <FileName>QueryReplace.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.SimpleXmlSerializableObjectTagger&lt;T&gt;" Collapsed="true">
-    <Position X="11" Y="5.5" Width="1.5" />
+    <Position X="28.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQoAAACAAAAAAAAAAAAACAAAAAQAAAAAQA=</HashCode>
       <FileName>SimpleXmlSerializableObjectTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ProcessingTools.BaseLibrary.Flora" Collapsed="true">
-    <Position X="17.75" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAAACAAAAAIAAAAAAAAAAAAAAAgAAAgAAAAEkAA=</HashCode>
-      <FileName>Special\Flora.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ProcessingTools.BaseLibrary.QuentinFlora" Collapsed="true">
-    <Position X="24.5" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAACAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>Special\QuentinFlora.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ProcessingTools.BaseLibrary.StringTagger" Collapsed="true">
-    <Position X="33.5" Y="4" Width="1.5" />
+    <Position X="10.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAACAAAAgAAACAAAAgBAAAAAAACAAAAAQAAAAAAA=</HashCode>
       <FileName>StringTagger.cs</FileName>
@@ -103,21 +89,42 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Test" Collapsed="true">
-    <Position X="40.25" Y="4" Width="1.5" />
+    <Position X="19.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Test\Test.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.XmlSerializableObjectTagger&lt;T&gt;" Collapsed="true">
-    <Position X="13.25" Y="5.5" Width="1.5" />
+    <Position X="26.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAoAAACAAAAAAAAAAAAACAAAAAQAAAAAQA=</HashCode>
       <FileName>XmlSerializableObjectTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Special.Flora" Collapsed="true">
+    <Position X="53.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAACAAAAAIAAAAAAAAAAAAAAAgAAAgAAAAEkAA=</HashCode>
+      <FileName>Special\Flora.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Special.QuentinFlora" Collapsed="true">
+    <Position X="55.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAACAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Special\QuentinFlora.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Special.SpecialFactory" Collapsed="true">
+    <Position X="54.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Special\SpecialFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="ProcessingTools.BaseLibrary.Abbreviations.AbbreviationsTagger" Collapsed="true">
-    <Position X="49.25" Y="4" Width="1.5" />
+    <Position X="57.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAIAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Abbreviations\AbbreviationsTagger.cs</FileName>
@@ -125,14 +132,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Abbreviations.Abbreviation" Collapsed="true">
-    <Position X="72" Y="2.5" Width="1.5" />
+    <Position X="73.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAgIAgAAAAAAAAAAAAAAAgBAAAAAAAACIAAA=</HashCode>
       <FileName>Abbreviations\Abbreviation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Coordinates.CoordinatesParser" Collapsed="true">
-    <Position X="58.25" Y="4" Width="1.5" />
+    <Position X="69" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEgCAEBAAgAAAACEAAAAAAAAAgAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Coordinates\CoordinatesParser.cs</FileName>
@@ -140,7 +147,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Coordinates.CoordinatesTagger" Collapsed="true">
-    <Position X="60.5" Y="4" Width="1.5" />
+    <Position X="71.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAACAAAAgAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Coordinates\CoordinatesTagger.cs</FileName>
@@ -148,15 +155,15 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.FloatsTagger" Collapsed="true">
-    <Position X="65" Y="4" Width="1.5" />
+    <Position X="12.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>yQAAIAgAAIAhAAACIkDwgQRAAAAAgoAAAAAAAgACDCA=</HashCode>
+      <HashCode>yQAAIAgAAIAhAAACIkDwgQRAAAAAgoAAAAAAAgACDAA=</HashCode>
       <FileName>Floats\FloatsTagger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.MediaTypesResolver" Collapsed="true">
-    <Position X="6.5" Y="4" Width="1.5" />
+    <Position X="21.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgQAAAAAAAAAACAAAAAIAAAIABAAAAEAAAAAEAABE=</HashCode>
       <FileName>Floats\MediaTypesResolver.cs</FileName>
@@ -164,7 +171,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.TableFootNotesTagger" Collapsed="true">
-    <Position X="15.5" Y="4" Width="1.5" />
+    <Position X="33" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Floats\TableFootNotesTagger.cs</FileName>
@@ -172,14 +179,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.MediaTypeResponseModel" Collapsed="true">
-    <Position X="75.5" Y="3.5" Width="1.5" />
+    <Position X="79" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Floats\Models\MediaTypeResponseModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.FigureFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="77.25" Y="2.5" Width="1.5" />
+    <Position X="80.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\FigureFloatObject.cs</FileName>
@@ -187,7 +194,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.GraphicFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="79" Y="2.5" Width="1.5" />
+    <Position X="73.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\GraphicFloatObject.cs</FileName>
@@ -195,7 +202,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.HabitusFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="72" Y="3.5" Width="1.5" />
+    <Position X="75.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\HabitusFloatObject.cs</FileName>
@@ -203,7 +210,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.MapFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="73.75" Y="3.5" Width="1.5" />
+    <Position X="77.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\MapFloatObject.cs</FileName>
@@ -211,7 +218,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.PlateFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="77.25" Y="3.5" Width="1.5" />
+    <Position X="80.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\PlateFloatObject.cs</FileName>
@@ -219,7 +226,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.SupplementaryMaterialFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="77.25" Y="4.5" Width="1.5" />
+    <Position X="80.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\SupplementaryMaterialFloatObject.cs</FileName>
@@ -227,7 +234,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.TableBoxFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="79" Y="4.5" Width="1.5" />
+    <Position X="73.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\TableBoxFloatObject.cs</FileName>
@@ -235,7 +242,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.TableFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="72" Y="5.5" Width="1.5" />
+    <Position X="75.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\TableFloatObject.cs</FileName>
@@ -243,15 +250,23 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Floats.Models.TextBoxFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="77.25" Y="5.5" Width="1.5" />
+    <Position X="80.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Models\TextBoxFloatObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="ProcessingTools.BaseLibrary.Floats.Models.AppendixFloatObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Floats\Models\AppendixFloatObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ProcessingTools.BaseLibrary.Format.NlmInitialFormatter" Collapsed="true">
-    <Position X="22.25" Y="4" Width="1.5" />
+    <Position X="39.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAABAAAAAAAAAgAgBAAAAEBgAAAAAAEAAAAIAAKA=</HashCode>
       <FileName>Format\NlmInitialFormatter.cs</FileName>
@@ -259,7 +274,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Format.SystemInitialFormatter" Collapsed="true">
-    <Position X="26.75" Y="4" Width="1.5" />
+    <Position X="42" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABBAAAAAAAAAAAAAAACEAgAAAAAABAAAAAAAKA=</HashCode>
       <FileName>Format\SystemInitialFormatter.cs</FileName>
@@ -267,7 +282,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.References.ReferencesParser" Collapsed="true">
-    <Position X="35.75" Y="4" Width="1.5" />
+    <Position X="48.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAIAAAAAAACAAAAAABAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>References\ReferencesParser.cs</FileName>
@@ -275,7 +290,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.References.ReferencesTagger" Collapsed="true">
-    <Position X="42.5" Y="4" Width="1.5" />
+    <Position X="60" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAACAAAAAAAAABAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>References\ReferencesTagger.cs</FileName>
@@ -283,7 +298,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TreatmentFormatter" Collapsed="true">
-    <Position X="51.5" Y="4" Width="1.5" />
+    <Position X="62.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACACAAAAAAAAgAAAAACAAAAAAAAAE=</HashCode>
       <FileName>Taxonomy\Formatter\TreatmentFormatter.cs</FileName>
@@ -291,28 +306,28 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Species" Collapsed="true">
-    <Position X="72" Y="4.5" Width="1.5" />
+    <Position X="75.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>RBhAIQAYAAUAAAwQBgAICAVABEAIBEUpEQAQQIUgBBA=</HashCode>
       <FileName>Taxonomy\Species\Species.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.SpeciesComparison" Collapsed="true">
-    <Position X="73.75" Y="4.5" Width="1.5" />
+    <Position X="77.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAACAAAAAAAEAAAAAEAAAEAAAAJAAAACAAAAAAAA=</HashCode>
       <FileName>Taxonomy\Species\SpeciesComparison.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Expander" Collapsed="true">
-    <Position X="62.75" Y="4" Width="1.5" />
+    <Position X="15" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAEAAAAACAAAACACAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Taxonomy\TaxaExpander\Expander.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.HigherTaxaParserWithDataService&lt;T&gt;" Collapsed="true">
-    <Position X="67.25" Y="4" Width="1.5" />
+    <Position X="24" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Taxonomy\TaxaParser\HigherTaxaParserWithDataService.cs</FileName>
@@ -320,45 +335,37 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.LowerTaxaParser" Collapsed="true">
-    <Position X="8.75" Y="4" Width="1.5" />
+    <Position X="35.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAGEAAAEAAAAAAAAAAAAgAAAABCAAA=</HashCode>
+      <HashCode>AAAgIAAACAAAAAAGEAAAEAAAAAAAAAAABgACAABCAAA=</HashCode>
       <FileName>Taxonomy\TaxaParser\LowerTaxaParser.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.HigherTaxaTagger" Collapsed="true">
-    <Position X="29" Y="5.5" Width="1.5" />
+    <Position X="44.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAgAAACAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\TaxaTagger\HigherTaxaTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.LowerTaxaTagger" Collapsed="true">
-    <Position X="31.25" Y="5.5" Width="1.5" />
+    <Position X="46.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAgEAAGAAAAAAAAAAAAAAQAAAAAAAAEAAI=</HashCode>
       <FileName>Taxonomy\TaxaTagger\LowerTaxaTagger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TaxaTagger" Collapsed="true">
-    <Position X="30" Y="4" Width="1.5" />
+    <Position X="45.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAwAAAAEA=</HashCode>
       <FileName>Taxonomy\TaxaTagger\TaxaTagger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TaxonomicNamesValidator" Collapsed="true">
-    <Position X="38" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Taxonomy\TaxaValidator\TaxonomicNamesValidator.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.TreatmentMetaParser" Collapsed="true">
-    <Position X="44.75" Y="4" Width="1.5" />
+    <Position X="51" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAgAAABAAAAAAACAAAAAAAAAAAAABAAAEAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs</FileName>
@@ -366,14 +373,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Taxonomy.Models.TaxonRankResponseModel" Collapsed="true">
-    <Position X="75.5" Y="5.5" Width="1.5" />
+    <Position X="79" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Taxonomy\Models\TaxonRankResponseModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankCloner" Collapsed="true">
-    <Position X="54.75" Y="4" Width="1.5" />
+    <Position X="65.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAQAABAAUAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>ZooBank\Cloner\ZoobankCloner.cs</FileName>
@@ -381,21 +388,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankJsonCloner" Collapsed="true">
-    <Position X="53.75" Y="5.5" Width="1.5" />
+    <Position X="64.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAFAAAwAAAAECAAAIAAAAAAAAAAAAAAAAAEAAABA=</HashCode>
       <FileName>ZooBank\Cloner\ZoobankJsonCloner.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankXmlCloner" Collapsed="true">
-    <Position X="56" Y="5.5" Width="1.5" />
+    <Position X="66.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACQAAAAAAAAAAACAAAAAAAAAAABgAAAAAACAkAAABA=</HashCode>
       <FileName>ZooBank\Cloner\ZoobankXmlCloner.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.ZooBank.ZoobankRegistrationXmlGenerator" Collapsed="true">
-    <Position X="69.5" Y="4" Width="1.5" />
+    <Position X="17.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>ZooBank\Generator\ZoobankRegistrationXmlGenerator.cs</FileName>
@@ -403,7 +410,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProcessingTools.BaseLibrary.Factories.XmlSerializableObjectTaggerFactory&lt;T&gt;" Collapsed="true">
-    <Position X="12" Y="4" Width="1.5" />
+    <Position X="27.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAIEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\XmlSerializableObjectTaggerFactory.cs</FileName>
@@ -411,35 +418,35 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IDataProvider" Collapsed="true">
-    <Position X="1" Y="4" Width="1.5" />
+    <Position X="5.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IDataProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Contracts.IConfigurableDocument" Collapsed="true">
-    <Position X="1" Y="2.5" Width="1.5" />
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IConfigurableDocument.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.BaseLibrary.Floats.Contracts.IFloatObject" Collapsed="true">
-    <Position X="72" Y="6.75" Width="1.5" />
+    <Position X="73.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACIAAAAgABAAAAAAAAAAAAQABAAIAAAAAAAAAAA=</HashCode>
       <FileName>Floats\Contracts\IFloatObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ProcessingTools.BaseLibrary.Assembly" Collapsed="true">
-    <Position X="72" Y="7.75" Width="1.5" />
+    <Position X="73.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Assembly.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ProcessingTools.BaseLibrary.Floats.FloatsReferenceType" Collapsed="true">
-    <Position X="73.75" Y="7.75" Width="1.5" />
+    <Position X="75.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BABBBAAQAAAAAQAAggEAQAAGAAQQEQAAAAAAAIwAAAI=</HashCode>
       <FileName>Floats\FloatsReferenceType.cs</FileName>

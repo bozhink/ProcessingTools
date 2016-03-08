@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.BaseLibrary.Special
 {
     using System.Text.RegularExpressions;
 
     using ProcessingTools.Configurator;
 
-    public class QuentinFlora : ConfigurableDocument
+    public class QuentinFlora : SpecialFactory
     {
         public QuentinFlora(Config config, string xml)
             : base(config, xml)
