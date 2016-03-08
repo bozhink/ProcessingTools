@@ -38,11 +38,16 @@
     <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
     <Compile Include="Contracts\IGeoNamesDataMiner.cs" />
+    <Compile Include="Miners\CoordinatesDataMiner.cs" />
     <Compile Include="Miners\GeoEpithetsDataMiner.cs" />
     <Compile Include="Miners\GeoNamesDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
       <Name>Geo.Services.Data</Name>
