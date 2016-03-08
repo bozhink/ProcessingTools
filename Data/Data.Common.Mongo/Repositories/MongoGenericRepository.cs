@@ -130,15 +130,10 @@
                 throw new ArgumentNullException("entity");
             }
 
-            var updateBuilder = Builders<BsonDocument>.Update;
-            entity.GetType()
-                .GetProperties()?.ToList()
-                .ForEach(p => updateBuilder.Set(p.Name, p.GetValue(entity).ToString()));
-
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
-            var update = updateBuilder.CurrentDate("lastModified");
-            var result = await this.Collection.UpdateOneAsync(filter, update);
+            var document = entity.ToBsonDocument();
+            var result = await this.Collection.ReplaceOneAsync(filter, document);
         }
 
         private FilterDefinition<BsonDocument> GetFilterById(object id)
