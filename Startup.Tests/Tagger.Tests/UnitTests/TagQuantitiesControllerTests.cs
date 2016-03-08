@@ -49,7 +49,7 @@
         }
 
         [Test]
-        public void TagQuantitiesController_WithNullService_ShouldThrowArgumentNullException()
+        public void TagQuantitiesController_WithNullMiner_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
@@ -60,7 +60,7 @@
         }
 
         [Test]
-        public void TagQuantitiesController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
+        public void TagQuantitiesController_WithNullMiner_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {

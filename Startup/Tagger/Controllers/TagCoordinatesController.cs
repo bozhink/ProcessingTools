@@ -1,24 +1,36 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
-    using System.Threading.Tasks;
+    using System;
     using System.Xml;
 
     using Contracts;
     using Factories;
-    using ProcessingTools.BaseLibrary.Coordinates;
-    using ProcessingTools.Contracts;
+
+    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Geo.Data.Miners.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag coordinates.")]
-    public class TagCoordinatesController : TaggerControllerFactory, ITagCoordinatesController
+    public class TagCoordinatesController : StringTaggerControllerFactory, ITagCoordinatesController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ICoordinatesDataMiner miner;
+        private readonly XmlElement tagModel;
+
+        public TagCoordinatesController(ICoordinatesDataMiner miner)
         {
-            var tagger = new CoordinatesTagger(settings.Config, document.OuterXml, logger);
+            if (miner == null)
+            {
+                throw new ArgumentNullException("miner");
+            }
 
-            await tagger.Tag();
+            this.miner = miner;
 
-            document.LoadXml(tagger.Xml);
+            XmlDocument document = new XmlDocument();
+            this.tagModel = document.CreateElement("locality-coordinates");
         }
+
+        protected override IStringDataMiner Miner => this.miner;
+
+        protected override XmlElement TagModel => this.tagModel;
     }
 }
