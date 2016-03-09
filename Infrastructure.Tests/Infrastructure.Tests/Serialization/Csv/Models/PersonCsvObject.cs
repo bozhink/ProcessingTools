@@ -3,10 +3,10 @@
     [CsvObject]
     internal class PersonCsvObject
     {
-        [CsvColumn(Name = "first name")]
+        [CsvColumn("first name")]
         public string FirstName { get; set; }
 
-        [CsvColumn(Name = "last name")]
+        [CsvColumn("last name")]
         public string LastName { get; set; }
     }
 }

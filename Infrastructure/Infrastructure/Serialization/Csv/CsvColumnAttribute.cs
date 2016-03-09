@@ -4,6 +4,15 @@
 
     public class CsvColumnAttribute : Attribute
     {
-        public string Name { get; set; }
+        public CsvColumnAttribute()
+        {
+        }
+
+        public CsvColumnAttribute(string name)
+        {
+            this.Name = name;
+        }
+
+        public string Name { get; private set; }
     }
 }
