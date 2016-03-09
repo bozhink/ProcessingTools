@@ -23,7 +23,7 @@
 
         public string[][] ReadToTable(string text)
         {
-            char[] textChars = text.ToCharArray();
+            char[] textChars = text.Trim(' ', '\r', '\n').ToCharArray();
 
             Queue<string> fields = new Queue<string>();
             StringBuilder stringBuilder = new StringBuilder();
