@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
 {
+    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Serialization.Csv;
 
+    [FileName("grbio_collections_labels.csv")]
     [CsvObject]
     public class CollectionLabel
     {

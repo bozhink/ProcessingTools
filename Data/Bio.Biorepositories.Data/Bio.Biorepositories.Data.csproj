@@ -87,14 +87,30 @@
     <None Include="BiorepositoriesDataModel.edmx.diagram">
       <DependentUpon>BiorepositoriesDataModel.edmx</DependentUpon>
     </None>
-    <None Include="DataFiles\grbio\grbio_collections.csv" />
-    <None Include="DataFiles\grbio\grbio_collections_labels.csv" />
-    <None Include="DataFiles\grbio\grbio_collections_pers.csv" />
-    <None Include="DataFiles\grbio\grbio_collections_pers_labels.csv" />
-    <None Include="DataFiles\grbio\grbio_institutions.csv" />
-    <None Include="DataFiles\grbio\grbio_institutions_labels.csv" />
-    <None Include="DataFiles\grbio\grbio_staff.csv" />
-    <None Include="DataFiles\grbio\grbio_staff_labels.csv" />
+    <None Include="DataFiles\grbio\grbio_collections.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_collections_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_collections_pers.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_collections_pers_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_institutions.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_institutions_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_staff.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\grbio\grbio_staff_labels.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

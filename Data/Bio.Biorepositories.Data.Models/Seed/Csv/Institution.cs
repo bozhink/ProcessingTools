@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
 {
+    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Serialization.Csv;
 
+    [FileName("grbio_institutions.csv")]
     [CsvObject]
     public class Institution
     {
