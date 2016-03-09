@@ -57,6 +57,5 @@
 
         [CsvColumn("URL for collection's webservices")]
         public string UrlForCollectionWebservices { get; set; }
-
     }
 }

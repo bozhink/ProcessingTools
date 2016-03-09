@@ -1,12 +1,15 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Configuration;
     using System;
+    using System.Configuration;
     using System.IO;
     using System.Linq;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Serialization.Csv;
+
     [TestClass]
     public class CsvSeedModelTests
     {
