@@ -149,6 +149,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>
