@@ -59,7 +59,7 @@
 
         private IMongoCollection<BsonDocument> Collection => this.db.GetCollection<BsonDocument>(this.CollectionName);
 
-        public async Task Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -70,14 +70,14 @@
             await this.Collection.InsertOneAsync(document);
         }
 
-        public async Task<IQueryable<TEntity>> All()
+        public virtual async Task<IQueryable<TEntity>> All()
         {
             var documents = await this.Collection.Find(new BsonDocument()).ToListAsync();
             var entities = documents.Select(d => BsonSerializer.Deserialize<TEntity>(d));
             return entities.AsQueryable();
         }
 
-        public async Task<IQueryable<TEntity>> All(int skip, int take)
+        public virtual async Task<IQueryable<TEntity>> All(int skip, int take)
         {
             if (skip < 0)
             {
@@ -94,13 +94,13 @@
             return entities.AsQueryable();
         }
 
-        public async Task Delete(object id)
+        public virtual async Task Delete(object id)
         {
             var filter = this.GetFilterById(id);
             await this.Collection.DeleteOneAsync(filter);
         }
 
-        public async Task Delete(TEntity entity)
+        public virtual async Task Delete(TEntity entity)
         {
             if (entity == null)
             {
@@ -111,19 +111,19 @@
             await this.Delete(id);
         }
 
-        public async Task<TEntity> Get(object id)
+        public virtual async Task<TEntity> Get(object id)
         {
             var filter = this.GetFilterById(id);
             var document = (await this.Collection.FindAsync<BsonDocument>(filter)).FirstOrDefault();
             return BsonSerializer.Deserialize<TEntity>(document);
         }
 
-        public Task<int> SaveChanges()
+        public virtual Task<int> SaveChanges()
         {
             return Task.Run(() => 0);
         }
 
-        public async Task Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             if (entity == null)
             {
