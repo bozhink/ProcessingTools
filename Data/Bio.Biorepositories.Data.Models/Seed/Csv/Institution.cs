@@ -29,7 +29,7 @@
         public string IncorporatedHerbaria { get; set; }
 
         [CsvColumn("Index Herbariorum Record")]
-        public bool IndexHerbariorumRecord { get; set; }
+        public IndexHerbariorumRecordType IndexHerbariorumRecord { get; set; }
 
         [CsvColumn("Institution Code")]
         public string InstitutionCode { get; set; }
