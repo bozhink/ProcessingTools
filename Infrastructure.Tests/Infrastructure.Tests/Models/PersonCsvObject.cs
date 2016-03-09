@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Csv.Serialization.Tests.Models
+﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests.Models
 {
     [CsvObject]
     internal class PersonCsvObject

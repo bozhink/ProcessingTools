@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Csv.Serialization
+﻿namespace ProcessingTools.Infrastructure.Serialization.Csv
 {
     /// <summary>
     /// Provides configuration parameters for serialization of CSV.

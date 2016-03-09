@@ -387,10 +387,6 @@
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
-      <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
-      <Name>Csv.Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>

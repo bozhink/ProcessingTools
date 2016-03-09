@@ -53,18 +53,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CsvMapperTests.cs" />
-    <Compile Include="CsvSerializerTests.cs" />
-    <Compile Include="CsvTableReaderTests.cs" />
-    <Compile Include="Models\NameYearDescriptionSampleCsvObject.cs" />
-    <Compile Include="Models\NameYearDescriptionSampleObject.cs" />
-    <Compile Include="Models\PersonCsvObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Csv.Serialization\Csv.Serialization.csproj">
-      <Project>{697330c6-a916-4442-875a-ef46c6b1ce1a}</Project>
-      <Name>Csv.Serialization</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

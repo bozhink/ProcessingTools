@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
 {
-    using ProcessingTools.Csv.Serialization;
+    using ProcessingTools.Infrastructure.Serialization.Csv;
 
     [CsvObject]
     public class InstitutionCollectionLabel

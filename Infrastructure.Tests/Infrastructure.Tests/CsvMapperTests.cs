@@ -1,7 +1,8 @@
-﻿namespace ProcessingTools.Csv.Serialization.Tests
+﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
 
@@ -16,8 +17,7 @@
             var csv = new CsvTableReader();
             var csvRow = csv.ReadToTable(CsvText).Skip(1).ToArray()[0];
 
-            var csvMapper = new CsvMapper();
-            var mapping = new CsvToObjectMapping
+            var mapping = new ColumnIndexToPropertyNameMapping
             {
                 Mapping = new Dictionary<string, int>
                 {
@@ -27,7 +27,7 @@
                 }
             };
 
-            var result = csvMapper.MapCsvRowToObject(typeof(NameYearDescriptionSampleObject), csvRow, mapping) as NameYearDescriptionSampleObject;
+            var result = csvRow.MapToObjectProperties(typeof(NameYearDescriptionSampleObject), mapping) as NameYearDescriptionSampleObject;
 
             Assert.AreEqual("John Smith", result.Name, "Name should match.");
             Assert.AreEqual(2015, result.Year, "Year should match.");
@@ -42,8 +42,7 @@
             var csv = new CsvTableReader();
             var csvRow = csv.ReadToTable(CsvText).Skip(1).ToArray()[0];
 
-            var csvMapper = new CsvMapper();
-            var mapping = new CsvToObjectMapping
+            var mapping = new ColumnIndexToPropertyNameMapping
             {
                 Mapping = new Dictionary<string, int>
                 {
@@ -53,7 +52,7 @@
                 }
             };
 
-            var result = csvMapper.MapCsvRowToObject<NameYearDescriptionSampleObject>(csvRow, mapping);
+            var result = csvRow.MapToObjectProperties<NameYearDescriptionSampleObject>(mapping);
 
             Assert.AreEqual("John Smith", result.Name, "Name should match.");
             Assert.AreEqual(2015, result.Year, "Year should match.");

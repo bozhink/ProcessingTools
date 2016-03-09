@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Csv.Serialization.Tests
+﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

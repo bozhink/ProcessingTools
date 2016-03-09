@@ -35,13 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="CsvColumnAttribute.cs" />
-    <Compile Include="CsvMapper.cs" />
-    <Compile Include="CsvObjectAttribute.cs" />
-    <Compile Include="CsvObjectConfiguration.cs" />
-    <Compile Include="CsvSerializer.cs" />
-    <Compile Include="CsvToObjectMapping.cs" />
-    <Compile Include="CsvTableReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

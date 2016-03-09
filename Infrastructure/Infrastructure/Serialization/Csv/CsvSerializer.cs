@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Csv.Serialization
+﻿namespace ProcessingTools.Infrastructure.Serialization.Csv
 {
     using System;
     using System.Collections.Generic;
@@ -23,18 +23,7 @@
 
         public IEnumerable<T> Deserialize<T>(string csvText)
         {
-            Type type = typeof(T);
-            if (!Attribute.IsDefined(type, typeof(CsvObjectAttribute)))
-            {
-                throw new ArgumentException("Type schould contain CsvObjectAttribute");
-            }
-
-            var table = this.CsvToTable(csvText);
-            var mappings = this.CreatePropertiesMapping(type, table);
-            var data = this.GetDataPartOfTheCsv(table);
-
-            var mapper = new CsvMapper();
-            return mapper.MapCsvTableToObjects<T>(data, mappings);
+            return this.Deserialize(typeof(T), csvText).Cast<T>();
         }
 
         public IEnumerable<object> Deserialize(Type type, string csvText)
@@ -48,8 +37,8 @@
             var mappings = this.CreatePropertiesMapping(type, table);
             var data = this.GetDataPartOfTheCsv(table);
 
-            var mapper = new CsvMapper();
-            return mapper.MapCsvTableToObjects(type, data, mappings);
+            var mapper = new TableMapper();
+            return mapper.MapTableToObjects(type, data, mappings);
         }
 
         private string[][] GetDataPartOfTheCsv(string[][] table)
@@ -64,43 +53,65 @@
             return table;
         }
 
-        private CsvToObjectMapping CreatePropertiesMapping(Type type, string[][] table)
+        private ColumnIndexToPropertyNameMapping CreatePropertiesMapping(Type type, string[][] table)
         {
             if (this.numberOfRowsToSkip < 1)
             {
                 throw new ApplicationException("This CSV is not supposed to have header row. Current method is not applicable in this case.");
             }
 
-            var mappings = new CsvToObjectMapping();
+            var mappings = new ColumnIndexToPropertyNameMapping();
 
-            var headers = table[0];
-            int headersLength = headers.Length;
+            var header = table[0];
+            int headerLength = header.Length;
 
             var properties = type.GetProperties()
                 .Where(p => Attribute.IsDefined(p, typeof(CsvColumnAttribute)));
 
             foreach (var property in properties)
             {
-                string columnAttributeName = property.GetCustomAttribute<CsvColumnAttribute>(false)?.Name;
-                string columnName = string.IsNullOrWhiteSpace(columnAttributeName) ? property.Name : columnAttributeName;
-
-                int columnNumber = -1;
-                for (int i = 0; i < headersLength; ++i)
+                string columnName = this.GetColumnNameInTable(property);
+                if (!string.IsNullOrEmpty(columnName))
                 {
-                    if (string.Compare(headers[i], columnName) == 0)
+                    int columnNumber = -1;
+                    for (int i = 0; i < headerLength; ++i)
                     {
-                        columnNumber = i;
-                        break;
+                        if (string.Compare(header[i], columnName) == 0)
+                        {
+                            columnNumber = i;
+                            break;
+                        }
                     }
-                }
 
-                if (columnNumber >= 0)
-                {
-                    mappings.Mapping.Add(columnName, columnNumber);
+                    if (columnNumber >= 0)
+                    {
+                        mappings.Mapping.Add(property.Name, columnNumber);
+                    }
                 }
             }
 
             return mappings;
+        }
+
+        /// <summary>
+        /// Gets the expected name of the column as it should appear in the table.
+        /// </summary>
+        /// <param name="property">The model’s property which provides information about the column name.</param>
+        /// <returns>The expected name of the column as it should appear in the table.</returns>
+        private string GetColumnNameInTable(PropertyInfo property)
+        {
+            if (property == null)
+            {
+                throw new ArgumentNullException("property");
+            }
+
+            var attribute = property.GetCustomAttribute<CsvColumnAttribute>(false);
+            if (attribute == null)
+            {
+                return null;
+            }
+
+            return string.IsNullOrWhiteSpace(attribute.Name) ? property.Name : attribute.Name;
         }
     }
 }
