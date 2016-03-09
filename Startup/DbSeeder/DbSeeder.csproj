@@ -52,6 +52,7 @@
     <Compile Include="Runner.cs" />
     <Compile Include="Seeders\BioDbSeeder.cs" />
     <Compile Include="Seeders\BioEnvironmentsDbSeeder.cs" />
+    <Compile Include="Seeders\BiorepositoriesDbSeeder.cs" />
     <Compile Include="Seeders\DataDbSeeder.cs" />
     <Compile Include="Seeders\GeoDbSeeder.cs" />
     <Compile Include="Seeders\MediaTypesDbSeeder.cs" />
@@ -99,6 +100,10 @@
     <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Mongo\Data.Common.Mongo.csproj">
+      <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
+      <Name>Data.Common.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
