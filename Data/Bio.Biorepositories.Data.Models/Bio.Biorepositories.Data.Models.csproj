@@ -44,14 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seed\Csv\Biorepository.cs" />
-    <Compile Include="Seed\Csv\BiorepositoryLabel.cs" />
-    <Compile Include="Seed\Csv\InstitutionCollection.cs" />
-    <Compile Include="Seed\Csv\InstitutionCollectionLabel.cs" />
-    <Compile Include="Seed\Csv\PersonalCollection.cs" />
-    <Compile Include="Seed\Csv\PersonalCollectionLabel.cs" />
-    <Compile Include="Seed\Csv\StaffMember.cs" />
-    <Compile Include="Seed\Csv\StaffMemberLabel.cs" />
+    <Compile Include="Seed\Csv\Collection.cs" />
+    <Compile Include="Seed\Csv\CollectionLabel.cs" />
+    <Compile Include="Seed\Csv\CollectionPer.cs" />
+    <Compile Include="Seed\Csv\CollectionPerLabel.cs" />
+    <Compile Include="Seed\Csv\Institution.cs" />
+    <Compile Include="Seed\Csv\InstitutionLabel.cs" />
+    <Compile Include="Seed\Csv\Staff.cs" />
+    <Compile Include="Seed\Csv\StaffLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

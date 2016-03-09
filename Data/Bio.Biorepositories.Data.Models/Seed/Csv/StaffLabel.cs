@@ -3,7 +3,7 @@
     using ProcessingTools.Infrastructure.Serialization.Csv;
 
     [CsvObject]
-    public class StaffMember
+    public class StaffLabel
     {
     }
 }

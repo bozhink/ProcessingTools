@@ -3,7 +3,7 @@
     using ProcessingTools.Infrastructure.Serialization.Csv;
 
     [CsvObject]
-    public class BiorepositoryLabel
+    public class InstitutionLabel
     {
     }
 }
