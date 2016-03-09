@@ -94,6 +94,7 @@
     <Compile Include="Repositories\Contracts\IBiorepositoriesDbFirstGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepository.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesRepository.cs" />
+    <Compile Include="Seed\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
