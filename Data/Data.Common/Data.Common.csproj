@@ -53,6 +53,7 @@
     <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\ISimpleGenericContextRepository.cs" />
+    <Compile Include="Seed\SimpleRepositorySeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
