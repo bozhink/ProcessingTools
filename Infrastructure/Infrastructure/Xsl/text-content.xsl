@@ -20,10 +20,10 @@
 
   <xsl:template match="@* | comment()" />
 
-  <xsl:template match="value">
-    <xsl:text> </xsl:text>
+  <xsl:template match="value | p | th | td | tr | title | article-title | label | name | ref | li">
+    <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates select="node()" />
   </xsl:template>
 
-  <xsl:template match="journal-meta | article-id | article-categories | author-notes | pub-date | history | permissions | tp:treatment-meta | xref-group | graphic | media | ext-link" />
+  <xsl:template match="journal-meta | article-id | article-categories | author-notes | pub-date | history | permissions | tp:treatment-meta | xref-group | graphic | media | ext-link | /document/citations" />
 </xsl:stylesheet>

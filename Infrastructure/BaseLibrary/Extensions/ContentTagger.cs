@@ -146,7 +146,7 @@
                      * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
                      * this is dynamically generated regex which might be too complex and slow.
                      */
-                    if (textToTagRegex.Match(node.InnerText).Length == textToTagRegex.Match(node.InnerXml).Length)
+                    if (textToTagRegex.Matches(node.InnerText).Count == textToTagRegex.Matches(node.InnerXml).Count)
                     {
                         replace = textToTagRegex.Replace(replace, replacement);
                     }
