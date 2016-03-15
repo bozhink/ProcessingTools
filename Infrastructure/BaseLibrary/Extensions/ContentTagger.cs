@@ -107,56 +107,62 @@
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            return Task.Run(() => Tag(item, nodeList, caseSensitive, minimalTextSelect, logger));
+            return Task.Run(() => Tag(nodeList.Cast<XmlNode>(), caseSensitive, minimalTextSelect, logger, item));
         }
 
-        private static void Tag(XmlElement item, XmlNodeList nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger)
+        private static void Tag(IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
         {
-            string caseSensitiveness = caseSensitive ? string.Empty : "(?i)";
-
-            string textToTag = item.InnerXml;
-
-            bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
-            bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
-
-            string startWordBound = firstCharIsSpecial ? string.Empty : @"\b";
-            string endWordBound = lastCharIsSpecial ? string.Empty : @"\b";
-
-            string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-            string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
-
-            if (!minimalTextSelect)
+            if (nodeList == null || nodeList.Count() < 1)
             {
-                textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
+                return;
             }
 
-            ////Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagPattern + ")(?![^<>]*>)\\b");
-            Regex textToTagPatternRegex = new Regex("(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness + textToTagPattern + ")" + endWordBound + "(?![^<>]*>)");
-            ////Regex textToTagRegex = new Regex("(?<!<[^>]+)\\b(" + caseSensitiveness + textToTagEscaped + ")(?![^<>]*>)\\b");
-            Regex textToTagRegex = new Regex("(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness + textToTagEscaped + ")" + endWordBound + "(?![^<>]*>)");
+            if (items == null || items.Length < 1)
+            {
+                return;
+            }
 
-            string replacement = item.GetReplacementOfTagNode();
+            string caseSensitiveness = caseSensitive ? string.Empty : "(?i)";
 
-            nodeList.Cast<XmlNode>()
-                .All(node =>
+            foreach (var node in nodeList)
+            {
+                foreach (var item in items)
                 {
                     string replace = node.InnerXml;
+                    string textToTag = item.InnerXml;
 
-                    /*
-                     * Here we need this if because the use of textTotagPatternRegex is potentialy dangerous:
-                     * this is dynamically generated regex which might be too complex and slow.
-                     */
+                    bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
+                    string startWordBound = firstCharIsSpecial ? string.Empty : @"\b";
+                    string regexPatternPrefix = "(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness;
+
+                    bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
+                    string endWordBound = lastCharIsSpecial ? string.Empty : @"\b";
+                    string regexPatternSuffix = ")" + endWordBound + "(?![^<>]*>)";
+
+                    string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
+                    Regex textToTagRegex = new Regex(regexPatternPrefix + textToTagEscaped + regexPatternSuffix);
+
+                    string replacement = item.GetReplacementOfTagNode();
+
                     if (textToTagRegex.Matches(node.InnerText).Count == textToTagRegex.Matches(node.InnerXml).Count)
                     {
                         replace = textToTagRegex.Replace(replace, replacement);
                     }
                     else
                     {
+                        string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
+                        if (!minimalTextSelect)
+                        {
+                            textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
+                        }
+
+                        Regex textToTagPatternRegex = new Regex(regexPatternPrefix + textToTagPattern + regexPatternSuffix);
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    return node.SafeReplaceInnerXml(replace, logger);
-                });
+                    node.SafeReplaceInnerXml(replace, logger);
+                }
+            }
         }
     }
 }
