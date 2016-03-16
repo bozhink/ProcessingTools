@@ -41,6 +41,9 @@
       <xsl:when test="$type = 'doi'">
         <xsl:text>http://dx.doi.org</xsl:text>
       </xsl:when>
+      <xsl:when test="$type = 'gen'">
+        <xsl:text>http://www.ncbi.nlm.nih.gov/nuccore</xsl:text>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="protocol" select="normalize-space(substring-before($uri, '://'))" />
         <xsl:variable name="address" select="normalize-space(substring-before(substring-after($uri, '://'), '/'))" />
