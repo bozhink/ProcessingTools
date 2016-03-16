@@ -50,7 +50,8 @@
             var result = await this.service.Validate(externalLinks);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
-                .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /");
+                .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /")
+                .OrderBy(i => i);
 
             logger?.Log("Non-valid external links:\n|\t{0}\n", string.Join("\n|\t", nonValidItems));
         }

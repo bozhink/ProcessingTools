@@ -42,7 +42,8 @@
             var result = await this.service.Validate(scientificNames);
 
             var notFoundNames = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
-                .Select(r => r.ValidatedObject.Name);
+                .Select(r => r.ValidatedObject.Name)
+                .OrderBy(i => i);
 
             logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
         }
