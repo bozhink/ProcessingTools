@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.AccountViewModels
+﻿namespace ProcessingTools.Web.Api.ViewModels.Account
 {
     public class ExternalLoginViewModel
     {

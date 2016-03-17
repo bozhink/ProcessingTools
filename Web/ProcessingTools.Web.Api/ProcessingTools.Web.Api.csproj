@@ -309,10 +309,10 @@
     <Compile Include="Models\AccountBindingModels\RegisterExternalBindingModel.cs" />
     <Compile Include="Models\AccountBindingModels\RemoveLoginBindingModel.cs" />
     <Compile Include="Models\AccountBindingModels\SetPasswordBindingModel.cs" />
-    <Compile Include="Models\AccountViewModels\ExternalLoginViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\ManageInfoViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\UserInfoViewModel.cs" />
-    <Compile Include="Models\AccountViewModels\UserLoginInfoViewModel.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\ManageInfoViewModel.cs" />
+    <Compile Include="ViewModels\Account\UserInfoViewModel.cs" />
+    <Compile Include="ViewModels\Account\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\GeoEpithetModels\GeoEpithetRequestModel.cs" />
     <Compile Include="Models\GeoEpithetModels\GeoEpithetResponseModel.cs" />
