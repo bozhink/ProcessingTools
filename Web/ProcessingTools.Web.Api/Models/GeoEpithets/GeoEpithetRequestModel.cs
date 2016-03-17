@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.GeoEpithet
+﻿namespace ProcessingTools.Web.Api.Models.GeoEpithets
 {
     using System.ComponentModel.DataAnnotations;
 
