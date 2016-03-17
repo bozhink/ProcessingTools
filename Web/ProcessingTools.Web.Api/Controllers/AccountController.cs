@@ -17,7 +17,7 @@
     using Microsoft.Owin.Security.OAuth;
 
     using ProcessingTools.Api.Data.Models;
-    using ProcessingTools.Web.Api.Models.AccountBindingModels;
+    using ProcessingTools.Web.Api.Models.Account;
     using ProcessingTools.Web.Api.Providers;
     using ProcessingTools.Web.Api.Results;
     using ProcessingTools.Web.Api.ViewModels.Account;

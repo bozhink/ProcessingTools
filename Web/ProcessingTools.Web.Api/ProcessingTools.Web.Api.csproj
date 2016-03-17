@@ -303,12 +303,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBindingModels\AddExternalLoginBindingModel.cs" />
-    <Compile Include="Models\AccountBindingModels\ChangePasswordBindingModel.cs" />
-    <Compile Include="Models\AccountBindingModels\RegisterBindingModel.cs" />
-    <Compile Include="Models\AccountBindingModels\RegisterExternalBindingModel.cs" />
-    <Compile Include="Models\AccountBindingModels\RemoveLoginBindingModel.cs" />
-    <Compile Include="Models\AccountBindingModels\SetPasswordBindingModel.cs" />
+    <Compile Include="Models\Account\AddExternalLoginBindingModel.cs" />
+    <Compile Include="Models\Account\ChangePasswordBindingModel.cs" />
+    <Compile Include="Models\Account\RegisterBindingModel.cs" />
+    <Compile Include="Models\Account\RegisterExternalBindingModel.cs" />
+    <Compile Include="Models\Account\RemoveLoginBindingModel.cs" />
+    <Compile Include="Models\Account\SetPasswordBindingModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\Account\ManageInfoViewModel.cs" />
     <Compile Include="ViewModels\Account\UserInfoViewModel.cs" />

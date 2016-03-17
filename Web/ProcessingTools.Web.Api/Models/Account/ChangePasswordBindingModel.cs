@@ -1,10 +1,15 @@
-﻿namespace ProcessingTools.Web.Api.Models.AccountBindingModels
+﻿namespace ProcessingTools.Web.Api.Models.Account
 {
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
 
-    public class SetPasswordBindingModel
+    public class ChangePasswordBindingModel
     {
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Current password")]
+        public string OldPassword { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
