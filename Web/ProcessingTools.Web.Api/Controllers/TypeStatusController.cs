@@ -3,7 +3,7 @@
     using Bio.Services.Data.Contracts;
     using Bio.Services.Data.Models.Contracts;
     using Factories;
-    using Models.TypeStatusModels;
+    using Models.TypeStatuses;
 
     public class TypeStatusController : GenericDataServiceControllerFactory<ITypeStatus, TypeStatusRequestModel, TypeStatusResponseModel>
     {

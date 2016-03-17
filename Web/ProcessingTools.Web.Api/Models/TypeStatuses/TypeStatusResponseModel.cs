@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.TypeStatusModels
+﻿namespace ProcessingTools.Web.Api.Models.TypeStatuses
 {
     using Bio.Services.Data.Models.Contracts;
     using ProcessingTools.Contracts.Mapping;
