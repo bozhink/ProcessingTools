@@ -6,7 +6,7 @@
 
     using Bio.Taxonomy.Contracts;
     using Bio.Taxonomy.Services.Data.Contracts;
-    using Models.TaxonomyDataServices;
+    using Models.TaxonClassifications;
 
     public abstract class TaxaClassificationDataServiceControllerFactory : ApiController
     {

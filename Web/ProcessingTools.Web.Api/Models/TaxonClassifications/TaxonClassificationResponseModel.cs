@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.TaxonomyDataServices
+﻿namespace ProcessingTools.Web.Api.Models.TaxonClassifications
 {
     using Bio.Taxonomy.Contracts;
     using Contracts.Mapping;
