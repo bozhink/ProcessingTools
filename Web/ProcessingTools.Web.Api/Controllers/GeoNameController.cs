@@ -3,7 +3,7 @@
     using Factories;
     using Geo.Services.Data.Contracts;
     using Geo.Services.Data.Models.Contracts;
-    using Models.GeoNameModels;
+    using Models.GeoName;
 
     public class GeoNameController : GenericDataServiceControllerFactory<IGeoName, GeoNameRequestModel, GeoNameResponseModel>
     {
