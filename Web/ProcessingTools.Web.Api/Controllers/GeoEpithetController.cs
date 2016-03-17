@@ -3,7 +3,7 @@
     using Factories;
     using Geo.Services.Data.Contracts;
     using Geo.Services.Data.Models.Contracts;
-    using Models.GeoEpithetModels;
+    using Models.GeoEpithet;
 
     public class GeoEpithetController : GenericDataServiceControllerFactory<IGeoEpithet, GeoEpithetRequestModel, GeoEpithetResponseModel>
     {

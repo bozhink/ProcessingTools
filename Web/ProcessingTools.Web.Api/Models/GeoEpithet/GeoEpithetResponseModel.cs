@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.GeoEpithetModels
+﻿namespace ProcessingTools.Web.Api.Models.GeoEpithet
 {
     using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
