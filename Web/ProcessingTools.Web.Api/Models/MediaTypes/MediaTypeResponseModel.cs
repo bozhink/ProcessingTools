@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.MediaTypeModels
+﻿namespace ProcessingTools.Web.Api.Models.MediaTypes
 {
     using Contracts.Mapping;
     using MediaType.Services.Data.Models.Contracts;

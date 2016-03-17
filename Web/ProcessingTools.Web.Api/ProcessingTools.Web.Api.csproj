@@ -320,7 +320,7 @@
     <Compile Include="Models\GeoNames\GeoNameResponseModel.cs" />
     <Compile Include="Models\Institutions\InstitutionRequestModel.cs" />
     <Compile Include="Models\Institutions\InstitutionResponseModel.cs" />
-    <Compile Include="Models\MediaTypeModels\MediaTypeResponseModel.cs" />
+    <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
     <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetResponseModel.cs" />
     <Compile Include="Models\ProductModels\ProductRequestModel.cs" />

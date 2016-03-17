@@ -4,7 +4,7 @@
     using System.Web.Http;
 
     using MediaType.Services.Data.Contracts;
-    using Models.MediaTypeModels;
+    using Models.MediaTypes;
 
     public class MediaTypeController : ApiController
     {
