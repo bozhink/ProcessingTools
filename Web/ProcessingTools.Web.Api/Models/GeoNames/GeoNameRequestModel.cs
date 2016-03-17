@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.GeoName
+﻿namespace ProcessingTools.Web.Api.Models.GeoNames
 {
     using System.ComponentModel.DataAnnotations;
 

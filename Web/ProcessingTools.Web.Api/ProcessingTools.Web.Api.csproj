@@ -316,8 +316,8 @@
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Models\GeoEpithets\GeoEpithetResponseModel.cs" />
-    <Compile Include="Models\GeoName\GeoNameRequestModel.cs" />
-    <Compile Include="Models\GeoName\GeoNameResponseModel.cs" />
+    <Compile Include="Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Models\GeoNames\GeoNameResponseModel.cs" />
     <Compile Include="Models\InstitutionModels\InstitutionRequestModel.cs" />
     <Compile Include="Models\InstitutionModels\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypeModels\MediaTypeResponseModel.cs" />

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.GeoName
+﻿namespace ProcessingTools.Web.Api.Models.GeoNames
 {
     using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
