@@ -323,8 +323,8 @@
     <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
     <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
-    <Compile Include="Models\ProductModels\ProductRequestModel.cs" />
-    <Compile Include="Models\ProductModels\ProductResponseModel.cs" />
+    <Compile Include="Models\Products\ProductRequestModel.cs" />
+    <Compile Include="Models\Products\ProductResponseModel.cs" />
     <Compile Include="Models\TaxonomyDataServices\TaxonClassificationResponseModel.cs" />
     <Compile Include="Models\TypeStatusModels\TypeStatusRequestModel.cs" />
     <Compile Include="Models\TypeStatusModels\TypeStatusResponseModel.cs" />

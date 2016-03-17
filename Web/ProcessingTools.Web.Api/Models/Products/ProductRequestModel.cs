@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.ProductModels
+﻿namespace ProcessingTools.Web.Api.Models.Products
 {
     using System.ComponentModel.DataAnnotations;
 
