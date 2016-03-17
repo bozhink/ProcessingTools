@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.InstitutionModels
+﻿namespace ProcessingTools.Web.Api.Models.Institutions
 {
     using Contracts.Mapping;
     using Services.Data.Models.Contracts;

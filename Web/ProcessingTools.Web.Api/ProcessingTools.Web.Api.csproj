@@ -318,8 +318,8 @@
     <Compile Include="Models\GeoEpithets\GeoEpithetResponseModel.cs" />
     <Compile Include="Models\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Models\GeoNames\GeoNameResponseModel.cs" />
-    <Compile Include="Models\InstitutionModels\InstitutionRequestModel.cs" />
-    <Compile Include="Models\InstitutionModels\InstitutionResponseModel.cs" />
+    <Compile Include="Models\Institutions\InstitutionRequestModel.cs" />
+    <Compile Include="Models\Institutions\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypeModels\MediaTypeResponseModel.cs" />
     <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetResponseModel.cs" />

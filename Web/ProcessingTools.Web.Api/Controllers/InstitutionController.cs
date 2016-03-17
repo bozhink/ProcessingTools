@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using Factories;
-    using Models.InstitutionModels;
+    using Models.Institutions;
     using Services.Data.Contracts;
     using Services.Data.Models.Contracts;
 

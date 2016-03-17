@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.InstitutionModels
+﻿namespace ProcessingTools.Web.Api.Models.Institutions
 {
     using System.ComponentModel.DataAnnotations;
 
