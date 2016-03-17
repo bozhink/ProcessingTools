@@ -3,7 +3,7 @@
     using Bio.Services.Data.Contracts;
     using Bio.Services.Data.Models.Contracts;
     using Factories;
-    using Models.MorphologicalEpithetModels;
+    using Models.MorphologicalEpithets;
 
     public class MorphologicalEpithetController : GenericDataServiceControllerFactory<IMorphologicalEpithet, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel>
     {

@@ -321,8 +321,8 @@
     <Compile Include="Models\Institutions\InstitutionRequestModel.cs" />
     <Compile Include="Models\Institutions\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
-    <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetRequestModel.cs" />
-    <Compile Include="Models\MorphologicalEpithetModels\MorphologicalEpithetResponseModel.cs" />
+    <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
+    <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
     <Compile Include="Models\ProductModels\ProductRequestModel.cs" />
     <Compile Include="Models\ProductModels\ProductResponseModel.cs" />
     <Compile Include="Models\TaxonomyDataServices\TaxonClassificationResponseModel.cs" />

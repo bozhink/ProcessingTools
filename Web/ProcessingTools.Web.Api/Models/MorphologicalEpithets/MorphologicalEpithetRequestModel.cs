@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.MorphologicalEpithetModels
+﻿namespace ProcessingTools.Web.Api.Models.MorphologicalEpithets
 {
     using System.ComponentModel.DataAnnotations;
 

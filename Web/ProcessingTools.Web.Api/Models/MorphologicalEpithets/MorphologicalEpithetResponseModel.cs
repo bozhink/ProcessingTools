@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Api.Models.MorphologicalEpithetModels
+﻿namespace ProcessingTools.Web.Api.Models.MorphologicalEpithets
 {
     using Bio.Services.Data.Models.Contracts;
     using ProcessingTools.Contracts.Mapping;
