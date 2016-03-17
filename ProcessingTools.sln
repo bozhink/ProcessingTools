@@ -268,6 +268,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Tests", "Data.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo.Tests", "Data.Tests\Data.Common.Mongo.Tests\Data.Common.Mongo.Tests.csproj", "{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data", "Data\Documents.Data\Documents.Data.csproj", "{21813087-5B64-4279-B352-977E722E795A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Models", "Data\Documents.Data.Models\Documents.Data.Models.csproj", "{82724298-BF0F-4B01-925E-48E3B6F56979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1172,6 +1176,22 @@ Global
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Release|x64.ActiveCfg = Release|Any CPU
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}.Release|x64.Build.0 = Release|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Debug|x64.Build.0 = Debug|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Release|x64.ActiveCfg = Release|Any CPU
+		{21813087-5B64-4279-B352-977E722E795A}.Release|x64.Build.0 = Release|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Debug|x64.Build.0 = Debug|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Release|x64.ActiveCfg = Release|Any CPU
+		{82724298-BF0F-4B01-925E-48E3B6F56979}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1287,6 +1307,8 @@ Global
 		{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{2979A34C-78A8-43C6-83C0-CF294DD8157E} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
 		{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB} = {762ECEC1-1617-429D-9115-18ADB39EE2F6}
+		{21813087-5B64-4279-B352-977E722E795A} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{82724298-BF0F-4B01-925E-48E3B6F56979} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
