@@ -8,34 +8,44 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
 
-    public static class Startup
+    public class Startup
     {
-        private static ILogger logger = new TextWriterLogger();
+        private readonly ILogger logger;
 
-        public static void Main(string[] args)
+        public Startup()
+        {
+            this.logger = new TextWriterLogger();
+        }
+
+        public static Startup Create()
+        {
+            return new Startup();
+        }
+
+        public void Run(string[] args)
         {
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            Run(args).Wait();
+            this.RunAsync(args).Wait();
 
-            logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
+            this.logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
         }
 
-        private static async Task Run(string[] args)
+        public async Task RunAsync(string[] args)
         {
             try
             {
-                var settingsBuilder = new ProgramSettingsBuilder(logger, args);
+                var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = new SingleFileProcessor(settings, logger);
+                var singleFileProcessor = new SingleFileProcessor(settings, this.logger);
 
                 await singleFileProcessor.Run();
             }
             catch (Exception e)
             {
-                logger.Log(e, string.Empty);
+                this.logger.Log(e, string.Empty);
             }
         }
     }
