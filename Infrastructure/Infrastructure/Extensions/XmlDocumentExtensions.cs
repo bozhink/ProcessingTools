@@ -1,10 +1,11 @@
 ﻿namespace ProcessingTools.Infrastructure.Extensions
 {
     using System.IO;
-    using System.Text;
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
+
+    using ProcessingTools.Common;
 
     public static class XmlDocumentExtensions
     {
@@ -59,15 +60,25 @@
         /// <exception cref="System.Text.EncoderFallbackException">Input document string should be UFT8 encoded.</exception>
         public static XmlReader ToXmlReader(this string text)
         {
+            var settings = new XmlReaderSettings
+            {
+                Async = true,
+                CloseInput = true,
+                ////DtdProcessing = DtdProcessing.Ignore,
+                IgnoreComments = false,
+                IgnoreProcessingInstructions = false,
+                IgnoreWhitespace = false
+            };
+
             XmlReader xmlReader = null;
             try
             {
-                byte[] bytesContent = Encoding.UTF8.GetBytes(text);
-                xmlReader = XmlReader.Create(new MemoryStream(bytesContent));
+                byte[] bytesContent = Defaults.DefaultEncoding.GetBytes(text);
+                xmlReader = XmlReader.Create(new MemoryStream(bytesContent), settings);
             }
-            catch (EncoderFallbackException e)
+            catch (System.Text.EncoderFallbackException e)
             {
-                throw new EncoderFallbackException("Input document string should be UFT8 encoded.", e);
+                throw new System.Text.EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
             }
             catch
             {

@@ -40,6 +40,7 @@
     <Compile Include="Constants\DefaultPagingConstants.cs" />
     <Compile Include="Constants\ProcessingConstants.cs" />
     <Compile Include="Constants\XPathConstants.cs" />
+    <Compile Include="Defaults.cs" />
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
