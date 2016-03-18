@@ -34,7 +34,7 @@
 
         private IElasticClient Client { get; set; }
 
-        public async Task Add(string context, TEntity entity)
+        public virtual async Task Add(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -50,7 +50,7 @@
             var response = await this.Client.IndexAsync(entity, idx => idx.Index(context));
         }
 
-        public async Task<IQueryable<TEntity>> All(string context)
+        public virtual async Task<IQueryable<TEntity>> All(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -62,7 +62,7 @@
             return response.Documents.AsQueryable();
         }
 
-        public async Task<IQueryable<TEntity>> All(string context, int skip, int take)
+        public virtual async Task<IQueryable<TEntity>> All(string context, int skip, int take)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -83,7 +83,7 @@
             return response.Documents.AsQueryable();
         }
 
-        public async Task Delete(string context)
+        public virtual async Task Delete(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -93,7 +93,7 @@
             var response = await this.Client.DeleteIndexAsync(context);
         }
 
-        public async Task Delete(string context, TEntity entity)
+        public virtual async Task Delete(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -108,7 +108,7 @@
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
-        public async Task Delete(string context, int id)
+        public virtual async Task Delete(string context, int id)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -119,7 +119,7 @@
             await this.Delete(context, entity);
         }
 
-        public async Task<TEntity> Get(string context, int id)
+        public virtual async Task<TEntity> Get(string context, int id)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -130,7 +130,7 @@
             return response.Source;
         }
 
-        public async Task<int> SaveChanges(string context)
+        public virtual async Task<int> SaveChanges(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -141,7 +141,7 @@
             return response.IsValid ? 0 : 1;
         }
 
-        public async Task Update(string context, TEntity entity)
+        public virtual async Task Update(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
