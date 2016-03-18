@@ -229,7 +229,7 @@
     <Compile Include="Settings\NinjectHarvestersBindings.cs" />
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
-    <Compile Include="TaggerStartup.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="SingleFileProcessor.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
