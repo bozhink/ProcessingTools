@@ -10,11 +10,13 @@
     {
         private ICollection<City> cities;
         private ICollection<Country> countries;
+        private ICollection<Journal> journals;
 
         public Publisher()
         {
             this.cities = new HashSet<City>();
             this.countries = new HashSet<Country>();
+            this.journals = new HashSet<Journal>();
         }
 
         [Key]
@@ -50,6 +52,19 @@
             set
             {
                 this.cities = value;
+            }
+        }
+
+        public virtual ICollection<Journal> Journals
+        {
+            get
+            {
+                return this.journals;
+            }
+
+            set
+            {
+                this.journals = value;
             }
         }
     }

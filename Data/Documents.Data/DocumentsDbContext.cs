@@ -18,6 +18,8 @@
 
         public IDbSet<Publisher> Publishers { get; set; }
 
+        public IDbSet<Journal> Journals { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()
