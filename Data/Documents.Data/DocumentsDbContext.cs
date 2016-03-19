@@ -24,6 +24,8 @@
 
         public IDbSet<Institution> Institutions { get; set; }
 
+        public IDbSet<Affiliation> Affiliations { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()

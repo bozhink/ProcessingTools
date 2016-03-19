@@ -8,10 +8,12 @@
     public class Address
     {
         private ICollection<Institution> institutions;
+        private ICollection<Affiliation> affiliations;
 
         public Address()
         {
             this.institutions = new HashSet<Institution>();
+            this.affiliations = new HashSet<Affiliation>();
         }
 
         [Key]
@@ -38,6 +40,19 @@
             set
             {
                 this.institutions = value;
+            }
+        }
+
+        public virtual ICollection<Affiliation> Affiliations
+        {
+            get
+            {
+                return this.affiliations;
+            }
+
+            set
+            {
+                this.affiliations = value;
             }
         }
     }

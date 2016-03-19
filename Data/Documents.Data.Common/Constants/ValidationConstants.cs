@@ -18,5 +18,7 @@
 
         public const int MaximalLengthOfInstitutionName = 100;
         public const int MaximalLengthOfAbbreviatedInstitutionName = 40;
+
+        public const int MaximalLengthOfAffiliationName = 100;
     }
 }
