@@ -15,5 +15,8 @@
         public const int MaximalLengthOfJournalId = 40;
 
         public const int MaximalLengthOfAddressString = 100;
+
+        public const int MaximalLengthOfInstitutionName = 100;
+        public const int MaximalLengthOfAbbreviatedInstitutionName = 40;
     }
 }

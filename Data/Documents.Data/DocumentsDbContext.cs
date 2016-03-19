@@ -22,6 +22,8 @@
 
         public IDbSet<Address> Addresses { get; set; }
 
+        public IDbSet<Institution> Institutions { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()
