@@ -46,6 +46,12 @@
             }
         }
 
+        [MaxLength(ValidationConstants.IssnLength)]
+        public string PrintIssn { get; set; }
+
+        [MaxLength(ValidationConstants.IssnLength)]
+        public string ElectronicIssn { get; set; }
+
         public virtual int PublisherId { get; set; }
 
         public virtual Publisher Publisher { get; set; }
