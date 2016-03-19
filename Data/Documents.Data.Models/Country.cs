@@ -8,11 +8,13 @@
 
     public class Country
     {
-        public ICollection<City> cities;
+        private ICollection<City> cities;
+        private ICollection<Publisher> publishers;
 
         public Country()
         {
             this.cities = new HashSet<City>();
+            this.publishers = new HashSet<Publisher>();
         }
 
         [Key]
@@ -32,6 +34,19 @@
             set
             {
                 this.cities = value;
+            }
+        }
+
+        public virtual ICollection<Publisher> Publishers
+        {
+            get
+            {
+                return this.publishers;
+            }
+
+            set
+            {
+                this.publishers = value;
             }
         }
     }

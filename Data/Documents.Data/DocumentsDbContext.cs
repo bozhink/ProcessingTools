@@ -16,6 +16,8 @@
 
         public IDbSet<City> Cities { get; set; }
 
+        public IDbSet<Publisher> Publishers { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()

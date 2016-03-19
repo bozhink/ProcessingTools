@@ -6,23 +6,26 @@
 
     using Common.Constants;
 
-    public class City
+    public class Publisher
     {
+        private ICollection<City> cities;
         private ICollection<Country> countries;
-        private ICollection<Publisher> publishers;
 
-        public City()
+        public Publisher()
         {
+            this.cities = new HashSet<City>();
             this.countries = new HashSet<Country>();
-            this.publishers = new HashSet<Publisher>();
         }
 
         [Key]
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [MaxLength(ValidationConstants.MaximalLengthOfCityName)]
+        [MaxLength(ValidationConstants.MaximalLengthOfPublisherName)]
         public string Name { get; set; }
+
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName)]
+        public string AbbreviatedName { get; set; }
 
         public virtual ICollection<Country> Countries
         {
@@ -37,16 +40,16 @@
             }
         }
 
-        public virtual ICollection<Publisher> Publishers
+        public virtual ICollection<City> Cities
         {
             get
             {
-                return this.publishers;
+                return this.cities;
             }
 
             set
             {
-                this.publishers = value;
+                this.cities = value;
             }
         }
     }
