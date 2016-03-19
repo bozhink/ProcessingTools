@@ -16,11 +16,11 @@
 
         public IDbSet<City> Cities { get; set; }
 
+        public IDbSet<Address> Addresses { get; set; }
+
         public IDbSet<Publisher> Publishers { get; set; }
 
         public IDbSet<Journal> Journals { get; set; }
-
-        public IDbSet<Address> Addresses { get; set; }
 
         public IDbSet<Institution> Institutions { get; set; }
 
