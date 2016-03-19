@@ -1,0 +1,7 @@
+﻿namespace ProcessingTools.Documents.Data.Common.Constants
+{
+    public static class ValidationConstants
+    {
+        public const int MaximalLengthOfCountryName = 60;
+    }
+}
