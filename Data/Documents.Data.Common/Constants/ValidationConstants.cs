@@ -20,5 +20,12 @@
         public const int MaximalLengthOfAbbreviatedInstitutionName = 40;
 
         public const int MaximalLengthOfAffiliationName = 100;
+
+        public const int MaximalLengthOfAuthorSurname = 50;
+        public const int MaximalLengthOfAuthorGivenNames = 50;
+        public const int MaximalLengthOfAuthorPrefix = 5;
+        public const int MaximalLengthOfAuthorSuffix = 5;
+
+
     }
 }

@@ -26,6 +26,8 @@
 
         public IDbSet<Affiliation> Affiliations { get; set; }
 
+        public IDbSet<Author> Authors { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()
