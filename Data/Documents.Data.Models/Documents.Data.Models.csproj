@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Affiliation.cs" />
+    <Compile Include="Article.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />

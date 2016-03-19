@@ -10,6 +10,13 @@
     {
         private string journalId;
 
+        private ICollection<Article> articles;
+
+        public Journal()
+        {
+            this.articles = new HashSet<Article>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -42,5 +49,18 @@
         public virtual int PublisherId { get; set; }
 
         public virtual Publisher Publisher { get; set; }
+
+        public virtual ICollection<Article> Articles
+        {
+            get
+            {
+                return this.articles;
+            }
+
+            set
+            {
+                this.articles = value;
+            }
+        }
     }
 }

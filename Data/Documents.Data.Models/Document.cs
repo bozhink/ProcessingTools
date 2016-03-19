@@ -15,6 +15,8 @@
         [Key]
         public int Id { get; set; }
 
+        public string UserId { get; set; }
+
         public DateTime? Date
         {
             get
@@ -74,5 +76,9 @@
                 this.Content = value.OuterXml;
             }
         }
+
+        public virtual int ArticleId { get; set; }
+
+        public virtual Article Article { get; set; }
     }
 }

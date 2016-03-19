@@ -28,6 +28,8 @@
 
         public IDbSet<Author> Authors { get; set; }
 
+        public IDbSet<Article> Articles { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()

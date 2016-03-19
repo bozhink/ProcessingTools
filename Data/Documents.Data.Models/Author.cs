@@ -8,10 +8,12 @@
     public class Author
     {
         private ICollection<Affiliation> affiliations;
+        private ICollection<Article> articles;
 
         public Author()
         {
             this.affiliations = new HashSet<Affiliation>();
+            this.articles = new HashSet<Article>();
         }
 
         [Key]
@@ -40,6 +42,19 @@
             set
             {
                 this.affiliations = value;
+            }
+        }
+
+        public virtual ICollection<Article> Articles
+        {
+            get
+            {
+                return this.articles;
+            }
+
+            set
+            {
+                this.articles = value;
             }
         }
     }

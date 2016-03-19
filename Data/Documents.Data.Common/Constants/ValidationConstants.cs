@@ -26,6 +26,7 @@
         public const int MaximalLengthOfAuthorPrefix = 5;
         public const int MaximalLengthOfAuthorSuffix = 5;
 
-
+        public const int MaximalLengthOfArticleTitle = 200;
+        public const int MaximalLengthOfArticleELocationId = 10;
     }
 }
