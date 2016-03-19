@@ -139,10 +139,7 @@
 
         public Task<int> SaveChanges(string context)
         {
-            return Task.Run(() =>
-            {
-                return 0;
-            });
+            return Task.FromResult(0);
         }
 
         public void Dispose()

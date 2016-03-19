@@ -40,7 +40,7 @@
 
         private IElasticClient Client { get; set; }
 
-        public async Task Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -51,14 +51,14 @@
             var response = await this.Client.IndexAsync(entity, idx => idx.Index(this.Context));
         }
 
-        public async Task<IQueryable<TEntity>> All()
+        public virtual async Task<IQueryable<TEntity>> All()
         {
             var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
             return response.Documents.AsQueryable();
         }
 
-        public async Task<IQueryable<TEntity>> All(int skip, int take)
+        public virtual async Task<IQueryable<TEntity>> All(int skip, int take)
         {
             if (skip < 0)
             {
@@ -74,31 +74,31 @@
             return response.Documents.AsQueryable();
         }
 
-        public async Task Delete(object id)
+        public virtual async Task Delete(object id)
         {
             var entity = await this.Get(id);
             await this.Delete(entity);
         }
 
-        public async Task Delete(TEntity entity)
+        public virtual async Task Delete(TEntity entity)
         {
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
-        public async Task<TEntity> Get(object id)
+        public virtual async Task<TEntity> Get(object id)
         {
             var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
             var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
             return response.Source;
         }
 
-        public async Task<int> SaveChanges()
+        public virtual async Task<int> SaveChanges()
         {
             var response = await this.Client.FlushAsync(this.Context);
             return response.IsValid ? 0 : 1;
         }
 
-        public async Task Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             if (entity == null)
             {

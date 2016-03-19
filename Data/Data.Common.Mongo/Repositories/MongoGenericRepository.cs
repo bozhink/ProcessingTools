@@ -120,7 +120,7 @@
 
         public virtual Task<int> SaveChanges()
         {
-            return Task.Run(() => 0);
+            return Task.FromResult(0);
         }
 
         public virtual async Task Update(TEntity entity)

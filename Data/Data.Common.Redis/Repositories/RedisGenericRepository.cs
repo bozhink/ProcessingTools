@@ -24,7 +24,7 @@
             this.provider = provider;
         }
 
-        public Task Add(string context, TEntity entity)
+        public virtual Task Add(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -50,7 +50,7 @@
             });
         }
 
-        public Task<IQueryable<TEntity>> All(string context)
+        public virtual Task<IQueryable<TEntity>> All(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -67,7 +67,7 @@
             });
         }
 
-        public Task<IQueryable<TEntity>> All(string context, int skip, int take)
+        public virtual Task<IQueryable<TEntity>> All(string context, int skip, int take)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -98,7 +98,7 @@
             });
         }
 
-        public Task Delete(string context)
+        public virtual Task Delete(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -114,7 +114,7 @@
             });
         }
 
-        public Task Delete(string context, TEntity entity)
+        public virtual Task Delete(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -136,7 +136,7 @@
             });
         }
 
-        public Task Delete(string context, int id)
+        public virtual Task Delete(string context, int id)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -153,7 +153,7 @@
             });
         }
 
-        public Task<TEntity> Get(string context, int id)
+        public virtual Task<TEntity> Get(string context, int id)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -171,7 +171,7 @@
             });
         }
 
-        public Task Update(string context, TEntity entity)
+        public virtual Task Update(string context, TEntity entity)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -194,12 +194,9 @@
             });
         }
 
-        public Task<int> SaveChanges(string context)
+        public virtual Task<int> SaveChanges(string context)
         {
-            return Task.Run(() =>
-            {
-                return 0;
-            });
+            return Task.FromResult(0);
         }
     }
 }
