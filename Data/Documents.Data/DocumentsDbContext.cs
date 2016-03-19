@@ -12,6 +12,10 @@
         {
         }
 
+        public IDbSet<Country> Countries { get; set; }
+
+        public IDbSet<City> Cities { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()

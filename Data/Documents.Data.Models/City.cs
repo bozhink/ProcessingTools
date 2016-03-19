@@ -6,32 +6,32 @@
 
     using Common.Constants;
 
-    public class Country
+    public class City
     {
-        public ICollection<City> cities;
+        private ICollection<Country> countries;
 
-        public Country()
+        public City()
         {
-            this.cities = new HashSet<City>();
+            this.countries = new HashSet<Country>();
         }
 
         [Key]
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [MaxLength(ValidationConstants.MaximalLengthOfCountryName)]
+        [MaxLength(ValidationConstants.MaximalLengthOfCityName)]
         public string Name { get; set; }
 
-        public virtual ICollection<City> Cities
+        public virtual ICollection<Country> Countries
         {
             get
             {
-                return this.cities;
+                return this.countries;
             }
 
             set
             {
-                this.cities = value;
+                this.countries = value;
             }
         }
     }
