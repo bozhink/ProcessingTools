@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Api.Data.Models;
     using ProcessingTools.Web.Documents.ViewModels.Account;
 
     [Authorize]
@@ -180,7 +180,7 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new User
                 {
                     UserName = model.Email,
                     Email = model.Email
@@ -437,7 +437,7 @@
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new ApplicationUser
+                var user = new User
                 {
                     UserName = model.Email,
                     Email = model.Email
