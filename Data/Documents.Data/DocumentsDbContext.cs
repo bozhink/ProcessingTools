@@ -20,6 +20,8 @@
 
         public IDbSet<Journal> Journals { get; set; }
 
+        public IDbSet<Address> Addresses { get; set; }
+
         public IDbSet<Document> Documents { get; set; }
 
         public static DocumentsDbContext Create()
