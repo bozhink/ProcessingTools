@@ -8,14 +8,12 @@
 
     public class Publisher
     {
-        private ICollection<City> cities;
-        private ICollection<Country> countries;
+        private ICollection<Address> addresses;
         private ICollection<Journal> journals;
 
         public Publisher()
         {
-            this.cities = new HashSet<City>();
-            this.countries = new HashSet<Country>();
+            this.addresses = new HashSet<Address>();
             this.journals = new HashSet<Journal>();
         }
 
@@ -29,29 +27,16 @@
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName)]
         public string AbbreviatedName { get; set; }
 
-        public virtual ICollection<Country> Countries
+        public virtual ICollection<Address> Addresses
         {
             get
             {
-                return this.countries;
+                return this.addresses;
             }
 
             set
             {
-                this.countries = value;
-            }
-        }
-
-        public virtual ICollection<City> Cities
-        {
-            get
-            {
-                return this.cities;
-            }
-
-            set
-            {
-                this.cities = value;
+                this.addresses = value;
             }
         }
 

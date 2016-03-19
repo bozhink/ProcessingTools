@@ -7,11 +7,13 @@
 
     public class Address
     {
+        private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;
         private ICollection<Affiliation> affiliations;
 
         public Address()
         {
+            this.publishers = new HashSet<Publisher>();
             this.institutions = new HashSet<Institution>();
             this.affiliations = new HashSet<Affiliation>();
         }
@@ -29,6 +31,19 @@
         public virtual int CountryId { get; set; }
 
         public virtual Country Country { get; set; }
+
+        public virtual ICollection<Publisher> Publishers
+        {
+            get
+            {
+                return this.publishers;
+            }
+
+            set
+            {
+                this.publishers = value;
+            }
+        }
 
         public virtual ICollection<Institution> Institutions
         {
