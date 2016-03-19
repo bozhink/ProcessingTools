@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Web.Documents.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller
