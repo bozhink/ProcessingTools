@@ -16,7 +16,6 @@
             this.CleanRankListFileName = string.Empty;
             this.CleanWhiteListFileName = string.Empty;
             this.CleanBlackListFileName = string.Empty;
-            this.TempDir = string.Empty;
 
             this.blackListManager.ListGroupBoxLabel = "Black List";
             this.blackListManager.IsRankList = false;
@@ -28,53 +27,19 @@
             this.rankListManager.IsRankList = true;
         }
 
-        public string BlackListFileName
-        {
-            get;
-            set;
-        }
+        public string BlackListFileName { get; set; }
 
-        public string CleanBlackListFileName
-        {
-            get;
-            set;
-        }
+        public string CleanBlackListFileName { get; set; }
 
-        public string CleanRankListFileName
-        {
-            get;
-            set;
-        }
+        public string CleanRankListFileName { get; set; }
 
-        public string CleanWhiteListFileName
-        {
-            get;
-            set;
-        }
+        public string CleanWhiteListFileName { get; set; }
 
-        public string ConfigFileName
-        {
-            get;
-            set;
-        }
+        public string ConfigFileName { get; set; }
 
-        public string RankListFileName
-        {
-            get;
-            set;
-        }
+        public string RankListFileName { get; set; }
 
-        public string TempDir
-        {
-            get;
-            set;
-        }
-
-        public string WhiteListFileName
-        {
-            get;
-            set;
-        }
+        public string WhiteListFileName { get; set; }
 
         private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
