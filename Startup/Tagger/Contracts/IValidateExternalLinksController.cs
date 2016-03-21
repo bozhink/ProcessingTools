@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Contracts
 {
-    public interface IValidateExternalLinksController : ITaggerController
+    public interface IValidateExternalLinksController : ITaggerController, IValidationController
     {
     }
 }

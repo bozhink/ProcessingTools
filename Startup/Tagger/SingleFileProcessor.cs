@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -18,6 +19,8 @@
 
     public class SingleFileProcessor : FileProcessor
     {
+        private ConcurrentQueue<Task> tasks;
+
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
 
@@ -26,6 +29,7 @@
 
         public SingleFileProcessor(ProgramSettings settings, ILogger logger)
         {
+            this.tasks = new ConcurrentQueue<Task>();
             this.settings = settings;
             this.logger = logger;
             this.document = new TaxPubDocument();
@@ -103,7 +107,16 @@
 
                         foreach (var controllerType in this.settings.CalledControllers)
                         {
-                            this.InvokeProcessor(controllerType, kernel).Wait();
+                            // Do not wait validation controllers to return.
+                            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
+                            if (validationController == null)
+                            {
+                                this.InvokeProcessor(controllerType, kernel).Wait();
+                            }
+                            else
+                            {
+                                this.tasks.Enqueue(this.InvokeProcessor(controllerType, kernel));
+                            }
                         }
 
                         if (this.settings.TagEnvironmentTermsWithExtract)
@@ -193,7 +206,7 @@
 
                         if (this.settings.ValidateTaxa)
                         {
-                            await this.InvokeProcessor<IValidateTaxaController>(kernel);
+                            this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>(kernel));
                         }
 
                         if (this.settings.UntagSplit)
@@ -223,7 +236,9 @@
                     }
                 }
 
-                await this.WriteOutputFile();
+                this.tasks.Enqueue(this.WriteOutputFile());
+
+                Task.WaitAll(this.tasks.ToArray());
             }
             catch (Exception e)
             {
