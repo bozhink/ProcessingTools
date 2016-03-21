@@ -100,22 +100,18 @@
             this.CleanRankListFileName = configXml.ChildNodes.Item(1)["rank-list-clean-xsl-path"].InnerText;
             this.CleanWhiteListFileName = configXml.ChildNodes.Item(1)["white-list-clean-xsl-path"].InnerText;
             this.CleanBlackListFileName = configXml.ChildNodes.Item(1)["black-list-clean-xsl-path"].InnerText;
-            this.TempDir = configXml.ChildNodes.Item(1)["temp"].InnerText;
 
             // Set BlackList file paths
             this.blackListManager.ListFileName = this.BlackListFileName;
             this.blackListManager.CleanXslFileName = this.CleanBlackListFileName;
-            this.blackListManager.TempDirectory = this.TempDir;
 
             // Set WhiteList file paths
             this.whiteListManager.ListFileName = this.WhiteListFileName;
             this.whiteListManager.CleanXslFileName = this.CleanWhiteListFileName;
-            this.whiteListManager.TempDirectory = this.TempDir;
 
             // Set RankList file paths
             this.rankListManager.ListFileName = this.RankListFileName;
             this.rankListManager.CleanXslFileName = this.CleanRankListFileName;
-            this.rankListManager.TempDirectory = this.TempDir;
         }
 
         private void OpenConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
