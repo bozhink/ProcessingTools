@@ -129,26 +129,26 @@
                     throw new ApplicationException("Invalid list name.");
                 }
 
-                XmlDocument listFileXml = new XmlDocument();
-                listFileXml.Load(this.ListFileName);
+                var listHolder = new XmlListHolder(this.ListFileName);
+                listHolder.Load();
 
                 foreach (ListViewItem item in this.listView.Items)
                 {
                     XmlElement entry = null;
                     if (this.IsRankList)
                     {
-                        entry = listFileXml.CreateElement("taxon");
+                        entry = listHolder.XmlDocument.CreateElement("taxon");
 
-                        XmlElement part = listFileXml.CreateElement("part");
+                        XmlElement part = listHolder.XmlDocument.CreateElement("part");
 
-                        XmlElement partValue = listFileXml.CreateElement("value");
+                        XmlElement partValue = listHolder.XmlDocument.CreateElement("value");
                         partValue.InnerText = item.SubItems[0].Text;
 
                         part.AppendChild(partValue);
 
-                        XmlElement rank = listFileXml.CreateElement("rank");
+                        XmlElement rank = listHolder.XmlDocument.CreateElement("rank");
 
-                        XmlElement rankValue = listFileXml.CreateElement("value");
+                        XmlElement rankValue = listHolder.XmlDocument.CreateElement("value");
                         rankValue.InnerText = item.SubItems[1].Text;
 
                         rank.AppendChild(rankValue);
@@ -159,11 +159,11 @@
                     }
                     else
                     {
-                        entry = listFileXml.CreateElement("item");
+                        entry = listHolder.XmlDocument.CreateElement("item");
                         entry.InnerXml = item.Text;
                     }
 
-                    listFileXml.FirstChild.AppendChild(entry);
+                    listHolder.XmlDocument.FirstChild.AppendChild(entry);
                 }
 
                 XmlWriterSettings settings = new XmlWriterSettings
@@ -178,11 +178,7 @@
                     WriteEndDocumentOnClose = true
                 };
 
-                using (XmlWriter writer = XmlWriter.Create(this.ListFileName, settings))
-                {
-                    listFileXml.WriteTo(writer);
-                    writer.Flush();
-                }
+                listHolder.Write();
             }
             catch (Exception ex)
             {
@@ -241,12 +237,12 @@
                 this.Enabled = false;
                 try
                 {
-                    XmlDocument listFileXml = new XmlDocument();
-                    listFileXml.Load(this.ListFileName);
+                    var listHolder = new XmlListHolder(this.ListFileName);
+                    listHolder.Load();
 
                     if (this.IsRankList)
                     {
-                        foreach (XmlNode taxon in listFileXml.SelectNodes("//taxon"))
+                        foreach (XmlNode taxon in listHolder.XmlDocument.SelectNodes("//taxon"))
                         {
                             foreach (XmlNode part in taxon.SelectNodes("part"))
                             {
@@ -267,7 +263,7 @@
                     }
                     else
                     {
-                        foreach (XmlNode item in listFileXml.SelectNodes("/*/*"))
+                        foreach (XmlNode item in listHolder.XmlDocument.SelectNodes("/*/*"))
                         {
                             this.listView.Items.Add(item.InnerText);
                         }
@@ -288,12 +284,12 @@
             {
                 if (this.listSearchTextBox.Text.Trim().Length > 0)
                 {
-                    XmlDocument listFileXml = new XmlDocument();
-                    listFileXml.Load(this.ListFileName);
+                    var listHolder = new XmlListHolder(this.ListFileName);
+                    listHolder.Load();
 
                     if (this.IsRankList)
                     {
-                        foreach (XmlNode taxon in listFileXml.SelectNodes($"//taxon[part/value[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]]"))
+                        foreach (XmlNode taxon in listHolder.XmlDocument.SelectNodes($"//taxon[part/value[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]]"))
                         {
                             foreach (XmlNode part in taxon.SelectNodes("part"))
                             {
@@ -314,7 +310,7 @@
                     }
                     else
                     {
-                        foreach (XmlNode item in listFileXml.SelectNodes($"/*/*[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]"))
+                        foreach (XmlNode item in listHolder.XmlDocument.SelectNodes($"/*/*[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]"))
                         {
                             this.listView.Items.Add(item.InnerText);
                         }
