@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.MainProgram
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -18,6 +19,8 @@
 
     public class SingleFileProcessor : FileProcessor
     {
+        private ConcurrentQueue<Task> tasks;
+
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
 
@@ -26,6 +29,7 @@
 
         public SingleFileProcessor(ProgramSettings settings, ILogger logger)
         {
+            this.tasks = new ConcurrentQueue<Task>();
             this.settings = settings;
             this.logger = logger;
             this.document = new TaxPubDocument();
@@ -193,7 +197,7 @@
 
                         if (this.settings.ValidateTaxa)
                         {
-                            await this.InvokeProcessor<IValidateTaxaController>(kernel);
+                            this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>(kernel));
                         }
 
                         if (this.settings.UntagSplit)
@@ -223,7 +227,9 @@
                     }
                 }
 
-                await this.WriteOutputFile();
+                this.tasks.Enqueue(this.WriteOutputFile());
+
+                Task.WaitAll(this.tasks.ToArray());
             }
             catch (Exception e)
             {
@@ -276,7 +282,24 @@
 
         protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
         {
-            await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+            // Do not wait validation controllers to return.
+            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
+            if (validationController != null)
+            {
+                // Validation controllers should not overwrite the content of this.document.XmlDocument,
+                // and here this content is copied in a new DOM object.
+                XmlDocument document = new XmlDocument
+                {
+                    PreserveWhitespace = true
+                };
+
+                document.LoadXml(this.document.Xml);
+                this.tasks.Enqueue(this.InvokeProcessor(controllerType, document.DocumentElement, kernel));
+            }
+            else
+            {
+                await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+            }
         }
 
         protected async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
