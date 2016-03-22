@@ -162,10 +162,10 @@
         {
             return xml
                 .RegexReplace(
-                    @"(<(?:source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)\b[^>]*>)\s+",
+                    @"(<(?:source|issue-title|b|i|u|sup|sub|monospace|year|month|day|volume|fpage|lpage)\b[^>]*>)\s+",
                     " $1")
                 .RegexReplace(
-                    @"\s+(</(?:source|issue-title|b|i|u|monospace|year|month|day|volume|fpage|lpage)>)",
+                    @"\s+(</(?:source|issue-title|b|i|u|sup|sub|monospace|year|month|day|volume|fpage|lpage)>)",
                     "$1 ");
         }
 

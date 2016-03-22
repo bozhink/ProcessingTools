@@ -146,6 +146,7 @@
     <Compile Include="Contracts\ITestController.cs" />
     <Compile Include="Contracts\IValidateExternalLinksController.cs" />
     <Compile Include="Contracts\IValidateTaxaController.cs" />
+    <Compile Include="Contracts\IValidationController.cs" />
     <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
