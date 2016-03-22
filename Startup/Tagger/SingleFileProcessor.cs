@@ -107,16 +107,7 @@
 
                         foreach (var controllerType in this.settings.CalledControllers)
                         {
-                            // Do not wait validation controllers to return.
-                            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
-                            if (validationController == null)
-                            {
-                                this.InvokeProcessor(controllerType, kernel).Wait();
-                            }
-                            else
-                            {
-                                this.tasks.Enqueue(this.InvokeProcessor(controllerType, kernel));
-                            }
+                            this.InvokeProcessor(controllerType, kernel).Wait();
                         }
 
                         if (this.settings.TagEnvironmentTermsWithExtract)
@@ -291,7 +282,24 @@
 
         protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
         {
-            await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+            // Do not wait validation controllers to return.
+            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
+            if (validationController != null)
+            {
+                // Validation controllers should not overwrite the content of this.document.XmlDocument,
+                // and here this content is copied in a new DOM object.
+                XmlDocument document = new XmlDocument
+                {
+                    PreserveWhitespace = true
+                };
+
+                document.LoadXml(this.document.Xml);
+                this.tasks.Enqueue(this.InvokeProcessor(controllerType, document.DocumentElement, kernel));
+            }
+            else
+            {
+                await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+            }
         }
 
         protected async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
