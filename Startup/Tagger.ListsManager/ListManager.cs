@@ -68,9 +68,9 @@
                         var item = new ListViewItem(taxonRankPair);
                         this.listView.Items.Add(item);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // Skip this item
+                        MessageBox.Show(ex.ToString());
                     }
                 }
             }
@@ -163,20 +163,8 @@
                         entry.InnerXml = item.Text;
                     }
 
-                    listHolder.XmlDocument.FirstChild.AppendChild(entry);
+                    listHolder.XmlDocument.DocumentElement.AppendChild(entry);
                 }
-
-                XmlWriterSettings settings = new XmlWriterSettings
-                {
-                    Async = true,
-                    CheckCharacters = true,
-                    CloseOutput = true,
-                    ConformanceLevel = ConformanceLevel.Document,
-                    Encoding = Defaults.DefaultEncoding,
-                    Indent = false,
-                    OmitXmlDeclaration = false,
-                    WriteEndDocumentOnClose = true
-                };
 
                 listHolder.Write();
             }
