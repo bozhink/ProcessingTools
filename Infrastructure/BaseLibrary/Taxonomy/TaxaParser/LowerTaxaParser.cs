@@ -111,7 +111,7 @@
         private static string ParseFullStringMatch(string text)
         {
             const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
-            const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
+            ////const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
             const string SpeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
             const string SubspeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
 
