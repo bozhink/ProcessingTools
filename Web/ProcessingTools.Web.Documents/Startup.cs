@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Documents
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }
