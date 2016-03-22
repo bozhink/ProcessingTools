@@ -61,6 +61,5 @@
                 writer.Flush();
             }
         }
-
     }
 }
