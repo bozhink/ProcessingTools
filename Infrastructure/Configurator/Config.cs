@@ -74,9 +74,6 @@
         [DataMember(Name = "codesRemoveNonCodeNodes")]
         public string CodesRemoveNonCodeNodes { get; set; }
 
-        [DataMember(Name = "envoTermsWebServiceTransformXslPath")]
-        public string EnvoTermsWebServiceTransformXslPath { get; set; }
-
         [DataMember(Name = "floraDistrinctTaxaXslPath")]
         public string FloraDistrinctTaxaXslPath { get; set; }
 

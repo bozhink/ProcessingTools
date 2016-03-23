@@ -60,21 +60,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_ShouldBePersistent()
-        {
-            this.config.EnvoTermsWebServiceTransformXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.EnvoTermsWebServiceTransformXslPath,
-                "1. EnvoTermsWebServiceTransformXslPath should match SampleFilePath.");
-
-            this.config.EnvoTermsWebServiceTransformXslPath = null;
-            Assert.IsNull(
-                this.config.EnvoTermsWebServiceTransformXslPath,
-                "2. EnvoTermsWebServiceTransformXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraDistrinctTaxaXslPath = SampleFilePath;
