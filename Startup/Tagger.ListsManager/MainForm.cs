@@ -1,22 +1,19 @@
 ﻿namespace ProcessingTools.ListsManager
 {
     using System;
+    using System.Configuration;
+    using System.IO;
     using System.Windows.Forms;
-    using System.Xml;
+
+    using ProcessingTools.Configurator;
 
     public partial class MainForm : Form
     {
         public MainForm()
         {
             this.InitializeComponent();
-            this.ConfigFileName = string.Empty;
-            this.BlackListFileName = string.Empty;
-            this.WhiteListFileName = string.Empty;
-            this.RankListFileName = string.Empty;
-            this.CleanRankListFileName = string.Empty;
-            this.CleanWhiteListFileName = string.Empty;
-            this.CleanBlackListFileName = string.Empty;
-            this.TempDir = string.Empty;
+            this.ConfigFileName = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
+            this.OpenConfigFile();
 
             this.blackListManager.ListGroupBoxLabel = "Black List";
             this.blackListManager.IsRankList = false;
@@ -28,53 +25,9 @@
             this.rankListManager.IsRankList = true;
         }
 
-        public string BlackListFileName
-        {
-            get;
-            set;
-        }
+        private string ConfigFileName { get; set; }
 
-        public string CleanBlackListFileName
-        {
-            get;
-            set;
-        }
-
-        public string CleanRankListFileName
-        {
-            get;
-            set;
-        }
-
-        public string CleanWhiteListFileName
-        {
-            get;
-            set;
-        }
-
-        public string ConfigFileName
-        {
-            get;
-            set;
-        }
-
-        public string RankListFileName
-        {
-            get;
-            set;
-        }
-
-        public string TempDir
-        {
-            get;
-            set;
-        }
-
-        public string WhiteListFileName
-        {
-            get;
-            set;
-        }
+        private Config Config { get; set; }
 
         private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -85,48 +38,34 @@
             this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
         }
 
-        private void OpenConfigFile(string fileName)
+        private void OpenConfigFile()
         {
-            this.ConfigFileName = fileName;
-            this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
-
-            XmlDocument configXml = new XmlDocument();
-            configXml.Load(this.ConfigFileName);
-
-            // Parse config file
-            this.BlackListFileName = configXml.ChildNodes.Item(1)["black-list-xml-file-path"].InnerText;
-            this.WhiteListFileName = configXml.ChildNodes.Item(1)["white-list-xml-file-path"].InnerText;
-            this.RankListFileName = configXml.ChildNodes.Item(1)["rank-list-xml-file-path"].InnerText;
-            this.CleanRankListFileName = configXml.ChildNodes.Item(1)["rank-list-clean-xsl-path"].InnerText;
-            this.CleanWhiteListFileName = configXml.ChildNodes.Item(1)["white-list-clean-xsl-path"].InnerText;
-            this.CleanBlackListFileName = configXml.ChildNodes.Item(1)["black-list-clean-xsl-path"].InnerText;
-            this.TempDir = configXml.ChildNodes.Item(1)["temp"].InnerText;
+            this.Config = ConfigBuilder.Create(this.ConfigFileName);
 
             // Set BlackList file paths
-            this.blackListManager.ListFileName = this.BlackListFileName;
-            this.blackListManager.CleanXslFileName = this.CleanBlackListFileName;
-            this.blackListManager.TempDirectory = this.TempDir;
+            this.blackListManager.ListFileName = this.Config.BlackListXmlFilePath;
+            this.blackListManager.CleanXslFileName = this.Config.BlackListCleanXslPath;
 
             // Set WhiteList file paths
-            this.whiteListManager.ListFileName = this.WhiteListFileName;
-            this.whiteListManager.CleanXslFileName = this.CleanWhiteListFileName;
-            this.whiteListManager.TempDirectory = this.TempDir;
+            this.whiteListManager.ListFileName = this.Config.WhiteListXmlFilePath;
+            this.whiteListManager.CleanXslFileName = this.Config.WhiteListCleanXslPath;
 
             // Set RankList file paths
-            this.rankListManager.ListFileName = this.RankListFileName;
-            this.rankListManager.CleanXslFileName = this.CleanRankListFileName;
-            this.rankListManager.TempDirectory = this.TempDir;
+            this.rankListManager.ListFileName = this.Config.RankListXmlFilePath;
+            this.rankListManager.CleanXslFileName = this.Config.RankListCleanXslPath;
+
+            this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
         }
 
         private void OpenConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Try to open the config file as xml
             try
             {
                 this.openConfigFileDialog.ShowDialog();
-                if (this.openConfigFileDialog.FileName.Length > 0)
+                if (!string.IsNullOrWhiteSpace(this.openConfigFileDialog.FileName) && File.Exists(this.openConfigFileDialog.FileName))
                 {
-                    this.OpenConfigFile(this.openConfigFileDialog.FileName);
+                    this.ConfigFileName = this.openConfigFileDialog.FileName;
+                    this.OpenConfigFile();
                 }
             }
             catch (Exception configException)
@@ -139,7 +78,8 @@
         {
             try
             {
-                this.OpenConfigFile(@"C:\bin\config.xml");
+                this.ConfigFileName = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
+                this.OpenConfigFile();
             }
             catch (Exception configException)
             {

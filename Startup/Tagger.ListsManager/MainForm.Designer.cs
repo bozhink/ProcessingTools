@@ -218,7 +218,6 @@
             this.whiteListManager.Name = "whiteListManager";
             this.whiteListManager.Size = new System.Drawing.Size(594, 525);
             this.whiteListManager.TabIndex = 0;
-            this.whiteListManager.TempDirectory = null;
             // 
             // blackListTabPage
             // 
@@ -245,7 +244,6 @@
             this.blackListManager.Name = "blackListManager";
             this.blackListManager.Size = new System.Drawing.Size(594, 525);
             this.blackListManager.TabIndex = 0;
-            this.blackListManager.TempDirectory = null;
             // 
             // rankListTabPage
             // 
@@ -270,7 +268,6 @@
             this.rankListManager.Name = "rankListManager";
             this.rankListManager.Size = new System.Drawing.Size(600, 531);
             this.rankListManager.TabIndex = 0;
-            this.rankListManager.TempDirectory = string.Empty;
             // 
             // MainForm
             // 
