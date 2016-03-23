@@ -9,6 +9,7 @@
     {
         protected void Application_Start()
         {
+            DatabaseConfig.Initialize();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -2,7 +2,7 @@ namespace ProcessingTools.Documents.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DocumentsDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<DocumentsDbContext>
     {
         public Configuration()
         {
