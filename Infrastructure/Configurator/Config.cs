@@ -137,9 +137,6 @@
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }
 
-        [DataMember(Name = "textContentXslFileName")]
-        public string TextContentXslPath { get; set; }
-
         [DataMember(Name = "whiteListCleanXslPath")]
         public string WhiteListCleanXslPath { get; set; }
 

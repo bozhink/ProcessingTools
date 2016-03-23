@@ -375,21 +375,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfTextContentXslFileNameProperty_ShouldBePersistent()
-        {
-            this.config.TextContentXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.TextContentXslPath,
-                "1. TextContentXslFileName should match SampleFilePath.");
-
-            this.config.TextContentXslPath = null;
-            Assert.IsNull(
-                this.config.TextContentXslPath,
-                "2. TextContentXslFileName should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfWhiteListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.WhiteListCleanXslPath = SampleFilePath;
