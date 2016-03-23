@@ -104,9 +104,6 @@
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 
-        [DataMember(Name = "nlmInitialFormatXslPath")]
-        public string NlmInitialFormatXslPath { get; set; }
-
         [DataMember(Name = "rankListCleanXslPath")]
         public string RankListCleanXslPath { get; set; }
 
@@ -124,9 +121,6 @@
 
         [DataMember(Name = "referencesTagTemplateXslPath")]
         public string ReferencesTagTemplateXslPath { get; set; }
-
-        [DataMember(Name = "systemInitialFormatXslPath")]
-        public string SystemInitialFormatXslPath { get; set; }
 
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }

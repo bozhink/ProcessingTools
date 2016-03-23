@@ -210,21 +210,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfNlmInitialFormatXslPathProperty_ShouldBePersistent()
-        {
-            this.config.NlmInitialFormatXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.NlmInitialFormatXslPath,
-                "1. NlmInitialFormatXslPath should match SampleFilePath.");
-
-            this.config.NlmInitialFormatXslPath = null;
-            Assert.IsNull(
-                this.config.NlmInitialFormatXslPath,
-                "2. NlmInitialFormatXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfRankListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.RankListCleanXslPath = SampleFilePath;
@@ -312,21 +297,6 @@
             Assert.IsNull(
                 this.config.ReferencesTagTemplateXslPath,
                 "2. ReferencesTagTemplateXslPath should be null.");
-        }
-
-        [Test]
-        public void Config_ValidChangesOfSystemInitialFormatXslPathProperty_ShouldBePersistent()
-        {
-            this.config.SystemInitialFormatXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.SystemInitialFormatXslPath,
-                "1. SystemInitialFormatXslPath should match SampleFilePath.");
-
-            this.config.SystemInitialFormatXslPath = null;
-            Assert.IsNull(
-                this.config.SystemInitialFormatXslPath,
-                "2. SystemInitialFormatXslPath should be null.");
         }
 
         [Test]
