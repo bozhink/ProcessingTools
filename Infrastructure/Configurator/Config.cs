@@ -74,9 +74,6 @@
         [DataMember(Name = "codesRemoveNonCodeNodes")]
         public string CodesRemoveNonCodeNodes { get; set; }
 
-        [DataMember(Name = "environmentsDataSourceString")]
-        public string EnvironmentsDataSourceString { get; set; }
-
         [DataMember(Name = "envoTermsWebServiceTransformXslPath")]
         public string EnvoTermsWebServiceTransformXslPath { get; set; }
 

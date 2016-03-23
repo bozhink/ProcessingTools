@@ -60,21 +60,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvironmentsDataSourceStringProperty_ShouldBePersistent()
-        {
-            this.config.EnvironmentsDataSourceString = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.EnvironmentsDataSourceString,
-                "1. EnvironmentsDataSourceString should match SampleFilePath.");
-
-            this.config.EnvironmentsDataSourceString = null;
-            Assert.IsNull(
-                this.config.EnvironmentsDataSourceString,
-                "2. EnvironmentsDataSourceString should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfEnvoTermsWebServiceTransformXslPathProperty_ShouldBePersistent()
         {
             this.config.EnvoTermsWebServiceTransformXslPath = SampleFilePath;
