@@ -222,6 +222,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ApplicationSignInManager.cs" />
     <Compile Include="App_Start\ApplicationUserManager.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -338,6 +339,22 @@
     <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Models\Documents.Data.Models.csproj">
+      <Project>{82724298-bf0f-4b01-925e-48e3b6f56979}</Project>
+      <Name>Documents.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
+      <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
+      <Name>Documents.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
