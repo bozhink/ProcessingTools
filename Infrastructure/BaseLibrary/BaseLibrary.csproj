@@ -131,7 +131,6 @@
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankXmlCloner.cs" />
-    <Compile Include="ZooBank\Generator\ZoobankRegistrationXmlGenerator.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>

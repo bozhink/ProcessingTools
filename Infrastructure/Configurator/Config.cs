@@ -145,8 +145,5 @@
 
         [DataMember(Name = "whiteListXmlFilePath")]
         public string WhiteListXmlFilePath { get; set; }
-
-        [DataMember(Name = "zoobankNlmXslPath")]
-        public string ZoobankNlmXslPath { get; set; }
     }
 }

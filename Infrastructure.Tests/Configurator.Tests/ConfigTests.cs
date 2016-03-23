@@ -420,21 +420,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfZoobankNlmXslPathProperty_ShouldBePersistent()
-        {
-            this.config.ZoobankNlmXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.ZoobankNlmXslPath,
-                "1. ZoobankNlmXslPath should match SampleFilePath.");
-
-            this.config.ZoobankNlmXslPath = null;
-            Assert.IsNull(
-                this.config.ZoobankNlmXslPath,
-                "2. ZoobankNlmXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfEnvoResponseOutputXmlFileNameProperty_ShouldBePersistent()
         {
             this.config.EnvoResponseOutputXmlFileName = SampleFilePath;
