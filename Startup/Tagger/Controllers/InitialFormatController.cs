@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.MainProgram.Controllers
 {
+    using System.Configuration;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -15,28 +16,22 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
+            string xslFileName = null;
             switch (settings.Config.ArticleSchemaType)
             {
                 case SchemaType.Nlm:
-                    {
-                        string xml = document.ApplyXslTransform(settings.Config.NlmInitialFormatXslPath);
-                        var formatter = new NlmInitialFormatter(settings.Config, xml);
-                        await formatter.Format();
-                        document.LoadXml(formatter.Xml);
-                    }
-
+                    xslFileName = ConfigurationManager.AppSettings["NlmInitialFormatXslPath"];
                     break;
 
                 default:
-                    {
-                        string xml = document.ApplyXslTransform(settings.Config.SystemInitialFormatXslPath);
-                        var formatter = new SystemInitialFormatter(settings.Config, xml);
-                        await formatter.Format();
-                        document.LoadXml(formatter.Xml);
-                    }
-
+                    xslFileName = ConfigurationManager.AppSettings["SystemInitialFormatXslPath"];
                     break;
             }
+
+            string xml = document.ApplyXslTransform(xslFileName);
+            var formatter = new NlmInitialFormatter(settings.Config, xml);
+            await formatter.Format();
+            document.LoadXml(formatter.Xml);
         }
     }
 }
