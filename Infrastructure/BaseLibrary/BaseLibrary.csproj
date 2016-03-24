@@ -178,6 +178,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\resolve-families-in-checklist.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XSL\Special\gavin-laurens-tn.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
