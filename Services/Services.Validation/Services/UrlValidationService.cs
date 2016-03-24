@@ -7,6 +7,7 @@
     using System.Net.Http;
     using System.Threading.Tasks;
 
+    using Comparers;
     using Contracts;
     using Factories;
     using Models.Contracts;
@@ -32,8 +33,11 @@
         {
             return Task.Run(() =>
             {
+                var comparer = new UrlEqualityComparer();
                 var exceptions = new ConcurrentQueue<Exception>();
-                items.GroupBy(i => i.BaseAddress)
+
+                items.Distinct(comparer)
+                    .GroupBy(i => i.BaseAddress)
                     .AsParallel()
                     .ForAll(group =>
                     {
