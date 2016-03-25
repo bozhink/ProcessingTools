@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Affiliation
+    public class Affiliation : DocumentsAbstractEntity
     {
         private ICollection<Author> authors;
 

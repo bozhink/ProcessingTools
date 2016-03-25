@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Address
+    public class Address : DocumentsAbstractEntity
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;

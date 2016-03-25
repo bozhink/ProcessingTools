@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Journal
+    public class Journal : DocumentsAbstractEntity
     {
         private string journalId;
 

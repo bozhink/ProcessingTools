@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Publisher
+    public class Publisher : DocumentsAbstractEntity
     {
         private ICollection<Address> addresses;
         private ICollection<Journal> journals;

@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Institution
+    public class Institution : DocumentsAbstractEntity
     {
         private ICollection<Address> addresses;
         private ICollection<Affiliation> affiliations;
