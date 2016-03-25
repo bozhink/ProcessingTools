@@ -1,23 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Repositories.Contracts
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IDocumentsRepository<T>
+    public interface IDocumentsRepository<T> : IGenericRepository<T>
         where T : class
     {
-        Task<IQueryable<T>> All();
-
-        Task<T> Get(object id);
-
-        Task Add(T entity);
-
-        Task Update(T entity);
-
-        Task Delete(T entity);
-
-        Task Delete(object id);
-
-        Task<int> SaveChanges();
     }
 }
