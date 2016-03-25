@@ -9,13 +9,13 @@
 
         Task<IQueryable<T>> Get(int skip, int take);
 
-        Task<IQueryable<T>> Get(object id);
+        Task<T> Get(object id);
 
-        Task Add(T entity);
+        Task Add(T model);
 
-        Task Update(T entity);
+        Task Update(T model);
 
-        Task Delete(T entity);
+        Task Delete(T model);
 
         Task Delete(object id);
     }
