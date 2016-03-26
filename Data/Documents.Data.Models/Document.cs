@@ -12,7 +12,6 @@
     public class Document : DocumentsAbstractEntity
     {
         private readonly Encoding defaultEncoding = Encoding.UTF8;
-        private DateTime date;
 
         [Key]
         public int Id { get; set; }

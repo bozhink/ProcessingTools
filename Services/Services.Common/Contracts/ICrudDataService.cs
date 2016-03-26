@@ -8,7 +8,7 @@
 
         IQueryable<TServiceModel> Get(int skip, int take);
 
-        IQueryable<TServiceModel> Get(object id);
+        TServiceModel Get(object id);
 
         void Add(TServiceModel model);
 

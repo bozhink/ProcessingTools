@@ -79,14 +79,10 @@
             return this.Get(0, DefaultPagingConstants.MaximalItemsPerPageAllowed);
         }
 
-        public virtual IQueryable<TServiceModel> Get(object id)
+        public virtual TServiceModel Get(object id)
         {
             var entity = this.repository.GetById(id);
-            return new List<TServiceModel>
-            {
-                this.mapper.Map<TServiceModel>(entity)
-            }
-            .AsQueryable();
+            return this.mapper.Map<TServiceModel>(entity);
         }
 
         public virtual IQueryable<TServiceModel> Get(int skip, int take)

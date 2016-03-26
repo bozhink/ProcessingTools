@@ -47,11 +47,9 @@
             throw new NotImplementedException();
         }
 
-        public IQueryable<IProduct> Get(object id)
+        public IProduct Get(object id)
         {
-            return this.Items
-                .Where(p => p.Id == (int)id)
-                .AsQueryable();
+            return this.Items.FirstOrDefault(p => p.Id == (int)id);
         }
 
         public IQueryable<IProduct> Get(int skip, int take)

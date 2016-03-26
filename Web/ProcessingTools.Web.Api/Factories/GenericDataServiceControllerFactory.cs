@@ -58,9 +58,7 @@
                 return this.BadRequest("Invalid id.");
             }
 
-            var result = this.service.Get(parsedId)
-                .Select(this.mapper.Map<TResponseModel>)
-                .FirstOrDefault();
+            var result = this.mapper.Map<TResponseModel>(this.service.Get(parsedId));
 
             if (result == null)
             {
