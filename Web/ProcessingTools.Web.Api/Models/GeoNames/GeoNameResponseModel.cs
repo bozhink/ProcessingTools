@@ -3,7 +3,7 @@
     using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
 
-    public class GeoNameResponseModel : IMapFrom<IGeoName>
+    public class GeoNameResponseModel : IMapFrom<IGeoNameServiceModel>
     {
         public int Id { get; set; }
 

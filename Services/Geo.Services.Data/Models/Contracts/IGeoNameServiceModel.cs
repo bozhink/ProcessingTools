@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface IGeoName : INamedDataServiceModel
+    public interface IGeoNameServiceModel : INamedDataServiceModel
     {
     }
 }

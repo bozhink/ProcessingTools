@@ -5,7 +5,7 @@
     using Geo.Services.Data.Models.Contracts;
     using Models.GeoEpithets;
 
-    public class GeoEpithetController : GenericDataServiceControllerFactory<IGeoEpithet, GeoEpithetRequestModel, GeoEpithetResponseModel>
+    public class GeoEpithetController : GenericDataServiceControllerFactory<IGeoEpithetServiceModel, GeoEpithetRequestModel, GeoEpithetResponseModel>
     {
         public GeoEpithetController(IGeoEpithetsDataService service)
             : base(service)

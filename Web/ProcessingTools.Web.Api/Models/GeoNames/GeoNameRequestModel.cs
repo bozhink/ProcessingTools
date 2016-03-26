@@ -5,7 +5,7 @@
     using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
 
-    public class GeoNameRequestModel : IMapFrom<IGeoName>
+    public class GeoNameRequestModel : IMapFrom<IGeoNameServiceModel>
     {
         public int? Id { get; set; }
 

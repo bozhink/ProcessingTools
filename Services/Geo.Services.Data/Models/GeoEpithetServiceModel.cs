@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class GeoEpithetResponseModel : IGeoEpithet
+    public class GeoEpithetServiceModel : IGeoEpithetServiceModel
     {
         public int Id { get; set; }
 

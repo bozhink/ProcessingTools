@@ -5,7 +5,7 @@
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models.Contracts;
 
-    public class GeoEpithetsDataMiner : SimpleServiceStringDataMinerFactory<IGeoEpithetsDataService, IGeoEpithet>, IGeoEpithetsDataMiner
+    public class GeoEpithetsDataMiner : SimpleServiceStringDataMinerFactory<IGeoEpithetsDataService, IGeoEpithetServiceModel>, IGeoEpithetsDataMiner
     {
         public GeoEpithetsDataMiner(IGeoEpithetsDataService service)
             : base(service)

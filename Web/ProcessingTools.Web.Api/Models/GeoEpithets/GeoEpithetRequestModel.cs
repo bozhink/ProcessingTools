@@ -5,7 +5,7 @@
     using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
 
-    public class GeoEpithetRequestModel : IMapFrom<IGeoEpithet>
+    public class GeoEpithetRequestModel : IMapFrom<IGeoEpithetServiceModel>
     {
         public int? Id { get; set; }
 

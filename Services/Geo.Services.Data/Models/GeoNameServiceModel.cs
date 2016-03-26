@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class GeoNameResponseModel : IGeoName
+    public class GeoNameServiceModel : IGeoNameServiceModel
     {
         public int Id { get; set; }
 
