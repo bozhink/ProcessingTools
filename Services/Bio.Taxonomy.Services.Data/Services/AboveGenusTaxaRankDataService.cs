@@ -15,7 +15,7 @@
         public IQueryable<ITaxonClassification> Resolve(params string[] scientificNames)
         {
             var result = new HashSet<ITaxonClassification>(scientificNames
-                .Select(s => new TaxonClassificationDataServiceResponseModel
+                .Select(s => new TaxonClassificationServiceModel
                 {
                     ScientificName = s,
                     Rank = Rank

@@ -52,7 +52,7 @@
 
         private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
         {
-            return new TaxonClassificationDataServiceResponseModel
+            return new TaxonClassificationServiceModel
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,

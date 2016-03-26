@@ -2,7 +2,7 @@
 {
     using Taxonomy.Contracts;
 
-    internal class TaxonRankDataServiceResponseModel : ITaxonRank
+    internal class TaxonRankServiceModel : ITaxonRank
     {
         public string ScientificName { get; set; }
 

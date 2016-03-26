@@ -2,7 +2,7 @@
 {
     using Taxonomy.Contracts;
 
-    internal class TaxonClassificationDataServiceResponseModel : ITaxonClassification
+    internal class TaxonClassificationServiceModel : ITaxonClassification
     {
         public string Aberration { get; set; }
 

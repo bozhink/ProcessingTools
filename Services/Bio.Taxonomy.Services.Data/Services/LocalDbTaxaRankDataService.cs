@@ -33,7 +33,7 @@
 
             foreach (var rank in ranks)
             {
-                taxaRanks.Enqueue(new TaxonRankDataServiceResponseModel
+                taxaRanks.Enqueue(new TaxonRankServiceModel
                 {
                     ScientificName = scientificName,
                     Rank = rank

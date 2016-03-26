@@ -53,7 +53,7 @@
 
         private ITaxonClassification MapResultToClassification(Result result)
         {
-            return new TaxonClassificationDataServiceResponseModel
+            return new TaxonClassificationServiceModel
             {
                 ScientificName = result.Name,
                 Rank = result.Rank?.ToLower(),

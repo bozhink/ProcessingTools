@@ -45,7 +45,7 @@
                     .Select(k => this.rankPerSuffix[k])
                     .ToList();
 
-                ranks.ForEach(r => result.Add(new TaxonClassificationDataServiceResponseModel
+                ranks.ForEach(r => result.Add(new TaxonClassificationServiceModel
                 {
                     ScientificName = scientificName,
                     Rank = r

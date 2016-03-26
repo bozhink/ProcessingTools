@@ -26,9 +26,9 @@
                 var aphiaRecords = aphiaService.getAphiaRecords(scientificName, false, true, false, 0);
                 if (aphiaRecords != null && aphiaRecords.Length > 0)
                 {
-                    var records = new HashSet<TaxonClassificationDataServiceResponseModel>(aphiaRecords
+                    var records = new HashSet<TaxonClassificationServiceModel>(aphiaRecords
                         .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
-                        .Select(s => new TaxonClassificationDataServiceResponseModel
+                        .Select(s => new TaxonClassificationServiceModel
                         {
                             Kingdom = s.kingdom,
                             Phylum = s.phylum,
