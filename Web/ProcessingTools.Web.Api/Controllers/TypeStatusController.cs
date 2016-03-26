@@ -5,7 +5,7 @@
     using Factories;
     using Models.TypeStatuses;
 
-    public class TypeStatusController : GenericDataServiceControllerFactory<ITypeStatus, TypeStatusRequestModel, TypeStatusResponseModel>
+    public class TypeStatusController : GenericDataServiceControllerFactory<ITypeStatusServiceModel, TypeStatusRequestModel, TypeStatusResponseModel>
     {
         public TypeStatusController(ITypeStatusDataService service)
             : base(service)

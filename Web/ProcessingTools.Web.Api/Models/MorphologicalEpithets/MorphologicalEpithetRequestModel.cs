@@ -5,7 +5,7 @@
     using Bio.Services.Data.Models.Contracts;
     using ProcessingTools.Contracts.Mapping;
 
-    public class MorphologicalEpithetRequestModel : IMapFrom<IMorphologicalEpithet>
+    public class MorphologicalEpithetRequestModel : IMapFrom<IMorphologicalEpithetServiceModel>
     {
         public int? Id { get; set; }
 

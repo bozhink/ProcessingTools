@@ -3,7 +3,7 @@
     using Bio.Services.Data.Models.Contracts;
     using ProcessingTools.Contracts.Mapping;
 
-    public class TypeStatusResponseModel : IMapFrom<ITypeStatus>
+    public class TypeStatusResponseModel : IMapFrom<ITypeStatusServiceModel>
     {
         public int Id { get; set; }
 

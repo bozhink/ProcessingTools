@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TypeStatusDataService : EfGenericCrudDataServiceFactory<TypeStatus, ITypeStatus, int>, ITypeStatusDataService
+    public class TypeStatusDataService : EfGenericCrudDataServiceFactory<TypeStatus, ITypeStatusServiceModel, int>, ITypeStatusDataService
     {
         public TypeStatusDataService(IBioDataRepository<TypeStatus> repository)
             : base(repository, e => e.Name.Length)

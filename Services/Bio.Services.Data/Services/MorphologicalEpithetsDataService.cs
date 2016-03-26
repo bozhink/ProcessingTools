@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class MorphologicalEpithetsDataService : EfGenericCrudDataServiceFactory<MorphologicalEpithet, IMorphologicalEpithet, int>, IMorphologicalEpithetsDataService
+    public class MorphologicalEpithetsDataService : EfGenericCrudDataServiceFactory<MorphologicalEpithet, IMorphologicalEpithetServiceModel, int>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
             : base(repository, e => e.Name.Length)

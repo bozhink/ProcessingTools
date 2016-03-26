@@ -5,7 +5,7 @@
     using Factories;
     using Models.MorphologicalEpithets;
 
-    public class MorphologicalEpithetController : GenericDataServiceControllerFactory<IMorphologicalEpithet, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel>
+    public class MorphologicalEpithetController : GenericDataServiceControllerFactory<IMorphologicalEpithetServiceModel, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel>
     {
         public MorphologicalEpithetController(IMorphologicalEpithetsDataService service)
             : base(service)

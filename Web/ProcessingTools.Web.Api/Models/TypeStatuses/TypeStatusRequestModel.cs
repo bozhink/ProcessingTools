@@ -5,7 +5,7 @@
     using Bio.Services.Data.Models.Contracts;
     using ProcessingTools.Contracts.Mapping;
 
-    public class TypeStatusRequestModel : IMapFrom<ITypeStatus>
+    public class TypeStatusRequestModel : IMapFrom<ITypeStatusServiceModel>
     {
         public int? Id { get; set; }
 

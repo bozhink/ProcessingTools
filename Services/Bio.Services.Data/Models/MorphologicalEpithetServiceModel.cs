@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class TypeStatusResponseModel : ITypeStatus
+    public class MorphologicalEpithetServiceModel : IMorphologicalEpithetServiceModel
     {
         public int Id { get; set; }
 

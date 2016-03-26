@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface ITypeStatus : INamedDataServiceModel
+    public interface IMorphologicalEpithetServiceModel : INamedDataServiceModel
     {
     }
 }
