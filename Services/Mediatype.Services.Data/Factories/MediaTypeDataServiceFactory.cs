@@ -6,7 +6,7 @@
 
     public abstract class MediaTypeDataServiceFactory : MediaTypeDataServiceBase
     {
-        public override IQueryable<IMediaType> GetMediaType(string fileExtension)
+        public override IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 

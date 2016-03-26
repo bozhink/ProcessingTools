@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data.Models.Contracts
 {
-    public interface IMediaType
+    public interface IMediaTypeServiceModel
     {
         string FileExtension { get; set; }
 

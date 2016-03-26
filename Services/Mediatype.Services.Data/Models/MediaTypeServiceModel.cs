@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    internal class MediaTypeDataServiceResponseModel : IMediaType
+    internal class MediaTypeServiceModel : IMediaTypeServiceModel
     {
         public string FileExtension { get; set; }
 

@@ -6,6 +6,6 @@
 
     public interface IMediaTypeDataService
     {
-        IQueryable<IMediaType> GetMediaType(string fileExtension);
+        IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension);
     }
 }
