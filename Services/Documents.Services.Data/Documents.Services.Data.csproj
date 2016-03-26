@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{826165F0-F7FD-486F-B302-FCF7350C0888}</ProjectGuid>
+    <ProjectGuid>{9BDBCAF3-E2FE-4148-B4C6-EC98054DDBC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Services.Common</RootNamespace>
-    <AssemblyName>ProcessingTools.Services.Common</AssemblyName>
+    <RootNamespace>ProcessingTools.Documents.Services.Data</RootNamespace>
+    <AssemblyName>ProcessingTools.Documents.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,29 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICacheService.cs" />
-    <Compile Include="Contracts\ICrudDataService.cs" />
-    <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Contracts\ISimpleCacheService.cs" />
-    <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
-    <Compile Include="Factories\GenericCacheServiceFactory.cs" />
-    <Compile Include="Factories\SimpleCacheServiceFactory.cs" />
-    <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
-    <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
-    <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
-    <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
-    <Compile Include="Models\ValidationServiceModel.cs" />
+    <Compile Include="Contracts\ICountriesDataService.cs" />
+    <Compile Include="Models\Contracts\ICountryServiceModel.cs" />
+    <Compile Include="Models\CountryServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CountriesDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
@@ -68,14 +63,28 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Models\Documents.Data.Models.csproj">
+      <Project>{82724298-bf0f-4b01-925e-48e3b6f56979}</Project>
+      <Name>Documents.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
+      <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
+      <Name>Documents.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -30,6 +30,11 @@
             return Task.FromResult(this.DbSet.AsQueryable());
         }
 
+        public Task<IQueryable<T>> All(int skip, int take)
+        {
+            return Task.FromResult(this.DbSet.AsQueryable().Skip(skip).Take(take));
+        }
+
         public virtual Task<T> Get(object id)
         {
             return Task.FromResult(this.DbSet.Find(id));

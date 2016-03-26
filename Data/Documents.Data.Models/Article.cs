@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class Article
+    public class Article : DocumentsAbstractEntity
     {
         private ICollection<Document> documents;
         private ICollection<Author> authors;

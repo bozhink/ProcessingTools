@@ -7,35 +7,15 @@
     using System.Text;
     using System.Xml;
 
-    public class Document
+    using Common.Models;
+
+    public class Document : DocumentsAbstractEntity
     {
         private readonly Encoding defaultEncoding = Encoding.UTF8;
         private DateTime date;
 
         [Key]
         public int Id { get; set; }
-
-        public string UserId { get; set; }
-
-        public DateTime? Date
-        {
-            get
-            {
-                return this.date;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    this.date = DateTime.UtcNow;
-                }
-                else
-                {
-                    this.date = (DateTime)value;
-                }
-            }
-        }
 
         [Column(TypeName = "xml")]
         public string Content { get; set; }

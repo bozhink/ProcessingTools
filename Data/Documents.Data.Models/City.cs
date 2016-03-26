@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Constants;
+    using Common.Models;
 
-    public class City
+    public class City : DocumentsAbstractEntity
     {
         private ICollection<Country> countries;
         private ICollection<Address> addresses;
