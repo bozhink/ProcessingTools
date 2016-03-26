@@ -44,10 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Models\Contracts\IEnvoTerm.cs" />
+    <Compile Include="Models\Contracts\IEnvoTermServiceModel.cs" />
     <Compile Include="Contracts\IEnvoTermsDataService.cs" />
     <Compile Include="Services\EnvoTermsDataService.cs" />
-    <Compile Include="Models\EnvoTermDataServiceResponseModel.cs" />
+    <Compile Include="Models\EnvoTermServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

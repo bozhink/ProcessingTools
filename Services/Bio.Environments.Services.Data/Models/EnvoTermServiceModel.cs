@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class EnvoTermDataServiceResponseModel : IEnvoTerm
+    public class EnvoTermServiceModel : IEnvoTermServiceModel
     {
         public string EntityId { get; set; }
 

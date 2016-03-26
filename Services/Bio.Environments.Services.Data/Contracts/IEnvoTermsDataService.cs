@@ -6,8 +6,8 @@
 
     public interface IEnvoTermsDataService
     {
-        IQueryable<IEnvoTerm> All();
+        IQueryable<IEnvoTermServiceModel> All();
 
-        IQueryable<IEnvoTerm> Get(int skip, int take);
+        IQueryable<IEnvoTermServiceModel> Get(int skip, int take);
     }
 }

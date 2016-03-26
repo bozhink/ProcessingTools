@@ -26,12 +26,12 @@
             this.repository = repository;
         }
 
-        public IQueryable<IEnvoTerm> All()
+        public IQueryable<IEnvoTermServiceModel> All()
         {
             var result = this.repository.All()
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
-                .Select(n => new EnvoTermDataServiceResponseModel
+                .Select(n => new EnvoTermServiceModel
                 {
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,
@@ -41,7 +41,7 @@
             return result;
         }
 
-        public IQueryable<IEnvoTerm> Get(int skip, int take)
+        public IQueryable<IEnvoTermServiceModel> Get(int skip, int take)
         {
             if (skip < 0)
             {
@@ -58,7 +58,7 @@
                 .OrderByDescending(n => n.Content.Length)
                 .Skip(skip)
                 .Take(take)
-                .Select(n => new EnvoTermDataServiceResponseModel
+                .Select(n => new EnvoTermServiceModel
                 {
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,

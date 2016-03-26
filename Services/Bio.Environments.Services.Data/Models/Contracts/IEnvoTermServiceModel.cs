@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data.Models.Contracts
 {
-    public interface IEnvoTerm
+    public interface IEnvoTermServiceModel
     {
         string EntityId { get; set; }
 

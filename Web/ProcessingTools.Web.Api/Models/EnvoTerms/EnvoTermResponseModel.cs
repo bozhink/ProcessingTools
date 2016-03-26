@@ -3,7 +3,7 @@
     using Bio.Environments.Services.Data.Models.Contracts;
     using Contracts.Mapping;
 
-    public class EnvoTermResponseModel : IMapFrom<IEnvoTerm>
+    public class EnvoTermResponseModel : IMapFrom<IEnvoTermServiceModel>
     {
         public string EntityId { get; set; }
 
