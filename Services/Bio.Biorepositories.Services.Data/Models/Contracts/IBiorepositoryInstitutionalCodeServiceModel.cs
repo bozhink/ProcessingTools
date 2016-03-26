@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Models.Contracts
 {
-    public interface IBiorepositoryInstitutionalCode
+    public interface IBiorepositoryInstitutionalCodeServiceModel
     {
         string InstitutionalCode { get; set; }
 

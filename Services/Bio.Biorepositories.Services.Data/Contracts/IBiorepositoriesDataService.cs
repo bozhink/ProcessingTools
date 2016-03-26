@@ -6,8 +6,8 @@
 
     public interface IBiorepositoriesDataService
     {
-        IQueryable<IBiorepositoryInstitution> GetBiorepositoryInstitutions(int skip, int take);
+        IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take);
 
-        IQueryable<IBiorepositoryInstitutionalCode> GetBiorepositoryInstitutionalCodes(int skip, int take);
+        IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take);
     }
 }

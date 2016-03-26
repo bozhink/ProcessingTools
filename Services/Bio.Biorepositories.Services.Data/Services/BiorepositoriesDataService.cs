@@ -26,7 +26,7 @@
             this.repository = repository;
         }
 
-        public IQueryable<IBiorepositoryInstitutionalCode> GetBiorepositoryInstitutionalCodes(int skip, int take)
+        public IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take)
         {
             if (skip < 0)
             {
@@ -44,7 +44,7 @@
                 .Skip(skip)
                 .Take(take)
                 .ToList()
-                .Select(i => new BiorepositoryInstitutionalCodeDataServiceResponseModel
+                .Select(i => new BiorepositoryInstitutionalCodeServiceModel
                 {
                     InstitutionalCode = i.InstitutionalCode,
                     NameOfInstitution = i.NameOfInstitution,
@@ -53,7 +53,7 @@
                 .AsQueryable();
         }
 
-        public IQueryable<IBiorepositoryInstitution> GetBiorepositoryInstitutions(int skip, int take)
+        public IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take)
         {
             if (skip < 0)
             {
@@ -71,7 +71,7 @@
                 .Skip(skip)
                 .Take(take)
                 .ToList()
-                .Select(i => new BiorepositoryInstitutionDataServiceResponseModel
+                .Select(i => new BiorepositoryInstitutionServiceModel
                 {
                     Name = i.NameOfInstitution,
                     Url = i.Url

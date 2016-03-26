@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class BiorepositoryInstitutionDataServiceResponseModel : IBiorepositoryInstitution
+    public class BiorepositoryInstitutionServiceModel : IBiorepositoryInstitutionServiceModel
     {
         public string Name { get; set; }
 

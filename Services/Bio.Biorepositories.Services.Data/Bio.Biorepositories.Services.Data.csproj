@@ -46,10 +46,10 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Services\BiorepositoriesDataService.cs" />
     <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
-    <Compile Include="Models\BiorepositoryInstitutionalCodeDataServiceResponseModel.cs" />
-    <Compile Include="Models\BiorepositoryInstitutionDataServiceResponseModel.cs" />
-    <Compile Include="Models\Contracts\IBiorepositoryInstitution.cs" />
-    <Compile Include="Models\Contracts\IBiorepositoryInstitutionalCode.cs" />
+    <Compile Include="Models\BiorepositoryInstitutionalCodeServiceModel.cs" />
+    <Compile Include="Models\BiorepositoryInstitutionServiceModel.cs" />
+    <Compile Include="Models\Contracts\IBiorepositoryInstitutionServiceModel.cs" />
+    <Compile Include="Models\Contracts\IBiorepositoryInstitutionalCodeServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
