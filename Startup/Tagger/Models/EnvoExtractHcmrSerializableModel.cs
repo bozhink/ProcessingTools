@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Models
+﻿namespace ProcessingTools.Tagger.Models
 {
     using System.Xml.Serialization;
 

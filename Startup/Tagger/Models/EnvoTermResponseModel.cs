@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Models
+﻿namespace ProcessingTools.Tagger.Models
 {
     public class EnvoTermResponseModel
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.MainProgram {
+namespace ProcessingTools.Tagger {
     using System;
     
     

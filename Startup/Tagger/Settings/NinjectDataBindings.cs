@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Settings
+﻿namespace ProcessingTools.Tagger.Settings
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;

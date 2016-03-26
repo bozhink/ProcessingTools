@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Contracts
+﻿namespace ProcessingTools.Tagger.Contracts
 {
     using System.Threading.Tasks;
     using System.Xml;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Tests.UnitTests
+﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
     using System;
     using System.Xml;

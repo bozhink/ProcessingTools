@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Factories
+﻿namespace ProcessingTools.Tagger.Factories
 {
     using System;
     using System.Threading.Tasks;
