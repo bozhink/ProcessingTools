@@ -3,19 +3,19 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IDataService<T>
+    public interface IDataService<TServiceModel>
     {
-        Task<IQueryable<T>> All();
+        Task<IQueryable<TServiceModel>> All();
 
-        Task<IQueryable<T>> Get(int skip, int take);
+        Task<IQueryable<TServiceModel>> Get(int skip, int take);
 
-        Task<T> Get(object id);
+        Task<TServiceModel> Get(object id);
 
-        Task Add(T model);
+        Task Add(TServiceModel model);
 
-        Task Update(T model);
+        Task Update(TServiceModel model);
 
-        Task Delete(T model);
+        Task Delete(TServiceModel model);
 
         Task Delete(object id);
     }

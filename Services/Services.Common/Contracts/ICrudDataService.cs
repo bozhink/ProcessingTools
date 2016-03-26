@@ -2,19 +2,19 @@
 {
     using System.Linq;
 
-    public interface ICrudDataService<T>
+    public interface ICrudDataService<TServiceModel>
     {
-        IQueryable<T> All();
+        IQueryable<TServiceModel> All();
 
-        IQueryable<T> Get(int skip, int take);
+        IQueryable<TServiceModel> Get(int skip, int take);
 
-        IQueryable<T> Get(object id);
+        IQueryable<TServiceModel> Get(object id);
 
-        void Add(T entity);
+        void Add(TServiceModel model);
 
-        void Update(T entity);
+        void Update(TServiceModel model);
 
-        void Delete(T entity);
+        void Delete(TServiceModel model);
 
         void Delete(object id);
     }

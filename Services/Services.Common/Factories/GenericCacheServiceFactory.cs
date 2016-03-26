@@ -24,7 +24,7 @@
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("repository");
+                throw new ArgumentNullException(nameof(repository));
             }
 
             this.repository = repository;
@@ -38,10 +38,10 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public async Task Add(TContext context, TServiceModel entity)
+        public Task Add(TContext context, TServiceModel model)
         {
-            var item = this.mapper.Map<TDbModel>(entity);
-            await this.repository.Add(context, item);
+            var entity = this.mapper.Map<TDbModel>(model);
+            return this.repository.Add(context, entity);
         }
 
         public async Task<IQueryable<TServiceModel>> All(TContext context)
@@ -50,19 +50,19 @@
                 .Select(i => this.mapper.Map<TServiceModel>(i));
         }
 
-        public async Task Delete(TContext context)
+        public Task Delete(TContext context)
         {
-            await this.repository.Delete(context);
+            return this.repository.Delete(context);
         }
 
-        public async Task Delete(TContext context, TServiceModel entity)
+        public Task Delete(TContext context, TServiceModel model)
         {
-            await this.repository.Delete(context, entity.Id);
+            return this.repository.Delete(context, model.Id);
         }
 
-        public async Task Delete(TContext context, TId id)
+        public Task Delete(TContext context, TId id)
         {
-            await this.repository.Delete(context, id);
+            return this.repository.Delete(context, id);
         }
 
         public async Task<TServiceModel> Get(TContext context, TId id)
@@ -71,9 +71,9 @@
             return this.mapper.Map<TServiceModel>(entity);
         }
 
-        public async Task Update(TContext context, TServiceModel entity)
+        public Task Update(TContext context, TServiceModel model)
         {
-            await this.repository.Update(context, this.mapper.Map<TDbModel>(entity));
+            return this.repository.Update(context, this.mapper.Map<TDbModel>(model));
         }
     }
 }

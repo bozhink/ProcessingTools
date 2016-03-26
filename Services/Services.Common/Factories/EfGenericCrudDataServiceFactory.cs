@@ -25,12 +25,12 @@
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("repository");
+                throw new ArgumentNullException(nameof(repository));
             }
 
             if (orderExpression == null)
             {
-                throw new ArgumentNullException("orderExpression");
+                throw new ArgumentNullException(nameof(orderExpression));
             }
 
             this.repository = repository;
@@ -45,10 +45,10 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public void Add(TServiceModel entity)
+        public void Add(TServiceModel model)
         {
-            var item = this.mapper.Map<TDbModel>(entity);
-            this.repository.Add(item);
+            var entity = this.mapper.Map<TDbModel>(model);
+            this.repository.Add(entity);
             this.repository.SaveChanges();
         }
 
@@ -58,19 +58,19 @@
             this.repository.SaveChanges();
         }
 
-        public void Delete(TServiceModel entity)
+        public void Delete(TServiceModel model)
         {
-            var item = this.repository.GetById(entity.Id);
-            this.repository.Delete(item);
+            var entity = this.repository.GetById(model.Id);
+            this.repository.Delete(entity);
             this.repository.SaveChanges();
         }
 
-        public virtual void Update(TServiceModel entity)
+        public virtual void Update(TServiceModel model)
         {
-            var item = this.repository.GetById(entity.Id);
-            item = this.mapper.Map<TServiceModel, TDbModel>(entity, item);
+            var entity = this.repository.GetById(model.Id);
+            entity = this.mapper.Map<TServiceModel, TDbModel>(model, entity);
 
-            this.repository.Update(item);
+            this.repository.Update(entity);
             this.repository.SaveChanges();
         }
 
@@ -81,10 +81,10 @@
 
         public virtual IQueryable<TServiceModel> Get(object id)
         {
-            var item = this.repository.GetById(id);
+            var entity = this.repository.GetById(id);
             return new List<TServiceModel>
             {
-                this.mapper.Map<TServiceModel>(item)
+                this.mapper.Map<TServiceModel>(entity)
             }
             .AsQueryable();
         }
