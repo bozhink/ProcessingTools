@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Linq;
 
@@ -18,6 +19,11 @@
 
         public GbifTaxaClassificationDataService(IGbifDataRequester requester)
         {
+            if (requester == null)
+            {
+                throw new ArgumentNullException(nameof(requester));
+            }
+
             this.requester = requester;
         }
 

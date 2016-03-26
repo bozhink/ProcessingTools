@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -17,6 +18,11 @@
 
         public LocalDbTaxaRankDataService(string localDbFileName)
         {
+            if (string.IsNullOrWhiteSpace(localDbFileName))
+            {
+                throw new ArgumentNullException(nameof(localDbFileName));
+            }
+
             this.rankList = XElement.Load(localDbFileName);
         }
 

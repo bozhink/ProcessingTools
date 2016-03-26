@@ -8,11 +8,11 @@
 
     using Contracts;
 
-    public abstract class TaxaDataServiceFactory<T> : ITaxaDataService<T>
+    public abstract class TaxaDataServiceFactory<TServiceModel> : ITaxaDataService<TServiceModel>
     {
-        public IQueryable<T> Resolve(params string[] scientificNames)
+        public IQueryable<TServiceModel> Resolve(params string[] scientificNames)
         {
-            var queue = new ConcurrentQueue<T>();
+            var queue = new ConcurrentQueue<TServiceModel>();
             var exceptions = new ConcurrentQueue<Exception>();
 
             Parallel.ForEach(
@@ -36,13 +36,13 @@
                 throw new AggregateException(exceptions.ToList());
             }
 
-            var result = new HashSet<T>(queue);
+            var result = new HashSet<TServiceModel>(queue);
 
             return result.AsQueryable();
         }
 
         protected abstract void Delay();
 
-        protected abstract void ResolveScientificName(string scientificName, ConcurrentQueue<T> taxaRanks);
+        protected abstract void ResolveScientificName(string scientificName, ConcurrentQueue<TServiceModel> taxaRanks);
     }
 }

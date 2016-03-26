@@ -15,7 +15,7 @@
         {
             if (string.IsNullOrWhiteSpace(listFilePath))
             {
-                throw new ArgumentNullException("listFilePath");
+                throw new ArgumentNullException(nameof(listFilePath));
             }
 
             this.dataList = new HashSet<string>(XDocument.Load(listFilePath)

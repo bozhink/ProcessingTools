@@ -2,8 +2,8 @@
 {
     using System.Linq;
 
-    public interface ITaxaDataService<T>
+    public interface ITaxaDataService<TServiceModel>
     {
-        IQueryable<T> Resolve(params string[] scientificNames);
+        IQueryable<TServiceModel> Resolve(params string[] scientificNames);
     }
 }

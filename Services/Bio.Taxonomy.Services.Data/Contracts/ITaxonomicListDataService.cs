@@ -2,8 +2,8 @@
 {
     using System.Linq;
 
-    public interface ITaxonomicListDataService<T>
+    public interface ITaxonomicListDataService<TServiceModel>
     {
-        IQueryable<T> All();
+        IQueryable<TServiceModel> All();
     }
 }

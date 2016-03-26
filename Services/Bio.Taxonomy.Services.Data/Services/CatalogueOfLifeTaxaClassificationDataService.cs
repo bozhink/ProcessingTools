@@ -21,6 +21,11 @@
 
         public CatalogueOfLifeTaxaClassificationDataService(ICatalogueOfLifeDataRequester requester)
         {
+            if (requester == null)
+            {
+                throw new ArgumentNullException(nameof(requester));
+            }
+
             this.requester = requester;
         }
 
