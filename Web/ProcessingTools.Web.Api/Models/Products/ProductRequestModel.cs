@@ -5,7 +5,7 @@
     using Contracts.Mapping;
     using Services.Data.Models.Contracts;
 
-    public class ProductRequestModel : IMapFrom<IProduct>
+    public class ProductRequestModel : IMapFrom<IProductServiceModel>
     {
         public int? Id { get; set; }
 

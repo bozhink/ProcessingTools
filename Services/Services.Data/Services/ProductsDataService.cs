@@ -7,7 +7,7 @@
     using ProcessingTools.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class ProductsDataService : EfGenericCrudDataServiceFactory<Product, IProduct, int>, IProductsDataService
+    public class ProductsDataService : EfGenericCrudDataServiceFactory<Product, IProductServiceModel, int>, IProductsDataService
     {
         public ProductsDataService(IDataRepository<Product> repository)
             : base(repository, p => p.Name.Length)

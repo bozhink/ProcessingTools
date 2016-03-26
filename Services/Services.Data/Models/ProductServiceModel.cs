@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class ProductResponseModel : IProduct
+    public class ProductServiceModel : IProductServiceModel
     {
         public int Id { get; set; }
 

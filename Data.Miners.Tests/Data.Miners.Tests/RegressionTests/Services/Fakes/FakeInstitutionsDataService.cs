@@ -14,10 +14,10 @@
 
         public FakeInstitutionsDataService()
         {
-            this.Items = new HashSet<IInstitution>();
+            this.Items = new HashSet<IInstitutionServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IInstitution>();
+                var mockProduct = new Mock<IInstitutionServiceModel>();
                 mockProduct.Setup(m => m.Id).Returns(i);
                 mockProduct.Setup(m => m.Name).Returns($"Institution {i}");
 
@@ -25,14 +25,14 @@
             }
         }
 
-        public HashSet<IInstitution> Items { get; set; }
+        public HashSet<IInstitutionServiceModel> Items { get; set; }
 
-        public void Add(IInstitution entity)
+        public void Add(IInstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitution> All()
+        public IQueryable<IInstitutionServiceModel> All()
         {
             return this.Items.AsQueryable();
         }
@@ -42,17 +42,17 @@
             throw new NotImplementedException();
         }
 
-        public void Delete(IInstitution entity)
+        public void Delete(IInstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IInstitution Get(object id)
+        public IInstitutionServiceModel Get(object id)
         {
             return this.Items.FirstOrDefault(p => p.Id == (int)id);
         }
 
-        public IQueryable<IInstitution> Get(int skip, int take)
+        public IQueryable<IInstitutionServiceModel> Get(int skip, int take)
         {
             return this.Items
                 .OrderBy(p => p.Id)
@@ -61,7 +61,7 @@
                 .AsQueryable();
         }
 
-        public void Update(IInstitution entity)
+        public void Update(IInstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }

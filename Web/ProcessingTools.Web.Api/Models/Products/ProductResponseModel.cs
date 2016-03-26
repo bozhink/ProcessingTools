@@ -3,7 +3,7 @@
     using Contracts.Mapping;
     using Services.Data.Models.Contracts;
 
-    public class ProductResponseModel : IMapFrom<IProduct>
+    public class ProductResponseModel : IMapFrom<IProductServiceModel>
     {
         public int Id { get; set; }
 

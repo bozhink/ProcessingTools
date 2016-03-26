@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public interface IProduct : INamedDataServiceModel
+    public interface IInstitutionServiceModel : INamedDataServiceModel
     {
     }
 }

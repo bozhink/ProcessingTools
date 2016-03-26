@@ -5,7 +5,7 @@
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models.Contracts;
 
-    public class InstitutionsDataMiner : SimpleServiceStringDataMinerFactory<IInstitutionsDataService, IInstitution>, IInstitutionsDataMiner
+    public class InstitutionsDataMiner : SimpleServiceStringDataMinerFactory<IInstitutionsDataService, IInstitutionServiceModel>, IInstitutionsDataMiner
     {
         public InstitutionsDataMiner(IInstitutionsDataService service)
             : base(service)

@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class InstitutionResponseModel : IInstitution
+    public class InstitutionServiceModel : IInstitutionServiceModel
     {
         public int Id { get; set; }
 

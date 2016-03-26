@@ -5,7 +5,7 @@
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models.Contracts;
 
-    public class ProductsDataMiner : SimpleServiceStringDataMinerFactory<IProductsDataService, IProduct>, IProductsDataMiner
+    public class ProductsDataMiner : SimpleServiceStringDataMinerFactory<IProductsDataService, IProductServiceModel>, IProductsDataMiner
     {
         public ProductsDataMiner(IProductsDataService service)
             : base(service)
