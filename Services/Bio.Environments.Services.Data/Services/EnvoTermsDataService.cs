@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data
 {
+    using System;
     using System.Linq;
 
     using Contracts;
@@ -17,6 +18,11 @@
 
         public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
             this.repository = repository;
         }
 
