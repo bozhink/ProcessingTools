@@ -283,7 +283,7 @@
         protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
         {
             // Do not wait validation controllers to return.
-            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
+            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(INotAwaitableController));
             if (validationController != null)
             {
                 // Validation controllers should not overwrite the content of this.document.XmlDocument,

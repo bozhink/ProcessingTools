@@ -179,6 +179,7 @@
             StringBuilder result = new StringBuilder();
             try
             {
+                this.listEntriesTextBox.Text = Regex.Replace(this.listEntriesTextBox.Text, @"[^\w-]+", " ");
                 if (this.IsRankList)
                 {
                     for (Match entriesMatch = Regex.Match(this.listEntriesTextBox.Text, @"\S+\s+\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())

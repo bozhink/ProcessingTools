@@ -74,12 +74,6 @@
         [DataMember(Name = "codesRemoveNonCodeNodes")]
         public string CodesRemoveNonCodeNodes { get; set; }
 
-        [DataMember(Name = "environmentsDataSourceString")]
-        public string EnvironmentsDataSourceString { get; set; }
-
-        [DataMember(Name = "envoTermsWebServiceTransformXslPath")]
-        public string EnvoTermsWebServiceTransformXslPath { get; set; }
-
         [DataMember(Name = "floraDistrinctTaxaXslPath")]
         public string FloraDistrinctTaxaXslPath { get; set; }
 
@@ -110,9 +104,6 @@
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 
-        [DataMember(Name = "nlmInitialFormatXslPath")]
-        public string NlmInitialFormatXslPath { get; set; }
-
         [DataMember(Name = "rankListCleanXslPath")]
         public string RankListCleanXslPath { get; set; }
 
@@ -131,22 +122,13 @@
         [DataMember(Name = "referencesTagTemplateXslPath")]
         public string ReferencesTagTemplateXslPath { get; set; }
 
-        [DataMember(Name = "systemInitialFormatXslPath")]
-        public string SystemInitialFormatXslPath { get; set; }
-
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }
-
-        [DataMember(Name = "textContentXslFileName")]
-        public string TextContentXslPath { get; set; }
 
         [DataMember(Name = "whiteListCleanXslPath")]
         public string WhiteListCleanXslPath { get; set; }
 
         [DataMember(Name = "whiteListXmlFilePath")]
         public string WhiteListXmlFilePath { get; set; }
-
-        [DataMember(Name = "zoobankNlmXslPath")]
-        public string ZoobankNlmXslPath { get; set; }
     }
 }

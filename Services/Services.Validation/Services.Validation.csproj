@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Comparers\UrlEqualityComparer.cs" />
     <Compile Include="Contracts\ITaxaValidationService.cs" />
     <Compile Include="Contracts\IUrlValidationService.cs" />
     <Compile Include="Factories\ValidationServiceFactory.cs" />
