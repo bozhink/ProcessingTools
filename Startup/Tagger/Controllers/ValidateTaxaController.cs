@@ -33,7 +33,7 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var scientificNames = document.ExtractTaxa(true)
-                .Select(s => new TaxonName
+                .Select(s => new TaxonNameServiceModel
                 {
                     Name = s
                 })

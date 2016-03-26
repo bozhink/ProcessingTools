@@ -41,7 +41,7 @@
         public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_SchouldReturnTwoValidatedItems()
         {
             int i = 0;
-            var items = (new int[2]).Select(item => new UrlModel
+            var items = (new int[2]).Select(item => new UrlServiceModel
             {
                 Address = $"https://www.google.com/search?q={++i}"
             }).ToList();

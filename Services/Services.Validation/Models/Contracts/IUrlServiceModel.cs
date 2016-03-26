@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Services.Validation.Models.Contracts
 {
-    public interface IUrl
+    public interface IUrlServiceModel
     {
         string BaseAddress { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class TaxonName : ITaxonName
+    public class TaxonNameServiceModel : ITaxonNameServiceModel
     {
         public string Name { get; set; }
     }

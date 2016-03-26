@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITaxaValidationService : IValidationService<ITaxonName>
+    public interface ITaxaValidationService : IValidationService<ITaxonNameServiceModel>
     {
     }
 }

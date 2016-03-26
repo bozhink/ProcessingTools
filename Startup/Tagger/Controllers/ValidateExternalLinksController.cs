@@ -40,7 +40,7 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var externalLinks = (await this.harvester.Harvest(document.DocumentElement))
-                .Select(e => new UrlModel
+                .Select(e => new UrlServiceModel
                 {
                     BaseAddress = e.BaseAddress,
                     Address = e.Uri

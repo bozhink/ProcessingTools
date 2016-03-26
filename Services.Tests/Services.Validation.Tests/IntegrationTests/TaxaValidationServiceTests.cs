@@ -42,7 +42,7 @@
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
 
-            var items = taxa.Select(t => new TaxonName
+            var items = taxa.Select(t => new TaxonNameServiceModel
             {
                 Name = t
             })
@@ -72,7 +72,7 @@
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };
 
-            var items = taxa.Select(t => new TaxonName
+            var items = taxa.Select(t => new TaxonNameServiceModel
             {
                 Name = t
             })

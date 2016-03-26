@@ -21,7 +21,7 @@
         {
             if (cacheService == null)
             {
-                throw new ArgumentNullException("cacheService");
+                throw new ArgumentNullException(nameof(cacheService));
             }
 
             this.cacheService = cacheService;
@@ -48,7 +48,7 @@
         {
             if (items == null)
             {
-                throw new ArgumentNullException("items", "Items to validate should not be null.");
+                throw new ArgumentNullException(nameof(items), "Items to validate should not be null.");
             }
 
             if (items.Length < 1)

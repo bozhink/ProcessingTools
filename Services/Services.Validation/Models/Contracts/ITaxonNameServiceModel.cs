@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Services.Validation.Models.Contracts
 {
-    public interface ITaxonName
+    public interface ITaxonNameServiceModel
     {
         string Name { get; set; }
     }

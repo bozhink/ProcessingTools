@@ -2,7 +2,7 @@
 {
     using Contracts;
 
-    public class UrlModel : IUrl
+    public class UrlServiceModel : IUrlServiceModel
     {
         public string Address { get; set; }
 

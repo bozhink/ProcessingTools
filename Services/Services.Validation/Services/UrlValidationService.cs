@@ -16,20 +16,20 @@
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class UrlValidationService : ValidationServiceFactory<IUrl, IUrl>, IUrlValidationService
+    public class UrlValidationService : ValidationServiceFactory<IUrlServiceModel, IUrlServiceModel>, IUrlValidationService
     {
         public UrlValidationService(IValidationCacheService cacheService)
             : base(cacheService)
         {
         }
 
-        protected override Func<IUrl, string> GetContextKey => item => item.FullAddress;
+        protected override Func<IUrlServiceModel, string> GetContextKey => item => item.FullAddress;
 
-        protected override Func<IUrl, IUrl> GetItemToCheck => item => item;
+        protected override Func<IUrlServiceModel, IUrlServiceModel> GetItemToCheck => item => item;
 
-        protected override Func<IUrl, IUrl> GetValidatedObject => item => item;
+        protected override Func<IUrlServiceModel, IUrlServiceModel> GetValidatedObject => item => item;
 
-        protected override Task Validate(IUrl[] items, ConcurrentQueue<IValidationServiceModel<IUrl>> output)
+        protected override Task Validate(IUrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<IUrlServiceModel>> output)
         {
             return Task.Run(() =>
             {
@@ -65,7 +65,7 @@
             });
         }
 
-        private async Task<IValidationServiceModel<IUrl>> MakeRequest(IUrl item)
+        private async Task<IValidationServiceModel<IUrlServiceModel>> MakeRequest(IUrlServiceModel item)
         {
             var validationResult = this.GetValidationServiceModel(item);
 
