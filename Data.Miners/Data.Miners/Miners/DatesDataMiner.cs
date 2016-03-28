@@ -150,8 +150,8 @@ namespace ProcessingTools.Data.Miners
             /// <example>18 Jan 2008</example>
             public async Task MineDayMonthStringYear()
             {
-                const string Pattern = @"((?i)(?:(?:(?:" + DaySubpattern + @"(?:\s*[–—−‒-]\s*))+|(?<!\S)" + DaySubpattern + @")[^\w<>]{0,4})?(?:(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s*(?:[–—−‒-]|to)\s*)+[^\w<>]{0,4}" + YearSubpattern + @"\b)";
-                ////const string Pattern = @"((?i)(?:(?:" + DayRangeSubpattern + @"[^\w<>]{0,4})?(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s*(?:[–—−‒-]|to)\s*)+[^\w<>]{0,4}" + YearSubpattern + @"\b)";
+                const string MonthSubpattern = @"(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)";
+                const string Pattern = @"((?i)(?:(?:" + DayRangeSubpattern + @"[^\w<>]{0,4})?\b" + MonthSubpattern + @"\b[^\w<>]{0,4}){1,2}" + YearSubpattern + @"\b)";
 
                 await this.content.GetMatchesAsync(new Regex(Pattern))
                     .ContinueWith(this.EnqueueInItems);
