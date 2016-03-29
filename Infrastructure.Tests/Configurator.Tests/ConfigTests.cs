@@ -330,21 +330,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfGnrOutputFileNameProperty_ShouldBePersistent()
-        {
-            this.config.GnrOutputFileName = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.GnrOutputFileName,
-                "1. GnrOutputFileName should match SampleFilePath.");
-
-            this.config.GnrOutputFileName = null;
-            Assert.IsNull(
-                this.config.GnrOutputFileName,
-                "2. GnrOutputFileName should be null.");
-        }
-
-        [Test]
         public void Config_ArticleSchemaTypePropertyInNewInstance_ShouldBeSystem()
         {
             Assert.AreEqual(SchemaType.System, this.config.ArticleSchemaType, "Default value of the ArticleSchemaType Property should be System.");

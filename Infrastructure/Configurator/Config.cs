@@ -40,8 +40,6 @@
 
         public string EnvoResponseOutputXmlFileName { get; set; }
 
-        public string GnrOutputFileName { get; set; }
-
         public bool TagWholeDocument
         {
             get
