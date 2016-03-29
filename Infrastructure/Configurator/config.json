@@ -13,7 +13,6 @@
   "referencesTagTemplateXmlPath": "C:\\temp\\references-tag-template.xml",
   "referencesGetReferencesXslPath": "C:\\bin\\Xsl\\references.get.xsl",
   "referencesSortReferencesXslPath": "C:\\bin\\Xsl\\references.sort.xsl",
-  "referencesGetReferencesXmlPath": "C:\\temp\\references.xml",
 
   "zoobankNlmXslPath": "C:\\bin\\Xsl\\zoobank-nlm.xsl",
 

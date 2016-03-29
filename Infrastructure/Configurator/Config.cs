@@ -19,6 +19,8 @@
             this.tagWholeDocumentIsLockedForModification = false;
         }
 
+        public string ReferencesGetReferencesXmlPath { get; set; }
+
         public SchemaType ArticleSchemaType
         {
             get
@@ -75,9 +77,6 @@
 
         [DataMember(Name = "rankListXmlFilePath")]
         public string RankListXmlFilePath { get; set; }
-
-        [DataMember(Name = "referencesGetReferencesXmlPath")]
-        public string ReferencesGetReferencesXmlPath { get; set; }
 
         [DataMember(Name = "referencesGetReferencesXslPath")]
         public string ReferencesGetReferencesXslPath { get; set; }
