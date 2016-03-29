@@ -112,6 +112,12 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="conf-loc | conf-date | edition">
+    <xsl:element name="{name()}">
+      <xsl:value-of select="string()" />
+    </xsl:element>
+  </xsl:template>
+
   <!-- front/notes/sec/p model -->
 
   <xsl:template match="article/front/notes/sec//p">
