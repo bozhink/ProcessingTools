@@ -8,40 +8,40 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
-  <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" cdata-section-elements="tex-math"/>
+  <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" cdata-section-elements="tex-math" />
 
-  <xsl:preserve-space elements="*"/>
+  <xsl:preserve-space elements="*" />
 
-  <xsl:strip-space elements="addr-line aff article-id"/>
+  <xsl:strip-space elements="addr-line aff article-id" />
 
   <xsl:template match="@*" mode="strip-label">
     <xsl:attribute name="{name()}">
-      <xsl:value-of select="normalize-space()"/>
+      <xsl:value-of select="normalize-space()" />
     </xsl:attribute>
   </xsl:template>
 
   <xsl:template match="node()" mode="strip-label">
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()" mode="strip-label"/>
+      <xsl:apply-templates select="@* | node()" mode="strip-label" />
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="label | title" mode="strip-label"/>
+  <xsl:template match="label | title" mode="strip-label" />
 
   <xsl:template match="@*">
     <xsl:attribute name="{name()}">
-      <xsl:value-of select="normalize-space()"/>
+      <xsl:value-of select="normalize-space()" />
     </xsl:attribute>
   </xsl:template>
 
   <xsl:template match="node()">
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="sec/@sec-type">
-    <xsl:variable name="lower-case" select="translate(string(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
+    <xsl:variable name="lower-case" select="translate(string(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')" />
     <xsl:attribute name="{name()}">
       <xsl:choose>
         <xsl:when test="contains($lower-case, 'material') and contains($lower-case, 'method')">
@@ -51,14 +51,14 @@
           <xsl:text>methods</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:variable name="len" select="string-length($lower-case)"/>
-          <xsl:variable name="last-char" select="substring($lower-case, $len - 1, 1)"/>
+          <xsl:variable name="len" select="string-length($lower-case)" />
+          <xsl:variable name="last-char" select="substring($lower-case, $len - 1, 1)" />
           <xsl:choose>
             <xsl:when test="$last-char = '.' or $last-char = ',' or $last-char = ';' or $last-char = ';'">
-              <xsl:value-of select="substring(string(), 1, $len - 1)"/>
+              <xsl:value-of select="substring(string(), 1, $len - 1)" />
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="normalize-space()"/>
+              <xsl:value-of select="normalize-space()" />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:otherwise>
@@ -67,7 +67,7 @@
   </xsl:template>
 
   <xsl:template match="tp:treatment-sec/@sec-type">
-    <xsl:variable name="lower-case" select="translate(string(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
+    <xsl:variable name="lower-case" select="translate(string(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')" />
     <xsl:attribute name="{name()}">
       <xsl:choose>
         <xsl:when test="contains($lower-case, 'material') and contains($lower-case, 'type')">
@@ -77,14 +77,14 @@
           <xsl:text>material</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:variable name="len" select="string-length($lower-case)"/>
-          <xsl:variable name="last-char" select="substring($lower-case, $len - 1, 1)"/>
+          <xsl:variable name="len" select="string-length($lower-case)" />
+          <xsl:variable name="last-char" select="substring($lower-case, $len - 1, 1)" />
           <xsl:choose>
             <xsl:when test="$last-char = '.' or $last-char = ',' or $last-char = ';' or $last-char = ';'">
-              <xsl:value-of select="substring(string(), 1, $len - 1)"/>
+              <xsl:value-of select="substring(string(), 1, $len - 1)" />
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="normalize-space()"/>
+              <xsl:value-of select="normalize-space()" />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:otherwise>
@@ -92,13 +92,13 @@
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="em | i | italic">
+  <xsl:template match="em | i | italic | Italic">
     <i>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </i>
   </xsl:template>
 
-  <xsl:template match="strong | b | bold">
+  <xsl:template match="strong | b | bold | Bold">
     <b>
       <xsl:apply-templates />
     </b>
@@ -120,19 +120,19 @@
 
   <xsl:template match="strike | s">
     <s>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </s>
   </xsl:template>
 
   <xsl:template match="sup">
     <sup>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </sup>
   </xsl:template>
 
   <xsl:template match="sub">
     <sub>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </sub>
   </xsl:template>
 
@@ -141,15 +141,15 @@
   </xsl:template>
 
   <xsl:template match="alt-title | article-title | product | subtitle | title | label | trans-subtitle | trans-title">
-    <xsl:apply-templates select="." mode="title"/>
+    <xsl:apply-templates select="." mode="title" />
   </xsl:template>
 
   <xsl:template match="article-meta/aff">
     <xsl:element name="{name()}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates select="label"/>
+      <xsl:apply-templates select="@*" />
+      <xsl:apply-templates select="label" />
       <addr-line>
-        <xsl:apply-templates select="node()[name(.)!='label']"/>
+        <xsl:apply-templates select="node()[name(.)!='label']" />
       </addr-line>
     </xsl:element>
   </xsl:template>
@@ -157,65 +157,65 @@
   <!-- Title modes -->
   <xsl:template match="@*" mode="title">
     <xsl:attribute name="{name()}">
-      <xsl:value-of select="normalize-space()"/>
+      <xsl:value-of select="normalize-space()" />
     </xsl:attribute>
   </xsl:template>
-  
+
   <xsl:template match="node()" mode="title">
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()" mode="title"/>
+      <xsl:apply-templates select="@* | node()" mode="title" />
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="em | i | italic" mode="title">
+  <xsl:template match="em | i | italic | Italic" mode="title">
     <i>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </i>
   </xsl:template>
 
-  <xsl:template match="strong | b | bold" mode="title">
-    <xsl:apply-templates mode="title"/>
+  <xsl:template match="strong | b | bold | Bold" mode="title">
+    <xsl:apply-templates mode="title" />
   </xsl:template>
 
   <xsl:template match="bold-italic | Bold-Italic" mode="title">
     <i>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </i>
   </xsl:template>
 
   <xsl:template match="u | underline" mode="title">
     <u>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </u>
   </xsl:template>
 
   <xsl:template match="strike | s" mode="title">
     <s>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </s>
   </xsl:template>
 
   <xsl:template match="sup" mode="title">
     <sup>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </sup>
   </xsl:template>
 
   <xsl:template match="sub" mode="title">
     <sub>
-      <xsl:apply-templates mode="title"/>
+      <xsl:apply-templates mode="title" />
     </sub>
   </xsl:template>
 
   <xsl:template match="span | div" mode="title">
-    <xsl:apply-templates mode="title"/>
+    <xsl:apply-templates mode="title" />
   </xsl:template>
 
   <xsl:template match="p" mode="title">
     <xsl:if test="position() != 1">
-      <break/>
+      <break />
     </xsl:if>
-    <xsl:apply-templates mode="title"/>
+    <xsl:apply-templates mode="title" />
   </xsl:template>
 
   <!-- Table modes -->
@@ -223,10 +223,10 @@
     <xsl:element name="{name()}">
       <xsl:if test="string(table/@id)!=''">
         <xsl:attribute name="id">
-          <xsl:value-of select="table/@id"/>
+          <xsl:value-of select="table/@id" />
         </xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="@*" />
       <xsl:attribute name="position">
         <xsl:text>float</xsl:text>
       </xsl:attribute>
@@ -238,7 +238,7 @@
       <xsl:attribute name="orientation">
         <xsl:text>portrait</xsl:text>
       </xsl:attribute>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </xsl:element>
   </xsl:template>
 
@@ -246,19 +246,19 @@
     <xsl:element name="{name()}">
       <xsl:attribute name="id">
         <xsl:text>T</xsl:text>
-        <xsl:value-of select="generate-id()"/>
+        <xsl:value-of select="generate-id()" />
       </xsl:attribute>
-      <xsl:apply-templates select="@border | @cellpadding | @cellspacing | @content-type | @frame | @style | @summary | @width"/>
+      <xsl:apply-templates select="@border | @cellpadding | @cellspacing | @content-type | @frame | @style | @summary | @width" />
       <xsl:attribute name="rules">
         <xsl:text>all</xsl:text>
       </xsl:attribute>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </xsl:element>
   </xsl:template>
 
   <xsl:template match="td | th">
     <xsl:element name="{name()}">
-      <xsl:apply-templates select="@abbr | @align | @axis | @char | @charoff | @colspan | @content-type | @headers | @id | @rowspan | @scope | @style | @valign"/>
+      <xsl:apply-templates select="@abbr | @align | @axis | @char | @charoff | @colspan | @content-type | @headers | @id | @rowspan | @scope | @style | @valign" />
       <xsl:if test="string(@rowspan)=''">
         <xsl:attribute name="rowspan">
           <xsl:text>1</xsl:text>
@@ -271,38 +271,38 @@
       </xsl:if>
       <xsl:choose>
         <xsl:when test="count(text()) = count(node())">
-          <xsl:value-of select="normalize-space()"/>
+          <xsl:value-of select="normalize-space()" />
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates/>
+          <xsl:apply-templates />
         </xsl:otherwise>
       </xsl:choose>
     </xsl:element>
   </xsl:template>
 
   <xsl:template match="th/b | th/bold | th/Bold">
-    <xsl:apply-templates/>
+    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="th/bold-italic | th/Bold-Italic">
     <i>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </i>
   </xsl:template>
 
   <xsl:template match="td/p | th/p">
     <xsl:if test="count(preceding-sibling::p) != 0">
-      <break/>
+      <break />
     </xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="ref/text()[name()=''][normalize-space()='']"></xsl:template>
 
   <xsl:template match="label[count(text()) = count(node())] | title[count(text()) = count(node())] | p[local-name(..)!='td' and local-name(..)!='th'][count(text()) = count(node())] | license-p[count(text()) = count(node())] | li[count(text()) = count(node())] | attrib[count(text()) = count(node())] | element-citation[count(text()) = count(node())] | nlm-citation[count(text()) = count(node())] | mixed-citation[count(text()) = count(node())] | xref-group[count(text()) = count(node())] | kwd[count(text()) = count(node())] | tp:nomenclature-citation[count(text()) = count(node())] | article-title[count(text()) = count(node())]">
     <xsl:element name="{name()}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="normalize-space()"/>
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="normalize-space()" />
     </xsl:element>
   </xsl:template>
 
@@ -317,12 +317,12 @@
 
   <!-- Copy comments from empty tags -->
   <xsl:template match="i[normalize-space() = ''][comment()] | italic[normalize-space() = ''][comment()] | Italic[normalize-space() = ''][comment()] | em[normalize-space() = ''][comment()] | b[normalize-space() = ''][comment()] | bold[normalize-space() = ''][comment()] | Bold[normalize-space() = ''][comment()] | strong[normalize-space() = ''][comment()] | bold-italic[normalize-space() = ''][comment()] | Bold-Italic[normalize-space() = ''][comment()] | sup[normalize-space() = ''][comment()] | sub[normalize-space() = ''][comment()] | u[normalize-space() = ''][comment()] | underline[normalize-space() = ''][comment()]| s[normalize-space() = ''][comment()] | strike[normalize-space() = ''][comment()] | label[normalize-space() = ''][comment()] | title[normalize-space() = ''][comment()] | p[local-name(..)!='td' and local-name(..)!='th'][normalize-space() = ''][comment()] | license-p[normalize-space() = ''][comment()] | li[normalize-space() = ''][comment()] | attrib[normalize-space() = ''][comment()] | ref[normalize-space() = ''][comment()] | element-citation[normalize-space() = ''][comment()] | nlm-citation[normalize-space() = ''][comment()] | mixed-citation[normalize-space() = ''][comment()] | object-id[normalize-space() = ''][comment()] | xref-group[normalize-space() = ''][comment()] | kwd[normalize-space() = ''][comment()] | tp:nomenclature-citation[normalize-space() = ''][comment()] | article-title[normalize-space() = ''][comment()] | self-uri[normalize-space() = ''][comment()] | given-names[normalize-space() = ''][comment()] | surname[normalize-space() = ''][comment()]">
-    <xsl:apply-templates select="comment()"/>
+    <xsl:apply-templates select="comment()" />
   </xsl:template>
 
   <xsl:template match="tp:nomenclature/tp:taxon-name|tp:nomenclature/tn">
     <title>
-      <xsl:apply-templates/>
+      <xsl:apply-templates />
     </title>
   </xsl:template>
 </xsl:stylesheet>
