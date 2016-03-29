@@ -45,21 +45,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfCodesRemoveNonCodeNodesProperty_ShouldBePersistent()
-        {
-            this.config.CodesRemoveNonCodeNodes = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.CodesRemoveNonCodeNodes,
-                "1. CodesRemoveNonCodeNodes should match SampleFilePath.");
-
-            this.config.CodesRemoveNonCodeNodes = null;
-            Assert.IsNull(
-                this.config.CodesRemoveNonCodeNodes,
-                "2. CodesRemoveNonCodeNodes should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfFloraDistrinctTaxaXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraDistrinctTaxaXslPath = SampleFilePath;

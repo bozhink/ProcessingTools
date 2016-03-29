@@ -7,11 +7,13 @@ specimen_code -> @institutionalCode
 namespace ProcessingTools.BaseLibrary
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
     using Contracts;
+    using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
@@ -19,6 +21,7 @@ namespace ProcessingTools.BaseLibrary
 
     public class Codes : ConfigurableDocument
     {
+        private const string CodesRemoveNonCodeNodesXslPathKey = "CodesRemoveNonCodeNodesXslPath";
         private const string SpecimenCodeTagName = "specimen_code";
         private const string InstitutionTagName = "institution";
         private const string InstitutionalCodeTagName = "institutional_code";
@@ -126,6 +129,8 @@ namespace ProcessingTools.BaseLibrary
             this.logger = logger;
             this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
         }
+
+        private static string CodesRemoveNonCodeNodesXslPath => Dictionaries.FileNames.GetOrAdd(CodesRemoveNonCodeNodesXslPathKey, ConfigurationManager.AppSettings[CodesRemoveNonCodeNodesXslPathKey]);
 
         public void TagInstitutions(IDataProvider dataProvider)
         {
@@ -298,7 +303,7 @@ namespace ProcessingTools.BaseLibrary
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
             cleanedXmlDocument.LoadXml(
-                cleanedXmlDocument.ApplyXslTransform(this.Config.CodesRemoveNonCodeNodes));
+                cleanedXmlDocument.ApplyXslTransform(CodesRemoveNonCodeNodesXslPath));
 
             Regex matchCodePattern = new Regex(codePattern);
             return cleanedXmlDocument.InnerText.GetMatches(matchCodePattern);
