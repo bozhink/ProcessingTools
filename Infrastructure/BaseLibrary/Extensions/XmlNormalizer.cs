@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System.Collections.Concurrent;
     using System.Configuration;
     using System.Xml;
+
+    using ProcessingTools.Common;
     using ProcessingTools.Infrastructure.Extensions;
 
     /// <summary>
@@ -13,11 +14,9 @@
         private const string FormatNlmToSystemXslPathKey = "FormatNlmToSystemXslPath";
         private const string FormatSystemToNlmXslPathKey = "FormatSystemToNlmXslPath";
 
-        private static readonly ConcurrentDictionary<string, string> FileNames = new ConcurrentDictionary<string, string>();
+        private static string FormatNlmToSystemXslPath => Dictionaries.FileNames.GetOrAdd(FormatNlmToSystemXslPathKey, ConfigurationManager.AppSettings[FormatNlmToSystemXslPathKey]);
 
-        private static string FormatNlmToSystemXslPath => FileNames.GetOrAdd(FormatNlmToSystemXslPathKey, ConfigurationManager.AppSettings[FormatNlmToSystemXslPathKey]);
-
-        private static string FormatSystemToNlmXslPath => FileNames.GetOrAdd(FormatSystemToNlmXslPathKey, ConfigurationManager.AppSettings[FormatSystemToNlmXslPathKey]);
+        private static string FormatSystemToNlmXslPath => Dictionaries.FileNames.GetOrAdd(FormatSystemToNlmXslPathKey, ConfigurationManager.AppSettings[FormatSystemToNlmXslPathKey]);
 
         /// <summary>
         /// Transforms a given XML string to system Xml Schema.
