@@ -49,11 +49,6 @@
             return new HashSet<string>(result);
         }
 
-        public static string ExtractTaxa(this string xml, Config config)
-        {
-            return xml.ApplyXslTransform(config.FloraExtractTaxaXslPath);
-        }
-
         public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
         {
             XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]");

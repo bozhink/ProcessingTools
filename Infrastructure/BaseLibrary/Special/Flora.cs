@@ -12,6 +12,7 @@
     public class Flora : SpecialFactory
     {
         private const string FloraDistinctTaxaXslPathKey = "FloraDistinctTaxaXslPath";
+        private const string FloraExtractTaxaXslPathKey = "FloraExtractTaxaXslPath";
 
         private XmlDocument template;
 
@@ -23,10 +24,7 @@
 
         private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
 
-        public void ExtractTaxa()
-        {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaXslPath);
-        }
+        private static string FloraExtractTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraExtractTaxaXslPathKey, ConfigurationManager.AppSettings[FloraExtractTaxaXslPathKey]);
 
         public void GenerateTagTemplate()
         {
