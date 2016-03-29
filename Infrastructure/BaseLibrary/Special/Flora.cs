@@ -13,12 +13,12 @@
     {
         private const string FloraDistinctTaxaXslPathKey = "FloraDistinctTaxaXslPath";
 
-        private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
-
         public Flora(Config config, string xml)
             : base(config, xml)
         {
         }
+
+        private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
 
         public void ExtractTaxa()
         {
