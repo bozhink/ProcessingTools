@@ -13,9 +13,12 @@
     {
         private const string FloraDistinctTaxaXslPathKey = "FloraDistinctTaxaXslPath";
 
+        private XmlDocument template;
+
         public Flora(Config config, string xml)
             : base(config, xml)
         {
+            this.template = new XmlDocument();
         }
 
         private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
@@ -32,12 +35,9 @@
 
         public void GenerateTagTemplate()
         {
-            XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(this.XmlDocument
+            this.template.LoadXml(this.XmlDocument
                 .ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)
                 .ApplyXslTransform(FloraDistinctTaxaXslPath));
-
-            generatedTemplate.Save(this.Config.FloraTemplatesOutputXmlPath);
         }
 
         public void PerformReplace()
@@ -45,10 +45,7 @@
             const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";
             const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
 
-            XmlDocument template = new XmlDocument();
-            template.Load(this.Config.FloraTemplatesOutputXmlPath);
-
-            XmlNode root = template.DocumentElement;
+            XmlNode root = this.template.DocumentElement;
 
             {
                 string xml = this.XmlDocument.OuterXml;
@@ -168,10 +165,7 @@
 
         public void ParseTn()
         {
-            XmlDocument template = new XmlDocument();
-            template.Load(this.Config.FloraTemplatesOutputXmlPath);
-
-            XmlNode root = template.DocumentElement;
+            XmlNode root = this.template.DocumentElement;
 
             // Get only full-named taxa
             XmlNodeList templateList = root.SelectNodes("//taxon[count(replace/tn/tn-part[normalize-space(.)=''])=0]");

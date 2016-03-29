@@ -76,9 +76,6 @@
         [DataMember(Name = "floraGenerateTemplatesXslPath")]
         public string FloraGenerateTemplatesXslPath { get; set; }
 
-        [DataMember(Name = "floraTemplatesOutputXmlPath")]
-        public string FloraTemplatesOutputXmlPath { get; set; }
-
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 

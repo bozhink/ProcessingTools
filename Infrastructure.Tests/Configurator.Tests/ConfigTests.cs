@@ -90,21 +90,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraTemplatesOutputXmlPathProperty_ShouldBePersistent()
-        {
-            this.config.FloraTemplatesOutputXmlPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.FloraTemplatesOutputXmlPath,
-                "1. FloraTemplatesOutputXmlPath should match SampleFilePath.");
-
-            this.config.FloraTemplatesOutputXmlPath = null;
-            Assert.IsNull(
-                this.config.FloraTemplatesOutputXmlPath,
-                "2. FloraTemplatesOutputXmlPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_ShouldBePersistent()
         {
             this.config.MainDictionaryDataSourceString = SampleFilePath;
