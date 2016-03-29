@@ -9,11 +9,6 @@
   "whiteListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
   "blackListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
 
-  "referencesTagTemplateXslPath": "C:\\bin\\Xsl\\references.tag-template.xsl",
-  "referencesTagTemplateXmlPath": "C:\\temp\\references-tag-template.xml",
-  "referencesGetReferencesXslPath": "C:\\bin\\Xsl\\references.get.xsl",
-  "referencesSortReferencesXslPath": "C:\\bin\\Xsl\\references.sort.xsl",
-
   "zoobankNlmXslPath": "C:\\bin\\Xsl\\zoobank-nlm.xsl",
 
   "formatXslNlmToSystem": "C:\\bin\\Xsl\\format.nlm-to-system.xsl",
