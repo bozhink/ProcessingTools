@@ -18,7 +18,8 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatNlmToSystemXslPath);
+            string formatNlmToSystemXslPath = ConfigurationManager.AppSettings["FormatNlmToSystemXslPath"];
+            return xml.ApplyXslTransform(formatNlmToSystemXslPath);
         }
 
         /// <summary>
@@ -29,7 +30,8 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this XmlDocument xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatNlmToSystemXslPath);
+            string formatNlmToSystemXslPath = ConfigurationManager.AppSettings["FormatNlmToSystemXslPath"];
+            return xml.ApplyXslTransform(formatNlmToSystemXslPath);
         }
 
         /// <summary>

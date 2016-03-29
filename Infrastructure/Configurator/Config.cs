@@ -95,9 +95,6 @@
         [DataMember(Name = "floraTemplatesOutputXmlPath")]
         public string FloraTemplatesOutputXmlPath { get; set; }
 
-        [DataMember(Name = "formatXslNlmToSystem")]
-        public string FormatNlmToSystemXslPath { get; set; }
-
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 

@@ -136,7 +136,7 @@ namespace ProcessingTools.Data.Miners
             /// <example>2012.VIII–X</example>
             public async Task MineYearMonthRomanDay()
             {
-                const string Pattern = @"((?i)\b" + YearSubpattern + @"(?:[^\w<>]{0,4}\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\b(?:[^\w<>]{0,4}"+ DayRangeSubpattern + @")?){1,2})";
+                const string Pattern = @"((?i)\b" + YearSubpattern + @"(?:[^\w<>]{0,4}\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\b(?:[^\w<>]{0,4}" + DayRangeSubpattern + @")?){1,2})";
 
                 await this.content.GetMatchesAsync(new Regex(Pattern))
                     .ContinueWith(this.EnqueueInItems);
