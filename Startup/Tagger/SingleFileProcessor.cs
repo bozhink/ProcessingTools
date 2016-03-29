@@ -365,9 +365,7 @@
 
         private void SetUpConfigParameters()
         {
-            string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
-
-            this.settings.Config.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
+            this.settings.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
         }
 
         private void ConfigureFileProcessor()

@@ -19,8 +19,6 @@
             this.tagWholeDocumentIsLockedForModification = false;
         }
 
-        public string ReferencesGetReferencesXmlPath { get; set; }
-
         public SchemaType ArticleSchemaType
         {
             get

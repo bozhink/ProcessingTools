@@ -154,5 +154,7 @@
         public bool ZoobankCloneXml { get; set; }
 
         public bool ZoobankGenerateRegistrationXml { get; set; }
+
+        public string ReferencesGetReferencesXmlPath { get; set; }
     }
 }

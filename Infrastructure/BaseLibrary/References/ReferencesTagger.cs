@@ -18,12 +18,14 @@
         private const string ReferencesTagTemplateXslPathKey = "ReferencesTagTemplateXslPath";
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
+        private IReferencesConfiguration referencesConfiguration;
         private ILogger logger;
 
-        public ReferencesTagger(Config config, string xml, ILogger logger)
+        public ReferencesTagger(Config config, string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
             : base(config, xml)
         {
             this.logger = logger;
+            this.referencesConfiguration = referencesConfiguration;
         }
 
         private string ReferencesGetReferencesXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesGetReferencesXslPathKey, ConfigurationManager.AppSettings[ReferencesGetReferencesXslPathKey]);
@@ -41,7 +43,10 @@
                 var referencesList = XDocument.Parse(this.Xml
                     .ApplyXslTransform(this.ReferencesGetReferencesXslPath));
 
-                referencesList.Save(this.Config.ReferencesGetReferencesXmlPath);
+                if (this.referencesConfiguration != null)
+                {
+                    referencesList.Save(this.referencesConfiguration.ReferencesGetReferencesXmlPath);
+                }
             }
 
             var referencesTemplatesXml = XDocument.Parse(this.XmlDocument
