@@ -14,11 +14,6 @@
 
     public static class TaxonomyExtensions
     {
-        public static string DistinctTaxa(this string xml, Config config)
-        {
-            return xml.ApplyXslTransform(config.FloraDistrinctTaxaXslPath);
-        }
-
         public static IEnumerable<string> ExtractTaxa(this XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
         {
             string typeString = type.ToString().ToLower();

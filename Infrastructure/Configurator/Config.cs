@@ -67,9 +67,6 @@
         [DataMember(Name = "blackListXmlFilePath")]
         public string BlackListXmlFilePath { get; set; }
 
-        [DataMember(Name = "floraDistrinctTaxaXslPath")]
-        public string FloraDistrinctTaxaXslPath { get; set; }
-
         [DataMember(Name = "floraExtractedTaxaListPath")]
         public string FloraExtractedTaxaListPath { get; set; }
 

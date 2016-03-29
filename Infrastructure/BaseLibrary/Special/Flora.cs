@@ -29,11 +29,6 @@
             return this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaPartsXslPath);
         }
 
-        public void DistinctTaxa()
-        {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraDistrinctTaxaXslPath);
-        }
-
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
