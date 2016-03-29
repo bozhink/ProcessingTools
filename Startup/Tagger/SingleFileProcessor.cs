@@ -368,8 +368,6 @@
             string tempDirectory = this.settings.Config.TempDirectoryPath;
             string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
 
-            this.settings.Config.ReferencesTagTemplateXmlPath = $"{tempDirectory}\\{outputFileName}-references-tag-template.xml";
-
             this.settings.Config.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
         }
 

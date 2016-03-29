@@ -105,21 +105,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_ShouldBePersistent()
-        {
-            this.config.ReferencesTagTemplateXmlPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.ReferencesTagTemplateXmlPath,
-                "1. ReferencesTagTemplateXmlPath should match SampleFilePath.");
-
-            this.config.ReferencesTagTemplateXmlPath = null;
-            Assert.IsNull(
-                this.config.ReferencesTagTemplateXmlPath,
-                "2. ReferencesTagTemplateXmlPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfReferencesTagTemplateXslPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesTagTemplateXslPath = SampleFilePath;
