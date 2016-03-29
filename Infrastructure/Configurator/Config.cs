@@ -69,9 +69,6 @@
         [DataMember(Name = "blackListXmlFilePath")]
         public string BlackListXmlFilePath { get; set; }
 
-        [DataMember(Name = "mainDictionaryDataSourceString")]
-        public string MainDictionaryDataSourceString { get; set; }
-
         [DataMember(Name = "rankListCleanXslPath")]
         public string RankListCleanXslPath { get; set; }
 

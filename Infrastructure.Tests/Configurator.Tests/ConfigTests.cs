@@ -45,21 +45,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_ShouldBePersistent()
-        {
-            this.config.MainDictionaryDataSourceString = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.MainDictionaryDataSourceString,
-                "1. MainDictionaryDataSourceString should match SampleFilePath.");
-
-            this.config.MainDictionaryDataSourceString = null;
-            Assert.IsNull(
-                this.config.MainDictionaryDataSourceString,
-                "2. MainDictionaryDataSourceString should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfRankListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.RankListCleanXslPath = SampleFilePath;

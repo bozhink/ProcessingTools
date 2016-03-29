@@ -1,22 +1,9 @@
 {
-  "blackListXmlFilePath": "C:\\bin\\Xml\\taxonomy.blackList.xml",
-  "whiteListXmlFilePath": "C:\\bin\\Xml\\taxonomy.whiteList.xml",
-  "rankListXmlFilePath": "C:\\bin\\Xml\\taxonomy.rankList.xml",
+  "blackListXmlFilePath": "C:/bin/Xml/taxonomy.blackList.xml",
+  "whiteListXmlFilePath": "C:/bin/Xml/taxonomy.whiteList.xml",
+  "rankListXmlFilePath": "C:/bin/Xml/taxonomy.rankList.xml",
 
-  "rankListCleanXslPath": "C:\\bin\\Xsl\\RankListClean.xsl",
-  "whiteListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
-  "blackListCleanXslPath": "C:\\bin\\Xsl\\WhiteListClean.xsl",
-
-  "zoobankNlmXslPath": "C:\\bin\\Xsl\\zoobank-nlm.xsl",
-
-  "formatXslNlmToSystem": "C:\\bin\\Xsl\\format.nlm-to-system.xsl",
-  "formatXslSystemToNlm": "C:\\bin\\Xsl\\format.system-to-nlm.xsl",
-  "systemInitialFormatXslPath": "C:\\bin\\Xsl\\format.system.initial.xsl",
-  "nlmInitialFormatXslPath": "C:\\bin\\Xsl\\format.nlm.initial.xsl",
-
-  "environmentsDataSourceString": "Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\bozhin\\Documents\\GitHub\\ProcessingTools\\Base\\Data\\Environments.mdf;Integrated Security=True",
-  "mainDictionaryDataSourceString": "Data Source=(localdb)\\ProjectsV12;Initial Catalog=ProcessingToolsDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
-  "codesRemoveNonCodeNodes": "C:\\bin\\Xsl\\codes.remove-non-code-nodes.xsl",
-  "textContentXslFileName": "C:\\bin\\Xsl\\text-content.xsl",
-  "envoTermsWebServiceTransformXslPath": "C:\\bin\\Xsl\\envo-items-to-tagreplace.xsl"
+  "rankListCleanXslPath": "C:/bin/Xsl/RankListClean.xsl",
+  "whiteListCleanXslPath": "C:/bin/Xsl/WhiteListClean.xsl",
+  "blackListCleanXslPath": "C:/bin/Xsl/WhiteListClean.xsl"
 }
