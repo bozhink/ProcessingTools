@@ -360,7 +360,7 @@
                     break;
             }
 
-            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml(this.settings.Config);
+            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml();
         }
 
         private void SetUpConfigParameters()
@@ -398,7 +398,7 @@
                 Messages.WriteOutputFileMessage,
                 () =>
                 {
-                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
+                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config.ArticleSchemaType);
                     this.fileProcessor.Write(this.document, null, null);
                 });
         }

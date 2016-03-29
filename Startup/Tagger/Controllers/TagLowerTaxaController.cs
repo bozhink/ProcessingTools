@@ -19,7 +19,7 @@
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml.NormalizeXmlToSystemXml(settings.Config));
+            document.LoadXml(tagger.Xml.NormalizeXmlToSystemXml());
         }
     }
 }
