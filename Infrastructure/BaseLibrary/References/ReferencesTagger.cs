@@ -15,6 +15,7 @@
     public class ReferencesTagger : ConfigurableDocument, ITagger
     {
         private const string ReferencesGetReferencesXslPathKey = "ReferencesGetReferencesXslPath";
+        private const string ReferencesTagTemplateXslPathKey = "ReferencesTagTemplateXslPath";
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
         private ILogger logger;
@@ -26,6 +27,8 @@
         }
 
         private string ReferencesGetReferencesXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesGetReferencesXslPathKey, ConfigurationManager.AppSettings[ReferencesGetReferencesXslPathKey]);
+
+        private string ReferencesTagTemplateXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesTagTemplateXslPathKey, ConfigurationManager.AppSettings[ReferencesTagTemplateXslPathKey]);
 
         public Task Tag()
         {
@@ -42,7 +45,7 @@
             }
 
             var referencesTemplatesXml = XDocument.Parse(this.XmlDocument
-                .ApplyXslTransform(this.Config.ReferencesTagTemplateXslPath));
+                .ApplyXslTransform(this.ReferencesTagTemplateXslPath));
 
             var referencesTemplates = referencesTemplatesXml.Descendants("reference")
                 .OrderByDescending(r => r.Attribute("authors").Value.Length)

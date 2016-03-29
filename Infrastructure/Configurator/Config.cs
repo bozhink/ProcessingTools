@@ -78,12 +78,6 @@
         [DataMember(Name = "rankListXmlFilePath")]
         public string RankListXmlFilePath { get; set; }
 
-        //[DataMember(Name = "referencesTagTemplateXmlPath")]
-        //public string ReferencesTagTemplateXmlPath { get; set; }
-
-        [DataMember(Name = "referencesTagTemplateXslPath")]
-        public string ReferencesTagTemplateXslPath { get; set; }
-
         [DataMember(Name = "tempDirectoryPath")]
         public string TempDirectoryPath { get; set; }
 
