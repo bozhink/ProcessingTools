@@ -1,17 +1,20 @@
 ﻿namespace ProcessingTools.BaseLibrary.References
 {
     using System;
+    using System.Configuration;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
+    using ProcessingTools.Common;
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class ReferencesTagger : ConfigurableDocument, ITagger
     {
+        private const string ReferencesGetReferencesXslPathKey = "ReferencesGetReferencesXslPath";
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
         private ILogger logger;
@@ -22,6 +25,8 @@
             this.logger = logger;
         }
 
+        private string ReferencesGetReferencesXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesGetReferencesXslPathKey, ConfigurationManager.AppSettings[ReferencesGetReferencesXslPathKey]);
+
         public Task Tag()
         {
             return Task.Run(() => this.Run());
@@ -31,7 +36,7 @@
         {
             {
                 var referencesList = XDocument.Parse(this.Xml
-                    .ApplyXslTransform(this.Config.ReferencesGetReferencesXslPath));
+                    .ApplyXslTransform(this.ReferencesGetReferencesXslPath));
 
                 referencesList.Save(this.Config.ReferencesGetReferencesXmlPath);
             }

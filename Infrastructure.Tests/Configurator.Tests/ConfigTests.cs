@@ -105,21 +105,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfReferencesGetReferencesXslPathProperty_ShouldBePersistent()
-        {
-            this.config.ReferencesGetReferencesXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.ReferencesGetReferencesXslPath,
-                "1. ReferencesGetReferencesXslPath should match SampleFilePath.");
-
-            this.config.ReferencesGetReferencesXslPath = null;
-            Assert.IsNull(
-                this.config.ReferencesGetReferencesXslPath,
-                "2. ReferencesGetReferencesXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfReferencesTagTemplateXmlPathProperty_ShouldBePersistent()
         {
             this.config.ReferencesTagTemplateXmlPath = SampleFilePath;
