@@ -67,9 +67,6 @@
         [DataMember(Name = "blackListXmlFilePath")]
         public string BlackListXmlFilePath { get; set; }
 
-        [DataMember(Name = "floraGenerateTemplatesXslPath")]
-        public string FloraGenerateTemplatesXslPath { get; set; }
-
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 

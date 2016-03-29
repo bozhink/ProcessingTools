@@ -55,11 +55,6 @@
             return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerText));
         }
 
-        public static string GenerateTagTemplate(this string xml, Config config)
-        {
-            return xml.ApplyXslTransform(config.FloraGenerateTemplatesXslPath);
-        }
-
         public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode xml)
         {
             ////string xpath = "//tp:taxon-name[count(tp:taxon-name-part[normalize-space(@full-name)=''])=0][tp:taxon-name-part[@taxon-name-part-type='genus']]";

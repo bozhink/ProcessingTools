@@ -7,7 +7,6 @@
 
     using ProcessingTools.Common;
     using ProcessingTools.Configurator;
-    using ProcessingTools.Infrastructure.Extensions;
 
     public class Flora : SpecialFactory
     {
@@ -25,13 +24,6 @@
         private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
 
         private static string FloraExtractTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraExtractTaxaXslPathKey, ConfigurationManager.AppSettings[FloraExtractTaxaXslPathKey]);
-
-        public void GenerateTagTemplate()
-        {
-            this.template.LoadXml(this.XmlDocument
-                .ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)
-                .ApplyXslTransform(FloraDistinctTaxaXslPath));
-        }
 
         public void PerformReplace()
         {
