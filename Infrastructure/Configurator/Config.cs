@@ -78,9 +78,6 @@
         [DataMember(Name = "rankListXmlFilePath")]
         public string RankListXmlFilePath { get; set; }
 
-        [DataMember(Name = "tempDirectoryPath")]
-        public string TempDirectoryPath { get; set; }
-
         [DataMember(Name = "whiteListCleanXslPath")]
         public string WhiteListCleanXslPath { get; set; }
 

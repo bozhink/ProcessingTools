@@ -1,6 +1,4 @@
 {
-  "tempDirectoryPath": "C:\\temp",
-
   "blackListXmlFilePath": "C:\\bin\\Xml\\taxonomy.blackList.xml",
   "whiteListXmlFilePath": "C:\\bin\\Xml\\taxonomy.whiteList.xml",
   "rankListXmlFilePath": "C:\\bin\\Xml\\taxonomy.rankList.xml",

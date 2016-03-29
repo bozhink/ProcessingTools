@@ -105,21 +105,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfTempDirectoryPathProperty_ShouldBePersistent()
-        {
-            this.config.TempDirectoryPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.TempDirectoryPath,
-                "1. TempDirectoryPath should match SampleFilePath.");
-
-            this.config.TempDirectoryPath = null;
-            Assert.IsNull(
-                this.config.TempDirectoryPath,
-                "2. TempDirectoryPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfWhiteListCleanXslPathProperty_ShouldBePersistent()
         {
             this.config.WhiteListCleanXslPath = SampleFilePath;

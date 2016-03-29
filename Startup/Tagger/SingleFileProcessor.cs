@@ -365,7 +365,6 @@
 
         private void SetUpConfigParameters()
         {
-            string tempDirectory = this.settings.Config.TempDirectoryPath;
             string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
 
             this.settings.Config.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";

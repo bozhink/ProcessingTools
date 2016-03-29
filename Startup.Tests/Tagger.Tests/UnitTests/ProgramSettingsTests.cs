@@ -25,27 +25,6 @@
         }
 
         [Test]
-        public void ProgramSettings_ValidChangesOfConfigProperty_ShouldBePersistent()
-        {
-            string tempDirectoryPath = "/tmp";
-
-            Config config = new Config();
-            config.TempDirectoryPath = tempDirectoryPath;
-
-            {
-                this.programSettings.Config = config;
-
-                Assert.AreEqual(tempDirectoryPath, this.programSettings.Config.TempDirectoryPath, "1. Temp Directory path should match.");
-            }
-
-            {
-                this.programSettings.Config = null;
-
-                Assert.IsNull(this.programSettings.Config, "2. Config value should be null.");
-            }
-        }
-
-        [Test]
         public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_ShouldBeDefault()
         {
             string defaultXpath = "//article";
