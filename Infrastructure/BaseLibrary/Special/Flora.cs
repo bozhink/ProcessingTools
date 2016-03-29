@@ -28,11 +28,6 @@
             this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaXslPath);
         }
 
-        public string ExtractTaxaParts()
-        {
-            return this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaPartsXslPath);
-        }
-
         public void GenerateTagTemplate()
         {
             this.template.LoadXml(this.XmlDocument

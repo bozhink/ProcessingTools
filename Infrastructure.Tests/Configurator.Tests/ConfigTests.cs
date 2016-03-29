@@ -45,21 +45,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFloraExtractTaxaPartsXslPathProperty_ShouldBePersistent()
-        {
-            this.config.FloraExtractTaxaPartsXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.FloraExtractTaxaPartsXslPath,
-                "1. FloraExtractTaxaPartsXslPath should match SampleFilePath.");
-
-            this.config.FloraExtractTaxaPartsXslPath = null;
-            Assert.IsNull(
-                this.config.FloraExtractTaxaPartsXslPath,
-                "2. FloraExtractTaxaPartsXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfFloraExtractTaxaXslPathProperty_ShouldBePersistent()
         {
             this.config.FloraExtractTaxaXslPath = SampleFilePath;
