@@ -1,36 +1,24 @@
 ﻿namespace ProcessingTools.BaseLibrary.Special
 {
-    using System.Configuration;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Common;
     using ProcessingTools.Configurator;
 
     public class Flora : SpecialFactory
     {
-        private const string FloraDistinctTaxaXslPathKey = "FloraDistinctTaxaXslPath";
-        private const string FloraExtractTaxaXslPathKey = "FloraExtractTaxaXslPath";
-
-        private XmlDocument template;
-
         public Flora(Config config, string xml)
             : base(config, xml)
         {
-            this.template = new XmlDocument();
         }
 
-        private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
-
-        private static string FloraExtractTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraExtractTaxaXslPathKey, ConfigurationManager.AppSettings[FloraExtractTaxaXslPathKey]);
-
-        public void PerformReplace()
+        public void PerformReplace(XmlDocument template)
         {
             const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";
             const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
 
-            XmlNode root = this.template.DocumentElement;
+            XmlNode root = template.DocumentElement;
 
             {
                 string xml = this.XmlDocument.OuterXml;
@@ -148,9 +136,9 @@
             this.Xml = Regex.Replace(this.Xml, "(?<=</tn-part>)(?=<tn)", " ");
         }
 
-        public void ParseTn()
+        public void ParseTn(XmlDocument template)
         {
-            XmlNode root = this.template.DocumentElement;
+            XmlNode root = template.DocumentElement;
 
             // Get only full-named taxa
             XmlNodeList templateList = root.SelectNodes("//taxon[count(replace/tn/tn-part[normalize-space(.)=''])=0]");
