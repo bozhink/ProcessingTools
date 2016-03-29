@@ -315,21 +315,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfEnvoResponseOutputXmlFileNameProperty_ShouldBePersistent()
-        {
-            this.config.EnvoResponseOutputXmlFileName = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.EnvoResponseOutputXmlFileName,
-                "1. EnvoResponseOutputXmlFileName should match SampleFilePath.");
-
-            this.config.EnvoResponseOutputXmlFileName = null;
-            Assert.IsNull(
-                this.config.EnvoResponseOutputXmlFileName,
-                "2. EnvoResponseOutputXmlFileName should be null.");
-        }
-
-        [Test]
         public void Config_ArticleSchemaTypePropertyInNewInstance_ShouldBeSystem()
         {
             Assert.AreEqual(SchemaType.System, this.config.ArticleSchemaType, "Default value of the ArticleSchemaType Property should be System.");

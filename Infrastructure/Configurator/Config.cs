@@ -38,8 +38,6 @@
             }
         }
 
-        public string EnvoResponseOutputXmlFileName { get; set; }
-
         public bool TagWholeDocument
         {
             get
