@@ -1,22 +1,23 @@
 ﻿namespace ProcessingTools.BaseLibrary.Special
 {
+    using System.Configuration;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
+    using ProcessingTools.Common;
     using ProcessingTools.Configurator;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class Flora : SpecialFactory
     {
+        private const string FloraDistinctTaxaXslPathKey = "FloraDistinctTaxaXslPath";
+
+        private static string FloraDistinctTaxaXslPath => Dictionaries.FileNames.GetOrAdd(FloraDistinctTaxaXslPathKey, ConfigurationManager.AppSettings[FloraDistinctTaxaXslPathKey]);
+
         public Flora(Config config, string xml)
             : base(config, xml)
         {
-        }
-
-        public static string DistinctTaxa(string xml)
-        {
-            return xml.ApplyXslTransform(@"C:\bin\taxa.distinct.xslt");
         }
 
         public void ExtractTaxa()
@@ -32,7 +33,10 @@
         public void GenerateTagTemplate()
         {
             XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(this.XmlDocument.ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)));
+            generatedTemplate.LoadXml(this.XmlDocument
+                .ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)
+                .ApplyXslTransform(FloraDistinctTaxaXslPath));
+
             generatedTemplate.Save(this.Config.FloraTemplatesOutputXmlPath);
         }
 
