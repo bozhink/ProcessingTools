@@ -180,21 +180,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfFormatXslSystemToNlmProperty_ShouldBePersistent()
-        {
-            this.config.FormatSystemToNlmXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.FormatSystemToNlmXslPath,
-                "1. FormatXslSystemToNlm should match SampleFilePath.");
-
-            this.config.FormatSystemToNlmXslPath = null;
-            Assert.IsNull(
-                this.config.FormatSystemToNlmXslPath,
-                "2. FormatXslSystemToNlm should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfMainDictionaryDataSourceStringProperty_ShouldBePersistent()
         {
             this.config.MainDictionaryDataSourceString = SampleFilePath;

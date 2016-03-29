@@ -98,9 +98,6 @@
         [DataMember(Name = "formatXslNlmToSystem")]
         public string FormatNlmToSystemXslPath { get; set; }
 
-        [DataMember(Name = "formatXslSystemToNlm")]
-        public string FormatSystemToNlmXslPath { get; set; }
-
         [DataMember(Name = "mainDictionaryDataSourceString")]
         public string MainDictionaryDataSourceString { get; set; }
 

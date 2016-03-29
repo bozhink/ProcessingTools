@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System.Configuration;
     using System.Xml;
     using ProcessingTools.Configurator;
     using ProcessingTools.Infrastructure.Extensions;
@@ -39,7 +40,8 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this string xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatSystemToNlmXslPath);
+            string formatSystemToNlmXslPath = ConfigurationManager.AppSettings["FormatSystemToNlmXslPath"];
+            return xml.ApplyXslTransform(formatSystemToNlmXslPath);
         }
 
         /// <summary>
@@ -50,7 +52,8 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this XmlDocument xml, Config config)
         {
-            return xml.ApplyXslTransform(config.FormatSystemToNlmXslPath);
+            string formatSystemToNlmXslPath = ConfigurationManager.AppSettings["FormatSystemToNlmXslPath"];
+            return xml.ApplyXslTransform(formatSystemToNlmXslPath);
         }
 
         /// <summary>
