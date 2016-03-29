@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System.Collections.Concurrent;
     using System.Configuration;
     using System.Xml;
     using ProcessingTools.Infrastructure.Extensions;
@@ -9,6 +10,15 @@
     /// </summary>
     public static class XmlNormalizer
     {
+        private const string FormatNlmToSystemXslPathKey = "FormatNlmToSystemXslPath";
+        private const string FormatSystemToNlmXslPathKey = "FormatSystemToNlmXslPath";
+
+        private static readonly ConcurrentDictionary<string, string> FileNames = new ConcurrentDictionary<string, string>();
+
+        private static string FormatNlmToSystemXslPath => FileNames.GetOrAdd(FormatNlmToSystemXslPathKey, ConfigurationManager.AppSettings[FormatNlmToSystemXslPathKey]);
+
+        private static string FormatSystemToNlmXslPath => FileNames.GetOrAdd(FormatSystemToNlmXslPathKey, ConfigurationManager.AppSettings[FormatSystemToNlmXslPathKey]);
+
         /// <summary>
         /// Transforms a given XML string to system Xml Schema.
         /// </summary>
@@ -16,8 +26,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this string xml)
         {
-            string formatNlmToSystemXslPath = ConfigurationManager.AppSettings["FormatNlmToSystemXslPath"];
-            return xml.ApplyXslTransform(formatNlmToSystemXslPath);
+            return xml.ApplyXslTransform(FormatNlmToSystemXslPath);
         }
 
         /// <summary>
@@ -27,8 +36,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this XmlDocument xml)
         {
-            string formatNlmToSystemXslPath = ConfigurationManager.AppSettings["FormatNlmToSystemXslPath"];
-            return xml.ApplyXslTransform(formatNlmToSystemXslPath);
+            return xml.ApplyXslTransform(FormatNlmToSystemXslPath);
         }
 
         /// <summary>
@@ -38,8 +46,7 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this string xml)
         {
-            string formatSystemToNlmXslPath = ConfigurationManager.AppSettings["FormatSystemToNlmXslPath"];
-            return xml.ApplyXslTransform(formatSystemToNlmXslPath);
+            return xml.ApplyXslTransform(FormatSystemToNlmXslPath);
         }
 
         /// <summary>
@@ -49,15 +56,14 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this XmlDocument xml)
         {
-            string formatSystemToNlmXslPath = ConfigurationManager.AppSettings["FormatSystemToNlmXslPath"];
-            return xml.ApplyXslTransform(formatSystemToNlmXslPath);
+            return xml.ApplyXslTransform(FormatSystemToNlmXslPath);
         }
 
         /// <summary>
         /// Transforms a given XML string to Taxpub NLM Xml Schema or system Xml Schema.
         /// </summary>
         /// <param name="xml">XML as string to be transformed.</param>
-        /// <param name="config">Config object which provides the path to Xsl file to be used and the NlmStyle boolean.</param>
+        /// <param name="articleSchemaType">SchemaType of the document.</param>
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToCurrentXml(this string xml, SchemaType articleSchemaType)
         {
@@ -75,7 +81,7 @@
         /// Transforms a given XmlDocument object to Taxpub NLM Xml Schema or system Xml Schema.
         /// </summary>
         /// <param name="xml">XmlDocument object to be transformed.</param>
-        /// <param name="config">Config object which provides the path to Xsl file to be used and the NlmStyle boolean.</param>
+        /// <param name="articleSchemaType">SchemaType of the document.</param>
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToCurrentXml(this XmlDocument xml, SchemaType articleSchemaType)
         {
