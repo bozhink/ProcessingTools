@@ -41,6 +41,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IContextProcessor.cs" />
+    <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
