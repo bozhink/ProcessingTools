@@ -12,10 +12,16 @@
         private Lazy<IStringTaxonomicListDataService> blackList;
         private Lazy<IStringTaxonomicListDataService> whiteList;
 
+        private SchemaType articleSchemaType;
+        private bool articleSchemaTypeStyleIsLockedForModification;
+
         public ProgramSettings()
         {
             this.FileNames = new List<string>();
             this.CalledControllers = new List<Type>();
+
+            this.articleSchemaType = SchemaType.System;
+            this.articleSchemaTypeStyleIsLockedForModification = false;
 
             this.Config = null;
 
@@ -63,6 +69,25 @@
 
             this.blackList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
             this.whiteList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
+        }
+
+        public SchemaType ArticleSchemaType
+        {
+            get
+            {
+                this.articleSchemaTypeStyleIsLockedForModification = true;
+                return this.articleSchemaType;
+            }
+
+            set
+            {
+                if (!this.articleSchemaTypeStyleIsLockedForModification)
+                {
+                    this.articleSchemaType = value;
+                }
+
+                this.articleSchemaTypeStyleIsLockedForModification = true;
+            }
         }
 
         public IStringTaxonomicListDataService BlackList => this.blackList.Value;

@@ -4,38 +4,13 @@
 
     public partial class Config
     {
-        private SchemaType articleSchemaType;
-        private bool articleSchemaTypeStyleIsLockedForModification;
-
         private bool tagWholeDocument;
         private bool tagWholeDocumentIsLockedForModification;
 
         public Config()
         {
-            this.articleSchemaType = SchemaType.System;
-            this.articleSchemaTypeStyleIsLockedForModification = false;
-
             this.tagWholeDocument = false;
             this.tagWholeDocumentIsLockedForModification = false;
-        }
-
-        public SchemaType ArticleSchemaType
-        {
-            get
-            {
-                this.articleSchemaTypeStyleIsLockedForModification = true;
-                return this.articleSchemaType;
-            }
-
-            set
-            {
-                if (!this.articleSchemaTypeStyleIsLockedForModification)
-                {
-                    this.articleSchemaType = value;
-                }
-
-                this.articleSchemaTypeStyleIsLockedForModification = true;
-            }
         }
 
         public bool TagWholeDocument

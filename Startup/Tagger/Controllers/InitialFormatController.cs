@@ -17,7 +17,7 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             string xslFileName = null;
-            switch (settings.Config.ArticleSchemaType)
+            switch (settings.ArticleSchemaType)
             {
                 case SchemaType.Nlm:
                     xslFileName = ConfigurationManager.AppSettings["NlmInitialFormatXslPath"];

@@ -352,11 +352,11 @@
             switch (this.document.XmlDocument.DocumentElement.Name)
             {
                 case "article":
-                    this.settings.Config.ArticleSchemaType = SchemaType.Nlm;
+                    this.settings.ArticleSchemaType = SchemaType.Nlm;
                     break;
 
                 default:
-                    this.settings.Config.ArticleSchemaType = SchemaType.System;
+                    this.settings.ArticleSchemaType = SchemaType.System;
                     break;
             }
 
@@ -391,7 +391,7 @@
                 Messages.WriteOutputFileMessage,
                 () =>
                 {
-                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config.ArticleSchemaType);
+                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.ArticleSchemaType);
                     this.fileProcessor.Write(this.document, null, null);
                 });
         }

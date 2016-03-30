@@ -182,11 +182,11 @@
                 }
                 else if (item.CompareTo("--system") == 0)
                 {
-                    this.Settings.Config.ArticleSchemaType = SchemaType.System;
+                    this.Settings.ArticleSchemaType = SchemaType.System;
                 }
                 else if (item.CompareTo("--nlm") == 0)
                 {
-                    this.Settings.Config.ArticleSchemaType = SchemaType.Nlm;
+                    this.Settings.ArticleSchemaType = SchemaType.Nlm;
                 }
                 else if (item.CompareTo("--extract-taxa") == 0 || item.CompareTo("--et") == 0)
                 {

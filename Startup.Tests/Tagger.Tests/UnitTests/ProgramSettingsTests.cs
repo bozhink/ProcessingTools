@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
-    using NUnit.Framework;
-    using ProcessingTools.Configurator;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [TestFixture]
+    [TestClass]
     public class ProgramSettingsTests
     {
         private const string DefaultValueShouldBeFalseMessage = "Default value should be false.";
@@ -12,26 +11,26 @@
 
         private ProgramSettings programSettings;
 
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             this.programSettings = new ProgramSettings();
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ConfigPropertyInNewInstance_ShouldBeNull()
         {
             Assert.IsNull(this.programSettings.Config, "Default Config value should be null.");
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_ShouldBeDefault()
         {
             string defaultXpath = "//article";
             Assert.AreEqual(defaultXpath, this.programSettings.HigherStructrureXpath, "Default HigherStructrureXpath value should be //article");
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfHigherStructrureXpathProperty_ShouldBePersistent()
         {
             string xpath = "//i";
@@ -49,13 +48,13 @@
             }
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ExtractHigherTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfExtractHigherTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractHigherTaxa = true;
@@ -65,13 +64,13 @@
             Assert.IsFalse(this.programSettings.ExtractHigherTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ExtractLowerTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfExtractLowerTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractLowerTaxa = true;
@@ -81,13 +80,13 @@
             Assert.IsFalse(this.programSettings.ExtractLowerTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ExtractTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfExtractTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ExtractTaxa = true;
@@ -97,13 +96,13 @@
             Assert.IsFalse(this.programSettings.ExtractTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ResolveMediaTypesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfResolveMediaTypesProperty_ShouldBePersistent()
         {
             this.programSettings.ResolveMediaTypes = true;
@@ -113,13 +112,13 @@
             Assert.IsFalse(this.programSettings.ResolveMediaTypes, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_FormatInitPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.InitialFormat, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfFormatInitProperty_ShouldBePersistent()
         {
             this.programSettings.InitialFormat = true;
@@ -129,13 +128,13 @@
             Assert.IsFalse(this.programSettings.InitialFormat, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_FormatTreatPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.FormatTreat, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfFormatTreatProperty_ShouldBePersistent()
         {
             this.programSettings.FormatTreat = true;
@@ -145,13 +144,13 @@
             Assert.IsFalse(this.programSettings.FormatTreat, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseBySectionPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseBySection, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseBySectionProperty_ShouldBePersistent()
         {
             this.programSettings.ParseBySection = true;
@@ -161,13 +160,13 @@
             Assert.IsFalse(this.programSettings.ParseBySection, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseCoordsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseCoordinates, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseCoordsProperty_ShouldBePersistent()
         {
             this.programSettings.ParseCoordinates = true;
@@ -177,13 +176,13 @@
             Assert.IsFalse(this.programSettings.ParseCoordinates, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseReferencesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseReferences, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseReferencesProperty_ShouldBePersistent()
         {
             this.programSettings.ParseReferences = true;
@@ -193,13 +192,13 @@
             Assert.IsFalse(this.programSettings.ParseReferences, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseTreatmentMetaWithAphiaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithAphia, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithAphiaProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithAphia = true;
@@ -209,13 +208,13 @@
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithAphia, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseTreatmentMetaWithColPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithCol, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithColProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithCol = true;
@@ -225,13 +224,13 @@
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithCol, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ParseTreatmentMetaWithGbifPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfParseTreatmentMetaWithGbifProperty_ShouldBePersistent()
         {
             this.programSettings.ParseTreatmentMetaWithGbif = true;
@@ -241,13 +240,13 @@
             Assert.IsFalse(this.programSettings.ParseTreatmentMetaWithGbif, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_QueryReplacePropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.QueryReplace, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfQueryReplaceProperty_ShouldBePersistent()
         {
             this.programSettings.QueryReplace = true;
@@ -257,13 +256,13 @@
             Assert.IsFalse(this.programSettings.QueryReplace, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_SplitHigherAboveGenusPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfSplitHigherAboveGenusProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherAboveGenus = true;
@@ -273,13 +272,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherAboveGenus, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_SplitHigherBySuffixPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherBySuffix, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfSplitHigherBySuffixProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherBySuffix = true;
@@ -289,13 +288,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherBySuffix, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_SplitHigherWithAphiaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithAphia, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfSplitHigherWithAphiaProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithAphia = true;
@@ -305,13 +304,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherWithAphia, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_SplitHigherWithCoLPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithCoL, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfSplitHigherWithCoLProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithCoL = true;
@@ -321,13 +320,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherWithCoL, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_SplitHigherWithGbifPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherWithGbif, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfSplitHigherWithGbifProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherWithGbif = true;
@@ -337,13 +336,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherWithGbif, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagAbbrevPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagAbbreviations, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagAbbrevProperty_ShouldBePersistent()
         {
             this.programSettings.TagAbbreviations = true;
@@ -353,13 +352,13 @@
             Assert.IsFalse(this.programSettings.TagAbbreviations, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagCodesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagCodes, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagCodesProperty_ShouldBePersistent()
         {
             this.programSettings.TagCodes = true;
@@ -369,13 +368,13 @@
             Assert.IsFalse(this.programSettings.TagCodes, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagCoordsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagCoordinates, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagCoordsProperty_ShouldBePersistent()
         {
             this.programSettings.TagCoordinates = true;
@@ -385,13 +384,13 @@
             Assert.IsFalse(this.programSettings.TagCoordinates, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagDoiPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagDoi, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagDoiProperty_ShouldBePersistent()
         {
             this.programSettings.TagDoi = true;
@@ -401,13 +400,13 @@
             Assert.IsFalse(this.programSettings.TagDoi, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagEnvironmentTermsPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagEnvironmentTerms, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagEnvironmentTermsProperty_ShouldBePersistent()
         {
             this.programSettings.TagEnvironmentTerms = true;
@@ -417,13 +416,13 @@
             Assert.IsFalse(this.programSettings.TagEnvironmentTerms, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagEnvironmentTermsWithExtractPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagEnvironmentTermsWithExtract, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagEnvironmentTermsWithExtractProperty_ShouldBePersistent()
         {
             this.programSettings.TagEnvironmentTermsWithExtract = true;
@@ -433,13 +432,13 @@
             Assert.IsFalse(this.programSettings.TagEnvironmentTermsWithExtract, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagFigTabPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagFloats, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagFigTabProperty_ShouldBePersistent()
         {
             this.programSettings.TagFloats = true;
@@ -449,13 +448,13 @@
             Assert.IsFalse(this.programSettings.TagFloats, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagReferencesPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagReferences, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagReferencesProperty_ShouldBePersistent()
         {
             this.programSettings.TagReferences = true;
@@ -465,13 +464,13 @@
             Assert.IsFalse(this.programSettings.TagReferences, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_RunXslTransformPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.RunXslTransform, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfRunXslTransformProperty_ShouldBePersistent()
         {
             this.programSettings.RunXslTransform = true;
@@ -481,13 +480,13 @@
             Assert.IsFalse(this.programSettings.RunXslTransform, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagTableFnPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagTableFn, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagTableFnProperty_ShouldBePersistent()
         {
             this.programSettings.TagTableFn = true;
@@ -497,13 +496,13 @@
             Assert.IsFalse(this.programSettings.TagTableFn, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TagWWWPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagWebLinks, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTagWWWProperty_ShouldBePersistent()
         {
             this.programSettings.TagWebLinks = true;
@@ -513,13 +512,13 @@
             Assert.IsFalse(this.programSettings.TagWebLinks, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TaxaAPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTaxaAProperty_ShouldBePersistent()
         {
             this.programSettings.TagLowerTaxa = true;
@@ -529,13 +528,13 @@
             Assert.IsFalse(this.programSettings.TagLowerTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TaxaBPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.TagHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTaxaBProperty_ShouldBePersistent()
         {
             this.programSettings.TagHigherTaxa = true;
@@ -545,13 +544,13 @@
             Assert.IsFalse(this.programSettings.TagHigherTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TaxaCPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTaxaCProperty_ShouldBePersistent()
         {
             this.programSettings.ParseLowerTaxa = true;
@@ -561,13 +560,13 @@
             Assert.IsFalse(this.programSettings.ParseLowerTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TaxaDPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ParseHigherTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTaxaDProperty_ShouldBePersistent()
         {
             this.programSettings.ParseHigherTaxa = true;
@@ -577,13 +576,13 @@
             Assert.IsFalse(this.programSettings.ParseHigherTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_TaxaEPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExpandLowerTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfTaxaEProperty_ShouldBePersistent()
         {
             this.programSettings.ExpandLowerTaxa = true;
@@ -593,13 +592,13 @@
             Assert.IsFalse(this.programSettings.ExpandLowerTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_UntagSplitPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.UntagSplit, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfUntagSplitProperty_ShouldBePersistent()
         {
             this.programSettings.UntagSplit = true;
@@ -609,13 +608,13 @@
             Assert.IsFalse(this.programSettings.UntagSplit, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidateTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ValidateTaxa, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfValidateTaxaProperty_ShouldBePersistent()
         {
             this.programSettings.ValidateTaxa = true;
@@ -625,13 +624,13 @@
             Assert.IsFalse(this.programSettings.ValidateTaxa, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ZoobankCloneJsonPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankCloneJson, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfZoobankCloneJsonProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankCloneJson = true;
@@ -641,13 +640,13 @@
             Assert.IsFalse(this.programSettings.ZoobankCloneJson, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ZoobankCloneXmlPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankCloneXml, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfZoobankCloneXmlProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankCloneXml = true;
@@ -657,13 +656,13 @@
             Assert.IsFalse(this.programSettings.ZoobankCloneXml, ValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ZoobankGenerateRegistrationXmlPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankGenerateRegistrationXml, DefaultValueShouldBeFalseMessage);
         }
 
-        [Test]
+        [TestMethod]
         public void ProgramSettings_ValidChangesOfZoobankGenerateRegistrationXmlProperty_ShouldBePersistent()
         {
             this.programSettings.ZoobankGenerateRegistrationXml = true;
@@ -671,6 +670,126 @@
 
             this.programSettings.ZoobankGenerateRegistrationXml = false;
             Assert.IsFalse(this.programSettings.ZoobankGenerateRegistrationXml, ValueShouldBeFalseMessage);
+        }
+
+        [TestMethod]
+        public void ProgramSettings_ArticleSchemaTypePropertyInNewInstance_ShouldBeSystem()
+        {
+            Assert.AreEqual(SchemaType.System, this.programSettings.ArticleSchemaType, "Default value of the ArticleSchemaType Property should be System.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_FirstSetValueToSystemOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToSystem()
+        {
+            this.programSettings.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(SchemaType.System, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be System.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_FirstSetValueToNlmOfArticleSchemaTypePropertyBeforeGet_ShouldSetTheValueOfArticleSchemaTypePropertyToNlm()
+        {
+            this.programSettings.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(SchemaType.Nlm, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be Nlm.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            var dafaultValue = this.programSettings.ArticleSchemaType;
+            this.programSettings.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(dafaultValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the default value.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetInNewInstance_ShouldNotChangeTheDefaultValue()
+        {
+            var dafaultValue = this.programSettings.ArticleSchemaType;
+            this.programSettings.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(dafaultValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the default value.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_SchemaTypeNlm_ShouldNotChangeTheInitialValue()
+        {
+            ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_SchemaTypeSystem_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.System);
+        }
+
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
+        {
+            this.programSettings.ArticleSchemaType = initialValue;
+            this.programSettings.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(initialValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_SchemaTypeNlm_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_SchemaTypeSystem_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.System);
+        }
+
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
+        {
+            this.programSettings.ArticleSchemaType = initialValue;
+            this.programSettings.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(initialValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_SchemaTypeNlm_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_SchemaTypeSystem_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.System);
+        }
+
+        public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
+        {
+            this.programSettings.ArticleSchemaType = initialValue;
+
+            var lastValue = this.programSettings.ArticleSchemaType;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
+
+            this.programSettings.ArticleSchemaType = SchemaType.System;
+            Assert.AreEqual(initialValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_SchemaTypeNlm_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
+        }
+
+        [TestMethod]
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_SchemaTypeSystem_ShouldNotChangeTheInitialValue()
+        {
+            this.ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.System);
+        }
+
+        public void ProgramSettings_SetValueToNlmOfArticleSchemaTypePropertyAfterGetAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType initialValue)
+        {
+            this.programSettings.ArticleSchemaType = initialValue;
+
+            var lastValue = this.programSettings.ArticleSchemaType;
+            Assert.AreEqual(initialValue, lastValue, "First set of values does not work correctly.");
+
+            this.programSettings.ArticleSchemaType = SchemaType.Nlm;
+            Assert.AreEqual(initialValue, this.programSettings.ArticleSchemaType, "ArticleSchemaType should be equal to the initial value.");
         }
     }
 }
