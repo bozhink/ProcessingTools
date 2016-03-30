@@ -88,13 +88,10 @@
                 .AsParallel()
                 .ForAll(this.TagInfraspecificTaxa);
 
-            ////if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
-            ////{
-            ////    this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
-            ////        .Cast<XmlNode>()
-            ////        .AsParallel()
-            ////        .ForAll(this.TagInfraspecificTaxa);
-            ////}
+            this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(this.TagInfraspecificTaxa);
         }
 
         private void TagInfraspecificTaxa(XmlNode node)
