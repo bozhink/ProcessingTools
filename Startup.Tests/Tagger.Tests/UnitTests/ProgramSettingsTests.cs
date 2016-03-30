@@ -711,7 +711,7 @@
         [TestMethod]
         public void ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_SchemaTypeNlm_ShouldNotChangeTheInitialValue()
         {
-            ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
+            this.ProgramSettings_SetValueToSystemOfArticleSchemaTypePropertyAfterInitialSet_ShouldNotChangeTheInitialValue(SchemaType.Nlm);
         }
 
         [TestMethod]
