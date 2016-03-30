@@ -2,37 +2,6 @@
 {
     using System.Runtime.Serialization;
 
-    public partial class Config
-    {
-        private bool tagWholeDocument;
-        private bool tagWholeDocumentIsLockedForModification;
-
-        public Config()
-        {
-            this.tagWholeDocument = false;
-            this.tagWholeDocumentIsLockedForModification = false;
-        }
-
-        public bool TagWholeDocument
-        {
-            get
-            {
-                this.tagWholeDocumentIsLockedForModification = true;
-                return this.tagWholeDocument;
-            }
-
-            set
-            {
-                if (!this.tagWholeDocumentIsLockedForModification)
-                {
-                    this.tagWholeDocument = value;
-                }
-
-                this.tagWholeDocumentIsLockedForModification = true;
-            }
-        }
-    }
-
     [DataContract]
     public partial class Config
     {
