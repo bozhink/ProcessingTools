@@ -137,6 +137,9 @@
     <Compile Include="ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XSL\copy.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XSL\expand-taxa-by-full-name.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
