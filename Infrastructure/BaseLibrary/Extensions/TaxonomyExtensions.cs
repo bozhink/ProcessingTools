@@ -8,7 +8,6 @@
 
     using Bio.Taxonomy.Types;
     using DocumentProvider;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
@@ -42,8 +41,6 @@
                 {
                     result = nodeList.GetStringListOfUniqueXmlNodes().ToList();
                 }
-
-                result.Sort();
             }
 
             return new HashSet<string>(result);
@@ -174,15 +171,24 @@
             result.Attributes.RemoveAll();
 
             string innerXml = result
-                .RemoveXmlNodes("//object-id")
+                .RemoveXmlNodes(".//object-id|.//tn-part[@type='uncertainty-rank']")
                 .ReplaceXmlNodeInnerTextByItsFullNameAttribute()
                 .InnerXml
+                .Replace("?", string.Empty)
                 .RegexReplace(@"</[^>]*>(?=[^\s\)\]])(?!\Z)", " ")
                 .RegexReplace(@"<[^>]+>", string.Empty)
                 .RegexReplace(@"\s+", " ")
                 .Trim();
 
-            return innerXml;
+            // Make single word-upper-case names in title case.
+            if (Regex.IsMatch(innerXml, @"\A[A-Z]+\Z"))
+            {
+                innerXml = innerXml.ToFirstLetterUpperCase();
+            }
+
+            result.InnerXml = innerXml;
+
+            return result.InnerText;
         }
     }
 }
