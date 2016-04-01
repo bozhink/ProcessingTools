@@ -44,14 +44,7 @@
 
         public static IEnumerable<string> GetMatches(this string text, Regex search)
         {
-            var result = new HashSet<string>();
-
-            for (Match m = search.Match(text); m.Success; m = m.NextMatch())
-            {
-                result.Add(m.Value);
-            }
-
-            return result;
+            return new HashSet<string>(search.Match(text).ToIEnumerable());
         }
 
         public static Task<IEnumerable<string>> GetMatchesAsync(this string text, Regex search)

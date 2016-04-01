@@ -7,7 +7,7 @@
     <ProjectGuid>{553469FF-345B-4BCD-AACA-3D447B23D80A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.MainProgram</RootNamespace>
+    <RootNamespace>ProcessingTools.Tagger</RootNamespace>
     <AssemblyName>Tagger</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -140,6 +140,7 @@
     <Compile Include="Contracts\ITagProductsController.cs" />
     <Compile Include="Contracts\ITagQuantitiesController.cs" />
     <Compile Include="Contracts\ITagReferencesController.cs" />
+    <Compile Include="Contracts\ITagSpecimenCountController.cs" />
     <Compile Include="Contracts\ITagTableFootnoteController.cs" />
     <Compile Include="Contracts\ITagTypeStatusController.cs" />
     <Compile Include="Contracts\ITagWebLinksController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
+    <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCodeSerializableModel.cs" />

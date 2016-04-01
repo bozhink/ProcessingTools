@@ -7,6 +7,8 @@
  * 1 ex
  * 1 ex.
  * 1♂&amp;1♀
+ * 2 larvae
+ * 1 larva
  */
 
 namespace ProcessingTools.Bio.Data.Miners
@@ -21,7 +23,8 @@ namespace ProcessingTools.Bio.Data.Miners
 
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {
-        private const string Pattern = @"((?i)(?:\d+(?:\s*[–—−‒-]?\s*))+[^\w<>\(\)\[\]]{0,5}(?:[♀♂]|males?|females?|juveniles?)+)";
+        private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";
+        private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|males?|females?|juveniles?|larvae?)\s*?)+)";
 
         public async Task<IQueryable<string>> Mine(string content)
         {
