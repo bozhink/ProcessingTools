@@ -13,6 +13,7 @@
 
 namespace ProcessingTools.Bio.Data.Miners
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -28,6 +29,11 @@ namespace ProcessingTools.Bio.Data.Miners
 
         public async Task<IQueryable<string>> Mine(string content)
         {
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
             Regex matchSpecimenCount = new Regex(Pattern);
             var result = new HashSet<string>(await content.GetMatchesAsync(matchSpecimenCount));
             return result.AsQueryable();

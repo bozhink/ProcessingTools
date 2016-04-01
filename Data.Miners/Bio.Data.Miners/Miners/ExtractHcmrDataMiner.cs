@@ -16,6 +16,11 @@
 
         public ExtractHcmrDataMiner(IExtractHcmrDataRequester requester)
         {
+            if (requester == null)
+            {
+                throw new ArgumentNullException(nameof(requester));
+            }
+
             this.requester = requester;
         }
 
@@ -23,7 +28,7 @@
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             var response = await this.requester?.RequestData(content);

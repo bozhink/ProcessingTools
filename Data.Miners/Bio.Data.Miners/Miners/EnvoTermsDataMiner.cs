@@ -18,7 +18,7 @@
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.service = service;
@@ -28,7 +28,7 @@
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             string text = content.ToLower();

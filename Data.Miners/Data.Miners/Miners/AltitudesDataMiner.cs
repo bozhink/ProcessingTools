@@ -23,7 +23,7 @@ namespace ProcessingTools.Data.Miners
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             var internalMiner = new InternalMiner(content);

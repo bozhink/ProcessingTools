@@ -25,6 +25,11 @@
 
         public HigherTaxaDataMiner(ITaxonomicListDataService<string> whiteList)
         {
+            if (whiteList == null)
+            {
+                throw new ArgumentNullException(nameof(whiteList));
+            }
+
             this.whiteList = whiteList;
         }
 
@@ -32,7 +37,7 @@
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             string textToMine = string.Join(" ", content.ExtractWordsFromString());
