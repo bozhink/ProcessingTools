@@ -9,11 +9,12 @@
 
     public partial class MainForm : Form
     {
+        private string configFileName;
+
         public MainForm()
         {
             this.InitializeComponent();
-            this.ConfigFileName = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
-            this.OpenConfigFile();
+            this.OpenConfigFile(this.GetConfigFileNameFromApplicationConfigurations);
 
             this.blackListManager.ListGroupBoxLabel = "Black List";
             this.blackListManager.IsRankList = false;
@@ -25,7 +26,42 @@
             this.rankListManager.IsRankList = true;
         }
 
-        private string ConfigFileName { get; set; }
+        private string GetDefaultConfigFileName => ConfigurationManager.AppSettings["ConfigJsonFilePath"];
+
+        private string GetConfigFileNameFromApplicationConfigurations
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(ApplicationSettings.Default.ConfigurationFileName))
+                {
+                    ApplicationSettings.Default.ConfigurationFileName = this.GetDefaultConfigFileName;
+                }
+
+                return ApplicationSettings.Default.ConfigurationFileName;
+            }
+        }
+
+        private string GetConfigFileNameDirectory
+        {
+            get
+            {
+                return Path.GetDirectoryName(this.GetConfigFileNameFromApplicationConfigurations);
+            }
+        }
+
+        private string ConfigFileName
+        {
+            get
+            {
+                return this.configFileName;
+            }
+
+            set
+            {
+                this.configFileName = value;
+                ApplicationSettings.Default.ConfigurationFileName = this.configFileName;
+            }
+        }
 
         private Config Config { get; set; }
 
@@ -40,37 +76,73 @@
 
         private void OpenConfigFile()
         {
-            this.Config = ConfigBuilder.Create(this.ConfigFileName);
+            this.OpenConfigFile(null);
+        }
 
-            // Set BlackList file paths
-            this.blackListManager.ListFileName = this.Config.BlackListXmlFilePath;
-            this.blackListManager.CleanXslFileName = this.Config.BlackListCleanXslPath;
+        private void OpenConfigFile(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName) || !File.Exists(fileName))
+            {
+                this.ConfigFileName = this.GetDefaultConfigFileName;
+            }
+            else
+            {
+                this.ConfigFileName = fileName;
+            }
 
-            // Set WhiteList file paths
-            this.whiteListManager.ListFileName = this.Config.WhiteListXmlFilePath;
-            this.whiteListManager.CleanXslFileName = this.Config.WhiteListCleanXslPath;
+            try
+            {
+                this.Config = ConfigBuilder.Create(this.ConfigFileName);
 
-            // Set RankList file paths
-            this.rankListManager.ListFileName = this.Config.RankListXmlFilePath;
-            this.rankListManager.CleanXslFileName = this.Config.RankListCleanXslPath;
+                // Set BlackList file paths
+                this.blackListManager.ListFileName = this.Config.BlackListXmlFilePath;
+                this.blackListManager.CleanXslFileName = this.Config.BlackListCleanXslPath;
 
-            this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
+                // Set WhiteList file paths
+                this.whiteListManager.ListFileName = this.Config.WhiteListXmlFilePath;
+                this.whiteListManager.CleanXslFileName = this.Config.WhiteListCleanXslPath;
+
+                // Set RankList file paths
+                this.rankListManager.ListFileName = this.Config.RankListXmlFilePath;
+                this.rankListManager.CleanXslFileName = this.Config.RankListCleanXslPath;
+
+                this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, $"Unable to open config file '{this.ConfigFileName}.'");
+                this.ConfigFileName = this.GetDefaultConfigFileName;
+            }
         }
 
         private void OpenConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                this.openConfigFileDialog.ShowDialog();
-                if (!string.IsNullOrWhiteSpace(this.openConfigFileDialog.FileName) && File.Exists(this.openConfigFileDialog.FileName))
+                this.openConfigFileDialog.InitialDirectory = this.GetConfigFileNameDirectory;
+                this.openConfigFileDialog.AddExtension = true;
+                this.openConfigFileDialog.CheckFileExists = true;
+                this.openConfigFileDialog.CheckPathExists = true;
+                this.openConfigFileDialog.Multiselect = false;
+                this.openConfigFileDialog.FileName = string.Empty;
+                this.openConfigFileDialog.Filter = $"{ApplicationSettings.Default.DefaultExtension} | *.{ApplicationSettings.Default.DefaultExtension}";
+                this.openConfigFileDialog.DefaultExt = ApplicationSettings.Default.DefaultExtension;
+
+                var dialogResult = this.openConfigFileDialog.ShowDialog();
+                switch (dialogResult)
                 {
-                    this.ConfigFileName = this.openConfigFileDialog.FileName;
-                    this.OpenConfigFile();
+                    case DialogResult.OK:
+                    case DialogResult.Yes:
+                        this.OpenConfigFile(this.openConfigFileDialog.FileName);
+                        break;
+
+                    default:
+                        break;
                 }
             }
-            catch (Exception configException)
+            catch (Exception ex)
             {
-                MessageBox.Show(configException.Message, $"Error during opening the config file '{this.ConfigFileName}.'");
+                MessageBox.Show(ex.ToString(), ex.Message);
             }
         }
 
@@ -78,12 +150,11 @@
         {
             try
             {
-                this.ConfigFileName = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
                 this.OpenConfigFile();
             }
-            catch (Exception configException)
+            catch (Exception ex)
             {
-                MessageBox.Show(configException.Message, $"Error during opening the config file '{this.ConfigFileName}.'");
+                MessageBox.Show(ex.ToString(), ex.Message);
             }
         }
 

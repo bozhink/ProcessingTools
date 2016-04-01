@@ -34,5 +34,17 @@ namespace ProcessingTools.ListsManager {
                 this["ConfigurationFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("json")]
+        public string DefaultExtension {
+            get {
+                return ((string)(this["DefaultExtension"]));
+            }
+            set {
+                this["DefaultExtension"] = value;
+            }
+        }
     }
 }
