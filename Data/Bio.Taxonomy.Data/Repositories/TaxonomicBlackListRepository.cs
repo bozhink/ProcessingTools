@@ -1,11 +1,14 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+
     using Contracts;
+
     using ProcessingTools.Configurator;
 
     public class TaxonomicBlackListRepository : ITaxonomicBlackListRepository
@@ -14,8 +17,18 @@
         private const string ItemNodeName = "item";
 
         public TaxonomicBlackListRepository()
+            : this(ConfigBuilder.Create())
         {
-            this.Config = ConfigBuilder.Create();
+        }
+
+        public TaxonomicBlackListRepository(Config config)
+        {
+            if (config == null)
+            {
+                throw new ArgumentNullException(nameof(config));
+            }
+
+            this.Config = config;
             this.Items = new ConcurrentQueue<string>();
         }
 

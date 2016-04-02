@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,8 +23,18 @@
         private const string TaxonRankNodeName = "value";
 
         public TaxaRepository()
+            : this(ConfigBuilder.Create())
         {
-            this.Config = ConfigBuilder.Create();
+        }
+
+        public TaxaRepository(Config config)
+        {
+            if (config == null)
+            {
+                throw new ArgumentNullException(nameof(config));
+            }
+
+            this.Config = config;
             this.TaxaWhiteListed = new ConcurrentDictionary<string, bool>();
             this.TaxaRanks = new ConcurrentDictionary<string, HashSet<string>>();
 

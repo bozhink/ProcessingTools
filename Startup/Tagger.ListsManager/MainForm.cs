@@ -26,6 +26,8 @@
             this.rankListManager.IsRankList = true;
         }
 
+        internal static Config Config { get; set; }
+
         private string GetDefaultConfigFileName => ConfigurationManager.AppSettings["ConfigJsonFilePath"];
 
         private string GetConfigFileNameFromApplicationConfigurations
@@ -41,13 +43,7 @@
             }
         }
 
-        private string GetConfigFileNameDirectory
-        {
-            get
-            {
-                return Path.GetDirectoryName(this.GetConfigFileNameFromApplicationConfigurations);
-            }
-        }
+        private string GetConfigFileNameDirectory => Path.GetDirectoryName(this.GetConfigFileNameFromApplicationConfigurations);
 
         private string ConfigFileName
         {
@@ -63,7 +59,6 @@
             }
         }
 
-        private Config Config { get; set; }
 
         private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -89,7 +84,7 @@
 
             try
             {
-                this.Config = ConfigBuilder.Create(this.ConfigFileName);
+                Config = ConfigBuilder.Create(this.ConfigFileName);
 
                 this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
             }

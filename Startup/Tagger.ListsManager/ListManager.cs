@@ -13,9 +13,6 @@
 
     public partial class ListManagerControl : UserControl
     {
-        private readonly ITaxaRepository taxaRepository = new TaxaRepository();
-        private readonly ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository();
-
         public ListManagerControl()
         {
             this.InitializeComponent();
@@ -100,6 +97,8 @@
             {
                 if (this.IsRankList)
                 {
+                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+
                     var taxa = this.listView.Items.Cast<ListViewItem>()
                         .GroupBy(i => i.SubItems[0].Text)
                         .Select(g => new Taxon
@@ -111,23 +110,25 @@
 
                     foreach (var taxon in new HashSet<Taxon>(taxa))
                     {
-                        this.taxaRepository.Add(taxon).Wait();
+                        taxaRepository.Add(taxon).Wait();
                     }
 
-                    int numberOfWrittenItems = this.taxaRepository.SaveChanges().Result;
+                    int numberOfWrittenItems = taxaRepository.SaveChanges().Result;
                 }
                 else
                 {
+                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+
                     var items = new HashSet<string>(this.listView.Items
                         .Cast<ListViewItem>()
                         .Select(i => i.Text));
 
                     foreach (var item in items)
                     {
-                        this.blackListRepository.Add(item).Wait();
+                        blackListRepository.Add(item).Wait();
                     }
 
-                    int numberOfWrittenItems = this.blackListRepository.SaveChanges().Result;
+                    int numberOfWrittenItems = blackListRepository.SaveChanges().Result;
                 }
             }
             catch (Exception ex)
@@ -187,7 +188,9 @@
             {
                 if (this.IsRankList)
                 {
-                    this.taxaRepository.All().Result
+                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+
+                    taxaRepository.All().Result
                         .ToList()
                         .ForEach(taxon =>
                         {
@@ -201,7 +204,9 @@
                 }
                 else
                 {
-                    this.blackListRepository.All().Result
+                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+
+                    blackListRepository.All().Result
                         .ToList()
                         .ForEach(item =>
                         {
@@ -243,7 +248,9 @@
             {
                 if (this.IsRankList)
                 {
-                    this.taxaRepository.All().Result
+                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+
+                    taxaRepository.All().Result
                         .Where(t => t.Name.Contains(textToSearch))
                         .ToList()
                         .ForEach(taxon =>
@@ -263,7 +270,9 @@
                 }
                 else
                 {
-                    this.blackListRepository.All().Result
+                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+
+                    blackListRepository.All().Result
                         .Where(i => i.Contains(textToSearch))
                         .ToList()
                         .ForEach(item =>
