@@ -235,24 +235,17 @@
 
                     if (this.IsRankList)
                     {
-                        foreach (XmlNode taxon in listHolder.XmlDocument.SelectNodes("//taxon"))
-                        {
-                            foreach (XmlNode part in taxon.SelectNodes("part"))
+                        this.taxaRepository.All().Result
+                            .ToList()
+                            .ForEach(taxon =>
                             {
-                                string partValue = part["value"].InnerText;
-                                foreach (XmlNode rank in part.SelectNodes("rank/value"))
+                                foreach (var rank in taxon.Ranks)
                                 {
-                                    string[] taxonRankPair =
-                                        {
-                                            partValue,
-                                            rank.InnerText
-                                        };
-
+                                    string[] taxonRankPair = { taxon.Name, rank };
                                     var listItem = new ListViewItem(taxonRankPair);
                                     this.listView.Items.Add(listItem);
                                 }
-                            }
-                        }
+                            });
                     }
                     else
                     {
