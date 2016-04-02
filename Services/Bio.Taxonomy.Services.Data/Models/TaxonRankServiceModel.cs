@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    internal class TaxonRankServiceModel : ITaxonRank
+    public class TaxonRankServiceModel : ITaxonRank
     {
         public TaxonRankServiceModel()
         {

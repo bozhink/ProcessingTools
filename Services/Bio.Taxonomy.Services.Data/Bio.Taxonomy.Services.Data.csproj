@@ -49,6 +49,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IStringTaxonomicListDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
+    <Compile Include="Contracts\ITaxonRankDataService.cs" />
     <Compile Include="Services\AboveGenusTaxaRankDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationDataService.cs" />
     <Compile Include="Services\CatalogueOfLifeTaxaClassificationDataService.cs" />
