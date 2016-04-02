@@ -16,6 +16,7 @@
     public partial class ListManagerControl : UserControl
     {
         private readonly ITaxaRepository taxaRepository = new TaxaRepository();
+        private readonly ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository();
 
         public ListManagerControl()
         {
@@ -154,17 +155,16 @@
                 }
                 else
                 {
-                    var listHolder = new XmlListHolder(this.ListFileName);
-                    listHolder.Load();
+                    var items = new HashSet<string>(this.listView.Items
+                        .Cast<ListViewItem>()
+                        .Select(i => i.Text));
 
-                    foreach (ListViewItem item in this.listView.Items)
+                    foreach (var item in items)
                     {
-                        XmlElement entry = listHolder.XmlDocument.CreateElement("item");
-                        entry.InnerXml = item.Text;
-                        listHolder.XmlDocument.DocumentElement.AppendChild(entry);
+                        this.blackListRepository.Add(item).Wait();
                     }
 
-                    listHolder.Write();
+                    int numberOfWrittenItems = this.blackListRepository.SaveChanges().Result;
                 }
 
                 this.Enabled = true;
