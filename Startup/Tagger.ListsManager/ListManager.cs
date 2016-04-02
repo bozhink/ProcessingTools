@@ -1,16 +1,15 @@
 ﻿namespace ProcessingTools.ListsManager
 {
-    using ProcessingTools.Bio.Taxonomy.Data.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
-    using System.Xml.Xsl;
+
+    using ProcessingTools.Bio.Taxonomy.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
 
     public partial class ListManagerControl : UserControl
     {
@@ -96,9 +95,9 @@
 
         private void ListImportButton_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             try
             {
-                this.Enabled = false;
                 if (this.IsRankList)
                 {
                     var taxa = this.listView.Items.Cast<ListViewItem>()
@@ -106,7 +105,8 @@
                         .Select(g => new Taxon
                         {
                             Name = g.Key,
-                            Ranks = new HashSet<string>(g.Select(i => i.SubItems[1].Text))
+                            Ranks = new HashSet<string>(g.Select(i => i.SubItems[1].Text)),
+                            IsWhiteListed = g.Any(i => i.Checked)
                         });
 
                     foreach (var taxon in new HashSet<Taxon>(taxa))
@@ -129,13 +129,13 @@
 
                     int numberOfWrittenItems = this.blackListRepository.SaveChanges().Result;
                 }
-
-                this.Enabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error in import.");
             }
+
+            this.Enabled = true;
         }
 
         private void ListParseButton_Click(object sender, EventArgs e)
@@ -232,14 +232,15 @@
 
         private void Search()
         {
+            string textToSearch = this.listSearchTextBox.Text?.Trim() ?? string.Empty;
+            if (textToSearch.Length < 1)
+            {
+                return;
+            }
+
+            this.Enabled = false;
             try
             {
-                string textToSearch = this.listSearchTextBox.Text?.Trim() ?? string.Empty;
-                if (textToSearch.Length < 1)
-                {
-                    return;
-                }
-
                 if (this.IsRankList)
                 {
                     this.taxaRepository.All().Result
@@ -251,6 +252,11 @@
                             {
                                 string[] taxonRankPair = { taxon.Name, rank };
                                 var listItem = new ListViewItem(taxonRankPair);
+                                if (taxon.IsWhiteListed)
+                                {
+                                    listItem.Checked = true;
+                                }
+
                                 this.listView.Items.Add(listItem);
                             }
                         });
@@ -270,6 +276,8 @@
             {
                 MessageBox.Show(ex.Message, "Error in search.");
             }
+
+            this.Enabled = true;
         }
     }
 }

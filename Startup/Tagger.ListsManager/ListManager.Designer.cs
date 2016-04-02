@@ -162,6 +162,7 @@
             this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.CheckBoxes = true;
             this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader,
             this.rankColumnHeader});
@@ -181,12 +182,12 @@
             // columnHeader
             // 
             this.columnHeader.Text = "List item";
-            this.columnHeader.Width = 377;
+            this.columnHeader.Width = 318;
             // 
             // rankColumnHeader
             // 
-            this.rankColumnHeader.Text = "rank";
-            this.rankColumnHeader.Width = 178;
+            this.rankColumnHeader.Text = "Rank";
+            this.rankColumnHeader.Width = 133;
             // 
             // listViewContextMenuStrip
             // 
