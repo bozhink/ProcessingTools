@@ -14,16 +14,19 @@
         public TaxaRepository()
         {
             this.Config = ConfigBuilder.Create();
-            this.Taxa = new ConcurrentDictionary<string, HashSet<string>>();
+            this.TaxaWhiteListed = new ConcurrentDictionary<string, bool>();
+            this.TaxaRanks = new ConcurrentDictionary<string, HashSet<string>>();
         }
 
         private Config Config { get; set; }
 
-        private ConcurrentDictionary<string, HashSet<string>> Taxa { get; set; }
+        private ConcurrentDictionary<string, bool> TaxaWhiteListed { get; set; }
+
+        private ConcurrentDictionary<string, HashSet<string>> TaxaRanks { get; set; }
 
         public Task Add(Taxon entity)
         {
-            return Task.Run(() => this.Add(entity.Name, entity.Ranks.ToArray()));
+            return Task.Run(() => this.AddTaxon(entity));
         }
 
         public Task<IQueryable<Taxon>> All()
@@ -32,11 +35,12 @@
             {
                 this.ReadTaxaFromFile();
 
-                return this.Taxa
+                return this.TaxaRanks
                     .Select(t => new Taxon
                     {
                         Name = t.Key,
-                        Ranks = t.Value
+                        Ranks = t.Value,
+                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(t.Key, false)
                     })
                     .AsQueryable();
             });
@@ -47,14 +51,15 @@
             return Task.Run(() =>
             {
                 this.ReadTaxaFromFile();
-                return this.Taxa
+                return this.TaxaRanks
                     .OrderBy(t => t.Key)
                     .Skip(skip)
                     .Take(take)
                     .Select(t => new Taxon
                     {
                         Name = t.Key,
-                        Ranks = t.Value
+                        Ranks = t.Value,
+                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(t.Key, false)
                     })
                     .AsQueryable();
             });
@@ -66,7 +71,7 @@
             {
                 this.ReadTaxaFromFile();
                 var value = new HashSet<string>();
-                this.Taxa.TryRemove(id.ToString(), out value);
+                this.TaxaRanks.TryRemove(id.ToString(), out value);
             });
         }
 
@@ -80,12 +85,13 @@
             return Task.Run(() =>
             {
                 this.ReadTaxaFromFile();
-                var taxon = this.Taxa
+                var taxon = this.TaxaRanks
                     .Where(t => t.Key == id.ToString())
                     .Select(t => new Taxon
                     {
                         Name = t.Key,
-                        Ranks = t.Value
+                        Ranks = t.Value,
+                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(t.Key, false)
                     })
                     .FirstOrDefault();
                 return taxon;
@@ -103,31 +109,39 @@
             {
                 this.ReadTaxaFromFile();
 
+                string name = entity.Name;
+
+                this.TaxaWhiteListed.AddOrUpdate(name, entity.IsWhiteListed, (k, b) => entity.IsWhiteListed);
+
                 var ranks = new HashSet<string>(entity.Ranks);
-                if (this.Taxa.ContainsKey(entity.Name))
+                if (this.TaxaRanks.ContainsKey(name))
                 {
-                    this.Taxa[entity.Name] = ranks;
+                    this.TaxaRanks[name] = ranks;
                 }
                 else
                 {
-                    this.Taxa.GetOrAdd(entity.Name, ranks);
+                    this.TaxaRanks.GetOrAdd(name, ranks);
                 }
             });
         }
 
-        private void Add(string name, params string[] ranks)
+        private void AddTaxon(Taxon taxon)
         {
-            var ranksToAdd = new HashSet<string>(ranks.Where(r => !string.IsNullOrWhiteSpace(r)));
-            if (this.Taxa.ContainsKey(name))
+            string name = taxon.Name;
+
+            this.TaxaWhiteListed.GetOrAdd(name, taxon.IsWhiteListed);
+
+            var ranksToAdd = new HashSet<string>(taxon.Ranks.Where(r => !string.IsNullOrWhiteSpace(r)));
+            if (this.TaxaRanks.ContainsKey(name))
             {
                 foreach (var rank in ranksToAdd)
                 {
-                    this.Taxa[name].Add(rank);
+                    this.TaxaRanks[name].Add(rank);
                 }
             }
             else
             {
-                this.Taxa.GetOrAdd(name, ranksToAdd);
+                this.TaxaRanks.GetOrAdd(name, ranksToAdd);
             }
         }
 
@@ -145,7 +159,22 @@
                     .Select(i => i.Value)
                     .ToArray();
 
-                this.Add(name, ranks);
+                var taxonToAdd = new Taxon
+                {
+                    Name = name,
+                    Ranks = ranks,
+                    IsWhiteListed = false
+                };
+
+                string whiteListedAttribute = taxon.Attribute("white-listed")?.Value;
+
+                bool whiteListed;
+                if (bool.TryParse(whiteListedAttribute, out whiteListed))
+                {
+                    taxonToAdd.IsWhiteListed = whiteListed;
+                }
+
+                this.AddTaxon(taxonToAdd);
             }
         }
 
@@ -153,7 +182,7 @@
         {
             this.ReadTaxaFromFile();
 
-            var taxa = this.Taxa
+            var taxa = this.TaxaRanks
                 .Select(pair =>
                 {
                     var ranks = pair.Value.Select(r => new XElement("value", r)).ToArray();
@@ -162,13 +191,17 @@
                     XElement name = new XElement("value", pair.Key);
                     XElement part = new XElement("part", name, rank);
 
-                    return new XElement("taxon", part);
+                    XAttribute whiteListed = new XAttribute(
+                        "white-listed",
+                        this.TaxaWhiteListed.GetOrAdd(pair.Key, false));
+
+                    return new XElement("taxon", whiteListed, part);
                 })
                 .ToArray();
 
             XElement taxaList = new XElement("taxa", taxa);
 
-            taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.DisableFormatting);
+            taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.None);
 
             return taxaList.Elements().Count();
         }

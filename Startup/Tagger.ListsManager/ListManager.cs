@@ -149,7 +149,7 @@
                         this.taxaRepository.Add(taxon).Wait();
                     }
 
-                    this.taxaRepository.SaveChanges().Wait();
+                    int numberOfWrittenItems = this.taxaRepository.SaveChanges().Result;
                 }
                 else
                 {
