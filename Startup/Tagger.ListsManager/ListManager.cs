@@ -134,6 +134,7 @@
                     throw new ApplicationException("Invalid list name.");
                 }
 
+                this.Enabled = false;
                 if (this.IsRankList)
                 {
                     var taxa = this.listView.Items.Cast<ListViewItem>()
@@ -165,6 +166,8 @@
 
                     listHolder.Write();
                 }
+
+                this.Enabled = true;
             }
             catch (Exception ex)
             {

@@ -11,6 +11,14 @@
 
     public class TaxaRepository : ITaxaRepository
     {
+        private const string RootNodeName = "taxa";
+        private const string TaxonNodeName = "taxon";
+        private const string WhiteListedAttributeName = "white-listed";
+        private const string TaxonPartNodeName = "part";
+        private const string TaxonNameNodeName = "value";
+        private const string TaxonRanksNodeName = "rank";
+        private const string TaxonRankNodeName = "value";
+
         public TaxaRepository()
         {
             this.Config = ConfigBuilder.Create();
@@ -149,13 +157,13 @@
         {
             XElement taxaList = XElement.Load(this.Config.RankListXmlFilePath);
 
-            foreach (var taxon in taxaList.Descendants("taxon"))
+            foreach (var taxon in taxaList.Descendants(TaxonNodeName))
             {
-                string name = taxon.Element("part").Element("value").Value;
+                string name = taxon.Element(TaxonPartNodeName).Element(TaxonNameNodeName).Value;
 
-                string[] ranks = taxon.Element("part")
-                    .Element("rank")
-                    .Elements("value")
+                string[] ranks = taxon.Element(TaxonPartNodeName)
+                    .Element(TaxonRanksNodeName)
+                    .Elements(TaxonRankNodeName)
                     .Select(i => i.Value)
                     .ToArray();
 
@@ -166,7 +174,7 @@
                     IsWhiteListed = false
                 };
 
-                string whiteListedAttribute = taxon.Attribute("white-listed")?.Value;
+                string whiteListedAttribute = taxon.Attribute(WhiteListedAttributeName)?.Value;
 
                 bool whiteListed;
                 if (bool.TryParse(whiteListedAttribute, out whiteListed))
@@ -185,21 +193,21 @@
             var taxa = this.TaxaRanks
                 .Select(pair =>
                 {
-                    var ranks = pair.Value.Select(r => new XElement("value", r)).ToArray();
+                    var ranks = pair.Value.Select(r => new XElement(TaxonRankNodeName, r)).ToArray();
 
-                    XElement rank = new XElement("rank", ranks);
-                    XElement name = new XElement("value", pair.Key);
-                    XElement part = new XElement("part", name, rank);
+                    XElement rank = new XElement(TaxonRanksNodeName, ranks);
+                    XElement name = new XElement(TaxonNameNodeName, pair.Key);
+                    XElement part = new XElement(TaxonPartNodeName, name, rank);
 
                     XAttribute whiteListed = new XAttribute(
-                        "white-listed",
+                        WhiteListedAttributeName,
                         this.TaxaWhiteListed.GetOrAdd(pair.Key, false));
 
-                    return new XElement("taxon", whiteListed, part);
+                    return new XElement(TaxonNodeName, whiteListed, part);
                 })
                 .ToArray();
 
-            XElement taxaList = new XElement("taxa", taxa);
+            XElement taxaList = new XElement(RootNodeName, taxa);
 
             taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.None);
 
