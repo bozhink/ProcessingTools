@@ -68,9 +68,6 @@
         private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ConfigFileName = string.Empty;
-            this.rankListManager.ListFileName = string.Empty;
-            this.whiteListManager.ListFileName = string.Empty;
-            this.blackListManager.ListFileName = string.Empty;
             this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
         }
 
@@ -93,15 +90,6 @@
             try
             {
                 this.Config = ConfigBuilder.Create(this.ConfigFileName);
-
-                // Set BlackList file paths
-                this.blackListManager.ListFileName = this.Config.BlackListXmlFilePath;
-
-                // Set WhiteList file paths
-                this.whiteListManager.ListFileName = this.Config.WhiteListXmlFilePath;
-
-                // Set RankList file paths
-                this.rankListManager.ListFileName = this.Config.RankListXmlFilePath;
 
                 this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
             }

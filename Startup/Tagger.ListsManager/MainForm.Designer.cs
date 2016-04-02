@@ -211,7 +211,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.whiteListManager.IsRankList = false;
-            this.whiteListManager.ListFileName = string.Empty;
             this.whiteListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.whiteListManager.Location = new System.Drawing.Point(6, 6);
             this.whiteListManager.Name = "whiteListManager";
@@ -236,7 +235,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.blackListManager.IsRankList = false;
-            this.blackListManager.ListFileName = string.Empty;
             this.blackListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.blackListManager.Location = new System.Drawing.Point(6, 6);
             this.blackListManager.Name = "blackListManager";
@@ -259,7 +257,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rankListManager.IsRankList = false;
-            this.rankListManager.ListFileName = string.Empty;
             this.rankListManager.ListGroupBoxLabel = "listManagerGroupBox";
             this.rankListManager.Location = new System.Drawing.Point(3, 3);
             this.rankListManager.Name = "rankListManager";

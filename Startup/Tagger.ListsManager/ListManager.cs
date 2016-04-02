@@ -20,7 +20,6 @@
         public ListManagerControl()
         {
             this.InitializeComponent();
-            this.ListFileName = string.Empty;
             this.IsRankList = false;
         }
 
@@ -28,11 +27,6 @@
         /// Get or set the boolean value which designates whether current views are rank-related or not
         /// </summary>
         public bool IsRankList { get; set; }
-
-        /// <summary>
-        /// Get or set the full-path name of the x-list
-        /// </summary>
-        public string ListFileName { get; set; }
 
         /// <summary>
         /// Get or set the name of the main group box of this control
@@ -104,11 +98,6 @@
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(this.ListFileName))
-                {
-                    throw new ApplicationException("Invalid list name.");
-                }
-
                 this.Enabled = false;
                 if (this.IsRankList)
                 {
