@@ -59,7 +59,6 @@
             }
         }
 
-
         private void CloseConfigFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ConfigFileName = string.Empty;
