@@ -162,13 +162,13 @@
                     XElement name = new XElement("value", pair.Key);
                     XElement part = new XElement("part", name, rank);
 
-                    return part;
+                    return new XElement("taxon", part);
                 })
                 .ToArray();
 
             XElement taxaList = new XElement("taxa", taxa);
 
-            taxaList.Save(this.Config.RankListXmlFilePath);
+            taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.DisableFormatting);
 
             return taxaList.Elements().Count();
         }

@@ -1,6 +1,10 @@
 ﻿namespace ProcessingTools.ListsManager
 {
+    using ProcessingTools.Bio.Taxonomy.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -8,9 +12,6 @@
     using System.Windows.Forms;
     using System.Xml;
     using System.Xml.Xsl;
-
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
 
     public partial class ListManagerControl : UserControl
     {
@@ -133,44 +134,37 @@
                     throw new ApplicationException("Invalid list name.");
                 }
 
-                var listHolder = new XmlListHolder(this.ListFileName);
-                listHolder.Load();
-
-                foreach (ListViewItem item in this.listView.Items)
+                if (this.IsRankList)
                 {
-                    XmlElement entry = null;
-                    if (this.IsRankList)
+                    var taxa = this.listView.Items.Cast<ListViewItem>()
+                        .GroupBy(i => i.SubItems[0].Text)
+                        .Select(g => new Taxon
+                        {
+                            Name = g.Key,
+                            Ranks = new HashSet<string>(g.Select(i => i.SubItems[1].Text))
+                        });
+
+                    foreach (var taxon in new HashSet<Taxon>(taxa))
                     {
-                        entry = listHolder.XmlDocument.CreateElement("taxon");
-
-                        XmlElement part = listHolder.XmlDocument.CreateElement("part");
-
-                        XmlElement partValue = listHolder.XmlDocument.CreateElement("value");
-                        partValue.InnerText = item.SubItems[0].Text;
-
-                        part.AppendChild(partValue);
-
-                        XmlElement rank = listHolder.XmlDocument.CreateElement("rank");
-
-                        XmlElement rankValue = listHolder.XmlDocument.CreateElement("value");
-                        rankValue.InnerText = item.SubItems[1].Text;
-
-                        rank.AppendChild(rankValue);
-
-                        part.AppendChild(rank);
-
-                        entry.AppendChild(part);
-                    }
-                    else
-                    {
-                        entry = listHolder.XmlDocument.CreateElement("item");
-                        entry.InnerXml = item.Text;
+                        this.taxaRepository.Add(taxon).Wait();
                     }
 
-                    listHolder.XmlDocument.DocumentElement.AppendChild(entry);
+                    this.taxaRepository.SaveChanges().Wait();
                 }
+                else
+                {
+                    var listHolder = new XmlListHolder(this.ListFileName);
+                    listHolder.Load();
 
-                listHolder.Write();
+                    foreach (ListViewItem item in this.listView.Items)
+                    {
+                        XmlElement entry = listHolder.XmlDocument.CreateElement("item");
+                        entry.InnerXml = item.Text;
+                        listHolder.XmlDocument.DocumentElement.AppendChild(entry);
+                    }
+
+                    listHolder.Write();
+                }
             }
             catch (Exception ex)
             {
