@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
 {
-    using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,113 +14,124 @@
         public TaxaRepository()
         {
             this.Config = ConfigBuilder.Create();
-            this.Taxa = new HashSet<Taxon>();
+            this.Taxa = new ConcurrentDictionary<string, HashSet<string>>();
         }
 
         private Config Config { get; set; }
 
-        private ICollection<Taxon> Taxa { get; set; }
+        private ConcurrentDictionary<string, HashSet<string>> Taxa { get; set; }
 
-        public async Task Add(Taxon entity)
+        public Task Add(Taxon entity)
         {
-            await this.Add(entity.Name, entity.Ranks.ToArray());
+            return Task.Run(() => this.Add(entity.Name, entity.Ranks.ToArray()));
         }
 
-        public async Task<IQueryable<Taxon>> All()
+        public Task<IQueryable<Taxon>> All()
         {
-            await this.ReadTaxaFromFile();
-            return this.Taxa.AsQueryable();
-        }
-
-        public async Task<IQueryable<Taxon>> All(int skip, int take)
-        {
-            await this.ReadTaxaFromFile();
-            return this.Taxa
-                .OrderBy(t => t.Name)
-                .Skip(skip)
-                .Take(take)
-                .AsQueryable();
-        }
-
-        public async Task Delete(object id)
-        {
-            await this.ReadTaxaFromFile();
-            try
+            return Task.Run(() =>
             {
-                var taxon = this.Taxa.First(t => t.Name == id.ToString());
-                this.Taxa.Remove(taxon);
-            }
-            catch
-            {
-            }
+                this.ReadTaxaFromFile();
+
+                return this.Taxa
+                    .Select(t => new Taxon
+                    {
+                        Name = t.Key,
+                        Ranks = t.Value
+                    })
+                    .AsQueryable();
+            });
         }
 
-        public async Task Delete(Taxon entity)
+        public Task<IQueryable<Taxon>> All(int skip, int take)
         {
-            await this.ReadTaxaFromFile();
-            try
+            return Task.Run(() =>
             {
-                this.Taxa.Remove(entity);
-            }
-            catch
-            {
-            }
+                this.ReadTaxaFromFile();
+                return this.Taxa
+                    .OrderBy(t => t.Key)
+                    .Skip(skip)
+                    .Take(take)
+                    .Select(t => new Taxon
+                    {
+                        Name = t.Key,
+                        Ranks = t.Value
+                    })
+                    .AsQueryable();
+            });
         }
 
-        public async Task<Taxon> Get(object id)
+        public Task Delete(object id)
         {
-            await this.ReadTaxaFromFile();
-            var taxon = this.Taxa.FirstOrDefault(t => t.Name == id.ToString());
-            return taxon;
+            return Task.Run(() =>
+            {
+                this.ReadTaxaFromFile();
+                var value = new HashSet<string>();
+                this.Taxa.TryRemove(id.ToString(), out value);
+            });
+        }
+
+        public Task Delete(Taxon entity)
+        {
+            return this.Delete(entity.Name);
+        }
+
+        public Task<Taxon> Get(object id)
+        {
+            return Task.Run(() =>
+            {
+                this.ReadTaxaFromFile();
+                var taxon = this.Taxa
+                    .Where(t => t.Key == id.ToString())
+                    .Select(t => new Taxon
+                    {
+                        Name = t.Key,
+                        Ranks = t.Value
+                    })
+                    .FirstOrDefault();
+                return taxon;
+            });
         }
 
         public Task<int> SaveChanges()
         {
-            return WriteTaxaToFile();
+            return Task.FromResult(this.WriteTaxaToFile());
         }
 
-        public async Task Update(Taxon entity)
-        {
-            await this.ReadTaxaFromFile();
-            await this.Delete(entity.Name);
-            await this.Add(entity);
-        }
-
-        private Task Add(string name, params string[] ranks)
+        public Task Update(Taxon entity)
         {
             return Task.Run(() =>
             {
-                var taxon = new Taxon
-                {
-                    Name = name
-                };
+                this.ReadTaxaFromFile();
 
-                try
+                var ranks = new HashSet<string>(entity.Ranks);
+                if (this.Taxa.ContainsKey(entity.Name))
                 {
-                    foreach (var item in this.Taxa.Where(t => t.Name == taxon.Name))
-                    {
-                        foreach (var rank in item.Ranks)
-                        {
-                            taxon.Ranks.Add(rank);
-                        }
-
-                        this.Taxa.Remove(item);
-                    }
+                    this.Taxa[entity.Name] = ranks;
                 }
-                catch
+                else
                 {
+                    this.Taxa.GetOrAdd(entity.Name, ranks);
                 }
-
-                foreach (var rank in ranks)
-                {
-                    taxon.Ranks.Add(rank);
-                }
-
-                this.Taxa.Add(taxon);
             });
         }
 
-        private async Task ReadTaxaFromFile()
+        private void Add(string name, params string[] ranks)
+        {
+            var ranksToAdd = new HashSet<string>(ranks.Where(r => !string.IsNullOrWhiteSpace(r)));
+            if (this.Taxa.ContainsKey(name))
+            {
+                foreach (var rank in ranksToAdd)
+                {
+                    this.Taxa[name].Add(rank);
+                }
+            }
+            else
+            {
+                this.Taxa.GetOrAdd(name, ranksToAdd);
+            }
+        }
+
+        private void ReadTaxaFromFile()
         {
             XElement taxaList = XElement.Load(this.Config.RankListXmlFilePath);
 
@@ -134,21 +145,21 @@
                     .Select(i => i.Value)
                     .ToArray();
 
-                await this.Add(name, ranks);
+                this.Add(name, ranks);
             }
         }
 
-        private async Task<int> WriteTaxaToFile()
+        private int WriteTaxaToFile()
         {
-            await this.ReadTaxaFromFile();
+            this.ReadTaxaFromFile();
 
             var taxa = this.Taxa
-                .Select(taxon =>
+                .Select(pair =>
                 {
-                    var ranks = taxon.Ranks.Select(r => new XElement("value", r)).ToArray();
+                    var ranks = pair.Value.Select(r => new XElement("value", r)).ToArray();
 
                     XElement rank = new XElement("rank", ranks);
-                    XElement name = new XElement("value", taxon.Name);
+                    XElement name = new XElement("value", pair.Key);
                     XElement part = new XElement("part", name, rank);
 
                     return part;

@@ -2,16 +2,20 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using System.Xml;
     using System.Xml.Xsl;
 
-    using ProcessingTools.Common;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
 
     public partial class ListManagerControl : UserControl
     {
+        private readonly ITaxaRepository taxaRepository = new TaxaRepository();
+
         public ListManagerControl()
         {
             this.InitializeComponent();
@@ -271,31 +275,27 @@
         {
             try
             {
-                if (this.listSearchTextBox.Text.Trim().Length > 0)
+                string textToSearch = this.listSearchTextBox.Text.Trim();
+
+                if (textToSearch.Length > 0)
                 {
                     var listHolder = new XmlListHolder(this.ListFileName);
                     listHolder.Load();
 
                     if (this.IsRankList)
                     {
-                        foreach (XmlNode taxon in listHolder.XmlDocument.SelectNodes($"//taxon[part/value[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]]"))
-                        {
-                            foreach (XmlNode part in taxon.SelectNodes("part"))
+                        this.taxaRepository.All().Result
+                            .Where(t => t.Name.Contains(textToSearch))
+                            .ToList()
+                            .ForEach(taxon =>
                             {
-                                string partValue = part["value"].InnerText;
-                                foreach (XmlNode rank in part.SelectNodes("rank/value"))
+                                foreach (var rank in taxon.Ranks)
                                 {
-                                    string[] taxonRankPair =
-                                        {
-                                            partValue,
-                                            rank.InnerText
-                                        };
-
+                                    string[] taxonRankPair = { taxon.Name, rank };
                                     var listItem = new ListViewItem(taxonRankPair);
                                     this.listView.Items.Add(listItem);
                                 }
-                            }
-                        }
+                            });
                     }
                     else
                     {
