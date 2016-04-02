@@ -76,7 +76,7 @@
 
         public Task<int> SaveChanges()
         {
-            throw new NotImplementedException();
+            return WriteTaxaToFile();
         }
 
         public async Task Update(Taxon entity)
@@ -138,7 +138,7 @@
             }
         }
 
-        private async Task WriteTaxaToFile()
+        private async Task<int> WriteTaxaToFile()
         {
             await this.ReadTaxaFromFile();
 
@@ -158,6 +158,8 @@
             XElement taxaList = new XElement("taxa", taxa);
 
             taxaList.Save(this.Config.RankListXmlFilePath);
+
+            return taxaList.Elements().Count();
         }
     }
 }
