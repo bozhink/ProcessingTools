@@ -18,7 +18,7 @@
             IGbifDataRequester requester = new GbifDataRequester();
             IGbifTaxaClassificationDataService service = new GbifTaxaClassificationDataService(requester);
 
-            var result = service.Resolve(scientificName).FirstOrDefault();
+            var result = service.Resolve(scientificName).Result.FirstOrDefault();
 
             return new TaxonClassification
             {

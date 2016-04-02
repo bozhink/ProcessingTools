@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Factories
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Cors;
 
@@ -13,9 +14,11 @@
         protected ITaxaDataService<ITaxonClassification> Service { get; set; }
 
         [EnableCors("*", "*", "*")]
-        public IHttpActionResult Get(string id)
+        public async Task<IHttpActionResult> Get(string id)
         {
-            var result = this.Service.Resolve(id)?.Select(AutoMapperConfig.Mapper.Map<TaxonClassificationResponseModel>).ToList();
+            var result = (await this.Service.Resolve(id))
+                .Select(AutoMapperConfig.Mapper.Map<TaxonClassificationResponseModel>)
+                .ToList();
 
             if (result == null)
             {

@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml.Linq;
 
     using Contracts;
@@ -30,21 +31,24 @@
         {
         }
 
-        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
+        protected override Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
         {
-            Regex searchTaxaName = new Regex($"(?i)\\b{scientificName}\\b");
-            var ranks = this.rankList.Elements()
-                .Where(t => searchTaxaName.IsMatch(t.Element("part").Element("value").Value))
-                .Select(t => t.Element("part").Element("rank").Element("value").Value);
-
-            foreach (var rank in ranks)
+            return Task.Run(() =>
             {
-                taxaRanks.Enqueue(new TaxonRankServiceModel
+                Regex searchTaxaName = new Regex($"(?i)\\b{scientificName}\\b");
+                var ranks = this.rankList.Elements()
+                    .Where(t => searchTaxaName.IsMatch(t.Element("part").Element("value").Value))
+                    .Select(t => t.Element("part").Element("rank").Element("value").Value);
+
+                foreach (var rank in ranks)
                 {
-                    ScientificName = scientificName,
-                    Rank = rank
-                });
-            }
+                    taxaRanks.Enqueue(new TaxonRankServiceModel
+                    {
+                        ScientificName = scientificName,
+                        Rank = rank
+                    });
+                }
+            });
         }
     }
 }

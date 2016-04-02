@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
@@ -32,9 +33,9 @@
             Delayer.Delay();
         }
 
-        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
+        protected override async Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
-            var response = this.requester?.RequestData(scientificName)?.Result;
+            var response = await this.requester.RequestData(scientificName);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) ||

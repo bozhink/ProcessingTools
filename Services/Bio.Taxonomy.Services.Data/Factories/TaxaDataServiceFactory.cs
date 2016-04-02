@@ -10,39 +10,42 @@
 
     public abstract class TaxaDataServiceFactory<TServiceModel> : ITaxaDataService<TServiceModel>
     {
-        public IQueryable<TServiceModel> Resolve(params string[] scientificNames)
+        public Task<IQueryable<TServiceModel>> Resolve(params string[] scientificNames)
         {
-            var queue = new ConcurrentQueue<TServiceModel>();
-            var exceptions = new ConcurrentQueue<Exception>();
-
-            Parallel.ForEach(
-                scientificNames,
-                (scientificName, state) =>
-                {
-                    this.Delay();
-                    try
-                    {
-                        this.ResolveScientificName(scientificName, queue);
-                    }
-                    catch (Exception e)
-                    {
-                        exceptions.Enqueue(e);
-                        state.Break();
-                    }
-                });
-
-            if (exceptions.Count > 0)
+            return Task.Run(() =>
             {
-                throw new AggregateException(exceptions.ToList());
-            }
+                var queue = new ConcurrentQueue<TServiceModel>();
+                var exceptions = new ConcurrentQueue<Exception>();
 
-            var result = new HashSet<TServiceModel>(queue);
+                Parallel.ForEach(
+                    scientificNames,
+                    (scientificName, state) =>
+                    {
+                        this.Delay();
+                        try
+                        {
+                            this.ResolveScientificName(scientificName, queue).Wait();
+                        }
+                        catch (Exception e)
+                        {
+                            exceptions.Enqueue(e);
+                            state.Break();
+                        }
+                    });
 
-            return result.AsQueryable();
+                if (exceptions.Count > 0)
+                {
+                    throw new AggregateException(exceptions.ToList());
+                }
+
+                var result = new HashSet<TServiceModel>(queue);
+
+                return result.AsQueryable();
+            });
         }
 
         protected abstract void Delay();
 
-        protected abstract void ResolveScientificName(string scientificName, ConcurrentQueue<TServiceModel> taxaRanks);
+        protected abstract Task ResolveScientificName(string scientificName, ConcurrentQueue<TServiceModel> taxaRanks);
     }
 }
