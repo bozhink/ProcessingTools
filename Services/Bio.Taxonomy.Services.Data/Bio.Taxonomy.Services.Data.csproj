@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IStringTaxonomicListDataService.cs" />
-    <Compile Include="Contracts\ITaxonRankDataService.cs" />
+    <Compile Include="Contracts\ITaxaDataService.cs" />
     <Compile Include="Services\AboveGenusTaxaRankDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationDataService.cs" />
     <Compile Include="Services\CatalogueOfLifeTaxaClassificationDataService.cs" />
@@ -105,6 +105,10 @@
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
