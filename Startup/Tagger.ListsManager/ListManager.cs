@@ -265,36 +265,38 @@
         {
             try
             {
-                string textToSearch = this.listSearchTextBox.Text.Trim();
-
-                if (textToSearch.Length > 0)
+                string textToSearch = this.listSearchTextBox.Text?.Trim() ?? string.Empty;
+                if (textToSearch.Length < 1)
                 {
-                    var listHolder = new XmlListHolder(this.ListFileName);
-                    listHolder.Load();
-
-                    if (this.IsRankList)
-                    {
-                        this.taxaRepository.All().Result
-                            .Where(t => t.Name.Contains(textToSearch))
-                            .ToList()
-                            .ForEach(taxon =>
-                            {
-                                foreach (var rank in taxon.Ranks)
-                                {
-                                    string[] taxonRankPair = { taxon.Name, rank };
-                                    var listItem = new ListViewItem(taxonRankPair);
-                                    this.listView.Items.Add(listItem);
-                                }
-                            });
-                    }
-                    else
-                    {
-                        foreach (XmlNode item in listHolder.XmlDocument.SelectNodes($"/*/*[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]"))
-                        {
-                            this.listView.Items.Add(item.InnerText);
-                        }
-                    }
+                    return;
                 }
+
+                if (this.IsRankList)
+                {
+                    this.taxaRepository.All().Result
+                        .Where(t => t.Name.Contains(textToSearch))
+                        .ToList()
+                        .ForEach(taxon =>
+                        {
+                            foreach (var rank in taxon.Ranks)
+                            {
+                                string[] taxonRankPair = { taxon.Name, rank };
+                                var listItem = new ListViewItem(taxonRankPair);
+                                this.listView.Items.Add(listItem);
+                            }
+                        });
+                }
+                else
+                {
+                    this.blackListRepository.All().Result
+                        .Where(i => i.Contains(textToSearch))
+                        .ToList()
+                        .ForEach(item =>
+                        {
+                            this.listView.Items.Add(item);
+                        });
+                }
+
             }
             catch (Exception ex)
             {

@@ -209,7 +209,7 @@
 
             XElement taxaList = new XElement(RootNodeName, taxa);
 
-            taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.None);
+            taxaList.Save(this.Config.RankListXmlFilePath, SaveOptions.DisableFormatting);
 
             return taxaList.Elements().Count();
         }
