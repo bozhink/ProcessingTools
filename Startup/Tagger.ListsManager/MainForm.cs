@@ -96,15 +96,12 @@
 
                 // Set BlackList file paths
                 this.blackListManager.ListFileName = this.Config.BlackListXmlFilePath;
-                this.blackListManager.CleanXslFileName = this.Config.BlackListCleanXslPath;
 
                 // Set WhiteList file paths
                 this.whiteListManager.ListFileName = this.Config.WhiteListXmlFilePath;
-                this.whiteListManager.CleanXslFileName = this.Config.WhiteListCleanXslPath;
 
                 // Set RankList file paths
                 this.rankListManager.ListFileName = this.Config.RankListXmlFilePath;
-                this.rankListManager.CleanXslFileName = this.Config.RankListCleanXslPath;
 
                 this.toolStripStatusLabelConfigOutput.Text = this.ConfigFileName;
             }

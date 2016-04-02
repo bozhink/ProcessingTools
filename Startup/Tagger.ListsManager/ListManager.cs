@@ -10,7 +10,6 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
-    using System.Xml;
     using System.Xml.Xsl;
 
     public partial class ListManagerControl : UserControl
@@ -22,14 +21,8 @@
         {
             this.InitializeComponent();
             this.ListFileName = string.Empty;
-            this.CleanXslFileName = string.Empty;
             this.IsRankList = false;
         }
-
-        /// <summary>
-        /// Get or set the full-path name of the Xsl file which will be used to clean the x-list file
-        /// </summary>
-        public string CleanXslFileName { get; set; }
 
         /// <summary>
         /// Get or set the boolean value which designates whether current views are rank-related or not
@@ -97,25 +90,6 @@
         private void ClearTextBoxButton_Click(object sender, EventArgs e)
         {
             this.listEntriesTextBox.Text = string.Empty;
-        }
-
-        private void ClearXmlListFileButton_Click(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-            XslCompiledTransform xslTransform = new XslCompiledTransform();
-            try
-            {
-                string fileName = Path.GetTempPath() + @"\" + Path.GetFileName(this.ListFileName);
-                xslTransform.Load(this.CleanXslFileName);
-                xslTransform.Transform(this.ListFileName, fileName);
-                xslTransform.Transform(fileName, this.ListFileName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error in clean.");
-            }
-
-            this.Enabled = true;
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -206,6 +180,54 @@
             }
         }
 
+        private void LoadWholeListButton_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show(
+                "Are you sure?",
+                "Load whole list",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.Enabled = false;
+            try
+            {
+                if (this.IsRankList)
+                {
+                    this.taxaRepository.All().Result
+                        .ToList()
+                        .ForEach(taxon =>
+                        {
+                            foreach (var rank in taxon.Ranks)
+                            {
+                                string[] taxonRankPair = { taxon.Name, rank };
+                                var listItem = new ListViewItem(taxonRankPair);
+                                this.listView.Items.Add(listItem);
+                            }
+                        });
+                }
+                else
+                {
+                    this.blackListRepository.All().Result
+                        .ToList()
+                        .ForEach(item =>
+                        {
+                            this.listView.Items.Add(item);
+                        });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in load.");
+            }
+
+            this.Enabled = true;
+        }
+
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
             this.Search();
@@ -216,48 +238,6 @@
             if (e.KeyChar == (char)Keys.Enter)
             {
                 this.Search();
-            }
-        }
-
-        private void LoadWholeListButton_Click(object sender, EventArgs e)
-        {
-            var dialogResult = MessageBox.Show("Are you sure?", "Load whole list", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                this.Enabled = false;
-                try
-                {
-                    var listHolder = new XmlListHolder(this.ListFileName);
-                    listHolder.Load();
-
-                    if (this.IsRankList)
-                    {
-                        this.taxaRepository.All().Result
-                            .ToList()
-                            .ForEach(taxon =>
-                            {
-                                foreach (var rank in taxon.Ranks)
-                                {
-                                    string[] taxonRankPair = { taxon.Name, rank };
-                                    var listItem = new ListViewItem(taxonRankPair);
-                                    this.listView.Items.Add(listItem);
-                                }
-                            });
-                    }
-                    else
-                    {
-                        foreach (XmlNode item in listHolder.XmlDocument.SelectNodes("/*/*"))
-                        {
-                            this.listView.Items.Add(item.InnerText);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error in load.");
-                }
-
-                this.Enabled = true;
             }
         }
 
@@ -296,7 +276,6 @@
                             this.listView.Items.Add(item);
                         });
                 }
-
             }
             catch (Exception ex)
             {

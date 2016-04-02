@@ -210,7 +210,6 @@
             this.whiteListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.whiteListManager.CleanXslFileName = null;
             this.whiteListManager.IsRankList = false;
             this.whiteListManager.ListFileName = string.Empty;
             this.whiteListManager.ListGroupBoxLabel = "listManagerGroupBox";
@@ -236,7 +235,6 @@
             this.blackListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.blackListManager.CleanXslFileName = null;
             this.blackListManager.IsRankList = false;
             this.blackListManager.ListFileName = string.Empty;
             this.blackListManager.ListGroupBoxLabel = "listManagerGroupBox";
@@ -260,7 +258,6 @@
             this.rankListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rankListManager.CleanXslFileName = string.Empty;
             this.rankListManager.IsRankList = false;
             this.rankListManager.ListFileName = string.Empty;
             this.rankListManager.ListGroupBoxLabel = "listManagerGroupBox";
