@@ -14,6 +14,7 @@
 
     public class TaxaRepository : ITaxaRepository
     {
+        private const int MillisecondsToUpdate = 500;
         private const string RootNodeName = "taxa";
         private const string TaxonNodeName = "taxon";
         private const string WhiteListedAttributeName = "white-listed";
@@ -21,6 +22,8 @@
         private const string TaxonNameNodeName = "value";
         private const string TaxonRanksNodeName = "rank";
         private const string TaxonRankNodeName = "value";
+
+        private DateTime? lastUpdated;
 
         public TaxaRepository()
             : this(ConfigBuilder.Create())
@@ -150,6 +153,13 @@
 
         private void ReadTaxaFromFile(bool update)
         {
+            var timeSpan = this.lastUpdated - DateTime.Now;
+            if (timeSpan.HasValue &&
+                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            {
+                return;
+            }
+
             XElement taxaList = XElement.Load(this.Config.RankListXmlFilePath);
 
             foreach (var taxon in taxaList.Descendants(TaxonNodeName))
@@ -179,6 +189,8 @@
 
                 this.AddTaxon(taxonToAdd, update);
             }
+
+            this.lastUpdated = DateTime.Now;
         }
 
         private int WriteTaxaToFile()

@@ -13,8 +13,11 @@
 
     public class TaxonomicBlackListRepository : ITaxonomicBlackListRepository
     {
+        private const int MillisecondsToUpdate = 500;
         private const string RootNodeName = "items";
         private const string ItemNodeName = "item";
+
+        private DateTime? lastUpdated;
 
         public TaxonomicBlackListRepository()
             : this(ConfigBuilder.Create())
@@ -91,12 +94,21 @@
 
         private void ReadItemsFromFile()
         {
+            var timeSpan = this.lastUpdated - DateTime.Now;
+            if (timeSpan.HasValue &&
+                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            {
+                return;
+            }
+
             XElement list = XElement.Load(this.Config.BlackListXmlFilePath);
 
             foreach (var element in list.Descendants(ItemNodeName))
             {
                 this.Items.Enqueue(element.Value);
             }
+
+            this.lastUpdated = DateTime.Now;
         }
 
         private async Task<int> WriteItemsToFile()
