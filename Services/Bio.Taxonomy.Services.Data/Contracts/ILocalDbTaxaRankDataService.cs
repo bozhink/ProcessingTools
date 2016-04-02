@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public interface ILocalDbTaxaRankDataService : ITaxaDataService<ITaxonRank>
+    public interface ILocalDbTaxaRankDataService : ITaxaInformationResolverDataService<ITaxonRank>
     {
     }
 }

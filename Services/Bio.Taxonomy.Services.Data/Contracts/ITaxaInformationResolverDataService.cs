@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface ITaxaDataService<TServiceModel>
+    public interface ITaxaInformationResolverDataService<TServiceModel>
     {
         Task<IQueryable<TServiceModel>> Resolve(params string[] scientificNames);
     }

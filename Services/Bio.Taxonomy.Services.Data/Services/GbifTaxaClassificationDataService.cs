@@ -14,7 +14,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Infrastructure.Concurrency;
 
-    public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
+    public class GbifTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
         private IGbifDataRequester requester;
 

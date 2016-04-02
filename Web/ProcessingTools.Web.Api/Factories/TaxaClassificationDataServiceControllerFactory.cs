@@ -11,7 +11,7 @@
 
     public abstract class TaxaClassificationDataServiceControllerFactory : ApiController
     {
-        protected ITaxaDataService<ITaxonClassification> Service { get; set; }
+        protected ITaxaInformationResolverDataService<ITaxonClassification> Service { get; set; }
 
         [EnableCors("*", "*", "*")]
         public async Task<IHttpActionResult> Get(string id)

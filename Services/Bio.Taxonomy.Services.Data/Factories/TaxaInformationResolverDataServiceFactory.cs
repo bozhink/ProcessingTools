@@ -8,7 +8,7 @@
 
     using Contracts;
 
-    public abstract class TaxaDataServiceFactory<TServiceModel> : ITaxaDataService<TServiceModel>
+    public abstract class TaxaInformationResolverDataServiceFactory<TServiceModel> : ITaxaInformationResolverDataService<TServiceModel>
     {
         public Task<IQueryable<TServiceModel>> Resolve(params string[] scientificNames)
         {

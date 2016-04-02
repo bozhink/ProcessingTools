@@ -16,7 +16,7 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Infrastructure.Concurrency;
 
-    public class CatalogueOfLifeTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
+    public class CatalogueOfLifeTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
     {
         private ICatalogueOfLifeDataRequester requester;
 

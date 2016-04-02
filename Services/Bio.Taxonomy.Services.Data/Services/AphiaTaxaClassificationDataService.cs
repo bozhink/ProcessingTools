@@ -13,7 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Infrastructure.Concurrency;
 
-    public class AphiaTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationDataService
+    public class AphiaTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationDataService
     {
         protected override void Delay()
         {

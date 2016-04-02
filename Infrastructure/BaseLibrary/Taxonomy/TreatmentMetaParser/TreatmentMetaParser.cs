@@ -19,9 +19,9 @@
 
         private ILogger logger;
 
-        private ITaxaDataService<ITaxonClassification> service;
+        private ITaxaInformationResolverDataService<ITaxonClassification> service;
 
-        public TreatmentMetaParser(ITaxaDataService<ITaxonClassification> service, string xml, ILogger logger)
+        public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, string xml, ILogger logger)
             : base(xml)
         {
             this.logger = logger;

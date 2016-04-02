@@ -13,7 +13,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : TaxaDataServiceFactory<ITaxonRank>, ILocalDbTaxaRankDataService
+    public class LocalDbTaxaRankDataService : TaxaInformationResolverDataServiceFactory<ITaxonRank>, ILocalDbTaxaRankDataService
     {
         private XElement rankList;
 

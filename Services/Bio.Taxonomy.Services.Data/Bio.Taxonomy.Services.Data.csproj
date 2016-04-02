@@ -58,7 +58,7 @@
     <Compile Include="Contracts\ILocalDbTaxaRankDataService.cs" />
     <Compile Include="Contracts\ITaxonomicListDataService.cs" />
     <Compile Include="Contracts\ISuffixHigherTaxaRankDataService.cs" />
-    <Compile Include="Contracts\ITaxaDataService.cs" />
+    <Compile Include="Contracts\ITaxaInformationResolverDataService.cs" />
     <Compile Include="Services\GbifTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IAboveGenusTaxaRankDataService.cs" />
     <Compile Include="Services\LocalDbTaxaRankDataService.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SuffixHigherTaxaRankDataService.cs" />
-    <Compile Include="Factories\TaxaDataServiceFactory.cs" />
+    <Compile Include="Factories\TaxaInformationResolverDataServiceFactory.cs" />
     <Compile Include="Services\StringTaxonomicListDataService.cs" />
   </ItemGroup>
   <ItemGroup>
