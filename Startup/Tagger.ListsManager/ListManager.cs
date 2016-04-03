@@ -138,12 +138,10 @@
                             ScientificName = i.SubItems[0].Text,
                             Rank = i.SubItems[1].Text,
                             IsWhiteListed = i.Checked
-                        }));
+                        }))
+                        .ToArray();
 
-                    foreach (var taxon in taxa)
-                    {
-                        await service.Add(taxon);
-                    }
+                    await service.Add(taxa);
                 }
                 else
                 {
@@ -151,12 +149,10 @@
 
                     var items = new HashSet<string>(this.listView.Items
                         .Cast<ListViewItem>()
-                        .Select(i => i.Text));
+                        .Select(i => i.Text))
+                        .ToArray();
 
-                    foreach (var item in items)
-                    {
-                        await service.Add(item);
-                    }
+                    await service.Add(items);
                 }
             }
             catch (Exception ex)
