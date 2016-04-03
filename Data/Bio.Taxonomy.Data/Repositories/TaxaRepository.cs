@@ -4,12 +4,14 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
     using Contracts;
     using Models;
 
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Configurator;
 
     public class TaxaRepository : ITaxaRepository
@@ -24,6 +26,8 @@
         private const string TaxonRankNodeName = "value";
 
         private DateTime? lastUpdated;
+
+        private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         public TaxaRepository()
             : this(ConfigBuilder.Create())
@@ -66,7 +70,9 @@
                     {
                         Name = t.Key,
                         Ranks = t.Value,
-                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(t.Key, false)
+                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(
+                            t.Key,
+                            !this.matchNonWhiteListedHigherTaxon.IsMatch(t.Key))
                     })
                     .AsQueryable();
             });
@@ -176,16 +182,8 @@
                 {
                     Name = name,
                     Ranks = ranks,
-                    IsWhiteListed = false
+                    IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(name)
                 };
-
-                string whiteListedAttribute = taxon.Attribute(WhiteListedAttributeName)?.Value;
-
-                bool whiteListed;
-                if (bool.TryParse(whiteListedAttribute, out whiteListed))
-                {
-                    taxonToAdd.IsWhiteListed = whiteListed;
-                }
 
                 this.AddTaxon(taxonToAdd, update);
             }
