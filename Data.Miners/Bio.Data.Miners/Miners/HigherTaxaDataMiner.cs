@@ -7,14 +7,13 @@
     using System.Threading.Tasks;
 
     using Contracts;
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
-        private const string HigherTaxaMatchPattern = @"\b([A-Z](?i)[a-z]*(?:morphae?|mida|toda|ideae|oida|genea|formes|formea|ales|lifera|ieae|indeae|eriae|idea|aceae|oidea|oidae|inae|ini|ina|anae|ineae|acea|oideae|mycota|mycotina|mycetes|mycetidae|phyta|phytina|opsida|phyceae|idae|phycidae|ptera|poda|phaga|itae|odea|alia|ntia|osauria))\b";
-
-        private readonly Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
+        private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         private ITaxonomicListDataService<string> whiteList;
 

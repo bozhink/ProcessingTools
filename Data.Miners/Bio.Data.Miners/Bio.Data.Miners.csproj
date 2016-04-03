@@ -84,6 +84,10 @@
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>

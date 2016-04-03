@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Constants\TaxaRegexPatterns.cs" />
     <Compile Include="Contracts\IExtendedTaxonRank.cs" />
     <Compile Include="Contracts\ISpecies.cs" />
     <Compile Include="Contracts\ITaxonClassification.cs" />
