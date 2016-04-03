@@ -3,142 +3,65 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Data.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Common.Factories;
 
-    public class TaxonRankDataService : ITaxonRankDataService, IDisposable
+    public class TaxonRankDataService : RepositoryDataServiceAbstractFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
     {
-        private readonly ITaxaRepository repository;
-
         public TaxonRankDataService(ITaxaRepository repository)
+            : base(repository)
         {
-            if (repository == null)
+        }
+
+        protected override IEnumerable<Taxon> MapServiceModelToDbModel(params TaxonRankServiceModel[] models)
+        {
+            if (models == null)
             {
-                throw new ArgumentNullException(nameof(repository));
+                throw new ArgumentNullException(nameof(models));
             }
 
-            this.repository = repository;
-        }
-
-        public async Task Add(TaxonRankServiceModel model)
-        {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Add(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public async Task<IQueryable<TaxonRankServiceModel>> All()
-        {
-            return (await this.repository.All())
-                .SelectMany(e => this.MapDbModelToServiceModel(e));
-        }
-
-        public async Task Delete(object id)
-        {
-            if (id == null)
+            var result = new HashSet<Taxon>();
+            foreach (var model in models)
             {
-                throw new ArgumentNullException(nameof(id));
+                var entity = new Taxon
+                {
+                    Name = model.ScientificName,
+                    IsWhiteListed = model.IsWhiteListed,
+                    Ranks = new string[] { model.Rank }
+                };
+
+                result.Add(entity);
             }
 
-            await this.repository.Delete(id)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
+            return result;
         }
 
-        public async Task Delete(TaxonRankServiceModel model)
+        protected override IEnumerable<TaxonRankServiceModel> MapDbModelToServiceModel(params Taxon[] entities)
         {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Delete(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public async Task<TaxonRankServiceModel> Get(object id)
-        {
-            if (id == null)
+            if (entities == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ArgumentNullException(nameof(entities));
             }
 
-            var entity = await this.repository.Get(id);
-            return this.MapDbModelToServiceModel(entity).FirstOrDefault();
-        }
-
-        public async Task<IQueryable<TaxonRankServiceModel>> Get(int skip, int take)
-        {
-            if (skip < 0)
+            var result = new List<TaxonRankServiceModel>();
+            foreach (var entity in entities)
             {
-                throw new InvalidSkipValuePagingException();
+                var models = entity.Ranks.Select(rank => new TaxonRankServiceModel
+                {
+                    IsWhiteListed = entity.IsWhiteListed,
+                    ScientificName = entity.Name,
+                    Rank = rank
+                });
+
+                result.AddRange(models);
             }
 
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            return (await this.repository.All(skip, take))
-                .SelectMany(e => this.MapDbModelToServiceModel(e));
-        }
-
-        public async Task Update(TaxonRankServiceModel model)
-        {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Update(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.repository.TryDispose();
-            }
-        }
-
-        private Taxon MapServiceModelToDbModel(TaxonRankServiceModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var entity = new Taxon
-            {
-                Name = model.ScientificName,
-                IsWhiteListed = model.IsWhiteListed,
-                Ranks = new string[] { model.Rank }
-            };
-
-            return entity;
-        }
-
-        private IEnumerable<TaxonRankServiceModel> MapDbModelToServiceModel(Taxon entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            var models = entity.Ranks.Select(rank => new TaxonRankServiceModel
-            {
-                IsWhiteListed = entity.IsWhiteListed,
-                ScientificName = entity.Name,
-                Rank = rank
-            });
-
-            return models;
+            return result;
         }
     }
 }

@@ -35,7 +35,6 @@
       <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +46,7 @@
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
     <Compile Include="Factories\GenericCacheServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryDataServiceAbstractFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Factories\SimpleCacheServiceFactory.cs" />
     <Compile Include="Factories\StringRepositoryDataServiceFactory.cs" />

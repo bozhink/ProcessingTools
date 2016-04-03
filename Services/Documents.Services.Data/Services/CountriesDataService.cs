@@ -1,131 +1,72 @@
 ﻿namespace ProcessingTools.Documents.Services.Data
 {
     using System;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
     using Contracts;
     using Models;
     using Models.Contracts;
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Exceptions;
+
     using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Services.Common.Factories;
 
-    public class CountriesDataService : ICountriesDataService
+    public class CountriesDataService : RepositoryDataServiceAbstractFactory<Country, ICountryServiceModel>, ICountriesDataService
     {
-        private IDocumentsRepository<Country> repository;
-
-        private Func<ICountryServiceModel, Country> serviceModelToEntity = (model) => new Country
-        {
-            CreatedByUserId = model.CreatedByUserId,
-            DateModified = model.DateModified,
-            DateCreated = model.DateCreated,
-            ModifiedByUserId = model.ModifiedByUserId,
-            Name = model.Name
-        };
-
-        private Func<Country, ICountryServiceModel> entityToServiceModel = (entity) => new CountryServiceModel
-        {
-            Id = entity.Id,
-            Name = entity.Name,
-            CreatedByUserId = entity.CreatedByUserId,
-            ModifiedByUserId = entity.ModifiedByUserId,
-            DateCreated = entity.DateCreated,
-            DateModified = entity.DateModified
-        };
-
         public CountriesDataService(IDocumentsRepository<Country> repository)
+            : base(repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException("repository");
-            }
-
-            this.repository = repository;
         }
 
-        public async Task Add(ICountryServiceModel model)
+        protected override IEnumerable<Country> MapServiceModelToDbModel(params ICountryServiceModel[] models)
         {
-            if (model == null)
+            if (models == null)
             {
-                throw new ArgumentNullException("model");
+                throw new ArgumentNullException(nameof(models));
             }
 
-            var entity = this.serviceModelToEntity.Invoke(model);
+            var result = new HashSet<Country>();
+            foreach (var model in models)
+            {
+                var entity = new Country
+                {
+                    CreatedByUserId = model.CreatedByUserId,
+                    DateModified = model.DateModified,
+                    DateCreated = model.DateCreated,
+                    ModifiedByUserId = model.ModifiedByUserId,
+                    Name = model.Name
+                };
 
-            await this.repository.Add(entity);
-            await this.repository.SaveChanges();
+                result.Add(entity);
+            }
+
+            return result;
         }
 
-        public async Task<IQueryable<ICountryServiceModel>> All()
+        protected override IEnumerable<ICountryServiceModel> MapDbModelToServiceModel(params Country[] entities)
         {
-            return (await this.repository.All())
-                .Select(e => this.entityToServiceModel(e));
-        }
-
-        public Task Delete(object id)
-        {
-            if (id == null)
+            if (entities == null)
             {
-                throw new ArgumentNullException("id");
+                throw new ArgumentNullException(nameof(entities));
             }
 
-            return this.repository.Delete(id);
-        }
-
-        public Task Delete(ICountryServiceModel entity)
-        {
-            if (entity == null)
+            var result = new HashSet<ICountryServiceModel>();
+            foreach (var entity in entities)
             {
-                throw new ArgumentNullException("entity");
+                var model = new CountryServiceModel
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    CreatedByUserId = entity.CreatedByUserId,
+                    ModifiedByUserId = entity.ModifiedByUserId,
+                    DateCreated = entity.DateCreated,
+                    DateModified = entity.DateModified
+                };
+
+                result.Add(model);
             }
 
-            return this.repository.Delete(entity.Id);
-        }
-
-        public async Task<ICountryServiceModel> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException("id");
-            }
-
-            var entity = await this.repository.Get(id);
-
-            return this.entityToServiceModel(entity);
-        }
-
-        public async Task<IQueryable<ICountryServiceModel>> Get(int skip, int take)
-        {
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            return (await this.repository.All())
-                .OrderByDescending(i => i)
-                .Skip(skip)
-                .Take(take)
-                .Select(this.entityToServiceModel)
-                .AsQueryable();
-        }
-
-        public async Task Update(ICountryServiceModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException("model");
-            }
-
-            var entity = await this.repository.Get(model.Id);
-
-            await this.repository.Update(entity);
-            await this.repository.SaveChanges();
+            return result;
         }
     }
 }

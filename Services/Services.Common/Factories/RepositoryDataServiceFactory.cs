@@ -1,31 +1,21 @@
 ﻿namespace ProcessingTools.Services.Common.Factories
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using AutoMapper;
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Repositories.Contracts;
-    using ProcessingTools.Extensions;
 
-    public class RepositoryDataServiceFactory<TDbModel, TServiceModel> : IDataService<TServiceModel>, IDisposable
+    public class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceAbstractFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
     {
         private readonly IMapper mapper;
-        private readonly IGenericRepository<TDbModel> repository;
 
         public RepositoryDataServiceFactory(IGenericRepository<TDbModel> repository)
+            : base(repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
-
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<TDbModel, TServiceModel>();
@@ -35,115 +25,36 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public virtual async Task Add(TServiceModel model)
+        protected override IEnumerable<TDbModel> MapServiceModelToDbModel(params TServiceModel[] models)
         {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Add(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public virtual async Task<IQueryable<TServiceModel>> All()
-        {
-            return (await this.repository.All())
-                .Select(e => this.MapDbModelToServiceModel(e));
-        }
-
-        public virtual async Task Delete(object id)
-        {
-            if (id == null)
+            if (models == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ArgumentNullException(nameof(models));
             }
 
-            await this.repository.Delete(id)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public virtual async Task Delete(TServiceModel model)
-        {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Delete(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public virtual async Task<TServiceModel> Get(object id)
-        {
-            if (id == null)
+            var entities = new HashSet<TDbModel>(models.Select(m => this.mapper.Map<TDbModel>(m)));
+            if (entities == null)
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ApplicationException(nameof(entities));
             }
 
-            var entity = await this.repository.Get(id);
-            return this.MapDbModelToServiceModel(entity);
+            return entities;
         }
 
-        public virtual async Task<IQueryable<TServiceModel>> Get(int skip, int take)
+        protected override IEnumerable<TServiceModel> MapDbModelToServiceModel(params TDbModel[] entities)
         {
-            if (skip < 0)
+            if (entities == null)
             {
-                throw new InvalidSkipValuePagingException();
+                throw new ArgumentNullException(nameof(entities));
             }
 
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            var models = new HashSet<TServiceModel>(entities.Select(e => this.mapper.Map<TServiceModel>(e)));
+            if (models == null)
             {
-                throw new InvalidTakeValuePagingException();
+                throw new ApplicationException(nameof(models));
             }
 
-            return (await this.repository.All(skip, take))
-                .Select(e => this.MapDbModelToServiceModel(e));
-        }
-
-        public virtual async Task Update(TServiceModel model)
-        {
-            var entity = this.MapServiceModelToDbModel(model);
-            await this.repository.Update(entity)
-                .ContinueWith(_ => this.repository.SaveChanges().Wait());
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.repository.TryDispose();
-            }
-        }
-
-        private TDbModel MapServiceModelToDbModel(TServiceModel model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            var entity = this.mapper.Map<TDbModel>(model);
-            if (entity == null)
-            {
-                throw new ApplicationException(nameof(entity));
-            }
-
-            return entity;
-        }
-
-        private TServiceModel MapDbModelToServiceModel(TDbModel entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            var model = this.mapper.Map<TServiceModel>(entity);
-            if (model == null)
-            {
-                throw new ApplicationException(nameof(model));
-            }
-
-            return model;
+            return models;
         }
     }
 }

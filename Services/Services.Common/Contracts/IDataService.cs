@@ -9,14 +9,14 @@
 
         Task<IQueryable<TServiceModel>> Get(int skip, int take);
 
-        Task<TServiceModel> Get(object id);
+        Task<IQueryable<TServiceModel>> Get(params object[] ids);
 
-        Task Add(TServiceModel model);
+        Task<int> Add(params TServiceModel[] models);
 
-        Task Update(TServiceModel model);
+        Task<int> Update(params TServiceModel[] models);
 
-        Task Delete(TServiceModel model);
+        Task<int> Delete(params TServiceModel[] models);
 
-        Task Delete(object id);
+        Task<int> Delete(params object[] ids);
     }
 }
