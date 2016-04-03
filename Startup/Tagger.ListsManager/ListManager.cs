@@ -5,18 +5,24 @@
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
+    using Ninject;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+
+    using Settings;
 
     public partial class ListManagerControl : UserControl
     {
+        private readonly IKernel kernel;
+
         public ListManagerControl()
         {
             this.InitializeComponent();
             this.IsRankList = false;
+            this.kernel = NinjectConfig.CreateKernel();
         }
 
         /// <summary>
@@ -38,6 +44,28 @@
             {
                 this.listManagerGroupBox.Text = value;
             }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (this.kernel != null)
+                {
+                    this.kernel.Dispose();
+                }
+
+                if (this.components != null)
+                {
+                    this.components.Dispose();
+                }
+            }
+
+            base.Dispose(disposing);
         }
 
         private void AddToListViewButton_Click(object sender, EventArgs e)
@@ -92,32 +120,34 @@
 
         private void ListImportButton_Click(object sender, EventArgs e)
         {
+            var awaiter = this.ImportData().GetAwaiter();
+        }
+
+        private async Task ImportData()
+        {
             this.Enabled = false;
             try
             {
                 if (this.IsRankList)
                 {
-                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    var taxa = this.listView.Items.Cast<ListViewItem>()
-                        .GroupBy(i => i.SubItems[0].Text)
-                        .Select(g => new Taxon
+                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items.Cast<ListViewItem>()
+                        .Select(i => new TaxonRankServiceModel
                         {
-                            Name = g.Key,
-                            Ranks = new HashSet<string>(g.Select(i => i.SubItems[1].Text)),
-                            IsWhiteListed = g.Any(i => i.Checked)
-                        });
+                            ScientificName = i.SubItems[0].Text,
+                            Rank = i.SubItems[1].Text,
+                            IsWhiteListed = i.Checked
+                        }));
 
-                    foreach (var taxon in new HashSet<Taxon>(taxa))
+                    foreach (var taxon in taxa)
                     {
-                        taxaRepository.Add(taxon).Wait();
+                        await service.Add(taxon);
                     }
-
-                    int numberOfWrittenItems = taxaRepository.SaveChanges().Result;
                 }
                 else
                 {
-                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
 
                     var items = new HashSet<string>(this.listView.Items
                         .Cast<ListViewItem>()
@@ -125,10 +155,8 @@
 
                     foreach (var item in items)
                     {
-                        blackListRepository.Add(item).Wait();
+                        await service.Add(item);
                     }
-
-                    int numberOfWrittenItems = blackListRepository.SaveChanges().Result;
                 }
             }
             catch (Exception ex)
@@ -183,30 +211,33 @@
                 return;
             }
 
+            var awaiter = this.LoadAllData().GetAwaiter();
+        }
+
+        private async Task LoadAllData()
+        {
             this.Enabled = false;
             try
             {
                 if (this.IsRankList)
                 {
-                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    taxaRepository.All().Result
+                    (await service.All())
                         .ToList()
                         .ForEach(taxon =>
                         {
-                            foreach (var rank in taxon.Ranks)
-                            {
-                                string[] taxonRankPair = { taxon.Name, rank };
-                                var listItem = new ListViewItem(taxonRankPair);
-                                this.listView.Items.Add(listItem);
-                            }
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            var listItem = new ListViewItem(taxonRankPair);
+                            listItem.Checked = taxon.IsWhiteListed;
+                            this.listView.Items.Add(listItem);
                         });
                 }
                 else
                 {
-                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
 
-                    blackListRepository.All().Result
+                    (await service.All())
                         .ToList()
                         .ForEach(item =>
                         {
@@ -224,18 +255,18 @@
 
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
-            this.Search();
+            var awaiter = this.Search().GetAwaiter();
         }
 
         private void ListSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                this.Search();
+                var awaiter = this.Search().GetAwaiter();
             }
         }
 
-        private void Search()
+        private async Task Search()
         {
             string textToSearch = this.listSearchTextBox.Text?.Trim() ?? string.Empty;
             if (textToSearch.Length < 1)
@@ -248,31 +279,24 @@
             {
                 if (this.IsRankList)
                 {
-                    ITaxaRepository taxaRepository = new TaxaRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    taxaRepository.All().Result
-                        .Where(t => t.Name.Contains(textToSearch))
+                    (await service.All())
+                        .Where(t => t.ScientificName.Contains(textToSearch))
                         .ToList()
                         .ForEach(taxon =>
                         {
-                            foreach (var rank in taxon.Ranks)
-                            {
-                                string[] taxonRankPair = { taxon.Name, rank };
-                                var listItem = new ListViewItem(taxonRankPair);
-                                if (taxon.IsWhiteListed)
-                                {
-                                    listItem.Checked = true;
-                                }
-
-                                this.listView.Items.Add(listItem);
-                            }
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            var listItem = new ListViewItem(taxonRankPair);
+                            listItem.Checked = taxon.IsWhiteListed;
+                            this.listView.Items.Add(listItem);
                         });
                 }
                 else
                 {
-                    ITaxonomicBlackListRepository blackListRepository = new TaxonomicBlackListRepository(MainForm.Config);
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
 
-                    blackListRepository.All().Result
+                    (await service.All())
                         .Where(i => i.Contains(textToSearch))
                         .ToList()
                         .ForEach(item =>
