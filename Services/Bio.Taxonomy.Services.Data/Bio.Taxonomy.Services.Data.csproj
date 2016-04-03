@@ -71,8 +71,13 @@
     <Compile Include="Factories\TaxaInformationResolverDataServiceFactory.cs" />
     <Compile Include="Services\StringTaxonomicListDataService.cs" />
     <Compile Include="Services\TaxonomicBlackListDataService.cs" />
+    <Compile Include="Services\TaxonRankDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
       <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
       <Name>Bio.Taxonomy.Data.Models</Name>
@@ -88,6 +93,10 @@
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
