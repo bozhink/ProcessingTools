@@ -18,39 +18,36 @@
         private ILogger logger;
         private IHigherTaxaDataMiner miner;
 
-        public HigherTaxaTagger(Config config, string xml, IHigherTaxaDataMiner miner, ITaxonomicListDataService<string> blackList, ILogger logger)
-            : base(config, xml, blackList)
+        public HigherTaxaTagger(Config config, string xml, IHigherTaxaDataMiner miner, ITaxonomicBlackListDataService service, ILogger logger)
+            : base(config, xml, service)
         {
             this.logger = logger;
             this.miner = miner;
         }
 
-        public override Task Tag()
+        public override async Task Tag()
         {
-            return Task.Run(() =>
-            {
-                var textContent = this.XmlDocument.GetTextContent();
-                var data = this.miner.Mine(textContent).Result;
+            var textContent = this.XmlDocument.GetTextContent();
+            var data = this.miner.Mine(textContent).Result;
 
-                IEnumerable<string> taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
+            IEnumerable<string> taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
 
-                // Blacklist items
-                taxaNames = this.ClearFakeTaxaNames(taxaNames);
+            // Blacklist items
+            taxaNames = await this.ClearFakeTaxaNames(taxaNames);
 
-                XmlElement higherTaxaTag = this.XmlDocument.CreateElement("tn");
-                higherTaxaTag.SetAttribute("type", "higher");
+            XmlElement higherTaxaTag = this.XmlDocument.CreateElement("tn");
+            higherTaxaTag.SetAttribute("type", "higher");
 
-                // TODO: Optimize peformance.
-                taxaNames.TagContentInDocument(
-                    higherTaxaTag,
-                    HigherTaxaXPathTemplate,
-                    this.NamespaceManager,
-                    this.XmlDocument,
-                    false,
-                    true,
-                    this.logger)
-                    .Wait();
-            });
+            // TODO: Optimize peformance.
+            taxaNames.TagContentInDocument(
+                higherTaxaTag,
+                HigherTaxaXPathTemplate,
+                this.NamespaceManager,
+                this.XmlDocument,
+                false,
+                true,
+                this.logger)
+                .Wait();
         }
     }
 }

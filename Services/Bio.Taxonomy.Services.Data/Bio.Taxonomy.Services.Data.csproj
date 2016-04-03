@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IStringTaxonomicListDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
     <Compile Include="Contracts\ITaxonomicBlackListDataService.cs" />
     <Compile Include="Contracts\ITaxonRankDataService.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SuffixHigherTaxaRankDataService.cs" />
     <Compile Include="Factories\TaxaInformationResolverDataServiceFactory.cs" />
-    <Compile Include="Services\StringTaxonomicListDataService.cs" />
     <Compile Include="Services\TaxonomicBlackListDataService.cs" />
     <Compile Include="Services\TaxonRankDataService.cs" />
   </ItemGroup>

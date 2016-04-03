@@ -8,6 +8,8 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Data.Miners;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
 
@@ -16,8 +18,10 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var miner = new HigherTaxaDataMiner(settings.WhiteList);
-            var tagger = new HigherTaxaTagger(settings.Config, document.OuterXml, miner, settings.BlackList, logger);
+            var miner = new HigherTaxaDataMiner(new TaxonRankDataService(new TaxaRepository()));
+            var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
+
+            var tagger = new HigherTaxaTagger(settings.Config, document.OuterXml, miner, blackListService, logger);
 
             await tagger.Tag();
 

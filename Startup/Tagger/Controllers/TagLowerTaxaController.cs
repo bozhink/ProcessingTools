@@ -7,6 +7,8 @@
     using Factories;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
 
@@ -15,7 +17,9 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new LowerTaxaTagger(settings.Config, document.OuterXml, settings.BlackList, logger);
+            var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
+
+            var tagger = new LowerTaxaTagger(settings.Config, document.OuterXml, blackListService, logger);
 
             await tagger.Tag();
 
