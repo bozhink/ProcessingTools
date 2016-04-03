@@ -38,13 +38,19 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="MappingsRegistration.cs" />
     <Compile Include="Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Contracts\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="DisposableExtensions.cs" />
     <Compile Include="DisposeStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
