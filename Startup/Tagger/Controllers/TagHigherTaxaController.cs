@@ -13,6 +13,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
 
+    // TODO: Ninject
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
     {
