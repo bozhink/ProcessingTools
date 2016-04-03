@@ -7,7 +7,7 @@
     using System.Web.Mvc;
 
     using AutoMapper;
-    using Contracts.Mapping;
+    using Mappings.Contracts;
 
     public static class AutoMapperConfig
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.TypeStatuses
 {
     using Bio.Services.Data.Models.Contracts;
-    using ProcessingTools.Contracts.Mapping;
+    using Mappings.Contracts;
 
     public class TypeStatusResponseModel : IMapFrom<ITypeStatusServiceModel>
     {

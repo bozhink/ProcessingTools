@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
+    using Mappings.Contracts;
 
     public class GeoNameRequestModel : IMapFrom<IGeoNameServiceModel>
     {

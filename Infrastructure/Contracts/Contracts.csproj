@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -45,8 +41,6 @@
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IProcessor.cs" />
-    <Compile Include="Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />

@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Bio.Services.Data.Models.Contracts;
-    using ProcessingTools.Contracts.Mapping;
+    using Mappings.Contracts;
 
     public class MorphologicalEpithetRequestModel : IMapFrom<IMorphologicalEpithetServiceModel>
     {

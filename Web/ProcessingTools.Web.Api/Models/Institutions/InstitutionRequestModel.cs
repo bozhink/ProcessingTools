@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Contracts.Mapping;
+    using Mappings.Contracts;
     using Services.Data.Models.Contracts;
 
     public class InstitutionRequestModel : IMapFrom<IInstitutionServiceModel>

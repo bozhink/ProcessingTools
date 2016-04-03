@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.GeoEpithets
 {
-    using Contracts.Mapping;
     using Geo.Services.Data.Models.Contracts;
+    using Mappings.Contracts;
 
     public class GeoEpithetResponseModel : IMapFrom<IGeoEpithetServiceModel>
     {

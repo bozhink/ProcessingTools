@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Products
 {
-    using Contracts.Mapping;
+    using Mappings.Contracts;
     using Services.Data.Models.Contracts;
 
     public class ProductResponseModel : IMapFrom<IProductServiceModel>
