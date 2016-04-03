@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Contracts\ICrudDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
