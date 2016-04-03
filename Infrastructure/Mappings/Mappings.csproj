@@ -38,6 +38,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="Contracts\IHaveCustomMappings.cs" />
+    <Compile Include="Contracts\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

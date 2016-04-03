@@ -1,15 +1,15 @@
-﻿namespace ProcessingTools.Services.Common
+﻿namespace ProcessingTools.Mappings
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using AutoMapper;
-    using ProcessingTools.Contracts.Mapping;
+    using Contracts;
 
     public static class AutoMapperConfig
     {
-        public static void RegisterMappings(params System.Reflection.Assembly[] assemblies)
+        public static void RegisterMappings(params Assembly[] assemblies)
         {
             var types = new List<Type>();
             foreach (var assembly in assemblies)
@@ -17,11 +17,11 @@
                 types.AddRange(assembly.GetExportedTypes());
             }
 
-            LoadStandardMappings(types);
-            LoadCustomMappings(types);
+            LoadStandardMappings(types.ToArray());
+            LoadCustomMappings(types.ToArray());
         }
 
-        private static void LoadStandardMappings(IEnumerable<Type> types)
+        private static void LoadStandardMappings(params Type[] types)
         {
             var maps = types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
                 .Where(
@@ -43,7 +43,7 @@
             }
         }
 
-        private static void LoadCustomMappings(IEnumerable<Type> types)
+        private static void LoadCustomMappings(params Type[] types)
         {
             var maps = types.SelectMany(t => t.GetInterfaces(), (t, i) => new { t, i })
                     .Where(
