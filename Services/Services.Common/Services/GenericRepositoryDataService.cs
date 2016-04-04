@@ -10,7 +10,7 @@
 
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class GenericRepositoryDataService<TDbModel, TServiceModel> : RepositoryDataServiceAbstractFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
+    public class GenericRepositoryDataService<TDbModel, TServiceModel> : GenericRepositoryDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
     {
         private readonly IMapper mapper;
 

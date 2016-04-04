@@ -8,7 +8,7 @@
 
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class StringRepositoryDataService : RepositoryDataServiceAbstractFactory<string, string>, IDataService<string>
+    public class StringRepositoryDataService : GenericRepositoryDataServiceFactory<string, string>, IDataService<string>
     {
         public StringRepositoryDataService(IGenericRepository<string> repository)
             : base(repository)

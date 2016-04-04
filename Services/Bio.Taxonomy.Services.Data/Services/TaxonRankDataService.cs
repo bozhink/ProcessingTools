@@ -11,7 +11,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TaxonRankDataService : RepositoryDataServiceAbstractFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
+    public class TaxonRankDataService : GenericRepositoryDataServiceFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
     {
         public TaxonRankDataService(ITaxaRepository repository)
             : base(repository)

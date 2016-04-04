@@ -11,7 +11,7 @@
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Services.Common.Factories;
 
-    public class CountriesDataService : RepositoryDataServiceAbstractFactory<Country, ICountryServiceModel>, ICountriesDataService
+    public class CountriesDataService : GenericRepositoryDataServiceFactory<Country, ICountryServiceModel>, ICountriesDataService
     {
         public CountriesDataService(IDocumentsRepository<Country> repository)
             : base(repository)
