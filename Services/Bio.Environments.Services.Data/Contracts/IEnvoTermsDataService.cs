@@ -2,12 +2,12 @@
 {
     using System.Linq;
 
-    using Models.Contracts;
+    using Models;
 
     public interface IEnvoTermsDataService
     {
-        IQueryable<IEnvoTermServiceModel> All();
+        IQueryable<EnvoTermServiceModel> All();
 
-        IQueryable<IEnvoTermServiceModel> Get(int skip, int take);
+        IQueryable<EnvoTermServiceModel> Get(int skip, int take);
     }
 }

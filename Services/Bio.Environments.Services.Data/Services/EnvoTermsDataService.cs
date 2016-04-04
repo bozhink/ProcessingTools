@@ -5,7 +5,6 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Models;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
@@ -26,7 +25,7 @@
             this.repository = repository;
         }
 
-        public IQueryable<IEnvoTermServiceModel> All()
+        public IQueryable<EnvoTermServiceModel> All()
         {
             var result = this.repository.All()
                 .Where(n => !n.Content.Contains("ENVO"))
@@ -41,7 +40,7 @@
             return result;
         }
 
-        public IQueryable<IEnvoTermServiceModel> Get(int skip, int take)
+        public IQueryable<EnvoTermServiceModel> Get(int skip, int take)
         {
             if (skip < 0)
             {
