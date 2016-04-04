@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common
 {
     using System;
     using System.Collections.Generic;
@@ -6,14 +6,15 @@
 
     using AutoMapper;
     using Contracts;
+    using Factories;
 
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceAbstractFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
+    public class GenericRepositoryDataService<TDbModel, TServiceModel> : RepositoryDataServiceAbstractFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
     {
         private readonly IMapper mapper;
 
-        public RepositoryDataServiceFactory(IGenericRepository<TDbModel> repository)
+        public GenericRepositoryDataService(IGenericRepository<TDbModel> repository)
             : base(repository)
         {
             var mapperConfiguration = new MapperConfiguration(c =>

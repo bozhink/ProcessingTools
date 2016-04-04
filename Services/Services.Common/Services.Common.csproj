@@ -47,7 +47,7 @@
     <Compile Include="Services\GenericEfDataService.cs" />
     <Compile Include="Services\GenericCacheService.cs" />
     <Compile Include="Factories\RepositoryDataServiceAbstractFactory.cs" />
-    <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
+    <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Services\SimpleCacheService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
