@@ -6,7 +6,7 @@
 
     using Moq;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models.Contracts;
+    using ProcessingTools.Services.Data.Models;
 
     public class FakeInstitutionsDataService : IInstitutionsDataService
     {
@@ -14,10 +14,10 @@
 
         public FakeInstitutionsDataService()
         {
-            this.Items = new HashSet<IInstitutionServiceModel>();
+            this.Items = new HashSet<InstitutionServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IInstitutionServiceModel>();
+                var mockProduct = new Mock<InstitutionServiceModel>();
                 mockProduct.Setup(m => m.Id).Returns(i);
                 mockProduct.Setup(m => m.Name).Returns($"Institution {i}");
 
@@ -25,14 +25,14 @@
             }
         }
 
-        public HashSet<IInstitutionServiceModel> Items { get; set; }
+        public HashSet<InstitutionServiceModel> Items { get; set; }
 
-        public void Add(IInstitutionServiceModel entity)
+        public void Add(InstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitutionServiceModel> All()
+        public IQueryable<InstitutionServiceModel> All()
         {
             return this.Items.AsQueryable();
         }
@@ -42,17 +42,17 @@
             throw new NotImplementedException();
         }
 
-        public void Delete(IInstitutionServiceModel entity)
+        public void Delete(InstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IInstitutionServiceModel Get(object id)
+        public InstitutionServiceModel Get(object id)
         {
             return this.Items.FirstOrDefault(p => p.Id == (int)id);
         }
 
-        public IQueryable<IInstitutionServiceModel> Get(int skip, int take)
+        public IQueryable<InstitutionServiceModel> Get(int skip, int take)
         {
             return this.Items
                 .OrderBy(p => p.Id)
@@ -61,7 +61,7 @@
                 .AsQueryable();
         }
 
-        public void Update(IInstitutionServiceModel entity)
+        public void Update(InstitutionServiceModel entity)
         {
             throw new NotImplementedException();
         }

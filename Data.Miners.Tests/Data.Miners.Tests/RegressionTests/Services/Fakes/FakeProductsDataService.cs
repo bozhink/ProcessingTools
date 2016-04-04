@@ -6,7 +6,7 @@
 
     using Moq;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models.Contracts;
+    using ProcessingTools.Services.Data.Models;
 
     public class FakeProductsDataService : IProductsDataService
     {
@@ -14,10 +14,10 @@
 
         public FakeProductsDataService()
         {
-            this.Items = new HashSet<IProductServiceModel>();
+            this.Items = new HashSet<ProductServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IProductServiceModel>();
+                var mockProduct = new Mock<ProductServiceModel>();
                 mockProduct.Setup(m => m.Id).Returns(i);
                 mockProduct.Setup(m => m.Name).Returns($"Product {i}");
 
@@ -25,14 +25,14 @@
             }
         }
 
-        public HashSet<IProductServiceModel> Items { get; set; }
+        public HashSet<ProductServiceModel> Items { get; set; }
 
-        public void Add(IProductServiceModel entity)
+        public void Add(ProductServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IProductServiceModel> All()
+        public IQueryable<ProductServiceModel> All()
         {
             return this.Items.AsQueryable();
         }
@@ -42,17 +42,17 @@
             throw new NotImplementedException();
         }
 
-        public void Delete(IProductServiceModel entity)
+        public void Delete(ProductServiceModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public IProductServiceModel Get(object id)
+        public ProductServiceModel Get(object id)
         {
             return this.Items.FirstOrDefault(p => p.Id == (int)id);
         }
 
-        public IQueryable<IProductServiceModel> Get(int skip, int take)
+        public IQueryable<ProductServiceModel> Get(int skip, int take)
         {
             return this.Items
                 .OrderBy(p => p.Id)
@@ -61,7 +61,7 @@
                 .AsQueryable();
         }
 
-        public void Update(IProductServiceModel entity)
+        public void Update(ProductServiceModel entity)
         {
             throw new NotImplementedException();
         }

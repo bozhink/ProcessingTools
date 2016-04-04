@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Services.Data.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IProductsDataService : ICrudDataService<IProductServiceModel>
+    public interface IProductsDataService : ICrudDataService<ProductServiceModel>
     {
     }
 }

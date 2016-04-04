@@ -3,9 +3,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using Mappings.Contracts;
-    using Services.Data.Models.Contracts;
+    using Services.Data.Models;
 
-    public class ProductRequestModel : IMapFrom<IProductServiceModel>
+    public class ProductRequestModel : IMapFrom<ProductServiceModel>
     {
         public int? Id { get; set; }
 
