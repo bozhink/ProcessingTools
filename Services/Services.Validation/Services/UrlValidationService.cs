@@ -10,26 +10,26 @@
     using Comparers;
     using Contracts;
     using Factories;
-    using Models.Contracts;
+    using Models;
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class UrlValidationService : ValidationServiceFactory<IUrlServiceModel, IUrlServiceModel>, IUrlValidationService
+    public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {
         public UrlValidationService(IValidationCacheService cacheService)
             : base(cacheService)
         {
         }
 
-        protected override Func<IUrlServiceModel, string> GetContextKey => item => item.FullAddress;
+        protected override Func<UrlServiceModel, string> GetContextKey => item => item.FullAddress;
 
-        protected override Func<IUrlServiceModel, IUrlServiceModel> GetItemToCheck => item => item;
+        protected override Func<UrlServiceModel, UrlServiceModel> GetItemToCheck => item => item;
 
-        protected override Func<IUrlServiceModel, IUrlServiceModel> GetValidatedObject => item => item;
+        protected override Func<UrlServiceModel, UrlServiceModel> GetValidatedObject => item => item;
 
-        protected override Task Validate(IUrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<IUrlServiceModel>> output)
+        protected override Task Validate(UrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<UrlServiceModel>> output)
         {
             return Task.Run(() =>
             {
@@ -65,7 +65,7 @@
             });
         }
 
-        private async Task<IValidationServiceModel<IUrlServiceModel>> MakeRequest(IUrlServiceModel item)
+        private async Task<IValidationServiceModel<UrlServiceModel>> MakeRequest(UrlServiceModel item)
         {
             var validationResult = this.GetValidationServiceModel(item);
 

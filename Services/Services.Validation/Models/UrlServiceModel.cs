@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Services.Validation.Models
 {
-    using Contracts;
-
-    public class UrlServiceModel : IUrlServiceModel
+    public class UrlServiceModel
     {
         public string Address { get; set; }
 
