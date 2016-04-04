@@ -1,15 +1,16 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common
 {
     using System;
     using System.Collections.Generic;
 
     using Contracts;
+    using Factories;
 
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class StringRepositoryDataServiceFactory : RepositoryDataServiceAbstractFactory<string, string>, IDataService<string>
+    public class StringRepositoryDataService : RepositoryDataServiceAbstractFactory<string, string>, IDataService<string>
     {
-        public StringRepositoryDataServiceFactory(IGenericRepository<string> repository)
+        public StringRepositoryDataService(IGenericRepository<string> repository)
             : base(repository)
         {
         }

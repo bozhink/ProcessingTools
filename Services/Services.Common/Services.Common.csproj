@@ -49,7 +49,7 @@
     <Compile Include="Factories\RepositoryDataServiceAbstractFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Services\SimpleCacheService.cs" />
-    <Compile Include="Factories\StringRepositoryDataServiceFactory.cs" />
+    <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
     <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
