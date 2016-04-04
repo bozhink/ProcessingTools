@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data.Models
 {
-    using Contracts;
-
-    internal class MediaTypeServiceModel : IMediaTypeServiceModel
+    public class MediaTypeServiceModel
     {
         public string FileExtension { get; set; }
 

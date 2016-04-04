@@ -2,11 +2,11 @@
 {
     using System.Linq;
 
-    using Models.Contracts;
+    using Models;
 
     public abstract class MediaTypeDataServiceFactory : MediaTypeDataServiceBase
     {
-        public override IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension)
+        public override IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 

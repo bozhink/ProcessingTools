@@ -2,10 +2,10 @@
 {
     using System.Linq;
 
-    using Models.Contracts;
+    using Models;
 
     public interface IMediaTypeDataService
     {
-        IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension);
+        IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension);
     }
 }

@@ -6,7 +6,6 @@
     using Contracts;
     using Factories;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.MediaType.Data.Models;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
@@ -25,7 +24,7 @@
             this.repository = repository;
         }
 
-        public override IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension)
+        public override IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
@@ -51,7 +50,7 @@
             }
 
             return pairs
-                .Select<MimeTypePair, IMediaTypeServiceModel>(p => new MediaTypeServiceModel
+                .Select<MimeTypePair, MediaTypeServiceModel>(p => new MediaTypeServiceModel
                 {
                     FileExtension = fileExtensionResult.Name,
                     MimeType = p.MimeType.Name,
