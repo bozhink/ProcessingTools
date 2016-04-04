@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Bio.Services.Data.Models.Contracts;
+    using Bio.Services.Data.Models;
     using Mappings.Contracts;
 
-    public class TypeStatusRequestModel : IMapFrom<ITypeStatusServiceModel>
+    public class TypeStatusRequestModel : IMapFrom<TypeStatusServiceModel>
     {
         public int? Id { get; set; }
 

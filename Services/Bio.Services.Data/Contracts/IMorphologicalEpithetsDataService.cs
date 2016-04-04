@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IMorphologicalEpithetsDataService : ICrudDataService<IMorphologicalEpithetServiceModel>
+    public interface IMorphologicalEpithetsDataService : ICrudDataService<MorphologicalEpithetServiceModel>
     {
     }
 }

@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Bio.Services.Data.Models.Contracts;
+    using Bio.Services.Data.Models;
     using Mappings.Contracts;
 
-    public class MorphologicalEpithetRequestModel : IMapFrom<IMorphologicalEpithetServiceModel>
+    public class MorphologicalEpithetRequestModel : IMapFrom<MorphologicalEpithetServiceModel>
     {
         public int? Id { get; set; }
 
