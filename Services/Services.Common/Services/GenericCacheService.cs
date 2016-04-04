@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common
 {
     using System;
     using System.Linq;
@@ -12,7 +12,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public abstract class GenericCacheServiceFactory<TContext, TId, TDbModel, TServiceModel> : ICacheService<TContext, TId, TServiceModel>
+    public class GenericCacheService<TContext, TId, TDbModel, TServiceModel> : ICacheService<TContext, TId, TServiceModel>
         where TDbModel : IGenericEntity<TId>
         where TServiceModel : IGenericServiceModel<TId>
     {
@@ -20,7 +20,7 @@
 
         private IGenericContextRepository<TContext, TId, TDbModel> repository;
 
-        public GenericCacheServiceFactory(IGenericContextRepository<TContext, TId, TDbModel> repository)
+        public GenericCacheService(IGenericContextRepository<TContext, TId, TDbModel> repository)
         {
             if (repository == null)
             {
@@ -38,40 +38,40 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public Task Add(TContext context, TServiceModel model)
+        public virtual Task Add(TContext context, TServiceModel model)
         {
             var entity = this.mapper.Map<TDbModel>(model);
             return this.repository.Add(context, entity);
         }
 
-        public async Task<IQueryable<TServiceModel>> All(TContext context)
+        public virtual async Task<IQueryable<TServiceModel>> All(TContext context)
         {
             return (await this.repository.All(context))
                 .Select(i => this.mapper.Map<TServiceModel>(i));
         }
 
-        public Task Delete(TContext context)
+        public virtual Task Delete(TContext context)
         {
             return this.repository.Delete(context);
         }
 
-        public Task Delete(TContext context, TServiceModel model)
+        public virtual Task Delete(TContext context, TServiceModel model)
         {
             return this.repository.Delete(context, model.Id);
         }
 
-        public Task Delete(TContext context, TId id)
+        public virtual Task Delete(TContext context, TId id)
         {
             return this.repository.Delete(context, id);
         }
 
-        public async Task<TServiceModel> Get(TContext context, TId id)
+        public virtual async Task<TServiceModel> Get(TContext context, TId id)
         {
             var entity = await this.repository.Get(context, id);
             return this.mapper.Map<TServiceModel>(entity);
         }
 
-        public Task Update(TContext context, TServiceModel model)
+        public virtual Task Update(TContext context, TServiceModel model)
         {
             return this.repository.Update(context, this.mapper.Map<TDbModel>(model));
         }

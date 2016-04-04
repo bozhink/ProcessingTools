@@ -45,10 +45,10 @@
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="Services\GenericEfDataService.cs" />
-    <Compile Include="Factories\GenericCacheServiceFactory.cs" />
+    <Compile Include="Services\GenericCacheService.cs" />
     <Compile Include="Factories\RepositoryDataServiceAbstractFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
-    <Compile Include="Factories\SimpleCacheServiceFactory.cs" />
+    <Compile Include="Services\SimpleCacheService.cs" />
     <Compile Include="Factories\StringRepositoryDataServiceFactory.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
