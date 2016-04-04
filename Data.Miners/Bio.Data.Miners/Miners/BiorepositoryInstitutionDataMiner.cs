@@ -8,7 +8,6 @@
     using Biorepositories.Services.Data.Contracts;
     using Contracts;
     using Models;
-    using Models.Contracts;
     using ProcessingTools.Common.Constants;
 
     public class BiorepositoryInstitutionDataMiner : IBiorepositoryInstitutionDataMiner
@@ -27,7 +26,7 @@
             this.service = service;
         }
 
-        public Task<IQueryable<IBiorepositoryInstitution>> Mine(string content)
+        public Task<IQueryable<BiorepositoryInstitution>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -36,7 +35,7 @@
 
             return Task.Run(() =>
             {
-                var matches = new List<IBiorepositoryInstitution>();
+                var matches = new List<BiorepositoryInstitution>();
 
                 for (int i = 0; true; i += NumberOfItemsToTake)
                 {
@@ -55,7 +54,7 @@
                         }));
                 }
 
-                var result = new HashSet<IBiorepositoryInstitution>(matches);
+                var result = new HashSet<BiorepositoryInstitution>(matches);
                 return result.AsQueryable();
             });
         }

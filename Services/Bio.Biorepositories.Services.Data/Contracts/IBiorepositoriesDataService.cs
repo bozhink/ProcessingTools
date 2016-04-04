@@ -2,12 +2,12 @@
 {
     using System.Linq;
 
-    using Models.Contracts;
+    using Models;
 
     public interface IBiorepositoriesDataService
     {
-        IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take);
+        IQueryable<BiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take);
 
-        IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take);
+        IQueryable<BiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take);
     }
 }

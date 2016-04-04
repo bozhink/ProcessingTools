@@ -48,8 +48,6 @@
     <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCodeServiceModel.cs" />
     <Compile Include="Models\BiorepositoryInstitutionServiceModel.cs" />
-    <Compile Include="Models\Contracts\IBiorepositoryInstitutionServiceModel.cs" />
-    <Compile Include="Models\Contracts\IBiorepositoryInstitutionalCodeServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

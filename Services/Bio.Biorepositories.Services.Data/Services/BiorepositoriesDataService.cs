@@ -5,7 +5,6 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Biorepositories.Data;
     using ProcessingTools.Bio.Biorepositories.Data.Repositories.Contracts;
@@ -26,7 +25,7 @@
             this.repository = repository;
         }
 
-        public IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take)
+        public IQueryable<BiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take)
         {
             if (skip < 0)
             {
@@ -53,7 +52,7 @@
                 .AsQueryable();
         }
 
-        public IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take)
+        public IQueryable<BiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take)
         {
             if (skip < 0)
             {

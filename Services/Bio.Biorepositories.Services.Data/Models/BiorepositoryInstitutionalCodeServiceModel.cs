@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Models
 {
-    using Contracts;
-
-    public class BiorepositoryInstitutionalCodeServiceModel : IBiorepositoryInstitutionalCodeServiceModel
+    public class BiorepositoryInstitutionalCodeServiceModel
     {
         public string InstitutionalCode { get; set; }
 
