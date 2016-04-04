@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ICountriesDataService : IDataService<ICountryServiceModel>
+    public interface ICountriesDataService : IDataService<CountryServiceModel>
     {
     }
 }

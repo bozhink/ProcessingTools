@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Models
 {
     using System;
-    using Contracts;
 
-    public class CountryServiceModel : ICountryServiceModel
+    public class CountryServiceModel
     {
         public CountryServiceModel()
         {

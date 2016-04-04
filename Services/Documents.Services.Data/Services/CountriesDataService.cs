@@ -5,20 +5,19 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Services.Common.Factories;
 
-    public class CountriesDataService : GenericRepositoryDataServiceFactory<Country, ICountryServiceModel>, ICountriesDataService
+    public class CountriesDataService : GenericRepositoryDataServiceFactory<Country, CountryServiceModel>, ICountriesDataService
     {
         public CountriesDataService(IDocumentsRepository<Country> repository)
             : base(repository)
         {
         }
 
-        protected override IEnumerable<Country> MapServiceModelToDbModel(params ICountryServiceModel[] models)
+        protected override IEnumerable<Country> MapServiceModelToDbModel(params CountryServiceModel[] models)
         {
             if (models == null)
             {
@@ -43,14 +42,14 @@
             return result;
         }
 
-        protected override IEnumerable<ICountryServiceModel> MapDbModelToServiceModel(params Country[] entities)
+        protected override IEnumerable<CountryServiceModel> MapDbModelToServiceModel(params Country[] entities)
         {
             if (entities == null)
             {
                 throw new ArgumentNullException(nameof(entities));
             }
 
-            var result = new HashSet<ICountryServiceModel>();
+            var result = new HashSet<CountryServiceModel>();
             foreach (var entity in entities)
             {
                 var model = new CountryServiceModel
