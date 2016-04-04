@@ -11,7 +11,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
-    public abstract class GenericEfDataService<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
+    public class GenericEfDataService<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
         where TDbModel : class
         where TServiceModel : ISimpleServiceModel
     {
