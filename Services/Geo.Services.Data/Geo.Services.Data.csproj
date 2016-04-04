@@ -53,8 +53,6 @@
     <Compile Include="Contracts\IGeoNamesDataService.cs" />
     <Compile Include="Services\GeoEpithetsDataService.cs" />
     <Compile Include="Services\GeoNamesDataService.cs" />
-    <Compile Include="Models\Contracts\IGeoEpithetServiceModel.cs" />
-    <Compile Include="Models\Contracts\IGeoNameServiceModel.cs" />
     <Compile Include="Models\GeoEpithetServiceModel.cs" />
     <Compile Include="Models\GeoNameServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
