@@ -5,9 +5,9 @@
 
     using ProcessingTools.Data.Models;
     using ProcessingTools.Data.Repositories.Contracts;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common;
 
-    public class InstitutionsDataService : EfGenericCrudDataServiceFactory<Institution, IInstitutionServiceModel, int>, IInstitutionsDataService
+    public class InstitutionsDataService : GenericEfDataService<Institution, IInstitutionServiceModel, int>, IInstitutionsDataService
     {
         public InstitutionsDataService(IDataRepository<Institution> repository)
             : base(repository, i => i.Name.Length)

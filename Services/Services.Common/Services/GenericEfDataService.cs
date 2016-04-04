@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common
 {
     using System;
     using System.Linq;
@@ -11,7 +11,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
-    public abstract class EfGenericCrudDataServiceFactory<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
+    public abstract class GenericEfDataService<TDbModel, TServiceModel, TOrderKey> : ICrudDataService<TServiceModel>
         where TDbModel : class
         where TServiceModel : ISimpleServiceModel
     {
@@ -20,7 +20,7 @@
         private Expression<Func<TDbModel, TOrderKey>> orderExpression;
         private IEfRepository<TDbModel> repository;
 
-        public EfGenericCrudDataServiceFactory(IEfRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
+        public GenericEfDataService(IEfRepository<TDbModel> repository, Expression<Func<TDbModel, TOrderKey>> orderExpression)
         {
             if (repository == null)
             {
@@ -44,38 +44,29 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public void Add(TServiceModel model)
+        public virtual void Add(TServiceModel model)
         {
             var entity = this.mapper.Map<TDbModel>(model);
             this.repository.Add(entity);
             this.repository.SaveChanges();
         }
 
-        public void Delete(object id)
+        public virtual IQueryable<TServiceModel> All()
+        {
+            return this.Get(0, DefaultPagingConstants.MaximalItemsPerPageAllowed);
+        }
+
+        public virtual void Delete(object id)
         {
             this.repository.Delete(id);
             this.repository.SaveChanges();
         }
 
-        public void Delete(TServiceModel model)
+        public virtual void Delete(TServiceModel model)
         {
             var entity = this.repository.GetById(model.Id);
             this.repository.Delete(entity);
             this.repository.SaveChanges();
-        }
-
-        public virtual void Update(TServiceModel model)
-        {
-            var entity = this.repository.GetById(model.Id);
-            entity = this.mapper.Map<TServiceModel, TDbModel>(model, entity);
-
-            this.repository.Update(entity);
-            this.repository.SaveChanges();
-        }
-
-        public virtual IQueryable<TServiceModel> All()
-        {
-            return this.Get(0, DefaultPagingConstants.MaximalItemsPerPageAllowed);
         }
 
         public virtual TServiceModel Get(object id)
@@ -103,6 +94,15 @@
                 .ToList()
                 .Select(this.mapper.Map<TServiceModel>)
                 .AsQueryable();
+        }
+
+        public virtual void Update(TServiceModel model)
+        {
+            var entity = this.repository.GetById(model.Id);
+            entity = this.mapper.Map<TServiceModel, TDbModel>(model, entity);
+
+            this.repository.Update(entity);
+            this.repository.SaveChanges();
         }
     }
 }

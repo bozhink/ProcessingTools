@@ -44,7 +44,7 @@
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
+    <Compile Include="Services\GenericEfDataService.cs" />
     <Compile Include="Factories\GenericCacheServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceAbstractFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
@@ -83,6 +83,7 @@
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
