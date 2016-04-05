@@ -16,7 +16,7 @@
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
-        private ITypeStatusDataService service;
+        private readonly ITypeStatusDataService service;
 
         public TypeStatusDataMiner(ITypeStatusDataService service)
         {
