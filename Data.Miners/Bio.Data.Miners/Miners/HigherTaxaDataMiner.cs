@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using Contracts;
+
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Infrastructure.Extensions;

@@ -5,9 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Biorepositories.Services.Data.Contracts;
     using Contracts;
     using Models;
+
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Constants;
 
     public class BiorepositoryInstitutionDataMiner : IBiorepositoryInstitutionDataMiner

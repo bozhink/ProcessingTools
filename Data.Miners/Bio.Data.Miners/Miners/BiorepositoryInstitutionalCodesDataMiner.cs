@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Biorepositories.Services.Data.Contracts;
     using Contracts;
     using Models;
-    using Models.Contracts;
+
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Constants;
 
     public class BiorepositoryInstitutionalCodesDataMiner : IBiorepositoryInstitutionalCodesDataMiner
@@ -27,7 +27,7 @@
             this.service = service;
         }
 
-        public Task<IQueryable<IBiorepositoryInstitutionalCode>> Mine(string content)
+        public Task<IQueryable<BiorepositoryInstitutionalCode>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -36,7 +36,7 @@
 
             return Task.Run(() =>
             {
-                var matches = new List<IBiorepositoryInstitutionalCode>();
+                var matches = new List<BiorepositoryInstitutionalCode>();
 
                 for (int i = 0; true; i += NumberOfItemsToTake)
                 {
@@ -56,7 +56,7 @@
                         }));
                 }
 
-                var result = new HashSet<IBiorepositoryInstitutionalCode>(matches);
+                var result = new HashSet<BiorepositoryInstitutionalCode>(matches);
                 return result.AsQueryable();
             });
         }

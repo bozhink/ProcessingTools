@@ -7,8 +7,8 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
-    using ServiceClient.ExtractHcmr.Contracts;
+
+    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
 
     public class ExtractHcmrDataMiner : IExtractHcmrDataMiner
     {
@@ -24,7 +24,7 @@
             this.requester = requester;
         }
 
-        public async Task<IQueryable<IExtractHcmrEnvoTerm>> Mine(string content)
+        public async Task<IQueryable<ExtractHcmrEnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -38,7 +38,7 @@
                 throw new ApplicationException("No information found.");
             }
 
-            var result = new HashSet<IExtractHcmrEnvoTerm>(response.Items
+            var result = new HashSet<ExtractHcmrEnvoTerm>(response.Items
                 .Select(i => new ExtractHcmrEnvoTerm
                 {
                     Content = i.Name,

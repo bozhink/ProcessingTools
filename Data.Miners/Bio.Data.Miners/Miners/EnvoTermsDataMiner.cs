@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Environments.Services.Data.Contracts;
     using Models;
-    using Models.Contracts;
+
+    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
 
     public class EnvoTermsDataMiner : IEnvoTermsDataMiner
     {
@@ -24,7 +24,7 @@
             this.service = service;
         }
 
-        public Task<IQueryable<IEnvoTerm>> Mine(string content)
+        public Task<IQueryable<EnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -45,7 +45,7 @@
                     .ToList()
                     .Where(t => text.Contains(t.Content.ToLower()));
 
-                var result = new HashSet<IEnvoTerm>(terms);
+                var result = new HashSet<EnvoTerm>(terms);
                 return result.AsQueryable();
             });
         }
