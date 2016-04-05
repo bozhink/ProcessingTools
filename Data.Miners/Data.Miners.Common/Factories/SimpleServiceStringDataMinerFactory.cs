@@ -3,10 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     using Contracts;
+
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Infrastructure.Extensions;
     using ProcessingTools.Services.Common.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 
@@ -22,43 +25,42 @@
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.service = service;
         }
 
-        public Task<IQueryable<string>> Mine(string content)
+        public async Task<IQueryable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
-            string text = content.ToLower();
+            var matches = new List<string>();
 
-            return Task.Run(() =>
+            for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var matches = new List<string>();
+                var items = this.service.Get(i, NumberOfItemsToTake)
+                    .Select(t => t.Name)
+                    .ToList();
 
-                for (int i = 0; true; i += NumberOfItemsToTake)
+                if (items.Count < 1)
                 {
-                    var items = this.service.Get(i, NumberOfItemsToTake)
-                        .Select(t => t.Name)
-                        .ToList();
-
-                    if (items.Count < 1)
-                    {
-                        break;
-                    }
-
-                    matches.AddRange(items
-                        .Where(t => text.Contains(t.ToLower())));
+                    break;
                 }
 
-                var result = new HashSet<string>(matches);
-                return result.AsQueryable();
-            });
+                var matchers = items.Select(t => new Regex(@"(?i)" + t));
+
+                foreach (var matcher in matchers)
+                {
+                    matches.AddRange(await content.GetMatchesAsync(matcher));
+                }
+            }
+
+            var result = new HashSet<string>(matches);
+            return result.AsQueryable();
         }
     }
 }
