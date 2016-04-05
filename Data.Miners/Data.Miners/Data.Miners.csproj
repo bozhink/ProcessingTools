@@ -46,8 +46,7 @@
     <Compile Include="Miners\DatesDataMiner.cs" />
     <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
     <Compile Include="Miners\InstitutionsDataMiner.cs" />
-    <Compile Include="Models\Contracts\INlmExternalLink.cs" />
-    <Compile Include="Models\NlmExternalLinkResponseModel.cs" />
+    <Compile Include="Models\NlmExternalLink.cs" />
     <Compile Include="Miners\NlmExternalLinksDataMiner.cs" />
     <Compile Include="Miners\ProductsDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

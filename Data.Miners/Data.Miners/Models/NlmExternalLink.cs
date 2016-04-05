@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Models
 {
-    using Contracts;
     using Nlm.Publishing.Types;
 
-    public class NlmExternalLinkResponseModel : INlmExternalLink
+    public class NlmExternalLink
     {
         public string Content { get; set; }
 
