@@ -3,12 +3,10 @@
     using System;
     using System.Xml.Serialization;
 
-    using Contracts;
-
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "external-link")]
-    public class ExternalLinkModel : IExternalLinkModel
+    public class ExternalLinkModel
     {
         [XmlAttribute("base-address")]
         public string BaseAddress { get; set; }

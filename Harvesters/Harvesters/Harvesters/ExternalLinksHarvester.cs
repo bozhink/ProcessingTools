@@ -7,12 +7,11 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class ExternalLinksHarvester : GenericHarvesterFactory<IExternalLinkModel>, IExternalLinksHarvester
+    public class ExternalLinksHarvester : GenericHarvesterFactory<ExternalLinkModel>, IExternalLinksHarvester
     {
         private const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
 
@@ -23,11 +22,11 @@
             this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePath];
         }
 
-        protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
+        protected override async Task<IQueryable<ExternalLinkModel>> Run(XmlDocument document)
         {
             var items = await document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
 
-            return items.ExternalLinks.AsQueryable<IExternalLinkModel>();
+            return items.ExternalLinks.AsQueryable();
         }
     }
 }

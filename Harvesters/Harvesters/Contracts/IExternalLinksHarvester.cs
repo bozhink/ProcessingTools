@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts
 {
-    using Models.Contracts;
+    using Models;
 
     using ProcessingTools.Harvesters.Common.Contracts;
 
-    public interface IExternalLinksHarvester : IHarvester<IExternalLinkModel>
+    public interface IExternalLinksHarvester : IHarvester<ExternalLinkModel>
     {
     }
 }
