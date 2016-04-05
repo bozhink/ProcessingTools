@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Miners.Common.Factories
+﻿namespace ProcessingTools.Data.Miners.Common
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,7 @@
     using ProcessingTools.Services.Common.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public abstract class SimpleServiceStringDataMinerFactory<TDataService, TDataServiceModel> : IStringDataMiner
+    public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
         where TDataServiceModel : INamedDataServiceModel
         where TDataService : ICrudDataService<TDataServiceModel>
     {
@@ -21,7 +21,7 @@
 
         private TDataService service;
 
-        public SimpleServiceStringDataMinerFactory(TDataService service)
+        public SimpleServiceStringDataMiner(TDataService service)
         {
             if (service == null)
             {

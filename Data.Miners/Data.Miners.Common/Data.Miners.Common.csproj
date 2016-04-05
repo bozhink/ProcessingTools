@@ -37,7 +37,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDataMiner.cs" />
     <Compile Include="Contracts\IStringDataMiner.cs" />
-    <Compile Include="Factories\SimpleServiceStringDataMinerFactory.cs" />
+    <Compile Include="Miners\SimpleServiceStringDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

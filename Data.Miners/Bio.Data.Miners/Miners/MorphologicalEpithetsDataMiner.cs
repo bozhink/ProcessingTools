@@ -3,9 +3,9 @@
     using Contracts;
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Data.Miners.Common.Factories;
+    using ProcessingTools.Data.Miners.Common;
 
-    public class MorphologicalEpithetsDataMiner : SimpleServiceStringDataMinerFactory<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataMiner
+    public class MorphologicalEpithetsDataMiner : SimpleServiceStringDataMiner<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataMiner
     {
         public MorphologicalEpithetsDataMiner(IMorphologicalEpithetsDataService service)
             : base(service)
