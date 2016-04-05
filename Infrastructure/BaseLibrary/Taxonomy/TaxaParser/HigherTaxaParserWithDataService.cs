@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
@@ -11,6 +12,7 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public class HigherTaxaParserWithDataService<T> : ConfigurableDocument, IParser
         where T : ITaxonRank
@@ -30,8 +32,9 @@
         /// </summary>
         public async Task Parse()
         {
-            var uniqueHigherTaxaList = this.XmlDocument
+            var uniqueHigherTaxaList = new HashSet<string>(this.XmlDocument
                 .ExtractUniqueHigherTaxa()
+                .Select(n => n.ToFirstLetterUpperCase()))
                 .ToArray();
 
             var response = await this.taxaRankDataService.Resolve(uniqueHigherTaxaList);
@@ -81,7 +84,7 @@
                             string rank = ranks.FirstOrDefault();
                             ////this.logger?.Log("{0} --> {1}\n", scientificName, rank);
 
-                            string xpath = $"//tn[@type='higher'][not(tn-part)][normalize-space(.)='{scientificName}']";
+                            string xpath = $"//tn[@type='higher'][not(tn-part)][translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')='{scientificName.ToUpper()}']";
                             this.XmlDocument.SelectNodes(xpath)
                                 .Cast<XmlNode>()
                                 .AsParallel()
