@@ -35,5 +35,7 @@
                 Name = m.Name
             }
         };
+
+        protected override Expression<Func<Product, object>> SortExpression => p => p.Name;
     }
 }

@@ -34,5 +34,7 @@
                 Name = m.Name
             }
         };
+
+        protected override Expression<Func<TypeStatus, object>> SortExpression => t => t.Name;
     }
 }

@@ -25,5 +25,7 @@
         {
             e
         };
+
+        protected override Expression<Func<string, object>> SortExpression => e => e;
     }
 }

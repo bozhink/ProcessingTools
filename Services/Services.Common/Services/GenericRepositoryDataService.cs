@@ -8,9 +8,12 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class GenericRepositoryDataService<TDbModel, TServiceModel> : GenericRepositoryDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
+        where TDbModel : class, IEntity
+        where TServiceModel : class
     {
         private readonly IMapper mapper;
 
@@ -35,5 +38,7 @@
         {
             this.mapper.Map<TDbModel>(m)
         };
+
+        protected override Expression<Func<TDbModel, object>> SortExpression => e => e.Id;
     }
 }

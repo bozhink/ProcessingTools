@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -33,18 +34,85 @@
             return Task.FromResult(this.DbSet.AsQueryable());
         }
 
-        public Task<IQueryable<TEntity>> All(int skip, int take)
+        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
         {
-            return Task.FromResult(this.DbSet.AsQueryable().Skip(skip).Take(take));
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            return Task.FromResult(this.DbSet.AsQueryable().Where(filter));
+        }
+
+        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            return Task.FromResult(this.DbSet.AsQueryable()
+                .OrderBy(sort)
+                .Skip(skip)
+                .Take(take));
+        }
+
+        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            return Task.FromResult(this.DbSet.AsQueryable()
+                .Where(filter)
+                .OrderBy(sort)
+                .Skip(skip)
+                .Take(take));
         }
 
         public virtual Task<TEntity> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return Task.FromResult(this.DbSet.Find(id));
         }
 
         public virtual Task Add(TEntity entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() =>
             {
                 var entry = this.Context.Entry(entity);
@@ -61,6 +129,11 @@
 
         public virtual Task Update(TEntity entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() =>
             {
                 var entry = this.Context.Entry(entity);
@@ -75,6 +148,11 @@
 
         public virtual Task Delete(TEntity entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() =>
             {
                 var entry = this.Context.Entry(entity);
@@ -92,6 +170,11 @@
 
         public virtual async Task Delete(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var entity = await this.Get(id);
             if (entity != null)
             {

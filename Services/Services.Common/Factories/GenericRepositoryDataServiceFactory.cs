@@ -32,6 +32,8 @@
 
         protected abstract Expression<Func<TDbModel, IEnumerable<TServiceModel>>> MapDbModelToServiceModel { get; }
 
+        protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
+
         public virtual async Task<int> Add(params TServiceModel[] models)
         {
             if (models == null)
@@ -122,7 +124,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            return (await this.repository.All(skip, take))
+            return (await this.repository.All(this.SortExpression, skip, take))
                 .SelectMany(this.MapDbModelToServiceModel);
         }
 

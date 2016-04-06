@@ -34,5 +34,7 @@
                 Ranks = new string[] { m.Rank }
             }
         };
+
+        protected override Expression<Func<Taxon, object>> SortExpression => t => t.Name;
     }
 }

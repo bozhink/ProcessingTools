@@ -35,5 +35,7 @@
                 Name = m.Name
             }
         };
+
+        protected override Expression<Func<GeoName, object>> SortExpression => g => g.Name;
     }
 }
