@@ -14,6 +14,8 @@
 
         public IDbSet<Country> Countries { get; set; }
 
+        public IDbSet<State> States { get; set; }
+
         public IDbSet<City> Cities { get; set; }
 
         public IDbSet<Address> Addresses { get; set; }

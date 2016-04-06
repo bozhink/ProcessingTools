@@ -6,6 +6,9 @@
 
         public const int MaximalLengthOfCityName = 60;
 
+        public const int MaximalLengthOfStateName = 60;
+        public const int MaximalLengthOfAbbreviatedStateName = 5;
+
         public const int MaximalLengthOfPublisherName = 60;
         public const int MaximalLengthOfAbbreviatedPublisherName = 40;
 

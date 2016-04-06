@@ -26,6 +26,10 @@
 
         public virtual Country Country { get; set; }
 
+        public virtual int? StateId { get; set; }
+
+        public virtual State State { get; set; }
+
         public virtual ICollection<Address> Addresses
         {
             get
