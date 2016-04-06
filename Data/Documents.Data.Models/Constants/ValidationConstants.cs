@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Common.Constants
+﻿namespace ProcessingTools.Documents.Data.Models.Constants
 {
     public static class ValidationConstants
     {
