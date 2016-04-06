@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Services.Data.Models
+﻿namespace ProcessingTools.Geo.Services.Data.Models
 {
     using System;
 

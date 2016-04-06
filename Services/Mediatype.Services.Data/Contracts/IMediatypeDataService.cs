@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data.Contracts
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Models;
 
     public interface IMediaTypeDataService
     {
-        IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension);
+        Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension);
     }
 }

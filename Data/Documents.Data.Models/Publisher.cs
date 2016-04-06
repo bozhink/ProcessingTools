@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -14,12 +15,13 @@
 
         public Publisher()
         {
+            this.Id = Guid.NewGuid();
             this.addresses = new HashSet<Address>();
             this.journals = new HashSet<Journal>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfPublisherName)]

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Moq;
     using ProcessingTools.Services.Data.Contracts;
@@ -27,41 +28,43 @@
 
         public HashSet<InstitutionServiceModel> Items { get; set; }
 
-        public void Add(InstitutionServiceModel entity)
+        public Task<int> Add(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<InstitutionServiceModel> All()
+        public Task<IQueryable<InstitutionServiceModel>> All()
         {
-            return this.Items.AsQueryable();
+            return Task.FromResult(this.Items.AsQueryable());
         }
 
-        public void Delete(object id)
+        public Task<int> Delete(params object[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(InstitutionServiceModel entity)
+        public Task<int> Delete(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public InstitutionServiceModel Get(object id)
+        public Task<IQueryable<InstitutionServiceModel>> Get(params object[] ids)
         {
-            return this.Items.FirstOrDefault(p => p.Id == (int)id);
+            var result = ids.Select(id => this.Items.FirstOrDefault(p => p.Id == (int)id)).AsQueryable();
+
+            return Task.FromResult(result);
         }
 
-        public IQueryable<InstitutionServiceModel> Get(int skip, int take)
+        public Task<IQueryable<InstitutionServiceModel>> Get(int skip, int take)
         {
-            return this.Items
+            return Task.FromResult(this.Items
                 .OrderBy(p => p.Id)
                 .Skip(skip)
                 .Take(take)
-                .AsQueryable();
+                .AsQueryable());
         }
 
-        public void Update(InstitutionServiceModel entity)
+        public Task<int> Update(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }

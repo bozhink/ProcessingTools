@@ -1,61 +1,29 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.IO;
-    using System.Text;
-    using System.Xml;
 
     using Common.Models;
+    using Constants;
 
     public class Document : DocumentsAbstractEntity
     {
-        private readonly Encoding defaultEncoding = Encoding.UTF8;
-
-        [Key]
-        public int Id { get; set; }
-
-        [Column(TypeName = "xml")]
-        public string Content { get; set; }
-
-        [NotMapped]
-        public XmlDocument XmlDocument
+        public Document()
         {
-            get
-            {
-                var settings = new XmlReaderSettings
-                {
-                    Async = true,
-                    CheckCharacters = true,
-                    CloseInput = true,
-                    ConformanceLevel = ConformanceLevel.Document,
-                    DtdProcessing = DtdProcessing.Ignore,
-                    IgnoreComments = false,
-                    IgnoreProcessingInstructions = false,
-                    IgnoreWhitespace = false
-                };
-
-                using (var stream = new MemoryStream(this.defaultEncoding.GetBytes(this.Content)))
-                {
-                    var reader = XmlReader.Create(stream, settings);
-
-                    var document = new XmlDocument
-                    {
-                        PreserveWhitespace = true
-                    };
-
-                    document.Load(reader);
-                    return document;
-                }
-            }
-
-            set
-            {
-                this.Content = value.OuterXml;
-            }
+            this.Id = Guid.NewGuid();
         }
 
-        public virtual int ArticleId { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+
+        [Required]
+        [Index(IsUnique = true)]
+        [MinLength(ValidationConstants.LengthOfDocumentFileName)]
+        [MaxLength(ValidationConstants.LengthOfDocumentFileName)]
+        public string FileName { get; set; }
+
+        public virtual Guid ArticleId { get; set; }
 
         public virtual Article Article { get; set; }
     }

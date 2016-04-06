@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IInstitutionsDataService : ICrudDataService<InstitutionServiceModel>
+    public interface IInstitutionsDataService : IDataService<InstitutionServiceModel>
     {
     }
 }

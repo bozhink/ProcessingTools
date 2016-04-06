@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
@@ -24,14 +25,14 @@
             this.repository = repository;
         }
 
-        public override IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension)
+        public override async Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
             FileExtension fileExtensionResult;
             try
             {
-                fileExtensionResult = this.repository.All()
+                fileExtensionResult = (await this.repository.All())
                     .FirstOrDefault(e => e.Name == extension);
             }
             catch (ArgumentNullException)

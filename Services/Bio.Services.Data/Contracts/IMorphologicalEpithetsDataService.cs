@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IMorphologicalEpithetsDataService : ICrudDataService<MorphologicalEpithetServiceModel>
+    public interface IMorphologicalEpithetsDataService : IDataService<MorphologicalEpithetServiceModel>
     {
     }
 }

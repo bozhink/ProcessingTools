@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Models
+﻿namespace ProcessingTools.Geo.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

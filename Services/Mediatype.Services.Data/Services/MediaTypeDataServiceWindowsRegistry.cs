@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data
 {
+    using System.Threading.Tasks;
+
     using Contracts;
     using Factories;
 
@@ -7,19 +9,22 @@
 
     public class MediaTypeDataServiceWindowsRegistry : MediaTypeDataServiceFactory, IMediaTypeDataService
     {
-        protected override string ResolveMediaType(string fileExtension)
+        protected override Task<string> ResolveMediaType(string fileExtension)
         {
-            string extension = $".{fileExtension.ToLower()}";
-            var registryKey = Registry.ClassesRoot.OpenSubKey(extension);
-            object value = registryKey?.GetValue("Content Type");
-
-            string mediaType = null;
-            if (value != null)
+            return Task.Run(() =>
             {
-                mediaType = value.ToString();
-            }
+                string extension = $".{fileExtension.ToLower()}";
+                var registryKey = Registry.ClassesRoot.OpenSubKey(extension);
+                object value = registryKey?.GetValue("Content Type");
 
-            return mediaType;
+                string mediaType = null;
+                if (value != null)
+                {
+                    mediaType = value.ToString();
+                }
+
+                return mediaType;
+            });
         }
     }
 }

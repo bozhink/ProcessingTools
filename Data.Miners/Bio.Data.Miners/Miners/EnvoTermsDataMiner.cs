@@ -24,7 +24,7 @@
             this.service = service;
         }
 
-        public Task<IQueryable<EnvoTerm>> Mine(string content)
+        public async Task<IQueryable<EnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -33,21 +33,18 @@
 
             string text = content.ToLower();
 
-            return Task.Run(() =>
-            {
-                var terms = this.service.All()
-                    .Select(t => new EnvoTerm
-                    {
-                        EntityId = t.EntityId,
-                        EnvoId = t.EnvoId,
-                        Content = t.Content
-                    })
-                    .ToList()
-                    .Where(t => text.Contains(t.Content.ToLower()));
+            var terms = (await this.service.All())
+                .Select(t => new EnvoTerm
+                {
+                    EntityId = t.EntityId,
+                    EnvoId = t.EnvoId,
+                    Content = t.Content
+                })
+                .ToList()
+                .Where(t => text.Contains(t.Content.ToLower()));
 
-                var result = new HashSet<EnvoTerm>(terms);
-                return result.AsQueryable();
-            });
+            var result = new HashSet<EnvoTerm>(terms);
+            return result.AsQueryable();
         }
     }
 }

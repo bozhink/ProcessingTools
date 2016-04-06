@@ -54,7 +54,8 @@
                         MimeSubtype = DefaultMimeSubtype
                     };
 
-                    var response = this.mediatypeDataService.GetMediaType(e)?.FirstOrDefault();
+                    // TODO: mediatypes
+                    var response = this.mediatypeDataService.GetMediaType(e).Result?.FirstOrDefault();
                     if (response != null)
                     {
                         result.FileExtension = response.FileExtension;

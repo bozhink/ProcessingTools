@@ -7,10 +7,10 @@
     using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common;
 
-    public class GeoEpithetsDataService : GenericEfDataService<GeoEpithet, GeoEpithetServiceModel, int>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : GenericRepositoryDataService<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
     {
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
-            : base(repository, e => e.Name.Length)
+            : base(repository)
         {
         }
     }

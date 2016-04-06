@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IGeoNamesDataService : ICrudDataService<GeoNameServiceModel>
+    public interface IGeoNamesDataService : IDataService<GeoNameServiceModel>
     {
     }
 }

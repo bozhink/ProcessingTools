@@ -15,7 +15,7 @@
 
     public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
         where TDataServiceModel : INamedDataServiceModel
-        where TDataService : ICrudDataService<TDataServiceModel>
+        where TDataService : IDataService<TDataServiceModel>
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
@@ -42,7 +42,7 @@
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = this.service.Get(i, NumberOfItemsToTake)
+                var items = (await this.service.Get(i, NumberOfItemsToTake))
                     .Select(t => t.Name)
                     .ToList();
 

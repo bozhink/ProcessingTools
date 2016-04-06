@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Moq;
     using ProcessingTools.Services.Data.Contracts;
@@ -27,41 +28,43 @@
 
         public HashSet<ProductServiceModel> Items { get; set; }
 
-        public void Add(ProductServiceModel entity)
+        public Task<int> Add(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<ProductServiceModel> All()
+        public Task<IQueryable<ProductServiceModel>> All()
         {
-            return this.Items.AsQueryable();
+            return Task.FromResult(this.Items.AsQueryable());
         }
 
-        public void Delete(object id)
+        public Task<int> Delete(params object[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ProductServiceModel entity)
+        public Task<int> Delete(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public ProductServiceModel Get(object id)
+        public Task<IQueryable<ProductServiceModel>> Get(params object[] ids)
         {
-            return this.Items.FirstOrDefault(p => p.Id == (int)id);
+            var result = ids.Select(id => this.Items.FirstOrDefault(p => p.Id == (int)id)).AsQueryable();
+
+            return Task.FromResult(result);
         }
 
-        public IQueryable<ProductServiceModel> Get(int skip, int take)
+        public Task<IQueryable<ProductServiceModel>> Get(int skip, int take)
         {
-            return this.Items
+            return Task.FromResult(this.Items
                 .OrderBy(p => p.Id)
                 .Skip(skip)
                 .Take(take)
-                .AsQueryable();
+                .AsQueryable());
         }
 
-        public void Update(ProductServiceModel entity)
+        public Task<int> Update(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }

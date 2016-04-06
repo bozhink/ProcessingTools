@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -71,7 +72,7 @@
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
-                .Returns(() => new List<FileExtension>
+                .Returns(() => Task.FromResult(new List<FileExtension>
                 {
                     new FileExtension
                     {
@@ -92,19 +93,19 @@
                         }
                     }
                 }
-                .AsQueryable());
+                .AsQueryable()));
 
             // Assert that the mock object works correctly.
             {
-                Assert.AreEqual(FileExtension, fileExtensionsRepositoryMock.Object.All().FirstOrDefault().Name, "FileExtension. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(FileExtension, fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().Name, "FileExtension. Mock object is incorrect. Test is broken.");
 
-                Assert.AreEqual(MimeType, fileExtensionsRepositoryMock.Object.All().FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeType.Name, "MimeType. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(MimeType, fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeType.Name, "MimeType. Mock object is incorrect. Test is broken.");
 
-                Assert.AreEqual(MimeSubtype, fileExtensionsRepositoryMock.Object.All().FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeSubtype.Name, "MimeSubtype. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(MimeSubtype, fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeSubtype.Name, "MimeSubtype. Mock object is incorrect. Test is broken.");
             }
 
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
@@ -121,7 +122,7 @@
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
-                .Returns(() => new List<FileExtension>
+                .Returns(() => Task.FromResult(new List<FileExtension>
                 {
                     new FileExtension
                     {
@@ -142,19 +143,19 @@
                         }
                     }
                 }
-                .AsQueryable());
+                .AsQueryable()));
 
             // Assert that the mock object works correctly.
             {
-                Assert.AreEqual(FileExtension.TrimStart('.'), fileExtensionsRepositoryMock.Object.All().FirstOrDefault().Name, "FileExtension. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(FileExtension.TrimStart('.'), fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().Name, "FileExtension. Mock object is incorrect. Test is broken.");
 
-                Assert.AreEqual(MimeType, fileExtensionsRepositoryMock.Object.All().FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeType.Name, "MimeType. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(MimeType, fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeType.Name, "MimeType. Mock object is incorrect. Test is broken.");
 
-                Assert.AreEqual(MimeSubtype, fileExtensionsRepositoryMock.Object.All().FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeSubtype.Name, "MimeSubtype. Mock object is incorrect. Test is broken.");
+                Assert.AreEqual(MimeSubtype, fileExtensionsRepositoryMock.Object.All().Result.FirstOrDefault().MimeTypePairs.FirstOrDefault().MimeSubtype.Name, "MimeSubtype. Mock object is incorrect. Test is broken.");
             }
 
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension.TrimStart('.'), type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
@@ -171,10 +172,10 @@
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
-                .Returns(() => new List<FileExtension>().AsQueryable());
+                .Returns(() => Task.FromResult(new List<FileExtension>().AsQueryable()));
 
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
@@ -191,7 +192,7 @@
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
-                .Returns(() => new List<FileExtension>()
+                .Returns(() => Task.FromResult(new List<FileExtension>()
                 {
                     new FileExtension
                     {
@@ -212,10 +213,10 @@
                         }
                     }
                 }
-                .AsQueryable());
+                .AsQueryable()));
 
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");

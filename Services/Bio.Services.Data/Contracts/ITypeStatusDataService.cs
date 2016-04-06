@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITypeStatusDataService : ICrudDataService<TypeStatusServiceModel>
+    public interface ITypeStatusDataService : IDataService<TypeStatusServiceModel>
     {
     }
 }

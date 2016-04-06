@@ -7,10 +7,10 @@
     using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common;
 
-    public class MorphologicalEpithetsDataService : GenericEfDataService<MorphologicalEpithet, MorphologicalEpithetServiceModel, int>, IMorphologicalEpithetsDataService
+    public class MorphologicalEpithetsDataService : GenericRepositoryDataService<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
-            : base(repository, e => e.Name.Length)
+            : base(repository)
         {
         }
     }

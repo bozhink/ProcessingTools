@@ -7,10 +7,10 @@
     using ProcessingTools.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common;
 
-    public class InstitutionsDataService : GenericEfDataService<Institution, InstitutionServiceModel, int>, IInstitutionsDataService
+    public class InstitutionsDataService : GenericRepositoryDataService<Institution, InstitutionServiceModel>, IInstitutionsDataService
     {
         public InstitutionsDataService(IDataRepository<Institution> repository)
-            : base(repository, i => i.Name.Length)
+            : base(repository)
         {
         }
     }

@@ -35,7 +35,7 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var matchers = this.service.All()
+            var matchers = (await this.service.All())
                 .Select(t => t.Name)
                 .ToList()
                 .Select(t => new Regex(@"(?i)\b" + t + @"s?\b"));

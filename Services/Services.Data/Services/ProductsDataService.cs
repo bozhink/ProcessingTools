@@ -7,10 +7,10 @@
     using ProcessingTools.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common;
 
-    public class ProductsDataService : GenericEfDataService<Product, ProductServiceModel, int>, IProductsDataService
+    public class ProductsDataService : GenericRepositoryDataService<Product, ProductServiceModel>, IProductsDataService
     {
         public ProductsDataService(IDataRepository<Product> repository)
-            : base(repository, p => p.Name.Length)
+            : base(repository)
         {
         }
     }

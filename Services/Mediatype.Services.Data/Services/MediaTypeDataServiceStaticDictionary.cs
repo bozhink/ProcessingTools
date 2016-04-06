@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
@@ -1196,15 +1197,18 @@
             { "zmm", "application/vnd.handheld-entertainment+xml" }
         };
 
-        protected override string ResolveMediaType(string fileExtension)
+        protected override Task<string> ResolveMediaType(string fileExtension)
         {
-            string mediaType = null;
-            if (mimeTypes.TryGetValue(fileExtension, out mediaType))
+            return Task.Run(() =>
             {
-                return mediaType;
-            }
+                string mediaType = null;
+                if (mimeTypes.TryGetValue(fileExtension, out mediaType))
+                {
+                    return mediaType;
+                }
 
-            return null;
+                return null;
+            });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Models
+﻿namespace ProcessingTools.Geo.Data.Models
 {
     public enum StateType
     {

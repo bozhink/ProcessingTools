@@ -12,6 +12,12 @@
         {
         }
 
+        public IDbSet<Country> Countries { get; set; }
+
+        public IDbSet<State> States { get; set; }
+
+        public IDbSet<City> Cities { get; set; }
+
         public IDbSet<GeoName> GeoNames { get; set; }
 
         public IDbSet<GeoEpithet> GeoEpithets { get; set; }

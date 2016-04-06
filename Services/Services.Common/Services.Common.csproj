@@ -40,11 +40,9 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
-    <Compile Include="Contracts\ICrudDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Services\GenericEfDataService.cs" />
     <Compile Include="Services\GenericCacheService.cs" />
     <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
@@ -12,7 +13,7 @@
         protected const string DefaultMediaType = "unknown/unknown";
         protected const string DefaultMediaTypeOnException = "application/octet-stream";
 
-        public abstract IQueryable<MediaTypeServiceModel> GetMediaType(string fileExtension);
+        public abstract Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension);
 
         protected string GetValidFileExtension(string fileExtension)
         {

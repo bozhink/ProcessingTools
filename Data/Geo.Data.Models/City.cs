@@ -1,6 +1,5 @@
-﻿namespace ProcessingTools.Documents.Data.Models
+﻿namespace ProcessingTools.Geo.Data.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,13 +7,6 @@
 
     public class City
     {
-        private ICollection<Address> addresses;
-
-        public City()
-        {
-            this.addresses = new HashSet<Address>();
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -29,18 +21,5 @@
         public virtual int? StateId { get; set; }
 
         public virtual State State { get; set; }
-
-        public virtual ICollection<Address> Addresses
-        {
-            get
-            {
-                return this.addresses;
-            }
-
-            set
-            {
-                this.addresses = value;
-            }
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -13,12 +14,13 @@
 
         public Author()
         {
+            this.Id = Guid.NewGuid();
             this.affiliations = new HashSet<Affiliation>();
             this.articles = new HashSet<Article>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfAuthorSurname)]
