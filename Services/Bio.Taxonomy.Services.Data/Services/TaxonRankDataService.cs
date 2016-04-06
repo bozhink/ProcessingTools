@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Linq.Expressions;
     using Contracts;
     using Models;
 
@@ -18,50 +18,21 @@
         {
         }
 
-        protected override IEnumerable<Taxon> MapServiceModelToDbModel(params TaxonRankServiceModel[] models)
+        protected override Expression<Func<Taxon, IEnumerable<TaxonRankServiceModel>>> MapDbModelToServiceModel => e => e.Ranks.Select(rank => new TaxonRankServiceModel
         {
-            if (models == null)
-            {
-                throw new ArgumentNullException(nameof(models));
-            }
+            IsWhiteListed = e.IsWhiteListed,
+            ScientificName = e.Name,
+            Rank = rank
+        });
 
-            var result = new HashSet<Taxon>();
-            foreach (var model in models)
-            {
-                var entity = new Taxon
-                {
-                    Name = model.ScientificName,
-                    IsWhiteListed = model.IsWhiteListed,
-                    Ranks = new string[] { model.Rank }
-                };
-
-                result.Add(entity);
-            }
-
-            return result;
-        }
-
-        protected override IEnumerable<TaxonRankServiceModel> MapDbModelToServiceModel(params Taxon[] entities)
+        protected override Expression<Func<TaxonRankServiceModel, IEnumerable<Taxon>>> MapServiceModelToDbModel => m => new Taxon[]
         {
-            if (entities == null)
+            new Taxon
             {
-                throw new ArgumentNullException(nameof(entities));
+                Name = m.ScientificName,
+                IsWhiteListed = m.IsWhiteListed,
+                Ranks = new string[] { m.Rank }
             }
-
-            var result = new List<TaxonRankServiceModel>();
-            foreach (var entity in entities)
-            {
-                var models = entity.Ranks.Select(rank => new TaxonRankServiceModel
-                {
-                    IsWhiteListed = entity.IsWhiteListed,
-                    ScientificName = entity.Name,
-                    Rank = rank
-                });
-
-                result.AddRange(models);
-            }
-
-            return result;
-        }
+        };
     }
 }

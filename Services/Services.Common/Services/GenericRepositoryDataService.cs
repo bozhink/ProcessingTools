@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Linq.Expressions;
 
     using AutoMapper;
     using Contracts;
@@ -26,36 +26,14 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        protected override IEnumerable<TDbModel> MapServiceModelToDbModel(params TServiceModel[] models)
+        protected override Expression<Func<TDbModel, IEnumerable<TServiceModel>>> MapDbModelToServiceModel => e => new TServiceModel[]
         {
-            if (models == null)
-            {
-                throw new ArgumentNullException(nameof(models));
-            }
+            this.mapper.Map<TServiceModel>(e)
+        };
 
-            var entities = new HashSet<TDbModel>(models.Select(m => this.mapper.Map<TDbModel>(m)));
-            if (entities == null)
-            {
-                throw new ApplicationException(nameof(entities));
-            }
-
-            return entities;
-        }
-
-        protected override IEnumerable<TServiceModel> MapDbModelToServiceModel(params TDbModel[] entities)
+        protected override Expression<Func<TServiceModel, IEnumerable<TDbModel>>> MapServiceModelToDbModel => m => new TDbModel[]
         {
-            if (entities == null)
-            {
-                throw new ArgumentNullException(nameof(entities));
-            }
-
-            var models = new HashSet<TServiceModel>(entities.Select(e => this.mapper.Map<TServiceModel>(e)));
-            if (models == null)
-            {
-                throw new ApplicationException(nameof(models));
-            }
-
-            return models;
-        }
+            this.mapper.Map<TDbModel>(m)
+        };
     }
 }

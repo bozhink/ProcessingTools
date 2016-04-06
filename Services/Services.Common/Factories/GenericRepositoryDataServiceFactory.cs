@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -27,9 +28,20 @@
             this.repository = repository;
         }
 
+        protected abstract Expression<Func<TServiceModel, IEnumerable<TDbModel>>> MapServiceModelToDbModel { get; }
+
+        protected abstract Expression<Func<TDbModel, IEnumerable<TServiceModel>>> MapDbModelToServiceModel { get; }
+
         public virtual async Task<int> Add(params TServiceModel[] models)
         {
-            var entities = this.MapServiceModelToDbModel(models);
+            if (models == null)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = models.AsQueryable()
+                .SelectMany(this.MapServiceModelToDbModel)
+                .ToList();
 
             foreach (var entity in entities)
             {
@@ -42,7 +54,7 @@
         public virtual async Task<IQueryable<TServiceModel>> All()
         {
             return (await this.repository.All())
-                .SelectMany(e => this.MapDbModelToServiceModel(e));
+                .SelectMany(this.MapDbModelToServiceModel);
         }
 
         public virtual async Task<int> Delete(params object[] ids)
@@ -62,7 +74,14 @@
 
         public virtual async Task<int> Delete(params TServiceModel[] models)
         {
-            var entities = this.MapServiceModelToDbModel(models);
+            if (models == null)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = models.AsQueryable()
+                .SelectMany(this.MapServiceModelToDbModel)
+                .ToList();
 
             foreach (var entity in entities)
             {
@@ -79,11 +98,13 @@
                 throw new ArgumentNullException(nameof(ids));
             }
 
+            var mapping = this.MapDbModelToServiceModel.Compile();
+
             var result = new ConcurrentQueue<TServiceModel>();
             foreach (var id in ids)
             {
                 var entity = await this.repository.Get(id);
-                result.Enqueue(this.MapDbModelToServiceModel(entity).FirstOrDefault());
+                result.Enqueue(mapping.Invoke(entity).FirstOrDefault());
             }
 
             return new HashSet<TServiceModel>(result).AsQueryable();
@@ -102,13 +123,19 @@
             }
 
             return (await this.repository.All(skip, take))
-                .SelectMany(e => this.MapDbModelToServiceModel(e));
+                .SelectMany(this.MapDbModelToServiceModel);
         }
 
         public virtual async Task<int> Update(params TServiceModel[] models)
         {
-            var entities = this.MapServiceModelToDbModel(models);
+            if (models == null)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
 
+            var entities = models.AsQueryable()
+                .SelectMany(this.MapServiceModelToDbModel)
+                .ToList();
             foreach (var entity in entities)
             {
                 await this.repository.Update(entity);
@@ -130,9 +157,5 @@
                 this.repository.TryDispose();
             }
         }
-
-        protected abstract IEnumerable<TDbModel> MapServiceModelToDbModel(params TServiceModel[] models);
-
-        protected abstract IEnumerable<TServiceModel> MapDbModelToServiceModel(params TDbModel[] entities);
     }
 }

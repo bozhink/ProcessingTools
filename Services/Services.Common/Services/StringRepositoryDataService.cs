@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     using Contracts;
     using Factories;
@@ -15,24 +16,14 @@
         {
         }
 
-        protected override IEnumerable<string> MapDbModelToServiceModel(params string[] entities)
+        protected override Expression<Func<string, IEnumerable<string>>> MapDbModelToServiceModel => e => new string[] 
         {
-            if (entities == null)
-            {
-                throw new ArgumentNullException(nameof(entities));
-            }
+            e
+        };
 
-            return new HashSet<string>(entities);
-        }
-
-        protected override IEnumerable<string> MapServiceModelToDbModel(params string[] models)
+        protected override Expression<Func<string, IEnumerable<string>>> MapServiceModelToDbModel => e => new string[]
         {
-            if (models == null)
-            {
-                throw new ArgumentNullException(nameof(models));
-            }
-
-            return new HashSet<string>(models);
-        }
+            e
+        };
     }
 }
