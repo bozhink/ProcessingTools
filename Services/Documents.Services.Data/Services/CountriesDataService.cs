@@ -29,10 +29,6 @@
             {
                 var entity = new Country
                 {
-                    CreatedByUserId = model.CreatedByUserId,
-                    DateModified = model.DateModified,
-                    DateCreated = model.DateCreated,
-                    ModifiedByUserId = model.ModifiedByUserId,
                     Name = model.Name
                 };
 
@@ -55,11 +51,7 @@
                 var model = new CountryServiceModel
                 {
                     Id = entity.Id,
-                    Name = entity.Name,
-                    CreatedByUserId = entity.CreatedByUserId,
-                    ModifiedByUserId = entity.ModifiedByUserId,
-                    DateCreated = entity.DateCreated,
-                    DateModified = entity.DateModified
+                    Name = entity.Name
                 };
 
                 result.Add(model);

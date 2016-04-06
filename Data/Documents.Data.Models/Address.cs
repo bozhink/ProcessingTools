@@ -29,10 +29,6 @@
 
         public virtual City City { get; set; }
 
-        public virtual int CountryId { get; set; }
-
-        public virtual Country Country { get; set; }
-
         public virtual ICollection<Publisher> Publishers
         {
             get
