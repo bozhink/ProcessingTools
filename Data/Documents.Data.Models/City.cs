@@ -4,39 +4,27 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Models;
     using Constants;
 
-    public class City : DocumentsAbstractEntity
+    public class City
     {
-        private ICollection<Country> countries;
         private ICollection<Address> addresses;
 
         public City()
         {
-            this.countries = new HashSet<Country>();
             this.addresses = new HashSet<Address>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        [Index(IsUnique = true)]
+        [Index(IsUnique = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfCityName)]
         public string Name { get; set; }
 
-        public virtual ICollection<Country> Countries
-        {
-            get
-            {
-                return this.countries;
-            }
+        public virtual int CountryId { get; set; }
 
-            set
-            {
-                this.countries = value;
-            }
-        }
+        public virtual Country Country { get; set; }
 
         public virtual ICollection<Address> Addresses
         {
