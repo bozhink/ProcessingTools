@@ -53,7 +53,7 @@
 
             if (items.Length < 1)
             {
-                throw new ApplicationException("Number of items to validate should be greater tham zero.");
+                throw new ApplicationException("Number of items to validate should be greater than zero.");
             }
 
             var result = new ConcurrentQueue<IValidationServiceModel<TValidatedObject>>();
