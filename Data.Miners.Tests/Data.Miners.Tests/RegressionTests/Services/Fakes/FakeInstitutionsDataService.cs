@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Moq;
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models;
 
@@ -18,11 +17,11 @@
             this.Items = new HashSet<InstitutionServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<InstitutionServiceModel>();
-                mockProduct.Setup(m => m.Id).Returns(i);
-                mockProduct.Setup(m => m.Name).Returns($"Institution {i}");
-
-                this.Items.Add(mockProduct.Object);
+                this.Items.Add(new InstitutionServiceModel
+                {
+                    Id = i,
+                    Name = $"Institution {i}"
+                });
             }
         }
 
