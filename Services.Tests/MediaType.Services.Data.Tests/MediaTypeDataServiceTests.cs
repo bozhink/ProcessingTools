@@ -11,12 +11,11 @@
     using ProcessingTools.MediaType.Data.Models;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
 
-    using Services;
-
     [TestClass]
     public class MediaTypeDataServiceTests
     {
         [TestMethod]
+        [Timeout(5000)]
         public void MediaTypeDataService_WithDefaultConstructor_ShouldReturnValidObject()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
@@ -25,44 +24,49 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MediaTypeDataService_WithNullFileExtension_ShouldThowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(null);
+            var type = service.GetMediaType(null).Result;
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MediaTypeDataService_WithEmptyFileExtension_ShouldThowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(@"
-                                            ");
+                                            ").Result;
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MediaTypeDataService_WithDotFileExtension_ShouldThowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
-            var type = service.GetMediaType(".");
+            var type = service.GetMediaType(".").Result;
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(@"
-                        .   .. ");
+                        .   .. ").Result;
         }
 
         [TestMethod]
+        [Timeout(5000)]
         public void MediaTypeDataService_WithKnownFileExtension_ShouldReturnValidMediaType()
         {
             const string FileExtension = "txt";
@@ -113,6 +117,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         public void MediaTypeDataService_WithDotKnownFileExtension_ShouldReturnValidMediaType()
         {
             const string FileExtension = ".txt";
@@ -163,6 +168,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         public void MediaTypeDataService_WithEmptyDatabase_ShouldReturnUnknownMediaType()
         {
             const string FileExtension = "txt";
@@ -183,6 +189,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         public void MediaTypeDataService_WithUnknownFileExtension_ShouldReturnUnknownMediaType()
         {
             const string FileExtension = "unknown-file-extension";
