@@ -163,7 +163,7 @@
             }
         }
 
-        public async Task<string> PostAsync(string url, Dictionary<string, string> values, Encoding encoding)
+        public async Task<string> PostAsync(string url, IDictionary<string, string> values, Encoding encoding)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
