@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IntegrationTests\MaterialCitationsParserIntegrationTests.cs" />
     <Compile Include="UnitTests\MaterialCitationsParserUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

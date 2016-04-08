@@ -40,16 +40,16 @@
             connector.BaseAddress = BaseAddress;
         }
 
-        public async Task<string> Invoke(string citations)
+        public async Task<string> Invoke(string content)
         {
-            if (string.IsNullOrWhiteSpace(citations))
+            if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException(nameof(citations));
+                throw new ArgumentNullException(nameof(content));
             }
 
             var values = new Dictionary<string, string>
             {
-                { "dataField", citations },
+                { "dataField", content },
                 { "dataUrl", string.Empty },
                 { "functionName", "XmlExample.webService" },
                 { "dataFormat", "XML" },

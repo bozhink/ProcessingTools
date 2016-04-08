@@ -4,6 +4,6 @@
 
     public interface IMaterialCitationsParser
     {
-        Task<string> Invoke(string citations);
+        Task<string> Invoke(string content);
     }
 }
