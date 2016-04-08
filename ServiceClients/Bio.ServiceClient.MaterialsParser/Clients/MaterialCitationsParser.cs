@@ -7,28 +7,37 @@
 
     using Contracts;
 
-    using ProcessingTools.Infrastructure.Net;
+    using ProcessingTools.Infrastructure.Net.Contracts;
 
     public class MaterialCitationsParser : IMaterialCitationsParser
     {
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
         private const string ParserUrl = "/GgWS/wss/test";
 
+        private readonly IConnector connector;
         private readonly Encoding encoding;
 
-        public MaterialCitationsParser()
-            : this(Encoding.UTF8)
+        public MaterialCitationsParser(IConnector connector)
+            : this(connector, Encoding.UTF8)
         {
         }
 
-        public MaterialCitationsParser(Encoding encoding)
+        public MaterialCitationsParser(IConnector connector, Encoding encoding)
         {
+            if (connector == null)
+            {
+                throw new ArgumentNullException(nameof(connector));
+            }
+
             if (encoding == null)
             {
                 throw new ArgumentNullException(nameof(encoding));
             }
 
             this.encoding = encoding;
+
+            this.connector = connector;
+            connector.BaseAddress = BaseAddress;
         }
 
         public async Task<string> Invoke(string citations)
@@ -47,8 +56,7 @@
                 { "INTERACTIVE", "no" }
             };
 
-            var connector = new Connector(BaseAddress);
-            var response = await connector.Post(ParserUrl, values, this.encoding);
+            var response = await this.connector.Post(ParserUrl, values, this.encoding);
 
             return response;
         }

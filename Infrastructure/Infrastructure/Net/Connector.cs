@@ -9,7 +9,9 @@
     using System.Threading.Tasks;
     using System.Xml.Serialization;
 
-    public class Connector
+    using Contracts;
+
+    public class Connector : IConnector
     {
         public const string CorsHeaderName = "Access-Control-Allow-Origin";
         public const string CorsHeaderDefaultValue = "*";

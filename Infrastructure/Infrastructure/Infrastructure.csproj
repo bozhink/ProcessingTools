@@ -61,6 +61,7 @@
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
+    <Compile Include="Net\Contracts\IConnector.cs" />
     <Compile Include="Net\Url.cs" />
     <Compile Include="Net\Connector.cs" />
     <Compile Include="Serialization\ColumnIndexToPropertyNameMapping.cs" />
@@ -95,9 +96,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Net\Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
