@@ -16,7 +16,7 @@
             try
             {
                 var connector = new Connector(BaseAddress);
-                var result = await connector.GetAndDeserializeDataContractJsonAsync<GbifApiResponseModel>(url);
+                var result = await connector.GetAndDeserializeDataContractJson<GbifApiResponseModel>(url);
                 return result;
             }
             catch

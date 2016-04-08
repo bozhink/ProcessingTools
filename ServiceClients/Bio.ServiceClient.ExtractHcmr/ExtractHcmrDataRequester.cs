@@ -36,7 +36,7 @@
             try
             {
                 var connector = new Connector(BaseAddress);
-                var result = await connector.PostAndDeserializeXmlAsync<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, this.defaultEncoding);
+                var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, this.defaultEncoding);
                 return result;
             }
             catch

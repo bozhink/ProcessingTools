@@ -52,7 +52,7 @@
 
         public Uri BaseAddressUri { get; private set; }
 
-        public async Task<T> GetAndDeserializeXmlAsync<T>(string url)
+        public async Task<T> GetAndDeserializeXml<T>(string url)
             where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -79,7 +79,7 @@
             return result;
         }
 
-        public async Task<T> GetAndDeserializeDataContractJsonAsync<T>(string url)
+        public async Task<T> GetAndDeserializeDataContractJson<T>(string url)
             where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -106,7 +106,7 @@
             return result;
         }
 
-        public async Task<string> GetAsync(string url, string acceptContentType)
+        public async Task<string> Get(string url, string acceptContentType)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -131,7 +131,7 @@
             }
         }
 
-        public async Task<string> PostAsync(string url, string content, string contentType, Encoding encoding)
+        public async Task<string> Post(string url, string content, string contentType, Encoding encoding)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -163,7 +163,7 @@
             }
         }
 
-        public async Task<string> PostAsync(string url, IDictionary<string, string> values, Encoding encoding)
+        public async Task<string> Post(string url, IDictionary<string, string> values, Encoding encoding)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -190,7 +190,7 @@
             }
         }
 
-        public async Task<T> PostAndDeserializeXmlAsync<T>(string url, Dictionary<string, string> values, Encoding encoding)
+        public async Task<T> PostAndDeserializeXml<T>(string url, Dictionary<string, string> values, Encoding encoding)
         {
             if (string.IsNullOrWhiteSpace(url))
             {

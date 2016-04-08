@@ -29,7 +29,7 @@
             try
             {
                 var connector = new Connector(PaleobiologyDatabaseBaseAddress);
-                string responseString = await connector.GetAsync(url, Connector.XmlContentType);
+                string responseString = await connector.Get(url, Connector.XmlContentType);
 
                 string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                 string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -71,7 +71,7 @@
             try
             {
                 var connector = new Connector(PaleobiologyDatabaseBaseAddress);
-                var result = await connector.GetAndDeserializeDataContractJsonAsync<PbdbAllParents>(url);
+                var result = await connector.GetAndDeserializeDataContractJson<PbdbAllParents>(url);
                 return result;
             }
             catch

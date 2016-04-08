@@ -33,7 +33,7 @@
         public async Task<XmlDocument> SearchAphia(string scientificName)
         {
             var connector = new Connector(BaseAddress);
-            var response = await connector.PostAsync(
+            var response = await connector.Post(
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
                 Connector.XmlContentType,

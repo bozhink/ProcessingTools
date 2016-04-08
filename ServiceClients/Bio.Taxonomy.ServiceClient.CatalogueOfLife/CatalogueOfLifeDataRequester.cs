@@ -28,7 +28,7 @@
             try
             {
                 var connector = new Connector(CatalogueOfLifeBaseAddress);
-                string response = await connector.GetAsync(url, Connector.XmlContentType);
+                string response = await connector.Get(url, Connector.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch
@@ -51,7 +51,7 @@
             try
             {
                 var connector = new Connector(CatalogueOfLifeBaseAddress);
-                var result = await connector.GetAndDeserializeXmlAsync<CatalogueOfLifeApiServiceResponse>(url);
+                var result = await connector.GetAndDeserializeXml<CatalogueOfLifeApiServiceResponse>(url);
                 return result;
             }
             catch
