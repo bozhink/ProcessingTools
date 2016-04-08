@@ -42,7 +42,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("BaseAddress");
+                    throw new ArgumentNullException(nameof(BaseAddress));
                 }
 
                 this.baseAddress = value;
@@ -57,7 +57,7 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             T result = null;
@@ -84,7 +84,7 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             T result = null;
@@ -110,7 +110,7 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             using (var client = new HttpClient())
@@ -135,12 +135,12 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             using (var client = new HttpClient())
@@ -167,12 +167,12 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             using (var client = new HttpClient())
@@ -194,12 +194,12 @@
         {
             if (string.IsNullOrWhiteSpace(url))
             {
-                throw new ArgumentNullException("url");
+                throw new ArgumentNullException(nameof(url));
             }
 
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             using (var client = new HttpClient())
