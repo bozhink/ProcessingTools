@@ -12,7 +12,7 @@
     public class MaterialCitationsParser : IMaterialCitationsParser
     {
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
-        private const string ParserUrl = "/GgWS/wss/test";
+        private const string ParserUrl = "/GgWS/wss/invokeFunction";
 
         private readonly IConnector connector;
         private readonly Encoding encoding;
@@ -49,8 +49,7 @@
 
             var values = new Dictionary<string, string>
             {
-                { "dataField", content },
-                { "dataUrl", string.Empty },
+                { "data", content },
                 { "functionName", "XmlExample.webService" },
                 { "dataFormat", "XML" },
                 { "INTERACTIVE", "no" }

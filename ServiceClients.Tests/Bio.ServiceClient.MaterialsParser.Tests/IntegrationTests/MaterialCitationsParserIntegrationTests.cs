@@ -1,6 +1,9 @@
 ﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
 {
     using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using ProcessingTools.Infrastructure.Net;
@@ -8,6 +11,8 @@
     [TestClass]
     public class MaterialCitationsParserIntegrationTests
     {
+        private Regex matchWhitespace = new Regex(@"\s+");
+
         [TestMethod]
         [Timeout(5000)]
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
@@ -19,7 +24,29 @@
 
             string result = parser.Invoke(ZeroTestContent).Result;
 
-            Assert.AreEqual(ZeroTestContent, result, "ZeroTestContent should be unchanged.");
+            var requestXml = new XmlDocument
+            {
+                PreserveWhitespace = false
+            };
+
+            requestXml.LoadXml(ZeroTestContent);
+
+            var responseXml = new XmlDocument
+            {
+                PreserveWhitespace = false
+            };
+
+            responseXml.LoadXml(result);
+
+            Assert.AreEqual(
+                requestXml.DocumentElement.LocalName,
+                responseXml.DocumentElement.LocalName,
+                "Local names of root elements should match.");
+
+            Assert.AreEqual(
+                this.matchWhitespace.Replace(requestXml.DocumentElement.InnerText, " ").Trim(),
+                this.matchWhitespace.Replace(responseXml.DocumentElement.InnerText, " ").Trim(),
+                "ZeroTestContent should be unchanged.");
         }
     }
 }
