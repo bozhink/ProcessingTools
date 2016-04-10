@@ -146,6 +146,9 @@
     <Content Include="XSL\format.to-valid-nlm.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\geo\geo-json.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XSL\get-taxa.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
