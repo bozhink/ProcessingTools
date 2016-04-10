@@ -12,10 +12,6 @@
         {
         }
 
-        public IDbSet<Country> Countries { get; set; }
-
-        public IDbSet<City> Cities { get; set; }
-
         public IDbSet<Address> Addresses { get; set; }
 
         public IDbSet<Publisher> Publishers { get; set; }

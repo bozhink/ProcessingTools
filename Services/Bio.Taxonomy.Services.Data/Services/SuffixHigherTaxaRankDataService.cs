@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
@@ -34,25 +35,28 @@
             };
         }
 
-        public IQueryable<ITaxonClassification> Resolve(params string[] scientificNames)
+        public Task<IQueryable<ITaxonClassification>> Resolve(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonClassification>();
-
-            foreach (var scientificName in scientificNames)
+            return Task.Run(() =>
             {
-                var ranks = this.rankPerSuffix.Keys
-                    .Where(s => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{s})\\Z"))
-                    .Select(k => this.rankPerSuffix[k])
-                    .ToList();
+                var result = new HashSet<ITaxonClassification>();
 
-                ranks.ForEach(r => result.Add(new TaxonClassificationServiceModel
+                foreach (var scientificName in scientificNames)
                 {
-                    ScientificName = scientificName,
-                    Rank = r
-                }));
-            }
+                    var ranks = this.rankPerSuffix.Keys
+                        .Where(s => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{s})\\Z"))
+                        .Select(k => this.rankPerSuffix[k])
+                        .ToList();
 
-            return result.AsQueryable();
+                    ranks.ForEach(r => result.Add(new TaxonClassificationServiceModel
+                    {
+                        ScientificName = scientificName,
+                        Rank = r
+                    }));
+                }
+
+                return result.AsQueryable();
+            });
         }
     }
 }

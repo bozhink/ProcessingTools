@@ -19,52 +19,49 @@
 
         private ILogger logger;
 
-        private ITaxaDataService<ITaxonClassification> service;
+        private ITaxaInformationResolverDataService<ITaxonClassification> service;
 
-        public TreatmentMetaParser(ITaxaDataService<ITaxonClassification> service, string xml, ILogger logger)
+        public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, string xml, ILogger logger)
             : base(xml)
         {
             this.logger = logger;
             this.service = service;
         }
 
-        public Task Parse()
+        public async Task Parse()
         {
-            return Task.Run(() =>
+            var genusList = this.XmlDocument
+                .GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
+
+            var response = await this.service.Resolve(genusList.ToArray());
+
+            foreach (string genus in genusList)
             {
-                var genusList = this.XmlDocument
-                    .GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
+                this.logger?.Log("\n{0}\n", genus);
 
-                var response = this.service.Resolve(genusList.ToArray());
+                var classification = response.Where(r => r.Genus == genus);
 
-                foreach (string genus in genusList)
-                {
-                    this.logger?.Log("\n{0}\n", genus);
+                this.ReplaceTreatmentMetaClassificationItem(
+                    classification
+                        .Select(c => c.Kingdom)
+                        .ToList(),
+                    genus,
+                    TaxonRanksType.Kingdom);
 
-                    var classification = response.Where(r => r.Genus == genus);
+                this.ReplaceTreatmentMetaClassificationItem(
+                    classification
+                        .Select(c => c.Order)
+                        .ToList(),
+                    genus,
+                    TaxonRanksType.Order);
 
-                    this.ReplaceTreatmentMetaClassificationItem(
-                        classification
-                            .Select(c => c.Kingdom)
-                            .ToList(),
-                        genus,
-                        TaxonRanksType.Kingdom);
-
-                    this.ReplaceTreatmentMetaClassificationItem(
-                        classification
-                            .Select(c => c.Order)
-                            .ToList(),
-                        genus,
-                        TaxonRanksType.Order);
-
-                    this.ReplaceTreatmentMetaClassificationItem(
-                        classification
-                            .Select(c => c.Family)
-                            .ToList(),
-                        genus,
-                        TaxonRanksType.Family);
-                }
-            });
+                this.ReplaceTreatmentMetaClassificationItem(
+                    classification
+                        .Select(c => c.Family)
+                        .ToList(),
+                    genus,
+                    TaxonRanksType.Family);
+            }
         }
 
         private void ReplaceTreatmentMetaClassificationItem(
@@ -82,7 +79,7 @@
         {
             if (matchingHigherTaxa == null)
             {
-                throw new ArgumentNullException("matchingHigherTaxa");
+                throw new ArgumentNullException(nameof(matchingHigherTaxa));
             }
 
             int higherTaxaCount = matchingHigherTaxa.Count();

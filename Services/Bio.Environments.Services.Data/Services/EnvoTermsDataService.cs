@@ -2,10 +2,10 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Models;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
@@ -26,9 +26,9 @@
             this.repository = repository;
         }
 
-        public IQueryable<IEnvoTermServiceModel> All()
+        public async Task<IQueryable<EnvoTermServiceModel>> All()
         {
-            var result = this.repository.All()
+            var result = (await this.repository.All())
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Select(n => new EnvoTermServiceModel
@@ -41,7 +41,7 @@
             return result;
         }
 
-        public IQueryable<IEnvoTermServiceModel> Get(int skip, int take)
+        public async Task<IQueryable<EnvoTermServiceModel>> Get(int skip, int take)
         {
             if (skip < 0)
             {
@@ -53,7 +53,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = this.repository.All()
+            var result = (await this.repository.All())
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Skip(skip)

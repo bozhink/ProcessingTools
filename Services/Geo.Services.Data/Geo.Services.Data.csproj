@@ -49,12 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\ICountriesDataService.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataService.cs" />
     <Compile Include="Contracts\IGeoNamesDataService.cs" />
+    <Compile Include="Models\CountryServiceModel.cs" />
+    <Compile Include="Services\CountriesDataService.cs" />
     <Compile Include="Services\GeoEpithetsDataService.cs" />
     <Compile Include="Services\GeoNamesDataService.cs" />
-    <Compile Include="Models\Contracts\IGeoEpithetServiceModel.cs" />
-    <Compile Include="Models\Contracts\IGeoNameServiceModel.cs" />
     <Compile Include="Models\GeoEpithetServiceModel.cs" />
     <Compile Include="Models\GeoNameServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

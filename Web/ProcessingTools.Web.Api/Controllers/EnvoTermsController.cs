@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
+    using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Http;
 
     using Models.EnvoTerms;
@@ -14,10 +16,15 @@
 
         public EnvoTermsController(IEnvoTermsDataService service)
         {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
             this.service = service;
         }
 
-        public IHttpActionResult GetEnvoTerms(string skip = "0", string take = DefaultPagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetEnvoTerms(string skip = "0", string take = DefaultPagingConstants.DefaultTakeString)
         {
             int skipItemsCount;
             if (!int.TryParse(skip, out skipItemsCount))
@@ -31,7 +38,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = this.service?.Get(skipItemsCount, takeItemsCount)
+            var result = (await this.service.Get(skipItemsCount, takeItemsCount))
                 .Select(AutoMapperConfig.Mapper.Map<EnvoTermResponseModel>)
                 .ToList();
 

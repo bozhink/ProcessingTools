@@ -47,8 +47,7 @@
     <Compile Include="Affiliation.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="Author.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
+    <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Institution.cs" />
     <Compile Include="Journal.cs" />

@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Contracts.Mapping;
-    using Services.Data.Models.Contracts;
+    using Mappings.Contracts;
+    using Services.Data.Models;
 
-    public class ProductRequestModel : IMapFrom<IProductServiceModel>
+    public class ProductRequestModel : IMapFrom<ProductServiceModel>
     {
         public int? Id { get; set; }
 

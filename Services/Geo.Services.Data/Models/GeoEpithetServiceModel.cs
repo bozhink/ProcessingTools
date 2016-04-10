@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Models
 {
-    using Contracts;
+    using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class GeoEpithetServiceModel : IGeoEpithetServiceModel
+    public class GeoEpithetServiceModel : INamedDataServiceModel
     {
         public int Id { get; set; }
 

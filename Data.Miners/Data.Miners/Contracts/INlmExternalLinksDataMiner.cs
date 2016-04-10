@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Data.Miners.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Data.Miners.Common.Contracts;
 
-    public interface INlmExternalLinksDataMiner : IDataMiner<INlmExternalLink>
+    public interface INlmExternalLinksDataMiner : IDataMiner<NlmExternalLink>
     {
     }
 }

@@ -4,12 +4,15 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
     using Contracts;
     using Models;
 
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Configurator;
 
     public class TaxaRepository : ITaxaRepository
@@ -24,6 +27,8 @@
         private const string TaxonRankNodeName = "value";
 
         private DateTime? lastUpdated;
+
+        private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         public TaxaRepository()
             : this(ConfigBuilder.Create())
@@ -52,6 +57,11 @@
 
         public Task Add(Taxon entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() => this.AddTaxon(entity, true));
         }
 
@@ -66,22 +76,83 @@
                     {
                         Name = t.Key,
                         Ranks = t.Value,
-                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(t.Key, false)
+                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(
+                            t.Key,
+                            !this.matchNonWhiteListedHigherTaxon.IsMatch(t.Key))
                     })
                     .AsQueryable();
             });
         }
 
-        public async Task<IQueryable<Taxon>> All(int skip, int take)
+        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter)
         {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            return (await this.All()).Where(filter);
+        }
+
+        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, object>> sort, int skip, int take)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
             return (await this.All())
-                .OrderBy(t => t.Name)
+                .OrderBy(sort)
+                .Skip(skip)
+                .Take(take);
+        }
+
+        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter, Expression<Func<Taxon, object>> sort, int skip, int take)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            return (await this.All())
+                .Where(filter)
+                .OrderBy(sort)
                 .Skip(skip)
                 .Take(take);
         }
 
         public Task Delete(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return Task.Run(() =>
             {
                 this.ReadTaxaFromFile(false);
@@ -92,11 +163,21 @@
 
         public Task Delete(Taxon entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return this.Delete(entity.Name);
         }
 
         public async Task<Taxon> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return (await this.All())
                 .FirstOrDefault(t => t.Name == id.ToString());
         }
@@ -108,6 +189,11 @@
 
         public Task Update(Taxon entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() =>
             {
                 this.ReadTaxaFromFile(false);
@@ -176,16 +262,8 @@
                 {
                     Name = name,
                     Ranks = ranks,
-                    IsWhiteListed = false
+                    IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(name)
                 };
-
-                string whiteListedAttribute = taxon.Attribute(WhiteListedAttributeName)?.Value;
-
-                bool whiteListed;
-                if (bool.TryParse(whiteListedAttribute, out whiteListed))
-                {
-                    taxonToAdd.IsWhiteListed = whiteListed;
-                }
 
                 this.AddTaxon(taxonToAdd, update);
             }

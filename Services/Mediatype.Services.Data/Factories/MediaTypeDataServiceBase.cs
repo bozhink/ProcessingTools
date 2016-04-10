@@ -3,17 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     public abstract class MediaTypeDataServiceBase : IMediaTypeDataService
     {
         protected const string DefaultMediaType = "unknown/unknown";
         protected const string DefaultMediaTypeOnException = "application/octet-stream";
 
-        public abstract IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension);
+        public abstract Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension);
 
         protected string GetValidFileExtension(string fileExtension)
         {
@@ -26,9 +26,9 @@
             return extension;
         }
 
-        protected IQueryable<IMediaTypeServiceModel> GetSingleStringMediaTypeResultAsQueryable(string extension, string mediaType)
+        protected IQueryable<MediaTypeServiceModel> GetSingleStringMediaTypeResultAsQueryable(string extension, string mediaType)
         {
-            var result = new Queue<IMediaTypeServiceModel>();
+            var result = new Queue<MediaTypeServiceModel>();
 
             int slashIndex = mediaType.IndexOf('/');
             result.Enqueue(new MediaTypeServiceModel

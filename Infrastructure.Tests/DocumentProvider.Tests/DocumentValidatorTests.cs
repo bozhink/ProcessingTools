@@ -6,6 +6,7 @@
     public class DocumentValidatorTests
     {
         [TestMethod]
+        [Ignore]
         public void DocumentValidator_ValidateSampleXml_ShouldWork()
         {
             var document = new TaxPubDocument();

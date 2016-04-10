@@ -1,50 +1,38 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Xml.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
-    using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : TaxaDataServiceFactory<ITaxonRank>, ILocalDbTaxaRankDataService
+    public class LocalDbTaxaRankDataService : ILocalDbTaxaRankDataService
     {
-        private XElement rankList;
+        private readonly ITaxonRankDataService service;
 
-        public LocalDbTaxaRankDataService(string localDbFileName)
+        public LocalDbTaxaRankDataService(ITaxonRankDataService service)
         {
-            if (string.IsNullOrWhiteSpace(localDbFileName))
+            if (service == null)
             {
-                throw new ArgumentNullException(nameof(localDbFileName));
+                throw new ArgumentNullException(nameof(service));
             }
 
-            this.rankList = XElement.Load(localDbFileName);
+            this.service = service;
         }
 
-        protected override void Delay()
+        public async Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
-        }
-
-        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonRank> taxaRanks)
-        {
-            Regex searchTaxaName = new Regex($"(?i)\\b{scientificName}\\b");
-            var ranks = this.rankList.Elements()
-                .Where(t => searchTaxaName.IsMatch(t.Element("part").Element("value").Value))
-                .Select(t => t.Element("part").Element("rank").Element("value").Value);
-
-            foreach (var rank in ranks)
+            if (scientificNames == null || scientificNames.Length < 1)
             {
-                taxaRanks.Enqueue(new TaxonRankServiceModel
-                {
-                    ScientificName = scientificName,
-                    Rank = rank
-                });
+                throw new ArgumentNullException(nameof(scientificNames));
             }
+
+            return (await this.service.All())
+                .Where(t => scientificNames.Contains(
+                    t.ScientificName,
+                    StringComparer.InvariantCultureIgnoreCase));
         }
     }
 }

@@ -8,9 +8,8 @@
 
     using Contracts;
     using Models;
-    using Models.Contracts;
-    using Nlm.Publishing.Types;
     using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Nlm.Publishing.Types;
 
     public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner
     {
@@ -35,7 +34,7 @@
         {
         }
 
-        public async Task<IQueryable<INlmExternalLink>> Mine(string content)
+        public async Task<IQueryable<NlmExternalLink>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -50,14 +49,14 @@
             var pmidItems = await internalMiner.MinePmid();
             var pmcidItems = await internalMiner.MinePmcid();
 
-            var items = new List<INlmExternalLink>();
+            var items = new List<NlmExternalLink>();
             items.AddRange(pmcidItems);
             items.AddRange(pmidItems);
             items.AddRange(ftpItems);
             items.AddRange(uriItems);
             items.AddRange(doiItems);
 
-            var result = new HashSet<INlmExternalLink>(items);
+            var result = new HashSet<NlmExternalLink>(items);
             return result.AsQueryable();
         }
 
@@ -70,50 +69,50 @@
                 this.content = content;
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> MineUri()
+            public async Task<IEnumerable<NlmExternalLink>> MineUri()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(HttpPattern));
-                return matches.Select(item => new NlmExternalLinkResponseModel
+                return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
                     Type = ExternalLinkType.Uri
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> MineFtp()
+            public async Task<IEnumerable<NlmExternalLink>> MineFtp()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(FtpPattern));
-                return matches.Select(item => new NlmExternalLinkResponseModel
+                return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
                     Type = ExternalLinkType.Ftp
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> MineDoi()
+            public async Task<IEnumerable<NlmExternalLink>> MineDoi()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(DoiPattern));
-                return matches.Select(item => new NlmExternalLinkResponseModel
+                return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
                     Type = ExternalLinkType.Doi
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> MinePmid()
+            public async Task<IEnumerable<NlmExternalLink>> MinePmid()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(PmidPattern));
-                return matches.Select(item => new NlmExternalLinkResponseModel
+                return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
                     Type = ExternalLinkType.Pmid
                 });
             }
 
-            public async Task<IEnumerable<INlmExternalLink>> MinePmcid()
+            public async Task<IEnumerable<NlmExternalLink>> MinePmcid()
             {
                 var matches = await this.content.GetMatchesAsync(new Regex(PmcidPattern));
-                return matches.Select(item => new NlmExternalLinkResponseModel
+                return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
                     Type = ExternalLinkType.Pmcid

@@ -1,10 +1,11 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Common.Constants;
     using Common.Models;
+    using Constants;
 
     public class Address : DocumentsAbstractEntity
     {
@@ -14,24 +15,19 @@
 
         public Address()
         {
+            this.Id = Guid.NewGuid();
             this.publishers = new HashSet<Publisher>();
             this.institutions = new HashSet<Institution>();
             this.affiliations = new HashSet<Affiliation>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]
         public string AddressString { get; set; }
 
-        public virtual int CityId { get; set; }
-
-        public virtual City City { get; set; }
-
-        public virtual int CountryId { get; set; }
-
-        public virtual Country Country { get; set; }
+        public int? CityId { get; set; }
 
         public virtual ICollection<Publisher> Publishers
         {

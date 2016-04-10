@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Models
 {
-    using Contracts;
+    using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class TypeStatusServiceModel : ITypeStatusServiceModel
+    public class TypeStatusServiceModel : INamedDataServiceModel
     {
         public int Id { get; set; }
 

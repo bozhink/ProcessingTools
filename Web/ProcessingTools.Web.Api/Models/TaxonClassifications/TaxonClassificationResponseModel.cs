@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.TaxonClassifications
 {
     using Bio.Taxonomy.Contracts;
-    using Contracts.Mapping;
+    using Mappings.Contracts;
 
     public class TaxonClassificationResponseModel : IMapFrom<ITaxonClassification>
     {

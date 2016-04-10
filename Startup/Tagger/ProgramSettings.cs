@@ -3,15 +3,10 @@
     using System;
     using System.Collections.Generic;
 
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Configurator;
 
     public class ProgramSettings
     {
-        private Lazy<IStringTaxonomicListDataService> blackList;
-        private Lazy<IStringTaxonomicListDataService> whiteList;
-
         private SchemaType articleSchemaType;
         private bool articleSchemaTypeStyleIsLockedForModification;
 
@@ -66,9 +61,6 @@
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
-
-            this.blackList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
-            this.whiteList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
         }
 
         public SchemaType ArticleSchemaType
@@ -89,10 +81,6 @@
                 this.articleSchemaTypeStyleIsLockedForModification = true;
             }
         }
-
-        public IStringTaxonomicListDataService BlackList => this.blackList.Value;
-
-        public IStringTaxonomicListDataService WhiteList => this.whiteList.Value;
 
         public Config Config { get; set; }
 

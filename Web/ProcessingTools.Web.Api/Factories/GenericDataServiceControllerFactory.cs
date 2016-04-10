@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Http;
 
     using AutoMapper;
@@ -16,13 +17,13 @@
     {
         private readonly IMapper mapper;
 
-        private ICrudDataService<TServiceModel> service;
+        private IDataService<TServiceModel> service;
 
-        public GenericDataServiceControllerFactory(ICrudDataService<TServiceModel> service)
+        public GenericDataServiceControllerFactory(IDataService<TServiceModel> service)
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.service = service;
@@ -36,9 +37,9 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public IHttpActionResult GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            var result = this.service.All()
+            var result = (await this.service.All())
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
@@ -50,7 +51,7 @@
             return this.Ok(result);
         }
 
-        public IHttpActionResult GetById(string id)
+        public async Task<IHttpActionResult> GetById(string id)
         {
             int parsedId;
             if (!int.TryParse(id, out parsedId))
@@ -58,7 +59,7 @@
                 return this.BadRequest("Invalid id.");
             }
 
-            var result = this.mapper.Map<TResponseModel>(this.service.Get(parsedId));
+            var result = this.mapper.Map<TResponseModel>(await this.service.Get(parsedId));
 
             if (result == null)
             {
@@ -68,7 +69,7 @@
             return this.Ok(result);
         }
 
-        public IHttpActionResult GetPaged(string skip, string take = DefaultPagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetPaged(string skip, string take = DefaultPagingConstants.DefaultTakeString)
         {
             int skipItemsCount;
             if (!int.TryParse(skip, out skipItemsCount))
@@ -82,7 +83,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = this.service.Get(skipItemsCount, takeItemsCount)
+            var result = (await this.service.Get(skipItemsCount, takeItemsCount))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
@@ -99,12 +100,12 @@
         /// </summary>
         /// <param name="entity">Entity to be added.</param>
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
-        public IHttpActionResult Post(TRequestModel entity)
+        public async Task<IHttpActionResult> Post(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                this.service.Add(item);
+                await this.service.Add(item);
             }
             catch
             {
@@ -119,12 +120,12 @@
         /// </summary>
         /// <param name="entity">Entity to be updated.</param>
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
-        public IHttpActionResult Put(TRequestModel entity)
+        public async Task<IHttpActionResult> Put(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                this.service.Update(item);
+                await this.service.Update(item);
             }
             catch
             {
@@ -139,12 +140,12 @@
         /// </summary>
         /// <param name="entity">Entity to be deleted.</param>
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
-        public IHttpActionResult Delete(TRequestModel entity)
+        public async Task<IHttpActionResult> Delete(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                this.service.Delete(item);
+                await this.service.Delete(item);
             }
             catch
             {
@@ -159,7 +160,7 @@
         /// </summary>
         /// <param name="id">Id of the entity to be deleted.</param>
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
-        public IHttpActionResult Delete(string id)
+        public async Task<IHttpActionResult> Delete(string id)
         {
             int parsedId;
             if (!int.TryParse(id, out parsedId))
@@ -169,7 +170,7 @@
 
             try
             {
-                this.service.Delete(id);
+                await this.service.Delete(id);
             }
             catch
             {

@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Constants;
     using Common.Models;
+    using Constants;
 
     public class Journal : DocumentsAbstractEntity
     {
@@ -15,11 +16,12 @@
 
         public Journal()
         {
+            this.Id = Guid.NewGuid();
             this.articles = new HashSet<Article>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfJournalName)]
@@ -53,7 +55,7 @@
         [MaxLength(ValidationConstants.IssnLength)]
         public string ElectronicIssn { get; set; }
 
-        public virtual int PublisherId { get; set; }
+        public virtual Guid PublisherId { get; set; }
 
         public virtual Publisher Publisher { get; set; }
 

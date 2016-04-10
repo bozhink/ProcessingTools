@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Constants;
     using Common.Models;
+    using Constants;
 
     public class Affiliation : DocumentsAbstractEntity
     {
@@ -13,21 +13,21 @@
 
         public Affiliation()
         {
+            this.Id = Guid.NewGuid();
             this.authors = new HashSet<Author>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfAffiliationName)]
         public string Name { get; set; }
 
-        public virtual int InstitutionId { get; set; }
+        public virtual Guid InstitutionId { get; set; }
 
         public virtual Institution Institution { get; set; }
 
-        public virtual int AddressId { get; set; }
+        public virtual Guid AddressId { get; set; }
 
         public virtual Address Address { get; set; }
 

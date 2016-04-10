@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -13,41 +14,33 @@
 
     public abstract class TaxaTagger : ConfigurableDocument, ITagger
     {
-        private ITaxonomicListDataService<string> blackList;
+        private ITaxonomicBlackListDataService service;
 
-        public TaxaTagger(Config config, string xml, ITaxonomicListDataService<string> blackList)
+        public TaxaTagger(Config config, string xml, ITaxonomicBlackListDataService service)
             : base(config, xml)
         {
-            this.BlackList = blackList;
-        }
-
-        protected ITaxonomicListDataService<string> BlackList
-        {
-            get
+            if (service == null)
             {
-                return this.blackList;
+                throw new ArgumentNullException(nameof(service));
             }
 
-            private set
-            {
-                this.blackList = value;
-            }
+            this.service = service;
         }
 
         public abstract Task Tag();
 
-        protected IEnumerable<string> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
+        protected async Task<IEnumerable<string>> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
             var result = taxaNames;
 
             try
             {
                 var taxaNamesFirstWord = new HashSet<string>(result
-                        .GetFirstWord()
-                        .Select(Regex.Escape));
+                    .GetFirstWord()
+                    .Select(Regex.Escape));
 
                 result = this.ClearFakeTaxaNamesLikePersonNamesInArticle(result, taxaNamesFirstWord);
-                result = this.ClearFakeTaxaNamesUsingBlackList(result, taxaNamesFirstWord);
+                result = await this.ClearFakeTaxaNamesUsingBlackList(result, taxaNamesFirstWord);
             }
             catch
             {
@@ -57,10 +50,12 @@
             return new HashSet<string>(result);
         }
 
-        private IEnumerable<string> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
+        private async Task<IEnumerable<string>> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
         {
+            var blackListItems = new HashSet<string>(await this.service.All());
+
             var blackListedNames = new HashSet<string>(taxaNamesFirstWord
-                .MatchWithStringList(this.BlackList.All().ToList(), true, false, true));
+                .MatchWithStringList(blackListItems, true, false, true));
 
             var result = taxaNames
                 .Where(name => !blackListedNames.Contains(name.GetFirstWord()));

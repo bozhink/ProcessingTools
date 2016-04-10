@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Data.Miners.Models
 {
-    using Contracts;
-
-    public class BiorepositoryInstitution : IBiorepositoryInstitution
+    public class BiorepositoryInstitution
     {
         public string Name { get; set; }
 

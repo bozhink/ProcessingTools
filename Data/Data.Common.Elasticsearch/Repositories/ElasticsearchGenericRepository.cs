@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -14,19 +15,19 @@
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
-        private IElasticContextProvider contextProvider;
-        private IElasticClientProvider clientProvider;
+        private readonly IElasticContextProvider contextProvider;
+        private readonly IElasticClientProvider clientProvider;
 
         public ElasticsearchGenericRepository(IElasticContextProvider contextProvider, IElasticClientProvider clientProvider)
         {
             if (contextProvider == null)
             {
-                throw new ArgumentNullException("contextProvider");
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
             if (clientProvider == null)
             {
-                throw new ArgumentNullException("clientProvider");
+                throw new ArgumentNullException(nameof(clientProvider));
             }
 
             this.contextProvider = contextProvider;
@@ -44,7 +45,7 @@
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             await this.CreateIndexIfItDoesNotExist(this.Context);
@@ -58,16 +59,62 @@
             return response.Documents.AsQueryable();
         }
 
-        public virtual async Task<IQueryable<TEntity>> All(int skip, int take)
+        // TODO
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
         {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
+            return response.Documents.AsQueryable();
+        }
+
+        // TODO
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
             if (skip < 0)
             {
-                throw new ArgumentException("Skip should be non-negative.", "skip");
+                throw new ArgumentException(string.Empty, nameof(skip));
             }
 
             if (take < 1)
             {
-                throw new ArgumentException("Take should be greater than zero.", "take");
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
+            return response.Documents.AsQueryable();
+        }
+
+        // TODO
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
             }
 
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
@@ -76,17 +123,32 @@
 
         public virtual async Task Delete(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var entity = await this.Get(id);
             await this.Delete(entity);
         }
 
         public virtual async Task Delete(TEntity entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
         }
 
         public virtual async Task<TEntity> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
             var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
             return response.Source;
@@ -102,7 +164,7 @@
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             var documentPath = new DocumentPath<TEntity>(new Id(entity.Id));

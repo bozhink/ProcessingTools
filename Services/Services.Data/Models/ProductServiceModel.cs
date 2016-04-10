@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Services.Data.Models
 {
-    using Contracts;
+    using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class ProductServiceModel : IProductServiceModel
+    public class ProductServiceModel : INamedDataServiceModel
     {
         public int Id { get; set; }
 

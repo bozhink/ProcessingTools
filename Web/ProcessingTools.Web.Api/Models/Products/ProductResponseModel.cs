@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Products
 {
-    using Contracts.Mapping;
-    using Services.Data.Models.Contracts;
+    using Mappings.Contracts;
+    using Services.Data.Models;
 
-    public class ProductResponseModel : IMapFrom<IProductServiceModel>
+    public class ProductResponseModel : IMapFrom<ProductServiceModel>
     {
         public int Id { get; set; }
 

@@ -7,30 +7,25 @@
     using System.Threading.Tasks;
 
     using Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
-        private const string HigherTaxaMatchPattern = @"\b([A-Z](?i)[a-z]*(?:morphae?|mida|toda|ideae|oida|genea|formes|formea|ales|lifera|ieae|indeae|eriae|idea|aceae|oidea|oidae|inae|ini|ina|anae|ineae|acea|oideae|mycota|mycotina|mycetes|mycetidae|phyta|phytina|opsida|phyceae|idae|phycidae|ptera|poda|phaga|itae|odea|alia|ntia|osauria))\b";
+        private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        private readonly Regex matchHigherTaxa = new Regex(HigherTaxaMatchPattern);
+        private readonly ITaxonRankDataService service;
 
-        private ITaxonomicListDataService<string> whiteList;
-
-        public HigherTaxaDataMiner()
-            : this(null)
+        public HigherTaxaDataMiner(ITaxonRankDataService service)
         {
-        }
-
-        public HigherTaxaDataMiner(ITaxonomicListDataService<string> whiteList)
-        {
-            if (whiteList == null)
+            if (service == null)
             {
-                throw new ArgumentNullException(nameof(whiteList));
+                throw new ArgumentNullException(nameof(service));
             }
 
-            this.whiteList = whiteList;
+            this.service = service;
         }
 
         public async Task<IQueryable<string>> Mine(string content)
@@ -45,18 +40,19 @@
             // Match plausible higher taxa by pattern.
             var items = new List<string>(await textToMine.GetMatchesAsync(this.matchHigherTaxa));
 
-            if (this.whiteList != null)
-            {
-                items.AddRange(this.MatchWithWhiteList(textToMine));
-            }
+            items.AddRange(await this.MatchWithWhiteList(textToMine));
 
             var result = new HashSet<string>(items);
             return result.AsQueryable();
         }
 
-        private IEnumerable<string> MatchWithWhiteList(string textToMine)
+        private async Task<IEnumerable<string>> MatchWithWhiteList(string textToMine)
         {
-            var whiteListMatches = textToMine.MatchWithStringList(this.whiteList.All().ToList(), false, false, false);
+            var whiteListItems = new HashSet<string>((await this.service.All())
+                .Where(t => t.IsWhiteListed)
+                .Select(t => t.ScientificName));
+
+            var whiteListMatches = textToMine.MatchWithStringList(whiteListItems, false, false, false);
             return whiteListMatches;
         }
     }

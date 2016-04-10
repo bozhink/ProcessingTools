@@ -52,8 +52,6 @@
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
-    <Compile Include="Models\Contracts\IInstitutionServiceModel.cs" />
-    <Compile Include="Models\Contracts\IProductServiceModel.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\ProductsDataService.cs" />

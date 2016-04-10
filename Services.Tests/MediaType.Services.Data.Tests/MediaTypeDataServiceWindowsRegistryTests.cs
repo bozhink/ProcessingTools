@@ -25,7 +25,7 @@
             const string MimeSubtype = "plain";
 
             var service = new MediaTypeDataServiceWindowsRegistry();
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
@@ -40,7 +40,7 @@
             const string MimeSubtype = "plain";
 
             var service = new MediaTypeDataServiceWindowsRegistry();
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension.TrimStart('.'), type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
@@ -55,7 +55,7 @@
             const string MimeSubtype = "unknown";
 
             var service = new MediaTypeDataServiceWindowsRegistry();
-            var type = service.GetMediaType(FileExtension).FirstOrDefault();
+            var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
             Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");

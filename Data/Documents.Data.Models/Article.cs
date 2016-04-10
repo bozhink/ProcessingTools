@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Common.Constants;
     using Common.Models;
+    using Constants;
 
     public class Article : DocumentsAbstractEntity
     {
@@ -14,12 +14,13 @@
 
         public Article()
         {
+            this.Id = Guid.NewGuid();
             this.documents = new HashSet<Document>();
             this.authors = new HashSet<Author>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfArticleTitle)]
         public string Title { get; set; }
@@ -41,7 +42,7 @@
         [MaxLength(ValidationConstants.MaximalLengthOfArticleELocationId)]
         public string ELocationId { get; set; }
 
-        public virtual int JournalId { get; set; }
+        public virtual Guid JournalId { get; set; }
 
         public virtual Journal Journal { get; set; }
 

@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Biorepositories.Services.Data.Contracts;
     using Contracts;
     using Models;
-    using Models.Contracts;
+
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Constants;
 
     public class BiorepositoryInstitutionDataMiner : IBiorepositoryInstitutionDataMiner
@@ -27,37 +27,35 @@
             this.service = service;
         }
 
-        public Task<IQueryable<IBiorepositoryInstitution>> Mine(string content)
+        public async Task<IQueryable<BiorepositoryInstitution>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
                 throw new ArgumentNullException(nameof(content));
             }
 
-            return Task.Run(() =>
+            var matches = new List<BiorepositoryInstitution>();
+
+            for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var matches = new List<IBiorepositoryInstitution>();
+                var items = (await this.service.GetBiorepositoryInstitutions(i, NumberOfItemsToTake))
+                    .ToList();
 
-                for (int i = 0; true; i += NumberOfItemsToTake)
+                if (items.Count < 1)
                 {
-                    var items = this.service.GetBiorepositoryInstitutions(i, NumberOfItemsToTake).ToList();
-
-                    if (items.Count < 1)
-                    {
-                        break;
-                    }
-
-                    matches.AddRange(items.Where(x => content.Contains(x.Name))
-                        .Select(x => new BiorepositoryInstitution
-                        {
-                            Name = x.Name,
-                            Url = x.Url
-                        }));
+                    break;
                 }
 
-                var result = new HashSet<IBiorepositoryInstitution>(matches);
-                return result.AsQueryable();
-            });
+                matches.AddRange(items.Where(x => content.Contains(x.Name))
+                    .Select(x => new BiorepositoryInstitution
+                    {
+                        Name = x.Name,
+                        Url = x.Url
+                    }));
+            }
+
+            var result = new HashSet<BiorepositoryInstitution>(matches);
+            return result.AsQueryable();
         }
     }
 }

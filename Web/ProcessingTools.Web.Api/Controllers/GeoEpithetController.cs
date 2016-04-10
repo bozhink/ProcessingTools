@@ -2,10 +2,10 @@
 {
     using Factories;
     using Geo.Services.Data.Contracts;
-    using Geo.Services.Data.Models.Contracts;
+    using Geo.Services.Data.Models;
     using Models.GeoEpithets;
 
-    public class GeoEpithetController : GenericDataServiceControllerFactory<IGeoEpithetServiceModel, GeoEpithetRequestModel, GeoEpithetResponseModel>
+    public class GeoEpithetController : GenericDataServiceControllerFactory<GeoEpithetServiceModel, GeoEpithetRequestModel, GeoEpithetResponseModel>
     {
         public GeoEpithetController(IGeoEpithetsDataService service)
             : base(service)

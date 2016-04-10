@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ProcessingTools.Data.Miners.Common.Factories.SimpleServiceStringDataMinerFactory&lt;TDataService, TDataServiceModel&gt;" Collapsed="true">
-    <Position X="3.5" Y="0.75" Width="1.5" />
+  <Class Name="ProcessingTools.Data.Miners.Common.SimpleServiceStringDataMiner&lt;TDataService, TDataServiceModel&gt;" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAAAAAAAA=</HashCode>
-      <FileName>Factories\SimpleServiceStringDataMinerFactory.cs</FileName>
+      <FileName>Miners\SimpleServiceStringDataMiner.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="ProcessingTools.Data.Miners.Common.Contracts.IDataMiner&lt;T&gt;" Collapsed="true">
-    <Position X="1" Y="0.75" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IDataMiner.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.Data.Miners.Common.Contracts.IStringDataMiner" Collapsed="true">
-    <Position X="1" Y="2" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Contracts\IStringDataMiner.cs</FileName>

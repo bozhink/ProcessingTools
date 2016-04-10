@@ -1,13 +1,14 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Contracts
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
-    using Models.Contracts;
+    using Models;
 
     public interface IBiorepositoriesDataService
     {
-        IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take);
+        Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetBiorepositoryInstitutions(int skip, int take);
 
-        IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take);
+        Task<IQueryable<BiorepositoryInstitutionalCodeServiceModel>> GetBiorepositoryInstitutionalCodes(int skip, int take);
     }
 }

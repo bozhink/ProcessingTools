@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using MongoDB.Bson;
-    using MongoDB.Bson.Serialization;
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
 
@@ -23,7 +23,7 @@
         {
             if (provider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             this.db = provider.Create();
@@ -57,45 +57,107 @@
             }
         }
 
-        private IMongoCollection<BsonDocument> Collection => this.db.GetCollection<BsonDocument>(this.CollectionName);
+        private IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
 
         public virtual async Task Add(TEntity entity)
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            var document = entity.ToBsonDocument();
-            await this.Collection.InsertOneAsync(document);
+            await this.Collection.InsertOneAsync(entity);
         }
 
         public virtual async Task<IQueryable<TEntity>> All()
         {
-            var documents = await this.Collection.Find(new BsonDocument()).ToListAsync();
-            var entities = documents.Select(d => BsonSerializer.Deserialize<TEntity>(d));
+            var entities = await this.Collection
+                .Find(new BsonDocument())
+                .ToListAsync();
+
             return entities.AsQueryable();
         }
 
-        public virtual async Task<IQueryable<TEntity>> All(int skip, int take)
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
         {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var entities = await this.Collection
+               .Find(filter)
+               .ToListAsync();
+
+            return entities.AsQueryable();
+        }
+
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
             if (skip < 0)
             {
-                throw new ArgumentException("Skip should be non-negative.", "skip");
+                throw new ArgumentException(string.Empty, nameof(skip));
             }
 
             if (take < 1)
             {
-                throw new ArgumentException("Take should be greater than zero.", "take");
+                throw new ArgumentException(string.Empty, nameof(take));
             }
 
-            var documents = await this.Collection.Find(new BsonDocument()).Skip(skip).Limit(take).ToListAsync();
-            var entities = documents.Select(d => BsonSerializer.Deserialize<TEntity>(d));
+            var entities = await this.Collection
+                .Find(new BsonDocument())
+                .SortBy(sort)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync();
+
+            return entities.AsQueryable();
+        }
+
+        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            var entities = await this.Collection
+                .Find(filter)
+                .SortBy(sort)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync();
+
             return entities.AsQueryable();
         }
 
         public virtual async Task Delete(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var filter = this.GetFilterById(id);
             await this.Collection.DeleteOneAsync(filter);
         }
@@ -104,7 +166,7 @@
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             var id = entity.GetIdValue<BsonIdAttribute>();
@@ -113,9 +175,14 @@
 
         public virtual async Task<TEntity> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var filter = this.GetFilterById(id);
-            var document = (await this.Collection.FindAsync<BsonDocument>(filter)).FirstOrDefault();
-            return BsonSerializer.Deserialize<TEntity>(document);
+            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync();
+            return entity;
         }
 
         public virtual Task<int> SaveChanges()
@@ -127,19 +194,18 @@
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
-            var document = entity.ToBsonDocument();
-            var result = await this.Collection.ReplaceOneAsync(filter, document);
+            var result = await this.Collection.ReplaceOneAsync(filter, entity);
         }
 
-        private FilterDefinition<BsonDocument> GetFilterById(object id)
+        private FilterDefinition<TEntity> GetFilterById(object id)
         {
             var objectId = new ObjectId(id.ToString());
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", objectId);
+            var filter = Builders<TEntity>.Filter.Eq("_id", objectId);
             return filter;
         }
     }

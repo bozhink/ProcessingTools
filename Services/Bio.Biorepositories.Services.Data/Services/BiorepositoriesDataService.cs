@@ -2,10 +2,10 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Biorepositories.Data;
     using ProcessingTools.Bio.Biorepositories.Data.Repositories.Contracts;
@@ -26,7 +26,7 @@
             this.repository = repository;
         }
 
-        public IQueryable<IBiorepositoryInstitutionalCodeServiceModel> GetBiorepositoryInstitutionalCodes(int skip, int take)
+        public async Task<IQueryable<BiorepositoryInstitutionalCodeServiceModel>> GetBiorepositoryInstitutionalCodes(int skip, int take)
         {
             if (skip < 0)
             {
@@ -38,7 +38,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            return this.repository.All()
+            return (await this.repository.All())
                 .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
                 .OrderBy(i => i.Id)
                 .Skip(skip)
@@ -53,7 +53,7 @@
                 .AsQueryable();
         }
 
-        public IQueryable<IBiorepositoryInstitutionServiceModel> GetBiorepositoryInstitutions(int skip, int take)
+        public async Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetBiorepositoryInstitutions(int skip, int take)
         {
             if (skip < 0)
             {
@@ -65,7 +65,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            return this.repository.All()
+            return (await this.repository.All())
                 .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
                 .OrderBy(i => i.Id)
                 .Skip(skip)

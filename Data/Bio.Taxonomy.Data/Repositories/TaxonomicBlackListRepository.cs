@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
@@ -41,6 +42,11 @@
 
         public Task Add(string entity)
         {
+            if (string.IsNullOrWhiteSpace(entity))
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return Task.Run(() =>
             {
                 if (!string.IsNullOrWhiteSpace(entity))
@@ -56,9 +62,63 @@
             return Task.FromResult(new HashSet<string>(this.Items).AsQueryable());
         }
 
-        public async Task<IQueryable<string>> All(int skip, int take)
+        public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter)
         {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            return (await this.All()).Where(filter);
+        }
+
+        public async Task<IQueryable<string>> All(Expression<Func<string, object>> sort, int skip, int take)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
             return (await this.All())
+                .OrderBy(i => i)
+                .Skip(skip)
+                .Take(take);
+        }
+
+        public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter, Expression<Func<string, object>> sort, int skip, int take)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentException(string.Empty, nameof(skip));
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentException(string.Empty, nameof(take));
+            }
+
+            return (await this.All())
+                .Where(filter)
                 .OrderBy(i => i)
                 .Skip(skip)
                 .Take(take);
@@ -66,11 +126,21 @@
 
         public Task Delete(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return this.Delete(id.ToString());
         }
 
         public async Task Delete(string entity)
         {
+            if (string.IsNullOrWhiteSpace(entity))
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             var items = (await this.All()).ToList();
             items.Remove(entity);
             this.Items = new ConcurrentQueue<string>(items);
@@ -78,6 +148,11 @@
 
         public async Task<string> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return (await this.All())
                 .FirstOrDefault(i => i == id.ToString());
         }

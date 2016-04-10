@@ -5,7 +5,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
-    using Services;
 
     [TestClass]
     public class GbifTaxaClassificationDataServiceTests
@@ -26,7 +25,7 @@
 
             var requester = new GbifDataRequester();
             var service = new GbifTaxaClassificationDataService(requester);
-            var response = service.Resolve(CanonicalName);
+            var response = service.Resolve(CanonicalName).Result;
 
             var defaultClassification = response.FirstOrDefault();
 

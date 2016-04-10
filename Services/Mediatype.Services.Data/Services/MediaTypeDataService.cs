@@ -2,11 +2,11 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.MediaType.Data.Models;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
@@ -25,14 +25,14 @@
             this.repository = repository;
         }
 
-        public override IQueryable<IMediaTypeServiceModel> GetMediaType(string fileExtension)
+        public override async Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
             FileExtension fileExtensionResult;
             try
             {
-                fileExtensionResult = this.repository.All()
+                fileExtensionResult = (await this.repository.All())
                     .FirstOrDefault(e => e.Name == extension);
             }
             catch (ArgumentNullException)
@@ -51,7 +51,7 @@
             }
 
             return pairs
-                .Select<MimeTypePair, IMediaTypeServiceModel>(p => new MediaTypeServiceModel
+                .Select<MimeTypePair, MediaTypeServiceModel>(p => new MediaTypeServiceModel
                 {
                     FileExtension = fileExtensionResult.Name,
                     MimeType = p.MimeType.Name,

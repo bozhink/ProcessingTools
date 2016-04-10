@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Constants;
     using Common.Models;
+    using Constants;
 
     public class Institution : DocumentsAbstractEntity
     {
@@ -14,12 +15,13 @@
 
         public Institution()
         {
+            this.Id = Guid.NewGuid();
             this.addresses = new HashSet<Address>();
             this.affiliations = new HashSet<Affiliation>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfInstitutionName)]

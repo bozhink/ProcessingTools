@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITypeStatusDataService : ICrudDataService<ITypeStatusServiceModel>
+    public interface ITypeStatusDataService : IDataService<TypeStatusServiceModel>
     {
     }
 }

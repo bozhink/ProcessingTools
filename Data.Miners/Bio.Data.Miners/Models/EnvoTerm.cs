@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Data.Miners.Models
 {
-    using Contracts;
-
-    public class EnvoTerm : IEnvoTerm
+    public class EnvoTerm
     {
         public string EntityId { get; set; }
 

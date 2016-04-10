@@ -1,16 +1,16 @@
 ﻿namespace ProcessingTools.Services.Validation.Comparers
 {
     using System.Collections.Generic;
-    using Models.Contracts;
+    using Models;
 
-    public class UrlEqualityComparer : IEqualityComparer<IUrlServiceModel>
+    public class UrlEqualityComparer : IEqualityComparer<UrlServiceModel>
     {
-        public bool Equals(IUrlServiceModel x, IUrlServiceModel y)
+        public bool Equals(UrlServiceModel x, UrlServiceModel y)
         {
             return ((x.BaseAddress == y.BaseAddress) && (x.Address == y.Address)) || (x.FullAddress == y.FullAddress);
         }
 
-        public int GetHashCode(IUrlServiceModel obj)
+        public int GetHashCode(UrlServiceModel obj)
         {
             return (obj.FullAddress + obj.BaseAddress + obj.Address).GetHashCode();
         }

@@ -2,7 +2,7 @@
 {
     using Taxonomy.Contracts;
 
-    public interface IAphiaTaxaClassificationDataService : ITaxaDataService<ITaxonClassification>
+    public interface IAphiaTaxaClassificationDataService : ITaxaInformationResolverDataService<ITaxonClassification>
     {
     }
 }

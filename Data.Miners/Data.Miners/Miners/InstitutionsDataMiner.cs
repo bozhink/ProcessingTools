@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Data.Miners
 {
     using Contracts;
-    using ProcessingTools.Data.Miners.Common.Factories;
+    using ProcessingTools.Data.Miners.Common;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models.Contracts;
+    using ProcessingTools.Services.Data.Models;
 
-    public class InstitutionsDataMiner : SimpleServiceStringDataMinerFactory<IInstitutionsDataService, IInstitutionServiceModel>, IInstitutionsDataMiner
+    public class InstitutionsDataMiner : SimpleServiceStringDataMiner<IInstitutionsDataService, InstitutionServiceModel>, IInstitutionsDataMiner
     {
         public InstitutionsDataMiner(IInstitutionsDataService service)
             : base(service)
