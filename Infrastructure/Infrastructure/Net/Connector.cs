@@ -44,7 +44,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(BaseAddress));
+                    throw new ArgumentNullException(nameof(this.BaseAddress));
                 }
 
                 this.baseAddress = value;
