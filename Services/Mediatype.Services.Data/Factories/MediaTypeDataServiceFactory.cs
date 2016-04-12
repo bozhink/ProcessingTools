@@ -1,19 +1,20 @@
 ﻿namespace ProcessingTools.MediaType.Services.Data.Factories
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
-    using Models.Contracts;
+    using Models;
 
     public abstract class MediaTypeDataServiceFactory : MediaTypeDataServiceBase
     {
-        public override IQueryable<IMediaType> GetMediaType(string fileExtension)
+        public override async Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
             string mediaType = null;
             try
             {
-                mediaType = this.ResolveMediaType(extension);
+                mediaType = await this.ResolveMediaType(extension);
             }
             catch
             {
@@ -28,6 +29,6 @@
             return this.GetSingleStringMediaTypeResultAsQueryable(extension, mediaType);
         }
 
-        protected abstract string ResolveMediaType(string fileExtension);
+        protected abstract Task<string> ResolveMediaType(string fileExtension);
     }
 }

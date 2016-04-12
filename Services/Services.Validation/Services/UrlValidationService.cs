@@ -7,33 +7,37 @@
     using System.Net.Http;
     using System.Threading.Tasks;
 
+    using Comparers;
     using Contracts;
     using Factories;
-    using Models.Contracts;
+    using Models;
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class UrlValidationService : ValidationServiceFactory<IUrl, IUrl>, IUrlValidationService
+    public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {
         public UrlValidationService(IValidationCacheService cacheService)
             : base(cacheService)
         {
         }
 
-        protected override Func<IUrl, string> GetContextKey => item => item.FullAddress;
+        protected override Func<UrlServiceModel, string> GetContextKey => item => item.FullAddress;
 
-        protected override Func<IUrl, IUrl> GetItemToCheck => item => item;
+        protected override Func<UrlServiceModel, UrlServiceModel> GetItemToCheck => item => item;
 
-        protected override Func<IUrl, IUrl> GetValidatedObject => item => item;
+        protected override Func<UrlServiceModel, UrlServiceModel> GetValidatedObject => item => item;
 
-        protected override Task Validate(IUrl[] items, ConcurrentQueue<IValidationServiceModel<IUrl>> output)
+        protected override Task Validate(UrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<UrlServiceModel>> output)
         {
             return Task.Run(() =>
             {
+                var comparer = new UrlEqualityComparer();
                 var exceptions = new ConcurrentQueue<Exception>();
-                items.GroupBy(i => i.BaseAddress)
+
+                items.Distinct(comparer)
+                    .GroupBy(i => i.BaseAddress)
                     .AsParallel()
                     .ForAll(group =>
                     {
@@ -61,7 +65,7 @@
             });
         }
 
-        private async Task<IValidationServiceModel<IUrl>> MakeRequest(IUrl item)
+        private async Task<IValidationServiceModel<UrlServiceModel>> MakeRequest(UrlServiceModel item)
         {
             var validationResult = this.GetValidationServiceModel(item);
 

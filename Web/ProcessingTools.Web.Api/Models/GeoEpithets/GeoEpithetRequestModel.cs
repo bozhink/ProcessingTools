@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Contracts.Mapping;
-    using Geo.Services.Data.Models.Contracts;
+    using Geo.Services.Data.Models;
+    using Mappings.Contracts;
 
-    public class GeoEpithetRequestModel : IMapFrom<IGeoEpithet>
+    public class GeoEpithetRequestModel : IMapFrom<GeoEpithetServiceModel>
     {
         public int? Id { get; set; }
 

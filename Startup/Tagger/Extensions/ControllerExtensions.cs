@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Extensions
+﻿namespace ProcessingTools.Tagger.Extensions
 {
     using System;
     using System.Reflection;

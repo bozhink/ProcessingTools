@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Controllers
+﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
 
@@ -8,7 +8,7 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
     public class ParseHigherTaxaWithDataServiceGenericController<TService> : ParseHigherTaxaControllerFactory, IParseHigherTaxaWithDataServiceGenericController<TService>
-        where TService : ITaxaDataService<ITaxonClassification>
+        where TService : ITaxaInformationResolverDataService<ITaxonClassification>
     {
         private readonly TService service;
 
@@ -22,6 +22,6 @@
             this.service = service;
         }
 
-        protected override ITaxaDataService<ITaxonClassification> Service => this.service;
+        protected override ITaxaInformationResolverDataService<ITaxonClassification> Service => this.service;
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
     using System;
+    using System.Configuration;
     using System.Data.SqlClient;
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -36,16 +37,17 @@
             {
                 XmlNodeList nodeList = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager);
 
-                string connectionString = this.Config.MainDictionaryDataSourceString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-                using (connection)
+                string connectionString = ConfigurationManager.ConnectionStrings["MainDictionaryDataSourceString"].ConnectionString;
+
+                using (var connection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    connection.Open();
+
+                    using (var command = new SqlCommand(query, connection))
                     {
                         try
                         {
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            using (var reader = command.ExecuteReader())
                             {
                                 while (reader.Read())
                                 {

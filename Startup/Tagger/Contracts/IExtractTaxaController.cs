@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.MainProgram.Contracts
+﻿namespace ProcessingTools.Tagger.Contracts
 {
-    public interface IExtractTaxaController : ITaggerController
+    public interface IExtractTaxaController : ITaggerController, INotAwaitableController
     {
     }
 }

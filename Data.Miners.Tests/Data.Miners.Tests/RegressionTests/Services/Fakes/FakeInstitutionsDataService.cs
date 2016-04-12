@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
-    using Moq;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models.Contracts;
+    using ProcessingTools.Services.Data.Models;
 
     public class FakeInstitutionsDataService : IInstitutionsDataService
     {
@@ -14,56 +14,56 @@
 
         public FakeInstitutionsDataService()
         {
-            this.Items = new HashSet<IInstitution>();
+            this.Items = new HashSet<InstitutionServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IInstitution>();
-                mockProduct.Setup(m => m.Id).Returns(i);
-                mockProduct.Setup(m => m.Name).Returns($"Institution {i}");
-
-                this.Items.Add(mockProduct.Object);
+                this.Items.Add(new InstitutionServiceModel
+                {
+                    Id = i,
+                    Name = $"Institution {i}"
+                });
             }
         }
 
-        public HashSet<IInstitution> Items { get; set; }
+        public HashSet<InstitutionServiceModel> Items { get; set; }
 
-        public void Add(IInstitution entity)
+        public Task<int> Add(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitution> All()
+        public Task<IQueryable<InstitutionServiceModel>> All()
         {
-            return this.Items.AsQueryable();
+            return Task.FromResult(this.Items.AsQueryable());
         }
 
-        public void Delete(object id)
+        public Task<int> Delete(params object[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(IInstitution entity)
+        public Task<int> Delete(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IInstitution> Get(object id)
+        public Task<IQueryable<InstitutionServiceModel>> Get(params object[] ids)
         {
-            return this.Items
-                .Where(p => p.Id == (int)id)
-                .AsQueryable();
+            var result = ids.Select(id => this.Items.FirstOrDefault(p => p.Id == (int)id)).AsQueryable();
+
+            return Task.FromResult(result);
         }
 
-        public IQueryable<IInstitution> Get(int skip, int take)
+        public Task<IQueryable<InstitutionServiceModel>> Get(int skip, int take)
         {
-            return this.Items
+            return Task.FromResult(this.Items
                 .OrderBy(p => p.Id)
                 .Skip(skip)
                 .Take(take)
-                .AsQueryable();
+                .AsQueryable());
         }
 
-        public void Update(IInstitution entity)
+        public Task<int> Update(params InstitutionServiceModel[] entities)
         {
             throw new NotImplementedException();
         }

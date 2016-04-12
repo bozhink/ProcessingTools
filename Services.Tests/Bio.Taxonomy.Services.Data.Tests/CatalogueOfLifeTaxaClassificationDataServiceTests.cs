@@ -26,7 +26,7 @@
 
             var requester = new CatalogueOfLifeDataRequester();
             var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
-            var response = service.Resolve(ScientificName);
+            var response = service.Resolve(ScientificName).Result;
 
             var defaultClassification = response.FirstOrDefault();
 

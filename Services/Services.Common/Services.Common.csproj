@@ -35,18 +35,19 @@
       <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
-    <Compile Include="Contracts\ICrudDataService.cs" />
+    <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\EfGenericCrudDataServiceFactory.cs" />
-    <Compile Include="Factories\GenericCacheServiceFactory.cs" />
-    <Compile Include="Factories\SimpleCacheServiceFactory.cs" />
+    <Compile Include="Services\GenericCacheService.cs" />
+    <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
+    <Compile Include="Services\GenericRepositoryDataService.cs" />
+    <Compile Include="Services\SimpleCacheService.cs" />
+    <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
     <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
@@ -71,10 +72,16 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

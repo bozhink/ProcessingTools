@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Settings
+﻿namespace ProcessingTools.Tagger.Settings
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
@@ -41,6 +41,13 @@
             this.Bind(b =>
             {
                 b.From(Bio.Environments.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Taxonomy.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

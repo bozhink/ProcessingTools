@@ -3,9 +3,9 @@
     using Factories;
     using Models.Products;
     using Services.Data.Contracts;
-    using Services.Data.Models.Contracts;
+    using Services.Data.Models;
 
-    public class ProductController : GenericDataServiceControllerFactory<IProduct, ProductRequestModel, ProductResponseModel>
+    public class ProductController : GenericDataServiceControllerFactory<ProductServiceModel, ProductRequestModel, ProductResponseModel>
     {
         public ProductController(IProductsDataService service)
             : base(service)

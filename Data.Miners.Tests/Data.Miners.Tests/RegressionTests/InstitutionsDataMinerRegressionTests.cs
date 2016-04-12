@@ -37,13 +37,33 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(AggregateException))]
         public void InstitutionsDataMiner_MineEmptyContent_ShouldThrow()
         {
             string content = "  ";
 
             var miner = new InstitutionsDataMiner(service);
             var data = miner.Mine(content).Result;
+        }
+
+        [TestMethod]
+        public void InstitutionsDataMiner_MineEmptyContent_ShouldThrowWithInnerArgumentNullException()
+        {
+            string content = "  ";
+
+            var miner = new InstitutionsDataMiner(service);
+            try
+            {
+                var data = miner.Mine(content).Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count, "Number of inner exceptions should be 1.");
+                Assert.AreEqual(
+                    typeof(ArgumentNullException).FullName,
+                    e.InnerExceptions.FirstOrDefault().GetType().FullName,
+                    "Inner exception should be ArgumentNullException");
+            }
         }
 
         [TestMethod]

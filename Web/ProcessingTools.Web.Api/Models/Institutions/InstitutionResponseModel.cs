@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Institutions
 {
-    using Contracts.Mapping;
-    using Services.Data.Models.Contracts;
+    using Mappings.Contracts;
+    using Services.Data.Models;
 
-    public class InstitutionResponseModel : IMapFrom<IInstitution>
+    public class InstitutionResponseModel : IMapFrom<InstitutionServiceModel>
     {
         public int Id { get; set; }
 

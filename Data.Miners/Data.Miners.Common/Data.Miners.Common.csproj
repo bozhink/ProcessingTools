@@ -37,7 +37,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDataMiner.cs" />
     <Compile Include="Contracts\IStringDataMiner.cs" />
-    <Compile Include="Factories\SimpleServiceStringDataMinerFactory.cs" />
+    <Compile Include="Miners\SimpleServiceStringDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +47,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

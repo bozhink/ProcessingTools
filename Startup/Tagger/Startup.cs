@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram
+﻿namespace ProcessingTools.Tagger
 {
     using System;
     using System.Diagnostics;

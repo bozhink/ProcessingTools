@@ -1,13 +1,14 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data.Contracts
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
-    using Models.Contracts;
+    using Models;
 
     public interface IEnvoTermsDataService
     {
-        IQueryable<IEnvoTerm> All();
+        Task<IQueryable<EnvoTermServiceModel>> All();
 
-        IQueryable<IEnvoTerm> Get(int skip, int take);
+        Task<IQueryable<EnvoTermServiceModel>> Get(int skip, int take);
     }
 }

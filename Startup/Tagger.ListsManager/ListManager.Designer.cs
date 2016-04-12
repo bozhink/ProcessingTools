@@ -8,8 +8,6 @@
 
         private System.Windows.Forms.Button clearTextBoxButton;
 
-        private System.Windows.Forms.Button clearXmlListFileButton;
-
         private System.Windows.Forms.ColumnHeader columnHeader;
 
         /// <summary> 
@@ -45,20 +43,6 @@
 
         private System.Windows.Forms.GroupBox searchGroupBox;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (this.components != null))
-            {
-                this.components.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
         #region Component Designer generated code
 
         /// <summary> 
@@ -70,34 +54,33 @@
             this.components = new System.ComponentModel.Container();
             this.listManagerGroupBox = new System.Windows.Forms.GroupBox();
             this.listGroupBox = new System.Windows.Forms.GroupBox();
+            this.loadWholeListButton = new System.Windows.Forms.Button();
             this.clearListViewButton = new System.Windows.Forms.Button();
             this.listImportButton = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.rankColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parseTextGroupBox = new System.Windows.Forms.GroupBox();
+            this.clearTextBoxButton = new System.Windows.Forms.Button();
             this.addToListViewButton = new System.Windows.Forms.Button();
             this.listParseButton = new System.Windows.Forms.Button();
             this.listEntriesTextBox = new System.Windows.Forms.TextBox();
             this.searchGroupBox = new System.Windows.Forms.GroupBox();
             this.listSearchButton = new System.Windows.Forms.Button();
             this.listSearchTextBox = new System.Windows.Forms.TextBox();
-            this.clearXmlListFileButton = new System.Windows.Forms.Button();
-            this.rankColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clearTextBoxButton = new System.Windows.Forms.Button();
-            this.listViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadWholeListButton = new System.Windows.Forms.Button();
             this.listManagerGroupBox.SuspendLayout();
             this.listGroupBox.SuspendLayout();
+            this.listViewContextMenuStrip.SuspendLayout();
             this.parseTextGroupBox.SuspendLayout();
             this.searchGroupBox.SuspendLayout();
-            this.listViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // listManagerGroupBox
             // 
-            this.listManagerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listManagerGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listManagerGroupBox.Controls.Add(this.listGroupBox);
             this.listManagerGroupBox.Controls.Add(this.parseTextGroupBox);
@@ -111,11 +94,10 @@
             // 
             // listGroupBox
             // 
-            this.listGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listGroupBox.Controls.Add(this.loadWholeListButton);
-            this.listGroupBox.Controls.Add(this.clearXmlListFileButton);
             this.listGroupBox.Controls.Add(this.clearListViewButton);
             this.listGroupBox.Controls.Add(this.listImportButton);
             this.listGroupBox.Controls.Add(this.listView);
@@ -125,6 +107,17 @@
             this.listGroupBox.TabIndex = 17;
             this.listGroupBox.TabStop = false;
             this.listGroupBox.Text = "List View";
+            // 
+            // loadWholeListButton
+            // 
+            this.loadWholeListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadWholeListButton.Location = new System.Drawing.Point(233, 235);
+            this.loadWholeListButton.Name = "loadWholeListButton";
+            this.loadWholeListButton.Size = new System.Drawing.Size(94, 23);
+            this.loadWholeListButton.TabIndex = 19;
+            this.loadWholeListButton.Text = "Load whole list";
+            this.loadWholeListButton.UseVisualStyleBackColor = true;
+            this.loadWholeListButton.Click += new System.EventHandler(this.LoadWholeListButton_Click);
             // 
             // clearListViewButton
             // 
@@ -152,9 +145,10 @@
             // 
             // listView
             // 
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.CheckBoxes = true;
             this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader,
             this.rankColumnHeader});
@@ -174,11 +168,30 @@
             // columnHeader
             // 
             this.columnHeader.Text = "List item";
-            this.columnHeader.Width = 377;
+            this.columnHeader.Width = 318;
+            // 
+            // rankColumnHeader
+            // 
+            this.rankColumnHeader.Text = "Rank";
+            this.rankColumnHeader.Width = 133;
+            // 
+            // listViewContextMenuStrip
+            // 
+            this.listViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.listViewContextMenuStrip.Name = "listViewContextMenuStrip";
+            this.listViewContextMenuStrip.Size = new System.Drawing.Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // parseTextGroupBox
             // 
-            this.parseTextGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.parseTextGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.parseTextGroupBox.Controls.Add(this.clearTextBoxButton);
             this.parseTextGroupBox.Controls.Add(this.addToListViewButton);
@@ -190,6 +203,16 @@
             this.parseTextGroupBox.TabIndex = 16;
             this.parseTextGroupBox.TabStop = false;
             this.parseTextGroupBox.Text = "Enter list of words to be added in the list:";
+            // 
+            // clearTextBoxButton
+            // 
+            this.clearTextBoxButton.Location = new System.Drawing.Point(193, 177);
+            this.clearTextBoxButton.Name = "clearTextBoxButton";
+            this.clearTextBoxButton.Size = new System.Drawing.Size(75, 23);
+            this.clearTextBoxButton.TabIndex = 15;
+            this.clearTextBoxButton.Text = "Clear";
+            this.clearTextBoxButton.UseVisualStyleBackColor = true;
+            this.clearTextBoxButton.Click += new System.EventHandler(this.ClearTextBoxButton_Click);
             // 
             // addToListViewButton
             // 
@@ -216,7 +239,7 @@
             this.listEntriesTextBox.AcceptsReturn = true;
             this.listEntriesTextBox.AcceptsTab = true;
             this.listEntriesTextBox.AllowDrop = true;
-            this.listEntriesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.listEntriesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listEntriesTextBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listEntriesTextBox.Location = new System.Drawing.Point(6, 19);
@@ -252,7 +275,7 @@
             // 
             // listSearchTextBox
             // 
-            this.listSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.listSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listSearchTextBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listSearchTextBox.Location = new System.Drawing.Point(6, 19);
@@ -261,73 +284,20 @@
             this.listSearchTextBox.TabIndex = 14;
             this.listSearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListSearchTextBox_KeyPress);
             // 
-            // clearXmlListFileButton
-            // 
-            this.clearXmlListFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearXmlListFileButton.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.clearXmlListFileButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.clearXmlListFileButton.Location = new System.Drawing.Point(464, 234);
-            this.clearXmlListFileButton.Name = "clearXmlListFileButton";
-            this.clearXmlListFileButton.Size = new System.Drawing.Size(108, 23);
-            this.clearXmlListFileButton.TabIndex = 18;
-            this.clearXmlListFileButton.Text = "Clear Xml list file";
-            this.clearXmlListFileButton.UseVisualStyleBackColor = false;
-            this.clearXmlListFileButton.Click += new System.EventHandler(this.ClearXmlListFileButton_Click);
-            // 
-            // rankColumnHeader
-            // 
-            this.rankColumnHeader.Text = "rank";
-            this.rankColumnHeader.Width = 178;
-            // 
-            // clearTextBoxButton
-            // 
-            this.clearTextBoxButton.Location = new System.Drawing.Point(193, 177);
-            this.clearTextBoxButton.Name = "clearTextBoxButton";
-            this.clearTextBoxButton.Size = new System.Drawing.Size(75, 23);
-            this.clearTextBoxButton.TabIndex = 15;
-            this.clearTextBoxButton.Text = "Clear";
-            this.clearTextBoxButton.UseVisualStyleBackColor = true;
-            this.clearTextBoxButton.Click += new System.EventHandler(this.ClearTextBoxButton_Click);
-            // 
-            // listViewContextMenuStrip
-            // 
-            this.listViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.listViewContextMenuStrip.Name = "listViewContextMenuStrip";
-            this.listViewContextMenuStrip.Size = new System.Drawing.Size(108, 26);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // loadWholeListButton
-            // 
-            this.loadWholeListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadWholeListButton.Location = new System.Drawing.Point(233, 235);
-            this.loadWholeListButton.Name = "loadWholeListButton";
-            this.loadWholeListButton.Size = new System.Drawing.Size(94, 23);
-            this.loadWholeListButton.TabIndex = 19;
-            this.loadWholeListButton.Text = "Load whole list";
-            this.loadWholeListButton.UseVisualStyleBackColor = true;
-            this.loadWholeListButton.Click += new System.EventHandler(this.LoadWholeListButton_Click);
-            // 
-            // ListManager
+            // ListManagerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listManagerGroupBox);
-            this.Name = "ListManager";
+            this.Name = "ListManagerControl";
             this.Size = new System.Drawing.Size(590, 500);
             this.listManagerGroupBox.ResumeLayout(false);
             this.listGroupBox.ResumeLayout(false);
+            this.listViewContextMenuStrip.ResumeLayout(false);
             this.parseTextGroupBox.ResumeLayout(false);
             this.parseTextGroupBox.PerformLayout();
             this.searchGroupBox.ResumeLayout(false);
             this.searchGroupBox.PerformLayout();
-            this.listViewContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -121,6 +121,7 @@
                 this.SetLogTypeColor(type);
                 this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Tracer.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
                 this.textWriter.WriteLine(message);
+                this.textWriter.WriteLine(e.ToString());
                 this.ResetLogTypeColor();
             }
             catch (IOException)
@@ -144,6 +145,7 @@
                 this.SetLogTypeColor(type);
                 this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Tracer.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
                 this.textWriter.WriteLine(format, args);
+                this.textWriter.WriteLine(e.ToString());
                 this.ResetLogTypeColor();
             }
             catch (IOException)

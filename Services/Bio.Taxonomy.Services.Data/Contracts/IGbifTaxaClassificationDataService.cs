@@ -2,7 +2,7 @@
 {
     using Taxonomy.Contracts;
 
-    public interface IGbifTaxaClassificationDataService : ITaxaDataService<ITaxonClassification>
+    public interface IGbifTaxaClassificationDataService : ITaxaInformationResolverDataService<ITaxonClassification>
     {
     }
 }

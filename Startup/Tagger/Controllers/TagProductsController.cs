@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Controllers
+﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
     using System.Xml;

@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Api.Models.GeoNames
 {
-    using Contracts.Mapping;
-    using Geo.Services.Data.Models.Contracts;
+    using Geo.Services.Data.Models;
+    using Mappings.Contracts;
 
-    public class GeoNameResponseModel : IMapFrom<IGeoName>
+    public class GeoNameResponseModel : IMapFrom<GeoNameServiceModel>
     {
         public int Id { get; set; }
 

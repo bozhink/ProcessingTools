@@ -1,50 +1,34 @@
 ﻿namespace ProcessingTools.ListsManager
 {
     using System;
-    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
-    using System.Xml;
-    using System.Xml.Xsl;
+
+    using Ninject;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+
+    using Settings;
 
     public partial class ListManagerControl : UserControl
     {
+        private readonly IKernel kernel;
+
         public ListManagerControl()
         {
             this.InitializeComponent();
-            this.ListFileName = string.Empty;
-            this.CleanXslFileName = string.Empty;
-            this.TempDirectory = string.Empty;
             this.IsRankList = false;
-        }
-
-        /// <summary>
-        /// Get or set the full-path name of the Xsl file which will be used to clean the x-list file
-        /// </summary>
-        public string CleanXslFileName
-        {
-            get;
-            set;
+            this.kernel = NinjectConfig.CreateKernel();
         }
 
         /// <summary>
         /// Get or set the boolean value which designates whether current views are rank-related or not
         /// </summary>
-        public bool IsRankList
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Get or set the full-path name of the x-list
-        /// </summary>
-        public string ListFileName
-        {
-            get;
-            set;
-        }
+        public bool IsRankList { get; set; }
 
         /// <summary>
         /// Get or set the name of the main group box of this control
@@ -62,13 +46,26 @@
             }
         }
 
-        /// <summary>
-        /// Get or set the TEMP directory path
+        /// <summary> 
+        /// Clean up any resources being used.
         /// </summary>
-        public string TempDirectory
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
         {
-            get;
-            set;
+            if (disposing)
+            {
+                if (this.kernel != null)
+                {
+                    this.kernel.Dispose();
+                }
+
+                if (this.components != null)
+                {
+                    this.components.Dispose();
+                }
+            }
+
+            base.Dispose(disposing);
         }
 
         private void AddToListViewButton_Click(object sender, EventArgs e)
@@ -88,9 +85,9 @@
                         var item = new ListViewItem(taxonRankPair);
                         this.listView.Items.Add(item);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // Skip this item
+                        MessageBox.Show(ex.ToString());
                     }
                 }
             }
@@ -113,25 +110,6 @@
             this.listEntriesTextBox.Text = string.Empty;
         }
 
-        private void ClearXmlListFileButton_Click(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-            XslCompiledTransform xslTransform = new XslCompiledTransform();
-            try
-            {
-                string fileName = this.TempDirectory + @"\" + Path.GetFileName(this.ListFileName);
-                xslTransform.Load(this.CleanXslFileName);
-                xslTransform.Transform(this.ListFileName, fileName);
-                xslTransform.Transform(fileName, this.ListFileName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error in clean.");
-            }
-
-            this.Enabled = true;
-        }
-
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in this.listView.SelectedItems)
@@ -142,52 +120,47 @@
 
         private void ListImportButton_Click(object sender, EventArgs e)
         {
+            var awaiter = this.ImportData().GetAwaiter();
+        }
+
+        private async Task ImportData()
+        {
+            this.Enabled = false;
             try
             {
-                if (this.ListFileName.Length > 0)
+                if (this.IsRankList)
                 {
-                    XmlDocument listFileXml = new XmlDocument();
-                    listFileXml.Load(this.ListFileName);
+                    var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    foreach (ListViewItem item in this.listView.Items)
-                    {
-                        XmlNode node = null;
-                        if (this.IsRankList)
+                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items.Cast<ListViewItem>()
+                        .Select(i => new TaxonRankServiceModel
                         {
-                            node = listFileXml.CreateElement("taxon");
+                            ScientificName = i.SubItems[0].Text,
+                            Rank = i.SubItems[1].Text,
+                            IsWhiteListed = i.Checked
+                        }))
+                        .ToArray();
 
-                            XmlNode part = listFileXml.CreateElement("part");
-                            XmlNode partValue = listFileXml.CreateElement("value");
-                            XmlNode rank = listFileXml.CreateElement("rank");
-                            XmlNode rankValue = listFileXml.CreateElement("value");
+                    await service.Add(taxa);
+                }
+                else
+                {
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
 
-                            partValue.InnerText = item.SubItems[0].Text;
-                            rankValue.InnerText = item.SubItems[1].Text;
+                    var items = new HashSet<string>(this.listView.Items
+                        .Cast<ListViewItem>()
+                        .Select(i => i.Text))
+                        .ToArray();
 
-                            rank.AppendChild(rankValue);
-                            part.AppendChild(partValue);
-                            part.AppendChild(rank);
-
-                            node.AppendChild(part);
-                        }
-                        else
-                        {
-                            node = listFileXml.CreateElement("item");
-                            node.InnerXml = item.Text;
-                        }
-
-                        listFileXml.FirstChild.AppendChild(node);
-                    }
-
-                    StreamWriter writer = new StreamWriter(this.ListFileName);
-                    writer.Write(listFileXml.OuterXml);
-                    writer.Close();
+                    await service.Add(items);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error in import.");
             }
+
+            this.Enabled = true;
         }
 
         private void ListParseButton_Click(object sender, EventArgs e)
@@ -195,6 +168,7 @@
             StringBuilder result = new StringBuilder();
             try
             {
+                this.listEntriesTextBox.Text = Regex.Replace(this.listEntriesTextBox.Text, @"[^\w-]+", " ");
                 if (this.IsRankList)
                 {
                     for (Match entriesMatch = Regex.Match(this.listEntriesTextBox.Text, @"\S+\s+\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())
@@ -220,111 +194,119 @@
             }
         }
 
+        private void LoadWholeListButton_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show(
+                "Are you sure?",
+                "Load whole list",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            var awaiter = this.LoadAllData().GetAwaiter();
+        }
+
+        private async Task LoadAllData()
+        {
+            this.Enabled = false;
+            try
+            {
+                if (this.IsRankList)
+                {
+                    var service = this.kernel.Get<ITaxonRankDataService>();
+
+                    (await service.All())
+                        .ToList()
+                        .ForEach(taxon =>
+                        {
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            var listItem = new ListViewItem(taxonRankPair);
+                            listItem.Checked = taxon.IsWhiteListed;
+                            this.listView.Items.Add(listItem);
+                        });
+                }
+                else
+                {
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
+
+                    (await service.All())
+                        .ToList()
+                        .ForEach(item =>
+                        {
+                            this.listView.Items.Add(item);
+                        });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in load.");
+            }
+
+            this.Enabled = true;
+        }
+
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
-            this.Search();
+            var awaiter = this.Search().GetAwaiter();
         }
 
         private void ListSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                this.Search();
+                var awaiter = this.Search().GetAwaiter();
             }
         }
 
-        private void LoadWholeListButton_Click(object sender, EventArgs e)
+        private async Task Search()
         {
-            var dialogResult = MessageBox.Show("Are you sure?", "Load whole list", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
+            string textToSearch = this.listSearchTextBox.Text?.Trim() ?? string.Empty;
+            if (textToSearch.Length < 1)
             {
-                this.Enabled = false;
-                try
-                {
-                    XmlDocument listFileXml = new XmlDocument();
-                    listFileXml.Load(this.ListFileName);
-
-                    if (this.IsRankList)
-                    {
-                        foreach (XmlNode taxon in listFileXml.SelectNodes("//taxon"))
-                        {
-                            foreach (XmlNode part in taxon.SelectNodes("part"))
-                            {
-                                string partValue = part["value"].InnerText;
-                                foreach (XmlNode rank in part.SelectNodes("rank/value"))
-                                {
-                                    string[] taxonRankPair =
-                                        {
-                                            partValue,
-                                            rank.InnerText
-                                        };
-
-                                    var listItem = new ListViewItem(taxonRankPair);
-                                    this.listView.Items.Add(listItem);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (XmlNode item in listFileXml.SelectNodes("/*/*"))
-                        {
-                            this.listView.Items.Add(item.InnerText);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error in load.");
-                }
-
-                this.Enabled = true;
+                return;
             }
-        }
 
-        private void Search()
-        {
+            this.Enabled = false;
             try
             {
-                if (this.listSearchTextBox.Text.Trim().Length > 0)
+                if (this.IsRankList)
                 {
-                    XmlDocument listFileXml = new XmlDocument();
-                    listFileXml.Load(this.ListFileName);
+                    var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    if (this.IsRankList)
-                    {
-                        foreach (XmlNode taxon in listFileXml.SelectNodes($"//taxon[part/value[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]]"))
+                    (await service.All())
+                        .Where(t => t.ScientificName.Contains(textToSearch))
+                        .ToList()
+                        .ForEach(taxon =>
                         {
-                            foreach (XmlNode part in taxon.SelectNodes("part"))
-                            {
-                                string partValue = part["value"].InnerText;
-                                foreach (XmlNode rank in part.SelectNodes("rank/value"))
-                                {
-                                    string[] taxonRankPair = 
-                                        {
-                                            partValue,
-                                            rank.InnerText
-                                        };
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            var listItem = new ListViewItem(taxonRankPair);
+                            listItem.Checked = taxon.IsWhiteListed;
+                            this.listView.Items.Add(listItem);
+                        });
+                }
+                else
+                {
+                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
 
-                                    var listItem = new ListViewItem(taxonRankPair);
-                                    this.listView.Items.Add(listItem);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (XmlNode item in listFileXml.SelectNodes($"/*/*[contains(normalize-space(.), '{this.listSearchTextBox.Text.Trim()}')]"))
+                    (await service.All())
+                        .Where(i => i.Contains(textToSearch))
+                        .ToList()
+                        .ForEach(item =>
                         {
-                            this.listView.Items.Add(item.InnerText);
-                        }
-                    }
+                            this.listView.Items.Add(item);
+                        });
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error in search.");
             }
+
+            this.Enabled = true;
         }
     }
 }

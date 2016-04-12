@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram
+﻿namespace ProcessingTools.Tagger
 {
     using System;
     using System.Collections.Concurrent;
@@ -283,7 +283,7 @@
         protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
         {
             // Do not wait validation controllers to return.
-            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(IValidationController));
+            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(INotAwaitableController));
             if (validationController != null)
             {
                 // Validation controllers should not overwrite the content of this.document.XmlDocument,
@@ -352,27 +352,20 @@
             switch (this.document.XmlDocument.DocumentElement.Name)
             {
                 case "article":
-                    this.settings.Config.ArticleSchemaType = SchemaType.Nlm;
+                    this.settings.ArticleSchemaType = SchemaType.Nlm;
                     break;
 
                 default:
-                    this.settings.Config.ArticleSchemaType = SchemaType.System;
+                    this.settings.ArticleSchemaType = SchemaType.System;
                     break;
             }
 
-            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml(this.settings.Config);
+            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml();
         }
 
         private void SetUpConfigParameters()
         {
-            string tempDirectory = this.settings.Config.TempDirectoryPath;
-            string outputFileName = Path.GetFileNameWithoutExtension(this.fileProcessor.OutputFileName);
-
-            this.settings.Config.EnvoResponseOutputXmlFileName = $"{tempDirectory}\\envo-{outputFileName}.xml";
-            this.settings.Config.GnrOutputFileName = $"{tempDirectory}\\gnr-{outputFileName}.xml";
-            this.settings.Config.ReferencesTagTemplateXmlPath = $"{tempDirectory}\\{outputFileName}-references-tag-template.xml";
-
-            this.settings.Config.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
+            this.settings.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
         }
 
         private void ConfigureFileProcessor()
@@ -398,7 +391,7 @@
                 Messages.WriteOutputFileMessage,
                 () =>
                 {
-                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.Config);
+                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.ArticleSchemaType);
                     this.fileProcessor.Write(this.document, null, null);
                 });
         }

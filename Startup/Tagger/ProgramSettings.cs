@@ -1,21 +1,22 @@
-﻿namespace ProcessingTools.MainProgram
+﻿namespace ProcessingTools.Tagger
 {
     using System;
     using System.Collections.Generic;
 
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Configurator;
 
     public class ProgramSettings
     {
-        private Lazy<IStringTaxonomicListDataService> blackList;
-        private Lazy<IStringTaxonomicListDataService> whiteList;
+        private SchemaType articleSchemaType;
+        private bool articleSchemaTypeStyleIsLockedForModification;
 
         public ProgramSettings()
         {
             this.FileNames = new List<string>();
             this.CalledControllers = new List<Type>();
+
+            this.articleSchemaType = SchemaType.System;
+            this.articleSchemaTypeStyleIsLockedForModification = false;
 
             this.Config = null;
 
@@ -60,14 +61,26 @@
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
-
-            this.blackList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.BlackListXmlFilePath));
-            this.whiteList = new Lazy<IStringTaxonomicListDataService>(() => new StringTaxonomicListDataService(this.Config.WhiteListXmlFilePath));
         }
 
-        public IStringTaxonomicListDataService BlackList => this.blackList.Value;
+        public SchemaType ArticleSchemaType
+        {
+            get
+            {
+                this.articleSchemaTypeStyleIsLockedForModification = true;
+                return this.articleSchemaType;
+            }
 
-        public IStringTaxonomicListDataService WhiteList => this.whiteList.Value;
+            set
+            {
+                if (!this.articleSchemaTypeStyleIsLockedForModification)
+                {
+                    this.articleSchemaType = value;
+                }
+
+                this.articleSchemaTypeStyleIsLockedForModification = true;
+            }
+        }
 
         public Config Config { get; set; }
 
@@ -154,5 +167,7 @@
         public bool ZoobankCloneXml { get; set; }
 
         public bool ZoobankGenerateRegistrationXml { get; set; }
+
+        public string ReferencesGetReferencesXmlPath { get; set; }
     }
 }

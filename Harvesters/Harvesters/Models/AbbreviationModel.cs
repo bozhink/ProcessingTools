@@ -3,12 +3,10 @@
     using System;
     using System.Xml.Serialization;
 
-    using Contracts;
-
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "abbreviation")]
-    public class AbbreviationModel : IAbbreviationModel
+    public class AbbreviationModel
     {
         [XmlAttribute("content-type")]
         public string ContentType { get; set; }

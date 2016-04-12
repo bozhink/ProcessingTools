@@ -51,10 +51,8 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IMorphologicalEpithetsDataService.cs" />
     <Compile Include="Contracts\ITypeStatusDataService.cs" />
-    <Compile Include="Models\Contracts\IMorphologicalEpithet.cs" />
-    <Compile Include="Models\Contracts\ITypeStatus.cs" />
-    <Compile Include="Models\MorphologicalEpithetResponseModel.cs" />
-    <Compile Include="Models\TypeStatusResponseModel.cs" />
+    <Compile Include="Models\MorphologicalEpithetServiceModel.cs" />
+    <Compile Include="Models\TypeStatusServiceModel.cs" />
     <Compile Include="Services\MorphologicalEpithetsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TypeStatusDataService.cs" />

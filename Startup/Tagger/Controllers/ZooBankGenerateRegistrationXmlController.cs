@@ -1,24 +1,25 @@
-﻿namespace ProcessingTools.MainProgram.Controllers
+﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System.Configuration;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
     using Factories;
-    using ProcessingTools.BaseLibrary.ZooBank;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Infrastructure.Extensions;
 
     [Description("Generate xml document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlController : TaggerControllerFactory, IZooBankGenerateRegistrationXmlController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var generator = new ZoobankRegistrationXmlGenerator(settings.Config, document.OuterXml);
-
-            await generator.Generate();
-
-            document.LoadXml(generator.Xml);
+            return Task.Run(() =>
+            {
+                string xslFileName = ConfigurationManager.AppSettings["ZoobankNlmXslPath"];
+                document.LoadXml(document.ApplyXslTransform(xslFileName));
+            });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Controllers
+﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
 
@@ -23,6 +23,6 @@
             this.service = service;
         }
 
-        protected override ITaxaDataService<ITaxonClassification> Service => this.service;
+        protected override ITaxaInformationResolverDataService<ITaxonClassification> Service => this.service;
     }
 }

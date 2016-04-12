@@ -4,7 +4,7 @@
     using ProcessingTools.Bio.Biorepositories.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Repositories;
 
-    public class BiorepositoriesRepository<T> : EfGenericRepository<BiorepositoriesDbContext, T>, IBiorepositoriesRepository<T>
+    public class BiorepositoriesRepository<T> : EntityGenericRepository<BiorepositoriesDbContext, T>, IBiorepositoriesRepository<T>
         where T : class
     {
         public BiorepositoriesRepository(IBiorepositoriesDbContextProvider contextProvider)

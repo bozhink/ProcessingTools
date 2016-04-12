@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IStringTaxonomicListDataService.cs" />
+    <Compile Include="Contracts\ITaxaDataService.cs" />
+    <Compile Include="Contracts\ITaxonomicBlackListDataService.cs" />
+    <Compile Include="Contracts\ITaxonRankDataService.cs" />
     <Compile Include="Services\AboveGenusTaxaRankDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationDataService.cs" />
     <Compile Include="Services\CatalogueOfLifeTaxaClassificationDataService.cs" />
@@ -55,23 +57,43 @@
     <Compile Include="Contracts\ICatalogueOfLifeTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IGbifTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\ILocalDbTaxaRankDataService.cs" />
-    <Compile Include="Contracts\ITaxonomicListDataService.cs" />
     <Compile Include="Contracts\ISuffixHigherTaxaRankDataService.cs" />
-    <Compile Include="Contracts\ITaxaDataService.cs" />
+    <Compile Include="Contracts\ITaxaInformationResolverDataService.cs" />
     <Compile Include="Services\GbifTaxaClassificationDataService.cs" />
     <Compile Include="Contracts\IAboveGenusTaxaRankDataService.cs" />
     <Compile Include="Services\LocalDbTaxaRankDataService.cs" />
-    <Compile Include="Models\TaxonClassificationDataServiceResponseModel.cs" />
-    <Compile Include="Models\TaxonRankDataServiceResponseModel.cs" />
+    <Compile Include="Models\TaxonClassificationServiceModel.cs" />
+    <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SuffixHigherTaxaRankDataService.cs" />
-    <Compile Include="Factories\TaxaDataServiceFactory.cs" />
-    <Compile Include="Services\StringTaxonomicListDataService.cs" />
+    <Compile Include="Factories\TaxaInformationResolverDataServiceFactory.cs" />
+    <Compile Include="Services\TaxonomicBlackListDataService.cs" />
+    <Compile Include="Services\TaxonRankDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
+      <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
+      <Name>Bio.Taxonomy.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
@@ -104,6 +126,10 @@
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
@@ -12,16 +13,19 @@
     {
         private const string Rank = "above-genus";
 
-        public IQueryable<ITaxonClassification> Resolve(params string[] scientificNames)
+        public Task<IQueryable<ITaxonClassification>> Resolve(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonClassification>(scientificNames
-                .Select(s => new TaxonClassificationDataServiceResponseModel
-                {
-                    ScientificName = s,
-                    Rank = Rank
-                }));
+            return Task.Run(() =>
+            {
+                var result = new HashSet<ITaxonClassification>(scientificNames
+                    .Select(s => new TaxonClassificationServiceModel
+                    {
+                        ScientificName = s,
+                        Rank = Rank
+                    }));
 
-            return result.AsQueryable();
+                return result.AsQueryable();
+            });
         }
     }
 }

@@ -155,13 +155,13 @@
 		TAXONOMIC PART
 	 -->
 
-  <xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name[@type='lower']|article/front/article-meta/title-group/article-title/tn[@type='lower']">
+  <xsl:template match="front/article-meta/title-group/article-title/tp:taxon-name[@type='lower']|front/article-meta/title-group/article-title/tn[@type='lower']">
     <italic>
       <xsl:call-template name="parse-inline-taxon-name-content"/>
     </italic>
   </xsl:template>
 
-  <xsl:template match="article/front/article-meta/title-group/article-title/tp:taxon-name|article/front/article-meta/title-group/article-title/italic/tp:taxon-name|article/front/article-meta/title-group/article-title/tn|article/front/article-meta/title-group/article-title/i/tn">
+  <xsl:template match="front/article-meta/title-group/article-title/tp:taxon-name|front/article-meta/title-group/article-title/italic/tp:taxon-name|front/article-meta/title-group/article-title/tn|front/article-meta/title-group/article-title/i/tn">
     <xsl:call-template name="parse-inline-taxon-name-content"/>
   </xsl:template>
 
@@ -235,11 +235,11 @@
   </xsl:template>
 
   <xsl:template match="tp:taxon-name-part|tn-part">
-    <xsl:variable name="lBracket" select="contains(string(.),'(')"/>
-    <xsl:variable name="rBracket" select="contains(string(.),')')"/>
-    <xsl:variable name="lValue">
+    <xsl:variable name="leftBracket" select="contains(string(.),'(')"/>
+    <xsl:variable name="rightBracket" select="contains(string(.),')')"/>
+    <xsl:variable name="leftValue">
       <xsl:choose>
-        <xsl:when test="$lBracket">
+        <xsl:when test="$leftBracket">
           <xsl:value-of select="substring-after(normalize-space(.), '(')"/>
         </xsl:when>
         <xsl:otherwise>
@@ -247,17 +247,17 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="rValue">
+    <xsl:variable name="rightValue">
       <xsl:choose>
-        <xsl:when test="$rBracket">
-          <xsl:value-of select="substring-before($lValue, ')')"/>
+        <xsl:when test="$rightBracket">
+          <xsl:value-of select="substring-before($leftValue, ')')"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$lValue"/>
+          <xsl:value-of select="$leftValue"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:if test="$lBracket">
+    <xsl:if test="$leftBracket">
       <xsl:text> (</xsl:text>
     </xsl:if>
     <tp:taxon-name-part>
@@ -270,11 +270,11 @@
           <xsl:value-of select="@full-name"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$rValue"/>
+          <xsl:value-of select="$rightValue"/>
         </xsl:otherwise>
       </xsl:choose>
     </tp:taxon-name-part>
-    <xsl:if test="$rBracket">
+    <xsl:if test="$rightBracket">
       <xsl:text>) </xsl:text>
     </xsl:if>
   </xsl:template>

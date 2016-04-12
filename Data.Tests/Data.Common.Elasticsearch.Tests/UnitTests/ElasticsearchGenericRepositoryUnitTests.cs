@@ -109,6 +109,8 @@
         }
 
         [TestMethod]
+        [Ignore]
+        [Timeout(5000)]
         public void ElasticsearchGenericRepository_AddValidEntity_ShouldWork()
         {
             var repository = new ElasticsearchGenericRepository<Tweet>(this.contextProvider, this.clientProvider);

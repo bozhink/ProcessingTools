@@ -12,13 +12,12 @@
     using Contracts;
     using Factories;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
 
-    public class TaxaValidationService : ValidationServiceFactory<ITaxonName, string>, ITaxaValidationService
+    public class TaxaValidationService : ValidationServiceFactory<TaxonNameServiceModel, string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;
 
@@ -29,14 +28,14 @@
 
         protected override Func<string, string> GetContextKey => item => item;
 
-        protected override Func<ITaxonName, string> GetItemToCheck => item => item.Name;
+        protected override Func<TaxonNameServiceModel, string> GetItemToCheck => item => item.Name;
 
-        protected override Func<string, ITaxonName> GetValidatedObject => item => new TaxonName
+        protected override Func<string, TaxonNameServiceModel> GetValidatedObject => item => new TaxonNameServiceModel
         {
             Name = item
         };
 
-        protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<ITaxonName>> output)
+        protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<TaxonNameServiceModel>> output)
         {
             var exceptions = new ConcurrentQueue<Exception>();
             var resolver = new GlobalNamesResolverDataRequester();

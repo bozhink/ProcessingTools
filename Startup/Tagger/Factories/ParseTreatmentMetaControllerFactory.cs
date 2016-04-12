@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MainProgram.Factories
+﻿namespace ProcessingTools.Tagger.Factories
 {
     using System.Threading.Tasks;
     using System.Xml;
@@ -10,7 +10,7 @@
 
     public abstract class ParseTreatmentMetaControllerFactory : TaggerControllerFactory
     {
-        protected abstract ITaxaDataService<ITaxonClassification> Service { get; }
+        protected abstract ITaxaInformationResolverDataService<ITaxonClassification> Service { get; }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {

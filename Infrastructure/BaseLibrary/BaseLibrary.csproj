@@ -67,6 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +91,8 @@
     <Compile Include="Floats\Models\TableFloatObject.cs" />
     <Compile Include="Floats\Models\TextBoxFloatObject.cs" />
     <Compile Include="Format\SystemInitialFormatter.cs" />
+    <Compile Include="References\IReferencesConfiguration.cs" />
+    <Compile Include="References\ReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
@@ -131,11 +134,19 @@
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankXmlCloner.cs" />
-    <Compile Include="ZooBank\Generator\ZoobankRegistrationXmlGenerator.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankCloner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XSL\copy.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XSL\expand-taxa-by-full-name.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\format.to-valid-nlm.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\geo\geo-json.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\get-taxa.xsl">
@@ -177,6 +188,9 @@
     <Content Include="XSL\InDesign\Idml\map.xsl" />
     <Content Include="XSL\ipni-query.xsl">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\resolve-families-in-checklist.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\Special\gavin-laurens-tn.xsl">

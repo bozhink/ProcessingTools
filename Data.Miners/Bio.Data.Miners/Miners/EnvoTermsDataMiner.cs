@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Environments.Services.Data.Contracts;
     using Models;
-    using Models.Contracts;
+
+    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
 
     public class EnvoTermsDataMiner : IEnvoTermsDataMiner
     {
@@ -18,36 +18,33 @@
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.service = service;
         }
 
-        public Task<IQueryable<IEnvoTerm>> Mine(string content)
+        public async Task<IQueryable<EnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             string text = content.ToLower();
 
-            return Task.Run(() =>
-            {
-                var terms = this.service.All()
-                    .Select(t => new EnvoTerm
-                    {
-                        EntityId = t.EntityId,
-                        EnvoId = t.EnvoId,
-                        Content = t.Content
-                    })
-                    .ToList()
-                    .Where(t => text.Contains(t.Content.ToLower()));
+            var terms = (await this.service.All())
+                .Select(t => new EnvoTerm
+                {
+                    EntityId = t.EntityId,
+                    EnvoId = t.EnvoId,
+                    Content = t.Content
+                })
+                .ToList()
+                .Where(t => text.Contains(t.Content.ToLower()));
 
-                var result = new HashSet<IEnvoTerm>(terms);
-                return result.AsQueryable();
-            });
+            var result = new HashSet<EnvoTerm>(terms);
+            return result.AsQueryable();
         }
     }
 }

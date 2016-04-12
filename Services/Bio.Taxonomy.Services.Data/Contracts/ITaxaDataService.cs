@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Contracts
 {
-    using System.Linq;
+    using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITaxaDataService<T>
+    public interface ITaxaDataService<TServiceModel> : IDataService<TServiceModel>
     {
-        IQueryable<T> Resolve(params string[] scientificNames);
     }
 }

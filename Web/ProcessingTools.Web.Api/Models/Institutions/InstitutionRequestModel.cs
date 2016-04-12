@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using Contracts.Mapping;
-    using Services.Data.Models.Contracts;
+    using Mappings.Contracts;
+    using Services.Data.Models;
 
-    public class InstitutionRequestModel : IMapFrom<IInstitution>
+    public class InstitutionRequestModel : IMapFrom<InstitutionServiceModel>
     {
         public int? Id { get; set; }
 

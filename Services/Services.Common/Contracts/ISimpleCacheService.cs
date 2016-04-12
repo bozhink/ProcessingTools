@@ -2,8 +2,8 @@
 {
     using Models.Contracts;
 
-    public interface ISimpleCacheService<T> : ICacheService<string, int, T>
-        where T : ISimpleServiceModel
+    public interface ISimpleCacheService<TServiceModel> : ICacheService<string, int, TServiceModel>
+        where TServiceModel : ISimpleServiceModel
     {
     }
 }

@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
-    using Moq;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models.Contracts;
+    using ProcessingTools.Services.Data.Models;
 
     public class FakeProductsDataService : IProductsDataService
     {
@@ -14,56 +14,56 @@
 
         public FakeProductsDataService()
         {
-            this.Items = new HashSet<IProduct>();
+            this.Items = new HashSet<ProductServiceModel>();
             for (int i = 0; i < NumberOfDataItems; ++i)
             {
-                var mockProduct = new Mock<IProduct>();
-                mockProduct.Setup(m => m.Id).Returns(i);
-                mockProduct.Setup(m => m.Name).Returns($"Product {i}");
-
-                this.Items.Add(mockProduct.Object);
+                this.Items.Add(new ProductServiceModel
+                {
+                    Id = i,
+                    Name = $"Product {i}"
+                });
             }
         }
 
-        public HashSet<IProduct> Items { get; set; }
+        public HashSet<ProductServiceModel> Items { get; set; }
 
-        public void Add(IProduct entity)
+        public Task<int> Add(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IProduct> All()
+        public Task<IQueryable<ProductServiceModel>> All()
         {
-            return this.Items.AsQueryable();
+            return Task.FromResult(this.Items.AsQueryable());
         }
 
-        public void Delete(object id)
+        public Task<int> Delete(params object[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(IProduct entity)
+        public Task<int> Delete(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<IProduct> Get(object id)
+        public Task<IQueryable<ProductServiceModel>> Get(params object[] ids)
         {
-            return this.Items
-                .Where(p => p.Id == (int)id)
-                .AsQueryable();
+            var result = ids.Select(id => this.Items.FirstOrDefault(p => p.Id == (int)id)).AsQueryable();
+
+            return Task.FromResult(result);
         }
 
-        public IQueryable<IProduct> Get(int skip, int take)
+        public Task<IQueryable<ProductServiceModel>> Get(int skip, int take)
         {
-            return this.Items
+            return Task.FromResult(this.Items
                 .OrderBy(p => p.Id)
                 .Skip(skip)
                 .Take(take)
-                .AsQueryable();
+                .AsQueryable());
         }
 
-        public void Update(IProduct entity)
+        public Task<int> Update(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }

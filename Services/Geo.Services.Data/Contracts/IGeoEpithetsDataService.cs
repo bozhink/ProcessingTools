@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Contracts
 {
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IGeoEpithetsDataService : ICrudDataService<IGeoEpithet>
+    public interface IGeoEpithetsDataService : IDataService<GeoEpithetServiceModel>
     {
     }
 }

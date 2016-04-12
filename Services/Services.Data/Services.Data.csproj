@@ -52,10 +52,8 @@
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
-    <Compile Include="Models\Contracts\IInstitution.cs" />
-    <Compile Include="Models\Contracts\IProduct.cs" />
-    <Compile Include="Models\InstitutionResponseModel.cs" />
-    <Compile Include="Models\ProductResponseModel.cs" />
+    <Compile Include="Models\InstitutionServiceModel.cs" />
+    <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

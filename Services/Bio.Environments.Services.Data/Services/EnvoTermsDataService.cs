@@ -1,10 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data
 {
+    using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using Models.Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Models;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
@@ -17,15 +18,20 @@
 
         public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
             this.repository = repository;
         }
 
-        public IQueryable<IEnvoTerm> All()
+        public async Task<IQueryable<EnvoTermServiceModel>> All()
         {
-            var result = this.repository.All()
+            var result = (await this.repository.All())
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
-                .Select(n => new EnvoTermDataServiceResponseModel
+                .Select(n => new EnvoTermServiceModel
                 {
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,
@@ -35,7 +41,7 @@
             return result;
         }
 
-        public IQueryable<IEnvoTerm> Get(int skip, int take)
+        public async Task<IQueryable<EnvoTermServiceModel>> Get(int skip, int take)
         {
             if (skip < 0)
             {
@@ -47,12 +53,12 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = this.repository.All()
+            var result = (await this.repository.All())
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Skip(skip)
                 .Take(take)
-                .Select(n => new EnvoTermDataServiceResponseModel
+                .Select(n => new EnvoTermServiceModel
                 {
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,

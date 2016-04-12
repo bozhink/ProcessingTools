@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
@@ -12,12 +14,17 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Infrastructure.Concurrency;
 
-    public class GbifTaxaClassificationDataService : TaxaDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
+    public class GbifTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
         private IGbifDataRequester requester;
 
         public GbifTaxaClassificationDataService(IGbifDataRequester requester)
         {
+            if (requester == null)
+            {
+                throw new ArgumentNullException(nameof(requester));
+            }
+
             this.requester = requester;
         }
 
@@ -26,9 +33,9 @@
             Delayer.Delay();
         }
 
-        protected override void ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
+        protected override async Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)
         {
-            var response = this.requester?.RequestData(scientificName)?.Result;
+            var response = await this.requester.RequestData(scientificName);
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) ||
@@ -52,7 +59,7 @@
 
         private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
         {
-            return new TaxonClassificationDataServiceResponseModel
+            return new TaxonClassificationServiceModel
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,

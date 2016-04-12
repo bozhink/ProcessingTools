@@ -1,5 +1,6 @@
-﻿namespace ProcessingTools.MainProgram.Controllers
+﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -9,16 +10,28 @@
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Parse higher taxa with local database.")]
     public class ParseHigherTaxaWithLocalDbController : TaggerControllerFactory, IParseHigherTaxaWithLocalDbController
     {
+        private readonly ILocalDbTaxaRankDataService service;
+
+        public ParseHigherTaxaWithLocalDbController(ILocalDbTaxaRankDataService service)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
+        }
+
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var service = new LocalDbTaxaRankDataService(settings.Config.RankListXmlFilePath);
-            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(document.OuterXml, service, logger);
+            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(document.OuterXml, this.service, logger);
 
             await parser.Parse();
 

@@ -5,7 +5,6 @@
     using System.Xml;
 
     using ProcessingTools.Configurator;
-    using ProcessingTools.Infrastructure.Extensions;
 
     public class Flora : SpecialFactory
     {
@@ -14,40 +13,10 @@
         {
         }
 
-        public static string DistinctTaxa(string xml)
-        {
-            return xml.ApplyXslTransform(@"C:\bin\taxa.distinct.xslt");
-        }
-
-        public void ExtractTaxa()
-        {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaXslPath);
-        }
-
-        public string ExtractTaxaParts()
-        {
-            return this.XmlDocument.ApplyXslTransform(this.Config.FloraExtractTaxaPartsXslPath);
-        }
-
-        public void DistinctTaxa()
-        {
-            this.Xml = this.XmlDocument.ApplyXslTransform(this.Config.FloraDistrinctTaxaXslPath);
-        }
-
-        public void GenerateTagTemplate()
-        {
-            XmlDocument generatedTemplate = new XmlDocument();
-            generatedTemplate.LoadXml(Flora.DistinctTaxa(this.XmlDocument.ApplyXslTransform(this.Config.FloraGenerateTemplatesXslPath)));
-            generatedTemplate.Save(this.Config.FloraTemplatesOutputXmlPath);
-        }
-
-        public void PerformReplace()
+        public void PerformReplace(XmlDocument template)
         {
             const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";
             const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
-
-            XmlDocument template = new XmlDocument();
-            template.Load(this.Config.FloraTemplatesOutputXmlPath);
 
             XmlNode root = template.DocumentElement;
 
@@ -167,11 +136,8 @@
             this.Xml = Regex.Replace(this.Xml, "(?<=</tn-part>)(?=<tn)", " ");
         }
 
-        public void ParseTn()
+        public void ParseTn(XmlDocument template)
         {
-            XmlDocument template = new XmlDocument();
-            template.Load(this.Config.FloraTemplatesOutputXmlPath);
-
             XmlNode root = template.DocumentElement;
 
             // Get only full-named taxa

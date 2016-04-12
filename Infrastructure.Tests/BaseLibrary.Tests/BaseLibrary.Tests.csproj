@@ -66,7 +66,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodesTests.cs" />
-    <Compile Include="Coordinates\CoordinatesTests.cs" />
     <Compile Include="Models\ExternalLinkSerializableModel.cs" />
     <Compile Include="SerializationTests.cs" />
     <Compile Include="TaxonomyParserTests.cs" />

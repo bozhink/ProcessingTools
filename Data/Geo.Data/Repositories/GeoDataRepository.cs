@@ -4,7 +4,7 @@
     using ProcessingTools.Geo.Data.Contracts;
     using ProcessingTools.Geo.Data.Repositories.Contracts;
 
-    public class GeoDataRepository<T> : EfGenericRepository<GeoDbContext, T>, IGeoDataRepository<T>
+    public class GeoDataRepository<T> : EntityGenericRepository<GeoDbContext, T>, IGeoDataRepository<T>
         where T : class
     {
         public GeoDataRepository(IGeoDbContextProvider contextProvider)

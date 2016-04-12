@@ -21,16 +21,14 @@
 
         private ILogger logger;
 
-        public LowerTaxaTagger(Config config, string xml, ITaxonomicListDataService<string> blackList, ILogger logger)
-            : base(config, xml, blackList)
+        public LowerTaxaTagger(Config config, string xml, ITaxonomicBlackListDataService service, ILogger logger)
+            : base(config, xml, service)
         {
             this.logger = logger;
         }
 
-        public override Task Tag()
+        public override async Task Tag()
         {
-            return Task.Run(() =>
-            {
                 var knownLowerTaxaNames = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
                     .Cast<XmlNode>()
                     .Select(x => x.InnerText));
@@ -45,7 +43,7 @@
                     plausibleLowerTaxa.Add(taxon);
                 }
 
-                plausibleLowerTaxa = new HashSet<string>(this.ClearFakeTaxaNames(plausibleLowerTaxa)
+                plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(plausibleLowerTaxa))
                     .Select(name => name.ToLower()));
 
                 var comparer = StringComparer.InvariantCultureIgnoreCase;
@@ -77,7 +75,6 @@
                 ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
 
                 this.DeepTag();
-            });
         }
 
         // TODO: XPath-s correction needed
@@ -88,13 +85,10 @@
                 .AsParallel()
                 .ForAll(this.TagInfraspecificTaxa);
 
-            if ((this.Config.ArticleSchemaType == SchemaType.System) && !this.Config.TagWholeDocument)
-            {
-                this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
-                    .Cast<XmlNode>()
-                    .AsParallel()
-                    .ForAll(this.TagInfraspecificTaxa);
-            }
+            this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(this.TagInfraspecificTaxa);
         }
 
         private void TagInfraspecificTaxa(XmlNode node)
