@@ -3,6 +3,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -11,13 +12,13 @@
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
-    using ProcessingTools.Infrastructure.Concurrency;
+    using ProcessingTools.Common.Constants;
 
     public class AphiaTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationDataService
     {
         protected override void Delay()
         {
-            Delayer.Delay();
+            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
         }
 
         protected override Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)

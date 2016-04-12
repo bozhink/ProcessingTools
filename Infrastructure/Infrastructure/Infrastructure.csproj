@@ -49,7 +49,6 @@
     <Compile Include="Attributes\FileNameAttribute.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Attributes\ValueAttribute.cs" />
-    <Compile Include="Concurrency\Delayer.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Extensions\ListIntersectionsExtensions.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />

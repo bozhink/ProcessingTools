@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -12,7 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
-    using ProcessingTools.Infrastructure.Concurrency;
+    using ProcessingTools.Common.Constants;
 
     public class GbifTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
@@ -30,7 +31,7 @@
 
         protected override void Delay()
         {
-            Delayer.Delay();
+            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
         }
 
         protected override async Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaRanks)

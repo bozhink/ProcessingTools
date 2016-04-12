@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -14,7 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
     using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Infrastructure.Concurrency;
+    using ProcessingTools.Common.Constants;
 
     public class CatalogueOfLifeTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
     {
@@ -32,7 +33,7 @@
 
         protected override void Delay()
         {
-            Delayer.Delay();
+            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
         }
 
         protected override async Task ResolveScientificName(string scientificName, ConcurrentQueue<ITaxonClassification> taxaQueue)
