@@ -280,9 +280,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mappings", "Infrastructure\Mappings\Mappings.csproj", "{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.ServiceClient.MaterialsParser", "ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj", "{E15F875B-A919-4E95-ABEA-2273FA53A0B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.ServiceClient.Mendeley", "ServiceClients\Data.ServiceClient.Mendeley\Data.ServiceClient.Mendeley.csproj", "{ADD44F9B-035E-4335-87A6-22794F33CFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.ServiceClient.MaterialsParser.Tests", "ServiceClients.Tests\Bio.ServiceClient.MaterialsParser.Tests\Bio.ServiceClient.MaterialsParser.Tests.csproj", "{E856E533-2AA5-4A41-92F7-1959AC82A552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.ServiceClient.Mendeley.Tests", "ServiceClients.Tests\Data.ServiceClient.Mendeley.Tests\Data.ServiceClient.Mendeley.Tests.csproj", "{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1236,22 +1236,22 @@ Global
 		{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}.Release|x64.ActiveCfg = Release|Any CPU
 		{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}.Release|x64.Build.0 = Release|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Debug|x64.Build.0 = Debug|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Release|x64.ActiveCfg = Release|Any CPU
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9}.Release|x64.Build.0 = Release|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Debug|x64.Build.0 = Debug|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Release|x64.ActiveCfg = Release|Any CPU
-		{E856E533-2AA5-4A41-92F7-1959AC82A552}.Release|x64.Build.0 = Release|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Debug|x64.Build.0 = Debug|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1}.Release|x64.Build.0 = Release|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Debug|x64.Build.0 = Debug|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Release|x64.ActiveCfg = Release|Any CPU
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1373,8 +1373,8 @@ Global
 		{9BDBCAF3-E2FE-4148-B4C6-EC98054DDBC9} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{48EB9453-82C3-45F2-A76C-61EE610F49C8} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{96899CF4-3E65-4860-8D89-0BEC7D4E93ED} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
-		{E15F875B-A919-4E95-ABEA-2273FA53A0B9} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{E856E533-2AA5-4A41-92F7-1959AC82A552} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
+		{ADD44F9B-035E-4335-87A6-22794F33CFF1} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
+		{1CE2743E-39AB-4FE9-8234-B71C1FDD68A2} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
