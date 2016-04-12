@@ -25,7 +25,7 @@ namespace ProcessingTools.Bio.Data.Miners
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {
         private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";
-        private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|males?|females?|juveniles?|larvae?)\s*?)+)";
+        private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|\bexx?\b\.?|\bspp\b\.?|\bmales?\b|\bfemales?\b|\bjuveniles?\b|\blarvae?\b|\badults?\b|\bspecimens?\b|\bspec\b\.?|\bunsexed\b(?:\s+specimens?\b)?)\s*?)+)";
 
         public async Task<IQueryable<string>> Mine(string content)
         {
