@@ -91,12 +91,15 @@
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,AbbreviatedName")] Publisher publisher)
         {
+            Publisher entity = this.db.Publishers.Find(publisher.Id);
             if (ModelState.IsValid)
             {
-                publisher.ModifiedByUserId = this.GetUserId();
-                publisher.DateModified = DateTime.UtcNow;
+                entity.Name = publisher.Name;
+                entity.AbbreviatedName = publisher.AbbreviatedName;
+                entity.ModifiedByUserId = this.GetUserId();
+                entity.DateModified = DateTime.UtcNow;
 
-                this.db.Entry(publisher).State = EntityState.Modified;
+                this.db.Entry(entity).State = EntityState.Modified;
                 this.db.SaveChanges();
 
                 return this.RedirectToAction(nameof(this.Index));
@@ -146,13 +149,18 @@
 
         private string GetUserId()
         {
-            var user = Membership.GetUser(User.Identity.Name);
-            if (user == null)
-            {
-                throw new InvalidOperationException(string.Format("User {0} not found.", User.Identity.Name));
-            }
+            int lengthOfGuid = Guid.NewGuid().ToString().Length;
+            string name = User.Identity.Name;
 
-            return (string)user.ProviderUserKey;
+            return name.Substring(0, Math.Min(name.Length, lengthOfGuid));
+
+            ////var user = Membership.GetUser(User.Identity.Name);
+            ////if (user == null)
+            ////{
+            ////    throw new InvalidOperationException(string.Format("User {0} not found.", User.Identity.Name));
+            ////}
+
+            ////return (string)user.ProviderUserKey;
         }
     }
 }
