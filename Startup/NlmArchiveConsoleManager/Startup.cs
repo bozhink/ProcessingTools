@@ -10,6 +10,7 @@
     using Loggers;
     using Models;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class Startup
     {
@@ -47,7 +48,30 @@
                 Environment.Exit(1);
             }
 
-            var directories = args.Select(a => Path.GetDirectoryName(a));
+            var directories = args.Select(a =>
+            {
+                if (Directory.Exists(a))
+                {
+                    return a;
+                }
+                else
+                {
+                    string path = Path.GetDirectoryName(a);
+
+                    if (Directory.Exists(path))
+                    {
+                        return path;
+                    }
+                    else
+                    {
+                        logger?.Log(LogType.Error, "'{0}' is not a valid path.", a);
+                    }
+
+                    return null;
+                }
+
+            })
+            .Where(d => !string.IsNullOrWhiteSpace(d));
 
             foreach (var directoryName in directories)
             {
