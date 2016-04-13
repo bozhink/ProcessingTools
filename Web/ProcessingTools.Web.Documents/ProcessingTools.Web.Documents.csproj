@@ -254,10 +254,11 @@
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PublishersController.cs" />
+    <Compile Include="Areas\JournalsManagment\Controllers\PublishersController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -356,11 +357,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Publishers\Create.cshtml" />
-    <Content Include="Views\Publishers\Delete.cshtml" />
-    <Content Include="Views\Publishers\Details.cshtml" />
-    <Content Include="Views\Publishers\Edit.cshtml" />
-    <Content Include="Views\Publishers\Index.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Create.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Delete.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Details.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Edit.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -370,8 +371,6 @@
     <Folder Include="Areas\AuthorsManagment\Controllers\" />
     <Folder Include="Areas\AuthorsManagment\Models\" />
     <Folder Include="Areas\AuthorsManagment\Views\Shared\" />
-    <Folder Include="Areas\JournalsManagment\Controllers\" />
-    <Folder Include="Areas\JournalsManagment\Models\" />
     <Folder Include="Areas\JournalsManagment\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -438,6 +437,10 @@
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899cf4-3e65-4860-8d89-0bec7d4e93ed}</Project>
       <Name>Mappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Documents.Services.Data\Documents.Services.Data.csproj">
+      <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
+      <Name>Documents.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

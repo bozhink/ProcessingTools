@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.JournalsManagment.Controllers
 {
     using System;
     using System.Data.Entity;
