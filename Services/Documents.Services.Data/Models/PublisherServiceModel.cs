@@ -1,25 +1,27 @@
-﻿namespace ProcessingTools.Documents.Data.Common.Models
+﻿namespace ProcessingTools.Documents.Services.Data.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Data.Common.Models.Contracts;
 
-    public abstract class DocumentsAbstractEntity : IEntityWithUserInformation
+    public class PublisherServiceModel
     {
-        public DocumentsAbstractEntity()
+        public PublisherServiceModel()
         {
             this.DateModified = DateTime.UtcNow;
             this.DateCreated = this.DateModified;
         }
 
-        [MaxLength(128)]
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string AbbreviatedName { get; set; }
+
         public string CreatedByUserId { get; set; }
 
         public DateTime DateCreated { get; set; }
 
         public DateTime DateModified { get; set; }
 
-        [MaxLength(128)]
         public string ModifiedByUserId { get; set; }
     }
 }

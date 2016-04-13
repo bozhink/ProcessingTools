@@ -49,6 +49,7 @@
     <Compile Include="Author.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DocumentsAbstractEntity.cs" />
     <Compile Include="Institution.cs" />
     <Compile Include="Journal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,9 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
-      <Name>Documents.Data.Common</Name>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
