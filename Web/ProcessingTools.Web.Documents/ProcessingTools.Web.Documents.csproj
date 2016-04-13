@@ -251,6 +251,7 @@
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -304,6 +305,8 @@
     <Content Include="Areas\JournalsManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AuthorsManagment\Views\web.config" />
     <Content Include="Areas\AuthorsManagment\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\web.config" />
+    <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />
@@ -361,6 +364,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\ArticlesManagment\Controllers\" />
+    <Folder Include="Areas\ArticlesManagment\Models\" />
+    <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
     <Folder Include="Areas\AuthorsManagment\Controllers\" />
     <Folder Include="Areas\AuthorsManagment\Models\" />
     <Folder Include="Areas\AuthorsManagment\Views\Shared\" />
