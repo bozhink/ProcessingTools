@@ -1,27 +1,30 @@
-﻿@model ProcessingTools.Documents.Data.Models.Publisher
+﻿@using ProcessingTools.Web.Documents.Areas.JournalsManagment.Controllers
+
+@model ProcessingTools.Documents.Data.Models.Publisher
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = nameof(PublishersController.Edit);
 }
 
-<h2>Edit</h2>
-
+<h2>
+    @nameof(PublishersController.Edit)
+</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Publisher</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Name, string.Empty, new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,7 +32,7 @@
             @Html.LabelFor(model => model.AbbreviatedName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AbbreviatedName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AbbreviatedName, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AbbreviatedName, string.Empty, new { @class = "text-danger" })
             </div>
         </div>
 
@@ -42,7 +45,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", nameof(PublishersController.Index))
 </div>
 
 @section Scripts {

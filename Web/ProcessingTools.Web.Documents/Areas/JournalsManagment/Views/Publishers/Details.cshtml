@@ -1,10 +1,14 @@
-﻿@model ProcessingTools.Documents.Data.Models.Publisher
+﻿@using ProcessingTools.Web.Documents.Areas.JournalsManagment.Controllers
+
+@model ProcessingTools.Documents.Data.Models.Publisher
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = nameof(PublishersController.Details);
 }
 
-<h2>Details</h2>
+<h2>
+    @nameof(PublishersController.Details)
+</h2>
 
 <div>
     <h4>Publisher</h4>
@@ -57,10 +61,9 @@
         <dd>
             @Html.DisplayFor(model => model.ModifiedByUserId)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", nameof(PublishersController.Edit), new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", nameof(PublishersController.Index))
 </p>

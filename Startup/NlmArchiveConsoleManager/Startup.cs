@@ -69,7 +69,6 @@
 
                     return null;
                 }
-
             })
             .Where(d => !string.IsNullOrWhiteSpace(d));
 

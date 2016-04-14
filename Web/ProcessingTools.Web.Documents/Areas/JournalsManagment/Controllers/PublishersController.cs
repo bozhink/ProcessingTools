@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using System.Web.Security;
+
     using ProcessingTools.Documents.Data;
     using ProcessingTools.Documents.Data.Models;
 
@@ -153,14 +153,6 @@
             string name = User.Identity.Name;
 
             return name.Substring(0, Math.Min(name.Length, lengthOfGuid));
-
-            ////var user = Membership.GetUser(User.Identity.Name);
-            ////if (user == null)
-            ////{
-            ////    throw new InvalidOperationException(string.Format("User {0} not found.", User.Identity.Name));
-            ////}
-
-            ////return (string)user.ProviderUserKey;
         }
     }
 }
