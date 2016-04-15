@@ -12,6 +12,7 @@
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Documents.Data.DocumentsDbContext, ProcessingTools.Documents.Data.Migrations.Configuration>());
+            ProcessingTools.Documents.Data.DocumentsDbContext.Create().Database.Initialize(true);
         }
     }
 }

@@ -52,10 +52,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
-      <Name>Documents.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Documents.Data.Models\Documents.Data.Models.csproj">
       <Project>{82724298-bf0f-4b01-925e-48e3b6f56979}</Project>
       <Name>Documents.Data.Models</Name>

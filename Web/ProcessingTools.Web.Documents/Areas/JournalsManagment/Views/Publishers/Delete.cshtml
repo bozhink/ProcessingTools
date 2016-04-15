@@ -1,0 +1,76 @@
+﻿@using ProcessingTools.Web.Documents.Areas.JournalsManagment.Controllers
+
+@model ProcessingTools.Documents.Services.Data.Models.PublisherServiceModel
+
+@{
+    ViewBag.Title = nameof(PublishersController.Delete);
+}
+
+<h2>
+    @nameof(PublishersController.Delete)
+</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Publisher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbbreviatedName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbbreviatedName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByUserId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", nameof(PublishersController.Index))
+        </div>
+    }
+</div>

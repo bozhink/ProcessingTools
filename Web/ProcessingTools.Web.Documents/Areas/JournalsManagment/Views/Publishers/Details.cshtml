@@ -1,0 +1,69 @@
+﻿@using ProcessingTools.Web.Documents.Areas.JournalsManagment.Controllers
+
+@model ProcessingTools.Documents.Services.Data.Models.PublisherServiceModel
+
+@{
+    ViewBag.Title = nameof(PublishersController.Details);
+}
+
+<h2>
+    @nameof(PublishersController.Details)
+</h2>
+
+<div>
+    <h4>Publisher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbbreviatedName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbbreviatedName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByUserId)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", nameof(PublishersController.Edit), new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", nameof(PublishersController.Index))
+</p>
