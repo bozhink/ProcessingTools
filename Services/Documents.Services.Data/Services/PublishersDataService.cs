@@ -7,13 +7,13 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class PublishersDataService : GenericRepositoryDataServiceFactory<Publisher, PublisherServiceModel>, IPublishersDataService
+    public class PublishersDataService : GenericRepositoryProviderDataServiceFactory<Publisher, PublisherServiceModel>, IPublishersDataService
     {
-        public PublishersDataService(IDocumentsRepository<Publisher> repository)
+        public PublishersDataService(IDocumentsRepositoryProvider<Publisher> repository)
             : base(repository)
         {
         }

@@ -6,10 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using ProcessingTools.Documents.Data.Common;
-    using ProcessingTools.Documents.Data.Common.Contracts;
-    using ProcessingTools.Documents.Data.Common.Repositories;
-    using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Documents.Data.Repositories;
+    using ProcessingTools.Documents.Data.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Services.Data;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -24,8 +22,8 @@
         public PublishersController()
         {
             IDocumentsDbContextProvider contextProvider = new DocumentsDbContextProvider();
-            IDocumentsRepository<Publisher> repository = new DocumentsRepository<Publisher>(contextProvider);
-            this.service = new PublishersDataService(repository);
+            IDocumentsRepositoryProvider<Publisher> repositoryProvider = new DocumentsRepositoryProvider<Publisher>(contextProvider);
+            this.service = new PublishersDataService(repositoryProvider);
         }
 
         // GET: Publishers
