@@ -6,13 +6,15 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
+    using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Data.Repositories;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
-    using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Services.Data;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Extensions;
+
+    using ViewModels;
 
     [Authorize]
     public class PublishersController : Controller
@@ -29,7 +31,10 @@
         // GET: Publishers
         public async Task<ActionResult> Index()
         {
-            var items = (await this.service.All()).ToList();
+            var items = (await this.service.All())
+                .Select(AutoMapperConfig.Mapper.Map<PublisherViewModel>)
+                .OrderBy(p => p.Name)
+                .ToList();
 
             return this.View(items);
         }
@@ -44,7 +49,10 @@
 
             try
             {
-                var publisher = (await this.service.Get(id)).FirstOrDefault();
+                var publisher = (await this.service.Get(id))
+                    .Select(AutoMapperConfig.Mapper.Map<PublisherViewModel>)
+                    .FirstOrDefault();
+
                 if (publisher == null)
                 {
                     return this.HttpNotFound();
@@ -69,19 +77,25 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,AbbreviatedName")] PublisherServiceModel publisher)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,AbbreviatedName")] PublisherViewModel publisher)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    publisher.Id = Guid.NewGuid();
-                    publisher.CreatedByUserId = this.GetUserId();
-                    publisher.ModifiedByUserId = publisher.CreatedByUserId;
-                    publisher.DateCreated = DateTime.UtcNow;
-                    publisher.DateModified = publisher.DateCreated;
+                    var publisherServiceModel = new PublisherServiceModel
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedByUserId = this.GetUserId(),
+                        DateCreated = DateTime.UtcNow,
+                        Name = publisher.Name,
+                        AbbreviatedName = publisher.AbbreviatedName
+                    };
 
-                    await this.service.Add(publisher);
+                    publisherServiceModel.ModifiedByUserId = publisherServiceModel.CreatedByUserId;
+                    publisherServiceModel.DateModified = publisherServiceModel.DateCreated;
+
+                    await this.service.Add(publisherServiceModel);
 
                     return this.RedirectToAction(nameof(this.Index));
                 }
@@ -104,7 +118,10 @@
 
             try
             {
-                var publisher = (await this.service.Get(id)).FirstOrDefault();
+                var publisher = (await this.service.Get(id))
+                    .Select(AutoMapperConfig.Mapper.Map<PublisherViewModel>)
+                    .FirstOrDefault();
+
                 if (publisher == null)
                 {
                     return this.HttpNotFound();
@@ -123,19 +140,19 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName")] PublisherServiceModel publisher)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName")] PublisherViewModel publisher)
         {
             try
             {
-                var entity = (await this.service.Get(publisher.Id)).FirstOrDefault();
+                var publisherServiceModel = (await this.service.Get(publisher.Id)).FirstOrDefault();
                 if (ModelState.IsValid)
                 {
-                    entity.Name = publisher.Name;
-                    entity.AbbreviatedName = publisher.AbbreviatedName;
-                    entity.ModifiedByUserId = this.GetUserId();
-                    entity.DateModified = DateTime.UtcNow;
+                    publisherServiceModel.Name = publisher.Name;
+                    publisherServiceModel.AbbreviatedName = publisher.AbbreviatedName;
+                    publisherServiceModel.ModifiedByUserId = this.GetUserId();
+                    publisherServiceModel.DateModified = DateTime.UtcNow;
 
-                    await this.service.Update(entity);
+                    await this.service.Update(publisherServiceModel);
 
                     return this.RedirectToAction(nameof(this.Index));
                 }
@@ -158,7 +175,10 @@
 
             try
             {
-                var publisher = (await this.service.Get(id)).FirstOrDefault();
+                var publisher = (await this.service.Get(id))
+                    .Select(AutoMapperConfig.Mapper.Map<PublisherViewModel>)
+                    .FirstOrDefault();
+
                 if (publisher == null)
                 {
                     return this.HttpNotFound();

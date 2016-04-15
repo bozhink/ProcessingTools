@@ -3,7 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class PublisherViewModel
+    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Mappings.Contracts;
+
+    public class PublisherViewModel : IMapFrom<PublisherServiceModel>
     {
         public PublisherViewModel()
         {

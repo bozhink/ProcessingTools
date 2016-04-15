@@ -5,10 +5,14 @@ using Owin;
 
 namespace ProcessingTools.Web.Documents
 {
+    using System.Reflection;
+
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
+
             this.ConfigureAuth(app);
         }
     }
