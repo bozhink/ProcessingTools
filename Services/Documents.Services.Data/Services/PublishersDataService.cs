@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
 
     using Contracts;
@@ -28,7 +29,21 @@
                 DateModified = p.DateModified,
                 Id = p.Id,
                 ModifiedByUserId = p.ModifiedByUserId,
-                Name = p.Name
+                Name = p.Name,
+                Journals = p.Journals.Select(j => new JournalServiceModel
+                {
+                    AbbreviatedName = j.AbbreviatedName,
+                    CreatedByUserId = j.CreatedByUserId,
+                    DateCreated = j.DateCreated,
+                    DateModified = j.DateModified,
+                    ElectronicIssn = j.ElectronicIssn,
+                    Id = j.Id,
+                    JournalId = j.JournalId,
+                    ModifiedByUserId = j.ModifiedByUserId,
+                    Name = j.Name,
+                    PrintIssn = j.PrintIssn,
+                    PublisherId = j.PublisherId
+                })
             }
         };
 

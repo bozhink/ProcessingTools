@@ -254,6 +254,7 @@
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
     <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

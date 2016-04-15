@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Models
 {
     using System;
+    using System.Collections.Generic;
 
     public class PublisherServiceModel
     {
@@ -23,5 +24,7 @@
         public DateTime DateModified { get; set; }
 
         public string ModifiedByUserId { get; set; }
+
+        public IEnumerable<JournalServiceModel> Journals { get; set; }
     }
 }
