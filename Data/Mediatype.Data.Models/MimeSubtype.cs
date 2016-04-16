@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.MediaType.Data.Common.Constants;
 
     public class MimeSubtype
     {
@@ -19,7 +20,7 @@
 
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(150)]
+        [MaxLength(ValidationConstants.MaximalLengthOfMimeSubtypeName)]
         public string Name
         {
             get

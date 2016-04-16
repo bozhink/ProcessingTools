@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.MediaType.Data.Common.Constants;
 
     public class FileExtension
     {
@@ -18,10 +19,10 @@
 
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(30)]
+        [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionName)]
         public string Name { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionDescription)]
         public string Description { get; set; }
 
         public virtual ICollection<MimeTypePair> MimeTypePairs
