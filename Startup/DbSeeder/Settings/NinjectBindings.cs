@@ -24,6 +24,13 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(MediaType.Data.Seed.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }

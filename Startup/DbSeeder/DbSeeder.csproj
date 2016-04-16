@@ -138,13 +138,9 @@
       <Project>{7b811a1e-88ed-4bd6-a9e4-34b10e0d0fca}</Project>
       <Name>Geo.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\MediaType.Data.Models\MediaType.Data.Models.csproj">
-      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>MediaType.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
-      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>MediaType.Data</Name>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Seed\MediaType.Data.Seed.csproj">
+      <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
+      <Name>MediaType.Data.Seed</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
