@@ -2,12 +2,14 @@
 {
     using System;
     using System.Configuration;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
+    using ProcessingTools.Geo.Data.Migrations;
     using ProcessingTools.Geo.Data.Models;
 
     public class GeoDataSeeder : IGeoDataSeeder
@@ -29,6 +31,18 @@
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
 
             this.seeder = new DbContextSeeder<GeoDbContext>();
+        }
+
+        public async Task Init()
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<GeoDbContext, Configuration>());
+
+            using (var db = new GeoDbContext())
+            {
+                db.Database.CreateIfNotExists();
+                db.Database.Initialize(true);
+                await db.SaveChangesAsync();
+            }
         }
 
         public async Task Seed()

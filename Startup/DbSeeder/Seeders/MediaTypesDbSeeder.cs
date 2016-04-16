@@ -8,19 +8,18 @@
     using ProcessingTools.MediaType.Data;
     using ProcessingTools.MediaType.Data.Migrations;
 
-    public class MediaTypesDbSeeder : IDbSeeder
+    public class MediaTypesDbSeeder : IMediaTypesDbSeeder
     {
-        public Task Seed()
+        public async Task Seed()
         {
-            return Task.Run(() =>
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediaTypesDbContext, Configuration>());
+
+            using (var db = new MediaTypesDbContext())
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediaTypesDbContext, Configuration>());
-                var db = new MediaTypesDbContext();
                 db.Database.CreateIfNotExists();
                 db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                await db.SaveChangesAsync();
+            }
         }
     }
 }

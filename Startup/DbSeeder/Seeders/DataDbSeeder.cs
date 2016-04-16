@@ -8,20 +8,18 @@
     using ProcessingTools.Data;
     using ProcessingTools.Data.Migrations;
 
-    public class DataDbSeeder : IDbSeeder
+    public class DataDbSeeder : IDataDbSeeder
     {
-        public Task Seed()
+        public async Task Seed()
         {
-            return Task.Run(() =>
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>());
+
+            using (var db = new DataDbContext())
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>());
-                var db = new DataDbContext();
-                db.Database.Delete();
                 db.Database.CreateIfNotExists();
                 db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                await db.SaveChangesAsync();
+            }
         }
     }
 }

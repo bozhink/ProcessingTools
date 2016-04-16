@@ -8,19 +8,18 @@
     using ProcessingTools.Bio.Taxonomy.Data;
     using ProcessingTools.Bio.Taxonomy.Data.Migrations;
 
-    public class TaxonomyDbSeeder : IDbSeeder
+    public class TaxonomyDbSeeder : ITaxonomyDbSeeder
     {
-        public Task Seed()
+        public async Task Seed()
         {
-            return Task.Run(() =>
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TaxonomyDbContext, Configuration>());
+
+            using (var db = new TaxonomyDbContext())
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<TaxonomyDbContext, Configuration>());
-                var db = new TaxonomyDbContext();
                 db.Database.CreateIfNotExists();
                 db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                await db.SaveChangesAsync();
+            }
         }
     }
 }

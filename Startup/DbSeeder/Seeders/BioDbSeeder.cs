@@ -8,20 +8,18 @@
     using ProcessingTools.Bio.Data;
     using ProcessingTools.Bio.Data.Migrations;
 
-    public class BioDbSeeder : IDbSeeder
+    public class BioDbSeeder : IBioDbSeeder
     {
-        public Task Seed()
+        public async Task Seed()
         {
-            return Task.Run(() =>
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioDbContext, Configuration>());
+
+            using (var db = new BioDbContext())
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioDbContext, Configuration>());
-                var db = new BioDbContext();
-                db.Database.Delete();
                 db.Database.CreateIfNotExists();
                 db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                await db.SaveChangesAsync();
+            }
         }
     }
 }

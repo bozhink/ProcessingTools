@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDbProvider.cs" />
+    <Compile Include="Contracts\IDbSeeder.cs" />
     <Compile Include="Contracts\IGenericRepositoryProvider.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Models\Contracts\IEntity.cs" />

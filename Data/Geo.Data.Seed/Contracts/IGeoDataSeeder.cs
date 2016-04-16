@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Geo.Data.Seed.Contracts
 {
-    using System.Threading.Tasks;
+    using ProcessingTools.Data.Common.Contracts;
 
-    public interface IGeoDataSeeder
+    public interface IGeoDataSeeder : IDbSeeder
     {
-        Task Seed();
     }
 }
