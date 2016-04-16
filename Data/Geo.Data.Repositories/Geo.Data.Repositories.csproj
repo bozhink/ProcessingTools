@@ -43,11 +43,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IGeoDataRepository.cs" />
+    <Compile Include="Contracts\IGeoDataRepositoryProvider.cs" />
+    <Compile Include="Contracts\IGeoDbContextProvider.cs" />
+    <Compile Include="GeoDataRepository.cs" />
+    <Compile Include="GeoDataRepositoryProvider.cs" />
+    <Compile Include="GeoDbContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Geo.Data\Geo.Data.csproj">
+      <Project>{91A87E76-6AE4-4E63-9689-B129DB752BD5}</Project>
+      <Name>Geo.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
