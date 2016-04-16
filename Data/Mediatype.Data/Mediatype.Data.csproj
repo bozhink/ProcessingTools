@@ -65,10 +65,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\mime.out.xml" />
-    <Content Include="DataFiles\mime.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
