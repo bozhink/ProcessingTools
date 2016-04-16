@@ -28,7 +28,8 @@
                     {
                         var seeder = kernel.Get(seederType);
                         Console.WriteLine(seeder.GetType().FullName);
-                        await (seeder as IDbSeeder).Seed();
+                        var castedSeeder = seeder as IDataDbSeeder;
+                        await castedSeeder.Seed();
                     }
                     catch (Exception e)
                     {

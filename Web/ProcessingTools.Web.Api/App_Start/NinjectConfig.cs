@@ -25,7 +25,7 @@
             ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceWindowsRegistry>();
             kernel.Bind(b =>
             {
-                b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(MediaType.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
