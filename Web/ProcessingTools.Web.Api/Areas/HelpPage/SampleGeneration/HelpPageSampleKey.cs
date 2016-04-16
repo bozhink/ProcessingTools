@@ -98,20 +98,20 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         }
 
         /// <summary>
-        /// Gets the name of the action.
-        /// </summary>
-        /// <value>
-        /// The name of the action.
-        /// </value>
-        public string ActionName { get; private set; }
-
-        /// <summary>
         /// Gets the name of the controller.
         /// </summary>
         /// <value>
         /// The name of the controller.
         /// </value>
         public string ControllerName { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the action.
+        /// </summary>
+        /// <value>
+        /// The name of the action.
+        /// </value>
+        public string ActionName { get; private set; }
 
         /// <summary>
         /// Gets the media type.
@@ -160,7 +160,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
             if (this.SampleDirection != null)
             {
-                hashCode ^= this.GetHashCode();
+                hashCode ^= this.SampleDirection.GetHashCode();
             }
 
             if (this.ParameterType != null)
