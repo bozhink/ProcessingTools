@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Geo.Data.Common.Constants;
 
     public class GeoEpithet
     {
@@ -10,7 +11,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(100)]
+        [MaxLength(ValidationConstants.MaximalLengthOfGeoEpithetName)]
         public string Name { get; set; }
     }
 }

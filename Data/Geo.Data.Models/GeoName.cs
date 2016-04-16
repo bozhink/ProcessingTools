@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Geo.Data.Common.Constants;
 
     public class GeoName
     {
@@ -10,7 +11,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(300)]
+        [MaxLength(ValidationConstants.MaximalLengthOfGeoName)]
         public string Name { get; set; }
     }
 }

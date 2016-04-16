@@ -3,8 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    using Constants;
+    using ProcessingTools.Geo.Data.Common.Constants;
 
     public class Country
     {
@@ -23,6 +22,14 @@
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfCountryName)]
         public string Name { get; set; }
+
+        [MaxLength(ValidationConstants.MaximalLengthOfCallingCode)]
+        public string CallingCode { get; set; }
+
+        [MaxLength(ValidationConstants.MaximalLengthOfLanguageCode)]
+        public string LanguageCode { get; set; }
+
+        public string Iso639xCode { get; set; }
 
         public virtual ICollection<City> Cities
         {

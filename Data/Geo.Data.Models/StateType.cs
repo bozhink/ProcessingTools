@@ -4,6 +4,7 @@
     {
         State = 0,
         Province = 1,
-        District = 2
+        District = 2,
+        County = 3
     }
 }
