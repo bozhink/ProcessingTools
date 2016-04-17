@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Bio.Environments.Data.Common.Constants;
 
     public class EnvoEntity
     {
@@ -13,14 +14,14 @@
         }
 
         [Key]
-        [MinLength(10)]
-        [MaxLength(10)]
+        [MinLength(ValidationConstants.MinimalLengthOfEnvoEntityId)]
+        [MaxLength(ValidationConstants.MaximalLengthOfEnvoEntityId)]
         public string Id { get; set; }
 
         public int Index { get; set; }
 
-        [MinLength(13)]
-        [MaxLength(13)]
+        [MinLength(ValidationConstants.MinimalLengthOfEnvoId)]
+        [MaxLength(ValidationConstants.MaximalLengthOfEnvoId)]
         public string EnvoId { get; set; }
 
         public virtual ICollection<EnvoName> EnvoNames

@@ -78,6 +78,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bio.Environments.Data.Common\Bio.Environments.Data.Common.csproj">
+      <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
+      <Name>Bio.Environments.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Environments.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Bio.Environments.Data.Common.Constants;
 
     public class EnvoGlobal
     {
@@ -10,8 +11,8 @@
         [Required]
         public string Content { get; set; }
 
-        [MinLength(1)]
-        [MaxLength(1)]
+        [MinLength(ValidationConstants.MinimalLengthOfEnvoGlobalStatus)]
+        [MaxLength(ValidationConstants.MaximalLengthOfEnvoGlobalStatus)]
         public string Status { get; set; }
     }
 }
