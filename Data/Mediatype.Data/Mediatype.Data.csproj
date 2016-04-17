@@ -47,6 +47,10 @@
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MediatypesDbContext.cs" />
+    <Compile Include="Models\FileExtension.cs" />
+    <Compile Include="Models\MimeSubtype.cs" />
+    <Compile Include="Models\MimeType.cs" />
+    <Compile Include="Models\MimeTypePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mediatype.Data.Models\MediaType.Data.Models.csproj">
-      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>MediaType.Data.Models</Name>
+    <ProjectReference Include="..\MediaType.Data.Common\MediaType.Data.Common.csproj">
+      <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>
+      <Name>MediaType.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
