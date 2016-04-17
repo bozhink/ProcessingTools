@@ -70,10 +70,6 @@
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
-      <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
-      <Name>Bio.Taxonomy.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
