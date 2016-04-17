@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taxon.cs" />
-    <Compile Include="TaxonName.cs" />
-    <Compile Include="TaxonRank.cs" />
     <Compile Include="Xml\BlackList.cs" />
     <Compile Include="Xml\RankList.cs" />
     <Compile Include="Xml\Taxon.cs" />
