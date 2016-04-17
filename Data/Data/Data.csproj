@@ -50,19 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\english-common-words.txt" />
-    <Content Include="DataFiles\Seed\institutions.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\journals.txt" />
-    <Content Include="DataFiles\Seed\products.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataFiles\sec-types-1.txt" />
-    <Content Include="DataFiles\sec-types.txt" />
-    <Content Include="DataFiles\words.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
