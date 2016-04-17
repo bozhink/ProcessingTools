@@ -49,16 +49,11 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Taxon.cs" />
     <Compile Include="Models\TaxonName.cs" />
     <Compile Include="Models\TaxonRank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\ITaxaRepository.cs" />
-    <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\TaxaRepository.cs" />
-    <Compile Include="Repositories\TaxonomicBlackListRepository.cs" />
     <Compile Include="TaxonomyDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
