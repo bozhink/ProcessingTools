@@ -26,7 +26,7 @@
 
             this.Bind(b =>
             {
-                b.From(Bio.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

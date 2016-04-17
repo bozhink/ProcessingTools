@@ -43,6 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="BioDataRepository.cs" />
+    <Compile Include="BioDataRepositoryProvider.cs" />
+    <Compile Include="BioDbContextProvider.cs" />
+    <Compile Include="Contracts\IBioDataRepository.cs" />
+    <Compile Include="Contracts\IBioDataRepositoryProvider.cs" />
+    <Compile Include="Contracts\IBioDbContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
