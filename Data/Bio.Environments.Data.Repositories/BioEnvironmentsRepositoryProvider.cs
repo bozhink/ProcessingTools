@@ -19,7 +19,6 @@
             this.contextProvider = contextProvider;
         }
 
-
         public IGenericRepository<T> Create()
         {
             return new BioEnvironmentsRepository<T>(this.contextProvider);

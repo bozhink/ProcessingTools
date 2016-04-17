@@ -98,9 +98,9 @@
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
-      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
-      <Name>Bio.Environments.Data</Name>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Seed\Bio.Environments.Data.Seed.csproj">
+      <Project>{7f622ff2-5190-4765-a604-46abda36472d}</Project>
+      <Name>Bio.Environments.Data.Seed</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj">
       <Project>{2FA391D3-D129-4799-98F4-0969D27B1B11}</Project>

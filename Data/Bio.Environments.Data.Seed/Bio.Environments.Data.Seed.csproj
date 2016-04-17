@@ -43,23 +43,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IBioEnvironmentsDataSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeders\BioEnvironmentsDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataFiles\Envo\environments_entities.tsv">
+    <None Include="DataFiles\Seed\environments_entities.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="DataFiles\Envo\environments_global.tsv">
+    <None Include="DataFiles\Seed\environments_global.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="DataFiles\Envo\environments_groups.tsv">
+    <None Include="DataFiles\Seed\environments_groups.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="DataFiles\Envo\environments_names.tsv">
+    <None Include="DataFiles\Seed\environments_names.tsv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
