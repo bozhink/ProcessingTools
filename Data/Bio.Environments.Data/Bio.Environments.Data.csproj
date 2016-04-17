@@ -48,18 +48,13 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
-    <Compile Include="BioEnvironmentsDbContextProvider.cs" />
-    <Compile Include="Contracts\IBioEnvironmentsDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnvoEntity.cs" />
     <Compile Include="Models\EnvoGlobal.cs" />
     <Compile Include="Models\EnvoGroup.cs" />
     <Compile Include="Models\EnvoName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BioEnvironmentsRepository.cs" />
-    <Compile Include="Repositories\Contracts\IBioEnvironmentsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
