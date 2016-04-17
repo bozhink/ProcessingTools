@@ -440,10 +440,6 @@
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
-      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
-      <Name>Bio.Environments.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
       <Name>Bio.Environments.Data</Name>

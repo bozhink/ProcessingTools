@@ -58,10 +58,6 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
-      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
-      <Name>Bio.Environments.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
       <Name>Bio.Environments.Data</Name>
