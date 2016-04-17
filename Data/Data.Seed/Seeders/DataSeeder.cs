@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Seed.Seeders
+﻿namespace ProcessingTools.Data.Seed
 {
     using System;
     using System.Configuration;
