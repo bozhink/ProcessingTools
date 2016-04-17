@@ -43,18 +43,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IBioDataSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeders\BioDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bio.Data\Bio.Data.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFiles\Seed\morphological-epithets.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Seed\type-statuses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

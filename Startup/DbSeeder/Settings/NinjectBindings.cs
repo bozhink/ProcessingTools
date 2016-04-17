@@ -52,6 +52,13 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Data.Seed.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }
