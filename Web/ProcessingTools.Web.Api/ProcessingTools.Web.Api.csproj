@@ -432,10 +432,6 @@
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Models\Bio.Data.Models.csproj">
-      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
-      <Name>Bio.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>

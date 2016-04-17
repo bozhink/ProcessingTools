@@ -48,6 +48,8 @@
     <Compile Include="BioDbContextProvider.cs" />
     <Compile Include="Contracts\IBioDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MorphologicalEpithet.cs" />
+    <Compile Include="Models\TypeStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BioDataRepository.cs" />
     <Compile Include="Repositories\Contracts\IBioDataRepository.cs" />
@@ -65,10 +67,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bio.Data.Models\Bio.Data.Models.csproj">
-      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
-      <Name>Bio.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>

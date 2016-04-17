@@ -90,10 +90,6 @@
       <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
       <Name>Bio.Biorepositories.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Models\Bio.Data.Models.csproj">
-      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
-      <Name>Bio.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
