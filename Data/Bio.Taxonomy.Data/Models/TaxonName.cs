@@ -1,10 +1,13 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
 
     public class TaxonName
     {
+        private ICollection<TaxonRank> ranks;
         private bool whiteListed;
 
         /// <summary>
@@ -12,6 +15,7 @@
         /// </summary>
         public TaxonName()
         {
+            this.ranks = new HashSet<TaxonRank>();
             this.WhiteListed = false;
         }
 
@@ -26,7 +30,7 @@
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(60)]
+        [MaxLength(ValidationConstants.MaximalLengthOfTaxonName)]
         public string Name { get; set; }
 
         /// <summary>
@@ -46,8 +50,6 @@
             }
         }
 
-        public virtual int TaxonRankId { get; set; }
-
-        public virtual TaxonRank Rank { get; set; }
+        public virtual ICollection<TaxonRank> Ranks { get; set; }
     }
 }

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
 
     public class TaxonRank
     {
@@ -19,7 +20,7 @@
 
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
-        [MaxLength(15)]
+        [MaxLength(ValidationConstants.MaximalLengthOfRankName)]
         public string Name
         {
             get
