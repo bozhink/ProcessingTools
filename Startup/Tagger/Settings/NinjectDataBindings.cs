@@ -12,7 +12,7 @@
         {
             this.Bind(b =>
             {
-                b.From(Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

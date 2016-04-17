@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data
+﻿namespace ProcessingTools.Data.Repositories
 {
     using Contracts;
 
