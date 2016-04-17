@@ -343,10 +343,6 @@
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo.Data.Models\Geo.Data.Models.csproj">
-      <Project>{e131920b-8ae9-467d-bc0b-861438aaf130}</Project>
-      <Name>Geo.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Data.Repositories\Geo.Data.Repositories.csproj">
       <Project>{da6d7093-8ec2-4aec-8b78-8bdd8b2ed67a}</Project>
       <Name>Geo.Data.Repositories</Name>

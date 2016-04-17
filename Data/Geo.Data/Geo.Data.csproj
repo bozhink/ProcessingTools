@@ -45,6 +45,14 @@
   <ItemGroup>
     <Compile Include="GeoDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\GeoEpithet.cs" />
+    <Compile Include="Models\GeoName.cs" />
+    <Compile Include="Models\PostCode.cs" />
+    <Compile Include="Models\PostCodeType.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\StateType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,9 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geo.Data.Models\Geo.Data.Models.csproj">
-      <Project>{e131920b-8ae9-467d-bc0b-861438aaf130}</Project>
-      <Name>Geo.Data.Models</Name>
+    <ProjectReference Include="..\Geo.Data.Common\Geo.Data.Common.csproj">
+      <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
+      <Name>Geo.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
