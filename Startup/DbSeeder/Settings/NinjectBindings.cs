@@ -31,6 +31,13 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(Data.Seed.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }

@@ -126,9 +126,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data\Data.csproj">
-      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\..\Data\Data.Seed\Data.Seed.csproj">
+      <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
+      <Name>Data.Seed</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Data.Seed\Geo.Data.Seed.csproj">
       <Project>{7b811a1e-88ed-4bd6-a9e4-34b10e0d0fca}</Project>
