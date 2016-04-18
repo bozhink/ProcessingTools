@@ -20,6 +20,8 @@
 
                 expander.StableExpand();
 
+                expander.ForceExactSpeciesMatchExpand();
+
                 document.LoadXml(expander.Xml);
             });
         }
