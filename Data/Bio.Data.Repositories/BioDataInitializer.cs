@@ -1,37 +1,22 @@
 ﻿namespace ProcessingTools.Bio.Data.Repositories
 {
-    using System;
     using System.Data.Entity;
-    using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Bio.Data.Migrations;
+    using ProcessingTools.Data.Common.Entity.Factories;
 
-    public class BioDataInitializer : IBioDataInitializer
+    public class BioDataInitializer : DbContextInitializerFactory<BioDbContext>, IBioDataInitializer
     {
-        private IBioDbContextProvider contextProvider;
-
         public BioDataInitializer(IBioDbContextProvider contextProvider)
+            : base(contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
         }
 
-        public async Task Init()
+        protected override void SetInitializer()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioDbContext, Configuration>());
-
-            using (var context = this.contextProvider.Create())
-            {
-                context.Database.CreateIfNotExists();
-                context.Database.Initialize(true);
-                await context.SaveChangesAsync();
-            }
         }
     }
 }

@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IDbContextInitializer.cs" />
     <Compile Include="Contracts\IDbContextProvider.cs" />
+    <Compile Include="Factories\DbContextInitializerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />

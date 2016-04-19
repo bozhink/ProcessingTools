@@ -31,7 +31,7 @@
 
         public async Task Seed()
         {
-            await this.initializer.Init();
+            await this.initializer.Initialize();
             await this.seeder.Seed();
         }
     }
