@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Common.Contracts;
     using ServiceStack.Redis;
 
-    public interface IRedisClientProvider : IDbProvider<IRedisClient>
+    public interface IRedisClientProvider : IDatabaseProvider<IRedisClient>
     {
     }
 }

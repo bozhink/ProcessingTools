@@ -3,7 +3,7 @@
     using MongoDB.Driver;
     using ProcessingTools.Data.Common.Contracts;
 
-    public interface IMongoDatabaseProvider : IDbProvider<IMongoDatabase>
+    public interface IMongoDatabaseProvider : IDatabaseProvider<IMongoDatabase>
     {
     }
 }

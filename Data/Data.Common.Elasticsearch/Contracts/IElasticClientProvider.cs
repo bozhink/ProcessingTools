@@ -3,7 +3,7 @@
     using Nest;
     using ProcessingTools.Data.Common.Contracts;
 
-    public interface IElasticClientProvider : IDbProvider<IElasticClient>
+    public interface IElasticClientProvider : IDatabaseProvider<IElasticClient>
     {
     }
 }

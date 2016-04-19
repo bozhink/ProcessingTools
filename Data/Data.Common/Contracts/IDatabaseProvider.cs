@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Contracts
 {
-    public interface IDbProvider<T>
+    public interface IDatabaseProvider<T>
     {
         T Create();
     }

@@ -3,7 +3,7 @@
     using System.Data.Entity;
     using ProcessingTools.Data.Common.Contracts;
 
-    public interface IDbContextProvider<TContext> : IDbProvider<TContext>
+    public interface IDbContextProvider<TContext> : IDatabaseProvider<TContext>
         where TContext : DbContext
     {
     }
