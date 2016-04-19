@@ -1,15 +1,13 @@
 ﻿namespace ProcessingTools.Bio.Data.Repositories.Tests
 {
     using System;
-    using System.Data.Entity;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
     using ProcessingTools.Bio.Data.Repositories.Contracts;
-    using ProcessingTools.Bio.Data.Repositories.Tests.Models;
     using ProcessingTools.Bio.Data.Repositories.Tests.Mocks;
-    using ProcessingTools.Data.Common.Entity.Repositories;
+    using ProcessingTools.Bio.Data.Repositories.Tests.Models;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     [TestClass]
@@ -92,29 +90,5 @@
                 Assert.AreEqual("entity", e.ParamName, "ParamName should be entity.");
             }
         }
-
-        //////[TestMethod]
-        //////[Timeout(2000)]
-        //////public void BioDataRepository_AddValidEntity_ShouldWork()
-        //////{
-        //////    var repository = new BioDataRepository<Tweet>(this.contextProvider);
-        //////    repository.Add(new Tweet
-        //////    {
-        //////        Id = 1,
-        //////        Content = "Content"
-        //////    });
-        //////}
-
-        //////[TestMethod]
-        //////[Timeout(2000)]
-        //////public void BioDataRepository_All_ShouldReturnAllItemsAsQueryable()
-        //////{
-        //////    var repository = new BioDataRepository<Tweet>(this.contextProvider);
-
-        //////    repository.All().Wait();
-        //////    var result = repository.All().Result;
-
-        //////    Assert.IsNotNull(result, "All() should not return Task of null.");
-        //////}
     }
 }

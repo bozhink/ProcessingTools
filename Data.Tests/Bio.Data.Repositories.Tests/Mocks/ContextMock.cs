@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Data.Repositories.Tests.Mocks
 {
-    using Models;
-    using Moq;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
+    using Models;
+    using Moq;
 
     public class ContextMock
     {
