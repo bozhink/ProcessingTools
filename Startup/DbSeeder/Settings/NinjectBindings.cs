@@ -53,6 +53,22 @@
                     .BindDefaultInterface();
             });
 
+
+            // Bio.Data
+            this.Bind(b =>
+            {
+                b.From(Bio.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Data.Repositories.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             this.Bind(b =>
             {
                 b.From(Bio.Data.Seed.Assembly.Assembly.GetType().Assembly)

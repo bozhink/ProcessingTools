@@ -2,15 +2,14 @@
 {
     using System;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Bio.Data;
-    using ProcessingTools.Bio.Data.Migrations;
     using ProcessingTools.Bio.Data.Models;
+    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioDataSeeder : IBioDataSeeder
@@ -26,24 +25,26 @@
 
         private DbContextSeeder<BioDbContext> seeder;
 
-        public BioDataSeeder()
+        private IBioDbContextProvider contextProvider;
+
+        public BioDataSeeder(IBioDbContextProvider contextProvider)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
 
             this.seeder = new DbContextSeeder<BioDbContext>();
         }
 
-        public async Task Init()
+        public Task Init()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioDbContext, Configuration>());
-
-            using (var db = new BioDbContext())
-            {
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                await db.SaveChangesAsync();
-            }
+            throw new NotImplementedException();
         }
 
         public async Task Seed()
