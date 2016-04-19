@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Common.Models;
     using Constants;
 
     public class Article : DocumentsAbstractEntity

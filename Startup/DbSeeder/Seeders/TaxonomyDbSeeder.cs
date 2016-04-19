@@ -1,26 +1,30 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System.Data.Entity;
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
 
-    using ProcessingTools.Bio.Taxonomy.Data;
-    using ProcessingTools.Bio.Taxonomy.Data.Migrations;
+    using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
 
-    public class TaxonomyDbSeeder : IDbSeeder
+    public class TaxonomyDbSeeder : ITaxonomyDbSeeder
     {
-        public Task Seed()
+        private IBioTaxonomyDataSeeder seeder;
+
+        public TaxonomyDbSeeder(IBioTaxonomyDataSeeder seeder)
         {
-            return Task.Run(() =>
+            if (seeder == null)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<TaxonomyDbContext, Configuration>());
-                var db = new TaxonomyDbContext();
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                throw new ArgumentNullException(nameof(seeder));
+            }
+
+            this.seeder = seeder;
+        }
+
+        public async Task Seed()
+        {
+            await this.seeder.Init();
+            await this.seeder.Seed();
         }
     }
 }

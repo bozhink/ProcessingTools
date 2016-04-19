@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             this.Text = text;

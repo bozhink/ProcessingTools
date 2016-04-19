@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http.Headers;
-
 namespace ProcessingTools.Web.Api.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Net.Http.Headers;
+
     /// <summary>
     /// This is used to identify the place where the sample should be applied.
     /// </summary>
@@ -18,13 +18,13 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (mediaType == null)
             {
-                throw new ArgumentNullException("mediaType");
+                throw new ArgumentNullException(nameof(mediaType));
             }
 
-            ActionName = String.Empty;
-            ControllerName = String.Empty;
-            MediaType = mediaType;
-            ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            this.ActionName = string.Empty;
+            this.ControllerName = string.Empty;
+            this.MediaType = mediaType;
+            this.ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -37,10 +37,10 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
-            ParameterType = type;
+            this.ParameterType = type;
         }
 
         /// <summary>
@@ -54,25 +54,28 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (!Enum.IsDefined(typeof(SampleDirection), sampleDirection))
             {
-                throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
-            }
-            if (controllerName == null)
-            {
-                throw new ArgumentNullException("controllerName");
-            }
-            if (actionName == null)
-            {
-                throw new ArgumentNullException("actionName");
-            }
-            if (parameterNames == null)
-            {
-                throw new ArgumentNullException("parameterNames");
+                throw new InvalidEnumArgumentException(nameof(sampleDirection), (int)sampleDirection, typeof(SampleDirection));
             }
 
-            ControllerName = controllerName;
-            ActionName = actionName;
-            ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
-            SampleDirection = sampleDirection;
+            if (controllerName == null)
+            {
+                throw new ArgumentNullException(nameof(controllerName));
+            }
+
+            if (actionName == null)
+            {
+                throw new ArgumentNullException(nameof(actionName));
+            }
+
+            if (parameterNames == null)
+            {
+                throw new ArgumentNullException(nameof(parameterNames));
+            }
+
+            this.ControllerName = controllerName;
+            this.ActionName = actionName;
+            this.ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
+            this.SampleDirection = sampleDirection;
         }
 
         /// <summary>
@@ -88,10 +91,10 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (mediaType == null)
             {
-                throw new ArgumentNullException("mediaType");
+                throw new ArgumentNullException(nameof(mediaType));
             }
 
-            MediaType = mediaType;
+            this.MediaType = mediaType;
         }
 
         /// <summary>
@@ -138,30 +141,34 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
                 return false;
             }
 
-            return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
-                String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
-                (MediaType == otherKey.MediaType || (MediaType != null && MediaType.Equals(otherKey.MediaType))) &&
-                ParameterType == otherKey.ParameterType &&
-                SampleDirection == otherKey.SampleDirection &&
-                ParameterNames.SetEquals(otherKey.ParameterNames);
+            return string.Equals(this.ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(this.ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
+                (this.MediaType == otherKey.MediaType || (this.MediaType != null && this.MediaType.Equals(otherKey.MediaType))) &&
+                this.ParameterType == otherKey.ParameterType &&
+                this.SampleDirection == otherKey.SampleDirection &&
+                this.ParameterNames.SetEquals(otherKey.ParameterNames);
         }
 
         public override int GetHashCode()
         {
-            int hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();
-            if (MediaType != null)
+            int hashCode = this.ControllerName.ToUpperInvariant().GetHashCode() ^ this.ActionName.ToUpperInvariant().GetHashCode();
+
+            if (this.MediaType != null)
             {
-                hashCode ^= MediaType.GetHashCode();
+                hashCode ^= this.MediaType.GetHashCode();
             }
-            if (SampleDirection != null)
+
+            if (this.SampleDirection != null)
             {
-                hashCode ^= SampleDirection.GetHashCode();
+                hashCode ^= this.SampleDirection.GetHashCode();
             }
-            if (ParameterType != null)
+
+            if (this.ParameterType != null)
             {
-                hashCode ^= ParameterType.GetHashCode();
+                hashCode ^= this.ParameterType.GetHashCode();
             }
-            foreach (string parameterName in ParameterNames)
+
+            foreach (string parameterName in this.ParameterNames)
             {
                 hashCode ^= parameterName.ToUpperInvariant().GetHashCode();
             }

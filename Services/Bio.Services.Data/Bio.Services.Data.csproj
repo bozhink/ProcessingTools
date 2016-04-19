@@ -58,9 +58,9 @@
     <Compile Include="Services\TypeStatusDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Bio.Data.Models\Bio.Data.Models.csproj">
-      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
-      <Name>Bio.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Bio.Data.Repositories\Bio.Data.Repositories.csproj">
+      <Project>{067c0e10-6940-4428-ade9-fd616e7cef38}</Project>
+      <Name>Bio.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>

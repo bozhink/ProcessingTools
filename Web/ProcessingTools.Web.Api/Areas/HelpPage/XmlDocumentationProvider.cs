@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         {
             if (documentPath == null)
             {
-                throw new ArgumentNullException("documentPath");
+                throw new ArgumentNullException(nameof(documentPath));
             }
 
             XPathDocument xpath = new XPathDocument(documentPath);

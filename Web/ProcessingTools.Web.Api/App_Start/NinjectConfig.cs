@@ -25,14 +25,14 @@
             ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceWindowsRegistry>();
             kernel.Bind(b =>
             {
-                b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(MediaType.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             kernel.Bind(b =>
             {
-                b.From(Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -46,14 +46,21 @@
 
             kernel.Bind(b =>
             {
-                b.From(Bio.Environments.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             kernel.Bind(b =>
             {
-                b.From(Geo.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Environments.Data.Repositories.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            kernel.Bind(b =>
+            {
+                b.From(Geo.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

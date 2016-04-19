@@ -43,6 +43,7 @@
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
+    <Compile Include="Factories\GenericRepositoryProviderDataServiceFactory.cs" />
     <Compile Include="Services\GenericCacheService.cs" />
     <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />

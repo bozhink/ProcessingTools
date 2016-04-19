@@ -11,10 +11,10 @@
     using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class CountriesDataService : GenericRepositoryDataServiceFactory<Country, CountryServiceModel>, ICountriesDataService
+    public class CountriesDataService : GenericRepositoryProviderDataServiceFactory<Country, CountryServiceModel>, ICountriesDataService
     {
-        public CountriesDataService(IGeoDataRepository<Country> repository)
-            : base(repository)
+        public CountriesDataService(IGeoDataRepositoryProvider<Country> repositoryProvider)
+            : base(repositoryProvider)
         {
         }
 

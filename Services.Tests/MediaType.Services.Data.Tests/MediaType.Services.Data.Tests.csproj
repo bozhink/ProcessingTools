@@ -71,9 +71,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\MediaType.Data.Models\MediaType.Data.Models.csproj">
-      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>MediaType.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Repositories\MediaType.Data.Repositories.csproj">
+      <Project>{7f6d5894-f8e8-4e32-8fe8-fc5fa7d91766}</Project>
+      <Name>MediaType.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>

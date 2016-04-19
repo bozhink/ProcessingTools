@@ -1,26 +1,30 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System.Data.Entity;
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
 
-    using ProcessingTools.Bio.Environments.Data;
-    using ProcessingTools.Bio.Environments.Data.Migrations;
+    using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
 
-    public class BioEnvironmentsDbSeeder : IDbSeeder
+    public class BioEnvironmentsDbSeeder : IBioEnvironmentsDbSeeder
     {
-        public Task Seed()
+        private IBioEnvironmentsDataSeeder seeder;
+
+        public BioEnvironmentsDbSeeder(IBioEnvironmentsDataSeeder seeder)
         {
-            return Task.Run(() =>
+            if (seeder == null)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioEnvironmentsDbContext, Configuration>());
-                var db = new BioEnvironmentsDbContext();
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                throw new ArgumentNullException(nameof(seeder));
+            }
+
+            this.seeder = seeder;
+        }
+
+        public async Task Seed()
+        {
+            await this.seeder.Init();
+            await this.seeder.Seed();
         }
     }
 }

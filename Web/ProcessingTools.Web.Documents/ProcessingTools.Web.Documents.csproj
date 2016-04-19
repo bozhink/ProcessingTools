@@ -251,9 +251,15 @@
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
+    <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Areas\JournalsManagment\Controllers\PublishersController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -297,6 +303,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\JournalsManagment\Views\web.config" />
+    <Content Include="Areas\JournalsManagment\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\AuthorsManagment\Views\web.config" />
+    <Content Include="Areas\AuthorsManagment\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\web.config" />
+    <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />
@@ -346,30 +358,58 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Create.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Delete.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Details.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Edit.cshtml" />
+    <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\ArticlesManagment\Controllers\" />
+    <Folder Include="Areas\ArticlesManagment\Models\" />
+    <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
+    <Folder Include="Areas\AuthorsManagment\Controllers\" />
+    <Folder Include="Areas\AuthorsManagment\Models\" />
+    <Folder Include="Areas\AuthorsManagment\Views\Shared\" />
+    <Folder Include="Areas\JournalsManagment\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Api.Data.Models\Api.Data.Models.csproj">
-      <Project>{92663249-09de-479f-bca8-fe1cf87decd5}</Project>
-      <Name>Api.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
-      <Name>Documents.Data.Common</Name>
+    <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Mongo\Data.Common.Mongo.csproj">
+      <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
+      <Name>Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
+      <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
+      <Name>Data.Common.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data\Data.csproj">
+      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
+      <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data.Models\Documents.Data.Models.csproj">
       <Project>{82724298-bf0f-4b01-925e-48e3b6f56979}</Project>
       <Name>Documents.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Repositories\Documents.Data.Repositories.csproj">
+      <Project>{6fe69ec2-4fc4-4f31-857e-f89cbd804af7}</Project>
+      <Name>Documents.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
@@ -386,6 +426,14 @@
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899cf4-3e65-4860-8d89-0bec7d4e93ed}</Project>
       <Name>Mappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Documents.Services.Data\Documents.Services.Data.csproj">
+      <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
+      <Name>Documents.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165F0-F7FD-486F-B302-FCF7350C0888}</Project>
+      <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

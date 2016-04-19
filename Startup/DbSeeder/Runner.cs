@@ -7,6 +7,8 @@
 
     using Contracts;
 
+    using Ninject;
+
     internal class Runner
     {
         private readonly string defaultSeederInterfaceName = typeof(IDbSeeder).FullName;
@@ -15,22 +17,30 @@
         {
             var assembly = Assembly.GetExecutingAssembly();
             var seederTypes = assembly.GetTypes()
-                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
+                .Where(t => t.IsInterface && !t.IsGenericType)
                 .Where(t => t.GetInterfaces().Any(i => i.FullName == this.defaultSeederInterfaceName));
 
-            foreach (var seederType in seederTypes)
+            using (IKernel kernel = NinjectConfig.CreateKernel())
             {
-                try
+                foreach (var seederType in seederTypes)
                 {
-                    Console.WriteLine(seederType.FullName);
-                    var seeder = Activator.CreateInstance(seederType) as IDbSeeder;
-                    await seeder.Seed();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.Source);
-                    Console.WriteLine(e.StackTrace);
+                    try
+                    {
+                        var seeder = kernel.Get(seederType);
+                        Console.WriteLine(seeder.GetType().FullName);
+                        var castedSeeder = seeder as IDataDbSeeder;
+                        await castedSeeder.Seed();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.Source);
+
+                        var foregroundColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine(e.ToString());
+                        Console.ForegroundColor = foregroundColor;
+                    }
                 }
             }
         }

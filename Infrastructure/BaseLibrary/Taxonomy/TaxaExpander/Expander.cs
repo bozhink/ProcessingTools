@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class Expander : ConfigurableDocument
     {
@@ -183,6 +185,83 @@
                 }
 
                 this.Xml = Regex.Replace(this.Xml, Regex.Escape(text), replace);
+            }
+        }
+
+        public void ForceExactSpeciesMatchExpand()
+        {
+            var nodeListOfSpeciesInShortenedTaxaName = this.XmlDocument.SelectNodes("//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']");
+
+            var speciesUniq = nodeListOfSpeciesInShortenedTaxaName.Cast<XmlNode>()
+                .Select(n => n.InnerText)
+                .Distinct()
+                .ToList();
+
+            speciesUniq.ForEach(s => this.logger?.Log(s));
+
+            IDictionary<string, string[]> speciesGenusPairs = new Dictionary<string, string[]>();
+
+            foreach (string species in speciesUniq)
+            {
+                var genera = this.XmlDocument.SelectNodes($"//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
+                    .Cast<XmlElement>()
+                    .Select(g =>
+                    {
+                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes["full-name"] != null)
+                        {
+                            return g.Attributes["full-name"].InnerText;
+                        }
+                        else
+                        {
+                            return g.InnerText;
+                        }
+                    })
+                    .Distinct()
+                    .ToList();
+
+
+                speciesGenusPairs.Add(species, genera.ToArray());
+            }
+
+            foreach (string species in speciesGenusPairs.Keys)
+            {
+                this.logger?.Log(species);
+
+                switch (speciesGenusPairs[species].Length)
+                {
+                    case 0:
+                        this.logger?.Log(LogType.Warning, "No matches.");
+                        break;
+
+                    case 1:
+                        string genus = speciesGenusPairs[species].FirstOrDefault();
+                        this.logger?.Log(genus);
+
+                        this.XmlDocument.SelectNodes($"//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
+                            .Cast<XmlElement>()
+                            .AsParallel()
+                            .ForAll(t =>
+                            {
+                                var fullNameAttribute = t.Attributes["full-name"];
+                                if (fullNameAttribute == null)
+                                {
+                                    t.SetAttribute("full-name", genus);
+                                }
+                                else
+                                {
+                                    fullNameAttribute.InnerText = genus;
+                                }
+                            });
+
+                        break;
+
+                    default:
+                        this.logger?.Log(LogType.Warning, "Multiple matches:");
+                        speciesGenusPairs[species].ToList().ForEach(g => this.logger?.Log("--> {0}", g));
+                        break;
+                }
+
+                this.logger?.Log();
             }
         }
     }

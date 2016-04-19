@@ -291,29 +291,25 @@
       <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
       <Name>Bio.Biorepositories.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Models\Bio.Data.Models.csproj">
-      <Project>{55f45a7f-c5a4-4c9f-af96-054c72da4457}</Project>
-      <Name>Bio.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
+      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
+      <Name>Bio.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data.Repositories\Bio.Data.Repositories.csproj">
+      <Project>{067c0e10-6940-4428-ade9-fd616e7cef38}</Project>
+      <Name>Bio.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
-      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
-      <Name>Bio.Environments.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Repositories\Bio.Environments.Data.Repositories.csproj">
+      <Project>{8a6456a8-5fc5-4b8e-b846-8e796f8617c2}</Project>
+      <Name>Bio.Environments.Data.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
-      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
-      <Name>Bio.Environments.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Models\Bio.Taxonomy.Data.Models.csproj">
-      <Project>{6d918df4-617a-453e-a807-a2d152340a03}</Project>
-      <Name>Bio.Taxonomy.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
-      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
-      <Name>Bio.Taxonomy.Data</Name>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Repositories\Bio.Taxonomy.Data.Repositories.csproj">
+      <Project>{3ee21b94-3328-412a-88fb-8cf7865cdfdb}</Project>
+      <Name>Bio.Taxonomy.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Cache.Data.Models\Cache.Data.Models.csproj">
       <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>
@@ -335,25 +331,25 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data.Models\Data.Models.csproj">
-      <Project>{95f68506-491b-4d92-a8d0-778bc08ae2c2}</Project>
-      <Name>Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Data.Repositories\Data.Repositories.csproj">
+      <Project>{7f24bb76-c85c-467c-9384-f5d0a3ebbd1d}</Project>
+      <Name>Data.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data\Data.csproj">
-      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\..\Data\Documents.Data.Repositories\Documents.Data.Repositories.csproj">
+      <Project>{6fe69ec2-4fc4-4f31-857e-f89cbd804af7}</Project>
+      <Name>Documents.Data.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo.Data.Models\Geo.Data.Models.csproj">
-      <Project>{e131920b-8ae9-467d-bc0b-861438aaf130}</Project>
-      <Name>Geo.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Geo.Data.Repositories\Geo.Data.Repositories.csproj">
+      <Project>{da6d7093-8ec2-4aec-8b78-8bdd8b2ed67a}</Project>
+      <Name>Geo.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
       <Name>Geo.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatype.Data.Models\MediaType.Data.Models.csproj">
-      <Project>{a2883f8f-8408-46cb-9cd9-f56a3452544a}</Project>
-      <Name>MediaType.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Repositories\MediaType.Data.Repositories.csproj">
+      <Project>{7f6d5894-f8e8-4e32-8fe8-fc5fa7d91766}</Project>
+      <Name>MediaType.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
