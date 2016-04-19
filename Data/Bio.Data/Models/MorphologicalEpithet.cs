@@ -3,6 +3,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Bio.Data.Common.Constants;
+
     public class MorphologicalEpithet
     {
         [Key]
@@ -10,7 +12,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(100)]
+        [MaxLength(ValidationConstants.MaximalLengthOfMorphologicalEpithetName)]
         public string Name { get; set; }
     }
 }
