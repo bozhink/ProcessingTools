@@ -61,7 +61,7 @@
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("contextFactory", e.ParamName, "ParamName should be contextFactory");
+                Assert.AreEqual("contextFactory", e.ParamName, "ParamName should be contextFactory.");
             }
         }
 
