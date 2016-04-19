@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents
 {
+    using System.Reflection;
     using System.Web.Mvc;
 
     using AutoMapper;
@@ -17,9 +18,21 @@
             mapper = registration.Mapper;
         }
 
+        public static void RegisterMappings(params Assembly[] assemblies)
+        {
+            var registration = new InnerMappingsRegistration(assemblies);
+            mapper = registration.Mapper;
+        }
+
         private class InnerMappingsRegistration : MappingsRegistration
         {
             public InnerMappingsRegistration(params string[] assemblies)
+                : base(assemblies)
+            {
+                this.MapperConfiguration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
+            }
+
+            public InnerMappingsRegistration(params Assembly[] assemblies)
                 : base(assemblies)
             {
                 this.MapperConfiguration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));

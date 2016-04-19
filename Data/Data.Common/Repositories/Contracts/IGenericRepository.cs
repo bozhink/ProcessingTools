@@ -17,13 +17,13 @@
 
         Task<T> Get(object id);
 
-        Task Add(T entity);
+        Task<T> Add(T entity);
 
-        Task Update(T entity);
+        Task<T> Update(T entity);
 
-        Task Delete(T entity);
+        Task<T> Delete(T entity);
 
-        Task Delete(object id);
+        Task<T> Delete(object id);
 
         Task<int> SaveChanges();
     }

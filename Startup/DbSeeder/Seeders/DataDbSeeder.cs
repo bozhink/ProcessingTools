@@ -1,27 +1,30 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System.Data.Entity;
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
 
-    using ProcessingTools.Data;
-    using ProcessingTools.Data.Migrations;
+    using ProcessingTools.Data.Seed.Contracts;
 
-    public class DataDbSeeder : IDbSeeder
+    public class DataDbSeeder : IDataDbSeeder
     {
-        public Task Seed()
+        private IDataSeeder seeder;
+
+        public DataDbSeeder(IDataSeeder seeder)
         {
-            return Task.Run(() =>
+            if (seeder == null)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>());
-                var db = new DataDbContext();
-                db.Database.Delete();
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                throw new ArgumentNullException(nameof(seeder));
+            }
+
+            this.seeder = seeder;
+        }
+
+        public async Task Seed()
+        {
+            await this.seeder.Init();
+            await this.seeder.Seed();
         }
     }
 }

@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Biorepositories.Data;
     using ProcessingTools.Bio.Biorepositories.Data.Seed;
 
-    public class BiorepositoriesDbSeeder : IDbSeeder
+    public class BiorepositoriesDbSeeder : IBiorepositoriesDbSeeder
     {
         public async Task Seed()
         {

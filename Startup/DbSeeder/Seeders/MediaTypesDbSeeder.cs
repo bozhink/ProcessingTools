@@ -1,26 +1,30 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System.Data.Entity;
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
 
-    using ProcessingTools.MediaType.Data;
-    using ProcessingTools.MediaType.Data.Migrations;
+    using ProcessingTools.MediaType.Data.Seed.Contracts;
 
-    public class MediaTypesDbSeeder : IDbSeeder
+    public class MediaTypesDbSeeder : IMediaTypesDbSeeder
     {
-        public Task Seed()
+        private readonly IMediaTypeDataSeeder seeder;
+
+        public MediaTypesDbSeeder(IMediaTypeDataSeeder seeder)
         {
-            return Task.Run(() =>
+            if (seeder == null)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediaTypesDbContext, Configuration>());
-                var db = new MediaTypesDbContext();
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                throw new ArgumentNullException(nameof(seeder));
+            }
+
+            this.seeder = seeder;
+        }
+
+        public async Task Seed()
+        {
+            await this.seeder.Init();
+            await this.seeder.Seed();
         }
     }
 }

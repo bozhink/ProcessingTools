@@ -106,7 +106,7 @@
             return Task.FromResult(this.DbSet.Find(id));
         }
 
-        public virtual Task Add(TEntity entity)
+        public virtual Task<TEntity> Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -119,15 +119,16 @@
                 if (entry.State != EntityState.Detached)
                 {
                     entry.State = EntityState.Added;
+                    return entity;
                 }
                 else
                 {
-                    this.DbSet.Add(entity);
+                    return this.DbSet.Add(entity);
                 }
             });
         }
 
-        public virtual Task Update(TEntity entity)
+        public virtual Task<TEntity> Update(TEntity entity)
         {
             if (entity == null)
             {
@@ -143,10 +144,11 @@
                 }
 
                 entry.State = EntityState.Modified;
+                return entity;
             });
         }
 
-        public virtual Task Delete(TEntity entity)
+        public virtual Task<TEntity> Delete(TEntity entity)
         {
             if (entity == null)
             {
@@ -159,16 +161,17 @@
                 if (entry.State != EntityState.Deleted)
                 {
                     entry.State = EntityState.Deleted;
+                    return entity;
                 }
                 else
                 {
                     this.DbSet.Attach(entity);
-                    this.DbSet.Remove(entity);
+                    return this.DbSet.Remove(entity);
                 }
             });
         }
 
-        public virtual async Task Delete(object id)
+        public virtual async Task<TEntity> Delete(object id)
         {
             if (id == null)
             {
@@ -178,8 +181,10 @@
             var entity = await this.Get(id);
             if (entity != null)
             {
-                await this.Delete(entity);
+                return await this.Delete(entity);
             }
+
+            return null;
         }
 
         public Task<int> SaveChanges()

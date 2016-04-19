@@ -1,27 +1,30 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System.Data.Entity;
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
 
-    using ProcessingTools.Geo.Data;
-    using ProcessingTools.Geo.Data.Migrations;
+    using ProcessingTools.Geo.Data.Seed.Contracts;
 
-    public class GeoDbSeeder : IDbSeeder
+    public class GeoDbSeeder : IGeoDbSeeder
     {
-        public Task Seed()
+        private IGeoDataSeeder seeder;
+
+        public GeoDbSeeder(IGeoDataSeeder seeder)
         {
-            return Task.Run(() =>
+            if (seeder == null)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<GeoDbContext, Configuration>());
-                var db = new GeoDbContext();
-                db.Database.Delete();
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                db.SaveChanges();
-                db.Dispose();
-            });
+                throw new ArgumentNullException(nameof(seeder));
+            }
+
+            this.seeder = seeder;
+        }
+
+        public async Task Seed()
+        {
+            await this.seeder.Init();
+            await this.seeder.Seed();
         }
     }
 }

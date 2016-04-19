@@ -73,9 +73,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo.Data.Models\Geo.Data.Models.csproj">
-      <Project>{e131920b-8ae9-467d-bc0b-861438aaf130}</Project>
-      <Name>Geo.Data.Models</Name>
+    <ProjectReference Include="..\..\Data\Geo.Data.Repositories\Geo.Data.Repositories.csproj">
+      <Project>{da6d7093-8ec2-4aec-8b78-8bdd8b2ed67a}</Project>
+      <Name>Geo.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>

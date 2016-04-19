@@ -41,50 +41,24 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
-    <Compile Include="BioEnvironmentsDbContextProvider.cs" />
-    <Compile Include="Contracts\IBioEnvironmentsDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\EnvoEntity.cs" />
+    <Compile Include="Models\EnvoGlobal.cs" />
+    <Compile Include="Models\EnvoGroup.cs" />
+    <Compile Include="Models\EnvoName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BioEnvironmentsRepository.cs" />
-    <Compile Include="Repositories\Contracts\IBioEnvironmentsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DataFiles\Envo\environments_entities.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\Envo\environments_global.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\Envo\environments_groups.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\Envo\environments_names.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bio.Environments.Data.Models\Bio.Environments.Data.Models.csproj">
-      <Project>{a9005ec2-e1df-4814-a4df-212f49800fe8}</Project>
-      <Name>Bio.Environments.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
+    <ProjectReference Include="..\Bio.Environments.Data.Common\Bio.Environments.Data.Common.csproj">
+      <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
+      <Name>Bio.Environments.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

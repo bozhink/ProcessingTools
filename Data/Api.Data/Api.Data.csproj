@@ -54,17 +54,12 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Api.Data.Models\Api.Data.Models.csproj">
-      <Project>{92663249-09de-479f-bca8-fe1cf87decd5}</Project>
-      <Name>Api.Data.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

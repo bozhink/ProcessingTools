@@ -44,7 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IPublishersDataService.cs" />
+    <Compile Include="Models\JournalServiceModel.cs" />
+    <Compile Include="Models\PublisherServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PublishersDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
@@ -59,13 +63,13 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{55648f51-48cf-4948-a31a-c15f82e2520c}</Project>
-      <Name>Documents.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data.Models\Documents.Data.Models.csproj">
       <Project>{82724298-bf0f-4b01-925e-48e3b6f56979}</Project>
       <Name>Documents.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Repositories\Documents.Data.Repositories.csproj">
+      <Project>{6fe69ec2-4fc4-4f31-857e-f89cbd804af7}</Project>
+      <Name>Documents.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
@@ -80,11 +84,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
