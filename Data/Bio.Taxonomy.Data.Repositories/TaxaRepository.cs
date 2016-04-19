@@ -46,7 +46,7 @@
             this.TaxaWhiteListed = new ConcurrentDictionary<string, bool>();
             this.TaxaRanks = new ConcurrentDictionary<string, HashSet<string>>();
 
-            this.ReadTaxaFromFile(true);
+            this.ReadTaxaFromFile(true).Wait();
         }
 
         private Config Config { get; set; }
@@ -55,33 +55,30 @@
 
         private ConcurrentDictionary<string, HashSet<string>> TaxaRanks { get; set; }
 
-        public Task Add(Taxon entity)
+        public Task<Taxon> Add(Taxon entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() => this.AddTaxon(entity, true));
+            return this.AddTaxon(entity, true);
         }
 
-        public Task<IQueryable<Taxon>> All()
+        public async Task<IQueryable<Taxon>> All()
         {
-            return Task.Run(() =>
-            {
-                this.ReadTaxaFromFile(false);
+            await this.ReadTaxaFromFile(false);
 
-                return this.TaxaRanks
-                    .Select(t => new Taxon
-                    {
-                        Name = t.Key,
-                        Ranks = t.Value,
-                        IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(
-                            t.Key,
-                            !this.matchNonWhiteListedHigherTaxon.IsMatch(t.Key))
-                    })
-                    .AsQueryable();
-            });
+            return this.TaxaRanks
+                .Select(t => new Taxon
+                {
+                    Name = t.Key,
+                    Ranks = t.Value,
+                    IsWhiteListed = this.TaxaWhiteListed.GetOrAdd(
+                        t.Key,
+                        !this.matchNonWhiteListedHigherTaxon.IsMatch(t.Key))
+                })
+                .AsQueryable();
         }
 
         public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter)
@@ -146,29 +143,31 @@
                 .Take(take);
         }
 
-        public Task Delete(object id)
+        public async Task<Taxon> Delete(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return Task.Run(() =>
-            {
-                this.ReadTaxaFromFile(false);
-                var value = new HashSet<string>();
-                this.TaxaRanks.TryRemove(id.ToString(), out value);
-            });
+            await this.ReadTaxaFromFile(false);
+            var value = new HashSet<string>();
+            this.TaxaRanks.TryRemove(id.ToString(), out value);
+
+            // TODO
+            return null;
         }
 
-        public Task Delete(Taxon entity)
+        public async Task<Taxon> Delete(Taxon entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.Delete(entity.Name);
+            await this.Delete(entity.Name);
+
+            return entity;
         }
 
         public async Task<Taxon> Get(object id)
@@ -184,60 +183,64 @@
 
         public Task<int> SaveChanges()
         {
-            return Task.FromResult(this.WriteTaxaToFile());
+            return this.WriteTaxaToFile();
         }
 
-        public Task Update(Taxon entity)
+        public async Task<Taxon> Update(Taxon entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
-            {
-                this.ReadTaxaFromFile(false);
+            await this.ReadTaxaFromFile(false);
 
-                string name = entity.Name;
+            string name = entity.Name;
 
-                this.TaxaWhiteListed.AddOrUpdate(name, entity.IsWhiteListed, (k, b) => entity.IsWhiteListed);
+            this.TaxaWhiteListed.AddOrUpdate(name, entity.IsWhiteListed, (k, b) => entity.IsWhiteListed);
 
-                var ranks = new HashSet<string>(entity.Ranks);
-                if (this.TaxaRanks.ContainsKey(name))
-                {
-                    this.TaxaRanks[name] = ranks;
-                }
-                else
-                {
-                    this.TaxaRanks.GetOrAdd(name, ranks);
-                }
-            });
-        }
-
-        private void AddTaxon(Taxon taxon, bool update)
-        {
-            string name = taxon.Name;
-
-            if (update)
-            {
-                this.TaxaWhiteListed.AddOrUpdate(name, taxon.IsWhiteListed, (k, b) => taxon.IsWhiteListed);
-            }
-
-            var ranksToAdd = new HashSet<string>(taxon.Ranks.Where(r => !string.IsNullOrWhiteSpace(r)));
+            var ranks = new HashSet<string>(entity.Ranks);
             if (this.TaxaRanks.ContainsKey(name))
             {
-                foreach (var rank in ranksToAdd)
-                {
-                    this.TaxaRanks[name].Add(rank);
-                }
+                this.TaxaRanks[name] = ranks;
             }
             else
             {
-                this.TaxaRanks.GetOrAdd(name, ranksToAdd);
+                this.TaxaRanks.GetOrAdd(name, ranks);
             }
+
+            return entity;
         }
 
-        private void ReadTaxaFromFile(bool update)
+        private Task<Taxon> AddTaxon(Taxon taxon, bool update)
+        {
+            return Task.Run(() =>
+            {
+                string name = taxon.Name;
+
+                if (update)
+                {
+                    this.TaxaWhiteListed.AddOrUpdate(name, taxon.IsWhiteListed, (k, b) => taxon.IsWhiteListed);
+                }
+
+                var ranksToAdd = new HashSet<string>(taxon.Ranks.Where(r => !string.IsNullOrWhiteSpace(r)));
+                if (this.TaxaRanks.ContainsKey(name))
+                {
+                    foreach (var rank in ranksToAdd)
+                    {
+                        this.TaxaRanks[name].Add(rank);
+                    }
+                }
+                else
+                {
+                    this.TaxaRanks.GetOrAdd(name, ranksToAdd);
+                }
+
+                return taxon;
+            });
+        }
+
+        private async Task ReadTaxaFromFile(bool update)
         {
             var timeSpan = this.lastUpdated - DateTime.Now;
             if (timeSpan.HasValue &&
@@ -265,15 +268,15 @@
                     IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(name)
                 };
 
-                this.AddTaxon(taxonToAdd, update);
+                await this.AddTaxon(taxonToAdd, update);
             }
 
             this.lastUpdated = DateTime.Now;
         }
 
-        private int WriteTaxaToFile()
+        private async Task<int> WriteTaxaToFile()
         {
-            this.ReadTaxaFromFile(false);
+            await this.ReadTaxaFromFile(false);
 
             var taxa = this.TaxaRanks
                 .Select(pair =>
