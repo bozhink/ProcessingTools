@@ -40,7 +40,7 @@
 
         private ConcurrentQueue<string> Items { get; set; }
 
-        public Task Add(string entity)
+        public Task<string> Add(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
@@ -53,6 +53,8 @@
                 {
                     this.Items.Enqueue(entity);
                 }
+
+                return entity;
             });
         }
 
@@ -124,7 +126,7 @@
                 .Take(take);
         }
 
-        public Task Delete(object id)
+        public Task<string> Delete(object id)
         {
             if (id == null)
             {
@@ -134,7 +136,7 @@
             return this.Delete(id.ToString());
         }
 
-        public async Task Delete(string entity)
+        public async Task<string> Delete(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
@@ -144,6 +146,8 @@
             var items = (await this.All()).ToList();
             items.Remove(entity);
             this.Items = new ConcurrentQueue<string>(items);
+
+            return entity;
         }
 
         public async Task<string> Get(object id)
@@ -162,7 +166,7 @@
             return this.WriteItemsToFile();
         }
 
-        public Task Update(string entity)
+        public Task<string> Update(string entity)
         {
             return this.Add(entity);
         }

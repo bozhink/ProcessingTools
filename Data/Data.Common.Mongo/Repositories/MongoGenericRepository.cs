@@ -15,6 +15,7 @@
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class MongoGenericRepository<TEntity> : IMongoGenericRepository<TEntity>
+        where TEntity : class
     {
         private readonly IMongoDatabase db;
         private string collectionName;
@@ -59,7 +60,7 @@
 
         private IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
 
-        public virtual async Task Add(TEntity entity)
+        public virtual async Task<TEntity> Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -67,6 +68,7 @@
             }
 
             await this.Collection.InsertOneAsync(entity);
+            return entity;
         }
 
         public virtual async Task<IQueryable<TEntity>> All()
@@ -151,18 +153,32 @@
             return entities.AsQueryable();
         }
 
-        public virtual async Task Delete(object id)
+        public virtual async Task<TEntity> Delete(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
+            var entity = await this.Get(id);
+
             var filter = this.GetFilterById(id);
-            await this.Collection.DeleteOneAsync(filter);
+            var result = await this.Collection.DeleteOneAsync(filter);
+            
+            switch (result.DeletedCount)
+            {
+                case 0:
+                    return null;
+
+                case 1:
+                    return entity;
+
+                default:
+                    throw new ApplicationException("More than one records are deleted.");
+            }
         }
 
-        public virtual async Task Delete(TEntity entity)
+        public virtual async Task<TEntity> Delete(TEntity entity)
         {
             if (entity == null)
             {
@@ -170,7 +186,7 @@
             }
 
             var id = entity.GetIdValue<BsonIdAttribute>();
-            await this.Delete(id);
+            return await this.Delete(id);
         }
 
         public virtual async Task<TEntity> Get(object id)
@@ -190,7 +206,7 @@
             return Task.FromResult(0);
         }
 
-        public virtual async Task Update(TEntity entity)
+        public virtual async Task<TEntity> Update(TEntity entity)
         {
             if (entity == null)
             {
@@ -200,6 +216,18 @@
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
             var result = await this.Collection.ReplaceOneAsync(filter, entity);
+
+            switch (result.ModifiedCount)
+            {
+                case 0:
+                    return null;
+
+                case 1:
+                    return entity;
+
+                default:
+                    throw new ApplicationException("More than records are modified.");
+            }
         }
 
         private FilterDefinition<TEntity> GetFilterById(object id)

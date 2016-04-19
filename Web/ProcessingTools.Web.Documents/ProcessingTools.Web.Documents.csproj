@@ -379,10 +379,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Api.Data.Models\Api.Data.Models.csproj">
-      <Project>{92663249-09de-479f-bca8-fe1cf87decd5}</Project>
-      <Name>Api.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>

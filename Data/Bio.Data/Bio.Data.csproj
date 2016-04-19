@@ -43,7 +43,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="BioDbContext.cs" />
+    <Compile Include="BioDbContextFactory.cs" />
+    <Compile Include="Contracts\IBioDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MorphologicalEpithet.cs" />
     <Compile Include="Models\TypeStatus.cs" />
@@ -54,11 +57,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
-      <Name>Data.Common.Entity</Name>
+    <ProjectReference Include="..\Bio.Data.Common\Bio.Data.Common.csproj">
+      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
+      <Name>Bio.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
