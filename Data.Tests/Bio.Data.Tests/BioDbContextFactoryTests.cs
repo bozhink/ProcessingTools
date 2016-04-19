@@ -32,9 +32,9 @@
 
             Assert.IsNotNull(factory, "Factory should not be null.");
 
-            Assert.IsTrue(factory is IBioDbContextFactory, "Factory should be a valid IBioDbContextFactory object.");
+            Assert.IsInstanceOfType(factory, typeof(IBioDbContextFactory), $"Factory should be a valid {nameof(IBioDbContextFactory)} object.");
 
-            Assert.IsTrue(factory is IDbContextFactory<BioDbContext>, "Factory should be a valid IDbContextFactory<BioDbContext> object.");
+            Assert.IsInstanceOfType(factory, typeof(IDbContextFactory<BioDbContext>), $"Factory should be a valid {nameof(IDbContextFactory<BioDbContext>)} object.");
         }
 
         [TestMethod]
@@ -44,12 +44,12 @@
 
             Assert.IsFalse(
                 string.IsNullOrWhiteSpace(factory.ConnectionString),
-                "Default value of ConnectionString should not be null or whitespace.");
+                $"Default value of {nameof(factory.ConnectionString)} should not be null or whitespace.");
 
             Assert.AreEqual(
                 ConnectionConstants.BioDbContextConnectionKey,
                 factory.ConnectionString,
-                "Default value of ConnectionString should be ConnectionConstants.BioDbContextConnectionKey.");
+                $"Default value of {nameof(factory.ConnectionString)} should be ConnectionConstants.BioDbContextConnectionKey.");
         }
 
         [TestMethod]
@@ -146,9 +146,9 @@
 
             Assert.IsNotNull(context, "Context should not be null.");
 
-            Assert.IsTrue(context is BioDbContext, "Context should be a valid BioDbContext object.");
+            Assert.IsInstanceOfType(context, typeof(BioDbContext), $"Context should be a valid {nameof(BioDbContext)} object.");
 
-            Assert.IsTrue(context is DbContext, "Context should be a valid DbContext object.");
+            Assert.IsInstanceOfType(context, typeof(DbContext), $"Context should be a valid {nameof(DbContext)} object.");
         }
     }
 }
