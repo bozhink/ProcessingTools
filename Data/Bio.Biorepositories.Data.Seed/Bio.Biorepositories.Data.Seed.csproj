@@ -52,25 +52,45 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IBiorepositoriesDataSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeders\BiorepositoriesDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
+      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bio.Biorepositories.Data.Repositories\Bio.Biorepositories.Data.Repositories.csproj">
+      <Project>{3ed288bc-1e64-468a-997d-e0504456d65f}</Project>
+      <Name>Bio.Biorepositories.Data.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data\Bio.Biorepositories.Data.csproj">
       <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
       <Name>Bio.Biorepositories.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

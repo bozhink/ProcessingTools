@@ -36,6 +36,7 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="DisposableExtensions.cs" />
     <Compile Include="DisposeStatus.cs" />
+    <Compile Include="MappingsExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

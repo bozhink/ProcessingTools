@@ -90,11 +90,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BiorepositoriesDbFirstGenericRepository.cs" />
     <Compile Include="Repositories\BiorepositoriesMongoRepository.cs" />
+    <Compile Include="Repositories\BiorepositoriesMongoRepositoryProvider.cs" />
     <Compile Include="Repositories\BiorepositoriesRepository.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesDbFirstGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesRepository.cs" />
-    <Compile Include="Seed\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

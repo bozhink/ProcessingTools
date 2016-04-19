@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Seeders
 {
     using System;
     using System.Configuration;
@@ -8,27 +8,34 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Biorepositories.Data.Contracts;
     using ProcessingTools.Data.Common.Seed;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Serialization.Csv;
 
     using Repositories;
 
-    public class Configuration
+    public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
-        private readonly IBiorepositoriesMongoDatabaseProvider provider;
+        private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;
         private readonly string dataFilesDirectoryPath;
 
-        public Configuration(IBiorepositoriesMongoDatabaseProvider provider)
+        public BiorepositoriesDataSeeder(IBiorepositoriesMongoDatabaseProvider contextProvider)
         {
-            if (provider == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.provider = provider;
+            this.contextProvider = contextProvider;
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings["BiorepositoriesSeedCsvDataFiles"];
+        }
+
+        public Task Init()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -65,14 +72,15 @@
 
             string csvText = File.ReadAllText(fileName);
             var serializer = new CsvSerializer();
-            var items = serializer.Deserialize<TSeedModel>(csvText)?.ToArray();
+            var items = serializer.Deserialize<TSeedModel>(csvText)?.Select(i => i.Map<TEntityModel>())
+                .ToArray();
             if (items == null || items.Length < 1)
             {
                 throw new ApplicationException("Deserialized items are not valid.");
             }
 
-            var repository = new BiorepositoriesMongoRepository<TEntityModel>(this.provider);
-            var seeder = new SimpleRepositorySeeder<TEntityModel>(repository);
+            var repositoryProvider = new BiorepositoriesMongoRepositoryProvider<TEntityModel>(this.contextProvider);
+            var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
             await seeder.Seed(items);
         }
     }

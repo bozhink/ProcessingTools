@@ -1,60 +1,56 @@
 ﻿namespace ProcessingTools.Data.Common.Seed
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
+    using Contracts;
+    using ProcessingTools.Extensions;
     using Repositories.Contracts;
 
     public class SimpleRepositorySeeder<TEntity>
         where TEntity : class
     {
-        private IGenericRepository<TEntity> repository;
+        private const int NumberOfItemsToInsertBeforeRepositoryReset = 100;
 
-        public SimpleRepositorySeeder(IGenericRepository<TEntity> repository)
+        private readonly IGenericRepositoryProvider<IGenericRepository<TEntity>, TEntity> repositoryProvider;
+
+        public SimpleRepositorySeeder(IGenericRepositoryProvider<IGenericRepository<TEntity>, TEntity> repositoryProvider)
         {
-            if (repository == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException("repository");
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.repository = repository;
+            this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task Seed<TSeedModel>(params TSeedModel[] data)
-            where TSeedModel : class
+        public async Task Seed(params TEntity[] data)
         {
             if (data == null || data.Length < 1)
             {
-                throw new ArgumentNullException("data");
+                throw new ArgumentNullException(nameof(data));
             }
 
-            foreach (var item in data)
+            var repository = this.repositoryProvider.Create();
+
+            int numberOfInsertedItems = 0;
+            foreach (var entity in data)
             {
-                var entity = Map<TSeedModel, TEntity>(item);
-                await this.repository.Add(entity);
+                await repository.Add(entity);
+                ++numberOfInsertedItems;
+
+                if (numberOfInsertedItems >= NumberOfItemsToInsertBeforeRepositoryReset)
+                {
+                    await repository.SaveChanges();
+                    repository.TryDispose();
+                    repository = this.repositoryProvider.Create();
+
+                    numberOfInsertedItems = 0;
+                }
             }
 
-            await this.repository.SaveChanges();
-        }
-
-        private Tout Map<Tin, Tout>(Tin item)
-            where Tin : class
-            where Tout : class
-        {
-            Tout result = Activator.CreateInstance<Tout>();
-
-            var propertiesIn = typeof(Tin).GetProperties();
-            var propertiesOut = typeof(Tout).GetProperties();
-            foreach (var propertyIn in propertiesIn)
-            {
-                var propertyOut = propertiesOut
-                    .FirstOrDefault(p => p.Name == propertyIn.Name && p.PropertyType == propertyIn.PropertyType);
-
-                propertyOut?.SetValue(result, propertyIn.GetValue(item));
-            }
-
-            return result;
+            await repository.SaveChanges();
+            repository.TryDispose();
         }
     }
 }

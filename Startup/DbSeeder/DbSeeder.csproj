@@ -86,6 +86,14 @@
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Repositories\Bio.Biorepositories.Data.Repositories.csproj">
+      <Project>{3ed288bc-1e64-468a-997d-e0504456d65f}</Project>
+      <Name>Bio.Biorepositories.Data.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Seed\Bio.Biorepositories.Data.Seed.csproj">
+      <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
+      <Name>Bio.Biorepositories.Data.Seed</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data\Bio.Biorepositories.Data.csproj">
       <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
       <Name>Bio.Biorepositories.Data</Name>
