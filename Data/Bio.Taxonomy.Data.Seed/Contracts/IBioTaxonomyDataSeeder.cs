@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Contracts;
 
-    public interface IBioTaxonomyDataSeeder : IDbSeeder
+    public interface IBioTaxonomyDataSeeder : IDatabaseSeeder
     {
     }
 }

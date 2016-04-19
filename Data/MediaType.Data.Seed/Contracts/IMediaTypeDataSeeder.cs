@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Contracts;
 
-    public interface IMediaTypeDataSeeder : IDbSeeder
+    public interface IMediaTypeDataSeeder : IDatabaseSeeder
     {
     }
 }

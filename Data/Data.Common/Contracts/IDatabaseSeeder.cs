@@ -6,7 +6,7 @@
     /// Interface to objects for creation and population with initial data (seed)
     /// of a database context.
     /// </summary>
-    public interface IDbSeeder
+    public interface IDatabaseSeeder
     {
         /// <summary>
         /// Initializes the database context.
