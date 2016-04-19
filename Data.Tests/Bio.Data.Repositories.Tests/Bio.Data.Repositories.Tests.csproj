@@ -64,7 +64,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BioDataRepositoryProviderTests.cs" />
+    <Compile Include="BioDataRepositoryTests.cs" />
     <Compile Include="BioDbContextProviderTests.cs" />
+    <Compile Include="Mocks\ContextMock.cs" />
     <Compile Include="Models\Tweet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
