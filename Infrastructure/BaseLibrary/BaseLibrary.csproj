@@ -221,6 +221,7 @@
     <Content Include="XSL\references.sort.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\taxonomy-parse-postprocess.xsl" />
     <Content Include="XSL\taxpub-to-html.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
