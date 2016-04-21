@@ -71,13 +71,9 @@
             return entity;
         }
 
-        public virtual async Task<IQueryable<TEntity>> All()
+        public virtual Task<IQueryable<TEntity>> All()
         {
-            var entities = await this.Collection
-                .Find(new BsonDocument())
-                .ToListAsync();
-
-            return entities.AsQueryable();
+            return Task.FromResult<IQueryable<TEntity>>(this.Collection.AsQueryable());
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
@@ -87,11 +83,8 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var entities = await this.Collection
-               .Find(filter)
-               .ToListAsync();
-
-            return entities.AsQueryable();
+            return (await this.All())
+                .Where(filter);
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
@@ -111,14 +104,10 @@
                 throw new ArgumentException(string.Empty, nameof(take));
             }
 
-            var entities = await this.Collection
-                .Find(new BsonDocument())
-                .SortBy(sort)
+            return (await this.All())
+                .OrderBy(sort)
                 .Skip(skip)
-                .Limit(take)
-                .ToListAsync();
-
-            return entities.AsQueryable();
+                .Take(take);
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
@@ -143,14 +132,11 @@
                 throw new ArgumentException(string.Empty, nameof(take));
             }
 
-            var entities = await this.Collection
-                .Find(filter)
-                .SortBy(sort)
+            return (await this.All())
+                .Where(filter)
+                .OrderBy(sort)
                 .Skip(skip)
-                .Limit(take)
-                .ToListAsync();
-
-            return entities.AsQueryable();
+                .Take(take);
         }
 
         public virtual async Task<object> Delete(object id)
