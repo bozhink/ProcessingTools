@@ -4,17 +4,23 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+
     using Contracts;
     using Models;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TaxonRankDataService : GenericRepositoryDataServiceFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
+    public class TaxonRankDataService : GenericRepositoryProviderDataServiceFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
     {
-        public TaxonRankDataService(ITaxaRepository repository)
-            : base(repository)
+        private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
+
+        public TaxonRankDataService(ITaxaRepositoryProvider repositoryProvider)
+            : base(repositoryProvider)
         {
         }
 
@@ -36,5 +42,35 @@
         };
 
         protected override Expression<Func<Taxon, object>> SortExpression => t => t.Name;
+
+        public override Task<int> Add(params TaxonRankServiceModel[] models)
+        {
+            if (models == null)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            foreach (var model in models)
+            {
+                model.IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(model.ScientificName);
+            }
+
+            return base.Add(models);
+        }
+
+        public override Task<int> Update(params TaxonRankServiceModel[] models)
+        {
+            if (models == null)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            foreach (var model in models)
+            {
+                model.IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(model.ScientificName);
+            }
+
+            return base.Update(models);
+        }
     }
 }

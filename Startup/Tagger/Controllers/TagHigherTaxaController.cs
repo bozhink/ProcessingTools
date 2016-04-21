@@ -19,7 +19,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var miner = new HigherTaxaDataMiner(new TaxonRankDataService(new TaxaRepository()));
+            var miner = new HigherTaxaDataMiner(new TaxonRankDataService(new TaxaRepositoryProvider()));
             var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
 
             var tagger = new HigherTaxaTagger(settings.Config, document.OuterXml, miner, blackListService, logger);

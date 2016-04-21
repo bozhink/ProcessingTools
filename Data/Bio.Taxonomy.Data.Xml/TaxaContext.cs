@@ -1,67 +1,122 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml.Serialization;
+
     using Models;
 
     public class TaxaContext
     {
         public TaxaContext()
         {
-            this.Taxa = new ConcurrentQueue<Taxon>();
+            this.Taxa = new ConcurrentDictionary<string, Taxon>();
         }
 
-        protected ConcurrentQueue<Taxon> Taxa { get; set; }
+        protected ConcurrentDictionary<string, Taxon> Taxa { get; set; }
 
         public Task<IQueryable<Taxon>> All()
         {
-            return Task.FromResult(new HashSet<Taxon>(this.Taxa).AsQueryable());
+            return Task.FromResult(new HashSet<Taxon>(this.Taxa.Values).AsQueryable());
+        }
+
+        public Task<Taxon> Get(object id)
+        {
+            Taxon taxon;
+            this.Taxa.TryGetValue(id.ToString(), out taxon);
+            return Task.FromResult(taxon);
         }
 
         public Task<object> Add(Taxon taxon) => Task.Run<object>(() => this.Upsert(taxon));
 
         public Task<object> Update(Taxon taxon) => Task.Run<object>(() => this.Upsert(taxon));
 
-        public Task<object> Delete(Taxon taxon)
+        public Task<object> Delete(object id)
         {
             return Task.Run<object>(() =>
             {
-                var taxa = this.Taxa.ToList();
-                var result = taxa.RemoveAll(t => t.Name == taxon.Name);
-                this.Taxa = new ConcurrentQueue<Taxon>(taxa);
-                return result;
+                Taxon taxon;
+                this.Taxa.TryRemove(id.ToString(), out taxon);
+                return taxon;
             });
         }
 
-        private int Upsert(Taxon taxon)
+        public Task<int> LoadTaxa(string fileName)
         {
-            Func<Taxon, bool> filter = t => t.Name == taxon.Name;
-
-            try
+            return Task.Run(() =>
             {
-                if (this.Taxa.Count(filter) > 0)
+                IEnumerable<Taxon> taxa = new HashSet<Taxon>();
+                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    var item = this.Taxa.FirstOrDefault(filter);
-                    foreach (var rank in taxon.Ranks)
+                    var serializer = new XmlSerializer(typeof(RankListXmlModel));
+                    var result = (RankListXmlModel)serializer.Deserialize(stream);
+
+                    taxa = result.Taxa.Select(t => new Taxon
                     {
-                        item.Ranks.Add(rank);
-                    }
+                        Name = t.Parts.FirstOrDefault().Value,
+                        Ranks = new HashSet<string>(t.Parts.FirstOrDefault().Ranks.Values),
+                        IsWhiteListed = t.IsWhiteListed
+                    });
+                }
 
-                    return 0;
-                }
-                else
-                {
-                    this.Taxa.Enqueue(taxon);
-                    return 1;
-                }
-            }
-            catch
+                taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
+
+                return taxa.Count();
+            });
+        }
+
+        public async Task<int> WriteTaxa(string fileName)
+        {
+            var taxa = this.Taxa.Values.Select(t => new TaxonXmlModel
             {
-                return -1;
+                IsWhiteListed = t.IsWhiteListed,
+                Parts = new TaxonPartXmlModel[]
+                    {
+                        new TaxonPartXmlModel
+                        {
+                            Value = t.Name,
+                            Ranks = new TaxonRankXmlModel
+                            {
+                                Values = t.Ranks.ToArray()
+                            }
+                        }
+                    }
+            });
+
+            var rankList = new RankListXmlModel
+            {
+                Taxa = taxa.ToArray()
+            };
+
+            using (var stream = new FileStream(fileName, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+            {
+                var serializer = new XmlSerializer(typeof(RankListXmlModel));
+                serializer.Serialize(stream, rankList);
+                await stream.FlushAsync();
             }
+
+            return rankList.Taxa.Length;
+        }
+
+        private Taxon Upsert(Taxon taxon)
+        {
+            Func<string, Taxon, Taxon> update = (k, t) =>
+            {
+                foreach (var rank in taxon.Ranks)
+                {
+                    t.Ranks.Add(rank);
+                }
+
+                t.IsWhiteListed = taxon.IsWhiteListed;
+
+                return t;
+            };
+
+            return this.Taxa.AddOrUpdate(taxon.Name, taxon, update);
         }
     }
 }
