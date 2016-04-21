@@ -36,6 +36,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ITaxaContext.cs" />
     <Compile Include="Models\BlackListXmlModel.cs" />
     <Compile Include="Models\RankListXmlModel.cs" />
     <Compile Include="Models\Taxon.cs" />

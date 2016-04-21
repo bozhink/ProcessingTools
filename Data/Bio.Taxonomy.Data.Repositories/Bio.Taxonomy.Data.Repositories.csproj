@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\ITaxaContextProvider.cs" />
     <Compile Include="Contracts\ITaxaRepository.cs" />
     <Compile Include="Contracts\ITaxaRepositoryProvider.cs" />
     <Compile Include="Contracts\ITaxonomicBlackListRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="TaxaRepository.cs" />
     <Compile Include="TaxaRepositoryProvider.cs" />
     <Compile Include="TaxonomicBlackListRepository.cs" />

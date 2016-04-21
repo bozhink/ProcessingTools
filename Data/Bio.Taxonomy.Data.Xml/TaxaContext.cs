@@ -8,9 +8,10 @@
     using System.Threading.Tasks;
     using System.Xml.Serialization;
 
+    using Contracts;
     using Models;
 
-    public class TaxaContext
+    public class TaxaContext : ITaxaContext
     {
         public TaxaContext()
         {

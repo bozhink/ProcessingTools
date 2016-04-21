@@ -7,16 +7,19 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Xml;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Configurator;
 
     public class TaxaRepository : ITaxaRepository
     {
-        private readonly TaxaContext context;
-
-        public TaxaRepository(Config config)
+        public TaxaRepository(ITaxaContextProvider contextProvider, Config config)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
             if (config == null)
             {
                 throw new ArgumentNullException(nameof(config));
@@ -24,10 +27,11 @@
 
             this.Config = config;
 
-            // TODO
-            this.context = new TaxaContext();
-            this.context.LoadTaxa(this.Config.RankListXmlFilePath).Wait();
+            this.Context = contextProvider.Create();
+            this.Context.LoadTaxa(this.Config.RankListXmlFilePath).Wait();
         }
+
+        private ITaxaContext Context { get; set; }
 
         private Config Config { get; set; }
 
@@ -38,12 +42,12 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.context.Add(entity);
+            return this.Context.Add(entity);
         }
 
         public Task<IQueryable<Taxon>> All()
         {
-            return this.context.All();
+            return this.Context.All();
         }
 
         public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter)
@@ -115,7 +119,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return this.context.Delete(id);
+            return this.Context.Delete(id);
         }
 
         public Task<object> Delete(Taxon entity)
@@ -140,7 +144,7 @@
 
         public Task<int> SaveChanges()
         {
-            return this.context.WriteTaxa(this.Config.RankListXmlFilePath);
+            return this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
         }
 
         public Task<object> Update(Taxon entity)
@@ -150,7 +154,7 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.context.Update(entity);
+            return this.Context.Update(entity);
         }
     }
 }
