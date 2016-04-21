@@ -55,14 +55,14 @@
 
         private ConcurrentDictionary<string, HashSet<string>> TaxaRanks { get; set; }
 
-        public Task<Taxon> Add(Taxon entity)
+        public async Task<object> Add(Taxon entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return this.AddTaxon(entity, true);
+            return await this.AddTaxon(entity, true);
         }
 
         public async Task<IQueryable<Taxon>> All()
@@ -143,7 +143,7 @@
                 .Take(take);
         }
 
-        public async Task<Taxon> Delete(object id)
+        public async Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -152,22 +152,17 @@
 
             await this.ReadTaxaFromFile(false);
             var value = new HashSet<string>();
-            this.TaxaRanks.TryRemove(id.ToString(), out value);
-
-            // TODO
-            return null;
+            return this.TaxaRanks.TryRemove(id.ToString(), out value);
         }
 
-        public async Task<Taxon> Delete(Taxon entity)
+        public async Task<object> Delete(Taxon entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await this.Delete(entity.Name);
-
-            return entity;
+            return await this.Delete(entity.Name);
         }
 
         public async Task<Taxon> Get(object id)
@@ -186,7 +181,7 @@
             return this.WriteTaxaToFile();
         }
 
-        public async Task<Taxon> Update(Taxon entity)
+        public async Task<object> Update(Taxon entity)
         {
             if (entity == null)
             {

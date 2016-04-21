@@ -40,14 +40,14 @@
 
         private ConcurrentQueue<string> Items { get; set; }
 
-        public Task<string> Add(string entity)
+        public Task<object> Add(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (!string.IsNullOrWhiteSpace(entity))
                 {
@@ -126,7 +126,7 @@
                 .Take(take);
         }
 
-        public Task<string> Delete(object id)
+        public Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -136,7 +136,7 @@
             return this.Delete(id.ToString());
         }
 
-        public async Task<string> Delete(string entity)
+        public async Task<object> Delete(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
@@ -166,7 +166,7 @@
             return this.WriteItemsToFile();
         }
 
-        public Task<string> Update(string entity)
+        public Task<object> Update(string entity)
         {
             return this.Add(entity);
         }
@@ -180,12 +180,10 @@
                 return;
             }
 
-            XElement list = XElement.Load(this.Config.BlackListXmlFilePath);
-
-            foreach (var element in list.Descendants(ItemNodeName))
-            {
-                this.Items.Enqueue(element.Value);
-            }
+            XElement.Load(this.Config.BlackListXmlFilePath)
+                .Descendants(ItemNodeName)
+                .AsParallel()
+                .ForAll(element => this.Items.Enqueue(element.Value));
 
             this.lastUpdated = DateTime.Now;
         }
