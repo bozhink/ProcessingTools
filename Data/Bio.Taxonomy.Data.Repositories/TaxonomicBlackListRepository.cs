@@ -58,10 +58,10 @@
             });
         }
 
-        public Task<IQueryable<string>> All()
+        public async Task<IQueryable<string>> All()
         {
-            this.ReadItemsFromFile();
-            return Task.FromResult(new HashSet<string>(this.Items).AsQueryable());
+            await this.ReadItemsFromFile();
+            return new HashSet<string>(this.Items).AsQueryable();
         }
 
         public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter)
@@ -171,21 +171,24 @@
             return this.Add(entity);
         }
 
-        private void ReadItemsFromFile()
+        private Task ReadItemsFromFile()
         {
-            var timeSpan = this.lastUpdated - DateTime.Now;
-            if (timeSpan.HasValue &&
-                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            return Task.Run(() =>
             {
-                return;
-            }
+                var timeSpan = this.lastUpdated - DateTime.Now;
+                if (timeSpan.HasValue &&
+                    timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+                {
+                    return;
+                }
 
-            XElement.Load(this.Config.BlackListXmlFilePath)
-                .Descendants(ItemNodeName)
-                .AsParallel()
-                .ForAll(element => this.Items.Enqueue(element.Value));
+                XElement.Load(this.Config.BlackListXmlFilePath)
+                    .Descendants(ItemNodeName)
+                    .AsParallel()
+                    .ForAll(element => this.Items.Enqueue(element.Value));
 
-            this.lastUpdated = DateTime.Now;
+                this.lastUpdated = DateTime.Now;
+            });
         }
 
         private async Task<int> WriteItemsToFile()
