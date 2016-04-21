@@ -27,6 +27,11 @@
 
         public Task<Taxon> Get(object id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             Taxon taxon;
             this.Taxa.TryGetValue(id.ToString(), out taxon);
             return Task.FromResult(taxon);
@@ -38,16 +43,23 @@
 
         public Task<object> Delete(object id)
         {
-            return Task.Run<object>(() =>
+            if (id == null)
             {
-                Taxon taxon;
-                this.Taxa.TryRemove(id.ToString(), out taxon);
-                return taxon;
-            });
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            Taxon taxon;
+            this.Taxa.TryRemove(id.ToString(), out taxon);
+            return Task.FromResult<object>(taxon);
         }
 
         public Task<int> LoadTaxa(string fileName)
         {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
             return Task.Run(() =>
             {
                 IEnumerable<Taxon> taxa = new HashSet<Taxon>();
@@ -72,6 +84,11 @@
 
         public async Task<int> WriteTaxa(string fileName)
         {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
             var taxa = this.Taxa.Values.Select(t => new TaxonXmlModel
             {
                 IsWhiteListed = t.IsWhiteListed,
@@ -105,6 +122,11 @@
 
         private Taxon Upsert(Taxon taxon)
         {
+            if (taxon == null)
+            {
+                throw new ArgumentNullException(nameof(taxon));
+            }
+
             Func<string, Taxon, Taxon> update = (k, t) =>
             {
                 foreach (var rank in taxon.Ranks)
