@@ -17,7 +17,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        //[Ignore]
+        [Ignore]
         public void MongoGenericRepository_AddAllDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
@@ -52,7 +52,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        //[Ignore]
+        [Ignore]
         public void MongoGenericRepository_AddAllSkipTakeDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
@@ -87,7 +87,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        //[Ignore]
+        [Ignore]
         public void MongoGenericRepository_AddAllUpdateDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
