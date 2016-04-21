@@ -7,7 +7,7 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 

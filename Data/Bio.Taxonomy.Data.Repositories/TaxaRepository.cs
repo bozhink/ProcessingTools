@@ -10,7 +10,7 @@
     using System.Xml.Linq;
 
     using Contracts;
-    using Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Configurator;
