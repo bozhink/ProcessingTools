@@ -18,7 +18,7 @@
             {
                 var test = new Test(document.OuterXml);
 
-                test.WrapEmptySuperscriptsInFootnoteXrefTag();
+                test.RenumerateFootNotes();
 
                 document.LoadXml(test.Xml);
             });

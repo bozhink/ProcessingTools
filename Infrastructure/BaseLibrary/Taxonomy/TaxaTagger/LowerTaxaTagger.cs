@@ -29,52 +29,57 @@
 
         public override async Task Tag()
         {
-                var knownLowerTaxaNames = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
-                    .Cast<XmlNode>()
-                    .Select(x => x.InnerText));
+            await this.MainTag();
 
-                var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes(ItalicXPath)
-                    .Cast<XmlNode>()
-                    .Select(x => x.InnerText)
-                    .Where(this.IsMatchingLowerTaxaFormat));
+            await this.DeepTag();
+        }
 
-                foreach (string taxon in knownLowerTaxaNames)
+        private async Task MainTag()
+        {
+            var knownLowerTaxaNames = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
+                .Cast<XmlNode>()
+                .Select(x => x.InnerText));
+
+            var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes(ItalicXPath)
+                .Cast<XmlNode>()
+                .Select(x => x.InnerText)
+                .Where(this.IsMatchingLowerTaxaFormat));
+
+            foreach (string taxon in knownLowerTaxaNames)
+            {
+                plausibleLowerTaxa.Add(taxon);
+            }
+
+            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(plausibleLowerTaxa))
+                .Select(name => name.ToLower()));
+
+            var comparer = StringComparer.InvariantCultureIgnoreCase;
+
+            // Tag all direct matches
+            this.XmlDocument.SelectNodes(ItalicXPath)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
                 {
-                    plausibleLowerTaxa.Add(taxon);
-                }
-
-                plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(plausibleLowerTaxa))
-                    .Select(name => name.ToLower()));
-
-                var comparer = StringComparer.InvariantCultureIgnoreCase;
-
-                // Tag all direct matches
-                this.XmlDocument.SelectNodes(ItalicXPath)
-                    .Cast<XmlNode>()
-                    .AsParallel()
-                    .ForAll(node =>
+                    if (plausibleLowerTaxa.Contains(node.InnerText, comparer))
                     {
-                        if (plausibleLowerTaxa.Contains(node.InnerText, comparer))
-                        {
-                            XmlElement tn = node.OwnerDocument.CreateElement("tn");
-                            tn.SetAttribute("type", "lower");
-                            tn.InnerXml = node.InnerXml;
-                            node.InnerXml = tn.OuterXml;
-                        }
-                    });
+                        XmlElement tn = node.OwnerDocument.CreateElement("tn");
+                        tn.SetAttribute("type", "lower");
+                        tn.InnerXml = node.InnerXml;
+                        node.InnerXml = tn.OuterXml;
+                    }
+                });
 
-                // TODO: move to format
-                this.Xml = Regex.Replace(
-                    this.Xml,
-                    @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
-                    "$1‘$2’ $4$3");
+            // TODO: move to format
+            this.Xml = Regex.Replace(
+                this.Xml,
+                @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
+                "$1‘$2’ $4$3");
 
-                const string StructureXPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+            const string StructureXPathTemplate = "//p[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
 
-                this.AdvancedTagLowerTaxa(string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
-                ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
-
-                this.DeepTag();
+            this.AdvancedTagLowerTaxa(string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
+            ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
         }
 
         // TODO: XPath-s correction needed
@@ -215,7 +220,7 @@
             return result;
         }
 
-        private void DeepTag()
+        private async Task DeepTag()
         {
             var knownLowerTaxaNamesXml = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
                 .Cast<XmlNode>()
@@ -231,7 +236,7 @@
             // TODO: This algorithm must be refined: generate smaller pattern strings from the original.
             var taxa = knownLowerTaxaNamesXml
                 .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>|\bcf\b\.|\bvar\b\.", string.Empty))
-                .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty))
+                .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty).RegexReplace(@"[\s\d\?]+\-?", " "))
                 .Select(t => t.RegexReplace(@"[^\w\.]+", " "))
                 .ToList();
 
@@ -250,15 +255,14 @@
             {
                 try
                 {
-                    item.TagContentInDocument(
+                    await item.TagContentInDocument(
                         lowerTaxaTagModel,
                         LowerTaxaXPathTemplate,
                         this.NamespaceManager,
                         this.XmlDocument,
                         true,
                         true,
-                        this.logger)
-                        .Wait();
+                        this.logger);
                 }
                 catch (Exception e)
                 {

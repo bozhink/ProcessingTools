@@ -36,8 +36,13 @@
                 .Select(s => new TaxonNameServiceModel
                 {
                     Name = s
-                })
-                .ToArray();
+                })?.ToArray();
+
+            if (scientificNames == null || scientificNames.Length < 1)
+            {
+                logger?.Log(LogType.Warning, "No taxa found.");
+                return;
+            }
 
             var result = await this.service.Validate(scientificNames);
 

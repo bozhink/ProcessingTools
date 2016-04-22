@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
@@ -52,6 +54,66 @@
 
                 node.ParentNode.ReplaceChild(xref, node);
             }
+        }
+
+        public void RenumerateFootNotes()
+        {
+            var footnoteIds = new HashSet<string>(this.XmlDocument.SelectNodes("//back//fn-group//fn/@id")
+                .Cast<XmlNode>()
+                .Select(n => n.InnerText))
+                .ToArray();
+
+            var reindexDictionary = new Dictionary<string, int>();
+            for (int i = 0; i < footnoteIds.Length; ++i)
+            {
+                reindexDictionary.Add(footnoteIds[i], i + 1);
+            }
+
+            // Add label tags in fn
+            foreach (XmlElement fn in this.XmlDocument.SelectNodes("//back//fn-group//fn[not(label)]"))
+            {
+                try
+                {
+                    string id = fn.Attributes["id"]?.InnerText;
+
+                    XmlElement label = this.XmlDocument.CreateElement("label");
+                    label.InnerText = reindexDictionary[id].ToString();
+
+                    fn.PrependChild(label);
+                }
+                catch
+                {
+                }
+            }
+
+            // Update the content of xref[@ref-type='fn']
+            foreach (XmlElement xref in this.XmlDocument.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']"))
+            {
+                try
+                {
+                    string id = xref.Attributes["rid"]?.InnerText;
+                    xref.InnerText = reindexDictionary[id].ToString();
+                }
+                catch
+                {
+                }
+            }
+
+            // Update fn/@id
+            foreach (XmlAttribute id in this.XmlDocument.SelectNodes("//back//fn-group//fn/@id"))
+            {
+                string key = id.InnerText;
+                id.InnerText = $"FN{reindexDictionary[key]}";
+            }
+
+            // Update xref[@ref-type='fn']/@rid
+            foreach (XmlAttribute rid in this.XmlDocument.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']/@rid"))
+            {
+                string key = rid.InnerText;
+                rid.InnerText = $"FN{reindexDictionary[key]}";
+            }
+
+
         }
     }
 }
