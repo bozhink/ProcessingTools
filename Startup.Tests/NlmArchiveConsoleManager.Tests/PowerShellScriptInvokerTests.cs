@@ -10,7 +10,6 @@
         {
             var invoker = new PowerShellScriptInvoker();
             invoker.Invoke();
-
         }
     }
 }

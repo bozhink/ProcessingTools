@@ -106,14 +106,14 @@
             return Task.FromResult(this.DbSet.Find(id));
         }
 
-        public virtual Task<TEntity> Add(TEntity entity)
+        public virtual Task<object> Add(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 var entry = this.Context.Entry(entity);
                 if (entry.State != EntityState.Detached)
@@ -128,14 +128,14 @@
             });
         }
 
-        public virtual Task<TEntity> Update(TEntity entity)
+        public virtual Task<object> Update(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 var entry = this.Context.Entry(entity);
                 if (entry.State == EntityState.Detached)
@@ -148,14 +148,14 @@
             });
         }
 
-        public virtual Task<TEntity> Delete(TEntity entity)
+        public virtual Task<object> Delete(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 var entry = this.Context.Entry(entity);
                 if (entry.State != EntityState.Deleted)
@@ -171,7 +171,7 @@
             });
         }
 
-        public virtual async Task<TEntity> Delete(object id)
+        public virtual async Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -179,15 +179,15 @@
             }
 
             var entity = await this.Get(id);
-            if (entity != null)
+            if (entity == null)
             {
-                return await this.Delete(entity);
+                return null;
             }
 
-            return null;
+            return await this.Delete(entity);
         }
 
-        public Task<int> SaveChanges()
+        public virtual Task<int> SaveChanges()
         {
             return this.Context.SaveChangesAsync();
         }

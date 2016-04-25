@@ -37,11 +37,11 @@
             this.Client = this.clientProvider.Create();
         }
 
-        private IndexName Context { get; set; }
+        protected IndexName Context { get; set; }
 
-        private IElasticClient Client { get; set; }
+        protected IElasticClient Client { get; set; }
 
-        public virtual async Task<TEntity> Add(TEntity entity)
+        public virtual async Task<object> Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -50,9 +50,7 @@
 
             await this.CreateIndexIfItDoesNotExist(this.Context);
             var response = await this.Client.IndexAsync(entity, idx => idx.Index(this.Context));
-
-            // TODO
-            return null;
+            return response;
         }
 
         public virtual async Task<IQueryable<TEntity>> All()
@@ -124,7 +122,7 @@
             return response.Documents.AsQueryable();
         }
 
-        public virtual async Task<TEntity> Delete(object id)
+        public virtual async Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -132,13 +130,10 @@
             }
 
             var entity = await this.Get(id);
-            await this.Delete(entity);
-
-            // TODO
-            return null;
+            return await this.Delete(entity);
         }
 
-        public virtual async Task<TEntity> Delete(TEntity entity)
+        public virtual async Task<object> Delete(TEntity entity)
         {
             if (entity == null)
             {
@@ -146,9 +141,7 @@
             }
 
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
-
-            // TODO
-            return null;
+            return response;
         }
 
         public virtual async Task<TEntity> Get(object id)
@@ -169,7 +162,7 @@
             return response.IsValid ? 0 : 1;
         }
 
-        public virtual async Task<TEntity> Update(TEntity entity)
+        public virtual async Task<object> Update(TEntity entity)
         {
             if (entity == null)
             {
@@ -181,8 +174,7 @@
                 documentPath,
                 u => u.Doc(entity).DocAsUpsert(true));
 
-            // TODO
-            return null;
+            return response;
         }
 
         private async Task CreateIndexIfItDoesNotExist(IndexName indexName)

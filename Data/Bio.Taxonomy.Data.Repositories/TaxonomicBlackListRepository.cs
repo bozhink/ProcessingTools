@@ -40,14 +40,14 @@
 
         private ConcurrentQueue<string> Items { get; set; }
 
-        public Task<string> Add(string entity)
+        public Task<object> Add(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (!string.IsNullOrWhiteSpace(entity))
                 {
@@ -58,10 +58,10 @@
             });
         }
 
-        public Task<IQueryable<string>> All()
+        public async Task<IQueryable<string>> All()
         {
-            this.ReadItemsFromFile();
-            return Task.FromResult(new HashSet<string>(this.Items).AsQueryable());
+            await this.ReadItemsFromFile();
+            return new HashSet<string>(this.Items).AsQueryable();
         }
 
         public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter)
@@ -126,7 +126,7 @@
                 .Take(take);
         }
 
-        public Task<string> Delete(object id)
+        public Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -136,7 +136,7 @@
             return this.Delete(id.ToString());
         }
 
-        public async Task<string> Delete(string entity)
+        public async Task<object> Delete(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
             {
@@ -166,28 +166,29 @@
             return this.WriteItemsToFile();
         }
 
-        public Task<string> Update(string entity)
+        public Task<object> Update(string entity)
         {
             return this.Add(entity);
         }
 
-        private void ReadItemsFromFile()
+        private Task ReadItemsFromFile()
         {
-            var timeSpan = this.lastUpdated - DateTime.Now;
-            if (timeSpan.HasValue &&
-                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            return Task.Run(() =>
             {
-                return;
-            }
+                var timeSpan = this.lastUpdated - DateTime.Now;
+                if (timeSpan.HasValue &&
+                    timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+                {
+                    return;
+                }
 
-            XElement list = XElement.Load(this.Config.BlackListXmlFilePath);
+                XElement.Load(this.Config.BlackListXmlFilePath)
+                    .Descendants(ItemNodeName)
+                    .AsParallel()
+                    .ForAll(element => this.Items.Enqueue(element.Value));
 
-            foreach (var element in list.Descendants(ItemNodeName))
-            {
-                this.Items.Enqueue(element.Value);
-            }
-
-            this.lastUpdated = DateTime.Now;
+                this.lastUpdated = DateTime.Now;
+            });
         }
 
         private async Task<int> WriteItemsToFile()

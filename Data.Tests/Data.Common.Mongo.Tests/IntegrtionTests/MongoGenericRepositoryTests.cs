@@ -16,6 +16,7 @@
         private const string DatabaseName = "MongoGenericRepository_Integration_Tests_F92F80C9";
 
         [TestMethod]
+        [Timeout(5000)]
         [Ignore]
         public void MongoGenericRepository_AddAllDelete_ShouldWork()
         {
@@ -50,6 +51,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [Ignore]
         public void MongoGenericRepository_AddAllSkipTakeDelete_ShouldWork()
         {
@@ -84,6 +86,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [Ignore]
         public void MongoGenericRepository_AddAllUpdateDelete_ShouldWork()
         {

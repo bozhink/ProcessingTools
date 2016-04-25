@@ -1,15 +1,13 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Threading;
-    using System.Management.Automation;
     using System.Collections.ObjectModel;
+    using System.Management.Automation;
+    using System.Threading;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+
     public class PowerShellScriptInvoker
     {
         private readonly ILogger logger;
@@ -118,7 +116,7 @@
                     // object may be present here. check for null to prevent potential NRE.
                     if (outputItem != null)
                     {
-                        //TODO: do something with the output item 
+                        // TODO: do something with the output item
                         // outputItem.BaseOBject
                         Console.WriteLine(outputItem.BaseObject.GetType().FullName);
                         Console.WriteLine(outputItem.BaseObject.ToString() + "\n");
@@ -166,12 +164,12 @@
 
                 // prepare a new collection to store output stream objects
                 PSDataCollection<PSObject> outputCollection = new PSDataCollection<PSObject>();
-                outputCollection.DataAdded += OutputCollection_DataAdded;
+                outputCollection.DataAdded += this.OutputCollection_DataAdded;
 
                 // the streams (Error, Debug, Progress, etc) are available on the PowerShell instance.
                 // we can review them during or after execution.
                 // we can also be notified when a new item is written to the stream (like this):
-                powerShellInstance.Streams.Error.DataAdded += Error_DataAdded;
+                powerShellInstance.Streams.Error.DataAdded += this.Error_DataAdded;
 
                 // begin invoke execution on the pipeline
                 // use this overload to specify an output stream buffer
@@ -191,7 +189,7 @@
 
                 foreach (PSObject outputItem in outputCollection)
                 {
-                    //TODO: handle/process the output items if required
+                    // TODO: handle/process the output items if required
                     Console.WriteLine(outputItem.BaseObject.ToString());
                 }
             }
@@ -202,7 +200,7 @@
         /// </summary>
         /// <param name="sender">Contains the complete PSDataCollection of all output items.</param>
         /// <param name="e">Contains the index ID of the added collection item and the ID of the PowerShell instance this event belongs to.</param>
-        void OutputCollection_DataAdded(object sender, DataAddedEventArgs e)
+        private void OutputCollection_DataAdded(object sender, DataAddedEventArgs e)
         {
             // do something when an object is written to the output stream
             Console.WriteLine("Object added to output.");
@@ -213,7 +211,7 @@
         /// </summary>
         /// <param name="sender">Contains the complete PSDataCollection of all error output items.</param>
         /// <param name="e">Contains the index ID of the added collection item and the ID of the PowerShell instance this event belongs to.</param>
-        void Error_DataAdded(object sender, DataAddedEventArgs e)
+        private void Error_DataAdded(object sender, DataAddedEventArgs e)
         {
             // do something when an error is written to the error stream
             Console.WriteLine("An error was written to the Error stream!");

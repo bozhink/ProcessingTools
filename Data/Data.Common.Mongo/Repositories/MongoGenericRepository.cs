@@ -31,6 +31,8 @@
             this.CollectionName = typeof(TEntity).Name;
         }
 
+        protected IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
+
         private string CollectionName
         {
             get
@@ -58,9 +60,7 @@
             }
         }
 
-        private IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
-
-        public virtual async Task<TEntity> Add(TEntity entity)
+        public virtual async Task<object> Add(TEntity entity)
         {
             if (entity == null)
             {
@@ -71,13 +71,9 @@
             return entity;
         }
 
-        public virtual async Task<IQueryable<TEntity>> All()
+        public virtual Task<IQueryable<TEntity>> All()
         {
-            var entities = await this.Collection
-                .Find(new BsonDocument())
-                .ToListAsync();
-
-            return entities.AsQueryable();
+            return Task.FromResult<IQueryable<TEntity>>(this.Collection.AsQueryable());
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
@@ -87,11 +83,8 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var entities = await this.Collection
-               .Find(filter)
-               .ToListAsync();
-
-            return entities.AsQueryable();
+            return (await this.All())
+                .Where(filter);
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
@@ -111,14 +104,10 @@
                 throw new ArgumentException(string.Empty, nameof(take));
             }
 
-            var entities = await this.Collection
-                .Find(new BsonDocument())
-                .SortBy(sort)
+            return (await this.All())
+                .OrderBy(sort)
                 .Skip(skip)
-                .Limit(take)
-                .ToListAsync();
-
-            return entities.AsQueryable();
+                .Take(take);
         }
 
         public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
@@ -143,17 +132,14 @@
                 throw new ArgumentException(string.Empty, nameof(take));
             }
 
-            var entities = await this.Collection
-                .Find(filter)
-                .SortBy(sort)
+            return (await this.All())
+                .Where(filter)
+                .OrderBy(sort)
                 .Skip(skip)
-                .Limit(take)
-                .ToListAsync();
-
-            return entities.AsQueryable();
+                .Take(take);
         }
 
-        public virtual async Task<TEntity> Delete(object id)
+        public virtual async Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -164,21 +150,10 @@
 
             var filter = this.GetFilterById(id);
             var result = await this.Collection.DeleteOneAsync(filter);
-            
-            switch (result.DeletedCount)
-            {
-                case 0:
-                    return null;
-
-                case 1:
-                    return entity;
-
-                default:
-                    throw new ApplicationException("More than one records are deleted.");
-            }
+            return result;
         }
 
-        public virtual async Task<TEntity> Delete(TEntity entity)
+        public virtual async Task<object> Delete(TEntity entity)
         {
             if (entity == null)
             {
@@ -201,12 +176,9 @@
             return entity;
         }
 
-        public virtual Task<int> SaveChanges()
-        {
-            return Task.FromResult(0);
-        }
+        public virtual Task<int> SaveChanges() => Task.FromResult(0);
 
-        public virtual async Task<TEntity> Update(TEntity entity)
+        public virtual async Task<object> Update(TEntity entity)
         {
             if (entity == null)
             {
@@ -216,18 +188,7 @@
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
             var result = await this.Collection.ReplaceOneAsync(filter, entity);
-
-            switch (result.ModifiedCount)
-            {
-                case 0:
-                    return null;
-
-                case 1:
-                    return entity;
-
-                default:
-                    throw new ApplicationException("More than records are modified.");
-            }
+            return result;
         }
 
         private FilterDefinition<TEntity> GetFilterById(object id)

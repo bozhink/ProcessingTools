@@ -45,10 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\ITaxaContextProvider.cs" />
     <Compile Include="Contracts\ITaxaRepository.cs" />
+    <Compile Include="Contracts\ITaxaRepositoryProvider.cs" />
     <Compile Include="Contracts\ITaxonomicBlackListRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="TaxaRepository.cs" />
+    <Compile Include="TaxaRepositoryProvider.cs" />
     <Compile Include="TaxonomicBlackListRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +60,9 @@
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>Configurator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
+    <ProjectReference Include="..\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
