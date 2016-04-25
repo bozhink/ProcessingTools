@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
 
@@ -238,7 +239,7 @@
         /// <param name="replace">Replacement string.</param>
         /// <param name="logger">Ilogger object to log exceptions.</param>
         /// <returns>Status value: is the replacemet performed or not.</returns>
-        public static bool SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
+        public static Task<bool> SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
         {
             string nodeInnerXml = node.InnerXml;
             bool reset = false;
@@ -260,7 +261,7 @@
                 }
             }
 
-            return !reset;
+            return Task.FromResult(!reset);
         }
     }
 }

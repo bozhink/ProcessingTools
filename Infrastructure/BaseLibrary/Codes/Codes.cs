@@ -418,7 +418,7 @@ namespace ProcessingTools.BaseLibrary
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                node.SafeReplaceInnerXml(nodeInnerXml, this.logger);
+                node.SafeReplaceInnerXml(nodeInnerXml, this.logger).Wait();
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {

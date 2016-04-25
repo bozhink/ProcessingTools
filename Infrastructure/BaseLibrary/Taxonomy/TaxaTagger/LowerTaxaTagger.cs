@@ -99,7 +99,9 @@
         private void TagInfraspecificTaxa(XmlNode node)
         {
             string replace = this.TagInfraspecificTaxa(node.InnerXml);
-            node.SafeReplaceInnerXml(replace, this.logger);
+
+            // TODO: await needed
+            node.SafeReplaceInnerXml(replace, this.logger).Wait();
         }
 
         private string TagInfraspecificTaxa(string content)

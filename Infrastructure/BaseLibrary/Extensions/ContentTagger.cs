@@ -23,7 +23,7 @@
             return replacementNode.OuterXml;
         }
 
-        public static Task TagContentInDocument(
+        public static async Task TagContentInDocument(
             this IEnumerable<string> textToTagList,
             XmlElement tagModel,
             string xpathTemplate,
@@ -33,20 +33,17 @@
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            return Task.Run(() =>
+            foreach (string textToTag in textToTagList)
             {
-                foreach (string textToTag in textToTagList)
+                try
                 {
-                    try
-                    {
-                        textToTag.TagContentInDocument(tagModel, xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger).Wait();
-                    }
-                    catch (Exception e)
-                    {
-                        logger?.Log(e, "Item: {0}.", textToTag);
-                    }
+                    await textToTag.TagContentInDocument(tagModel, xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger);
                 }
-            });
+                catch (Exception e)
+                {
+                    logger?.Log(e, "Item: {0}.", textToTag);
+                }
+            }
         }
 
         public static async Task TagContentInDocument(
@@ -107,10 +104,10 @@
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            return Task.Run(() => Tag(nodeList.Cast<XmlNode>(), caseSensitive, minimalTextSelect, logger, item));
+            return nodeList.Cast<XmlNode>().Tag(caseSensitive, minimalTextSelect, logger, item);
         }
 
-        private static void Tag(IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
+        public static async Task Tag(this IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
         {
             if (nodeList == null || nodeList.Count() < 1)
             {
@@ -160,7 +157,7 @@
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    node.SafeReplaceInnerXml(replace, logger);
+                    await node.SafeReplaceInnerXml(replace, logger);
                 }
             }
         }
