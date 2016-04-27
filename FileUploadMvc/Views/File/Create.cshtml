@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "File", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <input type="file" name="file" class="form-control" accept=".xml, application/xml" />
+        <p class="help-block">Example block-level help text here.</p>
+        <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-default" />
+    </div>
+}
