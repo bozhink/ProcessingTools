@@ -8,6 +8,7 @@
     using Factories;
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Extensions;
 

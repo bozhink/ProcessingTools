@@ -2,7 +2,7 @@
 {
     using System.Text.RegularExpressions;
     using System.Xml;
-    using ProcessingTools.Configurator;
+
     using ProcessingTools.DocumentProvider;
 
     public static class QueryReplace
@@ -13,7 +13,7 @@
         /// <param name="textContent">Input string.</param>
         /// <param name="queryFileName">Valid Xml file containing [multiple ]replace instructions.</param>
         /// <returns>Output string after replaces.</returns>
-        public static string Replace(Config config, string textContent, string queryFileName)
+        public static string Replace(string textContent, string queryFileName)
         {
             string text = textContent;
 

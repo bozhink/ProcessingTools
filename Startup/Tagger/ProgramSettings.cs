@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts.Types;
 
     public class ProgramSettings
     {

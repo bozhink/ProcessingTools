@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Contracts.Types;
 
     [TestClass]
     public class ProgramSettingsTests

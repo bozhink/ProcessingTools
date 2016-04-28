@@ -4,6 +4,7 @@
     using System.Xml;
 
     using ProcessingTools.Common;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Infrastructure.Extensions;
 
     /// <summary>

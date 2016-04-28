@@ -25,10 +25,7 @@
 
             string queryFileName = settings.FileNames.ElementAt(2);
 
-            return Task.Run(() => document.LoadXml(QueryReplace.Replace(
-                settings.Config,
-                document.OuterXml,
-                queryFileName)));
+            return Task.Run(() => document.LoadXml(QueryReplace.Replace(document.OuterXml, queryFileName)));
         }
     }
 }

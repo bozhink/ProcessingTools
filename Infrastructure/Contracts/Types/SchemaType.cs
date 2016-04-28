@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools
+﻿namespace ProcessingTools.Contracts.Types
 {
     public enum SchemaType
     {

@@ -6,6 +6,7 @@
 
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class ProgramSettingsBuilder
     {
