@@ -13,13 +13,13 @@
 
     public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner
     {
-        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?\]?[,;\.]*[\)\s]+|[\.;\)]$|$)";
-        private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b";
+        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?\]?[,;\.]*[\)\s]+|[\.;\)]+$|$)";
+        private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b(?:(?::\d+)?/)?";
 
         private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
             @"(?i)(?<!://)www\S+?" + UriPatternSuffix + @"|" +
             IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix + @"|" +
-            @"[A-Za-z0-9][A-Za-z0-9@~&:\.\-_]*\.(?:com|org|net)\b\S*?" + UriPatternSuffix;
+            @"[A-Za-z0-9][A-Za-z0-9@~&:\.\-_]*\.(?:com|org|net|edu)\b\S*?" + UriPatternSuffix;
 
         private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
 
