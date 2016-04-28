@@ -93,10 +93,6 @@
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
-      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>Configurator</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Coordinates\get-coordinates.ps1" />

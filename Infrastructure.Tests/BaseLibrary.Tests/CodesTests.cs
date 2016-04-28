@@ -3,18 +3,15 @@
     using System;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Configurator;
 
     [TestClass]
     public class CodesTests
     {
-        private static Config config;
         private static XmlTextWriter writer;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            config = ConfigBuilder.Create(@"C:\bin\config.json");
             writer = new XmlTextWriter(Console.Out);
             writer.Formatting = Formatting.Indented;
         }
