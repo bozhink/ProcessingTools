@@ -8,9 +8,6 @@
         [DataMember(Name = "blackListXmlFilePath")]
         public string BlackListXmlFilePath { get; set; }
 
-        [DataMember(Name = "rankListCleanXslPath")]
-        public string RankListCleanXslPath { get; set; }
-
         [DataMember(Name = "rankListXmlFilePath")]
         public string RankListXmlFilePath { get; set; }
     }

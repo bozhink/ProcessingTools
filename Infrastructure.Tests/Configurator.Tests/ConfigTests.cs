@@ -30,21 +30,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfRankListCleanXslPathProperty_ShouldBePersistent()
-        {
-            this.config.RankListCleanXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.RankListCleanXslPath,
-                "1. RankListCleanXslPath should match SampleFilePath.");
-
-            this.config.RankListCleanXslPath = null;
-            Assert.IsNull(
-                this.config.RankListCleanXslPath,
-                "2. RankListCleanXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfRankListXmlFilePathProperty_ShouldBePersistent()
         {
             this.config.RankListXmlFilePath = SampleFilePath;
