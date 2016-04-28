@@ -114,8 +114,6 @@
                 string key = rid.InnerText;
                 rid.InnerText = $"FN{reindexDictionary[key]}";
             }
-
-
         }
     }
 }
