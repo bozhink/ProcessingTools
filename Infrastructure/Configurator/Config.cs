@@ -16,11 +16,5 @@
 
         [DataMember(Name = "rankListXmlFilePath")]
         public string RankListXmlFilePath { get; set; }
-
-        [DataMember(Name = "whiteListCleanXslPath")]
-        public string WhiteListCleanXslPath { get; set; }
-
-        [DataMember(Name = "whiteListXmlFilePath")]
-        public string WhiteListXmlFilePath { get; set; }
     }
 }

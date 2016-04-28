@@ -73,35 +73,5 @@
                 this.config.RankListXmlFilePath,
                 "2. RankListXmlFilePath should be null.");
         }
-
-        [Test]
-        public void Config_ValidChangesOfWhiteListCleanXslPathProperty_ShouldBePersistent()
-        {
-            this.config.WhiteListCleanXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.WhiteListCleanXslPath,
-                "1. WhiteListCleanXslPath should match SampleFilePath.");
-
-            this.config.WhiteListCleanXslPath = null;
-            Assert.IsNull(
-                this.config.WhiteListCleanXslPath,
-                "2. WhiteListCleanXslPath should be null.");
-        }
-
-        [Test]
-        public void Config_ValidChangesOfWhiteListXmlFilePathProperty_ShouldBePersistent()
-        {
-            this.config.WhiteListXmlFilePath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.WhiteListXmlFilePath,
-                "1. WhiteListXmlFilePath should match SampleFilePath.");
-
-            this.config.WhiteListXmlFilePath = null;
-            Assert.IsNull(
-                this.config.WhiteListXmlFilePath,
-                "2. WhiteListXmlFilePath should be null.");
-        }
     }
 }
