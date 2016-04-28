@@ -1,9 +1,4 @@
 {
   "blackListXmlFilePath": "C:/bin/Xml/taxonomy.blackList.xml",
-  "whiteListXmlFilePath": "C:/bin/Xml/taxonomy.whiteList.xml",
-  "rankListXmlFilePath": "C:/bin/Xml/taxonomy.rankList.xml",
-
-  "rankListCleanXslPath": "C:/bin/Xsl/RankListClean.xsl",
-  "whiteListCleanXslPath": "C:/bin/Xsl/WhiteListClean.xsl",
-  "blackListCleanXslPath": "C:/bin/Xsl/WhiteListClean.xsl"
+  "rankListXmlFilePath": "C:/bin/Xml/taxonomy.rankList.xml"
 }
