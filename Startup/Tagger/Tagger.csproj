@@ -391,10 +391,6 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
-      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>Configurator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
