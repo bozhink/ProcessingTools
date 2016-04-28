@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts.Types;
 
     public class ProgramSettings
@@ -18,8 +17,6 @@
 
             this.articleSchemaType = SchemaType.System;
             this.articleSchemaTypeStyleIsLockedForModification = false;
-
-            this.Config = null;
 
             this.HigherStructrureXpath = "//article";
 
@@ -82,8 +79,6 @@
                 this.articleSchemaTypeStyleIsLockedForModification = true;
             }
         }
-
-        public Config Config { get; set; }
 
         public ICollection<string> FileNames { get; set; }
 

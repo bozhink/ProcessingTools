@@ -19,12 +19,6 @@
         }
 
         [TestMethod]
-        public void ProgramSettings_ConfigPropertyInNewInstance_ShouldBeNull()
-        {
-            Assert.IsNull(this.programSettings.Config, "Default Config value should be null.");
-        }
-
-        [TestMethod]
         public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_ShouldBeDefault()
         {
             string defaultXpath = "//article";

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
@@ -20,10 +19,7 @@
             this.controllerInfoProvider = new ControllerInfoProvider();
             this.controllerInfoProvider.ProcessInformation();
 
-            this.Settings = new ProgramSettings
-            {
-                Config = ConfigBuilder.Create()
-            };
+            this.Settings = new ProgramSettings();
 
             this.ParseFileNames(args);
             this.ParseSingleDashedOptions(args);
