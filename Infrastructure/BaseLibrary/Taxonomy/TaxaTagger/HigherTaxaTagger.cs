@@ -5,9 +5,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Data.Miners.Contracts;
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Configurator;
+    using ProcessingTools.Bio.Data.Miners.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
@@ -18,8 +17,8 @@
         private ILogger logger;
         private IHigherTaxaDataMiner miner;
 
-        public HigherTaxaTagger(Config config, string xml, IHigherTaxaDataMiner miner, ITaxonomicBlackListDataService service, ILogger logger)
-            : base(config, xml, service)
+        public HigherTaxaTagger(string xml, IHigherTaxaDataMiner miner, ITaxonomicBlackListDataService service, ILogger logger)
+            : base(xml, service)
         {
             this.logger = logger;
             this.miner = miner;

@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class ReferencesParser : ConfigurableDocument, IParser
+    public class ReferencesParser : TaxPubDocument, IParser
     {
         private ILogger logger;
 
-        public ReferencesParser(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public ReferencesParser(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
         }

@@ -3,8 +3,9 @@
     using System.Threading.Tasks;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public abstract class ZoobankCloner : ConfigurableDocument, ICloner
+    public abstract class ZoobankCloner : TaxPubDocument, ICloner
     {
         protected const string ArticleZooBankSelfUriXPath = "//article-meta/self-uri[@content-type='zoobank']";
         protected const string ContributorZooBankUriXPath = "//article-meta/contrib-group/contrib/uri[@content-type='zoobank']";

@@ -4,19 +4,14 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class NlmInitialFormatter : ConfigurableDocument, IFormatter
+    public class NlmInitialFormatter : TaxPubDocument, IFormatter
     {
         public NlmInitialFormatter(string xml)
             : base(xml)
-        {
-        }
-
-        public NlmInitialFormatter(Config config, string xml)
-            : base(config, xml)
         {
         }
 

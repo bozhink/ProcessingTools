@@ -6,22 +6,16 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class TreatmentFormatter : ConfigurableDocument, IFormatter
+    public class TreatmentFormatter : TaxPubDocument, IFormatter
     {
         private ILogger logger;
 
         public TreatmentFormatter(string xml, ILogger logger)
             : base(xml)
-        {
-            this.logger = logger;
-        }
-
-        public TreatmentFormatter(Config config, string xml, ILogger logger)
-            : base(config, xml)
         {
             this.logger = logger;
         }

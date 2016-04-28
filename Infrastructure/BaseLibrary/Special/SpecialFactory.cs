@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.BaseLibrary.Special
 {
-    using ProcessingTools.Configurator;
+    using ProcessingTools.DocumentProvider;
 
-    public abstract class SpecialFactory : ConfigurableDocument
+    public abstract class SpecialFactory : TaxPubDocument
     {
-        public SpecialFactory(Config config, string xml)
-            : base(config, xml)
+        public SpecialFactory(string xml)
+            : base(xml)
         {
         }
     }

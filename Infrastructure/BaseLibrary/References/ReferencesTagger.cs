@@ -8,11 +8,11 @@
     using System.Xml.Linq;
 
     using ProcessingTools.Common;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class ReferencesTagger : ConfigurableDocument, ITagger
+    public class ReferencesTagger : TaxPubDocument, ITagger
     {
         private const string ReferencesGetReferencesXslPathKey = "ReferencesGetReferencesXslPath";
         private const string ReferencesTagTemplateXslPathKey = "ReferencesTagTemplateXslPath";
@@ -21,8 +21,8 @@
         private IReferencesConfiguration referencesConfiguration;
         private ILogger logger;
 
-        public ReferencesTagger(Config config, string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
-            : base(config, xml)
+        public ReferencesTagger(string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
             this.referencesConfiguration = referencesConfiguration;

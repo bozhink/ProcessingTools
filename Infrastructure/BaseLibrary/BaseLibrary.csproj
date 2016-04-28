@@ -100,14 +100,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
     <Compile Include="Abbreviations\AbbreviationsTagger.cs" />
-    <Compile Include="ConfigurableDocument.cs" />
     <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
     <Compile Include="Extensions\XmlNormalizer.cs" />
     <Compile Include="Floats\FloatsReferenceType.cs" />
     <Compile Include="Floats\TableFootNotesTagger.cs" />
-    <Compile Include="Contracts\IConfigurableDocument.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Coordinates\CoordinatesParser.cs" />

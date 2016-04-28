@@ -5,8 +5,9 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class StringTagger : ConfigurableDocument, ITagger
+    public class StringTagger : TaxPubDocument, ITagger
     {
         private string contentNodesXPathTemplate;
         private XmlNamespaceManager namespaceManager;

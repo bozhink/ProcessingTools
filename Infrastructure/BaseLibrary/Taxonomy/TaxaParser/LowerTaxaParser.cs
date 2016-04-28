@@ -7,21 +7,15 @@
 
     using ProcessingTools.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class LowerTaxaParser : ConfigurableDocument, IParser
+    public class LowerTaxaParser : TaxPubDocument, IParser
     {
         private ILogger logger;
 
         public LowerTaxaParser(string xml, ILogger logger)
             : base(xml)
-        {
-            this.logger = logger;
-        }
-
-        public LowerTaxaParser(Config config, string xml, ILogger logger)
-            : base(config, xml)
         {
             this.logger = logger;
         }

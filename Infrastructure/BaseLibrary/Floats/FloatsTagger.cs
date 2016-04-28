@@ -11,11 +11,11 @@
 
     using Contracts;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class FloatsTagger : ConfigurableDocument, ITagger
+    public class FloatsTagger : TaxPubDocument, ITagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 30;
@@ -32,8 +32,8 @@
         private IEnumerable floatIdByLabelValues = null;
         private ILogger logger;
 
-        public FloatsTagger(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public FloatsTagger(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
             this.InitFloats();

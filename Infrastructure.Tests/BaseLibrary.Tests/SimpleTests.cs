@@ -2,24 +2,15 @@
 {
     using System;
 
-    using Bio.Taxonomy.ServiceClient.Aphia;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Configurator;
+
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Contracts;
 
     [TestClass]
     public class SimpleTests
     {
-        private static Config config;
-
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
-        {
-            config = ConfigBuilder.Create(@"C:\bin\config.json");
-        }
-
         [TestMethod]
         [Ignore]
         public void CreateNewInstanceOfDataProviderWithValidInputData()
@@ -27,7 +18,7 @@
             string xmlText = "<article></article>";
 
             var loggerMock = new Mock<ILogger>();
-            DataProvider dataProvider = new DataProvider(config, xmlText, loggerMock.Object);
+            DataProvider dataProvider = new DataProvider(xmlText, loggerMock.Object);
             Assert.AreEqual(dataProvider.Xml, xmlText);
         }
 
@@ -39,7 +30,7 @@
             string resultXmlText;
 
             var loggerMock = new Mock<ILogger>();
-            DataProvider dataProvider = new DataProvider(config, xmlText, loggerMock.Object);
+            DataProvider dataProvider = new DataProvider(xmlText, loggerMock.Object);
             resultXmlText = dataProvider.Xml;
 
             Assert.AreEqual(resultXmlText, xmlText);

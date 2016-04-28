@@ -14,7 +14,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new LowerTaxaParser(settings.Config, document.OuterXml, logger);
+            var parser = new LowerTaxaParser(document.OuterXml, logger);
 
             await parser.Parse();
 

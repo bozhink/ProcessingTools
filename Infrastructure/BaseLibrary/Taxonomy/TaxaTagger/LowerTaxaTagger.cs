@@ -7,8 +7,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Configurator;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Extensions;
 
@@ -21,8 +20,8 @@
 
         private ILogger logger;
 
-        public LowerTaxaTagger(Config config, string xml, ITaxonomicBlackListDataService service, ILogger logger)
-            : base(config, xml, service)
+        public LowerTaxaTagger(string xml, ITaxonomicBlackListDataService service, ILogger logger)
+            : base(xml, service)
         {
             this.logger = logger;
         }

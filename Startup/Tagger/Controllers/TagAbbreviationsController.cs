@@ -14,7 +14,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new AbbreviationsTagger(settings.Config, document.OuterXml);
+            var tagger = new AbbreviationsTagger(document.OuterXml);
 
             await tagger.Tag();
 

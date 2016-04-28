@@ -5,22 +5,16 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider;
 
-    public class Expander : ConfigurableDocument
+    public class Expander : TaxPubDocument
     {
         private ILogger logger;
 
         public Expander(string xml, ILogger logger)
             : base(xml)
-        {
-            this.logger = logger;
-        }
-
-        public Expander(Config config, string xml, ILogger logger)
-            : base(config, xml)
         {
             this.logger = logger;
         }

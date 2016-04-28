@@ -15,7 +15,6 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var tagger = new ReferencesTagger(
-                settings.Config,
                 document.OuterXml,
                 new ReferencesConfiguration
                 {

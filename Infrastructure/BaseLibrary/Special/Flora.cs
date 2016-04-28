@@ -4,12 +4,10 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
-
     public class Flora : SpecialFactory
     {
-        public Flora(Config config, string xml)
-            : base(config, xml)
+        public Flora(string xml)
+            : base(xml)
         {
         }
 

@@ -8,10 +8,12 @@
 
     using MediaType.Services.Data.Contracts;
     using Models;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider;
 
-    public class MediaTypesResolver : ConfigurableDocument, IParser
+    public class MediaTypesResolver : TaxPubDocument, IParser
     {
         private const string DefaultMimeType = "application";
         private const string DefaultMimeSubtype = "octet-stream";

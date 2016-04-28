@@ -15,11 +15,11 @@ namespace ProcessingTools.BaseLibrary
     using Contracts;
     using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class Codes : ConfigurableDocument
+    public class Codes : TaxPubDocument
     {
         private const string CodesRemoveNonCodeNodesXslPathKey = "CodesRemoveNonCodeNodesXslPath";
         private const string SpecimenCodeTagName = "specimen_code";
@@ -123,8 +123,8 @@ namespace ProcessingTools.BaseLibrary
 
         private ILogger logger;
 
-        public Codes(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public Codes(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
             this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);

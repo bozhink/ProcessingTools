@@ -7,17 +7,17 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Configurator;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public abstract class TaxaTagger : ConfigurableDocument, ITagger
+    public abstract class TaxaTagger : TaxPubDocument, ITagger
     {
         private ITaxonomicBlackListDataService service;
 
-        public TaxaTagger(Config config, string xml, ITaxonomicBlackListDataService service)
-            : base(config, xml)
+        public TaxaTagger(string xml, ITaxonomicBlackListDataService service)
+            : base(xml)
         {
             if (service == null)
             {

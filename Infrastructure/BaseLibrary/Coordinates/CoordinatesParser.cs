@@ -5,18 +5,18 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Geo;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class CoordinatesParser : ConfigurableDocument, IParser
+    public class CoordinatesParser : TaxPubDocument, IParser
     {
         private ILogger logger;
 
-        public CoordinatesParser(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public CoordinatesParser(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
         }

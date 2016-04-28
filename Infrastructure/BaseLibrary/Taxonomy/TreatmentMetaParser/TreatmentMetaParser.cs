@@ -6,12 +6,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Taxonomy.Contracts;
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using Bio.Taxonomy.Types;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class TreatmentMetaParser : ConfigurableDocument, IParser
+    public class TreatmentMetaParser : TaxPubDocument, IParser
     {
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

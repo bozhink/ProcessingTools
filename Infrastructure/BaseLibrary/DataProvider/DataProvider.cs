@@ -7,16 +7,16 @@
     using System.Xml;
 
     using Contracts;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class DataProvider : ConfigurableDocument, IDataProvider
+    public class DataProvider : TaxPubDocument, IDataProvider
     {
         private ILogger logger;
 
-        public DataProvider(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public DataProvider(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
         }

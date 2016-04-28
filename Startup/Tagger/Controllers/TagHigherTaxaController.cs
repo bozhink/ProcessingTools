@@ -24,7 +24,7 @@
             var miner = new HigherTaxaDataMiner(new TaxonRankDataService(repositoryProvider));
             var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
 
-            var tagger = new HigherTaxaTagger(settings.Config, document.OuterXml, miner, blackListService, logger);
+            var tagger = new HigherTaxaTagger(document.OuterXml, miner, blackListService, logger);
 
             await tagger.Tag();
 

@@ -29,7 +29,7 @@
             }
 
             string xml = document.ApplyXslTransform(xslFileName);
-            var formatter = new NlmInitialFormatter(settings.Config, xml);
+            var formatter = new NlmInitialFormatter(xml);
             await formatter.Format();
             document.LoadXml(formatter.Xml);
         }

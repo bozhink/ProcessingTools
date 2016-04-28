@@ -5,7 +5,9 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    public class Test : ConfigurableDocument
+    using ProcessingTools.DocumentProvider;
+
+    public class Test : TaxPubDocument
     {
         public Test(string xml)
             : base(xml)

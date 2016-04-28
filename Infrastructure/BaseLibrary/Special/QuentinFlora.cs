@@ -2,12 +2,10 @@
 {
     using System.Text.RegularExpressions;
 
-    using ProcessingTools.Configurator;
-
     public class QuentinFlora : SpecialFactory
     {
-        public QuentinFlora(Config config, string xml)
-            : base(config, xml)
+        public QuentinFlora(string xml)
+            : base(xml)
         {
         }
 

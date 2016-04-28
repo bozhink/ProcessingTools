@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class AbbreviationsTagger : ConfigurableDocument, ITagger
+    public class AbbreviationsTagger : TaxPubDocument, ITagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
 
-        public AbbreviationsTagger(Config config, string xml)
-            : base(config, xml)
+        public AbbreviationsTagger(string xml)
+            : base(xml)
         {
         }
 

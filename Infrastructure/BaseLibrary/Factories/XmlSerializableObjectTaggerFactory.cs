@@ -6,8 +6,9 @@
     using System.Xml.Serialization;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public abstract class XmlSerializableObjectTaggerFactory<T> : ConfigurableDocument, ITagger
+    public abstract class XmlSerializableObjectTaggerFactory<T> : TaxPubDocument, ITagger
     {
         private XmlDocument bufferXml;
         private XmlSerializer serializer;

@@ -5,9 +5,10 @@
     using System.Xml.Xsl;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class CustomXslRunner : ConfigurableDocument, IProcessor
+    public class CustomXslRunner : TaxPubDocument, IProcessor
     {
         private string xslPath;
 

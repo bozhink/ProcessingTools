@@ -14,7 +14,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new TableFootNotesTagger(settings.Config, document.OuterXml, logger);
+            var tagger = new TableFootNotesTagger(document.OuterXml, logger);
 
             await tagger.Tag();
 

@@ -3,18 +3,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class SystemInitialFormatter : ConfigurableDocument, IFormatter
+    public class SystemInitialFormatter : TaxPubDocument, IFormatter
     {
         public SystemInitialFormatter(string xml)
             : base(xml)
-        {
-        }
-
-        public SystemInitialFormatter(Config config, string xml)
-            : base(config, xml)
         {
         }
 

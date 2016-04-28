@@ -12,9 +12,10 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Infrastructure.Extensions;
 
-    public class HigherTaxaParserWithDataService<T> : ConfigurableDocument, IParser
+    public class HigherTaxaParserWithDataService<T> : TaxPubDocument, IParser
         where T : ITaxonRank
     {
         private ILogger logger;

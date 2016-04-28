@@ -14,7 +14,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var formatter = new TreatmentFormatter(settings.Config, document.OuterXml, logger);
+            var formatter = new TreatmentFormatter(document.OuterXml, logger);
 
             await formatter.Format();
 

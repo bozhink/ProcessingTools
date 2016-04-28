@@ -16,7 +16,7 @@
         {
             return Task.Run(() =>
             {
-                var expander = new Expander(settings.Config, document.OuterXml, logger);
+                var expander = new Expander(document.OuterXml, logger);
 
                 expander.StableExpand();
 

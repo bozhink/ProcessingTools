@@ -16,9 +16,9 @@
         {
             return Task.Run(() =>
             {
-                var dataProvider = new DataProvider(settings.Config, document.OuterXml, logger);
+                var dataProvider = new DataProvider(document.OuterXml, logger);
 
-                Codes codes = new Codes(settings.Config, document.OuterXml, logger);
+                Codes codes = new Codes(document.OuterXml, logger);
                 codes.TagInstitutions(dataProvider);
                 codes.TagInstitutionalCodes(dataProvider);
 

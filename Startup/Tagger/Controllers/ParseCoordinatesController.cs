@@ -14,7 +14,7 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new CoordinatesParser(settings.Config, document.OuterXml, logger);
+            var parser = new CoordinatesParser(document.OuterXml, logger);
 
             await parser.Parse();
 

@@ -20,7 +20,7 @@
         {
             var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
 
-            var tagger = new LowerTaxaTagger(settings.Config, document.OuterXml, blackListService, logger);
+            var tagger = new LowerTaxaTagger(document.OuterXml, blackListService, logger);
 
             await tagger.Tag();
 

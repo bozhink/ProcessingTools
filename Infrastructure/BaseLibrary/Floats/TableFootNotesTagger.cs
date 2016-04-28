@@ -4,15 +4,15 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
-    public class TableFootNotesTagger : ConfigurableDocument, ITagger
+    public class TableFootNotesTagger : TaxPubDocument, ITagger
     {
         private ILogger logger;
 
-        public TableFootNotesTagger(Config config, string xml, ILogger logger)
-            : base(config, xml)
+        public TableFootNotesTagger(string xml, ILogger logger)
+            : base(xml)
         {
             this.logger = logger;
         }
