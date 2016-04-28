@@ -15,21 +15,6 @@
         }
 
         [Test]
-        public void Config_ValidChangesOfBlackListCleanXslPathProperty_ShouldBePersistent()
-        {
-            this.config.BlackListCleanXslPath = SampleFilePath;
-            Assert.AreEqual(
-                SampleFilePath,
-                this.config.BlackListCleanXslPath,
-                "1. BlackListCleanXslPath should match SampleFilePath.");
-
-            this.config.BlackListCleanXslPath = null;
-            Assert.IsNull(
-                this.config.BlackListCleanXslPath,
-                "2. BlackListCleanXslPath should be null.");
-        }
-
-        [Test]
         public void Config_ValidChangesOfBlackListXmlFilePathProperty_ShouldBePersistent()
         {
             this.config.BlackListXmlFilePath = SampleFilePath;

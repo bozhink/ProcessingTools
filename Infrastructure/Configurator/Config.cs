@@ -5,9 +5,6 @@
     [DataContract]
     public partial class Config
     {
-        [DataMember(Name = "blackListCleanXslPath")]
-        public string BlackListCleanXslPath { get; set; }
-
         [DataMember(Name = "blackListXmlFilePath")]
         public string BlackListXmlFilePath { get; set; }
 
