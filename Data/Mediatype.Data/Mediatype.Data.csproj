@@ -53,10 +53,10 @@
     <Compile Include="Models\MimeType.cs" />
     <Compile Include="Models\MimeTypePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\IMediaTypesDbContextProvider.cs" />
+    <Compile Include="Contracts\IMediaTypesDbContextProvider.cs" />
     <Compile Include="Repositories\Contracts\IMediaTypesRepository.cs" />
     <Compile Include="Repositories\Contracts\IMediaTypesRepositoryProvider.cs" />
-    <Compile Include="Repositories\MediaTypesDbContextProvider.cs" />
+    <Compile Include="MediaTypesDbContextProvider.cs" />
     <Compile Include="Repositories\MediaTypesRepository.cs" />
     <Compile Include="Repositories\MediaTypesRepositoryProvider.cs" />
   </ItemGroup>
@@ -78,9 +78,7 @@
       <Name>MediaType.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.MediaType.Data.Repositories
 {
     using System;
-    using Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.MediaType.Data.Contracts;
+    using ProcessingTools.MediaType.Data.Repositories.Contracts;
 
     public class MediaTypesRepositoryProvider<T> : IMediaTypesRepositoryProvider<T>
         where T : class

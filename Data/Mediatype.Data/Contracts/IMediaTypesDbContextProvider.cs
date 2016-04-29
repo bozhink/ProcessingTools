@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Repositories.Contracts
+﻿namespace ProcessingTools.MediaType.Data.Contracts
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
 

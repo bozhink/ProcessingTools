@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Repositories
+﻿namespace ProcessingTools.MediaType.Data
 {
     using Contracts;
 

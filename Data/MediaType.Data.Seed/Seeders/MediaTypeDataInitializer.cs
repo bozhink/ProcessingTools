@@ -5,6 +5,7 @@
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.MediaType.Data.Contracts;
     using ProcessingTools.MediaType.Data.Migrations;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
 
