@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Repositories
+﻿namespace ProcessingTools.Geo.Data
 {
     public enum Assembly
     {

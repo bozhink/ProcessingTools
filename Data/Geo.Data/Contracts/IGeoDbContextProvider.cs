@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Geo.Data.Repositories.Contracts
+﻿namespace ProcessingTools.Geo.Data.Contracts
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Geo.Data;
 
     public interface IGeoDbContextProvider : IDbContextProvider<GeoDbContext>
     {

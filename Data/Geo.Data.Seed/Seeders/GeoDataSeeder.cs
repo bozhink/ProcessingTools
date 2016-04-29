@@ -8,8 +8,8 @@
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
+    using ProcessingTools.Geo.Data.Contracts;
     using ProcessingTools.Geo.Data.Models;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
 
     public class GeoDataSeeder : IGeoDataSeeder
     {
@@ -33,11 +33,10 @@
             }
 
             this.contextProvider = contextProvider;
+            this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
 
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
-
-            this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
         }
 
         public async Task Seed()

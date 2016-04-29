@@ -3,13 +3,12 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    using Common.Constants;
     using Models;
 
     public class GeoDbContext : DbContext
     {
-        public GeoDbContext()
-            : base(ConnectionConstants.GeoDbContextConnectionKey)
+        public GeoDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -24,11 +23,6 @@
         public IDbSet<GeoName> GeoNames { get; set; }
 
         public IDbSet<GeoEpithet> GeoEpithets { get; set; }
-
-        public static GeoDbContext Create()
-        {
-            return new GeoDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

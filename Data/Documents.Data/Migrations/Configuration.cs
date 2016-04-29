@@ -8,6 +8,7 @@ namespace ProcessingTools.Documents.Data.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = false;
+            this.ContextKey = typeof(DocumentsDbContext).FullName;
         }
 
         protected override void Seed(DocumentsDbContext context)

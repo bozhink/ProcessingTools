@@ -1,12 +1,11 @@
-﻿namespace ProcessingTools.Geo.Data.Seed
+﻿namespace ProcessingTools.Geo.Data
 {
     using System.Data.Entity;
 
     using Contracts;
+    using Migrations;
 
     using ProcessingTools.Data.Common.Entity.Factories;
-    using ProcessingTools.Geo.Data.Migrations;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
 
     public class GeoDataInitializer : DbContextInitializerFactory<GeoDbContext>, IGeoDataInitializer
     {
