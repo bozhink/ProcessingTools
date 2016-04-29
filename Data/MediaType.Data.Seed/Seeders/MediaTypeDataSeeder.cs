@@ -13,47 +13,41 @@
 
     using Newtonsoft.Json;
 
-    using ProcessingTools.MediaType.Data;
+    using ProcessingTools.MediaType.Data.Contracts;
     using ProcessingTools.MediaType.Data.Models;
 
     public class MediaTypeDataSeeder : IMediaTypeDataSeeder
     {
         private const string MediaTypeDataJsonFilePathKey = "MediaTypeDataJsonFilePath";
 
+        private readonly IMediaTypesDbContextProvider contextProvider;
+
         private AppSettingsReader appConfigReader;
 
-        public MediaTypeDataSeeder()
+        public MediaTypeDataSeeder(IMediaTypesDbContextProvider contextProvider)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
             this.appConfigReader = new AppSettingsReader();
         }
 
         public async Task Seed()
         {
-            using (var db = new MediaTypesDbContext())
+            ExtensionJson[] mediatypesJson = this.ParseDataJsonFile();
+
+            if (mediatypesJson.Length < 1)
             {
-                if (db.FileExtensions.Count() > 0)
-                {
-                    return;
-                }
-
-                db.Configuration.UseDatabaseNullSemantics = true;
-                db.Configuration.ValidateOnSaveEnabled = false;
-
-                ExtensionJson[] mediatypesJson = this.ParseDataJsonFile();
-
-                if (mediatypesJson.Length < 1)
-                {
-                    throw new ApplicationException("Mediatype data json file is empty or invalid.");
-                }
-
-                this.ImportMimeTypesToDatabase(db, mediatypesJson);
-                this.ImportMimeSubtypesToDataBase(db, mediatypesJson);
-                this.ImportFileExtensionsToDatabase(db, mediatypesJson);
-                this.CreateMediaTypePairsInDatabase(db, mediatypesJson);
-                this.ConnectMediaTypePairsToFileExtensions(db, mediatypesJson);
-
-                await db.SaveChangesAsync();
+                throw new ApplicationException("Mediatype data json file is empty or invalid.");
             }
+
+            await this.ImportMimeTypesToDatabase(mediatypesJson);
+            await this.ImportMimeSubtypesToDataBase(mediatypesJson);
+            await this.ImportFileExtensionsToDatabase(mediatypesJson);
+            await this.CreateMediaTypePairsInDatabase(mediatypesJson);
+            await this.ConnectMediaTypePairsToFileExtensions(mediatypesJson);
         }
 
         private ExtensionJson[] ParseDataJsonFile()
@@ -75,84 +69,114 @@
             .ToArray();
         }
 
-        private void ConnectMediaTypePairsToFileExtensions(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
+        private async Task ConnectMediaTypePairsToFileExtensions(ExtensionJson[] mediatypesJson)
         {
-            var mimeTypePairs = new HashSet<MimeTypePair>(context.MimeTypePairs.ToList());
-            var extensions = context.FileExtensions.ToList();
-
-            foreach (var extension in extensions)
+            using (var context = this.contextProvider.Create())
             {
-                var extensionData = new HashSet<ExtensionJson>(mediatypesJson
-                    .Where(m => m.Extension == extension.Name));
+                context.Configuration.UseDatabaseNullSemantics = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
 
-                var pairs = new HashSet<MimeTypePair>(extensionData.Select(d =>
-                    mimeTypePairs.FirstOrDefault(p =>
-                        (p.MimeType.Name == d.MimeType) && (p.MimeSubtype.Name == d.MimeSubtype))));
+                var mimeTypePairs = context.MimeTypePairs.ToList();
+                var extensions = context.FileExtensions.ToList();
 
-                foreach (var pair in pairs)
+                foreach (var extension in extensions)
                 {
-                    extension.MimeTypePairs.Add(pair);
+                    var extensionData = new HashSet<ExtensionJson>(mediatypesJson
+                        .Where(m => m.Extension == extension.Name));
+
+                    var pairs = new HashSet<MimeTypePair>(extensionData.Select(d =>
+                        mimeTypePairs.FirstOrDefault(p =>
+                            (p.MimeType.Name == d.MimeType) && (p.MimeSubtype.Name == d.MimeSubtype))));
+
+                    foreach (var pair in pairs)
+                    {
+                        extension.MimeTypePairs.Add(pair);
+                    }
                 }
+
+                context.FileExtensions.AddOrUpdate(extensions.ToArray());
+                await context.SaveChangesAsync();
             }
-
-            context.FileExtensions.AddOrUpdate(extensions.ToArray());
-            context.SaveChanges();
         }
 
-        private void CreateMediaTypePairsInDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
+        private async Task CreateMediaTypePairsInDatabase(ExtensionJson[] mediatypesJson)
         {
-            var mimeTypes = new HashSet<MimeType>(context.MimeTypes.ToList());
-            var mimeSubtypes = new HashSet<MimeSubtype>(context.MimeSubtypes.ToList());
+            using (var context = this.contextProvider.Create())
+            {
+                context.Configuration.UseDatabaseNullSemantics = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
 
-            var mediaTypesPairs = mediatypesJson
-                .Select(p => new MimeTypePair
-                {
-                    MimeType = mimeTypes.FirstOrDefault(m => m.Name == p.MimeType),
-                    MimeSubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.MimeSubtype)
-                })
-                .ToArray();
+                var mimeTypes = context.MimeTypes.ToList();
+                var mimeSubtypes = context.MimeSubtypes.ToList();
 
-            context.MimeTypePairs.AddOrUpdate(mediaTypesPairs);
-            context.SaveChanges();
+                var mediaTypesPairs = mediatypesJson
+                    .Select(p => new MimeTypePair
+                    {
+                        MimeType = mimeTypes.FirstOrDefault(m => m.Name == p.MimeType),
+                        MimeSubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.MimeSubtype)
+                    })
+                    .ToArray();
+
+                context.MimeTypePairs.AddOrUpdate(mediaTypesPairs);
+                await context.SaveChangesAsync();
+            }
         }
 
-        private void ImportFileExtensionsToDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
+        private async Task ImportFileExtensionsToDatabase(ExtensionJson[] mediatypesJson)
         {
-            var fileExtension = new HashSet<string>(mediatypesJson.Select(e => e.Extension))
+            using (var context = this.contextProvider.Create())
+            {
+                context.Configuration.UseDatabaseNullSemantics = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                var fileExtension = new HashSet<string>(mediatypesJson.Select(e => e.Extension))
                 .Select(e => new FileExtension
                 {
                     Name = e
                 })
                 .ToArray();
 
-            context.FileExtensions.AddOrUpdate(fileExtension);
-            context.SaveChanges();
+                context.FileExtensions.AddOrUpdate(fileExtension);
+                await context.SaveChangesAsync();
+            }
         }
 
-        private void ImportMimeSubtypesToDataBase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
+        private async Task ImportMimeSubtypesToDataBase(ExtensionJson[] mediatypesJson)
         {
-            var mimeSubtypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeSubtype))
+            using (var context = this.contextProvider.Create())
+            {
+                context.Configuration.UseDatabaseNullSemantics = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                var mimeSubtypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeSubtype))
                 .Select(s => new MimeSubtype
                 {
                     Name = s
                 })
                 .ToArray();
 
-            context.MimeSubtypes.AddOrUpdate(mimeSubtypesNames);
-            context.SaveChanges();
+                context.MimeSubtypes.AddOrUpdate(mimeSubtypesNames);
+                await context.SaveChangesAsync();
+            }
         }
 
-        private void ImportMimeTypesToDatabase(MediaTypesDbContext context, ExtensionJson[] mediatypesJson)
+        private async Task ImportMimeTypesToDatabase(ExtensionJson[] mediatypesJson)
         {
-            var mimeTypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeType))
+            using (var context = this.contextProvider.Create())
+            {
+                context.Configuration.UseDatabaseNullSemantics = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                var mimeTypesNames = new HashSet<string>(mediatypesJson.Select(t => t.MimeType))
                 .Select(m => new MimeType
                 {
                     Name = m
                 })
                 .ToArray();
 
-            context.MimeTypes.AddOrUpdate(mimeTypesNames);
-            context.SaveChanges();
+                context.MimeTypes.AddOrUpdate(mimeTypesNames);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

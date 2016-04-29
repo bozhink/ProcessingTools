@@ -3,13 +3,12 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    using Common.Constants;
     using Models;
 
     public class MediaTypesDbContext : DbContext
     {
-        public MediaTypesDbContext()
-            : base(ConnectionConstants.MediaTypesDbContextConnectionKey)
+        public MediaTypesDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -20,11 +19,6 @@
         public IDbSet<MimeSubtype> MimeSubtypes { get; set; }
 
         public IDbSet<MimeTypePair> MimeTypePairs { get; set; }
-
-        public static MediaTypesDbContext Create()
-        {
-            return new MediaTypesDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
