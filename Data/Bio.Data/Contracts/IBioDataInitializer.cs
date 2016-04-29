@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Seed.Contracts
+﻿namespace ProcessingTools.Bio.Data.Contracts
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
 
