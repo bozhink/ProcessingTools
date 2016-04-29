@@ -7,8 +7,8 @@
 
     public class DocumentsDbContext : DbContext
     {
-        public DocumentsDbContext()
-            : base("DocumentsDatabase")
+        public DocumentsDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -27,11 +27,6 @@
         public IDbSet<Article> Articles { get; set; }
 
         public IDbSet<Document> Documents { get; set; }
-
-        public static DocumentsDbContext Create()
-        {
-            return new DocumentsDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

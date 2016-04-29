@@ -25,7 +25,8 @@
 
         public PublishersController()
         {
-            IDocumentsDbContextProvider contextProvider = new DocumentsDbContextProvider();
+            IDocumentsDbContextFactory contextFactory = new DocumentsDbContextFactory();
+            IDocumentsDbContextProvider contextProvider = new DocumentsDbContextProvider(contextFactory);
             IDocumentsRepositoryProvider<Publisher> repositoryProvider = new DocumentsRepositoryProvider<Publisher>(contextProvider);
             this.service = new PublishersDataService(repositoryProvider);
         }

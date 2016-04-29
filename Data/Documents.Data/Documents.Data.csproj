@@ -43,8 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IDocumentsDataInitializer.cs" />
+    <Compile Include="Contracts\IDocumentsDbContextFactory.cs" />
     <Compile Include="Contracts\IDocumentsDbContextProvider.cs" />
+    <Compile Include="DocumentsDataInitializer.cs" />
     <Compile Include="DocumentsDbContext.cs" />
+    <Compile Include="DocumentsDbContextFactory.cs" />
     <Compile Include="DocumentsDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
