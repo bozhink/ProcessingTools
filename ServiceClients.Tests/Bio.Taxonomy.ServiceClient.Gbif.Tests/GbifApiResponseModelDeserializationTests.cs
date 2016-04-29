@@ -4,7 +4,6 @@
     using System.Runtime.Serialization.Json;
     using System.Text;
 
-    using Infrastructure.Serialization.Json;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
 
@@ -34,7 +33,12 @@
             string jsonString = File.ReadAllText(SampleGbifResponseJsonColeoptera);
             Assert.IsFalse(string.IsNullOrWhiteSpace(jsonString));
 
-            var gbifObject = JsonSerializer.Deserialize<GbifApiResponseModel>(jsonString);
+            GbifApiResponseModel gbifObject = null;
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(GbifApiResponseModel));
+                gbifObject = (GbifApiResponseModel)serializer.ReadObject(stream);
+            }
 
             string scientificName = "Coleoptera";
             Assert.AreEqual(scientificName, gbifObject.CanonicalName, "CanonicalName should match.");

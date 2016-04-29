@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
-    using Infrastructure.Serialization.Json;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
+    using ProcessingTools.Common;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
@@ -41,7 +43,7 @@
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("JSON string should not be null or empty.");
+                    throw new ArgumentNullException(nameof(this.JsonString));
                 }
 
                 this.jsonString = value;
@@ -79,7 +81,13 @@
 
         private ZooBankRegistration GetZoobankRegistrationObject()
         {
-            List<ZooBankRegistration> zoobankRegistrationList = JsonSerializer.Deserialize<List<ZooBankRegistration>>(this.JsonString);
+            List<ZooBankRegistration> zoobankRegistrationList = null;
+            using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(this.JsonString)))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(List<ZooBankRegistration>));
+                zoobankRegistrationList = (List<ZooBankRegistration>)serializer.ReadObject(stream);
+            }
+
             ZooBankRegistration zoobankRegistration = null;
 
             if (zoobankRegistrationList.Count < 1)

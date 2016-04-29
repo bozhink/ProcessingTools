@@ -61,10 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
       <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
