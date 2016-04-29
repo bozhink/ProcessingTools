@@ -3,12 +3,13 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
+    using Common.Constants;
     using Models;
 
     public class GeoDbContext : DbContext
     {
         public GeoDbContext()
-            : base("GeoDbContext")
+            : base(ConnectionConstants.GeoDbContextConnectionKey)
         {
         }
 
