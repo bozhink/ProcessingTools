@@ -55,6 +55,10 @@
     <Compile Include="BioTaxonomyDbContext.cs" />
     <Compile Include="BioTaxonomyDbContextFactory.cs" />
     <Compile Include="BioTaxonomyDbContextProvider.cs" />
+    <Compile Include="Repositories\BioTaxonomyDataRepository.cs" />
+    <Compile Include="Repositories\BioTaxonomyDataRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\IBioTaxonomyDataRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBioTaxonomyDataRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
@@ -77,9 +81,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
