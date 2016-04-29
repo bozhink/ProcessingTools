@@ -2,15 +2,14 @@
 {
     using System;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Geo.Data.Migrations;
     using ProcessingTools.Geo.Data.Models;
+    using ProcessingTools.Geo.Data.Repositories.Contracts;
 
     public class GeoDataSeeder : IGeoDataSeeder
     {
@@ -18,6 +17,7 @@
         private const string GeoNamesSeedFileNameKey = "GeoNamesSeedFileName";
         private const string GeoEpithetsSeedFileNameKey = "GeoEpithetsSeedFileName";
 
+        private readonly IGeoDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
         private AppSettingsReader appSettingsReader;
@@ -25,24 +25,19 @@
 
         private DbContextSeeder<GeoDbContext> seeder;
 
-        public GeoDataSeeder()
+        public GeoDataSeeder(IGeoDbContextProvider contextProvider)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
 
-            this.seeder = new DbContextSeeder<GeoDbContext>();
-        }
-
-        public async Task Init()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<GeoDbContext, Configuration>());
-
-            using (var db = new GeoDbContext())
-            {
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                await db.SaveChangesAsync();
-            }
+            this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
         }
 
         public async Task Seed()

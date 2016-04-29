@@ -7,19 +7,14 @@
 
     public class TaxonomyDbContext : DbContext
     {
-        public TaxonomyDbContext()
-            : base("TaxonomyDbContext")
+        public TaxonomyDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
         public IDbSet<TaxonRank> TaxonRanks { get; set; }
 
         public IDbSet<TaxonName> TaxonNames { get; set; }
-
-        public TaxonomyDbContext Create()
-        {
-            return new TaxonomyDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

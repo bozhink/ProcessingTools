@@ -42,11 +42,6 @@
                 .ToString();
         }
 
-        public Task Init()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Seed()
         {
             await this.ImportEnvironmentsEntities(this.appSettingsReader

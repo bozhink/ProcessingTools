@@ -5,12 +5,12 @@
     using Contracts;
 
     using ProcessingTools.Bio.Environments.Data.Migrations;
-    using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Factories;
 
     public class BioEnvironmentsInitializer : DbContextInitializerFactory<BioEnvironmentsDbContext>, IBioEnvironmentsInitializer
     {
-        public BioEnvironmentsInitializer(IDbContextProvider<BioEnvironmentsDbContext> contextProvider)
+        public BioEnvironmentsInitializer(IBioEnvironmentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
         }

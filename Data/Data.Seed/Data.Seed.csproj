@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IDataInitializer.cs" />
     <Compile Include="Contracts\IDataSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeders\DataInitializer.cs" />
     <Compile Include="Seeders\DataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +75,10 @@
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
       <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Repositories\Data.Repositories.csproj">
+      <Project>{7f24bb76-c85c-467c-9384-f5d0a3ebbd1d}</Project>
+      <Name>Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>

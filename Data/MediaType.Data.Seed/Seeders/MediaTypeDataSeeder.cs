@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.MediaType.Data.Seed.Seeders
+﻿namespace ProcessingTools.MediaType.Data.Seed
 {
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
@@ -15,7 +14,6 @@
     using Newtonsoft.Json;
 
     using ProcessingTools.MediaType.Data;
-    using ProcessingTools.MediaType.Data.Migrations;
     using ProcessingTools.MediaType.Data.Models;
 
     public class MediaTypeDataSeeder : IMediaTypeDataSeeder
@@ -27,18 +25,6 @@
         public MediaTypeDataSeeder()
         {
             this.appConfigReader = new AppSettingsReader();
-        }
-
-        public async Task Init()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MediaTypesDbContext, Configuration>());
-
-            using (var db = new MediaTypesDbContext())
-            {
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                await db.SaveChangesAsync();
-            }
         }
 
         public async Task Seed()

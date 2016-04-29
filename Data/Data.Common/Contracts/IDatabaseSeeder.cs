@@ -9,12 +9,6 @@
     public interface IDatabaseSeeder
     {
         /// <summary>
-        /// Initializes the database context.
-        /// </summary>
-        /// <returns>Awaitable Task.</returns>
-        Task Init();
-
-        /// <summary>
         /// Populates the database context with initial data (seed).
         /// </summary>
         /// <returns>Awaitable Task.</returns>

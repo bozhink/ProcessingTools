@@ -9,21 +9,28 @@
 
     public class TaxonomyDbSeeder : ITaxonomyDbSeeder
     {
-        private IBioTaxonomyDataSeeder seeder;
+        private readonly IBioTaxonomyDataInitializer initializer;
+        private readonly IBioTaxonomyDataSeeder seeder;
 
-        public TaxonomyDbSeeder(IBioTaxonomyDataSeeder seeder)
+        public TaxonomyDbSeeder(IBioTaxonomyDataInitializer initializer, IBioTaxonomyDataSeeder seeder)
         {
+            if (initializer == null)
+            {
+                throw new ArgumentNullException(nameof(initializer));
+            }
+
             if (seeder == null)
             {
                 throw new ArgumentNullException(nameof(seeder));
             }
 
+            this.initializer = initializer;
             this.seeder = seeder;
         }
 
         public async Task Seed()
         {
-            await this.seeder.Init();
+            await this.initializer.Initialize();
             await this.seeder.Seed();
         }
     }

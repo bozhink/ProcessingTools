@@ -9,21 +9,28 @@
 
     public class DataDbSeeder : IDataDbSeeder
     {
-        private IDataSeeder seeder;
+        private readonly IDataInitializer initializer;
+        private readonly IDataSeeder seeder;
 
-        public DataDbSeeder(IDataSeeder seeder)
+        public DataDbSeeder(IDataInitializer initializer, IDataSeeder seeder)
         {
+            if (initializer == null)
+            {
+                throw new ArgumentNullException(nameof(initializer));
+            }
+
             if (seeder == null)
             {
                 throw new ArgumentNullException(nameof(seeder));
             }
 
+            this.initializer = initializer;
             this.seeder = seeder;
         }
 
         public async Task Seed()
         {
-            await this.seeder.Init();
+            await this.initializer.Initialize();
             await this.seeder.Seed();
         }
     }

@@ -32,11 +32,6 @@
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings["BiorepositoriesSeedCsvDataFiles"];
         }
 
-        public Task Init()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Seeds databases with data.
         /// </summary>

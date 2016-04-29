@@ -2,15 +2,14 @@
 {
     using System;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Data.Migrations;
     using ProcessingTools.Data.Models;
+    using ProcessingTools.Data.Repositories.Contracts;
 
     public class DataSeeder : IDataSeeder
     {
@@ -18,6 +17,7 @@
         private const string ProductsSeedFileNameKey = "ProductsSeedFileName";
         private const string InstitutionsSeedFileNameKey = "InstitutionsSeedFileName";
 
+        private readonly IDataDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
         private AppSettingsReader appSettingsReader;
@@ -25,24 +25,19 @@
 
         private DbContextSeeder<DataDbContext> seeder;
 
-        public DataSeeder()
+        public DataSeeder(IDataDbContextProvider contextProvider)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
 
-            this.seeder = new DbContextSeeder<DataDbContext>();
-        }
-
-        public async Task Init()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>());
-
-            using (var db = new DataDbContext())
-            {
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                await db.SaveChangesAsync();
-            }
+            this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
         }
 
         public async Task Seed()

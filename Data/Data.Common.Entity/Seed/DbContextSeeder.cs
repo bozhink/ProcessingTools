@@ -6,10 +6,24 @@
     using System.IO;
     using System.Text;
 
+    using Contracts;
+
     public class DbContextSeeder<TContext>
         where TContext : DbContext
     {
         private const int NumberOfItemsToResetContext = 100;
+
+        private readonly IDbContextProvider<TContext> contextProvider;
+
+        public DbContextSeeder(IDbContextProvider<TContext> contextProvider)
+        {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+        }
 
         /// <summary>
         /// Creates and imports simple one-line-data objects into an IDbContext from file with UTF8 encoding.
@@ -47,7 +61,7 @@
             {
                 int localNumberOfImportedObjects = 0;
 
-                var context = Activator.CreateInstance<TContext>();
+                var context = this.contextProvider.Create();
 
                 string line = stream.ReadLine();
                 for (int i = 0; line != null; ++i, line = stream.ReadLine())
@@ -70,7 +84,7 @@
 
                         context.Dispose();
 
-                        context = Activator.CreateInstance<TContext>();
+                        context = this.contextProvider.Create();
                     }
                 }
 

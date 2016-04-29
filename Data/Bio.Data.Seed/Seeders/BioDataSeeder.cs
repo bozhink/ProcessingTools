@@ -39,18 +39,11 @@
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
 
-            this.seeder = new DbContextSeeder<BioDbContext>();
-        }
-
-        public Task Init()
-        {
-            throw new NotImplementedException();
+            this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
         }
 
         public async Task Seed()
         {
-            var seeder = new DbContextSeeder<BioDbContext>();
-
             await this.SeedMorphologicalEpithets(this.appSettingsReader
                 .GetValue(MorphologicalEpithetsFileNameKey, this.stringType)
                 .ToString());
