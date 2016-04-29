@@ -1,5 +1,7 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests.Models
+﻿namespace ProcessingTools.Serialization.Tests.Csv.Models
 {
+    using ProcessingTools.Serialization.Csv;
+
     [CsvObject]
     internal class NameYearDescriptionSampleCsvObject
     {

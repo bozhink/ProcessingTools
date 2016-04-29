@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65A25202-0514-4B3E-B1DC-9D965BE7E67A}</ProjectGuid>
+    <ProjectGuid>{BF0B1632-DBF3-4518-8573-316326F04A55}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Infrastructure.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Infrastructure.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Serialization.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Serialization.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,16 +50,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Csv\CsvMapperTests.cs" />
+    <Compile Include="Csv\CsvSerializerTests.cs" />
+    <Compile Include="Csv\CsvTableReaderTests.cs" />
+    <Compile Include="Csv\Models\NameYearDescriptionSampleCsvObject.cs" />
+    <Compile Include="Csv\Models\NameYearDescriptionSampleObject.cs" />
+    <Compile Include="Csv\Models\PersonCsvObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
+    <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
+      <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
+      <Name>Serialization</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,7 +1,9 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests
+﻿namespace ProcessingTools.Serialization.Tests.Csv
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using ProcessingTools.Serialization.Csv;
 
     [TestClass]
     public class CsvTableReaderTests

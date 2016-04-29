@@ -12,7 +12,7 @@
     using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Serialization.Csv;
+    using ProcessingTools.Serialization.Csv;
 
     using Repositories;
 

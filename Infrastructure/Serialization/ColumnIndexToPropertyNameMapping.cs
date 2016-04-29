@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization
+﻿namespace ProcessingTools.Serialization
 {
     using System.Collections.Generic;
 

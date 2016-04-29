@@ -69,6 +69,10 @@
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
+      <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
+      <Name>Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
       <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
       <Name>Bio.Biorepositories.Data.Models</Name>

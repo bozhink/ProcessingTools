@@ -33,7 +33,21 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnIndexToPropertyNameMapping.cs" />
+    <Compile Include="Csv\CsvColumnAttribute.cs" />
+    <Compile Include="Csv\CsvObjectAttribute.cs" />
+    <Compile Include="Csv\CsvObjectConfiguration.cs" />
+    <Compile Include="Csv\CsvSerializer.cs" />
+    <Compile Include="Csv\CsvTableReader.cs" />
+    <Compile Include="Csv\TableMapper.cs" />
+    <Compile Include="MappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

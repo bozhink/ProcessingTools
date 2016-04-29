@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization
+﻿namespace ProcessingTools.Serialization
 {
     using System;
 
     using ProcessingTools.Extensions;
-    using ProcessingTools.Infrastructure.Extensions;
 
     public static class MappingExtensions
     {

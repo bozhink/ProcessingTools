@@ -1,10 +1,12 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests
+﻿namespace ProcessingTools.Serialization.Tests.Csv
 {
     using System;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+
+    using ProcessingTools.Serialization.Csv;
 
     [TestClass]
     public class CsvSerializerTests

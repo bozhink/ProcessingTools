@@ -8,7 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Serialization.Csv;
+    using ProcessingTools.Serialization.Csv;
 
     [TestClass]
     public class CsvSeedModelTests

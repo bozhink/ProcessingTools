@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Serialization.Csv.Tests.Models
+﻿namespace ProcessingTools.Serialization.Tests.Csv.Models
 {
     internal class NameYearDescriptionSampleObject
     {
