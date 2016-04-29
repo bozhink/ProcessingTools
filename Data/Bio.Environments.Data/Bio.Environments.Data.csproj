@@ -43,7 +43,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
+    <Compile Include="BioEnvironmentsDbContextFactory.cs" />
+    <Compile Include="Contracts\IBioEnvironmentsDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnvoEntity.cs" />
     <Compile Include="Models\EnvoGlobal.cs" />

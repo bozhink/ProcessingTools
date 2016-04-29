@@ -10,8 +10,8 @@
 
     public class BioDbSeeder : IBioDbSeeder
     {
-        private IBioDataInitializer initializer;
-        private IBioDataSeeder seeder;
+        private readonly IBioDataInitializer initializer;
+        private readonly IBioDataSeeder seeder;
 
         public BioDbSeeder(IBioDataInitializer initializer, IBioDataSeeder seeder)
         {

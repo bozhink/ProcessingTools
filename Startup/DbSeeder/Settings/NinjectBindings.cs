@@ -48,13 +48,6 @@
 
             this.Bind(b =>
             {
-                b.From(Bio.Environments.Data.Seed.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(Bio.Biorepositories.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
@@ -92,6 +85,28 @@
             this.Bind(b =>
             {
                 b.From(Bio.Data.Seed.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            // Bio.Environments.Data
+            this.Bind(b =>
+            {
+                b.From(Bio.Environments.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Environments.Data.Repositories.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Environments.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

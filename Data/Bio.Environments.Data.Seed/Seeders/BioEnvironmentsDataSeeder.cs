@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
@@ -11,9 +10,8 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Environments.Data;
-    using ProcessingTools.Bio.Environments.Data.Migrations;
     using ProcessingTools.Bio.Environments.Data.Models;
+    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
 
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
@@ -23,29 +21,30 @@
         private const string EnvironmentsGroupsFileNameKey = "EnvironmentsGroupsFileName";
         private const string EnvironmentsGlobalFileNameKey = "EnvironmentsGlobalFileName";
 
+        private readonly IBioEnvironmentsDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
         private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
-        public BioEnvironmentsDataSeeder()
+        public BioEnvironmentsDataSeeder(IBioEnvironmentsDbContextProvider contextProvider)
         {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader
                 .GetValue(DataFilesDirectoryPathKey, this.stringType)
                 .ToString();
         }
 
-        public async Task Init()
+        public Task Init()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BioEnvironmentsDbContext, Configuration>());
-
-            using (var db = new BioEnvironmentsDbContext())
-            {
-                db.Database.CreateIfNotExists();
-                db.Database.Initialize(true);
-                await db.SaveChangesAsync();
-            }
+            throw new NotImplementedException();
         }
 
         public async Task Seed()
@@ -74,7 +73,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            using (var context = new BioEnvironmentsDbContext())
+            using (var context = this.contextProvider.Create())
             {
                 var entities = new HashSet<EnvoEntity>(File.ReadAllLines($"{this.dataFilesDirectoryPath}/{fileName}")
                     .Select(l =>
@@ -101,7 +100,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            using (var context = new BioEnvironmentsDbContext())
+            using (var context = this.contextProvider.Create())
             {
                 var entities = new HashSet<EnvoEntity>(context.EnvoEntities.ToList());
 
@@ -130,7 +129,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            using (var context = new BioEnvironmentsDbContext())
+            using (var context = this.contextProvider.Create())
             {
                 var groups = new HashSet<EnvoGroup>(File.ReadAllLines($"{this.dataFilesDirectoryPath}/{fileName}")
                 .Select(l =>
@@ -156,7 +155,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            using (var context = new BioEnvironmentsDbContext())
+            using (var context = this.contextProvider.Create())
             {
                 var globals = new HashSet<EnvoGlobal>(File.ReadAllLines($"{this.dataFilesDirectoryPath}/{fileName}")
                 .Select(l =>

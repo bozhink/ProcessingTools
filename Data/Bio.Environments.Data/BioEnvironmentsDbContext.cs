@@ -7,8 +7,8 @@
 
     public class BioEnvironmentsDbContext : DbContext
     {
-        public BioEnvironmentsDbContext()
-            : base("BioEnvironmentsDbContext")
+        public BioEnvironmentsDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -19,11 +19,6 @@
         public IDbSet<EnvoGroup> EnvoGroups { get; set; }
 
         public IDbSet<EnvoGlobal> EnvoGlobals { get; set; }
-
-        public static BioEnvironmentsDbContext Create()
-        {
-            return new BioEnvironmentsDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -7,7 +7,7 @@ namespace ProcessingTools.Bio.Environments.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationDataLossAllowed = false;
             this.ContextKey = typeof(BioEnvironmentsDbContext).FullName;
         }
 

@@ -9,21 +9,28 @@
 
     public class BioEnvironmentsDbSeeder : IBioEnvironmentsDbSeeder
     {
-        private IBioEnvironmentsDataSeeder seeder;
+        private readonly IBioEnvironmentsInitializer initializer;
+        private readonly IBioEnvironmentsDataSeeder seeder;
 
-        public BioEnvironmentsDbSeeder(IBioEnvironmentsDataSeeder seeder)
+        public BioEnvironmentsDbSeeder(IBioEnvironmentsInitializer initializer, IBioEnvironmentsDataSeeder seeder)
         {
+            if (initializer == null)
+            {
+                throw new ArgumentNullException(nameof(initializer));
+            }
+
             if (seeder == null)
             {
                 throw new ArgumentNullException(nameof(seeder));
             }
 
+            this.initializer = initializer;
             this.seeder = seeder;
         }
 
         public async Task Seed()
         {
-            await this.seeder.Init();
+            await this.initializer.Initialize();
             await this.seeder.Seed();
         }
     }
