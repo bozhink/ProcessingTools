@@ -48,7 +48,6 @@
     <Compile Include="Attributes\FileNameAttribute.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Attributes\ValueAttribute.cs" />
-    <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,7 +4,7 @@
     using System.IO;
     using Contracts;
     using Contracts.Types;
-    using Infrastructure.Diagnostics;
+    using Diagnostics;
 
     public class TextWriterLogger : ILogger
     {
@@ -17,6 +17,11 @@
 
         public TextWriterLogger(TextWriter textWriter)
         {
+            if (textWriter == null)
+            {
+                throw new ArgumentNullException(nameof(textWriter));
+            }
+
             this.textWriter = textWriter;
         }
 

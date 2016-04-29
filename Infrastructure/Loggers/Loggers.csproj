@@ -34,9 +34,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextWriterLogger.cs" />
+    <Compile Include="Diagnostics\Tracer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">

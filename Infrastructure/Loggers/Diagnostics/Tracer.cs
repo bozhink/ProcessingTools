@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Diagnostics
+﻿namespace ProcessingTools.Loggers.Diagnostics
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
