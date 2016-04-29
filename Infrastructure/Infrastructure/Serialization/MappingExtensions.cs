@@ -2,7 +2,8 @@
 {
     using System;
 
-    using Extensions;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Infrastructure.Extensions;
 
     public static class MappingExtensions
     {
@@ -15,12 +16,12 @@
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (propertiesMapping == null)
             {
-                throw new ArgumentNullException("propertiesMapping");
+                throw new ArgumentNullException(nameof(propertiesMapping));
             }
 
             if (values == null || values.Length < 1)

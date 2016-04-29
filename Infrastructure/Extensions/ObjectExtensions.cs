@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Extensions
 {
     using System;
     using System.IO;
@@ -19,7 +19,7 @@
         {
             if (!typeof(T).IsSerializable)
             {
-                throw new ArgumentException("The type must be serializable.", "source");
+                throw new ArgumentException("The type must be serializable.", nameof(source));
             }
 
             if (object.ReferenceEquals(source, null))
@@ -43,7 +43,7 @@
 
             if (!type.IsSerializable)
             {
-                throw new ArgumentException("The type must be serializable.", "source");
+                throw new ArgumentException("The type must be serializable.", nameof(source));
             }
 
             if (object.ReferenceEquals(source, null))

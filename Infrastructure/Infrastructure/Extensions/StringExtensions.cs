@@ -6,6 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
+    using ProcessingTools.Extensions;
+
     public static class StringExtensions
     {
         private static readonly Regex MatchWord = new Regex(@"[^\W\d]+");

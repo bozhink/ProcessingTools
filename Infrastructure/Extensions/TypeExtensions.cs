@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Extensions
 {
     using System;
     using System.Collections.Concurrent;
