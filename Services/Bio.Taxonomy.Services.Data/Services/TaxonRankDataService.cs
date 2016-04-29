@@ -11,8 +11,8 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
     public class TaxonRankDataService : GenericRepositoryProviderDataServiceFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService

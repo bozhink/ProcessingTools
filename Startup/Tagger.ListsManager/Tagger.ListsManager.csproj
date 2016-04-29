@@ -177,9 +177,9 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Repositories\Bio.Taxonomy.Data.Repositories.csproj">
-      <Project>{3ee21b94-3328-412a-88fb-8cf7865cdfdb}</Project>
-      <Name>Bio.Taxonomy.Data.Repositories</Name>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>

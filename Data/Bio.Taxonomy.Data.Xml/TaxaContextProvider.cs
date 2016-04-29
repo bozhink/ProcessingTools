@@ -1,8 +1,6 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml
 {
     using Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
 
     public class TaxaContextProvider : ITaxaContextProvider
     {

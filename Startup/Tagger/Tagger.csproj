@@ -303,9 +303,9 @@
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
       <Name>Bio.Environments.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Repositories\Bio.Taxonomy.Data.Repositories.csproj">
-      <Project>{3ee21b94-3328-412a-88fb-8cf7865cdfdb}</Project>
-      <Name>Bio.Taxonomy.Data.Repositories</Name>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Cache.Data.Models\Cache.Data.Models.csproj">
       <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>

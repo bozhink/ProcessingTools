@@ -10,7 +10,8 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Data.Miners;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Contracts;
 

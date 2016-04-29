@@ -19,7 +19,7 @@
 
             this.Bind(b =>
             {
-                b.From(Bio.Taxonomy.Data.Repositories.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

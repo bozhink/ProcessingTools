@@ -36,6 +36,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ITaxaContext.cs" />
     <Compile Include="Models\BlackListXmlModel.cs" />
     <Compile Include="Models\RankListXmlModel.cs" />
@@ -44,7 +45,25 @@
     <Compile Include="Models\TaxonRankXmlModel.cs" />
     <Compile Include="Models\TaxonXmlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contracts\ITaxaContextProvider.cs" />
+    <Compile Include="Repositories\Contracts\ITaxaRepository.cs" />
+    <Compile Include="Repositories\Contracts\ITaxaRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepository.cs" />
+    <Compile Include="TaxaContextProvider.cs" />
+    <Compile Include="Repositories\TaxaRepository.cs" />
+    <Compile Include="Repositories\TaxaRepositoryProvider.cs" />
+    <Compile Include="Repositories\TaxonomicBlackListRepository.cs" />
     <Compile Include="TaxaContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
+      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
+      <Name>Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

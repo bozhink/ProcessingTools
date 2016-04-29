@@ -126,10 +126,6 @@
       <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
       <Name>Bio.Taxonomy.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Repositories\Bio.Taxonomy.Data.Repositories.csproj">
-      <Project>{3ee21b94-3328-412a-88fb-8cf7865cdfdb}</Project>
-      <Name>Bio.Taxonomy.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj">
       <Project>{2FA391D3-D129-4799-98F4-0969D27B1B11}</Project>
       <Name>Bio.Taxonomy.Data.Seed</Name>
