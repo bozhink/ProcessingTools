@@ -1,7 +1,8 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions.Tests
+﻿namespace ProcessingTools.Extensions.Tests
 {
     using System;
     using System.Text.RegularExpressions;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

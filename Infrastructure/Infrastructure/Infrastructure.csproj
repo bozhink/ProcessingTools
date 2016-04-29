@@ -52,7 +52,6 @@
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Extensions\ListIntersectionsExtensions.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />
-    <Compile Include="Extensions\RegexExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
