@@ -3,12 +3,13 @@
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
+    using Common.Constants;
     using Models;
 
     public class MediaTypesDbContext : DbContext
     {
         public MediaTypesDbContext()
-            : base("MimeDbContext")
+            : base(ConnectionConstants.MediaTypesDbContextConnectionKey)
         {
         }
 
