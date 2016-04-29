@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Geo.Data.Miners.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag geo epithets.")]
     public class TagGeoEpithetsController : StringTaggerControllerFactory, ITagGeoEpithetsController
@@ -19,7 +20,7 @@
         {
             if (miner == null)
             {
-                throw new ArgumentNullException("miner");
+                throw new ArgumentNullException(nameof(miner));
             }
 
             this.miner = miner;

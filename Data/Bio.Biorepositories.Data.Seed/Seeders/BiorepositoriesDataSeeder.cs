@@ -8,14 +8,13 @@
 
     using Contracts;
 
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Contracts;
     using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Serialization.Csv;
 
     using Repositories;
-
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
         private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;

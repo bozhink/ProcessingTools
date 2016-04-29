@@ -6,8 +6,9 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Generate xml document for registration in ZooBank.")]

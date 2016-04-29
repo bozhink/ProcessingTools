@@ -67,9 +67,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
+    <ProjectReference Include="..\..\Infrastructure\Attributes\Attributes.csproj">
+      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
+      <Name>Attributes</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>

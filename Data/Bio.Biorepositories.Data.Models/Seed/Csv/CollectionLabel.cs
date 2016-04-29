@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
 {
-    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_collections_labels.csv")]

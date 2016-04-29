@@ -6,7 +6,7 @@
 
     using Contracts;
 
-    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Attributes;
 
     public static class ControllerExtensions
     {

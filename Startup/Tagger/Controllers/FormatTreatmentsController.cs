@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController

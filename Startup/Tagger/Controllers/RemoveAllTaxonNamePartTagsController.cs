@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Remove all taxon-name-part tags.")]
     public class RemoveAllTaxonNamePartTagsController : TaggerControllerFactory, IRemoveAllTaxonNamePartTagsController

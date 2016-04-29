@@ -7,10 +7,11 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.ZooBank;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : TaggerControllerFactory, IZooBankCloneXmlController

@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Parse higher taxa by suffix.")]
     public class ParseHigherTaxaBySuffixController : ParseHigherTaxaWithDataServiceGenericController<ISuffixHigherTaxaRankDataService>, IParseHigherTaxaBySuffixController

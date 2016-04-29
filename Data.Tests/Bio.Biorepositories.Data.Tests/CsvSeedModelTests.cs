@@ -7,7 +7,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Serialization.Csv;
 
     [TestClass]

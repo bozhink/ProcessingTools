@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Types
 {
-    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Attributes;
 
     /// <summary>
     /// Describes the type of external link — for example, the specific source to which the link points

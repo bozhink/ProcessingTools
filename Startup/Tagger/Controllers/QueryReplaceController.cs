@@ -7,9 +7,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Query replace.")]
     public class QueryReplaceController : TaggerControllerFactory, IQueryReplaceController

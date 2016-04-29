@@ -8,11 +8,12 @@
     using Contracts;
     using Factories;
     using Models;
+
+    using ProcessingTools.Attributes;
+    using ProcessingTools.Attributes.Extensions;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Extensions;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag web links and DOI.")]

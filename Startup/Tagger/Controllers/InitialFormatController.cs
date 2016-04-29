@@ -7,10 +7,10 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Initial format.")]

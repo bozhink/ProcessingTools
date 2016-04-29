@@ -8,10 +8,11 @@
     using Contracts;
     using Factories;
     using Models;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag envo terms using local database.")]
@@ -24,7 +25,7 @@
         {
             if (miner == null)
             {
-                throw new ArgumentNullException("miner");
+                throw new ArgumentNullException(nameof(miner));
             }
 
             this.miner = miner;

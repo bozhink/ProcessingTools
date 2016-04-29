@@ -47,10 +47,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
       <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
       <Name>Net</Name>

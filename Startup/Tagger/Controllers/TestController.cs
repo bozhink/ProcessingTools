@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Test.")]
     public class TestController : TaggerControllerFactory, ITestController

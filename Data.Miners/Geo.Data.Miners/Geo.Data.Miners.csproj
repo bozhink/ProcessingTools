@@ -48,10 +48,6 @@
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
-      <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
       <Name>Geo.Services.Data</Name>

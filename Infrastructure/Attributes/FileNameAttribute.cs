@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Attributes
+﻿namespace ProcessingTools.Attributes
 {
     using System;
 
@@ -8,7 +8,7 @@
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             this.Name = name;

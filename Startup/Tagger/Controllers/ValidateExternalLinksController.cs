@@ -8,10 +8,10 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 
@@ -25,12 +25,12 @@
         {
             if (harvester == null)
             {
-                throw new ArgumentNullException("harvester");
+                throw new ArgumentNullException(nameof(harvester));
             }
 
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.harvester = harvester;

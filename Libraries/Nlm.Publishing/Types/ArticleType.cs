@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Types
 {
-    using ProcessingTools.Infrastructure.Attributes;
+    using ProcessingTools.Attributes;
 
     /// <summary>
     /// Indicates what kind of article this is, for example,

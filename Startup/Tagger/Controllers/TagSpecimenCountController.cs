@@ -6,9 +6,9 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag specimen count.")]
     public class TagSpecimenCountController : StringTaggerControllerFactory, ITagSpecimenCountController

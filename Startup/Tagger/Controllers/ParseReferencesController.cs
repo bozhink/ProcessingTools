@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.References;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Parse references.")]
     public class ParseReferencesController : TaggerControllerFactory, IParseReferencesController

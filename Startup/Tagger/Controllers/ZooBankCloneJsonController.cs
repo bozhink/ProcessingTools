@@ -8,9 +8,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary.ZooBank;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController

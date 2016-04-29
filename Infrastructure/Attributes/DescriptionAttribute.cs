@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Attributes
+﻿namespace ProcessingTools.Attributes
 {
     using System;
 

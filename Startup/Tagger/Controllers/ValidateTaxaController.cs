@@ -8,10 +8,10 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 
@@ -24,7 +24,7 @@
         {
             if (service == null)
             {
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
             }
 
             this.service = service;

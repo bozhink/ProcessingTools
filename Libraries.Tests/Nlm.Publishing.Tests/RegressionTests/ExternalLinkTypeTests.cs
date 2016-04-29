@@ -1,7 +1,8 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Tests.RegressionTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Infrastructure.Extensions;
+
+    using ProcessingTools.Attributes.Extensions;
     using ProcessingTools.Nlm.Publishing.Types;
 
     [TestClass]

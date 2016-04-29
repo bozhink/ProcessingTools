@@ -5,9 +5,10 @@
 
     using Contracts;
     using Factories;
+
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Infrastructure.Attributes;
 
     [Description("Tag products.")]
     public class TagProductsController : StringTaggerControllerFactory, ITagProductsController
@@ -19,7 +20,7 @@
         {
             if (miner == null)
             {
-                throw new ArgumentNullException("miner");
+                throw new ArgumentNullException(nameof(miner));
             }
 
             this.miner = miner;
