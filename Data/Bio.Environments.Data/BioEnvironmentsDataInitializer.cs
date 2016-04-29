@@ -3,14 +3,13 @@
     using System.Data.Entity;
 
     using Contracts;
+    using Migrations;
 
-    using ProcessingTools.Bio.Environments.Data.Contracts;
-    using ProcessingTools.Bio.Environments.Data.Migrations;
     using ProcessingTools.Data.Common.Entity.Factories;
 
-    public class BioEnvironmentsInitializer : DbContextInitializerFactory<BioEnvironmentsDbContext>, IBioEnvironmentsInitializer
+    public class BioEnvironmentsDataInitializer : DbContextInitializerFactory<BioEnvironmentsDbContext>, IBioEnvironmentsDataInitializer
     {
-        public BioEnvironmentsInitializer(IBioEnvironmentsDbContextProvider contextProvider)
+        public BioEnvironmentsDataInitializer(IBioEnvironmentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
         }

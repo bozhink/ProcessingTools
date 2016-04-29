@@ -5,14 +5,15 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
 
     public class BioEnvironmentsDbSeeder : IBioEnvironmentsDbSeeder
     {
-        private readonly IBioEnvironmentsInitializer initializer;
+        private readonly IBioEnvironmentsDataInitializer initializer;
         private readonly IBioEnvironmentsDataSeeder seeder;
 
-        public BioEnvironmentsDbSeeder(IBioEnvironmentsInitializer initializer, IBioEnvironmentsDataSeeder seeder)
+        public BioEnvironmentsDbSeeder(IBioEnvironmentsDataInitializer initializer, IBioEnvironmentsDataSeeder seeder)
         {
             if (initializer == null)
             {

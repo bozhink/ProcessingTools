@@ -18,14 +18,13 @@
         private const string MorphologicalEpithetsFileNameKey = "MorphologicalEpithetsFileName";
         private const string TypeStatusesFileNameKey = "TypeStatusesFileName";
 
+        private readonly IBioDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
         private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         private DbContextSeeder<BioDbContext> seeder;
-
-        private IBioDbContextProvider contextProvider;
 
         public BioDataSeeder(IBioDbContextProvider contextProvider)
         {
@@ -35,11 +34,10 @@
             }
 
             this.contextProvider = contextProvider;
+            this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
 
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
-
-            this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
         }
 
         public async Task Seed()
