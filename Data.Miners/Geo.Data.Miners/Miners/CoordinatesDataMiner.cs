@@ -37,7 +37,7 @@
             {
                 if (string.IsNullOrWhiteSpace(content))
                 {
-                    throw new ArgumentNullException("content");
+                    throw new ArgumentNullException(nameof(content));
                 }
 
                 this.content = content;

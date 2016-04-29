@@ -102,7 +102,7 @@
         {
             if (property == null)
             {
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
             }
 
             var attribute = property.GetCustomAttribute<CsvColumnAttribute>(false);

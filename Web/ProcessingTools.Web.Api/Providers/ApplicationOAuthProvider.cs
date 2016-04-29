@@ -18,7 +18,7 @@
         {
             if (publicClientId == null)
             {
-                throw new ArgumentNullException("publicClientId");
+                throw new ArgumentNullException(nameof(publicClientId));
             }
 
             this.publicClientId = publicClientId;

@@ -76,18 +76,16 @@
 
         private string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
         {
+            if (scientificNames == null || scientificNames.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(scientificNames));
+            }
+
             StringBuilder searchStringBuilder = new StringBuilder();
             searchStringBuilder.Append("names=");
 
-            if (scientificNames != null && scientificNames.Length > 0)
-            {
-                Regex whiteSpaces = new Regex(@"\s+");
-                searchStringBuilder.Append(string.Join("|", scientificNames.Select(s => whiteSpaces.Replace(s.Trim(), "+"))));
-            }
-            else
-            {
-                throw new ArgumentNullException("scientificNames should be a non-empty array of strings.");
-            }
+            Regex whiteSpaces = new Regex(@"\s+");
+            searchStringBuilder.Append(string.Join("|", scientificNames.Select(s => whiteSpaces.Replace(s.Trim(), "+"))));
 
             if (sourceId != null)
             {

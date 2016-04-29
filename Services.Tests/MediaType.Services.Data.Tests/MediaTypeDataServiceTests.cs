@@ -25,8 +25,8 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataService_WithNullFileExtension_ShouldThowArgumentNullException()
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataService_WithNullFileExtension_ShouldThowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -35,7 +35,27 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        public void MediaTypeDataService_WithNullFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
+                var type = service.GetMediaType(null).Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(5000)]
+        [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataService_WithEmptyFileExtension_ShouldThowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
@@ -46,8 +66,29 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataService_WithDotFileExtension_ShouldThowArgumentNullException()
+        public void MediaTypeDataService_WithEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
+                var type = service.GetMediaType(@"
+                                            ").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(5000)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataService_WithDotFileExtension_ShouldThowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -56,13 +97,54 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowArgumentNullException()
+        public void MediaTypeDataService_WithDotFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
+                var type = service.GetMediaType(".").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(5000)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(@"
                         .   .. ").Result;
+        }
+
+        [TestMethod]
+        [Timeout(5000)]
+        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
+                var type = service.GetMediaType(@"
+                        .   .. ").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
         }
 
         [TestMethod]

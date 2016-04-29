@@ -44,7 +44,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("CollectionName should not be null or empty.", "CollectionName");
+                    throw new ArgumentNullException(nameof(this.CollectionName));
                 }
 
                 string name = value.ToLower();

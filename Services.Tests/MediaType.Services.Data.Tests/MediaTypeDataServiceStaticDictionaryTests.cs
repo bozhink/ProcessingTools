@@ -5,12 +5,11 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Services;
-
     [TestClass]
     public class MediaTypeDataServiceStaticDictionaryTests
     {
         [TestMethod]
+        [Timeout(500)]
         public void MediaTypeDataServiceStaticDictionary_WithDefaultConstructor_ShouldReturnValidObject()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
@@ -18,6 +17,7 @@
         }
 
         [TestMethod]
+        [Timeout(500)]
         public void MediaTypeDataServiceStaticDictionary_WithKnownFileExtension_ShouldReturnValidMediaType()
         {
             const string FileExtension = "txt";
@@ -33,6 +33,7 @@
         }
 
         [TestMethod]
+        [Timeout(500)]
         public void MediaTypeDataServiceStaticDictionary_WithDotKnownFileExtension_ShouldReturnValidMediaType()
         {
             const string FileExtension = ".txt";
@@ -48,6 +49,7 @@
         }
 
         [TestMethod]
+        [Timeout(500)]
         public void MediaTypeDataServiceStaticDictionary_WithUnknownFileExtension_ShouldReturnUnknownMediaType()
         {
             const string FileExtension = "unknown-file-extension";
@@ -63,37 +65,119 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThowArgumentNullException()
+        [Timeout(500)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
-            var type = service.GetMediaType(null);
+            var type = service.GetMediaType(null).Result;
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThowArgumentNullException()
+        [Timeout(500)]
+        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var service = new MediaTypeDataServiceStaticDictionary();
+                var type = service.GetMediaType(null).Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(500)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(@"   
-                                            ");
+                                            ").Result;
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThowArgumentNullException()
+        [Timeout(500)]
+        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var service = new MediaTypeDataServiceStaticDictionary();
+                var type = service.GetMediaType(@"   
+                                            ").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(500)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
-            var type = service.GetMediaType(".");
+            var type = service.GetMediaType(".").Result;
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThowArgumentNullException()
+        [Timeout(500)]
+        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var service = new MediaTypeDataServiceStaticDictionary();
+                var type = service.GetMediaType(".").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(500)]
+        [ExpectedException(typeof(AggregateException))]
+        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(@"  
-                        .   .. ");
+                        .   .. ").Result;
+        }
+
+        [TestMethod]
+        [Timeout(500)]
+        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        {
+            try
+            {
+                var service = new MediaTypeDataServiceStaticDictionary();
+                var type = service.GetMediaType(@"  
+                        .   .. ").Result;
+            }
+            catch (AggregateException e)
+            {
+                Assert.AreEqual(1, e.InnerExceptions.Count(), "Number of inner exceptions should be 1.");
+                Assert.IsInstanceOfType(
+                    e.InnerExceptions.First(),
+                    typeof(ArgumentNullException),
+                    "Inner exception should be ArgumentNullException.");
+            }
         }
     }
 }

@@ -10,11 +10,11 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Repositories;
     using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
     using ProcessingTools.Serialization.Csv;
 
-    using Repositories;
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
         private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;

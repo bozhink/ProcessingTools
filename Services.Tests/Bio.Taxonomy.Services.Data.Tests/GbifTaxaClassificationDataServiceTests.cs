@@ -18,6 +18,8 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
+        [Ignore]
         public void GbifTaxaClassificationDataService_Resolve_ShouldWork()
         {
             const string CanonicalName = "Coleoptera";

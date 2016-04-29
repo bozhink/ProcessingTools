@@ -13,17 +13,17 @@
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (namespaceManager == null)
             {
-                throw new ArgumentNullException("namespaceManager");
+                throw new ArgumentNullException(nameof(namespaceManager));
             }
 
             if (settings == null)
             {
-                throw new ArgumentNullException("settings");
+                throw new ArgumentNullException(nameof(settings));
             }
 
             try

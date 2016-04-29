@@ -73,7 +73,7 @@
         {
             if (xml == null)
             {
-                throw new ArgumentNullException("xml");
+                throw new ArgumentNullException(nameof(xml));
             }
 
             this.Xml = xml.OuterXml;
@@ -95,7 +95,7 @@
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value", "Encoding is null.");
+                    throw new ArgumentNullException(nameof(this.Encoding));
                 }
 
                 this.encoding = value;
@@ -117,7 +117,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("value", "XmlDocument string is null or whitespace.");
+                    throw new ArgumentNullException(nameof(this.Xml));
                 }
 
                 this.XmlDocument.LoadXml(value);

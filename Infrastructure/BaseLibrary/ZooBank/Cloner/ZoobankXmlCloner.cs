@@ -38,7 +38,7 @@
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("NLM XmlDocument string content should not be null or empty.");
+                    throw new ArgumentNullException(nameof(this.NlmXml));
                 }
 
                 try
@@ -63,7 +63,7 @@
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("NLM XmlDocument should not be null");
+                    throw new ArgumentNullException(nameof(this.NlmXmlDocument));
                 }
 
                 this.nlmDocument = value;

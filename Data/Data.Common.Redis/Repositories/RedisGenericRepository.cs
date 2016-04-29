@@ -18,7 +18,7 @@
         {
             if (provider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             this.provider = provider;
@@ -28,12 +28,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             return Task.Run(() =>
@@ -54,7 +54,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             return Task.Run(() =>
@@ -71,17 +71,17 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (skip < 0)
             {
-                throw new ArgumentException("Skip should be non-negative.", "skip");
+                throw new ArgumentException("Skip should be non-negative.", nameof(skip));
             }
 
             if (take < 1)
             {
-                throw new ArgumentException("Take should be greater than zero.", "take");
+                throw new ArgumentException("Take should be greater than zero.", nameof(take));
             }
 
             return Task.Run(() =>
@@ -102,7 +102,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             return Task.Run(() =>
@@ -118,12 +118,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             return Task.Run(() =>
@@ -140,7 +140,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             return Task.Run(() =>
@@ -157,7 +157,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             return Task.Run(() =>
@@ -175,12 +175,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             return Task.Run(() =>

@@ -25,7 +25,7 @@
         {
             if (provider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             this.provider = provider;
@@ -38,12 +38,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             await this.CreateIndexIfItDoesNotExist(context);
@@ -54,7 +54,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var countResponse = this.Client.Count<TEntity>(c => c.Index(context));
@@ -66,17 +66,17 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (skip < 0)
             {
-                throw new ArgumentException("Skip should be non-negative.", "skip");
+                throw new ArgumentException("Skip should be non-negative.", nameof(skip));
             }
 
             if (take < 1)
             {
-                throw new ArgumentException("Take should be greater than zero.", "take");
+                throw new ArgumentException("Take should be greater than zero.", nameof(take));
             }
 
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
@@ -87,7 +87,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var response = await this.Client.DeleteIndexAsync(context);
@@ -97,12 +97,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
@@ -112,7 +112,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var entity = await this.Get(context, id);
@@ -123,7 +123,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var response = await this.Client.GetAsync<TEntity>(id, idx => idx.Index(context));
@@ -134,7 +134,7 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             var response = await this.Client.FlushAsync(context);
@@ -145,12 +145,12 @@
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
 
             var documentPath = new DocumentPath<TEntity>(new Id(entity.Id));

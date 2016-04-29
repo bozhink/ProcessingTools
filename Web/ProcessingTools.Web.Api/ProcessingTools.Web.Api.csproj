@@ -265,7 +265,7 @@
     <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
