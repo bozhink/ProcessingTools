@@ -15,7 +15,7 @@
             string url = $"v0.9/species/match?verbose=true&name={scientificName}";
             try
             {
-                var connector = new Connector(BaseAddress);
+                var connector = new NetConnector(BaseAddress);
                 var result = await connector.GetAndDeserializeDataContractJson<GbifApiResponseModel>(url);
                 return result;
             }

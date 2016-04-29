@@ -60,9 +60,9 @@
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
-    <Compile Include="Net\Contracts\IConnector.cs" />
+    <Compile Include="Net\Contracts\INetConnector.cs" />
     <Compile Include="Net\Url.cs" />
-    <Compile Include="Net\Connector.cs" />
+    <Compile Include="Net\NetConnector.cs" />
     <Compile Include="Serialization\ColumnIndexToPropertyNameMapping.cs" />
     <Compile Include="Serialization\Csv\CsvColumnAttribute.cs" />
     <Compile Include="Serialization\Csv\CsvObjectAttribute.cs" />

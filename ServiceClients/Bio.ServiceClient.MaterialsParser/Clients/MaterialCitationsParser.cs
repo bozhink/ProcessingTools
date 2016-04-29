@@ -14,15 +14,15 @@
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
         private const string ParserUrl = "/GgWS/wss/invokeFunction";
 
-        private readonly IConnector connector;
+        private readonly INetConnector connector;
         private readonly Encoding encoding;
 
-        public MaterialCitationsParser(IConnector connector)
+        public MaterialCitationsParser(INetConnector connector)
             : this(connector, Encoding.UTF8)
         {
         }
 
-        public MaterialCitationsParser(IConnector connector, Encoding encoding)
+        public MaterialCitationsParser(INetConnector connector, Encoding encoding)
         {
             if (connector == null)
             {

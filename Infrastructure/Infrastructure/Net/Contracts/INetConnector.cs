@@ -4,7 +4,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface IConnector
+    public interface INetConnector
     {
         string BaseAddress { get; set; }
 

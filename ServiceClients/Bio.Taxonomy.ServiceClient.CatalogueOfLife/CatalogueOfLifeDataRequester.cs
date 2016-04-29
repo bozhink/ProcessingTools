@@ -27,8 +27,8 @@
 
             try
             {
-                var connector = new Connector(CatalogueOfLifeBaseAddress);
-                string response = await connector.Get(url, Connector.XmlContentType);
+                var connector = new NetConnector(CatalogueOfLifeBaseAddress);
+                string response = await connector.Get(url, NetConnector.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch
@@ -50,7 +50,7 @@
 
             try
             {
-                var connector = new Connector(CatalogueOfLifeBaseAddress);
+                var connector = new NetConnector(CatalogueOfLifeBaseAddress);
                 var result = await connector.GetAndDeserializeXml<CatalogueOfLifeApiServiceResponse>(url);
                 return result;
             }

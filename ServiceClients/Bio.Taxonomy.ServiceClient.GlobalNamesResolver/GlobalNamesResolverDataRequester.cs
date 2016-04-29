@@ -24,8 +24,8 @@
                 string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string url = $"{ApiUrl}?{searchString}";
 
-                var connector = new Connector(BaseAddress);
-                string response = await connector.Get(url, Connector.XmlContentType);
+                var connector = new NetConnector(BaseAddress);
+                string response = await connector.Get(url, NetConnector.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch
@@ -41,7 +41,7 @@
                 string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string contentType = "application/x-www-form-urlencoded";
 
-                var connector = new Connector(BaseAddress);
+                var connector = new NetConnector(BaseAddress);
                 var response = await connector.Post(ApiUrl, postData, contentType, this.encoding);
                 return response.ToXmlDocument();
             }
@@ -63,7 +63,7 @@
                     values.Add("data_source_ids", string.Join("|", sourceId));
                 }
 
-                var connector = new Connector(BaseAddress);
+                var connector = new NetConnector(BaseAddress);
                 var response = await connector.Post(ApiUrl, values, this.encoding);
                 return response.ToXmlDocument();
             }

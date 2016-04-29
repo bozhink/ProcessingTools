@@ -11,7 +11,7 @@
 
     using Contracts;
 
-    public class Connector : IConnector
+    public class NetConnector : INetConnector
     {
         public const string CorsHeaderName = "Access-Control-Allow-Origin";
         public const string CorsHeaderDefaultValue = "*";
@@ -23,12 +23,12 @@
 
         private string baseAddress;
 
-        public Connector()
+        public NetConnector()
         {
             this.BaseAddressUri = null;
         }
 
-        public Connector(string baseAddress)
+        public NetConnector(string baseAddress)
         {
             this.BaseAddress = baseAddress;
         }

@@ -17,7 +17,7 @@
         [Timeout(5000)]
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
         {
-            var connector = new Connector();
+            var connector = new NetConnector();
             var parser = new MaterialCitationsParser(connector, Encoding.UTF8);
 
             const string ZeroTestContent = @"<paragraph pn=""1"">Test with <detail>detail</detail></paragraph>";

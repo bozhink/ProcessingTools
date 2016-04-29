@@ -32,11 +32,11 @@
 
         public async Task<XmlDocument> SearchAphia(string scientificName)
         {
-            var connector = new Connector(BaseAddress);
+            var connector = new NetConnector(BaseAddress);
             var response = await connector.Post(
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
-                Connector.XmlContentType,
+                NetConnector.XmlContentType,
                 this.encoding);
 
             return response.ToXmlDocument();

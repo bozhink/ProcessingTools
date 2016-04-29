@@ -35,7 +35,7 @@
 
             try
             {
-                var connector = new Connector(BaseAddress);
+                var connector = new NetConnector(BaseAddress);
                 var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, this.defaultEncoding);
                 return result;
             }
