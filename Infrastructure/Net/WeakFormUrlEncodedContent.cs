@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Net
+﻿namespace ProcessingTools.Net
 {
     using System;
     using System.Collections.Generic;
@@ -6,19 +6,22 @@
     using System.Net.Http.Headers;
     using System.Text;
 
+    using Constants;
+    using Extensions;
+
     public class WeakFormUrlEncodedContent : ByteArrayContent
     {
         public WeakFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
             : base(WeakFormUrlEncodedContent.GetContentByteArray(nameValueCollection, encoding))
         {
-            Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            Headers.ContentType = new MediaTypeHeaderValue(ContentTypeConstants.UrlEncodedContentType);
         }
 
         private static byte[] GetContentByteArray(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
         {
             if (nameValueCollection == null)
             {
-                throw new ArgumentNullException("nameValueCollection");
+                throw new ArgumentNullException(nameof(nameValueCollection));
             }
 
             StringBuilder stringBuilder = new StringBuilder();

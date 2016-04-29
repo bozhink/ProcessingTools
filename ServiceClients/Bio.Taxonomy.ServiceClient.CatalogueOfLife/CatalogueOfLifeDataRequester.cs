@@ -6,7 +6,9 @@
     using Contracts;
     using Models;
     using ProcessingTools.Infrastructure.Extensions;
-    using ProcessingTools.Infrastructure.Net;
+    using ProcessingTools.Net;
+    using ProcessingTools.Net.Constants;
+    using ProcessingTools.Net.Extensions;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.
@@ -28,7 +30,7 @@
             try
             {
                 var connector = new NetConnector(CatalogueOfLifeBaseAddress);
-                string response = await connector.Get(url, NetConnector.XmlContentType);
+                string response = await connector.Get(url, ContentTypeConstants.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch

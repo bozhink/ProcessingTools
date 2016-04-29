@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Net.Contracts
+﻿namespace ProcessingTools.Net.Contracts
 {
     using System.Collections.Generic;
     using System.Text;

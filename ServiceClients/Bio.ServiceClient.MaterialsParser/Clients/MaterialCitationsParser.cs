@@ -7,7 +7,7 @@
 
     using Contracts;
 
-    using ProcessingTools.Infrastructure.Net.Contracts;
+    using ProcessingTools.Net.Contracts;
 
     public class MaterialCitationsParser : IMaterialCitationsParser
     {

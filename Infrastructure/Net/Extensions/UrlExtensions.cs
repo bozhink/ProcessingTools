@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Infrastructure.Net
+﻿namespace ProcessingTools.Net.Extensions
 {
     using System.Net;
 
-    public static class Url
+    public static class UrlExtensions
     {
         /// <summary>
         /// Converts a text string into a URL-encoded string.

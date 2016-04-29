@@ -3,10 +3,11 @@
     using System;
     using System.Linq;
     using System.Text;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
-    using ProcessingTools.Infrastructure.Net.Contracts;
+    using ProcessingTools.Net.Contracts;
 
     [TestClass]
     public class MaterialCitationsParserUnitTests

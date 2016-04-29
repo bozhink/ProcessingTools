@@ -6,7 +6,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using ProcessingTools.Infrastructure.Net;
+    using ProcessingTools.Net;
 
     [TestClass]
     public class MaterialCitationsParserIntegrationTests
@@ -15,6 +15,7 @@
 
         [TestMethod]
         [Timeout(5000)]
+        [Ignore]
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
         {
             var connector = new NetConnector();

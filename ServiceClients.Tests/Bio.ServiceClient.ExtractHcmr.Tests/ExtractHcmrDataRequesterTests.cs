@@ -8,6 +8,7 @@
     public class ExtractHcmrDataRequesterTests
     {
         [TestMethod]
+        [Timeout(5000)]
         [Ignore]
         public void ExtractHcmrDataRequester_RequestData_WithValidContent_ShouldWork()
         {

@@ -9,7 +9,8 @@
     using System.Xml;
 
     using ProcessingTools.Infrastructure.Extensions;
-    using ProcessingTools.Infrastructure.Net;
+    using ProcessingTools.Net;
+    using ProcessingTools.Net.Constants;
 
     public class GlobalNamesResolverDataRequester
     {
@@ -25,7 +26,7 @@
                 string url = $"{ApiUrl}?{searchString}";
 
                 var connector = new NetConnector(BaseAddress);
-                string response = await connector.Get(url, NetConnector.XmlContentType);
+                string response = await connector.Get(url, ContentTypeConstants.XmlContentType);
                 return response.ToXmlDocument();
             }
             catch

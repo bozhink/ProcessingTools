@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Infrastructure.Net;
     using Models;
+    using ProcessingTools.Net;
 
     /// <summary>
     /// Request data from EXTRACT.
@@ -21,9 +21,9 @@
 
         public async Task<ExtractHcmrResponseModel> RequestData(string content)
         {
-            if (string.IsNullOrEmpty(content))
+            if (string.IsNullOrWhiteSpace(content))
             {
-                throw new ArgumentNullException("Content string to send is empty.");
+                throw new ArgumentNullException(nameof(content));
             }
 
             var values = new Dictionary<string, string>

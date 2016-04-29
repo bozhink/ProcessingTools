@@ -3,8 +3,8 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Infrastructure.Net;
     using Models;
+    using ProcessingTools.Net;
 
     public class GbifDataRequester : IGbifDataRequester
     {

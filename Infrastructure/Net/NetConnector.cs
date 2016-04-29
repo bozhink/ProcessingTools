@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Net
+﻿namespace ProcessingTools.Net
 {
     using System;
     using System.Collections.Generic;
@@ -10,22 +10,15 @@
     using System.Xml.Serialization;
 
     using Contracts;
+    using Extensions;
 
     public class NetConnector : INetConnector
     {
-        public const string CorsHeaderName = "Access-Control-Allow-Origin";
-        public const string CorsHeaderDefaultValue = "*";
-
-        public const string DefaultContentType = "text/plain; encoding='utf-8'";
-        public const string JsonContentType = "application/json";
-        public const string XmlContentType = "application/xml";
-        public static readonly Encoding DefaultEncoding = Encoding.UTF8;
-
         private string baseAddress;
 
         public NetConnector()
         {
-            this.BaseAddressUri = null;
+            this.baseAddress = null;
         }
 
         public NetConnector(string baseAddress)
@@ -65,8 +58,8 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(XmlContentType));
+                client.AddCorsHeader();
+                client.AddAcceptXmlHeader();
 
                 if (this.BaseAddressUri != null)
                 {
@@ -92,8 +85,8 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonContentType));
+                client.AddCorsHeader();
+                client.AddAcceptJsonHeader();
 
                 if (this.BaseAddressUri != null)
                 {
@@ -117,12 +110,8 @@
 
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
-
-                if (!string.IsNullOrWhiteSpace(acceptContentType))
-                {
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptContentType));
-                }
+                client.AddCorsHeader();
+                client.AddAcceptContentTypeHeader(acceptContentType);
 
                 if (this.BaseAddressUri != null)
                 {
@@ -148,7 +137,7 @@
             using (var client = new HttpClient())
             using (var postContent = new StringContent(content, encoding))
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+                client.AddCorsHeader();
 
                 if (!string.IsNullOrWhiteSpace(contentType))
                 {
@@ -180,7 +169,7 @@
             using (var client = new HttpClient())
             using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+                client.AddCorsHeader();
 
                 if (this.BaseAddressUri != null)
                 {
@@ -207,7 +196,8 @@
             using (var client = new HttpClient())
             using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
             {
-                client.DefaultRequestHeaders.Add(CorsHeaderName, CorsHeaderDefaultValue);
+                client.AddCorsHeader();
+                client.AddAcceptXmlHeader();
 
                 if (this.BaseAddressUri != null)
                 {

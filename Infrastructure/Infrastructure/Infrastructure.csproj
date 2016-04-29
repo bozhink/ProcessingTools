@@ -60,9 +60,6 @@
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
-    <Compile Include="Net\Contracts\INetConnector.cs" />
-    <Compile Include="Net\Url.cs" />
-    <Compile Include="Net\NetConnector.cs" />
     <Compile Include="Serialization\ColumnIndexToPropertyNameMapping.cs" />
     <Compile Include="Serialization\Csv\CsvColumnAttribute.cs" />
     <Compile Include="Serialization\Csv\CsvObjectAttribute.cs" />
@@ -72,7 +69,6 @@
     <Compile Include="Serialization\Csv\TableMapper.cs" />
     <Compile Include="Serialization\Json\JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Net\WeakFormUrlEncodedContent.cs" />
     <Compile Include="Serialization\MappingExtensions.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
   </ItemGroup>

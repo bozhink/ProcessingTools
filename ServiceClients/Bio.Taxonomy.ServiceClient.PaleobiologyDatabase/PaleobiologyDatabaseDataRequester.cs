@@ -5,8 +5,9 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Infrastructure.Net;
     using Models;
+    using ProcessingTools.Net;
+    using ProcessingTools.Net.Constants;
 
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
@@ -29,7 +30,7 @@
             try
             {
                 var connector = new NetConnector(PaleobiologyDatabaseBaseAddress);
-                string responseString = await connector.Get(url, NetConnector.XmlContentType);
+                string responseString = await connector.Get(url, ContentTypeConstants.XmlContentType);
 
                 string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
                 string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
