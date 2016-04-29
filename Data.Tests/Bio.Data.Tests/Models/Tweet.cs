@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories.Tests.Models
+﻿namespace ProcessingTools.Bio.Data.Tests.Models
 {
     using System.ComponentModel.DataAnnotations;
 

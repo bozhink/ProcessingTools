@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories.Tests.Mocks
+﻿namespace ProcessingTools.Bio.Data.Tests.Mocks
 {
     using System.Collections.Generic;
     using System.Data.Entity;

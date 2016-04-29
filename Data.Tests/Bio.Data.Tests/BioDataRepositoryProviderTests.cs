@@ -1,12 +1,14 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories.Tests
+﻿namespace ProcessingTools.Bio.Data.Tests
 {
     using System;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Moq;
 
+    using ProcessingTools.Bio.Data.Repositories;
     using ProcessingTools.Bio.Data.Repositories.Contracts;
-    using ProcessingTools.Bio.Data.Repositories.Tests.Models;
+    using ProcessingTools.Bio.Data.Tests.Models;
     using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
