@@ -8,7 +8,7 @@
 
     using Contracts;
     using Models;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Nlm.Publishing.Types;
 
     public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner

@@ -13,7 +13,7 @@
     using DocumentProvider;
     using Models;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class FileProcessor : IProcessor
     {

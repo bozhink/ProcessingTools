@@ -9,6 +9,7 @@
     using Bio.Taxonomy.Types;
     using DocumentProvider;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Extensions;
 
     public static class TaxonomyExtensions

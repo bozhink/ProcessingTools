@@ -9,7 +9,7 @@
     using Contracts;
 
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Common.Contracts;
     using ProcessingTools.Services.Common.Models.Contracts;
 

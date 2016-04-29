@@ -1,12 +1,10 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Extensions
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
-    using ProcessingTools.Extensions;
 
     public static class StringExtensions
     {

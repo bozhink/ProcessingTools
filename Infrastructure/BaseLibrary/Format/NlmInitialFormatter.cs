@@ -6,6 +6,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class NlmInitialFormatter : TaxPubDocument, IFormatter

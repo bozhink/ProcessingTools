@@ -22,7 +22,7 @@ namespace ProcessingTools.Data.Miners
     using System.Threading.Tasks;
 
     using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class DatesDataMiner : IDatesDataMiner
     {

@@ -9,7 +9,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger
     {

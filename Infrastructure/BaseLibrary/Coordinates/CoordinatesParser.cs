@@ -8,6 +8,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
     using ProcessingTools.Infrastructure.Extensions;
 

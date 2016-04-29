@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class HigherTaxaParserWithDataService<T> : TaxPubDocument, IParser
         where T : ITaxonRank

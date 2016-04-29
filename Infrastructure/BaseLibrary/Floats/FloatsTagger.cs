@@ -13,7 +13,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class FloatsTagger : TaxPubDocument, ITagger
     {

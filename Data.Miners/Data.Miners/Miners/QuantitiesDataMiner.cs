@@ -27,7 +27,7 @@ namespace ProcessingTools.Data.Miners
     using System.Threading.Tasks;
 
     using Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {

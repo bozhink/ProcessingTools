@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {

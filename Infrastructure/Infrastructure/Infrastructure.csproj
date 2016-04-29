@@ -51,7 +51,6 @@
     <Compile Include="Attributes\ValueAttribute.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />

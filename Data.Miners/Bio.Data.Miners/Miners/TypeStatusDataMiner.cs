@@ -10,7 +10,7 @@
 
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Common.Constants;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Extensions;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {

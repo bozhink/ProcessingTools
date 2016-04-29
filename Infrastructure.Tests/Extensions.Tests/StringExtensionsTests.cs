@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions.Tests
+﻿namespace ProcessingTools.Extensions.Tests
 {
     using System.Globalization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

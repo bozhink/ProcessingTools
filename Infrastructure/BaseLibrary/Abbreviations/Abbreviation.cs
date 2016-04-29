@@ -3,6 +3,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Extensions;
 
     internal class Abbreviation
