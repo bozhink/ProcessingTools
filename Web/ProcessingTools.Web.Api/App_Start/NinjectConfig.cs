@@ -32,13 +32,6 @@
 
             kernel.Bind(b =>
             {
-                b.From(Data.Repositories.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
                 b.From(Bio.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

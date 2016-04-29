@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IDataDbContextFactory.cs" />
     <Compile Include="Contracts\IDataDbContextProvider.cs" />
     <Compile Include="Contracts\IDataInitializer.cs" />
     <Compile Include="DataDbContext.cs" />
+    <Compile Include="DataDbContextFactory.cs" />
     <Compile Include="DataDbContextProvider.cs" />
     <Compile Include="DataInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Contracts\IDatabaseInitializer.cs" />
     <Compile Include="Contracts\IDatabaseProvider.cs" />
     <Compile Include="Contracts\IDatabaseSeeder.cs" />

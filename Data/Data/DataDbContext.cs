@@ -7,19 +7,14 @@
 
     public class DataDbContext : DbContext
     {
-        public DataDbContext()
-            : base("DataDbContext")
+        public DataDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
         public IDbSet<Product> Products { get; set; }
 
         public IDbSet<Institution> Institutions { get; set; }
-
-        public static DataDbContext Create()
-        {
-            return new DataDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
