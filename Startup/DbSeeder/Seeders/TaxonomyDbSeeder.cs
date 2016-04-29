@@ -5,6 +5,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
 
     public class TaxonomyDbSeeder : ITaxonomyDbSeeder

@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
+﻿namespace ProcessingTools.Bio.Taxonomy.Data
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Contracts;
 
     public class TaxonomyDbContextProvider : ITaxonomyDbContextProvider
     {

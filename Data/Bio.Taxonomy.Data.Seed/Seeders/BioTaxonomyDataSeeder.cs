@@ -2,15 +2,14 @@
 {
     using System;
     using System.Configuration;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
 
     using Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Data;
+    using ProcessingTools.Bio.Taxonomy.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
@@ -34,13 +33,12 @@
             }
 
             this.contextProvider = contextProvider;
+            this.seeder = new DbContextSeeder<TaxonomyDbContext>(this.contextProvider);
 
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader
                 .GetValue(DataFilesDirectoryPathKey, this.stringType)
                 .ToString();
-
-            this.seeder = new DbContextSeeder<TaxonomyDbContext>(this.contextProvider);
         }
 
         public async Task Seed()
