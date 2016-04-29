@@ -5,6 +5,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Seed.Contracts;
 
     public class DataDbSeeder : IDataDbSeeder

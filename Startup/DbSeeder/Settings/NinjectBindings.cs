@@ -32,6 +32,14 @@
                     .BindDefaultInterface();
             });
 
+            // Data
+            this.Bind(b =>
+            {
+                b.From(Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             this.Bind(b =>
             {
                 b.From(Data.Seed.Assembly.Assembly.GetType().Assembly)
@@ -39,6 +47,7 @@
                     .BindDefaultInterface();
             });
 
+            // Bio.Biorepositories.Data
             this.Bind(b =>
             {
                 b.From(Bio.Biorepositories.Data.Assembly.Assembly.GetType().Assembly)

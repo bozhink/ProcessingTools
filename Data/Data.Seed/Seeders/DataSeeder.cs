@@ -8,8 +8,8 @@
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Models;
-    using ProcessingTools.Data.Repositories.Contracts;
 
     public class DataSeeder : IDataSeeder
     {
@@ -33,11 +33,10 @@
             }
 
             this.contextProvider = contextProvider;
+            this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
 
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
-
-            this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
         }
 
         public async Task Seed()

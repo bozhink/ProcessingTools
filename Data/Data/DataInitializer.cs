@@ -6,7 +6,6 @@
 
     using ProcessingTools.Data.Common.Entity.Factories;
     using ProcessingTools.Data.Migrations;
-    using ProcessingTools.Data.Repositories.Contracts;
 
     public class DataInitializer : DbContextInitializerFactory<DataDbContext>, IDataInitializer
     {

@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.Data.Repositories
 {
     using System;
-    using Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Repositories.Contracts;
 
     public class DataRepositoryProvider<T> : IDataRepositoryProvider<T>
         where T : class
