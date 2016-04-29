@@ -6,6 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
+    using ProcessingTools.Documents.Data;
+    using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Data.Repositories;
     using ProcessingTools.Documents.Data.Repositories.Contracts;

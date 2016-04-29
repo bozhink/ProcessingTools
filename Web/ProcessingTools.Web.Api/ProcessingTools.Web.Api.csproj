@@ -452,10 +452,6 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Documents.Data.Repositories\Documents.Data.Repositories.csproj">
-      <Project>{6fe69ec2-4fc4-4f31-857e-f89cbd804af7}</Project>
-      <Name>Documents.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Data.Repositories\Geo.Data.Repositories.csproj">
       <Project>{da6d7093-8ec2-4aec-8b78-8bdd8b2ed67a}</Project>
       <Name>Geo.Data.Repositories</Name>
