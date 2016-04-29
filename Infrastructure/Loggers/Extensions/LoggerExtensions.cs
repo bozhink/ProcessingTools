@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Loggers.Extensions
 {
     using Contracts;
 
