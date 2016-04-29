@@ -4,9 +4,9 @@
 
     using Contracts;
 
+    using ProcessingTools.Data.Common.Entity.Factories;
     using ProcessingTools.Data.Migrations;
     using ProcessingTools.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Entity.Factories;
 
     public class DataInitializer : DbContextInitializerFactory<DataDbContext>, IDataInitializer
     {

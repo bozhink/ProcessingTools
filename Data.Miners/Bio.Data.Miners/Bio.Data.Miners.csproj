@@ -64,10 +64,6 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Repositories\Bio.Environments.Data.Repositories.csproj">
-      <Project>{8a6456a8-5fc5-4b8e-b846-8e796f8617c2}</Project>
-      <Name>Bio.Environments.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>

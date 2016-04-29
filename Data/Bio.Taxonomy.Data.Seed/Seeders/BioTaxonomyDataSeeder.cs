@@ -9,8 +9,8 @@
     using Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Data;
-    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder

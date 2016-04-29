@@ -53,6 +53,12 @@
     <Compile Include="Models\EnvoGroup.cs" />
     <Compile Include="Models\EnvoName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BioEnvironmentsDbContextProvider.cs" />
+    <Compile Include="Repositories\BioEnvironmentsRepository.cs" />
+    <Compile Include="Repositories\BioEnvironmentsRepositoryProvider.cs" />
+    <Compile Include="Contracts\IBioEnvironmentsDbContextProvider.cs" />
+    <Compile Include="Repositories\Contracts\IBioEnvironmentsRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBioEnvironmentsRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,6 +68,14 @@
     <ProjectReference Include="..\Bio.Environments.Data.Common\Bio.Environments.Data.Common.csproj">
       <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
       <Name>Bio.Environments.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

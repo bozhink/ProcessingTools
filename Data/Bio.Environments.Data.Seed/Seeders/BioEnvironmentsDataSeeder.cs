@@ -10,8 +10,8 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Models;
-    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
 
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {

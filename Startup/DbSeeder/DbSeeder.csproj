@@ -114,10 +114,6 @@
       <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
       <Name>Bio.Environments.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Repositories\Bio.Environments.Data.Repositories.csproj">
-      <Project>{8a6456a8-5fc5-4b8e-b846-8e796f8617c2}</Project>
-      <Name>Bio.Environments.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Environments.Data.Seed\Bio.Environments.Data.Seed.csproj">
       <Project>{7f622ff2-5190-4765-a604-46abda36472d}</Project>
       <Name>Bio.Environments.Data.Seed</Name>

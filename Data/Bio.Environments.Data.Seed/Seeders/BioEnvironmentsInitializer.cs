@@ -4,8 +4,8 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Migrations;
-    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Factories;
 
     public class BioEnvironmentsInitializer : DbContextInitializerFactory<BioEnvironmentsDbContext>, IBioEnvironmentsInitializer

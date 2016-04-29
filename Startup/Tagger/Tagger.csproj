@@ -299,9 +299,9 @@
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Repositories\Bio.Environments.Data.Repositories.csproj">
-      <Project>{8a6456a8-5fc5-4b8e-b846-8e796f8617c2}</Project>
-      <Name>Bio.Environments.Data.Repositories</Name>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Repositories\Bio.Taxonomy.Data.Repositories.csproj">
       <Project>{3ee21b94-3328-412a-88fb-8cf7865cdfdb}</Project>
