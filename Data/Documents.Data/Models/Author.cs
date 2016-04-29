@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Constants;
+    using ProcessingTools.Documents.Data.Common.Constants;
 
     public class Author : DocumentsAbstractEntity
     {

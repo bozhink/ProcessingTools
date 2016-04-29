@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Constants;
+    using ProcessingTools.Documents.Data.Common.Constants;
 
     public class Document : DocumentsAbstractEntity
     {
