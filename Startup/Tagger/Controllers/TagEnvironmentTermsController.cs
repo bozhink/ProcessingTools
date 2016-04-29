@@ -12,7 +12,7 @@
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     [Description("Tag envo terms using local database.")]
     public class TagEnvironmentTermsController : TaggerControllerFactory, ITagEnvironmentTermsController

@@ -60,6 +60,10 @@
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
       <Name>Harvesters.Common</Name>

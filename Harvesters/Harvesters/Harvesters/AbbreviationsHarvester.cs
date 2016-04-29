@@ -9,17 +9,17 @@
     using Models;
 
     using ProcessingTools.Harvesters.Common.Factories;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class AbbreviationsHarvester : GenericHarvesterFactory<AbbreviationModel>, IAbbreviationsHarvester
     {
-        private const string AbbreviationsXQueryFilePath = "AbbreviationsXQueryFilePath";
+        private const string AbbreviationsXQueryFilePathKey = "AbbreviationsXQueryFilePath";
 
         private string abbreviationsXQueryFileName;
 
         public AbbreviationsHarvester()
         {
-            this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePath];
+            this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePathKey];
         }
 
         protected override async Task<IQueryable<AbbreviationModel>> Run(XmlDocument document)

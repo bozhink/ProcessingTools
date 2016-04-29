@@ -10,7 +10,7 @@
     using DocumentProvider;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public static class TaxonomyExtensions
     {

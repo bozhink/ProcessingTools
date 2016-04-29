@@ -340,6 +340,10 @@
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>MediaType.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

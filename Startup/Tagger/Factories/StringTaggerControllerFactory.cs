@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public abstract class StringTaggerControllerFactory : ITaggerController
     {

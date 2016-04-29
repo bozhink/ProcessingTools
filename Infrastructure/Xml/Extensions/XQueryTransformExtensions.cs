@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Xml.Extensions
 {
     using System;
     using System.Collections.Concurrent;
@@ -17,12 +17,12 @@
         {
             if (node == null)
             {
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException(nameof(node));
             }
 
             if (string.IsNullOrWhiteSpace(xqueryFileName))
             {
-                throw new ArgumentNullException("xqueryFileName");
+                throw new ArgumentNullException(nameof(xqueryFileName));
             }
 
             var xqueryTransform = XQueryTransformObjects.GetOrAdd(
@@ -42,12 +42,12 @@
         {
             if (node == null)
             {
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException(nameof(node));
             }
 
             if (xqueryTransform == null)
             {
-                throw new ArgumentNullException("xqueryTransform");
+                throw new ArgumentNullException(nameof(xqueryTransform));
             }
 
             return Task.Run(() =>

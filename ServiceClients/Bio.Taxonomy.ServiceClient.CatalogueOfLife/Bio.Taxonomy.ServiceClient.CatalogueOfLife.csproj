@@ -61,6 +61,10 @@
       <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
       <Name>Net</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

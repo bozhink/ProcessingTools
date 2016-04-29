@@ -8,7 +8,7 @@
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class HigherTaxaTagger : TaxaTagger
     {

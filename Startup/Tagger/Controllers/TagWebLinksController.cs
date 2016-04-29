@@ -13,6 +13,7 @@
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
     using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     [Description("Tag web links and DOI.")]
     public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
@@ -24,7 +25,7 @@
         {
             if (miner == null)
             {
-                throw new ArgumentNullException("miner");
+                throw new ArgumentNullException(nameof(miner));
             }
 
             this.miner = miner;

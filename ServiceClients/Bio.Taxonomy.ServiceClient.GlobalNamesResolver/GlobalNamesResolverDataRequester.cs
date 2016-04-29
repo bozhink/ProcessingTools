@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Infrastructure.Extensions;
     using ProcessingTools.Net;
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Xml.Extensions;
 
     public class GlobalNamesResolverDataRequester
     {

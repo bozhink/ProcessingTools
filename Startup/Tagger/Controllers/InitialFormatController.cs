@@ -6,11 +6,12 @@
 
     using Contracts;
     using Factories;
+
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController

@@ -4,15 +4,16 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Common;
     using ProcessingTools.Net;
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Xml.Extensions;
 
     public class AphiaDirectSoapRequester
     {
         private const string BaseAddress = "http://www.marinespecies.org";
         private const string ApiUrl = "aphia.php?p=soap";
-        private readonly Encoding encoding = Encoding.UTF8;
+        private readonly Encoding encoding = Defaults.DefaultEncoding;
 
         public XmlDocument AphiaSoapXml(string scientificName)
         {

@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Xml.Extensions
 {
     using System;
     using System.Collections.Concurrent;
     using System.IO;
+    using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
@@ -18,17 +19,17 @@
         /// <param name="document">Input document to be transformed.</param>
         /// <param name="xslFileName">File name path of the XSL file.</param>
         /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
+        /// <exception cref="EncoderFallbackException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="XsltException"></exception>
+        /// <exception cref="XmlException"></exception>
+        /// <exception cref="Exception"></exception>
         public static string ApplyXslTransform(this XmlDocument document, string xslFileName)
         {
             if (document == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException(nameof(document));
             }
 
             return document.OuterXml.ApplyXslTransform(xslFileName);
@@ -40,17 +41,17 @@
         /// <param name="xml">Input document to be transformed.</param>
         /// <param name="xslFileName">File name path of the XSL file.</param>
         /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException"></exception>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
+        /// <exception cref="EncoderFallbackException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="XsltException"></exception>
+        /// <exception cref="XmlException"></exception>
+        /// <exception cref="Exception"></exception>
         public static string ApplyXslTransform(this string xml, string xslFileName)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
-                throw new ArgumentNullException("xml");
+                throw new ArgumentNullException(nameof(xml));
             }
 
             try
@@ -75,21 +76,21 @@
         /// <param name="reader">Input document to be transformed.</param>
         /// <param name="xslFileName">File name path of the XSL file.</param>
         /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.IO.IOException"></exception>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Xml.XmlException"></exception>
-        /// <exception cref="System.Exception"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="XsltException"></exception>
+        /// <exception cref="XmlException"></exception>
+        /// <exception cref="Exception"></exception>
         public static string ApplyXslTransform(this XmlReader reader, string xslFileName)
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             if (string.IsNullOrWhiteSpace(xslFileName))
             {
-                throw new ArgumentNullException("xslFileName", "XSL file name is invalid.");
+                throw new ArgumentNullException(nameof(xslFileName));
             }
 
             try
@@ -130,18 +131,18 @@
         /// <param name="reader">Input document to be transformed.</param>
         /// <param name="xslTransform">XslCompiledTransform object.</param>
         /// <returns>Transformed document as string.</returns>
-        /// <exception cref="System.Xml.Xsl.XsltException"></exception>
-        /// <exception cref="System.Exception"></exception>
+        /// <exception cref="XsltException"></exception>
+        /// <exception cref="Exception"></exception>
         public static string ApplyXslTransform(this XmlReader reader, XslCompiledTransform xslTransform)
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             if (xslTransform == null)
             {
-                throw new ArgumentNullException("xslTransform");
+                throw new ArgumentNullException(nameof(xslTransform));
             }
 
             string result = string.Empty;
@@ -179,7 +180,7 @@
         {
             if (document == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException(nameof(document));
             }
 
             return await document.OuterXml.DeserializeXslTransformOutput<T>(xslFileName);
@@ -190,7 +191,7 @@
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
-                throw new ArgumentNullException("xml");
+                throw new ArgumentNullException(nameof(xml));
             }
 
             T result = null;
@@ -207,12 +208,12 @@
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             if (string.IsNullOrWhiteSpace(xslFileName))
             {
-                throw new ArgumentNullException("xslFileName", "XSL file name is invalid.");
+                throw new ArgumentNullException(nameof(xslFileName));
             }
 
             try
@@ -251,12 +252,12 @@
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             if (xslTransform == null)
             {
-                throw new ArgumentNullException("xslTransform");
+                throw new ArgumentNullException(nameof(xslTransform));
             }
 
             return Task.Run(() =>

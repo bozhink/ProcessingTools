@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Transform
+﻿namespace ProcessingTools.Xml.Transform
 {
     using System.IO;
     using System.Xml;

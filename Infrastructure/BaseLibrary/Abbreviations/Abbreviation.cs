@@ -4,7 +4,7 @@
     using System.Xml;
 
     using ProcessingTools.Extensions;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     internal class Abbreviation
     {

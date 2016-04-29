@@ -1,6 +1,7 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Xml.Extensions
 {
     using System.IO;
+    using System.Text;
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
@@ -57,7 +58,7 @@
         /// </summary>
         /// <param name="text">Valid XML node as text.</param>
         /// <returns>XmlReader object.</returns>
-        /// <exception cref="System.Text.EncoderFallbackException">Input document string should be UFT8 encoded.</exception>
+        /// <exception cref="EncoderFallbackException">Input document string should be UFT8 encoded.</exception>
         public static XmlReader ToXmlReader(this string text)
         {
             var settings = new XmlReaderSettings
@@ -76,9 +77,9 @@
                 byte[] bytesContent = Defaults.DefaultEncoding.GetBytes(text);
                 xmlReader = XmlReader.Create(new MemoryStream(bytesContent), settings);
             }
-            catch (System.Text.EncoderFallbackException e)
+            catch (EncoderFallbackException e)
             {
-                throw new System.Text.EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
+                throw new EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
             }
             catch
             {

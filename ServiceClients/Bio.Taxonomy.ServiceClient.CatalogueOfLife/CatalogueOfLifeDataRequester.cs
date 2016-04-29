@@ -5,11 +5,12 @@
 
     using Contracts;
     using Models;
-    using ProcessingTools.Infrastructure.Extensions;
+
     using ProcessingTools.Net;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Extensions;
-
+    using ProcessingTools.Xml.Extensions;
+    
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.
     /// </summary>

@@ -46,6 +46,10 @@
     <None Include="aphia.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj">
       <Project>{e4c3d09f-e9fc-4155-9573-a1febb4a914a}</Project>
       <Name>Infrastructure</Name>
@@ -53,6 +57,10 @@
     <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
       <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
       <Name>Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

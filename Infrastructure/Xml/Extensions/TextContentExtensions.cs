@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions
+﻿namespace ProcessingTools.Xml.Extensions
 {
     using System;
     using System.Configuration;
@@ -27,7 +27,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ApplicationException("TextContentXslFileName is null or white-space.");
+                    throw new ArgumentNullException(nameof(TextContentXslFileName));
                 }
 
                 textContentXslFileName = value;

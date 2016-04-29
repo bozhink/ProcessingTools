@@ -10,7 +10,7 @@
     using ProcessingTools.Common;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class ReferencesTagger : TaxPubDocument, ITagger
     {

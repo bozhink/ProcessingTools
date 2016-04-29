@@ -2,11 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml.Xsl;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class CustomXslRunner : TaxPubDocument, IProcessor
     {
@@ -29,7 +28,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(this.XslPath));
                 }
 
                 this.xslPath = value;

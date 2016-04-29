@@ -10,7 +10,7 @@
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class CoordinatesParser : TaxPubDocument, IParser
     {

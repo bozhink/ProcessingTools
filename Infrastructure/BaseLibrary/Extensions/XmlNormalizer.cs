@@ -5,7 +5,7 @@
 
     using ProcessingTools.Common;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     /// <summary>
     /// This class provides extension methods for transformation of Taxpub NLM to system XML schemas.

@@ -18,7 +18,7 @@ namespace ProcessingTools.BaseLibrary
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class Codes : TaxPubDocument
     {

@@ -8,7 +8,7 @@
     using Factories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Infrastructure.Attributes;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     [Description("Generate xml document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlController : TaggerControllerFactory, IZooBankGenerateRegistrationXmlController

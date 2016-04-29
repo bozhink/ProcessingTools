@@ -9,17 +9,17 @@
     using Models;
 
     using ProcessingTools.Harvesters.Common.Factories;
-    using ProcessingTools.Infrastructure.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class ExternalLinksHarvester : GenericHarvesterFactory<ExternalLinkModel>, IExternalLinksHarvester
     {
-        private const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
+        private const string ExternalLinksXslFilePathKey = "ExternalLinksXslFilePath";
 
         private string externalLinksXslFileName;
 
         public ExternalLinksHarvester()
         {
-            this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePath];
+            this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePathKey];
         }
 
         protected override async Task<IQueryable<ExternalLinkModel>> Run(XmlDocument document)
