@@ -102,10 +102,6 @@
       <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
       <Name>Bio.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Repositories\Bio.Data.Repositories.csproj">
-      <Project>{067c0e10-6940-4428-ade9-fd616e7cef38}</Project>
-      <Name>Bio.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data.Seed\Bio.Data.Seed.csproj">
       <Project>{5fc8546a-eaaa-4173-9201-fd4a91cdecfc}</Project>
       <Name>Bio.Data.Seed</Name>
