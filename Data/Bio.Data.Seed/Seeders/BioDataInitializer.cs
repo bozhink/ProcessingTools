@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories
+﻿namespace ProcessingTools.Bio.Data.Seed
 {
     using System.Data.Entity;
 
     using Contracts;
 
     using ProcessingTools.Bio.Data.Migrations;
+    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Factories;
 
     public class BioDataInitializer : DbContextInitializerFactory<BioDbContext>, IBioDataInitializer

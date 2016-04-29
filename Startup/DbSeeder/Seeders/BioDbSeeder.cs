@@ -5,7 +5,6 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Bio.Data.Seed.Contracts;
 
     public class BioDbSeeder : IBioDbSeeder
