@@ -9,7 +9,7 @@
 
     using ProcessingTools.Bio.Data;
     using ProcessingTools.Bio.Data.Models;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Data.Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioDataSeeder : IBioDataSeeder

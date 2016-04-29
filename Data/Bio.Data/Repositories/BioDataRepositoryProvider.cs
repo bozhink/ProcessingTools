@@ -2,6 +2,7 @@
 {
     using System;
     using Contracts;
+    using ProcessingTools.Bio.Data.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class BioDataRepositoryProvider<T> : IBioDataRepositoryProvider<T>

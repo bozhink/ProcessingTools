@@ -53,10 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BioDataRepository.cs" />
     <Compile Include="Repositories\BioDataRepositoryProvider.cs" />
-    <Compile Include="Repositories\BioDbContextProvider.cs" />
+    <Compile Include="BioDbContextProvider.cs" />
     <Compile Include="Repositories\Contracts\IBioDataRepository.cs" />
     <Compile Include="Repositories\Contracts\IBioDataRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\IBioDbContextProvider.cs" />
+    <Compile Include="Contracts\IBioDbContextProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

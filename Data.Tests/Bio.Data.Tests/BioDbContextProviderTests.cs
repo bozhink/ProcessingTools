@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories.Tests
+﻿namespace ProcessingTools.Bio.Data.Tests
 {
     using System;
     using System.Data.Entity;
@@ -7,7 +7,6 @@
     using Moq;
 
     using ProcessingTools.Bio.Data.Contracts;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     [TestClass]
