@@ -50,7 +50,6 @@
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Attributes\ValueAttribute.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
-    <Compile Include="Extensions\ListIntersectionsExtensions.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />

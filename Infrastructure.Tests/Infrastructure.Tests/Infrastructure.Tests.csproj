@@ -54,7 +54,6 @@
     <Compile Include="Serialization\Csv\CsvMapperTests.cs" />
     <Compile Include="Serialization\Csv\CsvSerializerTests.cs" />
     <Compile Include="Serialization\Csv\CsvTableReaderTests.cs" />
-    <Compile Include="Extensions\ListIntersectionsExtensionsTests.cs" />
     <Compile Include="Serialization\Csv\Models\NameYearDescriptionSampleCsvObject.cs" />
     <Compile Include="Serialization\Csv\Models\NameYearDescriptionSampleObject.cs" />
     <Compile Include="Serialization\Csv\Models\PersonCsvObject.cs" />

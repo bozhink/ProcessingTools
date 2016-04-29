@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.Infrastructure.Extensions.Tests
+﻿namespace ProcessingTools.Extensions.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Infrastructure.Extensions;
 
     [TestClass]
     public class ListIntersectionsExtensionsTests

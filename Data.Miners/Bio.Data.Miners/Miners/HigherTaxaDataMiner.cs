@@ -10,6 +10,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Infrastructure.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
