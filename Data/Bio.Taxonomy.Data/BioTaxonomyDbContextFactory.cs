@@ -4,13 +4,13 @@
     using Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
 
-    public class TaxonomyDbContextFactory : ITaxonomyDbContextFactory
+    public class BioTaxonomyDbContextFactory : IBioTaxonomyDbContextFactory
     {
         private string connectionString;
 
-        public TaxonomyDbContextFactory()
+        public BioTaxonomyDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.TaxonomyDbContextConnectionKey;
+            this.ConnectionString = ConnectionConstants.BioTaxonomyDbContextConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public TaxonomyDbContext Create()
+        public BioTaxonomyDbContext Create()
         {
-            return new TaxonomyDbContext(this.ConnectionString);
+            return new BioTaxonomyDbContext(this.ConnectionString);
         }
     }
 }

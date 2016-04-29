@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface ITaxonomyDbContextProvider : IDbContextProvider<TaxonomyDbContext>
+    public interface IBioTaxonomyDbContextProvider : IDbContextProvider<BioTaxonomyDbContext>
     {
     }
 }

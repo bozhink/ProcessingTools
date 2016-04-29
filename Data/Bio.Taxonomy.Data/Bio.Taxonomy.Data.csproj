@@ -46,15 +46,15 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="BioTaxonomyDataInitializer.cs" />
     <Compile Include="Contracts\IBioTaxonomyDataInitializer.cs" />
-    <Compile Include="Contracts\ITaxonomyDbContextFactory.cs" />
-    <Compile Include="Contracts\ITaxonomyDbContextProvider.cs" />
+    <Compile Include="Contracts\IBioTaxonomyDbContextFactory.cs" />
+    <Compile Include="Contracts\IBioTaxonomyDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TaxonName.cs" />
     <Compile Include="Models\TaxonRank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaxonomyDbContext.cs" />
-    <Compile Include="TaxonomyDbContextFactory.cs" />
-    <Compile Include="TaxonomyDbContextProvider.cs" />
+    <Compile Include="BioTaxonomyDbContext.cs" />
+    <Compile Include="BioTaxonomyDbContextFactory.cs" />
+    <Compile Include="BioTaxonomyDbContextProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">

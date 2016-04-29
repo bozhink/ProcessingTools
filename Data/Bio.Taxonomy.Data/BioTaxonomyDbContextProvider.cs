@@ -3,11 +3,11 @@
     using System;
     using Contracts;
 
-    public class TaxonomyDbContextProvider : ITaxonomyDbContextProvider
+    public class BioTaxonomyDbContextProvider : IBioTaxonomyDbContextProvider
     {
-        private readonly ITaxonomyDbContextFactory contextFactory;
+        private readonly IBioTaxonomyDbContextFactory contextFactory;
 
-        public TaxonomyDbContextProvider(ITaxonomyDbContextFactory contextFactory)
+        public BioTaxonomyDbContextProvider(IBioTaxonomyDbContextFactory contextFactory)
         {
             if (contextFactory == null)
             {
@@ -17,7 +17,7 @@
             this.contextFactory = contextFactory;
         }
 
-        public TaxonomyDbContext Create()
+        public BioTaxonomyDbContext Create()
         {
             return this.contextFactory.Create();
         }

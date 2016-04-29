@@ -17,15 +17,15 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
-        private readonly ITaxonomyDbContextProvider contextProvider;
+        private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
         private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
-        private DbContextSeeder<TaxonomyDbContext> seeder;
+        private DbContextSeeder<BioTaxonomyDbContext> seeder;
 
-        public BioTaxonomyDataSeeder(ITaxonomyDbContextProvider contextProvider)
+        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -33,7 +33,7 @@
             }
 
             this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<TaxonomyDbContext>(this.contextProvider);
+            this.seeder = new DbContextSeeder<BioTaxonomyDbContext>(this.contextProvider);
 
             this.appSettingsReader = new AppSettingsReader();
             this.dataFilesDirectoryPath = this.appSettingsReader

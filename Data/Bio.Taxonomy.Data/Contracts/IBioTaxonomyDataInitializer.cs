@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface IBioTaxonomyDataInitializer : IDbContextInitializer<TaxonomyDbContext>
+    public interface IBioTaxonomyDataInitializer : IDbContextInitializer<BioTaxonomyDbContext>
     {
     }
 }

@@ -5,9 +5,9 @@
 
     using Models;
 
-    public class TaxonomyDbContext : DbContext
+    public class BioTaxonomyDbContext : DbContext
     {
-        public TaxonomyDbContext(string connectionString)
+        public BioTaxonomyDbContext(string connectionString)
             : base(connectionString)
         {
         }
