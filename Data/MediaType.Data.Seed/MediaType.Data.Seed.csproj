@@ -47,11 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IMediaTypeDataInitializer.cs" />
     <Compile Include="Contracts\IMediaTypeDataSeeder.cs" />
     <Compile Include="Models\ExtensionJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seeders\MediaTypeDataInitializer.cs" />
     <Compile Include="Seeders\MediaTypeDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>

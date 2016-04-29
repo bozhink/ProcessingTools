@@ -1,13 +1,11 @@
-﻿namespace ProcessingTools.MediaType.Data.Seed
+﻿namespace ProcessingTools.MediaType.Data
 {
     using System.Data.Entity;
 
     using Contracts;
+    using Migrations;
 
     using ProcessingTools.Data.Common.Entity.Factories;
-    using ProcessingTools.MediaType.Data.Contracts;
-    using ProcessingTools.MediaType.Data.Migrations;
-    using ProcessingTools.MediaType.Data.Repositories.Contracts;
 
     public class MediaTypeDataInitializer : DbContextInitializerFactory<MediaTypesDbContext>, IMediaTypeDataInitializer
     {
