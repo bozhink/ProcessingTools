@@ -31,6 +31,8 @@
                 throw new ArgumentNullException(nameof(contextProvider));
             }
 
+            this.contextProvider = contextProvider;
+
             this.appConfigReader = new AppSettingsReader();
         }
 
