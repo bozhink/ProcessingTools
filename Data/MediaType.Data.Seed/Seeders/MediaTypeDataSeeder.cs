@@ -22,8 +22,6 @@
 
         private readonly IMediaTypesDbContextProvider contextProvider;
 
-        private AppSettingsReader appConfigReader;
-
         public MediaTypeDataSeeder(IMediaTypesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
@@ -32,8 +30,6 @@
             }
 
             this.contextProvider = contextProvider;
-
-            this.appConfigReader = new AppSettingsReader();
         }
 
         public async Task Seed()
@@ -54,9 +50,7 @@
 
         private ExtensionJson[] ParseDataJsonFile()
         {
-            string jsonFilePath = this.appConfigReader
-                .GetValue(MediaTypeDataJsonFilePathKey, typeof(string))
-                .ToString();
+            string jsonFilePath = ConfigurationManager.AppSettings[MediaTypeDataJsonFilePathKey];
 
             string jsonString = File.ReadAllText(jsonFilePath);
 
