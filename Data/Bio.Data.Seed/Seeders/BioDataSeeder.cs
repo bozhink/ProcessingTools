@@ -21,7 +21,6 @@
         private readonly IBioDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         private DbContextSeeder<BioDbContext> seeder;
@@ -36,19 +35,14 @@
             this.contextProvider = contextProvider;
             this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
 
-            this.appSettingsReader = new AppSettingsReader();
-            this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
         }
 
         public async Task Seed()
         {
-            await this.SeedMorphologicalEpithets(this.appSettingsReader
-                .GetValue(MorphologicalEpithetsFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]);
 
-            await this.SeedTypeStatuses(this.appSettingsReader
-                .GetValue(TypeStatusesFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedTypeStatuses(TypeStatusesFileNameKey);
         }
 
         private Task SeedMorphologicalEpithets(string fileName)
