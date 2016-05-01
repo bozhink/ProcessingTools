@@ -24,7 +24,6 @@
         private readonly IBioEnvironmentsDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         public BioEnvironmentsDataSeeder(IBioEnvironmentsDbContextProvider contextProvider)
@@ -36,29 +35,18 @@
 
             this.contextProvider = contextProvider;
 
-            this.appSettingsReader = new AppSettingsReader();
-            this.dataFilesDirectoryPath = this.appSettingsReader
-                .GetValue(DataFilesDirectoryPathKey, this.stringType)
-                .ToString();
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
         }
 
         public async Task Seed()
         {
-            await this.ImportEnvironmentsEntities(this.appSettingsReader
-                .GetValue(EnvironmentsEntitiesFileNameKey, this.stringType)
-                .ToString());
+            await this.ImportEnvironmentsEntities(ConfigurationManager.AppSettings[EnvironmentsEntitiesFileNameKey]);
 
-            await this.ImportEnvironmentsNames(this.appSettingsReader
-                .GetValue(EnvironmentsNamesFileNameKey, this.stringType)
-                .ToString());
+            await this.ImportEnvironmentsNames(ConfigurationManager.AppSettings[EnvironmentsNamesFileNameKey]);
 
-            await this.ImportEnvironmentsGroups(this.appSettingsReader
-                .GetValue(EnvironmentsGroupsFileNameKey, this.stringType)
-                .ToString());
+            await this.ImportEnvironmentsGroups(ConfigurationManager.AppSettings[EnvironmentsGroupsFileNameKey]);
 
-            await this.ImportEnvironmentsGlobals(this.appSettingsReader
-                .GetValue(EnvironmentsGlobalFileNameKey, this.stringType)
-                .ToString());
+            await this.ImportEnvironmentsGlobals(ConfigurationManager.AppSettings[EnvironmentsGlobalFileNameKey]);
         }
 
         private async Task ImportEnvironmentsEntities(string fileName)
