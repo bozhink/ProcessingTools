@@ -20,7 +20,6 @@
         private readonly IDataDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         private DbContextSeeder<DataDbContext> seeder;
@@ -35,19 +34,14 @@
             this.contextProvider = contextProvider;
             this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
 
-            this.appSettingsReader = new AppSettingsReader();
-            this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
         }
 
         public async Task Seed()
         {
-            await this.SeedProducts(this.appSettingsReader
-                .GetValue(ProductsSeedFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedProducts(ConfigurationManager.AppSettings[ProductsSeedFileNameKey]);
 
-            await this.SeedInstitutions(this.appSettingsReader
-                .GetValue(InstitutionsSeedFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedInstitutions(ConfigurationManager.AppSettings[InstitutionsSeedFileNameKey]);
         }
 
         private Task SeedProducts(string fileName)
