@@ -20,7 +20,6 @@
         private readonly IGeoDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         private DbContextSeeder<GeoDbContext> seeder;
@@ -35,19 +34,14 @@
             this.contextProvider = contextProvider;
             this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
 
-            this.appSettingsReader = new AppSettingsReader();
-            this.dataFilesDirectoryPath = this.appSettingsReader.GetValue(DataFilesDirectoryPathKey, this.stringType).ToString();
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
         }
 
         public async Task Seed()
         {
-            await this.SeedGeoNames(this.appSettingsReader
-                .GetValue(GeoNamesSeedFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedGeoNames(ConfigurationManager.AppSettings[GeoNamesSeedFileNameKey]);
 
-            await this.SeedGeoEpithets(this.appSettingsReader
-                .GetValue(GeoEpithetsSeedFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedGeoEpithets(ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]);
         }
 
         private Task SeedGeoNames(string fileName)
