@@ -146,8 +146,6 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.Get(id);
-
             var filter = this.GetFilterById(id);
             var result = await this.Collection.DeleteOneAsync(filter);
             return result;
