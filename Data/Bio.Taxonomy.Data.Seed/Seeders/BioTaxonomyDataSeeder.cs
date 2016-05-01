@@ -20,7 +20,6 @@
         private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private AppSettingsReader appSettingsReader;
         private string dataFilesDirectoryPath;
 
         private DbContextSeeder<BioTaxonomyDbContext> seeder;
@@ -35,17 +34,12 @@
             this.contextProvider = contextProvider;
             this.seeder = new DbContextSeeder<BioTaxonomyDbContext>(this.contextProvider);
 
-            this.appSettingsReader = new AppSettingsReader();
-            this.dataFilesDirectoryPath = this.appSettingsReader
-                .GetValue(DataFilesDirectoryPathKey, this.stringType)
-                .ToString();
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
         }
 
         public async Task Seed()
         {
-            await this.SeedTaxonRanks(this.appSettingsReader
-                .GetValue(RanksDataFileNameKey, this.stringType)
-                .ToString());
+            await this.SeedTaxonRanks(ConfigurationManager.AppSettings[RanksDataFileNameKey]);
         }
 
         private Task SeedTaxonRanks(string fileName)
