@@ -81,10 +81,6 @@
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
       <Name>Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
-      <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
-      <Name>Bio.Biorepositories.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Tests
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Tests
 {
     using System;
     using System.Configuration;
@@ -19,7 +19,7 @@
             var appSettingsReader = new AppSettingsReader();
             var dataFilesDirectoryPath = appSettingsReader.GetValue("SeedCsvDataFiles", typeof(string)).ToString();
 
-            var modelTypes = ProcessingTools.Bio.Biorepositories.Data.Models.Assembly.Assembly
+            var modelTypes = ProcessingTools.Bio.Biorepositories.Data.Seed.Assembly.Assembly
                 .GetType()
                 .Assembly
                 .GetTypes()

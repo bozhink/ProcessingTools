@@ -82,10 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Models\Bio.Biorepositories.Data.Models.csproj">
-      <Project>{5a6e7c61-1809-44d8-be58-a76aa82af2bf}</Project>
-      <Name>Bio.Biorepositories.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Repositories\Bio.Biorepositories.Data.Repositories.csproj">
       <Project>{3ed288bc-1e64-468a-997d-e0504456d65f}</Project>
       <Name>Bio.Biorepositories.Data.Repositories</Name>
