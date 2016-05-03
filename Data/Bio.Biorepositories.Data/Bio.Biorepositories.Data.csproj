@@ -106,30 +106,6 @@
     <None Include="BiorepositoriesDataModel.edmx.diagram">
       <DependentUpon>BiorepositoriesDataModel.edmx</DependentUpon>
     </None>
-    <None Include="DataFiles\grbio\grbio_collections.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_collections_labels.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_collections_pers.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_collections_pers_labels.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_institutions.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_institutions_labels.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_staff.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="DataFiles\grbio\grbio_staff_labels.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +119,6 @@
       <DependentUpon>BiorepositoriesDataModel.edmx</DependentUpon>
       <LastGenOutput>BiorepositoriesDataModel.cs</LastGenOutput>
     </Content>
-    <Content Include="DataFiles\biorepositories.sql" />
-    <Content Include="DataFiles\institutional-codes.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
