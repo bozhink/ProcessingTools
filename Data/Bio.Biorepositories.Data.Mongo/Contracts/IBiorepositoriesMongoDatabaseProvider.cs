@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Contracts
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts
 {
     using ProcessingTools.Data.Common.Mongo.Contracts;
 

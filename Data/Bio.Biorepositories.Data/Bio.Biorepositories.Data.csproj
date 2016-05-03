@@ -79,22 +79,16 @@
     <Compile Include="BiorepositoriesDbContext.cs" />
     <Compile Include="BiorepositoriesDbContextProvider.cs" />
     <Compile Include="BiorepositoriesDbFirstDbContextProvider.cs" />
-    <Compile Include="BiorepositoriesMongoDatabaseProvider.cs" />
     <Compile Include="Biorepository.cs">
       <DependentUpon>BiorepositoriesDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IBiorepositoriesDbContextProvider.cs" />
     <Compile Include="Contracts\IBiorepositoriesDbFirstDbContextProvider.cs" />
-    <Compile Include="Contracts\IBiorepositoriesMongoDatabaseProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BiorepositoriesDbFirstGenericRepository.cs" />
-    <Compile Include="Repositories\BiorepositoriesMongoRepository.cs" />
-    <Compile Include="Repositories\BiorepositoriesMongoRepositoryProvider.cs" />
     <Compile Include="Repositories\BiorepositoriesRepository.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesDbFirstGenericRepository.cs" />
-    <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepository.cs" />
-    <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IBiorepositoriesRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,8 +9,8 @@
     using Contracts;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Biorepositories.Data.Contracts;
-    using ProcessingTools.Bio.Biorepositories.Data.Repositories;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
     using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
     using ProcessingTools.Serialization.Csv;
