@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Bson
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Models
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
 
-    public class StaffLabel
+    public class CollectionLabel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -11,21 +11,21 @@
         public string Id { get; set; }
 
         [BsonIgnoreIfDefault]
+        public string CollectionName { get; set; }
+
+        [BsonIgnoreIfDefault]
+        public string PrimaryContact { get; set; }
+
+        [BsonIgnoreIfDefault]
         public string CityTown { get; set; }
 
         [BsonIgnoreIfDefault]
-        public string Country { get; set; }
+        public string StateProvince { get; set; }
 
         [BsonIgnoreIfDefault]
         public string PostalZipCode { get; set; }
 
         [BsonIgnoreIfDefault]
-        public string PrimaryInstitution { get; set; }
-
-        [BsonIgnoreIfDefault]
-        public string StaffMemberFullName { get; set; }
-
-        [BsonIgnoreIfDefault]
-        public string StateProvince { get; set; }
+        public string Country { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Bson
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Models
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
 
-    public class CollectionPer
+    public class Collection
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -12,6 +12,9 @@
 
         [BsonIgnoreIfDefault]
         public string AccessEligibilityAndRules { get; set; }
+
+        [BsonIgnoreIfDefault]
+        public string AccessionStatus { get; set; }
 
         [BsonIgnoreIfDefault]
         public string CollectionCode { get; set; }
@@ -29,6 +32,9 @@
         public string CoolUri { get; set; }
 
         [BsonIgnoreIfDefault]
+        public string InstitutionCode { get; set; }
+
+        [BsonIgnoreIfDefault]
         public string InstitutionName { get; set; }
 
         [BsonIgnoreIfDefault]
@@ -44,6 +50,9 @@
         public string StatusOfCollection { get; set; }
 
         [BsonIgnoreIfDefault]
+        public string Url { get; set; }
+
+        [BsonIgnoreIfDefault]
         public string UrlForCollection { get; set; }
 
         [BsonIgnoreIfDefault]
@@ -51,8 +60,5 @@
 
         [BsonIgnoreIfDefault]
         public string UrlForCollectionWebservices { get; set; }
-
-        [BsonIgnoreIfDefault]
-        public string Url { get; set; }
     }
 }

@@ -48,15 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Bson\Collection.cs" />
-    <Compile Include="Bson\CollectionLabel.cs" />
-    <Compile Include="Bson\CollectionPer.cs" />
-    <Compile Include="Bson\CollectionPerLabel.cs" />
-    <Compile Include="Bson\Institution.cs" />
-    <Compile Include="Bson\InstitutionLabel.cs" />
-    <Compile Include="Bson\Staff.cs" />
-    <Compile Include="Bson\StaffLabel.cs" />
-    <Compile Include="IndexHerbariorumRecordType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +64,9 @@
       <Name>Serialization</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Bson\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

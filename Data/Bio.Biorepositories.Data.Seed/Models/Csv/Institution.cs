@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Serialization.Csv;
-    using ProcessingTools.Bio.Biorepositories.Data.Models;
 
     [FileName("grbio_institutions.csv")]
     [CsvObject]

@@ -37,14 +37,14 @@
         /// </summary>
         public async Task Seed()
         {
-            await this.ImportCsvFileToMongo<Models.Csv.Collection, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Collection>();
-            await this.ImportCsvFileToMongo<Models.Csv.CollectionLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionLabel>();
-            await this.ImportCsvFileToMongo<Models.Csv.CollectionPer, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionPer>();
-            await this.ImportCsvFileToMongo<Models.Csv.CollectionPerLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionPerLabel>();
-            await this.ImportCsvFileToMongo<Models.Csv.Institution, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Institution>();
-            await this.ImportCsvFileToMongo<Models.Csv.InstitutionLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.InstitutionLabel>();
-            await this.ImportCsvFileToMongo<Models.Csv.Staff, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Staff>();
-            await this.ImportCsvFileToMongo<Models.Csv.StaffLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.StaffLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Collection, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Collection>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionPer, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPer>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionPerLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPerLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Institution, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Institution>();
+            await this.ImportCsvFileToMongo<Models.Csv.InstitutionLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.InstitutionLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Staff, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Staff>();
+            await this.ImportCsvFileToMongo<Models.Csv.StaffLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.StaffLabel>();
         }
 
         private async Task ImportCsvFileToMongo<TSeedModel, TEntityModel>()
