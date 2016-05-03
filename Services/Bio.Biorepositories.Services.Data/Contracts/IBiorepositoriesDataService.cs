@@ -7,8 +7,6 @@
 
     public interface IBiorepositoriesDataService
     {
-        Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetBiorepositoryInstitutions(int skip, int take);
-
-        Task<IQueryable<BiorepositoryInstitutionalCodeServiceModel>> GetBiorepositoryInstitutionalCodes(int skip, int take);
+        Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetInstitutions(int skip, int take);
     }
 }

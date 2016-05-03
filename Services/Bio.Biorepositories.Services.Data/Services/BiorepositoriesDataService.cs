@@ -26,34 +26,7 @@
             this.repository = repository;
         }
 
-        public async Task<IQueryable<BiorepositoryInstitutionalCodeServiceModel>> GetBiorepositoryInstitutionalCodes(int skip, int take)
-        {
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            return (await this.repository.All())
-                .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
-                .OrderBy(i => i.Id)
-                .Skip(skip)
-                .Take(take)
-                .ToList()
-                .Select(i => new BiorepositoryInstitutionalCodeServiceModel
-                {
-                    InstitutionalCode = i.InstitutionalCode,
-                    NameOfInstitution = i.NameOfInstitution,
-                    Url = i.Url
-                })
-                .AsQueryable();
-        }
-
-        public async Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetBiorepositoryInstitutions(int skip, int take)
+        public async Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetInstitutions(int skip, int take)
         {
             if (skip < 0)
             {
@@ -73,7 +46,8 @@
                 .ToList()
                 .Select(i => new BiorepositoryInstitutionServiceModel
                 {
-                    Name = i.NameOfInstitution,
+                    InstitutionalCode = i.InstitutionalCode,
+                    NameOfInstitution = i.NameOfInstitution,
                     Url = i.Url
                 })
                 .AsQueryable();

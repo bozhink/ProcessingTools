@@ -36,10 +36,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ITypeStatusDataMiner.cs" />
-    <Compile Include="Miners\BiorepositoryInstitutionalCodesDataMiner.cs" />
-    <Compile Include="Miners\BiorepositoryInstitutionDataMiner.cs" />
-    <Compile Include="Contracts\IBiorepositoryInstitutionalCodesDataMiner.cs" />
-    <Compile Include="Contracts\IBiorepositoryInstitutionDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoryInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\IBiorepositoryInstitutionsDataMiner.cs" />
     <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
     <Compile Include="Contracts\IExtractHcmrDataMiner.cs" />
     <Compile Include="Contracts\IHigherTaxaDataMiner.cs" />
@@ -52,7 +50,6 @@
     <Compile Include="Miners\HigherTaxaDataMiner.cs" />
     <Compile Include="Miners\TypeStatusDataMiner.cs" />
     <Compile Include="Models\BiorepositoryInstitution.cs" />
-    <Compile Include="Models\BiorepositoryInstitutionalCode.cs" />
     <Compile Include="Models\EnvoTerm.cs" />
     <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
     <Compile Include="Miners\MorphologicalEpithetsDataMiner.cs" />

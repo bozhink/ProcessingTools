@@ -3,21 +3,23 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     using Contracts;
     using Models;
 
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
     using ProcessingTools.Common.Constants;
 
-    public class BiorepositoryInstitutionDataMiner : IBiorepositoryInstitutionDataMiner
+    public class BiorepositoryInstitutionsDataMiner : IBiorepositoryInstitutionsDataMiner
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
         private IBiorepositoriesDataService service;
 
-        public BiorepositoryInstitutionDataMiner(IBiorepositoriesDataService service)
+        public BiorepositoryInstitutionsDataMiner(IBiorepositoriesDataService service)
         {
             if (service == null)
             {
@@ -34,24 +36,28 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
+            Func<BiorepositoryInstitutionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
+
             var matches = new List<BiorepositoryInstitution>();
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.GetBiorepositoryInstitutions(i, NumberOfItemsToTake))
-                    .ToList();
+                var items = (await this.service.GetInstitutions(i, NumberOfItemsToTake)).ToList();
 
                 if (items.Count < 1)
                 {
                     break;
                 }
 
-                matches.AddRange(items.Where(x => content.Contains(x.Name))
+                var matchedItems = items.Where(filter)
                     .Select(x => new BiorepositoryInstitution
                     {
-                        Name = x.Name,
+                        InstitutionalCode = x.InstitutionalCode,
+                        NameOfInstitution = x.NameOfInstitution,
                         Url = x.Url
-                    }));
+                    });
+
+                matches.AddRange(matchedItems);
             }
 
             var result = new HashSet<BiorepositoryInstitution>(matches);

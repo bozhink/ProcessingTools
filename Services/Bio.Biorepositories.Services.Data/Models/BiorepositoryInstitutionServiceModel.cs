@@ -2,7 +2,9 @@
 {
     public class BiorepositoryInstitutionServiceModel
     {
-        public string Name { get; set; }
+        public string InstitutionalCode { get; set; }
+
+        public string NameOfInstitution { get; set; }
 
         public string Url { get; set; }
     }
