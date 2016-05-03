@@ -1,14 +1,17 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Models.Seed.Csv
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
     using ProcessingTools.Serialization.Csv;
 
-    [FileName("grbio_collections_pers.csv")]
+    [FileName("grbio_collections.csv")]
     [CsvObject]
-    public class CollectionPer
+    public class Collection
     {
         [CsvColumn("Access Eligibility and Rules")]
         public string AccessEligibilityAndRules { get; set; }
+
+        [CsvColumn("Accession Status")]
+        public string AccessionStatus { get; set; }
 
         [CsvColumn("Collection Code")]
         public string CollectionCode { get; set; }
@@ -25,6 +28,9 @@
         [CsvColumn("Cool URI")]
         public string CoolUri { get; set; }
 
+        [CsvColumn("Institution Code")]
+        public string InstitutionCode { get; set; }
+
         [CsvColumn("Institution Name")]
         public string InstitutionName { get; set; }
 
@@ -40,6 +46,9 @@
         [CsvColumn("Status of Collection")]
         public string StatusOfCollection { get; set; }
 
+        [CsvColumn("URL")]
+        public string Url { get; set; }
+
         [CsvColumn("URL for collection")]
         public string UrlForCollection { get; set; }
 
@@ -48,8 +57,5 @@
 
         [CsvColumn("URL for collection's webservices")]
         public string UrlForCollectionWebservices { get; set; }
-
-        [CsvColumn("URL")]
-        public string Url { get; set; }
     }
 }

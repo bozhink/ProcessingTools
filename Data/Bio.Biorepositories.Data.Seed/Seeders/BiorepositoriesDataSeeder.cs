@@ -37,14 +37,14 @@
         /// </summary>
         public async Task Seed()
         {
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.Collection, Models.Bson.Collection>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.CollectionLabel, Models.Bson.CollectionLabel>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.CollectionPer, Models.Bson.CollectionPer>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.CollectionPerLabel, Models.Bson.CollectionPerLabel>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.Institution, Models.Bson.Institution>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.InstitutionLabel, Models.Bson.InstitutionLabel>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.Staff, Models.Bson.Staff>();
-            await this.ImportCsvFileToMongo<Models.Seed.Csv.StaffLabel, Models.Bson.StaffLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Collection, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Collection>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionPer, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionPer>();
+            await this.ImportCsvFileToMongo<Models.Csv.CollectionPerLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.CollectionPerLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Institution, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Institution>();
+            await this.ImportCsvFileToMongo<Models.Csv.InstitutionLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.InstitutionLabel>();
+            await this.ImportCsvFileToMongo<Models.Csv.Staff, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.Staff>();
+            await this.ImportCsvFileToMongo<Models.Csv.StaffLabel, ProcessingTools.Bio.Biorepositories.Data.Models.Bson.StaffLabel>();
         }
 
         private async Task ImportCsvFileToMongo<TSeedModel, TEntityModel>()
