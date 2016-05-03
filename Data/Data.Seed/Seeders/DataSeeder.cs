@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Seed
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -20,9 +21,9 @@
         private readonly IDataDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private string dataFilesDirectoryPath;
-
         private DbContextSeeder<DataDbContext> seeder;
+        private string dataFilesDirectoryPath;
+        private ConcurrentQueue<Exception> exceptions;
 
         public DataSeeder(IDataDbContextProvider contextProvider)
         {
@@ -35,25 +36,33 @@
             this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.exceptions = new ConcurrentQueue<Exception>();
         }
 
         public async Task Seed()
         {
+            this.exceptions = new ConcurrentQueue<Exception>();
+
             await this.SeedProducts(ConfigurationManager.AppSettings[ProductsSeedFileNameKey]);
 
             await this.SeedInstitutions(ConfigurationManager.AppSettings[InstitutionsSeedFileNameKey]);
+
+            if (this.exceptions.Count > 0)
+            {
+                throw new AggregateException(this.exceptions);
+            }
         }
 
-        private Task SeedProducts(string fileName)
+        private async Task SeedProducts(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return Task.Run(() =>
+            try
             {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
                     $"{dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
@@ -62,28 +71,35 @@
                             Name = line
                         });
                     });
-            });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
 
-        private Task SeedInstitutions(string fileName)
+        private async Task SeedInstitutions(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
-
-            return Task.Run(() =>
-            {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
-                    (context, line) =>
-                    {
-                        context.Institutions.AddOrUpdate(new Institution
+                try
+                {
+                    await this.seeder.ImportSingleLineTextObjectsFromFile(
+                        $"{dataFilesDirectoryPath}/{fileName}",
+                        (context, line) =>
                         {
-                            Name = line
+                            context.Institutions.AddOrUpdate(new Institution
+                            {
+                                Name = line
+                            });
                         });
-                    });
-            });
+                }
+                catch (Exception e)
+                {
+                    this.exceptions.Enqueue(e);
+                }
         }
     }
 }

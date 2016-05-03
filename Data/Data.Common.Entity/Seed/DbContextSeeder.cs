@@ -5,6 +5,7 @@
     using System.Data.Entity;
     using System.IO;
     using System.Text;
+    using System.Threading.Tasks;
 
     using Contracts;
 
@@ -33,7 +34,7 @@
         /// <returns>Number of successfully imported objects.</returns>
         /// <exception cref="FileNotFoundException">The file "fileName" is not found.</exception>
         /// <exception cref="AggregateException">Exceptions thrown by IDbContext.SaveChanges.</exception>
-        public int ImportSingleLineTextObjectsFromFile(string fileName, Action<TContext, string> createObject)
+        public Task<int> ImportSingleLineTextObjectsFromFile(string fileName, Action<TContext, string> createObject)
         {
             return this.ImportSingleLineTextObjectsFromFile(fileName, createObject, Encoding.UTF8);
         }
@@ -47,7 +48,7 @@
         /// <returns>Number of successfully imported objects.</returns>
         /// <exception cref="FileNotFoundException">The file "fileName" is not found.</exception>
         /// <exception cref="AggregateException">Exceptions thrown by IDbContext.SaveChanges.</exception>
-        public int ImportSingleLineTextObjectsFromFile(string fileName, Action<TContext, string> createObject, Encoding encoding)
+        public async Task<int> ImportSingleLineTextObjectsFromFile(string fileName, Action<TContext, string> createObject, Encoding encoding)
         {
             if (!File.Exists(fileName))
             {
@@ -73,7 +74,7 @@
                     {
                         try
                         {
-                            context.SaveChanges();
+                            await context.SaveChangesAsync();
                             numberOfImportedObjects += localNumberOfImportedObjects;
                             localNumberOfImportedObjects = 0;
                         }
@@ -83,14 +84,13 @@
                         }
 
                         context.Dispose();
-
                         context = this.contextProvider.Create();
                     }
                 }
 
                 try
                 {
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                     numberOfImportedObjects += localNumberOfImportedObjects;
                 }
                 catch (Exception e)

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Data.Seed
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -21,9 +22,9 @@
         private readonly IBioDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private string dataFilesDirectoryPath;
-
         private DbContextSeeder<BioDbContext> seeder;
+        private string dataFilesDirectoryPath;
+        private ConcurrentQueue<Exception> exceptions;
 
         public BioDataSeeder(IBioDbContextProvider contextProvider)
         {
@@ -36,25 +37,33 @@
             this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.exceptions = new ConcurrentQueue<Exception>();
         }
 
         public async Task Seed()
         {
+            this.exceptions = new ConcurrentQueue<Exception>();
+
             await this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]);
 
             await this.SeedTypeStatuses(TypeStatusesFileNameKey);
+
+            if (this.exceptions.Count > 0)
+            {
+                throw new AggregateException(this.exceptions);
+            }
         }
 
-        private Task SeedMorphologicalEpithets(string fileName)
+        private async Task SeedMorphologicalEpithets(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return Task.Run(() =>
+            try
             {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
                     $"{dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
@@ -63,19 +72,23 @@
                             Name = line
                         });
                     });
-            });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
 
-        private Task SeedTypeStatuses(string fileName)
+        private async Task SeedTypeStatuses(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return Task.Run(() =>
+            try
             {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
                     $"{dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
@@ -84,7 +97,11 @@
                             Name = line
                         });
                     });
-            });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
     }
 }

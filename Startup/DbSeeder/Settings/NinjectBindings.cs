@@ -36,6 +36,13 @@
             // MediaType.Data
             this.Bind(b =>
             {
+                b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(MediaType.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
@@ -67,13 +74,6 @@
             this.Bind(b =>
             {
                 b.From(Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Biorepositories.Data.Repositories.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

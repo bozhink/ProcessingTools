@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Seed
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -20,9 +21,9 @@
         private readonly IGeoDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private string dataFilesDirectoryPath;
-
         private DbContextSeeder<GeoDbContext> seeder;
+        private string dataFilesDirectoryPath;
+        private ConcurrentQueue<Exception> exceptions;
 
         public GeoDataSeeder(IGeoDbContextProvider contextProvider)
         {
@@ -35,25 +36,33 @@
             this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.exceptions = new ConcurrentQueue<Exception>();
         }
 
         public async Task Seed()
         {
+            this.exceptions = new ConcurrentQueue<Exception>();
+
             await this.SeedGeoNames(ConfigurationManager.AppSettings[GeoNamesSeedFileNameKey]);
 
             await this.SeedGeoEpithets(ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]);
+
+            if (this.exceptions.Count > 0)
+            {
+                throw new AggregateException(this.exceptions);
+            }
         }
 
-        private Task SeedGeoNames(string fileName)
+        private async Task SeedGeoNames(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return Task.Run(() =>
+            try
             {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
                     $"{dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
@@ -62,19 +71,23 @@
                             Name = line
                         });
                     });
-            });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
 
-        private Task SeedGeoEpithets(string fileName)
+        private async Task SeedGeoEpithets(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            return Task.Run(() =>
+            try
             {
-                this.seeder.ImportSingleLineTextObjectsFromFile(
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
                     $"{dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
@@ -83,7 +96,11 @@
                             Name = line
                         });
                     });
-            });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
     }
 }
