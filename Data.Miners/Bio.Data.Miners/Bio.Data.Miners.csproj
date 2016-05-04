@@ -36,8 +36,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\ITypeStatusDataMiner.cs" />
-    <Compile Include="Miners\BiorepositoryInstitutionsDataMiner.cs" />
-    <Compile Include="Contracts\IBiorepositoryInstitutionsDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoriesInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\IBiorepositoriesInstitutionsDataMiner.cs" />
     <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
     <Compile Include="Contracts\IExtractHcmrDataMiner.cs" />
     <Compile Include="Contracts\IHigherTaxaDataMiner.cs" />

@@ -13,13 +13,13 @@
     using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
     using ProcessingTools.Common.Constants;
 
-    public class BiorepositoryInstitutionsDataMiner : IBiorepositoryInstitutionsDataMiner
+    public class BiorepositoriesInstitutionsDataMiner : IBiorepositoriesInstitutionsDataMiner
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
         private IBiorepositoriesDataService service;
 
-        public BiorepositoryInstitutionsDataMiner(IBiorepositoriesDataService service)
+        public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesDataService service)
         {
             if (service == null)
             {

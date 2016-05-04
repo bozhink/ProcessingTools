@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Data.Miners.Common.Contracts;
 
-    public interface IBiorepositoryInstitutionsDataMiner : IDataMiner<BiorepositoryInstitution>
+    public interface IBiorepositoriesInstitutionsDataMiner : IDataMiner<BiorepositoryInstitution>
     {
     }
 }
