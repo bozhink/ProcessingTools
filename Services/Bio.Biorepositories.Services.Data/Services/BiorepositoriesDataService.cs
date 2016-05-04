@@ -7,23 +7,24 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Bio.Biorepositories.Data;
-    using ProcessingTools.Bio.Biorepositories.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Extensions;
 
     public class BiorepositoriesDataService : IBiorepositoriesDataService
     {
-        private IBiorepositoriesDbFirstGenericRepository<Biorepository> repository;
+        private IBiorepositoriesMongoRepositoryProvider<Institution> repositoryProvider;
 
-        public BiorepositoriesDataService(IBiorepositoriesDbFirstGenericRepository<Biorepository> repository)
+        public BiorepositoriesDataService(IBiorepositoriesMongoRepositoryProvider<Institution> repositoryProvider)
         {
-            if (repository == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(repository));
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.repository = repository;
+            this.repositoryProvider = repositoryProvider;
         }
 
         public async Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetInstitutions(int skip, int take)
@@ -38,19 +39,24 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            return (await this.repository.All())
-                .Where(i => i.InstitutionalCode.Length > 1 && i.NameOfInstitution.Length > 1)
+            var repository = this.repositoryProvider.Create();
+
+            var result = (await repository.All())
+                .Where(i => i.InstitutionCode.Length > 1 && i.InstitutionName.Length > 1)
                 .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
-                .ToList()
                 .Select(i => new BiorepositoryInstitutionServiceModel
                 {
-                    InstitutionalCode = i.InstitutionalCode,
-                    NameOfInstitution = i.NameOfInstitution,
+                    InstitutionalCode = i.InstitutionCode,
+                    NameOfInstitution = i.InstitutionName,
                     Url = i.Url
                 })
-                .AsQueryable();
+                .ToList();
+
+            repository.TryDispose();
+
+            return result.AsQueryable();
         }
     }
 }
