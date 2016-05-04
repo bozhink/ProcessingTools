@@ -118,6 +118,13 @@
             // Bio.Taxonomy.Data
             this.Bind(b =>
             {
+                b.From(Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(Bio.Taxonomy.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
