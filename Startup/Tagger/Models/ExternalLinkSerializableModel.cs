@@ -2,15 +2,16 @@
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot("ext-link", Namespace = "", IsNullable = false)]
+    [XmlRoot(NodeNames.ExtLink, Namespace = "", IsNullable = false)]
     public class ExternalLinkSerializableModel
     {
-        [XmlAttribute("ext-link-type")]
+        [XmlAttribute(AttributeNames.ExtLinkType)]
         public string ExternalLinkType { get; set; }
 
-        [XmlAttribute(attributeName: "href", Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/1999/xlink")]
+        [XmlAttribute(AttributeNames.XLinkHref, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespace)]
         public string Href { get; set; }
 
         [XmlText]
