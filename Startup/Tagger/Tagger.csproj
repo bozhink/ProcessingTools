@@ -155,6 +155,7 @@
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
+    <Compile Include="Models\BiorepositoryCollectionCodeSerializableModel.cs" />
     <Compile Include="Models\BiorepositoryInstitutionalCodeSerializableModel.cs" />
     <Compile Include="Models\BiorepositoryInstitutionSerializableModel.cs" />
     <Compile Include="Models\ControllerInfo.cs" />
@@ -219,6 +220,8 @@
     <Compile Include="Models\EnvoTermResponseModel.cs" />
     <Compile Include="Models\EnvoTermSerializableModel.cs" />
     <Compile Include="Models\ExternalLinkSerializableModel.cs" />
+    <Compile Include="Models\NamedContentSerializableModel.cs" />
+    <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

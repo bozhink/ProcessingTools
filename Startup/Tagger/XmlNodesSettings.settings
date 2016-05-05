@@ -5,5 +5,8 @@
     <Setting Name="BiorepositoriesInstitutionContentType" Type="System.String" Scope="User">
       <Value Profile="(Default)">institution</Value>
     </Setting>
+    <Setting Name="BiorepositoriesCollectionCodeContentType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dwc:collectionCode</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5,14 +5,14 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(NodeNames.NamedContent, Namespace = "", IsNullable = false)]
-    public class BiorepositoryInstitutionSerializableModel : NamedContentSerializableModel
+    public class BiorepositoryCollectionCodeSerializableModel : NamedContentSerializableModel
     {
         [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType
         {
             get
             {
-                return XmlNodesSettings.Default.BiorepositoriesInstitutionContentType;
+                return XmlNodesSettings.Default.BiorepositoriesCollectionCodeContentType;
             }
 
             set
