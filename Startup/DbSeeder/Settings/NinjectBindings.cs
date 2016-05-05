@@ -66,13 +66,6 @@
             // Bio.Biorepositories.Data
             this.Bind(b =>
             {
-                b.From(Bio.Biorepositories.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
