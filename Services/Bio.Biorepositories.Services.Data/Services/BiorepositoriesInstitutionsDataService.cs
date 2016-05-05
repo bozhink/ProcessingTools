@@ -13,11 +13,11 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
 
-    public class BiorepositoriesDataService : IBiorepositoriesDataService
+    public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
     {
         private IBiorepositoriesRepositoryProvider<Institution> repositoryProvider;
 
-        public BiorepositoriesDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)
+        public BiorepositoriesInstitutionsDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -27,7 +27,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetInstitutions(int skip, int take)
+        public async Task<IQueryable<BiorepositoriesInstitutionServiceModel>> GetInstitutions(int skip, int take)
         {
             if (skip < 0)
             {
@@ -46,7 +46,7 @@
                 .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
-                .Select(i => new BiorepositoryInstitutionServiceModel
+                .Select(i => new BiorepositoriesInstitutionServiceModel
                 {
                     InstitutionalCode = i.InstitutionCode,
                     NameOfInstitution = i.InstitutionName,

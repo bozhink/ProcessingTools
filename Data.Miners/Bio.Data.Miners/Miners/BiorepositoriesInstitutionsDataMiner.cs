@@ -17,9 +17,9 @@
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
-        private IBiorepositoriesDataService service;
+        private IBiorepositoriesInstitutionsDataService service;
 
-        public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesDataService service)
+        public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesInstitutionsDataService service)
         {
             if (service == null)
             {
@@ -36,7 +36,7 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            Func<BiorepositoryInstitutionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
+            Func<BiorepositoriesInstitutionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
 
             var matches = new List<BiorepositoryInstitution>();
 

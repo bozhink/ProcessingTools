@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Models
 {
-    public class BiorepositoryCollectionServiceModel
+    public class BiorepositoriesCollectionServiceModel
     {
         public string CollectionCode { get; set; }
 

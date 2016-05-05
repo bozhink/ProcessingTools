@@ -5,8 +5,8 @@
 
     using Models;
 
-    public interface IBiorepositoriesDataService
+    public interface IBiorepositoriesInstitutionsDataService
     {
-        Task<IQueryable<BiorepositoryInstitutionServiceModel>> GetInstitutions(int skip, int take);
+        Task<IQueryable<BiorepositoriesInstitutionServiceModel>> GetInstitutions(int skip, int take);
     }
 }
