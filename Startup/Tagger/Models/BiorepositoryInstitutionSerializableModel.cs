@@ -16,7 +16,7 @@
         {
             get
             {
-                return "institution";
+                return XmlNodesSettings.Default.BiorepositoriesInstitutionContentType;
             }
 
             set
