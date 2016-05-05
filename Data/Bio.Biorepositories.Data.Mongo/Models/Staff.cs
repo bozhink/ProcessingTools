@@ -3,7 +3,9 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
 
-    public class Staff
+    using ProcessingTools.Data.Common.Models.Contracts;
+
+    public class Staff : IStringIdEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

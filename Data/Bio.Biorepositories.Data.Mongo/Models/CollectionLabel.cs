@@ -3,7 +3,9 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
 
-    public class CollectionLabel
+    using ProcessingTools.Data.Common.Models.Contracts;
+
+    public class CollectionLabel : IStringIdEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

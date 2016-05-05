@@ -27,7 +27,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IQueryable<BiorepositoriesInstitutionServiceModel>> GetInstitutions(int skip, int take)
+        public async Task<IQueryable<BiorepositoriesInstitutionServiceModel>> Get(int skip, int take)
         {
             if (skip < 0)
             {

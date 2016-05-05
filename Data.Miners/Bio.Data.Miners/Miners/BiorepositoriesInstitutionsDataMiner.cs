@@ -42,7 +42,7 @@
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.GetInstitutions(i, NumberOfItemsToTake)).ToList();
+                var items = (await this.service.Get(i, NumberOfItemsToTake)).ToList();
 
                 if (items.Count < 1)
                 {
