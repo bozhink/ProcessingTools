@@ -1,5 +1,0 @@
-﻿CREATE TABLE [Journals].[Publishers]
-(
-    [Id] UNIQUEIDENTIFIER DEFAULT NEWID() NOT NULL PRIMARY KEY, 
-    [Name] NVARCHAR(50) NOT NULL
-)
