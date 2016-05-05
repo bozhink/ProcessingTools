@@ -85,10 +85,6 @@
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Biorepositories.Data.Repositories\Bio.Biorepositories.Data.Repositories.csproj">
-      <Project>{3ed288bc-1e64-468a-997d-e0504456d65f}</Project>
-      <Name>Bio.Biorepositories.Data.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data\Bio.Biorepositories.Data.csproj">
       <Project>{6830d5c5-6ba8-4ac9-9250-db3d6735e8fb}</Project>
       <Name>Bio.Biorepositories.Data</Name>
