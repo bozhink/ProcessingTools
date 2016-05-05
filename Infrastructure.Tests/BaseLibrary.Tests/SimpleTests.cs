@@ -3,39 +3,12 @@
     using System;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
-    using ProcessingTools.Contracts;
 
     [TestClass]
     public class SimpleTests
     {
-        [TestMethod]
-        [Ignore]
-        public void CreateNewInstanceOfDataProviderWithValidInputData()
-        {
-            string xmlText = "<article></article>";
-
-            var loggerMock = new Mock<ILogger>();
-            DataProvider dataProvider = new DataProvider(xmlText, loggerMock.Object);
-            Assert.AreEqual(dataProvider.Xml, xmlText);
-        }
-
-        [TestMethod]
-        [Ignore]
-        public void CreateNewInstanceOfDataProviderWithValidInputDataInUsingBlock()
-        {
-            string xmlText = "<article></article>";
-            string resultXmlText;
-
-            var loggerMock = new Mock<ILogger>();
-            DataProvider dataProvider = new DataProvider(xmlText, loggerMock.Object);
-            resultXmlText = dataProvider.Xml;
-
-            Assert.AreEqual(resultXmlText, xmlText);
-        }
-
         [TestMethod]
         [Ignore]
         public void TestAphiaService()

@@ -110,11 +110,9 @@
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Coordinates\CoordinatesParser.cs" />
-    <Compile Include="DataProvider\DataProvider.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />
     <Compile Include="Format\NlmInitialFormatter.cs" />
-    <Compile Include="Contracts\IDataProvider.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="Taxonomy\TaxaExpander\AbbreviatedNamesResolver.cs" />
