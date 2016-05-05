@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Mongo.Repositories.Contracts;
 
-    public interface IBiorepositoriesMongoRepository<T> : IMongoGenericRepository<T>
+    public interface IBiorepositoriesRepository<T> : IMongoGenericRepository<T>
         where T : class
     {
     }

@@ -6,12 +6,12 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class BiorepositoriesMongoRepositoryProvider<T> : IBiorepositoriesMongoRepositoryProvider<T>
+    public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class
     {
         private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;
 
-        public BiorepositoriesMongoRepositoryProvider(IBiorepositoriesMongoDatabaseProvider contextProvider)
+        public BiorepositoriesRepositoryProvider(IBiorepositoriesMongoDatabaseProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -23,7 +23,7 @@
 
         public IGenericRepository<T> Create()
         {
-            return new BiorepositoriesMongoRepository<T>(this.contextProvider);
+            return new BiorepositoriesRepository<T>(this.contextProvider);
         }
     }
 }

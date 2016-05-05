@@ -42,6 +42,7 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
+            await this.ImportCsvFileToMongo<Models.Csv.Collection, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Collection>();
             await this.ImportCsvFileToMongo<Models.Csv.CollectionLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionLabel>();
             await this.ImportCsvFileToMongo<Models.Csv.CollectionPer, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPer>();
             await this.ImportCsvFileToMongo<Models.Csv.CollectionPerLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPerLabel>();
@@ -84,7 +85,7 @@
                     throw new ApplicationException("Deserialized items are not valid.");
                 }
 
-                var repositoryProvider = new BiorepositoriesMongoRepositoryProvider<TEntityModel>(this.contextProvider);
+                var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
                 var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
                 await seeder.Seed(items);
             }

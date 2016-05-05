@@ -4,10 +4,10 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class BiorepositoriesMongoRepository<T> : MongoGenericRepository<T>, IBiorepositoriesMongoRepository<T>
+    public class BiorepositoriesRepository<T> : MongoGenericRepository<T>, IBiorepositoriesRepository<T>
         where T : class
     {
-        public BiorepositoriesMongoRepository(IBiorepositoriesMongoDatabaseProvider provider)
+        public BiorepositoriesRepository(IBiorepositoriesMongoDatabaseProvider provider)
             : base(provider)
         {
         }

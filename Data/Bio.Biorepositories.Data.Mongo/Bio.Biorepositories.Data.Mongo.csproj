@@ -59,10 +59,10 @@
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StaffLabel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BiorepositoriesMongoRepository.cs" />
-    <Compile Include="Repositories\BiorepositoriesMongoRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepository.cs" />
-    <Compile Include="Repositories\Contracts\IBiorepositoriesMongoRepositoryProvider.cs" />
+    <Compile Include="Repositories\BiorepositoriesRepository.cs" />
+    <Compile Include="Repositories\BiorepositoriesRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\IBiorepositoriesRepository.cs" />
+    <Compile Include="Repositories\Contracts\IBiorepositoriesRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

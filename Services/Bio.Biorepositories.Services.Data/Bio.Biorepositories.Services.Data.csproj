@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Models\BiorepositoryCollectionServiceModel.cs" />
     <Compile Include="Services\BiorepositoriesDataService.cs" />
     <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
     <Compile Include="Models\BiorepositoryInstitutionServiceModel.cs" />

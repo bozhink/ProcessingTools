@@ -15,9 +15,9 @@
 
     public class BiorepositoriesDataService : IBiorepositoriesDataService
     {
-        private IBiorepositoriesMongoRepositoryProvider<Institution> repositoryProvider;
+        private IBiorepositoriesRepositoryProvider<Institution> repositoryProvider;
 
-        public BiorepositoriesDataService(IBiorepositoriesMongoRepositoryProvider<Institution> repositoryProvider)
+        public BiorepositoriesDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
