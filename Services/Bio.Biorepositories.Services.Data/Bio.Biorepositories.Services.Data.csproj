@@ -54,6 +54,7 @@
     <Compile Include="Contracts\IBiorepositoriesInstitutionsDataService.cs" />
     <Compile Include="Models\BiorepositoriesInstitutionServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BiorepositoriesPersonalCollectionsDataService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
