@@ -40,7 +40,7 @@
             await this.TagInstitutions(document, namespaceManager, logger, data);
         }
 
-        private async Task TagInstitutionalCodes(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoryInstitution> data)
+        private async Task TagInstitutionalCodes(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoryInstitutionalCodeSerializableModel
             {
@@ -56,7 +56,7 @@
             document.LoadXml(tagger.Xml);
         }
 
-        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoryInstitution> data)
+        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoryInstitutionSerializableModel
             {

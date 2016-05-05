@@ -7,16 +7,14 @@
     using System.Threading.Tasks;
 
     using Contracts;
+    using Factories;
     using Models;
 
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
-    using ProcessingTools.Common.Constants;
 
-    public class BiorepositoriesInstitutionsDataMiner : IBiorepositoriesInstitutionsDataMiner
+    public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerFactory<BiorepositoriesInstitution, BiorepositoriesInstitutionServiceModel>,  IBiorepositoriesInstitutionsDataMiner
     {
-        private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
-
         private IBiorepositoriesInstitutionsDataService service;
 
         public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesInstitutionsDataService service)
@@ -29,7 +27,14 @@
             this.service = service;
         }
 
-        public async Task<IQueryable<BiorepositoryInstitution>> Mine(string content)
+        protected override Func<BiorepositoriesInstitutionServiceModel, BiorepositoriesInstitution> Project => x => new BiorepositoriesInstitution
+        {
+            InstitutionalCode = x.InstitutionalCode,
+            NameOfInstitution = x.NameOfInstitution,
+            Url = x.Url
+        };
+
+        public async Task<IQueryable<BiorepositoriesInstitution>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -38,29 +43,11 @@
 
             Func<BiorepositoriesInstitutionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
 
-            var matches = new List<BiorepositoryInstitution>();
+            var matches = new List<BiorepositoriesInstitution>();
 
-            for (int i = 0; true; i += NumberOfItemsToTake)
-            {
-                var items = (await this.service.Get(i, NumberOfItemsToTake)).ToList();
+            await this.GetMatches(this.service, matches, filter);
 
-                if (items.Count < 1)
-                {
-                    break;
-                }
-
-                var matchedItems = items.Where(filter)
-                    .Select(x => new BiorepositoryInstitution
-                    {
-                        InstitutionalCode = x.InstitutionalCode,
-                        NameOfInstitution = x.NameOfInstitution,
-                        Url = x.Url
-                    });
-
-                matches.AddRange(matchedItems);
-            }
-
-            var result = new HashSet<BiorepositoryInstitution>(matches);
+            var result = new HashSet<BiorepositoriesInstitution>(matches);
             return result.AsQueryable();
         }
     }
