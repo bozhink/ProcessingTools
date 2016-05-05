@@ -17,7 +17,7 @@
         private bool minimalTextSelect;
 
         public XmlSerializableObjectTagger(string xml, IQueryable<T> data, string contentNodesXPathTemplate, XmlNamespaceManager namespaceManager, bool caseSensitive, bool minimalTextSelect, ILogger logger)
-            : base(xml)
+            : base(xml, namespaceManager)
         {
             this.data = data;
             this.contentNodesXPathTemplate = contentNodesXPathTemplate;

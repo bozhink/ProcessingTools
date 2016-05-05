@@ -84,22 +84,23 @@
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
-                try
-                {
-                    await this.seeder.ImportSingleLineTextObjectsFromFile(
-                        $"{dataFilesDirectoryPath}/{fileName}",
-                        (context, line) =>
+
+            try
+            {
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
+                    $"{dataFilesDirectoryPath}/{fileName}",
+                    (context, line) =>
+                    {
+                        context.Institutions.AddOrUpdate(new Institution
                         {
-                            context.Institutions.AddOrUpdate(new Institution
-                            {
-                                Name = line
-                            });
+                            Name = line
                         });
-                }
-                catch (Exception e)
-                {
-                    this.exceptions.Enqueue(e);
-                }
+                    });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
         }
     }
 }

@@ -52,7 +52,8 @@
 
                 Console.WriteLine(seeder.GetType().FullName);
 
-                await ((IDbSeeder)seeder).Seed();
+                var castedSeeder = (IDbSeeder)seeder;
+                await castedSeeder.Seed();
             }
             catch (Exception e)
             {

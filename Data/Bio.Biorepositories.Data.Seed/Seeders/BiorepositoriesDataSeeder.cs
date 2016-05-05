@@ -52,7 +52,7 @@
 
             if (this.exceptions.Count > 0)
             {
-                throw new AggregateException(exceptions);
+                throw new AggregateException(this.exceptions);
             }
         }
 
