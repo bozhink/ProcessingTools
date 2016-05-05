@@ -46,5 +46,17 @@ namespace ProcessingTools.Tagger {
                 this["BiorepositoriesCollectionCodeContentType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("collection")]
+        public string BiorepositoriesCollectionContentType {
+            get {
+                return ((string)(this["BiorepositoriesCollectionContentType"]));
+            }
+            set {
+                this["BiorepositoriesCollectionContentType"] = value;
+            }
+        }
     }
 }

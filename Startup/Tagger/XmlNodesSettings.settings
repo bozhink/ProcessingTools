@@ -8,5 +8,8 @@
     <Setting Name="BiorepositoriesCollectionCodeContentType" Type="System.String" Scope="User">
       <Value Profile="(Default)">dwc:collectionCode</Value>
     </Setting>
+    <Setting Name="BiorepositoriesCollectionContentType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">collection</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -4,7 +4,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot("institutional_code", Namespace = "", IsNullable = false)]
-    public class BiorepositoryInstitutionalCodeSerializableModel
+    public class BiorepositoriesInstitutionalCodeSerializableModel
     {
         [XmlText]
         public string Value { get; set; }

@@ -7,5 +7,6 @@
 
         public const string XLinkHref = "href";
         public const string XLinkType = "type";
+        public const string XLinkTitle = "title";
     }
 }

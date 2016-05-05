@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Models
 {
+    using System.Xml.Schema;
     using System.Xml.Serialization;
     using ProcessingTools.Nlm.Publishing.Constants;
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(NodeNames.NamedContent, Namespace = "", IsNullable = false)]
-    public class BiorepositoryCollectionCodeSerializableModel : NamedContentSerializableModel
+    public class BiorepositoriesCollectionCodeSerializableModel : NamedContentSerializableModel
     {
         [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType
@@ -19,5 +20,8 @@
             {
             }
         }
+
+        [XmlAttribute(AttributeNames.XLinkTitle, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespaceUri)]
+        public string XLinkTitle { get; set; }
     }
 }

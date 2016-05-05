@@ -5,7 +5,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(NodeNames.NamedContent, Namespace = "", IsNullable = false)]
-    public class BiorepositoryInstitutionSerializableModel : NamedContentSerializableModel
+    public class BiorepositoriesInstitutionSerializableModel : NamedContentSerializableModel
     {
         [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType

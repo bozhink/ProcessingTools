@@ -155,9 +155,10 @@
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
-    <Compile Include="Models\BiorepositoryCollectionCodeSerializableModel.cs" />
-    <Compile Include="Models\BiorepositoryInstitutionalCodeSerializableModel.cs" />
-    <Compile Include="Models\BiorepositoryInstitutionSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesCollectionCodeSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesCollectionSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesInstitutionSerializableModel.cs" />
     <Compile Include="Models\ControllerInfo.cs" />
     <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
