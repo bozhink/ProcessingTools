@@ -13,11 +13,11 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
 
-    public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
+    public class BiorepositoriesInstitutionalCollectionsDataService : IBiorepositoriesInstitutionalCollectionsDataService
     {
-        private readonly IBiorepositoriesRepositoryProvider<Institution> repositoryProvider;
+        private readonly IBiorepositoriesRepositoryProvider<Collection> repositoryProvider;
 
-        public BiorepositoriesInstitutionsDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)
+        public BiorepositoriesInstitutionalCollectionsDataService(IBiorepositoriesRepositoryProvider<Collection> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -27,7 +27,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IQueryable<BiorepositoriesInstitutionServiceModel>> GetInstitutions(int skip, int take)
+        public async Task<IQueryable<BiorepositoriesCollectionServiceModel>> GetCollections(int skip, int take)
         {
             if (skip < 0)
             {
@@ -42,14 +42,14 @@
             var repository = this.repositoryProvider.Create();
 
             var result = (await repository.All())
-                .Where(i => i.InstitutionCode.Length > 1 && i.InstitutionName.Length > 1)
+                .Where(i => i.CollectionCode.Length > 1 && i.CollectionName.Length > 1)
                 .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
-                .Select(i => new BiorepositoriesInstitutionServiceModel
+                .Select(i => new BiorepositoriesCollectionServiceModel
                 {
-                    InstitutionalCode = i.InstitutionCode,
-                    NameOfInstitution = i.InstitutionName,
+                    CollectionCode = i.CollectionCode,
+                    CollectionName = i.CollectionName,
                     Url = i.Url
                 })
                 .ToList();
