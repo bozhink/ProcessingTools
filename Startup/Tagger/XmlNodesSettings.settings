@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProcessingTools.Tagger" GeneratedClassName="XmlNodesSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BiorepositoriesInstitutionContentType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">institution</Value>
+    </Setting>
+    <Setting Name="BiorepositoriesCollectionCodeContentType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dwc:collectionCode</Value>
+    </Setting>
+    <Setting Name="BiorepositoriesCollectionContentType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">collection</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

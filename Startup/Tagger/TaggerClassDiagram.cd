@@ -1,0 +1,942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProcessingTools.MainProgram.NinjectConfig" Collapsed="true">
+    <Position X="167" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\NinjectConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.FileProcessor" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>FileProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Messages" Collapsed="true">
+    <Position X="172.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAGEAAAABEAAAAUgAAAAIAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.ProgramSettings" Collapsed="true">
+    <Position X="170.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAhARB1AAmAAAEAQEAAAEIAAHACREBQnESABBSEM=</HashCode>
+      <FileName>ProgramSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.ProgramSettingsBuilder" Collapsed="true">
+    <Position X="172.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgAAACAAYAAAEAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>ProgramSettingsBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Resources" Collapsed="true">
+    <Position X="165.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.SingleFileProcessor" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAECAAAACQgAAQKAAAgAAAAAEAAAAAI=</HashCode>
+      <FileName>SingleFileProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.ControllerInfoProvider" Collapsed="true">
+    <Position X="172.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ControllerInfoProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Program" Collapsed="true">
+    <Position X="168.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Startup" Collapsed="true">
+    <Position X="167" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ExpandLowerTaxaController" Collapsed="true">
+    <Position X="55" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ExpandLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ExtractTaxaController" Collapsed="true">
+    <Position X="89.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ExtractTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.FormatTreatmentsController" Collapsed="true">
+    <Position X="106.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\FormatTreatmentsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.InitialFormatController" Collapsed="true">
+    <Position X="116" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\InitialFormatController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseCoordinatesController" Collapsed="true">
+    <Position X="121.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ParseCoordinatesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaAboveGenusController" Collapsed="true">
+    <Position X="83.75" Y="9.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaAboveGenusController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaBySuffixController" Collapsed="true">
+    <Position X="60.75" Y="9.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaBySuffixController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaWithAphiaController" Collapsed="true">
+    <Position X="66.25" Y="9.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaWithAphiaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaWithCatalogueOfLifeController" Collapsed="true">
+    <Position X="72" Y="9.75" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaWithCatalogueOfLifeController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaWithDataServiceGenericController&lt;TService&gt;" Collapsed="true">
+    <Position X="72.5" Y="8.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaWithDataServiceGenericController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaWithGbifController" Collapsed="true">
+    <Position X="78.25" Y="9.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaWithGbifController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseHigherTaxaWithLocalDbController" Collapsed="true">
+    <Position X="26" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ParseHigherTaxaWithLocalDbController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseLowerTaxaController" Collapsed="true">
+    <Position X="36.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ParseLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseReferencesController" Collapsed="true">
+    <Position X="45" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ParseReferencesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseTreatmentMetaWithAphiaController" Collapsed="true">
+    <Position X="94.5" Y="8.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseTreatmentMetaWithAphiaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseTreatmentMetaWithCatalogueOfLifeController" Collapsed="true">
+    <Position X="98.25" Y="8.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseTreatmentMetaWithCatalogueOfLifeController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ParseTreatmentMetaWithGbifController" Collapsed="true">
+    <Position X="102.75" Y="8.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParseTreatmentMetaWithGbifController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.QueryReplaceController" Collapsed="true">
+    <Position X="91.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\QueryReplaceController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.RemoveAllTaxonNamePartTagsController" Collapsed="true">
+    <Position X="109.5" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\RemoveAllTaxonNamePartTagsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ResolveMediaTypesController" Collapsed="true">
+    <Position X="118.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ResolveMediaTypesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.RunCustomXslTransformController" Collapsed="true">
+    <Position X="124.75" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\RunCustomXslTransformController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagAbbreviationsController" Collapsed="true">
+    <Position X="128" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagAbbreviationsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagAltitudesController" Collapsed="true">
+    <Position X="2" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagAltitudesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagCodesController" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagCodesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagCoordinatesController" Collapsed="true">
+    <Position X="4.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagCoordinatesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagDatesController" Collapsed="true">
+    <Position X="7.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagDatesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagEnvironmentTermsController" Collapsed="true">
+    <Position X="20" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagEnvironmentTermsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagEnvironmentTermsWithExtractController" Collapsed="true">
+    <Position X="29.75" Y="6.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagEnvironmentTermsWithExtractController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagFloatsController" Collapsed="true">
+    <Position X="39.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagFloatsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagGeoEpithetsController" Collapsed="true">
+    <Position X="10.25" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagGeoEpithetsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagGeographicDeviationsController" Collapsed="true">
+    <Position X="13" Y="9.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagGeographicDeviationsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagGeoNamesController" Collapsed="true">
+    <Position X="19.25" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagGeoNamesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagHigherTaxaController" Collapsed="true">
+    <Position X="58" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagHigherTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagInstitutionsController" Collapsed="true">
+    <Position X="22" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagInstitutionsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagLowerTaxaController" Collapsed="true">
+    <Position X="113.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagMorphologicalEpithetsController" Collapsed="true">
+    <Position X="24.75" Y="9.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagMorphologicalEpithetsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagProductsController" Collapsed="true">
+    <Position X="28.25" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagProductsController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagQuantitiesController" Collapsed="true">
+    <Position X="31" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagQuantitiesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagReferencesController" Collapsed="true">
+    <Position X="6.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagReferencesController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagTableFootnoteController" Collapsed="true">
+    <Position X="11.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagTableFootnoteController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagWebLinksController" Collapsed="true">
+    <Position X="14.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TagWebLinksController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TestController" Collapsed="true">
+    <Position X="17.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\TestController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ValidateTaxaController" Collapsed="true">
+    <Position X="23.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ValidateTaxaController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ZooBankCloneJsonController" Collapsed="true">
+    <Position X="33.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ZooBankCloneJsonController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ZooBankCloneXmlController" Collapsed="true">
+    <Position X="42" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ZooBankCloneXmlController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ZooBankGenerateRegistrationXmlController" Collapsed="true">
+    <Position X="47.75" Y="6.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ZooBankGenerateRegistrationXmlController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.TagTypeStatusController" Collapsed="true">
+    <Position X="16.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TagTypeStatusController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Controllers.ValidateExternalLinksController" Collapsed="true">
+    <Position X="51.75" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAI=</HashCode>
+      <FileName>Controllers\ValidateExternalLinksController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Factories.ParseHigherTaxaControllerFactory" Collapsed="true">
+    <Position X="73.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Factories\ParseHigherTaxaControllerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Factories.ParseTreatmentMetaControllerFactory" Collapsed="true">
+    <Position X="99" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Factories\ParseTreatmentMetaControllerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Factories.StringTaggerControllerFactory" Collapsed="true">
+    <Position X="16.25" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Factories\StringTaggerControllerFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Factories.TaggerControllerFactory" Collapsed="true">
+    <Position X="67.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Factories\TaggerControllerFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.EnvoExtractHcmrSerializableModel" Collapsed="true">
+    <Position X="165.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgQAAAAAA=</HashCode>
+      <FileName>Models\EnvoExtractHcmrSerializableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.EnvoTermResponseModel" Collapsed="true">
+    <Position X="167" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgIAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Models\EnvoTermResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.EnvoTermSerializableModel" Collapsed="true">
+    <Position X="168.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAIAAAAAAAAAAAAgAAgAAAAAAA=</HashCode>
+      <FileName>Models\EnvoTermSerializableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.ExternalLinkSerializableModel" Collapsed="true">
+    <Position X="170.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\ExternalLinkSerializableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.BiorepositoryInstitutionalCodeSerializableModel" Collapsed="true">
+    <Position X="165.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAAgAAAAAAA=</HashCode>
+      <FileName>Models\BiorepositoryInstitutionalCodeSerializableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.BiorepositoryInstitutionSerializableModel" Collapsed="true">
+    <Position X="167" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAAAAA=</HashCode>
+      <FileName>Models\BiorepositoryInstitutionSerializableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Models.ControllerInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="170.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ControllerInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectBindings" Collapsed="true">
+    <Position X="165.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectDataBindings" Collapsed="true">
+    <Position X="168.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectDataBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectDataMinersBindings" Collapsed="true">
+    <Position X="170.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectDataMinersBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectHarvestersBindings" Collapsed="true">
+    <Position X="172.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectHarvestersBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectServiceClientsBindings" Collapsed="true">
+    <Position X="165.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectServiceClientsBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Settings.NinjectServicesBindings" Collapsed="true">
+    <Position X="167" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\NinjectServicesBindings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessingTools.MainProgram.Extensions.ControllerExtensions" Collapsed="true">
+    <Position X="168.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ControllerExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IExpandLowerTaxaController" Collapsed="true">
+    <Position X="119.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IExpandLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IExtractTaxaController" Collapsed="true">
+    <Position X="126.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IExtractTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IFormatTreatmentsController" Collapsed="true">
+    <Position X="137" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IFormatTreatmentsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IInitialFormatController" Collapsed="true">
+    <Position X="146.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IInitialFormatController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseCoordinatesController" Collapsed="true">
+    <Position X="155" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseCoordinatesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaAboveGenusController" Collapsed="true">
+    <Position X="33.75" Y="3.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaAboveGenusController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaBySuffixController" Collapsed="true">
+    <Position X="39.25" Y="3.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaBySuffixController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaWithAphiaController" Collapsed="true">
+    <Position X="44.75" Y="3.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaWithAphiaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaWithCatalogueOfLifeController" Collapsed="true">
+    <Position X="50.5" Y="3.25" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaWithDataServiceGenericController&lt;TService&gt;" Collapsed="true">
+    <Position X="45.5" Y="1.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaWithDataServiceGenericController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaWithGbifController" Collapsed="true">
+    <Position X="56.75" Y="3.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaWithGbifController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseHigherTaxaWithLocalDbController" Collapsed="true">
+    <Position X="73" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseHigherTaxaWithLocalDbController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseLowerTaxaController" Collapsed="true">
+    <Position X="80.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseReferencesController" Collapsed="true">
+    <Position X="95.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseReferencesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseTreatmentMetaWithAphiaController" Collapsed="true">
+    <Position X="101" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseTreatmentMetaWithAphiaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseTreatmentMetaWithCatalogueOfLifeController" Collapsed="true">
+    <Position X="112.25" Y="1.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseTreatmentMetaWithCatalogueOfLifeController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IParseTreatmentMetaWithGbifController" Collapsed="true">
+    <Position X="122.5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IParseTreatmentMetaWithGbifController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IQueryReplaceController" Collapsed="true">
+    <Position X="128.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IQueryReplaceController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IRemoveAllTaxonNamePartTagsController" Collapsed="true">
+    <Position X="140" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IRemoveAllTaxonNamePartTagsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IResolveMediaTypesController" Collapsed="true">
+    <Position X="149.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IResolveMediaTypesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IRunCustomXslTransformController" Collapsed="true">
+    <Position X="158" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IRunCustomXslTransformController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagAbbreviationsController" Collapsed="true">
+    <Position X="11" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagAbbreviationsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagAltitudesController" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagAltitudesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagCodesController" Collapsed="true">
+    <Position X="22.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagCodesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagCoordinatesController" Collapsed="true">
+    <Position X="28" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagCoordinatesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagDatesController" Collapsed="true">
+    <Position X="62.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagDatesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagEnvironmentTermsController" Collapsed="true">
+    <Position X="67.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagEnvironmentTermsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagEnvironmentTermsWithExtractController" Collapsed="true">
+    <Position X="76.75" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagEnvironmentTermsWithExtractController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagFloatsController" Collapsed="true">
+    <Position X="87" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagFloatsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagGeoEpithetsController" Collapsed="true">
+    <Position X="98.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagGeoEpithetsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagGeographicDeviationsController" Collapsed="true">
+    <Position X="104.75" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagGeographicDeviationsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagGeoNamesController" Collapsed="true">
+    <Position X="116.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagGeoNamesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITaggerController" Collapsed="true">
+    <Position X="83.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Contracts\ITaggerController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagHigherTaxaController" Collapsed="true">
+    <Position X="131.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagHigherTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagInstitutionsController" Collapsed="true">
+    <Position X="143.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagInstitutionsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagLowerTaxaController" Collapsed="true">
+    <Position X="152.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagLowerTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagMorphologicalEpithetsController" Collapsed="true">
+    <Position X="161.5" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagMorphologicalEpithetsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagProductsController" Collapsed="true">
+    <Position X="14" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagProductsController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagQuantitiesController" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagQuantitiesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagReferencesController" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagReferencesController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagTableFootnoteController" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagTableFootnoteController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagWebLinksController" Collapsed="true">
+    <Position X="64.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagWebLinksController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITestController" Collapsed="true">
+    <Position X="70.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITestController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IValidateTaxaController" Collapsed="true">
+    <Position X="80.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IValidateTaxaController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IZooBankCloneJsonController" Collapsed="true">
+    <Position X="92.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IZooBankCloneJsonController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IZooBankCloneXmlController" Collapsed="true">
+    <Position X="22.25" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IZooBankCloneXmlController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IZooBankGenerateRegistrationXmlController" Collapsed="true">
+    <Position X="108.25" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IZooBankGenerateRegistrationXmlController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IValidationController" Collapsed="true">
+    <Position X="83.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IValidationController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IControllerInfo" Collapsed="true">
+    <Position X="165.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IControllerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.ITagTypeStatusController" Collapsed="true">
+    <Position X="134.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITagTypeStatusController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.MainProgram.Contracts.IValidateExternalLinksController" Collapsed="true">
+    <Position X="83.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IValidateExternalLinksController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

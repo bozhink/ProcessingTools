@@ -1,0 +1,6 @@
+{
+  "dataFilePrefix": "data.",
+  "pathToWordNetDictionary": "C:/bin/dict/",
+  "connectionString": "mongodb://localhost:27017/wordnet",
+  "collectionName": "words"
+}

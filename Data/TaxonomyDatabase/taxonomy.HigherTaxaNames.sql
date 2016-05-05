@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Taxonomy].[HigherTaxaNames]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(60) NOT NULL, 
+    [RankId] UNIQUEIDENTIFIER NOT NULL, 
+    [WhiteListed] BIT NOT NULL DEFAULT 0
+)
