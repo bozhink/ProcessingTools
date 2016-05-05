@@ -6,7 +6,8 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:tp="http://www.plazi.org/taxpub"
-  exclude-result-prefixes="xs">
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  exclude-result-prefixes="xs xsd">
 
   <xsl:output method="xml" indent="yes" encoding="utf-8"  cdata-section-elements="tex-math" />
 

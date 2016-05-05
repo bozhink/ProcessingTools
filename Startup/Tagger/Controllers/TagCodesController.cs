@@ -49,7 +49,7 @@
                 Value = i.InstitutionalCode
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoryInstitutionalCodeSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoryInstitutionalCodeSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, true, true, logger);
 
             await tagger.Tag();
 
@@ -64,7 +64,7 @@
                 Value = i.NameOfInstitution
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoryInstitutionSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoryInstitutionSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, true, true, logger);
 
             await tagger.Tag();
 
