@@ -12,7 +12,6 @@ namespace ProcessingTools.BaseLibrary
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using Contracts;
     using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
@@ -132,26 +131,6 @@ namespace ProcessingTools.BaseLibrary
         }
 
         private static string CodesRemoveNonCodeNodesXslPath => Dictionaries.FileNames.GetOrAdd(CodesRemoveNonCodeNodesXslPathKey, ConfigurationManager.AppSettings[CodesRemoveNonCodeNodesXslPathKey]);
-
-        public void TagInstitutions(IDataProvider dataProvider)
-        {
-            // WARNING: here is set len(name) > 1!
-            string query = @"select [NameOfInstitution] as [name], [Url] as [url] from [grbio].[Biorepositories] where len([NameOfInstitution]) > 1 order by len([NameOfInstitution]) desc;";
-
-            dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(XPathConstants.SelectContentNodesXPath, query, InstitutionTagName);
-            this.Xml = dataProvider.Xml;
-        }
-
-        public void TagInstitutionalCodes(IDataProvider dataProvider)
-        {
-            // WARNING: here is set len(name) > 1!
-            string query = @"select [InstitutionalCode] as [institutional_code], [NameOfInstitution] as [description], [Url] as [url] from [grbio].[Biorepositories] where len([InstitutionalCode]) > 1 order by len([InstitutionalCode]) desc;";
-
-            dataProvider.Xml = this.Xml;
-            dataProvider.ExecuteSimpleReplaceUsingDatabase(XPathConstants.SelectContentNodesXPath, query, InstitutionalCodeTagName, true);
-            this.Xml = dataProvider.Xml;
-        }
 
         public void TagSpecimenCodes()
         {
