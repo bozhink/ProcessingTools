@@ -11,7 +11,7 @@
         [XmlAttribute(AttributeNames.ExtLinkType)]
         public string ExternalLinkType { get; set; }
 
-        [XmlAttribute(AttributeNames.XLinkHref, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespace)]
+        [XmlAttribute(AttributeNames.XLinkHref, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespaceUri)]
         public string Href { get; set; }
 
         [XmlText]
