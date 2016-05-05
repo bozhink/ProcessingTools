@@ -15,7 +15,7 @@
 
     public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerFactory<BiorepositoriesInstitution, BiorepositoriesInstitutionServiceModel>,  IBiorepositoriesInstitutionsDataMiner
     {
-        private IBiorepositoriesInstitutionsDataService service;
+        private readonly IBiorepositoriesInstitutionsDataService service;
 
         public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesInstitutionsDataService service)
         {

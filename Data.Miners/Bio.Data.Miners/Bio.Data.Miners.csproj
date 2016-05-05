@@ -38,6 +38,7 @@
     <Compile Include="Contracts\IBiorepositoriesCollectionsDataMiner.cs" />
     <Compile Include="Contracts\ITypeStatusDataMiner.cs" />
     <Compile Include="Factories\BiorepositoriesDataMinerFactory.cs" />
+    <Compile Include="Miners\BiorepositoriesCollectionsDataMiner.cs" />
     <Compile Include="Miners\BiorepositoriesInstitutionsDataMiner.cs" />
     <Compile Include="Contracts\IBiorepositoriesInstitutionsDataMiner.cs" />
     <Compile Include="Contracts\IEnvoTermsDataMiner.cs" />
