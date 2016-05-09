@@ -60,6 +60,10 @@
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>Configurator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>

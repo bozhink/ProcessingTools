@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<taxa>
+  <taxon white-listed="false">
+    <part>
+      <value>Culicidae</value>
+      <rank>
+        <value>family</value>
+      </rank>
+    </part>
+  </taxon>
+  <taxon white-listed="false">
+    <part>
+      <value>Chilophiurina</value>
+      <rank>
+        <value>suborder</value>
+      </rank>
+    </part>
+  </taxon>
+  <taxon white-listed="true">
+    <part>
+      <value>Aves</value>
+      <rank>
+        <value>class</value>
+      </rank>
+    </part>
+  </taxon>
+  <taxon white-listed="true">
+    <part>
+      <value>Phytomastigophora</value>
+      <rank>
+        <value>class</value>
+      </rank>
+    </part>
+  </taxon>
+  <taxon white-listed="false">
+    <part>
+      <value>Malthinini</value>
+      <rank>
+        <value>tribe</value>
+      </rank>
+    </part>
+  </taxon>
+</taxa>
