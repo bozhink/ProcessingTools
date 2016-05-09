@@ -14,7 +14,7 @@
     public class RankListXmlModelTests
     {
         [TestMethod]
-        public void RankList_Deserialize_ShouldWork()
+        public void RankListXmlModel_Deserialize_ShouldWork()
         {
             const int NumberOfListItems = 5;
             string directoryFileName = ConfigurationManager.AppSettings["DataFilesDirectoryPath"];
@@ -60,7 +60,7 @@
         }
 
         [TestMethod]
-        public void RankList_SerializeObjectWithSingleRankValue_ShouldWork()
+        public void RankListXmlModel_SerializeObjectWithSingleRankValue_ShouldWork()
         {
             const string TaxonName = "Aves";
             const string ClassTaxonRank = "class";
@@ -95,6 +95,8 @@
                     taxon
                 }
             };
+
+            Assert.IsNotNull(list, "List object should not be null.");
 
             XmlDocument document = null;
             using (var stream = new MemoryStream())
@@ -172,7 +174,7 @@
         }
 
         [TestMethod]
-        public void RankList_SerializeObjectWithTwoRankValues_ShouldWork()
+        public void RankListXmlModel_SerializeObjectWithTwoRankValues_ShouldWork()
         {
             const string Aves = "Aves";
             const string ClassTaxonRank1 = "class";
@@ -209,6 +211,8 @@
                     taxon
                 }
             };
+
+            Assert.IsNotNull(list, "List object should not be null.");
 
             XmlDocument document = null;
             using (var stream = new MemoryStream())
@@ -294,7 +298,7 @@
         }
 
         [TestMethod]
-        public void RankList_SerializeObjectWithSingleRankValue_WithNotSetWhiteListedAttribute_ShouldSetDefaultValueFalse()
+        public void RankListXmlModel_SerializeObjectWithSingleRankValue_WithNotSetWhiteListedAttribute_ShouldSetDefaultValueFalse()
         {
             const string TaxonName = "Malthinini";
             const string ClassTaxonRank = "tribe";
@@ -328,6 +332,8 @@
                     taxon
                 }
             };
+
+            Assert.IsNotNull(list, "List object should not be null.");
 
             XmlDocument document = null;
             using (var stream = new MemoryStream())

@@ -9,5 +9,8 @@
         public const string RankListTaxonXmlPartValueElementName = "value";
         public const string RankListTaxonXmlPartRankElementName = "rank";
         public const string RankListTaxonXmlPartRankValueElementName = "value";
+
+        public const string BlackListXmlRootNodeName = "list";
+        public const string BlackListXmlItemElementName = "item";
     }
 }
