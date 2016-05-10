@@ -42,7 +42,7 @@
         {
             var textContent = document.GetTextContent();
             await this.TagInstitutions(document, namespaceManager, logger, textContent);
-            await this.TagCollections(document, namespaceManager, logger, textContent);
+            ////await this.TagCollections(document, namespaceManager, logger, textContent);
         }
 
         private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, string textContent)
