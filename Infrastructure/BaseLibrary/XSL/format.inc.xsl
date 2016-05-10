@@ -9,6 +9,7 @@
   exclude-result-prefixes="xs">
 
   <xsl:include href="geo/geo-json.xsl" />
+  <xsl:include href="Floats/format-tables.xsl"/>
 
   <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
 
