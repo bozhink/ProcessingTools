@@ -112,6 +112,9 @@
         <xsl:when test="starts-with($lower-case, 'comparison')">
           <xsl:text>comparisons</xsl:text>
         </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'comparative notes')">
+          <xsl:text>comparisons</xsl:text>
+        </xsl:when>
         <xsl:when test="starts-with($lower-case, 'habitat and biology')">
           <xsl:text>biology|habitat</xsl:text>
         </xsl:when>
