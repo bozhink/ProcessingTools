@@ -39,15 +39,22 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var externalLinks = (await this.harvester.Harvest(document.DocumentElement))
-                .Select(e => new UrlServiceModel
-                {
-                    BaseAddress = e.BaseAddress,
-                    Address = e.Uri
-                })
-                .ToArray();
+            var externalLinks = (await this.harvester.Harvest(document.DocumentElement));
 
-            var result = await this.service.Validate(externalLinks);
+            if (externalLinks == null)
+            {
+                logger?.Log(LogType.Info, "No external links are found.");
+                return;
+            }
+
+            var linksToValidate = externalLinks.Select(e => new UrlServiceModel
+            {
+                BaseAddress = e.BaseAddress,
+                Address = e.Uri
+            })
+            .ToArray();
+
+            var result = await this.service.Validate(linksToValidate);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /")
