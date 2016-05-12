@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy
 {
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
@@ -402,7 +403,11 @@
                     for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>\s*\)?\s*<species>[^<>]*</species>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
                     {
                         string replace1 = m.Value;
-                        string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", string.Empty);
+
+                        char[] separators = new char[] { ' ', ',', '.' };
+                        string infraSpecificRank = Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1").Split(separators, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+
+                        Console.WriteLine(infraSpecificRank);
 
                         string rank = rankResolver.Resolve(infraSpecificRank);
 
