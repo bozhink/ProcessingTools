@@ -91,6 +91,9 @@
         <xsl:when test="starts-with($lower-case, 'description')">
           <xsl:text>description</xsl:text>
         </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'dimensions')">
+          <xsl:text>description</xsl:text>
+        </xsl:when>
         <xsl:when test="starts-with($lower-case, 'redescription')">
           <xsl:text>redescription</xsl:text>
         </xsl:when>
@@ -123,6 +126,9 @@
         </xsl:when>
         <xsl:when test="starts-with($lower-case, 'habitat')">
           <xsl:text>habitat</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'phylogenetic data')">
+          <xsl:text>phylogenetic data</xsl:text>
         </xsl:when>
         <xsl:when test="contains($lower-case, 'distribution')">
           <xsl:text>distribution</xsl:text>
