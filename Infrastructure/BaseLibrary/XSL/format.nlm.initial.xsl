@@ -130,6 +130,9 @@
         <xsl:when test="starts-with($lower-case, 'phylogenetic data')">
           <xsl:text>phylogenetic data</xsl:text>
         </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'ecoregion')">
+          <xsl:text>distribution</xsl:text>
+        </xsl:when>
         <xsl:when test="contains($lower-case, 'distribution')">
           <xsl:text>distribution</xsl:text>
         </xsl:when>
