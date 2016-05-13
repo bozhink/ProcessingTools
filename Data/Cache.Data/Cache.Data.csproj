@@ -50,15 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Models\ValidationCacheEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisClientProvider.cs" />
     <Compile Include="Repositories\Contracts\IValidationCacheDataRepository.cs" />
     <Compile Include="Repositories\ValidationCacheDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cache.Data.Models\Cache.Data.Models.csproj">
-      <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>
-      <Name>Cache.Data.Models</Name>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
