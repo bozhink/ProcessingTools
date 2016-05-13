@@ -39,7 +39,7 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var externalLinks = (await this.harvester.Harvest(document.DocumentElement));
+            var externalLinks = await this.harvester.Harvest(document.DocumentElement);
 
             if (externalLinks == null)
             {
