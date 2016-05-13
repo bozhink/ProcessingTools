@@ -127,7 +127,7 @@
 
                 var context = this.contextProvider.Create();
 
-                for (int i = 0; true; i++)
+                for (int i = 0; true; ++i)
                 {
                     try
                     {
@@ -140,7 +140,8 @@
                             .Select(taxon => new TaxonName
                             {
                                 Name = taxon.Name,
-                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank)).ToList()
+                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank)).ToList(),
+                                WhiteListed = taxon.IsWhiteListed
                             })
                             .ToArray();
 
