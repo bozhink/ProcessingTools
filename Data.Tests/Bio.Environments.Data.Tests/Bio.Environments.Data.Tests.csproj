@@ -65,6 +65,10 @@
   <ItemGroup>
     <Compile Include="BioEnvironmentsDbContextFactoryTests.cs" />
     <Compile Include="BioEnvironmentsDbContextProviderTests.cs" />
+    <Compile Include="BioEnvironmentsRepositoryProviderTests.cs" />
+    <Compile Include="BioEnvironmentsRepositoryTests.cs" />
+    <Compile Include="Mocks\ContextMock.cs" />
+    <Compile Include="Models\Tweet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

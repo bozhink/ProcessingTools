@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Tests
+﻿namespace ProcessingTools.Bio.Environments.Data.Tests
 {
     using System;
 
@@ -7,22 +7,22 @@
     using Models;
     using Moq;
 
-    using ProcessingTools.Bio.Data.Contracts;
-    using ProcessingTools.Bio.Data.Repositories;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Repositories;
+    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     [TestClass]
-    public class BioDataRepositoryTests
+    public class BioEnvironmentsRepositoryTests
     {
-        private IBioDbContextProvider contextProvider;
+        private IBioEnvironmentsDbContextProvider contextProvider;
 
         [TestInitialize]
         public void Initialize()
         {
             var contextMock = new ContextMock();
 
-            var contextProviderMock = new Mock<IBioDbContextProvider>();
+            var contextProviderMock = new Mock<IBioEnvironmentsDbContextProvider>();
             contextProviderMock
                 .Setup(contextProvider => contextProvider.Create())
                 .Returns(contextMock.MockObject.Object);
@@ -31,16 +31,16 @@
         }
 
         [TestMethod]
-        public void BioDataRepository_WithValidParametersInConstructor_ShouldReturnValidObject()
+        public void BioEnvironmentsRepository_WithValidParametersInConstructor_ShouldReturnValidObject()
         {
-            var repository = new BioDataRepository<Tweet>(this.contextProvider);
+            var repository = new BioEnvironmentsRepository<Tweet>(this.contextProvider);
 
             Assert.IsNotNull(repository, "Repository should not be null.");
 
             Assert.IsInstanceOfType(
                 repository,
-                typeof(IBioDataRepository<Tweet>),
-                $"Repository should be a valid {nameof(IBioDataRepository<Tweet>)} object.");
+                typeof(IBioEnvironmentsRepository<Tweet>),
+                $"Repository should be a valid {nameof(IBioEnvironmentsRepository<Tweet>)} object.");
 
             Assert.IsInstanceOfType(
                 repository,
@@ -50,17 +50,17 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void BioDataRepository_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullException()
+        public void BioEnvironmentsRepository_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullException()
         {
-            var repository = new BioDataRepository<Tweet>(null);
+            var repository = new BioEnvironmentsRepository<Tweet>(null);
         }
 
         [TestMethod]
-        public void BioDataRepository_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void BioEnvironmentsRepository_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             try
             {
-                var repository = new BioDataRepository<Tweet>(null);
+                var repository = new BioEnvironmentsRepository<Tweet>(null);
             }
             catch (ArgumentNullException e)
             {
@@ -71,17 +71,17 @@
         [TestMethod]
         [Timeout(2000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void BioDataRepository_AddNullEntity_ShouldThrowArgumentNullException()
+        public void BioEnvironmentsRepository_AddNullEntity_ShouldThrowArgumentNullException()
         {
-            var repository = new BioDataRepository<Tweet>(this.contextProvider);
+            var repository = new BioEnvironmentsRepository<Tweet>(this.contextProvider);
             repository.Add(null).Wait();
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void BioDataRepository_AddNullEntity_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void BioEnvironmentsRepository_AddNullEntity_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
-            var repository = new BioDataRepository<Tweet>(this.contextProvider);
+            var repository = new BioEnvironmentsRepository<Tweet>(this.contextProvider);
 
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Tests
+﻿namespace ProcessingTools.Bio.Environments.Data.Tests
 {
     using System;
 
@@ -7,40 +7,40 @@
     using Models;
     using Moq;
 
-    using ProcessingTools.Bio.Data.Contracts;
-    using ProcessingTools.Bio.Data.Repositories;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Repositories;
+    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
     using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     [TestClass]
-    public class BioDataRepositoryProviderTests
+    public class BioEnvironmentsRepositoryProviderTests
     {
-        private IBioDbContextProvider contextProvider;
+        private IBioEnvironmentsDbContextProvider contextProvider;
 
         [TestInitialize]
         public void Initialize()
         {
-            var contextProviderMock = new Mock<IBioDbContextProvider>();
+            var contextProviderMock = new Mock<IBioEnvironmentsDbContextProvider>();
 
             contextProviderMock
                 .Setup(contextProvider => contextProvider.Create())
-                .Returns(new Mock<BioDbContext>("Fake connection string").Object);
+                .Returns(new Mock<BioEnvironmentsDbContext>("Fake connection string").Object);
 
             this.contextProvider = contextProviderMock.Object;
         }
 
         [TestMethod]
-        public void BioDataRepositoryProvider_WithValidParametersInConstructor_ShouldReturnValidObject()
+        public void BioEnvironmentsRepositoryProvider_WithValidParametersInConstructor_ShouldReturnValidObject()
         {
-            var repositoryProvider = new BioDataRepositoryProvider<Tweet>(this.contextProvider);
+            var repositoryProvider = new BioEnvironmentsRepositoryProvider<Tweet>(this.contextProvider);
 
             Assert.IsNotNull(repositoryProvider, "RepositoryProvider should not be null.");
 
             Assert.IsInstanceOfType(
                 repositoryProvider,
-                typeof(IBioDataRepositoryProvider<Tweet>),
-                $"RepositoryProvider should be a valid {nameof(IBioDataRepositoryProvider<Tweet>)} object.");
+                typeof(IBioEnvironmentsRepositoryProvider<Tweet>),
+                $"RepositoryProvider should be a valid {nameof(IBioEnvironmentsRepositoryProvider<Tweet>)} object.");
 
             Assert.IsInstanceOfType(
                 repositoryProvider,
@@ -50,17 +50,17 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void BioDataRepositoryProvider_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullException()
+        public void BioEnvironmentsRepositoryProvider_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullException()
         {
-            var repositoryProvider = new BioDataRepositoryProvider<Tweet>(null);
+            var repositoryProvider = new BioEnvironmentsRepositoryProvider<Tweet>(null);
         }
 
         [TestMethod]
-        public void BioDataRepositoryProvider_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void BioEnvironmentsRepositoryProvider_WithNullContextFactoryInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             try
             {
-                var repositoryProvider = new BioDataRepositoryProvider<Tweet>(null);
+                var repositoryProvider = new BioEnvironmentsRepositoryProvider<Tweet>(null);
             }
             catch (ArgumentNullException e)
             {
@@ -69,9 +69,9 @@
         }
 
         [TestMethod]
-        public void BioDataRepositoryProvider_Create_ShouldReturnValidObject()
+        public void BioEnvironmentsRepositoryProvider_Create_ShouldReturnValidObject()
         {
-            var repositoryProvider = new BioDataRepositoryProvider<Tweet>(this.contextProvider);
+            var repositoryProvider = new BioEnvironmentsRepositoryProvider<Tweet>(this.contextProvider);
 
             var repository = repositoryProvider.Create();
 
@@ -79,8 +79,8 @@
 
             Assert.IsInstanceOfType(
                 repository,
-                typeof(BioDataRepository<Tweet>),
-                $"Repository should be a valid {nameof(BioDataRepository<Tweet>)} object.");
+                typeof(BioEnvironmentsRepository<Tweet>),
+                $"Repository should be a valid {nameof(BioEnvironmentsRepository<Tweet>)} object.");
 
             Assert.IsInstanceOfType(
                 repository,
