@@ -5,6 +5,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Cache.Data;
     using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache;
@@ -18,7 +19,7 @@
         [TestInitialize]
         public void Initialize()
         {
-            var repository = new ValidationCacheDataRepository();
+            var repository = new ValidationCacheDataRepository(new RedisClientProvider());
             this.cacheService = new ValidationCacheService(repository);
         }
 
@@ -37,7 +38,8 @@
         }
 
         [TestMethod]
-        [Ignore]
+        [Timeout(2000)]
+        //[Ignore]
         public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_SchouldReturnTwoValidatedItems()
         {
             int i = 0;
@@ -47,7 +49,9 @@
             }).ToList();
 
             var service = new UrlValidationService(this.cacheService);
-            var result = service.Validate(items.ToArray()).Result.ToList();
+            var result = service.Validate(items.ToArray()).Result
+                .OrderBy(u => u.ValidatedObject.Address)
+                .ToList();
 
             Assert.AreEqual(2, result.Count, "The number of returned items should be 2.");
 
