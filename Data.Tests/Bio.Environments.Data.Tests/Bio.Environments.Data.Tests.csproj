@@ -64,6 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BioEnvironmentsDbContextFactoryTests.cs" />
+    <Compile Include="BioEnvironmentsDbContextProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
