@@ -14,7 +14,7 @@
         {
             int maxId;
 
-            if (list.Any())
+            if (list.Count > 0)
             {
                 maxId = list.Max(i => i.Deserialize<Entity>().Id);
             }
