@@ -21,7 +21,7 @@
         }
 
         [TestMethod]
-        public void ValidationCacheDataRepository_WithDefaultConstructor_ShouldReturnValidObject()
+        public void ValidationCacheDataRepository_WithValidParametersInConstructor_ShouldReturnValidObject()
         {
             var repository = new ValidationCacheDataRepository(this.provider);
             Assert.IsNotNull(repository, "Repository should not be null.");
