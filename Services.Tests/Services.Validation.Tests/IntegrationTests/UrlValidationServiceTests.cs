@@ -39,7 +39,7 @@
 
         [TestMethod]
         [Timeout(2000)]
-        //[Ignore]
+        [Ignore]
         public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_SchouldReturnTwoValidatedItems()
         {
             int i = 0;
