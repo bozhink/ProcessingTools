@@ -2,6 +2,6 @@
 {
     public static class CachingConstants
     {
-        public const int WaitAddDataToCacheTimeoutMilliseconds = 1000;
+        public const int WaitAddDataToCacheTimeoutMilliseconds = 5000;
     }
 }
