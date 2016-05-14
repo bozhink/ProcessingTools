@@ -7,7 +7,7 @@
 
     public class RedisClientProviderMock : IRedisClientProvider
     {
-        private readonly FakeIRedisList list;
+        private FakeIRedisList list;
 
         public RedisClientProviderMock()
         {
@@ -19,6 +19,10 @@
             var redisClientMock = new Mock<IRedisClient>();
             redisClientMock.Setup(client => client.Lists[It.IsAny<string>()])
                 .Returns(this.list);
+
+            redisClientMock.Setup(client => client.Remove(It.IsAny<string>()))
+                .Callback((string key) => this.list = new FakeIRedisList())
+                .Returns(true);
 
             return redisClientMock.Object;
         }

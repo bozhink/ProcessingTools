@@ -161,10 +161,10 @@
             this.tweet.Id = 0;
             repository.Add(FakeContextKey, this.tweet).Wait();
 
-            Assert.AreEqual(1, this.tweet.Id, "Id od inserted object should be 1.");
+            Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
             var items = repository.All(FakeContextKey).Result.ToList();
-            Assert.AreEqual(1, items.Count, "Number od items should be 1.");
+            Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
             Assert.AreEqual(this.tweet.Id, firstItem.Id, "Id should match.");
@@ -189,10 +189,10 @@
 
                 repository.Add(FakeContextKey, tweet).Wait();
 
-                Assert.AreEqual(i + 1, tweet.Id, $"Id od inserted object should be {i + 1}.");
+                Assert.AreEqual(i + 1, tweet.Id, $"Id of inserted object should be {i + 1}.");
 
                 var items = repository.All(FakeContextKey).Result.ToList();
-                Assert.AreEqual(i + 1, items.Count, "Number od items should be 1.");
+                Assert.AreEqual(i + 1, items.Count, "Number of items should be 1.");
 
                 var lastItem = repository.All(FakeContextKey, i, 1).Result.FirstOrDefault();
                 Assert.AreEqual(tweet.Id, lastItem.Id, "Id should match.");
@@ -391,6 +391,104 @@
             {
                 Assert.AreEqual("take", e.ParamName, "ParamName should have value 'take'.");
             }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RedisGenericRepository_DeleteWithNullContext_ShouldThow()
+        {
+            var repository = new RedisGenericRepository<Tweet>(this.provider);
+            repository.Delete(null).Wait();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void RedisGenericRepository_DeleteWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        {
+            try
+            {
+                var repository = new RedisGenericRepository<Tweet>(this.provider);
+                repository.Delete(null).Wait();
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.AreEqual("context", e.ParamName, "ParamName should have value 'context'.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThow()
+        {
+            var repository = new RedisGenericRepository<Tweet>(this.provider);
+            repository.Delete(string.Empty).Wait();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        {
+            try
+            {
+                var repository = new RedisGenericRepository<Tweet>(this.provider);
+                repository.Delete(string.Empty).Wait();
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.AreEqual("context", e.ParamName, "ParamName should have value 'context'.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThow()
+        {
+            var repository = new RedisGenericRepository<Tweet>(this.provider);
+            repository.Delete("     ").Wait();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        {
+            try
+            {
+                var repository = new RedisGenericRepository<Tweet>(this.provider);
+                repository.Delete("     ").Wait();
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.AreEqual("context", e.ParamName, "ParamName should have value 'context'.");
+            }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void RedisGenericRepository_DeleteValidContext_ShouldWork()
+        {
+            var repository = new RedisGenericRepository<Tweet>(this.provider);
+
+            // Create the context if it does not exist.
+            this.tweet.Id = 0;
+            repository.Add(FakeContextKey, this.tweet).Wait();
+
+            Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
+
+            var items = repository.All(FakeContextKey).Result.ToList();
+            Assert.AreEqual(1, items.Count, "Number of items should be 1.");
+
+            var firstItem = items.FirstOrDefault();
+            Assert.AreEqual(this.tweet.Id, firstItem.Id, "Id should match.");
+            Assert.AreEqual(this.tweet.PostedOn.ToString(), firstItem.PostedOn.ToString(), "PostedOn should match.");
+            Assert.AreEqual(this.tweet.Content, firstItem.Content, "Content should match.");
+
+            repository.Delete(FakeContextKey).Wait();
+
+            items = repository.All(FakeContextKey).Result.ToList();
+            Assert.AreEqual(0, items.Count, "Number of items after deletion of context should be 0.");
         }
     }
 }
