@@ -91,7 +91,7 @@
         <xsl:when test="$lower-case = 'type'">
           <xsl:text>material</xsl:text>
         </xsl:when>
-        <xsl:when test="$lower-case = 'notes' or $lower-case = 'note'">
+        <xsl:when test="$lower-case = 'notes' or $lower-case = 'note' or $lower-case = 'biological notes'">
           <xsl:text>notes</xsl:text>
         </xsl:when>
         <xsl:when test="starts-with($lower-case, 'diagnosis')">
@@ -144,6 +144,12 @@
         </xsl:when>
         <xsl:when test="starts-with($lower-case, 'ecoregion')">
           <xsl:text>distribution</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'natural history')">
+          <xsl:text>natural-history</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'comment')">
+          <xsl:text>comments</xsl:text>
         </xsl:when>
         <xsl:when test="contains($lower-case, 'distribution')">
           <xsl:text>distribution</xsl:text>
