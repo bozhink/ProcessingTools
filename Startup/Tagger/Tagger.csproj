@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{553469FF-345B-4BCD-AACA-3D447B23D80A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProcessingTools.Tagger</RootNamespace>
+    <AssemblyName>Tagger</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectConfig.cs" />
+    <Compile Include="Contracts\IControllerInfo.cs" />
+    <Compile Include="Contracts\IExpandLowerTaxaController.cs" />
+    <Compile Include="Contracts\IExtractTaxaController.cs" />
+    <Compile Include="Contracts\IFormatTreatmentsController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaAboveGenusController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaBySuffixController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithDataServiceGenericController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithGbifController.cs" />
+    <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
+    <Compile Include="Contracts\IParseLowerTaxaController.cs" />
+    <Compile Include="Contracts\IParseTreatmentMetaWithAphiaController.cs" />
+    <Compile Include="Contracts\IParseTreatmentMetaWithCatalogueOfLifeController.cs" />
+    <Compile Include="Contracts\IParseTreatmentMetaWithGbifController.cs" />
+    <Compile Include="Contracts\IQueryReplaceController.cs" />
+    <Compile Include="Contracts\IRemoveAllTaxonNamePartTagsController.cs" />
+    <Compile Include="Contracts\IRunCustomXslTransformController.cs" />
+    <Compile Include="Contracts\ITagAbbreviationsController.cs" />
+    <Compile Include="Contracts\ITagCodesController.cs" />
+    <Compile Include="Contracts\ITagDatesController.cs" />
+    <Compile Include="Contracts\ITagFloatsController.cs" />
+    <Compile Include="Contracts\ITagGeographicDeviationsController.cs" />
+    <Compile Include="Contracts\IInitialFormatController.cs" />
+    <Compile Include="Contracts\IParseCoordinatesController.cs" />
+    <Compile Include="Contracts\IParseReferencesController.cs" />
+    <Compile Include="Contracts\IResolveMediaTypesController.cs" />
+    <Compile Include="Contracts\ITagAltitudesController.cs" />
+    <Compile Include="Contracts\ITagCoordinatesController.cs" />
+    <Compile Include="Contracts\ITagEnvironmentTermsController.cs" />
+    <Compile Include="Contracts\ITagEnvironmentTermsWithExtractController.cs" />
+    <Compile Include="Contracts\ITagGeoEpithetsController.cs" />
+    <Compile Include="Contracts\ITagGeoNamesController.cs" />
+    <Compile Include="Contracts\ITaggerController.cs" />
+    <Compile Include="Contracts\ITagHigherTaxaController.cs" />
+    <Compile Include="Contracts\ITagInstitutionsController.cs" />
+    <Compile Include="Contracts\ITagLowerTaxaController.cs" />
+    <Compile Include="Contracts\ITagMorphologicalEpithetsController.cs" />
+    <Compile Include="Contracts\ITagProductsController.cs" />
+    <Compile Include="Contracts\ITagQuantitiesController.cs" />
+    <Compile Include="Contracts\ITagReferencesController.cs" />
+    <Compile Include="Contracts\ITagSpecimenCountController.cs" />
+    <Compile Include="Contracts\ITagTableFootnoteController.cs" />
+    <Compile Include="Contracts\ITagTypeStatusController.cs" />
+    <Compile Include="Contracts\ITagWebLinksController.cs" />
+    <Compile Include="Contracts\ITestController.cs" />
+    <Compile Include="Contracts\IValidateExternalLinksController.cs" />
+    <Compile Include="Contracts\IValidateTaxaController.cs" />
+    <Compile Include="Contracts\INotAwaitableController.cs" />
+    <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
+    <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
+    <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="ControllerInfoProvider.cs" />
+    <Compile Include="Controllers\TagSpecimenCountController.cs" />
+    <Compile Include="Controllers\TagTypeStatusController.cs" />
+    <Compile Include="Controllers\ValidateExternalLinksController.cs" />
+    <Compile Include="Models\BiorepositoriesCollectionCodeSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesCollectionSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
+    <Compile Include="Models\BiorepositoriesInstitutionSerializableModel.cs" />
+    <Compile Include="Models\ControllerInfo.cs" />
+    <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
+    <Compile Include="Controllers\ExtractTaxaController.cs" />
+    <Compile Include="Controllers\FormatTreatmentsController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaAboveGenusController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaBySuffixController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithAphiaController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithCatalogueOfLifeController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithDataServiceGenericController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithGbifController.cs" />
+    <Compile Include="Controllers\ParseHigherTaxaWithLocalDbController.cs" />
+    <Compile Include="Controllers\ParseLowerTaxaController.cs" />
+    <Compile Include="Controllers\ParseTreatmentMetaWithAphiaController.cs" />
+    <Compile Include="Controllers\ParseTreatmentMetaWithCatalogueOfLifeController.cs" />
+    <Compile Include="Controllers\ParseTreatmentMetaWithGbifController.cs" />
+    <Compile Include="Controllers\QueryReplaceController.cs" />
+    <Compile Include="Controllers\RemoveAllTaxonNamePartTagsController.cs" />
+    <Compile Include="Controllers\RunCustomXslTransformController.cs" />
+    <Compile Include="Controllers\TagAbbreviationsController.cs" />
+    <Compile Include="Controllers\TagCodesController.cs" />
+    <Compile Include="Controllers\TagDatesController.cs" />
+    <Compile Include="Controllers\TagFloatsController.cs" />
+    <Compile Include="Controllers\TagGeographicDeviationsController.cs" />
+    <Compile Include="Controllers\InitialFormatController.cs" />
+    <Compile Include="Controllers\ParseCoordinatesController.cs" />
+    <Compile Include="Controllers\ParseReferencesController.cs" />
+    <Compile Include="Controllers\ResolveMediaTypesController.cs" />
+    <Compile Include="Controllers\TagAltitudesController.cs" />
+    <Compile Include="Controllers\TagCoordinatesController.cs" />
+    <Compile Include="Controllers\TagEnvironmentTermsController.cs" />
+    <Compile Include="Controllers\TagEnvironmentTermsWithExtractController.cs" />
+    <Compile Include="Controllers\TagGeoEpithetsController.cs" />
+    <Compile Include="Controllers\TagGeoNamesController.cs" />
+    <Compile Include="Controllers\TagHigherTaxaController.cs" />
+    <Compile Include="Controllers\TagInstitutionsController.cs" />
+    <Compile Include="Controllers\TagLowerTaxaController.cs" />
+    <Compile Include="Controllers\TagMorphologicalEpithetsController.cs" />
+    <Compile Include="Controllers\TagProductsController.cs" />
+    <Compile Include="Controllers\TagQuantitiesController.cs" />
+    <Compile Include="Controllers\TagReferencesController.cs" />
+    <Compile Include="Controllers\TagTableFootnoteController.cs" />
+    <Compile Include="Controllers\TagWebLinksController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\ValidateTaxaController.cs" />
+    <Compile Include="Controllers\ZooBankCloneJsonController.cs" />
+    <Compile Include="Controllers\ZooBankCloneXmlController.cs" />
+    <Compile Include="Controllers\ZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Factories\ParseHigherTaxaControllerFactory.cs" />
+    <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
+    <Compile Include="Factories\StringTaggerControllerFactory.cs" />
+    <Compile Include="Factories\TaggerControllerFactory.cs" />
+    <Compile Include="FileProcessor.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnvoExtractHcmrSerializableModel.cs" />
+    <Compile Include="Models\EnvoTermResponseModel.cs" />
+    <Compile Include="Models\EnvoTermSerializableModel.cs" />
+    <Compile Include="Models\ExternalLinkSerializableModel.cs" />
+    <Compile Include="Models\NamedContentSerializableModel.cs" />
+    <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\NinjectBindings.cs" />
+    <Compile Include="ProgramSettingsBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NinjectDataBindings.cs" />
+    <Compile Include="Settings\NinjectDataMinersBindings.cs" />
+    <Compile Include="Settings\NinjectHarvestersBindings.cs" />
+    <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
+    <Compile Include="Settings\NinjectServicesBindings.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ProgramSettings.cs" />
+    <Compile Include="SingleFileProcessor.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="XmlNodesSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>XmlNodesSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="TaggerClassDiagram.cd" />
+    <None Include="XmlNodesSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>XmlNodesSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
+      <Name>Bio.Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
+      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
+      <Name>Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
+      <Name>Geo.Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
+      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
+      <Name>Bio.Biorepositories.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
+      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
+      <Name>Bio.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data.Models\Cache.Data.Models.csproj">
+      <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>
+      <Name>Cache.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
+      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
+      <Name>Cache.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
+      <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
+      <Name>Data.Common.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data\Data.csproj">
+      <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
+      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
+      <Name>Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Mediatype.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
+      <Name>Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Attributes\Attributes.csproj">
+      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
+      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
+      <Name>DocumentProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\BaseLibrary\BaseLibrary.csproj">
+      <Project>{25195d4b-ebd2-487f-84a6-c2cd8850450d}</Project>
+      <Name>BaseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
+      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
+      <Name>Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
+      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
+      <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
+      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
+      <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.csproj">
+      <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.PaleobiologyDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
+      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
+      <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
+      <Name>Bio.ServiceClient.ExtractHcmr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+      <Project>{b22dd52c-95d5-47d3-b48c-0ec692ab8051}</Project>
+      <Name>Bio.Biorepositories.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Services.Data\Bio.Services.Data.csproj">
+      <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
+      <Name>Bio.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
+      <Name>Geo.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Cache\Services.Cache.csproj">
+      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
+      <Name>Services.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Validation\Services.Validation.csproj">
+      <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
+      <Name>Services.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MessageTexts\ExtractAllTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractHigherTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractLowerTaxaMessage.txt" />
+    <Content Include="MessageTexts\HelpMessage.txt" />
+    <Content Include="MessageTexts\WriteOutputFileMessage.txt" />
+    <Content Include="Resources\ContextWrapper.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\Desktop.Analyzers.1.1.0\analyzers\dotnet\cs\Desktop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Desktop.Analyzers.1.1.0\analyzers\dotnet\cs\Desktop.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.AnalyzerPowerPack.1.1.0\analyzers\dotnet\cs\Microsoft.AnalyzerPowerPack.Common.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.AnalyzerPowerPack.1.1.0\analyzers\dotnet\cs\Microsoft.AnalyzerPowerPack.CSharp.dll" />
+    <Analyzer Include="..\..\packages\System.Runtime.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\System.Runtime.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\System.Runtime.InteropServices.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.InteropServices.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\System.Runtime.InteropServices.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.InteropServices.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\System.Security.Cryptography.Hashing.Algorithms.Analyzers.1.1.0\analyzers\dotnet\cs\System.Security.Cryptography.Hashing.Algorithms.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\System.Security.Cryptography.Hashing.Algorithms.Analyzers.1.1.0\analyzers\dotnet\cs\System.Security.Cryptography.Hashing.Algorithms.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

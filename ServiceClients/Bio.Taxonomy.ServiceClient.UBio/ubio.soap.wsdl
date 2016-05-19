@@ -1,0 +1,931 @@
+<?xml version="1.0"?><definitions name="NamebankService" targetNamespace="urn:NamebankService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:NamebankService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<types xmlns="http://schemas.xmlsoap.org/wsdl/">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:NamebankService">
+<complexType name="ArrayOfStrings">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="helloWorldReturn">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="outmessage" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="personObject">
+<all>
+<element name="prefix" type="xsd:string" />
+<element name="first" type="xsd:string" />
+<element name="last" type="xsd:string" />
+<element name="suffix" type="xsd:string" />
+<element name="familiar" type="xsd:string" />
+<element name="email" type="xsd:string" />
+<element name="shortName" type="xsd:string" />
+<element name="agentID" type="xsd:int" />
+<element name="editorClass" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="personArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:personObject[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="organizationObject">
+<all>
+<element name="orgName" type="xsd:string" />
+<element name="acronym" type="xsd:string" />
+<element name="url" type="xsd:string" />
+<element name="shortName" type="xsd:string" />
+<element name="agentID" type="xsd:int" />
+<element name="editorClass" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="organizationArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:organizationObject[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="splitObject">
+<all>
+<element name="type" type="xsd:string" />
+<element name="string" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="splitArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:splitObject[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="serviceData">
+<all>
+<element name="currentVersion" type="xsd:string" />
+<element name="dateStamp" type="xsd:string" />
+<element name="timeStamp" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="intarray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:int[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="recordedName">
+<all>
+<element name="namebankID" type="xsd:int" />
+<element name="nameString" type="xsd:string" />
+<element name="fullNameString" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="homotypicSynonymsArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:recordedName[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="classificationData">
+<all>
+<element name="classificationTitleID" type="xsd:int" />
+<element name="classificationTitle" type="xsd:string" />
+<element name="classificationDescription" type="xsd:string" />
+<element name="classificationRoot" type="xsd:int" />
+<element name="classificationTitleIDParent" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="ancestor">
+<all>
+<element name="classificationBankID" type="xsd:int" />
+<element name="namebankID" type="xsd:int" />
+<element name="rankName" type="xsd:string" />
+<element name="nameString" type="xsd:string" />
+<element name="authorString" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="ancestors">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:ancestor[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="child">
+<all>
+<element name="classificationBankID" type="xsd:int" />
+<element name="namebankID" type="xsd:int" />
+<element name="rankName" type="xsd:string" />
+<element name="nameString" type="xsd:string" />
+<element name="authorString" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="children">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:child[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="justification">
+<all>
+<element name="nameString" type="xsd:string" />
+<element name="ArticleAuthor" type="xsd:string" />
+<element name="ArticlePublicationYear" type="xsd:int" />
+<element name="ArticleTitle" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="justifications">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:justification[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="citation">
+<all>
+<element name="Author" type="xsd:string" />
+<element name="PublicationYear" type="xsd:int" />
+<element name="ArticleTitle" type="xsd:string" />
+<element name="PublicationTitle" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="citations">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:citation[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="synonym">
+<all>
+<element name="namebankID" type="xsd:int" />
+<element name="nameString" type="xsd:string" />
+<element name="authorString" type="xsd:string" />
+<element name="citations" type="tns:citations" />
+</all>
+</complexType>
+<complexType name="synonyms">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:synonym[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="vernacularName">
+<all>
+<element name="namebankID" type="xsd:int" />
+<element name="nameString" type="xsd:string" />
+<element name="languageCode" type="xsd:string" />
+<element name="languageName" type="xsd:string" />
+<element name="packageID" type="xsd:int" />
+<element name="packageName" type="xsd:string" />
+<element name="basionymUnit" type="xsd:int" />
+<element name="namebankIDLink" type="xsd:int" />
+<element name="nameStringLink" type="xsd:string" />
+<element name="fullNameStringLink" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="vernacularNameArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:vernacularName[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="classificationBankObject">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="recordedName" type="tns:recordedName" />
+<element name="classificationsID" type="xsd:int" />
+<element name="rankID" type="xsd:int" />
+<element name="rankName" type="xsd:string" />
+<element name="classificationData" type="tns:classificationData" />
+<element name="ancestry" type="tns:ancestors" />
+<element name="children" type="tns:children" />
+<element name="justifications" type="tns:justifications" />
+<element name="synonyms" type="tns:synonyms" />
+<element name="vernacularNames" type="tns:vernacularNameArray" />
+</all>
+</complexType>
+<complexType name="classificationList">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:classificationData[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="packageListItem">
+<all>
+<element name="packageID" type="xsd:int" />
+<element name="packageName" type="xsd:string" />
+<element name="parentPackageID" type="xsd:int" />
+<element name="packageLevel" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="packageList">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:packageListItem[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="seniorName">
+<all>
+<element name="classificationBankID" type="xsd:int" />
+<element name="classificationTitleID" type="xsd:int" />
+<element name="classificationTitle" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="seniorNameArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:seniorName[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="juniorName">
+<all>
+<element name="seniorClassificationBankID" type="xsd:int" />
+<element name="seniorNamebankID" type="xsd:int" />
+<element name="classificationTitleID" type="xsd:int" />
+<element name="classificationTitle" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="juniorNameArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:juniorName[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="AllHierarchies">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="seniorNames" type="tns:seniorNameArray" />
+<element name="juniorNames" type="tns:juniorNameArray" />
+</all>
+</complexType>
+<complexType name="InsertReturn">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="namebankID" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="AuthorStrings">
+<all>
+<element name="authorID" type="xsd:int" />
+<element name="groupID" type="xsd:int" />
+<element name="authorString" type="xsd:string" />
+<element name="displayForm" type="xsd:string" />
+<element name="attributeID" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="AuthorStringArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:AuthorStrings[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ReferenceStrings">
+<all>
+<element name="sourceID" type="xsd:int" />
+<element name="source" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="ReferenceStringArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:ReferenceStrings[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="Attribute">
+<all>
+<element name="attributeID" type="xsd:int" />
+<element name="attribute" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="AttributeArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Attribute[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="AuthorObject">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="groupID" type="xsd:int" />
+<element name="dates" type="xsd:string" />
+<element name="authorStrings" type="tns:AuthorStringArray" />
+<element name="references" type="tns:ReferenceStringArray" />
+<element name="attributes" type="tns:AttributeArray" />
+<element name="returnXML" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="AllAuthors">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="authorStrings" type="tns:AuthorStringArray" />
+<element name="attributes" type="tns:AttributeArray" />
+<element name="returnXML" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="StringArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ScientificName">
+<all>
+<element name="namebankID" type="xsd:int" />
+<element name="nameString" type="xsd:string" />
+<element name="fullNameString" type="xsd:string" />
+<element name="nameStringGroup" type="xsd:int" />
+<element name="nameStringQualifier" type="xsd:string" />
+<element name="packageID" type="xsd:int" />
+<element name="packageName" type="xsd:string" />
+<element name="basionymUnit" type="xsd:int" />
+<element name="rankID" type="xsd:int" />
+<element name="rankName" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="scientificNameArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:ScientificName[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="nameString">
+<all>
+<element name="nameString" type="xsd:string" />
+<element name="canonicalForm" type="xsd:string" />
+<element name="findITscore" type="xsd:string" />
+<element name="namebankID" type="xsd:int" />
+</all>
+</complexType>
+<complexType name="nameStringArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:nameString[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="mapping">
+<all>
+<element name="foreignKey" type="xsd:string" />
+<element name="collectionsTitle" type="xsd:string" />
+<element name="collectionsURL" type="xsd:string" />
+<element name="logoFile" type="xsd:string" />
+</all>
+</complexType>
+<complexType name="mappingsArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:mapping[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="findITobject">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="returnXML" type="xsd:string" />
+<element name="nameStrings" type="tns:nameStringArray" />
+</all>
+</complexType>
+<complexType name="namebankObject">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="namebankID" type="xsd:int" />
+<element name="nameString" type="xsd:string" />
+<element name="fullNameString" type="xsd:string" />
+<element name="packageID" type="xsd:int" />
+<element name="packageName" type="xsd:string" />
+<element name="languageCode" type="xsd:string" />
+<element name="languageName" type="xsd:string" />
+<element name="basionymUnit" type="xsd:int" />
+<element name="basionymFlag" type="xsd:int" />
+<element name="nameStringQualifier" type="xsd:string" />
+<element name="extinctFlag" type="xsd:int" />
+<element name="rankID" type="xsd:int" />
+<element name="rankName" type="xsd:string" />
+<element name="homonymFlag" type="xsd:int" />
+<element name="parentID" type="xsd:int" />
+<element name="homotypicSynonyms" type="tns:homotypicSynonymsArray" />
+<element name="vernacularNames" type="tns:vernacularNameArray" />
+<element name="mappings" type="tns:mappingsArray" />
+<element name="citations" type="tns:citations" />
+</all>
+</complexType>
+<complexType name="AllNames">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="scientificQuery" type="xsd:string" />
+<element name="scientificNames" type="tns:scientificNameArray" />
+<element name="vernacularQuery" type="xsd:string" />
+<element name="vernacularNames" type="tns:vernacularNameArray" />
+</all>
+</complexType>
+<complexType name="NameStringGroup">
+<all>
+<element name="nameStringGroup" type="xsd:int" />
+<element name="displayForm" type="xsd:string" />
+<element name="displayNamebankID" type="xsd:int" />
+<element name="displayPackageID" type="xsd:int" />
+<element name="displayPackageName" type="xsd:string" />
+<element name="scientificNames" type="tns:scientificNameArray" />
+<element name="vernacularNames" type="tns:vernacularNameArray" />
+</all>
+</complexType>
+<complexType name="NameStringGroupArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:NameStringGroup[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="CanonicalGroup">
+<all>
+<element name="canonicalID" type="xsd:string" />
+<element name="canonicalForm" type="xsd:string" />
+<element name="nameStringGroups" type="tns:NameStringGroupArray" />
+</all>
+</complexType>
+<complexType name="CanonicalFormsArray">
+<complexContent>
+<restriction base="SOAP-ENC:Array">
+<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:CanonicalGroup[]" />
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="StructuredAllNames">
+<all>
+<element name="serviceData" type="tns:serviceData" />
+<element name="canonicalForms" type="tns:CanonicalFormsArray" />
+<element name="vernacularNames" type="tns:vernacularNameArray" />
+</all>
+</complexType>
+</schema>
+</types>
+<message name="helloWorldRequest">
+<part name="inmessage" type="xsd:string" />
+</message>
+<message name="helloWorldResponse">
+<part name="return" type="tns:helloWorldReturn" />
+</message>
+<message name="SayThisNTimesRequest">
+<part name="SayThis" type="xsd:string" />
+<part name="NTimes" type="xsd:int" />
+</message>
+<message name="SayThisNTimesResponse">
+<part name="return" type="tns:ArrayOfStrings" />
+</message>
+<message name="helloWorldSimpleRequest">
+<part name="inmessage" type="xsd:string" />
+</message>
+<message name="helloWorldSimpleResponse">
+<part name="outmessage" type="xsd:string" />
+</message>
+<message name="namebank_objectRequest">
+<part name="namebankID" type="xsd:int" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="namebank_objectResponse">
+<part name="namebankObject" type="tns:namebankObject" />
+</message>
+<message name="namebank_searchRequest">
+<part name="searchName" type="xsd:string" />
+<part name="searchAuth" type="xsd:string" />
+<part name="searchYear" type="xsd:string" />
+<part name="order" type="xsd:string" />
+<part name="rank" type="xsd:string" />
+<part name="sci" type="xsd:int" />
+<part name="linkedVern" type="xsd:int" />
+<part name="vern" type="xsd:int" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="namebank_searchResponse">
+<part name="matching_names" type="tns:AllNames" />
+</message>
+<message name="namebank_search2Request">
+<part name="searchName" type="xsd:string" />
+<part name="searchAuth" type="xsd:string" />
+<part name="searchYear" type="xsd:string" />
+<part name="order" type="xsd:string" />
+<part name="rank" type="xsd:string" />
+<part name="sci" type="xsd:int" />
+<part name="linkedVern" type="xsd:int" />
+<part name="vern" type="xsd:int" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="namebank_search2Response">
+<part name="matching_names" type="tns:AllNames" />
+</message>
+<message name="namebank_search_structuredRequest">
+<part name="searchName" type="xsd:string" />
+<part name="searchAuth" type="xsd:string" />
+<part name="searchYear" type="xsd:string" />
+<part name="order" type="xsd:string" />
+<part name="rank" type="xsd:string" />
+<part name="sci" type="xsd:int" />
+<part name="linkedVern" type="xsd:int" />
+<part name="vern" type="xsd:int" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="namebank_search_structuredResponse">
+<part name="matching_names" type="tns:StructuredAllNames" />
+</message>
+<message name="namebank_search_authorsRequest">
+<part name="searchAuth" type="xsd:string" />
+<part name="searchQualifier" type="xsd:string" />
+<part name="limitBP" type="xsd:int" />
+<part name="returnXML" type="xsd:int" />
+</message>
+<message name="namebank_search_authorsResponse">
+<part name="matching_authors" type="tns:AllAuthors" />
+</message>
+<message name="namebank_object_authorsRequest">
+<part name="groupID" type="xsd:int" />
+<part name="returnXML" type="xsd:int" />
+</message>
+<message name="namebank_object_authorsResponse">
+<part name="author_group" type="tns:AuthorObject" />
+</message>
+<message name="findITRequest">
+<part name="url" type="xsd:string" />
+<part name="freeText" type="xsd:string" />
+<part name="strict" type="xsd:int" />
+<part name="threshold" type="xsd:float" />
+</message>
+<message name="findITResponse">
+<part name="findITobject" type="tns:findITobject" />
+</message>
+<message name="taxonFinderRequest">
+<part name="url" type="xsd:string" />
+<part name="freeText" type="xsd:string" />
+<part name="includeLinks" type="xsd:int" />
+</message>
+<message name="taxonFinderResponse">
+<part name="findITobject" type="tns:findITobject" />
+</message>
+<message name="findIT_landcareRequest">
+<part name="document" type="xsd:string" />
+<part name="strict" type="xsd:int" />
+<part name="threshold" type="xsd:float" />
+</message>
+<message name="findIT_landcareResponse">
+<part name="findITobject" type="tns:findITobject" />
+</message>
+<message name="reconcileRequest">
+<part name="document" type="xsd:string" />
+</message>
+<message name="reconcileResponse">
+<part name="findITobject" type="tns:findITobject" />
+</message>
+<message name="classificationbank_searchRequest">
+<part name="namebankID" type="xsd:int" />
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="classificationTitleID" type="xsd:int" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="classificationbank_searchResponse">
+<part name="AllHierarchies" type="tns:AllHierarchies" />
+</message>
+<message name="classificationbank_objectRequest">
+<part name="hierarchiesID" type="xsd:int" />
+<part name="childrenFlag" type="xsd:int" />
+<part name="ancestryFlag" type="xsd:int" />
+<part name="justificationsFlag" type="xsd:int" />
+<part name="synonymsFlag" type="xsd:int" />
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="classificationbank_objectResponse">
+<part name="classificationBankObject" type="tns:classificationBankObject" />
+</message>
+<message name="namebank_packageListRequest">
+<part name="packageID" type="xsd:int" />
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="namebank_packageListResponse">
+<part name="packageList" type="tns:packageList" />
+</message>
+<message name="classification_listRequest">
+<part name="classificationTitleID" type="xsd:int" />
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="classification_listResponse">
+<part name="classificationList" type="tns:classificationList" />
+</message>
+<message name="language_listRequest">
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="language_listResponse">
+<part name="languageList" type="tns:StringArray" />
+</message>
+<message name="synonym_listRequest">
+<part name="hierarchiesID" type="tns:intarray" />
+<part name="clientVersion" type="xsd:string" />
+<part name="requestorIP" type="xsd:string" />
+<part name="keyCode" type="xsd:string" />
+</message>
+<message name="synonym_listResponse">
+<part name="classificationBankObject" type="tns:classificationBankObject" />
+</message>
+<message name="split_nameRequest">
+<part name="nameString" type="xsd:string" />
+</message>
+<message name="split_nameResponse">
+<part name="people" type="tns:splitArray" />
+</message>
+<portType name="NamebankServicePort">
+<operation name="helloWorld">
+<input message="tns:helloWorldRequest" />
+<output message="tns:helloWorldResponse" />
+</operation>
+<operation name="SayThisNTimes">
+<input message="tns:SayThisNTimesRequest" />
+<output message="tns:SayThisNTimesResponse" />
+</operation>
+<operation name="helloWorldSimple">
+<input message="tns:helloWorldSimpleRequest" />
+<output message="tns:helloWorldSimpleResponse" />
+</operation>
+<operation name="namebank_object">
+<input message="tns:namebank_objectRequest" />
+<output message="tns:namebank_objectResponse" />
+</operation>
+<operation name="namebank_search">
+<input message="tns:namebank_searchRequest" />
+<output message="tns:namebank_searchResponse" />
+</operation>
+<operation name="namebank_search2">
+<input message="tns:namebank_search2Request" />
+<output message="tns:namebank_search2Response" />
+</operation>
+<operation name="namebank_search_structured">
+<input message="tns:namebank_search_structuredRequest" />
+<output message="tns:namebank_search_structuredResponse" />
+</operation>
+<operation name="namebank_search_authors">
+<input message="tns:namebank_search_authorsRequest" />
+<output message="tns:namebank_search_authorsResponse" />
+</operation>
+<operation name="namebank_object_authors">
+<input message="tns:namebank_object_authorsRequest" />
+<output message="tns:namebank_object_authorsResponse" />
+</operation>
+<operation name="findIT">
+<input message="tns:findITRequest" />
+<output message="tns:findITResponse" />
+</operation>
+<operation name="taxonFinder">
+<input message="tns:taxonFinderRequest" />
+<output message="tns:taxonFinderResponse" />
+</operation>
+<operation name="findIT_landcare">
+<input message="tns:findIT_landcareRequest" />
+<output message="tns:findIT_landcareResponse" />
+</operation>
+<operation name="reconcile">
+<input message="tns:reconcileRequest" />
+<output message="tns:reconcileResponse" />
+</operation>
+<operation name="classificationbank_search">
+<input message="tns:classificationbank_searchRequest" />
+<output message="tns:classificationbank_searchResponse" />
+</operation>
+<operation name="classificationbank_object">
+<input message="tns:classificationbank_objectRequest" />
+<output message="tns:classificationbank_objectResponse" />
+</operation>
+<operation name="namebank_packageList">
+<input message="tns:namebank_packageListRequest" />
+<output message="tns:namebank_packageListResponse" />
+</operation>
+<operation name="classification_list">
+<input message="tns:classification_listRequest" />
+<output message="tns:classification_listResponse" />
+</operation>
+<operation name="language_list">
+<input message="tns:language_listRequest" />
+<output message="tns:language_listResponse" />
+</operation>
+<operation name="synonym_list">
+<input message="tns:synonym_listRequest" />
+<output message="tns:synonym_listResponse" />
+</operation>
+<operation name="split_name">
+<input message="tns:split_nameRequest" />
+<output message="tns:split_nameResponse" />
+</operation>
+</portType>
+<binding name="NamebankServiceBinding" type="tns:NamebankServicePort">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+<operation name="helloWorld">
+<soap:operation soapAction="NamebankService#NamebankService#helloWorld" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="SayThisNTimes">
+<soap:operation soapAction="NamebankService#NamebankService#SayThisNTimes" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="helloWorldSimple">
+<soap:operation soapAction="NamebankService#NamebankService#helloWorldSimple" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_object">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_object" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_search">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_search" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_search2">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_search2" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_search_structured">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_search_structured" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_search_authors">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_search_authors" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_object_authors">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_object_authors" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="findIT">
+<soap:operation soapAction="NamebankService#NamebankService#findIT" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="taxonFinder">
+<soap:operation soapAction="NamebankService#NamebankService#taxonFinder" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="findIT_landcare">
+<soap:operation soapAction="NamebankService#NamebankService#findIT_landcare" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="reconcile">
+<soap:operation soapAction="NamebankService#NamebankService#reconcile" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="classificationbank_search">
+<soap:operation soapAction="NamebankService#NamebankService#classificationbank_search" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="classificationbank_object">
+<soap:operation soapAction="NamebankService#NamebankService#classificationbank_object" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="namebank_packageList">
+<soap:operation soapAction="NamebankService#NamebankService#namebank_packageList" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="classification_list">
+<soap:operation soapAction="NamebankService#NamebankService#classification_list" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="language_list">
+<soap:operation soapAction="NamebankService#NamebankService#language_list" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="synonym_list">
+<soap:operation soapAction="NamebankService#NamebankService#synonym_list" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="split_name">
+<soap:operation soapAction="NamebankService#NamebankService#split_name" />
+<input>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="NamebankService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+</binding>
+<service name="NamebankServiceService">
+<documentation />
+<port name="NamebankServicePort" binding="tns:NamebankServiceBinding">
+<soap:address location="http://ubio.org/soap/index.php" />
+</port>
+</service>
+</definitions>

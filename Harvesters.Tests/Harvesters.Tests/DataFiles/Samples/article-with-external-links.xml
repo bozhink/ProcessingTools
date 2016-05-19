@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<article article-type="research-article" dtd-version="3.0" xml:lang="en" xmlns:tp="http://www.plazi.org/taxpub" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Abarca</surname>
+              <given-names>N</given-names>
+            </name>,<name name-style="western">
+              <surname>Jahn</surname>
+              <given-names>R</given-names>
+            </name>,<name name-style="western">
+              <surname>Zimmermann</surname>
+              <given-names>J</given-names>
+            </name>,<name name-style="western">
+              <surname>Enke</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group> (<year>2014</year>) <article-title>
+            Does the cosmopolitan diatom <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Gomphonema</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">parvulum</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> (Kützing) Kützing have a biogeography?
+          </article-title> <source>PLoS ONE</source> <volume>9</volume>: <elocation-id>e86885</elocation-id>. doi: <ext-link ext-link-type="doi" xlink:href="10.1371/journal.pone.0086885">10.1371/journal.pone.0086885</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B2">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Cleve</surname>
+              <given-names>PT</given-names>
+            </name>
+          </person-group> (<year>1894</year>) <article-title>Synopsis of the Naviculoid Diatoms, Part I.</article-title> <source>Konglische Svenska Vetenskaps-Akademiens Handlingar</source>, <series>ser. 4</series> <volume>26</volume>(<issue>2</issue>): <fpage>1</fpage>–<lpage>216</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Cox</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group> (<year>1997</year>) <article-title>Assessing and designating diatom taxa at or below the species level - a consideration of the current status and some suggested guidelines for the future.</article-title> <source>Nova Hedwigia</source> <volume>65</volume>(<issue>1-4</issue>): <fpage>13</fpage>–<lpage>26</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation xlink:type="simple">
+          <institution xlink:type="simple">European Committee for Standardization</institution> (<year>2003</year>) <article-title>Water quality</article-title> - <source>Guidance standard for the routine sampling and pre-treatment of benthic diatoms from rivers</source>. <publisher-name>European Committee for Standardization</publisher-name>, <publisher-loc>Brussel</publisher-loc>, <lpage>14</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Grunow</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group> (<year>1882</year>) <article-title>Beiträge zur Kenntniss de fossilen Diatomeen Österreich-Ugarns.</article-title> <source>Beiträge zur Paläontologie Österreich-Ugarns und des Orients</source> <volume>2</volume>: <fpage>136</fpage>–<lpage>159</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Kermarrec</surname>
+              <given-names>L</given-names>
+            </name>,<name name-style="western">
+              <surname>Bouchez</surname>
+              <given-names>A</given-names>
+            </name>,<name name-style="western">
+              <surname>Rimet</surname>
+              <given-names>F</given-names>
+            </name>,<name name-style="western">
+              <surname>Humbert</surname>
+              <given-names>J-F</given-names>
+            </name>
+          </person-group> (<year>2013</year>) <article-title>
+            First evidence of the existence of semi-cryptic species and of a phylogeographic structure in the <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Gomphonema</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">parvulum</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> (Kützing) Kützing complex (<tp:taxon-name type="higher">
+              <tp:taxon-name-part taxon-name-part-type="phylum">Bacillariophyta</tp:taxon-name-part>
+            </tp:taxon-name>).
+          </article-title> <source>Protist</source> <volume>164</volume>: <fpage>686</fpage>–<lpage>705</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.1016/j.protis.2013.07.005">10.1016/j.protis.2013.07.005</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Krammer</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group> (<year>2002</year>) <article-title>
+            Diatoms of the European inland waters and comparable habitats. <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Cymbella</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>.
+          </article-title> In: <person-group>
+            <name name-style="western">
+              <surname>Lange-Bertalot</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group> (<role>Ed</role>) <source>Diatoms of Europe</source> <volume>3</volume>. <publisher-name>A.R.G. Gantner Verlag KG</publisher-name>, <publisher-loc>Ruggel</publisher-loc>, <fpage>1</fpage>–<lpage>584</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Krammer</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group> (<year>2003</year>) <article-title>
+            Diatoms of the European inland waters and comparable habitats. <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Cymbopleura</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>, <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Delicata</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>, <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Navicymbula</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>, <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Gomphocymbellopsis</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>, <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Afrocymbella</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>.
+          </article-title> In: <person-group>
+            <name name-style="western">
+              <surname>Lange-Bertalot</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group> (<role>Ed.</role>) <source>Diatoms of Europe</source> <volume>4</volume>. <publisher-name>A.R.G. Gantner Verlag KG</publisher-name>, <publisher-loc>Ruggel</publisher-loc>, <fpage>1</fpage>–<lpage>529</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Krammer</surname>
+              <given-names>K</given-names>
+            </name>,<name name-style="western">
+              <surname>Lange-Bertalot</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group> (<year>1986</year>) <article-title>
+            <tp:taxon-name type="higher">
+              <tp:taxon-name-part taxon-name-part-type="class">Bacillariophyceae</tp:taxon-name-part>
+            </tp:taxon-name>.
+          </article-title> In: <person-group>
+            <name name-style="western">
+              <surname>Ettl</surname>
+              <given-names>H</given-names>
+            </name>,<name name-style="western">
+              <surname>Gerloff</surname>
+              <given-names>J</given-names>
+            </name>,<name name-style="western">
+              <surname>Heynig</surname>
+              <given-names>H</given-names>
+            </name>,<name name-style="western">
+              <surname>Mollenhauer</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group> (<role>Eds</role>) <source>Süsswasserflora von Mitteleuropa</source> <volume>2/1</volume>. <publisher-name>Gustav Fischer Verlag</publisher-name>, <publisher-loc>Stuttgart, Jena</publisher-loc>, <fpage>1</fpage>–<lpage>876</lpage>.
+        </mixed-citation>
+      </ref>
+      <!--PageBreak-->
+      <ref id="B10">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Kützing</surname>
+              <given-names>FT</given-names>
+            </name>
+          </person-group> (<year>1844</year>) <source>Die kieselschaligen Bacillarien oder Diatomeen</source>. <publisher-name>W. Köhne</publisher-name>, <publisher-loc>Nordhausen</publisher-loc>, <fpage>1</fpage>–<lpage>152</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.5962/bhl.title.64360">10.5962/bhl.title.64360</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Mann</surname>
+              <given-names>DG</given-names>
+            </name>
+          </person-group> (<year>1999</year>) <article-title>The species concept in diatoms.</article-title> <source>Phycological Research</source> <volume>38</volume>: <fpage>437</fpage>–<lpage>495</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.2216/i0031-8884-38-6-437.1">10.2216/i0031-8884-38-6-437.1</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Mann</surname>
+              <given-names>DG</given-names>
+            </name>,<name name-style="western">
+              <surname>Thomas</surname>
+              <given-names>SJ</given-names>
+            </name>,<name name-style="western">
+              <surname>Evans</surname>
+              <given-names>KM</given-names>
+            </name>
+          </person-group> (<year>2008</year>) <article-title>
+            Revision of the diatom genus <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Sellaphora</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>: a first account of the larger species in the British Isles.
+          </article-title> <source>Fottea</source> <volume>8</volume>(<issue>1</issue>): <fpage>15</fpage>–<lpage>78</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.5507/fot.2008.002">10.5507/fot.2008.002</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Manoylov</surname>
+              <given-names>KM</given-names>
+            </name>
+          </person-group> (<year>2014</year>) <article-title>Taxonomic identification of algae (morphological and molecular): species concepts, methodologies, and their implications for ecological bioassessment.</article-title> <source>Journal of Phycology</source> <volume>50</volume>: <fpage>409</fpage>–<lpage>424</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.1111/jpy.12183">10.1111/jpy.12183</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>McNeill</surname>
+              <given-names>J</given-names>
+            </name>,<name name-style="western">
+              <surname>Barrie</surname>
+              <given-names>FR</given-names>
+            </name>,<name name-style="western">
+              <surname>Buck</surname>
+              <given-names>WR</given-names>
+            </name>,<name name-style="western">
+              <surname>Demoulin</surname>
+              <given-names>V</given-names>
+            </name>,<name name-style="western">
+              <surname>Greuter</surname>
+              <given-names>W</given-names>
+            </name>,<name name-style="western">
+              <surname>Hawksworth</surname>
+              <given-names>DL</given-names>
+            </name>,<name name-style="western">
+              <surname>Herendeen</surname>
+              <given-names>PS</given-names>
+            </name>,<name name-style="western">
+              <surname>Knapp</surname>
+              <given-names>S</given-names>
+            </name>,<name name-style="western">
+              <surname>Marhold</surname>
+              <given-names>K</given-names>
+            </name>,<name name-style="western">
+              <surname>Prado</surname>
+              <given-names>J</given-names>
+            </name>,<name name-style="western">
+              <surname>Prud’Homme Van Reine</surname>
+              <given-names>WF</given-names>
+            </name>,<name name-style="western">
+              <surname>Smith</surname>
+              <given-names>GF</given-names>
+            </name>,<name name-style="western">
+              <surname>Wiersema</surname>
+              <given-names>JH</given-names>
+            </name>,<name name-style="western">
+              <surname>Turland</surname>
+              <given-names>NJ</given-names>
+            </name>
+          </person-group> (<year>2012</year>) <source>International Code of Nomenclature for algae, fungi, and plants (Melbourne Code) adopted by the Eighteenth International Botanical Congress Melbourne, Australia, July 2011</source>. <publisher-name>Koeltz Scientific Books</publisher-name>, <publisher-loc>Königstein</publisher-loc>, <fpage>1</fpage>–<lpage>240</lpage>. [Regnum Veg. 154].
+        </mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Needham</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group> (<year>1975</year>) <article-title>Polythetic classification: convergence and consequences.</article-title> <source>Man</source>, <series>New Series</series> <volume>10</volume>: <fpage>349</fpage>–<lpage>369</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.2307/2799807">10.2307/2799807</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Ohtsuka</surname>
+              <given-names>T</given-names>
+            </name>,<name name-style="western">
+              <surname>Tuji</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group> (<year>2002</year>) <article-title>Lectotypification of some pennate diatoms described by Skvortzow in 1936 from Lake Biwa.</article-title> <source>Phycological Research</source> <volume>50</volume>: <fpage>243</fpage>–<lpage>249</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.1046/j.1440-1835.2002.00281.x">10.1046/j.1440-1835.2002.00281.x</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Patrick</surname>
+              <given-names>R</given-names>
+            </name>,<name name-style="western">
+              <surname>Reimer</surname>
+              <given-names>CW</given-names>
+            </name>
+          </person-group> (<year>1975</year>) <article-title>The diatoms of the United States. Volume 2, Part 1.</article-title> <source>Monographs of the Academy of Natural Sciences of Philadelphia</source> <volume>13</volume>: <fpage>1</fpage>–<lpage>213</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B18">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Schmidt</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group> (<year>1875</year>) <source>Atlas der Diatomaceenkunde</source>, <series>Series I 3</series>. <publisher-name>O.R. Reisland</publisher-name>, <publisher-loc>Leipzig</publisher-loc>, <fpage>9</fpage>–<lpage>12</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Skvortzov</surname>
+              <given-names>BV</given-names>
+            </name>,<name name-style="western">
+              <surname>Noda</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group> (<year>1971</year>) <article-title>On recent and fossil freshwater diatoms from Japan II.</article-title> <source>Science Reports of the Niigata University, Biology Series D</source> <volume>8</volume>: <fpage>13</fpage>–<lpage>27</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Skvortzow</surname>
+              <given-names>BW</given-names>
+            </name>
+          </person-group> (<year>1936</year>) <article-title>Diatoms from Biwa Lake, Honshu Island, Nippon.</article-title> <source>Philippine Journal of Science</source> <volume>61</volume>: <fpage>253</fpage>–<lpage>296</lpage>.
+        </mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Trobajo</surname>
+              <given-names>R</given-names>
+            </name>,<name name-style="western">
+              <surname>Clavero</surname>
+              <given-names>E</given-names>
+            </name>,<name name-style="western">
+              <surname>Chepurnov</surname>
+              <given-names>VA</given-names>
+            </name>,<name name-style="western">
+              <surname>Sabbe</surname>
+              <given-names>K</given-names>
+            </name>,<name name-style="western">
+              <surname>Mann</surname>
+              <given-names>DG</given-names>
+            </name>,<name name-style="western">
+              <surname>Ishihara</surname>
+              <given-names>S</given-names>
+            </name>,<name name-style="western">
+              <surname>Cox</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group> (<year>2009</year>) <article-title>
+            Morphological, genetic and mating diversity within the widespread bioindicator <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Nitzschia</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">palea</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> (<tp:taxon-name type="higher">
+              <tp:taxon-name-part taxon-name-part-type="class">Bacillariophyceae</tp:taxon-name-part>
+            </tp:taxon-name>).
+          </article-title> <source>Phycologia</source> <volume>48</volume>: <fpage>443</fpage>–<lpage>459</lpage>. doi: <ext-link ext-link-type="doi" xlink:href="10.2216/08-69.1">10.2216/08-69.1</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>Tuji</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group> (<year>2007</year>) <article-title>
+            Type examination and typification of <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Cymbella</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">affinis</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> Kütz., <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus" full-name="Cymbella">C.</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">turgidula</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> Grunow and <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus" full-name="Cymbella">C.</tp:taxon-name-part>
+                <tp:taxon-name-part taxon-name-part-type="species">uenoi</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> Skvortsov.
+          </article-title> <source>Diatom</source> <volume>23</volume>: <fpage>49</fpage>–<lpage>54</lpage>. <ext-link ext-link-type="uri" xlink:href="https://www.jstage.jst.go.jp/article/diatom1985/23/0/23_49/_pdf">https://www.jstage.jst.go.jp/article/diatom1985/23/0/23_49/_pdf</ext-link>
+        </mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation xlink:type="simple">
+          <person-group>
+            <name name-style="western">
+              <surname>VanLandingham</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group> (<year>1971</year>) <source>
+            Catalogue of the fossil and recent genera and species of diatoms and their synonyms. Part 4. <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Fragilaria</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic> through <italic>
+              <tp:taxon-name type="lower">
+                <tp:taxon-name-part taxon-name-part-type="genus">Naunema</tp:taxon-name-part>
+              </tp:taxon-name>
+            </italic>
+          </source>. <publisher-name>J. Cramer</publisher-name>, <publisher-loc>Lehre</publisher-loc>.
+        </mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProcessingTools.Services.Validation.TaxaValidationService" Collapsed="true">
+    <Position X="2.5" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAACAhAAAAAAAAAAA=</HashCode>
+      <FileName>Services\TaxaValidationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Validation.UrlValidationService" Collapsed="true">
+    <Position X="6" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAEACAhAAAAAAAAAAA=</HashCode>
+      <FileName>Services\UrlValidationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Validation.Factories.ValidationServiceFactory&lt;TValidatedObject, TItemToCheck&gt;" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAAACAACAAAAQAAAACAAAIACAhAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\ValidationServiceFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Validation.Models.TaxonName" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TaxonName.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Validation.Models.UrlModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAACAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UrlModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Common.Models.ValidationServiceModel&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ProcessingTools.Services.Validation.Contracts.ITaxaValidationService" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ITaxaValidationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Services.Validation.Contracts.IUrlValidationService" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IUrlValidationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Services.Validation.Models.Contracts.ITaxonName" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\ITaxonName.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Services.Validation.Models.Contracts.IUrl" Collapsed="true">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAACAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\IUrl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.Services.Common.Contracts.IValidationService&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProcessingTools.Services.Common.Models.Contracts.IValidationServiceModel&lt;T&gt;" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,107 @@
+﻿namespace ProcessingTools.Bio.Data.Seed
+{
+    using System;
+    using System.Collections.Concurrent;
+    using System.Configuration;
+    using System.Data.Entity.Migrations;
+    using System.Threading.Tasks;
+
+    using Contracts;
+
+    using ProcessingTools.Bio.Data;
+    using ProcessingTools.Bio.Data.Contracts;
+    using ProcessingTools.Bio.Data.Models;
+    using ProcessingTools.Data.Common.Entity.Seed;
+
+    public class BioDataSeeder : IBioDataSeeder
+    {
+        private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
+        private const string MorphologicalEpithetsFileNameKey = "MorphologicalEpithetsFileName";
+        private const string TypeStatusesFileNameKey = "TypeStatusesFileName";
+
+        private readonly IBioDbContextProvider contextProvider;
+        private readonly Type stringType = typeof(string);
+
+        private DbContextSeeder<BioDbContext> seeder;
+        private string dataFilesDirectoryPath;
+        private ConcurrentQueue<Exception> exceptions;
+
+        public BioDataSeeder(IBioDbContextProvider contextProvider)
+        {
+            if (contextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(contextProvider));
+            }
+
+            this.contextProvider = contextProvider;
+            this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
+
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.exceptions = new ConcurrentQueue<Exception>();
+        }
+
+        public async Task Seed()
+        {
+            this.exceptions = new ConcurrentQueue<Exception>();
+
+            await this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]);
+
+            await this.SeedTypeStatuses(TypeStatusesFileNameKey);
+
+            if (this.exceptions.Count > 0)
+            {
+                throw new AggregateException(this.exceptions);
+            }
+        }
+
+        private async Task SeedMorphologicalEpithets(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            try
+            {
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
+                    $"{dataFilesDirectoryPath}/{fileName}",
+                    (context, line) =>
+                    {
+                        context.MorphologicalEpithets.AddOrUpdate(new MorphologicalEpithet
+                        {
+                            Name = line
+                        });
+                    });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
+        }
+
+        private async Task SeedTypeStatuses(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            try
+            {
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
+                    $"{dataFilesDirectoryPath}/{fileName}",
+                    (context, line) =>
+                    {
+                        context.TypesStatuses.AddOrUpdate(new TypeStatus
+                        {
+                            Name = line
+                        });
+                    });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
+        }
+    }
+}
