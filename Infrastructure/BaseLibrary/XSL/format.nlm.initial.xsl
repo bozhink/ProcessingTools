@@ -139,6 +139,9 @@
         <xsl:when test="starts-with($lower-case, 'habitat')">
           <xsl:text>habitat</xsl:text>
         </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'ecology')">
+          <xsl:text>ecology</xsl:text>
+        </xsl:when>
         <xsl:when test="starts-with($lower-case, 'phylogenetic data')">
           <xsl:text>phylogenetic data</xsl:text>
         </xsl:when>
@@ -322,6 +325,11 @@
       <xsl:attribute name="orientation">
         <xsl:text>portrait</xsl:text>
       </xsl:attribute>
+      <xsl:if test="string(@content-type)!='key'">
+        <xsl:attribute name="xscroll">
+          <xsl:text>yes</xsl:text>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates />
     </xsl:element>
   </xsl:template>

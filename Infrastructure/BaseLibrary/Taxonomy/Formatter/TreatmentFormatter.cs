@@ -114,8 +114,6 @@
             }
         }
 
-
-
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
             XmlElement taxonName = nomenclature["tn"];
