@@ -13,6 +13,16 @@
 
     public class TreatmentFormatter : TaxPubDocument, IFormatter
     {
+        private const string TitleNodeName = "title";
+        private const string LabelNodeName = "label";
+        private const string TaxonAuthorityStatusNodeName = "AuthorityStatus";
+        private const string TaxonNodesPrefix = "tp";
+        private const string TaxonAuthorityNodeName = "taxon-authority";
+        private const string TaxonStatusNodeName = "taxon-status";
+
+        private const string TaxonNameNodeName = "tn";
+        private const string ObjectIdNodeName = "object-id";
+
         private ILogger logger;
 
         public TreatmentFormatter(string xml, ILogger logger)
@@ -54,13 +64,16 @@
 
         private void FormatNomenclatureCitations()
         {
-            const string XPath = "//tp:nomenclature-citation[count(comment) = count(node()[normalize-space()!=''])][name(comment/node()[normalize-space()!=''][position()=1])='tn']";
+            const string FitstNotWhitespaceNodeInCommentElementXPath = "comment/node()[normalize-space()!=''][position()=1]";
+
+            string XPath = $"//tp:nomenclature-citation[count(comment) = count(node()[normalize-space()!=''])][name({FitstNotWhitespaceNodeInCommentElementXPath})='tn']";
+
             this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(citation =>
                 {
-                    var taxonNode = citation.SelectSingleNode("comment/node()[normalize-space()!=''][position()=1][name()='tn']");
+                    var taxonNode = citation.SelectSingleNode($"{FitstNotWhitespaceNodeInCommentElementXPath}[name()='tn']");
 
                     if (taxonNode != null)
                     {
@@ -71,15 +84,6 @@
 
         private void FormatNomencatureContent(XmlNode nomenclature)
         {
-            const string TitleNodeName = "title";
-            const string LabelNodeName = "label";
-
-            const string TaxonAuthorityStatusNodeName = "AuthorityStatus";
-
-            const string TaxonNodesPrefix = "tp";
-            const string TaxonAuthorityNodeName = "taxon-authority";
-            const string TaxonStatusNodeName = "taxon-status";
-
             string namespaceUri = this.NamespaceManager.LookupNamespace(TaxonNodesPrefix);
 
             XmlNode titleNode = nomenclature.SelectSingleNode(TitleNodeName);
@@ -90,36 +94,46 @@
                     .RegexReplace(@"\s+", " ")
                     .Trim();
 
-                var matchLabel = new Regex(@"\A([^<>]+?)\s*(?=<tn\b)");
+                var matchLabel = new Regex(@"\A\s*(\S[\s\S]*?)\s*(?=<tn\b)");
                 titleNode.ReplaceXmlNodeContentByRegex(matchLabel, string.Empty, "$1", string.Empty, LabelNodeName);
 
-                var matchAuthority = new Regex(@"(?<=</tn>)\s*([^<>]+)\Z");
+                var matchAuthority = new Regex(@"(?<=</tn>)\s*(\S[\s\S]+?)\s*\Z");
                 titleNode.ReplaceXmlNodeContentByRegex(matchAuthority, string.Empty, "$1", string.Empty, TaxonAuthorityStatusNodeName);
 
+                XmlNode authorityStatusNode = titleNode.SelectSingleNode(TaxonAuthorityStatusNodeName);
+                if (authorityStatusNode != null)
+                {
+                    authorityStatusNode.InnerXml = authorityStatusNode.InnerXml.Trim();
+
+                    var matchWholeContentAsStatus = new Regex(@"(?<=(?:\A|\W\s*))\b([Ii]ncertae\s+[Ss]edis|nom\.?\s+cons\.?|(?:n\.\s*[a-z]+)\b|(?:[a-z]+\.\s*)?spp\b\.?|[a-z]+\.\s*\b(?:n|nov|r|rev)\b\.?|new record)\Z");
+                    authorityStatusNode.ReplaceXmlNodeContentByRegex(matchWholeContentAsStatus, string.Empty, "$1", string.Empty, TaxonStatusNodeName, TaxonNodesPrefix, namespaceUri);
+
+                    var statusNode = authorityStatusNode.SelectSingleNode($"{TaxonNodesPrefix}:{TaxonStatusNodeName}", this.NamespaceManager);
+                    if (statusNode == null)
+                    {
+                        var authorityNode = authorityStatusNode.OwnerDocument.CreateElement(TaxonNodesPrefix, TaxonAuthorityNodeName, namespaceUri);
+                        authorityNode.InnerXml = authorityStatusNode.InnerXml;
+                        authorityStatusNode.InnerXml = authorityNode.OuterXml;
+                    }
+                    else
+                    {
+                        var matchWholeContentAsAuthoriry = new Regex(@"\A(?!<)([\w\-\,\;\.\(\)\&\s-]+?)[^\w\)]+(?=(?:\Z|<tp))");
+                        authorityStatusNode.ReplaceXmlNodeContentByRegex(matchWholeContentAsAuthoriry, string.Empty, "$1", string.Empty, TaxonAuthorityNodeName, TaxonNodesPrefix, namespaceUri);
+                    }
+
+                    authorityStatusNode.ReplaceXmlNodeByItsInnerXml();
+                }
+
                 titleNode.ReplaceXmlNodeByItsInnerXml();
-            }
-
-            XmlNode authorityStatusNode = nomenclature.SelectSingleNode(TaxonAuthorityStatusNodeName);
-            if (authorityStatusNode != null)
-            {
-                authorityStatusNode.InnerXml = authorityStatusNode.InnerXml.Trim();
-
-                var matchWholeContentAsStatus = new Regex(@"(?<=(?:\A|\W\s*))\b([Ii]ncertae\s+[Ss]edis|nom\.?\s+cons\.?|(?:n\.\s*[a-z]+)\b|(?:[a-z]+\.\s*)?spp\b\.?|[a-z]+\.\s*\b(?:n|nov|r|rev)\b\.?|new record)\Z");
-                authorityStatusNode.ReplaceXmlNodeContentByRegex(matchWholeContentAsStatus, string.Empty, "$1", string.Empty, TaxonStatusNodeName, TaxonNodesPrefix, namespaceUri);
-
-                var matchWholeContentAsAuthoriry = new Regex(@"\A(?!<)([\w\-\,\;\.\(\)\&\s-]+?)[^\w\)]+(?=(?:\Z|<tp))");
-                authorityStatusNode.ReplaceXmlNodeContentByRegex(matchWholeContentAsAuthoriry, string.Empty, "$1", string.Empty, TaxonAuthorityNodeName, TaxonNodesPrefix, namespaceUri);
-
-                authorityStatusNode.ReplaceXmlNodeByItsInnerXml();
             }
         }
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            XmlElement taxonName = nomenclature["tn"];
-            if (taxonName != null && nomenclature["object-id"] != null)
+            XmlElement taxonName = nomenclature[TaxonNameNodeName];
+            if (taxonName != null && nomenclature[ObjectIdNodeName] != null)
             {
-                foreach (XmlNode objectId in nomenclature.SelectNodes("object-id"))
+                foreach (XmlNode objectId in nomenclature.SelectNodes(ObjectIdNodeName))
                 {
                     taxonName.AppendChild(objectId);
                 }
