@@ -3,6 +3,10 @@
     ViewBag.Title = "Details";
 }
 
-<div id="article">
-    @Html.Raw(Model.Document)
-</div>
+@Styles.Render("~/Content/custom-css")
+
+<main>
+    <div id="article">
+        @Html.Raw(Model.Document)
+    </div>
+</main>

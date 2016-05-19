@@ -60,6 +60,20 @@
       <xsl:apply-templates select="@*" />
       <xsl:attribute name="class">
         <xsl:value-of select="local-name()" />
+        <xsl:if test="normalize-space(@content-type)!=''">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="normalize-space(@content-type)" />
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="styled-content">
+    <span>
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="class">
+        <xsl:value-of select="local-name()" />
       </xsl:attribute>
       <xsl:apply-templates />
     </span>
@@ -73,5 +87,17 @@
     <a href="#{@rid}" class="xref {@ref-type}">
       <xsl:apply-templates />
     </a>
+  </xsl:template>
+
+  <xsl:template match="abbrev">
+    <abbr>
+      <xsl:apply-templates select="@* | node()" />
+    </abbr>
+  </xsl:template>
+
+  <xsl:template match="def/p">
+    <span class="abbr-def-p">
+      <xsl:apply-templates select="@* | node()" />
+    </span>
   </xsl:template>
 </xsl:stylesheet>

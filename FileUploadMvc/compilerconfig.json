@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "App_Code/styles/article-styles.css",
+    "inputFile": "App_Code/styles/article-styles.less"
+  },
+  {
+    "outputFile": "Content/styles/article-styles.css",
+    "inputFile": "Content/styles/article-styles.less"
+  }
+]

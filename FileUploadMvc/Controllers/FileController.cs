@@ -26,7 +26,9 @@
                         DateCreated = fileInfo.CreationTimeUtc,
                         DateModified = fileInfo.LastWriteTime
                     };
-                });
+                })
+                .OrderByDescending(i => i.DateModified)
+                .ToList();
 
             return this.View(files);
         }

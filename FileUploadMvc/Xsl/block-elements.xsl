@@ -83,4 +83,25 @@
       <xsl:apply-templates />
     </h4>
   </xsl:template>
+
+  <xsl:template match="list">
+    <xsl:choose>
+      <xsl:when test="@list-type='order'">
+        <ol type="1">
+          <xsl:apply-templates />
+        </ol>
+      </xsl:when>
+      <xsl:otherwise>
+        <ul>
+          <xsl:apply-templates />
+        </ul>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="list-item">
+    <li>
+      <xsl:apply-templates />
+    </li>
+  </xsl:template>
 </xsl:stylesheet>
