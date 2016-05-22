@@ -111,6 +111,7 @@
     <Compile Include="Contracts\IParseHigherTaxaWithGbifController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Contracts\IParseLowerTaxaController.cs" />
+    <Compile Include="Contracts\IParseTreatmentMaterialsController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithAphiaController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithCatalogueOfLifeController.cs" />
     <Compile Include="Contracts\IParseTreatmentMetaWithGbifController.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
+    <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
@@ -372,6 +374,10 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
+      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
+      <Name>Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
@@ -387,6 +393,10 @@
     <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
+      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
+      <Name>Bio.ServiceClient.MaterialsParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
