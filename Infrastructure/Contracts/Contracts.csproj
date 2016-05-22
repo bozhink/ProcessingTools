@@ -41,6 +41,7 @@
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IProcessor.cs" />
+    <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />
