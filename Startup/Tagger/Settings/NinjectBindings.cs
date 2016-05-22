@@ -16,6 +16,13 @@
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(BaseLibrary.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }
