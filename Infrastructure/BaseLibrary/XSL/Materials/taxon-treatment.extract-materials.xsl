@@ -6,6 +6,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:tp="http://www.plazi.org/taxpub"
+  xmlns:x="urn:schemas-processing-tools:context"
   exclude-result-prefixes="xs">
 
   <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="no" indent="no" />
@@ -13,7 +14,7 @@
   <xsl:preserve-space elements="*" />
 
   <xsl:template match="/">
-    <x:materials xmlns:x="urn:schemas-taxonomy:materials" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tp="http://www.plazi.org/taxpub">
+    <x:materials>
       <xsl:for-each select="//p[@content-type='taxon-treatment'][contains(@specific-use, 'material')]">
         <xsl:apply-templates select="." />
       </xsl:for-each>
