@@ -66,9 +66,9 @@
         {
             const string FitstNotWhitespaceNodeInCommentElementXPath = "comment/node()[normalize-space()!=''][position()=1]";
 
-            string XPath = $"//tp:nomenclature-citation[count(comment) = count(node()[normalize-space()!=''])][name({FitstNotWhitespaceNodeInCommentElementXPath})='tn']";
+            string xpath = $"//tp:nomenclature-citation[count(comment) = count(node()[normalize-space()!=''])][name({FitstNotWhitespaceNodeInCommentElementXPath})='tn']";
 
-            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
+            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(citation =>
