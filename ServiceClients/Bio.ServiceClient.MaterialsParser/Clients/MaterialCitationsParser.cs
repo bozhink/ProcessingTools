@@ -7,6 +7,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Common;
     using ProcessingTools.Net.Contracts;
 
     public class MaterialCitationsParser : IMaterialCitationsParser
@@ -18,7 +19,7 @@
         private readonly Encoding encoding;
 
         public MaterialCitationsParser(INetConnector connector)
-            : this(connector, Encoding.UTF8)
+            : this(connector, Defaults.DefaultEncoding)
         {
         }
 
