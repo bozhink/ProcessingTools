@@ -52,7 +52,6 @@
             };
 
             queryDocument.LoadXml(document.ApplyXslTransform(this.taxonTreatmentExtractMaterialsXslFileName));
-            queryDocument.Save(@"C:\temp\query-xx.xml");
 
             string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
 
@@ -62,7 +61,6 @@
             };
 
             responseDocument.LoadXml(response);
-            responseDocument.Save(@"C:\temp\response-xx.xml");
 
             responseDocument.SelectNodes("//p[@id]", namespaceManager)
                 .Cast<XmlNode>()
