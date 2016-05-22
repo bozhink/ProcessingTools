@@ -97,6 +97,8 @@
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
+    <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
+    <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
@@ -303,6 +305,10 @@
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
+      <Project>{E15F875B-A919-4E95-ABEA-2273FA53A0B9}</Project>
+      <Name>Bio.ServiceClient.MaterialsParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
@@ -348,9 +354,7 @@
       <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Taxonomy\Materials\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
