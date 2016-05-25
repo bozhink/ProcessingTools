@@ -109,7 +109,7 @@
         <xsl:when test="starts-with($lower-case, 'redescription')">
           <xsl:text>redescription</xsl:text>
         </xsl:when>
-        <xsl:when test="starts-with($lower-case, 'etymology')">
+        <xsl:when test="starts-with($lower-case, 'etymology') or starts-with($lower-case, 'derivatio nominis')">
           <xsl:text>etymology</xsl:text>
         </xsl:when>
         <xsl:when test="starts-with($lower-case, 'key')">
@@ -160,7 +160,10 @@
         <xsl:when test="contains($lower-case, 'distribution')">
           <xsl:text>distribution</xsl:text>
         </xsl:when>
-        <xsl:when test="contains($lower-case, 'description')">
+        <xsl:when test="contains($lower-case, 'host plant') or starts-with($lower-case, 'host')">
+          <xsl:text>host</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($lower-case, 'description') or contains($lower-case, 'size') or contains($lower-case, 'measurement') or contains($lower-case, 'character')">
           <xsl:text>description</xsl:text>
         </xsl:when>
         <xsl:otherwise>
