@@ -184,9 +184,10 @@
 
         public void ForceExactSpeciesMatchExpand()
         {
-            var nodeListOfSpeciesInShortenedTaxaName = this.XmlDocument.SelectNodes("//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']");
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = "//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
 
-            var speciesUniq = nodeListOfSpeciesInShortenedTaxaName.Cast<XmlNode>()
+            var speciesUniq = this.XmlDocument.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
+                .Cast<XmlNode>()
                 .Select(n => n.InnerText)
                 .Distinct()
                 .ToList();

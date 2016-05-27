@@ -459,9 +459,6 @@
 
         private void RegularizeRankOfSingleWordTaxonName()
         {
-            const string TaxonNamePartOfTypeGenusXPath = "tn-part[@type='genus']";
-            const string TaxonNamePartOfTypeSpeciesXPath = "tn-part[@type='species']";
-
             const string SingleWordTaxonNameXPathFormat = "//tn[@type='lower'][count(tn-part) = 1][{0}]/{0}";
 
             const string TaxonNamePartWithValidContentXPath = "tn-part[normalize-space(.)!=''][not(@full-name)][@type]";
@@ -474,10 +471,10 @@
                 .ToList();
 
             // Process single-word-taxon-names tagged with type genus.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(string.Format(SingleWordTaxonNameXPathFormat, TaxonNamePartOfTypeGenusXPath), listOfNonSingleWordTaxonNameParts);
+            this.UpdateSingleWordTaxonNamePartOfTypeRanks(string.Format(SingleWordTaxonNameXPathFormat, XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath), listOfNonSingleWordTaxonNameParts);
 
             // Process single-word-taxon-names tagged with type species.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(string.Format(SingleWordTaxonNameXPathFormat, TaxonNamePartOfTypeSpeciesXPath), listOfNonSingleWordTaxonNameParts);
+            this.UpdateSingleWordTaxonNamePartOfTypeRanks(string.Format(SingleWordTaxonNameXPathFormat, XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath), listOfNonSingleWordTaxonNameParts);
         }
 
         private void UpdateSingleWordTaxonNamePartOfTypeRanks(string xpath, IEnumerable<TaxonNamePart> listOfNonSingleWordTaxonNameParts)

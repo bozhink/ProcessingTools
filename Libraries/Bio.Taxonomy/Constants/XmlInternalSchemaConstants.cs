@@ -6,5 +6,8 @@
         public const string TaxonNamePartElementName = "tn-part";
         public const string TaxonNamePartRankAttributeName = "type";
         public const string TaxonNamePartFullNameAttributeName = "full-name";
+
+        public const string TaxonNamePartOfTypeGenusXPath = "tn-part[@type='genus']";
+        public const string TaxonNamePartOfTypeSpeciesXPath = "tn-part[@type='species']";
     }
 }
