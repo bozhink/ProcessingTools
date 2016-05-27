@@ -38,13 +38,13 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_WithNullProviderInConstructor_ShouldThow()
+        public void RedisGenericRepository_WithNullProviderInConstructor_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(null);
         }
 
         [TestMethod]
-        public void RedisGenericRepository_WithNullProviderInConstructor_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_WithNullProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -59,7 +59,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AddWithNullContext_ShouldThow()
+        public void RedisGenericRepository_AddWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Add(null, this.tweet).Wait();
@@ -67,7 +67,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AddWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AddWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -83,7 +83,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AddWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_AddWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Add(string.Empty, this.tweet).Wait();
@@ -91,7 +91,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AddWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AddWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -107,7 +107,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AddWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_AddWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Add("     ", this.tweet).Wait();
@@ -115,7 +115,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AddWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AddWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -131,7 +131,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AddWithNullEntity_ShouldThow()
+        public void RedisGenericRepository_AddWithNullEntity_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Add(FakeContextKey, null).Wait();
@@ -139,7 +139,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AddWithNullEntity_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AddWithNullEntity_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -204,7 +204,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllWithNullContext_ShouldThow()
+        public void RedisGenericRepository_AllWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(null).Wait();
@@ -212,7 +212,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -228,7 +228,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_AllWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(string.Empty).Wait();
@@ -236,7 +236,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -252,7 +252,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_AllWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All("     ").Wait();
@@ -260,7 +260,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -276,7 +276,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllSkipTakeWithNullContext_ShouldThow()
+        public void RedisGenericRepository_AllSkipTakeWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(null, 0, 1).Wait();
@@ -284,7 +284,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllSkipTakeWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllSkipTakeWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -300,7 +300,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllSkipTakeWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_AllSkipTakeWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(string.Empty, 0, 1).Wait();
@@ -308,7 +308,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllSkipTakeWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllSkipTakeWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -324,7 +324,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_AllSkipTakeWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_AllSkipTakeWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All("     ", 0, 1).Wait();
@@ -332,7 +332,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllSkipTakeWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllSkipTakeWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -348,7 +348,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentException))]
-        public void RedisGenericRepository_AllSkipTakeWithInvalidSkip_ShouldThow()
+        public void RedisGenericRepository_AllSkipTakeWithInvalidSkip_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(FakeContextKey, -1, 1).Wait();
@@ -356,7 +356,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllSkipTakeWithInvalidSkip_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllSkipTakeWithInvalidSkip_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -372,7 +372,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentException))]
-        public void RedisGenericRepository_AllSkipTakeWithInvalidTake_ShouldThow()
+        public void RedisGenericRepository_AllSkipTakeWithInvalidTake_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.All(FakeContextKey, 0, 0).Wait();
@@ -380,7 +380,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_AllSkipTakeWithInvalidTake_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_AllSkipTakeWithInvalidTake_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -396,7 +396,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteWithNullContext_ShouldThow()
+        public void RedisGenericRepository_DeleteWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(null).Wait();
@@ -404,7 +404,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -420,7 +420,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(string.Empty).Wait();
@@ -428,7 +428,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -444,7 +444,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete("     ").Wait();
@@ -452,7 +452,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -494,7 +494,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteEntityWithNullContext_ShouldThow()
+        public void RedisGenericRepository_DeleteEntityWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(null, this.tweet).Wait();
@@ -502,7 +502,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteEntityWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteEntityWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -518,7 +518,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteEntityWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_DeleteEntityWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(string.Empty, this.tweet).Wait();
@@ -526,7 +526,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteEntityWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteEntityWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -542,7 +542,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteEntityWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_DeleteEntityWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete("     ", this.tweet).Wait();
@@ -550,7 +550,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteEntityWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteEntityWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -566,7 +566,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteNullEntity_ShouldThow()
+        public void RedisGenericRepository_DeleteNullEntity_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(FakeContextKey, null).Wait();
@@ -574,7 +574,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteNullEntity_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteNullEntity_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -646,7 +646,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteByIdWithNullContext_ShouldThow()
+        public void RedisGenericRepository_DeleteByIdWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(null, 1).Wait();
@@ -654,7 +654,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteByIdWithNullContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteByIdWithNullContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -670,7 +670,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteByIdWithEmptyContext_ShouldThow()
+        public void RedisGenericRepository_DeleteByIdWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete(string.Empty, 1).Wait();
@@ -678,7 +678,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteByIdWithEmptyContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteByIdWithEmptyContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
@@ -694,7 +694,7 @@
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RedisGenericRepository_DeleteByIdWithWhitespaceContext_ShouldThow()
+        public void RedisGenericRepository_DeleteByIdWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
             repository.Delete("     ", 1).Wait();
@@ -702,7 +702,7 @@
 
         [TestMethod]
         [Timeout(1000)]
-        public void RedisGenericRepository_DeleteByIdWithWhitespaceContext_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void RedisGenericRepository_DeleteByIdWithWhitespaceContext_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {

@@ -67,7 +67,7 @@
         [TestMethod]
         [Timeout(500)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThrowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(null).Result;
@@ -75,7 +75,7 @@
 
         [TestMethod]
         [Timeout(500)]
-        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -95,7 +95,7 @@
         [TestMethod]
         [Timeout(500)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThrowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(@"   
@@ -104,7 +104,7 @@
 
         [TestMethod]
         [Timeout(500)]
-        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -125,7 +125,7 @@
         [TestMethod]
         [Timeout(500)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThrowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(".").Result;
@@ -133,7 +133,7 @@
 
         [TestMethod]
         [Timeout(500)]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -153,7 +153,7 @@
         [TestMethod]
         [Timeout(500)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThrowAggregateException()
         {
             var service = new MediaTypeDataServiceStaticDictionary();
             var type = service.GetMediaType(@"  
@@ -162,7 +162,7 @@
 
         [TestMethod]
         [Timeout(500)]
-        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {

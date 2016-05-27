@@ -26,7 +26,7 @@
         [TestMethod]
         [Timeout(5000)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataService_WithNullFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataService_WithNullFileExtension_ShouldThrowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -35,7 +35,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        public void MediaTypeDataService_WithNullFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataService_WithNullFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -56,7 +56,7 @@
         [TestMethod]
         [Timeout(5000)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataService_WithEmptyFileExtension_ShouldThowArgumentNullException()
+        public void MediaTypeDataService_WithEmptyFileExtension_ShouldThrowArgumentNullException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -66,7 +66,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        public void MediaTypeDataService_WithEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataService_WithEmptyFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -88,7 +88,7 @@
         [TestMethod]
         [Timeout(5000)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataService_WithDotFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataService_WithDotFileExtension_ShouldThrowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -97,7 +97,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        public void MediaTypeDataService_WithDotFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataService_WithDotFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
@@ -118,7 +118,7 @@
         [TestMethod]
         [Timeout(5000)]
         [ExpectedException(typeof(AggregateException))]
-        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowAggregateException()
+        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThrowAggregateException()
         {
             var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
@@ -128,7 +128,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThowAggregateExceptionWithInternalArgumentNullException()
+        public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThrowAggregateExceptionWithInternalArgumentNullException()
         {
             try
             {
