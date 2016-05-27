@@ -97,8 +97,10 @@
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
+    <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />
+    <Compile Include="Taxonomy\Models\TaxonNamePart.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
