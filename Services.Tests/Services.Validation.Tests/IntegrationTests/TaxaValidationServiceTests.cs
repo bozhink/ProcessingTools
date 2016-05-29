@@ -5,6 +5,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Cache.Data;
     using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache;
@@ -18,7 +19,7 @@
         [TestInitialize]
         public void Initialize()
         {
-            var repository = new ValidationCacheDataRepository();
+            var repository = new ValidationCacheDataRepository(new RedisClientProvider());
             this.cacheService = new ValidationCacheService(repository);
         }
 
@@ -37,6 +38,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
         {
@@ -67,6 +69,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
         {

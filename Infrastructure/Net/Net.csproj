@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Constants\ContentTypeConstants.cs" />
     <Compile Include="Constants\HeaderConstants.cs" />
     <Compile Include="Contracts\INetConnector.cs" />

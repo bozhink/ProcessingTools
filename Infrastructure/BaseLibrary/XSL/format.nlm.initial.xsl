@@ -70,17 +70,107 @@
     <xsl:variable name="lower-case" select="translate(string(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')" />
     <xsl:attribute name="{name()}">
       <xsl:choose>
+        <xsl:when test="starts-with($lower-case, 'type species')">
+          <xsl:text>type species</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'type genus')">
+          <xsl:text>type genus</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'type locality')">
+          <xsl:text>type locality</xsl:text>
+        </xsl:when>
         <xsl:when test="contains($lower-case, 'material') and contains($lower-case, 'type')">
           <xsl:text>type material</xsl:text>
         </xsl:when>
         <xsl:when test="contains($lower-case, 'material')">
           <xsl:text>material</xsl:text>
         </xsl:when>
+        <xsl:when test="contains($lower-case, 'specimens examined')">
+          <xsl:text>material</xsl:text>
+        </xsl:when>
+        <xsl:when test="$lower-case = 'type'">
+          <xsl:text>material</xsl:text>
+        </xsl:when>
+        <xsl:when test="$lower-case = 'notes' or $lower-case = 'note' or $lower-case = 'biological notes'">
+          <xsl:text>notes</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'diagnosis')">
+          <xsl:text>diagnosis</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'description')">
+          <xsl:text>description</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'dimensions')">
+          <xsl:text>description</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'discussion')">
+          <xsl:text>discussion</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'redescription')">
+          <xsl:text>redescription</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'etymology') or starts-with($lower-case, 'derivatio nominis')">
+          <xsl:text>etymology</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'key')">
+          <xsl:text>key</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'remark')">
+          <xsl:text>remarks</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'variation')">
+          <xsl:text>variation</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'variability')">
+          <xsl:text>variability</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'comparison')">
+          <xsl:text>comparisons</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'comparative notes')">
+          <xsl:text>comparisons</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'habitat and biology')">
+          <xsl:text>biology|habitat</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'biology')">
+          <xsl:text>biology</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'habitat')">
+          <xsl:text>habitat</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'ecology')">
+          <xsl:text>ecology</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'phylogenetic data')">
+          <xsl:text>phylogenetic data</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'chemistry')">
+          <xsl:text>chemistry</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'ecoregion')">
+          <xsl:text>distribution</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'natural history')">
+          <xsl:text>natural history</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'comment')">
+          <xsl:text>comments</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($lower-case, 'distribution')">
+          <xsl:text>distribution</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($lower-case, 'host plant') or starts-with($lower-case, 'host')">
+          <xsl:text>host</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($lower-case, 'description') or contains($lower-case, 'size') or contains($lower-case, 'measurement') or contains($lower-case, 'character')">
+          <xsl:text>description</xsl:text>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="len" select="string-length($lower-case)" />
           <xsl:variable name="last-char" select="substring($lower-case, $len - 1, 1)" />
           <xsl:choose>
-            <xsl:when test="$last-char = '.' or $last-char = ',' or $last-char = ';' or $last-char = ';'">
+            <xsl:when test="$last-char = '.' or $last-char = ',' or $last-char = ';' or $last-char = ':'">
               <xsl:value-of select="substring(string(), 1, $len - 1)" />
             </xsl:when>
             <xsl:otherwise>
@@ -238,6 +328,11 @@
       <xsl:attribute name="orientation">
         <xsl:text>portrait</xsl:text>
       </xsl:attribute>
+      <xsl:if test="string(@content-type)!='key'">
+        <xsl:attribute name="xscroll">
+          <xsl:text>yes</xsl:text>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates />
     </xsl:element>
   </xsl:template>

@@ -41,10 +41,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Cache.Data.Models\Cache.Data.Models.csproj">
-      <Project>{65c6a683-c945-4de4-a4e8-8c5863f301a4}</Project>
-      <Name>Cache.Data.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
       <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
       <Name>Cache.Data</Name>

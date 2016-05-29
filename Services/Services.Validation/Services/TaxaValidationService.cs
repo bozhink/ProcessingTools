@@ -9,6 +9,7 @@
     using System.Xml;
 
     using Common.Models.Contracts;
+    using Constants;
     using Contracts;
     using Factories;
     using Models;
@@ -35,7 +36,7 @@
             Name = item
         };
 
-        protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<TaxonNameServiceModel>> output)
+        protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<TaxonNameServiceModel>> validatedItems)
         {
             var exceptions = new ConcurrentQueue<Exception>();
             var resolver = new GlobalNamesResolverDataRequester();
@@ -98,9 +99,9 @@
                                     validatedObject.ValidationStatus = ValidationStatus.Valid;
                                 }
 
-                                this.CacheObtainedData(validatedObject).Wait();
+                                this.CacheObtainedData(validatedObject).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
 
-                                output.Enqueue(validatedObject);
+                                validatedItems.Enqueue(validatedObject);
                             }
                             catch (Exception e)
                             {

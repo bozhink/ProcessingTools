@@ -19,6 +19,13 @@
 
             this.Bind(b =>
             {
+                b.From(Bio.ServiceClient.MaterialsParser.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(Bio.Taxonomy.ServiceClient.CatalogueOfLife.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

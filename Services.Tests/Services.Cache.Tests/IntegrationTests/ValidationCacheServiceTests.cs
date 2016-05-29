@@ -5,6 +5,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
+    using ProcessingTools.Cache.Data;
     using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -30,7 +31,7 @@
         [TestInitialize]
         public void Initialize()
         {
-            this.repository = new ValidationCacheDataRepository();
+            this.repository = new ValidationCacheDataRepository(new RedisClientProvider());
         }
 
         [TestMethod]
@@ -50,6 +51,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddNewItemWithUndefinedStatus_ShouldWork()
         {
@@ -86,6 +88,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddNewItemWithValidStatus_ShouldWork()
         {
@@ -122,6 +125,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddNewItemWithInValidStatus_ShouldWork()
         {
@@ -158,6 +162,7 @@
         }
 
         [TestMethod]
+        [Timeout(5000)]
         [Ignore]
         public void ValidationCacheService_AddNewMultipleItems_ShouldWork()
         {
@@ -193,6 +198,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddItemDeleteItem_ShouldWork()
         {
@@ -237,6 +243,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddItemDeleteItemById_ShouldWork()
         {
@@ -281,6 +288,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddItemDeleteContext_ShouldWork()
         {
@@ -322,6 +330,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_DeleteEmptyContext_ShouldWork()
         {
@@ -337,6 +346,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void ValidationCacheService_AddItemUpdateItem_ShouldWork()
         {

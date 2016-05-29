@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
 
     using Comparers;
+    using Constants;
     using Contracts;
     using Factories;
     using Models;
@@ -29,7 +30,7 @@
 
         protected override Func<UrlServiceModel, UrlServiceModel> GetValidatedObject => item => item;
 
-        protected override Task Validate(UrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<UrlServiceModel>> output)
+        protected override Task Validate(UrlServiceModel[] items, ConcurrentQueue<IValidationServiceModel<UrlServiceModel>> validatedItems)
         {
             return Task.Run(() =>
             {
@@ -48,8 +49,8 @@
                             try
                             {
                                 var validationResult = this.MakeRequest(item).Result;
-                                this.CacheObtainedData(validationResult).Wait();
-                                output.Enqueue(validationResult);
+                                this.CacheObtainedData(validationResult).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
+                                validatedItems.Enqueue(validationResult);
                             }
                             catch (Exception e)
                             {

@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Xml.Extensions
 {
+    using System;
     using System.IO;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
@@ -207,6 +209,96 @@
             var serializer = new XmlSerializer(typeof(T));
             T result = (T)serializer.Deserialize(document.ToXmlReader());
             return result;
+        }
+
+        /// <summary>
+        /// Wraps matching by regex content in XmlNode 'node' in XmlElement with name 'repmacementElementName'
+        /// using replacement string 'replacementPattern'.
+        /// </summary>
+        /// <param name="node">XmlNode object which content will be changed.</param>
+        /// <param name="re">Regex object to match content to be wrapped in XmlElement.</param>
+        /// <param name="preReplacementPattern">Replacement pattern to be applied in regex before the XmlElement.</param>
+        /// <param name="replacementPattern">Replacement pattern to be applied in regex in the XmlElement.</param>
+        /// <param name="postReplacementPattern">Replacement pattern to be applied in regex after the XmlElement.</param>
+        /// <param name="replacementElementName">The name of the XmlElement which will be inserted in the node.</param>
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, string preReplacementPattern, string replacementPattern, string postReplacementPattern, string replacementElementName)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            if (re == null)
+            {
+                throw new ArgumentNullException(nameof(re));
+            }
+
+            if (string.IsNullOrWhiteSpace(replacementElementName))
+            {
+                throw new ArgumentNullException(nameof(replacementElementName));
+            }
+
+            var content = node.InnerXml;
+            if (re.IsMatch(content))
+            {
+                var replacementElement = node.OwnerDocument.CreateElement(replacementElementName);
+                replacementElement.InnerText = replacementPattern;
+
+                try
+                {
+                    node.InnerXml = re.Replace(content, preReplacementPattern + replacementElement.OuterXml + postReplacementPattern);
+                }
+                catch
+                {
+                    node.InnerXml = content;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Wraps matching by regex content in XmlNode 'node' in XmlElement with name 'repmacementElementName'
+        /// using replacement string 'replacementPattern'.
+        /// </summary>
+        /// <param name="node">XmlNode object which content will be changed.</param>
+        /// <param name="re">Regex object to match content to be wrapped in XmlElement.</param>
+        /// <param name="preReplacementPattern">Replacement pattern to be applied in regex before the XmlElement.</param>
+        /// <param name="replacementPattern">Replacement pattern to be applied in regex in the XmlElement.</param>
+        /// <param name="postReplacementPattern">Replacement pattern to be applied in regex after the XmlElement.</param>
+        /// <param name="replacementElementName">The name of the XmlElement which will be inserted in the node.</param>
+        /// <param name="repmacementElementNamePrefix">Prefix for the replacement XmlElement.</param>
+        /// <param name="namespaceUri">Namespece uri for the replacement XmlElement.</param>
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, string preReplacementPattern, string replacementPattern, string postReplacementPattern, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            if (re == null)
+            {
+                throw new ArgumentNullException(nameof(re));
+            }
+
+            if (string.IsNullOrWhiteSpace(replacementElementName))
+            {
+                throw new ArgumentNullException(nameof(replacementElementName));
+            }
+
+            var content = node.InnerXml;
+            if (re.IsMatch(content))
+            {
+                var replacementElement = node.OwnerDocument.CreateElement(repmacementElementNamePrefix, replacementElementName, namespaceUri);
+                replacementElement.InnerText = replacementPattern;
+
+                try
+                {
+                    node.InnerXml = re.Replace(content, preReplacementPattern + replacementElement.OuterXml + postReplacementPattern);
+                }
+                catch
+                {
+                    node.InnerXml = content;
+                }
+            }
         }
     }
 }

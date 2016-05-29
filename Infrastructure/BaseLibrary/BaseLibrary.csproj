@@ -97,6 +97,8 @@
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
+    <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
+    <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
@@ -141,8 +143,14 @@
     <Content Include="XSL\expand-taxa-by-full-name.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\Floats\format-tables.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XSL\format.to-valid-nlm.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\Format\format.taxon-treatments.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\geo\geo-json.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -186,6 +194,9 @@
     <Content Include="XSL\InDesign\Idml\map.xsl" />
     <Content Include="XSL\ipni-query.xsl">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XSL\Materials\taxon-treatment.extract-materials.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XSL\resolve-families-in-checklist.xsl">
@@ -293,6 +304,10 @@
     <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
+      <Project>{E15F875B-A919-4E95-ABEA-2273FA53A0B9}</Project>
+      <Name>Bio.ServiceClient.MaterialsParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
