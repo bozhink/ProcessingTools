@@ -22,7 +22,8 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
-        private readonly ITaxaRepositoryProvider repositoryProvider;
+        private readonly ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider;
+        private readonly ITaxaRepositoryProvider taxonomicRepositoryProvider;
         private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
@@ -30,20 +31,26 @@
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, ITaxaRepositoryProvider repositoryProvider)
+        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, ITaxaRepositoryProvider taxonomicRepositoryProvider, ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider)
         {
             if (contextProvider == null)
             {
                 throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            if (repositoryProvider == null)
+            if (taxonomicRepositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(repositoryProvider));
+                throw new ArgumentNullException(nameof(taxonomicRepositoryProvider));
+            }
+
+            if (blackListRepositoryProvider == null)
+            {
+                throw new ArgumentNullException(nameof(blackListRepositoryProvider));
             }
 
             this.contextProvider = contextProvider;
-            this.repositoryProvider = repositoryProvider;
+            this.taxonomicRepositoryProvider = taxonomicRepositoryProvider;
+            this.blackListRepositoryProvider = blackListRepositoryProvider;
             this.seeder = new DbContextSeeder<BioTaxonomyDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
@@ -57,6 +64,8 @@
             await this.SeedTaxaRanks(ConfigurationManager.AppSettings[RanksDataFileNameKey]);
 
             await this.SeedTaxaNames();
+
+            await this.SeedBlackList();
 
             if (this.exceptions.Count > 0)
             {
@@ -83,7 +92,7 @@
                         });
                     });
 
-                var repository = this.repositoryProvider.Create();
+                var repository = this.taxonomicRepositoryProvider.Create();
                 var ranks = new HashSet<string>((await repository.All())
                     .SelectMany(t => t.Ranks)
                     .ToList());
@@ -123,11 +132,11 @@
         {
             try
             {
-                var repository = this.repositoryProvider.Create();
+                var repository = this.taxonomicRepositoryProvider.Create();
 
                 var context = this.contextProvider.Create();
 
-                for (int i = 0; true; i++)
+                for (int i = 0; true; ++i)
                 {
                     try
                     {
@@ -140,7 +149,8 @@
                             .Select(taxon => new TaxonName
                             {
                                 Name = taxon.Name,
-                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank)).ToList()
+                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank)).ToList(),
+                                WhiteListed = taxon.IsWhiteListed
                             })
                             .ToArray();
 
@@ -150,6 +160,55 @@
                         }
 
                         context.TaxonNames.AddOrUpdate(taxa);
+
+                        await context.SaveChangesAsync();
+                        context.Dispose();
+                        context = this.contextProvider.Create();
+                    }
+                    catch (Exception e)
+                    {
+                        this.exceptions.Enqueue(e);
+                        break;
+                    }
+                }
+
+                await context.SaveChangesAsync();
+                context.Dispose();
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
+        }
+
+        private async Task SeedBlackList()
+        {
+            try
+            {
+                var repository = this.blackListRepositoryProvider.Create();
+
+                var context = this.contextProvider.Create();
+
+                for (int i = 0; true; ++i)
+                {
+                    try
+                    {
+                        var blackListItems = (await repository.All())
+                            .OrderBy(t => t)
+                            .Skip(i * NumberOfItemsToImportAtOnce)
+                            .Take(NumberOfItemsToImportAtOnce)
+                            .Select(item => new BlackListedItem
+                            {
+                                Content = item
+                            })
+                            .ToArray();
+
+                        if (blackListItems == null || blackListItems.Length < 1)
+                        {
+                            break;
+                        }
+
+                        context.BlackListedItems.AddOrUpdate(blackListItems);
 
                         await context.SaveChangesAsync();
                         context.Dispose();

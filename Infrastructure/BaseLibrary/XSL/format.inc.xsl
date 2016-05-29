@@ -9,6 +9,7 @@
   exclude-result-prefixes="xs">
 
   <xsl:include href="geo/geo-json.xsl" />
+  <xsl:include href="Floats/format-tables.xsl"/>
 
   <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
 
@@ -44,7 +45,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date']">
+  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date'] | ref//named-content[@content-type='institution'] | addr-line//named-content[@content-type='institution']">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -52,6 +53,14 @@
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <xsl:value-of select="string()" />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="//tp:nomenclature-citation[not(comment)]">
+    <xsl:element name="{name()}">
+      <comment>
+        <xsl:apply-templates />
+      </comment>
     </xsl:element>
   </xsl:template>
 

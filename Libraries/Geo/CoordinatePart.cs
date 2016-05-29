@@ -104,6 +104,7 @@
 
         private void DetermineCoordinatePartTypeAndSign()
         {
+            bool hasMinus = this.coordinatePartString.Contains("-");
             bool hasN = this.coordinatePartString.Contains("N");
             bool hasS = this.coordinatePartString.Contains("S");
             bool hasE = this.coordinatePartString.Contains("E");
@@ -124,7 +125,7 @@
 
             // There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
             // Here is supposed that O = Ost
-            this.decimalCoordinatePartSign = (hasS || hasW) ? -1 : 1;
+            this.decimalCoordinatePartSign = (hasS || hasW) || (hasMinus && !(hasE || hasN || hasO)) ? -1 : 1;
         }
 
         private double ParseCoordinatePart()

@@ -56,29 +56,29 @@
                 throw new ApplicationException("Number of items to validate should be greater than zero.");
             }
 
-            var result = new ConcurrentQueue<IValidationServiceModel<TValidatedObject>>();
+            var validatedItems = new ConcurrentQueue<IValidationServiceModel<TValidatedObject>>();
+            var itemsToCheck = new ConcurrentQueue<TItemToCheck>();
 
-            TItemToCheck[] itemsToCheck;
             try
             {
-                itemsToCheck = await this.ValidateItemsFromCache(items, result);
+                await this.ValidateItemsFromCache(items, validatedItems, itemsToCheck);
                 this.CacheServiceIsUsable = true;
             }
             catch
             {
-                itemsToCheck = items.Select(this.GetItemToCheck).ToArray();
+                itemsToCheck = new ConcurrentQueue<TItemToCheck>(items.Select(this.GetItemToCheck));
                 this.CacheServiceIsUsable = false;
             }
 
             if (itemsToCheck.Count() < 1)
             {
                 // All requested items are already cached and their status is Valid.
-                return result;
+                return validatedItems;
             }
 
-            await this.Validate(itemsToCheck, result);
+            await this.Validate(itemsToCheck.ToArray(), validatedItems);
 
-            return result;
+            return validatedItems.ToList();
         }
 
         protected async Task CacheObtainedData(IValidationServiceModel<TValidatedObject> validatedObject)
@@ -86,58 +86,69 @@
             if (this.CacheServiceIsUsable)
             {
                 string context = this.GetContextKey.Invoke(this.GetItemToCheck.Invoke(validatedObject.ValidatedObject));
-                await this.CacheService.Add(
-                    context,
-                    new ValidationCacheServiceModel
-                    {
-                        Status = validatedObject.ValidationStatus,
-                        LastUpdate = DateTime.Now
-                    });
+
+                try
+                {
+                    await this.CacheService.Add(
+                        context,
+                        new ValidationCacheServiceModel
+                        {
+                            Status = validatedObject.ValidationStatus,
+                            LastUpdate = DateTime.Now
+                        });
+                }
+                catch
+                {
+                    this.CacheServiceIsUsable = false;
+                }
             }
         }
 
-        protected abstract Task Validate(TItemToCheck[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> output);
+        protected abstract Task Validate(TItemToCheck[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> validatedItems);
 
-        private Task<TItemToCheck[]> ValidateItemsFromCache(TValidatedObject[] items, ConcurrentQueue<IValidationServiceModel<TValidatedObject>> output)
+        private Task ValidateItemsFromCache(
+            TValidatedObject[] items,
+            ConcurrentQueue<IValidationServiceModel<TValidatedObject>> validatedItems,
+            ConcurrentQueue<TItemToCheck> itemsToCheck)
         {
-            return Task.Run(() =>
+            Task[] tasks = items.Select(this.GetItemToCheck)
+                .Select(item => this.ValidateSingleItem(item, validatedItems, itemsToCheck))
+                .ToArray();
+
+            return Task.WhenAll(tasks);
+        }
+
+        private async Task ValidateSingleItem(
+            TItemToCheck item,
+            ConcurrentQueue<IValidationServiceModel<TValidatedObject>> validatedItems,
+            ConcurrentQueue<TItemToCheck> itemsToCheck)
+        {
+            string context = this.GetContextKey.Invoke(item);
+            if (string.IsNullOrWhiteSpace(context))
             {
-                var itemsToCheck = new ConcurrentQueue<TItemToCheck>();
-                items.Select(this.GetItemToCheck)
-                    .AsParallel()
-                    .ForAll(item =>
-                    {
-                        string context = this.GetContextKey.Invoke(item);
-                        if (string.IsNullOrWhiteSpace(context))
-                        {
-                            throw new ApplicationException("Cache context should be valid string.");
-                        }
+                throw new ApplicationException("Cache context should be valid string.");
+            }
 
-                        try
-                        {
-                            var lastCachedItem = this.cacheService.All(context).Result
-                                .OrderByDescending(i => i.LastUpdate)
-                                .FirstOrDefault();
+            try
+            {
+                var lastCachedItem = (await this.cacheService.All(context))
+                    .OrderByDescending(i => i.LastUpdate)
+                    .FirstOrDefault();
 
-                            if (lastCachedItem?.Status == ValidationStatus.Valid)
-                            {
-                                var validatedObject = this.GetValidationServiceModel.Invoke(item);
-                                output.Enqueue(validatedObject);
-                            }
-                            else
-                            {
-                                itemsToCheck.Enqueue(item);
-                            }
-                        }
-                        catch (ArgumentNullException)
-                        {
-                            // OrderBy does not work.
-                            itemsToCheck.Enqueue(item);
-                        }
-                    });
-
-                return itemsToCheck.ToArray<TItemToCheck>();
-            });
+                if (lastCachedItem == null || lastCachedItem.Status != ValidationStatus.Valid)
+                {
+                    itemsToCheck.Enqueue(item);
+                }
+                else
+                {
+                    var validatedObject = this.GetValidationServiceModel.Invoke(item);
+                    validatedItems.Enqueue(validatedObject);
+                }
+            }
+            catch
+            {
+                itemsToCheck.Enqueue(item);
+            }
         }
     }
 }

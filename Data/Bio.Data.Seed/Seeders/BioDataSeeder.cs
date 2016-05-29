@@ -46,7 +46,7 @@
 
             await this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]);
 
-            await this.SeedTypeStatuses(TypeStatusesFileNameKey);
+            await this.SeedTypeStatuses(ConfigurationManager.AppSettings[TypeStatusesFileNameKey]);
 
             if (this.exceptions.Count > 0)
             {

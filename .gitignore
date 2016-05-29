@@ -193,4 +193,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-Startup/WordNetMongoDbSeeder/.ntvs_analysis.dat
+.ntvs_analysis.dat
+packages/

@@ -89,8 +89,7 @@
                 using (var client = this.provider.Create())
                 {
                     var list = client.Lists[context];
-                    return list.OrderBy(i => i)
-                        .Skip(skip)
+                    return list.Skip(skip)
                         .Take(take)
                         .Select(i => i.Deserialize<TEntity>())
                         .AsQueryable();

@@ -8,11 +8,6 @@
 
     public class ValidationCacheDataRepository : RedisGenericRepository<ValidationCacheEntity>, IValidationCacheDataRepository
     {
-        public ValidationCacheDataRepository()
-            : this(new RedisClientProvider())
-        {
-        }
-
         public ValidationCacheDataRepository(IRedisClientProvider provider)
             : base(provider)
         {

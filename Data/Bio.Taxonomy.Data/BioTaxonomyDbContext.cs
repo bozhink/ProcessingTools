@@ -16,6 +16,8 @@
 
         public IDbSet<TaxonName> TaxonNames { get; set; }
 
+        public IDbSet<BlackListedItem> BlackListedItems { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add<PluralizingTableNameConvention>();

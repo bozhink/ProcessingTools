@@ -19,6 +19,7 @@
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void FakeRedisRepository_AddEntityDeleteEntity_ShouldWork()
         {
@@ -27,6 +28,9 @@
             var repository = new FakeRedisRepository();
             Assert.IsNotNull(repository, "Repository schould not be null.");
 
+            repository.Delete(key).Wait();
+            repository.SaveChanges(key).Wait();
+
             var now = DateTime.Now;
             var value = $"{key} {now.ToLongTimeString()}";
             var entity = new SimpleTimeRecordModel
@@ -35,15 +39,10 @@
                 Value = value
             };
 
-            repository.Delete(key);
-
             repository.Add(key, entity).Wait();
+            repository.SaveChanges(key).Wait();
 
             var items = repository.All(key).Result.ToList();
-
-            repository.Delete(key, entity).Wait();
-
-            Console.WriteLine("After deletion mark.");
 
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
@@ -53,10 +52,14 @@
             Assert.AreEqual(now.ToLongTimeString(), item.LastUpdate.ToLongTimeString(), "item.LastUpdate should match.");
             Assert.AreEqual(value, item.Value, "item.Value schould match.");
 
+            repository.Delete(key, entity).Wait();
+            repository.SaveChanges(key).Wait();
+
             Assert.AreEqual(0, repository.All(key).Result.ToList().Count, "Number of items after deletion should be 0.");
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void FakeRedisRepository_AddEntityDeleteByIdEntity_ShouldWork()
         {
@@ -65,6 +68,9 @@
             var repository = new FakeRedisRepository();
             Assert.IsNotNull(repository, "Repository schould not be null.");
 
+            repository.Delete(key).Wait();
+            repository.SaveChanges(key).Wait();
+
             var now = DateTime.Now;
             var value = $"{key} {now.ToLongTimeString()}";
             var entity = new SimpleTimeRecordModel
@@ -73,17 +79,12 @@
                 Value = value
             };
 
-            repository.Delete(key);
-
             repository.Add(key, entity).Wait();
-
-            var items = repository.All(key).Result.ToList();
 
             Assert.IsTrue(entity.Id > 0, "entity.Id should be grater than 0.");
 
-            repository.Delete(key, entity.Id).Wait();
-
-            Console.WriteLine("After deletion mark.");
+            var items = repository.All(key).Result.ToList();
+            repository.SaveChanges(key).Wait();
 
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
@@ -93,20 +94,26 @@
             Assert.AreEqual(now.ToLongTimeString(), item.LastUpdate.ToLongTimeString(), "item.LastUpdate should match.");
             Assert.AreEqual(value, item.Value, "item.Value schould match.");
 
+            repository.Delete(key, entity.Id).Wait();
+            repository.SaveChanges(key).Wait();
+
             Assert.AreEqual(0, repository.All(key).Result.ToList().Count, "Number of items after deletion should be 0.");
         }
 
         [TestMethod]
+        [Timeout(2000)]
         [Ignore]
         public void FakeRedisRepository_AddMultipleEntitiesInSameKey_ShouldWork()
         {
-            string key = Guid.NewGuid().ToString();
             const int NumberOfItems = 100;
 
             var repository = new FakeRedisRepository();
             Assert.IsNotNull(repository, "Repository schould not be null.");
 
-            repository.Delete(key);
+            string key = Guid.NewGuid().ToString();
+
+            repository.Delete(key).Wait();
+            repository.SaveChanges(key).Wait();
 
             for (int i = 0; i < NumberOfItems; ++i)
             {
@@ -119,13 +126,13 @@
                 };
 
                 repository.Add(key, entity).Wait();
+                repository.SaveChanges(key).Wait();
             }
 
             var items = repository.All(key).Result.ToList();
+            Assert.AreEqual(NumberOfItems, items.Count, $"Number of items should be {NumberOfItems}.");
 
             repository.Delete(key);
-
-            Assert.AreEqual(NumberOfItems, items.Count, $"Number of items should be {NumberOfItems}.");
         }
     }
 }

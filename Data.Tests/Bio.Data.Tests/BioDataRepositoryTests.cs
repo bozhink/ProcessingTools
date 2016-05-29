@@ -3,13 +3,13 @@
     using System;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Mocks;
+    using Models;
     using Moq;
 
     using ProcessingTools.Bio.Data.Contracts;
     using ProcessingTools.Bio.Data.Repositories;
     using ProcessingTools.Bio.Data.Repositories.Contracts;
-    using ProcessingTools.Bio.Data.Tests.Mocks;
-    using ProcessingTools.Bio.Data.Tests.Models;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     [TestClass]

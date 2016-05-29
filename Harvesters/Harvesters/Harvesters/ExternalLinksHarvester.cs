@@ -26,7 +26,7 @@
         {
             var items = await document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
 
-            return items.ExternalLinks.AsQueryable();
+            return items.ExternalLinks?.AsQueryable();
         }
     }
 }

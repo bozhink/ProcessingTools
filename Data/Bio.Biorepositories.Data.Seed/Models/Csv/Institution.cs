@@ -8,6 +8,8 @@
     [CsvObject]
     public class Institution
     {
+        private string institutionCode;
+
         [CsvColumn("Additional Institution Names")]
         public string AdditionalInstitutionNames { get; set; }
 
@@ -33,7 +35,18 @@
         public IndexHerbariorumRecordType IndexHerbariorumRecord { get; set; }
 
         [CsvColumn("Institution Code")]
-        public string InstitutionCode { get; set; }
+        public string InstitutionCode
+        {
+            get
+            {
+                return this.institutionCode;
+            }
+
+            set
+            {
+                this.institutionCode = value.Replace("<IH>", string.Empty);
+            }
+        }
 
         [CsvColumn("Institution Name")]
         public string InstitutionName { get; set; }
