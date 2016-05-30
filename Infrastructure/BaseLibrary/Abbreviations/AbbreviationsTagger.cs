@@ -17,6 +17,8 @@
         {
         }
 
+        public ILogger Logger { get; set; }
+
         public Task Tag()
         {
             return Task.Run(() =>
@@ -35,7 +37,9 @@
             var abbreviationsList = new HashSet<Abbreviation>(specificNode
                 .SelectNodes(".//abbrev", this.NamespaceManager)
                 .Cast<XmlNode>()
-                .Select(x => new Abbreviation(x)));
+                .Select(x => new Abbreviation(x))
+                .Where(a => !string.IsNullOrWhiteSpace(a.Content))
+                .ToList());
 
             foreach (Abbreviation abbreviation in abbreviationsList)
             {
@@ -45,7 +49,14 @@
                     bool performReplace = nodeInSpecificNode.CheckIfIsPossibleToPerformReplaceInXmlNode();
                     if (performReplace)
                     {
-                        nodeInSpecificNode.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                        try
+                        {
+                            nodeInSpecificNode.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                        }
+                        catch (XmlException)
+                        {
+                            this.Logger?.Log("Exception in abbreviation {0}", abbreviation.Content);
+                        }
                     }
                 }
             }
