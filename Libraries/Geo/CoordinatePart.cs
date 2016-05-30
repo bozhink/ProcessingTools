@@ -130,7 +130,7 @@
 
         private double ParseCoordinatePart()
         {
-            Regex matchDegreesString = new Regex(@"\A.*?(\-?\d+(?:\.\d+)?).*\Z");
+            Regex matchDegreesString = new Regex(@"\A.*?(\d+(?:\.\d+)?).*\Z");
             string degreesString = null;
             if (matchDegreesString.IsMatch(this.coordinatePartString))
             {
