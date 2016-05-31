@@ -14,7 +14,6 @@
         }
 
         public TaxonNamePart(XmlNode node)
-            : this()
         {
             if (node == null)
             {
@@ -22,6 +21,7 @@
             }
 
             this.Name = node.InnerText;
+
             this.Rank = node.Attributes[XmlInternalSchemaConstants.TaxonNamePartRankAttributeName]?.InnerText ?? string.Empty;
             this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
 

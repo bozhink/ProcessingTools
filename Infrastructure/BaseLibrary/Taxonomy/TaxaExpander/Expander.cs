@@ -5,6 +5,8 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Models;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
@@ -184,6 +186,17 @@
 
         public void ForceExactSpeciesMatchExpand()
         {
+            ICollection<TaxonName> taxonNames = new List<TaxonName>();
+            this.XmlDocument.SelectNodes("//tn[@type='lower']")
+                .Cast<XmlNode>()
+                .ToList()
+                .ForEach(t => taxonNames.Add(new TaxonName(t)));
+
+            foreach (var taxonName in taxonNames)
+            {
+                this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
+            }
+
             string nodeListOfSpeciesInShortenedTaxaNameXPath = "//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
 
             var speciesUniq = this.XmlDocument.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
