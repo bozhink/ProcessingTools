@@ -100,6 +100,7 @@
     <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />
+    <Compile Include="Taxonomy\Models\TaxonName.cs" />
     <Compile Include="Taxonomy\Models\TaxonNamePart.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,7 @@
         public const string IdAttributeName = "id";
 
         public const string TaxonNameElementName = "tn";
+        public const string TaxonNameTypeAttributeName = "type";
         public const string TaxonNamePartElementName = "tn-part";
         public const string TaxonNamePartRankAttributeName = "type";
         public const string TaxonNamePartFullNameAttributeName = "full-name";

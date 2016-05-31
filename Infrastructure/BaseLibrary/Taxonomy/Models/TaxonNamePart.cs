@@ -14,6 +14,7 @@
         }
 
         public TaxonNamePart(XmlNode node)
+            : this()
         {
             if (node == null)
             {
