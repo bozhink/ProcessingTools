@@ -10,6 +10,7 @@
 
         public TaxonNamePart()
         {
+            this.Id = Guid.NewGuid().ToString();
         }
 
         public TaxonNamePart(XmlNode node)
@@ -21,6 +22,7 @@
 
             this.Name = node.InnerText;
             this.Rank = node.Attributes[XmlInternalSchemaConstants.TaxonNamePartRankAttributeName]?.InnerText ?? string.Empty;
+            this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
 
             var fullNameAttribute = node.Attributes[XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName];
             if (fullNameAttribute == null)
@@ -39,6 +41,8 @@
                 this.FullName = fullNameAttribute.InnerText;
             }
         }
+
+        public string Id { get; set; }
 
         public bool IsAbbreviated { get; private set; }
 

@@ -2,6 +2,8 @@
 {
     public static class XmlInternalSchemaConstants
     {
+        public const string IdAttributeName = "id";
+
         public const string TaxonNameElementName = "tn";
         public const string TaxonNamePartElementName = "tn-part";
         public const string TaxonNamePartRankAttributeName = "type";

@@ -111,7 +111,7 @@
         {
             Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs", this.logger);
 
-            // Loop over paragraphs containong shortened taxa
+            // Loop over paragraphs containing shortened taxa
             foreach (XmlNode p in this.XmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
             {
                 this.logger?.Log(p.InnerText);
