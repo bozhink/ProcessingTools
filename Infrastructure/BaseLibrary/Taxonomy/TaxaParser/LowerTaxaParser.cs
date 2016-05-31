@@ -207,7 +207,7 @@
         }
 
         /// <summary>
-        /// Parse taxa from beginnig.
+        /// Parse taxa from beginning.
         /// </summary>
         /// <param name="text">Text string to be parsed.</param>
         /// <returns>Parsed text string.</returns>
@@ -328,11 +328,27 @@
 
         private void AddFullNameAttribute()
         {
-            foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu' and @type!='hybrid-sign' and @type!='uncertainty-rank' and @type!='infraspecific-rank' and @type!='authority' and @type!='basionym-authority'][contains(string(.), '.')]", this.NamespaceManager))
-            {
-                XmlAttribute fullName = this.XmlDocument.CreateAttribute("full-name");
-                lowerTaxon.Attributes.Append(fullName);
-            }
+            const string XPath = "//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
+
+            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(lowerTaxonNamePart =>
+                {
+                    XmlAttribute fullNameAttribute = this.XmlDocument.CreateAttribute(XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName);
+
+                    string lowerTaxonNamePartText = lowerTaxonNamePart.InnerText.Trim();
+                    if (string.IsNullOrWhiteSpace(lowerTaxonNamePartText) || lowerTaxonNamePartText.Contains('.'))
+                    {
+                        fullNameAttribute.InnerText = string.Empty;
+                    }
+                    else
+                    {
+                        fullNameAttribute.InnerText = lowerTaxonNamePartText;
+                    }
+
+                    lowerTaxonNamePart.Attributes.Append(fullNameAttribute);
+                });
         }
 
         private void AddMissingEmptyTagsInTaxonName()
@@ -345,18 +361,26 @@
                     XmlNode species = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
                     if (species == null)
                     {
-                        XmlElement speciesElement = this.XmlDocument.CreateElement("tn-part");
-                        speciesElement.SetAttribute("type", "species");
-                        speciesElement.SetAttribute("full-name", string.Empty);
+                        XmlElement speciesElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
+                        speciesElement.SetAttribute(
+                            XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
+                            TaxonRanksType.Species.ToString().ToLower());
+                        speciesElement.SetAttribute(
+                            XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
+                            string.Empty);
 
                         lowerTaxon.PrependChild(speciesElement);
                     }
 
                     // Add genus tag
                     {
-                        XmlElement genusElement = this.XmlDocument.CreateElement("tn-part");
-                        genusElement.SetAttribute("type", "genus");
-                        genusElement.SetAttribute("full-name", string.Empty);
+                        XmlElement genusElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
+                        genusElement.SetAttribute(
+                            XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
+                            TaxonRanksType.Genus.ToString().ToLower());
+                        genusElement.SetAttribute(
+                            XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
+                            string.Empty);
 
                         lowerTaxon.PrependChild(genusElement);
                     }
