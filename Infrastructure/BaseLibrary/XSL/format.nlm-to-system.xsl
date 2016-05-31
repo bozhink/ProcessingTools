@@ -35,12 +35,14 @@
 
   <xsl:template match="tp:taxon-name | tn">
     <tn>
+      <xsl:call-template name="generate-taxon-id" />
       <xsl:apply-templates select="@* | node()" />
     </tn>
   </xsl:template>
 
   <xsl:template match="tp:taxon-name-part | tn-part">
     <tn-part>
+      <xsl:call-template name="generate-taxon-id" />
       <xsl:apply-templates select="@* | node()" />
     </tn-part>
   </xsl:template>

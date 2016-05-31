@@ -54,12 +54,14 @@
 
   <xsl:template match="tp:taxon-name | tn">
     <tp:taxon-name>
+      <xsl:call-template name="generate-taxon-id" />
       <xsl:apply-templates select="@* | node()" />
     </tp:taxon-name>
   </xsl:template>
 
   <xsl:template match="tp:taxon-name-part | tn-part">
     <tp:taxon-name-part>
+      <xsl:call-template name="generate-taxon-id" />
       <xsl:apply-templates select="@* | node()" />
     </tp:taxon-name-part>
     <xsl:if test="name(../..) != 'tp:nomenclature'">
