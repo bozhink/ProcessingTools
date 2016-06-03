@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Factories
 {
     using System;
     using Contracts;
