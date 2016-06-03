@@ -875,7 +875,6 @@
             Assert.AreEqual(this.tweet.Id, result.Id, "Id should match.");
             Assert.AreEqual(this.tweet.PostedOn.ToString(), result.PostedOn.ToString(), "PostedOn should match.");
             Assert.AreEqual(this.tweet.Content, result.Content, "Content should match.");
-
         }
 
         [TestMethod]
