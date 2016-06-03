@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Factories
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo
 {
     using System.Configuration;
     using Contracts;

@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Factories\BiorepositoriesMongoDatabaseProvider.cs" />
+    <Compile Include="BiorepositoriesMongoDatabaseProvider.cs" />
     <Compile Include="Contracts\IBiorepositoriesMongoDatabaseProvider.cs" />
     <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\CollectionLabel.cs" />
