@@ -46,7 +46,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDataInitializer.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
-    <Compile Include="BioEnvironmentsDbContextFactory.cs" />
+    <Compile Include="Factories\BioEnvironmentsDbContextFactory.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDataInitializer.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />

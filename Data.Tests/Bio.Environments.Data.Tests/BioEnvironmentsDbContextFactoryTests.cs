@@ -8,6 +8,7 @@
 
     using ProcessingTools.Bio.Environments.Data.Common.Constants;
     using ProcessingTools.Bio.Environments.Data.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Factories;
     using ProcessingTools.Common.Providers;
 
     [TestClass]
