@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.MediaType.Data
+﻿namespace ProcessingTools.Geo.Data.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.MediaType.Data.Common.Constants;
+    using ProcessingTools.Geo.Data.Common.Constants;
 
-    public class MediatypesDbContextFactory : IMediatypesDbContextFactory
+    public class GeoDbContextFactory : IGeoDbContextFactory
     {
         private string connectionString;
 
-        public MediatypesDbContextFactory()
+        public GeoDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.MediaTypesDbContextConnectionKey;
+            this.ConnectionString = ConnectionConstants.GeoDatabseConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public MediaTypesDbContext Create()
+        public GeoDbContext Create()
         {
-            return new MediaTypesDbContext(this.ConnectionString);
+            return new GeoDbContext(this.ConnectionString);
         }
     }
 }

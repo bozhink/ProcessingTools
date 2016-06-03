@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data
+﻿namespace ProcessingTools.Data.Factories
 {
     using System;
     using Contracts;
@@ -10,7 +10,7 @@
 
         public DataDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.DefaultDataConnectionKey;
+            this.ConnectionString = ConnectionConstants.DataDatabseConnectionKey;
         }
 
         public string ConnectionString

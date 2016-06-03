@@ -49,7 +49,7 @@
     <Compile Include="Contracts\IMediaTypeDataInitializer.cs" />
     <Compile Include="Contracts\IMediatypesDbContextFactory.cs" />
     <Compile Include="MediaTypeDataInitializer.cs" />
-    <Compile Include="MediatypesDbContextFactory.cs" />
+    <Compile Include="Factories\MediatypesDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MediatypesDbContext.cs" />
     <Compile Include="Models\FileExtension.cs" />

@@ -48,7 +48,7 @@
                 $"Default value of {nameof(factory.ConnectionString)} should not be null or whitespace.");
 
             Assert.AreEqual(
-                ConnectionConstants.BioDbContextConnectionKey,
+                ConnectionConstants.BioDatabaseConnectionKey,
                 factory.ConnectionString,
                 $"Default value of {nameof(factory.ConnectionString)} should be ConnectionConstants.BioDbContextConnectionKey.");
         }

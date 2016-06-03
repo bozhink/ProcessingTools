@@ -2,6 +2,7 @@
 {
     public static class ConnectionConstants
     {
-        public const string BioTaxonomyDbContextConnectionKey = "TaxonomyConnection";
+        public const string BioTaxonomyDatabaseConnectionKey = "BioTaxonomyDatabaseConnection";
+        public const string ContextKey = "ProcessingTools.Bio.Taxonomy.Data.BioTaxonomyDbContext";
     }
 }
