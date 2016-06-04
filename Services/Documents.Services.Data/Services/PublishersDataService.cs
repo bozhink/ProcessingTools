@@ -12,7 +12,7 @@
     using ProcessingTools.Documents.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class PublishersDataService : GenericRepositoryProviderDataServiceFactory<Publisher, PublisherServiceModel>, IPublishersDataService
+    public class PublishersDataService : RepositoryProviderMultiDataServiceFactory<Publisher, PublisherServiceModel>, IPublishersDataService
     {
         public PublishersDataService(IDocumentsRepositoryProvider<Publisher> repository)
             : base(repository)

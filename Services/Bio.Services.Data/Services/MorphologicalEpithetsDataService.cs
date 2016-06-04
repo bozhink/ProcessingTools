@@ -11,7 +11,7 @@
     using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class MorphologicalEpithetsDataService : GenericRepositoryDataServiceFactory<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
+    public class MorphologicalEpithetsDataService : RepositoryMultiDataServiceFactory<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
             : base(repository)

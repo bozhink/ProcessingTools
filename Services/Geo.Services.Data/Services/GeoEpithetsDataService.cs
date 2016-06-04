@@ -11,7 +11,7 @@
     using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class GeoEpithetsDataService : GenericRepositoryDataServiceFactory<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : RepositoryMultiDataServiceFactory<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
     {
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
             : base(repository)

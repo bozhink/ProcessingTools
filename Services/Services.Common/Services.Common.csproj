@@ -41,8 +41,8 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IContextDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Factories\GenericRepositoryProviderDataServiceFactory.cs" />
-    <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryProviderMultiDataServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />

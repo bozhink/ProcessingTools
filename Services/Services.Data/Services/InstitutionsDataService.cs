@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class InstitutionsDataService : GenericRepositoryDataServiceFactory<Institution, InstitutionServiceModel>, IInstitutionsDataService
+    public class InstitutionsDataService : RepositoryMultiDataServiceFactory<Institution, InstitutionServiceModel>, IInstitutionsDataService
     {
         public InstitutionsDataService(IDataRepository<Institution> repository)
             : base(repository)

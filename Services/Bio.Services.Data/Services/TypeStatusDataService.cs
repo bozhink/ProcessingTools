@@ -10,7 +10,7 @@
     using ProcessingTools.Bio.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TypeStatusDataService : GenericRepositoryDataServiceFactory<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService
+    public class TypeStatusDataService : RepositoryMultiDataServiceFactory<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService
     {
         public TypeStatusDataService(IBioDataRepository<TypeStatus> repository)
             : base(repository)
