@@ -12,10 +12,10 @@
     using Contracts;
     using Factories;
     using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
     public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {
@@ -43,7 +43,7 @@
                     .ForAll(group =>
                     {
                         // For different BaseAddress-es requests are parallel,
-                        // for equal - sequental.
+                        // for equal - sequential.
                         foreach (var item in group)
                         {
                             try
@@ -74,7 +74,7 @@
             {
                 if (string.IsNullOrWhiteSpace(item.Address))
                 {
-                    throw new ApplicationException($"Url address is null or whitespace: '{item.BaseAddress}//{item.Address}'.");
+                    throw new ApplicationException($"URL address is null or whitespace: '{item.BaseAddress}//{item.Address}'.");
                 }
 
                 using (HttpClient client = new HttpClient())

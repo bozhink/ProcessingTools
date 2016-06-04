@@ -1,16 +1,15 @@
-﻿namespace ProcessingTools.Services.Common
+﻿namespace ProcessingTools.Services.Cache
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using AutoMapper;
-
     using Contracts;
-    using Models.Contracts;
 
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Services.Common.Models.Contracts;
 
     public class GenericCacheService<TContext, TId, TDbModel, TServiceModel> : ICacheService<TContext, TId, TServiceModel>
         where TDbModel : IGenericEntity<TId>

@@ -30,16 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Contracts\ISimpleCacheService.cs" />
     <Compile Include="Contracts\IValidationCacheService.cs" />
     <Compile Include="Models\ValidationCacheServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GenericCacheService.cs" />
+    <Compile Include="Services\SimpleCacheService.cs" />
     <Compile Include="Services\ValidationCacheService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="CacheServicesClassDiagram.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
       <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
