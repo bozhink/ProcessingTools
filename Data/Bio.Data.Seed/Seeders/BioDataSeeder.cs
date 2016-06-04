@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -44,9 +45,16 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]);
+            var tasks = new List<Task>();
 
-            await this.SeedTypeStatuses(ConfigurationManager.AppSettings[TypeStatusesFileNameKey]);
+            tasks.Add(
+                this.SeedMorphologicalEpithets(
+                    ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]));
+            tasks.Add(
+                this.SeedTypeStatuses(
+                    ConfigurationManager.AppSettings[TypeStatusesFileNameKey]));
+
+            await Task.WhenAll(tasks.ToArray());
 
             if (this.exceptions.Count > 0)
             {

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -17,6 +18,7 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string GeoNamesSeedFileNameKey = "GeoNamesSeedFileName";
         private const string GeoEpithetsSeedFileNameKey = "GeoEpithetsSeedFileName";
+        private const string CountryCodesSeedFileNameKey = "CountryCodesSeedFileName";
 
         private readonly IGeoDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
@@ -43,9 +45,19 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.SeedGeoNames(ConfigurationManager.AppSettings[GeoNamesSeedFileNameKey]);
+            var tasks = new List<Task>();
 
-            await this.SeedGeoEpithets(ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]);
+            tasks.Add(
+                this.SeedGeoNames(
+                    ConfigurationManager.AppSettings[GeoNamesSeedFileNameKey]));
+            tasks.Add(
+                this.SeedGeoEpithets(
+                    ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]));
+            tasks.Add(
+                this.SeedCountryCodes(
+                    ConfigurationManager.AppSettings[CountryCodesSeedFileNameKey]));
+
+            await Task.WhenAll(tasks.ToArray());
 
             if (this.exceptions.Count > 0)
             {
@@ -95,6 +107,37 @@
                         {
                             Name = line
                         });
+                    });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
+        }
+
+        private async Task SeedCountryCodes(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            try
+            {
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
+                    $"{dataFilesDirectoryPath}/{fileName}",
+                    (context, line) =>
+                    {
+                        var data = line.Split('\t');
+                        if (data.Length > 2)
+                        {
+                            context.Countries.AddOrUpdate(new Country
+                            {
+                                Name = data[0],
+                                CallingCode = data[1],
+                                Iso639xCode = data[2]
+                            });
+                        }
                     });
             }
             catch (Exception e)
