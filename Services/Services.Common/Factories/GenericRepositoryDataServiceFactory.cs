@@ -112,7 +112,7 @@
             return new HashSet<TServiceModel>(result).AsQueryable();
         }
 
-        public virtual async Task<IQueryable<TServiceModel>> Get(int skip, int take)
+        public virtual async Task<IQueryable<TServiceModel>> All(int skip, int take)
         {
             if (skip < 0)
             {

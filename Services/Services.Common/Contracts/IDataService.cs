@@ -7,7 +7,7 @@
     {
         Task<IQueryable<TServiceModel>> All();
 
-        Task<IQueryable<TServiceModel>> Get(int skip, int take);
+        Task<IQueryable<TServiceModel>> All(int skip, int take);
 
         Task<IQueryable<TServiceModel>> Get(params object[] ids);
 
