@@ -83,7 +83,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = (await this.service.All(skipItemsCount, takeItemsCount))
+            var result = (await this.service.Query(skipItemsCount, takeItemsCount))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 

@@ -42,7 +42,7 @@
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.All(i, NumberOfItemsToTake))
+                var items = (await this.service.Query(i, NumberOfItemsToTake))
                     .Select(t => t.Name)
                     .ToList();
 
