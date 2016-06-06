@@ -41,10 +41,12 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IContextDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
+    <Compile Include="Contracts\IRepositoryDataService.cs" />
+    <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactoryBase.cs" />
-    <Compile Include="Factories\RepositoryMultiDataServiceFactoryBase.cs" />
-    <Compile Include="Factories\RepositoryProviderMultiDataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryProviderFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
@@ -75,6 +77,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

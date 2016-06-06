@@ -9,7 +9,7 @@
 
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class StringRepositoryDataService : RepositoryMultiDataServiceFactory<string, string>, IDataService<string>
+    public class StringRepositoryDataService : MultiDataServiceWithRepositoryFactory<string, string>, IDataService<string>
     {
         public StringRepositoryDataService(IGenericRepository<string> repository)
             : base(repository)

@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class ProductsDataService : RepositoryMultiDataServiceFactory<Product, ProductServiceModel>, IProductsDataService
+    public class ProductsDataService : MultiDataServiceWithRepositoryFactory<Product, ProductServiceModel>, IProductsDataService
     {
         public ProductsDataService(IDataRepository<Product> repository)
             : base(repository)

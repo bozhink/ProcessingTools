@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class GenericRepositoryDataService<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
+    public class GenericRepositoryDataService<TDbModel, TServiceModel> : MultiDataServiceWithRepositoryFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
         where TDbModel : class, IEntity
         where TServiceModel : class
     {

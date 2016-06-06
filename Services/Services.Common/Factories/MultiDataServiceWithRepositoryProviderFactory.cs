@@ -12,11 +12,11 @@
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
-    public abstract class RepositoryProviderMultiDataServiceFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactoryBase<TDbModel, TServiceModel>, IDataService<TServiceModel>, IDisposable
+    public abstract class MultiDataServiceWithRepositoryProviderFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>, IDisposable
     {
         private readonly IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider;
 
-        public RepositoryProviderMultiDataServiceFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
+        public MultiDataServiceWithRepositoryProviderFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

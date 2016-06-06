@@ -11,11 +11,11 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public abstract class RepositoryMultiDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
+    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
     {
-        protected abstract Expression<Func<TDbModel, IEnumerable<TServiceModel>>> MapDbModelToServiceModel { get; }
+        protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 
-        protected abstract Expression<Func<TServiceModel, IEnumerable<TDbModel>>> MapServiceModelToDbModel { get; }
+        protected abstract Expression<Func<TServiceModel, TDbModel>> MapServiceModelToDbModel { get; }
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
@@ -27,7 +27,7 @@
             }
 
             var result = (await repository.All())
-                .SelectMany(this.MapDbModelToServiceModel)
+                .Select(this.MapDbModelToServiceModel)
                 .ToList()
                 .AsQueryable();
 
@@ -52,7 +52,7 @@
             }
 
             var result = (await repository.All(this.SortExpression, skip, take))
-                .SelectMany(this.MapDbModelToServiceModel)
+                .Select(this.MapDbModelToServiceModel)
                 .ToList()
                 .AsQueryable();
 
@@ -78,7 +78,7 @@
             foreach (var id in ids)
             {
                 var entity = await repository.Get(id);
-                result.Enqueue(mapping.Invoke(entity).FirstOrDefault());
+                result.Enqueue(mapping.Invoke(entity));
             }
 
             return new HashSet<TServiceModel>(result).AsQueryable();
@@ -87,7 +87,7 @@
         protected override IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
         {
             return models.AsQueryable()
-                .SelectMany(this.MapServiceModelToDbModel)
+                .Select(this.MapServiceModelToDbModel)
                 .ToList();
         }
     }

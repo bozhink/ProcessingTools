@@ -11,7 +11,7 @@
     using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class GeoNamesDataService : RepositoryMultiDataServiceFactory<GeoName, GeoNameServiceModel>, IGeoNamesDataService
+    public class GeoNamesDataService : MultiDataServiceWithRepositoryFactory<GeoName, GeoNameServiceModel>, IGeoNamesDataService
     {
         public GeoNamesDataService(IGeoDataRepository<GeoName> repository)
             : base(repository)
