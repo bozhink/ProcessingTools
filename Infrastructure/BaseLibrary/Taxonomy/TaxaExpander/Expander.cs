@@ -5,6 +5,8 @@
     using System.Text.RegularExpressions;
     using System.Xml;
 
+    using Models;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
@@ -111,7 +113,7 @@
         {
             Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs", this.logger);
 
-            // Loop over paragraphs containong shortened taxa
+            // Loop over paragraphs containing shortened taxa
             foreach (XmlNode p in this.XmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
             {
                 this.logger?.Log(p.InnerText);
@@ -184,9 +186,21 @@
 
         public void ForceExactSpeciesMatchExpand()
         {
-            var nodeListOfSpeciesInShortenedTaxaName = this.XmlDocument.SelectNodes("//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']");
+            ICollection<TaxonName> taxonNames = new List<TaxonName>();
+            this.XmlDocument.SelectNodes("//tn[@type='lower']")
+                .Cast<XmlNode>()
+                .ToList()
+                .ForEach(t => taxonNames.Add(new TaxonName(t)));
 
-            var speciesUniq = nodeListOfSpeciesInShortenedTaxaName.Cast<XmlNode>()
+            foreach (var taxonName in taxonNames)
+            {
+                this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
+            }
+
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = "//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
+
+            var speciesUniq = this.XmlDocument.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
+                .Cast<XmlNode>()
                 .Select(n => n.InnerText)
                 .Distinct()
                 .ToList();

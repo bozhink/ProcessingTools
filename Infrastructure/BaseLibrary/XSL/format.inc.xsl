@@ -392,4 +392,11 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template name="generate-taxon-id">
+    <xsl:attribute name="id">
+      <xsl:text>TN</xsl:text>
+      <xsl:value-of select="generate-id()"/>
+    </xsl:attribute>
+  </xsl:template>
 </xsl:stylesheet>

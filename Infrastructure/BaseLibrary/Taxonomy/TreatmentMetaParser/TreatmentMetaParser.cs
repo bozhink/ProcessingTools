@@ -6,6 +6,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Models;
+
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
@@ -16,7 +18,7 @@
     {
         private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
-        private const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
+        private const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}' or string(tp:nomenclature/tn/tn-part[@type='genus']/@full-name)='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
         private ILogger logger;
 
@@ -31,10 +33,14 @@
 
         public async Task Parse()
         {
-            var genusList = this.XmlDocument
-                .GetStringListOfUniqueXmlNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager);
+            var genusList = this.XmlDocument.SelectNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .Select(node => new TaxonNamePart(node))
+                .Select(t => t.FullName)
+                .Distinct()
+                .ToArray();
 
-            var response = await this.service.Resolve(genusList.ToArray());
+            var response = await this.service.Resolve(genusList);
 
             foreach (string genus in genusList)
             {

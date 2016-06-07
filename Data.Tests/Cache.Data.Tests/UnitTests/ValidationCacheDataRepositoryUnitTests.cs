@@ -29,13 +29,13 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ValidationCacheDataRepository_WithNullProviderInConstructor_ShouldThow()
+        public void ValidationCacheDataRepository_WithNullProviderInConstructor_ShouldThrow()
         {
             var repository = new ValidationCacheDataRepository(null);
         }
 
         [TestMethod]
-        public void ValidationCacheDataRepository_WithNullProviderInConstructor_ShouldThowArgumentNullExceptionWithCorrectParameterName()
+        public void ValidationCacheDataRepository_WithNullProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParameterName()
         {
             try
             {
