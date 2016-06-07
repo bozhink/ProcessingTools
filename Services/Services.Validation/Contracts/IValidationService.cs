@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Contracts
+﻿namespace ProcessingTools.Services.Validation.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

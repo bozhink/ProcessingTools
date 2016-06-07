@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Services.Common.Models
+﻿namespace ProcessingTools.Services.Validation.Models
 {
     using System;
-
     using Contracts;
     using ProcessingTools.Contracts.Types;
 

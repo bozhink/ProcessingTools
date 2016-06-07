@@ -2,6 +2,7 @@
 {
     public static class ConnectionConstants
     {
-        public const string MediaTypesDbContextConnectionKey = "MimeDbContext";
+        public const string MediatypesDatabaseConnectionKey = "MediatypesDatabaseConnection";
+        public const string ContextKey = "ProcessingTools.MediaType.Data.MediaTypesDbContext";
     }
 }

@@ -1,22 +1,27 @@
 ﻿abdomen
 aculeus
 aedeagus
-antegenital | epithet
+antegenital
 antenna
-antenno–frontal | epithet
+antenno–frontal
 anteromedial margin
 anteromedial margin of pronotum
 anthers
 apex
 apex of forewings
-apical | epithet
+apical spur
+apical
+areas
+arrangement of spines
+arrangement of the spines
+baculae
 basal colleter
 base of clypeus
 basidia
 basidiospores
 basistipes
 body
-border s–chaeta on ant. IV
+border s–chaeta on ant. iv
 buds
 calyx
 canthus rostralis
@@ -27,18 +32,21 @@ caulocystidia
 center of the cranial vertex
 central axis of the head, across widest point
 central ocellus
-centroapical | epithet
-centromedial | epithet
-centroposterior | epithet
+centroapical
+centromedial
+centroposterior
 chaeta s
 chaetae
-chaetae of anal lobes | epithet
+chaetae of anal lobes
 cheilocystidia
 clamp connections
 claw
-clypeal | epithet
+clypeal
 clypeus
 colleters
+colpi
+colpus
+columellae
 column
 convergence of vannal veins
 corolla
@@ -49,22 +57,24 @@ corpusculum
 costa
 costae
 coxa
-cylindrical s–chaetae on ant. IV („soies mousses”)
+cuticular outgrowth of the tibia
+cylindrical s–chaetae on ant. iv („soies mousses”)
 disk
 distal apex of genicular lobe
 distal cheliceral segment
 distal terminus
 distal terminus of body or wing (whichever is longer)
 distal terminus of the segment before the ungues
-apical spur
-cuticular outgrowth of the tibia
-dorsal | epithet
-dorsoexternal | epithet
-dorsointernal | epithet
-dorsolateral | epithet
+dorsal
+dorsoexternal
+dorsointernal
+dorsolateral
+echinolophate
+element
 elytra
 endocarina
 epipharynx
+equatorial pores
 femur
 first whorl
 flowers
@@ -76,10 +86,11 @@ fronds
 frons
 fruit
 fruits
-furcal | epithet
+furcal
 genital operculum
 genu
 globular whorls
+grains
 gynostegium
 head
 hindwing
@@ -90,6 +101,7 @@ interstrial costae
 labellum
 labial palpus
 labial papilla x
+lacunae
 lamellae
 lamellar trama
 lamina
@@ -97,13 +109,15 @@ lateral costa
 lateral edge of compound eye
 lateral edge of pronotum
 lateral margin of lower frons at widest point
-lateral | epithet
+lateral
 leaves
-leg I
-leg II
+leg i
+leg ii
 legs
 long macrochaeta
 longitudinal costae
+lophae
+lophate
 lower frons
 lower margin of unpaired, median ocellus
 mandibles
@@ -126,35 +140,47 @@ metathoracic tarsus
 metathoracic tibia
 metatibia
 microchaeta
-microchaetae on ant. IV
+microchaetae on ant. iv
 middle of epistomal suture
 most proximal margin abutting the trochanter
 most-proximal margin of basitarsus
-ocular | epithet
+muri
+nearly non-lophate
+non-colpar areas
+non-continuous
+non-lophate
+ocular
 ocularium
 opposing edge of contralateral eye, perpendicular
 opposing edge, across narrowest region posterior
 opposing edge, across widest region
 opposing outer margin
-ordinary chaeta on ant. IV
+ordinary chaeta on ant. iv
 ordinary chaetae on tibiotarsi
-ordinary chaetae on ventral ant. IV
-ordinary lateral chaeta on abd. V
-organite of ant. IV
+ordinary chaetae on ventral ant. iv
+ordinary lateral chaeta on abd. v
+organite of ant. iv
 ovary
 palpus
+pantoporate
 paramedian costa
+partitions
 pedicel
 pedicels
 pedipalpal femur
 pedipalpal trochanter
 peduncle
 peduncles
+pentaporate
+perforated tectum
 petals
 petioles
 pileipellis
 pleurocystidia
+pollen
+pollen tube
 pollinia
+pores
 posteromedial margin
 procoxa
 profemur
@@ -167,69 +193,62 @@ protibia
 proximal bend of the tibia
 proximal cheliceral segment
 prozone
+psilolophate
 pygidium
-Rhopalia
+rhopalia
+rod-like
 root
 seed
 seeds
 segment
-sensory organ of antennal segment III
+sensory organ of antennal segment iii
 seta-bearing tubercle
 setae
+sharply projecting spines
 short macrochaeta
 solenidia
+spines
+spinose
 spiral whorls
 stamens
 stems
 stipe
 stripes
+sub-echinolophate
 subcoxa 2
 sublateral costa
-subocular | epithet
+sublophate
+subocular
 supracoxal sulcus
+surface
+surface of lophate pollen
 s–microchaeta or microsensillum
 tasus
+tectum
+thickened columellae
 thorax
 tibia
 tibial apex
 tibiotarsus
+tricolporate
+triporate
 trochanter
-Tubercles
+tubercles
 uncini
 ventral margin
 ventral tube
 ventral umbo
-ventrocentral | epithet
-ventroexternal | epithet
-ventroexternoanterior | epithet
-ventroexternocentral | epithet
-ventroexternointernal | epithet
-ventroexternolateral | epithet
-ventroexternomedial | epithet
-ventroexternoposterior | epithet
-ventrointernal | epithet
-ventrolateral | epithet
+ventrocentral
+ventroexternal
+ventroexternoanterior
+ventroexternocentral
+ventroexternointernal
+ventroexternolateral
+ventroexternomedial
+ventroexternoposterior
+ventrointernal
+ventrolateral
 vertex
 very short macrochaeta
+walls
 whorls
-
-
-
-
-
-Appendix A: Definitions of Pollen Terms (as used in this paper)
-As a general rule Vernonieae pollen can be ‘nearly non-lophate’ to ‘sublophate’ to ‘lophate’, however, none of the grains in the Vernonieae are completely non-lophate. Grains can be with or without colpi and they can be tricolporate or triporate to pentaporate.
-Columellae: A rod-like element supporting the tectum.
-Echinolophate: Among lophate types, one variant has prominent lophae (muri) with sharply projecting spines. The lophae have supporting thickened columellae or baculae.
-Lacunae: Areas in lophate pollen surrounded by muri.
-Lophate (in the Vernonieae): Pollen having the perforated tectum non-continuous. There are varying degrees of loss of perforated tectum. Grains can have spines (various types of echinolophate) or not (psilolophate).
-Muri: partitions or walls forming a network on surface of lophate pollen (Figs. 3 A–I, 4 A–C, and 4 D–F).
-Nearly non-lophate: Arrangement of spines is somewhat uneven and the perforated tectum is continuous.
-Non-lophate (truly): Completely evenly spaced spines or columellae; the perforated tectum is continuous. [not found in Vernonieae]
-Pantoporate: Pores on pollen positioned all over the surface, not strictly equatorial. 
-Psilolophate: A variant of the lophate types where the surface of the lophae is without spines [Linzia]
-Sublophate (as used in the Vernonieae): The arrangement of the spines is somewhat to distinctly uneven, leaving incipient lacunae; the perforated tectum is always continuous in all non-colpar areas supported by massive columellae or baculae, and spines being almost always present over the baculae.
-Sub-echinolophate: There are varying forms of lophate grains that are highly perforate and spinose. 
-Tectum: The layer that forms a roof over the columellae. A perforated tectum has perforations smaller than 1μm in diameter
-Tricolporate: Grains with three colpi and a central pore in each colpus. The pore provides a germination point for the emerging pollen tube.
-Triporate: Grains without colpi and with three equatorial pores for possible germination.

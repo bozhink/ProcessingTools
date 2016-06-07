@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Services.Common.Models.Contracts
+﻿namespace ProcessingTools.Services.Validation.Models.Contracts
 {
     using System;
-
     using ProcessingTools.Contracts.Types;
 
     public interface IValidationServiceModel<T>

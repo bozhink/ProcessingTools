@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.MediaType.Data
+﻿namespace ProcessingTools.Bio.Environments.Data.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.MediaType.Data.Common.Constants;
+    using ProcessingTools.Bio.Environments.Data.Common.Constants;
 
-    public class MediatypesDbContextFactory : IMediatypesDbContextFactory
+    public class BioEnvironmentsDbContextFactory : IBioEnvironmentsDbContextFactory
     {
         private string connectionString;
 
-        public MediatypesDbContextFactory()
+        public BioEnvironmentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.MediaTypesDbContextConnectionKey;
+            this.ConnectionString = ConnectionConstants.BioEnvironmentsDatabaseConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public MediaTypesDbContext Create()
+        public BioEnvironmentsDbContext Create()
         {
-            return new MediaTypesDbContext(this.ConnectionString);
+            return new BioEnvironmentsDbContext(this.ConnectionString);
         }
     }
 }

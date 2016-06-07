@@ -8,11 +8,11 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Common.Models.Contracts;
     using Constants;
     using Contracts;
     using Factories;
     using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using ProcessingTools.Contracts.Types;

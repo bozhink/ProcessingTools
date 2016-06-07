@@ -39,21 +39,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Contracts\IContextDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Contracts\ISimpleCacheService.cs" />
-    <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\GenericRepositoryProviderDataServiceFactory.cs" />
-    <Compile Include="Services\GenericCacheService.cs" />
-    <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
+    <Compile Include="Contracts\IRepositoryDataService.cs" />
+    <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryDataServiceFactoryBase.cs" />
+    <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryProviderFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />
-    <Compile Include="Services\SimpleCacheService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
     <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
     <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
-    <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
-    <Compile Include="Models\ValidationServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

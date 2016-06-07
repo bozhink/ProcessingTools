@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.Documents.Data
+﻿namespace ProcessingTools.Geo.Data.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Geo.Data.Common.Constants;
 
-    public class DocumentsDbContextFactory : IDocumentsDbContextFactory
+    public class GeoDbContextFactory : IGeoDbContextFactory
     {
         private string connectionString;
 
-        public DocumentsDbContextFactory()
+        public GeoDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.DocumentsDatabaseConnectionKey;
+            this.ConnectionString = ConnectionConstants.GeoDatabseConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public DocumentsDbContext Create()
+        public GeoDbContext Create()
         {
-            return new DocumentsDbContext(this.ConnectionString);
+            return new GeoDbContext(this.ConnectionString);
         }
     }
 }

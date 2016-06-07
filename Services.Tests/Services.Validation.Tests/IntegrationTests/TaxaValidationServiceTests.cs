@@ -63,7 +63,7 @@
                     1,
                     result.Where(r => r.ValidatedObject.Name == items[i].Name).Count(),
                     $"Result should contain Item #{i} only once.");
-                Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} schould be valid.");
+                Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} should be valid.");
                 Assert.IsNull(result[i].ValidationException, $"Item #{i} should have null exception.");
             }
         }
@@ -100,11 +100,11 @@
 
                 if (taxon == taxa[2])
                 {
-                    Assert.IsTrue(matchingResult.ValidationStatus == ValidationStatus.Invalid, $"‘{taxon}’ schould be valid.");
+                    Assert.IsTrue(matchingResult.ValidationStatus == ValidationStatus.Invalid, $"‘{taxon}’ should be valid.");
                 }
                 else
                 {
-                    Assert.IsTrue(matchingResult.ValidationStatus == ValidationStatus.Valid, $"‘{taxon}’ schould be valid.");
+                    Assert.IsTrue(matchingResult.ValidationStatus == ValidationStatus.Valid, $"‘{taxon}’ should be valid.");
                 }
 
                 Assert.IsNull(matchingResult.ValidationException, $"‘{taxon}’ should have null exception.");

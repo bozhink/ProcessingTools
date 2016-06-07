@@ -2,6 +2,7 @@
 {
     public static class ConnectionConstants
     {
-        public const string DocumentsDatabaseConnectionKey = "DocumentsDatabase";
+        public const string DocumentsDatabaseConnectionKey = "DocumentsDatabaseConnection";
+        public const string ContextKey = "ProcessingTools.Documents.Data.DocumentsDbContext";
     }
 }

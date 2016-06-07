@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Services.Common
+﻿namespace ProcessingTools.Services.Cache
 {
     using Contracts;
-    using Models.Contracts;
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Services.Common.Models.Contracts;
 
-    public abstract class SimpleCacheService<TDbModel, TServiceModel> : GenericCacheService<string, int, TDbModel, TServiceModel>, ISimpleCacheService<TServiceModel>
+    public class SimpleCacheService<TDbModel, TServiceModel> : GenericCacheService<string, int, TDbModel, TServiceModel>, ISimpleCacheService<TServiceModel>
         where TDbModel : IEntity
         where TServiceModel : ISimpleServiceModel
     {

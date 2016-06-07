@@ -54,7 +54,7 @@
             return Task.FromResult(result);
         }
 
-        public Task<IQueryable<ProductServiceModel>> Get(int skip, int take)
+        public Task<IQueryable<ProductServiceModel>> Query(int skip, int take)
         {
             return Task.FromResult(this.Items
                 .OrderBy(p => p.Id)

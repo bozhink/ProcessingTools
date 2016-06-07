@@ -6,12 +6,13 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Contracts;
+    using Models;
+    using Models.Contracts;
+
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Cache.Models;
-    using ProcessingTools.Services.Common.Contracts;
-    using ProcessingTools.Services.Common.Models;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
     public abstract class ValidationServiceFactory<TValidatedObject, TItemToCheck> : IValidationService<TValidatedObject>
     {

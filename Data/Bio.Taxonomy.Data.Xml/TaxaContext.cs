@@ -129,14 +129,15 @@
 
             Func<string, Taxon, Taxon> update = (k, t) =>
             {
-                foreach (var rank in taxon.Ranks)
+                var result = new Taxon
                 {
-                    t.Ranks.Add(rank);
-                }
+                    IsWhiteListed = taxon.IsWhiteListed,
+                    Name = taxon.Name
+                };
 
-                t.IsWhiteListed = taxon.IsWhiteListed;
+                result.Ranks = new HashSet<string>(taxon.Ranks.Concat(t.Ranks));
 
-                return t;
+                return result;
             };
 
             return this.Taxa.AddOrUpdate(taxon.Name, taxon, update);

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Geo.Services.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq.Expressions;
 
     using Contracts;
@@ -11,29 +10,23 @@
     using ProcessingTools.Geo.Data.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class GeoEpithetsDataService : GenericRepositoryDataServiceFactory<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : SimpleDataServiceWithRepositoryFactory<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
     {
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<GeoEpithet, IEnumerable<GeoEpithetServiceModel>>> MapDbModelToServiceModel => e => new GeoEpithetServiceModel[]
+        protected override Expression<Func<GeoEpithet, GeoEpithetServiceModel>> MapDbModelToServiceModel => e => new GeoEpithetServiceModel
         {
-            new GeoEpithetServiceModel
-            {
-                Id = e.Id,
-                Name = e.Name
-            }
+            Id = e.Id,
+            Name = e.Name
         };
 
-        protected override Expression<Func<GeoEpithetServiceModel, IEnumerable<GeoEpithet>>> MapServiceModelToDbModel => m => new GeoEpithet[]
+        protected override Expression<Func<GeoEpithetServiceModel, GeoEpithet>> MapServiceModelToDbModel => m => new GeoEpithet
         {
-            new GeoEpithet
-            {
-                Id = m.Id,
-                Name = m.Name
-            }
+            Id = m.Id,
+            Name = m.Name
         };
 
         protected override Expression<Func<GeoEpithet, object>> SortExpression => g => g.Name;

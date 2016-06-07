@@ -67,6 +67,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Seed\country-codes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataFiles\Seed\geo-epithets.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

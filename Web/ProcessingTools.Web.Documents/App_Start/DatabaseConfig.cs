@@ -8,11 +8,10 @@
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Api.Data.ApplicationDbContext, ProcessingTools.Api.Data.Migrations.Configuration>());
-            ////ProcessingTools.Api.Data.ApplicationDbContext.Create().Database.Initialize(true);
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Documents.Data.DocumentsDbContext, ProcessingTools.Documents.Data.Migrations.Configuration>());
-            new ProcessingTools.Data.DataDbContextFactory().Create().Database.Initialize(true);
+            new ProcessingTools.Data.Factories.DataDbContextFactory().Create().Database.Initialize(true);
         }
     }
 }

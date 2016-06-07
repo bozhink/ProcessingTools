@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
@@ -43,9 +44,16 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.SeedProducts(ConfigurationManager.AppSettings[ProductsSeedFileNameKey]);
+            var tasks = new List<Task>();
 
-            await this.SeedInstitutions(ConfigurationManager.AppSettings[InstitutionsSeedFileNameKey]);
+            tasks.Add(
+                this.SeedProducts(
+                    ConfigurationManager.AppSettings[ProductsSeedFileNameKey]));
+            tasks.Add(
+                this.SeedInstitutions(
+                    ConfigurationManager.AppSettings[InstitutionsSeedFileNameKey]));
+
+            await Task.WhenAll(tasks.ToArray());
 
             if (this.exceptions.Count > 0)
             {

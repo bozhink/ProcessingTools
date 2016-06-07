@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.Data
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Data.Common.Constants;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
 
-    public class DataDbContextFactory : IDataDbContextFactory
+    public class BioTaxonomyDbContextFactory : IBioTaxonomyDbContextFactory
     {
         private string connectionString;
 
-        public DataDbContextFactory()
+        public BioTaxonomyDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.DefaultDataConnectionKey;
+            this.ConnectionString = ConnectionConstants.BioTaxonomyDatabaseConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public DataDbContext Create()
+        public BioTaxonomyDbContext Create()
         {
-            return new DataDbContext(this.ConnectionString);
+            return new BioTaxonomyDbContext(this.ConnectionString);
         }
     }
 }

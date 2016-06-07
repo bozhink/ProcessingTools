@@ -54,7 +54,7 @@
     <Compile Include="Models\TaxonRank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BioTaxonomyDbContext.cs" />
-    <Compile Include="BioTaxonomyDbContextFactory.cs" />
+    <Compile Include="Factories\BioTaxonomyDbContextFactory.cs" />
     <Compile Include="BioTaxonomyDbContextProvider.cs" />
     <Compile Include="Repositories\BioTaxonomyDataRepository.cs" />
     <Compile Include="Repositories\BioTaxonomyDataRepositoryProvider.cs" />

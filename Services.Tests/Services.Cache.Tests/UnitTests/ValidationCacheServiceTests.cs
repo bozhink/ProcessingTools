@@ -17,7 +17,7 @@
         private const string StatusShouldMatchMessage = "Status should match.";
         private const string ContentShouldMatchMessage = "Content should match.";
         private const string IdShouldMatchMessage = "Id should match.";
-        private const string IdShouldBeUnchagedMessage = "Id should be unchaged.";
+        private const string IdShouldBeUnchagedMessage = "Id should be unchanged.";
         private const string IdShouldHaveMaximalValueMessage = "Id should have the maximal value.";
         private const string NumberOfItemsAfterAdditionMessage = "Number of items after addition should be incremented by 1.";
         private const string NumberOfItemsAfterDeletionMessage = "Number of items after deletion should be equal to the initial number of items.";
@@ -224,7 +224,7 @@
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
             // Here we delete the item from the database, because added item’s Id might not be equal to 
-            // the Id of the cooresponding entity in the database.
+            // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition).Wait();
 
             int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
@@ -267,7 +267,7 @@
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
             // Here we delete the item from the database, because added item’s Id might not be equal to 
-            // the Id of the cooresponding entity in the database.
+            // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition.Id).Wait();
 
             int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
@@ -364,7 +364,7 @@
             Assert.AreEqual(content, itemAfterAddition.Content, ContentShouldMatchMessage);
 
             // Here we update the item from the database, because added item’s Id might not be equal to 
-            // the Id of the cooresponding entity in the database.
+            // the Id of the corresponding entity in the database.
             itemAfterAddition.Status = ValidationStatus.Invalid;
             service.Update(key, itemAfterAddition).Wait();
 

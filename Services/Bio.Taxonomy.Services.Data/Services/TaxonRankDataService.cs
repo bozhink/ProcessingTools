@@ -15,7 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TaxonRankDataService : GenericRepositoryProviderDataServiceFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
+    public class TaxonRankDataService : MultiDataServiceWithRepositoryProviderFactory<Taxon, TaxonRankServiceModel>, ITaxonRankDataService
     {
         private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 

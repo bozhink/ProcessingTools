@@ -5,7 +5,6 @@
 
     using ProcessingTools.Cache.Data.Models;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
-    using ProcessingTools.Services.Common;
 
     public class ValidationCacheService : SimpleCacheService<ValidationCacheEntity, ValidationCacheServiceModel>, IValidationCacheService
     {

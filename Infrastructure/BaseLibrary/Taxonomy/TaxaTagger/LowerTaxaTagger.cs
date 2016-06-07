@@ -120,16 +120,17 @@
 
             // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
             {
-                const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+]{0,40}?)\s*(\(\s*)?((?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:sub)?sect(?:ion)?)\b\.?)\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\s\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
+                const string InfrarankPattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
+                const string Subpattern = @"(?![,\.])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+]{0,40}?)\s*(\(\s*)?(" + InfrarankPattern + @")\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
                 {
                     const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z][A-Za-z\.-]+)</tn></i>" + Subpattern;
-                    Regex re = new Regex(InfraspecificPattern);
 
-                    for (Match m = re.Match(result); m.Success; m = m.NextMatch())
+                    for (Match m = Regex.Match(result, InfraspecificPattern); m.Success; m = m.NextMatch())
                     {
-                        result = re.Replace(
+                        result = Regex.Replace(
                             result,
+                            InfraspecificPattern,
                             @"<tn type=""lower""><genus>$1</genus> <authority>$2</authority> $3<infraspecific-rank>$4</infraspecific-rank> <infraspecific>$5</infraspecific></tn>$6");
                     }
 
@@ -139,14 +140,13 @@
 
                 {
                     const string InfraspecificPattern = @"(?<=</infraspecific>[\s\)]*)</tn>" + Subpattern;
-                    Regex re = new Regex(InfraspecificPattern);
-
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        for (Match m = re.Match(result); m.Success; m = m.NextMatch())
+                        for (Match m = Regex.Match(result, InfraspecificPattern, RegexOptions.RightToLeft); m.Success; m = m.NextMatch())
                         {
-                            result = re.Replace(
+                            result = Regex.Replace(
                                 result,
+                                InfraspecificPattern,
                                 " <authority>$1</authority> $2<infraspecific-rank>$3</infraspecific-rank> <infraspecific>$4</infraspecific></tn>$5");
                         }
                     }
@@ -161,7 +161,7 @@
             // <i>Melitaea phoebe</i> Knoch rassa <i>occitanica</i> Staudinger 2-gen. <i>francescoi</i>
             // <i>Melitaea phoebe</i> Knoch sbsp. n. <i>canellina</i> Stauder, 1922
             // <i>Melitaea phoebe</i> mod. <i>nimbula</i> Higgins, 1941
-            const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|fo?|forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|aff)|prope|(?:sub)?sect)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
+            const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|fo?|forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|aff)|prope|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
             {

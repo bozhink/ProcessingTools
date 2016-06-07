@@ -8,6 +8,7 @@
 
     using ProcessingTools.Bio.Data.Common.Constants;
     using ProcessingTools.Bio.Data.Contracts;
+    using ProcessingTools.Bio.Data.Factories;
     using ProcessingTools.Common.Providers;
 
     [TestClass]
@@ -47,7 +48,7 @@
                 $"Default value of {nameof(factory.ConnectionString)} should not be null or whitespace.");
 
             Assert.AreEqual(
-                ConnectionConstants.BioDbContextConnectionKey,
+                ConnectionConstants.BioDatabaseConnectionKey,
                 factory.ConnectionString,
                 $"Default value of {nameof(factory.ConnectionString)} should be ConnectionConstants.BioDbContextConnectionKey.");
         }

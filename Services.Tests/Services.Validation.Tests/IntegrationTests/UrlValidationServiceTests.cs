@@ -57,12 +57,12 @@
 
             Assert.AreEqual(items[0].Address, result[0].ValidatedObject.Address, "First item: addresses should match.");
             Assert.AreEqual(items[0].BaseAddress, result[0].ValidatedObject.BaseAddress, "First item: base addresses should match.");
-            Assert.IsTrue(result[0].ValidationStatus == ValidationStatus.Valid, "First item schould be valid.");
+            Assert.IsTrue(result[0].ValidationStatus == ValidationStatus.Valid, "First item should be valid.");
             Assert.IsNull(result[0].ValidationException, "First item should have null exception.");
 
             Assert.AreEqual(items[1].Address, result[1].ValidatedObject.Address, "Second item: addresses should match.");
             Assert.AreEqual(items[1].BaseAddress, result[1].ValidatedObject.BaseAddress, "Second item: base addresses should match.");
-            Assert.IsTrue(result[1].ValidationStatus == ValidationStatus.Valid, "Second item schould be valid.");
+            Assert.IsTrue(result[1].ValidationStatus == ValidationStatus.Valid, "Second item should be valid.");
             Assert.IsNull(result[1].ValidationException, "Second item should have null exception.");
         }
     }

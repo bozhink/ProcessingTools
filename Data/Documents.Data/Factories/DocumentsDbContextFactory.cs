@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.Bio.Data
+﻿namespace ProcessingTools.Documents.Data.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class BioDbContextFactory : IBioDbContextFactory
+    public class DocumentsDbContextFactory : IDocumentsDbContextFactory
     {
         private string connectionString;
 
-        public BioDbContextFactory()
+        public DocumentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.BioDbContextConnectionKey;
+            this.ConnectionString = ConnectionConstants.DocumentsDatabaseConnectionKey;
         }
 
         public string ConnectionString
@@ -31,9 +31,9 @@
             }
         }
 
-        public BioDbContext Create()
+        public DocumentsDbContext Create()
         {
-            return new BioDbContext(this.ConnectionString);
+            return new DocumentsDbContext(this.ConnectionString);
         }
     }
 }
