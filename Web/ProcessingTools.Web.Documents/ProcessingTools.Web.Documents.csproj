@@ -274,6 +274,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NinjectBindings.cs" />
+    <Compile Include="Settings\NinjectDataBindings.cs" />
+    <Compile Include="Settings\NinjectDataMinersBindings.cs" />
+    <Compile Include="Settings\NinjectHarvestersBindings.cs" />
+    <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -387,9 +392,65 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
+      <Name>Bio.Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
+      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
+      <Name>Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
+      <Name>Geo.Data.Miners</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
+      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
+      <Name>Bio.Biorepositories.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
+      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
+      <Name>Bio.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Common\Bio.Environments.Data.Common.csproj">
+      <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
+      <Name>Bio.Environments.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
+      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
+      <Name>Cache.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
@@ -415,6 +476,42 @@
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data.Common\Geo.Data.Common.csproj">
+      <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
+      <Name>Geo.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
+      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
+      <Name>Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Common\MediaType.Data.Common.csproj">
+      <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>
+      <Name>MediaType.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
+      <Name>Bio.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
+      <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
+      <Name>Bio.Taxonomy.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
+      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
+      <Name>Geo.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
+      <Name>Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -427,13 +524,61 @@
       <Project>{96899cf4-3e65-4860-8d89-0bec7d4e93ed}</Project>
       <Name>Mappings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
+      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
+      <Name>Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
+      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
+      <Name>Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+      <Project>{b22dd52c-95d5-47d3-b48c-0ec692ab8051}</Project>
+      <Name>Bio.Biorepositories.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Services.Data\Bio.Services.Data.csproj">
+      <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
+      <Name>Bio.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Documents.Services.Data\Documents.Services.Data.csproj">
       <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
       <Name>Documents.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
+      <Name>Geo.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\MediaType.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Cache\Services.Cache.csproj">
+      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
+      <Name>Services.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165F0-F7FD-486F-B302-FCF7350C0888}</Project>
       <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.Validation\Services.Validation.csproj">
+      <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
+      <Name>Services.Validation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

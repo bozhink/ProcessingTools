@@ -4,6 +4,7 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.Reflection;
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -61,6 +62,7 @@ namespace ProcessingTools.Web.Documents
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(Assembly.GetExecutingAssembly());
         }
     }
 }

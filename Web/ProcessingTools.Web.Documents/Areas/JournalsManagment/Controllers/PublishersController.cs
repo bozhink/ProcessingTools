@@ -6,13 +6,6 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using ProcessingTools.Documents.Data;
-    using ProcessingTools.Documents.Data.Contracts;
-    using ProcessingTools.Documents.Data.Factories;
-    using ProcessingTools.Documents.Data.Models;
-    using ProcessingTools.Documents.Data.Repositories;
-    using ProcessingTools.Documents.Data.Repositories.Contracts;
-    using ProcessingTools.Documents.Services.Data;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Extensions;
@@ -24,12 +17,14 @@
     {
         private readonly IPublishersDataService service;
 
-        public PublishersController()
+        public PublishersController(IPublishersDataService service)
         {
-            IDocumentsDbContextFactory contextFactory = new DocumentsDbContextFactory();
-            IDocumentsDbContextProvider contextProvider = new DocumentsDbContextProvider(contextFactory);
-            IDocumentsRepositoryProvider<Publisher> repositoryProvider = new DocumentsRepositoryProvider<Publisher>(contextProvider);
-            this.service = new PublishersDataService(repositoryProvider);
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
         }
 
         // GET: Publishers
