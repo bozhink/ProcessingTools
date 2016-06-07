@@ -47,6 +47,8 @@
     <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />
     <Compile Include="Factories\MultiDataServiceWithRepositoryProviderFactory.cs" />
     <Compile Include="Factories\MultiDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
