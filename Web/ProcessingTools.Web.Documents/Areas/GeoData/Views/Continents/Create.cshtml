@@ -1,8 +1,8 @@
-﻿@using ProcessingTools.Geo.Data.Models
-@using ProcessingTools.Web.Common.Constants
-@using ProcessingTools.Web.Documents.Areas.GeoData
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
+@using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
-@model Continent
+@model DetailedContinentViewModel
 
 @{
     ViewBag.Title = ContentConstants.DeafultCreatePageTitle;
@@ -16,7 +16,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Continent</h4>
+        <h4>@Html.DisplayFor(model => model.ModelName)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

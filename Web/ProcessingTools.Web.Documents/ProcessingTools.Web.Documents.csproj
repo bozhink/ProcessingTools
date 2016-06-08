@@ -263,8 +263,12 @@
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
-    <Compile Include="Areas\GeoData\ContinentsController.cs" />
+    <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
     <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
     <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
@@ -412,8 +416,6 @@
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
-    <Folder Include="Areas\GeoData\Controllers\" />
-    <Folder Include="Areas\GeoData\Models\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\JournalsManagment\Views\Shared\" />
     <Folder Include="Models\" />

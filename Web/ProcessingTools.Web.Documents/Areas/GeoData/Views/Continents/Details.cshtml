@@ -1,8 +1,8 @@
-﻿@using ProcessingTools.Geo.Data.Models
-@using ProcessingTools.Web.Common.Constants
-@using ProcessingTools.Web.Documents.Areas.GeoData
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
+@using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
-@model Continent
+@model DetailedContinentViewModel
 
 @{
     ViewBag.Title = ContentConstants.DeafultDetailsPageTitle;
@@ -11,7 +11,7 @@
 <h2>@ContentConstants.DeafultDetailsPageHeading</h2>
 
 <div>
-    <h4>Continent</h4>
+    <h4>@Html.DisplayFor(model => model.ModelName)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -22,6 +22,27 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Synonyms)
+        </dt>
+
+        @foreach (var synonym in Model.Synonyms)
+        {
+            <dd>
+                @Html.DisplayFor(model => synonym.Name)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Countries)
+        </dt>
+
+        @foreach (var country in Model.Countries)
+        {
+            <dd>
+                @Html.DisplayFor(model => country.Name)
+            </dd>
+        }
     </dl>
 </div>
 <p>
