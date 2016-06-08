@@ -586,6 +586,10 @@
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Web.Common\ProcessingTools.Web.Common.csproj">
+      <Project>{3b6c4b49-817c-478b-b4d5-f3c079fcf0b0}</Project>
+      <Name>ProcessingTools.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-2.2.3.min.map" />
