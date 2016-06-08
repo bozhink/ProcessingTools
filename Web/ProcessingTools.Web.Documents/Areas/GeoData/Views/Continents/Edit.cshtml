@@ -1,13 +1,14 @@
 ﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Common.Constants
 @using ProcessingTools.Web.Documents.Areas.GeoData
 
 @model Continent
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = ContentConstants.DeafultEditPageTitle;
 }
 
-<h2>Edit</h2>
+<h2>@ContentConstants.DeafultEditPageHeading</h2>
 
 
 @using (Html.BeginForm())
@@ -37,7 +38,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", nameof(ContinentsController.Index))
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
 </div>
 
 @section Scripts {

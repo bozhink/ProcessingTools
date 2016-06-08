@@ -1,13 +1,14 @@
 ﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Common.Constants
 @using ProcessingTools.Web.Documents.Areas.GeoData
 
 @model Continent
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = ContentConstants.DeafultDeletePageTitle;
 }
 
-<h2>Delete</h2>
+<h2>@ContentConstants.DeafultDeletePageHeading</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -30,8 +31,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" />
-            <span class="deafult-separator"></span>
-            @Html.ActionLink("Back to List", nameof(ContinentsController.Index))
+            <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
         </div>
     }
 </div>

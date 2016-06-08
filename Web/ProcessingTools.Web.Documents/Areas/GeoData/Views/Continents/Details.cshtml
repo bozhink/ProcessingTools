@@ -1,13 +1,14 @@
 ﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Common.Constants
 @using ProcessingTools.Web.Documents.Areas.GeoData
 
 @model Continent
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = ContentConstants.DeafultDetailsPageTitle;
 }
 
-<h2>Details</h2>
+<h2>@ContentConstants.DeafultDetailsPageHeading</h2>
 
 <div>
     <h4>Continent</h4>
@@ -26,9 +27,9 @@
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", nameof(ContinentsController.Edit), new { id = Model.Id })
-        <span class="deafult-separator"></span>
+        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
+        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
     }
 
-    @Html.ActionLink("Back to List", nameof(ContinentsController.Index))
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
 </p>
