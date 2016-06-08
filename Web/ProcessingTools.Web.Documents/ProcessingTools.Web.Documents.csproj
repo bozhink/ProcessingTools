@@ -263,6 +263,8 @@
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
+    <Compile Include="Areas\GeoData\ContinentsController.cs" />
+    <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
     <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
@@ -326,6 +328,13 @@
     <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeoData\Views\web.config" />
+    <Content Include="Areas\GeoData\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Create.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Delete.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -391,6 +400,9 @@
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
+    <Folder Include="Areas\GeoData\Controllers\" />
+    <Folder Include="Areas\GeoData\Models\" />
+    <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\JournalsManagment\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
