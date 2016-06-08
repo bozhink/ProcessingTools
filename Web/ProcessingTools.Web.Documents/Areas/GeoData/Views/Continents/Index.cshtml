@@ -30,14 +30,14 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                    <span>|</span>
+                    <span class="deafult-separator"></span>
                 }
 
                 @Html.ActionLink("Details", "Details", new { id = item.Id })
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <span>|</span>
+                    <span class="deafult-separator"></span>
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 }
             </td>

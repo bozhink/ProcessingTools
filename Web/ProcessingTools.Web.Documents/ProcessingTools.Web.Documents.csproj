@@ -302,6 +302,12 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\styles\default-styles.css">
+      <DependentUpon>default-styles.less</DependentUpon>
+    </Content>
+    <Content Include="Content\styles\default-styles.min.css">
+      <DependentUpon>default-styles.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -335,6 +341,11 @@
     <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
+    <Content Include="Content\styles\default-styles.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -390,6 +401,7 @@
     <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ArticlesManagment\Controllers\" />
     <Folder Include="Areas\ArticlesManagment\Models\" />

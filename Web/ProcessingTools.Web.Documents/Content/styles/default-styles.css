@@ -1,0 +1,3 @@
+﻿.deafult-separator::after {
+  content: '|';
+}

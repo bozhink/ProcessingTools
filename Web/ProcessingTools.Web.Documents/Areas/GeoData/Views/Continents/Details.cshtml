@@ -24,7 +24,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-        <span>|</span>
+        <span class="deafult-separator"></span>
     }
 
     @Html.ActionLink("Back to List", "Index")
