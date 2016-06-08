@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITaxaDataService<TServiceModel> : IDataService<TServiceModel>
+    public interface ITaxaDataService<TServiceModel> : IMultiEntryDataService<TServiceModel>
     {
     }
 }

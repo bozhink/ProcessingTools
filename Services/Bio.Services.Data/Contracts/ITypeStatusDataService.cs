@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ITypeStatusDataService : IDataService<TypeStatusServiceModel>
+    public interface ITypeStatusDataService : IMultiEntryDataService<TypeStatusServiceModel>
     {
     }
 }

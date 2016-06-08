@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface ICountriesDataService : IDataService<CountryServiceModel>
+    public interface ICountriesDataService : IMultiEntryDataService<CountryServiceModel>
     {
     }
 }

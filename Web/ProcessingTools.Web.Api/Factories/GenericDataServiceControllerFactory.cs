@@ -17,9 +17,9 @@
     {
         private readonly IMapper mapper;
 
-        private IDataService<TServiceModel> service;
+        private IMultiEntryDataService<TServiceModel> service;
 
-        public GenericDataServiceControllerFactory(IDataService<TServiceModel> service)
+        public GenericDataServiceControllerFactory(IMultiEntryDataService<TServiceModel> service)
         {
             if (service == null)
             {

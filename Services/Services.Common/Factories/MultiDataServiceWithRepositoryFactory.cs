@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
-    public abstract class MultiDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>, IDisposable
+    public abstract class MultiDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
         private readonly IGenericRepository<TDbModel> repository;
 

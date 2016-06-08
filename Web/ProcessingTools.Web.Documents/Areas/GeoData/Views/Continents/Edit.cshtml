@@ -37,6 +37,47 @@
     </div>
 }
 
+<hr />
+
+@if (Model.Synonyms.Count > 0)
+{
+    <h4>
+        @Html.DisplayNameFor(model => model.Synonyms)
+    </h4>
+
+    foreach (var synonym in Model.Synonyms)
+    {
+        using (Html.BeginForm(nameof(ContinentsController.RemoveSynonym), ContinentsController.ControllerName, FormMethod.Post))
+        {
+            <input type="hidden" name="ContinentId" value="@Model.Id" />
+            <input type="hidden" name="Name" value="@synonym.Name" />
+            @Html.DisplayFor(model => synonym.Name)
+            <button type="submit" class="btn btn-default btn-sm">×</button>
+        }
+    }
+}
+
+<hr />
+
+@using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ContinentsController.ControllerName, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Add new synonym</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <input type="hidden" name="ContinentId" value="@Model.Id" />
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+            <button type="submit" class="btn btn-default">Submit &raquo;</button>
+        </div>
+    </div>
+}
+
 <div>
     @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
 </div>

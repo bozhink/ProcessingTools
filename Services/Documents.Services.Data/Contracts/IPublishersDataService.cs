@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IPublishersDataService : IDataService<PublisherServiceModel>
+    public interface IPublishersDataService : IMultiEntryDataService<PublisherServiceModel>
     {
     }
 }

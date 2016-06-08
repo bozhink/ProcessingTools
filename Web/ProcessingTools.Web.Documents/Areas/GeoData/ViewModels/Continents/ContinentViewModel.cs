@@ -8,7 +8,9 @@
     {
         public int Id { get; set; }
 
+        [Required]
         [RegularExpression(ValidationConstants.ContinentNameRegexPattern)]
+        [MinLength(ValidationConstants.MinimalLengthOfContinentName)]
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
         public string Name { get; set; }
 

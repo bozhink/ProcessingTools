@@ -20,6 +20,8 @@
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
+        [Required]
+        [MinLength(ValidationConstants.MinimalLengthOfContinentName)]
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
         public string Name { get; set; }
 

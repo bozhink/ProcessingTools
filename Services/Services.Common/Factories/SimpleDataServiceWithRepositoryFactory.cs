@@ -8,7 +8,7 @@
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
-    public abstract class SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>, IDisposable
+    public abstract class SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
         private readonly IGenericRepository<TDbModel> repository;
 

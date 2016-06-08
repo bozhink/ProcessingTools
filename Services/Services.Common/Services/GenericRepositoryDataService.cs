@@ -10,7 +10,7 @@
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class GenericRepositoryDataService<TDbModel, TServiceModel> : SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel>, IDataService<TServiceModel>
+    public class GenericRepositoryDataService<TDbModel, TServiceModel> : SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>
         where TDbModel : class, IEntity
         where TServiceModel : class
     {

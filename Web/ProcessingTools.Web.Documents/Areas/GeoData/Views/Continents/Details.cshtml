@@ -22,26 +22,32 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Synonyms)
-        </dt>
-
-        @foreach (var synonym in Model.Synonyms)
+        @if (Model.Synonyms.Count > 0)
         {
-            <dd>
-                @Html.DisplayFor(model => synonym.Name)
-            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Synonyms)
+            </dt>
+
+            foreach (var synonym in Model.Synonyms)
+            {
+                <dd>
+                    @Html.DisplayFor(model => synonym.Name)
+                </dd>
+            }
         }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Countries)
-        </dt>
-
-        @foreach (var country in Model.Countries)
+        @if (Model.Countries.Count > 0)
         {
-            <dd>
-                @Html.DisplayFor(model => country.Name)
-            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Countries)
+            </dt>
+
+            foreach (var country in Model.Countries)
+            {
+                <dd>
+                    @Html.DisplayFor(model => country.Name)
+                </dd>
+            }
         }
     </dl>
 </div>

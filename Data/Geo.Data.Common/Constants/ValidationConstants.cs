@@ -6,6 +6,7 @@
 
         public const int MaximalLengthOfGeoEpithetName = 100;
 
+        public const int MinimalLengthOfContinentName = 2;
         public const int MaximalLengthOfContinentName = 30;
         public const string ContinentNameRegexPattern = @"^[^<>;:]+$";
 

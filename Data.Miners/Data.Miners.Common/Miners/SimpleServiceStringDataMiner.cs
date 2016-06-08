@@ -15,7 +15,7 @@
 
     public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
         where TDataServiceModel : INamedDataServiceModel
-        where TDataService : IDataService<TDataServiceModel>
+        where TDataService : IMultiEntryDataService<TDataServiceModel>
     {
         private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
 
