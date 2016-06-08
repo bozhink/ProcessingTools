@@ -67,6 +67,7 @@
             if (ModelState.IsValid)
             {
                 await this.repository.Add(continent);
+                await this.repository.SaveChanges();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
@@ -100,6 +101,7 @@
             if (ModelState.IsValid)
             {
                 await this.repository.Update(continent);
+                await this.repository.SaveChanges();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
@@ -129,6 +131,7 @@
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await this.repository.Delete(id: id);
+            await this.repository.SaveChanges();
             return this.RedirectToAction(nameof(this.Index));
         }
 

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<ProcessingTools.Geo.Data.Models.Continent>
+﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Documents.Areas.GeoData
+
+@model IEnumerable<Continent>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +12,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", nameof(ContinentsController.Create))
     </p>
 }
 <table class="table">
@@ -29,16 +32,16 @@
             <td>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Edit", nameof(ContinentsController.Edit), new { id = item.Id })
                     <span class="deafult-separator"></span>
                 }
 
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Details", nameof(ContinentsController.Details), new { id = item.Id })
 
                 @if (User.Identity.IsAuthenticated)
                 {
                     <span class="deafult-separator"></span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Delete", nameof(ContinentsController.Delete), new { id = item.Id })
                 }
             </td>
         </tr>

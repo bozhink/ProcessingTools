@@ -1,4 +1,7 @@
-﻿@model ProcessingTools.Geo.Data.Models.Continent
+﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Documents.Areas.GeoData
+
+@model Continent
 
 @{
     ViewBag.Title = "Create";
@@ -32,7 +35,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", nameof(ContinentsController.Index))
 </div>
 
 @section Scripts {

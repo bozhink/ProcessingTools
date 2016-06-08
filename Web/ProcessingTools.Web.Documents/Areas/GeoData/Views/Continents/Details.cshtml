@@ -1,4 +1,7 @@
-﻿@model ProcessingTools.Geo.Data.Models.Continent
+﻿@using ProcessingTools.Geo.Data.Models
+@using ProcessingTools.Web.Documents.Areas.GeoData
+
+@model Continent
 
 @{
     ViewBag.Title = "Details";
@@ -23,9 +26,9 @@
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        @Html.ActionLink("Edit", nameof(ContinentsController.Edit), new { id = Model.Id })
         <span class="deafult-separator"></span>
     }
 
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", nameof(ContinentsController.Index))
 </p>
