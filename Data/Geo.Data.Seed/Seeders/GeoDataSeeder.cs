@@ -19,6 +19,7 @@
         private const string GeoNamesSeedFileNameKey = "GeoNamesSeedFileName";
         private const string GeoEpithetsSeedFileNameKey = "GeoEpithetsSeedFileName";
         private const string CountryCodesSeedFileNameKey = "CountryCodesSeedFileName";
+        private const string ContinentsCodesSeedFileNameKey = "ContinentsCodesSeedFileName";
 
         private readonly IGeoDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
@@ -41,6 +42,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
+        // TODO: Link countries and continents
         public async Task Seed()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -53,6 +55,9 @@
             tasks.Add(
                 this.SeedGeoEpithets(
                     ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]));
+            tasks.Add(
+                this.SeedContinents(
+                    ConfigurationManager.AppSettings[ContinentsCodesSeedFileNameKey]));
             tasks.Add(
                 this.SeedCountryCodes(
                     ConfigurationManager.AppSettings[CountryCodesSeedFileNameKey]));
@@ -107,6 +112,35 @@
                         {
                             Name = line
                         });
+                    });
+            }
+            catch (Exception e)
+            {
+                this.exceptions.Enqueue(e);
+            }
+        }
+
+        private async Task SeedContinents(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            try
+            {
+                await this.seeder.ImportSingleLineTextObjectsFromFile(
+                    $"{dataFilesDirectoryPath}/{fileName}",
+                    (context, line) =>
+                    {
+                        var data = line.Split('\t');
+                        if (data.Length > 0)
+                        {
+                            context.Continents.AddOrUpdate(new Continent
+                            {
+                                Name = data[0]
+                            });
+                        }
                     });
             }
             catch (Exception e)

@@ -21,8 +21,7 @@
                 {
                     action = "Index",
                     id = UrlParameter.Optional
-                }
-            );
+                });
         }
     }
 }
