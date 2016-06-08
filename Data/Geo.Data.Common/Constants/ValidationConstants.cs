@@ -6,6 +6,8 @@
 
         public const int MaximalLengthOfGeoEpithetName = 100;
 
+        public const int MaximalLengthOfContinentName = 30;
+
         public const int MaximalLengthOfCountryName = 60;
         public const int MaximalLengthOfCallingCode = 20;
         public const int MaximalLengthOfLanguageCode = 10;

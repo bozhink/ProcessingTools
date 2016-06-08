@@ -88,7 +88,7 @@
 
             kernel.Bind(b =>
             {
-                b.From(Common.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Common.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

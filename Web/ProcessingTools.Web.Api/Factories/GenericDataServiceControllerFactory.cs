@@ -7,8 +7,8 @@
 
     using AutoMapper;
 
-    using Common.Constants;
-    using Services.Common.Contracts;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Services.Common.Contracts;
 
     public abstract class GenericDataServiceControllerFactory<TServiceModel, TRequestModel, TResponseModel> : ApiController
         where TServiceModel : class
