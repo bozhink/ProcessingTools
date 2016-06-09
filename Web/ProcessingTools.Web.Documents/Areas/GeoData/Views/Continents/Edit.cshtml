@@ -10,14 +10,12 @@
 
 <h2>@ContentConstants.DeafultEditPageHeading</h2>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>@Html.DisplayFor(model => model.ModelName)</h4>
-        <hr />
+<div class="form-horizontal">
+    <h4>@Html.DisplayFor(model => model.ModelName)</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
@@ -34,49 +32,48 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
-
-<hr />
-
-@if (Model.Synonyms.Count > 0)
-{
-    <h4>
-        @Html.DisplayNameFor(model => model.Synonyms)
-    </h4>
-
-    foreach (var synonym in Model.Synonyms)
-    {
-        using (Html.BeginForm(nameof(ContinentsController.RemoveSynonym), ContinentsController.ControllerName, FormMethod.Post))
-        {
-            <input type="hidden" name="ContinentId" value="@Model.Id" />
-            <input type="hidden" name="Name" value="@synonym.Name" />
-            @Html.DisplayFor(model => synonym.Name)
-            <button type="submit" class="btn btn-default btn-sm">×</button>
-        }
     }
-}
+</div>
 
 <hr />
-
-@using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ContinentsController.ControllerName, FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <h4>Add new synonym</h4>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <input type="hidden" name="ContinentId" value="@Model.Id" />
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
-            <button type="submit" class="btn btn-default">Submit &raquo;</button>
+<div class="form-horizontal">
+    @Html.LabelFor(model => model.Synonyms, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="add-new-hidden-form-container">
+            <label class="add-new-label custom-tooltip" for="add-new-hide-checkbox"><a>New<span class="custom-tooltiptext">Add new synonym</span></a></label>
+            <input type="checkbox" id="add-new-hide-checkbox" />
+            @using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ContinentsController.ControllerName, FormMethod.Post, htmlAttributes: new { @class = "add-new-hidden-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <input type="hidden" name="ContinentId" value="@Model.Id" />
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-sm">Submit &raquo;</button>
+                </div>
+            }
         </div>
     </div>
-}
+    @if (Model.Synonyms.Count > 0)
+    {
+        foreach (var synonym in Model.Synonyms)
+        {
+            using (Html.BeginForm(nameof(ContinentsController.RemoveSynonym), ContinentsController.ControllerName, FormMethod.Post))
+            {
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-default btn-xs glyphicon glyphicon-remove  custom-tooltip"><span class="custom-tooltiptext">Remove</span></button>
+                    <input type="hidden" name="ContinentId" value="@Model.Id" />
+                    <input type="hidden" name="Name" value="@synonym.Name" />
+                    @Html.DisplayFor(model => synonym.Name)
+                </div>
+            }
+        }
+    }
+</div>
 
 <div>
     @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
