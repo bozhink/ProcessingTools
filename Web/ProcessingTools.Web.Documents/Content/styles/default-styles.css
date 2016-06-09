@@ -1,3 +1,53 @@
 ﻿.default-separator::after {
   content: '|';
 }
+#add-new-hide-checkbox,
+.add-new-hidden-form {
+  display: none;
+}
+#add-new-hide-checkbox:checked + .add-new-hidden-form {
+  display: block;
+}
+.custom-tooltip {
+  position: relative;
+  display: inline-block;
+}
+.custom-tooltip:hover .custom-tooltiptext {
+  visibility: visible;
+  opacity: 0.8;
+}
+.custom-tooltip .custom-tooltiptext {
+  font-weight: normal;
+  visibility: hidden;
+  width: 120px;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  /* Bottom tooltip */
+  top: 110%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opacity: */
+  opacity: 0;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  /* Tooltip top arrow*/
+}
+.custom-tooltip .custom-tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
