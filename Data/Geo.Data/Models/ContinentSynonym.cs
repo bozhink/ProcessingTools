@@ -13,8 +13,6 @@
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
         public string Name { get; set; }
 
-        public virtual int ContinentId { get; set; }
-
         public virtual Continent Continent { get; set; }
     }
 }
