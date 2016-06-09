@@ -46,8 +46,16 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.Add(this.MapDetailedViewModelToServiceModel(continent));
-                return this.RedirectToAction(nameof(this.Index));
+                try
+                {
+                    await this.service.Add(this.MapDetailedViewModelToServiceModel(continent));
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+                catch (Exception e)
+                {
+                    ViewBag.Message = e.Message;
+                    return this.View(viewName: ViewConstants.DefaultErrorViewName);
+                }
             }
 
             return this.View(continent);
@@ -61,7 +69,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var continent = await this.service.Get(id);
+            var continent = await this.SafeGetServiceModel(id);
             if (continent == null)
             {
                 return this.HttpNotFound();
@@ -75,8 +83,16 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await this.service.Delete(id: id);
-            return this.RedirectToAction(nameof(this.Index));
+            try
+            {
+                await this.service.Delete(id: id);
+                return this.RedirectToAction(nameof(this.Index));
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return this.View(viewName: ViewConstants.DefaultErrorViewName);
+            }
         }
 
         // GET: GeoData/Continents/Details/5
@@ -88,7 +104,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var continent = await this.service.Get(id);
+            var continent = await this.SafeGetServiceModel(id);
             if (continent == null)
             {
                 return this.HttpNotFound();
@@ -105,7 +121,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var continent = await this.service.Get(id);
+            var continent = await this.SafeGetServiceModel(id);
             if (continent == null)
             {
                 return this.HttpNotFound();
@@ -123,8 +139,16 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.Update(this.MapDetailedViewModelToServiceModel(continent));
-                return this.RedirectToAction(nameof(this.Index));
+                try
+                {
+                    await this.service.Update(this.MapDetailedViewModelToServiceModel(continent));
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+                catch (Exception e)
+                {
+                    ViewBag.Message = e.Message;
+                    return this.View(viewName: ViewConstants.DefaultErrorViewName);
+                }
             }
 
             return this.View(continent);
@@ -134,11 +158,19 @@
         [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
-            var items = (await this.service.All())
-                .Select(this.MapServiceModelToViewModel)
-                .ToList();
+            try
+            {
+                var items = (await this.service.All())
+                        .Select(this.MapServiceModelToViewModel)
+                        .ToList();
 
-            return this.View(items);
+                return this.View(items);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return this.View(viewName: ViewConstants.DefaultErrorViewName);
+            }
         }
 
         [HttpPost]
@@ -146,12 +178,20 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.AddSynonym(
-                    model.ContinentId,
-                    new ContinentSynonymServiceModel
-                    {
-                        Name = model.Name
-                    });
+                try
+                {
+                    await this.service.AddSynonym(
+                                model.ContinentId,
+                                new ContinentSynonymServiceModel
+                                {
+                                    Name = model.Name
+                                });
+                }
+                catch (Exception e)
+                {
+                    ViewBag.Message = e.Message;
+                    return this.View(viewName: ViewConstants.DefaultErrorViewName);
+                }
             }
 
             return this.RedirectToAction(nameof(this.Edit), new { id = model.ContinentId });
@@ -162,12 +202,20 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.RemoveSynonym(
-                    model.ContinentId,
-                    new ContinentSynonymServiceModel
-                    {
-                        Name = model.Name
-                    });
+                try
+                {
+                    await this.service.RemoveSynonym(
+                                model.ContinentId,
+                                new ContinentSynonymServiceModel
+                                {
+                                    Name = model.Name
+                                });
+                }
+                catch (Exception e)
+                {
+                    ViewBag.Message = e.Message;
+                    return this.View(viewName: ViewConstants.DefaultErrorViewName);
+                }
             }
 
             return this.RedirectToAction(nameof(this.Edit), new { id = model.ContinentId });
@@ -244,6 +292,21 @@
                 Id = continent.Id,
                 Name = continent.Name
             };
+        }
+
+        private async Task<ContinentServiceModel> SafeGetServiceModel(int? id)
+        {
+            ContinentServiceModel continent;
+            try
+            {
+                continent = await this.service.Get(id);
+            }
+            catch
+            {
+                continent = null;
+            }
+
+            return continent;
         }
     }
 }

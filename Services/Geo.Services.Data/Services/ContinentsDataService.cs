@@ -71,7 +71,7 @@
                 throw new ArgumentNullException(nameof(synonym));
             }
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             var entity = await repository.Get(id: continentId);
             if (entity == null)
@@ -96,7 +96,7 @@
 
         public async Task<object> RemoveSynonym(int continentId, ContinentSynonymServiceModel synonym)
         {
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             var entity = await repository.Get(id: continentId);
             if (entity == null)

@@ -15,8 +15,6 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        protected readonly IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider;
-
         public DataServiceBaseFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
@@ -24,11 +22,13 @@
                 throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.repositoryProvider = repositoryProvider;
+            this.RepositoryProvider = repositoryProvider;
 
             this.MapDataToServiceModelFunc = this.MapDataToServiceModel.Compile();
             this.MapServiceToDataModelFunc = this.MapServiceToDataModel.Compile();
         }
+
+        protected IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> RepositoryProvider { get; private set; }
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDataToServiceModel { get; }
 
@@ -47,7 +47,7 @@
 
             var entity = this.MapServiceToDataModelFunc.Invoke(model);
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             await repository.Add(entity: entity);
             var result = await repository.SaveChanges();
@@ -64,7 +64,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             await repository.Delete(id: id);
             var result = await repository.SaveChanges();
@@ -81,7 +81,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             var entity = await repository.Get(id: id);
             if (entity == null)
@@ -105,7 +105,7 @@
 
             var entity = this.MapServiceToDataModelFunc.Invoke(model);
 
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             await repository.Update(entity: entity);
             var result = await repository.SaveChanges();

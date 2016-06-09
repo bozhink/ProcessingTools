@@ -20,7 +20,7 @@
 
         public virtual async Task<IQueryable<TServiceModel>> All()
         {
-            var repository = this.repositoryProvider.Create();
+            var repository = this.RepositoryProvider.Create();
 
             var result = (await repository.All())
                 .Select(this.MapDataToServiceModel)

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Constants\ContentConstants.cs" />
     <Compile Include="Constants\ControllerConstants.cs" />
+    <Compile Include="Constants\ViewConstants.cs" />
     <Compile Include="Models\NamedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
