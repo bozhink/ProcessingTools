@@ -8,11 +8,37 @@
     display: none;
 }
 
-#add-new-hide-checkbox:checked + .add-new-hidden-form {
-    display: block;
+.add-new-label {
+    cursor: pointer;
 }
 
+#add-new-hide-checkbox {
+    ~ .add-new-label {
+            a:first-child {
+                display: inline;
+            }
 
+            a:last-child {
+                display: none;
+            }
+        }
+
+    &:checked {
+        ~ .add-new-hidden-form {
+            display: block;
+        }
+
+        ~ .add-new-label {
+            a:first-child {
+                display: none;
+            }
+
+            a:last-child {
+                display: inline;
+            }
+        }
+    }
+}
 
 .custom-tooltip {
     position: relative;

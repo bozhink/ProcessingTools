@@ -5,8 +5,23 @@
 .add-new-hidden-form {
   display: none;
 }
-#add-new-hide-checkbox:checked + .add-new-hidden-form {
+.add-new-label {
+  cursor: pointer;
+}
+#add-new-hide-checkbox ~ .add-new-label a:first-child {
+  display: inline;
+}
+#add-new-hide-checkbox ~ .add-new-label a:last-child {
+  display: none;
+}
+#add-new-hide-checkbox:checked ~ .add-new-hidden-form {
   display: block;
+}
+#add-new-hide-checkbox:checked ~ .add-new-label a:first-child {
+  display: none;
+}
+#add-new-hide-checkbox:checked ~ .add-new-label a:last-child {
+  display: inline;
 }
 .custom-tooltip {
   position: relative;

@@ -40,8 +40,11 @@
     @Html.LabelFor(model => model.Synonyms, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         <div class="add-new-hidden-form-container">
-            <label class="add-new-label custom-tooltip" for="add-new-hide-checkbox"><a>New<span class="custom-tooltiptext">Add new synonym</span></a></label>
             <input type="checkbox" id="add-new-hide-checkbox" />
+            <label class="add-new-label" for="add-new-hide-checkbox">
+                <a class="custom-tooltip">New<span class="custom-tooltiptext">Add new synonym</span></a>
+                <a class="custom-tooltip">Close<span class="custom-tooltiptext">Close mini-form</span></a>
+            </label>
             @using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ContinentsController.ControllerName, FormMethod.Post, htmlAttributes: new { @class = "add-new-hidden-form" }))
             {
                 @Html.AntiForgeryToken()
@@ -65,7 +68,7 @@
             {
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
-                    <button type="submit" class="btn btn-default btn-xs glyphicon glyphicon-remove  custom-tooltip"><span class="custom-tooltiptext">Remove</span></button>
+                    <button type="submit" class="btn btn-link glyphicon glyphicon-remove custom-tooltip"><span class="custom-tooltiptext">Remove</span></button>
                     <input type="hidden" name="ContinentId" value="@Model.Id" />
                     <input type="hidden" name="Name" value="@synonym.Name" />
                     @Html.DisplayFor(model => synonym.Name)
@@ -75,6 +78,8 @@
     }
 </div>
 
+<div class="clearfix"></div>
+<hr />
 <div>
     @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
 </div>
