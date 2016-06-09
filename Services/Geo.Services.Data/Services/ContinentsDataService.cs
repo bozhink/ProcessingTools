@@ -64,6 +64,35 @@
             return (await base.All()).OrderBy(c => c.Name);
         }
 
+        public override async Task<object> Delete(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var repository = this.RepositoryProvider.Create();
+
+            var entity = await repository.Get(id: id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            entity.Synonyms.Clear();
+            entity.Countries.Clear();
+
+            await repository.Update(entity: entity);
+            await repository.SaveChanges();
+
+            await repository.Delete(entity: entity);
+            var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
+
         public async Task<object> AddSynonym(int continentId, ContinentSynonymServiceModel synonym)
         {
             if (synonym == null)
