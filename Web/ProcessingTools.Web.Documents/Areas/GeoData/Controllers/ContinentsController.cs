@@ -6,14 +6,13 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using ViewModels.Continents;
-    using ViewModels.Countries;
-
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Data.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
+
+    using ViewModels.Continents;
+    using ViewModels.Countries;
 
     [Authorize]
     public class ContinentsController : Controller
@@ -147,10 +146,12 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.AddSynonym(model.ContinentId, new ContinentSynonymServiceModel
-                {
-                    Name = model.Name
-                });
+                await this.service.AddSynonym(
+                    model.ContinentId,
+                    new ContinentSynonymServiceModel
+                    {
+                        Name = model.Name
+                    });
             }
 
             return this.RedirectToAction(nameof(this.Edit), new { id = model.ContinentId });
@@ -161,10 +162,12 @@
         {
             if (ModelState.IsValid)
             {
-                await this.service.RemoveSynonym(model.ContinentId, new ContinentSynonymServiceModel
-                {
-                    Name = model.Name
-                });
+                await this.service.RemoveSynonym(
+                    model.ContinentId,
+                    new ContinentSynonymServiceModel
+                    {
+                        Name = model.Name
+                    });
             }
 
             return this.RedirectToAction(nameof(this.Edit), new { id = model.ContinentId });

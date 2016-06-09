@@ -8,6 +8,7 @@
     using Contracts;
     using Models;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Data.Models;
     using ProcessingTools.Geo.Data.Repositories.Contracts;
@@ -73,6 +74,10 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = await repository.Get(id: continentId);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
 
             entity.Synonyms.Add(new ContinentSynonym
             {
@@ -94,6 +99,10 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = await repository.Get(id: continentId);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
 
             var synonymToBeRemoved = entity.Synonyms.FirstOrDefault(s => s.Name == synonym.Name);
             entity.Synonyms.Remove(synonymToBeRemoved);

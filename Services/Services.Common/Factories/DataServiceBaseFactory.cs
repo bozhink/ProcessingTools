@@ -6,6 +6,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
@@ -29,13 +30,13 @@
             this.MapServiceToDataModelFunc = this.MapServiceToDataModel.Compile();
         }
 
-        private Func<TDbModel, TServiceModel> MapDataToServiceModelFunc { get; set; }
-
-        private Func<TServiceModel, TDbModel> MapServiceToDataModelFunc { get; set; }
-
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDataToServiceModel { get; }
 
         protected abstract Expression<Func<TServiceModel, TDbModel>> MapServiceToDataModel { get; }
+
+        private Func<TDbModel, TServiceModel> MapDataToServiceModelFunc { get; set; }
+
+        private Func<TServiceModel, TDbModel> MapServiceToDataModelFunc { get; set; }
 
         public virtual async Task<object> Add(TServiceModel model)
         {
@@ -83,6 +84,11 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = await repository.Get(id: id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
             var result = this.MapDataToServiceModelFunc.Invoke(entity);
 
             repository.TryDispose();
