@@ -34,9 +34,9 @@
             this.Context.LoadTaxa(this.Config.RankListXmlFilePath).Wait();
         }
 
-        private ITaxaContext Context { get; set; }
-
         private Config Config { get; set; }
+
+        private ITaxaContext Context { get; set; }
 
         public Task<object> Add(Taxon entity)
         {
@@ -53,66 +53,34 @@
             return this.Context.All();
         }
 
-        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter)
+        public Task<object> Delete(object id)
         {
-            if (filter == null)
+            if (id == null)
             {
-                throw new ArgumentNullException(nameof(filter));
+                throw new ArgumentNullException(nameof(id));
             }
 
-            return (await this.All()).Where(filter);
+            return this.Context.Delete(id);
         }
 
-        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, object>> sort, int skip, int take)
+        public Task<object> Delete(Taxon entity)
         {
-            if (sort == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(sort));
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            return (await this.All())
-                .OrderBy(sort)
-                .Skip(skip)
-                .Take(take);
+            return this.Delete(entity.Name);
         }
 
-        public async Task<IQueryable<Taxon>> All(Expression<Func<Taxon, bool>> filter, Expression<Func<Taxon, object>> sort, int skip, int take)
+        public Task<Taxon> Get(object id)
         {
-            if (filter == null)
+            if (id == null)
             {
-                throw new ArgumentNullException(nameof(filter));
+                throw new ArgumentNullException(nameof(id));
             }
 
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            return (await this.All())
-                .Where(filter)
-                .OrderBy(sort)
-                .Skip(skip)
-                .Take(take);
+            return this.Get(id);
         }
 
         public virtual async Task<IQueryable<Taxon>> Query(
@@ -171,80 +139,13 @@
             int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
             if (projection == null)
             {
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            var query = await this.Context.All();
-
-            switch (sortOrder)
-            {
-                case SortOrder.Ascending:
-                    query = query.OrderBy(sort);
-                    break;
-
-                case SortOrder.Descending:
-                    query = query.OrderByDescending(sort);
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            query = query.Skip(skip).Take(take);
-
-            return query.Select(projection);
-        }
-
-        public Task<object> Delete(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return this.Context.Delete(id);
-        }
-
-        public Task<object> Delete(Taxon entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return this.Delete(entity.Name);
-        }
-
-        public Task<Taxon> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return this.Get(id);
+            return (await this.Query(filter, sort, skip, take, sortOrder))
+                .Select(projection);
         }
 
         public Task<int> SaveChanges()

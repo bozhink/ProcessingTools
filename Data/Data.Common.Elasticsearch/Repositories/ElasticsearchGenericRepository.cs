@@ -17,8 +17,8 @@
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
-        private readonly IElasticContextProvider contextProvider;
         private readonly IElasticClientProvider clientProvider;
+        private readonly IElasticContextProvider contextProvider;
 
         public ElasticsearchGenericRepository(IElasticContextProvider contextProvider, IElasticClientProvider clientProvider)
         {
@@ -39,9 +39,9 @@
             this.Client = this.clientProvider.Create();
         }
 
-        protected IndexName Context { get; set; }
-
         protected IElasticClient Client { get; set; }
+
+        protected IndexName Context { get; set; }
 
         public virtual async Task<object> Add(TEntity entity)
         {
@@ -60,136 +60,6 @@
             var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
             return response.Documents.AsQueryable();
-        }
-
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
-            return response.Documents.AsQueryable();
-        }
-
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
-        {
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
-            return response.Documents.AsQueryable();
-        }
-
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
-            return response.Documents.AsQueryable();
-        }
-
-        // TODO
-        public virtual Task<IQueryable<TEntity>> Query(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
-            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            throw new NotImplementedException();
-        }
-
-        // TODO
-        public virtual Task<IQueryable<T>> Query<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection,
-            Expression<Func<TEntity, object>> sort,
-            int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
-            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            throw new NotImplementedException();
         }
 
         public virtual async Task<object> Delete(object id)
@@ -224,6 +94,74 @@
             var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
             var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
             return response.Source;
+        }
+
+        public virtual Task<IQueryable<TEntity>> Query(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<T>> Query<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
         }
 
         public virtual async Task<int> SaveChanges()

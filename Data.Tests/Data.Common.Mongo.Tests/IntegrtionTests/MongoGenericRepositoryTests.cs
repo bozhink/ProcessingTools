@@ -65,7 +65,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.All(b => b.Id, 0, 1).Result.ToList();
+            var books = repository.Query(b => true, b => b.Id, 0, 1).Result.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 

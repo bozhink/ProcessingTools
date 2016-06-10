@@ -17,10 +17,9 @@
 
     public class TaxonomicBlackListRepository : ITaxonomicBlackListRepository
     {
-        private const int MillisecondsToUpdate = 500;
-        private const string RootNodeName = "items";
         private const string ItemNodeName = "item";
-
+        private const string RootNodeName = "items";
+        private const int MillisecondsToUpdate = 500;
         private DateTime? lastUpdated;
 
         public TaxonomicBlackListRepository()
@@ -67,66 +66,39 @@
             return new HashSet<string>(this.Items).AsQueryable();
         }
 
-        public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter)
+        public Task<object> Delete(object id)
         {
-            if (filter == null)
+            if (id == null)
             {
-                throw new ArgumentNullException(nameof(filter));
+                throw new ArgumentNullException(nameof(id));
             }
 
-            return (await this.All()).Where(filter);
+            return this.Delete(id.ToString());
         }
 
-        public async Task<IQueryable<string>> All(Expression<Func<string, object>> sort, int skip, int take)
+        public async Task<object> Delete(string entity)
         {
-            if (sort == null)
+            if (string.IsNullOrWhiteSpace(entity))
             {
-                throw new ArgumentNullException(nameof(sort));
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
+            var items = (await this.All()).ToList();
+            items.Remove(entity);
+            this.Items = new ConcurrentQueue<string>(items);
 
-            if (take < 1)
+            return entity;
+        }
+
+        public async Task<string> Get(object id)
+        {
+            if (id == null)
             {
-                throw new ArgumentException(string.Empty, nameof(take));
+                throw new ArgumentNullException(nameof(id));
             }
 
             return (await this.All())
-                .OrderBy(i => i)
-                .Skip(skip)
-                .Take(take);
-        }
-
-        public async Task<IQueryable<string>> All(Expression<Func<string, bool>> filter, Expression<Func<string, object>> sort, int skip, int take)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            return (await this.All())
-                .Where(filter)
-                .OrderBy(i => i)
-                .Skip(skip)
-                .Take(take);
+                .FirstOrDefault(i => i == id.ToString());
         }
 
         public virtual async Task<IQueryable<string>> Query(
@@ -185,85 +157,13 @@
             int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
             if (projection == null)
             {
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            var query = await this.All();
-
-            switch (sortOrder)
-            {
-                case SortOrder.Ascending:
-                    query = query.OrderBy(sort);
-                    break;
-
-                case SortOrder.Descending:
-                    query = query.OrderByDescending(sort);
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            query = query.Skip(skip).Take(take);
-
-            return query.Select(projection);
-        }
-
-        public Task<object> Delete(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return this.Delete(id.ToString());
-        }
-
-        public async Task<object> Delete(string entity)
-        {
-            if (string.IsNullOrWhiteSpace(entity))
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            var items = (await this.All()).ToList();
-            items.Remove(entity);
-            this.Items = new ConcurrentQueue<string>(items);
-
-            return entity;
-        }
-
-        public async Task<string> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return (await this.All())
-                .FirstOrDefault(i => i == id.ToString());
+            return (await this.Query(filter, sort, skip, take, sortOrder))
+                .Select(projection);
         }
 
         public Task<int> SaveChanges()

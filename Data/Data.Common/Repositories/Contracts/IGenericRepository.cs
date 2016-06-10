@@ -11,12 +11,6 @@
     {
         Task<IQueryable<TEntity>> All();
 
-        Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter);
-
-        Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take);
-
-        Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take);
-
         Task<IQueryable<TEntity>> Query(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,

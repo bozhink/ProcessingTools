@@ -37,68 +37,6 @@
             return Task.FromResult(this.DbSet.AsQueryable());
         }
 
-        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            return Task.FromResult(this.DbSet.AsQueryable().Where(filter));
-        }
-
-        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
-        {
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            return Task.FromResult(this.DbSet.AsQueryable()
-                .OrderBy(sort)
-                .Skip(skip)
-                .Take(take));
-        }
-
-        public virtual Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            return Task.FromResult(this.DbSet.AsQueryable()
-                .Where(filter)
-                .OrderBy(sort)
-                .Skip(skip)
-                .Take(take));
-        }
-
         public virtual Task<IQueryable<TEntity>> Query(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
@@ -147,7 +85,7 @@
             return Task.FromResult(query);
         }
 
-        public virtual Task<IQueryable<T>> Query<T>(
+        public virtual async Task<IQueryable<T>> Query<T>(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, T>> projection,
             Expression<Func<TEntity, object>> sort,
@@ -155,50 +93,13 @@
             int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
             if (projection == null)
             {
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            var query = this.DbSet.Where(filter);
-
-            switch (sortOrder)
-            {
-                case SortOrder.Ascending:
-                    query = query.OrderBy(sort);
-                    break;
-
-                case SortOrder.Descending:
-                    query = query.OrderByDescending(sort);
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            query = query.Skip(skip).Take(take);
-
-            return Task.FromResult(query.Select(projection));
+            return (await this.Query(filter, sort, skip, take, sortOrder))
+                .Select(projection);
         }
 
         public virtual Task<TEntity> Get(object id)

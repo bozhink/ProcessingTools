@@ -51,7 +51,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = (await repository.All(this.SortExpression, skip, take))
+            var result = (await repository.Query(x => true, this.SortExpression, skip, take))
                 .Select(this.MapDbModelToServiceModel)
                 .ToList()
                 .AsQueryable();
