@@ -11,6 +11,9 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
 
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
@@ -137,6 +140,112 @@
                 .OrderBy(sort)
                 .Skip(skip)
                 .Take(take);
+        }
+
+        public virtual async Task<IQueryable<TEntity>> Query(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var query = this.Collection.Find(filter: filter);
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.SortBy(field: sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.SortByDescending(field: sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Limit(take);
+
+            var result = await query.ToListAsync();
+
+            return result.AsQueryable();
+        }
+
+        public virtual async Task<IQueryable<T>> Query<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var query = this.Collection.Find(filter: filter);
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.SortBy(field: sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.SortByDescending(field: sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Limit(take);
+
+            var result = await query.Project(projection: projection).ToListAsync();
+
+            return result.AsQueryable();
         }
 
         public virtual async Task<object> Delete(object id)

@@ -8,6 +8,9 @@
 
     using Contracts;
 
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     public class EntityGenericRepository<TContext, TEntity> : IEntityGenericRepository<TEntity>, IDisposable
@@ -94,6 +97,108 @@
                 .OrderBy(sort)
                 .Skip(skip)
                 .Take(take));
+        }
+
+        public virtual Task<IQueryable<TEntity>> Query(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            IQueryable<TEntity> query = this.DbSet.Where(filter);
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.OrderBy(sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.OrderByDescending(sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Take(take);
+
+            return Task.FromResult(query);
+        }
+
+        public virtual Task<IQueryable<T>> Query<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var query = this.DbSet.Where(filter);
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.OrderBy(sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.OrderByDescending(sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Take(take);
+
+            return Task.FromResult(query.Select(projection));
         }
 
         public virtual Task<TEntity> Get(object id)

@@ -10,6 +10,8 @@
 
     using Nest;
 
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Models.Contracts;
 
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
@@ -120,6 +122,74 @@
 
             var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
             return response.Documents.AsQueryable();
+        }
+
+        // TODO
+        public virtual Task<IQueryable<TEntity>> Query(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            throw new NotImplementedException();
+        }
+
+        // TODO
+        public virtual Task<IQueryable<T>> Query<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection,
+            Expression<Func<TEntity, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            throw new NotImplementedException();
         }
 
         public virtual async Task<object> Delete(object id)

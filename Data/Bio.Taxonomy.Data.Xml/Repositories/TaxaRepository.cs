@@ -9,6 +9,9 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Types;
     using ProcessingTools.Configurator;
 
     public class TaxaRepository : ITaxaRepository
@@ -110,6 +113,108 @@
                 .OrderBy(sort)
                 .Skip(skip)
                 .Take(take);
+        }
+
+        public virtual async Task<IQueryable<Taxon>> Query(
+            Expression<Func<Taxon, bool>> filter,
+            Expression<Func<Taxon, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var query = await this.Context.All();
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.OrderBy(sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.OrderByDescending(sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Take(take);
+
+            return query;
+        }
+
+        public virtual async Task<IQueryable<T>> Query<T>(
+            Expression<Func<Taxon, bool>> filter,
+            Expression<Func<Taxon, T>> projection,
+            Expression<Func<Taxon, object>> sort,
+            int skip = 0,
+            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            SortOrder sortOrder = SortOrder.Ascending)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var query = await this.Context.All();
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    query = query.OrderBy(sort);
+                    break;
+
+                case SortOrder.Descending:
+                    query = query.OrderByDescending(sort);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            query = query.Skip(skip).Take(take);
+
+            return query.Select(projection);
         }
 
         public Task<object> Delete(object id)
