@@ -42,12 +42,9 @@
             var plausibleLowerTaxa = new HashSet<string>(this.XmlDocument.SelectNodes(ItalicXPath)
                 .Cast<XmlNode>()
                 .Select(x => x.InnerText)
-                .Where(this.IsMatchingLowerTaxaFormat));
-
-            foreach (string taxon in knownLowerTaxaNames)
-            {
-                plausibleLowerTaxa.Add(taxon);
-            }
+                .Where(this.IsMatchingLowerTaxaFormat)
+                .ToList()
+                .Concat(knownLowerTaxaNames));
 
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(plausibleLowerTaxa))
                 .Select(name => name.ToLower()));

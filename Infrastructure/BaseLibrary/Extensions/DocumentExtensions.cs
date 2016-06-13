@@ -120,7 +120,7 @@
         /// <returns>String of the first word.</returns>
         public static string GetFirstWord(this string phrase)
         {
-            Regex matchWord = new Regex(@"\A(?:[^\W\d]{1,4}\.|[^\W\d]{2,})");
+            Regex matchWord = new Regex(@"\A(?:[^\W\d_]{1,3}\.|[^\W\d_]{2,})");
             return matchWord.Match(phrase).Value;
         }
 
