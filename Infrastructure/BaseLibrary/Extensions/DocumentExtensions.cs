@@ -237,7 +237,7 @@
         /// </summary>
         /// <param name="node">XmlNode which content would be replaced.</param>
         /// <param name="replace">Replacement string.</param>
-        /// <param name="logger">Ilogger object to log exceptions.</param>
+        /// <param name="logger">ILogger object to log exceptions.</param>
         /// <returns>Status value: is the replacement performed or not.</returns>
         public static Task<bool> SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
         {
@@ -251,7 +251,7 @@
             }
             catch (Exception e)
             {
-                logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace.Substring(0, 300));
+                logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace.Substring(0, Math.Min(replace.Length, 300)));
             }
             finally
             {
