@@ -61,15 +61,15 @@
 
         private void FormatNomenclatureCitations()
         {
-            string fitstNotWhitespaceNodeInCommentElementXPath = $"{CommentElementName}/node()[normalize-space()!=''][position()=1][name()='{TaxonNameElementName}']";
+            string firstNotWhitespaceNodeInCommentElementXPath = $"{CommentElementName}/node()[normalize-space()!=''][position()=1][name()='{TaxonNameElementName}']";
 
-            string xpath = $"//tp:nomenclature-citation[count({CommentElementName}) = count(*)][normalize-space({CommentElementName}) = normalize-space(.)][{fitstNotWhitespaceNodeInCommentElementXPath}]";
+            string xpath = $"//tp:nomenclature-citation[count({CommentElementName}) = count(*)][normalize-space({CommentElementName}) = normalize-space(.)][{firstNotWhitespaceNodeInCommentElementXPath}]";
             this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(citation =>
                 {
-                    var taxonNode = citation.SelectSingleNode(fitstNotWhitespaceNodeInCommentElementXPath);
+                    var taxonNode = citation.SelectSingleNode(firstNotWhitespaceNodeInCommentElementXPath);
 
                     if (taxonNode != null)
                     {
@@ -84,7 +84,7 @@
 
                         if (string.IsNullOrWhiteSpace(commentNode.InnerXml))
                         {
-                            commentNode.ParentNode.ReplaceChild(null, commentNode);
+                            commentNode.ParentNode.RemoveChild(commentNode);
                         }
                     }
                 });
