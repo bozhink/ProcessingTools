@@ -9,7 +9,6 @@
     internal class Abbreviation
     {
         private string contentType;
-        private string definition;
 
         public Abbreviation(XmlNode abbrev)
         {
@@ -20,6 +19,8 @@
         }
 
         public string Content { get; private set; }
+
+        public string Definition { get; private set; }
 
         public string ReplacePattern { get; private set; }
 
@@ -49,7 +50,7 @@
 
         private void SetDefinition(XmlNode abbrev)
         {
-            this.definition = abbrev["def"]?.InnerText
+            this.Definition = abbrev["def"]?.InnerText
                 .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
                 .RegexReplace(@"\((.+)\)", "$1")
@@ -67,10 +68,10 @@
                 replacePatternNode.Attributes.Append(contentTypeAttribute);
             }
 
-            if (!string.IsNullOrEmpty(this.definition))
+            if (!string.IsNullOrEmpty(this.Definition))
             {
                 var titleAttribute = abbrev.OwnerDocument.CreateAttribute("xlink", "title", "http://www.w3.org/1999/xlink");
-                titleAttribute.InnerText = this.definition;
+                titleAttribute.InnerText = this.Definition;
                 replacePatternNode.Attributes.Append(titleAttribute);
             }
 

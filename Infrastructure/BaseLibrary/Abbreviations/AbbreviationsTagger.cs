@@ -39,6 +39,7 @@
                 .Cast<XmlNode>()
                 .Select(x => new Abbreviation(x))
                 .Where(a => !string.IsNullOrWhiteSpace(a.Content))
+                .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
                 .OrderByDescending(a => a.Content.Length)
                 .ToList());
 
