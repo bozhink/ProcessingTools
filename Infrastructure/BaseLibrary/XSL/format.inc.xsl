@@ -45,7 +45,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date'] | ref//named-content[@content-type='institution'] | addr-line//named-content[@content-type='institution']">
+  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date'] | ref//named-content[@content-type='institution'] | named-content[@content-type='institution']//named-content[@content-type='institution'] | addr-line//named-content[@content-type='institution']">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -80,7 +80,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="date//institutional_code | quantity//quantity | //abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']">
+  <xsl:template match="date//institutional_code | quantity//quantity | //abbrev[normalize-space(@content-type)!='institution' and normalize-space(@content-type)!='collection']//institutional_code[name(..)!='p']">
     <xsl:apply-templates />
   </xsl:template>
 
