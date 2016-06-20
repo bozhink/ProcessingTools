@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary.Format
 {
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
@@ -71,45 +72,81 @@
 
         private void InitialRefactor()
         {
-            string xml = this.Xml;
+            this.FormatOpenCloseTags();
 
-            xml = this.FormatOpenCloseTags(xml);
-
-            xml = this.BoldItalic(xml);
+            this.Xml = this.BoldItalic(this.Xml);
 
             // Format wrong figures' labels
-            xml = Regex.Replace(xml, @"(\s*)(<caption>\s*<p>)\s*<b>\s*((Figure|Map|Plate|Table|Suppl|Box)[^<>]*?)\s*</b>", "$1<label>$3</label>$1$2");
+            this.Xml = Regex.Replace(this.Xml, @"(\s*)(<caption>\s*<p>)\s*<b>\s*((Figure|Map|Plate|Table|Suppl|Box)[^<>]*?)\s*</b>", "$1<label>$3</label>$1$2");
 
-            xml = this.FormatReferances(xml);
+            this.Xml = this.FormatReferances(this.Xml);
 
             // Format DOI notations
-            xml = Regex.Replace(xml, @"(?i)(?<=\bdoi:?)[^\S ]*(?=\d)", " ");
+            this.Xml = Regex.Replace(this.Xml, @"(?i)(?<=\bdoi:?)[^\S ]*(?=\d)", " ");
 
-            xml = this.FormatPageBreaks(xml);
+            this.Xml = this.FormatPageBreaks(this.Xml);
 
             // male and female
-            xml = Regex.Replace(xml, @"<i>([♂♀\s]+)</i>", "$1");
+            this.Xml = Regex.Replace(this.Xml, @"<i>([♂♀\s]+)</i>", "$1");
 
             // Post-formatting
             for (int i = 0; i < 3; i++)
             {
-                xml = this.BoldItalic(xml);
-                xml = this.FormatPunctuation(xml);
-                xml = this.RemoveEmptyTags(xml);
-                xml = this.FormatOpenCloseTags(xml);
+                this.FormatOpenCloseTags();
+                this.Xml = this.BoldItalic(this.Xml);
+                this.Xml = this.FormatPunctuation(this.Xml);
+                this.Xml = this.RemoveEmptyTags(this.Xml);
             }
-
-            this.Xml = xml;
         }
 
         private void TrimBlockElements()
         {
-            const string XPath = "//title|//label|//article-title|//th|//td|//def|//p[name(..)!='def']|//license-p|//li|//attrib|//kwd|//mixed-citation|//xref-group|//tp:nomenclature-citation";
+            this.ProcessBlockElementWhiteSpaces("//title | //label | //article-title | //p[name(..)!='def'] | //license-p | //xref-group");
+            this.ProcessBlockElementWhiteSpaces("//mixed-citation | //element-citation");
+            this.ProcessBlockElementWhiteSpaces("//tp:nomenclature-citation");
+            this.ProcessBlockElementWhiteSpaces("//kwd");
+            this.ProcessBlockElementWhiteSpaces("//attrib");
+            this.ProcessBlockElementWhiteSpaces("//def");
+            this.ProcessBlockElementWhiteSpaces("//li");
+            this.ProcessBlockElementWhiteSpaces("//th | //td");
+            this.ProcessBlockElementWhiteSpaces("//value");
+        }
 
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(XPath, this.NamespaceManager))
+        private void FormatOpenCloseTags()
+        {
+            this.ProcessInlineElementWhiteSpaces("//source | //issue-title | //a | //b | //i | //u | //s | //sup | //sub | //monospace | //year | //month | //day | //volume | //fpage | //lpage");
+        }
+
+        private void ProcessBlockElementWhiteSpaces(string xpath)
+        {
+            this.XmlDocument
+                .SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
+                {
+                    node.InnerXml = node.InnerXml
+                        .RegexReplace(@"\s+", " ")
+                        .Trim();
+                });
+        }
+
+        private void ProcessInlineElementWhiteSpaces(string xpath)
+        {
+            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
             {
-                node.InnerXml = node.InnerXml.Replace('\r', ' ').Replace('\n', ' ').Trim();
-                node.InnerXml = Regex.Replace(node.InnerXml, @"\s{2,}", " ");
+                bool beginsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\A\s+");
+                bool endsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\s+\Z");
+
+                if (beginsWithWhiteSpace || endsWithWhiteSpace)
+                {
+                    node.InnerXml = node.InnerXml.Trim();
+
+                    var replacement = node.OwnerDocument.CreateDocumentFragment();
+                    replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
+
+                    node.ParentNode.ReplaceChild(replacement, node);
+                }
             }
         }
 
@@ -118,12 +155,12 @@
             string result = xml;
 
             result = result
-                .RegexReplace(@"(<i>|<b>|<u>|<sub>|<sup>)\s+", " $1")
-                .RegexReplace(@"\s+(</i>|</b>|</u>|</sub>|</sup>)", "$1 ")
                 .RegexReplace(@"([\(\[])\s+(<i>|<b>|<u>|<sub>|<sup>)\s*", " $1$2")
                 .RegexReplace(@"\s*(</i>|</b>|</u>|</sub>|</sup>)\s+([\)\]])", "$1$2 ")
-                .RegexReplace(@"(</b>\s+<b>|</i>\s+<i>|<b>\s+</b>|<i>\s+</i>)", " ")
-                .RegexReplace(@"(</b><b>|<b></b>|</i><i>|<i></i>)", string.Empty);
+                .RegexReplace(@"</(b|i|u|s|sup|sub)>\s+<\1>", " ")
+                .RegexReplace(@"<(b|i|u|s|sup|sub)>\s+</\1>", " ")
+                .RegexReplace(@"</(b|i|u|s|sup|sub)><\1>", string.Empty)
+                .RegexReplace(@"<(b|i|u|s|sup|sub)></\1>", string.Empty);
 
             return result;
         }
@@ -138,7 +175,7 @@
                 .RegexReplace(@"(<i>)([A-Za-z][a-z]{0,2})(</i>)(\.)", "$1$2$4$3")
                 .RegexReplace(@"\s*\(\s*(</i>|</b>)", "$1 (")
                 .RegexReplace(@"(<i>|<b>)\s*\)\s*", ") $1")
-                .RegexReplace(@"(<b>|<i>)([,\s\.:;\-––])(</b>|</i>)", "$2")
+                .RegexReplace(@"<(a|b|i|u|s|sup|sub)>([,\s\.:;\-––])</\1>", "$2")
                 .RegexReplace(@"(</i>)(\()", "$1 $2")
                 .RegexReplace(@"(<i>)([\.,;:\s]+)", "$2$1");
 
@@ -152,17 +189,6 @@
                 .RegexReplace(@"\.</i>(?=</p>)", "</i>.");
 
             return result;
-        }
-
-        private string FormatOpenCloseTags(string xml)
-        {
-            return xml
-                .RegexReplace(
-                    @"(<(?:source|issue-title|b|i|u|sup|sub|monospace|year|month|day|volume|fpage|lpage)\b[^>]*>)\s+",
-                    " $1")
-                .RegexReplace(
-                    @"\s+(</(?:source|issue-title|b|i|u|sup|sub|monospace|year|month|day|volume|fpage|lpage)>)",
-                    "$1 ");
         }
 
         private string FormatPunctuation(string xml)
@@ -218,10 +244,7 @@
             string result = xml;
 
             result = result
-                ////.RegexReplace(@"(\S)(<article-title>|<source>)", "$1 $2")
-                ////.RegexReplace(@"(</article-title>|</source>)(\S)", "$1 $2")
                 .RegexReplace(@"(</source>)((?i)doi:?)", "$1 $2")
-                ////.RegexReplace(@"(?<=</surname>)\s*(?=<given-names>)", " ")
                 .RegexReplace(@"</volume>\s+\(<issue>", "</volume>(<issue>")
                 .RegexReplace(@"</issue>(\))+", "</issue>)")
                 .RegexReplace(@"<role>Ed</role>", "<role>Ed.</role>")
