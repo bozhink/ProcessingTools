@@ -91,7 +91,6 @@
     <Compile Include="Floats\Models\TableBoxFloatObject.cs" />
     <Compile Include="Floats\Models\TableFloatObject.cs" />
     <Compile Include="Floats\Models\TextBoxFloatObject.cs" />
-    <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="References\IReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesParser.cs" />
