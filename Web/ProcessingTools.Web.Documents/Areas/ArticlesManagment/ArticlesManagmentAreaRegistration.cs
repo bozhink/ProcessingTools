@@ -10,7 +10,7 @@
         {
             context.MapRoute(
                 "ArticlesManagment_default",
-                "ArticlesManagment/{controller}/{action}/{id}",
+                "Articles/{controller}/{action}/{id}",
                 new
                 {
                     action = "Index",

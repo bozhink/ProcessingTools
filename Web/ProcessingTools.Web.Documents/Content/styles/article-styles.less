@@ -1,0 +1,99 @@
+﻿@default-padding: 10px;
+@treatment-sec-padding: @default-padding;
+
+@taxon-font-color: #f60;
+@taxon-background-color: fade(lighten(@taxon-font-color, 25%), 15%);
+
+body {
+}
+
+main {
+    min-width: 50px;
+    max-width: 1200px;
+    padding: 0 @default-padding 0 @default-padding;
+}
+
+em {
+    font-style: italic;
+
+    &.taxon-name {
+        font-style: normal;
+        background-color: @taxon-background-color;
+    }
+}
+
+.taxon-name-part {
+    color: @taxon-font-color;
+
+    &.genus, &.subgenus, &.species, &.subspecies {
+        font-style: italic;
+    }
+}
+
+.named-content {
+    background-color: rgba(205, 248, 248, 0.70);
+
+    &.date {
+        text-decoration: underline wavy #ffd800;
+    }
+}
+
+abbr {
+    text-decoration: underline wavy #808080;
+
+    .abbr-def-p {
+        text-decoration: underline double #808080;
+    }
+}
+
+.taxon-treatment {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    .nomenclature {
+        font-size: 1.0em;
+    }
+}
+
+
+
+section {
+    &.treatment-sec {
+        padding-left: @treatment-sec-padding;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-indent: -@treatment-sec-padding;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
+
+table-wrap[content-type='key'] {
+    table {
+        border-collapse: collapse;
+
+        td {
+            border-color: #ccc;
+            padding: 5px;
+            text-align: left;
+
+            :nth-child(1) {
+                max-width: 10%;
+            }
+
+            :nth-child(2) {
+                max-width: 70%;
+            }
+
+            :nth-child(3) {
+                min-width: 20%;
+                max-height: 40%;
+            }
+        }
+    }
+}

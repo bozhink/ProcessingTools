@@ -1,0 +1,19 @@
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.ArticlesManagment.Controllers
+
+@{
+    ViewBag.Title = ContentConstants.DeafultCreatePageTitle;
+}
+
+<h2>
+    @ContentConstants.DeafultCreatePageHeading
+</h2>
+
+@using (Html.BeginForm(nameof(FilesController.Create), FilesController.ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <input type="file" name="file" class="btn btn-default btn-file" accept=".xml, application/xml" />
+        <p class="help-block">Example block-level help text here.</p>
+        <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-default" />
+    </div>
+}

@@ -1,0 +1,1203 @@
+﻿<?xml version="1.0" encoding="utf-8"?><article article-type="research-article" dtd-version="3.0" xml:lang="en" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tp="http://www.plazi.org/taxpub">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher-id">Subterranean Biology</journal-id>
+      <journal-title-group>
+        <journal-title xml:lang="en">Subterranean Biology</journal-title>
+        <abbrev-journal-title xml:lang="en">Subterranean Biology</abbrev-journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1768-1448</issn>
+      <issn pub-type="epub">1314-2615</issn>
+      <publisher>
+        <publisher-name>Pensoft Publishers</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">10.3897/subtbiol.18.8648</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Distribution and a comparative analysis of the aquatic invertebrate fauna in caves of the western Caucasus</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Chertoprud</surname>
+            <given-names>Elena S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Palatov</surname>
+            <given-names>Dmitry M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Borisov</surname>
+            <given-names>Rostislav R.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A2">2</xref>
+        </contrib>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Marinskiy</surname>
+            <given-names>Vadim V.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">1</xref>
+        </contrib>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Bizin</surname>
+            <given-names>Michail S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A3">3</xref>
+        </contrib>
+        <contrib contrib-type="author" xlink:type="simple">
+          <name name-style="western">
+            <surname>Dbar</surname>
+            <given-names>Roman S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="A4">4</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="A1">
+        <label>1</label>
+        <addr-line>Department of Hydrobiology, Faculty of Biology, Lomonosov Moscow State University, Leninskie Gory, 1/12, 119991, Moscow, Russia</addr-line>
+      </aff>
+      <aff id="A2">
+        <label>2</label>
+        <addr-line>Institute of Fisheries and Oceanography, Verchnjaja Krasnoselskaja, 17, 107140, Moscow, Russia</addr-line>
+      </aff>
+      <aff id="A3">
+        <label>3</label>
+        <addr-line>Department of Soil Biology, Faculty of Soil Sciences, Lomonosov Moscow State University, Leninskie Gory, 1/12, 119991, Moscow, Russia</addr-line>
+      </aff>
+      <aff id="A4">
+        <label>4</label>
+        <addr-line>Institute of Ecology Academy of Science Abkhazia, Krasnojamskaya, 67, 384905 Sukhumi, Abkhazia</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="corresp">
+          <p>Corresponding author: Elena S. Chertoprud (<email xlink:type="simple">horsax@yandex.ru</email>)</p>
+        </fn>
+        <fn fn-type="edited-by">
+          <p>Academic editor: O. Moldovan</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <year>2016</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>17</day>
+        <month>6</month>
+        <year>2016</year>
+      </pub-date>
+      <issue>18</issue>
+      <fpage>49</fpage>
+      <lpage>70</lpage>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>3</month>
+          <year>2016</year>
+        </date>
+        <date date-type="accepted">
+          <day>31</day>
+          <month>5</month>
+          <year>2016</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Elena S. Chertoprud, Dmitry M. Palatov, Rostislav R. Borisov, Vadim V. Marinskiy, Michail S. Bizin, Roman S. Dbar</copyright-statement>
+        <license license-type="creative-commons-attribution" xlink:href="http://creativecommons.org/licenses/by/4.0" xlink:type="simple">
+          <license-p>This is an open access article distributed under the terms of the Creative Commons Attribution License (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="zoobank" xlink:type="simple">http://zoobank.org/AAA68ABB-945E-421B-9B45-7C3FAE3AA2C3</self-uri>
+      <abstract>
+        <label>Abstract</label>
+        <p>The freshwater fauna of nine caves in central Abkhazia, western Caucasus, revealed 35 species of stygobionts, including 15 new species to be described elsewhere. The number of species per station increased from the depth towards the entrance in caves Golova Otapa and Abrskila, becoming the highest in the epigean part. In both caves, two abundance peaks of aquatic invertebrates were registered: one in the entrance area, associated with the development of amphibiotic insect larvae, the other in the depths due to the high numbers of stygobionts. In Cave New Athos, the highest species richness and abundance were observed in large lakes. In caves Golova Otapa and Abrskila, two faunistic complexes with complementary distributions were found, the first due to amphibiotic insects in the cave entrance area, the second one composed of stygobionts in the deep areas. The impact of anthropogenic factors on aquatic cave communities was also noted. The stygobiotic faunas of all caves studied were clearly divided into three groups, following the number of river valleys in which they were situated. The stygobiont faunas of the caves located within one river valley appeared to be 50% similar. In contrast, the fauna composition of the stygobionts from caves situated in different valleys shared not more than 12% species in common. Stygobiotic shrimps and gastropod mollusks show profound local endemism. Stygobiotic <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> penetrating the ground waters revealed wide distributions between cave systems within a single karst massif.</p>
+        <!--PageBreak-->
+      </abstract>
+      <kwd-group>
+        <label>Keywords</label>
+        <kwd>Abkhazia</kwd>
+        <kwd>abundance</kwd>
+        <kwd>distribution</kwd>
+        <kwd>stygobiont species complex</kwd>
+      </kwd-group>
+    </article-meta>
+    <notes>
+      <sec sec-type="Citation">
+        <title>Citation</title>
+        <p>Chertoprud ES, Palatov DM, Borisov RR, Marinskiy VV, Bizin MS, Dbar RS (2016) Distribution and a comparative analysis of the aquatic invertebrate fauna in caves of the western Caucasus. Subterranean Biology 18: 49–70. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.18.8648">10.3897/subtbiol.18.8648</ext-link></p>
+      </sec>
+    </notes>
+  </front>
+  <body>
+    <sec sec-type="Introduction">
+      <title>Introduction</title>
+      <p>Cave biotopes are often inhabited by unique complexes of aquatic species. At least some of these species are completely absent in epigean ecosystems. Such a refugial character of stygobiotic communities is developed in consequence to the constant environmental parameters in subterranean waterbodies which remain stable not only for some years, but also on a geological time scale (<xref ref-type="bibr" rid="B7">Birstein and Borutzky 1950</xref>). Thus, the freshwater fauna of karst caves of the Caucasus is known to exist in more or less stable conditions since the Tertiary. Not surprisingly, the fauna includes a great number of endemic taxa both at the specific and generic levels (<xref ref-type="bibr" rid="B5">Birstein 1950</xref>).</p>
+      <p>The study of the stygobiotic fauna in the western Caucasus started with the works of <xref ref-type="bibr" rid="B62">Zhadin (1932</xref>, <xref ref-type="bibr" rid="B63">1952</xref>), <xref ref-type="bibr" rid="B55">Starobogatov (1962)</xref>, Birstein (<xref ref-type="bibr" rid="B5">Birstein 1950</xref>, <xref ref-type="bibr" rid="B8">Birstein and Ljovuschkin 1965</xref>, <xref ref-type="bibr" rid="B10">Birstein and Lopashov 1940</xref>) and Borutzky (<xref ref-type="bibr" rid="B12">Borutzky 1940</xref>, <xref ref-type="bibr" rid="B13">1971</xref>, <xref ref-type="bibr" rid="B14">Borutzky and Mihajlova-Nejkova 1970</xref>). They all focused on mollusks and/or crustaceans. However, those early evaluations of the species diversity in the stygobiotic groups clearly indicated that the region was underexplored (<xref ref-type="bibr" rid="B5">Birstein 1950</xref>).</p>
+      <p>In the recent years, inventorying and cataloguing the subterranean fauna of the western Caucasus, in particular stygobiotic invertebrates, have been carried out (<xref ref-type="bibr" rid="B31">Kniss 2001</xref>, <xref ref-type="bibr" rid="B3">Barjadze et al. 2015</xref>). These studies predominantly concern the fauna of large karst caves of the Krasnodar Krai, Russia, Abkhazia and Imeretia, Georgia. The greatest number of new species has been described among stygobiotic <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>, even though this is predicted to grow significantly in the future (<xref ref-type="bibr" rid="B49">Sidorov 2014</xref>, <xref ref-type="bibr" rid="B50">2015a</xref>, <xref ref-type="bibr" rid="B51">b</xref>). Some species of the cavernicolous shrimp genus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic> Dormitzer, 1853 have been redescribed (<xref ref-type="bibr" rid="B1">Anosov 2016</xref>, <xref ref-type="bibr" rid="B38">Marin and Sokolova 2014</xref>). A zoogeographic regionalization of the stygobiotic isopod fauna of the Caucasus has appeared recently (<xref ref-type="bibr" rid="B59">Turbanov 2015</xref>). A taxonomic revision and a species richness analysis of cavernicolous gastropods were published (<xref ref-type="bibr" rid="B61">Vinarski et al. 2014</xref>, <xref ref-type="bibr" rid="B44">Palatov and Vinarskiy 2015</xref>).</p>
+      <p>At the same time, a number of invertebrate groups inhabiting the caves of the western Caucasus remain almost untreated taxonomically. Descriptions of cavernicolous <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Turbellaria</tp:taxon-name-part></tp:taxon-name> have just begun (<xref ref-type="bibr" rid="B47">Shumeyev 2008</xref>). The data existing on <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Oligochaeta</tp:taxon-name-part></tp:taxon-name> and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Hirudinea</tp:taxon-name-part></tp:taxon-name> diversity are restricted to the identification of the stygobiotic genera most abundant in the region (<xref ref-type="bibr" rid="B11">Bizin et al. 2015</xref>). Thus, taxonomic studies on the aquatic cave fauna of the western Caucasus remains in its initial stage. Almost all biospeleological investigations are hampered by the inability to identify organisms to species, sometimes even to the generic level.</p>
+      <p>Not surprisingly, both the ecology and community structure of stygobiotic fauna in the western Caucasus are far from well-known. Investigations which would comprise all taxa of aquatic invertebrates inhabiting individual cave systems are extremely rare. Usually such studies concern both stygo- and troglofaunas, only partially com<!--PageBreak-->plete though (<xref ref-type="bibr" rid="B33">Koval 2003</xref>, <xref ref-type="bibr" rid="B32">2004</xref>, <xref ref-type="bibr" rid="B45">Sendra and Reboleira 2012</xref>, <xref ref-type="bibr" rid="B52">Sidorov et al. 2014</xref>). Comparisons of macrobenthos compositions between different habitats of a single large cave or between different karst massifs are virtually absent (<xref ref-type="bibr" rid="B36">Ljovuschkin 1975</xref>). A similar situation is observed even in the far better prospected stygobiotic fauna of the Balkan Peninsula (<xref ref-type="bibr" rid="B23">Franjević et al. 2010</xref>).</p>
+      <p>Complex studies of cavernicolous species communities are of importance to biodiversity analyses and biogeographical reconstructions, as well as to the ecological monitoring of troglobitic ecosystems. There are some fundamental problems that remain unresolved: first of all, what is the real species richness of a karst massif? How far can different taxonomic groups of stygobionts disperse? Which changes or successions in aquatic communities can be observed with an increasing distance from the entrance? Which is the influence of anthropogenic impacts on those changes? The latter question is extremely topical, allowing for the use data on stygobiotic species as indicators of anthropogenic pressure in touristic caves (<xref ref-type="bibr" rid="B39">Marinskiy et al. 2015</xref>).</p>
+      <p>In the current study, an analysis of the freshwater fauna in nine caves of central Abkhazia, western Caucasus is presented. There are three different aims in this study: (1) to provide an inventory of the species richness of freshwater invertebrates; (2) to elucidate the patterns of species distribution within a single cave considering the anthropogenic factor; and (3) to perform a comparative analysis of the stygobiotic faunas inhabiting the different regions of Abkhazia.</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Material and methods</title>
+      <sec sec-type="Explored area">
+        <title>Explored area</title>
+        <p>Our investigation focused on the Gumishinsko-Panavskiy speleoregion (<xref ref-type="bibr" rid="B21">Dublyansky et al. 1987</xref>) of central Abkhazia. The material was collected during two weeks of February 2012 and 2015 in six large and three small caves in the Gudautsky, Gulrypshsky and Ochamchirsky regions. All cave waterbodies had low water levels during the sampling time, so the flood aspects were absent. The locations of the examined caves are shown on Figure <xref ref-type="fig" rid="F1">1</xref>.</p>
+        <fig id="F1" position="float" orientation="portrait">
+          <label>Figure 1.</label>
+          <caption>
+            <p>Map of the study regions of Abkhazia. Caves: <bold>1</bold> New Athos <bold>2</bold> Simona Kananita <bold>3</bold> Nizhnyaya Shakuranskaya <bold>4</bold> Srednyaya Shakuranskaya <bold>5</bold> Tsebel’dinskaya <bold>6</bold> Abrskila <bold>7</bold> Golova Otapa <bold>8</bold> Well Uapatyh <bold>9</bold> Well 85 m.</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g001.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <p>(1) <italic>Gudautsky region</italic>. Samples were taken in Cave New Athos (Novoafonskaya) and in Cave Simona Kananita. The former is a huge karst cave with several large halls and a total of approximately 1 mil. m³ volume. There are lakes in two of the halls, small puddles and streams being scattered almost all over the cave. The material was collected in nine halls, six of which are visited by organized tourist groups. Cave Simona Kananita supports a stream with the part available for sampling extending for no more than 20 m.</p>
+        <p>(2) <italic>Gulrypshsky region</italic>. The material was collected in Nizhnyaya Shakuranskaya and Srednyaya Shakuranskaya caves, as well as in Tsebel’dinskaya cave. All the three karst caves are horizontal and have a flooded central gallery with a stream or river <!--PageBreak-->flowing all along. The length of the explored parts of these caves did not exceed 200 m.</p>
+        <p>(3) <italic>Ochamchirsky region</italic>. Sampling was carried out in Abrskila and Golova Otapa caves, as well as in Uapatyh (Nad Golovoy Otapa) and the 85 m rock wells. The firsts two caves are represented by horizontal branching gallery systems, the largest of which supports a river. The total length of the explored part of Abrskila Cave was nearly 2.5 km, that of Golova Otapa Cave, 500 m. The parts of the streams available for sampling in both vertical wells were located near their bottoms.</p>
+      </sec>
+      <sec sec-type="Anthropogenic impact">
+        <title>Anthropogenic impact</title>
+        <p>Tourists mostly visit the New Athos Cave (<xref ref-type="bibr" rid="B22">Ekba and Dbar 2007</xref>), which has a special visiting tunnel. The cave is supplied with air-shafts, tourist trails, bridges, and illumination affecting at least 50% of the cave. Abrskila Cave is rarely visited by tourists. Artificial illumination in this cave extends to a distance of 400 meters from the entrance, i.e. less than a quarter of the total length of the cave. In Golova Otapa Cave, which is also frequented by tourists, the human influence can be restricted to the construction <!--PageBreak-->of approximately 50 meters long wooden paths located to nearly 100 meters off the entrance. At the time of our research, the cave had no artificial illumination. Nizhnyaya Shakuranskaya and Srednyaya Shakuranskaya caves, as well as Tsebel’dinskaya and Simona Kananita caves were only occasionally visited by local people. Both Uapatyh and 85 m wells were not accessible to man without special speleological equipment.</p>
+      </sec>
+      <sec sec-type="Sampling strategy">
+        <title>Sampling strategy</title>
+        <p>In all of the karst caves, quantitative macrobenthos sampling was undertaken. In the long horizontal Abrskila and Golova Otapa caves, the sampling stations were set in transects along the river from the deepest halls to the entrance area. One station was situated above ground not far away from a cave entrance.The transect in Abrskila Cave comprised 11 stations, versus nine in Golova Otapa Cave (Figures <xref ref-type="fig" rid="F2">2</xref>, <xref ref-type="fig" rid="F3">3</xref>). In New Athos Cave, which had only artificial outlet to the surface, besides of a sinkhole and cracks in the vaults of some halls, 12 sampling stations were established (Figure <xref ref-type="fig" rid="F4">4</xref>). The stations thus covered all of the main types of cave waterbodies. Three samples per station were taken in every cave.</p>
+        <fig id="F2" position="float" orientation="portrait">
+          <label>Figure 2.</label>
+          <caption>
+            <p>Map of Cave Abrskila. Sampling stations marked by red points (accordingly <xref ref-type="bibr" rid="B4">Benze et al. 1965</xref>).</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g002.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <fig id="F3" position="float" orientation="portrait">
+          <label>Figure 3.</label>
+          <caption>
+            <p>Map of Cave Golova Otapa. Sampling stations marked by red points (accordingly <xref ref-type="bibr" rid="B25">Grigorjan 1973</xref>).</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g003.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <fig id="F4" position="float" orientation="portrait">
+          <label>Figure 4.</label>
+          <caption>
+            <p>Map of Cave New Athos. Sampling stations marked by red points (accordingly Abhastur 2009).</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g004.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <p>In Nizhnyaya Shakuranskaya and Srednyaya Shakuranskaya caves, as well as in Tsebel’dinskaya Cave, macrobenthos samples were collected at five stations each. All stations were located along the first 200 meters of the main flooded gallery. In both wells examined and in Simona Kananita Cave, sampling was done in only one station. However, this latter station included all available aquatic habitats.</p>
+        <p>At all of the stations, the basic hydrological and physical parameters of waterbodies (width, depth, flow rate, type of sediments, silting, and water temperature) were measured. The general characteristics of the collected material are presented in Table <xref ref-type="table" rid="T1">1</xref>.</p>
+        <table-wrap id="T1" position="float" orientation="portrait" xscroll="yes">
+          <label>Table 1.</label>
+          <caption>
+            <p>The main characteristics of material from the study caves of Abkhazia, western Caucasus.</p>
+          </caption>
+          <table id="TID0EJNBG" rules="all">
+            <tbody>
+              <tr>
+                <th rowspan="1" colspan="1">Cave/Well</th>
+                <th rowspan="1" colspan="1">Number of stations</th>
+                <th rowspan="1" colspan="1">Number of samples (macrobenthos)</th>
+                <th rowspan="1" colspan="1">Number of taxa</th>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">New Athos</td>
+                <td rowspan="1" colspan="1">12</td>
+                <td rowspan="1" colspan="1">36</td>
+                <td rowspan="1" colspan="1">11</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Simona Kananita</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">1</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Nizhnyaya Shakuranskaya</td>
+                <td rowspan="1" colspan="1">5</td>
+                <td rowspan="1" colspan="1">15</td>
+                <td rowspan="1" colspan="1">17</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Srednyaya Shakuranskaya</td>
+                <td rowspan="1" colspan="1">5</td>
+                <td rowspan="1" colspan="1">15</td>
+                <td rowspan="1" colspan="1">11</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Tsebel’dinskaya</td>
+                <td rowspan="1" colspan="1">5</td>
+                <td rowspan="1" colspan="1">15</td>
+                <td rowspan="1" colspan="1">14</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Abrskila</td>
+                <td rowspan="1" colspan="1">10</td>
+                <td rowspan="1" colspan="1">30</td>
+                <td rowspan="1" colspan="1">14</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Golova Otapa</td>
+                <td rowspan="1" colspan="1">9</td>
+                <td rowspan="1" colspan="1">27</td>
+                <td rowspan="1" colspan="1">10</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Uapatyh</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">5</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">85 m</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">2</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <p>Quantitative samples of macrobenthos were taken with a hemispherical scraper with an area of 0.02 m<sup>2</sup> and a mesh size of 1 mm. Each sample included organisms pooled from five scrapers collected at a distance of five meters from each other. The sample area was approximately 0.1 m<sup>2</sup>. Macrobenthos was collected from the samples and preserved in 90% ethanol.</p>
+        <!--PageBreak-->
+        <!--PageBreak-->
+      </sec>
+      <sec sec-type="Taxonomy">
+        <title>Taxonomy</title>
+        <p>For species identifications, reference material representing most of the invertebrate groups and kept in the Zoological Institute of the Russian Academy of Sciences (St. Petersburg) and the Zoological Museum of the Moscow State University was used. Identification keys are only known for the Caucasian members of the genus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> (<xref ref-type="bibr" rid="B6">Birstein 1952</xref>), the family <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Typhlogammaridae</tp:taxon-name-part></tp:taxon-name> (<xref ref-type="bibr" rid="B56">Starobogatov 1995</xref>), as well as stygobiotic shellfish (<xref ref-type="bibr" rid="B55">Starobogatov 1962</xref>). However, due to the high probability of new species encounters, in some cases no exact identification was possible based on these publications.</p>
+      </sec>
+      <sec sec-type="Statistical analysis">
+        <title>Statistical analysis</title>
+        <p>
+          <italic>Species diversity</italic>. An analysis of species diversity in the study stations used the Shannon-Weaver index (<xref ref-type="bibr" rid="B46">Shannon and Weaver 1963</xref>). This index is applicable to assess community structure and takes into account both the number of species in a sample and the extent of their domination (% of total organisms abundance). The Shannon-Weaver index (<italic>H</italic>) is less dependent on the sample amount. In addition, this index is sensitive to changes in the abundance of rare species.</p>
+      </sec>
+      <sec sec-type="Comparing of caves faunas">
+        <title>Comparing of caves faunas</title>
+        <p>Pairwise similarity of the species composition from different samples in one cave was evaluated using the Czekanowski index (D) for quantitative data (<xref ref-type="bibr" rid="B37">Magurran 2004</xref>):</p>
+        <p>
+          <italic>D (x, y) = Σmin (Xi, Yi)</italic>, (2)</p>
+        <p>
+          <italic>i=1</italic>
+        </p>
+        <p>where Xi, Yi are the proportion of individuals belonging to the each species of all individuals found in samples X and Y, respectively.</p>
+        <!--PageBreak-->
+        <p>To compare the composition of troglobitic faunas, the taxonomic overlap (in %) was calculated between the species lists of different caves. The similarity in faunal composition between the caves was estimated using the Kulczynski index (<italic>K</italic>) for presence/absence data (<xref ref-type="bibr" rid="B16">Clarke and Gorley 2006</xref>):</p>
+        <p>
+          <italic>K</italic> (<italic>x, y</italic>) = (<italic>a</italic> / (<italic>a + b</italic>) + <italic>a</italic> /(<italic>a + c</italic>)) / 2, (3)</p>
+        <p>where <italic>a</italic> is the number of common species in fauna groups <italic>x</italic> and <italic>y</italic>; and <italic>b</italic> and <italic>c</italic> are the numbers of species restricted to one of the groups. This index is independent of joint absence and moderately sensitive to the difference in the total length of the compared lists, making it useful for potentially insufficient or fragmentary data. It is often used for biogeographic analyses of recent faunas (<xref ref-type="bibr" rid="B43">Murray et al. 2002</xref>, <xref ref-type="bibr" rid="B2">Azeria 2004</xref>).</p>
+        <p>We applied the multi-dimensional scaling method in PRIMER (version 6) for a graphical presentation of species composition similarity between caves (<xref ref-type="bibr" rid="B16">Clarke and Gorley 2006</xref>). This method allows for comparing the objects in a bi-dimensional space so that all distances between points correspond to a certain value. Consequently, this approach helps to visualise the cluster structure of selected stations.</p>
+      </sec>
+    </sec>
+    <sec sec-type="Results">
+      <title>Results</title>
+      <sec sec-type="Species richness">
+        <title>Species richness</title>
+        <p>In the waterbodies of the study caves, 46 taxa of aquatic invertebrates were found to populate subterranean and epigean habitats. Among them, there are 35 stygobiotic species: four species of <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Turbellaria</tp:taxon-name-part></tp:taxon-name> (the genera <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dendrocoelum">Dendrocoelum</tp:taxon-name-part></tp:taxon-name></italic> Øersted, 1843 and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dugesia">Dugesia</tp:taxon-name-part></tp:taxon-name></italic> Girard, 1850), four <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Oligochaeta</tp:taxon-name-part></tp:taxon-name> species (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Rhyacodrilus">Rhyacodrilus</tp:taxon-name-part></tp:taxon-name></italic> Bretscher, 1901, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Embolocephalus">Embolocephalus</tp:taxon-name-part></tp:taxon-name></italic> Randolph, 1892, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Eisenia">Eisenia</tp:taxon-name-part></tp:taxon-name></italic> Michaelsen, 1900), one leech (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Hirudinea</tp:taxon-name-part></tp:taxon-name>) (<italic><tp:taxon-name><tp:taxon-name-part taxon-name-part-type="genus">Dina</tp:taxon-name-part></tp:taxon-name></italic> Blanchard, 1892); 15 species of mollusks: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name> (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Belgrandiella">Belgrandiella</tp:taxon-name-part></tp:taxon-name></italic> Wagner, 1928, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> Pavlovic, 1913, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part></tp:taxon-name></italic> Tomlin, 1930, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pontohoratia">Pontohoratia</tp:taxon-name-part></tp:taxon-name></italic> <xref ref-type="bibr" rid="B61">Vinarski et al., 2014</xref>) and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Bivalvia</tp:taxon-name-part></tp:taxon-name> (the subgenus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part></tp:taxon-name></italic> Jenyns, 1832 of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pisidium">Pisidium</tp:taxon-name-part></tp:taxon-name></italic> Pfeiffer, 1821); 12 species of crustacean: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name> (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Proasellus">Proasellus</tp:taxon-name-part></tp:taxon-name></italic> Dudich, 1925), <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> Schiödte, 1849, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Synurella">Synurella</tp:taxon-name-part></tp:taxon-name></italic> Wrzesniowksi, 1877, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1940) and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decapoda</tp:taxon-name-part></tp:taxon-name> (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic> Dormitzer, 1853). Insect larvae and amphipods typical of epigean waterbodies included only nine species found mostly near the entrances of the caves. Approximately half of the stygobiotic invertebrates (14 species) are presumably new and will be described elsewhere (Table <xref ref-type="table" rid="T2">2</xref>).</p>
+        <table-wrap id="T2" position="float" orientation="portrait" xscroll="yes">
+          <label>Table 2.</label>
+          <caption>
+            <p>The list of stygobiontic fauna from the examined caves of Abkhazia. (Caves: 1 — New Athos, 2 — Simona Kananita, 3 — Nizhnyaya Shakuranskaya, 4 — Srednyaya Shakuranskaya, 5 — Tsebel’dinskaya, 6 — Abrskila, 7 — Golova Otapa, 8 — Well Uapatyh, 9 — Well 85 m).</p>
+          </caption>
+          <table id="TID0EHUBG" rules="all">
+            <tbody>
+              <tr>
+                <th rowspan="3" colspan="1">Species</th>
+                <th rowspan="1" colspan="9">Cave</th>
+              </tr>
+              <tr>
+                <th rowspan="1" colspan="2">Gudautsky region</th>
+                <th rowspan="1" colspan="3">Gulrypshsky region</th>
+                <th rowspan="1" colspan="4">Ochamchirsky region</th>
+              </tr>
+              <tr>
+                <th rowspan="1" colspan="1">1</th>
+                <th rowspan="1" colspan="1">2</th>
+                <th rowspan="1" colspan="1">3</th>
+                <th rowspan="1" colspan="1">4</th>
+                <th rowspan="1" colspan="1">5</th>
+                <th rowspan="1" colspan="1">6</th>
+                <th rowspan="1" colspan="1">7</th>
+                <th rowspan="1" colspan="1">8</th>
+                <th rowspan="1" colspan="1">9</th>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Turbellaria</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dugesia">Dugesia</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dugesia">Dugesia</tp:taxon-name-part></tp:taxon-name></italic> sp. 2</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dendrocoelum">Dendrocoelum</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Dendrocoelum">Dendrocoelum</tp:taxon-name-part></tp:taxon-name></italic> sp. 2</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Oligochaeta</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Rhyacodrilus">Rhyacodrilus</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Rhyacodrilus">Rhyacodrilus</tp:taxon-name-part></tp:taxon-name></italic> sp. 2</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Embolocephalus">Embolocephalus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="velutinus">velutinus</tp:taxon-name-part></tp:taxon-name></italic> (Grube, 1879)</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Eisenia">Eisenia</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Hirudinea</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name><tp:taxon-name-part taxon-name-part-type="genus">Dina</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Belgrandiella">Belgrandiella</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Belgrandiella">Belgrandiella</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="abchasica">abchasica</tp:taxon-name-part></tp:taxon-name></italic> Starobogatov, 1962</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="schakuranica">schakuranica</tp:taxon-name-part></tp:taxon-name></italic> Starobogatov, 1962</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="shadini">shadini</tp:taxon-name-part></tp:taxon-name></italic> Starobogatov, 1962</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> sp. 2</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> sp. 3</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="horatieformis">horatieformis</tp:taxon-name-part></tp:taxon-name></italic>
+            </td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part></tp:taxon-name></italic> sp. 2</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pontohoratia">Pontohoratia</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="birsteini">birsteini</tp:taxon-name-part></tp:taxon-name></italic> (Starobogatov, 1962)</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pontohoratia">Pontohoratia</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="smyri">smyri</tp:taxon-name-part></tp:taxon-name></italic> <xref ref-type="bibr" rid="B61">Vinarski et al., 2014</xref></td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Bivalvia</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="uncertainty-rank">cf.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="cavatica">cavatica</tp:taxon-name-part></tp:taxon-name></td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ljovushkini">ljovushkini</tp:taxon-name-part></tp:taxon-name></italic> Starobogatov, 1962</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Proasellus">Proasellus</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="iniochus">iniochus</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1941</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="inermis">inermis</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1940</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1940</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Synurella">Synurella</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="yakovi">yakovi</tp:taxon-name-part></tp:taxon-name></italic> Sidorov, 2015</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">*<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part></tp:taxon-name></italic> sp. 1</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="10">
+                  <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decapoda</tp:taxon-name-part></tp:taxon-name>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1939</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="fagei">fagei</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1939</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+              <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="osterloffi">osterloffi</tp:taxon-name-part></tp:taxon-name></italic> Juzbaschjan, 1940</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1">+</td>
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+                <td rowspan="1" colspan="1" />
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Number of species on the station</td>
+                <td rowspan="1" colspan="1">1.6</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">3.2</td>
+                <td rowspan="1" colspan="1">2.9</td>
+                <td rowspan="1" colspan="1">3.2</td>
+                <td rowspan="1" colspan="1">2.7</td>
+                <td rowspan="1" colspan="1">3.4</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">3</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">Total number of species</td>
+                <td rowspan="1" colspan="1">9</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">14</td>
+                <td rowspan="1" colspan="1">9</td>
+                <td rowspan="1" colspan="1">11</td>
+                <td rowspan="1" colspan="1">9</td>
+                <td rowspan="1" colspan="1">8</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">3</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <fn>
+              <p>* — species are still to be described.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+      <sec sec-type="Taxonomic remarks">
+        <title>Taxonomic remarks</title>
+        <p>The taxonomic status of many stygobiotic groups from the western Caucasus is still questionable. This problem especially applies to <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>. Many species of this class <!--PageBreak-->are described by single shells and assigned to the European genera <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Horatia">Horatia</tp:taxon-name-part></tp:taxon-name></italic> Bourguignat, 1887, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part></tp:taxon-name></italic>, and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> (Starobogatov, 1962). The inadequacy of such an approach was previously confirmed, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Horatia">Horatia</tp:taxon-name-part></tp:taxon-name></italic>-like mollusks taken as an example (<xref ref-type="bibr" rid="B61">Vinarski et al. 2014</xref>). Anatomical studies of other groups of Caucasian subterranean <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name> show similar results. Thus, all Caucasian species of “<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Plagigeyeria">Plagigeyeria</tp:taxon-name-part></tp:taxon-name></italic>” and some species of “<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic>” must be defined as new genera on the basis of anatomical features (<xref ref-type="bibr" rid="B44">Palatov and Vinarski 2015</xref>).</p>
+        <p>The situation concerning the Caucasian stygobiotic bivalve subgenus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part></tp:taxon-name></italic> of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pisidium">Pisidium</tp:taxon-name-part></tp:taxon-name></italic> is also complicated. All forms described from caves are close to the crenobiotic <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pisidium">Pisidium</tp:taxon-name-part> (<tp:taxon-name-part taxon-name-part-type="subgenus" full-name="Euglesa">Euglesa</tp:taxon-name-part>) <tp:taxon-name-part taxon-name-part-type="species" full-name="personatum">personatum</tp:taxon-name-part></tp:taxon-name> Malm, 1855, which is common in epigean waterbodies of the region. The main differences between species lie in shell shape and the organization of the hinge teeth. These characters vary significantly in populations from different caves, so a correct identification cannot be provided at this stage. Furthermore, part of the material of Caucasian stygobiotic bivalves is still unpublished. Starobogatov (unpublished) revised stygobiotic <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Euglesa">Euglesa</tp:taxon-name-part></tp:taxon-name></italic> from the western Caucasus and noted that each cave had at least one endemic species. For example, the bivalve from Tsebel’dinskaya Cave which had previously been identified as <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pisidium">Pisidium</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="cavaticum">cavaticum</tp:taxon-name-part></tp:taxon-name></italic> Zhadin, 1952 (<xref ref-type="bibr" rid="B55">Starobogatov 1962</xref>), was later split into two new endemic species to be described.</p>
+      </sec>
+      <sec sec-type="Structure of cavernicolous communities">
+        <title>Structure of cavernicolous communities</title>
+        <p>The aquatic faunas of the small caves (Simona Kananita, Uapatyh and the 85 m wells) are poor, and represent taxonomically depauperated derivatives from the faunas of the neighboring larger caves. In this regard, an analysis of the community structure was performed based on he three largest caves, Abrskila, Golova Otapa, and New Athos, that have been studied in detail.</p>
+        <p>
+          <italic>Diversity and abundance</italic>. In Golova Otapa and Abrskila, variations in species complexes along the gradient of environment conditions were estimated. In both, the species richness and diversity increased from the most remote stations towards the cave entrance area and had the highest values in the epigean part of the streams (Figure <xref ref-type="fig" rid="F5">5</xref>). The average species richness varied from three species at the furthermost station from the cave entrance to 7.5 species in the entrance area, and 10.5 species outside. The average value of the Shannon-Weaver diversity index varied from 0.8 in the distant parts to 1.7 near the entrance, becoming the highest beyond the cave on the surface, 2.7. Variations in the abundance of aquatic fauna along the environmental gradient in Golova Otapa and Abrskila were similar. In both caves, two peaks of abundance were observed (Figure <xref ref-type="fig" rid="F5">5</xref>). The stygobiotic density in Abrskila reached 220 individuals/m<sup>2</sup>, in Golova Otapa 110 ind/m<sup>2</sup>.The numbers at the epigean stations were close to or exceeded that in the cave entrance areas.</p>
+        <fig id="F5" position="float" orientation="portrait">
+          <label>Figure 5.</label>
+          <caption>
+            <p>Spatial variations in abundance and species richness of the fauna along the gradient of subterranean environmental conditions. (X-axis: 0 — the cave entrance area, negative values — epigean zone, positive values — cave zone). <bold>A</bold> Cave Abrskila <bold>B</bold> Cave Golova Otapa.</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g005.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <p>A different situation was observed in New Athos that had no natural horizontal gallery with an entrance to the surface. This cavity offered virtually no conditions for <!--PageBreak--><!--PageBreak-->studying a gradient of environmental conditions, nor did it allow for an evaluation of the distance variations in species complexes to be made. The samples collected in New Athos were located near the touristic trails and in halls further away making possible the study of the human impact. The highest number of hydrobionts was found in Goluboe, Anatolija and Bezymjannoe lakes, which all lie away from the tourist trails (abundance 100–150 ind/m<sup>2</sup>; the average number of species per station, 5.5). On the contrary, in waterbodies located near touristic trails, stygobionts were almost absent. Only some of them occurred in the halls with limited access by tourists, where the number of organisms reached 30 ind./m<sup>2</sup>, the average number of species per station being 2.5.</p>
+        <p>
+          <italic>Types of species complexes</italic>. Two main ecological-faunistic complexes were distinguished in the waterbodies of Abrskila, Golova Otapa, and New Athos caves.</p>
+        <p>A. <italic>Complex of amphibiotic insects</italic> from the cave entrance area. This community was characterized by the predominance of epigean organisms both in abundance and species richness. Larvae of amphibiotic insects formed the bulk of those communities (50–90% of the total fauna). Stygobionts found there must have been driven from the remote parts of the caves. The dominants were represented by epigean mayflies (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Ephemeroptera</tp:taxon-name-part></tp:taxon-name>), <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Electrogena">Electrogena</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="zimmermanni">zimmermanni</tp:taxon-name-part></tp:taxon-name></italic> Sowa, 1984, <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Baetis">Baetis</tp:taxon-name-part> (<tp:taxon-name-part taxon-name-part-type="subgenus" full-name="Rhodobaetis">Rhodobaetis</tp:taxon-name-part>) <tp:taxon-name-part taxon-name-part-type="uncertainty-rank">cf.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="gemellus">gemellus</tp:taxon-name-part></tp:taxon-name>, and the <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Gammarus">Gammarus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="komareki">komareki</tp:taxon-name-part></tp:taxon-name></italic> Schäferna, 1922 (&gt; 50% of the total abundance). The subdominants were caddisflies (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Trichoptera</tp:taxon-name-part></tp:taxon-name>), <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Notidobia">Notidobia</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="forsteri">forsteri</tp:taxon-name-part></tp:taxon-name></italic> Malicky, 1974 and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Lithax">Lithax</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="incanus">incanus</tp:taxon-name-part></tp:taxon-name></italic> (Hagen, 1859). The number of species totaled 14. The <!--PageBreak-->similarity estimated by the Czekanowski index (<italic>D</italic>) within this type of species complex was 0.62 ± 0.13.</p>
+        <p>Individual specimens of stonefly larvae <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Capnia">Capnia</tp:taxon-name-part></tp:taxon-name></italic> sp. (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Plecoptera</tp:taxon-name-part></tp:taxon-name>), were found in Abrskila Cave on a piece of wood approximately 400 meters from the entrance, in the zone affected by artificial light. This suggests a principal capability of epigean fauna for penetrating deep into caves with some extraneous substrates.</p>
+        <p>B. <italic>Complex of stygobionts</italic> in remote (&gt; 10 m) parts of caves.</p>
+        <p>In Abrskila and Golova Otapa, the density of stygobiotic organisms gradually increased with distance from the entrance. However, the distribution of species was highly heterogeneous along the subterranean part: spots of high abundance are interspersed with areas with few specimens. Local aggregations of stygobionts seem to be in places where water seeps into the cave. The main dominant species is <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1939, up to 100% of the total abundance. The subdominants are <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>) and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1940 (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>). The number of species totals eight. The average similarity of the samples within the species complex is high (<italic>D</italic> = 0.75 ± 0.23).</p>
+        <p>In New Athos, the complex of stygobiotic fauna is only present in the large lakes, dominated by the shrimp <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="fagei">fagei</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1939, and the amphipods <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part></tp:taxon-name></italic> sp. 1 (67–100% of the total abundance). In other water bodies, hydrobionts are scarce and mainly represented by <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic>. The number of species totals nine. The similarity within the species complex is 0.61 ± 0.12.</p>
+        <p>Successions in the species complexes in the streams of Abrskila and Golova Otapa are shown in Figure <xref ref-type="fig" rid="F6">6</xref>. The distributions of the dominant <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic> and amphibiotic insects are clearly complementary.</p>
+        <fig id="F6" position="float" orientation="portrait">
+          <label>Figure 6.</label>
+          <caption>
+            <p>Spatial variations in relative abundance of main invertebrates groups along the gradient of subterranean environmental conditions. (X-axis: 0 — the cave entrance area, negative values — epigean zone, positive values — cave zone). <bold>A</bold> Cave Abrskila <bold>B</bold> Cave Golova Otapa.</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g006.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+      </sec>
+      <sec sec-type="Comparative analysis of the faunas">
+        <title>Comparative analysis of the faunas</title>
+        <p>A comparative analysis of the stygobiotic invertebrate fauna of nine caves from central Abkhazia was conducted. These caves are located in three river valleys. Caves of the Ochamchirsky region (Abrskila, Golova Otapa, Uapatyh and the 85 m wells) are located within the water catchment area of Mokvi River, caves of the Gulrypshsky region (Nizhnyaya Shakuranskaya, Srednyaya Shakuranskaya and Tsebel’dinskaya) in the valley of Kodori River, while caves of the Gudautsky region (New Athos and Simona Kananita) in the valley of Psyrtskha River. The distance between the most separated caves, those from the Gudautsky and Ochamchirsky regions, is approximately 60 km (Figure <xref ref-type="fig" rid="F1">1</xref>).</p>
+        <p>Using the Kulczynski similarity index, the stygobiont lists of the investigated caves can be seen as being very different from one another (K = 0.12 ± 0.15). However, when we consider the species lists from caves located within the same river valley and lying not more than 2–3 km apart, their faunas are quite similar (K = 0.77 ± 0.08). This applies to Abrskila, Golova Otapa, and two adjacent wells located in the Mokvi River valley. Another group of similar cave faunas is in both Shakuranskaya and Tsebel’dinskaya. However, the subterranean faunas of neighboring river valleys lying <!--PageBreak-->at a distance of several dozen kilometers show no more than 12% of shared species from the total list, for example the species complexes of the Gulrypshsky and Ochamchirsky regions. A comparative analysis of the species lists based on the Kulczynski index demonstrates a clear separation of the faunas into three groups, each corresponding to its own river valley (Figure <xref ref-type="fig" rid="F7">7</xref>).</p>
+        <fig id="F7" position="float" orientation="portrait">
+          <label>Figure 7.</label>
+          <caption>
+            <p>Two-dimensional ordination with superimposed clusters of the stygobiotic faunas from different caves, based on Kulszinski similarity index. River valleys are shown by different colors. Caves: <bold>1</bold> New Athos <bold>2</bold> Simona Kananita <bold>3</bold> Nizhnyaya Shakuranskaya <bold>4</bold> Srednyaya Shakuranskaya <bold>5</bold> Tsebel’dinskaya <bold>6</bold> Abrskila <bold>7</bold> Golova Otapa <bold>8</bold> Well Uapatyh <bold>9</bold> Well 85 m.</p>
+          </caption>
+          <graphic xlink:href="http://www.pensoft.net/J_FILES/temp/test/subterranean_biology-018-049-g007.jpg" position="float" orientation="portrait" xlink:type="simple" />
+        </fig>
+        <p>Estimating the distribution of the main taxonomic stygobiont groups shows that species of cavernicolous shrimps, gastropods, turbellarians, and oligochaetes are highly local in range (Table <xref ref-type="table" rid="T2">2</xref>). In neighboring caves, the species lists of these taxonomic groups sometimes overlap completely, but in caves separated from each other by 30 km or more, common species are absent. In contrast, on average, the <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> species appear to be distributed more widely. Three of them (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="yakovi">yakovi</tp:taxon-name-part></tp:taxon-name></italic> Sidorov, 2015, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="iniochus">iniochus</tp:taxon-name-part></tp:taxon-name></italic> Birstein, 1941 and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic>) are found in cave systems of two of the three river valleys concerned. The <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> fauna in the caves from the Gulrypshsky and Ochamchirsky regions overlap by 50%. At the same time, all of these amphipod species are regional endemics of the northwestern Caucasian karst formations.</p>
+      </sec>
+    </sec>
+    <sec sec-type="Discussion">
+      <title>Discussion</title>
+      <sec sec-type="Specificity of stygobiotic fauna of studied region">
+        <title>Specificity of stygobiotic fauna of studied region</title>
+        <p>
+          <italic>Taxonomic structure</italic>. A list of the currently known stygobiotic multicellular invertebrates from the western Caucasus totals nearly 110 species (<xref ref-type="bibr" rid="B31">Kniss 2001</xref>, <xref ref-type="bibr" rid="B47">Shumeyev 2008</xref>, <xref ref-type="bibr" rid="B49">Sidorov 2014</xref>, <xref ref-type="bibr" rid="B50">Sidorov et al. 2015a</xref>, <xref ref-type="bibr" rid="B51">b</xref>, <xref ref-type="bibr" rid="B61">Vinarskiy et al. 2014</xref>, <xref ref-type="bibr" rid="B3">Barjadze et al. 2015</xref>). This fauna is highly specific and contains more than 90% of presumed endemics not yet found outside the region. The composition of groundwater invertebrates of the western Caucasus includes almost all of the main subterranean groups typical of the Mediterranean: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Turbellaria</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="phylum">Nematoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Oligochaeta</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Hirudinea</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Bivalvia</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Copepoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Ostracoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="superorder">Syncarida</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name>, and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decap<!--PageBreak-->oda</tp:taxon-name-part></tp:taxon-name>) (<xref ref-type="bibr" rid="B31">Kniss 2001</xref>). From amongst the cavernicolous taxa of higher taxonomic rank, the documented fauna of the western Caucasus lacks sponges, cnidarians, polychaetes, several groups of crustaceans (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="infraorder">Cladocera</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Thermosbaenacea</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Mysidacea</tp:taxon-name-part></tp:taxon-name>), as well as aquatic insects with full development found in the hypogean waters of Balkan (<xref ref-type="bibr" rid="B29">Ivković et al. 2013</xref>, <xref ref-type="bibr" rid="B30">Jalžić and Pavlek 2013</xref>, <xref ref-type="bibr" rid="B60">Van Damme and Sinev 2011</xref>), Apennine (<xref ref-type="bibr" rid="B42">Morselli et al. 1995</xref>), and Iberian (<xref ref-type="bibr" rid="B57">Trieno De Figuerono and Lopez-Rodrigues 2010</xref>) peninsulas. In addition, the <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="superorder">Syncarida</tp:taxon-name-part></tp:taxon-name> fauna of the western Caucasus is very scarce, represented by only two genera, as opposed to the Balkan and Iberian peninsulas, with six and eight genera, respectively (<xref ref-type="bibr" rid="B15">Camacho and Valdecasas 2008</xref>).</p>
+        <p>In our material, all main groups of the Caucasian stygobionts were found, except <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="superorder">Syncarida</tp:taxon-name-part></tp:taxon-name>. The number of stygobiotic taxa totals 35. The most diverse are <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> (seven species) and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name> (the family <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name>, 12 species), which are dominant in the groundwater of the western Caucasus. Comparatively high rates of species richness of <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name> are typical of some other Mediterranean regions, such as Croatia (<xref ref-type="bibr" rid="B30">Jalžić and Pavlek 2013</xref>).</p>
+        <p>At present, information on the taxonomic composition of the western Caucasian stygobiotic fauna is far from complete. New research in even readily accessible and <!--PageBreak-->regularly visited caves alone is deemed to inevitably increase the list of cavernicolous taxa. In the western Caucasus, biological studies have hitherto been carried out in at least 200 caves (<xref ref-type="bibr" rid="B31">Kniss 2001</xref>), but actually the region harbors several thousand caves (<xref ref-type="bibr" rid="B21">Dublyansky et al. 1987</xref>).</p>
+        <p>
+          <italic>Spatial distribution of abundance</italic>. In the Abrskila and Golova Otapa caves, two peaks of abundance were distinguished. The first, which corresponded to the parts of the caves that lay especially far from the entrances (&gt; 200 m), was due to the high numbers of the shrimp, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="ablaskiri">ablaskiri</tp:taxon-name-part></tp:taxon-name></italic>. This species showed very high numbers locally (200 ind./m<sup>2</sup>). Such patchiness in some invertebrates (Insects) distribution in caves seemed to be confined to places where water, enriched with particulate organic matter, seeped inside the cave from the surface (<xref ref-type="bibr" rid="B54">Souza-Silva et al. 2011</xref>).The second peak of abundance was observed in the cave entrance area and was primarily associated with the development of epigean amphibiotic insects. In New Athos Cave, high stygobionts abundance was observed in the large lakes; no epigean aquatic organisms were found inside the cave. A clear spatial division of the abundance of epigean and stygobiotic species is long known to be typical of caves of the western Caucasus (<xref ref-type="bibr" rid="B5">Birstein 1950</xref>).</p>
+        <p>The stygobiotic fauna of the Abkhazian study caves showed very high abundance rates, as a rule. This is especially clearly visible in large flooded cave systems.. However, in many caves of the Balkan Peninsula (<xref ref-type="bibr" rid="B30">Jalžić and Pavlek 2013</xref>) and in caves of Brazil (<xref ref-type="bibr" rid="B53">Simões et al. 2015</xref>), the numbers of troglobionts average 10–20 ind./m<sup>2</sup>. Due to the low fauna abundance, quantitative sampling is often ineffective. In such cases, only qualitative material is collected by trapping, scraping, and manually using forceps (<xref ref-type="bibr" rid="B28">Halsel and Pearson 2014</xref>, <xref ref-type="bibr" rid="B53">Simões et al. 2015</xref>). Therefore, the central Abkhazian caves, which are distinguished by a highly abundant stygobiotic fauna, are unique as testing grounds for analyzing the variability of quantitative characteristics of cave communities.</p>
+      </sec>
+      <sec sec-type="Factors determining the structure of troglobiont assemblages">
+        <title>Factors determining the structure of troglobiont assemblages</title>
+        <p>
+          <italic>The structure and the hydrological regime of caves</italic>. The species richness and abundance of stygobionts inhabiting the studied caves might to be dependent on the morphology: size, width of entrance holes and subterranean landcape. The highest diversity was in long caves with large cave entrance areas such as the Abrskila, Golova Otapa, Nizhnyaya Shakuranskaya, Srednyaya Shakuranskaya, and Tsebel’dinskaya. The fauna of these caves included 8–14 species. The richest stygobiotic fauna (&gt; 10) was observed in Nizhnyaya Shakuranskaya and Tsebel’dinskaya caves. In contrast, no more than three species were found in small caves with vertical or narrow horizontal entrances (well Uapatyh and Cave Simona Kananita). This is in agreement with a previously reported positive correlation between species richness and cave volume (<xref ref-type="bibr" rid="B17">Culver et al. 2004</xref>, <xref ref-type="bibr" rid="B41">Matheus et al. 2015</xref>, <xref ref-type="bibr" rid="B54">Souza-Silva et al. 2011</xref>).</p>
+        <p>Besides this, the community structure significantly depended of the hydrological type of water bodies and heterogeneity in aquatic habitats. Species richness is also <!--PageBreak-->higher in the caves with streams and rivers in comparison with those with stagnant ponds (<xref ref-type="bibr" rid="B53">Simões et al. 2015</xref>). Firstly, this can be accounted for by high air-humidity levels preferred by most of the troglobionts<xref ref-type="fn" rid="FN1"><sup>1</sup></xref>. Another reason is the availability of organic matter, which is deposited by water streams and consumed by troglobionts (<xref ref-type="bibr" rid="B54">Souza-Silva et al. 2011</xref>). However, we found no relationship between the number of stygobiotic species and the hydrological type of water basins.</p>
+        <p>
+          <italic>Anthropogenic pressure</italic>. Preliminary assessments of the anthropogenic influences were made for Abrskila, Golova Otapa and New Athos caves. The faunas of the small caves were too poor for comparative purposes.</p>
+        <p>In the entrance areas of Abrskila and Golova Otapa caves, stygobionts were fully replaced by epigean species. In Cave Abrskila Cave, apparently due to artificial light, larvae of epigean <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Plecoptera</tp:taxon-name-part></tp:taxon-name>, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Capnia">Capnia</tp:taxon-name-part></tp:taxon-name></italic> Pictet, 1841, were found approximately 400 m far from the entrance. These larvae inhabited a piece of rotten wood probably brought inside during the construction of tourist trails. <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic> were completely absent from the illuminated part of the cave, but remained rather abundant in the dark parts. Earlier, this shrimp occurred throughout the whole cave except the entrance area (cave owner Adleba V, pers. comm.). Thus, both artificial illumination and external substrates brought from the surface served as good examples of anthropogenic impact promoting amphibiotic insect larvae to moving upstream from the surface to deep in caves, in colonizing the subterranean habitats, and in replacing the stygobionts.</p>
+        <p>In New Athos Cave, the anthropogenic influence was remarkable near the walking trails, especially close to basins. Many of coins left behind by tourists could change the hydrochemical composition of water. On the other hand, cleaning up the speleothems from microalgae growing in the lighted places led to intrusions of cleansers into rimstone pools and puddles. This may be the reason of macrofauna was virtually absent from all basins near the touristic trails.</p>
+        <p>A number of methods for the assessment of anthropogenic pressure have been developed for marine or freshwater ecosystems, but these are not applicable to subterranean waters. The first criterion of a cave community disturbance is reduction of troglobiont abundance (<xref ref-type="bibr" rid="B27">Gutjahr et al. 2013</xref>). High-level human disturbances result in decreased abundance, observed in several microponds in New Athos, as well as in some parts of the river in Abrskila. Communities inhabiting caves are extremely sensitive to changes in air humidity, temperature, and illumination (<xref ref-type="bibr" rid="B26">Gutjahr et al. 2014</xref>). Even modest actions may cause significant changes in the communities. Therefore, the conservation of an endemic fauna requires special zones of restricted or no access and reduced nature management in separate caves or in whole karst massifs (<xref ref-type="bibr" rid="B24">Georgiev 2014</xref>).</p>
+        <p>
+          <italic>The dispersal ability of taxa</italic>. A comparative analysis of the speleofauna of the study regions of Abkhazia revealed high degrees of similarity in composition between the caves from the same river valley, about 3 km apart from each other. In contrast, the species lists from the adjacent valleys varied greatly. Stygobiotic taxa differ notice<!--PageBreak-->ably by their dispersal capacities. The slow-moving <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name> gastropods inhabiting the surface of hard substrate, as well as relatively large bentho-planktonic shrimps (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic>), were endemics to individual cave systems. All species of these taxa were found in some adjacent caves close by. Local endemism of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic> and some mollusks (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Belgrandiella">Belgrandiella</tp:taxon-name-part></tp:taxon-name></italic>, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Paladilhiopsis">Paladilhiopsis</tp:taxon-name-part></tp:taxon-name></italic>, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Pontohoratia">Pontohoratia</tp:taxon-name-part></tp:taxon-name></italic> etc.) has also been found in caves of the Balkan Peninsula (<xref ref-type="bibr" rid="B23">Franjević et al. 2010</xref>, <xref ref-type="bibr" rid="B30">Jalžić and Pavlek 2013</xref>). Therefore, local endemism is typical of this stygobiotic groups. The ranges of these taxa often do not exceed several kilometers. In contrast, the subterranean <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> were relatively widely distributed. Among them, two species of the genus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> and one of the genus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part></tp:taxon-name></italic> were the only stygobionts recorded in the different cave systems of Abkhazia. This species inhabit entire karst massifs at least of a few dozen kilometers in span (<xref ref-type="bibr" rid="B49">Sidorov 2014</xref>, <xref ref-type="bibr" rid="B52">Sidorov et al. 2014</xref>, <xref ref-type="bibr" rid="B48">Skalski 1980</xref>). <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>, as very common inhabitants of underground waters and hypotelminorheic habitats, show increased dispersal capacities (<xref ref-type="bibr" rid="B18">Culver and Pipan 2008</xref>, <xref ref-type="bibr" rid="B19">Culver et al. 2006</xref>, <xref ref-type="bibr" rid="B40">Marmonier et al. 1993</xref>).</p>
+        <p>Amphipods are often considered to be wider distributed across the karst regions than other stygobiotic taxa (<xref ref-type="bibr" rid="B31">Kniss 2001</xref>, <xref ref-type="bibr" rid="B30">Jalžić and Pavlek 2013</xref>). Recently, genetic analysis of the <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> genus revealed many cryptic species (<xref ref-type="bibr" rid="B58">Trontelj et al. 2009</xref>). Most of these species have narrow local ranges, but about 25% of them have been found in caves 100 km or more apart (<xref ref-type="bibr" rid="B34">Lefébure et al. 2006</xref>, <xref ref-type="bibr" rid="B35">Lefébure et al. 2007</xref>, <xref ref-type="bibr" rid="B58">Trontelj et al. 2009</xref>). The latter is peculiar to <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="arbiter">arbiter</tp:taxon-name-part></tp:taxon-name></italic> Karaman G., 1984, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="fontanus">fontanus</tp:taxon-name-part></tp:taxon-name></italic> Bate, 1859, <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="illidzensis">illidzensis</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="uncertainty-rank">cf.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="dalmatinus">dalmatinus</tp:taxon-name-part></tp:taxon-name> 1, <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="uncertainty-rank">cf.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="longicaudatus">longicaudatus</tp:taxon-name-part></tp:taxon-name> 2, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="salonitanus">salonitanus</tp:taxon-name-part></tp:taxon-name></italic> Karaman S., 1950, and to some cryptic lineages of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="virei">virei</tp:taxon-name-part></tp:taxon-name></italic> Chevreux, 1896 and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="rhenorhodanensis">rhenorhodanensis</tp:taxon-name-part></tp:taxon-name></italic> (Schellenberg, 1937). Thus, a narrow local endemism is not obligate for stygobiotic amphipods.</p>
+      </sec>
+    </sec>
+    <sec sec-type="Conclusion">
+      <title>Conclusion</title>
+      <p>Further biospeleological investigations are necessary to reveal more detailed patterns in the distribution and diversity of the stygobiotic fauna of the western Caucasus. More research will almost certainly extend the ranges of some species. On the other hand, molecular analysis may help in detecting additional taxa with restricted distributions. Estimating the real species richness and ecological preferences of stygobionts may lay the grounds for tracing consistent patterns of cave fauna formation in the region.</p>
+      <p>An analysis of the stygobiotic fauna from nine caves of central Abkhazia, western Caucasus, provides the following ecological observations:</p>
+      <p>(1) In the studied caves were found 35 species of stygobionts: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Turbellaria</tp:taxon-name-part></tp:taxon-name> (4 species), <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Oligochaeta</tp:taxon-name-part></tp:taxon-name> (4), <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Hirudinea</tp:taxon-name-part></tp:taxon-name> (1); <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name> (12), <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Bivalvia</tp:taxon-name-part></tp:taxon-name> (3); <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name> (12). Of these, 15 species are still to be described as new to science.</p>
+      <p>(2) In the subterranean rivers of Abrskila and Golova Otapa caves, the species richness and faunal diversity was revealed as increasing from the most remote stations inside the caves to the entrance areas, reaching the highest values in the epigean area. In <!--PageBreak-->both caves, two abundance peaks of aquatic invertebrates were registered: one in the entrance area, associated with the development of amphibiotic insect larvae, the other one in the depth of the caves due to the high numbers of stygobionts. In Cave New Athos, the highest species richness and fauna abundance were observed in large lakes.</p>
+      <p>(3) In caves Abrskila and Golova Otapa, two ecofaunistic complexes with complementary distributions were revealed. The first is a complex of amphibiotic insects in the cave entrance area, the second a complex of stygobionts in the remote parts of the caves. In Cave New Athos, which is devoid of a entrance area, only a stygobiotic faunistic complex was found.</p>
+      <p>(4) The most significant anthropogenic impact on stygobionts was observed in Cave New Athos, where almost all waterbodies located near the excursion trails were devoid of a macrofauna. Hydrobionts mostly inhabited large lakes which were distant from the touristic routes. Both artificial illumination and extraneous material brought inside from the surface are the anthropogenic impacts that help epigean amphibiotic insect larvae colonize the subterranean habitats.</p>
+      <p>(5) The stygobiotic faunas of the study karst caves are clearly divided into three groups, according to the number of river valleys in which they are located. The fauna compositions of the stygobionts from caves situated within one river valley are similar to no less than 50%. The compositions of the stygobionts from caves located in neighboring valleys (30 to 60 km apart) contain not more than 12% of shared species.</p>
+      <p>(6) In the stygobiotic shrimps and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name>) that inhabit stone surfaces, local endemism is typical and their ranges often fail to span more than a few kilometers. In contrast, the stygobiotic <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name> that penetrate the ground waters show high dispersal capacities and are widely distributed between cave systems within individual karst massifs.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>The studies were supported by the program “Scientific bases for the creation of a national depository bank of living systems” of the Russian Science Foundation № 14-50-00029, and by the Russian Foundation for Basic Research [Project № 15-54-40011_Abh-a]. We are also obliged to Sergei Golovatch (Moscow) for editing the English of an advanced draft, and to the two anonymous reviewers for the suggestions that improved the manuscript scientific content.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Anosov</surname> <given-names>SE</given-names></name></person-group> (<year>2016</year>) <source>Characteristics of the <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decapoda</tp:taxon-name-part></tp:taxon-name> Fauna of the Azov and Black Sea Basins: Quantitative and Qualitative Changes.</source> <comment>PhD Thesis</comment>, <publisher-name>Institute of Fisheries and Oceanography</publisher-name>, <publisher-loc>Moscow</publisher-loc>, <size units="page">169 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <!--PageBreak-->
+      <ref id="B2">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Azeria</surname> <given-names>ET</given-names></name></person-group> (<year>2004</year>) <article-title>Terrestrial bird community patterns on the coralline islands of the Dahlak Archipelago, Red Sea, Eritrea.</article-title> <source>Global Ecology and Biogeography</source> <volume>13</volume>: <fpage>177</fpage>–<lpage>187</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1111/j.1466-882X.2004.00079.x">10.1111/j.1466-882X.2004.00079.x</ext-link></mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Barjadze</surname> <given-names>S</given-names></name><name name-style="western"><surname>Murvanidze</surname> <given-names>M</given-names></name><name name-style="western"><surname>Arabuli</surname> <given-names>T</given-names></name><name name-style="western"><surname>Mumladze</surname> <given-names>L</given-names></name><name name-style="western"><surname>Pkhakadze</surname> <given-names>V</given-names></name><name name-style="western"><surname>Djanashvili</surname> <given-names>R</given-names></name><name name-style="western"><surname>Salakaia</surname> <given-names>M</given-names></name></person-group> (<year>2015</year>) <source>Annotated List of Invertebrates of the Georgian Karst Caves.</source> <publisher-name>Georgian Academic Book</publisher-name>, <publisher-loc>Tbilisi</publisher-loc>, <size units="page">120 pp</size>.</mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Benze</surname> <given-names>G</given-names></name><name name-style="western"><surname>Sotikova</surname> <given-names>L</given-names></name><name name-style="western"><surname>Sverev</surname> <given-names>M</given-names></name><name name-style="western"><surname>Kosarev</surname> <given-names>G</given-names></name><name name-style="western"><surname>Kotenkov</surname> <given-names>V</given-names></name><name name-style="western"><surname>Cokolova</surname> <given-names>S</given-names></name><name name-style="western"><surname>Sochneva</surname> <given-names>V</given-names></name><name name-style="western"><surname>Nurinova</surname> <given-names>E</given-names></name></person-group> (<year>1965</year>) <source>Abrskila Cave – Report of Caving Moscow State University Section.</source> <publisher-name>MSU</publisher-name>, <publisher-loc>Moscow</publisher-loc>, <size units="page">34 pp</size>. [In Russian]</mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name></person-group> (<year>1950</year>) <article-title>Cavernicolous fauna of western Transcaucasia.</article-title> <source>Zoologicheskiy Zhurnal</source> <volume>29</volume>(<issue>4</issue>): <fpage>354</fpage>–<lpage>366</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name></person-group> (<year>1952</year>) <article-title>Subterranean amphipods of the Khosta-Gudauta region, western Transcaucasia.</article-title> <source>Bulleten’ Moskowskogo Obshhestva Ispytatelej Prirody, Biology</source> <volume>57</volume>: <fpage>26</fpage>–<lpage>39</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name><name name-style="western"><surname>Borutzky</surname> <given-names>EW</given-names></name></person-group> (<year>1950</year>) <source>Studies on Subterranean Waters – Freshwater life USSR</source>. <publisher-name>AS USSR</publisher-name>, <publisher-loc>Moscow</publisher-loc>, <fpage>701</fpage>–<lpage>711</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name><name name-style="western"><surname>Ljovuschkin</surname> <given-names>SI</given-names></name></person-group> (<year>1965</year>) <article-title>Subterranean <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="above-genus">Paraselloidea</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name>) of the USSR.</article-title> <source>Zoologicheskiy Zhurnal</source> <volume>44</volume>(<issue>7</issue>): <fpage>997</fpage>–<lpage>1013</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name><name name-style="western"><surname>Ljovuschkin</surname> <given-names>SI</given-names></name></person-group> (<year>1970</year>) <article-title>Endemic subterranean amphipod genera from the Transcaucasus.</article-title> <source>Zoologicheskiy Zhurnal</source> <volume>49</volume>(<issue>10</issue>): <fpage>1471</fpage>–<lpage>1487</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B10">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Birstein</surname> <given-names>JA</given-names></name><name name-style="western"><surname>Lopashov</surname> <given-names>GV</given-names></name></person-group> (<year>1940</year>) <article-title>Investigations of the cave fauna in the USSR in 1935–1939.</article-title> <source>Bulletin Moskowskogo Obshhestva Ispytatelej Prirody, Biology</source> <volume>49</volume>(<issue>3/4</issue>): <fpage>29</fpage>–<lpage>38</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Bizin</surname> <given-names>MS</given-names></name><name name-style="western"><surname>Chertoprud</surname> <given-names>ES</given-names></name><name name-style="western"><surname>Palatov</surname> <given-names>DM</given-names></name><name name-style="western"><surname>Marinskiy</surname> <given-names>VV</given-names></name><name name-style="western"><surname>Borisov</surname> <given-names>RR</given-names></name><name name-style="western"><surname>Dbar</surname> <given-names>RS</given-names></name></person-group> (<year>2015</year>) <article-title>Distribution patterns and a comparative analysis of aquatic invertebrates from caves of central Abkhazia (Gudautky, Gulrypshsky and Ochamchyrky areas).</article-title> <source>Materials of the All-Russian Youth Conference “Biospeleology of the Caucasus and other regions of Russia”, Kostromskoy Pechatniy Dom, Kostroma</source>, <fpage>9</fpage>–<lpage>13</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Borutzky</surname> <given-names>EV</given-names></name></person-group> (<year>1940</year>) <article-title><tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Copepoda</tp:taxon-name-part></tp:taxon-name> – <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Harpacticoida</tp:taxon-name-part></tp:taxon-name> from caves of the Crimea and Transcaucasia.</article-title> <source>Bulleten Moskovskogo Obshhestva Ispytatelej Prirody, Biology</source> <volume>49</volume>(<issue>3/4</issue>): <fpage>39</fpage>–<lpage>45</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Borutzky</surname> <given-names>EV</given-names></name></person-group> (<year>1971</year>) <article-title>The cave fauna of woodlice (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name> terrestrial) from the western Caucasus in a zoogeographically aspect.</article-title> <source>Abstracts of Scientific Cavers Session 9, Agura, Tbilisi</source>, <fpage>6</fpage>–<lpage>7</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Borutzky</surname> <given-names>EV</given-names></name><name name-style="western"><surname>Mihajlova-Nejkova</surname> <given-names>MT</given-names></name></person-group> (<year>1970</year>) <article-title><tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subclass">Copepoda</tp:taxon-name-part></tp:taxon-name> <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Harpacticoida</tp:taxon-name-part></tp:taxon-name> from caves of western Georgia, Azerbaijan and Central Asia.</article-title> <source>Zoologicheskiy Zhurnal</source> <volume>49</volume>(<issue>9</issue>): <fpage>1334</fpage>–<lpage>1341</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Camacho</surname> <given-names>AI</given-names></name><name name-style="western"><surname>Valdecasas</surname> <given-names>AG</given-names></name></person-group> (<year>2008</year>) <article-title>Global diversity of syncarids (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="superorder">Syncarida</tp:taxon-name-part></tp:taxon-name>; <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>) in freshwater.</article-title> <source>Hydrobiology</source> <volume>595</volume>: <fpage>257</fpage>–<lpage>266</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1007/s10750-007-9021-5">10.1007/s10750-007-9021-5</ext-link></mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Clarke</surname> <given-names>KR</given-names></name><name name-style="western"><surname>Gorley</surname> <given-names>RN</given-names></name></person-group> (<year>2006</year>) <source>PRIMER: User Manual/Tutorial.</source> <publisher-name>PRIMER-E Ltd</publisher-name>, <publisher-loc>Plymouth</publisher-loc>, <size units="page">190 pp</size>.</mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Culver</surname> <given-names>DC</given-names></name><name name-style="western"><surname>Christman</surname> <given-names>MC</given-names></name><name name-style="western"><surname>Šereg</surname> <given-names>I</given-names></name><name name-style="western"><surname>Trontelj</surname> <given-names>P</given-names></name><name name-style="western"><surname>Sket</surname> <given-names>B</given-names></name></person-group> (<year>2004</year>) <article-title>The location of terrestrial species-rich caves in a cave-rich Area.</article-title> <source>Subterranean Biology</source> <volume>2</volume>: <fpage>27</fpage>–<lpage>32</lpage>.</mixed-citation>
+      </ref>
+      <!--PageBreak-->
+      <ref id="B18">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Culver</surname> <given-names>DC</given-names></name><name name-style="western"><surname>Pipan</surname> <given-names>T</given-names></name></person-group> (<year>2008</year>) <article-title>Superficial subterranean habitats – gateway to the subterranean realm?</article-title> <source>Cave and Karst Sciences</source> <volume>35</volume>(<issue>1</issue>): <fpage>5</fpage>–<lpage>12</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Culver</surname> <given-names>DC</given-names></name><name name-style="western"><surname>Pipan</surname> <given-names>T</given-names></name><name name-style="western"><surname>Gottstein</surname> <given-names>S</given-names></name></person-group> (<year>2006</year>) <article-title>Hypotelminorheic – a unique freshwater habitat.</article-title> <source>Subterranean Biology</source> <volume>4</volume>: <fpage>1</fpage>–<lpage>8</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Decu</surname> <given-names>V</given-names></name><name name-style="western"><surname>Gruia</surname> <given-names>M</given-names></name><name name-style="western"><surname>Keffer</surname> <given-names>SL</given-names></name><name name-style="western"><surname>Sarbu</surname> <given-names>SM</given-names></name></person-group> (<year>1994</year>) <article-title>Stygobiotic waterscorpion, <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Nepa">Nepa</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="anophthalma">anophthalma</tp:taxon-name-part></tp:taxon-name></italic>, n. sp. (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="suborder">Heteroptera</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Nepidae</tp:taxon-name-part></tp:taxon-name>) from a sulfurous cave in Romania.</article-title> <source>Annals of the Entomological Society of America</source> <volume>87</volume>(<issue>6</issue>): <fpage>755</fpage>–<lpage>761</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1093/aesa/87.6.755">10.1093/aesa/87.6.755</ext-link></mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Dublyansky</surname> <given-names>VN</given-names></name><name name-style="western"><surname>Klimchuk</surname> <given-names>AB</given-names></name><name name-style="western"><surname>Kiselev</surname> <given-names>VA</given-names></name><name name-style="western"><surname>Vakhrushev</surname> <given-names>BA</given-names></name><name name-style="western"><surname>Kovalev</surname> <given-names>Y</given-names></name><name name-style="western"><surname>Melnikov</surname> <given-names>VP</given-names></name><name name-style="western"><surname>Ryzhkov</surname> <given-names>AF</given-names></name><name name-style="western"><surname>Tintilozov</surname> <given-names>ZK</given-names></name><name name-style="western"><surname>Chuykov</surname> <given-names>VD</given-names></name><name name-style="western"><surname>Churubrova</surname> <given-names>ML</given-names></name></person-group> (<year>1987</year>) <source>Large caverns of the USSR (Vol. 3) – Speleological Provinces of the Caucasus Major and Minor</source>. <publisher-name>Academy of Sciences of SSR Ukraine</publisher-name>, <size units="page">80 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Ekba</surname> <given-names>JA</given-names></name><name name-style="western"><surname>Dbar</surname> <given-names>RS</given-names></name></person-group> (<year>2007</year>) <source>Ecological Climatology and Natural Landscapes of Abkhazia.</source> <publisher-name>Papirus-M-Dizayn</publisher-name>, <publisher-loc>Sochi</publisher-loc>, <size units="page">324 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Franjević</surname> <given-names>D</given-names></name><name name-style="western"><surname>Kalafatić</surname> <given-names>M</given-names></name><name name-style="western"><surname>Kerovec</surname> <given-names>M</given-names></name><name name-style="western"><surname>Gottstein</surname> <given-names>S</given-names></name></person-group> (<year>2010</year>) <article-title>Phylogeny and evolutionary history of the cave-dwelling atyid shrimp <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part></tp:taxon-name></italic> based on sequences of three mtDNA genes.</article-title> <source>Periodicum Biologorum</source> <volume>112</volume>(<issue>2</issue>): <fpage>159</fpage>–<lpage>166</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B24">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Georgiev</surname> <given-names>D</given-names></name></person-group> (<year>2014</year>) <article-title><italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Belgrandiella">Belgrandiella</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="petrovi">petrovi</tp:taxon-name-part></tp:taxon-name></italic> n. sp. — a new species from a spring cave in Bulgaria (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name>).</article-title> <source>International Journal of Pure and Applied Zoology</source> <volume>2</volume>(<issue>1</issue>): <fpage>46</fpage>–<lpage>50</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B25">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Grigorjan</surname> <given-names>MS</given-names></name></person-group> (<year>1973</year>) <source>Golova Otapa and New Athos caves. Report of caving Moscow State University section.</source> <publisher-name>MSU</publisher-name>, <publisher-loc>Moscow</publisher-loc>, <size units="page">68 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B26">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Gutjahr</surname> <given-names>S</given-names></name><name name-style="western"><surname>Schmidt</surname> <given-names>SI</given-names></name><name name-style="western"><surname>Hahn</surname> <given-names>HJ</given-names></name></person-group> (<year>2014</year>) <article-title>A proposal for a groundwater habitat classification at local scale.</article-title> <source>Subterranean Biology</source> <volume>14</volume>: <fpage>25</fpage>–<lpage>49</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.14.5429">10.3897/subtbiol.14.5429</ext-link></mixed-citation>
+      </ref>
+      <ref id="B27">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Gutjahr</surname> <given-names>S</given-names></name><name name-style="western"><surname>Bork</surname> <given-names>J</given-names></name><name name-style="western"><surname>Schmidt</surname> <given-names>SI</given-names></name><name name-style="western"><surname>Hahn</surname> <given-names>HJ</given-names></name></person-group> (<year>2013</year>) <article-title>Efficiency of sampling invertebrates in groundwater habitats.</article-title> <source>Limnologica</source> <volume>43</volume>: <fpage>43</fpage>–<lpage>48</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1016/j.limno.2012.08.001">10.1016/j.limno.2012.08.001</ext-link></mixed-citation>
+      </ref>
+      <ref id="B28">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Hasley</surname> <given-names>SA</given-names></name><name name-style="western"><surname>Pearson</surname> <given-names>GB</given-names></name></person-group> (<year>2014</year>) <article-title>Troglofauna in the vadose zone: comparison of scraping and trapping results and sampling adequacy.</article-title> <source>Subterranean Biology</source> <volume>13</volume>: <fpage>17</fpage>–<lpage>34</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.13.6991">10.3897/subtbiol.13.6991</ext-link></mixed-citation>
+      </ref>
+      <ref id="B29">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Ivković</surname> <given-names>M</given-names></name><name name-style="western"><surname>Gračan</surname> <given-names>R</given-names></name><name name-style="western"><surname>Horvat</surname> <given-names>B</given-names></name></person-group> (<year>2013</year>) <article-title>Croatian aquatic dance flies (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Diptera</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Empididae</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subfamily">Clinocerinae</tp:taxon-name-part></tp:taxon-name> and <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subfamily">Hemerodromiinae</tp:taxon-name-part></tp:taxon-name>): species diversity, distribution and relationship to surrounding countries.</article-title> <source>Zootaxa</source> <volume>3686</volume>: <fpage>255</fpage>–<lpage>276</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.11646/zootaxa.3686.2.7">10.11646/zootaxa.3686.2.7</ext-link></mixed-citation>
+      </ref>
+      <ref id="B30">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Jalžić</surname> <given-names>B</given-names></name><name name-style="western"><surname>Pavlek</surname> <given-names>M</given-names></name></person-group> (<year>2013</year>) <source>The Cave Type Localities Atlas of Croatian Fauna.</source> <publisher-name>Marculin</publisher-name>, <publisher-loc>Zagreb</publisher-loc>, <size units="page">238 pp</size>. <comment>[In Croatian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B31">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Kniss</surname> <given-names>VA</given-names></name></person-group> (<year>2001</year>) <source>The Cave Fauna of Russia and Neighbouring Countries.</source> <publisher-name>Bashkir State University</publisher-name>, <publisher-loc>Ufa</publisher-loc>, <size units="page">238 pp</size>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B32">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Koval</surname> <given-names>AG</given-names></name></person-group> (<year>2004</year>) <article-title>A study of the fauna of Cave Chertova Nora from the northwestern Caucasus.</article-title> <source>Proceedings of the Scientific Conference on Invertebrate Zoology, Ddicated to the 100<sup>th</sup> Brthday of S.M. Iablokov-Khnzorian</source>. <publisher-name>GMK</publisher-name>, <publisher-loc>Yerevan</publisher-loc>, <fpage>75</fpage>–<lpage>80</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B33">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Koval’</surname> <given-names>AG</given-names></name></person-group> (<year>2003</year>) <source>A study of the fauna of Cave Akhunskaya, northwestern Caucasus – Caves: Inter-university Collection of Scientific Papers</source>. <publisher-name>Perm’ University</publisher-name> <volume>29–30</volume>: <fpage>150</fpage>–<lpage>155</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B34">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Lefébure</surname> <given-names>T</given-names></name><name name-style="western"><surname>Douady</surname> <given-names>CJ</given-names></name><name name-style="western"><surname>Gouy</surname> <given-names>M</given-names></name><name name-style="western"><surname>Gibert</surname> <given-names>J</given-names></name></person-group> (<year>2006</year>) <article-title>Relationship between morphological taxonomy and molecular divergence within <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>: proposal of a molecular threshold to help species delimitation.</article-title> <source>Molecular Phylogenetics and Evolution</source> <volume>40</volume>: <fpage>435</fpage>–<lpage>447</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1016/j.ympev.2006.03.014">10.1016/j.ympev.2006.03.014</ext-link></mixed-citation>
+      </ref>
+      <!--PageBreak-->
+      <ref id="B35">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Lefébure</surname> <given-names>T</given-names></name><name name-style="western"><surname>Douady</surname> <given-names>CJ</given-names></name><name name-style="western"><surname>Malard</surname> <given-names>F</given-names></name><name name-style="western"><surname>Gibert</surname> <given-names>J</given-names></name></person-group> (<year>2007</year>) <article-title>Testing dispersal and cryptic diversity in a widely distributed groundwater amphipod (<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="rhenorhodanensis">rhenorhodanensis</tp:taxon-name-part></tp:taxon-name></italic>).</article-title> <source>Molecular Phylogenetics and Evolution</source> <volume>42</volume>: <fpage>676</fpage>–<lpage>686</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1016/j.ympev.2006.08.020">10.1016/j.ympev.2006.08.020</ext-link></mixed-citation>
+      </ref>
+      <ref id="B36">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Ljovuschkin</surname> <given-names>SI</given-names></name></person-group> (<year>1975</year>) <article-title>On ecofaunistic complexes, subterranean faunas taken as an example.</article-title> <source>Biology Bulletin Reviews</source> <volume>36</volume>(<issue>6</issue>): <fpage>814</fpage>–<lpage>828</lpage>. [In Russian, with English summary]</mixed-citation>
+      </ref>
+      <ref id="B37">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Magurran</surname> <given-names>AE</given-names></name></person-group> (<year>2004</year>) <source>Measuring Biological Diversity.</source> <publisher-name>Blackwell Publishing</publisher-name>, <publisher-loc>Oxford</publisher-loc>, <size units="page">235 pp</size>.</mixed-citation>
+      </ref>
+      <ref id="B38">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Marin</surname> <given-names>I</given-names></name><name name-style="western"><surname>Sokolova</surname> <given-names>A</given-names></name></person-group> (<year>2014</year>) <article-title>Redescription of the stygobitic shrimp <tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglocaris">Troglocaris</tp:taxon-name-part> (<tp:taxon-name-part taxon-name-part-type="subgenus" full-name="Xiphocaridinella">Xiphocaridinella</tp:taxon-name-part>) <tp:taxon-name-part taxon-name-part-type="species" full-name="jusbaschjani">jusbaschjani</tp:taxon-name-part></tp:taxon-name> Birštein, 1948 (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decapoda</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="infraorder">Caridea</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Atyidae</tp:taxon-name-part></tp:taxon-name>) from Agura River, Sochi, Russia, with remarks on other representatives of the genus from Caucasus.</article-title> <source>Zootaxa</source> <volume>3754</volume>: <fpage>277</fpage>–<lpage>298</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.11646/zootaxa.3754.3.3">10.11646/zootaxa.3754.3.3</ext-link></mixed-citation>
+      </ref>
+      <ref id="B39">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Marinskiy</surname> <given-names>VV</given-names></name><name name-style="western"><surname>Chertoprud</surname> <given-names>ES</given-names></name><name name-style="western"><surname>Palatov</surname> <given-names>DM</given-names></name><name name-style="western"><surname>Bizin</surname> <given-names>MS</given-names></name><name name-style="western"><surname>Borisov</surname> <given-names>RR</given-names></name><name name-style="western"><surname>Dbar</surname> <given-names>RS</given-names></name></person-group> (<year>2015</year>) <article-title>Structure of the fauna of water invertebrates as a indicator of anthropogenic impact on cave communities of central Abkhazia.</article-title> <source>Materials of the All-Russian Youth Conference “Biospeleology of the Caucasus and other regions of Russia”</source>. <publisher-name>Kostromskoy Pechatniy Dom</publisher-name>, <publisher-loc>Kostroma</publisher-loc>, <fpage>42</fpage>–<lpage>46</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B40">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Marmonier</surname> <given-names>P</given-names></name><name name-style="western"><surname>Vervier</surname> <given-names>P</given-names></name><name name-style="western"><surname>Gibert</surname> <given-names>J</given-names></name><name name-style="western"><surname>Dole-Olivier</surname> <given-names>M-J</given-names></name></person-group> (<year>1993</year>) <article-title>Biodiversity in ground waters.</article-title> <source>TREE</source> <volume>8</volume>(<issue>11</issue>): <fpage>392</fpage>–<lpage>395</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1016/0169-5347(93)90039-r">10.1016/0169-5347(93)90039-r</ext-link></mixed-citation>
+      </ref>
+      <ref id="B41">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Matheus</surname> <given-names>HS</given-names></name><name name-style="western"><surname>Marconi</surname> <given-names>SS</given-names></name><name name-style="western"><surname>Rodrigo</surname> <given-names>LF</given-names></name></person-group> (<year>2015</year>) <article-title>Cave physical attributes influencing the structure of terrestrial invertebrate communities in Neotropics.</article-title> <source>Subterranean Biology</source> <volume>16</volume>: <fpage>103</fpage>–<lpage>121</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.16.5470">10.3897/subtbiol.16.5470</ext-link></mixed-citation>
+      </ref>
+      <ref id="B42">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Morselli</surname> <given-names>I</given-names></name><name name-style="western"><surname>Marisa</surname> <given-names>M</given-names></name><name name-style="western"><surname>Sarto</surname> <given-names>M</given-names></name></person-group> (<year>1995</year>) <article-title>First record of the stygobiont «archiannelid» <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Troglochaetus">Troglochaetus</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="beranecki">beranecki</tp:taxon-name-part></tp:taxon-name></italic> Delachaux from Italy.</article-title> <source>Bollettino di Zoologia</source> <volume>62</volume>: <fpage>287</fpage>–<lpage>290</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1080/11250009509356077">10.1080/11250009509356077</ext-link></mixed-citation>
+      </ref>
+      <ref id="B43">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Murray</surname> <given-names>KG</given-names></name><name name-style="western"><surname>Winnett-Murray</surname> <given-names>K</given-names></name><name name-style="western"><surname>Hertel</surname> <given-names>L</given-names></name></person-group> (<year>2002</year>) <article-title>Species diversity, island biogeography, and the design of nature reserves.</article-title> <source>Tested Stud Lab Teach</source> <volume>23</volume>: <fpage>125</fpage>–<lpage>143</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B44">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Palatov</surname> <given-names>DM</given-names></name><name name-style="western"><surname>Vinarskiy</surname> <given-names>MV</given-names></name></person-group> (<year>2015</year>) <article-title>Ecology and distribution of the gastropod subfamily <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subfamily">Belgrandiellinae</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="phylum">Mollusca</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name> sensu lato) in the western Caucasus.</article-title> <source>Materials of the All-Russian Youth Conference “Biospeleology of the Caucasus and other regions of Russia.”</source> <publisher-name>Kostromskoy Pechatniy Dom</publisher-name>, <publisher-loc>Kostroma</publisher-loc>, <fpage>49</fpage>–<lpage>54</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B45">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Sendra</surname> <given-names>A</given-names></name><name name-style="western"><surname>Reboleira</surname> <given-names>ASPS</given-names></name></person-group> (<year>2012</year>) <article-title>The world’s deepest subterranean community — Krubera-Voronja Cave (Western Caucasus).</article-title> <source>International Journal of Speleology</source> <volume>41</volume>: <fpage>221</fpage>–<lpage>230</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.5038/1827-806X.41.2.9">10.5038/1827-806X.41.2.9</ext-link></mixed-citation>
+      </ref>
+      <ref id="B46">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Shannon</surname> <given-names>CE</given-names></name><name name-style="western"><surname>Weaver</surname> <given-names>W</given-names></name></person-group> (<year>1963</year>) <source>The Mathematical Theory of Communication.</source> <publisher-name>University of Illinois Press</publisher-name>, <publisher-loc>Urbana</publisher-loc>, <size units="page">235 pp</size>.</mixed-citation>
+      </ref>
+      <ref id="B47">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Shumeyev</surname> <given-names>AN</given-names></name></person-group> (<year>2008</year>) <source>Freshwater and Terrestrial Planarians of the Northwestern Caucasus.</source> <comment>PhD Thesis</comment>, <publisher-name>TNK</publisher-name>, <publisher-loc>St. Petersburg</publisher-loc>, <size units="page">144 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B48">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Skalski</surname> <given-names>A</given-names></name></person-group> (<year>1980</year>) <article-title>The Variability and Systematic Position of Three Species of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> from the Caucasus.</article-title> <source>Crustaceana</source> <volume>6</volume>: <fpage>38</fpage>–<lpage>43</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B49">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Sidorov</surname> <given-names>DA</given-names></name></person-group> (<year>2014</year>) <article-title>Towards the systematics of the subterranean amphipod genus <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">Niphargus</tp:taxon-name-part></tp:taxon-name></italic> of Transcaucasia: new records of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="inermis">inermis</tp:taxon-name-part></tp:taxon-name></italic> Birstein and <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Niphargus">N.</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="iniochus">iniochus</tp:taxon-name-part></tp:taxon-name></italic> Birstein in Abkhazia.</article-title> <source><tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="phylum">Arthropoda</tp:taxon-name-part></tp:taxon-name> Selecta</source> <volume>23</volume>(<issue>4</issue>): <fpage>363</fpage>–<lpage>377</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B50">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Sidorov</surname> <given-names>DA</given-names></name><name name-style="western"><surname>Gontcharov</surname> <given-names>AA</given-names></name><name name-style="western"><surname>Palatov</surname> <given-names>DM</given-names></name><name name-style="western"><surname>Taylor</surname> <given-names>SJ</given-names></name><name name-style="western"><surname>Semenchenko</surname> <given-names>AA</given-names></name></person-group> (<year>2015a</year>) <article-title>Shedding light on a cryptic cavernicole: A second species of <italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Zenkevitchia">Zenkevitchia</tp:taxon-name-part></tp:taxon-name></italic> Birstein (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Typhlogammaridae</tp:taxon-name-part></tp:taxon-name>) discovered via molecular techniques.</article-title> <source>Subterranean Biology</source> <volume>15</volume>: <fpage>37</fpage>–<lpage>55</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.15.4872">10.3897/subtbiol.15.4872</ext-link></mixed-citation>
+      </ref>
+      <ref id="B51">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Sidorov</surname> <given-names>DA</given-names></name><name name-style="western"><surname>Gontcharov</surname> <given-names>AA</given-names></name><name name-style="western"><surname>Sharina</surname> <given-names>SN</given-names></name></person-group> (<year>2015b</year>) <article-title>A new genus and two new species of cavernicolous amphipods (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Typhlogammaridae</tp:taxon-name-part></tp:taxon-name>) from Western Caucasus.</article-title> <source>European Journal of Taxonomy</source> <volume>168</volume>: <fpage>1</fpage>–<lpage>32</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.5852/ejt.2015.168">10.5852/ejt.2015.168</ext-link></mixed-citation>
+      </ref>
+      <ref id="B52">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Sidorov</surname> <given-names>DA</given-names></name><name name-style="western"><surname>Kharlamova</surname> <given-names>LT</given-names></name><name name-style="western"><surname>Golubnichaya</surname> <given-names>EE</given-names></name><name name-style="western"><surname>Rudko</surname> <given-names>PV</given-names></name><name name-style="western"><surname>Sukhachev</surname> <given-names>VV</given-names></name></person-group> (<year>2014</year>) <article-title>Preliminary data on the biodiversity and distribution of troglobionts from caves of the eastern Arabika massif – Treugol’nik region, western Caucasus, with special emphasis on Cave Sarma. Speleology and Spelestology.</article-title> <source>Proceedings of the 5<sup>th</sup> International Scientific Conference to the Centenary of A.V. Ryumin’s Birth</source>. <publisher-name>NISPTR, Naberezhnye Chelny</publisher-name>, <fpage>300</fpage>–<lpage>303</lpage>. <comment>[In Russian, with English summary]</comment></mixed-citation>
+      </ref>
+      <ref id="B53">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Simões</surname> <given-names>MH</given-names></name><name name-style="western"><surname>Souza-Silva</surname> <given-names>M</given-names></name><name name-style="western"><surname>Ferreira1</surname> <given-names>RL</given-names></name></person-group> (<year>2015</year>) <article-title>Cave physical attributes influencing the structure of terrestrial invertebrate communities in Neotropics.</article-title> <source>Subterranean Biology</source> <volume>16</volume>: <fpage>103</fpage>–<lpage>121</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.16.5470">10.3897/subtbiol.16.5470</ext-link></mixed-citation>
+      </ref>
+      <ref id="B54">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Souza-Silva</surname> <given-names>M</given-names></name><name name-style="western"><surname>Martins</surname> <given-names>RP</given-names></name><name name-style="western"><surname>Ferreira</surname> <given-names>RL</given-names></name></person-group> (<year>2011</year>) <article-title>Trophic Dynamics in a Neotropical Limestone Cave.</article-title> <source>Subterranean Biology</source> <volume>9</volume>: <fpage>127</fpage>–<lpage>138</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.3897/subtbiol.9.2515">10.3897/subtbiol.9.2515</ext-link></mixed-citation>
+      </ref>
+      <ref id="B55">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Starobogatov</surname> <given-names>JI</given-names></name></person-group> (<year>1962</year>) <article-title>To the knowledge of shellfish from the subterranean waters of the Caucasus.</article-title> <source>Bulleten’ Moskowskogo Obshhestva Ispytatelej Prirody, Biology</source> <volume>67</volume>: <fpage>42</fpage>–<lpage>54</lpage>. [In Russian, with English summary]</mixed-citation>
+      </ref>
+      <ref id="B56">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Starobogatov</surname> <given-names>JI</given-names></name></person-group> (<year>1995</year>) <source><tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Malacostraca</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Amphipoda</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Decapoda</tp:taxon-name-part></tp:taxon-name>). Key to Freshwater Invertebrates of Russia and Adjacent Territories</source>. <publisher-name>Nauka</publisher-name>, <publisher-loc>St. Petersburg</publisher-loc> <volume>2</volume>, <fpage>174</fpage>–<lpage>187</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B57">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Trieno De Figuerono</surname> <given-names>JM</given-names></name><name name-style="western"><surname>Lopez-Rodrigues</surname> <given-names>MJ</given-names></name></person-group> (<year>2010</year>) <article-title><italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Protonemura">Protonemura</tp:taxon-name-part> <tp:taxon-name-part taxon-name-part-type="species" full-name="gevi">gevi</tp:taxon-name-part></tp:taxon-name></italic> sp. n. (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Insecta</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Plecoptera</tp:taxon-name-part></tp:taxon-name>) a cavernicolous new species of stonefly.</article-title> <source>Zootaxa</source> <volume>2365</volume>: <fpage>48</fpage>–<lpage>54</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B58">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Trontelj</surname> <given-names>P</given-names></name><name name-style="western"><surname>Douady</surname> <given-names>CJ</given-names></name><name name-style="western"><surname>Fišer</surname> <given-names>C</given-names></name><name name-style="western"><surname>Gibert</surname> <given-names>J</given-names></name><name name-style="western"><surname>Gorički</surname> <given-names>Š</given-names></name><name name-style="western"><surname>Lefébure</surname> <given-names>T</given-names></name><name name-style="western"><surname>Sket</surname> <given-names>B</given-names></name><name name-style="western"><surname>Zakšek</surname> <given-names>V</given-names></name></person-group> (<year>2009</year>) <article-title>A molecular test for cryptic diversity in ground water: how large are the ranges of macro-stygobionts?</article-title> <source>Freshwater Biology</source> <volume>54</volume>: <fpage>727</fpage>–<lpage>744</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1111/j.1365-2427.2007.01877.x">10.1111/j.1365-2427.2007.01877.x</ext-link></mixed-citation>
+      </ref>
+      <ref id="B59">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Turbanov</surname> <given-names>IS</given-names></name></person-group> (<year>2015</year>) <article-title>Review of subterranean fauna of <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>, <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="order">Isopoda</tp:taxon-name-part></tp:taxon-name>) from the Caucasus.</article-title> <person-group><name name-style="western"><surname>Zamotaylova</surname> <given-names>AS</given-names></name><name name-style="western"><surname>Shapovalova</surname> <given-names>MI</given-names></name></person-group> (<role>Eds</role>) <source>Materials of the II International Scientific-practical Conference: Biodiversity, Bioreservation, Biomonitoring</source>. <publisher-name>AGU</publisher-name>, <publisher-loc>Maikop</publisher-loc>, <fpage>82</fpage>–<lpage>85</lpage>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+      <ref id="B60">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Van Damme</surname> <given-names>K</given-names></name><name name-style="western"><surname>Sinev</surname> <given-names>AY</given-names></name></person-group> (<year>2011</year>) <article-title>A new genus of cave-dwelling microcrustaceans from the Dinaric Region (south-east Europe): adaptations of true stygobitic <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="infraorder">Cladocera</tp:taxon-name-part></tp:taxon-name> (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="subphylum">Crustacea</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Branchiopoda</tp:taxon-name-part></tp:taxon-name>).</article-title> <source>Zoological Journal of the Linnean Society</source> <volume>161</volume>: <fpage>31</fpage>–<lpage>52</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1111/j.1096-3642.2010.00639.x">10.1111/j.1096-3642.2010.00639.x</ext-link></mixed-citation>
+      </ref>
+      <ref id="B61">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Vinarski</surname> <given-names>MV</given-names></name><name name-style="western"><surname>Palatov</surname> <given-names>DM</given-names></name><name name-style="western"><surname>Glöer</surname> <given-names>P</given-names></name></person-group> (<year>2014</year>) <article-title>Revision of ‘<italic><tp:taxon-name type="lower"><tp:taxon-name-part taxon-name-part-type="genus" full-name="Horatia">Horatia</tp:taxon-name-part></tp:taxon-name></italic>’ snails (<tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="phylum">Mollusca</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="class">Gastropoda</tp:taxon-name-part></tp:taxon-name>: <tp:taxon-name type="higher"><tp:taxon-name-part taxon-name-part-type="family">Hydrobiidae</tp:taxon-name-part></tp:taxon-name> sensu lato) from South Caucasus with description of two new genera.</article-title> <source>Journal of Natural History</source> <volume>48</volume>: <fpage>2237</fpage>–<lpage>2253</lpage>. doi: <ext-link xlink:type="simple" ext-link-type="doi" xlink:href="10.1080/00222933.2014.917210">10.1080/00222933.2014.917210</ext-link></mixed-citation>
+      </ref>
+      <ref id="B62">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Zhadin</surname> <given-names>VI</given-names></name></person-group> (<year>1932</year>) <article-title>Die Süßwassermollusken aud der Rion-Höhle bei Kutais (Transkaukasien, Georgien).</article-title> <source>Archiv für Molluskenkunde</source> <volume>64</volume>: <fpage>12</fpage>–<lpage>14</lpage>.</mixed-citation>
+      </ref>
+      <ref id="B63">
+        <mixed-citation xlink:type="simple">
+          <person-group><name name-style="western"><surname>Zhadin</surname> <given-names>VI</given-names></name></person-group> (<year>1952</year>) <source>The Mollusks of Fresh and Brackish Waters of the USSR.</source> <publisher-name>AS USSR</publisher-name>, <publisher-loc>Moscow–Leningrad</publisher-loc>, <size units="page">376 pp</size>. <comment>[In Russian]</comment></mixed-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn id="FN1">
+        <label>1</label>
+        <p>Here, the term “troglobionts” means subterranean animals <italic>in</italic> <italic>sensu lato</italic>, wile “stygobionts” inhabit the subterranean waters.</p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

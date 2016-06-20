@@ -261,6 +261,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\ArticlesManagment\Controllers\FilesController.cs" />
+    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\FileDetailsViewModel.cs" />
+    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\FileMetadataViewModel.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
@@ -306,6 +309,18 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Xsl\inc.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Code\Xsl\main.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\styles\article-styles.css">
+      <DependentUpon>article-styles.less</DependentUpon>
+    </Content>
+    <Content Include="Content\styles\article-styles.min.css">
+      <DependentUpon>article-styles.css</DependentUpon>
+    </Content>
     <Content Include="Content\styles\default-styles.css">
       <DependentUpon>default-styles.less</DependentUpon>
     </Content>
@@ -346,10 +361,14 @@
     <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
     <Content Include="Content\styles\default-styles.less" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\Index.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\Details.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\Create.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\styles\article-styles.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -405,10 +424,7 @@
     <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ArticlesManagment\Controllers\" />
-    <Folder Include="Areas\ArticlesManagment\Models\" />
     <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
     <Folder Include="Areas\AuthorsManagment\Controllers\" />
     <Folder Include="Areas\AuthorsManagment\Models\" />
