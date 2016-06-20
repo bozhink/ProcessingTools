@@ -51,7 +51,7 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, FilesController.ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -98,7 +98,7 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, FilesController.ControllerName, nameof(this.Details));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -107,7 +107,7 @@
         public ActionResult Edit(int id)
         {
             // TODO
-            var error = new HandleErrorInfo(new NotImplementedException(), FilesController.ControllerName, nameof(this.Edit));
+            var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
             return this.View(ViewConstants.DefaultErrorViewName, error);
         }
 
@@ -116,7 +116,7 @@
         public ActionResult Edit(int id, FormCollection collection)
         {
             // TODO
-            var error = new HandleErrorInfo(new NotImplementedException(), FilesController.ControllerName, nameof(this.Edit));
+            var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
             return this.View(ViewConstants.DefaultErrorViewName, error);
         }
 
@@ -130,7 +130,7 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, FilesController.ControllerName, nameof(this.Index));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
