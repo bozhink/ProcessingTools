@@ -7,7 +7,7 @@
     public static class ListIntersectionsExtensions
     {
         /// <summary>
-        /// Gets all strings which does not contain any string of a comparision list.
+        /// Gets all strings which does not contain any string of a comparison list.
         /// </summary>
         /// <param name="wordList">IEnumerable object to be distincted.</param>
         /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
@@ -130,7 +130,7 @@
         }
 
         /// <summary>
-        /// Gets all strings which contains any string of a comparision list.
+        /// Gets all strings which contains any string of a comparison list.
         /// </summary>
         /// <param name="wordList">IEnumerable object to be matches.</param>
         /// <param name="compareList">IEnumerable object of patterns which must be contained in the wordList.</param>
