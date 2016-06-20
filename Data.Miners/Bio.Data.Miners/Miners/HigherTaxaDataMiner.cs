@@ -35,25 +35,26 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            string textToMine = string.Join(" ", content.ExtractWordsFromString());
+            var words = content.ExtractWordsFromString();
 
-            // Match plausible higher taxa by pattern.
-            var items = new List<string>(await textToMine.GetMatchesAsync(this.matchHigherTaxa));
+            var matches = words.Where(w => this.matchHigherTaxa.IsMatch(w))
+                .ToList();
 
-            items.AddRange(await this.MatchWithWhiteList(textToMine));
+            matches.AddRange(await this.MatchWithWhiteList(words));
 
-            var result = new HashSet<string>(items);
+            var result = new HashSet<string>(matches);
             return result.AsQueryable();
         }
 
-        private async Task<IEnumerable<string>> MatchWithWhiteList(string textToMine)
+        private async Task<IEnumerable<string>> MatchWithWhiteList(IEnumerable<string> words)
         {
             var whiteListItems = new HashSet<string>((await this.service.All())
                 .Where(t => t.IsWhiteListed)
-                .Select(t => t.ScientificName));
+                .Select(t => t.ScientificName.ToLower()));
 
-            var whiteListMatches = textToMine.MatchWithStringList(whiteListItems, false, false, false);
-            return whiteListMatches;
+            var whiteListMatches = words.Where(w => whiteListItems.Contains(w.ToLower()));
+
+            return new HashSet<string>(whiteListMatches);
         }
     }
 }
