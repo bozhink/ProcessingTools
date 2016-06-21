@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
@@ -21,6 +20,10 @@
     [Authorize]
     public class FilesController : Controller
     {
+        private const string NoFilesSelectedErrorViewName = "NoFilesSelectedError";
+        private const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";
+        private const string NullIdErrorViewName = "NullIdError";
+
         private readonly IXmlFilesDataService service;
 
         // TODO: To be removed
@@ -40,20 +43,20 @@
 
         private string XslTansformFile => Path.Combine(Server.MapPath("~/App_Code/Xsl"), "main.xsl");
 
-        // GET: File/Create
+        // GET: Files/Create
         public ActionResult Create()
         {
             return this.View();
         }
 
-        // POST: File/Create
+        // POST: Files/Create
         [HttpPost]
         public async Task<ActionResult> Create(FormCollection collection)
         {
             if (Request?.Files == null || Request.Files.Count < 1)
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("No files selected."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NoFilesSelectedErrorViewName);
             }
 
             try
@@ -61,8 +64,8 @@
                 var file = Request.Files[0];
                 if (file == null || file.ContentLength < 1)
                 {
-                    var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid or empty file."), ControllerName, nameof(this.Create));
-                    return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return this.View(InvalidOrEmptyFileErrorViewName);
                 }
 
                 var fileMetatadata = new XmlFileMetadataServiceModel
@@ -75,50 +78,53 @@
 
                 await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
 
+                this.Response.StatusCode = (int)HttpStatusCode.Created;
                 return this.RedirectToAction(nameof(this.Index));
             }
             catch (Exception e)
             {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
 
-        // GET: File/Delete/5
+        // GET: Files/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             try
             {
                 await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
-
                 return this.RedirectToAction(nameof(this.Index));
             }
-            catch
+            catch (Exception e)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
 
-        // POST: File/Delete/5
+        // POST: Files/Delete/5
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        // GET: File/Details/5
+        // GET: Files/Details/5
         public async Task<ActionResult> Details(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             try
@@ -140,18 +146,19 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
 
-        // GET: File/Download/5
+        // GET: Files/Download/5
         public async Task<ActionResult> Download(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             try
@@ -165,45 +172,40 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
 
-        // GET: File/Edit/5
+        // GET: Files/Edit/5
         public ActionResult Edit(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             // TODO
-            {
-                var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
         }
 
-        // POST: File/Edit/5
+        // POST: Files/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, FormCollection collection)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             // TODO
-            {
-                var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
-            }
+            return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
         }
 
-        // GET: File
+        // GET: Files
         public async Task<ActionResult> Index()
         {
             try
@@ -225,18 +227,19 @@
             }
             catch (Exception e)
             {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
 
-        // GET: File/Preview/5
+        // GET: Files/Preview/5
         public async Task<ActionResult> Preview(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
-                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return this.View(NullIdErrorViewName);
             }
 
             try
@@ -253,7 +256,8 @@
             }
             catch (Exception e)
             {
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }

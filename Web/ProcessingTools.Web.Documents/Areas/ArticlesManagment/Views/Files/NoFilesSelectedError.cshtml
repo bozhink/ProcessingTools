@@ -1,0 +1,15 @@
+﻿@using ProcessingTools.Web.Common.Constants;
+@using ProcessingTools.Web.Documents.Areas.ArticlesManagment.Controllers;
+
+@{
+    ViewBag.Title = "No Files Selected Error";
+}
+
+<h2 class="text-danger">Error</h2>
+<h3 class="text-danger">No Files Selected</h3>
+
+<p>Please, select a file and try again.</p>
+<hr />
+<p>
+    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Create))
+</p>

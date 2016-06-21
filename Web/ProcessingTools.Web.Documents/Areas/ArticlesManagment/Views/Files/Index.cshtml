@@ -5,15 +5,13 @@
 @model IEnumerable<FileMetadataViewModel>
 
 @{
-    ViewBag.Title = "File mananager";
+    ViewBag.Title = "List of Files";
 }
 
-<h2>
-    @ContentConstants.DeafultIndexPageHeading
-</h2>
+<h2>List of Files</h2>
 
 <p>
-    @Html.ActionLink(ContentConstants.DefaultCreateActionLinkTitle, nameof(FilesController.Create))
+    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Create))
 </p>
 <table class="table">
     <tr>

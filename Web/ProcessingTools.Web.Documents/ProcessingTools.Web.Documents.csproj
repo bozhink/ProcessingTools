@@ -365,6 +365,9 @@
     <Content Include="Areas\ArticlesManagment\Views\Files\Details.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\Create.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\Preview.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\NoFilesSelectedError.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\InvalidOrEmptyFileError.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\NullIdError.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
