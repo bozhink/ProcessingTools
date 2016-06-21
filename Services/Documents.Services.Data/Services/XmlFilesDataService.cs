@@ -12,12 +12,28 @@
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Repositories.Contracts;
+    using ProcessingTools.Extensions;
 
     public class XmlFilesDataService : IXmlFilesDataService
     {
         private const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";
 
         private const int MaximalNumberOfTrialsToGenerateNewFileName = 100;
+
+        private readonly IDocumentsRepositoryProvider<Document> repositoryProvider;
+
+        public XmlFilesDataService(IDocumentsRepositoryProvider<Document> repositoryProvider)
+        {
+            if (repositoryProvider == null)
+            {
+                throw new ArgumentNullException(nameof(repositoryProvider));
+            }
+
+            this.repositoryProvider = repositoryProvider;
+        }
 
         private string DataDirectory
         {
@@ -33,7 +49,7 @@
             }
         }
 
-        public Task<IQueryable<XmlFileMetadataServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IQueryable<XmlFileMetadataServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {
@@ -55,26 +71,29 @@
                 throw new InvalidItemsPerPageException();
             }
 
-            return Task.Run(() =>
-            {
-                var files = Directory.GetFiles(this.DataDirectory)
-                    .Select(file =>
-                    {
-                        var fileInfo = new FileInfo(file);
-                        return new XmlFileMetadataServiceModel
-                        {
-                            FileName = Path.GetFileName(file),
-                            DateCreated = fileInfo.CreationTimeUtc,
-                            DateModified = fileInfo.LastWriteTime
-                        };
-                    })
-                    .OrderByDescending(i => i.DateModified)
-                    .Skip(pageNumber * itemsPerPage)
-                    .Take(itemsPerPage)
-                    .ToList();
+            var repository = this.repositoryProvider.Create();
 
-                return files.AsQueryable();
-            });
+            var files = (await repository.All())
+                .Where(d => d.CreatedByUserId == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .OrderByDescending(d => d.DateModified)
+                .Skip(pageNumber * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(d => new XmlFileMetadataServiceModel
+                {
+                    Id = d.Id.ToString(),
+                    FileName = d.FileName,
+                    FileExtension = d.FileExtension,
+                    ContentType = d.ContentType,
+                    ContentLength = d.ContentLength,
+                    DateCreated = d.DateCreated,
+                    DateModified = d.DateModified
+                })
+                .ToList();
+
+            repository.TryDispose();
+
+            return files.AsQueryable();
         }
 
         public async Task<object> Create(object userId, object articleId, XmlFileDetailsServiceModel file)
@@ -95,11 +114,25 @@
             }
 
             string path = await this.GetNewFilePath(file.FileName);
+            file.FileName = Path.GetFileNameWithoutExtension(path);
+
+            var document = new Document
+            {
+                CreatedByUserId = userId.ToString(),
+                ModifiedByUserId = userId.ToString(),
+                ContentLength = file.ContentLength,
+                ContentType = file.ContentType,
+                FileExtension = file.FileExtension,
+                FileName = file.FileName
+            };
+
+            var repository = this.repositoryProvider.Create();
 
             File.WriteAllText(path, file.Content);
+            await repository.Add(document);
+            await repository.SaveChanges();
 
-            file.FileName = Path.GetFileNameWithoutExtension(path);
-            file.FileExtension = Path.GetExtension(path);
+            repository.TryDispose();
 
             return new FileInfo(path).Length;
         }
@@ -127,11 +160,25 @@
             }
 
             string path = await this.GetNewFilePath(fileMetadata.FileName);
+            fileMetadata.FileName = Path.GetFileNameWithoutExtension(path);
+
+            var document = new Document
+            {
+                CreatedByUserId = userId.ToString(),
+                ModifiedByUserId = userId.ToString(),
+                ContentLength = fileMetadata.ContentLength,
+                ContentType = fileMetadata.ContentType,
+                FileExtension = fileMetadata.FileExtension,
+                FileName = fileMetadata.FileName
+            };
+
+            var repository = this.repositoryProvider.Create();
 
             await this.SaveStreamToFile(path, inputStream);
+            await repository.Add(document);
+            await repository.SaveChanges();
 
-            fileMetadata.FileName = Path.GetFileNameWithoutExtension(path);
-            fileMetadata.FileExtension = Path.GetExtension(path);
+            repository.TryDispose();
 
             return new FileInfo(path).Length;
         }
@@ -153,9 +200,19 @@
                 throw new ArgumentNullException(nameof(fileId));
             }
 
-            string path = await this.GetFilePathById(fileId);
+            var repository = this.repositoryProvider.Create();
 
+            var document = (await repository.All())
+                .Where(d => d.CreatedByUserId == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .FirstOrDefault(d => d.Id.ToString() == fileId.ToString());
+
+            string path = Path.Combine(this.DataDirectory, document.FileName);
             File.Delete(path);
+            await repository.Delete(entity: document);
+            await repository.SaveChanges();
+
+            repository.TryDispose();
 
             return fileId;
         }
@@ -177,21 +234,30 @@
                 throw new ArgumentNullException(nameof(fileId));
             }
 
-            string path = await this.GetFilePathById(fileId);
+            var repository = this.repositoryProvider.Create();
 
+            var document = (await repository.All())
+                .Where(d => d.CreatedByUserId == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .FirstOrDefault(d => d.Id.ToString() == fileId.ToString());
+
+            string path = Path.Combine(this.DataDirectory, document.FileName);
             string content = File.ReadAllText(path);
-
-            var fileInfo = new FileInfo(path);
-
-            return new XmlFileDetailsServiceModel
+            var result = new XmlFileDetailsServiceModel
             {
-                FileName = Path.GetFileName(path),
-                FileExtension = Path.GetExtension(path),
-                DateCreated = fileInfo.CreationTimeUtc,
-                DateModified = fileInfo.LastWriteTime,
+                Id = document.Id.ToString(),
+                FileName = document.FileName,
+                FileExtension = document.FileExtension,
+                ContentLength = document.ContentLength,
+                ContentType = document.ContentType,
                 Content = content,
-                ContentLength = fileInfo.Length
+                DateCreated = document.DateCreated,
+                DateModified = document.DateModified
             };
+
+            repository.TryDispose();
+
+            return result;
         }
 
         public async Task<object> Update(object userId, object articleId, XmlFileDetailsServiceModel file)
@@ -211,46 +277,63 @@
                 throw new ArgumentNullException(nameof(file));
             }
 
-            string path = await this.GetFilePathById(file.Id);
+            var repository = this.repositoryProvider.Create();
 
+            var document = (await repository.All())
+                .Where(d => d.CreatedByUserId == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .FirstOrDefault(d => d.Id.ToString() == file.Id);
+
+            string path = Path.Combine(this.DataDirectory, file.FileName);
             File.WriteAllText(path, file.Content);
+            var contentLength = new FileInfo(path).Length;
 
-            file.FileName = Path.GetFileNameWithoutExtension(path);
-            file.FileExtension = Path.GetExtension(path);
+            document.ModifiedByUserId = userId.ToString();
+            document.DateModified = DateTime.UtcNow;
+            document.ContentLength = contentLength;
+            document.ContentType = file.ContentType;
 
-            return new FileInfo(path).Length;
-        }
+            await repository.Update(entity: document);
+            await repository.SaveChanges();
 
-        private Task<string> GetFilePathById(object id)
-        {
-            return Task.Run(() =>
-            {
-                string fileName = Directory.GetFiles(this.DataDirectory)
-                    .FirstOrDefault(f => Path.GetFileName(f).GetHashCode().ToString() == id.ToString());
+            repository.TryDispose();
 
-                return fileName;
-            });
+            return contentLength;
         }
 
         private string GenerateFileName(object id)
         {
             Regex matchInvalidFileNameSymbols = new Regex(@"[^A-Za-z0-9_\-\.]");
             string prefix = matchInvalidFileNameSymbols.Replace(id.ToString(), "_");
-            return Path.GetFileNameWithoutExtension(prefix) + "-" +
-                matchInvalidFileNameSymbols.Replace(DateTime.UtcNow.ToString(), "-") +
-                Guid.NewGuid().ToString().GetHashCode();
+
+            prefix = Path.GetFileNameWithoutExtension(prefix);
+            prefix = prefix.Substring(0, Math.Min(prefix.Length, ValidationConstants.LengthOfDocumentFileName / 2));
+
+            string timeStamp = matchInvalidFileNameSymbols.Replace(DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss"), "-");
+
+            string fileName = $"{prefix}-{timeStamp}-{Guid.NewGuid().ToString()}";
+
+            return fileName.PadRight(ValidationConstants.LengthOfDocumentFileName, 'X')
+                .Substring(0, ValidationConstants.LengthOfDocumentFileName);
         }
 
         private Task<string> GetNewFilePath(string oldFileName)
         {
             return Task.Run(() =>
             {
-                string path = this.DataDirectory + "/" + this.GenerateFileName(oldFileName);
+                string path = Path.Combine(this.DataDirectory, this.GenerateFileName(oldFileName));
                 string filePath = path;
+                int pathLength = path.Length;
 
                 for (int i = 0; (i < MaximalNumberOfTrialsToGenerateNewFileName) && File.Exists(filePath); ++i)
                 {
-                    filePath = path + i;
+                    string suffix = i.ToString();
+                    filePath = path.Substring(0, pathLength - suffix.Length) + suffix;
+                }
+
+                if (File.Exists(filePath))
+                {
+                    throw new ApplicationException("Can not generate unique file name.");
                 }
 
                 return filePath;

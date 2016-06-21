@@ -68,9 +68,17 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

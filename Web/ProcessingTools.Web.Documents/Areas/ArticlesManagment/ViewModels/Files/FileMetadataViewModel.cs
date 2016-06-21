@@ -4,7 +4,7 @@
 
     public class FileMetadataViewModel
     {
-        public int Id => this.FileName.GetHashCode();
+        public string Id { get; set; }
 
         public string FileName { get; set; }
 

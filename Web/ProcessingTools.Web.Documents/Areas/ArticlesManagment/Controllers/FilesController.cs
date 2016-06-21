@@ -66,9 +66,7 @@
                     FileName = Path.GetFileNameWithoutExtension(file.FileName),
                     FileExtension = Path.GetExtension(file.FileName),
                     ContentLength = file.ContentLength,
-                    ContentType = file.ContentType,
-                    DateCreated = DateTime.UtcNow,
-                    DateModified = DateTime.UtcNow
+                    ContentType = file.ContentType
                 };
 
                 await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
@@ -83,7 +81,7 @@
         }
 
         // GET: File/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
             try
             {
@@ -99,13 +97,13 @@
 
         // POST: File/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             return this.RedirectToAction(nameof(this.Index));
         }
 
         // GET: File/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(string id)
         {
             try
             {
@@ -114,7 +112,7 @@
                 var model = new FileDetailsViewModel
                 {
                     Id = id,
-                    Document = file.Content.ApplyXslTransform(this.XslTansformFile)
+                    Content = file.Content.ApplyXslTransform(this.XslTansformFile)
                 };
 
                 return this.View(model);
@@ -127,7 +125,7 @@
         }
 
         // GET: File/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             // TODO
             var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
@@ -136,7 +134,7 @@
 
         // POST: File/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             // TODO
             var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
@@ -154,6 +152,7 @@
                 var files = (await this.service.All(User.Identity.GetUserId(), this.fakeArticleId, pageNumber, itemsPerPage))
                     .Select(f => new FileMetadataViewModel
                     {
+                        Id = f.Id,
                         FileName = f.FileName,
                         DateCreated = f.DateCreated,
                         DateModified = f.DateModified

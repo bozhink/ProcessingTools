@@ -9,6 +9,11 @@ namespace ProcessingTools.Documents.Data.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.ContextKey = ConnectionConstants.ContextKey;
+#if DEBUG
+            this.AutomaticMigrationDataLossAllowed = true;
+#else
+            this.AutomaticMigrationDataLossAllowed = false;
+#endif
         }
 
         protected override void Seed(DocumentsDbContext context)

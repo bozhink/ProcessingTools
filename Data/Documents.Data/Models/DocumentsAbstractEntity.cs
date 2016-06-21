@@ -12,6 +12,7 @@
             this.DateCreated = this.DateModified;
         }
 
+        [Required]
         [MaxLength(128)]
         public string CreatedByUserId { get; set; }
 
@@ -19,6 +20,7 @@
 
         public DateTime DateModified { get; set; }
 
+        [Required]
         [MaxLength(128)]
         public string ModifiedByUserId { get; set; }
     }

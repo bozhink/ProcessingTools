@@ -26,5 +26,8 @@
         public const int MaximalLengthOfArticleELocationId = 10;
 
         public const int LengthOfDocumentFileName = 50;
+        public const int LengthOfDocumentFileExtension = 15;
+
+        public const int MaximalLengthOfContentTypeString = 50;
     }
 }

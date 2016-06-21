@@ -4,7 +4,14 @@
 
     public class XmlFileMetadataServiceModel
     {
-        public int Id => this.FileName.GetHashCode();
+        public XmlFileMetadataServiceModel()
+        {
+            this.Id = Guid.NewGuid().ToString();
+            this.DateCreated = DateTime.UtcNow;
+            this.DateModified = this.DateCreated;
+        }
+
+        public string Id { get; set; }
 
         public long ContentLength { get; set; }
 
