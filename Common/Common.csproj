@@ -44,6 +44,7 @@
     <Compile Include="Defaults.cs" />
     <Compile Include="Dictionaries.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidItemsPerPageException.cs" />
     <Compile Include="Exceptions\InvalidPageNumberException.cs" />
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
