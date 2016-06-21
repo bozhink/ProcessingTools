@@ -19,9 +19,7 @@
     [Authorize]
     public class FilesController : Controller
     {
-        public const string ControllerName = "Files";
-
-        private readonly IXmlFilesDataService filesDataService;
+        private readonly IXmlFilesDataService service;
 
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
@@ -33,8 +31,10 @@
                 throw new ArgumentNullException(nameof(filesDataService));
             }
 
-            this.filesDataService = filesDataService;
+            this.service = filesDataService;
         }
+
+        public static string ControllerName => ControllerConstants.FilesControllerName;
 
         private string XslTansformFile => Path.Combine(Server.MapPath("~/App_Code/Xsl"), "main.xsl");
 
@@ -71,7 +71,7 @@
                     DateModified = DateTime.UtcNow
                 };
 
-                await this.filesDataService.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
+                await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -87,7 +87,7 @@
         {
             try
             {
-                await this.filesDataService.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
+                await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -109,7 +109,7 @@
         {
             try
             {
-                var file = await this.filesDataService.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 var model = new FileDetailsViewModel
                 {
@@ -151,7 +151,7 @@
                 int pageNumber = 0;
                 int itemsPerPage = 20;
 
-                var files = (await this.filesDataService.All(User.Identity.GetUserId(), this.fakeArticleId, pageNumber, itemsPerPage))
+                var files = (await this.service.All(User.Identity.GetUserId(), this.fakeArticleId, pageNumber, itemsPerPage))
                     .Select(f => new FileMetadataViewModel
                     {
                         FileName = f.FileName,
