@@ -9,6 +9,7 @@
 
     using Microsoft.AspNet.Identity;
 
+    using ProcessingTools.Common;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
@@ -116,6 +117,25 @@
                 };
 
                 return this.View(model);
+            }
+            catch (Exception e)
+            {
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
+        }
+
+        // GET: File/Download/5
+        public async Task<ActionResult> Download(string id)
+        {
+            try
+            {
+                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                var bytes = Defaults.DefaultEncoding.GetBytes(file.Content);
+                return this.File(
+                    fileContents: bytes,
+                    contentType: file.ContentType,
+                    fileDownloadName: $"{file.FileName.Trim('.')}.{file.FileExtension.Trim('.')}");
             }
             catch (Exception e)
             {

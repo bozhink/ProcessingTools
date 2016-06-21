@@ -10,6 +10,7 @@
         public const string DefaultEditActionLinkTitle = "Edit";
         public const string DefaultDetailsActionLinkTitle = "Details";
         public const string DefaultDeleteActionLinkTitle = "Delete";
+        public const string DefaultDownloadActionLinkTitle = "Download";
         public const string DefaultBackToListActionLinkTitle = "Back to List";
 
         public const string DeafultIndexPageTitle = "Index";
