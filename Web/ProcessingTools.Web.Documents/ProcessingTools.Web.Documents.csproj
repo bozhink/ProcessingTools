@@ -364,6 +364,7 @@
     <Content Include="Areas\ArticlesManagment\Views\Files\Index.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\Details.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\Create.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Files\Preview.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

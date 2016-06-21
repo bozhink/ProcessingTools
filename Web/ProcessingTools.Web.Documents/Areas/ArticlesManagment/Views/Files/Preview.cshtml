@@ -1,0 +1,16 @@
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.ArticlesManagment.ViewModels.Files
+
+@model FileDetailsViewModel
+
+@{
+    ViewBag.Title = ContentConstants.DeafultPreviewPageTitle;
+}
+
+@Styles.Render("~/Content/article-styles")
+
+<main>
+    <div id="article">
+        @Html.Raw(Model.Content)
+    </div>
+</main>

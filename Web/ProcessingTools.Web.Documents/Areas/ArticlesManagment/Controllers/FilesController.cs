@@ -108,12 +108,15 @@
         {
             try
             {
+                // TODO
                 var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
-                var model = new FileDetailsViewModel
+                var model = new FileMetadataViewModel
                 {
                     Id = id,
-                    Content = file.Content.ApplyXslTransform(this.XslTansformFile)
+                    FileName = file.FileName,
+                    DateCreated = file.DateCreated,
+                    DateModified = file.DateModified
                 };
 
                 return this.View(model);
@@ -184,6 +187,28 @@
             catch (Exception e)
             {
                 var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
+        }
+
+        // GET: File/Preview/5
+        public async Task<ActionResult> Preview(string id)
+        {
+            try
+            {
+                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+
+                var model = new FileDetailsViewModel
+                {
+                    Id = id,
+                    Content = file.Content.ApplyXslTransform(this.XslTansformFile)
+                };
+
+                return this.View(model);
+            }
+            catch (Exception e)
+            {
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }

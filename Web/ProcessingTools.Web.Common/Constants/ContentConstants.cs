@@ -8,6 +8,7 @@
 
         public const string DefaultCreateActionLinkTitle = "Create New";
         public const string DefaultEditActionLinkTitle = "Edit";
+        public const string DefaultPreviewActionLinkTitle = "Preview";
         public const string DefaultDetailsActionLinkTitle = "Details";
         public const string DefaultDeleteActionLinkTitle = "Delete";
         public const string DefaultDownloadActionLinkTitle = "Download";
@@ -27,5 +28,8 @@
 
         public const string DeafultEditPageTitle = "Edit";
         public const string DeafultEditPageHeading = "Edit";
+
+        public const string DeafultPreviewPageTitle = "Preview";
+        public const string DeafultPreviewPageHeading = "Preview";
     }
 }

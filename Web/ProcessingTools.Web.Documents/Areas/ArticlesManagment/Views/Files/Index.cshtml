@@ -42,9 +42,14 @@
                 @Html.DisplayFor(modelItem => item.DateModified)
             </td>
             <td>
-                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id }) |
-                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id }) |
-                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id }) | 
+                @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
                 @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
             </td>
         </tr>
