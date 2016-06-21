@@ -108,13 +108,15 @@
         {
             try
             {
-                // TODO
                 var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 var model = new FileMetadataViewModel
                 {
                     Id = id,
                     FileName = file.FileName,
+                    FileExtension = file.FileExtension.Trim('.'),
+                    ContentType = file.ContentType,
+                    ContentLength = file.ContentLength,
                     DateCreated = file.DateCreated,
                     DateModified = file.DateModified
                 };
