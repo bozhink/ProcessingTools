@@ -67,7 +67,7 @@
             {
                 Async = true,
                 CloseInput = true,
-                ////DtdProcessing = DtdProcessing.Ignore,
+                DtdProcessing = DtdProcessing.Ignore,
                 IgnoreComments = false,
                 IgnoreProcessingInstructions = false,
                 IgnoreWhitespace = false

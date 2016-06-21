@@ -1,24 +1,40 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.ArticlesManagment.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using System.Xml;
-    using System.Xml.Xsl;
 
+    using Microsoft.AspNet.Identity;
+
+    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Xml.Extensions;
 
     using ViewModels.Files;
 
+    [Authorize]
     public class FilesController : Controller
     {
-        public static string ControllerName => "Files";
+        public const string ControllerName = "Files";
 
-        private string DataDirectory => Server.MapPath("~/App_Data/");
+        private readonly IXmlFilesDataService filesDataService;
+
+        // TODO: To be removed
+        private readonly int fakeArticleId = 0;
+
+        public FilesController(IXmlFilesDataService filesDataService)
+        {
+            if (filesDataService == null)
+            {
+                throw new ArgumentNullException(nameof(filesDataService));
+            }
+
+            this.filesDataService = filesDataService;
+        }
 
         private string XslTansformFile => Path.Combine(Server.MapPath("~/App_Code/Xsl"), "main.xsl");
 
@@ -30,22 +46,32 @@
 
         // POST: File/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(FormCollection collection)
         {
             if (Request?.Files == null || Request.Files.Count < 1)
             {
-                return this.RedirectToAction(nameof(this.Index));
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No files selected.");
             }
 
             try
             {
                 var file = Request.Files[0];
-                if (file != null && file.ContentLength > 0)
+                if (file == null || file.ContentLength < 1)
                 {
-                    var fileName = $"{Path.GetFileNameWithoutExtension(file.FileName)}-{Guid.NewGuid().ToString()}.xml";
-                    var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
-                    file.SaveAs(path);
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid or empty file.");
                 }
+
+                var fileMetatadata = new XmlFileMetadataServiceModel
+                {
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName),
+                    FileExtension = Path.GetExtension(file.FileName),
+                    ContentLength = file.ContentLength,
+                    ContentType = file.ContentType,
+                    DateCreated = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow
+                };
+
+                await this.filesDataService.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -57,12 +83,11 @@
         }
 
         // GET: File/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                string fileName = this.GetFileNameById(id);
-                System.IO.File.Delete(fileName);
+                await this.filesDataService.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -84,14 +109,12 @@
         {
             try
             {
-                string fileName = this.GetFileNameById(id);
-
-                string documentContent = await this.GetDocumentContent(fileName);
+                var file = await this.filesDataService.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 var model = new FileDetailsViewModel
                 {
                     Id = id,
-                    Document = documentContent
+                    Document = file.Content.ApplyXslTransform(this.XslTansformFile)
                 };
 
                 return this.View(model);
@@ -121,11 +144,22 @@
         }
 
         // GET: File
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             try
             {
-                var files = this.GetFiles();
+                int pageNumber = 0;
+                int itemsPerPage = 20;
+
+                var files = (await this.filesDataService.All(User.Identity.GetUserId(), this.fakeArticleId, pageNumber, itemsPerPage))
+                    .Select(f => new FileMetadataViewModel
+                    {
+                        FileName = f.FileName,
+                        DateCreated = f.DateCreated,
+                        DateModified = f.DateModified
+                    })
+                    .ToList();
+
                 return this.View(files);
             }
             catch (Exception e)
@@ -133,64 +167,6 @@
                 var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
-        }
-
-        private async Task<string> GetDocumentContent(string fileName)
-        {
-            string content = string.Empty;
-
-            var settings = new XmlReaderSettings
-            {
-                Async = true,
-                CloseInput = true,
-                DtdProcessing = DtdProcessing.Ignore,
-                IgnoreComments = true,
-                IgnoreProcessingInstructions = true,
-                IgnoreWhitespace = false,
-                CheckCharacters = false
-            };
-
-            using (XmlReader reader = XmlReader.Create(fileName, settings))
-            {
-                var transform = new XslCompiledTransform();
-                transform.Load(this.XslTansformFile);
-
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    transform.Transform(reader, null, memoryStream);
-                    memoryStream.Position = 0;
-                    var streamReader = new StreamReader(memoryStream);
-
-                    content = await streamReader.ReadToEndAsync();
-                }
-            }
-
-            return content;
-        }
-
-        private string GetFileNameById(int id)
-        {
-            string file = Directory.GetFiles(this.DataDirectory)
-                .FirstOrDefault(f => Path.GetFileName(f).GetHashCode() == id);
-
-            return file;
-        }
-
-        private IEnumerable<FileMetadataViewModel> GetFiles()
-        {
-            return Directory.GetFiles(this.DataDirectory)
-                .Select(f =>
-                {
-                    var fileInfo = new FileInfo(f);
-                    return new FileMetadataViewModel
-                    {
-                        FileName = Path.GetFileName(f),
-                        DateCreated = fileInfo.CreationTimeUtc,
-                        DateModified = fileInfo.LastWriteTime
-                    };
-                })
-                .OrderByDescending(i => i.DateModified)
-                .ToList();
         }
     }
 }

@@ -167,6 +167,7 @@
                 {
                     if (streamReader != null)
                     {
+                        // TODO: result = streamReader.ReadToEndAsync();
                         result = streamReader.ReadToEnd();
                     }
                 }
