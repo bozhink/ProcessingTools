@@ -423,6 +423,7 @@
     <Content Include="Areas\JournalsManagment\Views\Publishers\Details.cshtml" />
     <Content Include="Areas\JournalsManagment\Views\Publishers\Edit.cshtml" />
     <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
+    <Content Include="Views\Shared\InvalidAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

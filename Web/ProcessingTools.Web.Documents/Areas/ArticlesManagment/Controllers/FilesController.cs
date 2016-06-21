@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
@@ -51,7 +52,8 @@
         {
             if (Request?.Files == null || Request.Files.Count < 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No files selected.");
+                var error = new HandleErrorInfo(new HttpRequestValidationException("No files selected."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
             }
 
             try
@@ -59,7 +61,8 @@
                 var file = Request.Files[0];
                 if (file == null || file.ContentLength < 1)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid or empty file.");
+                    var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid or empty file."), ControllerName, nameof(this.Create));
+                    return this.View(ViewConstants.DefaultInvalidActionViewName, error);
                 }
 
                 var fileMetatadata = new XmlFileMetadataServiceModel
@@ -84,6 +87,12 @@
         // GET: File/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             try
             {
                 await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -106,6 +115,12 @@
         // GET: File/Details/5
         public async Task<ActionResult> Details(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             try
             {
                 var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -133,6 +148,12 @@
         // GET: File/Download/5
         public async Task<ActionResult> Download(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             try
             {
                 var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -152,18 +173,34 @@
         // GET: File/Edit/5
         public ActionResult Edit(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             // TODO
-            var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
-            return this.View(ViewConstants.DefaultErrorViewName, error);
+            {
+                var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // POST: File/Edit/5
         [HttpPost]
         public ActionResult Edit(string id, FormCollection collection)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             // TODO
-            var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
-            return this.View(ViewConstants.DefaultErrorViewName, error);
+            {
+                var error = new HandleErrorInfo(new NotImplementedException(), ControllerName, nameof(this.Edit));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // GET: File
@@ -196,6 +233,12 @@
         // GET: File/Preview/5
         public async Task<ActionResult> Preview(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var error = new HandleErrorInfo(new HttpRequestValidationException("Invalid id."), ControllerName, nameof(this.Create));
+                return this.View(ViewConstants.DefaultInvalidActionViewName, error);
+            }
+
             try
             {
                 var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
