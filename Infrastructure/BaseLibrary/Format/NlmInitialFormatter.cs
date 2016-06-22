@@ -114,7 +114,14 @@
 
         private void FormatOpenCloseTags()
         {
-            this.ProcessInlineElementWhiteSpaces("//source | //issue-title | //a | //b | //i | //u | //s | //sup | //sub | //monospace | //year | //month | //day | //volume | //fpage | //lpage");
+            this.ProcessInlineElementWhiteSpaces("//i");
+            this.ProcessInlineElementWhiteSpaces("//b");
+            this.ProcessInlineElementWhiteSpaces("//u");
+            this.ProcessInlineElementWhiteSpaces("//s | //strike");
+            this.ProcessInlineElementWhiteSpaces("//sup");
+            this.ProcessInlineElementWhiteSpaces("//sub");
+            this.ProcessInlineElementWhiteSpaces("//monospace");
+            this.ProcessInlineElementWhiteSpaces("//source | //issue-title | //year | //month | //day | //volume | //fpage | //lpage");
         }
 
         private void ProcessBlockElementWhiteSpaces(string xpath)
@@ -133,21 +140,28 @@
 
         private void ProcessInlineElementWhiteSpaces(string xpath)
         {
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-            {
-                bool beginsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\A\s+");
-                bool endsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\s+\Z");
-
-                if (beginsWithWhiteSpace || endsWithWhiteSpace)
+            this.XmlDocument
+                .SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
                 {
-                    node.InnerXml = node.InnerXml.Trim();
+                    bool beginsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\A\s+");
+                    bool endsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\s+\Z");
 
-                    var replacement = node.OwnerDocument.CreateDocumentFragment();
-                    replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
+                    if (beginsWithWhiteSpace || endsWithWhiteSpace)
+                    {
+                        lock (new object())
+                        {
+                            node.InnerXml = node.InnerXml.Trim();
 
-                    node.ParentNode.ReplaceChild(replacement, node);
-                }
-            }
+                            var replacement = node.OwnerDocument.CreateDocumentFragment();
+                            replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node?.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
+
+                            node?.ParentNode?.ReplaceChild(replacement, node);
+                        }
+                    }
+                });
         }
 
         private string BoldItalicSpaces(string xml)
