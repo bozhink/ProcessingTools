@@ -12,9 +12,9 @@
       <xsl:attribute name="id">
         <xsl:value-of select="generate-id()" />
       </xsl:attribute>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </article>
   </xsl:template>
 
@@ -24,111 +24,97 @@ Block elements
 
   <xsl:template match="front">
     <header>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </header>
   </xsl:template>
 
   <xsl:template match="front/article-meta/title-group/article-title">
     <h1>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </h1>
   </xsl:template>
 
   <xsl:template match="front/article-meta/contrib-group/contrib">
-    <div>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
-    </div>
+    <xsl:call-template name="process-node">
+      <xsl:with-param name="output-node-name" select="'div'" />
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="p">
     <p>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </p>
   </xsl:template>
 
   <xsl:template match="sec | ack | abstract | trans-abstract">
     <section>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </section>
   </xsl:template>
 
   <xsl:template match="*[count(ancestor::sec) = 0]/title">
     <h2>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </h2>
   </xsl:template>
 
   <xsl:template match="*[count(ancestor::sec) &gt; 0]/title">
     <h3>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </h3>
   </xsl:template>
 
   <xsl:template match="label">
     <h4>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </h4>
   </xsl:template>
 
   <xsl:template match="ref-list">
     <section>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@*" />
-      <xsl:apply-templates select="label | title" />
-      <xsl:apply-templates select="address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | p | def-list | list | tex-math | related-article | related-object | disp-quote | speech | statement | verse-group | comment()" />
-      <ul>
-        <xsl:apply-templates select="ref" />
-      </ul>
-      <xsl:apply-templates select="ref-list" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </section>
   </xsl:template>
 
   <xsl:template match="ref-list/ref">
-    <li>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
-    </li>
+    <ul>
+      <li>
+        <xsl:call-template name="process-inner-node">
+          <xsl:with-param name="output-node-name" select="'span'" />
+        </xsl:call-template>
+      </li>
+    </ul>
   </xsl:template>
 
   <xsl:template match="nlm-citation | mixed-citation | element-citation">
     <div>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </div>
   </xsl:template>
 
-  <xsl:template match="app-group">
+  <xsl:template match="app-group | app">
     <section>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
-    </section>
-  </xsl:template>
-
-  <xsl:template match="app">
-    <section>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </section>
   </xsl:template>
 
@@ -136,16 +122,16 @@ Block elements
     <xsl:choose>
       <xsl:when test="@list-type='order'">
         <ol type="1">
-          <xsl:call-template name="set-elem-name" />
-          <xsl:call-template name="set-default-class" />
-          <xsl:apply-templates select="@* | node()" />
+          <xsl:call-template name="process-inner-node">
+            <xsl:with-param name="output-node-name" select="'div'" />
+          </xsl:call-template>
         </ol>
       </xsl:when>
       <xsl:otherwise>
         <ul>
-          <xsl:call-template name="set-elem-name" />
-          <xsl:call-template name="set-default-class" />
-          <xsl:apply-templates select="@* | node()" />
+          <xsl:call-template name="process-inner-node">
+            <xsl:with-param name="output-node-name" select="'div'" />
+          </xsl:call-template>
         </ul>
       </xsl:otherwise>
     </xsl:choose>
@@ -153,38 +139,42 @@ Block elements
 
   <xsl:template match="li | list-item">
     <li>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </li>
   </xsl:template>
 
   <xsl:template match="fig">
     <figure>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </figure>
   </xsl:template>
 
   <xsl:template match="fig/caption">
     <figcaption>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </figcaption>
   </xsl:template>
 
-  <!--<xsl:template match="fig/graphic">
-    <img src="{@xlink:href}">
-      <xsl:apply-templates select="@*" />
-      <xsl:apply-templates />
-    </img>
-  </xsl:template>-->
+  <xsl:template match="table | tr | td | th | thead | tbody | tfoot">
+    <xsl:element name="{name()}">
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
+    </xsl:element>
+  </xsl:template>
 
   <!--
 In-line elements
 -->
+
+  <!--%mixed-citation-elements-->
+  <!--(#PCDATA | bold | italic | monospace | overline | roman | sans-serif | sc | strike | underline | alternatives | inline-graphic | private-char | chem-struct | inline-formula | label | abbrev | milestone-end | milestone-start | named-content | styled-content | annotation | article-title | chapter-title | collab | comment | conf-date | conf-loc | conf-name | conf-sponsor | date | date-in-citation | day | edition | email | elocation-id | etal | ext-link | fpage | gov | institution | isbn | issn | issue | issue-id | issue-part | issue-title | lpage | month | name | object-id | page-range | part-title | patent | person-group | pub-id | publisher-loc | publisher-name | role | season | series | size | source | std | string-name | supplement | trans-source | trans-title | uri | volume | volume-id | volume-series | year | sub | sup)*-->
 
   <!-- %p-elements -->
   <!-- email | ext-link | uri | inline-supplementary-material | related-article
@@ -198,59 +188,75 @@ In-line elements
 		| named-content | styled-content | disp-quote | speech | statement | verse-group
 		| fn | target | xref | sub | sup -->
 
+  <xsl:template match="graphic | media | inline-graphic">
+    <a target="_blank" href="{@xlink:href}">
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="preformat">
+    <pre>
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
+    </pre>
+  </xsl:template>
+
   <xsl:template match="i | em | italic | Italic">
     <em>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </em>
   </xsl:template>
 
   <xsl:template match="b | bold | Bold | strong">
     <strong>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </strong>
   </xsl:template>
 
   <xsl:template match="u | underline">
     <u>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </u>
   </xsl:template>
 
   <xsl:template match="sub">
     <sub>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </sub>
   </xsl:template>
 
   <xsl:template match="sup">
     <sup>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </sup>
   </xsl:template>
 
   <xsl:template match="monospace">
     <kbd>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </kbd>
   </xsl:template>
 
   <xsl:template match="s | strike">
     <s>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </s>
   </xsl:template>
 
@@ -265,16 +271,16 @@ In-line elements
           <xsl:value-of select="normalize-space(@content-type)" />
         </xsl:if>
       </xsl:attribute>
-      <xsl:apply-templates select="node()" mode="inline" />
+      <xsl:apply-templates select="node()">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:apply-templates>
     </span>
   </xsl:template>
 
   <xsl:template match="styled-content">
-    <span>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
-    </span>
+    <xsl:call-template name="process-node">
+      <xsl:with-param name="output-node-name" select="'span'" />
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="br | break">
@@ -287,39 +293,49 @@ In-line elements
   <xsl:template match="xref">
     <a href="#{@rid}" class="xref {@ref-type}">
       <xsl:call-template name="set-elem-name" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:apply-templates select="@* | node()">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:apply-templates>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="target">
+    <a>
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </a>
   </xsl:template>
 
   <xsl:template match="abbrev">
     <abbr>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </abbr>
   </xsl:template>
 
   <xsl:template match="def | def/p">
     <span>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </span>
   </xsl:template>
 
   <xsl:template match="ext-link[@ext-link-type='uri']">
     <a target="_blank" href="{@xlink:href}">
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </a>
   </xsl:template>
 
   <xsl:template match="ext-link[@ext-link-type='doi']">
     <a target="_blank" href="http://dx.doi.org/{@xlink:href}">
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </a>
   </xsl:template>
 
@@ -329,7 +345,9 @@ Taxonomy
   <xsl:template match="tn | tp:taxon-name">
     <em class="taxon-name">
       <xsl:call-template name="set-elem-name" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:apply-templates select="@* | node()">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:apply-templates>
     </em>
   </xsl:template>
 
@@ -341,48 +359,47 @@ Taxonomy
         <xsl:value-of select="@taxon-name-part-type" />
       </xsl:attribute>
       <xsl:call-template name="set-elem-name" />
-      <xsl:apply-templates select="@* | node()" mode="inline" />
+      <xsl:apply-templates select="@* | node()" />
     </em>
   </xsl:template>
 
   <xsl:template match="tp:taxon-treatment">
     <section id="{generate-id()}">
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </section>
   </xsl:template>
 
   <xsl:template match="tp:nomenclature">
     <header>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </header>
   </xsl:template>
 
   <xsl:template match="tp:treatment-sec">
     <section>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </section>
   </xsl:template>
 
-
   <xsl:template match="tp:nomenclature-citation-list">
     <ul>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'div'" />
+      </xsl:call-template>
     </ul>
   </xsl:template>
 
   <xsl:template match="tp:nomenclature-citation">
     <li>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:call-template name="process-inner-node">
+        <xsl:with-param name="output-node-name" select="'span'" />
+      </xsl:call-template>
     </li>
   </xsl:template>
 </xsl:stylesheet>

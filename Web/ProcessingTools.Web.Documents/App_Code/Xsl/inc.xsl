@@ -14,26 +14,34 @@
   </xsl:template>
 
   <xsl:template match="@* | text() | comment()">
+    <xsl:param name="output-node-name" select="'div'" />
     <xsl:copy-of select="." />
   </xsl:template>
 
   <xsl:template match="*">
-    <div>
-      <xsl:call-template name="set-elem-name" />
-      <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()" />
-    </div>
+    <xsl:param name="output-node-name" select="'div'" />
+    <xsl:call-template name="process-node">
+      <xsl:with-param name="output-node-name" select="$output-node-name" />
+    </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="@* | text() | comment()" mode="inline">
-    <xsl:copy-of select="." />
-  </xsl:template>
-
-  <xsl:template match="*" mode="inline">
-    <div>
+  <xsl:template name="process-node">
+    <xsl:param name="output-node-name" select="'div'" />
+    <xsl:element name="{$output-node-name}">
       <xsl:call-template name="set-elem-name" />
       <xsl:call-template name="set-default-class" />
-      <xsl:apply-templates select="@* | node()"  mode="inline" />
-    </div>
+      <xsl:apply-templates select="@* | node()">
+        <xsl:with-param name="output-node-name" select="$output-node-name" />
+      </xsl:apply-templates>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template name="process-inner-node">
+    <xsl:param name="output-node-name" select="'div'" />
+    <xsl:call-template name="set-elem-name" />
+    <xsl:call-template name="set-default-class" />
+    <xsl:apply-templates select="@* | node()">
+      <xsl:with-param name="output-node-name" select="$output-node-name" />
+    </xsl:apply-templates>
   </xsl:template>
 </xsl:stylesheet>

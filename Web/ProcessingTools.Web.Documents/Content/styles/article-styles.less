@@ -7,6 +7,11 @@
 body {
 }
 
+li {
+    padding: 0;
+    margin: 0;
+}
+
 main {
     min-width: 50px;
     max-width: 1200px;
@@ -55,9 +60,10 @@ abbr {
     }
 }
 
-
-
 section {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+
     &.treatment-sec {
         padding-left: @treatment-sec-padding;
     }
@@ -70,6 +76,7 @@ section {
 
     p {
         font-size: 1em;
+        text-align: justify;
     }
 }
 
@@ -93,6 +100,172 @@ table-wrap[content-type='key'] {
             :nth-child(3) {
                 min-width: 20%;
                 max-height: 40%;
+            }
+        }
+    }
+}
+
+h4.label {
+    color: black;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+}
+
+.front {
+    .journal-title-group, .journal-title, .abbrev-journal-title {
+        display: none;
+    }
+
+    .journal-meta {
+        display: block;
+        margin: 1em 0 1em 0;
+        padding: 5px;
+        border: 1px solid black;
+
+        .journal-id, .issn {
+            display: inline-block;
+        }
+    }
+
+    .article-meta {
+        .article-id:before {
+            content: 'doi: ';
+        }
+
+        .article-categories {
+            .subj-group {
+                margin-top: 1em;
+                margin-bottom: 1em;
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 5px;
+                text-align: center;
+                width: 150px;
+                min-width: 150px;
+                max-width: 150px;
+            }
+        }
+
+        .contrib-group {
+            .contrib {
+                display: inline-block;
+
+                .name {
+                    display: inline-block;
+
+                    .surname, .given-names {
+                        display: inline;
+                    }
+                }
+
+                .xref {
+                    display: inline-block;
+                    position: relative;
+                    top: -0.5em;
+                    font-size: 80%;
+                }
+            }
+        }
+
+        .aff {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+
+            .label {
+                display: inline;
+                position: relative;
+                top: -0.5em;
+                font-size: 80%;
+            }
+
+            .addr-line {
+                display: inline;
+            }
+        }
+
+        .kwd {
+            display: inline;
+
+            &:after {
+                content: ', ';
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+
+        > .pub-date[pub-type='collection'] {
+            display: none;
+        }
+
+        > .pub-date[pub-type='epub'] {
+            display: inline-block;
+
+            &:before {
+                content: ' | Date published: '
+            }
+
+            .day, .month, .year {
+                display: inline;
+            }
+        }
+
+        > .volume, > .issue, > .fpage, > .lpage, > .elocation-id {
+            display: inline-block;
+
+            &:before {
+                content: ' | ';
+            }
+        }
+
+        > .history {
+            display: inline-block;
+
+            .date {
+                display: inline-block;
+
+                &:before {
+                    content: ' | Date ' attr(date-type) ': ';
+                }
+
+                &:last-child:after {
+                    content: ' |';
+                }
+
+                .day, .month, .year {
+                    display: inline;
+                }
+            }
+        }
+
+        > .permissions {
+            margin-top: 1.1em;
+            margin-bottom: 1.1em;
+            color: #777;
+        }
+    }
+
+    .notes {
+        color: #777;
+    }
+}
+
+.supplementary-material {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+}
+
+.mixed-citation {
+    .person-group {
+        .name {
+            &:after {
+                content: ', ';
+            }
+
+            &:last-child:after {
+                content: ''
             }
         }
     }
