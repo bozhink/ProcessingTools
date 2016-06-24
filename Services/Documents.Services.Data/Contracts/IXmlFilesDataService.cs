@@ -3,6 +3,7 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml;
 
     using Models;
 
@@ -12,12 +13,14 @@
 
         Task<object> Create(object userId, object articleId, XmlFileMetadataServiceModel fileMetadata, Stream inputStream);
 
-        Task<object> Create(object userId, object articleId, XmlFileDetailsServiceModel file);
-
         Task<object> Delete(object userId, object articleId, object fileId);
 
-        Task<XmlFileDetailsServiceModel> Get(object userId, object articleId, object fileId);
+        Task<XmlFileMetadataServiceModel> Get(object userId, object articleId, object fileId);
 
-        Task<object> Update(object userId, object articleId, XmlFileDetailsServiceModel file);
+        Task<XmlReader> GetReader(object userId, object articleId, object fileId);
+
+        Task<Stream> GetStream(object userId, object articleId, object fileId);
+
+        Task<object> Update(object userId, object articleId, XmlFileMetadataServiceModel file, string content);
     }
 }

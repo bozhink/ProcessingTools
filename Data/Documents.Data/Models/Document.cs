@@ -22,11 +22,17 @@
 
         public long ContentLength { get; set; }
 
+        public long OriginalContentLength { get; set; }
+
         [Required]
         [Index(IsUnique = true)]
         [MinLength(ValidationConstants.LengthOfDocumentFileName)]
         [MaxLength(ValidationConstants.LengthOfDocumentFileName)]
         public string FileName { get; set; }
+
+        [Required]
+        [MaxLength(ValidationConstants.MaximalLengthOfDocumentOriginalFileName)]
+        public string OriginalFileName { get; set; }
 
         [MaxLength(ValidationConstants.LengthOfDocumentFileExtension)]
         public string FileExtension { get; set; }

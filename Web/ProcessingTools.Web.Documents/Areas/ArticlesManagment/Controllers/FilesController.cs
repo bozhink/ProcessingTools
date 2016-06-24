@@ -9,7 +9,6 @@
 
     using Microsoft.AspNet.Identity;
 
-    using ProcessingTools.Common;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
@@ -129,17 +128,22 @@
 
             try
             {
-                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                if (document == null)
+                {
+                    this.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    return this.View(ViewConstants.DefaultNotFaoundViewName);
+                }
 
                 var model = new FileMetadataViewModel
                 {
                     Id = id,
-                    FileName = file.FileName,
-                    FileExtension = file.FileExtension.Trim('.'),
-                    ContentType = file.ContentType,
-                    ContentLength = file.ContentLength,
-                    DateCreated = file.DateCreated,
-                    DateModified = file.DateModified
+                    FileName = document.FileName,
+                    FileExtension = document.FileExtension,
+                    ContentType = document.ContentType,
+                    ContentLength = document.ContentLength,
+                    DateCreated = document.DateCreated,
+                    DateModified = document.DateModified
                 };
 
                 return this.View(model);
@@ -163,12 +167,18 @@
 
             try
             {
-                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
-                var bytes = Defaults.DefaultEncoding.GetBytes(file.Content);
+                var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                if (document == null)
+                {
+                    this.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    return this.View(ViewConstants.DefaultNotFaoundViewName);
+                }
+
+                var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
                 return this.File(
-                    fileContents: bytes,
-                    contentType: file.ContentType,
-                    fileDownloadName: $"{file.FileName.Trim('.')}.{file.FileExtension.Trim('.')}");
+                    fileStream: stream,
+                    contentType: document.ContentType,
+                    fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
             }
             catch (Exception e)
             {
@@ -244,12 +254,13 @@
 
             try
             {
-                var file = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+                var content = (await this.service.GetReader(User.Identity.GetUserId(), this.fakeArticleId, id))
+                    .ApplyXslTransform(this.XslTansformFile);
 
                 var model = new FileDetailsViewModel
                 {
                     Id = id,
-                    Content = file.Content.ApplyXslTransform(this.XslTansformFile)
+                    Content = content
                 };
 
                 return this.View(model);

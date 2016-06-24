@@ -25,6 +25,7 @@
         public const int MaximalLengthOfArticleTitle = 200;
         public const int MaximalLengthOfArticleELocationId = 10;
 
+        public const int MaximalLengthOfDocumentOriginalFileName = 255;
         public const int LengthOfDocumentFileName = 50;
         public const int LengthOfDocumentFileExtension = 15;
 
