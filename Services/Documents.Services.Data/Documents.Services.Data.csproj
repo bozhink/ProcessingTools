@@ -47,7 +47,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IPublishersDataService.cs" />
     <Compile Include="Contracts\IXmlFilesDataService.cs" />
-    <Compile Include="Models\XmlFileMetadataServiceModel.cs" />
+    <Compile Include="Models\DocumentServiceModel.cs" />
     <Compile Include="Models\JournalServiceModel.cs" />
     <Compile Include="Models\PublisherServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class XmlFileMetadataServiceModel
+    public class DocumentServiceModel
     {
-        public XmlFileMetadataServiceModel()
+        public DocumentServiceModel()
         {
             this.Id = Guid.NewGuid().ToString();
             this.DateCreated = DateTime.UtcNow;

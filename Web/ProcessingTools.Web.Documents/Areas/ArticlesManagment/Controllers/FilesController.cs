@@ -67,7 +67,7 @@
                     return this.View(InvalidOrEmptyFileErrorViewName);
                 }
 
-                var fileMetatadata = new XmlFileMetadataServiceModel
+                var fileMetatadata = new DocumentServiceModel
                 {
                     FileName = Path.GetFileNameWithoutExtension(file.FileName),
                     FileExtension = Path.GetExtension(file.FileName),

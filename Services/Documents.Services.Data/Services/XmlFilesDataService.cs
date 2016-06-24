@@ -56,7 +56,7 @@
             }
         }
 
-        public async Task<IQueryable<XmlFileMetadataServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {
@@ -86,7 +86,7 @@
                 .OrderByDescending(d => d.DateModified)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(d => new XmlFileMetadataServiceModel
+                .Select(d => new DocumentServiceModel
                 {
                     Id = d.Id.ToString(),
                     FileName = d.OriginalFileName,
@@ -103,7 +103,7 @@
             return files.AsQueryable();
         }
 
-        public async Task<object> Create(object userId, object articleId, XmlFileMetadataServiceModel file, Stream inputStream)
+        public async Task<object> Create(object userId, object articleId, DocumentServiceModel file, Stream inputStream)
         {
             if (userId == null)
             {
@@ -184,10 +184,10 @@
             return fileId;
         }
 
-        public async Task<XmlFileMetadataServiceModel> Get(object userId, object articleId, object fileId)
+        public async Task<DocumentServiceModel> Get(object userId, object articleId, object fileId)
         {
             var document = await this.GetDocument(userId, articleId, fileId);
-            return new XmlFileMetadataServiceModel
+            return new DocumentServiceModel
             {
                 Id = document.Id.ToString(),
                 ContentLength = document.ContentLength,
@@ -211,7 +211,7 @@
             return this.xmlFileReaderWriter.ReadToStream(document.FileName, this.DataDirectory);
         }
 
-        public async Task<object> Update(object userId, object articleId, XmlFileMetadataServiceModel file, string content)
+        public async Task<object> Update(object userId, object articleId, DocumentServiceModel file, string content)
         {
             if (userId == null)
             {

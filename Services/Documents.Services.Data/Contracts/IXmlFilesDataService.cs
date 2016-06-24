@@ -9,18 +9,18 @@
 
     public interface IXmlFilesDataService
     {
-        Task<IQueryable<XmlFileMetadataServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
+        Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
 
-        Task<object> Create(object userId, object articleId, XmlFileMetadataServiceModel fileMetadata, Stream inputStream);
+        Task<object> Create(object userId, object articleId, DocumentServiceModel fileMetadata, Stream inputStream);
 
         Task<object> Delete(object userId, object articleId, object fileId);
 
-        Task<XmlFileMetadataServiceModel> Get(object userId, object articleId, object fileId);
+        Task<DocumentServiceModel> Get(object userId, object articleId, object fileId);
 
         Task<XmlReader> GetReader(object userId, object articleId, object fileId);
 
         Task<Stream> GetStream(object userId, object articleId, object fileId);
 
-        Task<object> Update(object userId, object articleId, XmlFileMetadataServiceModel file, string content);
+        Task<object> Update(object userId, object articleId, DocumentServiceModel file, string content);
     }
 }
