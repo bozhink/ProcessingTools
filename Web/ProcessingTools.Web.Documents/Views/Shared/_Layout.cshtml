@@ -13,26 +13,38 @@
     <meta name="description" content="The description of my page" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: new { @class = "navbar-brand" })
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink(nameof(ProcessingTools), "Index", "Home", routeValues: new { area = "" }, htmlAttributes: new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Files", "Index", "Files", routeValues: new { area = "ArticlesManagment" }, htmlAttributes: null)</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                        }
+                        <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                    <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
+        </nav>
+    </header>
     <div class="container body-content">
         @RenderBody()
         <hr />
