@@ -19,14 +19,14 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.FileSystem.Contracts;
 
-    public class XmlFilesDataService : IXmlFilesDataService
+    public class DocumentsDataService : IDocumentsDataService
     {
         private const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";
 
         private readonly IDocumentsRepositoryProvider<Document> repositoryProvider;
         private readonly IXmlFileReaderWriter xmlFileReaderWriter;
 
-        public XmlFilesDataService(IDocumentsRepositoryProvider<Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
+        public DocumentsDataService(IDocumentsRepositoryProvider<Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
         {
             if (repositoryProvider == null)
             {

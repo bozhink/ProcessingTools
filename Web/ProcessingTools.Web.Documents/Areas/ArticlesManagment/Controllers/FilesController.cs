@@ -23,12 +23,12 @@
         private const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";
         private const string NullIdErrorViewName = "NullIdError";
 
-        private readonly IXmlFilesDataService service;
+        private readonly IDocumentsDataService service;
 
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
 
-        public FilesController(IXmlFilesDataService filesDataService)
+        public FilesController(IDocumentsDataService filesDataService)
         {
             if (filesDataService == null)
             {

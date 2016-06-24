@@ -7,7 +7,7 @@
 
     using Models;
 
-    public interface IXmlFilesDataService
+    public interface IDocumentsDataService
     {
         Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
 
