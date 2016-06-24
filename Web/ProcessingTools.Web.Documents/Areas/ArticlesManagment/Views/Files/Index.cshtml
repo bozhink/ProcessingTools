@@ -8,49 +8,103 @@
     ViewBag.Title = "List of Files";
 }
 
-<h2>List of Files</h2>
+<main>
+    <h2>List of Files</h2>
 
-<p>
-    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Create))
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FileName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Create))
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateModified)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateModified)
+                    </td>
+                    <td>
+                        @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                        @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                        @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                        @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
 
-    @foreach (var item in Model)
+@{
+    long pageNumber = ViewBag.PageNumber;
+    long itemsPerPage = ViewBag.NumberOfItemsPerPage;
+    long lastPage = ViewBag.NumberOfPages - 1;
+
+    if (lastPage > 0)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FileName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>
-            <td>
-                @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
-                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
-                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
-                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
-                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
-            </td>
-        </tr>
-    }
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
 
-</table>
+                    <ul class="nav navbar-nav">
+                        <li class="page-selector">
+                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = 0, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
+                        </li>
+
+                        <li class="page-selector">
+                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = (pageNumber == 0 ? pageNumber : pageNumber - 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
+                        </li>
+
+                        @for (long i = 0; i < ViewBag.NumberOfPages; ++i)
+                        {
+                            if (i == pageNumber)
+                            {
+                                <li class="active">
+                                    @Html.ActionLink((i + 1).ToString(), nameof(FilesController.Index), new { p = i, n = itemsPerPage })
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink((i + 1).ToString(), nameof(FilesController.Index), new { p = i, n = itemsPerPage })
+                                </li>
+                            }
+                        }
+
+                        <li class="page-selector">
+                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = (pageNumber == lastPage ? pageNumber : pageNumber + 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
+                        </li>
+
+                        <li class="page-selector">
+                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = lastPage, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+}

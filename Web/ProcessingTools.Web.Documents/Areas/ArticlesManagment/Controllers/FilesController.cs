@@ -19,6 +19,9 @@
     [Authorize]
     public class FilesController : Controller
     {
+        private const int DefaultPageNumber = 0;
+        private const int DefaultNumberOfItemsPerPage = 20;
+
         private const string NoFilesSelectedErrorViewName = "NoFilesSelectedError";
         private const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";
         private const string NullIdErrorViewName = "NullIdError";
@@ -216,24 +219,38 @@
         }
 
         // GET: Files
-        public async Task<ActionResult> Index()
+        /// <summary>
+        /// Index of file list.
+        /// </summary>
+        /// <param name="p">Page number.</param>
+        /// <param name="n">Number of items per page.</param>
+        /// <returns></returns>
+        public async Task<ActionResult> Index(int? p, int? n)
         {
             try
             {
-                int pageNumber = 0;
-                int itemsPerPage = 20;
+                int pageNumber = p ?? DefaultPageNumber;
+                int itemsPerPage = n ?? DefaultNumberOfItemsPerPage;
 
-                var files = (await this.service.All(User.Identity.GetUserId(), this.fakeArticleId, pageNumber, itemsPerPage))
-                    .Select(f => new FileMetadataViewModel
+                var userId = User.Identity.GetUserId();
+
+                var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
+
+                var documents = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
+                    .Select(d => new FileMetadataViewModel
                     {
-                        Id = f.Id,
-                        FileName = f.FileName,
-                        DateCreated = f.DateCreated,
-                        DateModified = f.DateModified
+                        Id = d.Id,
+                        FileName = d.FileName,
+                        DateCreated = d.DateCreated,
+                        DateModified = d.DateModified
                     })
                     .ToList();
 
-                return this.View(files);
+                this.ViewBag.PageNumber = pageNumber;
+                this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
+                this.ViewBag.NumberOfPages = numberOfDocuments / itemsPerPage + 1;
+
+                return this.View(documents);
             }
             catch (Exception e)
             {
