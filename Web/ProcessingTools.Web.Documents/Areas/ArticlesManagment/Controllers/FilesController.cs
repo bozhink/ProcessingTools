@@ -138,7 +138,7 @@
                     return this.View(ViewConstants.DefaultNotFaoundViewName);
                 }
 
-                var model = new FileMetadataViewModel
+                var model = new DocumentViewModel
                 {
                     Id = id,
                     FileName = document.FileName,
@@ -237,7 +237,7 @@
                 var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
 
                 var documents = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
-                    .Select(d => new FileMetadataViewModel
+                    .Select(d => new DocumentViewModel
                     {
                         Id = d.Id,
                         FileName = d.FileName,
@@ -274,7 +274,7 @@
                 var content = (await this.service.GetReader(User.Identity.GetUserId(), this.fakeArticleId, id))
                     .ApplyXslTransform(this.XslTansformFile);
 
-                var model = new FileDetailsViewModel
+                var model = new DocumentDetailsViewModel
                 {
                     Id = id,
                     Content = content

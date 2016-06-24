@@ -262,8 +262,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
     <Compile Include="Areas\ArticlesManagment\Controllers\FilesController.cs" />
-    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\FileDetailsViewModel.cs" />
-    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\FileMetadataViewModel.cs" />
+    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentDetailsViewModel.cs" />
+    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />

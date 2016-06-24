@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class FileMetadataViewModel
+    public class DocumentViewModel
     {
         public string Id { get; set; }
 

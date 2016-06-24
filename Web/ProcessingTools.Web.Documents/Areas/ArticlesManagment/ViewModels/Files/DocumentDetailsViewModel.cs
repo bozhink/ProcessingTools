@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.ArticlesManagment.ViewModels.Files
 {
-    public class FileDetailsViewModel : FileMetadataViewModel
+    public class DocumentDetailsViewModel : DocumentViewModel
     {
         public string Content { get; set; }
     }
