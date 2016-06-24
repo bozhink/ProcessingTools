@@ -70,15 +70,15 @@
                     return this.View(InvalidOrEmptyFileErrorViewName);
                 }
 
-                var fileMetatadata = new DocumentServiceModel
+                var document = new DocumentServiceModel
                 {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName),
-                    FileExtension = Path.GetExtension(file.FileName),
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                    FileExtension = Path.GetExtension(file.FileName).Trim('.'),
                     ContentLength = file.ContentLength,
                     ContentType = file.ContentType
                 };
 
-                await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, fileMetatadata, file.InputStream);
+                await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, document, file.InputStream);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
                 return this.RedirectToAction(nameof(this.Index));
