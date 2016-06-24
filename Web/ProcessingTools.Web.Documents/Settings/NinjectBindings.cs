@@ -23,6 +23,13 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.FileSystem.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }
