@@ -11,6 +11,8 @@
     {
         Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
 
+        Task<long> Count(object userId, object articleId);
+
         Task<object> Create(object userId, object articleId, DocumentServiceModel fileMetadata, Stream inputStream);
 
         Task<object> Delete(object userId, object articleId, object fileId);

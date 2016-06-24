@@ -103,6 +103,30 @@
             return files.AsQueryable();
         }
 
+        public async Task<long> Count(object userId, object articleId)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            long count = (await repository.All())
+                .Where(d => d.CreatedByUserId == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .Count();
+
+            repository.TryDispose();
+
+            return count;
+        }
+
         public async Task<object> Create(object userId, object articleId, DocumentServiceModel file, Stream inputStream)
         {
             if (userId == null)
