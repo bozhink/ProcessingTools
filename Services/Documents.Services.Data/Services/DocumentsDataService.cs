@@ -80,7 +80,7 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var files = (await repository.All())
+            var documents = (await repository.All())
                 .Where(d => d.CreatedByUserId == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .OrderByDescending(d => d.DateModified)
@@ -100,7 +100,7 @@
 
             repository.TryDispose();
 
-            return files.AsQueryable();
+            return documents.AsQueryable();
         }
 
         public async Task<long> Count(object userId, object articleId)
@@ -127,7 +127,7 @@
             return count;
         }
 
-        public async Task<object> Create(object userId, object articleId, DocumentServiceModel file, Stream inputStream)
+        public async Task<object> Create(object userId, object articleId, DocumentServiceModel document, Stream inputStream)
         {
             if (userId == null)
             {
@@ -139,9 +139,9 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            if (file == null)
+            if (document == null)
             {
-                throw new ArgumentNullException(nameof(file));
+                throw new ArgumentNullException(nameof(document));
             }
 
             if (inputStream == null)
@@ -149,32 +149,32 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePath(file.FileName, this.DataDirectory, ValidationConstants.LengthOfDocumentFileName);
+            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ValidationConstants.LengthOfDocumentFileName);
 
-            var document = new Document
+            var entity = new Document
             {
-                OriginalFileName = file.FileName,
-                OriginalContentLength = file.ContentLength,
-                ContentType = file.ContentType,
-                FileExtension = file.FileExtension,
+                OriginalFileName = document.FileName,
+                OriginalContentLength = document.ContentLength,
+                ContentType = document.ContentType,
+                FileExtension = document.FileExtension,
                 CreatedByUserId = userId.ToString(),
                 ModifiedByUserId = userId.ToString()
             };
 
             var repository = this.repositoryProvider.Create();
 
-            document.FileName = Path.GetFileNameWithoutExtension(path);
-            document.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, document.FileName, this.DataDirectory);
+            entity.FileName = Path.GetFileNameWithoutExtension(path);
+            entity.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, entity.FileName, this.DataDirectory);
 
-            await repository.Add(document);
+            await repository.Add(entity);
             await repository.SaveChanges();
 
             repository.TryDispose();
 
-            return document.ContentLength;
+            return entity.ContentLength;
         }
 
-        public async Task<object> Delete(object userId, object articleId, object fileId)
+        public async Task<object> Delete(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -186,56 +186,56 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            if (fileId == null)
+            if (documentId == null)
             {
-                throw new ArgumentNullException(nameof(fileId));
+                throw new ArgumentNullException(nameof(documentId));
             }
 
             var repository = this.repositoryProvider.Create();
 
-            var document = (await repository.All())
+            var entity = (await repository.All())
                 .Where(d => d.CreatedByUserId == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == fileId.ToString());
+                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
 
-            await this.xmlFileReaderWriter.Delete(document.FileName, this.DataDirectory);
+            await this.xmlFileReaderWriter.Delete(entity.FileName, this.DataDirectory);
 
-            await repository.Delete(entity: document);
+            await repository.Delete(entity: entity);
             await repository.SaveChanges();
 
             repository.TryDispose();
 
-            return fileId;
+            return documentId;
         }
 
-        public async Task<DocumentServiceModel> Get(object userId, object articleId, object fileId)
+        public async Task<DocumentServiceModel> Get(object userId, object articleId, object documentId)
         {
-            var document = await this.GetDocument(userId, articleId, fileId);
+            var entity = await this.GetDocument(userId, articleId, documentId);
             return new DocumentServiceModel
             {
-                Id = document.Id.ToString(),
-                ContentLength = document.ContentLength,
-                ContentType = document.ContentType,
-                DateCreated = document.DateCreated,
-                DateModified = document.DateModified,
-                FileExtension = document.FileExtension.Trim('.'),
-                FileName = document.OriginalFileName
+                Id = entity.Id.ToString(),
+                ContentLength = entity.ContentLength,
+                ContentType = entity.ContentType,
+                DateCreated = entity.DateCreated,
+                DateModified = entity.DateModified,
+                FileExtension = entity.FileExtension.Trim('.'),
+                FileName = entity.OriginalFileName
             };
         }
 
-        public async Task<XmlReader> GetReader(object userId, object articleId, object fileId)
+        public async Task<XmlReader> GetReader(object userId, object articleId, object documentId)
         {
-            var document = await this.GetDocument(userId, articleId, fileId);
-            return this.xmlFileReaderWriter.GetXmlReader(document.FileName, this.DataDirectory);
+            var entity = await this.GetDocument(userId, articleId, documentId);
+            return this.xmlFileReaderWriter.GetXmlReader(entity.FileName, this.DataDirectory);
         }
 
-        public async Task<Stream> GetStream(object userId, object articleId, object fileId)
+        public async Task<Stream> GetStream(object userId, object articleId, object documentId)
         {
-            var document = await this.GetDocument(userId, articleId, fileId);
-            return this.xmlFileReaderWriter.ReadToStream(document.FileName, this.DataDirectory);
+            var entity = await this.GetDocument(userId, articleId, documentId);
+            return this.xmlFileReaderWriter.ReadToStream(entity.FileName, this.DataDirectory);
         }
 
-        public async Task<object> Update(object userId, object articleId, DocumentServiceModel file, string content)
+        public async Task<object> Update(object userId, object articleId, DocumentServiceModel document, string content)
         {
             if (userId == null)
             {
@@ -247,35 +247,35 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            if (file == null)
+            if (document == null)
             {
-                throw new ArgumentNullException(nameof(file));
+                throw new ArgumentNullException(nameof(document));
             }
 
             var repository = this.repositoryProvider.Create();
 
-            var document = (await repository.All())
+            var entity = (await repository.All())
                 .Where(d => d.CreatedByUserId == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == file.Id);
+                .FirstOrDefault(d => d.Id.ToString() == document.Id);
 
             using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(content)))
             {
-                document.ContentLength = await this.xmlFileReaderWriter.Write(stream, document.FileName, this.DataDirectory);
-                document.ModifiedByUserId = userId.ToString();
-                document.DateModified = DateTime.UtcNow;
-                document.ContentType = file.ContentType;
+                entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FileName, this.DataDirectory);
+                entity.ModifiedByUserId = userId.ToString();
+                entity.DateModified = DateTime.UtcNow;
+                entity.ContentType = document.ContentType;
             }
 
-            await repository.Update(entity: document);
+            await repository.Update(entity: entity);
             await repository.SaveChanges();
 
             repository.TryDispose();
 
-            return document.ContentLength;
+            return entity.ContentLength;
         }
 
-        private async Task<Document> GetDocument(object userId, object articleId, object fileId)
+        private async Task<Document> GetDocument(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -287,21 +287,21 @@
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            if (fileId == null)
+            if (documentId == null)
             {
-                throw new ArgumentNullException(nameof(fileId));
+                throw new ArgumentNullException(nameof(documentId));
             }
 
             var repository = this.repositoryProvider.Create();
 
-            var document = (await repository.All())
+            var entity = (await repository.All())
                 .Where(d => d.CreatedByUserId == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == fileId.ToString());
+                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
 
             repository.TryDispose();
 
-            return document;
+            return entity;
         }
     }
 }

@@ -13,16 +13,16 @@
 
         Task<long> Count(object userId, object articleId);
 
-        Task<object> Create(object userId, object articleId, DocumentServiceModel fileMetadata, Stream inputStream);
+        Task<object> Create(object userId, object articleId, DocumentServiceModel document, Stream inputStream);
 
-        Task<object> Delete(object userId, object articleId, object fileId);
+        Task<object> Delete(object userId, object articleId, object documentId);
 
-        Task<DocumentServiceModel> Get(object userId, object articleId, object fileId);
+        Task<DocumentServiceModel> Get(object userId, object articleId, object documentId);
 
-        Task<XmlReader> GetReader(object userId, object articleId, object fileId);
+        Task<XmlReader> GetReader(object userId, object articleId, object documentId);
 
-        Task<Stream> GetStream(object userId, object articleId, object fileId);
+        Task<Stream> GetStream(object userId, object articleId, object documentId);
 
-        Task<object> Update(object userId, object articleId, DocumentServiceModel file, string content);
+        Task<object> Update(object userId, object articleId, DocumentServiceModel document, string content);
     }
 }
