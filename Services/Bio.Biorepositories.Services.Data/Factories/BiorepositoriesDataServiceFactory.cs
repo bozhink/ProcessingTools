@@ -40,7 +40,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

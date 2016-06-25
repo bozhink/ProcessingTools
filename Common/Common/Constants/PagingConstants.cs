@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Common.Constants
 {
-    public sealed class DefaultPagingConstants
+    public sealed class PagingConstants
     {
         public const int DefaultNumberOfTopItemsToSelect = 10;
         public const string DefaultTakeString = "10";

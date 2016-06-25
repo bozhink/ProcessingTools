@@ -14,7 +14,7 @@
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {
-        private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
+        private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
 
         private readonly ITypeStatusDataService service;
 

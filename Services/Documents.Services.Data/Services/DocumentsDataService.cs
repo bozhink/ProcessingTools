@@ -73,7 +73,7 @@
                 throw new InvalidPageNumberException();
             }
 
-            if (1 > itemsPerPage || itemsPerPage > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            if (1 > itemsPerPage || itemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }

@@ -17,7 +17,7 @@
         where TDataServiceModel : INamedDataServiceModel
         where TDataService : IMultiEntryDataService<TDataServiceModel>
     {
-        private const int NumberOfItemsToTake = DefaultPagingConstants.MaximalItemsPerPageAllowed;
+        private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
 
         private TDataService service;
 

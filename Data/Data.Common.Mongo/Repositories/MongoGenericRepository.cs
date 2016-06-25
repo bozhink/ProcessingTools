@@ -118,7 +118,7 @@
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending)
         {
             if (filter == null)
@@ -136,7 +136,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (1 > take || take > DefaultPagingConstants.MaximalItemsPerPageAllowed)
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }
@@ -167,7 +167,7 @@
             Expression<Func<TEntity, T>> projection,
             Expression<Func<TEntity, object>> sort,
             int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending)
         {
             if (projection == null)

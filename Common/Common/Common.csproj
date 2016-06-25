@@ -38,7 +38,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Constants\Assemblies.cs" />
     <Compile Include="Constants\ConcurrencyConstants.cs" />
-    <Compile Include="Constants\DefaultPagingConstants.cs" />
+    <Compile Include="Constants\PagingConstants.cs" />
     <Compile Include="Constants\ProcessingConstants.cs" />
     <Compile Include="Constants\XPathConstants.cs" />
     <Compile Include="Defaults.cs" />

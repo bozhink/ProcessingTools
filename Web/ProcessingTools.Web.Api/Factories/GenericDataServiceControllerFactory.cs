@@ -69,7 +69,7 @@
             return this.Ok(result);
         }
 
-        public async Task<IHttpActionResult> GetPaged(string skip, string take = DefaultPagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetPaged(string skip, string take = PagingConstants.DefaultTakeString)
         {
             int skipItemsCount;
             if (!int.TryParse(skip, out skipItemsCount))

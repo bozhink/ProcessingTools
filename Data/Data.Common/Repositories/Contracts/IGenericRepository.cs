@@ -15,7 +15,7 @@
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending);
 
         Task<IQueryable<T>> Query<T>(
@@ -23,7 +23,7 @@
             Expression<Func<TEntity, T>> projection,
             Expression<Func<TEntity, object>> sort,
             int skip = 0,
-            int take = DefaultPagingConstants.DefaultNumberOfTopItemsToSelect,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending);
 
         Task<TEntity> Get(object id);

@@ -24,7 +24,7 @@
             this.service = service;
         }
 
-        public async Task<IHttpActionResult> GetEnvoTerms(string skip = "0", string take = DefaultPagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetEnvoTerms(string skip = "0", string take = PagingConstants.DefaultTakeString)
         {
             int skipItemsCount;
             if (!int.TryParse(skip, out skipItemsCount))
