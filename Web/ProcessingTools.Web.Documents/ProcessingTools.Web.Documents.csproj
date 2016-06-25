@@ -272,13 +272,9 @@
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
-    <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
-    <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
-    <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Areas\JournalsManagment\Controllers\PublishersController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -345,8 +341,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\JournalsManagment\Views\web.config" />
-    <Content Include="Areas\JournalsManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\web.config" />
     <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
@@ -424,11 +418,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Create.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Delete.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Details.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Edit.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
     <Content Include="Views\Shared\InvalidAction.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
@@ -439,7 +428,6 @@
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
-    <Folder Include="Areas\JournalsManagment\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
