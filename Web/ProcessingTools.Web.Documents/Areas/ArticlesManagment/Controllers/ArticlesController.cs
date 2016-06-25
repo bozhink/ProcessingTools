@@ -10,6 +10,7 @@
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
 
+    [Authorize]
     public class ArticlesController : Controller
     {
         private readonly DocumentsDbContext db;
@@ -62,7 +63,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Title,DateReceived,DateAccepted,DatePublished,Volume,Issue,FirstPage,LastPage,ELocationId,JournalId,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Article article)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 article.Id = Guid.NewGuid();
                 this.db.Articles.Add(article);
@@ -99,7 +100,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Title,DateReceived,DateAccepted,DatePublished,Volume,Issue,FirstPage,LastPage,ELocationId,JournalId,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Article article)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.db.Entry(article).State = EntityState.Modified;
                 await this.db.SaveChangesAsync();
