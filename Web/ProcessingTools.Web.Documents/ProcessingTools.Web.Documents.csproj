@@ -265,7 +265,6 @@
     <Compile Include="Areas\ArticlesManagment\Controllers\FilesController.cs" />
     <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentDetailsViewModel.cs" />
     <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentViewModel.cs" />
-    <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
@@ -348,8 +347,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\JournalsManagment\Views\web.config" />
     <Content Include="Areas\JournalsManagment\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\AuthorsManagment\Views\web.config" />
-    <Content Include="Areas\AuthorsManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\web.config" />
     <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
@@ -438,9 +435,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
-    <Folder Include="Areas\AuthorsManagment\Controllers\" />
-    <Folder Include="Areas\AuthorsManagment\Models\" />
-    <Folder Include="Areas\AuthorsManagment\Views\Shared\" />
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
