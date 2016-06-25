@@ -21,6 +21,7 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfArticleTitle)]
         public string Title { get; set; }
 

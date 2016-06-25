@@ -9,8 +9,6 @@
 
     public class Journal : DocumentsAbstractEntity
     {
-        private string journalId;
-
         private ICollection<Article> articles;
 
         public Journal()
@@ -22,31 +20,17 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfJournalName)]
         public string Name { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedJournalName)]
         public string AbbreviatedName { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfJournalId)]
-        public string JournalId
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(this.journalId))
-                {
-                    return this.AbbreviatedName;
-                }
-
-                return this.journalId;
-            }
-
-            set
-            {
-                this.journalId = value;
-            }
-        }
+        public string JournalId { get; set; }
 
         [MaxLength(ValidationConstants.IssnLength)]
         public string PrintIssn { get; set; }

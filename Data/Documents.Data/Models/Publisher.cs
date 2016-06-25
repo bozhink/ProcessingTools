@@ -22,6 +22,7 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfPublisherName)]
         public string Name { get; set; }
