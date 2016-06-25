@@ -10,11 +10,11 @@
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
 
-    public class PublishersController : Controller
+    public class JournalsController : Controller
     {
         private readonly DocumentsDbContext db;
 
-        public PublishersController(IDocumentsDbContextProvider contextProvider)
+        public JournalsController(IDocumentsDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -24,13 +24,14 @@
             this.db = contextProvider.Create();
         }
 
-        // GET: Journals/Publishers
+        // GET: Journals/Journals
         public async Task<ActionResult> Index()
         {
-            return this.View(await this.db.Publishers.ToListAsync());
+            var journals = this.db.Journals.Include(j => j.Publisher);
+            return this.View(await journals.ToListAsync());
         }
 
-        // GET: Journals/Publishers/Details/5
+        // GET: Journals/Journals/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -38,40 +39,42 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var journal = await Task.FromResult(this.db.Journals.Find(id));
+            if (journal == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            return this.View(journal);
         }
 
-        // GET: Journals/Publishers/Create
+        // GET: Journals/Journals/Create
         public ActionResult Create()
         {
+            this.ViewBag.PublisherId = new SelectList(this.db.Publishers, "Id", "Name");
             return this.View();
         }
 
-        // POST: Journals/Publishers/Create
+        // POST: Journals/Journals/Create
         // To protect from over-posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,AbbreviatedName,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Publisher publisher)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,AbbreviatedName,JournalId,PrintIssn,ElectronicIssn,PublisherId,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Journal journal)
         {
             if (this.ModelState.IsValid)
             {
-                publisher.Id = Guid.NewGuid();
-                this.db.Publishers.Add(publisher);
+                journal.Id = Guid.NewGuid();
+                this.db.Journals.Add(journal);
                 await this.db.SaveChangesAsync();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(publisher);
+            this.ViewBag.PublisherId = new SelectList(this.db.Publishers, "Id", "Name", journal.PublisherId);
+            return this.View(journal);
         }
 
-        // GET: Journals/Publishers/Edit/5
+        // GET: Journals/Journals/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -79,33 +82,35 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var journal = await Task.FromResult(this.db.Journals.Find(id));
+            if (journal == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            this.ViewBag.PublisherId = new SelectList(this.db.Publishers, "Id", "Name", journal.PublisherId);
+            return this.View(journal);
         }
 
-        // POST: Journals/Publishers/Edit/5
+        // POST: Journals/Journals/Edit/5
         // To protect from over-posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Publisher publisher)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName,JournalId,PrintIssn,ElectronicIssn,PublisherId,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Journal journal)
         {
             if (this.ModelState.IsValid)
             {
-                this.db.Entry(publisher).State = EntityState.Modified;
+                this.db.Entry(journal).State = EntityState.Modified;
                 await this.db.SaveChangesAsync();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(publisher);
+            this.ViewBag.PublisherId = new SelectList(this.db.Publishers, "Id", "Name", journal.PublisherId);
+            return this.View(journal);
         }
 
-        // GET: Journals/Publishers/Delete/5
+        // GET: Journals/Journals/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -113,22 +118,22 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var journal = await Task.FromResult(this.db.Journals.Find(id));
+            if (journal == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            return this.View(journal);
         }
 
-        // POST: Journals/Publishers/Delete/5
+        // POST: Journals/Journals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            this.db.Publishers.Remove(publisher);
+            var journal = await Task.FromResult(this.db.Journals.Find(id));
+            this.db.Journals.Remove(journal);
             await this.db.SaveChangesAsync();
             return this.RedirectToAction(nameof(this.Index));
         }
