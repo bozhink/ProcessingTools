@@ -272,6 +272,7 @@
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
+    <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -367,6 +368,12 @@
     <Content Include="Areas\Articles\Views\Articles\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Index.cshtml" />
     <Content Include="Areas\Journals\Views\web.config" />
+    <Content Include="Areas\Journals\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Create.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Delete.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Details.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Edit.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -429,8 +436,7 @@
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
-    <Folder Include="Areas\Journals\Controllers\" />
-    <Folder Include="Areas\Journals\Models\" />
+    <Folder Include="Areas\Journals\ViewModels\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
