@@ -63,48 +63,35 @@
     long pageNumber = ViewBag.PageNumber;
     long itemsPerPage = ViewBag.NumberOfItemsPerPage;
     long lastPage = ViewBag.NumberOfPages - 1;
+    string pageActionName = nameof(FilesController.Index);
 
     if (lastPage > 0)
     {
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
+        <nav>
+            <ul class="pagination">
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = 0, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
+                </li>
 
-                    <ul class="nav navbar-nav">
-                        <li class="page-selector">
-                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = 0, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
-                        </li>
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == 0 ? pageNumber : pageNumber - 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
+                </li>
 
-                        <li class="page-selector">
-                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = (pageNumber == 0 ? pageNumber : pageNumber - 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
-                        </li>
+                @for (long i = 0; i < ViewBag.NumberOfPages; ++i)
+                {
+                    <li class="@((i == pageNumber) ? "active" : null)">
+                        @Html.ActionLink((i + 1).ToString(), pageActionName, new { p = i, n = itemsPerPage })
+                    </li>
+                }
 
-                        @for (long i = 0; i < ViewBag.NumberOfPages; ++i)
-                        {
-                            if (i == pageNumber)
-                            {
-                                <li class="active">
-                                    @Html.ActionLink((i + 1).ToString(), nameof(FilesController.Index), new { p = i, n = itemsPerPage })
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    @Html.ActionLink((i + 1).ToString(), nameof(FilesController.Index), new { p = i, n = itemsPerPage })
-                                </li>
-                            }
-                        }
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == lastPage ? pageNumber : pageNumber + 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
+                </li>
 
-                        <li class="page-selector">
-                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = (pageNumber == lastPage ? pageNumber : pageNumber + 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
-                        </li>
-
-                        <li class="page-selector">
-                            @Html.ActionLink(" ", nameof(FilesController.Index), new { p = lastPage, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = lastPage, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
+                </li>
+            </ul>
         </nav>
     }
 }
