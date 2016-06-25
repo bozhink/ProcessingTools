@@ -5,9 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Publisher : DocumentsAbstractEntity
+    public class Publisher : ModelWithUserInformation
     {
         private ICollection<Address> addresses;
         private ICollection<Journal> journals;

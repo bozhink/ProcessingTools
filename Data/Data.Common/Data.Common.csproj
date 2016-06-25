@@ -51,7 +51,6 @@
     <Compile Include="Contracts\IGenericRepositoryProvider.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Models\Contracts\IEntity.cs" />
-    <Compile Include="Models\Contracts\IEntityWithUserInformation.cs" />
     <Compile Include="Models\Contracts\IGenericEntity.cs" />
     <Compile Include="Models\Contracts\IStringIdEntity.cs" />
     <Compile Include="Models\Entity.cs" />

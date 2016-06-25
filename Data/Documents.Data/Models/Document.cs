@@ -4,9 +4,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Document : DocumentsAbstractEntity
+    public class Document : ModelWithUserInformation
     {
         public Document()
             : base()

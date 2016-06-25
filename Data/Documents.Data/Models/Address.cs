@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Address : DocumentsAbstractEntity
+    public class Address : ModelWithUserInformation
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;

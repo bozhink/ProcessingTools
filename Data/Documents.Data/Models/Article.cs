@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Article : DocumentsAbstractEntity
+    public class Article : ModelWithUserInformation
     {
         private ICollection<Document> documents;
         private ICollection<Author> authors;

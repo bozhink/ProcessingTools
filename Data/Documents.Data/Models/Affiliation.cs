@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Affiliation : DocumentsAbstractEntity
+    public class Affiliation : ModelWithUserInformation
     {
         private ICollection<Author> authors;
 

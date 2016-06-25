@@ -32,12 +32,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Constants\Assemblies.cs" />
     <Compile Include="Constants\ConcurrencyConstants.cs" />
+    <Compile Include="Constants\ModelValidationConstants.cs" />
     <Compile Include="Constants\PagingConstants.cs" />
     <Compile Include="Constants\ProcessingConstants.cs" />
     <Compile Include="Constants\XPathConstants.cs" />
@@ -48,6 +50,8 @@
     <Compile Include="Exceptions\InvalidPageNumberException.cs" />
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
+    <Compile Include="Models\IModelWithUserInformation.cs" />
+    <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\IRandomProvider.cs" />
     <Compile Include="Providers\RandomProvider.cs" />

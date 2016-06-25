@@ -21,22 +21,22 @@
         protected override Expression<Func<Publisher, PublisherServiceModel>> MapDbModelToServiceModel => p => new PublisherServiceModel
         {
             AbbreviatedName = p.AbbreviatedName,
-            CreatedByUserId = p.CreatedByUserId,
+            CreatedByUserId = p.CreatedByUser,
             DateCreated = p.DateCreated,
             DateModified = p.DateModified,
             Id = p.Id,
-            ModifiedByUserId = p.ModifiedByUserId,
+            ModifiedByUserId = p.ModifiedByUser,
             Name = p.Name,
             Journals = p.Journals.Select(j => new JournalServiceModel
             {
                 AbbreviatedName = j.AbbreviatedName,
-                CreatedByUserId = j.CreatedByUserId,
+                CreatedByUserId = j.CreatedByUser,
                 DateCreated = j.DateCreated,
                 DateModified = j.DateModified,
                 ElectronicIssn = j.ElectronicIssn,
                 Id = j.Id,
                 JournalId = j.JournalId,
-                ModifiedByUserId = j.ModifiedByUserId,
+                ModifiedByUserId = j.ModifiedByUser,
                 Name = j.Name,
                 PrintIssn = j.PrintIssn,
                 PublisherId = j.PublisherId
@@ -46,11 +46,11 @@
         protected override Expression<Func<PublisherServiceModel, Publisher>> MapServiceModelToDbModel => p => new Publisher
         {
             Name = p.Name,
-            ModifiedByUserId = p.ModifiedByUserId,
+            ModifiedByUser = p.ModifiedByUserId,
             Id = p.Id,
             DateModified = p.DateModified,
             DateCreated = p.DateCreated,
-            CreatedByUserId = p.CreatedByUserId,
+            CreatedByUser = p.CreatedByUserId,
             AbbreviatedName = p.AbbreviatedName
         };
 

@@ -81,7 +81,7 @@
             var repository = this.repositoryProvider.Create();
 
             var documents = (await repository.All())
-                .Where(d => d.CreatedByUserId == userId.ToString())
+                .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .OrderByDescending(d => d.DateModified)
                 .Skip(pageNumber * itemsPerPage)
@@ -118,7 +118,7 @@
             var repository = this.repositoryProvider.Create();
 
             long count = (await repository.All())
-                .Where(d => d.CreatedByUserId == userId.ToString())
+                .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .Count();
 
@@ -157,8 +157,8 @@
                 OriginalContentLength = document.ContentLength,
                 ContentType = document.ContentType,
                 FileExtension = document.FileExtension,
-                CreatedByUserId = userId.ToString(),
-                ModifiedByUserId = userId.ToString()
+                CreatedByUser = userId.ToString(),
+                ModifiedByUser = userId.ToString()
             };
 
             var repository = this.repositoryProvider.Create();
@@ -194,7 +194,7 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = (await repository.All())
-                .Where(d => d.CreatedByUserId == userId.ToString())
+                .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
 
@@ -255,14 +255,14 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = (await repository.All())
-                .Where(d => d.CreatedByUserId == userId.ToString())
+                .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .FirstOrDefault(d => d.Id.ToString() == document.Id);
 
             using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(content)))
             {
                 entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FileName, this.DataDirectory);
-                entity.ModifiedByUserId = userId.ToString();
+                entity.ModifiedByUser = userId.ToString();
                 entity.DateModified = DateTime.UtcNow;
                 entity.ContentType = document.ContentType;
             }
@@ -295,7 +295,7 @@
             var repository = this.repositoryProvider.Create();
 
             var entity = (await repository.All())
-                .Where(d => d.CreatedByUserId == userId.ToString())
+                .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
 

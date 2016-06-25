@@ -5,9 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Journal : DocumentsAbstractEntity
+    public class Journal : ModelWithUserInformation
     {
         private ICollection<Article> articles;
 

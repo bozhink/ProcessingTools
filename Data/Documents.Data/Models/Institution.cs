@@ -5,9 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Institution : DocumentsAbstractEntity
+    public class Institution : ModelWithUserInformation
     {
         private ICollection<Address> addresses;
         private ICollection<Affiliation> affiliations;
