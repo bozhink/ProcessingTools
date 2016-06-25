@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.ArticlesManagment.ViewModels.Files
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files
 {
     using System;
 

@@ -1,0 +1,17 @@
+﻿@using ProcessingTools.Web.Common.Constants;
+@using ProcessingTools.Web.Documents.Areas.Articles;
+
+@{
+    ViewBag.Title = "Null Id Error";
+}
+
+<h2 class="text-danger">Error</h2>
+<h3>Valid id is expected to see this page.</h3>
+
+<p>Please, go back and try again.</p>
+<hr />
+<p>
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, ArticlesAreaRegistration.DefaultActionName)
+</p>
+
+

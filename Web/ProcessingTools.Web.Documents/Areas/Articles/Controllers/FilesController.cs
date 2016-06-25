@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.ArticlesManagment.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.IO;

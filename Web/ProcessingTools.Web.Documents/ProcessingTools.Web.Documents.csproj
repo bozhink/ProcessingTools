@@ -260,11 +260,11 @@
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
-    <Compile Include="Areas\ArticlesManagment\Controllers\ArticlesController.cs" />
-    <Compile Include="Areas\ArticlesManagment\Controllers\FilesController.cs" />
-    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentDetailsViewModel.cs" />
-    <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentViewModel.cs" />
+    <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
+    <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
@@ -341,8 +341,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\ArticlesManagment\Views\web.config" />
-    <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Articles\Views\web.config" />
+    <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
     <Content Include="Areas\GeoData\Views\web.config" />
@@ -353,18 +353,18 @@
     <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
     <Content Include="Content\styles\default-styles.less" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\Index.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\Details.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\Create.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\Preview.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\NoFilesSelectedError.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\InvalidOrEmptyFileError.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Files\NullIdError.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Articles\Create.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Articles\Delete.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Articles\Details.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Articles\Edit.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Create.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\NoFilesSelectedError.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\InvalidOrEmptyFileError.cshtml" />
+    <Content Include="Areas\Articles\Views\Shared\NullIdError.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Details.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -423,7 +423,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
