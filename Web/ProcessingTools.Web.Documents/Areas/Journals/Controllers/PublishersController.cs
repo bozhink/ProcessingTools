@@ -2,13 +2,20 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
 
     using ProcessingTools.Documents.Data;
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
+
+    using ViewModels.Publishers;
 
     public class PublishersController : Controller
     {
@@ -24,10 +31,23 @@
             this.db = contextProvider.Create();
         }
 
+        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
         // GET: Journals/Publishers
         public async Task<ActionResult> Index()
         {
-            return this.View(await this.db.Publishers.ToListAsync());
+            var models = await this.db.Publishers
+                .Select(e => new PublisherIndexViewModel
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    AbbreviatedName = e.AbbreviatedName,
+                    DateCreated = e.DateCreated,
+                    DateModified = e.DateModified
+                })
+                .ToListAsync();
+
+            return this.View(models);
         }
 
         // GET: Journals/Publishers/Details/5
@@ -58,17 +78,24 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,AbbreviatedName,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Publisher publisher)
+        public async Task<ActionResult> Create([Bind(Include = "Name,AbbreviatedName")] PublisherCreateViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-                publisher.Id = Guid.NewGuid();
-                this.db.Publishers.Add(publisher);
+                var entity = new Publisher
+                {
+                    Name = model.Name,
+                    AbbreviatedName = model.AbbreviatedName,
+                    CreatedByUser = User.Identity.GetUserId(),
+                    ModifiedByUser = User.Identity.GetUserId()
+                };
+
+                this.db.Publishers.Add(entity);
                 await this.db.SaveChangesAsync();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(publisher);
+            return this.View(model);
         }
 
         // GET: Journals/Publishers/Edit/5
@@ -113,13 +140,27 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var entity = await Task.FromResult(this.db.Publishers.Find(id));
+            if (entity == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            string createdBy = (await this.UserManager.FindByIdAsync(entity.CreatedByUser)).UserName;
+            string modifiedBy = (await this.UserManager.FindByIdAsync(entity.ModifiedByUser)).UserName;
+
+            var model = new PublisherViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AbbreviatedName = entity.AbbreviatedName,
+                DateCreated = entity.DateCreated,
+                DateModified = entity.DateModified,
+                CreatedBy = createdBy,
+                ModifiedBy = modifiedBy
+            };
+
+            return this.View(model);
         }
 
         // POST: Journals/Publishers/Delete/5

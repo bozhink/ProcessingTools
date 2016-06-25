@@ -275,6 +275,10 @@
     <Compile Include="Areas\Journals\Controllers\JournalsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherIndexViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -442,7 +446,6 @@
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
-    <Folder Include="Areas\Journals\ViewModels\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -529,6 +532,10 @@
     <ProjectReference Include="..\..\Data\Data\Data.csproj">
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
       <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>

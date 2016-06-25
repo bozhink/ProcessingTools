@@ -1,13 +1,13 @@
-﻿@model IEnumerable<ProcessingTools.Documents.Data.Models.Publisher>
+﻿@model IEnumerable<ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherIndexViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of Publishers";
 }
 
-<h2>Index</h2>
+<h2>List of Publishers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Publisher", nameof(PublishersController.Create))
 </p>
 <table class="table">
     <tr>
@@ -18,46 +18,36 @@
             @Html.DisplayNameFor(model => model.AbbreviatedName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedByUserId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DateCreated)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateModified)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedByUserId)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AbbreviatedName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedByUserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedByUserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbbreviatedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(PublishersController.Details), new { id = item.Id })
+                <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(PublishersController.Delete), new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
