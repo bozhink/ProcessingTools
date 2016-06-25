@@ -218,13 +218,13 @@
             return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
         }
 
-        // GET: Files
         /// <summary>
         /// Index of file list.
         /// </summary>
         /// <param name="p">Page number.</param>
         /// <param name="n">Number of items per page.</param>
         /// <returns></returns>
+        /// <example>GET: Files</example>
         public async Task<ActionResult> Index(int? p, int? n)
         {
             try
@@ -248,7 +248,7 @@
 
                 this.ViewBag.PageNumber = pageNumber;
                 this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
-                this.ViewBag.NumberOfPages = numberOfDocuments / itemsPerPage + 1;
+                this.ViewBag.NumberOfPages = (numberOfDocuments / itemsPerPage) + 1;
 
                 return this.View(documents);
             }

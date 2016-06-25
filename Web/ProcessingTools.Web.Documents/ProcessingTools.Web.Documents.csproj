@@ -261,6 +261,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\ArticlesManagment\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\ArticlesManagment\Controllers\FilesController.cs" />
     <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentDetailsViewModel.cs" />
     <Compile Include="Areas\ArticlesManagment\ViewModels\Files\DocumentViewModel.cs" />
@@ -368,6 +369,11 @@
     <Content Include="Areas\ArticlesManagment\Views\Files\NoFilesSelectedError.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\InvalidOrEmptyFileError.cshtml" />
     <Content Include="Areas\ArticlesManagment\Views\Files\NullIdError.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Articles\Create.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Articles\Delete.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Articles\Details.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Articles\Edit.cshtml" />
+    <Content Include="Areas\ArticlesManagment\Views\Articles\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
