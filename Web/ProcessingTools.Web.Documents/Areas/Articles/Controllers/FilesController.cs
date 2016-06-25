@@ -9,6 +9,7 @@
 
     using Microsoft.AspNet.Identity;
 
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
@@ -19,9 +20,6 @@
     [Authorize]
     public class FilesController : Controller
     {
-        private const int DefaultPageNumber = 0;
-        private const int DefaultNumberOfItemsPerPage = 20;
-
         private const string NoFilesSelectedErrorViewName = "NoFilesSelectedError";
         private const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";
         private const string NullIdErrorViewName = "NullIdError";
@@ -229,8 +227,8 @@
         {
             try
             {
-                int pageNumber = p ?? DefaultPageNumber;
-                int itemsPerPage = n ?? DefaultNumberOfItemsPerPage;
+                int pageNumber = p ?? PagingConstants.DefaultPageNumber;
+                int itemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
                 var userId = User.Identity.GetUserId();
 
