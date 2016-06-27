@@ -9,6 +9,7 @@
     using ProcessingTools.Documents.Data;
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Web.Common.Constants;
 
     public class JournalsController : Controller
     {
@@ -23,6 +24,8 @@
 
             this.db = contextProvider.Create();
         }
+
+        public static string ControllerName => ControllerConstants.JournalsControllerName;
 
         // GET: Journals/Journals
         public async Task<ActionResult> Index()

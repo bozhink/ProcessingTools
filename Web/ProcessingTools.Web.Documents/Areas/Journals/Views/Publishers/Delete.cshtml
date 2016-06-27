@@ -1,4 +1,4 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherViewModel
+﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherDetailsViewModel
 
 @{
     ViewBag.Title = ContentConstants.DeafultDeletePageTitle;
@@ -30,6 +30,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
 
@@ -45,23 +61,15 @@
             @Html.DisplayFor(model => model.DateModified)
         </dd>
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
         </div>
     }
 </div>

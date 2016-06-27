@@ -275,9 +275,10 @@
     <Compile Include="Areas\Journals\Controllers\JournalsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\JournalViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />
-    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherIndexViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

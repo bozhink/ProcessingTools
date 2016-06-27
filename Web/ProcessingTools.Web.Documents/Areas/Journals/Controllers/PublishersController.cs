@@ -14,6 +14,7 @@
     using ProcessingTools.Documents.Data;
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Web.Common.Constants;
 
     using ViewModels.Publishers;
 
@@ -31,13 +32,15 @@
             this.db = contextProvider.Create();
         }
 
+        public static string ControllerName => ControllerConstants.PublishersControllerName;
+
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: Journals/Publishers
         public async Task<ActionResult> Index()
         {
             var models = await this.db.Publishers
-                .Select(e => new PublisherIndexViewModel
+                .Select(e => new PublisherViewModel
                 {
                     Id = e.Id,
                     Name = e.Name,
@@ -58,13 +61,30 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var entity = await this.db.Publishers
+                .Include(p => p.Addresses)
+                .Include(p => p.Journals)
+                .FirstOrDefaultAsync(p => p.Id == id);
+            if (entity == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            var model = await this.MapToDetailsViewModelWithoutCollections(entity);
+
+            model.Addresses = entity.Addresses?.Select(a => new AddressViewModel
+            {
+                Id = a.Id,
+                AddressString = a.AddressString
+            }).ToList();
+
+            model.Journals = entity.Journals?.Select(j => new JournalViewModel
+            {
+                Id = j.Id,
+                Name = j.Name
+            }).ToList();
+
+            return this.View(model);
         }
 
         // GET: Journals/Publishers/Create
@@ -106,13 +126,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            if (publisher == null)
+            var entity = await Task.FromResult(this.db.Publishers.Find(id));
+            if (entity == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(publisher);
+            return this.View(entity);
         }
 
         // POST: Journals/Publishers/Edit/5
@@ -146,19 +166,7 @@
                 return this.HttpNotFound();
             }
 
-            string createdBy = (await this.UserManager.FindByIdAsync(entity.CreatedByUser)).UserName;
-            string modifiedBy = (await this.UserManager.FindByIdAsync(entity.ModifiedByUser)).UserName;
-
-            var model = new PublisherViewModel
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                AbbreviatedName = entity.AbbreviatedName,
-                DateCreated = entity.DateCreated,
-                DateModified = entity.DateModified,
-                CreatedBy = createdBy,
-                ModifiedBy = modifiedBy
-            };
+            var model = await this.MapToDetailsViewModelWithoutCollections(entity);
 
             return this.View(model);
         }
@@ -168,8 +176,8 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            var publisher = await Task.FromResult(this.db.Publishers.Find(id));
-            this.db.Publishers.Remove(publisher);
+            var entity = await Task.FromResult(this.db.Publishers.Find(id));
+            this.db.Publishers.Remove(entity);
             await this.db.SaveChangesAsync();
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -182,6 +190,25 @@
             }
 
             base.Dispose(disposing);
+        }
+
+        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(Publisher entity)
+        {
+            string createdBy = (await this.UserManager.FindByIdAsync(entity.CreatedByUser)).UserName;
+            string modifiedBy = (await this.UserManager.FindByIdAsync(entity.ModifiedByUser)).UserName;
+
+            var model = new PublisherDetailsViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AbbreviatedName = entity.AbbreviatedName,
+                DateCreated = entity.DateCreated,
+                DateModified = entity.DateModified,
+                CreatedBy = createdBy,
+                ModifiedBy = modifiedBy
+            };
+
+            return model;
         }
     }
 }

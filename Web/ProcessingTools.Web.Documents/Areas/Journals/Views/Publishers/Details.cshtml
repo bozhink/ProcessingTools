@@ -1,10 +1,12 @@
-﻿@model ProcessingTools.Documents.Data.Models.Publisher
+﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = ContentConstants.DeafultDetailsPageTitle;
 }
 
-<h2>Details</h2>
+<h2>
+    @ContentConstants.DeafultDetailsPageHeading
+</h2>
 
 <div>
     <h4>Publisher</h4>
@@ -27,11 +29,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedByUser)
+            @Html.DisplayNameFor(model => model.CreatedBy)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedByUser)
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
         </dd>
 
         <dt>
@@ -50,17 +60,40 @@
             @Html.DisplayFor(model => model.DateModified)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedByUser)
-        </dt>
+        @if (Model.Addresses?.Count > 0)
+        {
+            <dd>
+                @Html.DisplayNameFor(model => model.Addresses)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedByUser)
-        </dd>
+            foreach (var address in Model.Addresses.OrderBy(a => a.AddressString))
+            {
+                <dt>
+                    @*TODO*@
+                    @*@Html.ActionLink(address.AddressString, "Details", "Addresses", new { id = address.Id })*@
+                    @address.AddressString
+                </dt>
+            }
+        }
+
+        @if (Model.Journals?.Count > 0)
+        {
+            <dd>
+                @Html.DisplayNameFor(model => model.Journals)
+            </dd>
+
+            foreach (var journal in Model.Journals.OrderBy(j => j.Name))
+            {
+                <dt>
+                    @Html.ActionLink(linkText: journal.Name, actionName: nameof(JournalsController.Details), controllerName: JournalsController.ControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: new { id = journal.Id })
+                </dt>
+            }
+        }
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = Model.Id })
+    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
 </p>
