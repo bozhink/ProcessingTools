@@ -85,7 +85,7 @@
             foreach (var journal in Model.Journals.OrderBy(j => j.Name))
             {
                 <dt>
-                    @Html.ActionLink(linkText: journal.Name, actionName: nameof(JournalsController.Details), controllerName: JournalsController.ControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: new { id = journal.Id })
+                    @Html.ActionLink(linkText: journal.Name, actionName: nameof(JournalsController.Details), controllerName: JournalsController.ControllerName, routeValues: new { area = AreasConstants.JournalsAreaName, id = journal.Id }, htmlAttributes: null)
                 </dt>
             }
         }
