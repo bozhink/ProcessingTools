@@ -10,6 +10,9 @@
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryfrom").Include(
+                        "~/Scripts/jquery.form.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -24,6 +27,9 @@
 
             bundles.Add(new ScriptBundle("~/bundles/article").Include(
                       "~/Scripts/custom/article-preview.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/upload-file").Include(
+                      "~/Scripts/custom/upload-file.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

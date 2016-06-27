@@ -14,7 +14,7 @@
         public const string DefaultDeleteActionLinkTitle = "Delete";
         public const string DefaultDownloadActionLinkTitle = "Download";
         public const string DefaultBackToListActionLinkTitle = "Back to List";
-        public const string DefaultUploadNewFileActionLinkTitle = "Upload New File";
+        public const string DefaultUploadNewFileActionLinkTitle = "Upload New File or Files";
 
         public const string DeafultIndexPageTitle = "Index";
         public const string DeafultIndexPageHeading = "Index";
@@ -24,6 +24,9 @@
 
         public const string DeafultCreatePageTitle = "Create";
         public const string DeafultCreatePageHeading = "Create";
+
+        public const string DeafultUploadPageTitle = "Upload";
+        public const string DeafultUploadPageHeading = "Upload";
 
         public const string DeafultDeletePageTitle = "Delete";
         public const string DeafultDeletePageHeading = "Delete";

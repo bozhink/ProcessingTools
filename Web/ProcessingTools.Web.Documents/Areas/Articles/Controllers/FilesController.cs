@@ -1,10 +1,13 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
@@ -43,17 +46,17 @@
 
         private string XslTansformFile => Path.Combine(Server.MapPath("~/App_Code/Xsl"), "main.xsl");
 
-        // GET: Files/Create
-        public ActionResult Create()
+        // GET: Files/Upload
+        public ActionResult Upload()
         {
             return this.View();
         }
 
-        // POST: Files/Create
+        // POST: Files/Upload
         [HttpPost]
-        public async Task<ActionResult> Create(FormCollection collection)
+        public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
         {
-            if (Request?.Files == null || Request.Files.Count < 1)
+            if (files == null || files.Count() < 1)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return this.View(NoFilesSelectedErrorViewName);
@@ -61,22 +64,38 @@
 
             try
             {
-                var file = Request.Files[0];
-                if (file == null || file.ContentLength < 1)
+                var userId = User.Identity.GetUserId();
+                var articleId = this.fakeArticleId;
+
+                var tasks = new ConcurrentQueue<Task>();
+                var invalidFiles = new ConcurrentQueue<string>();
+                foreach (var file in files)
                 {
-                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    return this.View(InvalidOrEmptyFileErrorViewName);
+                    if (file == null || file.ContentLength < 1)
+                    {
+                        invalidFiles.Enqueue(file.FileName);
+                    }
+                    else
+                    {
+                        var document = new DocumentServiceModel
+                        {
+                            FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                            FileExtension = Path.GetExtension(file.FileName).Trim('.'),
+                            ContentLength = file.ContentLength,
+                            ContentType = file.ContentType
+                        };
+
+                        tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
+                    }
                 }
 
-                var document = new DocumentServiceModel
-                {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
-                    FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                    ContentLength = file.ContentLength,
-                    ContentType = file.ContentType
-                };
+                await Task.WhenAll(tasks.ToArray());
 
-                await this.service.Create(User.Identity.GetUserId(), this.fakeArticleId, document, file.InputStream);
+                if (invalidFiles.Count > 0)
+                {
+                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return this.View(InvalidOrEmptyFileErrorViewName, invalidFiles.ToList());
+                }
 
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
                 return this.RedirectToAction(nameof(this.Index));
@@ -84,7 +103,7 @@
             catch (Exception e)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -106,7 +125,7 @@
             catch (Exception e)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -152,7 +171,7 @@
             catch (Exception e)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -184,7 +203,7 @@
             catch (Exception e)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }
@@ -283,7 +302,7 @@
             catch (Exception e)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
                 return this.View(ViewConstants.DefaultErrorViewName, error);
             }
         }

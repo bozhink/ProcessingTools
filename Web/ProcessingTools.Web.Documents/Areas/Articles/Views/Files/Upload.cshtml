@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = ContentConstants.DeafultUploadPageTitle;
+}
+
+<h2>
+    @ContentConstants.DeafultUploadPageHeading
+</h2>
+
+@using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="file" name="files" class="btn btn-default btn-file" accept=".xml, application/xml" multiple="multiple" placeholder="Select files" max="10" />
+        <input type="submit" name="Submit" id="submit" value="Upload" class="btn btn-default" />
+        <input type="reset" name="Reset" id="reset" value="Reset" class="btn btn-default" />
+    </div>
+}
+
+<div class="progress progress-striped">
+    <div class="progress-bar progress-bar-success">0%</div>
+</div>
+
+<hr />
+
+<p>
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery");
+    @Scripts.Render("~/bundles/jqueryfrom");
+    @Scripts.Render("~/bundles/upload-file");
+}

@@ -1,13 +1,21 @@
-﻿@{
+﻿@model IEnumerable<string>
+
+@{
     ViewBag.Title = "Invalid Or Empty File Error";
 }
 
 <h2 class="text-danger">Error</h2>
-<h3 class="text-danger">Invalid Or Empty File</h3>
+<h3 class="text-danger">Invalid Or Empty File or Files</h3>
+<ol>
+    @foreach (var fileName in Model?.OrderBy(i => i))
+    {
+        <li class="text-danger">@fileName</li>
+    }
+</ol>
 
 <p>Please, select another file and try again.</p>
 <hr />
 <p>
-    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Create))
+    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload))
 </p>
 
