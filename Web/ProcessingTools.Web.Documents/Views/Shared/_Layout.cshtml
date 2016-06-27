@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         @ViewBag.Title -
-        @ProcessingTools.Web.Common.Constants.ContentConstants.CopyrightHolder
+        @ContentConstants.ApplicationName
     </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,11 +22,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink(nameof(ProcessingTools), "Index", "Home", routeValues: new { area = "" }, htmlAttributes: new { @class = "navbar-brand" })
+                    @Html.ActionLink(ContentConstants.ApplicationName, "Index", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
@@ -40,8 +40,8 @@
                                 </ul>
                             </li>
                         }
-                        <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: new { area = "" }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -54,7 +54,7 @@
         <footer>
             <p>
                 &copy; @DateTime.Now.Year -
-                @ProcessingTools.Web.Common.Constants.ContentConstants.CopyrightHolder
+                @ContentConstants.CopyrightHolder
             </p>
         </footer>
     </div>

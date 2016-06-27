@@ -59,11 +59,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedByUserId)
+            @Html.DisplayNameFor(model => model.CreatedByUser)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedByUserId)
+            @Html.DisplayFor(model => model.CreatedByUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByUser)
         </dd>
 
         <dt>
@@ -81,15 +89,6 @@
         <dd>
             @Html.DisplayFor(model => model.DateModified)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedByUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedByUserId)
-        </dd>
-
     </dl>
 </div>
 <p>

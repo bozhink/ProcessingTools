@@ -2,6 +2,7 @@
 {
     public static class ContentConstants
     {
+        public const string ApplicationName = "Processing Tools";
         public const string CopyrightHolder = "ProcessingTools";
 
         public const string DefaultSeparatorClassName = "default-separator";
