@@ -14,6 +14,44 @@ em.taxon-name {
   font-style: normal;
   background-color: rgba(255, 179, 128, 0.15);
 }
+.taxon-name {
+  position: relative;
+}
+.taxon-name .object-id {
+  display: none;
+}
+.taxon-name:hover .object-id {
+  position: absolute;
+  top: 25px;
+  display: block;
+  font-size: 1em;
+  color: white;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+.taxon-name:hover .object-id::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+.nomenclature {
+  margin-top: 10px;
+}
+.nomenclature > .taxon-name,
+.nomenclature > .taxon-authority,
+.nomenclature > .taxon-status {
+  display: inline-block;
+  font-size: 1.2em;
+}
+.nomenclature .xref-group {
+  display: block;
+}
 .taxon-name-part {
   color: #f60;
 }
@@ -53,6 +91,9 @@ section h3 {
   font-size: 1.2em;
   font-weight: bold;
   text-indent: -10px;
+}
+section.treatment-sec h3 {
+  font-size: 1.1em;
 }
 section p {
   font-size: 1em;

@@ -153,12 +153,19 @@
                     {
                         lock (new object())
                         {
-                            node.InnerXml = node.InnerXml.Trim();
+                            // TODO: Needs revision
+                            try
+                            {
+                                node.InnerXml = node.InnerXml.Trim();
 
-                            var replacement = node.OwnerDocument.CreateDocumentFragment();
-                            replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node?.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
+                                var replacement = node.OwnerDocument.CreateDocumentFragment();
+                                replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node?.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
 
-                            node?.ParentNode?.ReplaceChild(replacement, node);
+                                node?.ParentNode?.ReplaceChild(replacement, node);
+                            }
+                            catch
+                            {
+                            }
                         }
                     }
                 });

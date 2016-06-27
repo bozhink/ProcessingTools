@@ -1,4 +1,7 @@
 ﻿@tooltip-text-max-width: 120px;
+@mark-1-color: #FCF8E3;
+@mark-2-color: darken(@mark-1-color, 10%);
+@mark-3-color: darken(@mark-2-color, 10%);
 
 .default-separator::after {
     content: '|';
@@ -14,14 +17,14 @@
 
 #add-new-hide-checkbox {
     ~ .add-new-label {
-            a:first-child {
-                display: inline;
-            }
-
-            a:last-child {
-                display: none;
-            }
+        a:first-child {
+            display: inline;
         }
+
+        a:last-child {
+            display: none;
+        }
+    }
 
     &:checked {
         ~ .add-new-hidden-form {
@@ -82,6 +85,21 @@
             border-width: 5px;
             border-style: solid;
             border-color: transparent transparent black transparent;
+        }
+    }
+}
+
+mark {
+    margin: 0;
+    padding: 0;
+
+    background-color: @mark-1-color;
+
+    mark {
+        background-color: @mark-2-color;
+
+        mark {
+            background-color: @mark-3-color;
         }
     }
 }

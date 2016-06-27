@@ -105,7 +105,7 @@ Block elements
   <xsl:template match="nlm-citation | mixed-citation | element-citation">
     <div>
       <xsl:call-template name="process-inner-node">
-        <xsl:with-param name="output-node-name" select="'span'" />
+        <xsl:with-param name="output-node-name" select="'mark'" />
       </xsl:call-template>
     </div>
   </xsl:template>
