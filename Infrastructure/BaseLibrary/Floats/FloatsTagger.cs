@@ -18,7 +18,7 @@
     public class FloatsTagger : TaxPubDocument, ITagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
-        private const int MaxNumberOfSequentalFloats = 30;
+        private const int MaxNumberOfSequentalFloats = 60;
         private const string SubfloatsPattern = "\\s*(([A-Za-z]\\d?|[ivx]+)[,\\s]*([,;–−-]|and|\\&amp;)\\s*)*([A-Za-z]\\d?|[ivx]+)";
 
         private readonly Regex selectDash = new Regex("[–—−-]");
