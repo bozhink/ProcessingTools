@@ -392,7 +392,6 @@
     <Content Include="Content\styles\article-styles.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custom\article-preview.js" />
-    <Content Include="Scripts\custom\upload-file.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery.form.js" />

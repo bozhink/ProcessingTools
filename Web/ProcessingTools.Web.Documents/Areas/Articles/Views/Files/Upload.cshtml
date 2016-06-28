@@ -6,7 +6,7 @@
     @ContentConstants.DeafultUploadPageHeading
 </h2>
 
-@using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post))
+@using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
@@ -16,18 +16,9 @@
     </div>
 }
 
-<div class="progress progress-striped">
-    <div class="progress-bar progress-bar-success">0%</div>
-</div>
-
 <hr />
 
 <p>
     @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
 </p>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jquery");
-    @Scripts.Render("~/bundles/jqueryfrom");
-    @Scripts.Render("~/bundles/upload-file");
-}
