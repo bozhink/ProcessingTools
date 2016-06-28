@@ -6,9 +6,10 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Publisher : ModelWithUserInformation
+    public class Publisher : ModelWithUserInformation, IEntityWithPreJoinedFields
     {
         private ICollection<Address> addresses;
         private ICollection<Journal> journals;
@@ -18,6 +19,7 @@
             this.Id = Guid.NewGuid();
             this.addresses = new HashSet<Address>();
             this.journals = new HashSet<Journal>();
+            this.PreJoinFieldNames = new string[] { nameof(this.Addresses), nameof(this.Journals) };
         }
 
         [Key]
@@ -56,5 +58,8 @@
                 this.journals = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames { get; private set; }
     }
 }

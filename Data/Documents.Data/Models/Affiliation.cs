@@ -3,11 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Affiliation : ModelWithUserInformation
+    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields
     {
         private ICollection<Author> authors;
 
@@ -15,6 +17,7 @@
         {
             this.Id = Guid.NewGuid();
             this.authors = new HashSet<Author>();
+            this.PreJoinFieldNames = new string[] { };
         }
 
         [Key]
@@ -43,5 +46,8 @@
                 this.authors = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames { get; private set; }
     }
 }

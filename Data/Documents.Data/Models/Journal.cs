@@ -6,9 +6,10 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Journal : ModelWithUserInformation
+    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields
     {
         private ICollection<Article> articles;
 
@@ -16,6 +17,7 @@
         {
             this.Id = Guid.NewGuid();
             this.articles = new HashSet<Article>();
+            this.PreJoinFieldNames = new string[] { nameof(this.Articles) };
         }
 
         [Key]
@@ -55,5 +57,8 @@
                 this.articles = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames { get; private set; }
     }
 }

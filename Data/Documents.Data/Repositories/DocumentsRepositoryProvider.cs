@@ -2,12 +2,13 @@
 {
     using System;
 
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
 
     public class DocumentsRepositoryProvider<T> : IDocumentsRepositoryProvider<T>
-        where T : class
+        where T : class, IEntityWithPreJoinedFields
     {
         private readonly IDocumentsDbContextProvider contextProvider;
 

@@ -6,9 +6,10 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Institution : ModelWithUserInformation
+    public class Institution : ModelWithUserInformation, IEntityWithPreJoinedFields
     {
         private ICollection<Address> addresses;
         private ICollection<Affiliation> affiliations;
@@ -18,6 +19,7 @@
             this.Id = Guid.NewGuid();
             this.addresses = new HashSet<Address>();
             this.affiliations = new HashSet<Affiliation>();
+            this.PreJoinFieldNames = new string[] { nameof(this.Addresses), nameof(this.Affiliations) };
         }
 
         [Key]
@@ -55,5 +57,8 @@
                 this.affiliations = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames { get; private set; }
     }
 }

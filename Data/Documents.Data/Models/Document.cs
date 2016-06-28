@@ -1,18 +1,21 @@
 ﻿namespace ProcessingTools.Documents.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class Document : ModelWithUserInformation
+    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields
     {
         public Document()
             : base()
         {
             this.Id = Guid.NewGuid();
+            this.PreJoinFieldNames = new string[] { };
         }
 
         [Key]
@@ -39,5 +42,8 @@
         public string FileExtension { get; set; }
 
         public virtual Article Article { get; set; }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames { get; private set; }
     }
 }

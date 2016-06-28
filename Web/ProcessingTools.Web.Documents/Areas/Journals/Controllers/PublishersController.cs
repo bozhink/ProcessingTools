@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
 {
     using System;
-    using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -11,25 +10,25 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
-    using ProcessingTools.Documents.Data;
-    using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Repositories.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
 
     using ViewModels.Publishers;
 
     public class PublishersController : Controller
     {
-        private readonly DocumentsDbContext db;
+        private readonly IDocumentsRepositoryProvider<Publisher> repositoryProvider;
 
-        public PublishersController(IDocumentsDbContextProvider contextProvider)
+        public PublishersController(IDocumentsRepositoryProvider<Publisher> repositoryProvider)
         {
-            if (contextProvider == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.db = contextProvider.Create();
+            this.repositoryProvider = repositoryProvider;
         }
 
         public static string ControllerName => ControllerConstants.PublishersControllerName;
@@ -39,7 +38,9 @@
         // GET: Journals/Publishers
         public async Task<ActionResult> Index()
         {
-            var models = await this.db.Publishers
+            var repository = this.repositoryProvider.Create();
+
+            var models = (await repository.All())
                 .Select(e => new PublisherViewModel
                 {
                     Id = e.Id,
@@ -48,7 +49,9 @@
                     DateCreated = e.DateCreated,
                     DateModified = e.DateModified
                 })
-                .ToListAsync();
+                .ToList();
+
+            repository.TryDispose();
 
             return this.View(models);
         }
@@ -61,10 +64,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entity = await this.db.Publishers
-                .Include(p => p.Addresses)
-                .Include(p => p.Journals)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var repository = this.repositoryProvider.Create();
+
+            var entity = (await repository.All())
+                .FirstOrDefault(p => p.Id == id);
+
+            repository.TryDispose();
+
             if (entity == null)
             {
                 return this.HttpNotFound();
@@ -110,8 +116,13 @@
                     ModifiedByUser = User.Identity.GetUserId()
                 };
 
-                this.db.Publishers.Add(entity);
-                await this.db.SaveChangesAsync();
+                var repository = this.repositoryProvider.Create();
+
+                await repository.Add(entity);
+                await repository.SaveChanges();
+
+                repository.TryDispose();
+
                 return this.RedirectToAction(nameof(this.Index));
             }
 
@@ -126,7 +137,12 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entity = await Task.FromResult(this.db.Publishers.Find(id));
+            var repository = this.repositoryProvider.Create();
+
+            var entity = await repository.Get(id);
+
+            repository.TryDispose();
+
             if (entity == null)
             {
                 return this.HttpNotFound();
@@ -144,8 +160,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                this.db.Entry(publisher).State = EntityState.Modified;
-                await this.db.SaveChangesAsync();
+                var repository = this.repositoryProvider.Create();
+
+                await repository.Update(publisher);
+                await repository.SaveChanges();
+
+                repository.TryDispose();
+
                 return this.RedirectToAction(nameof(this.Index));
             }
 
@@ -160,7 +181,12 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entity = await Task.FromResult(this.db.Publishers.Find(id));
+            var repository = this.repositoryProvider.Create();
+
+            var entity = await repository.Get(id);
+
+            repository.TryDispose();
+
             if (entity == null)
             {
                 return this.HttpNotFound();
@@ -176,9 +202,13 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            var entity = await Task.FromResult(this.db.Publishers.Find(id));
-            this.db.Publishers.Remove(entity);
-            await this.db.SaveChangesAsync();
+            var repository = this.repositoryProvider.Create();
+
+            await repository.Delete(id);
+            await repository.SaveChanges();
+
+            repository.TryDispose();
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -186,7 +216,7 @@
         {
             if (disposing)
             {
-                this.db.Dispose();
+                this.repositoryProvider.TryDispose();
             }
 
             base.Dispose(disposing);
