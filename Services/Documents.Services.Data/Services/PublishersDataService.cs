@@ -2,58 +2,224 @@
 {
     using System;
     using System.Linq;
-    using System.Linq.Expressions;
+    using System.Threading.Tasks;
 
     using Contracts;
-    using Models;
+    using Models.Publishers;
 
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Extensions;
 
-    public class PublishersDataService : SimpleDataServiceWithRepositoryProviderFactory<Publisher, PublisherServiceModel>, IPublishersDataService
+    public class PublishersDataService : IPublishersDataService
     {
-        public PublishersDataService(IDocumentsRepositoryProvider<Publisher> repository)
-            : base(repository)
+        private readonly IDocumentsRepositoryProvider<Publisher> repositoryProvider;
+
+        public PublishersDataService(IDocumentsRepositoryProvider<Publisher> repositoryProvider)
         {
+            if (repositoryProvider == null)
+            {
+                throw new ArgumentNullException(nameof(repositoryProvider));
+            }
+
+            this.repositoryProvider = repositoryProvider;
         }
 
-        protected override Expression<Func<Publisher, PublisherServiceModel>> MapDbModelToServiceModel => p => new PublisherServiceModel
+        public async Task<object> Add(object userId, PublisherMinimalServiceModel model)
         {
-            AbbreviatedName = p.AbbreviatedName,
-            CreatedByUserId = p.CreatedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified,
-            Id = p.Id,
-            ModifiedByUserId = p.ModifiedByUser,
-            Name = p.Name,
-            Journals = p.Journals.Select(j => new JournalServiceModel
+            if (userId == null)
             {
-                AbbreviatedName = j.AbbreviatedName,
-                CreatedByUserId = j.CreatedByUser,
-                DateCreated = j.DateCreated,
-                DateModified = j.DateModified,
-                ElectronicIssn = j.ElectronicIssn,
-                Id = j.Id,
-                JournalId = j.JournalId,
-                ModifiedByUserId = j.ModifiedByUser,
-                Name = j.Name,
-                PrintIssn = j.PrintIssn,
-                PublisherId = j.PublisherId
-            })
-        };
+                throw new ArgumentNullException(nameof(userId));
+            }
 
-        protected override Expression<Func<PublisherServiceModel, Publisher>> MapServiceModelToDbModel => p => new Publisher
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var entity = new Publisher
+            {
+                Name = model.Name,
+                AbbreviatedName = model.AbbreviatedName,
+                CreatedByUser = userId.ToString(),
+                ModifiedByUser = userId.ToString()
+            };
+
+            var repository = this.repositoryProvider.Create();
+
+            await repository.Add(entity);
+            var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
+
+        public async Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage)
         {
-            Name = p.Name,
-            ModifiedByUser = p.ModifiedByUserId,
-            Id = p.Id,
-            DateModified = p.DateModified,
-            DateCreated = p.DateCreated,
-            CreatedByUser = p.CreatedByUserId,
-            AbbreviatedName = p.AbbreviatedName
-        };
+            if (pageNumber < 0)
+            {
+                throw new InvalidPageNumberException();
+            }
 
-        protected override Expression<Func<Publisher, object>> SortExpression => p => p.Name;
+            if (1 > itemsPerPage || itemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var publishers = (await repository.All())
+                .OrderByDescending(d => d.DateModified)
+                .Skip(pageNumber * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(p => new PublisherServiceModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    AbbreviatedName = p.AbbreviatedName,
+                    CreatedByUser = p.CreatedByUser,
+                    ModifiedByUser = p.ModifiedByUser,
+                    DateCreated = p.DateCreated,
+                    DateModified = p.DateModified
+                })
+                .ToList();
+
+            repository.TryDispose();
+
+            return publishers.AsQueryable();
+        }
+
+        public async Task<PublisherServiceModel> Get(object id)
+        {
+            {
+                if (id == null)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+
+                var repository = this.repositoryProvider.Create();
+
+                var entity = await repository.Get(id);
+
+                repository.TryDispose();
+
+                if (entity == null)
+                {
+                    throw new EntityNotFoundException();
+                }
+
+                var result = new PublisherServiceModel
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    AbbreviatedName = entity.AbbreviatedName,
+                    CreatedByUser = entity.CreatedByUser,
+                    ModifiedByUser = entity.ModifiedByUser,
+                    DateCreated = entity.DateCreated,
+                    DateModified = entity.DateModified
+                };
+
+                return result;
+            }
+        }
+
+        public async Task<PublisherDetailsServiceModel> GetDetails(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var entity = (await repository.All())
+                .FirstOrDefault(p => p.Id.ToString() == id.ToString());
+
+            repository.TryDispose();
+
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            var result = new PublisherDetailsServiceModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AbbreviatedName = entity.AbbreviatedName,
+                CreatedByUser = entity.CreatedByUser,
+                ModifiedByUser = entity.ModifiedByUser,
+                DateCreated = entity.DateCreated,
+                DateModified = entity.DateModified
+            };
+
+            result.Addresses = entity.Addresses?.Select(a => new AddressServiceModel
+            {
+                Id = a.Id,
+                AddressString = a.AddressString
+            }).ToList();
+
+            result.Journals = entity.Journals?.Select(j => new JournalServiceModel
+            {
+                Id = j.Id,
+                Name = j.Name
+            }).ToList();
+
+            return result;
+        }
+
+        public async Task<object> Delete(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            await repository.Delete(id);
+            var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
+
+        public async Task<object> Update(object userId, PublisherMinimalServiceModel model)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var entity = await repository.Get(model.Id);
+            if (entity == null)
+            {
+                repository.TryDispose();
+                throw new EntityNotFoundException();
+            }
+
+            entity.Name = model.Name;
+            entity.AbbreviatedName = model.AbbreviatedName;
+            entity.ModifiedByUser = userId.ToString();
+            entity.DateModified = DateTime.UtcNow;
+
+            await repository.Update(entity);
+            var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
     }
 }

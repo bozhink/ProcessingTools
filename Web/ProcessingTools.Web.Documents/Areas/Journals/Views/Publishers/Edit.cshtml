@@ -1,10 +1,12 @@
-﻿@model ProcessingTools.Documents.Data.Models.Publisher
+﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherDetailsViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = ContentConstants.DeafultEditPageTitle;
 }
 
-<h2>Edit</h2>
+<h2>
+    @ContentConstants.DeafultEditPageHeading
+</h2>
 
 @using (Html.BeginForm())
 {
@@ -33,34 +35,30 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreatedByUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedByUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedByUser, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModifiedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ModifiedBy, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DateModified, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateModified, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateModified, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedByUser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModifiedByUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedByUser, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.DateModified, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -72,6 +70,8 @@
     </div>
 }
 
+@* TODO: Addresses and journals. *@
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
 </div>

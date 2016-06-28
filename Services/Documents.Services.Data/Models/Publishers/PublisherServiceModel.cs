@@ -1,22 +1,24 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers
+﻿namespace ProcessingTools.Documents.Services.Data.Models.Publishers
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
+    using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class PublisherViewModel
+    public class PublisherServiceModel : ModelWithUserInformation
     {
+        public PublisherServiceModel()
+            : base()
+        {
+        }
+
         public Guid Id { get; set; }
 
-        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfPublisherName)]
         public string Name { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName)]
         public string AbbreviatedName { get; set; }
-
-        public DateTime DateCreated { get; set; }
-
-        public DateTime DateModified { get; set; }
     }
 }

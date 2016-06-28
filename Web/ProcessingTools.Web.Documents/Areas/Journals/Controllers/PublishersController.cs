@@ -10,8 +10,9 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
-    using ProcessingTools.Documents.Data.Models;
-    using ProcessingTools.Documents.Data.Repositories.Contracts;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Models.Publishers;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
 
@@ -19,16 +20,16 @@
 
     public class PublishersController : Controller
     {
-        private readonly IDocumentsRepositoryProvider<Publisher> repositoryProvider;
+        private readonly IPublishersDataService service;
 
-        public PublishersController(IDocumentsRepositoryProvider<Publisher> repositoryProvider)
+        public PublishersController(IPublishersDataService service)
         {
-            if (repositoryProvider == null)
+            if (service == null)
             {
-                throw new ArgumentNullException(nameof(repositoryProvider));
+                throw new ArgumentNullException(nameof(service));
             }
 
-            this.repositoryProvider = repositoryProvider;
+            this.service = service;
         }
 
         public static string ControllerName => ControllerConstants.PublishersControllerName;
@@ -38,22 +39,38 @@
         // GET: Journals/Publishers
         public async Task<ActionResult> Index()
         {
-            var repository = this.repositoryProvider.Create();
+            // TODO: paging
+            try
+            {
+                var viewModels = (await this.service.All(0, 15))
+                    .Select(e => new PublisherViewModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name,
+                        AbbreviatedName = e.AbbreviatedName,
+                        DateCreated = e.DateCreated,
+                        DateModified = e.DateModified
+                    })
+                    .ToList();
 
-            var models = (await repository.All())
-                .Select(e => new PublisherViewModel
-                {
-                    Id = e.Id,
-                    Name = e.Name,
-                    AbbreviatedName = e.AbbreviatedName,
-                    DateCreated = e.DateCreated,
-                    DateModified = e.DateModified
-                })
-                .ToList();
-
-            repository.TryDispose();
-
-            return this.View(models);
+                return this.View(viewModels);
+            }
+            catch (InvalidPageNumberException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (InvalidItemsPerPageException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // GET: Journals/Publishers/Details/5
@@ -64,33 +81,40 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var repository = this.repositoryProvider.Create();
+            try
+            {
+                var serviceModel = await this.service.GetDetails(id);
+                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
 
-            var entity = (await repository.All())
-                .FirstOrDefault(p => p.Id == id);
+                viewModel.Addresses = serviceModel.Addresses?.Select(a => new AddressViewModel
+                {
+                    Id = a.Id,
+                    AddressString = a.AddressString
+                }).ToList();
 
-            repository.TryDispose();
+                viewModel.Journals = serviceModel.Journals?.Select(j => new JournalViewModel
+                {
+                    Id = j.Id,
+                    Name = j.Name
+                }).ToList();
 
-            if (entity == null)
+                return this.View(viewModel);
+            }
+            catch (EntityNotFoundException)
             {
                 return this.HttpNotFound();
             }
-
-            var model = await this.MapToDetailsViewModelWithoutCollections(entity);
-
-            model.Addresses = entity.Addresses?.Select(a => new AddressViewModel
+            catch (ArgumentNullException)
             {
-                Id = a.Id,
-                AddressString = a.AddressString
-            }).ToList();
-
-            model.Journals = entity.Journals?.Select(j => new JournalViewModel
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
             {
-                Id = j.Id,
-                Name = j.Name
-            }).ToList();
-
-            return this.View(model);
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // GET: Journals/Publishers/Create
@@ -104,29 +128,36 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name,AbbreviatedName")] PublisherCreateViewModel model)
+        public async Task<ActionResult> Create([Bind(Include = "Name,AbbreviatedName")] PublisherCreateViewModel publisher)
         {
             if (this.ModelState.IsValid)
             {
-                var entity = new Publisher
+                try
                 {
-                    Name = model.Name,
-                    AbbreviatedName = model.AbbreviatedName,
-                    CreatedByUser = User.Identity.GetUserId(),
-                    ModifiedByUser = User.Identity.GetUserId()
-                };
+                    await this.service.Add(
+                        User.Identity.GetUserId(),
+                        new PublisherMinimalServiceModel
+                        {
+                            Name = publisher.Name,
+                            AbbreviatedName = publisher.AbbreviatedName
+                        });
 
-                var repository = this.repositoryProvider.Create();
-
-                await repository.Add(entity);
-                await repository.SaveChanges();
-
-                repository.TryDispose();
-
-                return this.RedirectToAction(nameof(this.Index));
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+                catch (ArgumentNullException)
+                {
+                    // TODO
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                catch (Exception e)
+                {
+                    this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
+                    return this.View(ViewConstants.DefaultErrorViewName, error);
+                }
             }
 
-            return this.View(model);
+            return this.View(publisher);
         }
 
         // GET: Journals/Publishers/Edit/5
@@ -137,18 +168,27 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var repository = this.repositoryProvider.Create();
-
-            var entity = await repository.Get(id);
-
-            repository.TryDispose();
-
-            if (entity == null)
+            try
+            {
+                var serviceModel = await this.service.GetDetails(id);
+                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
+                return this.View(viewModel);
+            }
+            catch (EntityNotFoundException)
             {
                 return this.HttpNotFound();
             }
-
-            return this.View(entity);
+            catch (ArgumentNullException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // POST: Journals/Publishers/Edit/5
@@ -156,21 +196,41 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName,CreatedByUserId,DateCreated,DateModified,ModifiedByUserId")] Publisher publisher)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName")] PublisherViewModel publisher)
         {
-            if (this.ModelState.IsValid)
+            try
             {
-                var repository = this.repositoryProvider.Create();
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.Update(
+                            User.Identity.GetUserId(),
+                            new PublisherMinimalServiceModel
+                            {
+                                Id = publisher.Id,
+                                Name = publisher.Name,
+                                AbbreviatedName = publisher.AbbreviatedName
+                            });
 
-                await repository.Update(publisher);
-                await repository.SaveChanges();
+                    return this.RedirectToAction(nameof(this.Index));
+                }
 
-                repository.TryDispose();
-
-                return this.RedirectToAction(nameof(this.Index));
+                return this.View(publisher);
             }
-
-            return this.View(publisher);
+            catch (EntityNotFoundException)
+            {
+                return this.HttpNotFound();
+            }
+            catch (ArgumentNullException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // GET: Journals/Publishers/Delete/5
@@ -181,20 +241,27 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var repository = this.repositoryProvider.Create();
-
-            var entity = await repository.Get(id);
-
-            repository.TryDispose();
-
-            if (entity == null)
+            try
+            {
+                var serviceModel = await this.service.GetDetails(id);
+                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
+                return this.View(viewModel);
+            }
+            catch (EntityNotFoundException)
             {
                 return this.HttpNotFound();
             }
-
-            var model = await this.MapToDetailsViewModelWithoutCollections(entity);
-
-            return this.View(model);
+            catch (ArgumentNullException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         // POST: Journals/Publishers/Delete/5
@@ -202,38 +269,50 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            var repository = this.repositoryProvider.Create();
-
-            await repository.Delete(id);
-            await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return this.RedirectToAction(nameof(this.Index));
+            try
+            {
+                await this.service.Delete(id);
+                return this.RedirectToAction(nameof(this.Index));
+            }
+            catch (EntityNotFoundException)
+            {
+                return this.HttpNotFound();
+            }
+            catch (ArgumentNullException)
+            {
+                // TODO
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
+                return this.View(ViewConstants.DefaultErrorViewName, error);
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                this.repositoryProvider.TryDispose();
+                this.service.TryDispose();
             }
 
             base.Dispose(disposing);
         }
 
-        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(Publisher entity)
+        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherServiceModel serviceModel)
         {
-            string createdBy = (await this.UserManager.FindByIdAsync(entity.CreatedByUser)).UserName;
-            string modifiedBy = (await this.UserManager.FindByIdAsync(entity.ModifiedByUser)).UserName;
+            string createdBy = (await this.UserManager.FindByIdAsync(serviceModel.CreatedByUser)).UserName;
+            string modifiedBy = (await this.UserManager.FindByIdAsync(serviceModel.ModifiedByUser)).UserName;
 
             var model = new PublisherDetailsViewModel
             {
-                Id = entity.Id,
-                Name = entity.Name,
-                AbbreviatedName = entity.AbbreviatedName,
-                DateCreated = entity.DateCreated,
-                DateModified = entity.DateModified,
+                Id = serviceModel.Id,
+                Name = serviceModel.Name,
+                AbbreviatedName = serviceModel.AbbreviatedName,
+                DateCreated = serviceModel.DateCreated,
+                DateModified = serviceModel.DateModified,
                 CreatedBy = createdBy,
                 ModifiedBy = modifiedBy
             };
