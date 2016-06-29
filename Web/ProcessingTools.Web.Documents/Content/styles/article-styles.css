@@ -3,8 +3,12 @@
   margin: 0;
 }
 main {
+  align-content: center;
+}
+main #article {
+  text-align: justify;
   min-width: 50px;
-  max-width: 1200px;
+  max-width: 800px;
   padding: 0 10px 0 10px;
 }
 em {
@@ -99,21 +103,24 @@ section p {
   font-size: 1em;
   text-align: justify;
 }
-table-wrap[content-type='key'] table {
+table {
   border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
 }
-table-wrap[content-type='key'] table td {
+table td,
+table th {
   border-color: #ccc;
   padding: 5px;
   text-align: left;
 }
-table-wrap[content-type='key'] table td :nth-child(1) {
+.table-wrap[content-type='key'] table td:nth-child(1) {
   max-width: 10%;
 }
-table-wrap[content-type='key'] table td :nth-child(2) {
+.table-wrap[content-type='key'] table td:nth-child(2) {
   max-width: 70%;
 }
-table-wrap[content-type='key'] table td :nth-child(3) {
+.table-wrap[content-type='key'] table td:nth-child(3) {
   min-width: 20%;
   max-height: 40%;
 }
@@ -252,4 +259,11 @@ h4.label {
 }
 .mixed-citation .person-group .name:last-child:after {
   content: '';
+}
+.institutional_code {
+  background-color: burlywood;
+}
+span.ext-link {
+  color: cornflowerblue;
+  text-decoration: underline double;
 }
