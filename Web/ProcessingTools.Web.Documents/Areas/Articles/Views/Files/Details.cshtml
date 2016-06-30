@@ -61,7 +61,7 @@
 <hr />
 
 <p>
-    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index), new { id = Model.Id })
+    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
     <span class="@ContentConstants.DefaultSeparatorClassName"></span>
     @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })
     <span class="@ContentConstants.DefaultSeparatorClassName"></span>

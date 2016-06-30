@@ -1,16 +1,16 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
     ViewBag.Title = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3 class="text-danger">An error occurred while processing your request.</h3>
 
 <p>
-    @ViewBag.Message
+    @Model.SourceAction.Message
 </p>
 
-<p>
-    @Model.Exception.Message
-</p>
+@Html.Partial(ViewConstants.ErrorFootPartialViewName)

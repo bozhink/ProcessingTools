@@ -9,6 +9,7 @@
 
         public const string DefaultCreateActionLinkTitle = "Create New";
         public const string DefaultEditActionLinkTitle = "Edit";
+        public const string DefaultIndexActionLinkTitle = "Index";
         public const string DefaultPreviewActionLinkTitle = "Preview";
         public const string DefaultDetailsActionLinkTitle = "Details";
         public const string DefaultDeleteActionLinkTitle = "Delete";

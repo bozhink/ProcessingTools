@@ -4,7 +4,7 @@
     {
         public const string DefaultErrorViewName = "Error";
         public const string DefaultInvalidActionViewName = "InvalidAction";
-        public const string DefaultNotFaoundViewName = "NotFound";
+        public const string DefaultNotFoundViewName = "NotFound";
         public const string ErrorFootPartialViewName = "ErrorFootPartial";
 
         public const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";

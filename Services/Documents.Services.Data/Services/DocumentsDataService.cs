@@ -13,6 +13,7 @@
     using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
@@ -193,10 +194,7 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var entity = (await repository.All())
-                .Where(d => d.CreatedByUser == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
+            var entity = await this.GetEntity(userId, articleId, documentId, repository);
 
             await this.xmlFileReaderWriter.Delete(entity.FileName, this.DataDirectory);
 
@@ -254,10 +252,7 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var entity = (await repository.All())
-                .Where(d => d.CreatedByUser == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == document.Id);
+            var entity = await this.GetEntity(userId, articleId, document.Id, repository);
 
             using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(content)))
             {
@@ -294,12 +289,24 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var entity = (await repository.All())
-                .Where(d => d.CreatedByUser == userId.ToString())
-                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
+            var entity = await this.GetEntity(userId, articleId, documentId, repository);
 
             repository.TryDispose();
+
+            return entity;
+        }
+
+        private async Task<Document> GetEntity(object userId, object articleId, object documentId, IGenericRepository<Document> repository)
+        {
+            var entity = (await repository.All())
+                .Where(d => d.CreatedByUser == userId.ToString())
+                //// TODO: // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
+            if (entity == null)
+            {
+                repository.TryDispose();
+                throw new EntityNotFoundException();
+            }
 
             return entity;
         }

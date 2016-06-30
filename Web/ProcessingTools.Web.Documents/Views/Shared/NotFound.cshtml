@@ -1,10 +1,16 @@
-﻿@{
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
     ViewBag.Title = "Not Found";
 }
 
-<h2 class="text-danger">404 Not Found.</h2>
-<h2 class="text-danger">File not found.</h2>
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3 class="text-danger">Not Found</h3>
 
 <p>
-    @ViewBag.Message
+    @Model.SourceAction.Message
 </p>
+
+@Html.Partial(ViewConstants.ErrorFootPartialViewName)

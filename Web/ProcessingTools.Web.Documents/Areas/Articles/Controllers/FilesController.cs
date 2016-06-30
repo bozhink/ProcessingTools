@@ -13,12 +13,12 @@
     using Microsoft.AspNet.Identity;
 
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
-    using ProcessingTools.Web.Documents.ViewModels.Error;
     using ProcessingTools.Xml.Extensions;
 
     [Authorize]
@@ -57,17 +57,7 @@
         {
             if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NoFilesSelectedErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultUploadNewFileActionLinkTitle,
-                        ActionName = nameof(this.Upload),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NoFilesSelectedErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -109,17 +99,7 @@
                 if (invalidFiles.Count > 0)
                 {
                     this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                    return this.ErrorViewWithGoBackToIndexDestination(
-                        ViewConstants.InvalidOrEmptyFileErrorViewName,
-                        HttpStatusCode.BadRequest,
-                        InstanceName,
-                        new ActionMetaViewModel
-                        {
-                            ActionLinkText = ContentConstants.DefaultUploadNewFileActionLinkTitle,
-                            ActionName = nameof(this.Upload),
-                            ControllerName = FilesController.ControllerName,
-                            AreaName = AreasConstants.ArticlesAreaName
-                        });
+                    return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
                 }
 
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -127,9 +107,7 @@
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
 
@@ -138,17 +116,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
-                        ActionName = nameof(this.Delete),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -157,11 +125,13 @@
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.RedirectToAction(nameof(this.Index));
             }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
 
@@ -178,27 +148,12 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultDetailsActionLinkTitle,
-                        ActionName = nameof(this.Details),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
             {
                 var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
-                if (document == null)
-                {
-                    this.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    return this.View(ViewConstants.DefaultNotFaoundViewName);
-                }
 
                 var model = new DocumentViewModel
                 {
@@ -214,11 +169,13 @@
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(model);
             }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
 
@@ -227,27 +184,12 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultDownloadActionLinkTitle,
-                        ActionName = nameof(this.Download),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
             {
                 var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
-                if (document == null)
-                {
-                    this.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    return this.View(ViewConstants.DefaultNotFaoundViewName);
-                }
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -256,11 +198,13 @@
                     contentType: document.ContentType,
                     fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
             }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
 
@@ -269,17 +213,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultEditActionLinkTitle,
-                        ActionName = nameof(this.Edit),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             // TODO
@@ -292,17 +226,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultEditActionLinkTitle,
-                        ActionName = nameof(this.Edit),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             // TODO
@@ -346,9 +270,7 @@
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
 
@@ -357,17 +279,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.ErrorViewWithGoBackToIndexDestination(
-                    ViewConstants.NullIdErrorViewName,
-                    HttpStatusCode.BadRequest,
-                    InstanceName,
-                    new ActionMetaViewModel
-                    {
-                        ActionLinkText = ContentConstants.DefaultPreviewActionLinkTitle,
-                        ActionName = nameof(this.Preview),
-                        ControllerName = FilesController.ControllerName,
-                        AreaName = AreasConstants.ArticlesAreaName
-                    });
+                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -384,11 +296,13 @@
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(model);
             }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Upload));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
         }
     }
