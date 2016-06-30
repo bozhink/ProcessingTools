@@ -283,6 +283,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -303,6 +304,8 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Error\ActionMetaViewModel.cs" />
+    <Compile Include="ViewModels\Error\ErrorMetaViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -367,7 +370,7 @@
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
     <Content Include="Areas\Articles\Views\Files\NoFilesSelectedError.cshtml" />
     <Content Include="Areas\Articles\Views\Files\InvalidOrEmptyFileError.cshtml" />
-    <Content Include="Areas\Articles\Views\Shared\NullIdError.cshtml" />
+    <Content Include="Views\Shared\NullIdError.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Details.cshtml" />
@@ -444,9 +447,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\InvalidAction.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Shared\ErrorFootPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />

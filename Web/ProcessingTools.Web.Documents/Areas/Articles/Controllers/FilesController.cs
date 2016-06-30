@@ -16,17 +16,15 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
+    using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.ViewModels.Error;
     using ProcessingTools.Xml.Extensions;
-
-    using ViewModels.Files;
 
     [Authorize]
     public class FilesController : Controller
     {
-        private const string NoFilesSelectedErrorViewName = "NoFilesSelectedError";
-        private const string InvalidOrEmptyFileErrorViewName = "InvalidOrEmptyFileError";
-        private const string NullIdErrorViewName = "NullIdError";
-
+        private const string InstanceName = "Document";
         private readonly IDocumentsDataService service;
 
         // TODO: To be removed
@@ -59,7 +57,7 @@
             if (files == null || files.Count() < 1)
             {
                 this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NoFilesSelectedErrorViewName);
+                return this.View(ViewConstants.NoFilesSelectedErrorViewName);
             }
 
             try
@@ -94,7 +92,7 @@
                 if (invalidFiles.Count > 0)
                 {
                     this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    return this.View(InvalidOrEmptyFileErrorViewName, invalidFiles.ToList());
+                    return this.View(ViewConstants.InvalidOrEmptyFileErrorViewName, invalidFiles.ToList());
                 }
 
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -113,8 +111,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Delete),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             try
@@ -142,8 +149,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Details),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             try
@@ -181,8 +197,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Download),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             try
@@ -213,8 +238,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Edit),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             // TODO
@@ -227,8 +261,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Edit),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             // TODO
@@ -282,8 +325,17 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(NullIdErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NullIdErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionName = nameof(this.Preview),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             try

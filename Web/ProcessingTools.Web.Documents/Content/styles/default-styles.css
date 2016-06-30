@@ -1,6 +1,12 @@
 ﻿.default-separator::after {
   content: '|';
 }
+.separated-items > .item::after {
+  content: ' | ';
+}
+.separated-items > .item:last-child::after {
+  content: '';
+}
 #add-new-hide-checkbox,
 .add-new-hidden-form {
   display: none;
