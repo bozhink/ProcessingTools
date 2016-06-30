@@ -368,8 +368,8 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\NoFilesSelectedError.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\InvalidOrEmptyFileError.cshtml" />
+    <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
+    <Content Include="Views\Shared\InvalidOrEmptyFileError.cshtml" />
     <Content Include="Views\Shared\NullIdError.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />

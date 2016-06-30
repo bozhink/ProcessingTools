@@ -47,6 +47,7 @@
         // GET: Files/Upload
         public ActionResult Upload()
         {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -54,10 +55,19 @@
         [HttpPost]
         public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
         {
-            if (files == null || files.Count() < 1)
+            if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return this.View(ViewConstants.NoFilesSelectedErrorViewName);
+                return this.ErrorViewWithGoBackToIndexDestination(
+                    ViewConstants.NoFilesSelectedErrorViewName,
+                    HttpStatusCode.BadRequest,
+                    InstanceName,
+                    new ActionMetaViewModel
+                    {
+                        ActionLinkText = ContentConstants.DefaultUploadNewFileActionLinkTitle,
+                        ActionName = nameof(this.Upload),
+                        ControllerName = FilesController.ControllerName,
+                        AreaName = AreasConstants.ArticlesAreaName
+                    });
             }
 
             try
@@ -75,15 +85,22 @@
                     }
                     else
                     {
-                        var document = new DocumentServiceModel
+                        try
                         {
-                            FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
-                            FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                            ContentLength = file.ContentLength,
-                            ContentType = file.ContentType
-                        };
+                            var document = new DocumentServiceModel
+                            {
+                                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
+                                ContentLength = file.ContentLength,
+                                ContentType = file.ContentType
+                            };
 
-                        tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
+                            tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
+                        }
+                        catch
+                        {
+                            invalidFiles.Enqueue(file.FileName);
+                        }
                     }
                 }
 
@@ -91,8 +108,18 @@
 
                 if (invalidFiles.Count > 0)
                 {
-                    this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    return this.View(ViewConstants.InvalidOrEmptyFileErrorViewName, invalidFiles.ToList());
+                    this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
+                    return this.ErrorViewWithGoBackToIndexDestination(
+                        ViewConstants.InvalidOrEmptyFileErrorViewName,
+                        HttpStatusCode.BadRequest,
+                        InstanceName,
+                        new ActionMetaViewModel
+                        {
+                            ActionLinkText = ContentConstants.DefaultUploadNewFileActionLinkTitle,
+                            ActionName = nameof(this.Upload),
+                            ControllerName = FilesController.ControllerName,
+                            AreaName = AreasConstants.ArticlesAreaName
+                        });
                 }
 
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -127,6 +154,7 @@
             try
             {
                 await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.RedirectToAction(nameof(this.Index));
             }
             catch (Exception e)
@@ -141,6 +169,7 @@
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -155,7 +184,7 @@
                     InstanceName,
                     new ActionMetaViewModel
                     {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionLinkText = ContentConstants.DefaultDetailsActionLinkTitle,
                         ActionName = nameof(this.Details),
                         ControllerName = FilesController.ControllerName,
                         AreaName = AreasConstants.ArticlesAreaName
@@ -182,6 +211,7 @@
                     DateModified = document.DateModified
                 };
 
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(model);
             }
             catch (Exception e)
@@ -203,7 +233,7 @@
                     InstanceName,
                     new ActionMetaViewModel
                     {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionLinkText = ContentConstants.DefaultDownloadActionLinkTitle,
                         ActionName = nameof(this.Download),
                         ControllerName = FilesController.ControllerName,
                         AreaName = AreasConstants.ArticlesAreaName
@@ -219,6 +249,7 @@
                     return this.View(ViewConstants.DefaultNotFaoundViewName);
                 }
 
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
                 return this.File(
                     fileStream: stream,
@@ -244,7 +275,7 @@
                     InstanceName,
                     new ActionMetaViewModel
                     {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionLinkText = ContentConstants.DefaultEditActionLinkTitle,
                         ActionName = nameof(this.Edit),
                         ControllerName = FilesController.ControllerName,
                         AreaName = AreasConstants.ArticlesAreaName
@@ -267,7 +298,7 @@
                     InstanceName,
                     new ActionMetaViewModel
                     {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionLinkText = ContentConstants.DefaultEditActionLinkTitle,
                         ActionName = nameof(this.Edit),
                         ControllerName = FilesController.ControllerName,
                         AreaName = AreasConstants.ArticlesAreaName
@@ -310,6 +341,7 @@
                 this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
                 this.ViewBag.NumberOfPages = (numberOfDocuments / itemsPerPage) + 1;
 
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(documents);
             }
             catch (Exception e)
@@ -331,7 +363,7 @@
                     InstanceName,
                     new ActionMetaViewModel
                     {
-                        ActionLinkText = ContentConstants.DefaultDeleteActionLinkTitle,
+                        ActionLinkText = ContentConstants.DefaultPreviewActionLinkTitle,
                         ActionName = nameof(this.Preview),
                         ControllerName = FilesController.ControllerName,
                         AreaName = AreasConstants.ArticlesAreaName
@@ -349,6 +381,7 @@
                     Content = content
                 };
 
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(model);
             }
             catch (Exception e)

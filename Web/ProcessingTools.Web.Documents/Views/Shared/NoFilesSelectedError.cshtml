@@ -1,0 +1,22 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = "No Files Selected Error";
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3 class="text-danger">No Files Selected</h3>
+
+<p>Please, select a file or files and try again.</p>
+<p>
+    @Html.ActionLink(
+        Model.SourceAction.ActionLinkText,
+        Model.SourceAction.ActionName,
+        Model.SourceAction.ControllerName,
+        routeValues: new { area = Model.SourceAction.AreaName},
+        htmlAttributes: null)
+</p>
+
+@Html.Partial(ViewConstants.ErrorFootPartialViewName)

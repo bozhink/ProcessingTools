@@ -2,24 +2,23 @@
 
 @if (Model != null && Model.DestinationActions != null && Model.DestinationActions.Count > 0)
 {
-    <p>Please, go back and try again.</p>
     <hr />
     <p class="separated-items">
         @foreach (var destination in Model.DestinationActions)
         {
             <span class="item">
                 @Html.ActionLink(
-                destination.ActionLinkText,
-                destination.ActionName,
-                destination.ControllerName,
-                routeValues: new
-                {
-                    area = destination.AreaName
-                },
-                htmlAttributes: new
-                {
-                    title = string.IsNullOrWhiteSpace(destination.Message) ? destination.ActionLinkText : destination.Message
-                })
+                    destination.ActionLinkText,
+                    destination.ActionName,
+                    destination.ControllerName,
+                    routeValues: new
+                    {
+                        area = destination.AreaName
+                    },
+                    htmlAttributes: new
+                    {
+                        title = string.IsNullOrWhiteSpace(destination.Message) ? destination.ActionLinkText : destination.Message
+                    })
             </span>
         }
     </p>
