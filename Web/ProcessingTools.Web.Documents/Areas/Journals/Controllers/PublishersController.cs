@@ -15,8 +15,9 @@
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers;
+    using ProcessingTools.Web.Documents.Extensions;
 
-    using ViewModels.Publishers;
 
     public class PublishersController : Controller
     {

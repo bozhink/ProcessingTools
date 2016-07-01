@@ -448,6 +448,7 @@
     <Content Include="Views\Shared\InvalidAction.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Shared\ErrorFootPartial.cshtml" />
+    <Content Include="Views\Shared\NavigationFootPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

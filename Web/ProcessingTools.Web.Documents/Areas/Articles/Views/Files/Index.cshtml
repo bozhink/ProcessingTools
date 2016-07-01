@@ -13,6 +13,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>
                     @Html.DisplayNameFor(model => model.FileName)
                 </th>
@@ -26,68 +27,46 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateModified)
-                    </td>
-                    <td>
-                        @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
-                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
-                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                        @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
-                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                        @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
-                        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                        @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
-                    </td>
-                </tr>
+            @{
+                int counter = 0;
+                foreach (var item in Model)
+                {
+                    ++counter;
+                    <tr>
+                        <td>
+                            @counter
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateModified)
+                        </td>
+                        <td class="separated-items">
+                            <span class="item">
+                                @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                            </span>
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
 </main>
 
-@{
-    long pageNumber = ViewBag.PageNumber;
-    long itemsPerPage = ViewBag.NumberOfItemsPerPage;
-    long lastPage = ViewBag.NumberOfPages - 1;
-    string pageActionName = nameof(FilesController.Index);
-
-    if (lastPage > 0)
-    {
-        <nav>
-            <ul class="pagination">
-                <li>
-                    @Html.ActionLink(" ", pageActionName, new { p = 0, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
-                </li>
-
-                <li>
-                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == 0 ? pageNumber : pageNumber - 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
-                </li>
-
-                @for (long i = 0; i < ViewBag.NumberOfPages; ++i)
-                {
-                    <li class="@((i == pageNumber) ? "active" : null)">
-                        @Html.ActionLink((i + 1).ToString(), pageActionName, new { p = i, n = itemsPerPage })
-                    </li>
-                }
-
-                <li>
-                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == lastPage ? pageNumber : pageNumber + 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
-                </li>
-
-                <li>
-                    @Html.ActionLink(" ", pageActionName, new { p = lastPage, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
-                </li>
-            </ul>
-        </nav>
-    }
-}
+@Html.Partial(ViewConstants.NavigationFootPartialViewName)

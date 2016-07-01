@@ -1,0 +1,36 @@
+﻿@{
+    long pageNumber = ViewBag.PageNumber;
+    long itemsPerPage = ViewBag.NumberOfItemsPerPage;
+    long lastPage = ViewBag.NumberOfPages - 1;
+    string pageActionName = ViewBag.ActionName;
+
+    if (lastPage > 0)
+    {
+        <nav>
+            <ul class="pagination">
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = 0, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
+                </li>
+
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == 0 ? pageNumber : pageNumber - 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
+                </li>
+
+                @for (long i = 0; i < ViewBag.NumberOfPages; ++i)
+                {
+                    <li class="@((i == pageNumber) ? "active" : null)">
+                        @Html.ActionLink((i + 1).ToString(), pageActionName, new { p = i, n = itemsPerPage })
+                    </li>
+                }
+
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = (pageNumber == lastPage ? pageNumber : pageNumber + 1), n = itemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
+                </li>
+
+                <li>
+                    @Html.ActionLink(" ", pageActionName, new { p = lastPage, n = itemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
+                </li>
+            </ul>
+        </nav>
+    }
+}

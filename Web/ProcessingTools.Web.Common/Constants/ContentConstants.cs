@@ -5,6 +5,7 @@
         public const string ApplicationName = "Processing Tools";
         public const string CopyrightHolder = "ProcessingTools";
 
+        // TODO: remove
         public const string DefaultSeparatorClassName = "default-separator";
 
         public const string DefaultCreateActionLinkTitle = "Create New";

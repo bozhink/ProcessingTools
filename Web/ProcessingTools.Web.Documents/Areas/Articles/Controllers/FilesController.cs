@@ -24,7 +24,7 @@
     [Authorize]
     public class FilesController : Controller
     {
-        private const string InstanceName = "Document";
+        private const string InstanceName = "File";
         private readonly IDocumentsDataService service;
 
         // TODO: To be removed
@@ -249,8 +249,6 @@
 
                 var userId = User.Identity.GetUserId();
 
-                var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
-
                 var documents = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
                     .Select(d => new DocumentViewModel
                     {
@@ -261,9 +259,12 @@
                     })
                     .ToList();
 
+                var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
+
                 this.ViewBag.PageNumber = pageNumber;
                 this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
-                this.ViewBag.NumberOfPages = (numberOfDocuments / itemsPerPage) + 1;
+                this.ViewBag.NumberOfPages = (numberOfDocuments % itemsPerPage) == 0 ? numberOfDocuments / itemsPerPage : (numberOfDocuments / itemsPerPage) + 1;
+                this.ViewBag.ActionName = nameof(this.Index);
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(documents);
