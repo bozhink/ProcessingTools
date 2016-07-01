@@ -6,11 +6,9 @@
 
 @Styles.Render("~/Content/article-styles")
 
-<main>
-    <div id="article">
-        @Html.Raw(Model.Content)
-    </div>
-</main>
+<section id="article">
+    @Html.Raw(Model.Content)
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")

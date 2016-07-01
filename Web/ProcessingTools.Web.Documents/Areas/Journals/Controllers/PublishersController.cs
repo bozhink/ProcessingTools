@@ -18,9 +18,19 @@
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers;
     using ProcessingTools.Web.Documents.Extensions;
 
+    using ProcessingTools.Common.Constants;
+
+
+    using ProcessingTools.Documents.Services.Data.Models;
+
+    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
+
+    using ProcessingTools.Xml.Extensions;
+
 
     public class PublishersController : Controller
     {
+        public const string InstanceName = "Publisher";
         private readonly IPublishersDataService service;
 
         public PublishersController(IPublishersDataService service)
@@ -38,12 +48,15 @@
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: Journals/Publishers
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? p, int? n)
         {
             // TODO: paging
             try
             {
-                var viewModels = (await this.service.All(0, 15))
+                int pageNumber = p ?? PagingConstants.DefaultPageNumber;
+                int itemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+
+                var viewModels = (await this.service.All(pageNumber, itemsPerPage))
                     .Select(e => new PublisherViewModel
                     {
                         Id = e.Id,
@@ -54,6 +67,14 @@
                     })
                     .ToList();
 
+                var numberOfDocuments = await this.service.Count();
+
+                this.ViewBag.PageNumber = pageNumber;
+                this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
+                this.ViewBag.NumberOfPages = (numberOfDocuments % itemsPerPage) == 0 ? numberOfDocuments / itemsPerPage : (numberOfDocuments / itemsPerPage) + 1;
+                this.ViewBag.ActionName = nameof(this.Index);
+
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(viewModels);
             }
             catch (InvalidPageNumberException)
@@ -68,9 +89,7 @@
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Index));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 

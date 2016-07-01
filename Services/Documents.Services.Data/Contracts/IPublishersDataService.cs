@@ -10,6 +10,8 @@
 
         Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage);
 
+        Task<long> Count();
+
         Task<object> Delete(object id);
 
         Task<PublisherServiceModel> Get(object id);

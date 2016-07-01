@@ -4,13 +4,21 @@
     ViewBag.Title = ContentConstants.DeafultDetailsPageTitle;
 }
 
-<h2>
-    @ContentConstants.DeafultDetailsPageHeading
-</h2>
+<header>
+    <h2>
+        @ContentConstants.DeafultDetailsPageHeading
+    </h2>
+</header>
 
-<div>
-    <h4>Publisher</h4>
+<section>
+    <header>
+        <h4>
+            @PublishersController.InstanceName
+        </h4>
+    </header>
+
     <hr />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -89,11 +97,18 @@
                 </dt>
             }
         }
-
     </dl>
-</div>
-<p>
-    @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = Model.Id })
-    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
-</p>
+</section>
+
+<hr />
+
+<footer>
+    <nav class="separated-items">
+        <span class="item">
+            @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = Model.Id })
+        </span>
+        <span class="item">
+            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
+        </span>
+    </nav>
+</footer>

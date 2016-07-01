@@ -24,7 +24,7 @@
     [Authorize]
     public class FilesController : Controller
     {
-        private const string InstanceName = "File";
+        public const string InstanceName = "File";
         private readonly IDocumentsDataService service;
 
         // TODO: To be removed
@@ -249,7 +249,7 @@
 
                 var userId = User.Identity.GetUserId();
 
-                var documents = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
+                var viewModels = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
                     .Select(d => new DocumentViewModel
                     {
                         Id = d.Id,
@@ -267,7 +267,7 @@
                 this.ViewBag.ActionName = nameof(this.Index);
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(documents);
+                return this.View(viewModels);
             }
             catch (Exception e)
             {

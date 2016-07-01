@@ -2,25 +2,38 @@
     ViewBag.Title = ContentConstants.DeafultUploadPageTitle;
 }
 
-<h2>
-    @ContentConstants.DeafultUploadPageHeading
-</h2>
+<header>
+    <h2>
+        @ContentConstants.DeafultUploadPageHeading
+    </h2>
+</header>
 
-@using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <input type="file" name="files" class="btn btn-default btn-file" accept=".xml, application/xml" multiple="multiple" placeholder="Select files" max="10" />
-        <input type="submit" name="Submit" id="submit" value="Upload" class="btn btn-default" />
-        <input type="reset" name="Reset" id="reset" value="Reset" class="btn btn-default" />
-    </div>
-}
+<section>
+    <header>
+        <h4>
+            @FilesController.InstanceName
+        </h4>
+    </header>
+
+    <hr />
+
+    @using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="file" name="files" class="btn btn-default btn-file" accept=".xml, application/xml" multiple="multiple" placeholder="Select files" max="10" />
+            <input type="submit" name="Submit" id="submit" value="Upload" class="btn btn-default" />
+            <input type="reset" name="Reset" id="reset" value="Reset" class="btn btn-default" />
+        </div>
+    }
+</section>
 
 <hr />
 
-<p class="separated-items">
-    <span class="item">
-        @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
-    </span>
-</p>
-
+<footer>
+    <nav class="separated-items">
+        <span class="item">
+            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+        </span>
+    </nav>
+</footer>

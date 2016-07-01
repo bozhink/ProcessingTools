@@ -2,10 +2,7 @@
   padding: 0;
   margin: 0;
 }
-main {
-  align-content: center;
-}
-main #article {
+#article {
   text-align: justify;
   min-width: 50px;
   max-width: 800px;

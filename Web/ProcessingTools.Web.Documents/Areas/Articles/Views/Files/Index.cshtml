@@ -4,69 +4,71 @@
     ViewBag.Title = "List of Files";
 }
 
-<main>
+<header>
     <h2>List of Files</h2>
+</header>
 
-    <p>
-        @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload))
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FileName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateModified)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int counter = 0;
-                foreach (var item in Model)
-                {
-                    ++counter;
-                    <tr>
-                        <td>
-                            @counter
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FileName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateCreated)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateModified)
-                        </td>
-                        <td class="separated-items">
-                            <span class="item">
-                                @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
-                            </span>
-                            <span class="item">
-                                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
-                            </span>
-                            <span class="item">
-                                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
-                            </span>
-                            <span class="item">
-                                @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
-                            </span>
-                            <span class="item">
-                                @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
-                            </span>
-                        </td>
-                    </tr>
-                }
+<p>
+    @Html.ActionLink(ContentConstants.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload))
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int counter = 0;
+            foreach (var item in Model)
+            {
+                ++counter;
+                <tr>
+                    <td>
+                        @counter
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateModified)
+                    </td>
+                    <td class="separated-items">
+                        <span class="item">
+                            @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                        </span>
+                    </td>
+                </tr>
             }
-        </tbody>
-    </table>
-</main>
+        }
+    </tbody>
+</table>
 
-@Html.Partial(ViewConstants.NavigationFootPartialViewName)
+<footer>
+    @Html.Partial(ViewConstants.NavigationFootPartialViewName)
+</footer>

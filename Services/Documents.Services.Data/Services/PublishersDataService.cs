@@ -92,6 +92,17 @@
             return publishers.AsQueryable();
         }
 
+        public async Task<long> Count()
+        {
+            var repository = this.repositoryProvider.Create();
+
+            long count = (await repository.All()).LongCount();
+
+            repository.TryDispose();
+
+            return count;
+        }
+
         public async Task<PublisherServiceModel> Get(object id)
         {
             {
