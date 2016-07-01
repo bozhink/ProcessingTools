@@ -60,14 +60,20 @@
 
 <hr />
 
-<p>
-    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
-    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })
-    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = Model.Id })
-    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = Model.Id })
-    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })
+<p class="separated-items">
+    <span class="item">
+        @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+    </span>
+    <span class="item">
+        @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })
+    </span>
+    <span class="item">
+        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = Model.Id })
+    </span>
+    <span class="item">
+        @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = Model.Id })
+    </span>
+    <span class="item">
+        @Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })
+    </span>
 </p>
