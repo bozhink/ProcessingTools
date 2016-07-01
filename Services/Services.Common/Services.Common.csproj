@@ -43,9 +43,11 @@
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\IDataServiceBase.cs" />
     <Compile Include="Contracts\IMultiEntryDataService.cs" />
+    <Compile Include="Contracts\IMvcDataService.cs" />
     <Compile Include="Contracts\IRepositoryDataService.cs" />
     <Compile Include="Factories\DataServiceBaseFactory.cs" />
     <Compile Include="Factories\DataServiceFactory.cs" />
+    <Compile Include="Factories\MvcDataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactoryBase.cs" />
     <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />

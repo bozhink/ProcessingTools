@@ -58,6 +58,9 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[]
+        {
+            nameof(this.Publisher)
+        };
     }
 }
