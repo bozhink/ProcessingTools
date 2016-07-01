@@ -51,12 +51,17 @@
         }
     </dl>
 </div>
-<p>
-    @if (User.Identity.IsAuthenticated)
-    {
-        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
-        <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-    }
+<footer>
+    <nav class="separated-items">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <span class="item">
+                @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
+            </span>
+        }
 
-    @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
-</p>
+        <span class="item">
+            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+        </span>
+    </nav>
+</footer>

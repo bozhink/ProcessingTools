@@ -29,10 +29,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+        <div class="form-actions no-color separated-items">
+            <span class="item">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </span>
+            <span class="item">
+                @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+            </span>
         </div>
     }
 </div>

@@ -1,7 +1,4 @@
-﻿.default-separator::after {
-  content: '|';
-}
-.separated-items > .item::after {
+﻿.separated-items > .item::after {
   content: ' | ';
 }
 .separated-items > .item:last-child::after {

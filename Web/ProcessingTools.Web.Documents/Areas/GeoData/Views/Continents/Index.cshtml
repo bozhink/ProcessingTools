@@ -30,22 +30,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="separated-items">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = item.Id })
-                    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
+                    <span class="item">
+                        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = item.Id })
+                    </span>
                 }
 
-                @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(ContinentsController.Details), new { id = item.Id })
+                <span class="item">
+                    @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(ContinentsController.Details), new { id = item.Id })
+                </span>
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <span class="@ContentConstants.DefaultSeparatorClassName"></span>
-                    @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(ContinentsController.Delete), new { id = item.Id })
+                    <span class="item">
+                        @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(ContinentsController.Delete), new { id = item.Id })
+                    </span>
                 }
             </td>
         </tr>
     }
-
 </table>
