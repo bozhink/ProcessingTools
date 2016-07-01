@@ -45,9 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IJournalsDataService.cs" />
     <Compile Include="Contracts\IPublishersDataService.cs" />
     <Compile Include="Contracts\IDocumentsDataService.cs" />
     <Compile Include="Models\DocumentServiceModel.cs" />
+    <Compile Include="Models\Journals\ArticleServiceModel.cs" />
+    <Compile Include="Models\Journals\JournalDetailsServiceModel.cs" />
+    <Compile Include="Models\Journals\JournalMinimalServiceModel.cs" />
+    <Compile Include="Models\Journals\JournalServiceModel.cs" />
+    <Compile Include="Models\Journals\PublisherServiceModel.cs" />
     <Compile Include="Models\Publishers\AddressServiceModel.cs" />
     <Compile Include="Models\Publishers\JournalServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherMinimalServiceModel.cs" />
