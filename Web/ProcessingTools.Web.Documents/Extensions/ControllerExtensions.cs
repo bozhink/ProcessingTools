@@ -149,7 +149,7 @@
                 stackFrameLevel);
         }
 
-        public static ViewResult NullIdErrorViewName(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
+        public static ViewResult NullIdErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewConstants.NullIdErrorViewName,
@@ -161,7 +161,7 @@
                 stackFrameLevel);
         }
 
-        public static ViewResult DefaultNotFoundViewName(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
+        public static ViewResult DefaultNotFoundView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewConstants.DefaultNotFoundViewName,
@@ -189,6 +189,18 @@
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewConstants.InvalidNumberOfItemsPerPageErrorViewName,
+                HttpStatusCode.BadRequest,
+                instanceName,
+                message,
+                actionLinkText,
+                areaName,
+                stackFrameLevel);
+        }
+
+        public static ViewResult BadRequestErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
+        {
+            return controller.ErrorViewWithGoBackToIndexDestination(
+                ViewConstants.BadRequestErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,

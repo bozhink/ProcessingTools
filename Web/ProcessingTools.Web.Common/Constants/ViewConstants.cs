@@ -2,6 +2,7 @@
 {
     public static class ViewConstants
     {
+        public const string BadRequestErrorViewName = "BadRequestError";
         public const string DefaultErrorViewName = "Error";
         public const string DefaultInvalidActionViewName = "InvalidAction";
         public const string DefaultNotFoundViewName = "NotFound";

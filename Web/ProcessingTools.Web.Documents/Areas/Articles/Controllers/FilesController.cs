@@ -105,6 +105,10 @@
                 this.Response.StatusCode = (int)HttpStatusCode.Created;
                 return this.RedirectToAction(nameof(this.Index));
             }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
@@ -116,7 +120,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -127,7 +131,11 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
             catch (Exception e)
             {
@@ -148,7 +156,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -171,7 +179,11 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
             catch (Exception e)
             {
@@ -184,7 +196,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -200,7 +212,11 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
             catch (Exception e)
             {
@@ -213,7 +229,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             // TODO
@@ -226,7 +242,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             // TODO
@@ -277,6 +293,10 @@
             {
                 return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);
@@ -288,7 +308,7 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return this.NullIdErrorViewName(InstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             try
@@ -307,7 +327,11 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundViewName(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
             catch (Exception e)
             {

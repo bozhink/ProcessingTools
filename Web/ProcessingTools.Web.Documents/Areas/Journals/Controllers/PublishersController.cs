@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
@@ -17,16 +18,6 @@
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers;
     using ProcessingTools.Web.Documents.Extensions;
-
-    using ProcessingTools.Common.Constants;
-
-
-    using ProcessingTools.Documents.Services.Data.Models;
-
-    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
-
-    using ProcessingTools.Xml.Extensions;
-
 
     public class PublishersController : Controller
     {
@@ -84,6 +75,10 @@
             {
                 return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
             }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
             catch (Exception e)
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
@@ -95,7 +90,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -117,20 +112,17 @@
 
                 return this.View(viewModel);
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException e)
             {
-                return this.HttpNotFound();
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Details));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -161,16 +153,13 @@
 
                     return this.RedirectToAction(nameof(this.Index));
                 }
-                catch (ArgumentNullException)
+                catch (ArgumentException e)
                 {
-                    // TODO
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
                 catch (Exception e)
                 {
-                    this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    var error = new HandleErrorInfo(e, ControllerName, nameof(this.Create));
-                    return this.View(ViewConstants.DefaultErrorViewName, error);
+                    return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
             }
 
@@ -182,7 +171,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -191,20 +180,17 @@
                 var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
                 return this.View(viewModel);
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException e)
             {
-                return this.HttpNotFound();
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -215,39 +201,36 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName")] PublisherViewModel publisher)
         {
-            try
+            if (this.ModelState.IsValid)
             {
-                if (this.ModelState.IsValid)
+                try
                 {
                     await this.service.Update(
-                            User.Identity.GetUserId(),
-                            new PublisherMinimalServiceModel
-                            {
-                                Id = publisher.Id,
-                                Name = publisher.Name,
-                                AbbreviatedName = publisher.AbbreviatedName
-                            });
+                        User.Identity.GetUserId(),
+                        new PublisherMinimalServiceModel
+                        {
+                            Id = publisher.Id,
+                            Name = publisher.Name,
+                            AbbreviatedName = publisher.AbbreviatedName
+                        });
 
                     return this.RedirectToAction(nameof(this.Index));
                 }
+                catch (EntityNotFoundException e)
+                {
+                    return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                }
+                catch (ArgumentException e)
+                {
+                    return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                }
+                catch (Exception e)
+                {
+                    return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                }
+            }
 
-                return this.View(publisher);
-            }
-            catch (EntityNotFoundException)
-            {
-                return this.HttpNotFound();
-            }
-            catch (ArgumentNullException)
-            {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            catch (Exception e)
-            {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
-            }
+            return this.View(publisher);
         }
 
         // GET: Journals/Publishers/Delete/5
@@ -255,7 +238,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -264,20 +247,17 @@
                 var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
                 return this.View(viewModel);
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException e)
             {
-                return this.HttpNotFound();
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -291,20 +271,17 @@
                 await this.service.Delete(id);
                 return this.RedirectToAction(nameof(this.Index));
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException e)
             {
-                return this.HttpNotFound();
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var error = new HandleErrorInfo(e, ControllerName, nameof(this.Delete));
-                return this.View(ViewConstants.DefaultErrorViewName, error);
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 

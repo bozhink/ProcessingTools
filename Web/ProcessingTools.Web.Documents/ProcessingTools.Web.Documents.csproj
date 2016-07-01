@@ -451,6 +451,7 @@
     <Content Include="Views\Shared\NavigationFootPartial.cshtml" />
     <Content Include="Views\Shared\InvalidPageNumberError.cshtml" />
     <Content Include="Views\Shared\InvalidNumberOfItemsPerPageError.cshtml" />
+    <Content Include="Views\Shared\BadRequestError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
