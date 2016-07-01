@@ -21,7 +21,6 @@
             this.publishers = new HashSet<Publisher>();
             this.institutions = new HashSet<Institution>();
             this.affiliations = new HashSet<Affiliation>();
-            this.PreJoinFieldNames = new string[] { };
         }
 
         [Key]
@@ -31,6 +30,8 @@
         public string AddressString { get; set; }
 
         public int? CityId { get; set; }
+
+        public int? CountryId { get; set; }
 
         public virtual ICollection<Publisher> Publishers
         {
@@ -72,6 +73,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames { get; private set; }
+        public IEnumerable<string> PreJoinFieldNames => null;
     }
 }

@@ -15,7 +15,6 @@
             : base()
         {
             this.Id = Guid.NewGuid();
-            this.PreJoinFieldNames = new string[] { };
         }
 
         [Key]
@@ -44,6 +43,6 @@
         public virtual Article Article { get; set; }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames { get; private set; }
+        public IEnumerable<string> PreJoinFieldNames => null;
     }
 }

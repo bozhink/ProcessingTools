@@ -21,16 +21,19 @@
             : base(contextProvider)
         {
             var entity = Activator.CreateInstance<TEntity>();
-            this.prejoinFields = entity.PreJoinFieldNames.ToArray();
+            this.prejoinFields = entity.PreJoinFieldNames?.ToArray();
         }
 
         public override Task<IQueryable<TEntity>> All()
         {
             var query = this.DbSet.AsQueryable();
 
-            foreach (var fieldName in this.prejoinFields)
+            if (this.prejoinFields != null)
             {
-                query = query.Include(fieldName);
+                foreach (var fieldName in this.prejoinFields)
+                {
+                    query = query.Include(fieldName);
+                }
             }
 
             return Task.FromResult(query);

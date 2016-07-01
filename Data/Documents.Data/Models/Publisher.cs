@@ -19,7 +19,6 @@
             this.Id = Guid.NewGuid();
             this.addresses = new HashSet<Address>();
             this.journals = new HashSet<Journal>();
-            this.PreJoinFieldNames = new string[] { nameof(this.Addresses), nameof(this.Journals) };
         }
 
         [Key]
@@ -60,6 +59,10 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames { get; private set; }
+        public IEnumerable<string> PreJoinFieldNames => new string[]
+        {
+            nameof(this.Addresses),
+            nameof(this.Journals)
+        };
     }
 }
