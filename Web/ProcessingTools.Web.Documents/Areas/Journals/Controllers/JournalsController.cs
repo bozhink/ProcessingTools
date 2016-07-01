@@ -11,27 +11,103 @@
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Web.Common.Constants;
 
+    using System.Linq;
+    using System.Web;
+
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Models.Journals;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Journals;
+    using ProcessingTools.Web.Documents.Extensions;
+
     public class JournalsController : Controller
     {
+        public const string InstanceName = "Journal";
+        private readonly IJournalsDataService journalsDataService;
+        private readonly IPublishersDataService publishersDataService;
+
         private readonly DocumentsDbContext db;
 
-        public JournalsController(IDocumentsDbContextProvider contextProvider)
+        public JournalsController(IJournalsDataService journalsDataService, IPublishersDataService publishersDataService)
         {
-            if (contextProvider == null)
+            if (journalsDataService == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(journalsDataService));
             }
 
-            this.db = contextProvider.Create();
+            if (publishersDataService == null)
+            {
+                throw new ArgumentNullException(nameof(publishersDataService));
+            }
+
+            this.journalsDataService = journalsDataService;
+            this.publishersDataService = publishersDataService;
         }
 
         public static string ControllerName => ControllerConstants.JournalsControllerName;
 
+        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
         // GET: Journals/Journals
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? p, int? n)
         {
-            var journals = this.db.Journals.Include(j => j.Publisher);
-            return this.View(await journals.ToListAsync());
+            try
+            {
+                int pageNumber = p ?? PagingConstants.DefaultPageNumber;
+                int itemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+
+                var viewModels = (await this.journalsDataService.All(pageNumber, itemsPerPage))
+                    .Select(e => new JournalViewModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name,
+                        AbbreviatedName = e.AbbreviatedName,
+                        JournalId = e.JournalId,
+                        PrintIssn = e.PrintIssn,
+                        ElectronicIssn = e.ElectronicIssn,
+                        DateCreated = e.DateCreated,
+                        DateModified = e.DateModified,
+                        Publisher = new PublisherViewModel
+                        {
+                            Id = e.Publisher.Id,
+                            Name = e.Publisher.Name,
+                            AbbreviatedName = e.Publisher.AbbreviatedName
+                        }
+                    })
+                    .ToList();
+
+                var numberOfDocuments = await this.journalsDataService.Count();
+
+                this.ViewBag.PageNumber = pageNumber;
+                this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
+                this.ViewBag.NumberOfPages = (numberOfDocuments % itemsPerPage) == 0 ? numberOfDocuments / itemsPerPage : (numberOfDocuments / itemsPerPage) + 1;
+                this.ViewBag.ActionName = nameof(this.Index);
+
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
+                return this.View(viewModels);
+            }
+            catch (InvalidPageNumberException e)
+            {
+                return this.InvalidPageNumberErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
+            catch (InvalidItemsPerPageException e)
+            {
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
+            catch (Exception e)
+            {
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
         }
 
         // GET: Journals/Journals/Details/5
@@ -39,22 +115,52 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
-            var journal = await Task.FromResult(this.db.Journals.Find(id));
-            if (journal == null)
+            try
             {
-                return this.HttpNotFound();
-            }
+                var serviceModel = await this.journalsDataService.GetDetails(id);
+                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
 
-            return this.View(journal);
+                // TODO: Is this needed here???
+                viewModel.Articles = serviceModel.Articles
+                    .Select(a => new ArticleViewModel
+                    {
+                        Id = a.Id,
+                        Title = a.Title
+                    })
+                    .OrderBy(a => a.Title)
+                    .ToList();
+
+                return this.View(viewModel);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
+            catch (Exception e)
+            {
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+            }
         }
 
         // GET: Journals/Journals/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            this.ViewBag.PublisherId = new SelectList(this.db.Publishers, "Id", "Name");
+            var publishers = (await this.publishersDataService.All())
+                .Select(p => new PublisherSimpleViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name
+                })
+                .ToList();
+
+            this.ViewBag.PublisherId = new SelectList(publishers, nameof(PublisherSimpleViewModel.Id), nameof(PublisherSimpleViewModel.Name));
             return this.View();
         }
 
@@ -149,6 +255,34 @@
             }
 
             base.Dispose(disposing);
+        }
+
+        private async Task<JournalDetailsViewModel> MapToDetailsViewModelWithoutCollections(JournalServiceModel serviceModel)
+        {
+            string createdBy = (await this.UserManager.FindByIdAsync(serviceModel.CreatedByUser)).UserName;
+            string modifiedBy = (await this.UserManager.FindByIdAsync(serviceModel.ModifiedByUser)).UserName;
+
+            var model = new JournalDetailsViewModel
+            {
+                Id = serviceModel.Id,
+                Name = serviceModel.Name,
+                AbbreviatedName = serviceModel.AbbreviatedName,
+                JournalId = serviceModel.JournalId,
+                PrintIssn = serviceModel.PrintIssn,
+                ElectronicIssn = serviceModel.ElectronicIssn,
+                CreatedByUser = createdBy,
+                ModifiedByUser = modifiedBy,
+                DateCreated = serviceModel.DateCreated,
+                DateModified = serviceModel.DateModified,
+                Publisher = new PublisherViewModel
+                {
+                    Id = serviceModel.Publisher.Id,
+                    Name = serviceModel.Publisher.Name,
+                    AbbreviatedName = serviceModel.Publisher.AbbreviatedName
+                }
+            };
+
+            return model;
         }
     }
 }

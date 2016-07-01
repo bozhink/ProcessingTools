@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -32,6 +33,7 @@
             DateModified = p.DateModified
         };
 
+
         public override async Task<object> Add(object userId, PublisherMinimalServiceModel model)
         {
             if (userId == null)
@@ -56,6 +58,23 @@
 
             await repository.Add(entity);
             var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<PublisherSimpleServiceModel>> All()
+        {
+            var repository = this.RepositoryProvider.Create();
+
+            var result = (await repository.All())
+                .Select(p => new PublisherSimpleServiceModel
+                {
+                    Id = p.Id,
+                    Name = p.Name
+                })
+                .ToList();
 
             repository.TryDispose();
 
