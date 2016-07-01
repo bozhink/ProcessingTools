@@ -172,5 +172,29 @@
                 areaName,
                 stackFrameLevel);
         }
+
+        public static ViewResult InvalidPageNumberErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
+        {
+            return controller.ErrorViewWithGoBackToIndexDestination(
+                ViewConstants.InvalidPageNumberErrorViewName,
+                HttpStatusCode.BadRequest,
+                instanceName,
+                message,
+                actionLinkText,
+                areaName,
+                stackFrameLevel);
+        }
+
+        public static ViewResult InvalidNumberOfItemsPerPageErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
+        {
+            return controller.ErrorViewWithGoBackToIndexDestination(
+                ViewConstants.InvalidNumberOfItemsPerPageErrorViewName,
+                HttpStatusCode.BadRequest,
+                instanceName,
+                message,
+                actionLinkText,
+                areaName,
+                stackFrameLevel);
+        }
     }
 }

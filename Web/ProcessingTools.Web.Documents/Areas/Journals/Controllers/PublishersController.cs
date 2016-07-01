@@ -50,7 +50,6 @@
         // GET: Journals/Publishers
         public async Task<ActionResult> Index(int? p, int? n)
         {
-            // TODO: paging
             try
             {
                 int pageNumber = p ?? PagingConstants.DefaultPageNumber;
@@ -77,15 +76,13 @@
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(viewModels);
             }
-            catch (InvalidPageNumberException)
+            catch (InvalidPageNumberException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.InvalidPageNumberErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
             }
-            catch (InvalidItemsPerPageException)
+            catch (InvalidItemsPerPageException e)
             {
-                // TODO
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {

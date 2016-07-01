@@ -269,6 +269,14 @@
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(viewModels);
             }
+            catch (InvalidPageNumberException e)
+            {
+                return this.InvalidPageNumberErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (InvalidItemsPerPageException e)
+            {
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
             catch (Exception e)
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);

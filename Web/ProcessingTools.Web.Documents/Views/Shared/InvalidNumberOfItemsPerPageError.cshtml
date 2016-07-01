@@ -1,0 +1,32 @@
+﻿@using ProcessingTools.Common.Constants
+
+@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = "Invalid Number Of Items Per Page Error";
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3 class="text-danger">Invalid Number Of Items Per Page</h3>
+
+<p>
+    @Model.SourceAction.Message
+</p>
+
+<hr />
+
+<p>Number of items per page should be between 1 and @PagingConstants.MaximalItemsPerPageAllowed.</p>
+
+<p>Please, go back and try again.</p>
+<p>
+    @Html.ActionLink(
+        Model.SourceAction.ActionLinkText,
+        Model.SourceAction.ActionName,
+        Model.SourceAction.ControllerName,
+        routeValues: new { area = Model.SourceAction.AreaName },
+        htmlAttributes: null)
+</p>
+
+@Html.Partial(ViewConstants.ErrorFootPartialViewName)
