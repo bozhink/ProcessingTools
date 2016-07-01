@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -37,6 +38,18 @@
             }
 
             return Task.FromResult(query);
+        }
+
+        public override async Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
+            var query = await this.All();
+
+            return await query.FirstOrDefaultAsync(selector);
         }
     }
 }

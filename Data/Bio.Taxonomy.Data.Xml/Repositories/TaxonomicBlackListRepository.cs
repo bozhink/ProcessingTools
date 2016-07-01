@@ -90,6 +90,17 @@
             return entity;
         }
 
+        public async Task<string> Get(Expression<Func<string, bool>> selector)
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
+            return (await this.All())
+                .FirstOrDefault(selector);
+        }
+
         public async Task<string> Get(object id)
         {
             if (id == null)
@@ -166,15 +177,12 @@
                 .Select(projection);
         }
 
-        public Task<int> SaveChanges()
-        {
-            return this.WriteItemsToFile();
-        }
-
         public Task<object> Update(string entity)
         {
             return this.Add(entity);
         }
+
+        public Task<int> SaveChanges() => this.WriteItemsToFile();
 
         private Task ReadItemsFromFile()
         {

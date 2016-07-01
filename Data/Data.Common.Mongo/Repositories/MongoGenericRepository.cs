@@ -102,6 +102,18 @@
             return await this.Delete(id);
         }
 
+        public virtual async Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
+            var cursor = await this.Collection.FindAsync(selector);
+            var entity = await cursor.FirstOrDefaultAsync();
+            return entity;
+        }
+
         public virtual async Task<TEntity> Get(object id)
         {
             if (id == null)
@@ -179,8 +191,6 @@
                 .Select(projection);
         }
 
-        public virtual Task<int> SaveChanges() => Task.FromResult(0);
-
         public virtual async Task<object> Update(TEntity entity)
         {
             if (entity == null)
@@ -193,6 +203,8 @@
             var result = await this.Collection.ReplaceOneAsync(filter, entity);
             return result;
         }
+
+        public virtual Task<int> SaveChanges() => Task.FromResult(0);
 
         private FilterDefinition<TEntity> GetFilterById(object id)
         {

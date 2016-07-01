@@ -4,12 +4,23 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
 
     public interface IGenericRepository<TEntity>
     {
+        Task<object> Add(TEntity entity);
+
         Task<IQueryable<TEntity>> All();
+
+        Task<object> Delete(TEntity entity);
+
+        Task<object> Delete(object id);
+
+        Task<TEntity> Get(Expression<Func<TEntity, bool>> selector);
+
+        Task<TEntity> Get(object id);
 
         Task<IQueryable<TEntity>> Query(
             Expression<Func<TEntity, bool>> filter,
@@ -26,16 +37,8 @@
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
             SortOrder sortOrder = SortOrder.Ascending);
 
-        Task<TEntity> Get(object id);
-
-        Task<object> Add(TEntity entity);
+        Task<int> SaveChanges();
 
         Task<object> Update(TEntity entity);
-
-        Task<object> Delete(TEntity entity);
-
-        Task<object> Delete(object id);
-
-        Task<int> SaveChanges();
     }
 }

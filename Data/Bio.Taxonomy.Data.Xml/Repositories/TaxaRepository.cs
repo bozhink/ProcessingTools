@@ -38,7 +38,7 @@
 
         private ITaxaContext Context { get; set; }
 
-        public Task<object> Add(Taxon entity)
+        public virtual Task<object> Add(Taxon entity)
         {
             if (entity == null)
             {
@@ -48,12 +48,12 @@
             return this.Context.Add(entity);
         }
 
-        public Task<IQueryable<Taxon>> All()
+        public virtual Task<IQueryable<Taxon>> All()
         {
             return this.Context.All();
         }
 
-        public Task<object> Delete(object id)
+        public virtual Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -63,7 +63,7 @@
             return this.Context.Delete(id);
         }
 
-        public Task<object> Delete(Taxon entity)
+        public virtual Task<object> Delete(Taxon entity)
         {
             if (entity == null)
             {
@@ -73,14 +73,25 @@
             return this.Delete(entity.Name);
         }
 
-        public Task<Taxon> Get(object id)
+        public virtual async Task<Taxon> Get(Expression<Func<Taxon, bool>> selector)
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
+            return (await this.Context.All())
+                .FirstOrDefault(selector);
+        }
+
+        public virtual Task<Taxon> Get(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return this.Get(id);
+            return this.Context.Get(id);
         }
 
         public virtual async Task<IQueryable<Taxon>> Query(
@@ -148,12 +159,7 @@
                 .Select(projection);
         }
 
-        public Task<int> SaveChanges()
-        {
-            return this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
-        }
-
-        public Task<object> Update(Taxon entity)
+        public virtual Task<object> Update(Taxon entity)
         {
             if (entity == null)
             {
@@ -162,5 +168,7 @@
 
             return this.Context.Update(entity);
         }
+
+        public virtual Task<int> SaveChanges() => this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
     }
 }
