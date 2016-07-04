@@ -72,31 +72,44 @@
         {
             if (this.IsRankList)
             {
+                var items = new HashSet<KeyValuePair<string, string>>();
+
                 for (Match entriesMatch = Regex.Match(this.listEntriesTextBox.Text, @"\S+\s+\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())
                 {
                     try
                     {
-                        string[] taxonRankPair =
-                            {
-                                Regex.Match(entriesMatch.Value, @"\S+").Value,
-                                Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLower()
-                            };
+                        var taxonRankPair = new KeyValuePair<string, string>(
+                            Regex.Match(entriesMatch.Value, @"\S+").Value,
+                            Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLower());
 
-                        var item = new ListViewItem(taxonRankPair);
-                        this.listView.Items.Add(item);
+                        items.Add(taxonRankPair);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
                     }
                 }
+
+                items.OrderBy(i => i.Key)
+                    .ToList()
+                    .ForEach(i =>
+                    {
+                        var item = new ListViewItem(new string[] { i.Key, i.Value });
+                        this.listView.Items.Add(item);
+                    });
             }
             else
             {
+                var items = new HashSet<string>();
+
                 for (Match entriesMatch = Regex.Match(this.listEntriesTextBox.Text, @"\S+"); entriesMatch.Success; entriesMatch = entriesMatch.NextMatch())
                 {
-                    this.listView.Items.Add(new ListViewItem(entriesMatch.Value));
+                    items.Add(entriesMatch.Value);
                 }
+
+                items.OrderBy(i => i)
+                    .ToList()
+                    .ForEach(i => this.listView.Items.Add(new ListViewItem(i)));
             }
         }
 
