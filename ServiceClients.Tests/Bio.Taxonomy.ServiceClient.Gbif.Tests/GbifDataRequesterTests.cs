@@ -12,7 +12,7 @@
         {
             const string ScientificName = "Coleoptera";
 
-            var requester = new GbifDataRequester();
+            var requester = new GbifApiV09DataRequester();
             var result = requester.RequestData(ScientificName).Result;
 
             Assert.IsNotNull(result, "Result should not be null.");

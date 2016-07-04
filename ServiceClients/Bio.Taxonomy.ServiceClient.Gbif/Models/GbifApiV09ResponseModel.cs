@@ -4,7 +4,7 @@
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class GbifApiResponseModel : Alternative
+    public class GbifApiV09ResponseModel : Alternative
     {
         [DataMember(Name = "alternatives")]
         public IEnumerable<Alternative> Alternatives { get; set; }

@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Contracts;
 
-    public interface IGbifDataRequester : IDataRequester<GbifApiResponseModel>
+    public interface IGbifApiV09DataRequester : IDataRequester<GbifApiV09ResponseModel>
     {
     }
 }

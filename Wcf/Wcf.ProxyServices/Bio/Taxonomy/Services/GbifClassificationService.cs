@@ -15,7 +15,7 @@
     {
         public TaxonClassification GetClassification(string scientificName)
         {
-            IGbifDataRequester requester = new GbifDataRequester();
+            IGbifApiV09DataRequester requester = new GbifApiV09DataRequester();
             IGbifTaxaClassificationDataService service = new GbifTaxaClassificationDataService(requester);
 
             var result = service.Resolve(scientificName).Result.FirstOrDefault();

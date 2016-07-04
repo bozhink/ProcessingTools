@@ -12,7 +12,7 @@
         [TestMethod]
         public void GbifTaxaClassificationDataService_DefaultConstructor_ShouldWork()
         {
-            var requester = new GbifDataRequester();
+            var requester = new GbifApiV09DataRequester();
             var service = new GbifTaxaClassificationDataService(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
@@ -25,7 +25,7 @@
             const string CanonicalName = "Coleoptera";
             const string Rank = "order";
 
-            var requester = new GbifDataRequester();
+            var requester = new GbifApiV09DataRequester();
             var service = new GbifTaxaClassificationDataService(requester);
             var response = service.Resolve(CanonicalName).Result;
 

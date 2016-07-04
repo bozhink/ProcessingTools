@@ -17,9 +17,9 @@
 
     public class GbifTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
     {
-        private IGbifDataRequester requester;
+        private IGbifApiV09DataRequester requester;
 
-        public GbifTaxaClassificationDataService(IGbifDataRequester requester)
+        public GbifTaxaClassificationDataService(IGbifApiV09DataRequester requester)
         {
             if (requester == null)
             {
