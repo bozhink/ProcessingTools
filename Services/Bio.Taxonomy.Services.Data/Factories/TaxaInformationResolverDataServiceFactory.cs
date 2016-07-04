@@ -12,36 +12,33 @@
     {
         public Task<IQueryable<TServiceModel>> Resolve(params string[] scientificNames)
         {
-            return Task.Run(() =>
-            {
-                var queue = new ConcurrentQueue<TServiceModel>();
-                var exceptions = new ConcurrentQueue<Exception>();
+            var queue = new ConcurrentQueue<TServiceModel>();
+            var exceptions = new ConcurrentQueue<Exception>();
 
-                Parallel.ForEach(
-                    scientificNames,
-                    (scientificName, state) =>
-                    {
-                        this.Delay();
-                        try
-                        {
-                            this.ResolveScientificName(scientificName, queue).Wait();
-                        }
-                        catch (Exception e)
-                        {
-                            exceptions.Enqueue(e);
-                            state.Break();
-                        }
-                    });
-
-                if (exceptions.Count > 0)
+            Parallel.ForEach(
+                scientificNames,
+                (scientificName, state) =>
                 {
-                    throw new AggregateException(exceptions.ToList());
-                }
+                    this.Delay();
+                    try
+                    {
+                        this.ResolveScientificName(scientificName, queue).Wait();
+                    }
+                    catch (Exception e)
+                    {
+                        exceptions.Enqueue(e);
+                        state.Break();
+                    }
+                });
 
-                var result = new HashSet<TServiceModel>(queue);
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions.ToList());
+            }
 
-                return result.AsQueryable();
-            });
+            var result = new HashSet<TServiceModel>(queue);
+
+            return Task.FromResult(result.AsQueryable());
         }
 
         protected abstract void Delay();

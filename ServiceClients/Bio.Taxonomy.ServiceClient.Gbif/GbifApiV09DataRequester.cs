@@ -14,11 +14,6 @@
 
         private readonly INetConnector connector;
 
-        public GbifApiV09DataRequester()
-            : this(new NetConnector())
-        {
-        }
-
         public GbifApiV09DataRequester(INetConnector connector)
         {
             if (connector == null)

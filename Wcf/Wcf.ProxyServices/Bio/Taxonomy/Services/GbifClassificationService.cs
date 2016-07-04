@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Wcf.ProxyServices.Bio.Taxonomy.Services
 {
+    using System;
     using System.Linq;
 
     using DataContracts;
 
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
@@ -13,12 +13,21 @@
 
     public class GbifClassificationService : IGbifClassificationService
     {
+        private readonly IGbifTaxaClassificationDataService service;
+
+        public GbifClassificationService(IGbifTaxaClassificationDataService service)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
+        }
+
         public TaxonClassification GetClassification(string scientificName)
         {
-            IGbifApiV09DataRequester requester = new GbifApiV09DataRequester();
-            IGbifTaxaClassificationDataService service = new GbifTaxaClassificationDataService(requester);
-
-            var result = service.Resolve(scientificName).Result.FirstOrDefault();
+            var result = this.service.Resolve(scientificName).Result.FirstOrDefault();
 
             return new TaxonClassification
             {

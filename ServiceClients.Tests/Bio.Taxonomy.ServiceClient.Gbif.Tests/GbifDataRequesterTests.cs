@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Net;
 
     [TestClass]
     public class GbifDataRequesterTests
@@ -12,7 +13,7 @@
         {
             const string ScientificName = "Coleoptera";
 
-            var requester = new GbifApiV09DataRequester();
+            var requester = new GbifApiV09DataRequester(new NetConnector());
             var result = requester.RequestData(ScientificName).Result;
 
             Assert.IsNotNull(result, "Result should not be null.");
