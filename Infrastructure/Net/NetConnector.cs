@@ -47,9 +47,7 @@
 
         public Uri BaseAddressUri { get; private set; }
 
-        public INetConnector Create() => new NetConnector();
 
-        public INetConnector Create(string baseAddress) => new NetConnector(baseAddress);
 
         public async Task<T> GetAndDeserializeXml<T>(string url)
             where T : class

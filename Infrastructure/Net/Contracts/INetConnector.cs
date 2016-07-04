@@ -8,10 +8,6 @@
     {
         string BaseAddress { get; set; }
 
-        INetConnector Create();
-
-        INetConnector Create(string baseAddress);
-
         Task<string> Get(string url, string acceptContentType);
 
         Task<string> Post(string url, string content, string contentType, Encoding encoding);
