@@ -5,7 +5,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
-    using Services;
+    using ProcessingTools.Net.Factories;
 
     [TestClass]
     public class CatalogueOfLifeTaxaClassificationDataServiceTests
@@ -13,7 +13,7 @@
         [TestMethod]
         public void CatalogueOfLifeTaxaClassificationDataService_DefaultConstructor_ShouldWork()
         {
-            var requester = new CatalogueOfLifeDataRequester();
+            var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
             var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
@@ -24,7 +24,7 @@
             const string ScientificName = "Coleoptera";
             const string Rank = "order";
 
-            var requester = new CatalogueOfLifeDataRequester();
+            var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
             var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
             var response = service.Resolve(ScientificName).Result;
 

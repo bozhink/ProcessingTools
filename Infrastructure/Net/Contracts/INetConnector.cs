@@ -6,8 +6,6 @@
 
     public interface INetConnector
     {
-        string BaseAddress { get; set; }
-
         Task<string> Get(string url, string acceptContentType);
 
         Task<string> Post(string url, string content, string contentType, Encoding encoding);

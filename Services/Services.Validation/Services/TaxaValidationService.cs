@@ -14,17 +14,24 @@
     using Models;
     using Models.Contracts;
 
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
 
     public class TaxaValidationService : ValidationServiceFactory<TaxonNameServiceModel, string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;
+        private readonly IGlobalNamesResolverDataRequester requester;
 
-        public TaxaValidationService(IValidationCacheService cacheService)
+        public TaxaValidationService(IValidationCacheService cacheService, IGlobalNamesResolverDataRequester requester)
             : base(cacheService)
         {
+            if (requester == null)
+            {
+                throw new ArgumentNullException(nameof(requester));
+            }
+
+            this.requester = requester;
         }
 
         protected override Func<string, string> GetContextKey => item => item;
@@ -39,7 +46,6 @@
         protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<TaxonNameServiceModel>> validatedItems)
         {
             var exceptions = new ConcurrentQueue<Exception>();
-            var resolver = new GlobalNamesResolverDataRequester();
 
             int numberOfItems = items.Length;
 
@@ -58,7 +64,7 @@
 
                 if (itemsToSend?.Length > 0)
                 {
-                    XmlDocument gnrXmlResponse = await resolver.SearchWithGlobalNamesResolverPost(itemsToSend);
+                    XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
 
                     try
                     {

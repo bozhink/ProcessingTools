@@ -44,6 +44,13 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind(b =>
+            {
+                b.From(Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
         }
     }
 }

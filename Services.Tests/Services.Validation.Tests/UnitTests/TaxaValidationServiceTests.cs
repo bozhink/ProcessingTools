@@ -3,27 +3,35 @@
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Models;
     using Moq;
+
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Cache.Contracts;
 
+    // TODO: add more tests
     [TestClass]
     public class TaxaValidationServiceTests
     {
         private IValidationCacheService cacheService;
+        private IGlobalNamesResolverDataRequester requester;
 
         [TestInitialize]
         public void Initialize()
         {
             var cacheServiceMock = new Mock<IValidationCacheService>();
             this.cacheService = cacheServiceMock.Object;
+
+            var requesterMock = new Mock<IGlobalNamesResolverDataRequester>();
+            this.requester = requesterMock.Object;
         }
 
         [TestMethod]
         public void TaxaValidationServiceTests_WithValidParametersInConstructor_ShouldBuildValidObject()
         {
-            var service = new TaxaValidationService(this.cacheService);
+            var service = new TaxaValidationService(this.cacheService, this.requester);
             Assert.IsNotNull(service, "Service should not be null.");
         }
 
@@ -31,7 +39,7 @@
         [ExpectedException(typeof(System.ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
-            var service = new TaxaValidationService(null);
+            var service = new TaxaValidationService(null, this.requester);
         }
 
         [TestMethod]
@@ -46,7 +54,7 @@
             })
             .ToArray();
 
-            var service = new TaxaValidationService(this.cacheService);
+            var service = new TaxaValidationService(this.cacheService, this.requester);
             var result = service.Validate(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
@@ -76,7 +84,7 @@
             })
             .ToArray();
 
-            var service = new TaxaValidationService(this.cacheService);
+            var service = new TaxaValidationService(this.cacheService, this.requester);
             var result = service.Validate(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;

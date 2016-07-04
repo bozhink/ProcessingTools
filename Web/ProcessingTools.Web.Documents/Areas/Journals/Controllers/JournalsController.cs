@@ -2,27 +2,19 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
-
-    using ProcessingTools.Documents.Data;
-    using ProcessingTools.Documents.Data.Contracts;
-    using ProcessingTools.Documents.Data.Models;
-    using ProcessingTools.Web.Common.Constants;
-
-    using System.Linq;
     using System.Web;
-
-
-    using Microsoft.AspNet.Identity;
+    using System.Web.Mvc;
     using Microsoft.AspNet.Identity.Owin;
-
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Documents.Data;
+    using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models.Journals;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Journals;
     using ProcessingTools.Web.Documents.Extensions;
 

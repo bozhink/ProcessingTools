@@ -7,7 +7,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using ProcessingTools.Net;
+    using ProcessingTools.Net.Factories;
 
     [TestClass]
     public class MaterialCitationsParserIntegrationTests
@@ -19,7 +19,7 @@
         [Ignore]
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
         {
-            var connector = new NetConnector();
+            var connector = new NetConnectorFactory();
             var parser = new MaterialCitationsParser(connector, Encoding.UTF8);
 
             const string ZeroTestContent = @"<paragraph pn=""1"">Test with <detail>detail</detail></paragraph>";
@@ -56,7 +56,7 @@
         [Ignore]
         public void MaterialCitationsParser_WithValidRealTestContentWithCommentInIt_ShouldReturnValidResponse()
         {
-            var connector = new NetConnector();
+            var connector = new NetConnectorFactory();
             var parser = new MaterialCitationsParser(connector, Encoding.UTF8);
 
             var requestXml = new XmlDocument

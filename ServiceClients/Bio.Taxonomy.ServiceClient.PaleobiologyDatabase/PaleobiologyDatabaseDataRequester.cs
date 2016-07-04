@@ -1,17 +1,30 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase
 {
+    using System;
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using ProcessingTools.Net;
+
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Net.Factories.Contracts;
 
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
         private const string PaleobiologyDatabaseBaseAddress = "https://paleobiodb.org";
+        private readonly INetConnectorFactory connectorFactory;
+
+        public PaleobiologyDatabaseDataRequester(INetConnectorFactory connectorFactory)
+        {
+            if (connectorFactory == null)
+            {
+                throw new ArgumentNullException(nameof(connectorFactory));
+            }
+
+            this.connectorFactory = connectorFactory;
+        }
 
         /// <summary>
         /// Search scientific name in The Paleobiology Database (PBDB).
@@ -27,36 +40,29 @@
              */
             string url = $"data1.1/taxa/single.txt?name={scientificName}";
 
-            try
+            var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
+            string responseString = await connector.Get(url, ContentTypeConstants.XmlContentType);
+
+            string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
+            string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
+            Match matchKeys = Regex.Match(keys, "(?<=\")[^,\"]*(?=\")");
+            Match matchValues = Regex.Match(values, "(?<=\")[^,\"]*(?=\")");
+
+            Hashtable response = new Hashtable();
+            while (matchKeys.Success && matchValues.Success)
             {
-                var connector = new NetConnector(PaleobiologyDatabaseBaseAddress);
-                string responseString = await connector.Get(url, ContentTypeConstants.XmlContentType);
-
-                string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
-                string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
-                Match matchKeys = Regex.Match(keys, "(?<=\")[^,\"]*(?=\")");
-                Match matchValues = Regex.Match(values, "(?<=\")[^,\"]*(?=\")");
-
-                Hashtable response = new Hashtable();
-                while (matchKeys.Success && matchValues.Success)
-                {
-                    response.Add(matchKeys.Value, matchValues.Value);
-                    matchKeys = matchKeys.NextMatch();
-                    matchValues = matchValues.NextMatch();
-                }
-
-                string result = string.Empty;
-                if (response["taxon_name"].ToString().CompareTo(scientificName) == 0)
-                {
-                    result = response["rank"].ToString();
-                }
-
-                return result;
+                response.Add(matchKeys.Value, matchValues.Value);
+                matchKeys = matchKeys.NextMatch();
+                matchValues = matchValues.NextMatch();
             }
-            catch
+
+            string result = string.Empty;
+            if (response["taxon_name"].ToString().CompareTo(scientificName) == 0)
             {
-                throw;
+                result = response["rank"].ToString();
             }
+
+            return result;
         }
 
         /// <summary>
@@ -69,16 +75,9 @@
         {
             string url = $"data1.1/taxa/list.json?name={scientificName}&rel=all_parents";
 
-            try
-            {
-                var connector = new NetConnector(PaleobiologyDatabaseBaseAddress);
-                var result = await connector.GetAndDeserializeDataContractJson<PbdbAllParents>(url);
-                return result;
-            }
-            catch
-            {
-                throw;
-            }
+            var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
+            var result = await connector.GetAndDeserializeDataContractJson<PbdbAllParents>(url);
+            return result;
         }
     }
 }

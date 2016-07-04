@@ -33,7 +33,6 @@
             DateModified = p.DateModified
         };
 
-
         public override async Task<object> Add(object userId, PublisherMinimalServiceModel model)
         {
             if (userId == null)

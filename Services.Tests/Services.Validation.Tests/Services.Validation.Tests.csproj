@@ -81,6 +81,14 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
+      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
+      <Name>Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
+      <Project>{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Cache\Services.Cache.csproj">
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
