@@ -47,6 +47,10 @@
 
         public Uri BaseAddressUri { get; private set; }
 
+        public INetConnector Create() => new NetConnector();
+
+        public INetConnector Create(string baseAddress) => new NetConnector(baseAddress);
+
         public async Task<T> GetAndDeserializeXml<T>(string url)
             where T : class
         {
@@ -182,6 +186,7 @@
         }
 
         public async Task<T> PostAndDeserializeXml<T>(string url, Dictionary<string, string> values, Encoding encoding)
+            where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
             {
