@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\NetConnectorFactoryUnitTests.cs" />
     <Compile Include="UnitTests\NetConnectorUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

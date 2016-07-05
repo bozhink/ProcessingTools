@@ -4,16 +4,26 @@
 
     using NUnit.Framework;
 
-    using ProcessingTools.Net;
     using ProcessingTools.Net.Contracts;
+    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net.Factories.Contracts;
 
     [TestFixture]
-    public class NetConnectorUnitTests
+    public class NetConnectorFactoryUnitTests
     {
         [Test]
-        public void NetConnector_ParameterlessConstructor_ShouldReturnValidObject()
+        public void NetConnectorFactory_Constructor_ShouldReturnValidObject()
         {
-            var connector = new NetConnector();
+            var connectorFactory = new NetConnectorFactory();
+            Assert.IsNotNull(connectorFactory, "ConnectorFactory should be a valid object.");
+            Assert.IsInstanceOf<INetConnectorFactory>(connectorFactory, "ConnectorFactory should be a instance of {0}.", nameof(INetConnectorFactory));
+        }
+
+        [Test]
+        public void NetConnectorFactory_ParameterlessCreate_ShouldReturnValidObject()
+        {
+            var connectorFactory = new NetConnectorFactory();
+            var connector = connectorFactory.Create();
             Assert.IsNotNull(connector, "Connector should be a valid object.");
             Assert.IsInstanceOf<INetConnector>(connector, "Connector should be a instance of {0}.", nameof(INetConnector));
         }
@@ -25,9 +35,10 @@
         [TestCase("file://x/Some/Directory")]
         [TestCase("urn:some-uri.org")]
         [TestCase("uri:some-uri.org")]
-        public void NetConnector_ConstructorWithValidBaseAddress_ShouldReturnValidObject(string baseAddress)
+        public void NetConnectorFactory_CreateWithValidBaseAddress_ShouldReturnValidObject(string baseAddress)
         {
-            var connector = new NetConnector(baseAddress);
+            var connectorFactory = new NetConnectorFactory();
+            var connector = connectorFactory.Create(baseAddress);
             Assert.IsNotNull(connector, "Connector should be a valid object.");
             Assert.IsInstanceOf<INetConnector>(connector, "Connector should be a instance of {0}.", nameof(INetConnector));
         }
@@ -39,12 +50,13 @@
         [TestCase(@"    
        
      ")]
-        public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullException(string baseAddress)
+        public void NetConnectorFactory_CreateWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullException(string baseAddress)
         {
             Assert.Catch<ArgumentNullException>(
                 () =>
                 {
-                    var connector = new NetConnector(baseAddress);
+                    var connectorFactory = new NetConnectorFactory();
+                    var connector = connectorFactory.Create(baseAddress);
                 },
                 "Constructor With Null BaseAddress should throw {0}",
                 nameof(ArgumentNullException));
@@ -57,11 +69,12 @@
         [TestCase(@"    
        
      ")]
-        public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullExceptionWithCorrectParamName(string baseAddress)
+        public void NetConnectorFactory_CreateWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullExceptionWithCorrectParamName(string baseAddress)
         {
             try
             {
-                var connector = new NetConnector(baseAddress);
+                var connectorFactory = new NetConnectorFactory();
+                var connector = connectorFactory.Create(baseAddress);
             }
             catch (ArgumentNullException e)
             {
@@ -72,12 +85,13 @@
         [TestCase("localhost")]
         [TestCase("x:localhost")]
         [TestCase("x::localhost")]
-        public void NetConnector_ConstructorWithInvalidBaseAddress_ShouldThrowUriFormatException(string baseAddress)
+        public void NetConnectorFactory_CreateWithInvalidBaseAddress_ShouldThrowUriFormatException(string baseAddress)
         {
             Assert.Catch<UriFormatException>(
                 () =>
                 {
-                    var connector = new NetConnector(baseAddress);
+                    var connectorFactory = new NetConnectorFactory();
+                    var connector = connectorFactory.Create(baseAddress);
                 },
                 "Constructor should throw UriFormatException");
         }
