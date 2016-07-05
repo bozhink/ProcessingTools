@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-
     using Models.Publishers;
     using ProcessingTools.Services.Common.Contracts;
 
