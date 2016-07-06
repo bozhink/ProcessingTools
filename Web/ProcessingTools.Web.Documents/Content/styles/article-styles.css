@@ -81,6 +81,8 @@ abbr .abbr-def-p {
 .taxon-treatment {
   margin-top: 30px;
   margin-bottom: 30px;
+  padding: 10px;
+  background-color: #fbfbf0;
 }
 .taxon-treatment .nomenclature {
   font-size: 1.0em;

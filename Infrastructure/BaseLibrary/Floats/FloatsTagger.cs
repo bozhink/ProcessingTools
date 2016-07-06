@@ -19,9 +19,9 @@
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 60;
-        private const string SubfloatsPattern = "\\s*(([A-Za-z]\\d?|[ivx]+)[,\\s]*([,;–−-]|and|\\&amp;)\\s*)*([A-Za-z]\\d?|[ivx]+)";
+        private const string SubfloatsPattern = "\\s*(([A-Za-z]\\d?|[ivx]+)[,\\s]*([,;‒–—−-]|and|\\&amp;)\\s*)*([A-Za-z]\\d?|[ivx]+)";
 
-        private readonly Regex selectDash = new Regex("[–—−-]");
+        private readonly Regex selectDash = new Regex("[‒–—−-]");
         private readonly Regex selectNaNChar = new Regex(@"\D");
 
         private ConcurrentDictionary<Type, IFloatObject> floatObjects;
@@ -96,7 +96,7 @@
 
         private string FloatsNextOccurencePattern(string refType)
         {
-            return "(<xref ref-type=\"" + refType + "\" [^>]*>[^<]*</xref>[,\\s]*([,;–−-]|and|\\&amp;)\\s*)(([A-Z]?\\d+)(" + SubfloatsPattern + ")?)(?=\\W)";
+            return "(<xref ref-type=\"" + refType + "\" [^>]*>[^<]*</xref>[,\\s]*([,;‒–—−-]|and|\\&amp;)\\s*)(([A-Z]?\\d+)(" + SubfloatsPattern + ")?)(?=\\W)";
         }
 
         private string FloatsNextOccurenceReplace(string refType)
@@ -109,11 +109,11 @@
             string xml = this.Xml;
 
             // Format content between </xref> and <xref
-            xml = Regex.Replace(xml, @"(?<=</xref>)\s*[–—−-]\s*(?=<xref)", "–");
+            xml = Regex.Replace(xml, @"(?<=</xref>)\s*[‒–—−-]\s*(?=<xref)", "–");
             xml = Regex.Replace(xml, @"(?<=</xref>)\s*([,;])\s*(?=<xref)", "$1 ");
             xml = Regex.Replace(xml, @"(?<=</xref>)\s*(and|\\&amp;)\s*(?=<xref)", " $1 ");
 
-            xml = Regex.Replace(xml, @"(<xref [^>]*>)\s*[–—−-]\s*(?=[A-Za-z0-9][^<>]*</xref>)", "–$1");
+            xml = Regex.Replace(xml, @"(<xref [^>]*>)\s*[‒–—−-]\s*(?=[A-Za-z0-9][^<>]*</xref>)", "–$1");
 
             // Remove xref from attributes
             for (int i = 0; i < 2 * MaxNumberOfSequentalFloats; i++)
@@ -144,7 +144,7 @@
 
                         string prefixId = Regex.Replace(xrefReplace, @"<xref .*?rid=\W(.*?)\d+.*?>.*", "$1");
                         string firstId = Regex.Replace(xrefReplace, @"\A<xref .*?(\d+).*?>.*", "$1");
-                        string lastId = Regex.Replace(xrefReplace, @".*[–—−-]<xref .*?(\d+).*?>.*", "$1");
+                        string lastId = Regex.Replace(xrefReplace, @".*[‒–—−-]<xref .*?(\d+).*?>.*", "$1");
 
                         int first = int.Parse(firstId);
                         int last = int.Parse(lastId);
@@ -159,7 +159,7 @@
                                 stringBuilder.Append(", <xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">" + this.floatLabelById[rid] + "</xref>");
                             }
 
-                            xrefReplace = Regex.Replace(xrefReplace, "(</xref>)[–—−-](<xref [^>]*>)", "$1" + stringBuilder.ToString() + ", $2");
+                            xrefReplace = Regex.Replace(xrefReplace, "(</xref>)[‒–—−-](<xref [^>]*>)", "$1" + stringBuilder.ToString() + ", $2");
                         }
 
                         // <xref-group>Figs <xref ref-type="fig" rid="F1">1</xref>, <xref ref-type="F2">5–11</xref>, <xref ref-type="F3">12–18</xref>
@@ -385,7 +385,7 @@
             {
                 for (int j = 0; j < MaxNumberOfSequentalFloats; j++)
                 {
-                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">)[^<>]*)</xref>\\s*[–—−-]\\s*\\2", "$1–");
+                    xml = Regex.Replace(xml, "((<xref ref-type=\"" + refType + "\" rid=\"" + rid + "\">)[^<>]*)</xref>\\s*[‒–—−-]\\s*\\2", "$1–");
                 }
             }
 
@@ -431,7 +431,7 @@
 
         private void UpdateFloatIdByLabelList(string id, string labelText)
         {
-            for (Match floatIndexInLabel = Regex.Match(labelText, @"[A-Z]?\d+([–—−-](?=[A-Z]?\d+))?"); floatIndexInLabel.Success; floatIndexInLabel = floatIndexInLabel.NextMatch())
+            for (Match floatIndexInLabel = Regex.Match(labelText, @"[A-Z]?\d+([‒–—−-](?=[A-Z]?\d+))?"); floatIndexInLabel.Success; floatIndexInLabel = floatIndexInLabel.NextMatch())
             {
                 string currentFloatIndex = this.selectDash.Replace(floatIndexInLabel.Value, string.Empty);
                 this.floatIdByLabel.Add(currentFloatIndex, id);
@@ -444,7 +444,7 @@
         {
             if (Regex.IsMatch(labelText, @"\A\w+\s+([A-Za-z]?\d+\W*)+\Z"))
             {
-                this.floatLabelById.Add(id, Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:–—−-]*\s*\Z", "$1"));
+                this.floatLabelById.Add(id, Regex.Replace(labelText, @"\A\w+\s+(([A-Za-z]?\d+\W*?)+)[\.;,:‒–—−-]*\s*\Z", "$1"));
             }
         }
     }
