@@ -8,7 +8,35 @@
 @mark-2-color: darken(@mark-1-color, 10%);
 @mark-3-color: darken(@mark-2-color, 20%);
 
+@article-min-width: 50px;
+@article-max-width: 800px;
+
+@aside-left: 1250px;
+@aside-right: 10px;
+@aside-top: 200px;
+@aside-max-heigth: 60%;
+@aside-max-width: 300px;
+
+.outset-border {
+    border: 1px #E6E6E6 solid;
+    border-radius: 5px;
+}
+
+.no-border {
+    border: none;
+    border-radius: 0px;
+}
+
+.heading-layout:extend(.outset-border) {
+    background-color: #F5F5F5;
+    color: black;
+    font-weight: normal;
+    padding: 5px;
+    text-align: center;
+}
+
 body {
+    position: relative;
 }
 
 li {
@@ -18,9 +46,24 @@ li {
 
 #article {
     text-align: justify;
-    min-width: 50px;
-    max-width: 800px;
+    min-width: @article-min-width;
+    max-width: @article-max-width;
     padding: 0 @default-padding 0 @default-padding;
+}
+
+aside {
+    position: fixed;
+    top: @aside-top;
+    left: @aside-left;
+    right: @aside-right;
+    height: @aside-max-heigth;
+    max-height: @aside-max-heigth;
+    max-width: @aside-max-width;
+    overflow-y: auto;
+
+    li:nth-child(2n) {
+        background-color: azure;
+    }
 }
 
 em {
@@ -109,7 +152,7 @@ abbr {
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 10px;
-    background-color: lighten(beige, 5%);
+    background-color: lighten(rebeccapurple, 57%);
 
     .nomenclature {
         font-size: 1.0em;
@@ -140,12 +183,16 @@ section {
     }
 }
 
-table {
+table:extend(.outset-border) {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     display: block;
     overflow-x: auto;
 
     td, th {
+        width: 100%;
         border-color: #ccc;
         padding: 5px;
         text-align: left;
@@ -153,7 +200,8 @@ table {
 }
 
 .table-wrap[content-type='key'] {
-    table {
+    table:extend(.no-border) {
+        border-collapse: collapse;
         td {
             &:nth-child(1) {
                 max-width: 10%;
@@ -183,11 +231,10 @@ h4.label {
         display: none;
     }
 
-    .journal-meta {
+    .journal-meta:extend(.heading-layout) {
         display: block;
         margin: 1em 0 1em 0;
-        padding: 5px;
-        border: 1px solid black;
+        padding: 10px;
 
         .journal-id, .issn {
             display: inline-block;
@@ -200,13 +247,9 @@ h4.label {
         }
 
         .article-categories {
-            .subj-group {
+            .subject:extend(.heading-layout) {
                 margin-top: 1em;
                 margin-bottom: 1em;
-                border: 1px solid black;
-                border-radius: 5px;
-                padding: 5px;
-                text-align: center;
                 width: 150px;
                 min-width: 150px;
                 max-width: 150px;
@@ -349,7 +392,6 @@ span.ext-link {
 mark {
     margin: 0;
     padding: 0;
-
     background-color: @mark-1-color;
 
     mark {

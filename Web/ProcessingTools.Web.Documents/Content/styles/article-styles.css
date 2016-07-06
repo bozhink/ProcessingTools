@@ -1,4 +1,29 @@
-﻿li {
+﻿.outset-border,
+.heading-layout,
+table,
+.front .journal-meta,
+.front .article-meta .article-categories .subject {
+  border: 1px #E6E6E6 solid;
+  border-radius: 5px;
+}
+.no-border,
+.table-wrap[content-type='key'] table {
+  border: none;
+  border-radius: 0px;
+}
+.heading-layout,
+.front .journal-meta,
+.front .article-meta .article-categories .subject {
+  background-color: #F5F5F5;
+  color: black;
+  font-weight: normal;
+  padding: 5px;
+  text-align: center;
+}
+body {
+  position: relative;
+}
+li {
   padding: 0;
   margin: 0;
 }
@@ -7,6 +32,19 @@
   min-width: 50px;
   max-width: 800px;
   padding: 0 10px 0 10px;
+}
+aside {
+  position: fixed;
+  top: 200px;
+  left: 1250px;
+  right: 10px;
+  height: 60%;
+  max-height: 60%;
+  max-width: 300px;
+  overflow-y: auto;
+}
+aside li:nth-child(2n) {
+  background-color: azure;
 }
 em {
   font-style: italic;
@@ -82,7 +120,7 @@ abbr .abbr-def-p {
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 10px;
-  background-color: #fbfbf0;
+  background-color: #f7f4fb;
 }
 .taxon-treatment .nomenclature {
   font-size: 1.0em;
@@ -107,15 +145,22 @@ section p {
   text-align: justify;
 }
 table {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   display: block;
   overflow-x: auto;
 }
 table td,
 table th {
+  width: 100%;
   border-color: #ccc;
   padding: 5px;
   text-align: left;
+}
+.table-wrap[content-type='key'] table {
+  border-collapse: collapse;
 }
 .table-wrap[content-type='key'] table td:nth-child(1) {
   max-width: 10%;
@@ -141,8 +186,7 @@ h4.label {
 .front .journal-meta {
   display: block;
   margin: 1em 0 1em 0;
-  padding: 5px;
-  border: 1px solid black;
+  padding: 10px;
 }
 .front .journal-meta .journal-id,
 .front .journal-meta .issn {
@@ -151,13 +195,9 @@ h4.label {
 .front .article-meta .article-id:before {
   content: 'doi: ';
 }
-.front .article-meta .article-categories .subj-group {
+.front .article-meta .article-categories .subject {
   margin-top: 1em;
   margin-bottom: 1em;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
-  text-align: center;
   width: 150px;
   min-width: 150px;
   max-width: 150px;
