@@ -30,12 +30,16 @@ em.taxon-name {
   background-color: black;
   padding: 5px;
   border-radius: 5px;
+  min-width: 30em;
+  max-width: 30em;
+  width: 30em;
+  text-align: center;
 }
 .taxon-name:hover .object-id::after {
   content: " ";
   position: absolute;
   bottom: 100%;
-  left: 10%;
+  left: 5%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
@@ -263,4 +267,15 @@ h4.label {
 span.ext-link {
   color: cornflowerblue;
   text-decoration: underline double;
+}
+mark {
+  margin: 0;
+  padding: 0;
+  background-color: #FCF8E3;
+}
+mark mark {
+  background-color: #f7ecb5;
+}
+mark mark mark {
+  background-color: #edd559;
 }

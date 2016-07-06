@@ -69,14 +69,3 @@
   border-style: solid;
   border-color: transparent transparent black transparent;
 }
-mark {
-  margin: 0;
-  padding: 0;
-  background-color: #FCF8E3;
-}
-mark mark {
-  background-color: #f7ecb5;
-}
-mark mark mark {
-  background-color: #f2e187;
-}

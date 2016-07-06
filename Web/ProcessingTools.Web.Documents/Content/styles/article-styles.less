@@ -4,6 +4,10 @@
 @taxon-font-color: #f60;
 @taxon-background-color: fade(lighten(@taxon-font-color, 25%), 15%);
 
+@mark-1-color: #FCF8E3;
+@mark-2-color: darken(@mark-1-color, 10%);
+@mark-3-color: darken(@mark-2-color, 20%);
+
 body {
 }
 
@@ -44,12 +48,16 @@ em {
         background-color: black;
         padding: 5px;
         border-radius: 5px;
+        min-width: 30em;
+        max-width: 30em;
+        width: 30em;
+        text-align: center;
 
         &::after {
             content: " ";
             position: absolute;
             bottom: 100%;
-            left: 10%;
+            left: 5%;
             margin-left: -5px;
             border-width: 5px;
             border-style: solid;
@@ -332,4 +340,19 @@ h4.label {
 span.ext-link {
     color: cornflowerblue;
     text-decoration: underline double;
+}
+
+mark {
+    margin: 0;
+    padding: 0;
+
+    background-color: @mark-1-color;
+
+    mark {
+        background-color: @mark-2-color;
+
+        mark {
+            background-color: @mark-3-color;
+        }
+    }
 }
