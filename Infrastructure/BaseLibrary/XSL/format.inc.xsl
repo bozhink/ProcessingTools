@@ -22,6 +22,18 @@
   <xsl:template match="p//break" />
 
   <xsl:template match="article_figs_and_tables[not(*)]" />
+  
+  <xsl:template match="named-content">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>NC</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates select="node()" />
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template match="article-meta/article-id">
     <xsl:element name="{name()}">
@@ -36,7 +48,6 @@
         <xsl:text>http://purl.obolibrary.org/obo/</xsl:text>
         <xsl:value-of select="normalize-space(@EnvoID)" />
       </xsl:attribute>
-
       <xsl:apply-templates select="@* | node()" />
     </xsl:element>
   </xsl:template>
@@ -353,7 +364,7 @@
 
   <xsl:template match="license-p | email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()" mode="license-p" />
+      <xsl:apply-templates select="." />
     </xsl:copy>
   </xsl:template>
 
@@ -393,9 +404,10 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="generate-taxon-id">
+  <xsl:template name="generate-id">
+    <xsl:param name="prefix" select="''" />
     <xsl:attribute name="id">
-      <xsl:text>TN</xsl:text>
+      <xsl:value-of select="$prefix"/>
       <xsl:value-of select="generate-id()"/>
     </xsl:attribute>
   </xsl:template>
