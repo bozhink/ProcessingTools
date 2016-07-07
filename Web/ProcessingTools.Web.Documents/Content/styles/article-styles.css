@@ -33,7 +33,7 @@ li {
   max-width: 800px;
   padding: 0 10px 0 10px;
 }
-aside {
+aside .panel {
   position: fixed;
   top: 200px;
   left: 1250px;
@@ -41,9 +41,13 @@ aside {
   height: 60%;
   max-height: 60%;
   max-width: 300px;
+}
+aside .panel .list-group {
+  max-height: 300px;
+  max-width: 300px;
   overflow-y: auto;
 }
-aside li:nth-child(2n) {
+aside .panel .list-group a:nth-child(2n) {
   background-color: azure;
 }
 em {

@@ -11,11 +11,12 @@
 @article-min-width: 50px;
 @article-max-width: 800px;
 
-@aside-left: 1250px;
-@aside-right: 10px;
-@aside-top: 200px;
-@aside-max-heigth: 60%;
-@aside-max-width: 300px;
+@aside-control-left: 1250px;
+@aside-control-right: 10px;
+@aside-control-top: 200px;
+@aside-control-height: 60%;
+@aside-control-max-heigth: @aside-control-height;
+@aside-control-max-width: 300px;
 
 .outset-border {
     border: 1px #E6E6E6 solid;
@@ -52,17 +53,24 @@ li {
 }
 
 aside {
-    position: fixed;
-    top: @aside-top;
-    left: @aside-left;
-    right: @aside-right;
-    height: @aside-max-heigth;
-    max-height: @aside-max-heigth;
-    max-width: @aside-max-width;
-    overflow-y: auto;
+    .panel {
+        position: fixed;
+        top: @aside-control-top;
+        left: @aside-control-left;
+        right: @aside-control-right;
+        height: @aside-control-height;
+        max-height: @aside-control-max-heigth;
+        max-width: @aside-control-max-width;
 
-    li:nth-child(2n) {
-        background-color: azure;
+        .list-group {
+            max-height: @aside-control-max-width;
+            max-width: @aside-control-max-width;
+            overflow-y: auto;
+
+            a:nth-child(2n) {
+                background-color: azure;
+            }
+        }
     }
 }
 
@@ -202,6 +210,7 @@ table:extend(.outset-border) {
 .table-wrap[content-type='key'] {
     table:extend(.no-border) {
         border-collapse: collapse;
+
         td {
             &:nth-child(1) {
                 max-width: 10%;
