@@ -1,0 +1,20 @@
+{
+  "name": "processing-tools-web-documents",
+  "homepage": "https://github.com/bozhink/ProcessingTools",
+  "authors": [
+    "bozhink <bozhink@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "interact": "1.2.6"
+  }
+}
