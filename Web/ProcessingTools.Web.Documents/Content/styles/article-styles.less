@@ -11,11 +11,11 @@
 @article-min-width: 50px;
 @article-max-width: 800px;
 
-@aside-control-left: 1250px;
+@aside-control-left: 30px;
 @aside-control-right: 10px;
-@aside-control-top: 200px;
-@aside-control-height: 60%;
-@aside-control-max-heigth: @aside-control-height;
+@aside-control-top: 100px;
+@aside-control-height: 40%;
+@aside-control-max-heigth: 60%;
 @aside-control-max-width: 300px;
 
 .outset-border {
@@ -46,14 +46,24 @@ li {
 }
 
 #article {
+    margin: 0 auto;
     text-align: justify;
     min-width: @article-min-width;
     max-width: @article-max-width;
     padding: 0 @default-padding 0 @default-padding;
 }
 
+.selected-text-to-scroll {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: chocolate;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 3px;
+}
+
 aside {
-    .panel {
+    .panel.draggable {
         position: fixed;
         top: @aside-control-top;
         left: @aside-control-left;
@@ -62,13 +72,15 @@ aside {
         max-height: @aside-control-max-heigth;
         max-width: @aside-control-max-width;
 
-        .list-group {
-            max-height: @aside-control-max-width;
-            max-width: @aside-control-max-width;
-            overflow-y: auto;
+        .panel-body {
+            .list-group {
+                max-height: @aside-control-max-width;
+                max-width: @aside-control-max-width;
+                overflow-y: auto;
 
-            a:nth-child(2n) {
-                background-color: azure;
+                a:nth-child(2n) {
+                    background-color: azure;
+                }
             }
         }
     }
@@ -82,8 +94,6 @@ em {
         background-color: @taxon-background-color;
     }
 }
-
-
 
 .taxon-name {
     position: relative;

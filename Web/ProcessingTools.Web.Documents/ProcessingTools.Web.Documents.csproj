@@ -328,6 +328,9 @@
     <Content Include="App_Code\Xsl\main.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="bower_components\interact\dist\interact.js" />
+    <Content Include="bower_components\interact\dist\interact.min.js" />
+    <Content Include="bower_components\interact\interact.js" />
     <Content Include="Content\styles\article-styles.css">
       <DependentUpon>article-styles.less</DependentUpon>
     </Content>
@@ -394,6 +397,14 @@
     <Content Include="Areas\Journals\Views\Journals\Details.cshtml" />
     <Content Include="Areas\Journals\Views\Journals\Edit.cshtml" />
     <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
+    <Content Include="bower.json" />
+    <Content Include="bower_components\interact\.bower.json" />
+    <Content Include="bower_components\interact\bower.json" />
+    <Content Include="bower_components\interact\CHANGELOG.md" />
+    <Content Include="bower_components\interact\dist\interact.min.js.map" />
+    <Content Include="bower_components\interact\LICENSE" />
+    <Content Include="bower_components\interact\package.json" />
+    <Content Include="bower_components\interact\README.md" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

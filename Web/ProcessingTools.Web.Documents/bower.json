@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "interact": "1.2.6"
+    "interact": "1.2.6",
+    "bootstrap": "^3.3.6"
   }
 }

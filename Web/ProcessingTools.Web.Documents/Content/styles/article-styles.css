@@ -28,26 +28,35 @@ li {
   margin: 0;
 }
 #article {
+  margin: 0 auto;
   text-align: justify;
   min-width: 50px;
   max-width: 800px;
   padding: 0 10px 0 10px;
 }
-aside .panel {
+.selected-text-to-scroll {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: chocolate;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 3px;
+}
+aside .panel.draggable {
   position: fixed;
-  top: 200px;
-  left: 1250px;
+  top: 100px;
+  left: 30px;
   right: 10px;
-  height: 60%;
+  height: 40%;
   max-height: 60%;
   max-width: 300px;
 }
-aside .panel .list-group {
+aside .panel.draggable .panel-body .list-group {
   max-height: 300px;
   max-width: 300px;
   overflow-y: auto;
 }
-aside .panel .list-group a:nth-child(2n) {
+aside .panel.draggable .panel-body .list-group a:nth-child(2n) {
   background-color: azure;
 }
 em {
