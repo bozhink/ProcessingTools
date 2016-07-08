@@ -1,5 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="../bower_components/interact/interact.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="custom/article-preview.js" />
 /// <reference path="jquery.form.min.js" />

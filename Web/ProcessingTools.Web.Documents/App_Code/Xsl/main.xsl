@@ -323,16 +323,23 @@ In-line elements
     </span>
   </xsl:template>
 
-  <xsl:template match="ext-link[@ext-link-type='uri']">
-    <a target="_blank" href="{@xlink:href}">
-      <xsl:call-template name="process-inner-node">
-        <xsl:with-param name="output-node-name" select="'span'" />
-      </xsl:call-template>
-    </a>
-  </xsl:template>
-
-  <xsl:template match="ext-link[@ext-link-type='doi']">
-    <a target="_blank" href="http://dx.doi.org/{@xlink:href}">
+  <xsl:template match="ext-link">
+    <a target="_blank">
+      <xsl:attribute name="href">
+        <xsl:choose>
+          <xsl:when test="@ext-link-type='doi'">
+            <xsl:text>http://dx.doi.org/</xsl:text>
+            <xsl:value-of select="@xlink:href"/>
+          </xsl:when>
+          <xsl:when test="@ext-link-type='gen'">
+            <xsl:text>http://www.ncbi.nlm.nih.gov/nuccore/</xsl:text>
+            <xsl:value-of select="@xlink:href"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@xlink:href"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
       <xsl:call-template name="process-inner-node">
         <xsl:with-param name="output-node-name" select="'span'" />
       </xsl:call-template>

@@ -1,0 +1,35 @@
+﻿body {
+  position: relative;
+}
+.selected-text-to-scroll {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: chocolate;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 3px;
+}
+.toolbox-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+aside .panel.draggable {
+  position: fixed;
+  top: 100px;
+  left: 30px;
+  right: 10px;
+  height: 400px;
+  max-height: 400px;
+  min-height: 60px;
+  max-width: 300px;
+  min-width: 300px;
+}
+aside .panel.draggable .panel-body .list-group {
+  max-height: 300px;
+  max-width: 300px;
+  overflow-y: auto;
+}
+aside .panel.draggable .panel-body .list-group a:nth-child(2n) {
+  background-color: azure;
+}

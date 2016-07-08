@@ -11,12 +11,9 @@
 @article-min-width: 50px;
 @article-max-width: 800px;
 
-@aside-control-left: 30px;
-@aside-control-right: 10px;
-@aside-control-top: 100px;
-@aside-control-height: 40%;
-@aside-control-max-heigth: 60%;
-@aside-control-max-width: 300px;
+body {
+    position: relative;
+}
 
 .outset-border {
     border: 1px #E6E6E6 solid;
@@ -28,6 +25,12 @@
     border-radius: 0px;
 }
 
+.center-block {
+    text-align: center;
+    margin: 1em auto 1em auto;
+    display: block;
+}
+
 .heading-layout:extend(.outset-border) {
     background-color: #F5F5F5;
     color: black;
@@ -36,9 +39,6 @@
     text-align: center;
 }
 
-body {
-    position: relative;
-}
 
 li {
     padding: 0;
@@ -51,39 +51,6 @@ li {
     min-width: @article-min-width;
     max-width: @article-max-width;
     padding: 0 @default-padding 0 @default-padding;
-}
-
-.selected-text-to-scroll {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: chocolate;
-    border: 1px solid black;
-    border-radius: 3px;
-    padding: 3px;
-}
-
-aside {
-    .panel.draggable {
-        position: fixed;
-        top: @aside-control-top;
-        left: @aside-control-left;
-        right: @aside-control-right;
-        height: @aside-control-height;
-        max-height: @aside-control-max-heigth;
-        max-width: @aside-control-max-width;
-
-        .panel-body {
-            .list-group {
-                max-height: @aside-control-max-width;
-                max-width: @aside-control-max-width;
-                overflow-y: auto;
-
-                a:nth-child(2n) {
-                    background-color: azure;
-                }
-            }
-        }
-    }
 }
 
 em {
@@ -188,7 +155,7 @@ section {
     h3 {
         font-size: 1.2em;
         font-weight: bold;
-        text-indent: -@treatment-sec-padding;
+        text-indent: 0;
     }
 
     &.treatment-sec h3 {
@@ -250,9 +217,8 @@ h4.label {
         display: none;
     }
 
-    .journal-meta:extend(.heading-layout) {
-        display: block;
-        margin: 1em 0 1em 0;
+    .journal-meta:extend(.heading-layout):extend(.center-block) {
+
         padding: 10px;
 
         .journal-id, .issn {
@@ -261,12 +227,14 @@ h4.label {
     }
 
     .article-meta {
-        .article-id:before {
-            content: 'doi: ';
+        .article-id:extend(.center-block) {
+            &:before {
+                content: 'doi: ';
+            }
         }
 
         .article-categories {
-            .subject:extend(.heading-layout) {
+            .subject:extend(.heading-layout):extend(.center-block) {
                 margin-top: 1em;
                 margin-bottom: 1em;
                 width: 150px;
@@ -322,6 +290,9 @@ h4.label {
             &:last-child:after {
                 content: '';
             }
+        }
+
+        .title-group:extend(.center-block) {
         }
 
         > .pub-date[pub-type='collection'] {

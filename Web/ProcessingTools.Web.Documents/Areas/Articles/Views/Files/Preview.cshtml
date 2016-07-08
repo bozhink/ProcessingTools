@@ -17,3 +17,9 @@
 @Scripts.Render("~/bundles/jquery")
 <script src="~/bower_components/interact/interact.js"></script>
 @Scripts.Render("~/bundles/article")
+
+<script>
+    window.articlePreviewActions.toggleMarkTitle(),
+    window.articlePreviewActions.genrateCoordinatesList('#aside-main-box');
+    window.articlePreviewActions.registerDragabbleBehavior('.draggable');
+</script>

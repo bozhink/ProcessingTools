@@ -1,4 +1,7 @@
-﻿.outset-border,
+﻿body {
+  position: relative;
+}
+.outset-border,
 .heading-layout,
 table,
 .front .journal-meta,
@@ -11,6 +14,15 @@ table,
   border: none;
   border-radius: 0px;
 }
+.center-block,
+.front .journal-meta,
+.front .article-meta .article-id,
+.front .article-meta .article-categories .subject,
+.front .article-meta .title-group {
+  text-align: center;
+  margin: 1em auto 1em auto;
+  display: block;
+}
 .heading-layout,
 .front .journal-meta,
 .front .article-meta .article-categories .subject {
@@ -19,9 +31,6 @@ table,
   font-weight: normal;
   padding: 5px;
   text-align: center;
-}
-body {
-  position: relative;
 }
 li {
   padding: 0;
@@ -33,31 +42,6 @@ li {
   min-width: 50px;
   max-width: 800px;
   padding: 0 10px 0 10px;
-}
-.selected-text-to-scroll {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: chocolate;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 3px;
-}
-aside .panel.draggable {
-  position: fixed;
-  top: 100px;
-  left: 30px;
-  right: 10px;
-  height: 40%;
-  max-height: 60%;
-  max-width: 300px;
-}
-aside .panel.draggable .panel-body .list-group {
-  max-height: 300px;
-  max-width: 300px;
-  overflow-y: auto;
-}
-aside .panel.draggable .panel-body .list-group a:nth-child(2n) {
-  background-color: azure;
 }
 em {
   font-style: italic;
@@ -148,7 +132,7 @@ section.treatment-sec {
 section h3 {
   font-size: 1.2em;
   font-weight: bold;
-  text-indent: -10px;
+  text-indent: 0;
 }
 section.treatment-sec h3 {
   font-size: 1.1em;
@@ -197,8 +181,6 @@ h4.label {
   display: none;
 }
 .front .journal-meta {
-  display: block;
-  margin: 1em 0 1em 0;
   padding: 10px;
 }
 .front .journal-meta .journal-id,

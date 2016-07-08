@@ -31,10 +31,11 @@
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/styles/default-styles.min.css"));
+                      "~/Content/styles/default.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/article-styles").Include(
-                        "~/Content/styles/article-styles.min.css"));
+                        "~/Content/styles/toolbox.min.css",
+                        "~/Content/styles/article.min.css"));
         }
     }
 }

@@ -328,25 +328,28 @@
     <Content Include="App_Code\Xsl\main.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bower_components\interact\dist\interact.js" />
-    <Content Include="bower_components\interact\dist\interact.min.js" />
-    <Content Include="bower_components\interact\interact.js" />
-    <Content Include="Content\styles\article-styles.css">
-      <DependentUpon>article-styles.less</DependentUpon>
+    <Content Include="Content\styles\article.css">
+      <DependentUpon>article.less</DependentUpon>
     </Content>
-    <Content Include="Content\styles\article-styles.min.css">
-      <DependentUpon>article-styles.css</DependentUpon>
-    </Content>
-    <Content Include="Content\styles\default-styles.css">
-      <DependentUpon>default-styles.less</DependentUpon>
-    </Content>
-    <Content Include="Content\styles\default-styles.min.css">
-      <DependentUpon>default-styles.css</DependentUpon>
+    <Content Include="Content\styles\article.min.css">
+      <DependentUpon>article.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\styles\default.css">
+      <DependentUpon>default.less</DependentUpon>
+    </Content>
+    <Content Include="Content\styles\default.min.css">
+      <DependentUpon>default.css</DependentUpon>
+    </Content>
+    <Content Include="Content\styles\toolbox.css">
+      <DependentUpon>toolbox.less</DependentUpon>
+    </Content>
+    <Content Include="Content\styles\toolbox.min.css">
+      <DependentUpon>toolbox.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -372,7 +375,7 @@
     <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
-    <Content Include="Content\styles\default-styles.less" />
+    <Content Include="Content\styles\default.less" />
     <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
@@ -398,18 +401,12 @@
     <Content Include="Areas\Journals\Views\Journals\Edit.cshtml" />
     <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
     <Content Include="bower.json" />
-    <Content Include="bower_components\interact\.bower.json" />
-    <Content Include="bower_components\interact\bower.json" />
-    <Content Include="bower_components\interact\CHANGELOG.md" />
-    <Content Include="bower_components\interact\dist\interact.min.js.map" />
-    <Content Include="bower_components\interact\LICENSE" />
-    <Content Include="bower_components\interact\package.json" />
-    <Content Include="bower_components\interact\README.md" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\styles\article-styles.less" />
+    <Content Include="Content\styles\article.less" />
+    <Content Include="Content\styles\toolbox.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custom\article-preview.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
