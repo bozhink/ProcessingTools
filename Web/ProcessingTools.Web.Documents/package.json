@@ -1,0 +1,11 @@
+{
+  "name": "processing-tools.web.documents",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bozhin Karaivanov",
+  "license": "GPL-3.0"
+}
