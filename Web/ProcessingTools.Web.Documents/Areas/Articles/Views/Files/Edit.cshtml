@@ -1,0 +1,144 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentDetailsViewModel
+
+@{
+    ViewBag.Title = ContentConstants.DeafultEditPageTitle;
+}
+
+<h2>
+    @ContentConstants.DeafultEditPageHeading
+</h2>
+
+<br />
+
+<button onclick="save()" class="btn btn-default">Save</button>
+
+<br />
+
+<style>
+    #editor-container {
+        margin: 0 auto;
+        width: 100%;
+        height: 600px;
+        border: 1px solid gray;
+    }
+</style>
+
+<div id="editor-container"></div>
+
+<link href="~/bower_components/toastr/toastr.min.css" rel="stylesheet" />
+<script src="~/bower_components/jquery/dist/jquery.js"></script>
+<script src="~/bower_components/toastr/toastr.js"></script>
+<script>
+    toastr.options.closeMethod = 'fadeOut';
+    toastr.options.closeDuration = 2000;
+
+    toastr.options.showEasing = 'swing';
+    toastr.options.hideEasing = 'linear';
+    toastr.options.closeEasing = 'linear';
+
+    toastr.options.timeOut = 2000; // How long the toast will display without user interaction
+    toastr.options.extendedTimeOut = 3000; // How long the toast will display after a user hovers over it
+
+    toastr.options.progressBar = true;
+</script>
+
+
+<script>
+    var jsonRequester = (function () {
+        function send(method, url, options) {
+            options = options || {};
+
+            var headers = options.headers || {},
+                data = options.data || undefined;
+
+            var promise = new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: url,
+                    method: method,
+                    contentType: 'application/json',
+                    headers: headers,
+                    data: JSON.stringify(data),
+                    success: function (res) {
+                        resolve(res);
+                    },
+                    error: function (err) {
+                        reject(err);
+                    }
+                });
+            });
+
+            return promise;
+        }
+
+        function get(url, options) {
+            return send('GET', url, options);
+        }
+
+        function post(url, options) {
+            return send('POST', url, options);
+        }
+
+        function put(url, options) {
+            return send('PUT', url, options);
+        }
+
+        function del(url, options) {
+            return send('POST', url, options);
+        }
+
+        return {
+            send: send,
+            get: get,
+            post: post,
+            put: put,
+            delete: del
+        };
+    } ());
+</script>
+
+
+<script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
+<script>
+    require.config({
+        paths: {
+            'vs': '../../../node_modules/monaco-editor/min/vs'
+        }
+    });
+
+    require(['vs/editor/editor.main'], function () {
+        window.editor = monaco.editor.create(document.getElementById('editor-container'), {
+            value: @Html.Raw(Json.Encode(Model.Content)),
+            language: 'xml',
+            // theme: 'vs-dark'
+        });
+    });
+</script>
+
+<script>
+    function save() {
+        var content = window.editor.getValue();
+
+        jsonRequester.post('/Articles/Files/Save/@Model.Id', {
+            data: {
+                content: content
+            }
+        })
+        .then(function(res) {
+            toastr.success(JSON.stringify(res));
+        })
+        .catch(function(err) {
+            toastr.error(JSON.stringify(res));
+        });
+    }
+
+    // Ctrl + s
+    document.addEventListener("keydown", function(event) {
+        var e = event || window.event;
+        if(e.ctrlKey && e.which == 83) {
+            e.preventDefault();
+            save();
+            setTimeout(function(){}, 1000);
+            return false;
+        }
+    })
+</script>

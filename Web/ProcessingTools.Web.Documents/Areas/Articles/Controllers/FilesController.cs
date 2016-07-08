@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using System.Xml;
 
     using Microsoft.AspNet.Identity;
 
@@ -20,6 +21,7 @@
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Common;
 
     [Authorize]
     public class FilesController : Controller
@@ -225,15 +227,45 @@
         }
 
         // GET: Files/Edit/5
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            // TODO
-            return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
+            try
+            {
+                var reader = await this.service.GetReader(User.Identity.GetUserId(), this.fakeArticleId, id);
+
+                var document = new XmlDocument
+                {
+                    PreserveWhitespace = true
+                };
+
+                document.Load(reader);
+
+                var model = new DocumentDetailsViewModel
+                {
+                    Id = id,
+                    Content = document.OuterXml
+                };
+
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
+                return this.View(model);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (Exception e)
+            {
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
         }
 
         // POST: Files/Edit/5
@@ -247,6 +279,58 @@
 
             // TODO
             return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Save(string id, string content)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return new JsonResult
+                {
+                    ContentType = "application/json",
+                    ContentEncoding = Defaults.DefaultEncoding,
+                    Data = new
+                    {
+                        Status = "Error"
+                    }
+                };
+            }
+
+            try
+            {
+                await this.service.Update(
+                    User.Identity.GetUserId(),
+                    this.fakeArticleId,
+                    new DocumentServiceModel
+                    {
+                        Id = id,
+                        ContentType = "application/xml"
+                    },
+                    content);
+
+                return new JsonResult
+                {
+                    ContentType = "application/json",
+                    ContentEncoding = Defaults.DefaultEncoding,
+                    Data = new
+                    {
+                        Status = "OK"
+                    }
+                };
+            }
+            catch
+            {
+                return new JsonResult
+                {
+                    ContentType = "application/json",
+                    ContentEncoding = Defaults.DefaultEncoding,
+                    Data = new
+                    {
+                        Status = "Error"
+                    }
+                };
+            }
         }
 
         /// <summary>
