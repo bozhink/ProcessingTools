@@ -11,7 +11,7 @@
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryfrom").Include(
-                        "~/Scripts/jquery.form.js"));
+                        "~/bower_components/jquery-form/jquery.form.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

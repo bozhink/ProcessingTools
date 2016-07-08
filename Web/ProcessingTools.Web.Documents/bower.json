@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "interact": "1.2.6",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "jquery-form": "^3.46.0"
   }
 }
