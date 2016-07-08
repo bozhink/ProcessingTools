@@ -392,6 +392,7 @@
     </None>
     <Content Include="Content\styles\article.less" />
     <Content Include="Content\styles\toolbox.less" />
+    <Content Include="package.json" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custom\article-preview.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
@@ -448,6 +449,7 @@
     <Content Include="Views\Shared\InvalidPageNumberError.cshtml" />
     <Content Include="Views\Shared\InvalidNumberOfItemsPerPageError.cshtml" />
     <Content Include="Views\Shared\BadRequestError.cshtml" />
+    <Content Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
