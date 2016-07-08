@@ -22,14 +22,14 @@
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/bower_components/bootstrap/dist/js/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/article").Include(
                       "~/Scripts/custom/article-preview.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/bower_components/bootstrap/dist/css/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/styles/default.min.css"));
 
