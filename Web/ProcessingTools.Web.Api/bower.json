@@ -1,0 +1,17 @@
+{
+  "name": "processing-tools-web-api",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Bozhin Karaivanov"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/bozhink/ProcessingTools",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
