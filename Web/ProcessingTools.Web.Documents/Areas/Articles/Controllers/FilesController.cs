@@ -13,6 +13,7 @@
 
     using Microsoft.AspNet.Identity;
 
+    using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -21,7 +22,6 @@
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Xml.Extensions;
-    using ProcessingTools.Common;
 
     [Authorize]
     public class FilesController : Controller

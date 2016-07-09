@@ -1,6 +1,5 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Microsoft.Owin.Host;
 
 [assembly: OwinStartup(typeof(ProcessingTools.TestWebApiServer.Startup))]
 
