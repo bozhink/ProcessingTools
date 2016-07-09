@@ -21,7 +21,7 @@
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/bower_components/bootstrap/dist/js/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/bower_components/respond/src/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/article").Include(
                       "~/Scripts/custom/article-preview.js"));
