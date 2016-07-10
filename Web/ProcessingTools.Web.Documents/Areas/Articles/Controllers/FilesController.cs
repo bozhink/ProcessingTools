@@ -281,7 +281,7 @@
             return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<JsonResult> Save(string id, string content)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -319,7 +319,7 @@
                     }
                 };
             }
-            catch
+            catch (Exception e)
             {
                 return new JsonResult
                 {
@@ -327,7 +327,8 @@
                     ContentEncoding = Defaults.DefaultEncoding,
                     Data = new
                     {
-                        Status = "Error"
+                        Status = "Error",
+                        Message = e.Message
                     }
                 };
             }

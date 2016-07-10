@@ -365,6 +365,8 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\custom\jsonRequester.js" />
+    <Content Include="Scripts\custom\toastrConfig.js" />
     <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
     <Content Include="Views\Shared\InvalidOrEmptyFileError.cshtml" />
     <Content Include="Views\Shared\NullIdError.cshtml" />
