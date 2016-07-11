@@ -383,12 +383,17 @@ mark {
     margin: 0;
     padding: 0;
     background-color: @mark-1-color;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
 
     mark {
         background-color: @mark-2-color;
+        border: none;
 
         mark {
             background-color: @mark-3-color;
+            border: none;
         }
     }
 }

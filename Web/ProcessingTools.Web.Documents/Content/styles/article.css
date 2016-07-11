@@ -309,10 +309,15 @@ mark {
   margin: 0;
   padding: 0;
   background-color: #FCF8E3;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 2px;
 }
 mark mark {
   background-color: #f7ecb5;
+  border: none;
 }
 mark mark mark {
   background-color: #edd559;
+  border: none;
 }
