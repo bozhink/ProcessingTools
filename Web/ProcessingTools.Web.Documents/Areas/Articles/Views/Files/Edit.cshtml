@@ -26,6 +26,7 @@
 <div id="editor-container"></div>
 
 <script src="~/bower_components/jquery/dist/jquery.js"></script>
+<script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
 
 <link href="~/bower_components/toastr/toastr.min.css" rel="stylesheet" />
 <script src="~/bower_components/toastr/toastr.js"></script>
@@ -35,35 +36,44 @@
 
 <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
 <script>
-    const AUTOSAVE_TIME_MILLISECONDS = 600000,
+    const AUTOSAVE_TIME_MILLISECONDS = 60000,
         MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS = 5000,
-        LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY';
+        LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY',
+        LAST_SAVED_HASH_KEY = 'LAST_SAVED_HASH_KEY';
 
-    require.config({
-        paths: {
-            'vs': '../../../node_modules/monaco-editor/min/vs'
-        }
-    });
+    initEditor('editor-container', @Html.Raw(Json.Encode(Model.Content)));
 
-    require(['vs/editor/editor.main'], function () {
-        window.editor = monaco.editor.create(document.getElementById('editor-container'), {
-            value: @Html.Raw(Json.Encode(Model.Content)),
-            language: 'xml',
-            // theme: 'vs-dark'
+    function initEditor(containerId, content) {
+        var contentHash = CryptoJS.SHA1(content).toString();
+
+        sessionStorage.setItem(LAST_SAVED_HASH_KEY, contentHash);
+
+        require.config({
+            paths: {
+                'vs': '../../../node_modules/monaco-editor/min/vs'
+            }
         });
-    });
 
-    function save() {
+        require(['vs/editor/editor.main'], function () {
+            window.editor = monaco.editor.create(document.getElementById(containerId), {
+                value: content,
+                language: 'xml',
+                // theme: 'vs-dark'
+            });
+        });
+    }
+
+    function save(quietMode) {
         var lastSavedTime = sessionStorage.getItem(LAST_SAVED_TIME_KEY),
-            content;
+            lastSavedHash = sessionStorage.getItem(LAST_SAVED_HASH_KEY),
+            content, contentHash;
 
         function getTimeToNextPossibleSave() {
             return MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS - (new Date() - new Date(lastSavedTime));
         }
 
         function doSaveRequest(content) {
-
-            window.jsonRequester.put('/Articles/Files/Save/@Model.Id', {
+            jsonRequester.put('/Articles/Files/Save/@Model.Id', {
                 data: {
                     content: content
                 }
@@ -91,16 +101,30 @@
         }
 
         if (!lastSavedTime || getTimeToNextPossibleSave() < 0) {
+
             content = window.editor.getValue();
-            doSaveRequest(content);
-            sessionStorage.setItem(LAST_SAVED_TIME_KEY, new Date());
+            contentHash = CryptoJS.SHA1(content).toString();
+
+            if (contentHash !== lastSavedHash) {
+                doSaveRequest(content);
+                sessionStorage.setItem(LAST_SAVED_TIME_KEY, new Date());
+                sessionStorage.setItem(LAST_SAVED_HASH_KEY, contentHash);
+            } else {
+                if (!quietMode) {
+                    toastr.info('Content will not be saved because it is not modified.');
+                }
+            }
         } else {
-            toastr.info('Wait ' + (getTimeToNextPossibleSave() / 1000.0) + 's before save.');
+            if (!quietMode) {
+                toastr.info('Wait ' + (getTimeToNextPossibleSave() / 1000.0) + 's before save.');
+            }
         }
     }
 
     // Autosave
-    setInterval(save, AUTOSAVE_TIME_MILLISECONDS);
+    setInterval(function () {
+        save(true);
+    }, AUTOSAVE_TIME_MILLISECONDS);
 
     // Ctrl + s
     document.addEventListener("keydown", function(event) {
