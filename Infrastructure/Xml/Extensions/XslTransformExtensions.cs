@@ -57,10 +57,8 @@
             try
             {
                 string result = string.Empty;
-                using (XmlReader reader = xml.ToXmlReader())
-                {
-                    result = reader.ApplyXslTransform(xslFileName);
-                }
+                var reader = xml.ToXmlReader();
+                result = reader.ApplyXslTransform(xslFileName);
 
                 return result;
             }
@@ -169,6 +167,26 @@
                     {
                         // TODO: result = streamReader.ReadToEndAsync();
                         result = streamReader.ReadToEnd();
+                        try
+                        {
+                            streamReader.Close();
+                            streamReader.Dispose();
+                        }
+                        catch
+                        {
+                        }
+                    }
+
+                    if (reader != null && reader.ReadState != ReadState.Closed)
+                    {
+                        try
+                        {
+                            reader.Close();
+                            reader.Dispose();
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
             }

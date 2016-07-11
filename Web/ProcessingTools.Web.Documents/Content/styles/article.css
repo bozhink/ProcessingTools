@@ -292,6 +292,9 @@ h4.label {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
 }
+.mixed-citation {
+  line-height: 1.8em;
+}
 .mixed-citation .person-group .name:after {
   content: ', ';
 }
@@ -307,17 +310,25 @@ span.ext-link {
 }
 mark {
   margin: 0;
-  padding: 0;
-  background-color: #FCF8E3;
+  padding: 2px;
   border: 1px solid black;
   border-radius: 3px;
-  padding: 2px;
+  background-color: #FCF8E3;
+}
+mark:hover {
+  background-color: #eefce3;
 }
 mark mark {
   background-color: #f7ecb5;
   border: none;
 }
+mark mark:hover {
+  background-color: #d2f7b5;
+}
 mark mark mark {
   background-color: #edd559;
   border: none;
+}
+mark mark mark:hover {
+  background-color: #9aed59;
 }

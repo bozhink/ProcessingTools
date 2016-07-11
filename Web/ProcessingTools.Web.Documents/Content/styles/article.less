@@ -7,6 +7,9 @@
 @mark-1-color: #FCF8E3;
 @mark-2-color: darken(@mark-1-color, 10%);
 @mark-3-color: darken(@mark-2-color, 20%);
+@mark-1-hover-color: #eefce3;
+@mark-2-hover-color: darken(@mark-1-hover-color, 10%);
+@mark-3-hover-color: darken(@mark-2-hover-color, 20%);
 
 @article-min-width: 50px;
 @article-max-width: 800px;
@@ -218,7 +221,6 @@ h4.label {
     }
 
     .journal-meta:extend(.heading-layout):extend(.center-block) {
-
         padding: 10px;
 
         .journal-id, .issn {
@@ -357,6 +359,8 @@ h4.label {
 }
 
 .mixed-citation {
+    line-height: 1.8em;
+
     .person-group {
         .name {
             &:after {
@@ -381,19 +385,30 @@ span.ext-link {
 
 mark {
     margin: 0;
-    padding: 0;
-    background-color: @mark-1-color;
+    padding: 2px;
     border: 1px solid black;
     border-radius: 3px;
-    padding: 2px;
+    background-color: @mark-1-color;
+
+    &:hover {
+        background-color: @mark-1-hover-color;
+    }
 
     mark {
         background-color: @mark-2-color;
         border: none;
 
+        &:hover {
+            background-color: @mark-2-hover-color;
+        }
+
         mark {
             background-color: @mark-3-color;
             border: none;
+
+            &:hover {
+                background-color: @mark-3-hover-color;
+            }
         }
     }
 }
