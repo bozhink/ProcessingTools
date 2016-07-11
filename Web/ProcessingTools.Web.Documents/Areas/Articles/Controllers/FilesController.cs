@@ -19,6 +19,7 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Areas.Articles.Models.Files;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Xml.Extensions;
@@ -286,13 +287,15 @@
         {
             if (string.IsNullOrWhiteSpace(id))
             {
+                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new JsonResult
                 {
                     ContentType = "application/json",
                     ContentEncoding = Defaults.DefaultEncoding,
-                    Data = new
+                    Data = new SaveResponseModel
                     {
-                        Status = "Error"
+                        Status = "Error",
+                        Message = "Invalid document ID"
                     }
                 };
             }
@@ -309,18 +312,21 @@
                     },
                     content);
 
+                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return new JsonResult
                 {
                     ContentType = "application/json",
                     ContentEncoding = Defaults.DefaultEncoding,
-                    Data = new
+                    Data = new SaveResponseModel
                     {
-                        Status = "OK"
+                        Status = "OK",
+                        Message = "Document saved successfully"
                     }
                 };
             }
             catch (Exception e)
             {
+                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return new JsonResult
                 {
                     ContentType = "application/json",

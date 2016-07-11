@@ -33,9 +33,12 @@
 
 <script src="~/Scripts/custom/jsonRequester.js"></script>
 
-
 <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
 <script>
+    const AUTOSAVE_TIME_MILLISECONDS = 600000,
+        MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS = 5000,
+        LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY';
+
     require.config({
         paths: {
             'vs': '../../../node_modules/monaco-editor/min/vs'
@@ -49,32 +52,51 @@
             // theme: 'vs-dark'
         });
     });
-</script>
-
-<script>
-    const AUTOSAVE_TIME_MILLISECONDS = 600000,
-        MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS = 5000;
-
-    window.lastSaveTime = window.lastSaveTime || new Date();
 
     function save() {
-        var content = window.editor.getValue();
+        var lastSavedTime = sessionStorage.getItem(LAST_SAVED_TIME_KEY),
+            content;
 
-        jsonRequester.put('/Articles/Files/Save/@Model.Id', {
-            data: {
-                content: content
-            }
-        })
-        .then(function(res) {
-            if (res.Status === 'OK') {
-                toastr.success(JSON.stringify(res));
-            } else {
-                toastr.error(JSON.stringify(res));
-            }
-        })
-        .catch(function(err) {
-            toastr.error(JSON.stringify(res));
-        });
+        function getTimeToNextPossibleSave() {
+            return MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS - (new Date() - new Date(lastSavedTime));
+        }
+
+        function doSaveRequest(content) {
+
+            window.jsonRequester.put('/Articles/Files/Save/@Model.Id', {
+                data: {
+                    content: content
+                }
+            })
+            .then(function(res) {
+                if (res.Status === 'OK') {
+                    if ('Message' in res) {
+                        toastr.success(res.Message);
+                    }
+                } else {
+                    if ('Message' in res) {
+                        toastr.error(res.Message);
+                    } else {
+                        toastr.error(JSON.stringify(res));
+                    }
+                }
+            })
+            .catch(function(err) {
+                if ('Message' in err) {
+                    toastr.error(err.Message);
+                } else {
+                    toastr.error(JSON.stringify(err));
+                }
+            });
+        }
+
+        if (!lastSavedTime || getTimeToNextPossibleSave() < 0) {
+            content = window.editor.getValue();
+            doSaveRequest(content);
+            sessionStorage.setItem(LAST_SAVED_TIME_KEY, new Date());
+        } else {
+            toastr.info('Wait ' + (getTimeToNextPossibleSave() / 1000.0) + 's before save.');
+        }
     }
 
     // Autosave
@@ -82,17 +104,11 @@
 
     // Ctrl + s
     document.addEventListener("keydown", function(event) {
-        var e = event || window.event,
-            now = new Date();
+        var e = event || window.event;
         if (e.ctrlKey && e.which == 83) {
             e.preventDefault();
-            if ((now - window.lastSaveTime) > MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS) {
-                save();
-                window.lastSaveTime = new Date();
-                return false;
-            } else {
-                toastr.info('Wait ' + ((now - window.lastSaveTime) / 1000.0) + 's before save.');
-            }
+            save();
+            return false;
         }
     });
 </script>

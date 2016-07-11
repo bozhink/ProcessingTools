@@ -263,6 +263,7 @@
     <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
+    <Compile Include="Areas\Articles\Models\Files\SaveResponseModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
