@@ -163,10 +163,31 @@
         //target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
     }
 
+    function addBalloon(selector, contentSelector) {
+        contentSelector = contentSelector || '';
+
+        $(selector).hover(function () {
+            var $that = $(this),
+                rid = $that.attr('href');
+
+            $('<div>').addClass('custom-tooltiptext')
+                .text($(rid + contentSelector).text())
+                .appendTo($that);
+
+            $that.addClass('custom-tooltip');
+        }, function () {
+            $(this)
+                .removeClass('custom-tooltip')
+                .find('.custom-tooltiptext')
+                .remove();
+        });
+    }
+
     return {
         toggleMarkTitle,
         genrateCoordinatesList,
-        registerDragabbleBehavior
+        registerDragabbleBehavior,
+        addBalloon
     }
 
 }(jQuery));
