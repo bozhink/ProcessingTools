@@ -18,7 +18,8 @@
                 .addClass('btn btn-primary')
                 .text('×')
                 .on('click', function () {
-                    $('#' + sectionId).remove()
+                    $('#' + sectionId).remove();
+                    document.body.style.cursor = 'auto';
                 }),
             $minimizeButton = $('<button>')
                 .addClass('btn btn-primary')

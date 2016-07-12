@@ -1,7 +1,4 @@
-﻿body {
-  position: relative;
-}
-.selected-text-to-scroll {
+﻿.selected-text-to-scroll {
   font-size: 1.2em;
   font-weight: bold;
   color: chocolate;
@@ -14,22 +11,29 @@
   justify-content: space-between;
   align-items: center;
 }
-aside .panel.draggable {
+.panel.draggable {
   position: fixed;
   top: 100px;
   left: 30px;
   right: 10px;
-  height: 400px;
-  max-height: 400px;
+  height: 300px;
   min-height: 60px;
-  max-width: 300px;
-  min-width: 300px;
+  max-height: 600px;
+  width: 250px;
+  min-width: 250px;
+  max-width: 500px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
-aside .panel.draggable .panel-body .list-group {
-  max-height: 300px;
-  max-width: 300px;
+.panel.draggable .panel-body {
+  height: 100%;
+  overflow-y: hidden;
+}
+.panel.draggable .panel-body .list-group {
+  height: 100%;
   overflow-y: auto;
 }
-aside .panel.draggable .panel-body .list-group a:nth-child(2n) {
+.panel.draggable .panel-body .list-group a:nth-child(2n) {
   background-color: azure;
 }

@@ -43,7 +43,7 @@
                     "~/Content/toolbox.min.css",
                     "~/Content/articlePreview.min.css"));
 
-            BundleTable.EnableOptimizations = true;
+            ////BundleTable.EnableOptimizations = true;
         }
     }
 }
