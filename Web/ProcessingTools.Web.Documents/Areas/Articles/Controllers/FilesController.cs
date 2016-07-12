@@ -9,7 +9,6 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using System.Xml;
 
     using Microsoft.AspNet.Identity;
 
@@ -18,105 +17,40 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Files;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
-    using ProcessingTools.Xml.Extensions;
 
     [Authorize]
     public class FilesController : Controller
     {
         public const string InstanceName = "File";
-        private readonly IDocumentsDataService service;
 
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
 
-        public FilesController(IDocumentsDataService filesDataService)
+        private readonly IXmlPresenter presenter;
+        private readonly IDocumentsDataService service;
+
+        public FilesController(IDocumentsDataService service, IXmlPresenter presenter)
         {
-            if (filesDataService == null)
+            if (service == null)
             {
-                throw new ArgumentNullException(nameof(filesDataService));
+                throw new ArgumentNullException(nameof(service));
             }
 
-            this.service = filesDataService;
+            if (presenter == null)
+            {
+                throw new ArgumentNullException(nameof(presenter));
+            }
+
+            this.service = service;
+            this.presenter = presenter;
         }
 
         public static string ControllerName => ControllerConstants.FilesControllerName;
-
-        private string XslTansformFile => Path.Combine(Server.MapPath("~/App_Code/Xsl"), "main.xsl");
-
-        // GET: Files/Upload
-        public ActionResult Upload()
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View();
-        }
-
-        // POST: Files/Upload
-        [HttpPost]
-        public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
-        {
-            if (files == null || files.Count() < 1 || files.All(f => f == null))
-            {
-                return this.NoFilesSelectedErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-
-            try
-            {
-                var userId = User.Identity.GetUserId();
-                var articleId = this.fakeArticleId;
-
-                var tasks = new ConcurrentQueue<Task>();
-                var invalidFiles = new ConcurrentQueue<string>();
-                foreach (var file in files)
-                {
-                    if (file == null || file.ContentLength < 1)
-                    {
-                        invalidFiles.Enqueue(file.FileName);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            var document = new DocumentServiceModel
-                            {
-                                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
-                                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                                ContentLength = file.ContentLength,
-                                ContentType = file.ContentType
-                            };
-
-                            tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
-                        }
-                        catch
-                        {
-                            invalidFiles.Enqueue(file.FileName);
-                        }
-                    }
-                }
-
-                await Task.WhenAll(tasks.ToArray());
-
-                if (invalidFiles.Count > 0)
-                {
-                    this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                    return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
-                }
-
-                this.Response.StatusCode = (int)HttpStatusCode.Created;
-                return this.RedirectToAction(nameof(this.Index));
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-        }
 
         // GET: Files/Delete/5
         public async Task<ActionResult> Delete(string id)
@@ -237,19 +171,12 @@
 
             try
             {
-                var reader = await this.service.GetReader(User.Identity.GetUserId(), this.fakeArticleId, id);
-
-                var document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
-
-                document.Load(reader);
+                var content = await this.presenter.GetXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 var model = new DocumentDetailsViewModel
                 {
                     Id = id,
-                    Content = document.OuterXml
+                    Content = content
                 };
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -266,64 +193,6 @@
             catch (Exception e)
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-        }
-
-        [HttpPut]
-        public async Task<JsonResult> Save(string id, string content)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return new JsonResult
-                {
-                    ContentType = "application/json",
-                    ContentEncoding = Defaults.DefaultEncoding,
-                    Data = new SaveResponseModel
-                    {
-                        Status = "Error",
-                        Message = "Invalid document ID"
-                    }
-                };
-            }
-
-            try
-            {
-                await this.service.Update(
-                    User.Identity.GetUserId(),
-                    this.fakeArticleId,
-                    new DocumentServiceModel
-                    {
-                        Id = id,
-                        ContentType = "application/xml"
-                    },
-                    content);
-
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return new JsonResult
-                {
-                    ContentType = "application/json",
-                    ContentEncoding = Defaults.DefaultEncoding,
-                    Data = new SaveResponseModel
-                    {
-                        Status = "OK",
-                        Message = "Document saved successfully"
-                    }
-                };
-            }
-            catch (Exception e)
-            {
-                this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                return new JsonResult
-                {
-                    ContentType = "application/json",
-                    ContentEncoding = Defaults.DefaultEncoding,
-                    Data = new
-                    {
-                        Status = "Error",
-                        Message = e.Message
-                    }
-                };
             }
         }
 
@@ -391,8 +260,7 @@
 
             try
             {
-                var content = (await this.service.GetReader(User.Identity.GetUserId(), this.fakeArticleId, id))
-                    .ApplyXslTransform(this.XslTansformFile);
+                var content = await this.presenter.GetHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
 
                 var model = new DocumentDetailsViewModel
                 {
@@ -415,6 +283,174 @@
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
+        }
+
+        [HttpPut]
+        public async Task<JsonResult> SaveHtml(string id, string content)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.InvalidDocumentIdJsonResult();
+            }
+
+            try
+            {
+                var document = new DocumentServiceModel
+                {
+                    Id = id,
+                    ContentType = ContentTypeConstants.XmlContentType
+                };
+
+                await this.presenter.SaveHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, document, content);
+
+                return this.DocumentSavedSuccessfullyJsonResult();
+            }
+            catch (Exception e)
+            {
+                return this.InternalServerErrorJsonResult(e);
+            }
+        }
+
+        [HttpPut]
+        public async Task<JsonResult> SaveXml(string id, string content)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.InvalidDocumentIdJsonResult();
+            }
+
+            try
+            {
+                var document = new DocumentServiceModel
+                {
+                    Id = id,
+                    ContentType = ContentTypeConstants.XmlContentType
+                };
+
+                await this.presenter.SaveXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, document, content);
+
+                return this.DocumentSavedSuccessfullyJsonResult();
+            }
+            catch (Exception e)
+            {
+                return this.InternalServerErrorJsonResult(e);
+            }
+        }
+
+        // GET: Files/Upload
+        public ActionResult Upload()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View();
+        }
+
+        // POST: Files/Upload
+        [HttpPost]
+        public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files == null || files.Count() < 1 || files.All(f => f == null))
+            {
+                return this.NoFilesSelectedErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var articleId = this.fakeArticleId;
+
+                var tasks = new ConcurrentQueue<Task>();
+                var invalidFiles = new ConcurrentQueue<string>();
+                foreach (var file in files)
+                {
+                    if (file == null || file.ContentLength < 1)
+                    {
+                        invalidFiles.Enqueue(file.FileName);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var document = new DocumentServiceModel
+                            {
+                                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
+                                ContentLength = file.ContentLength,
+                                ContentType = file.ContentType
+                            };
+
+                            tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
+                        }
+                        catch
+                        {
+                            invalidFiles.Enqueue(file.FileName);
+                        }
+                    }
+                }
+
+                await Task.WhenAll(tasks.ToArray());
+
+                if (invalidFiles.Count > 0)
+                {
+                    this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
+                    return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                }
+
+                this.Response.StatusCode = (int)HttpStatusCode.Created;
+                return this.RedirectToAction(nameof(this.Index));
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+            catch (Exception e)
+            {
+                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+            }
+        }
+
+        private JsonResult DocumentSavedSuccessfullyJsonResult()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new SaveResponseModel
+                {
+                    Status = "OK",
+                    Message = "Document saved successfully"
+                }
+            };
+        }
+
+        private JsonResult InternalServerErrorJsonResult(Exception e)
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new
+                {
+                    Status = "Error",
+                    Message = e.Message
+                }
+            };
+        }
+
+        private JsonResult InvalidDocumentIdJsonResult()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new SaveResponseModel
+                {
+                    Status = "Error",
+                    Message = "Invalid document ID"
+                }
+            };
         }
     }
 }

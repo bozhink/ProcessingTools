@@ -323,12 +323,6 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Xsl\inc.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Code\Xsl\main.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\documentEdit.css">
       <DependentUpon>documentEdit.less</DependentUpon>
     </Content>
@@ -465,6 +459,7 @@
     <Content Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\Data\Controllers\" />

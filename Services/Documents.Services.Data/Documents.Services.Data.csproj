@@ -48,6 +48,7 @@
     <Compile Include="Contracts\IJournalsDataService.cs" />
     <Compile Include="Contracts\IPublishersDataService.cs" />
     <Compile Include="Contracts\IDocumentsDataService.cs" />
+    <Compile Include="Contracts\IXmlPresenter.cs" />
     <Compile Include="Models\DocumentServiceModel.cs" />
     <Compile Include="Models\Journals\ArticleServiceModel.cs" />
     <Compile Include="Models\Journals\JournalDetailsServiceModel.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Services\JournalsDataService.cs" />
     <Compile Include="Services\PublishersDataService.cs" />
     <Compile Include="Services\DocumentsDataService.cs" />
+    <Compile Include="Services\XmlPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common\Common.csproj">
@@ -94,6 +96,10 @@
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
       <Name>FileSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
@@ -104,6 +110,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Xsl\format.html-to-xml.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.xml-to-html.inc.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.xml-to-html.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

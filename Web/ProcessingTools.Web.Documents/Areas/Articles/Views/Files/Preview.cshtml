@@ -39,13 +39,13 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Window <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a onclick="window.articlePreviewActions.genrateCoordinatesList('#aside-main-box');">Coordinates</a></li>
+                        <li><a onclick="window.documentPreviewActions.genrateCoordinatesList('#aside-main-box');">Coordinates</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
-                <li><a>Save</a></li>
+                <li><a onclick="window.save()">Save</a></li>
             </ul>
         </div>
     </div>
@@ -59,14 +59,25 @@
 
 <div class="clearfix"></div>
 
-@Scripts.Render("~/bundles/jquery")
+@Html.ActionLink("Save", nameof(FilesController.SaveHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
+
+<script src="~/bower_components/jquery/dist/jquery.js"></script>
 <script src="~/bower_components/interact/interact.js"></script>
+<script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
+<script src="~/bower_components/toastr/toastr.js"></script>
+<script src="~/Scripts/custom/toastrConfig.js"></script>
+<script src="~/Scripts/custom/jsonRequester.js"></script>
+<script>
+    window.saveLinkAddress = $('#save-link').attr('href');
+    toastr.warning('d');
+</script>
+
 @Scripts.Render("~/bundles/documentPreview")
 
 <script>
-    window.articlePreviewActions.toggleMarkTitle(),
-    window.articlePreviewActions.registerDragabbleBehavior('.draggable');
-    window.articlePreviewActions.addBalloon('a.bibr');
-    window.articlePreviewActions.addBalloon('a.fig', ' .caption');
-    window.articlePreviewActions.addBalloon('a.table', ' .caption');
+    window.documentPreviewActions.toggleMarkTitle(),
+    window.documentPreviewActions.registerDragabbleBehavior('.draggable');
+    window.documentPreviewActions.addBalloon('a.bibr');
+    window.documentPreviewActions.addBalloon('a.fig', ' .caption');
+    window.documentPreviewActions.addBalloon('a.table', ' .caption');
 </script>
