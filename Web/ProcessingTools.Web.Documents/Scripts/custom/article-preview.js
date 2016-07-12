@@ -12,7 +12,7 @@
     function genrateCoordinatesList(selector) {
         var sectionId = 'coordinates-list',
             $aside = $(selector),
-            $section = $('<section>').addClass('panel panel-primary').addClass('draggable').attr('id', sectionId),
+            $section,
             $list = $('<div>').addClass('list-group'),
             $closeButton = $('<button>')
                 .addClass('btn btn-primary')
@@ -38,6 +38,12 @@
             toolbox = {
                 title: 'Coordinates'
             };
+
+        // Remove all coordinates list toolboxes yet present.
+        $('#' + sectionId).remove();
+
+        // Create new coordinates list toolbox.
+        $section = $('<section>').addClass('panel panel-primary').addClass('draggable').attr('id', sectionId);
 
         $('.named-content.geo-json').each(function () {
             var $that = $(this),

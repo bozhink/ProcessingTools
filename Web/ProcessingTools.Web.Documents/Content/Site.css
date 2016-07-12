@@ -19,6 +19,9 @@ select,
 textarea {
   max-width: 280px;
 }
+.nav li a {
+  cursor: pointer;
+}
 .separated-items > .item::after {
   content: ' | ';
 }

@@ -6,6 +6,51 @@
 
 @Styles.Render("~/Content/articlePreview")
 
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "navbar-brand" })
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink(@ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), routeValues: new { id = Model.Id }, htmlAttributes: new { target = "_blank" })</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tag manually <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a>Figures citations</a></li>
+                        <li><a>Tables citations</a></li>
+                        <li><a>Suppl. materials citations</a></li>
+                        <li><a>Appendices citations</a></li>
+                        <li><a>Bibliographic citations</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a>Coordinates</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a>Lower taxa</a></li>
+                        <li><a>Higher taxa</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Window <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="window.articlePreviewActions.genrateCoordinatesList('#aside-main-box');">Coordinates</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
+                <li><a>Save</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <section id="article">
     @Html.Raw(Model.Content)
 </section>
@@ -20,7 +65,7 @@
 
 <script>
     window.articlePreviewActions.toggleMarkTitle(),
-    window.articlePreviewActions.genrateCoordinatesList('#aside-main-box');
+    
     window.articlePreviewActions.registerDragabbleBehavior('.draggable');
     window.articlePreviewActions.addBalloon('a.bibr');
     window.articlePreviewActions.addBalloon('a.fig', ' .caption');

@@ -4,15 +4,29 @@
     ViewBag.Title = ContentConstants.DeafultEditPageTitle;
 }
 
-<h2>
-    @ContentConstants.DeafultEditPageHeading
-</h2>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "navbar-brand" })
+        </div>
 
-<br />
-
-<button onclick="save()" class="btn btn-default">Save</button>
-
-<br />
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink(@ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), routeValues: new { id = Model.Id }, htmlAttributes: new { target = "_blank" })</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
+                <li onclick="save()"><a>Save</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <style>
     #editor-container {
