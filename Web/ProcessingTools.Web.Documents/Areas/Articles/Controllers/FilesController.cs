@@ -269,19 +269,6 @@
             }
         }
 
-        // POST: Files/Edit/5
-        [HttpPost]
-        public ActionResult Edit(string id, FormCollection collection)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-
-            // TODO
-            return new HttpStatusCodeResult(HttpStatusCode.NotImplemented);
-        }
-
         [HttpPut]
         public async Task<JsonResult> Save(string id, string content)
         {

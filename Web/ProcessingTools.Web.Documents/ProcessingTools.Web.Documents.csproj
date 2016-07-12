@@ -329,11 +329,17 @@
     <Content Include="App_Code\Xsl\main.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\articlePreview.css">
-      <DependentUpon>articlePreview.less</DependentUpon>
+    <Content Include="Content\documentEdit.css">
+      <DependentUpon>documentEdit.less</DependentUpon>
     </Content>
-    <Content Include="Content\articlePreview.min.css">
-      <DependentUpon>articlePreview.css</DependentUpon>
+    <Content Include="Content\documentEdit.min.css">
+      <DependentUpon>documentEdit.css</DependentUpon>
+    </Content>
+    <Content Include="Content\documentPreview.css">
+      <DependentUpon>documentPreview.less</DependentUpon>
+    </Content>
+    <Content Include="Content\documentPreview.min.css">
+      <DependentUpon>documentPreview.css</DependentUpon>
     </Content>
     <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
@@ -370,6 +376,7 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\custom\documentEdit.js" />
     <Content Include="Scripts\custom\jsonRequester.js" />
     <Content Include="Scripts\custom\toastrConfig.js" />
     <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
@@ -398,13 +405,14 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\articlePreview.less" />
+    <Content Include="Content\documentPreview.less" />
     <Content Include="Content\toolbox.less" />
     <Content Include="package.json" />
     <Content Include="Content\site.less" />
     <Content Include="Content\tooltips.less" />
+    <Content Include="Content\documentEdit.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\custom\article-preview.js" />
+    <Content Include="Scripts\custom\documentPreview.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

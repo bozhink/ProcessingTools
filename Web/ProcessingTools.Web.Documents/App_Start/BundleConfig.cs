@@ -28,9 +28,9 @@
                     "~/bower_components/bootstrap/dist/js/bootstrap.js",
                     "~/bower_components/respond/src/*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/article")
+            bundles.Add(new ScriptBundle("~/bundles/documentPreview")
                 .Include(
-                    "~/Scripts/custom/article-preview.js"));
+                    "~/Scripts/custom/documentPreview.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include(
@@ -38,10 +38,15 @@
                     "~/Content/site.min.css",
                     "~/Content/tooltips.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/articlePreview")
+            bundles.Add(new StyleBundle("~/Content/documentPreview")
                 .Include(
                     "~/Content/toolbox.min.css",
-                    "~/Content/articlePreview.min.css"));
+                    "~/Content/documentPreview.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/documentEdit")
+                .Include(
+                    "~/bower_components/toastr/toastr.min.css",
+                    "~/Content/documentEdit.min.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }

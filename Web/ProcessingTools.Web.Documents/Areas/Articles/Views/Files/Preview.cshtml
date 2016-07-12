@@ -4,7 +4,7 @@
     ViewBag.Title = ContentConstants.DeafultPreviewPageTitle;
 }
 
-@Styles.Render("~/Content/articlePreview")
+@Styles.Render("~/Content/documentPreview")
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container container-fluid">
@@ -51,9 +51,9 @@
     </div>
 </nav>
 
-<section id="article">
+<div id="article">
     @Html.Raw(Model.Content)
-</section>
+</div>
 
 <aside id="aside-main-box"></aside>
 
@@ -61,11 +61,10 @@
 
 @Scripts.Render("~/bundles/jquery")
 <script src="~/bower_components/interact/interact.js"></script>
-@Scripts.Render("~/bundles/article")
+@Scripts.Render("~/bundles/documentPreview")
 
 <script>
     window.articlePreviewActions.toggleMarkTitle(),
-    
     window.articlePreviewActions.registerDragabbleBehavior('.draggable');
     window.articlePreviewActions.addBalloon('a.bibr');
     window.articlePreviewActions.addBalloon('a.fig', ' .caption');

@@ -8,11 +8,15 @@
     "inputFile": "Content/tooltips.less"
   },
   {
-    "outputFile": "Content/articlePreview.css",
-    "inputFile": "Content/articlePreview.less"
-  },
-  {
     "outputFile": "Content/toolbox.css",
     "inputFile": "Content/toolbox.less"
+  },
+  {
+    "outputFile": "Content/documentPreview.css",
+    "inputFile": "Content/documentPreview.less"
+  },
+  {
+    "outputFile": "Content/documentEdit.css",
+    "inputFile": "Content/documentEdit.less"
   }
 ]

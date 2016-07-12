@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="custom/article-preview.js" />
+/// <reference path="custom/documentedit.js" />
+/// <reference path="custom/documentpreview.js" />
 /// <reference path="custom/jsonrequester.js" />
 /// <reference path="custom/toastrconfig.js" />
 /// <reference path="jquery.validate.min.js" />
