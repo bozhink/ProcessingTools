@@ -1,26 +1,18 @@
 ﻿[
   {
-    "outputFile": "App_Code/styles/default-styles.css",
-    "inputFile": "App_Code/styles/default-styles.less"
+    "outputFile": "Content/site.css",
+    "inputFile": "Content/site.less"
   },
   {
-    "outputFile": "Content/styles/default-styles.css",
-    "inputFile": "Content/styles/default-styles.less"
+    "outputFile": "Content/tooltips.css",
+    "inputFile": "Content/tooltips.less"
   },
   {
-    "outputFile": "Content/styles/article-styles.css",
-    "inputFile": "Content/styles/article-styles.less"
+    "outputFile": "Content/articlePreview.css",
+    "inputFile": "Content/articlePreview.less"
   },
   {
-    "outputFile": "Content/styles/toolbox.css",
-    "inputFile": "Content/styles/toolbox.less"
-  },
-  {
-    "outputFile": "Content/styles/default.css",
-    "inputFile": "Content/styles/default.less"
-  },
-  {
-    "outputFile": "Content/styles/article.css",
-    "inputFile": "Content/styles/article.less"
+    "outputFile": "Content/toolbox.css",
+    "inputFile": "Content/toolbox.less"
   }
 ]

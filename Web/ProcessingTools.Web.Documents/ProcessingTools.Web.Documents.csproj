@@ -329,27 +329,32 @@
     <Content Include="App_Code\Xsl\main.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\styles\article.css">
-      <DependentUpon>article.less</DependentUpon>
+    <Content Include="Content\articlePreview.css">
+      <DependentUpon>articlePreview.less</DependentUpon>
     </Content>
-    <Content Include="Content\styles\article.min.css">
-      <DependentUpon>article.css</DependentUpon>
+    <Content Include="Content\articlePreview.min.css">
+      <DependentUpon>articlePreview.css</DependentUpon>
     </Content>
-    <Content Include="Content\styles\default.css">
-      <DependentUpon>default.less</DependentUpon>
+    <Content Include="Content\site.css">
+      <DependentUpon>site.less</DependentUpon>
     </Content>
-    <Content Include="Content\styles\default.min.css">
-      <DependentUpon>default.css</DependentUpon>
+    <Content Include="Content\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
     </Content>
-    <Content Include="Content\styles\toolbox.css">
+    <Content Include="Content\toolbox.css">
       <DependentUpon>toolbox.less</DependentUpon>
     </Content>
-    <Content Include="Content\styles\toolbox.min.css">
+    <Content Include="Content\toolbox.min.css">
       <DependentUpon>toolbox.css</DependentUpon>
+    </Content>
+    <Content Include="Content\tooltips.css">
+      <DependentUpon>tooltips.less</DependentUpon>
+    </Content>
+    <Content Include="Content\tooltips.min.css">
+      <DependentUpon>tooltips.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Areas\Articles\Views\web.config" />
     <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
@@ -361,7 +366,6 @@
     <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
-    <Content Include="Content\styles\default.less" />
     <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
@@ -394,9 +398,11 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\styles\article.less" />
-    <Content Include="Content\styles\toolbox.less" />
+    <Content Include="Content\articlePreview.less" />
+    <Content Include="Content\toolbox.less" />
     <Content Include="package.json" />
+    <Content Include="Content\site.less" />
+    <Content Include="Content\tooltips.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custom\article-preview.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
