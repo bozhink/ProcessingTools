@@ -141,6 +141,13 @@ section p {
   font-size: 1em;
   text-align: justify;
 }
+figure {
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
 table {
   width: 100%;
   min-width: 100%;

@@ -24,6 +24,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
+                <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
                 <li onclick="save()"><a>Save</a></li>
             </ul>
         </div>
