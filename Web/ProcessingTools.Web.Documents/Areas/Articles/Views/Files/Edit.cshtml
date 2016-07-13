@@ -4,7 +4,7 @@
     ViewBag.Title = ContentConstants.DeafultEditPageTitle;
 }
 
-@Styles.Render("~/Content/documentEdit")
+@Styles.Render(BundleNames.DocumentEditStyleBundleName)
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container container-fluid">
@@ -35,16 +35,20 @@
 
 <div class="clearfix"></div>
 
-@Html.ActionLink("Save", nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
+@Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
 
-<script src="~/bower_components/jquery/dist/jquery.js"></script>
-<script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
-<script src="~/bower_components/toastr/toastr.js"></script>
-<script src="~/Scripts/custom/toastrConfig.js"></script>
-<script src="~/Scripts/custom/jsonRequester.js"></script>
 <script>
-    window.initialContent = @Html.Raw(Json.Encode(Model.Content));
-    window.saveLinkAddress = $('#save-link').attr('href');
+    window.documentContent = @Html.Raw(Json.Encode(Model.Content));
+    window.saveLinkAddress = document.getElementById('save-link').href;
 </script>
-<script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
-<script src="~/Scripts/custom/documentEdit.js"></script>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.JQueryScriptBundleName)
+    @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
+    @Scripts.Render(BundleNames.ToastrScriptBundleName)
+    @Scripts.Render(BundleNames.NetRequesterScriptBundleName)
+    @Scripts.Render(BundleNames.MonacoEditorScriptBundleName)
+    @Scripts.Render(BundleNames.DocumentEditScriptBundleName)
+    @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)
+    @Scripts.Render(BundleNames.AutoSaveScriptBundleName)
+}

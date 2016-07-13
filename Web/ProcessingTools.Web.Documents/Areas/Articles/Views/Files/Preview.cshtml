@@ -4,7 +4,7 @@
     ViewBag.Title = ContentConstants.DeafultPreviewPageTitle;
 }
 
-@Styles.Render("~/Content/documentPreview")
+@Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container container-fluid">
@@ -60,25 +60,26 @@
 
 <div class="clearfix"></div>
 
-@Html.ActionLink("Save", nameof(FilesController.SaveHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
+@Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
 
-<script src="~/bower_components/jquery/dist/jquery.js"></script>
-<script src="~/bower_components/interact/interact.js"></script>
-<script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
-<script src="~/bower_components/toastr/toastr.js"></script>
-<script src="~/Scripts/custom/toastrConfig.js"></script>
-<script src="~/Scripts/custom/jsonRequester.js"></script>
 <script>
-    window.saveLinkAddress = $('#save-link').attr('href');
-    toastr.warning('d');
+    window.documentContent = document.getElementById('article').innerHTML;
+    window.saveLinkAddress = document.getElementById('save-link').href;
 </script>
 
-@Scripts.Render("~/bundles/documentPreview")
+@section Scripts {
+    @Scripts.Render(BundleNames.JQueryScriptBundleName)
+    @Scripts.Render(BundleNames.InteractJSScriptBundleName)
+    @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
+    @Scripts.Render(BundleNames.ToastrScriptBundleName)
+    @Scripts.Render(BundleNames.NetRequesterScriptBundleName)
+
+
+    @Scripts.Render(BundleNames.DocumentPreviewScriptBundleName)
+    @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)
+    @*@Scripts.Render(BundleNames.AutoSaveScriptBundleName)*@
+}
 
 <script>
-    window.documentPreviewActions.toggleMarkTitle(),
-    window.documentPreviewActions.registerDragabbleBehavior('.draggable');
-    window.documentPreviewActions.addBalloon('a.bibr');
-    window.documentPreviewActions.addBalloon('a.fig', ' .caption');
-    window.documentPreviewActions.addBalloon('a.table', ' .caption');
+
 </script>

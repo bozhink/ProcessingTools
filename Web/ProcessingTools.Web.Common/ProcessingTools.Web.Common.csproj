@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\AreasConstants.cs" />
+    <Compile Include="Constants\BundleNames.cs" />
     <Compile Include="Constants\ContentConstants.cs" />
     <Compile Include="Constants\ControllerConstants.cs" />
     <Compile Include="Constants\RouteConstants.cs" />

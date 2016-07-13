@@ -1,5 +1,7 @@
-﻿(function (w) {
-    w.jsonRequester = (function () {
+﻿(function (window, $) {
+    'use strict';
+
+    window.JsonRequester = function () {
         function send(method, url, options) {
             options = options || {};
 
@@ -48,5 +50,5 @@
             put: put,
             delete: del
         };
-    }());
-}(window));
+    };
+}(window, window.jQuery));
