@@ -112,7 +112,7 @@
                 PreserveWhitespace = true
             };
 
-            xmlDocument.LoadXml(content);
+            xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
 
             var xmlContent = xmlDocument.ApplyXslTransform(xslFileName);
 

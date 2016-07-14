@@ -101,10 +101,12 @@ em.taxon-name {
 .taxon-name-part.subspecies {
   font-style: italic;
 }
-.named-content {
+.named-content,
+.locality-coordinates {
   background-color: rgba(205, 248, 248, 0.7);
 }
-.named-content.date {
+.named-content.date,
+.locality-coordinates.date {
   text-decoration: underline wavy #ffd800;
 }
 abbr {

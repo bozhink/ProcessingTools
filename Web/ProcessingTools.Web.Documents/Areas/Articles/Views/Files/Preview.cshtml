@@ -52,7 +52,7 @@
     </div>
 </nav>
 
-<div id="article">
+<div id="article" contextmenu="supermenu">
     @Html.Raw(Model.Content)
 </div>
 
@@ -80,6 +80,24 @@
     @*@Scripts.Render(BundleNames.AutoSaveScriptBundleName)*@
 }
 
-<script>
+<menu type="context" id="supermenu">
+    <menuitem label="Refresh" onclick="window.location.reload();" icon="ico_reload.png"></menuitem>
+    <menu label="Share on...">
+        <menuitem label="Twitter" icon="ico_twitter.png" onclick="window.open('//twitter.com/intent/tweet?text='+window.location.href);"></menuitem>
+        <menuitem label="Facebook" icon="ico_facebook.png" onclick="window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);"></menuitem>
+    </menu>
+    <menuitem label="Email This Page" onclick="window.location='mailto:?body='+window.location.href;"></menuitem>
+    <menuitem label="Foo" onclick="window.documentPreviewActions.foo()"></menuitem>
+    <menuitem label="Tag link" onclick="window.documentPreviewActions.tagLink()"></menuitem>
+    <menuitem label="Tag coordinate" onclick="window.documentPreviewActions.tagInSpan('locality-coordinates')"></menuitem>
+    <menu label="Bibliography">
+        @{
+            var tags = new string[] { "article-title", "source", "volume", "issue", "fpage", "lpage", "comment" };
+            foreach (var tag in tags)
+            {
+                <menuitem label="Tag @tag" onclick="window.documentPreviewActions.tagInMark('@tag')"></menuitem>
+            }
+        }
+    </menu>
+</menu>
 
-</script>

@@ -130,9 +130,74 @@
             });
         }
 
+        // Selection tag
+        function foo() {
+            var selection = window.getSelection().getRangeAt(0),
+                selectedText = selection.extractContents(),
+                span = document.createElement("span");
+            span.style.backgroundColor = "yellow";
+            span.appendChild(selectedText);
+            selection.insertNode(span);
+        }
+
+        function tagLink() {
+            var selection = window.getSelection().getRangeAt(0),
+                selectedText = selection.extractContents(),
+                tag = document.createElement("a");
+
+            tag.setAttribute('href', selectedText);
+            tag.setAttribute('target', '_blank');
+            tag.setAttribute('type', 'simple');
+
+            tag.setAttribute('xlink:type', 'simple');
+            tag.setAttribute('elem-name', 'ext-link');
+            tag.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+            tag.appendChild(selectedText);
+
+            tag.setAttribute('href', tag.innerText);
+            tag.setAttribute('xlink:href', tag.innerText);
+
+            selection.insertNode(tag);
+        }
+
+        function tag(tagName, elemName, className) {
+            var selection = window.getSelection().getRangeAt(0),
+                selectedText = selection.extractContents(),
+                tag = document.createElement(tagName);
+
+            tag.setAttribute('elem-name', elemName);
+
+            if (!className) {
+                tag.setAttribute('class', elemName);
+            } else {
+                tag.setAttribute('class', className);
+            }
+
+            tag.appendChild(selectedText);
+            selection.insertNode(tag);
+        }
+
+        function tagInSpan(elemName, className) {
+            tag('span', elemName, className);
+        }
+
+        function tagInMark(elemName, className) {
+            tag('mark', elemName, className);
+        }
+
+        function tagInDiv(elemName, className) {
+            tag('div', elemName, className);
+        }
+
         return {
             genrateCoordinatesList,
-            addBalloon
+            addBalloon,
+            foo,
+            tagLink,
+            tagInSpan,
+            tagInMark,
+            tagInDiv
         }
     }(window.jQuery));
 
