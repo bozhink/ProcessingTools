@@ -12,6 +12,7 @@
         public const string DefaultDetailsActionLinkTitle = "Details";
         public const string DefaultDeleteActionLinkTitle = "Delete";
         public const string DefaultSaveActionLinkTitle = "Save";
+        public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
         public const string DefaultBackToListActionLinkTitle = "Back to List";
         public const string DefaultUploadNewFileActionLinkTitle = "Upload New File or Files";

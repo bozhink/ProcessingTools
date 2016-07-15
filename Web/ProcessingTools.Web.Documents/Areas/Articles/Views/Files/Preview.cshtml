@@ -60,7 +60,10 @@
 
 <div class="clearfix"></div>
 
-@Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
+<aside style="display: none;">
+    @Html.ActionLink(ContentConstants.DefaultGetActionLinkTitle, nameof(FilesController.GetHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveHtml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link" })
+</aside>
 
 <script>
     window.documentContent = document.getElementById('article').innerHTML;

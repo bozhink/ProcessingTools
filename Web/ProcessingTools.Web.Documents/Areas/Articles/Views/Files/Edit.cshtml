@@ -35,7 +35,10 @@
 
 <div class="clearfix"></div>
 
-@Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link", style = "display: none;" })
+<aside style="display: none;">
+    @Html.ActionLink(ContentConstants.DefaultGetActionLinkTitle, nameof(FilesController.GetXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link" })
+</aside>
 
 <script>
     window.documentContent = @Html.Raw(Json.Encode(Model.Content));
