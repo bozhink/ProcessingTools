@@ -379,6 +379,7 @@
     <Content Include="Scripts\custom\key-bindings.js" />
     <Content Include="Scripts\config\monaco-editor-config.js" />
     <Content Include="Scripts\config\toastr-config.js" />
+    <Content Include="Scripts\data\documents\document-content-data.js" />
     <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
     <Content Include="Views\Shared\InvalidOrEmptyFileError.cshtml" />
     <Content Include="Views\Shared\NullIdError.cshtml" />

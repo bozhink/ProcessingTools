@@ -9,6 +9,7 @@
 /// <reference path="custom/document-preview.js" />
 /// <reference path="custom/document-save-controller.js" />
 /// <reference path="custom/key-bindings.js" />
+/// <reference path="data/documents/document-content-data.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-2.2.3.js" />
