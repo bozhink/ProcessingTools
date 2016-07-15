@@ -39,11 +39,11 @@
 
                 if (!lastGetTime || getTimeToNextPossibleGet(lastGetTime) < 0) {
                     jsonRequester.get(url)
-                        .then(function (content) {
-                            var contentHash = sha1(content).toString();
+                        .then(function (data) {
+                            var contentHash = sha1(data.Content).toString();
                             sessionStorage.setItem(contentHashKey, contentHash);
                             sessionStorage.setItem(lastGetTimeKey, new Date());
-                            resolve(content);
+                            resolve(data.Content);
                         })
                         .catch(function (err) {
                             sessionStorage.setItem(lastGetTimeKey, new Date());

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Models.Files
 {
-    public class SaveResponseModel
+    public class MessageResponseModel
     {
         public string Status { get; set; }
 

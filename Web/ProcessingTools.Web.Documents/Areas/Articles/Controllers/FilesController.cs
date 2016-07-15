@@ -305,6 +305,14 @@
 
                 return this.DocumentSavedSuccessfullyJsonResult();
             }
+            catch (EntityNotFoundException e)
+            {
+                return this.NotFoundJsonResult(e);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestJsonResult(e);
+            }
             catch (Exception e)
             {
                 return this.InternalServerErrorJsonResult(e);
@@ -330,6 +338,68 @@
                 await this.presenter.SaveXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, document, content);
 
                 return this.DocumentSavedSuccessfullyJsonResult();
+            }
+            catch (EntityNotFoundException e)
+            {
+                return this.NotFoundJsonResult(e);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestJsonResult(e);
+            }
+            catch (Exception e)
+            {
+                return this.InternalServerErrorJsonResult(e);
+            }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetHtml(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.InvalidDocumentIdJsonResult();
+            }
+
+            try
+            {
+                var content = await this.presenter.GetHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
+                return this.ContentJsonResult(id, content);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return this.NotFoundJsonResult(e);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestJsonResult(e);
+            }
+            catch (Exception e)
+            {
+                return this.InternalServerErrorJsonResult(e);
+            }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetXml(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return this.InvalidDocumentIdJsonResult();
+            }
+
+            try
+            {
+                var content = await this.presenter.GetXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
+                return this.ContentJsonResult(id, content);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return this.NotFoundJsonResult(e);
+            }
+            catch (ArgumentException e)
+            {
+                return this.BadRequestJsonResult(e);
             }
             catch (Exception e)
             {
@@ -415,10 +485,25 @@
             {
                 ContentType = ContentTypeConstants.JsonContentType,
                 ContentEncoding = Defaults.DefaultEncoding,
-                Data = new SaveResponseModel
+                Data = new MessageResponseModel
                 {
                     Status = "OK",
                     Message = "Document saved successfully"
+                }
+            };
+        }
+
+        private JsonResult ContentJsonResult(string id, string content)
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new ContentResponseModel
+                {
+                    Id = id,
+                    Content = content
                 }
             };
         }
@@ -445,10 +530,40 @@
             {
                 ContentType = ContentTypeConstants.JsonContentType,
                 ContentEncoding = Defaults.DefaultEncoding,
-                Data = new SaveResponseModel
+                Data = new MessageResponseModel
                 {
                     Status = "Error",
                     Message = "Invalid document ID"
+                }
+            };
+        }
+
+        private JsonResult BadRequestJsonResult(Exception e)
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new MessageResponseModel
+                {
+                    Status = "Error",
+                    Message = "Bad Request: " + e?.Message
+                }
+            };
+        }
+
+        private JsonResult NotFoundJsonResult(Exception e)
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                Data = new MessageResponseModel
+                {
+                    Status = "Error",
+                    Message = "Not Found: " + e?.Message
                 }
             };
         }
