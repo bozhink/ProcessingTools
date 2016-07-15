@@ -15,7 +15,7 @@
         public const string AutoSaveScriptBundleName = "~/bundles/auto-save";
         public const string DocumentEditScriptBundleName = "~/bundles/document-edit";
         public const string DocumentPreviewScriptBundleName = "~/bundles/document-preview";
-        public const string NetRequesterScriptBundleName = "~/bundles/net-requester";
+        public const string ApplicationScriptBundleName = "~/bundles/app";
 
         public const string DefaultStyleBundleName = "~/Content/css";
         public const string DocumentEditStyleBundleName = "~/Content/document-edit";

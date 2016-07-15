@@ -370,11 +370,12 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\app\template.js" />
     <Content Include="Scripts\custom\auto-save.js" />
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
     <Content Include="Scripts\custom\interact-config.js" />
-    <Content Include="Scripts\custom\json-requester.js" />
+    <Content Include="Scripts\app\json-requester.js" />
     <Content Include="Scripts\custom\key-bindings.js" />
     <Content Include="Scripts\custom\monaco-editor-config.js" />
     <Content Include="Scripts\custom\toastr-config.js" />

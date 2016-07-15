@@ -52,9 +52,10 @@
                     "~/Scripts/custom/toastr-config.js"));
 
             bundles
-                .Add(new ScriptBundle(BundleNames.NetRequesterScriptBundleName)
+                .Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/json-requester.js"));
+                    "~/Scripts/app/json-requester.js",
+                    "~/Scripts/app/template.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
