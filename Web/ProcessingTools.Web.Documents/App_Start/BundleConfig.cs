@@ -32,7 +32,7 @@
                 .Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
                 .Include(
                     "~/bower_components/interact/interact.js",
-                    "~/Scripts/custom/interact-config.js"));
+                    "~/Scripts/config/interact-config.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
@@ -49,7 +49,7 @@
                 .Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.js",
-                    "~/Scripts/custom/toastr-config.js"));
+                    "~/Scripts/config/toastr-config.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
@@ -61,7 +61,7 @@
                 .Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
                 .Include(
                     "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/Scripts/custom/monaco-editor-config.js"));
+                    "~/Scripts/config/monaco-editor-config.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)

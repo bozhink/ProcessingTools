@@ -374,11 +374,11 @@
     <Content Include="Scripts\custom\auto-save.js" />
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
-    <Content Include="Scripts\custom\interact-config.js" />
+    <Content Include="Scripts\config\interact-config.js" />
     <Content Include="Scripts\app\json-requester.js" />
     <Content Include="Scripts\custom\key-bindings.js" />
-    <Content Include="Scripts\custom\monaco-editor-config.js" />
-    <Content Include="Scripts\custom\toastr-config.js" />
+    <Content Include="Scripts\config\monaco-editor-config.js" />
+    <Content Include="Scripts\config\toastr-config.js" />
     <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
     <Content Include="Views\Shared\InvalidOrEmptyFileError.cshtml" />
     <Content Include="Views\Shared\NullIdError.cshtml" />
@@ -473,6 +473,7 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
