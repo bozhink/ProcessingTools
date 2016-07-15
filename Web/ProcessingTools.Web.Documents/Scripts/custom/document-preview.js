@@ -10,6 +10,9 @@
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1;
 
+    window.getLinkAddress = document.getElementById('get-link').href;
+    window.saveLinkAddress = document.getElementById('save-link').href;
+
     interactConfig.registerDragabbleBehavior('.draggable');
 
     documentController.registerGetAction(function (content) {
@@ -22,12 +25,12 @@
         }
     });
 
-    // Fetch content
-    window.get();
-
     documentController.registerSaveAction(function () {
         return document.getElementById('article').innerHTML;
     });
+
+    // Fetch content
+    window.get();
 
     // TODO
     window.documentPreviewActions = (function ($) {
@@ -212,4 +215,47 @@
     window.documentPreviewActions.addBalloon('a.bibr');
     window.documentPreviewActions.addBalloon('a.fig', ' .caption');
     window.documentPreviewActions.addBalloon('a.table', ' .caption');
+
+    function genrateCoordinatesListEventHandler(event) {
+        window.documentPreviewActions.genrateCoordinatesList('#aside-main-box');
+    }
+
+    function getContentEventHandler(event) {
+        window.get();
+    }
+
+    function saveContentEventHandler(event) {
+        window.save();
+    }
+
+    function emailThisPageEventHandler(event) {
+        window.location = 'mailto:?body=' + window.location.href;
+    }
+
+    function fooEventHandler(event) {
+        window.documentPreviewActions.foo();
+    }
+
+    function tagLinkEventHandler(event) {
+        window.documentPreviewActions.tagLink();
+    }
+
+    function tagCoordinateEventHandler(event) {
+        window.documentPreviewActions.tagInSpan('locality-coordinates');
+    }
+
+    function tagbibliographyElement(event) {
+        var elementName = event.target.id.toString().substr(10);
+        window.documentPreviewActions.tagInMark(elementName);
+    }
+
+    document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
+    document.getElementById('save-button').onclick = saveContentEventHandler;
+    document.getElementById('refresh-button').onclick = getContentEventHandler;
+    document.getElementById('menu-item-refresh').onclick = getContentEventHandler;
+    document.getElementById('menu-item-email-page').onclick = emailThisPageEventHandler;
+    document.getElementById('menu-item-foo').onclick = fooEventHandler;
+    document.getElementById('menu-item-tag-link').onclick = tagLinkEventHandler;
+    document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
+    document.getElementById('menu-item-bibliography').onclick = tagbibliographyElement;
 }(window, document));
