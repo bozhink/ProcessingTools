@@ -162,7 +162,7 @@
         }
 
         // GET: Files/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -171,12 +171,9 @@
 
             try
             {
-                var content = await this.presenter.GetXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
-
                 var model = new DocumentDetailsViewModel
                 {
-                    Id = id,
-                    Content = content
+                    Id = id
                 };
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -251,7 +248,7 @@
         }
 
         // GET: Files/Preview/5
-        public async Task<ActionResult> Preview(string id)
+        public ActionResult Preview(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -260,12 +257,9 @@
 
             try
             {
-                var content = await this.presenter.GetHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
-
                 var model = new DocumentDetailsViewModel
                 {
-                    Id = id,
-                    Content = content
+                    Id = id
                 };
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -353,7 +347,7 @@
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<JsonResult> GetHtml(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -380,7 +374,7 @@
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<JsonResult> GetXml(string id)
         {
             if (string.IsNullOrWhiteSpace(id))

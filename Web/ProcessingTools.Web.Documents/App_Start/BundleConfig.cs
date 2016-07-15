@@ -76,13 +76,15 @@
             bundles
                 .Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/document-save-controller.js",
+                    "~/Scripts/data/documents/document-content-data.js",
+                    "~/Scripts/controllers/documents/document-controller.js",
                     "~/Scripts/custom/document-edit.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/document-save-controller.js",
+                    "~/Scripts/data/documents/document-content-data.js",
+                    "~/Scripts/controllers/documents/document-controller.js",
                     "~/Scripts/custom/document-preview.js"));
 
             bundles

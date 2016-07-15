@@ -1,23 +1,31 @@
 ﻿(function (window, document) {
-    const AUTOSAVE_TIME_MILLISECONDS = 60000,
-        MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS = 5000,
+    const
+        LAST_GET_TIME_KEY = 'LAST_GET_TIME_KEY_PREVIEW',
         LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY_PREVIEW',
-        LAST_SAVED_HASH_KEY = 'LAST_SAVED_HASH_KEY_PREVIEW';
+        CONTENT_HASH_KEY = 'CONTENT_HASH_KEY_PREVIEW';
 
-    var content = '' + window.documentContent,
-        contentHash = window.CryptoJS.SHA1(content).toString(),
-        sessionStorage = window.sessionStorage,
+    var sessionStorage = window.sessionStorage,
         interactConfig = new window.InteractJSConfig(),
         jsonRequester = new window.JsonRequester(),
-        documentSaveController = new window.DocumentSaveController(sessionStorage, LAST_SAVED_TIME_KEY, LAST_SAVED_HASH_KEY, jsonRequester);
-
-    sessionStorage.setItem(LAST_SAVED_HASH_KEY, contentHash);
-
-    window.documentContent = ''; // Clear unused content
+        documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
+        sha1 = window.CryptoJS.SHA1;
 
     interactConfig.registerDragabbleBehavior('.draggable');
 
-    documentSaveController.registerSaveAction(function () {
+    documentController.registerGetAction(function (content) {
+        var contentHash,
+            articleElement = document.getElementById('article');
+        if (content) {
+            articleElement.innerHTML = content;
+            contentHash = sha1(articleElement.innerHTML).toString();
+            sessionStorage.setItem(CONTENT_HASH_KEY, contentHash);
+        }
+    });
+
+    // Fetch content
+    window.get();
+
+    documentController.registerSaveAction(function () {
         return document.getElementById('article').innerHTML;
     });
 

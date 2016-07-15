@@ -25,7 +25,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
-                <li onclick="save()"><a>Save</a></li>
+                <li><a onclick="get()">Refresh</a></li>
+                <li><a onclick="save()">Save</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +42,7 @@
 </aside>
 
 <script>
-    window.documentContent = @Html.Raw(Json.Encode(Model.Content));
+    window.getLinkAddress = document.getElementById('get-link').href;
     window.saveLinkAddress = document.getElementById('save-link').href;
 </script>
 
@@ -53,5 +54,5 @@
     @Scripts.Render(BundleNames.MonacoEditorScriptBundleName)
     @Scripts.Render(BundleNames.DocumentEditScriptBundleName)
     @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)
-    @Scripts.Render(BundleNames.AutoSaveScriptBundleName)
+    @*@Scripts.Render(BundleNames.AutoSaveScriptBundleName)*@
 }

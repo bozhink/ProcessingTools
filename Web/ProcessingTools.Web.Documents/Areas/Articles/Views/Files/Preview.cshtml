@@ -46,15 +46,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
-                <li><a onclick="window.save()">Save</a></li>
+                <li><a onclick="get()">Refresh</a></li>
+                <li><a onclick="save()">Save</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div id="article" contextmenu="supermenu">
-    @Html.Raw(Model.Content)
-</div>
+<div id="article" contextmenu="supermenu"></div>
 
 <aside id="aside-main-box"></aside>
 
@@ -66,7 +65,7 @@
 </aside>
 
 <script>
-    window.documentContent = document.getElementById('article').innerHTML;
+    window.getLinkAddress = document.getElementById('get-link').href;
     window.saveLinkAddress = document.getElementById('save-link').href;
 </script>
 
@@ -82,7 +81,7 @@
 }
 
 <menu type="context" id="supermenu">
-    <menuitem label="Refresh" onclick="window.location.reload();" icon="ico_reload.png"></menuitem>
+    <menuitem label="Refresh" onclick="get()"></menuitem>
     <menu label="Share on...">
         <menuitem label="Twitter" icon="ico_twitter.png" onclick="window.open('//twitter.com/intent/tweet?text='+window.location.href);"></menuitem>
         <menuitem label="Facebook" icon="ico_facebook.png" onclick="window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);"></menuitem>

@@ -25,7 +25,10 @@
         }
 
         function getMessage(obj) {
-            if (obj.Message) {
+            if (obj.responseText)
+            {
+                return obj.responseText;
+            } else if (obj.Message) {
                 return obj.Message;
             } else {
                 return JSON.stringify(obj);
@@ -38,12 +41,11 @@
                     lastGetTime = sessionStorage.getItem(lastGetTimeKey);
 
                 if (!lastGetTime || getTimeToNextPossibleGet(lastGetTime) < 0) {
-                    jsonRequester.get(url)
+                    jsonRequester.post(url)
                         .then(function (data) {
-                            var contentHash = sha1(data.Content).toString();
-                            sessionStorage.setItem(contentHashKey, contentHash);
+                            var content = data.Content;
                             sessionStorage.setItem(lastGetTimeKey, new Date());
-                            resolve(data.Content);
+                            resolve(content);
                         })
                         .catch(function (err) {
                             sessionStorage.setItem(lastGetTimeKey, new Date());
@@ -83,7 +85,7 @@
                             }
                         }).catch(function (err) {
                             sessionStorage.setItem(lastSavedTimeKey, new Date());
-                            reject(makeResponse('error', err));
+                            reject(makeResponse('error', getMessage(err)));
                         });
                     } else {
                         reject(makeResponse('info', 'Content will not be saved because it is not modified.'));

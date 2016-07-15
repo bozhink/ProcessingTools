@@ -372,6 +372,7 @@
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
     <Content Include="Scripts\app\template.js" />
+    <Content Include="Scripts\controllers\documents\document-controller.js" />
     <Content Include="Scripts\custom\auto-save.js" />
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
@@ -475,7 +476,6 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

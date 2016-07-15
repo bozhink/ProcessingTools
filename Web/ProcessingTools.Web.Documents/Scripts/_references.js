@@ -4,6 +4,7 @@
 /// <reference path="config/interact-config.js" />
 /// <reference path="config/monaco-editor-config.js" />
 /// <reference path="config/toastr-config.js" />
+/// <reference path="controllers/documents/document-controller.js" />
 /// <reference path="custom/auto-save.js" />
 /// <reference path="custom/document-edit.js" />
 /// <reference path="custom/document-preview.js" />
