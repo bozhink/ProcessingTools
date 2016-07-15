@@ -21,6 +21,7 @@
     "toastr": "^2.1.2",
     "modernizr": "^3.3.1",
     "respond": "^1.4.2",
-    "cryptojs-sha1": "^1.0.0"
+    "cryptojs-sha1": "^1.0.0",
+    "jquery": "2.2.3"
   }
 }
