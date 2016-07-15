@@ -54,7 +54,7 @@
                     .addClass('btn btn-primary')
                     .text('+')
                     .on('click', function () {
-                        $('#' + sectionId + ' .panel-body').css('display', 'block')
+                        $('#' + sectionId + ' .panel-body').css('display', 'block');
                         $('#' + sectionId).css('height', '400px');
                     }),
                 toolbox = {
@@ -206,7 +206,7 @@
             tagInSpan,
             tagInMark,
             tagInDiv
-        }
+        };
     }(window.jQuery));
 
     window.documentPreviewActions.addBalloon('a.bibr');

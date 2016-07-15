@@ -171,7 +171,7 @@
 
             try
             {
-                var model = new DocumentDetailsViewModel
+                var model = new DocumentViewModel
                 {
                     Id = id
                 };
@@ -257,7 +257,7 @@
 
             try
             {
-                var model = new DocumentDetailsViewModel
+                var model = new DocumentViewModel
                 {
                     Id = id
                 };

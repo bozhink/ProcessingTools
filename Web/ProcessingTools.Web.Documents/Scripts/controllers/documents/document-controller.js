@@ -59,14 +59,14 @@
             window.save = function (quietMode) {
                 var url = window.saveLinkAddress;
                 save(url, quietMode, getContentCallback);
-            }
+            };
         }
 
         function registerGetAction(setContentCallback) {
             window.get = function () {
                 var url = window.getLinkAddress;
                 get(url, setContentCallback);
-            }
+            };
         }
 
         return {
