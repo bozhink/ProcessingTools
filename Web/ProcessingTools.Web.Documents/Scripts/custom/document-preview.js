@@ -34,34 +34,6 @@
     // Fetch content
     window.get();
 
-    //////// TODO
-    //////function addBalloon(selector, contentSelector) {
-    //////    contentSelector = contentSelector || '';
-
-    //////    $(selector).hover(function (event) {
-    //////        var $that = $(event.target),
-    //////            rid = $that.attr('href');
-
-    //////        $('<div>').addClass('custom-tooltiptext')
-    //////            .text($(rid + contentSelector).text())
-    //////            .appendTo($that);
-
-    //////        $that.addClass('custom-tooltip');
-    //////    }, function (event) {
-    //////        $(event.target)
-    //////            .removeClass('custom-tooltip')
-    //////            .find('.custom-tooltiptext')
-    //////            .remove();
-    //////    });
-    //////}
-
-    //////$('a.bibr').on('click', alert());
-
-    //////addBalloon('a.bibr');
-    //////addBalloon('a.fig', ' .caption');
-    //////addBalloon('a.table', ' .caption');
-
-
     function listAnchorClickEventHandler(event) {
         var $that = $(event.target),
             $target = $($that.attr('href'));
@@ -258,4 +230,31 @@
     document.getElementById('menu-item-tag-link').onclick = tagLinkEventHandler;
     document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
     document.getElementById('menu-item-bibliography').onclick = tagbibliographyElement;
+
+    function addBalloon(selector, contentSelector) {
+        contentSelector = contentSelector || '';
+
+        $(selector)
+            .hover(function (event) {
+                var $that = $(event.target),
+                    rid = $that.attr('href');
+
+                $('<div>')
+                    .addClass('custom-tooltiptext')
+                    .text($(rid + contentSelector).text())
+                    .appendTo($that);
+
+                $that.addClass('custom-tooltip');
+            }, function (event) {
+                $(event.target)
+                    .removeClass('custom-tooltip')
+                    .find('.custom-tooltiptext')
+                    .remove();
+            });
+    }
+
+    addBalloon('.xref.bibr');
+    addBalloon('.xref.fig', ' .caption');
+    addBalloon('.xref.table', ' .caption');
+
 }(window, document, window.jQuery));
