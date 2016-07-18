@@ -78,7 +78,8 @@
                     $('#' + sectionId).css('height', '400px');
                 }),
             toolbox = {
-                title: 'Coordinates'
+                title: 'Coordinates',
+                coordinates: []
             };
 
         // Remove all coordinates list toolboxes yet present.
