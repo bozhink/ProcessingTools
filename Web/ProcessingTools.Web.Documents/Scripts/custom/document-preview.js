@@ -220,10 +220,10 @@
         tagInMark(elementName);
     }
 
-    // Register events
-    document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
+    // Events registration
     document.getElementById('save-button').onclick = saveContentEventHandler;
     document.getElementById('refresh-button').onclick = getContentEventHandler;
+    document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
     document.getElementById('menu-item-refresh').onclick = getContentEventHandler;
     document.getElementById('menu-item-email-page').onclick = emailThisPageEventHandler;
     document.getElementById('menu-item-foo').onclick = fooEventHandler;

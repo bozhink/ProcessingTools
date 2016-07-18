@@ -25,8 +25,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
-                <li><a onclick="get()">Refresh</a></li>
-                <li><a onclick="save()">Save</a></li>
+                <li><a id="refresh-button">Refresh</a></li>
+                <li><a id="save-button">Save</a></li>
             </ul>
         </div>
     </div>
@@ -40,11 +40,6 @@
     @Html.ActionLink(ContentConstants.DefaultGetActionLinkTitle, nameof(FilesController.GetXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link" })
 </aside>
-
-<script>
-    window.getLinkAddress = document.getElementById('get-link').href;
-    window.saveLinkAddress = document.getElementById('save-link').href;
-</script>
 
 @section Scripts {
     @Scripts.Render(BundleNames.JQueryScriptBundleName)

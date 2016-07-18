@@ -12,6 +12,9 @@
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1;
 
+    window.getLinkAddress = document.getElementById('get-link').href;
+    window.saveLinkAddress = document.getElementById('save-link').href;
+
     monacoEditor.init('editor-container', '');
 
     documentController.registerGetAction(function (content) {
@@ -32,4 +35,18 @@
     setTimeout(function () {
         window.get();
     }, 1000);
+
+    // Event handlers
+    function getContentEventHandler() {
+        window.get();
+    }
+
+    function saveContentEventHandler() {
+        window.save();
+    }
+
+    // Events registration
+    document.getElementById('save-button').onclick = saveContentEventHandler;
+    document.getElementById('refresh-button').onclick = getContentEventHandler;
+
 }(window));
