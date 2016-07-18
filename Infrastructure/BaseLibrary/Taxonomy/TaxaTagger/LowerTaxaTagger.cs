@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
@@ -237,12 +238,22 @@
                 .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>|\bcf\b\.|\bvar\b\.", string.Empty))
                 .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty).RegexReplace(@"[\s\d\?]+\-?", " "))
                 .Select(t => t.RegexReplace(@"[^\w\.]+", " "))
+                .Distinct()
                 .ToList();
+
+            taxa.AddRange(
+                this.XmlDocument.SelectNodes("//treatment//species_name/fields | //checklist_taxon/fields")
+                    .Cast<XmlNode>()
+                    .Select(this.GetSystemTaxonNameString)
+                    .Where(t => !string.IsNullOrWhiteSpace(t))
+                    .Distinct()
+                    .ToList());
 
             foreach (string taxon in new HashSet<string>(taxa))
             {
-                taxa.AddRange(taxon.Split(' ')
-                    .Where(s => !string.IsNullOrWhiteSpace(s) && s.Length > 2));
+                taxa.AddRange(
+                    taxon.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Where(s => !string.IsNullOrWhiteSpace(s) && s.Length > 2));
             }
 
             var orderedTaxaParts = new HashSet<string>(taxa).OrderByDescending(t => t.Length);
@@ -268,6 +279,58 @@
                     this.logger.Log(e, "‘{0}’", item);
                 }
             }
+        }
+
+        private string GetSystemTaxonNameString(XmlNode node)
+        {
+            const string SpeciesFormatString = " {0}";
+            var specificTaxonNamePartsRanks = new string[]
+            {
+                "species",
+                "subspecies",
+                "variety",
+                "form"
+            };
+
+            var stringBuilder = new StringBuilder();
+
+            string genus = this.SelectTaxonNamePartTextValue(node, nameof(genus));
+            if (!string.IsNullOrEmpty(genus))
+            {
+                stringBuilder.Append(genus);
+            }
+
+            string subgenus = this.SelectTaxonNamePartTextValue(node, nameof(subgenus));
+            if (!string.IsNullOrEmpty(subgenus))
+            {
+                stringBuilder.AppendFormat(string.IsNullOrEmpty(genus) ? SpeciesFormatString : " ({0})", subgenus);
+            }
+
+            foreach (var elementName in specificTaxonNamePartsRanks)
+            {
+                this.AppendSpecificTaxonNamePartsToStringBuilder(node, SpeciesFormatString, elementName, stringBuilder);
+            }
+
+            string taxonNameFullString = stringBuilder.ToString().Trim();
+
+            this.logger?.Log("{0} -> {1}", nameof(this.GetSystemTaxonNameString), taxonNameFullString);
+
+            return taxonNameFullString;
+        }
+
+        private void AppendSpecificTaxonNamePartsToStringBuilder(XmlNode node, string SpeciesFormatString, string taxonNamePartElementName, StringBuilder stringBuilder)
+        {
+            string taxonNamePartTextValue = this.SelectTaxonNamePartTextValue(node, taxonNamePartElementName);
+            if (!string.IsNullOrEmpty(taxonNamePartTextValue))
+            {
+                stringBuilder.AppendFormat(SpeciesFormatString, taxonNamePartTextValue);
+            }
+        }
+
+        private string SelectTaxonNamePartTextValue(XmlNode node, string taxonNamePartElementName)
+        {
+            string textValue = node.SelectSingleNode(taxonNamePartElementName)?.InnerText ?? string.Empty;
+            return Regex.Replace(textValue, @"\s+", string.Empty);
         }
     }
 }
