@@ -1,4 +1,6 @@
-﻿(function (window, document) {
+﻿(function (window, document, $) {
+    'use strict';
+
     const
         LAST_GET_TIME_KEY = 'LAST_GET_TIME_KEY_PREVIEW',
         LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY_PREVIEW',
@@ -32,223 +34,221 @@
     // Fetch content
     window.get();
 
-    // TODO
-    window.documentPreviewActions = (function ($) {
-        function genrateCoordinatesList(selector) {
-            var sectionId = 'coordinates-list',
-                $aside = $(selector),
-                $section,
-                $list = $('<div>').addClass('list-group'),
-                $closeButton = $('<button>')
-                    .addClass('btn btn-primary')
-                    .text('×')
-                    .on('click', function () {
-                        $('#' + sectionId).remove();
-                        document.body.style.cursor = 'auto';
-                    }),
-                $minimizeButton = $('<button>')
-                    .addClass('btn btn-primary')
-                    .text('_')
-                    .on('click', function () {
-                        $('#' + sectionId + ' .panel-body').css('display', 'none');
-                        $('#' + sectionId).css('height', '60px');
-                    }),
-                $maximizeButton = $('<button>')
-                    .addClass('btn btn-primary')
-                    .text('+')
-                    .on('click', function () {
-                        $('#' + sectionId + ' .panel-body').css('display', 'block');
-                        $('#' + sectionId).css('height', '400px');
-                    }),
-                toolbox = {
-                    title: 'Coordinates'
-                };
+    //////// TODO
+    //////function addBalloon(selector, contentSelector) {
+    //////    contentSelector = contentSelector || '';
 
-            // Remove all coordinates list toolboxes yet present.
-            $('#' + sectionId).remove();
+    //////    $(selector).hover(function (event) {
+    //////        var $that = $(event.target),
+    //////            rid = $that.attr('href');
 
-            // Create new coordinates list toolbox.
-            $section = $('<section>').addClass('panel panel-primary').addClass('draggable').attr('id', sectionId);
+    //////        $('<div>').addClass('custom-tooltiptext')
+    //////            .text($(rid + contentSelector).text())
+    //////            .appendTo($that);
 
-            $('.named-content.geo-json').each(function () {
-                var $that = $(this),
-                    id = $that.attr('id'),
-                    coordinates = JSON.parse($that.attr('specific-use'))['coordinates'];
+    //////        $that.addClass('custom-tooltip');
+    //////    }, function (event) {
+    //////        $(event.target)
+    //////            .removeClass('custom-tooltip')
+    //////            .find('.custom-tooltiptext')
+    //////            .remove();
+    //////    });
+    //////}
 
-                $('<a>')
-                    .addClass('list-group-item')
-                    .attr('href', '#' + id)
-                    .text(coordinates.toString())
-                    .on('click', listAnchorClickListener)
-                    .appendTo($list);
-            });
+    //////$('a.bibr').on('click', alert());
 
-            // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-            // Panel heading
-            $('<div>')
-                .addClass('panel-heading')
-                .addClass('toolbox-titlebar')
-                .append($('<span>')
-                    .addClass('titlebar-text')
-                    .text(toolbox.title))
-                .append($('<span>')
-                    .addClass('titlebar-buttons')
-                    .append($minimizeButton)
-                    .append($maximizeButton)
-                    .append($closeButton))
-                .appendTo($section);
+    //////addBalloon('a.bibr');
+    //////addBalloon('a.fig', ' .caption');
+    //////addBalloon('a.table', ' .caption');
 
-            // Panel body
-            $('<div>')
-                .addClass('panel-body')
-                .append($list)
-                .appendTo($section);
 
-            $section.appendTo($aside);
-        }
+    function listAnchorClickEventHandler(event) {
+        var $that = $(event.target),
+            $target = $($that.attr('href'));
 
-        function listAnchorClickListener(event) {
-            var $that = $(this),
-                $target = $($that.attr('href'));
+        $('html, body').animate({
+            scrollTop: $target.offset().top - 250 + 'px'
+        }, 'fast');
 
-            $('html, body').animate({
-                scrollTop: $target.offset().top - 250 + 'px'
-            }, 'fast');
-
-            $target.addClass('selected-text-to-scroll');
-            setTimeout(function () {
-                $target.removeClass('selected-text-to-scroll');
-            }, 1500);
-        }
-
-        function addBalloon(selector, contentSelector) {
-            contentSelector = contentSelector || '';
-
-            $(selector).hover(function () {
-                var $that = $(this),
-                    rid = $that.attr('href');
-
-                $('<div>').addClass('custom-tooltiptext')
-                    .text($(rid + contentSelector).text())
-                    .appendTo($that);
-
-                $that.addClass('custom-tooltip');
-            }, function () {
-                $(this)
-                    .removeClass('custom-tooltip')
-                    .find('.custom-tooltiptext')
-                    .remove();
-            });
-        }
-
-        // Selection tag
-        function foo() {
-            var selection = window.getSelection().getRangeAt(0),
-                selectedText = selection.extractContents(),
-                span = document.createElement("span");
-            span.style.backgroundColor = "yellow";
-            span.appendChild(selectedText);
-            selection.insertNode(span);
-        }
-
-        function tagLink() {
-            var selection = window.getSelection().getRangeAt(0),
-                selectedText = selection.extractContents(),
-                tag = document.createElement("a");
-
-            tag.setAttribute('href', selectedText);
-            tag.setAttribute('target', '_blank');
-            tag.setAttribute('type', 'simple');
-
-            tag.setAttribute('xlink:type', 'simple');
-            tag.setAttribute('elem-name', 'ext-link');
-            tag.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-
-            tag.appendChild(selectedText);
-
-            tag.setAttribute('href', tag.innerText);
-            tag.setAttribute('xlink:href', tag.innerText);
-
-            selection.insertNode(tag);
-        }
-
-        function tag(tagName, elemName, className) {
-            var selection = window.getSelection().getRangeAt(0),
-                selectedText = selection.extractContents(),
-                tag = document.createElement(tagName);
-
-            tag.setAttribute('elem-name', elemName);
-
-            if (!className) {
-                tag.setAttribute('class', elemName);
-            } else {
-                tag.setAttribute('class', className);
-            }
-
-            tag.appendChild(selectedText);
-            selection.insertNode(tag);
-        }
-
-        function tagInSpan(elemName, className) {
-            tag('span', elemName, className);
-        }
-
-        function tagInMark(elemName, className) {
-            tag('mark', elemName, className);
-        }
-
-        function tagInDiv(elemName, className) {
-            tag('div', elemName, className);
-        }
-
-        return {
-            genrateCoordinatesList,
-            addBalloon,
-            foo,
-            tagLink,
-            tagInSpan,
-            tagInMark,
-            tagInDiv
-        };
-    }(window.jQuery));
-
-    window.documentPreviewActions.addBalloon('a.bibr');
-    window.documentPreviewActions.addBalloon('a.fig', ' .caption');
-    window.documentPreviewActions.addBalloon('a.table', ' .caption');
-
-    function genrateCoordinatesListEventHandler(event) {
-        window.documentPreviewActions.genrateCoordinatesList('#aside-main-box');
+        $target.addClass('selected-text-to-scroll');
+        setTimeout(function () {
+            $target.removeClass('selected-text-to-scroll');
+        }, 1500);
     }
 
-    function getContentEventHandler(event) {
+    function genrateCoordinatesList(selector) {
+        var sectionId = 'coordinates-list',
+            $aside = $(selector),
+            $section,
+            $list = $('<div>').addClass('list-group'),
+            $closeButton = $('<button>')
+                .addClass('btn btn-primary')
+                .addClass('close-button')
+                .text('×')
+                .on('click', function () {
+                    $('#' + sectionId).remove();
+                    document.body.style.cursor = 'auto';
+                }),
+            $minimizeButton = $('<button>')
+                .addClass('btn btn-primary')
+                .addClass('minimize-button')
+                .text('_')
+                .on('click', function () {
+                    $('#' + sectionId + ' .panel-body').css('display', 'none');
+                    $('#' + sectionId).css('height', '60px');
+                }),
+            $maximizeButton = $('<button>')
+                .addClass('btn btn-primary')
+                .addClass('maximize-button')
+                .text('+')
+                .on('click', function () {
+                    $('#' + sectionId + ' .panel-body').css('display', 'block');
+                    $('#' + sectionId).css('height', '400px');
+                }),
+            toolbox = {
+                title: 'Coordinates'
+            };
+
+        // Remove all coordinates list toolboxes yet present.
+        $('#' + sectionId).remove();
+
+        // Create new coordinates list toolbox.
+        $section = $('<div>')
+            .addClass('panel panel-primary')
+            .addClass('draggable')
+            .attr('id', sectionId);
+
+        $('.named-content.geo-json').each(function (i, element) {
+            var $that = $(element),
+                id = $that.attr('id'),
+                coordinates = JSON.parse($that.attr('specific-use')).coordinates;
+
+            $('<a>')
+                .addClass('list-group-item')
+                .addClass('coordinate-item')
+                .attr('id', 'coordinate-item-' + i)
+                .attr('href', '#' + id)
+                .text(coordinates.toString())
+                .appendTo($list);
+        });
+
+        // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+        // Panel heading
+        $('<div>')
+            .addClass('panel-heading')
+            .addClass('toolbox-titlebar')
+            .append($('<span>')
+                .addClass('titlebar-text')
+                .text(toolbox.title))
+            .append($('<span>')
+                .addClass('titlebar-buttons')
+                .append($minimizeButton)
+                .append($maximizeButton)
+                .append($closeButton))
+            .appendTo($section);
+
+        // Panel body
+        $('<div>')
+            .addClass('panel-body')
+            .append($list)
+            .appendTo($section);
+
+        $section.appendTo($aside);
+
+        $('.coordinate-item').on('click', listAnchorClickEventHandler);
+    }
+
+    // Selection tag
+    function foo() {
+        var selection = window.getSelection().getRangeAt(0),
+            selectedText = selection.extractContents(),
+            span = document.createElement("span");
+        span.style.backgroundColor = "yellow";
+        span.appendChild(selectedText);
+        selection.insertNode(span);
+    }
+
+    function tagLink() {
+        var selection = window.getSelection().getRangeAt(0),
+            selectedText = selection.extractContents(),
+            tag = document.createElement("a");
+
+        tag.setAttribute('href', selectedText);
+        tag.setAttribute('target', '_blank');
+        tag.setAttribute('type', 'simple');
+
+        tag.setAttribute('xlink:type', 'simple');
+        tag.setAttribute('elem-name', 'ext-link');
+        tag.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+        tag.appendChild(selectedText);
+
+        tag.setAttribute('href', tag.innerText);
+        tag.setAttribute('xlink:href', tag.innerText);
+
+        selection.insertNode(tag);
+    }
+
+    function tag(tagName, elemName, className) {
+        var selection = window.getSelection().getRangeAt(0),
+            selectedText = selection.extractContents(),
+            tagElement = document.createElement(tagName);
+
+        tagElement.setAttribute('elem-name', elemName);
+
+        if (!className) {
+            tagElement.setAttribute('class', elemName);
+        } else {
+            tagElement.setAttribute('class', className);
+        }
+
+        tagElement.appendChild(selectedText);
+        selection.insertNode(tagElement);
+    }
+
+    function tagInSpan(elemName, className) {
+        tag('span', elemName, className);
+    }
+
+    function tagInMark(elemName, className) {
+        tag('mark', elemName, className);
+    }
+
+    // Event handlers
+    function genrateCoordinatesListEventHandler() {
+        genrateCoordinatesList('#aside-main-box');
+    }
+
+    function getContentEventHandler() {
         window.get();
     }
 
-    function saveContentEventHandler(event) {
+    function saveContentEventHandler() {
         window.save();
     }
 
-    function emailThisPageEventHandler(event) {
+    function emailThisPageEventHandler() {
         window.location = 'mailto:?body=' + window.location.href;
     }
 
-    function fooEventHandler(event) {
-        window.documentPreviewActions.foo();
+    function fooEventHandler() {
+        foo();
     }
 
-    function tagLinkEventHandler(event) {
-        window.documentPreviewActions.tagLink();
+    function tagLinkEventHandler() {
+        tagLink();
     }
 
-    function tagCoordinateEventHandler(event) {
-        window.documentPreviewActions.tagInSpan('locality-coordinates');
+    function tagCoordinateEventHandler() {
+        tagInSpan('locality-coordinates');
     }
 
     function tagbibliographyElement(event) {
         var elementName = event.target.id.toString().substr(10);
-        window.documentPreviewActions.tagInMark(elementName);
+        tagInMark(elementName);
     }
 
+    // Register events
     document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
     document.getElementById('save-button').onclick = saveContentEventHandler;
     document.getElementById('refresh-button').onclick = getContentEventHandler;
@@ -258,4 +258,4 @@
     document.getElementById('menu-item-tag-link').onclick = tagLinkEventHandler;
     document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
     document.getElementById('menu-item-bibliography').onclick = tagbibliographyElement;
-}(window, document));
+}(window, document, window.jQuery));
