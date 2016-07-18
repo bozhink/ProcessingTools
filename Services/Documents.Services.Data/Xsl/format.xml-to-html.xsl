@@ -7,15 +7,10 @@
 
   <xsl:preserve-space elements="*" />
 
-  <xsl:template match="/">
-    <article>
-      <xsl:attribute name="id">
-        <xsl:value-of select="generate-id()" />
-      </xsl:attribute>
-      <xsl:call-template name="process-inner-node">
-        <xsl:with-param name="output-node-name" select="'div'" />
-      </xsl:call-template>
-    </article>
+  <xsl:template match="/*">
+    <xsl:call-template name="process-node">
+      <xsl:with-param name="output-node-name" select="'div'" />
+    </xsl:call-template>
   </xsl:template>
 
   <!--
