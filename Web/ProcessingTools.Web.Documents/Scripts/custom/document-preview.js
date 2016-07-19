@@ -4,7 +4,10 @@
     const
         LAST_GET_TIME_KEY = 'LAST_GET_TIME_KEY_PREVIEW',
         LAST_SAVED_TIME_KEY = 'LAST_SAVED_TIME_KEY_PREVIEW',
-        CONTENT_HASH_KEY = 'CONTENT_HASH_KEY_PREVIEW';
+        CONTENT_HASH_KEY = 'CONTENT_HASH_KEY_PREVIEW',
+        CONTENT_ELEMENT_ID = 'article',
+        GET_LINK_ID = 'get-link',
+        SAVE_LINK_ID = 'save-link';
 
     var sessionStorage = window.sessionStorage,
         interactConfig = new window.InteractJSConfig(),
@@ -12,28 +15,60 @@
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1;
 
-    window.getLinkAddress = document.getElementById('get-link').href;
-    window.saveLinkAddress = document.getElementById('save-link').href;
-
     interactConfig.registerDragabbleBehavior('.draggable');
 
-    documentController.registerGetAction(function (content) {
+    function addBalloon(selector, contentSelector) {
+        contentSelector = contentSelector || '';
+
+        $(selector)
+            .hover(function (event) {
+                var $that = $(event.target),
+                    rid = $that.attr('href');
+
+                $('<div>')
+                    .addClass('custom-tooltiptext')
+                    .text($(rid + contentSelector).text())
+                    .appendTo($that);
+
+                $that.addClass('custom-tooltip');
+            }, function (event) {
+                $(event.target)
+                    .removeClass('custom-tooltip')
+                    .find('.custom-tooltiptext')
+                    .remove();
+            });
+    }
+
+    function getContentCallback () {
+        return document.getElementById(CONTENT_ELEMENT_ID).innerHTML;
+    }
+
+    function setContentCallback(content) {
         var contentHash,
-            articleElement = document.getElementById('article');
+            articleElement = document.getElementById(CONTENT_ELEMENT_ID);
         if (content) {
             articleElement.innerHTML = content;
             contentHash = sha1(articleElement.innerHTML).toString();
             sessionStorage.setItem(CONTENT_HASH_KEY, contentHash);
         }
-    });
+    }
 
-    documentController.registerSaveAction(function () {
-        return document.getElementById('article').innerHTML;
-    });
+    function getAfterAction() {
+        addBalloon('.xref.bibr');
+        addBalloon('.xref.fig', ' .caption');
+        addBalloon('.xref.table', ' .caption');
+    }
+
+    window.getLinkAddress = document.getElementById(GET_LINK_ID).href;
+    documentController.registerGetAction(setContentCallback, getAfterAction);
+
+    window.saveLinkAddress = document.getElementById(SAVE_LINK_ID).href;
+    documentController.registerSaveAction(getContentCallback);
 
     // Fetch content
     window.get();
 
+    // Coordinates window
     function listAnchorClickEventHandler(event) {
         var $that = $(event.target),
             $target = $($that.attr('href'));
@@ -232,30 +267,5 @@
     document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
     document.getElementById('menu-item-bibliography').onclick = tagbibliographyElement;
 
-    function addBalloon(selector, contentSelector) {
-        contentSelector = contentSelector || '';
-
-        $(selector)
-            .hover(function (event) {
-                var $that = $(event.target),
-                    rid = $that.attr('href');
-
-                $('<div>')
-                    .addClass('custom-tooltiptext')
-                    .text($(rid + contentSelector).text())
-                    .appendTo($that);
-
-                $that.addClass('custom-tooltip');
-            }, function (event) {
-                $(event.target)
-                    .removeClass('custom-tooltip')
-                    .find('.custom-tooltiptext')
-                    .remove();
-            });
-    }
-
-    addBalloon('.xref.bibr');
-    addBalloon('.xref.fig', ' .caption');
-    addBalloon('.xref.table', ' .caption');
 
 }(window, document, window.jQuery));

@@ -25,7 +25,7 @@
             }
         }
 
-        function get(url, setContentCallback) {
+        function get(url, setContentCallback, afterAction) {
             if (!setContentCallback) {
                 throw 'setContentCallback function is required';
             }
@@ -34,12 +34,17 @@
                 .then(function (res) {
                     setContentCallback(res);
                 })
+                .then(function () {
+                    if (afterAction) {
+                        afterAction();
+                    }
+                })
                 .catch(function (res) {
                     raiseMessage(res);
                 });
         }
 
-        function save(url, quietMode, getContentCallback) {
+        function save(url, quietMode, getContentCallback, afterAction) {
             if (!getContentCallback) {
                 throw 'getContentCallback function is required';
             }
@@ -48,6 +53,11 @@
                 .then(function (res) {
                     raiseMessage(res);
                 })
+                .then(function () {
+                    if (afterAction) {
+                        afterAction();
+                    }
+                })
                 .catch(function (res) {
                     if (!quietMode) {
                         raiseMessage(res);
@@ -55,17 +65,17 @@
                 });
         }
 
-        function registerSaveAction(getContentCallback) {
+        function registerSaveAction(getContentCallback, afterAction) {
             window.save = function (quietMode) {
                 var url = window.saveLinkAddress;
-                save(url, quietMode, getContentCallback);
+                save(url, quietMode, getContentCallback, afterAction);
             };
         }
 
-        function registerGetAction(setContentCallback) {
+        function registerGetAction(setContentCallback, afterAction) {
             window.get = function () {
                 var url = window.getLinkAddress;
-                get(url, setContentCallback);
+                get(url, setContentCallback, afterAction);
             };
         }
 
