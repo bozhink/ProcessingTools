@@ -16,6 +16,7 @@
         public const string DocumentEditScriptBundleName = "~/bundles/document-edit";
         public const string DocumentPreviewScriptBundleName = "~/bundles/document-preview";
         public const string ApplicationScriptBundleName = "~/bundles/app";
+        public const string HandlebarsScriptBundleName = "~/bundles/handlebars";
 
         public const string DefaultStyleBundleName = "~/Content/css";
         public const string DocumentEditStyleBundleName = "~/Content/document-edit";

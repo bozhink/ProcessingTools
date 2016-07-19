@@ -52,6 +52,11 @@
                     "~/Scripts/config/toastr-config.js"));
 
             bundles
+                .Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
+                .Include(
+                    "~/bower_components/handlebars/handlebars.min.js"));
+
+            bundles
                 .Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
                     "~/Scripts/app/json-requester.js",
@@ -85,6 +90,7 @@
                 .Include(
                     "~/Scripts/data/documents/document-content-data.js",
                     "~/Scripts/controllers/documents/document-controller.js",
+                    "~/Scripts/app/template.js",
                     "~/Scripts/custom/document-preview.js"));
 
             bundles

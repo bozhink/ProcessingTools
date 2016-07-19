@@ -15,7 +15,8 @@
         interactConfig = new window.InteractJSConfig(),
         jsonRequester = new window.JsonRequester(),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
-        sha1 = window.CryptoJS.SHA1;
+        sha1 = window.CryptoJS.SHA1,
+        template = new Template();
 
     interactConfig.registerDragabbleBehavior('.draggable');
 
