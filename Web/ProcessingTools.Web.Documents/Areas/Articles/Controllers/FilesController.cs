@@ -483,7 +483,8 @@
                 {
                     Status = "OK",
                     Message = "Document saved successfully"
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
 
@@ -498,7 +499,8 @@
                 {
                     Id = id,
                     Content = content
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
 
@@ -513,7 +515,8 @@
                 {
                     Status = "Error",
                     Message = e.Message
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
 
@@ -528,7 +531,8 @@
                 {
                     Status = "Error",
                     Message = "Invalid document ID"
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
 
@@ -543,7 +547,8 @@
                 {
                     Status = "Error",
                     Message = "Bad Request: " + e?.Message
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
 
@@ -558,7 +563,8 @@
                 {
                     Status = "Error",
                     Message = "Not Found: " + e?.Message
-                }
+                },
+                MaxJsonLength = int.MaxValue
             };
         }
     }
