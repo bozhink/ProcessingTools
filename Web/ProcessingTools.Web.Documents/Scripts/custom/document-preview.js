@@ -7,7 +7,9 @@
         CONTENT_HASH_KEY = 'CONTENT_HASH_KEY_PREVIEW',
         CONTENT_ELEMENT_ID = 'article',
         GET_LINK_ID = 'get-link',
-        SAVE_LINK_ID = 'save-link';
+        SAVE_LINK_ID = 'save-link',
+        SAVE_BUTTON_ID = 'save-button',
+        REFRESH_BUTTON_ID = 'refresh-button';
 
     var sessionStorage = window.sessionStorage,
         interactConfig = new window.InteractJSConfig(),
@@ -257,8 +259,8 @@
     }
 
     // Events registration
-    document.getElementById('save-button').onclick = saveContentEventHandler;
-    document.getElementById('refresh-button').onclick = getContentEventHandler;
+    document.getElementById(SAVE_BUTTON_ID).onclick = saveContentEventHandler;
+    document.getElementById(REFRESH_BUTTON_ID).onclick = getContentEventHandler;
     document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
     document.getElementById('menu-item-refresh').onclick = getContentEventHandler;
     document.getElementById('menu-item-email-page').onclick = emailThisPageEventHandler;
