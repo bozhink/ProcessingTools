@@ -9,14 +9,15 @@
         GET_LINK_ID = 'get-link',
         SAVE_LINK_ID = 'save-link',
         SAVE_BUTTON_ID = 'save-button',
-        REFRESH_BUTTON_ID = 'refresh-button';
+        REFRESH_BUTTON_ID = 'refresh-button',
+        MAIN_ASIDE_ID = 'aside-main-box';
 
     var sessionStorage = window.sessionStorage,
         interactConfig = new window.InteractJSConfig(),
         jsonRequester = new window.JsonRequester(),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,
-        template = new Template();
+        template = new window.Template('../../../Content/Templates');
 
     interactConfig.registerDragabbleBehavior('.draggable');
 
@@ -29,6 +30,7 @@
                     rid = $that.attr('href');
 
                 $('<div>')
+                    .attr('role', 'tooltip')
                     .addClass('custom-tooltiptext')
                     .text($(rid + contentSelector).text())
                     .appendTo($that);
@@ -42,7 +44,8 @@
             });
     }
 
-    function getContentCallback () {
+    function getContentCallback() {
+        $('#' + CONTENT_ELEMENT_ID + ' .custom-tooltiptext').remove();
         return document.getElementById(CONTENT_ELEMENT_ID).innerHTML;
     }
 
@@ -184,7 +187,7 @@
             selectedText = selection.extractContents(),
             tag = document.createElement("a");
 
-        tag.setAttribute('href', selectedText);
+        tag.setAttribute('href', selectedText.toString().trim());
         tag.setAttribute('target', '_blank');
         tag.setAttribute('type', 'simple');
 
@@ -200,10 +203,11 @@
         selection.insertNode(tag);
     }
 
-    function tag(tagName, elemName, className) {
+    function tag(tagName, elemName, className, attributes) {
         var selection = window.getSelection().getRangeAt(0),
             selectedText = selection.extractContents(),
-            tagElement = document.createElement(tagName);
+            tagElement = document.createElement(tagName),
+            attribute;
 
         tagElement.setAttribute('elem-name', elemName);
 
@@ -211,6 +215,16 @@
             tagElement.setAttribute('class', elemName);
         } else {
             tagElement.setAttribute('class', className);
+        }
+
+        if (attributes) {
+            console.log(JSON.stringify(attributes));
+
+            for (attribute in attributes) {
+                console.log(attribute);
+                console.log(attributes[attribute]);
+                tagElement.setAttribute(attribute, attributes[attribute]);
+            }
         }
 
         tagElement.appendChild(selectedText);
@@ -225,9 +239,26 @@
         tag('mark', elemName, className);
     }
 
+    function tagInXref(rid, refType) {
+        var elemName = 'xref',
+            className = elemName + ' ' + refType,
+            attributes = {
+                'rid': rid,
+                'ref-type': refType,
+                'href': '#' + rid
+            };
+
+        tag('a', elemName, className, attributes);
+    }
+
     // Event handlers
+    function tagBibliographicCitation(event) {
+        var rid = event.target.getAttribute('rid').toString();
+        tagInXref(rid, 'bibr');
+    }
+
     function genrateCoordinatesListEventHandler() {
-        genrateCoordinatesList('#aside-main-box');
+        genrateCoordinatesList('#' + MAIN_ASIDE_ID);
     }
 
     function getContentEventHandler() {
@@ -254,10 +285,42 @@
         tagInSpan('locality-coordinates');
     }
 
-    function tagbibliographyElement(event) {
+    function tagbibliographyElementEventHandler(event) {
         var elementName = event.target.id.toString().substr(10);
         tagInMark(elementName);
     }
+
+    function tagBibliographicCitationEventHandler(event) {
+        var $aside = $('#' + MAIN_ASIDE_ID),
+            $target = $(event.target),
+            $supermenu = $('#supermenu'),
+            $menu = $('<menu>')
+                .addClass('manual-tag-menu')
+                .attr('id', 'menu-bibliographic-citations')
+                .attr('label', $target.text());
+
+        $('#manual-mode-notifier').remove();
+
+        $('<div>')
+            .addClass('notifier')
+            .attr('id', 'manual-mode-notifier')
+            .text($target.text())
+            .appendTo($aside);
+
+        $('.ref').each(function (i, element) {
+            var $element = $(element);
+
+            $('<menuitem>')
+                .attr('id', 'ref-' + i)
+                .attr('rid', $element.attr('id'))
+                .attr('label', $element.text().trim())
+                .appendTo($menu);
+        });
+
+        $menu.appendTo($supermenu);
+
+        $menu.on('click', tagBibliographicCitation);
+    };
 
     // Events registration
     document.getElementById(SAVE_BUTTON_ID).onclick = saveContentEventHandler;
@@ -268,7 +331,8 @@
     document.getElementById('menu-item-foo').onclick = fooEventHandler;
     document.getElementById('menu-item-tag-link').onclick = tagLinkEventHandler;
     document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
-    document.getElementById('menu-item-bibliography').onclick = tagbibliographyElement;
+    document.getElementById('menu-item-bibliography').onclick = tagbibliographyElementEventHandler;
 
+    document.getElementById('tag-bibliographic-citations-menu-item').onclick = tagBibliographicCitationEventHandler;
 
 }(window, document, window.jQuery));

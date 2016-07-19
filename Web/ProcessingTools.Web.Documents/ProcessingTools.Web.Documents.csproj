@@ -466,7 +466,7 @@
     <Content Include="Views\Shared\InvalidNumberOfItemsPerPageError.cshtml" />
     <Content Include="Views\Shared\BadRequestError.cshtml" />
     <Content Include="Settings.StyleCop" />
-    <Content Include="Templates\coordinates-toolbox.handlebars" />
+    <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Articles\Views\Shared\" />

@@ -4,7 +4,9 @@
     ViewBag.Title = ContentConstants.DeafultPreviewPageTitle;
 }
 
-@Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
+@section Styles {
+    @Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
+}
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container container-fluid">
@@ -28,7 +30,7 @@
                         <li><a>Tables citations</a></li>
                         <li><a>Suppl. materials citations</a></li>
                         <li><a>Appendices citations</a></li>
-                        <li><a>Bibliographic citations</a></li>
+                        <li><a id="tag-bibliographic-citations-menu-item">Bibliographic citations</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a>Coordinates</a></li>
                         <li role="separator" class="divider"></li>

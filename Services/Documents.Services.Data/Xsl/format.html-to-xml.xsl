@@ -14,6 +14,8 @@
   <xsl:template match="*[not(@elem-name)]">
     <xsl:apply-templates />
   </xsl:template>
+  
+  <xsl:template match="*[@role='tooltip']"></xsl:template>
 
   <xsl:template match="*[@elem-name][normalize-space(@elem-name)!='']">
     <xsl:element name="{@elem-name}">
