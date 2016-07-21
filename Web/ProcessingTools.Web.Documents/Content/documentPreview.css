@@ -1,4 +1,4 @@
-body {
+﻿body {
   padding-bottom: 70px;
 }
 .outset-border,
@@ -17,7 +17,6 @@ table,
 .center-block,
 .front .journal-meta,
 .front .article-meta .article-id,
-.front .article-meta .article-id:before,
 .front .article-meta .article-categories .subject,
 .front .article-meta .title-group {
   text-align: center;
