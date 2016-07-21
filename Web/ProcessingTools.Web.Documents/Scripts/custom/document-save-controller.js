@@ -30,7 +30,7 @@
                     content: content
                 }
             }).then(function (res) {
-                if (res.Status === 'OK') {
+                if (res.Status === 1) {
                     sessionStorage.setItem(lastSavedHashKey, contentHash);
                     getSuccessMessage(res);
                 } else {

@@ -77,7 +77,7 @@
                             }
                         }).then(function (res) {
                             sessionStorage.setItem(lastSavedTimeKey, new Date());
-                            if (res.Status === 'OK') {
+                            if (res.Status === 1) {
                                 sessionStorage.setItem(contentHashKey, contentHash);
                                 resolve(makeResponse('success', getMessage(res)));
                             } else {

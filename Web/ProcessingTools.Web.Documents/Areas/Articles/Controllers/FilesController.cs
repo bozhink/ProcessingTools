@@ -12,14 +12,11 @@
 
     using Microsoft.AspNet.Identity;
 
-    using ProcessingTools.Common;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Documents.Areas.Articles.Models.Files;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
 
@@ -279,128 +276,6 @@
             }
         }
 
-        [HttpPut]
-        public async Task<JsonResult> SaveHtml(string id, string content)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return this.InvalidDocumentIdJsonResult();
-            }
-
-            try
-            {
-                var document = new DocumentServiceModel
-                {
-                    Id = id,
-                    ContentType = ContentTypeConstants.XmlContentType
-                };
-
-                await this.presenter.SaveHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, document, content);
-
-                return this.DocumentSavedSuccessfullyJsonResult();
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.NotFoundJsonResult(e);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestJsonResult(e);
-            }
-            catch (Exception e)
-            {
-                return this.InternalServerErrorJsonResult(e);
-            }
-        }
-
-        [HttpPut]
-        public async Task<JsonResult> SaveXml(string id, string content)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return this.InvalidDocumentIdJsonResult();
-            }
-
-            try
-            {
-                var document = new DocumentServiceModel
-                {
-                    Id = id,
-                    ContentType = ContentTypeConstants.XmlContentType
-                };
-
-                await this.presenter.SaveXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, document, content);
-
-                return this.DocumentSavedSuccessfullyJsonResult();
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.NotFoundJsonResult(e);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestJsonResult(e);
-            }
-            catch (Exception e)
-            {
-                return this.InternalServerErrorJsonResult(e);
-            }
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> GetHtml(string id)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return this.InvalidDocumentIdJsonResult();
-            }
-
-            try
-            {
-                var content = await this.presenter.GetHtml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
-                return this.ContentJsonResult(id, content);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.NotFoundJsonResult(e);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestJsonResult(e);
-            }
-            catch (Exception e)
-            {
-                return this.InternalServerErrorJsonResult(e);
-            }
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> GetXml(string id)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return this.InvalidDocumentIdJsonResult();
-            }
-
-            try
-            {
-                var content = await this.presenter.GetXml(this.service, User.Identity.GetUserId(), this.fakeArticleId, id);
-                return this.ContentJsonResult(id, content);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.NotFoundJsonResult(e);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestJsonResult(e);
-            }
-            catch (Exception e)
-            {
-                return this.InternalServerErrorJsonResult(e);
-            }
-        }
-
         // GET: Files/Upload
         public ActionResult Upload()
         {
@@ -470,102 +345,6 @@
             {
                 return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
-        }
-
-        private JsonResult DocumentSavedSuccessfullyJsonResult()
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new MessageResponseModel
-                {
-                    Status = "OK",
-                    Message = "Document saved successfully"
-                },
-                MaxJsonLength = int.MaxValue
-            };
-        }
-
-        private JsonResult ContentJsonResult(string id, string content)
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new ContentResponseModel
-                {
-                    Id = id,
-                    Content = content
-                },
-                MaxJsonLength = int.MaxValue
-            };
-        }
-
-        private JsonResult InternalServerErrorJsonResult(Exception e)
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new
-                {
-                    Status = "Error",
-                    Message = e.Message
-                },
-                MaxJsonLength = int.MaxValue
-            };
-        }
-
-        private JsonResult InvalidDocumentIdJsonResult()
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new MessageResponseModel
-                {
-                    Status = "Error",
-                    Message = "Invalid document ID"
-                },
-                MaxJsonLength = int.MaxValue
-            };
-        }
-
-        private JsonResult BadRequestJsonResult(Exception e)
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new MessageResponseModel
-                {
-                    Status = "Error",
-                    Message = "Bad Request: " + e?.Message
-                },
-                MaxJsonLength = int.MaxValue
-            };
-        }
-
-        private JsonResult NotFoundJsonResult(Exception e)
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.NotFound;
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                Data = new MessageResponseModel
-                {
-                    Status = "Error",
-                    Message = "Not Found: " + e?.Message
-                },
-                MaxJsonLength = int.MaxValue
-            };
         }
     }
 }

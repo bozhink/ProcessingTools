@@ -9,6 +9,10 @@
     {
         protected void Application_Start()
         {
+            // Disable unused view engines
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
             DatabaseConfig.Initialize();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

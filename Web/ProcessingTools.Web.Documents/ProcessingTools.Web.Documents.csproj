@@ -248,6 +248,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Strings.bg.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\ApplicationSignInManager.cs" />
     <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -262,9 +272,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
     <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
-    <Compile Include="Areas\Articles\Models\Files\ContentResponseModel.cs" />
-    <Compile Include="Areas\Articles\Models\Files\MessageResponseModel.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
@@ -469,6 +481,8 @@
     <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Articles\Views\DocumentContent\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
@@ -688,6 +702,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-2.2.3.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Strings.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Strings.bg.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Strings.bg.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

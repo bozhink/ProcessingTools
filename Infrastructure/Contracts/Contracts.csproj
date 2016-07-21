@@ -40,6 +40,9 @@
     <Compile Include="IContextProcessor.cs" />
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="INamedController.cs" />
+    <Compile Include="INamedInstance.cs" />
+    <Compile Include="INamedInstanceController.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />

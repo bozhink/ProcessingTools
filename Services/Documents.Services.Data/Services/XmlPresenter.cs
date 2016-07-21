@@ -14,13 +14,20 @@
         private const string FormatXmlToHtmlXslFilePathKey = "FormatXmlToHtmlXslFilePath";
         private const string FormatHtmlToXmlXslFilePathKey = "FormatHtmlToXmlXslFilePath";
 
-        public async Task<string> GetHtml(IDocumentsDataService service, object userId, object articleId, object documentId)
+        private readonly IDocumentsDataService service;
+
+        public XmlPresenter(IDocumentsDataService service)
         {
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
+            this.service = service;
+        }
+
+        public async Task<string> GetHtml(object userId, object articleId, object documentId)
+        {
             if (userId == null)
             {
                 throw new ArgumentNullException(nameof(userId));
@@ -38,19 +45,14 @@
 
             string xslFileName = ConfigurationManager.AppSettings[FormatXmlToHtmlXslFilePathKey];
 
-            var content = (await service.GetReader(userId, articleId, documentId))
+            var content = (await this.service.GetReader(userId, articleId, documentId))
                     .ApplyXslTransform(xslFileName);
 
             return content;
         }
 
-        public async Task<string> GetXml(IDocumentsDataService service, object userId, object articleId, object documentId)
+        public async Task<string> GetXml(object userId, object articleId, object documentId)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
             if (userId == null)
             {
                 throw new ArgumentNullException(nameof(userId));
@@ -66,7 +68,7 @@
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            var reader = await service.GetReader(userId, articleId, documentId);
+            var reader = await this.service.GetReader(userId, articleId, documentId);
 
             var xmlDocument = new XmlDocument
             {
@@ -78,13 +80,8 @@
             return xmlDocument.OuterXml;
         }
 
-        public async Task<object> SaveHtml(IDocumentsDataService service, object userId, object articleId, DocumentServiceModel document, string content)
+        public async Task<object> SaveHtml(object userId, object articleId, DocumentServiceModel document, string content)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
             if (userId == null)
             {
                 throw new ArgumentNullException(nameof(userId));
@@ -116,18 +113,13 @@
 
             var xmlContent = xmlDocument.ApplyXslTransform(xslFileName);
 
-            var result = await service.Update(userId, articleId, document, xmlContent);
+            var result = await this.service.Update(userId, articleId, document, xmlContent);
 
             return result;
         }
 
-        public async Task<object> SaveXml(IDocumentsDataService service, object userId, object articleId, DocumentServiceModel document, string content)
+        public async Task<object> SaveXml(object userId, object articleId, DocumentServiceModel document, string content)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
             if (userId == null)
             {
                 throw new ArgumentNullException(nameof(userId));
@@ -155,7 +147,7 @@
 
             xmlDocument.LoadXml(content);
 
-            var result = await service.Update(userId, articleId, document, xmlDocument.OuterXml);
+            var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);
 
             return result;
         }

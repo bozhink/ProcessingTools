@@ -37,8 +37,18 @@
 <div class="clearfix"></div>
 
 <aside style="display: none;">
-    @Html.ActionLink(ContentConstants.DefaultGetActionLinkTitle, nameof(FilesController.GetXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "get-link" })
-    @Html.ActionLink(ContentConstants.DefaultSaveActionLinkTitle, nameof(FilesController.SaveXml), routeValues: new { id = Model.Id }, htmlAttributes: new { id = "save-link" })
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultGetActionLinkTitle,
+        actionName: nameof(DocumentContentController.GetXml),
+        controllerName: ControllerConstants.DocumentContentControllerName,
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultSaveActionLinkTitle,
+        actionName: nameof(DocumentContentController.SaveXml),
+        controllerName: ControllerConstants.DocumentContentControllerName,
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "save-link" })
 </aside>
 
 @section Scripts {

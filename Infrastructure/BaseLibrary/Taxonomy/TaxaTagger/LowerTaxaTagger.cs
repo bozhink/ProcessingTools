@@ -318,12 +318,12 @@
             return taxonNameFullString;
         }
 
-        private void AppendSpecificTaxonNamePartsToStringBuilder(XmlNode node, string SpeciesFormatString, string taxonNamePartElementName, StringBuilder stringBuilder)
+        private void AppendSpecificTaxonNamePartsToStringBuilder(XmlNode node, string speciesFormatString, string taxonNamePartElementName, StringBuilder stringBuilder)
         {
             string taxonNamePartTextValue = this.SelectTaxonNamePartTextValue(node, taxonNamePartElementName);
             if (!string.IsNullOrEmpty(taxonNamePartTextValue))
             {
-                stringBuilder.AppendFormat(SpeciesFormatString, taxonNamePartTextValue);
+                stringBuilder.AppendFormat(speciesFormatString, taxonNamePartTextValue);
             }
         }
 
