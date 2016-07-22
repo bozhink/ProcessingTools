@@ -58,13 +58,14 @@
                     }
                 }
 
-                if (powerShellInstance.Streams.Information.Count > 0)
-                {
-                    foreach (var record in powerShellInstance.Streams.Information)
-                    {
-                        this.logger?.Log(LogType.Info, record.ToString());
-                    }
-                }
+                //// TODO: Powershell in Win10
+                //if (powerShellInstance.Streams.Information.Count > 0)
+                //{
+                //    foreach (var record in powerShellInstance.Streams.Information)
+                //    {
+                //        this.logger?.Log(LogType.Info, record.ToString());
+                //    }
+                //}
 
                 if (powerShellInstance.Streams.Warning.Count > 0)
                 {
