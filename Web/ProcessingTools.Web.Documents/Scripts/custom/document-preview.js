@@ -90,86 +90,54 @@
     }
 
     function genrateCoordinatesList(selector) {
-        var sectionId = 'coordinates-list',
+        var toolboxSelector = '#coordinates-list',
             $aside = $(selector),
-            $section,
-            $list = $('<div>').addClass('list-group'),
-            $closeButton = $('<button>')
-                .addClass('btn btn-primary')
-                .addClass('close-button')
-                .text('×')
-                .on('click', function () {
-                    $('#' + sectionId).remove();
-                    document.body.style.cursor = 'auto';
-                }),
-            $minimizeButton = $('<button>')
-                .addClass('btn btn-primary')
-                .addClass('minimize-button')
-                .text('_')
-                .on('click', function () {
-                    $('#' + sectionId + ' .panel-body').css('display', 'none');
-                    $('#' + sectionId).css('height', '60px');
-                }),
-            $maximizeButton = $('<button>')
-                .addClass('btn btn-primary')
-                .addClass('maximize-button')
-                .text('+')
-                .on('click', function () {
-                    $('#' + sectionId + ' .panel-body').css('display', 'block');
-                    $('#' + sectionId).css('height', '400px');
-                }),
             toolbox = {
                 title: 'Coordinates',
                 coordinates: []
             };
 
-        // Remove all coordinates list toolboxes yet present.
-        $('#' + sectionId).remove();
-
-        // Create new coordinates list toolbox.
-        $section = $('<div>')
-            .addClass('panel panel-primary')
-            .addClass('draggable')
-            .attr('id', sectionId);
-
+        // Get coordinates
         $('.named-content.geo-json').each(function (i, element) {
             var $that = $(element),
                 id = $that.attr('id'),
                 coordinates = JSON.parse($that.attr('specific-use')).coordinates;
 
-            $('<a>')
-                .addClass('list-group-item')
-                .addClass('coordinate-item')
-                .attr('id', 'coordinate-item-' + i)
-                .attr('href', '#' + id)
-                .text(coordinates.toString())
-                .appendTo($list);
+            toolbox.coordinates.push({
+                id: id,
+                index: i,
+                latitude: coordinates[1],
+                longitude: coordinates[0]
+            });
         });
 
-        // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-        // Panel heading
-        $('<div>')
-            .addClass('panel-heading')
-            .addClass('toolbox-titlebar')
-            .append($('<span>')
-                .addClass('titlebar-text')
-                .text(toolbox.title))
-            .append($('<span>')
-                .addClass('titlebar-buttons')
-                .append($minimizeButton)
-                .append($maximizeButton)
-                .append($closeButton))
-            .appendTo($section);
+        // Remove all coordinates list toolboxes yet present.
+        $(toolboxSelector).remove();
 
-        // Panel body
-        $('<div>')
-            .addClass('panel-body')
-            .append($list)
-            .appendTo($section);
+        template.get('coordinates-toolbox')
+            .then(function (template) {
+                $('<div>')
+                    .html(template(toolbox))
+                    .appendTo($aside);
+            })
+            .then(function () {
+                $('.coordinate-item').on('click', listAnchorClickEventHandler);
 
-        $section.appendTo($aside);
+                $(toolboxSelector + ' .minimize-button').on('click', function () {
+                    $(toolboxSelector + ' .panel-body').css('display', 'none');
+                    $(toolboxSelector).css('height', '60px');
+                });
 
-        $('.coordinate-item').on('click', listAnchorClickEventHandler);
+                $(toolboxSelector + ' .maximize-button').on('click', function () {
+                    $(toolboxSelector + ' .panel-body').css('display', 'block');
+                    $(toolboxSelector).css('height', '400px');
+                });
+
+                $(toolboxSelector + ' .close-button').on('click', function () {
+                    $(toolboxSelector).remove();
+                    document.body.style.cursor = 'auto';
+                });
+            });
     }
 
     // Selection tag
