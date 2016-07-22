@@ -6,6 +6,7 @@
 
 @section Styles {
     @Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
+    @Styles.Render(BundleNames.LeafletStyleBundleName)
 }
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -41,6 +42,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Window <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a id="window-map">Map</a></li>
                         <li><a id="window-coordinates">Coordinates</a></li>
                     </ul>
                 </li>
@@ -81,6 +83,7 @@
     @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
     @Scripts.Render(BundleNames.ToastrScriptBundleName)
     @Scripts.Render(BundleNames.HandlebarsScriptBundleName)
+    @Scripts.Render(BundleNames.LeafletScriptBundleName)
     @Scripts.Render(BundleNames.ApplicationScriptBundleName)
     @Scripts.Render(BundleNames.DocumentPreviewScriptBundleName)
     @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)

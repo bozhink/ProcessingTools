@@ -426,6 +426,7 @@
     <Content Include="Content\tooltips.less" />
     <Content Include="Content\document-edit.less" />
     <Content Include="JSLintNet.json" />
+    <Content Include="Content\Templates\coordinates-map.handlebars" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custom\document-preview.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />

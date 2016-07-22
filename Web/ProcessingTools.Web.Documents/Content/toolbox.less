@@ -25,6 +25,7 @@
     align-items: center;
 
     .titlebar-text {
+        pointer-events: none;
     }
 
     .titlebar-buttons {
@@ -50,12 +51,16 @@
         height: 100%;
         overflow-y: hidden;
 
-        .list-group {
+        .toolbox-content {
             height: 100%;
-            overflow-y: auto;
+            width: 100%;
 
-            a:nth-child(2n) {
-                background-color: azure;
+            &.list-group {
+                overflow-y: auto;
+
+                a:nth-child(2n) {
+                    background-color: azure;
+                }
             }
         }
     }

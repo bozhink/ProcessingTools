@@ -1,4 +1,4 @@
-﻿<div id="coordinates-list-toolbox" class="panel panel-primary draggable">
+﻿<div id="coordinates-map-toolbox" class="panel panel-primary draggable">
     <div class="panel-heading toolbox-titlebar">
         <span class="titlebar-text">{{title}}</span>
         <span class="titlebar-buttons">
@@ -8,10 +8,6 @@
         </span>
     </div>
     <div class="panel-body">
-        <div class="list-group toolbox-content">
-            {{#each coordinates}}
-            <a id="coordinate-item-{{index}}" class="list-group-item coordinate-item" href="#{{id}}">{{latitude}}, {{longitude}}</a>
-            {{/each}}
-        </div>
+        <div id="coordinates-map" class="toolbox-content"></div>
     </div>
 </div>

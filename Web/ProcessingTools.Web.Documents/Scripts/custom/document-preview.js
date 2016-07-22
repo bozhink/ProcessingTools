@@ -89,27 +89,31 @@
         }, 1500);
     }
 
-    function genrateCoordinatesList(selector) {
-        var toolboxSelector = '#coordinates-list',
-            $aside = $(selector),
-            toolbox = {
-                title: 'Coordinates',
-                coordinates: []
-            };
-
-        // Get coordinates
+    function getCoordinates() {
+        var result = [];
         $('.named-content.geo-json').each(function (i, element) {
             var $that = $(element),
                 id = $that.attr('id'),
                 coordinates = JSON.parse($that.attr('specific-use')).coordinates;
 
-            toolbox.coordinates.push({
+            result.push({
                 id: id,
                 index: i,
                 latitude: coordinates[1],
                 longitude: coordinates[0]
             });
         });
+
+        return result;
+    }
+
+    function genrateCoordinatesListToolbox(selector) {
+        var toolboxSelector = '#coordinates-list-toolbox',
+            $aside = $(selector),
+            toolbox = {
+                title: 'Coordinates',
+                coordinates: getCoordinates()
+            };
 
         // Remove all coordinates list toolboxes yet present.
         $(toolboxSelector).remove();
@@ -123,6 +127,62 @@
             .then(function () {
                 $('.coordinate-item').on('click', listAnchorClickEventHandler);
 
+                $(toolboxSelector + ' .minimize-button').on('click', function () {
+                    $(toolboxSelector + ' .panel-body').css('display', 'none');
+                    $(toolboxSelector).css('height', '60px');
+                });
+
+                $(toolboxSelector + ' .maximize-button').on('click', function () {
+                    $(toolboxSelector + ' .panel-body').css('display', 'block');
+                    $(toolboxSelector).css('height', '400px');
+                });
+
+                $(toolboxSelector + ' .close-button').on('click', function () {
+                    $(toolboxSelector).remove();
+                    document.body.style.cursor = 'auto';
+                });
+            });
+    }
+
+    function genrateCoordinatesMapToolbox(selector) {
+        var toolboxSelector = '#coordinates-map-toolbox',
+            $aside = $(selector),
+            toolbox = {
+                title: 'Map',
+                coordinates: getCoordinates()
+            };
+
+        // Remove all coordinates list toolboxes yet present.
+        $(toolboxSelector).remove();
+
+        template.get('coordinates-map')
+            .then(function (template) {
+                var i,
+                    len,
+                    map,
+                    coordinate = [],
+                    coordinates = toolbox.coordinates,
+                    leaflet = window.L,
+                    $div = $('<div>');
+
+                // TODO: appendTo
+                $div.html(template({ title: toolbox.title })).appendTo($aside);
+
+                map = leaflet.map('coordinates-map').setView([0.0, 0.0], 0);
+
+                leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+
+                for (i = 0, len = coordinates.length; i < len; i += 1) {
+                    coordinate = [coordinates[i].latitude, coordinates[i].longitude];
+                    leaflet.marker(coordinate)
+                        .bindPopup(JSON.stringify(coordinate))
+                        .addTo(map);
+                }
+            })
+            .then(function () {
                 $(toolboxSelector + ' .minimize-button').on('click', function () {
                     $(toolboxSelector + ' .panel-body').css('display', 'none');
                     $(toolboxSelector).css('height', '60px');
@@ -225,8 +285,12 @@
         tagInXref(rid, 'bibr');
     }
 
-    function genrateCoordinatesListEventHandler() {
-        genrateCoordinatesList('#' + MAIN_ASIDE_ID);
+    function genrateCoordinatesListToolboxEventHandler() {
+        genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
+    }
+
+    function genrateCoordinatesMapToolboxEventHandler() {
+        genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
     }
 
     function getContentEventHandler() {
@@ -293,7 +357,8 @@
     // Events registration
     document.getElementById(SAVE_BUTTON_ID).onclick = saveContentEventHandler;
     document.getElementById(REFRESH_BUTTON_ID).onclick = getContentEventHandler;
-    document.getElementById('window-coordinates').onclick = genrateCoordinatesListEventHandler;
+    document.getElementById('window-coordinates').onclick = genrateCoordinatesListToolboxEventHandler;
+    document.getElementById('window-map').onclick = genrateCoordinatesMapToolboxEventHandler;
     document.getElementById('menu-item-refresh').onclick = getContentEventHandler;
     document.getElementById('menu-item-email-page').onclick = emailThisPageEventHandler;
     document.getElementById('menu-item-foo').onclick = fooEventHandler;

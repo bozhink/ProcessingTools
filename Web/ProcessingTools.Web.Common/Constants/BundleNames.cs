@@ -18,6 +18,9 @@
         public const string ApplicationScriptBundleName = "~/bundles/app";
         public const string HandlebarsScriptBundleName = "~/bundles/handlebars";
 
+        public const string LeafletScriptBundleName = "~/bundles/leaflet";
+        public const string LeafletStyleBundleName = "~/Content/leaflet";
+
         public const string DefaultStyleBundleName = "~/Content/css";
         public const string DocumentEditStyleBundleName = "~/Content/document-edit";
         public const string DocumentPreviewStyleBundleName = "~/Content/document-preview";

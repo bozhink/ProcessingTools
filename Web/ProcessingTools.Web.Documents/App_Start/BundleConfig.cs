@@ -94,6 +94,16 @@
                     "~/Scripts/custom/document-preview.js"));
 
             bundles
+                .Add(new ScriptBundle(BundleNames.LeafletScriptBundleName)
+                .Include(
+                    "~/bower_components/leaflet/dist/leaflet.js"));
+
+            bundles
+                .Add(new StyleBundle(BundleNames.LeafletStyleBundleName)
+                .Include(
+                    "~/bower_components/leaflet/dist/leaflet.css"));
+
+            bundles
                 .Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
