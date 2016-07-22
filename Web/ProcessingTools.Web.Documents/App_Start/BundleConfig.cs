@@ -105,13 +105,13 @@
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
                     "~/Content/toolbox.min.css",
-                    "~/Content/documentPreview.min.css"));
+                    "~/Content/document-preview.min.css"));
 
             bundles
                 .Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/Content/documentEdit.min.css"));
+                    "~/Content/document-edit.min.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }

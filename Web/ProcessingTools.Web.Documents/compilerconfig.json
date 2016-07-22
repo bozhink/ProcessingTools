@@ -12,11 +12,11 @@
     "inputFile": "Content/toolbox.less"
   },
   {
-    "outputFile": "Content/documentPreview.css",
-    "inputFile": "Content/documentPreview.less"
+    "outputFile": "Content/document-preview.css",
+    "inputFile": "Content/document-preview.less"
   },
   {
-    "outputFile": "Content/documentEdit.css",
-    "inputFile": "Content/documentEdit.less"
+    "outputFile": "Content/document-edit.css",
+    "inputFile": "Content/document-edit.less"
   }
 ]

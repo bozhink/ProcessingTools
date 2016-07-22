@@ -341,7 +341,7 @@ mark mark mark {
 mark mark mark:hover {
   background-color: #9aed59;
 }
-#manual-mode-notifier {
+.mode-notifier {
   display: block;
   position: fixed;
   top: 80px;
@@ -350,10 +350,11 @@ mark mark mark:hover {
   color: white;
   background-color: black;
   border-radius: 5px;
-  opacity: 0.6;
+  opacity: 0.4;
   font-weight: bold;
   font-size: 1.2em;
   pointer-events: none;
+  z-index: 5000;
 }
 .bibliographic-references {
   display: block;

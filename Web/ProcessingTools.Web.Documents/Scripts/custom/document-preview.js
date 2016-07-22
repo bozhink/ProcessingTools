@@ -302,7 +302,7 @@
         $('#manual-mode-notifier').remove();
 
         $('<div>')
-            .addClass('notifier')
+            .addClass('mode-notifier')
             .attr('id', 'manual-mode-notifier')
             .text($target.text())
             .appendTo($aside);
