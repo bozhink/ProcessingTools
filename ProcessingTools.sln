@@ -302,6 +302,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Tests", "Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.TestWebApiServer", "Infrastructure.Tests\ProcessingTools.TestWebApiServer\ProcessingTools.TestWebApiServer.csproj", "{34B7A78C-6216-4929-A1FA-B7F1F75DBA50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Services.Data.Tests", "Services.Tests\Documents.Services.Data.Tests\Documents.Services.Data.Tests.csproj", "{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1326,6 +1328,14 @@ Global
 		{34B7A78C-6216-4929-A1FA-B7F1F75DBA50}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34B7A78C-6216-4929-A1FA-B7F1F75DBA50}.Release|x64.ActiveCfg = Release|Any CPU
 		{34B7A78C-6216-4929-A1FA-B7F1F75DBA50}.Release|x64.Build.0 = Release|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1458,6 +1468,7 @@ Global
 		{E2828EC6-A37A-4AA5-878B-B89CF0B28065} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{38E8E64F-DE1D-4FA8-9805-B817C2562950} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{34B7A78C-6216-4929-A1FA-B7F1F75DBA50} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
+		{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
