@@ -102,8 +102,6 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            string xslFileName = ConfigurationManager.AppSettings[FormatHtmlToXmlXslFilePathKey];
-
             var xmlDocument = new XmlDocument
             {
                 PreserveWhitespace = true
@@ -111,6 +109,7 @@
 
             xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
 
+            string xslFileName = ConfigurationManager.AppSettings[FormatHtmlToXmlXslFilePathKey];
             var xmlContent = xmlDocument.ApplyXslTransform(xslFileName);
 
             var result = await this.service.Update(userId, articleId, document, xmlContent);
