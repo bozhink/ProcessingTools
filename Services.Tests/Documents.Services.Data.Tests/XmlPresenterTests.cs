@@ -28,5 +28,25 @@ namespace ProcessingTools.Documents.Services.Data.Tests
             Assert.IsNotNull(fieldValue, "Service should be initialized.");
             Assert.AreSame(service, fieldValue, "Service should be set correctly.");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
+        public void XmlPresenter_WithNullServiceInConstructor_ShouldThrowArgumentNullException()
+        {
+            var presenter = new XmlPresenter(null);
+        }
+
+        [TestMethod]
+        public void XmlPresenter_WithNullServiceInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        {
+            try
+            {
+                var presenter = new XmlPresenter(null);
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.AreEqual("service", e.ParamName, "ParamName should be 'service'.");
+            }
+        }
     }
 }
