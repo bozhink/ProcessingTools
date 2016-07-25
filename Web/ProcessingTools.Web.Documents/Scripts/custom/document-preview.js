@@ -17,7 +17,8 @@
         jsonRequester = new window.JsonRequester(),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,
-        template = new window.Template('../../../Content/Templates');
+        template = new window.Template('../../../Content/Templates'),
+        mainAside = document.getElementById(MAIN_ASIDE_ID);
 
     interactConfig.registerDragabbleBehavior('.draggable');
 
@@ -75,17 +76,19 @@
     window.get();
 
     // Coordinates window
-    function listAnchorClickEventHandler(event) {
-        var $that = $(event.target),
-            $target = $($that.attr('href'));
+    function listAnchorClickEventListener(event) {
+        const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
+        var e = event || window.event,
+            href = e.target.getAttribute('href'),
+            $target = $(href);
 
         $('html, body').animate({
             scrollTop: $target.offset().top - 250 + 'px'
         }, 'fast');
 
-        $target.addClass('selected-text-to-scroll');
+        $target.addClass(TEXT_TO_SCROLL_CLASS_NAME);
         setTimeout(function () {
-            $target.removeClass('selected-text-to-scroll');
+            $target.removeClass(TEXT_TO_SCROLL_CLASS_NAME);
         }, 1500);
     }
 
@@ -125,7 +128,7 @@
                     .appendTo($aside);
             })
             .then(function () {
-                $('.coordinate-item').on('click', listAnchorClickEventHandler);
+                $('.coordinate-item').on('click', listAnchorClickEventListener);
 
                 $(toolboxSelector + ' .minimize-button').on('click', function () {
                     $(toolboxSelector + ' .panel-body').css('display', 'none');
@@ -279,52 +282,115 @@
         tag('a', elemName, className, attributes);
     }
 
-    // Event handlers
+    // Event listeners
+
+    // TODO
+    function clickMinimizeMaximizeCloseButtonEventListener(event) {
+        var e = event || window.event,
+            target = e.target,
+            toolbox;
+        e.stopPropagation();
+        e.preventDefault();
+
+        function getToolbox(button) {
+            var toolbox, header, body;
+            if (button) {
+                header = button.parentNode.parentNode;
+                toolbox = header.parentNode;
+                body = toolbox.lastElementChild;
+
+                return {
+                    toolbox: toolbox,
+                    header: header,
+                    body: body
+                };
+            }
+
+            return null;
+        }
+
+        if (!target) {
+            return false;
+        }
+
+        if (target.classList.contains('minimize-button')) {
+            toolbox = getToolbox(target);
+            if (toolbox) {
+                toolbox.body.style = 'display: none';
+                toolbox.toolbox.style = 'height: 60px'
+            }
+
+            return false;
+        }
+
+        if (target.classList.contains('maximize-button')) {
+            toolbox = getToolbox(target);
+            if (toolbox) {
+                toolbox.body.style = 'display: block';
+                toolbox.toolbox.style = 'height: 400px';
+            }
+
+            return false;
+        }
+
+        if (target.classList.contains('close-button')) {
+            toolbox = getToolbox(target);
+            if (toolbox) {
+                toolbox.toolbox.parentNode.removeChild(toolbox.toolbox);
+            }
+
+            return false;
+        }
+    }
+
     function tagBibliographicCitation(event) {
-        var rid = event.target.getAttribute('rid').toString();
+        var e = event || window.event,
+            rid = e.target.getAttribute('rid');
         tagInXref(rid, 'bibr');
     }
 
-    function genrateCoordinatesListToolboxEventHandler() {
+    function genrateCoordinatesListToolboxEventListener() {
         genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
     }
 
-    function genrateCoordinatesMapToolboxEventHandler() {
+    function genrateCoordinatesMapToolboxEventListener() {
         genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
     }
 
-    function getContentEventHandler() {
+    function getContentEventListener() {
         window.get();
     }
 
-    function saveContentEventHandler() {
+    function saveContentEventListener() {
         window.save();
     }
 
-    function emailThisPageEventHandler() {
+    function emailThisPageEventListener() {
         window.location = 'mailto:?body=' + window.location.href;
     }
 
-    function fooEventHandler() {
+    function fooEventListener() {
         foo();
     }
 
-    function tagLinkEventHandler() {
+    function tagLinkEventListener() {
         tagLink();
     }
 
-    function tagCoordinateEventHandler() {
+    function tagCoordinateEventListener() {
         tagInSpan('locality-coordinates');
     }
 
-    function tagbibliographyElementEventHandler(event) {
-        var elementName = event.target.id.toString().substr(10);
+    function tagbibliographyElementEventListener(event) {
+        var e = event || window.event,
+            elementName = e.target.id.toString().substr(10);
         tagInMark(elementName);
     }
 
-    function tagBibliographicCitationEventHandler(event) {
-        var $aside = $('#' + MAIN_ASIDE_ID),
-            $target = $(event.target),
+    function tagBibliographicCitationEventListener(event) {
+        var e = event || window.event,
+            $aside = $('#' + MAIN_ASIDE_ID),
+            $target = $(e.target),
             $supermenu = $('#supermenu'),
             $menu = $('<menu>')
                 .addClass('manual-tag-menu')
@@ -355,17 +421,39 @@
     };
 
     // Events registration
-    document.getElementById(SAVE_BUTTON_ID).onclick = saveContentEventHandler;
-    document.getElementById(REFRESH_BUTTON_ID).onclick = getContentEventHandler;
-    document.getElementById('window-coordinates').onclick = genrateCoordinatesListToolboxEventHandler;
-    document.getElementById('window-map').onclick = genrateCoordinatesMapToolboxEventHandler;
-    document.getElementById('menu-item-refresh').onclick = getContentEventHandler;
-    document.getElementById('menu-item-email-page').onclick = emailThisPageEventHandler;
-    document.getElementById('menu-item-foo').onclick = fooEventHandler;
-    document.getElementById('menu-item-tag-link').onclick = tagLinkEventHandler;
-    document.getElementById('menu-item-tag-coordinate').onclick = tagCoordinateEventHandler;
-    document.getElementById('menu-item-bibliography').onclick = tagbibliographyElementEventHandler;
+    document
+        .getElementById(SAVE_BUTTON_ID)
+        .addEventListener('click', saveContentEventListener, false);
+    document
+        .getElementById(REFRESH_BUTTON_ID)
+        .addEventListener('click', getContentEventListener, false);
+    document
+        .getElementById('window-coordinates')
+        .addEventListener('click', genrateCoordinatesListToolboxEventListener, false);
+    document
+        .getElementById('window-map')
+        .addEventListener('click', genrateCoordinatesMapToolboxEventListener, false);
+    document
+        .getElementById('menu-item-refresh')
+        .addEventListener('click', getContentEventListener, false);
+    document
+        .getElementById('menu-item-email-page')
+        .addEventListener('click', emailThisPageEventListener, false);
+    document
+        .getElementById('menu-item-foo')
+        .addEventListener('click', fooEventListener, false);
+    document
+        .getElementById('menu-item-tag-link')
+        .addEventListener('click', tagLinkEventListener, false);
+    document
+        .getElementById('menu-item-tag-coordinate')
+        .addEventListener('click', tagCoordinateEventListener, false);
+    document
+        .getElementById('menu-item-bibliography')
+        .addEventListener('click', tagbibliographyElementEventListener, false);
 
-    document.getElementById('tag-bibliographic-citations-menu-item').onclick = tagBibliographicCitationEventHandler;
+    document
+        .getElementById('tag-bibliographic-citations-menu-item')
+        .addEventListener('click', tagBibliographicCitationEventListener, false);
 
 }(window, document, window.jQuery));
