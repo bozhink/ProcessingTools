@@ -76,22 +76,6 @@
     window.get();
 
     // Coordinates window
-    function listAnchorClickEventListener(event) {
-        const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
-        var e = event || window.event,
-            href = e.target.getAttribute('href'),
-            $target = $(href);
-
-        $('html, body').animate({
-            scrollTop: $target.offset().top - 250 + 'px'
-        }, 'fast');
-
-        $target.addClass(TEXT_TO_SCROLL_CLASS_NAME);
-        setTimeout(function () {
-            $target.removeClass(TEXT_TO_SCROLL_CLASS_NAME);
-        }, 1500);
-    }
-
     function getCoordinates() {
         var result = [];
         $('.named-content.geo-json').each(function (i, element) {
@@ -128,22 +112,11 @@
                     .appendTo($aside);
             })
             .then(function () {
-                $('.coordinate-item').on('click', listAnchorClickEventListener);
+                $(toolboxSelector + ' .panel-body .coordinates-list').on('click', listAnchorClickEventListener);
 
-                $(toolboxSelector + ' .minimize-button').on('click', function () {
-                    $(toolboxSelector + ' .panel-body').css('display', 'none');
-                    $(toolboxSelector).css('height', '60px');
-                });
-
-                $(toolboxSelector + ' .maximize-button').on('click', function () {
-                    $(toolboxSelector + ' .panel-body').css('display', 'block');
-                    $(toolboxSelector).css('height', '400px');
-                });
-
-                $(toolboxSelector + ' .close-button').on('click', function () {
-                    $(toolboxSelector).remove();
-                    document.body.style.cursor = 'auto';
-                });
+                $(toolboxSelector + ' .minimize-button').on('click', clickMinimizeButtonEventHandler);
+                $(toolboxSelector + ' .maximize-button').on('click', clickMaximizeButtonEventHandler);
+                $(toolboxSelector + ' .close-button').on('click', clickCloseButtonEventHandler);
             });
     }
 
@@ -186,20 +159,9 @@
                 }
             })
             .then(function () {
-                $(toolboxSelector + ' .minimize-button').on('click', function () {
-                    $(toolboxSelector + ' .panel-body').css('display', 'none');
-                    $(toolboxSelector).css('height', '60px');
-                });
-
-                $(toolboxSelector + ' .maximize-button').on('click', function () {
-                    $(toolboxSelector + ' .panel-body').css('display', 'block');
-                    $(toolboxSelector).css('height', '400px');
-                });
-
-                $(toolboxSelector + ' .close-button').on('click', function () {
-                    $(toolboxSelector).remove();
-                    document.body.style.cursor = 'auto';
-                });
+                $(toolboxSelector + ' .minimize-button').on('click', clickMinimizeButtonEventHandler);
+                $(toolboxSelector + ' .maximize-button').on('click', clickMaximizeButtonEventHandler);
+                $(toolboxSelector + ' .close-button').on('click', clickCloseButtonEventHandler);
             });
     }
 
@@ -283,107 +245,176 @@
     }
 
     // Event listeners
+    function listAnchorClickEventListener(event) {
+        const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
+        var e = event || window.event,
+            target = e.target,
+            href,
+            $target;
 
-    // TODO
-    function clickMinimizeMaximizeCloseButtonEventListener(event) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (!target) {
+            return false;
+        }
+
+        if (target.classList.contains('coordinate-item')) {
+            href = target.getAttribute('href');
+            $target = $(href);
+
+            $('html, body').animate({
+                scrollTop: $target.offset().top - 250 + 'px'
+            }, 'fast');
+
+            $target.addClass(TEXT_TO_SCROLL_CLASS_NAME);
+            setTimeout(function () {
+                $target.removeClass(TEXT_TO_SCROLL_CLASS_NAME);
+            }, 1500);
+
+            return false;
+        }
+    }
+
+    function clickMinimizeButtonEventHandler(event) {
+        var e = event || window.event,
+            target = e.target,
+            toolbox,
+            body;
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (target) {
+            try {
+                toolbox = target.parentNode.parentNode.parentNode;
+                if (toolbox instanceof HTMLElement) {
+                    body = toolbox.querySelector('.panel-body');
+                }
+
+                if (body instanceof HTMLElement) {
+                    body.style.display = 'none';
+                    toolbox.style.height = '60px';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    }
+
+    function clickMaximizeButtonEventHandler(event) {
+        var e = event || window.event,
+            target = e.target,
+            toolbox,
+            body;
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (target) {
+            try {
+                toolbox = target.parentNode.parentNode.parentNode;
+                if (toolbox instanceof HTMLElement) {
+                    body = toolbox.querySelector('.panel-body');
+                }
+
+                if (body instanceof HTMLElement) {
+                    body.style.display = 'block';
+                    toolbox.style.height = '400px';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    }
+
+    function clickCloseButtonEventHandler(event) {
         var e = event || window.event,
             target = e.target,
             toolbox;
         e.stopPropagation();
         e.preventDefault();
 
-        function getToolbox(button) {
-            var toolbox, header, body;
-            if (button) {
-                header = button.parentNode.parentNode;
-                toolbox = header.parentNode;
-                body = toolbox.lastElementChild;
-
-                return {
-                    toolbox: toolbox,
-                    header: header,
-                    body: body
-                };
+        if (target) {
+            try {
+                toolbox = target.parentNode.parentNode.parentNode;
+                if (toolbox instanceof HTMLElement) {
+                    toolbox.parentNode.removeChild(toolbox);
+                    document.body.style.cursor = 'auto';
+                }
+            } catch (e) {
+                console.error(e);
             }
-
-            return null;
-        }
-
-        if (!target) {
-            return false;
-        }
-
-        if (target.classList.contains('minimize-button')) {
-            toolbox = getToolbox(target);
-            if (toolbox) {
-                toolbox.body.style = 'display: none';
-                toolbox.toolbox.style = 'height: 60px'
-            }
-
-            return false;
-        }
-
-        if (target.classList.contains('maximize-button')) {
-            toolbox = getToolbox(target);
-            if (toolbox) {
-                toolbox.body.style = 'display: block';
-                toolbox.toolbox.style = 'height: 400px';
-            }
-
-            return false;
-        }
-
-        if (target.classList.contains('close-button')) {
-            toolbox = getToolbox(target);
-            if (toolbox) {
-                toolbox.toolbox.parentNode.removeChild(toolbox.toolbox);
-            }
-
-            return false;
         }
     }
 
     function tagBibliographicCitation(event) {
         var e = event || window.event,
             rid = e.target.getAttribute('rid');
+        e.stopPropagation();
+        e.preventDefault();
         tagInXref(rid, 'bibr');
     }
 
-    function genrateCoordinatesListToolboxEventListener() {
+    function genrateCoordinatesListToolboxEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
     }
 
-    function genrateCoordinatesMapToolboxEventListener() {
+    function genrateCoordinatesMapToolboxEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
     }
 
-    function getContentEventListener() {
+    function getContentEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         window.get();
     }
 
-    function saveContentEventListener() {
+    function saveContentEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         window.save();
     }
 
-    function emailThisPageEventListener() {
+    function emailThisPageEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         window.location = 'mailto:?body=' + window.location.href;
     }
 
-    function fooEventListener() {
+    function fooEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         foo();
     }
 
-    function tagLinkEventListener() {
+    function tagLinkEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         tagLink();
     }
 
-    function tagCoordinateEventListener() {
+    function tagCoordinateEventListener(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
         tagInSpan('locality-coordinates');
     }
 
     function tagbibliographyElementEventListener(event) {
         var e = event || window.event,
             elementName = e.target.id.toString().substr(10);
+        e.stopPropagation();
+        e.preventDefault();
         tagInMark(elementName);
     }
 
@@ -396,6 +427,9 @@
                 .addClass('manual-tag-menu')
                 .attr('id', 'menu-bibliographic-citations')
                 .attr('label', $target.text());
+
+        e.stopPropagation();
+        e.preventDefault();
 
         $('#manual-mode-notifier').remove();
 
