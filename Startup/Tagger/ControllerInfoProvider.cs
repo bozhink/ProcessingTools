@@ -25,7 +25,8 @@
             var controllerTypes = System.Reflection.Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
-                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultControllerInterfaceName));
+                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultControllerInterfaceName))
+                .ToArray();
 
             controllerTypes.Select(t =>
             {

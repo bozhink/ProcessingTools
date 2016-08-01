@@ -276,7 +276,7 @@
             this.logger?.Log(Messages.HelpMessage);
 
             // Print controllers’ information
-            foreach (var contollerType in this.controllerInfoProvider.ControllersInformation.Keys)
+            foreach (var contollerType in this.controllerInfoProvider.ControllersInformation.Keys.OrderBy(k => k.Name))
             {
                 var controllerInfo = this.controllerInfoProvider.ControllersInformation[contollerType];
                 this.logger?.Log("    +{0}\t=\t{1}", controllerInfo.Name, controllerInfo.Description);
