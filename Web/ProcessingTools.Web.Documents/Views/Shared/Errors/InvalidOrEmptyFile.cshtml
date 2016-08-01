@@ -1,13 +1,20 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "No Files Selected Error";
+    ViewBag.Title = "Invalid Or Empty File Error";
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3 class="text-danger">No Files Selected</h3>
+<h3 class="text-danger">Invalid Or Empty File or Files</h3>
+
+<ol>
+    @foreach (string fileName in this.ViewBag.InvalidFiles)
+    {
+        <li class="text-danger">@fileName</li>
+    }
+</ol>
 
 <p>Please, select a file or files and try again.</p>
 <p>
@@ -15,8 +22,8 @@
         Model.SourceAction.ActionLinkText,
         Model.SourceAction.ActionName,
         Model.SourceAction.ControllerName,
-        routeValues: new { area = Model.SourceAction.AreaName},
+        routeValues: new { area = Model.SourceAction.AreaName },
         htmlAttributes: null)
 </p>
 
-@Html.Partial(ViewConstants.ErrorFootPartialViewName)
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

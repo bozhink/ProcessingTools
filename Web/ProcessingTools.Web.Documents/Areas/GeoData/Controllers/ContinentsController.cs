@@ -54,7 +54,7 @@
                 catch (Exception e)
                 {
                     ViewBag.Message = e.Message;
-                    return this.View(viewName: ViewNames.DefaultErrorViewName);
+                    return this.View(viewName: ViewNames.ErrorViewName);
                 }
             }
 
@@ -91,7 +91,7 @@
             catch (Exception e)
             {
                 ViewBag.Message = e.Message;
-                return this.View(viewName: ViewNames.DefaultErrorViewName);
+                return this.View(viewName: ViewNames.ErrorViewName);
             }
         }
 
@@ -147,7 +147,7 @@
                 catch (Exception e)
                 {
                     ViewBag.Message = e.Message;
-                    return this.View(viewName: ViewNames.DefaultErrorViewName);
+                    return this.View(viewName: ViewNames.ErrorViewName);
                 }
             }
 
@@ -169,7 +169,7 @@
             catch (Exception e)
             {
                 ViewBag.Message = e.Message;
-                return this.View(viewName: ViewNames.DefaultErrorViewName);
+                return this.View(viewName: ViewNames.ErrorViewName);
             }
         }
 
@@ -190,7 +190,7 @@
                 catch (Exception e)
                 {
                     ViewBag.Message = e.Message;
-                    return this.View(viewName: ViewNames.DefaultErrorViewName);
+                    return this.View(viewName: ViewNames.ErrorViewName);
                 }
             }
 
@@ -214,7 +214,7 @@
                 catch (Exception e)
                 {
                     ViewBag.Message = e.Message;
-                    return this.View(viewName: ViewNames.DefaultErrorViewName);
+                    return this.View(viewName: ViewNames.ErrorViewName);
                 }
             }
 

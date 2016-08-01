@@ -393,9 +393,9 @@
     <Content Include="Scripts\config\monaco-editor-config.js" />
     <Content Include="Scripts\config\toastr-config.js" />
     <Content Include="Scripts\data\documents\document-content-data.js" />
-    <Content Include="Views\Shared\NoFilesSelectedError.cshtml" />
-    <Content Include="Views\Shared\InvalidOrEmptyFileError.cshtml" />
-    <Content Include="Views\Shared\NullIdError.cshtml" />
+    <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidOrEmptyFile.cshtml" />
+    <Content Include="Views\Shared\Errors\NullId.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Details.cshtml" />
@@ -446,7 +446,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Errors\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -471,13 +471,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\InvalidAction.cshtml" />
-    <Content Include="Views\Shared\NotFound.cshtml" />
-    <Content Include="Views\Shared\ErrorFootPartial.cshtml" />
-    <Content Include="Views\Shared\NavigationFootPartial.cshtml" />
-    <Content Include="Views\Shared\InvalidPageNumberError.cshtml" />
-    <Content Include="Views\Shared\InvalidNumberOfItemsPerPageError.cshtml" />
-    <Content Include="Views\Shared\BadRequestError.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidAction.cshtml" />
+    <Content Include="Views\Shared\Errors\NotFound.cshtml" />
+    <Content Include="Views\Shared\Errors\_ErrorFoot.cshtml" />
+    <Content Include="Views\Shared\_NavigationFoot.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidPageNumber.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidNumberOfItemsPerPage.cshtml" />
+    <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
     <Content Include="Settings.StyleCop" />
     <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
   </ItemGroup>

@@ -140,7 +140,7 @@
         public static ViewResult DefaultErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewNames.DefaultErrorViewName,
+                ViewNames.ErrorViewName,
                 HttpStatusCode.InternalServerError,
                 instanceName,
                 message,
@@ -164,7 +164,7 @@
         public static ViewResult DefaultNotFoundView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewNames.DefaultNotFoundViewName,
+                ViewNames.NotFoundErrorViewName,
                 HttpStatusCode.NotFound,
                 instanceName,
                 message,
