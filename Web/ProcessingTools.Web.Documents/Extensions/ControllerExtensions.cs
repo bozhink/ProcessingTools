@@ -116,7 +116,7 @@
         public static ViewResult NoFilesSelectedErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.NoFilesSelectedErrorViewName,
+                ViewNames.NoFilesSelectedErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -128,7 +128,7 @@
         public static ViewResult InvalidOrEmptyFileErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.InvalidOrEmptyFileErrorViewName,
+                ViewNames.InvalidOrEmptyFileErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -140,7 +140,7 @@
         public static ViewResult DefaultErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.DefaultErrorViewName,
+                ViewNames.DefaultErrorViewName,
                 HttpStatusCode.InternalServerError,
                 instanceName,
                 message,
@@ -152,7 +152,7 @@
         public static ViewResult NullIdErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.NullIdErrorViewName,
+                ViewNames.NullIdErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -164,7 +164,7 @@
         public static ViewResult DefaultNotFoundView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.DefaultNotFoundViewName,
+                ViewNames.DefaultNotFoundViewName,
                 HttpStatusCode.NotFound,
                 instanceName,
                 message,
@@ -176,7 +176,7 @@
         public static ViewResult InvalidPageNumberErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.InvalidPageNumberErrorViewName,
+                ViewNames.InvalidPageNumberErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -188,7 +188,7 @@
         public static ViewResult InvalidNumberOfItemsPerPageErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.InvalidNumberOfItemsPerPageErrorViewName,
+                ViewNames.InvalidNumberOfItemsPerPageErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -200,7 +200,7 @@
         public static ViewResult BadRequestErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewConstants.BadRequestErrorViewName,
+                ViewNames.BadRequestErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,

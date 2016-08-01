@@ -41,7 +41,6 @@
     <Compile Include="Constants\ControllerNames.cs" />
     <Compile Include="Constants\RouteConstants.cs" />
     <Compile Include="Constants\SectionNames.cs" />
-    <Compile Include="Constants\ViewConstants.cs" />
     <Compile Include="Constants\ViewNames.cs" />
     <Compile Include="Models\NamedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
