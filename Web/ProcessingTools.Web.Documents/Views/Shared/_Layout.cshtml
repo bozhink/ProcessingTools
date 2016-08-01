@@ -8,7 +8,7 @@
         @ViewBag.Title - @ContentConstants.ApplicationName
     </title>
     @Styles.Render(BundleNames.DefaultStyleBundleName)
-    @RenderSection("Styles", required: false)
+    @RenderSection(SectionNames.StylesSectionName, required: false)
     @Scripts.Render(BundleNames.ModernizrScriptBundleName)
 </head>
 <body>
@@ -21,11 +21,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink(ContentConstants.ApplicationName, "Index", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { @class = "navbar-brand" })
+                    @Html.ActionLink(ContentConstants.ApplicationName, ActionNames.IndexActionName, ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(ContentConstants.HomeActionLinkTitle, ActionNames.IndexActionName, ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
@@ -39,10 +39,10 @@
                                 </ul>
                             </li>
                         }
-                        <li>@Html.ActionLink("About", "About", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(ContentConstants.AboutActionLinkTitle, ActionNames.AboutActionName, ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(ContentConstants.ContactActionLinkTitle, ActionNames.ContactActionName, ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
+                    @Html.Partial(ViewNames.LoginPartialViewName)
                 </div>
             </div>
         </nav>
@@ -61,6 +61,6 @@
 
     @Scripts.Render(BundleNames.JQueryScriptBundleName)
     @Scripts.Render(BundleNames.BootstrapScriptBundleName)
-    @RenderSection("Scripts", required: false)
+    @RenderSection(SectionNames.ScriptsSectionName, required: false)
 </body>
 </html>
