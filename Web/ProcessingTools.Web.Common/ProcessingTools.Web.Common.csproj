@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ActionNames.cs" />
     <Compile Include="Constants\AreasConstants.cs" />
     <Compile Include="Constants\BundleNames.cs" />
     <Compile Include="Constants\ContentConstants.cs" />
