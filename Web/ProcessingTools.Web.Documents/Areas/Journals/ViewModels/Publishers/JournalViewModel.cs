@@ -7,9 +7,11 @@
 
     public class JournalViewModel
     {
+        [Display(Name = "Id")]
         public Guid Id { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfJournalName)]
+        [Display(Name = "Name")]
         public string Name { get; set; }
     }
 }

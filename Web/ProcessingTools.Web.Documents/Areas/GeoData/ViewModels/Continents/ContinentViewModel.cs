@@ -12,6 +12,7 @@
         [RegularExpression(ValidationConstants.ContinentNameRegexPattern)]
         [MinLength(ValidationConstants.MinimalLengthOfContinentName)]
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         public override string ModelName => ContentConstants.ContinentModelName;

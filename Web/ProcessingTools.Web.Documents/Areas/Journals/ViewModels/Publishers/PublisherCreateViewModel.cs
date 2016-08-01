@@ -7,9 +7,11 @@
     {
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfPublisherName)]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName)]
+        [Display(Name = "Abbreviated Name")]
         public string AbbreviatedName { get; set; }
     }
 }

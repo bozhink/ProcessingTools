@@ -6,10 +6,12 @@
 
     public class CountryViewModel : NamedViewModel
     {
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [RegularExpression(ValidationConstants.CountryNameRegexPattern)]
         [MaxLength(ValidationConstants.MaximalLengthOfCountryName)]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         public override string ModelName => ContentConstants.CountryModelName;

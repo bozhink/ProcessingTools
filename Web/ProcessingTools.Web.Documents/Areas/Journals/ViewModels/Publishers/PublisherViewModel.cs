@@ -6,6 +6,7 @@
 
     public class PublisherViewModel
     {
+        [Display(Name = "Id")]
         public Guid Id { get; set; }
 
         [Required]
