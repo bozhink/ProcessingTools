@@ -152,7 +152,7 @@
         public static ViewResult NullIdErrorView(this Controller controller, string instanceName, string message, string actionLinkText, string areaName, int stackFrameLevel = 4)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewNames.NullIdErrorViewName,
+                ViewNames.InvalidIdErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,

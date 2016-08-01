@@ -395,7 +395,7 @@
     <Content Include="Scripts\data\documents\document-content-data.js" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFile.cshtml" />
-    <Content Include="Views\Shared\Errors\NullId.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />
     <Content Include="Areas\Articles\Views\Articles\Details.cshtml" />

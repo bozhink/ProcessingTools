@@ -17,6 +17,6 @@
         public const string InvalidOrEmptyFileErrorViewName = "~/Views/Shared/Errors/InvalidOrEmptyFile.cshtml";
         public const string InvalidPageNumberErrorViewName = "~/Views/Shared/Errors/InvalidPageNumber.cshtml";
         public const string NoFilesSelectedErrorViewName = "~/Views/Shared/Errors/NoFilesSelected.cshtml";
-        public const string NullIdErrorViewName = "~/Views/Shared/Errors/NullId.cshtml";
+        public const string InvalidIdErrorViewName = "~/Views/Shared/Errors/InvalidId.cshtml";
     }
 }

@@ -44,144 +44,88 @@
         public static string ControllerName => ControllerConstants.FilesControllerName;
 
         // GET: Files/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        [HttpGet]
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (id == null)
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
-            {
-                await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.RedirectToAction(nameof(this.Index));
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         // POST: Files/Delete/5
         [HttpPost]
-        public ActionResult Delete(string id, FormCollection collection)
+        public ActionResult Delete(Guid? id, FormCollection collection)
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
 
         // GET: Files/Details/5
-        public async Task<ActionResult> Details(string id)
+        [HttpGet]
+        public async Task<ActionResult> Details(Guid? id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (id == null)
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
-            {
-                var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
-                var model = new DocumentViewModel
-                {
-                    Id = id,
-                    FileName = document.FileName,
-                    FileExtension = document.FileExtension,
-                    ContentType = document.ContentType,
-                    ContentLength = document.ContentLength,
-                    DateCreated = document.DateCreated,
-                    DateModified = document.DateModified
-                };
+            var model = new DocumentViewModel
+            {
+                Id = id.ToString(),
+                FileName = document.FileName,
+                FileExtension = document.FileExtension,
+                ContentType = document.ContentType,
+                ContentLength = document.ContentLength,
+                DateCreated = document.DateCreated,
+                DateModified = document.DateModified
+            };
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(model);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(model);
         }
 
         // GET: Files/Download/5
-        public async Task<ActionResult> Download(string id)
+        [HttpGet]
+        public async Task<ActionResult> Download(Guid? id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (id == null)
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
-            {
-                var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
-                return this.File(
-                    fileStream: stream,
-                    contentType: document.ContentType,
-                    fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
+            return this.File(
+                fileStream: stream,
+                contentType: document.ContentType,
+                fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
         }
 
         // GET: Files/Edit/5
-        public ActionResult Edit(string id)
+        [HttpGet]
+        public ActionResult Edit(Guid? id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (id == null)
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
+            var model = new DocumentViewModel
             {
-                var model = new DocumentViewModel
-                {
-                    Id = id
-                };
+                Id = id.ToString()
+            };
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(model);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(model);
         }
 
         /// <summary>
@@ -191,83 +135,52 @@
         /// <param name="n">Number of items per page.</param>
         /// <returns></returns>
         /// <example>GET: Files</example>
+        [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
-            try
-            {
-                int currentPage = p ?? PagingConstants.DefaultPageNumber;
-                int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
-                var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
-                var items = (await this.service.All(userId, this.fakeArticleId, currentPage, numberOfItemsPerPage))
-                    .Select(d => new DocumentViewModel
-                    {
-                        Id = d.Id,
-                        FileName = d.FileName,
-                        DateCreated = d.DateCreated,
-                        DateModified = d.DateModified
-                    })
-                    .ToArray();
+            var items = (await this.service.All(userId, this.fakeArticleId, currentPage, numberOfItemsPerPage))
+                .Select(d => new DocumentViewModel
+                {
+                    Id = d.Id,
+                    FileName = d.FileName,
+                    DateCreated = d.DateCreated,
+                    DateModified = d.DateModified
+                })
+                .ToArray();
 
-                var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
+            var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
 
-                var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(viewModel);
-            }
-            catch (InvalidPageNumberException e)
-            {
-                return this.InvalidPageNumberErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (InvalidItemsPerPageException e)
-            {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
         }
 
         // GET: Files/Preview/5
-        public ActionResult Preview(string id)
+        [HttpGet]
+        public ActionResult Preview(Guid? id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (id == null)
             {
                 return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
+            var model = new DocumentViewModel
             {
-                var model = new DocumentViewModel
-                {
-                    Id = id
-                };
+                Id = id.ToString()
+            };
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(model);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(model);
         }
 
         // GET: Files/Upload
+        [HttpGet]
         public ActionResult Upload()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -283,59 +196,94 @@
                 return this.NoFilesSelectedErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
-            try
-            {
-                var userId = User.Identity.GetUserId();
-                var articleId = this.fakeArticleId;
+            var userId = User.Identity.GetUserId();
+            var articleId = this.fakeArticleId;
 
-                var tasks = new ConcurrentQueue<Task>();
-                var invalidFiles = new ConcurrentQueue<string>();
-                foreach (var file in files)
+            var tasks = new ConcurrentQueue<Task>();
+            var invalidFiles = new ConcurrentQueue<string>();
+            foreach (var file in files)
+            {
+                if (file == null || file.ContentLength < 1)
                 {
-                    if (file == null || file.ContentLength < 1)
+                    invalidFiles.Enqueue(file.FileName);
+                }
+                else
+                {
+                    try
+                    {
+                        var document = new DocumentServiceModel
+                        {
+                            FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                            FileExtension = Path.GetExtension(file.FileName).Trim('.'),
+                            ContentLength = file.ContentLength,
+                            ContentType = file.ContentType
+                        };
+
+                        tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
+                    }
+                    catch
                     {
                         invalidFiles.Enqueue(file.FileName);
                     }
-                    else
-                    {
-                        try
-                        {
-                            var document = new DocumentServiceModel
-                            {
-                                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
-                                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                                ContentLength = file.ContentLength,
-                                ContentType = file.ContentType
-                            };
-
-                            tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
-                        }
-                        catch
-                        {
-                            invalidFiles.Enqueue(file.FileName);
-                        }
-                    }
                 }
-
-                await Task.WhenAll(tasks.ToArray());
-
-                if (invalidFiles.Count > 0)
-                {
-                    this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                    return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
-                }
-
-                this.Response.StatusCode = (int)HttpStatusCode.Created;
-                return this.RedirectToAction(nameof(this.Index));
             }
-            catch (ArgumentException e)
+
+            await Task.WhenAll(tasks.ToArray());
+
+            if (invalidFiles.Count > 0)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
+                return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
-            catch (Exception e)
+
+            this.Response.StatusCode = (int)HttpStatusCode.Created;
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext.Exception is EntityNotFoundException)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                filterContext.Result = this.DefaultNotFoundView(
+                    InstanceName,
+                    filterContext.Exception.Message,
+                    ContentConstants.DefaultDeleteActionLinkTitle,
+                    AreasConstants.ArticlesAreaName);
             }
+            else if (filterContext.Exception is InvalidPageNumberException)
+            {
+                filterContext.Result = this.InvalidPageNumberErrorView(
+                    InstanceName,
+                    filterContext.Exception.Message,
+                    ContentConstants.DefaultBackToListActionLinkTitle,
+                    AreasConstants.ArticlesAreaName);
+            }
+            else if (filterContext.Exception is InvalidItemsPerPageException)
+            {
+                filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
+                    InstanceName,
+                    filterContext.Exception.Message,
+                    ContentConstants.DefaultBackToListActionLinkTitle,
+                    AreasConstants.ArticlesAreaName);
+            }
+            else if (filterContext.Exception is ArgumentException)
+            {
+                filterContext.Result = this.BadRequestErrorView(
+                    InstanceName,
+                    filterContext.Exception.Message,
+                    ContentConstants.DefaultDeleteActionLinkTitle,
+                    AreasConstants.ArticlesAreaName);
+            }
+            else
+            {
+                filterContext.Result = this.DefaultErrorView(
+                    InstanceName,
+                    filterContext.Exception.Message,
+                    ContentConstants.DefaultDeleteActionLinkTitle,
+                    AreasConstants.ArticlesAreaName);
+            }
+
+            filterContext.ExceptionHandled = true;
         }
     }
 }
