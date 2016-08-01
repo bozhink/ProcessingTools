@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Common.Models
+﻿namespace ProcessingTools.Web.Common.ViewModels
 {
     public abstract class NamedViewModel
     {

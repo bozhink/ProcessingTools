@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Geo.Data.Common.Constants;
-    using ProcessingTools.Web.Common.Models;
+    using ProcessingTools.Web.Common.ViewModels;
 
     public class ContinentViewModel : NamedViewModel
     {

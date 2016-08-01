@@ -17,6 +17,7 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
 
@@ -201,12 +202,12 @@
         {
             try
             {
-                int pageNumber = p ?? PagingConstants.DefaultPageNumber;
-                int itemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+                int currentPage = p ?? PagingConstants.DefaultPageNumber;
+                int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
                 var userId = User.Identity.GetUserId();
 
-                var viewModels = (await this.service.All(userId, this.fakeArticleId, pageNumber, itemsPerPage))
+                var items = (await this.service.All(userId, this.fakeArticleId, currentPage, numberOfItemsPerPage))
                     .Select(d => new DocumentViewModel
                     {
                         Id = d.Id,
@@ -214,17 +215,14 @@
                         DateCreated = d.DateCreated,
                         DateModified = d.DateModified
                     })
-                    .ToList();
+                    .ToArray();
 
                 var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
 
-                this.ViewBag.PageNumber = pageNumber;
-                this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
-                this.ViewBag.NumberOfPages = (numberOfDocuments % itemsPerPage) == 0 ? numberOfDocuments / itemsPerPage : (numberOfDocuments / itemsPerPage) + 1;
-                this.ViewBag.ActionName = nameof(this.Index);
+                var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(viewModels);
+                return this.View(viewModel);
             }
             catch (InvalidPageNumberException e)
             {

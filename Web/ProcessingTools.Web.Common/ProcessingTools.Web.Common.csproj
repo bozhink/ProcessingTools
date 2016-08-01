@@ -42,7 +42,9 @@
     <Compile Include="Constants\RouteConstants.cs" />
     <Compile Include="Constants\SectionNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
-    <Compile Include="Models\NamedViewModel.cs" />
+    <Compile Include="ViewModels\Contracts\IPagingViewModel.cs" />
+    <Compile Include="ViewModels\ListWithPagingViewModel.cs" />
+    <Compile Include="ViewModels\NamedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

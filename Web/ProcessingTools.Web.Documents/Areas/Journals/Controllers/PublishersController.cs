@@ -16,6 +16,7 @@
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers;
     using ProcessingTools.Web.Documents.Extensions;
 
@@ -43,10 +44,10 @@
         {
             try
             {
-                int pageNumber = p ?? PagingConstants.DefaultPageNumber;
-                int itemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+                int currentPage = p ?? PagingConstants.DefaultPageNumber;
+                int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
-                var viewModels = (await this.service.All(pageNumber, itemsPerPage))
+                var items = (await this.service.All(currentPage, numberOfItemsPerPage))
                     .Select(e => new PublisherViewModel
                     {
                         Id = e.Id,
@@ -55,17 +56,14 @@
                         DateCreated = e.DateCreated,
                         DateModified = e.DateModified
                     })
-                    .ToList();
+                    .ToArray();
 
                 var numberOfDocuments = await this.service.Count();
 
-                this.ViewBag.PageNumber = pageNumber;
-                this.ViewBag.NumberOfItemsPerPage = itemsPerPage;
-                this.ViewBag.NumberOfPages = (numberOfDocuments % itemsPerPage) == 0 ? numberOfDocuments / itemsPerPage : (numberOfDocuments / itemsPerPage) + 1;
-                this.ViewBag.ActionName = nameof(this.Index);
+                var viewModel = new ListWithPagingViewModel<PublisherViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
                 this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(viewModels);
+                return this.View(viewModel);
             }
             catch (InvalidPageNumberException e)
             {
