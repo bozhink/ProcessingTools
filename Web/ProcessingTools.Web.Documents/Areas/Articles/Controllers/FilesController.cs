@@ -29,23 +29,16 @@
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
 
-        private readonly IXmlPresenter presenter;
         private readonly IDocumentsDataService service;
 
-        public FilesController(IDocumentsDataService service, IXmlPresenter presenter)
+        public FilesController(IDocumentsDataService service)
         {
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
-            if (presenter == null)
-            {
-                throw new ArgumentNullException(nameof(presenter));
-            }
-
             this.service = service;
-            this.presenter = presenter;
         }
 
         public static string ControllerName => ControllerConstants.FilesControllerName;
