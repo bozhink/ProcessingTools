@@ -8,6 +8,11 @@
         public const string HomeActionLinkTitle = "Home";
         public const string AboutActionLinkTitle = "About";
         public const string ContactActionLinkTitle = "Contact";
+
+        public const string RegisterActionLinkTitle = "Register";
+        public const string LoginActionLinkTitle = "Log in";
+        public const string LogoutActionLinkTitle = "Log off";
+
         public const string DefaultCreateActionLinkTitle = "Create New";
         public const string DefaultEditActionLinkTitle = "Edit";
         public const string DefaultIndexActionLinkTitle = "Index";
