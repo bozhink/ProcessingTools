@@ -64,7 +64,7 @@
     </bold>
   </xsl:template>
   
-  <xsl:template match="sec | tp:taxon-treatment | tp:treatment-sec">
+  <xsl:template match="sec | tp:treatment-sec">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <xsl:call-template name="generate-id">
