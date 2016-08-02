@@ -35,8 +35,6 @@
             this.service = service;
         }
 
-        public static string ControllerName => ControllerConstants.PublishersControllerName;
-
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: Journals/Publishers

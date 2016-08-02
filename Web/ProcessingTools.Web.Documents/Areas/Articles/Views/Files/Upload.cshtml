@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ProcessingTools.Extensions
+
+@{
     ViewBag.Title = ContentConstants.DeafultUploadPageTitle;
 }
 
@@ -17,7 +19,7 @@
 
     <hr />
 
-    @using (Html.BeginForm(nameof(FilesController.Upload), FilesController.ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm(nameof(FilesController.Upload), ControllerExtensions.GetControllerName<FilesController>(), FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-group">

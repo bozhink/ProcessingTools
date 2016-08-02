@@ -42,8 +42,6 @@
             this.publishersDataService = publishersDataService;
         }
 
-        public static string ControllerName => ControllerConstants.JournalsControllerName;
-
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: Journals/Journals

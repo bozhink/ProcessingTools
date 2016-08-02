@@ -41,8 +41,6 @@
             this.service = service;
         }
 
-        public static string ControllerName => ControllerConstants.FilesControllerName;
-
         // GET: Files/Delete/5
         [HttpGet]
         public async Task<ActionResult> Delete(Guid? id)

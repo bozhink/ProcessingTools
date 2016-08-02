@@ -29,8 +29,6 @@
             this.service = service;
         }
 
-        public static string ControllerName => ControllerConstants.ContinentsControllerName;
-
         // GET: GeoData/Continents/Create
         public ActionResult Create()
         {

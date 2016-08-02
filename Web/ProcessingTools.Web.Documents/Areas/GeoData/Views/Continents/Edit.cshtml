@@ -1,4 +1,5 @@
-﻿@using ProcessingTools.Web.Common.Constants
+﻿@using ProcessingTools.Extensions
+@using ProcessingTools.Web.Common.Constants
 @using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
 @using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
@@ -45,7 +46,7 @@
                 <a class="custom-tooltip">New<span class="custom-tooltiptext">Add new synonym</span></a>
                 <a class="custom-tooltip">Close<span class="custom-tooltiptext">Close mini-form</span></a>
             </label>
-            @using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ContinentsController.ControllerName, FormMethod.Post, htmlAttributes: new { @class = "add-new-hidden-form" }))
+            @using (Html.BeginForm(nameof(ContinentsController.AddNewSynonym), ControllerExtensions.GetControllerName<ContinentsController>(), FormMethod.Post, htmlAttributes: new { @class = "add-new-hidden-form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -64,7 +65,7 @@
     {
         foreach (var synonym in Model.Synonyms)
         {
-            using (Html.BeginForm(nameof(ContinentsController.RemoveSynonym), ContinentsController.ControllerName, FormMethod.Post))
+            using (Html.BeginForm(nameof(ContinentsController.RemoveSynonym), ControllerExtensions.GetControllerName<ContinentsController>(), FormMethod.Post))
             {
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
