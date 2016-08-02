@@ -21,6 +21,6 @@
         }
     }
 
-    document.addEventListener("keydown", keyDownEventListener);
+    document.addEventListener('keydown', keyDownEventListener, false);
 
 }(window, document));

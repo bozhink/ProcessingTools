@@ -175,6 +175,18 @@
         selection.insertNode(span);
     }
 
+    function clearTagsInSelection() {
+        var selection = window.getSelection().getRangeAt(0),
+            selectedText = selection.extractContents(),
+            span = document.createElement("span");
+        span.appendChild(selectedText);
+
+        span.innerHTML = span.innerHTML.replace(/<\/?[^<>]+>/g, '');
+        span.setAttribute('class', 'cleaned-selection');
+
+        selection.insertNode(span);
+    }
+
     function tagLink() {
         var selection = window.getSelection().getRangeAt(0),
             selectedText = selection.extractContents(),
@@ -454,6 +466,18 @@
         $menu.on('click', tagBibliographicCitation);
     };
 
+    function clearTagsInSelectionEventListener(event) {
+        var e = event || window.event;
+
+        // Ctrl + Delete
+        if (e.ctrlKey && e.which === 46) {
+            e.stopPropagation();
+            e.preventDefault();
+            clearTagsInSelection();
+            return false;
+        }
+    }
+
     // Events registration
     document
         .getElementById(SAVE_BUTTON_ID)
@@ -489,5 +513,8 @@
     document
         .getElementById('tag-bibliographic-citations-menu-item')
         .addEventListener('click', tagBibliographicCitationEventListener, false);
+
+    document
+        .addEventListener('keydown', clearTagsInSelectionEventListener, false);
 
 }(window, document, window.jQuery));
