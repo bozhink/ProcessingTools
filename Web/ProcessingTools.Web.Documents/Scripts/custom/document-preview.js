@@ -22,27 +22,31 @@
 
     interactConfig.registerDragabbleBehavior('.draggable');
 
-    function addBalloon(selector, contentSelector) {
+    function createBaloon(event, contentSelector) {
+        var e = event || window.event,
+            rid = e.target.getAttribute('href'),
+            $aside = $(mainAside),
+            $baloon;
+
         contentSelector = contentSelector || '';
 
-        $(selector)
-            .hover(function (event) {
-                var $that = $(event.target),
-                    rid = $that.attr('href');
+        $aside.find('.balloon').remove();
 
-                $('<div>')
-                    .attr('role', 'tooltip')
-                    .addClass('custom-tooltiptext')
-                    .text($(rid + contentSelector).text())
-                    .appendTo($that);
-
-                $that.addClass('custom-tooltip');
-            }, function (event) {
-                $(event.target)
-                    .removeClass('custom-tooltip')
-                    .find('.custom-tooltiptext')
-                    .remove();
+        $baloon = $('<div>')
+            .attr('role', 'balloon')
+            .addClass('balloon')
+            .text($(rid + contentSelector).text())
+            .css({
+                'top': (e.clientY + 10) + 'px',
+                'left': (e.clientX - 20) + 'px'
             });
+
+        $baloon.appendTo($aside);
+    }
+
+    function removeBalloon() {
+        var $aside = $(mainAside);
+        $aside.find('.balloon').remove();
     }
 
     function getContentCallback() {
@@ -60,14 +64,8 @@
         }
     }
 
-    function getAfterAction() {
-        addBalloon('.xref.bibr');
-        addBalloon('.xref.fig', ' .caption');
-        addBalloon('.xref.table', ' .caption');
-    }
-
     window.getLinkAddress = document.getElementById(GET_LINK_ID).href;
-    documentController.registerGetAction(setContentCallback, getAfterAction);
+    documentController.registerGetAction(setContentCallback);
 
     window.saveLinkAddress = document.getElementById(SAVE_LINK_ID).href;
     documentController.registerSaveAction(getContentCallback);
@@ -223,11 +221,7 @@
         }
 
         if (attributes) {
-            console.log(JSON.stringify(attributes));
-
             for (attribute in attributes) {
-                console.log(attribute);
-                console.log(attributes[attribute]);
                 tagElement.setAttribute(attribute, attributes[attribute]);
             }
         }
@@ -514,6 +508,43 @@
         }
     }
 
+    function mouseoverXrefEventLstener(event) {
+        var e = event || window.event,
+            target = e.target;
+
+        if (target.classList.contains('xref')) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            if (target.classList.contains('bibr')) {
+                createBaloon(e);
+            }
+
+            if (target.classList.contains('fig')) {
+                createBaloon(e, ' .caption');
+            }
+
+            if (target.classList.contains('table')) {
+                createBaloon(e, ' .caption');
+            }
+
+            return false;
+        }
+    }
+
+    function mouseoutXrefEventListener(event) {
+        var e = event || window.event,
+            target = e.target;
+        if (target.classList.contains('xref')) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            removeBalloon();
+
+            return false;
+        }
+    }
+
     // Events registration
     document
         .getElementById(SAVE_BUTTON_ID)
@@ -552,5 +583,13 @@
 
     document
         .addEventListener('keydown', keyDownEventListener, false);
+
+    document
+        .getElementById(CONTENT_ELEMENT_ID)
+        .addEventListener('mouseover', mouseoverXrefEventLstener, false);
+
+    document
+        .getElementById(CONTENT_ELEMENT_ID)
+        .addEventListener('mouseout', mouseoutXrefEventListener, false);
 
 }(window, document, window.jQuery));
