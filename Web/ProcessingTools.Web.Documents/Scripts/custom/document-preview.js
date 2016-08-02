@@ -256,6 +256,18 @@
         tag('a', elemName, className, attributes);
     }
 
+    function tagInBold() {
+        tag('b', 'bold', 'bold');
+    }
+
+    function tagInItalic() {
+        tag('i', 'italic', 'italic');
+    }
+
+    function tagInUnderline() {
+        tag('u', 'underline', 'underline');
+    }
+
     // Event listeners
     function listAnchorClickEventListener(event) {
         const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
@@ -466,7 +478,7 @@
         $menu.on('click', tagBibliographicCitation);
     };
 
-    function clearTagsInSelectionEventListener(event) {
+    function keyDownEventListener(event) {
         var e = event || window.event;
 
         // Ctrl + Delete
@@ -474,6 +486,30 @@
             e.stopPropagation();
             e.preventDefault();
             clearTagsInSelection();
+            return false;
+        }
+
+        // Ctrl + B
+        if (e.ctrlKey && e.which === 66) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagInBold();
+            return false;
+        }
+
+        // Ctrl + I
+        if (e.ctrlKey && e.which === 73) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagInItalic();
+            return false;
+        }
+
+        // Ctrl + U
+        if (e.ctrlKey && e.which === 85) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagInUnderline();
             return false;
         }
     }
@@ -515,6 +551,6 @@
         .addEventListener('click', tagBibliographicCitationEventListener, false);
 
     document
-        .addEventListener('keydown', clearTagsInSelectionEventListener, false);
+        .addEventListener('keydown', keyDownEventListener, false);
 
 }(window, document, window.jQuery));

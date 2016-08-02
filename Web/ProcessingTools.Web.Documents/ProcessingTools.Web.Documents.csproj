@@ -415,7 +415,6 @@
     <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
     <Content Include="bower.json" />
     <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\_HiddenLinks.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

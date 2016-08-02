@@ -1,4 +1,6 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel
+﻿@using ProcessingTools.Extensions
+
+@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel
 
 @{
     ViewBag.Title = ContentConstants.DeafultEditPageTitle;
@@ -36,7 +38,20 @@
 
 <div class="clearfix"></div>
 
-@Html.Partial(ViewNames.HiddenLinksPartialViewName)
+<aside style="display: none;">
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultGetActionLinkTitle,
+        actionName: nameof(DocumentContentController.GetXml),
+        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultSaveActionLinkTitle,
+        actionName: nameof(DocumentContentController.SaveXml),
+        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "save-link" })
+</aside>
 
 @section Scripts {
     @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
