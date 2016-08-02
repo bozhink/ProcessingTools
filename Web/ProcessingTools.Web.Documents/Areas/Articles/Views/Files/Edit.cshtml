@@ -36,20 +36,7 @@
 
 <div class="clearfix"></div>
 
-<aside style="display: none;">
-    @Html.ActionLink(
-        linkText: ContentConstants.DefaultGetActionLinkTitle,
-        actionName: nameof(DocumentContentController.GetXml),
-        controllerName: ControllerConstants.DocumentContentControllerName,
-        routeValues: new { id = Model.Id },
-        htmlAttributes: new { id = "get-link" })
-    @Html.ActionLink(
-        linkText: ContentConstants.DefaultSaveActionLinkTitle,
-        actionName: nameof(DocumentContentController.SaveXml),
-        controllerName: ControllerConstants.DocumentContentControllerName,
-        routeValues: new { id = Model.Id },
-        htmlAttributes: new { id = "save-link" })
-</aside>
+@Html.Partial(ViewNames.HiddenLinksPartialViewName)
 
 @section Scripts {
     @Scripts.Render(BundleNames.CryptoJSScriptBundleName)

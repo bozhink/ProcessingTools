@@ -6,6 +6,8 @@
 
         public const string LoginPartialViewName = "_LoginPartial";
 
+        public const string HiddenLinksPartialViewName = "_HiddenLinks";
+
         public const string NavigationFootPartialViewName = "~/Views/Shared/_NavigationFoot.cshtml";
 
         public const string BadRequestErrorViewName = "~/Views/Shared/Errors/BadRequest.cshtml";

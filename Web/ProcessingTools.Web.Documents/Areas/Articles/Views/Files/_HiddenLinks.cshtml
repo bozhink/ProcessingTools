@@ -1,0 +1,16 @@
+﻿@using ProcessingTools.Extensions
+
+<aside style="display: none;">
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultGetActionLinkTitle,
+        actionName: nameof(DocumentContentController.GetHtml),
+        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(
+        linkText: ContentConstants.DefaultSaveActionLinkTitle,
+        actionName: nameof(DocumentContentController.SaveHtml),
+        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        routeValues: new { id = Model.Id },
+        htmlAttributes: new { id = "save-link" })
+</aside>
