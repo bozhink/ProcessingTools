@@ -4,14 +4,24 @@
     using System.Linq;
 
     using DataContracts;
-
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
+    using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-
+    using ProcessingTools.Net.Factories;
     using ServiceContracts;
 
     public class GbifClassificationService : IGbifClassificationService
     {
         private readonly IGbifTaxaClassificationDataService service;
+
+        // TODO
+        public GbifClassificationService()
+            : this(
+                  new GbifTaxaClassificationDataService(
+                      new GbifApiV09DataRequester(
+                          new NetConnectorFactory())))
+        {
+        }
 
         public GbifClassificationService(IGbifTaxaClassificationDataService service)
         {
