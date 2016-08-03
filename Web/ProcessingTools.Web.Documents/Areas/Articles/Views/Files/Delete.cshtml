@@ -1,0 +1,85 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel
+
+@{
+    ViewBag.Title = ContentConstants.DeafultDeletePageTitle;
+}
+
+<header>
+    <h2>
+        @ContentConstants.DeafultDeletePageHeading
+    </h2>
+</header>
+
+<section>
+    <header>
+        <h4>
+            @InstanceNames.FilesControllerInstanceName
+        </h4>
+    </header>
+
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileExtension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileExtension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentLength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentLength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color separated-items">
+            <span class="item">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </span>
+            <span class="item">
+                @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+            </span>
+        </div>
+    }
+</section>

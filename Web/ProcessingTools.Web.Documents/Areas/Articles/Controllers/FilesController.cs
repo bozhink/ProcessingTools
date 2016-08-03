@@ -39,8 +39,8 @@
             this.service = service;
         }
 
-        // GET: Files/Delete/5
-        [HttpGet]
+        // GET: /Articles/Files/Delete/5
+        [HttpGet, ActionName(ActionNames.DeafultDeleteActionName)]
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -48,20 +48,34 @@
                 return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
+            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+
+            var model = new DocumentViewModel
+            {
+                Id = id.ToString(),
+                FileName = document.FileName,
+                FileExtension = document.FileExtension,
+                ContentType = document.ContentType,
+                ContentLength = document.ContentLength,
+                DateCreated = document.DateCreated,
+                DateModified = document.DateModified
+            };
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(model);
+        }
+
+        // POST: /Articles/Files/Delete/5
+        [HttpPost, ActionName(ActionNames.DeafultDeleteActionName)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(Guid id)
+        {
             await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        // POST: Files/Delete/5
-        [HttpPost]
-        public ActionResult Delete(Guid? id, FormCollection collection)
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.RedirectToAction(nameof(this.Index));
-        }
-
-        // GET: Files/Details/5
+        // GET: /Articles/Files/Details/5
         [HttpGet]
         public async Task<ActionResult> Details(Guid? id)
         {
@@ -87,7 +101,7 @@
             return this.View(model);
         }
 
-        // GET: Files/Download/5
+        // GET: /Articles/Files/Download/5
         [HttpGet]
         public async Task<ActionResult> Download(Guid? id)
         {
@@ -106,7 +120,7 @@
                 fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
         }
 
-        // GET: Files/Edit/5
+        // GET: /Articles/Files/Edit/5
         [HttpGet]
         public ActionResult Edit(Guid? id)
         {
@@ -130,7 +144,7 @@
         /// <param name="p">Page number.</param>
         /// <param name="n">Number of items per page.</param>
         /// <returns></returns>
-        /// <example>GET: Files</example>
+        /// <example>GET: /Articles/Files</example>
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
@@ -157,7 +171,7 @@
             return this.View(viewModel);
         }
 
-        // GET: Files/Preview/5
+        // GET: /Articles/Files/Preview/5
         [HttpGet]
         public ActionResult Preview(Guid? id)
         {
@@ -175,7 +189,7 @@
             return this.View(model);
         }
 
-        // GET: Files/Upload
+        // GET: /Articles/Files/Upload
         [HttpGet]
         public ActionResult Upload()
         {
@@ -183,7 +197,7 @@
             return this.View();
         }
 
-        // POST: Files/Upload
+        // POST: /Articles/Files/Upload
         [HttpPost]
         public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
         {
@@ -238,12 +252,15 @@
 
         protected override void OnException(ExceptionContext filterContext)
         {
+            // TODO
+            string actionName = this.Request.RequestContext.RouteData.Values["action"].ToString();
+
             if (filterContext.Exception is EntityNotFoundException)
             {
                 filterContext.Result = this.DefaultNotFoundView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
-                    ContentConstants.DefaultDeleteActionLinkTitle,
+                    actionName,
                     AreasConstants.ArticlesAreaName);
             }
             else if (filterContext.Exception is InvalidPageNumberException)
@@ -251,7 +268,7 @@
                 filterContext.Result = this.InvalidPageNumberErrorView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
-                    ContentConstants.DefaultBackToListActionLinkTitle,
+                    actionName,
                     AreasConstants.ArticlesAreaName);
             }
             else if (filterContext.Exception is InvalidItemsPerPageException)
@@ -259,7 +276,7 @@
                 filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
-                    ContentConstants.DefaultBackToListActionLinkTitle,
+                    actionName,
                     AreasConstants.ArticlesAreaName);
             }
             else if (filterContext.Exception is ArgumentException)
@@ -267,7 +284,7 @@
                 filterContext.Result = this.BadRequestErrorView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
-                    ContentConstants.DefaultDeleteActionLinkTitle,
+                    actionName,
                     AreasConstants.ArticlesAreaName);
             }
             else
