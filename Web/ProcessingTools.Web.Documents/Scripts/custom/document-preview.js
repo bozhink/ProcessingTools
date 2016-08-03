@@ -17,7 +17,6 @@
         jsonRequester = new window.JsonRequester(),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,
-        template = new window.Template('../../../Content/Templates'),
         mainAside = document.getElementById(MAIN_ASIDE_ID);
 
     interactConfig.registerDragabbleBehavior('.draggable');
@@ -73,108 +72,7 @@
     // Fetch content
     window.get();
 
-    // Event listeners
-    function listAnchorClickEventListener(event) {
-        const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
-        var e = event || window.event,
-            target = e.target,
-            href,
-            $target;
-
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (!target) {
-            return false;
-        }
-
-        if (target.classList.contains('coordinate-item')) {
-            href = target.getAttribute('href');
-            $target = $(href);
-
-            $('html, body').animate({
-                scrollTop: $target.offset().top - 250 + 'px'
-            }, 'fast');
-
-            $target.addClass(TEXT_TO_SCROLL_CLASS_NAME);
-            setTimeout(function () {
-                $target.removeClass(TEXT_TO_SCROLL_CLASS_NAME);
-            }, 1500);
-
-            return false;
-        }
-    }
-
-    function clickMinimizeButtonEventHandler(event) {
-        var e = event || window.event,
-            target = e.target,
-            toolbox,
-            body;
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode;
-                if (toolbox instanceof HTMLElement) {
-                    body = toolbox.querySelector('.panel-body');
-                }
-
-                if (body instanceof HTMLElement) {
-                    body.style.display = 'none';
-                    toolbox.style.height = '60px';
-                }
-            } catch (ex) {
-                console.error(ex);
-            }
-        }
-    }
-
-    function clickMaximizeButtonEventHandler(event) {
-        var e = event || window.event,
-            target = e.target,
-            toolbox,
-            body;
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode;
-                if (toolbox instanceof HTMLElement) {
-                    body = toolbox.querySelector('.panel-body');
-                }
-
-                if (body instanceof HTMLElement) {
-                    body.style.display = 'block';
-                    toolbox.style.height = '400px';
-                }
-            } catch (ex) {
-                console.error(ex);
-            }
-        }
-    }
-
-    function clickCloseButtonEventHandler(event) {
-        var e = event || window.event,
-            target = e.target,
-            toolbox;
-        e.stopPropagation();
-        e.preventDefault();
-
-        if (target) {
-            try {
-                toolbox = target.parentNode.parentNode.parentNode;
-                if (toolbox instanceof HTMLElement) {
-                    toolbox.parentNode.removeChild(toolbox);
-                    document.body.style.cursor = 'auto';
-                }
-            } catch (ex) {
-                console.error(ex);
-            }
-        }
-    }
-
+    // Event handlers
     function tagBibliographicCitation(event) {
         var e = event || window.event,
             rid = e.target.getAttribute('rid');
@@ -183,49 +81,49 @@
         window.htmlSelectionTagger.tagInXref(rid, 'bibr');
     }
 
-    function getContentEventListener(event) {
+    function getContentEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.get();
     }
 
-    function saveContentEventListener(event) {
+    function saveContentEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.save();
     }
 
-    function emailThisPageEventListener(event) {
+    function emailThisPageEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.location = 'mailto:?body=' + window.location.href;
     }
 
-    function fooEventListener(event) {
+    function fooEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.htmlSelectionTagger.foo();
     }
 
-    function tagLinkEventListener(event) {
+    function tagLinkEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.htmlSelectionTagger.tagLink();
     }
 
-    function tagCoordinateEventListener(event) {
+    function tagCoordinateEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
         window.htmlSelectionTagger.tagInSpan('locality-coordinates');
     }
 
-    function tagbibliographyElementEventListener(event) {
+    function tagbibliographyElementEventHandler(event) {
         var e = event || window.event,
             elementName = e.target.id.toString().substr(10);
         e.stopPropagation();
@@ -233,7 +131,7 @@
         window.htmlSelectionTagger.tagInMark(elementName);
     }
 
-    function tagBibliographicCitationEventListener(event) {
+    function tagBibliographicCitationEventHandler(event) {
         var e = event || window.event,
             $aside = $('#' + MAIN_ASIDE_ID),
             $target = $(e.target),
@@ -269,7 +167,7 @@
         $menu.on('click', tagBibliographicCitation);
     }
 
-    function keyDownEventListener(event) {
+    function keyDownEventHandler(event) {
         var e = event || window.event;
 
         // Ctrl + Delete
@@ -329,7 +227,7 @@
         }
     }
 
-    function mouseoutXrefEventListener(event) {
+    function mouseoutXrefEventHandler(event) {
         var e = event || window.event,
             target = e.target;
         if (target.classList.contains('xref')) {
@@ -342,150 +240,58 @@
         }
     }
 
-    // Coordinates window
-    function getCoordinates() {
-        var result = [];
-        $('.named-content.geo-json').each(function (i, element) {
-            var $that = $(element),
-                id = $that.attr('id'),
-                coordinates = JSON.parse($that.attr('specific-use')).coordinates;
-
-            result.push({
-                id: id,
-                index: i,
-                latitude: coordinates[1],
-                longitude: coordinates[0]
-            });
-        });
-
-        return result;
-    }
-
-    function genrateCoordinatesListToolbox(selector) {
-        var toolboxSelector = '#coordinates-list-toolbox',
-            $aside = $(selector),
-            toolbox = {
-                title: 'Coordinates',
-                coordinates: getCoordinates()
-            };
-
-        // Remove all coordinates list toolboxes yet present.
-        $(toolboxSelector).remove();
-
-        template.get('coordinates-toolbox')
-            .then(function (template) {
-                $('<div>')
-                    .html(template(toolbox))
-                    .appendTo($aside);
-            })
-            .then(function () {
-                $(toolboxSelector + ' .panel-body .coordinates-list').on('click', listAnchorClickEventListener);
-
-                $(toolboxSelector + ' .minimize-button').on('click', clickMinimizeButtonEventHandler);
-                $(toolboxSelector + ' .maximize-button').on('click', clickMaximizeButtonEventHandler);
-                $(toolboxSelector + ' .close-button').on('click', clickCloseButtonEventHandler);
-            });
-    }
-
-    function genrateCoordinatesMapToolbox(selector) {
-        var toolboxSelector = '#coordinates-map-toolbox',
-            $aside = $(selector),
-            toolbox = {
-                title: 'Map',
-                coordinates: getCoordinates()
-            };
-
-        // Remove all coordinates list toolboxes yet present.
-        $(toolboxSelector).remove();
-
-        template.get('coordinates-map')
-            .then(function (template) {
-                var i,
-                    len,
-                    map,
-                    coordinate = [],
-                    coordinates = toolbox.coordinates,
-                    leaflet = window.L,
-                    $div = $('<div>');
-
-                // TODO: appendTo
-                $div.html(template({
-                    title: toolbox.title
-                })).appendTo($aside);
-
-                map = leaflet.map('coordinates-map').setView([0.0, 0.0], 0);
-
-                leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                len = coordinates.length;
-                for (i = 0; i < len; i += 1) {
-                    coordinate = [coordinates[i].latitude, coordinates[i].longitude];
-                    leaflet.marker(coordinate)
-                        .bindPopup(JSON.stringify(coordinate))
-                        .addTo(map);
-                }
-            })
-            .then(function () {
-                $(toolboxSelector + ' .minimize-button').on('click', clickMinimizeButtonEventHandler);
-                $(toolboxSelector + ' .maximize-button').on('click', clickMaximizeButtonEventHandler);
-                $(toolboxSelector + ' .close-button').on('click', clickCloseButtonEventHandler);
-            });
-    }
-
-    function genrateCoordinatesListToolboxEventListener(event) {
+    function genrateCoordinatesListToolboxEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
-        genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
+        window.coordinatesToolboxes.genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
     }
 
-    function genrateCoordinatesMapToolboxEventListener(event) {
+    function genrateCoordinatesMapToolboxEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
         e.preventDefault();
-        genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
+        window.coordinatesToolboxes.genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
     }
 
     // Events registration
     document
         .getElementById(SAVE_BUTTON_ID)
-        .addEventListener('click', saveContentEventListener, false);
+        .addEventListener('click', saveContentEventHandler, false);
     document
         .getElementById(REFRESH_BUTTON_ID)
-        .addEventListener('click', getContentEventListener, false);
+        .addEventListener('click', getContentEventHandler, false);
     document
         .getElementById('window-coordinates')
-        .addEventListener('click', genrateCoordinatesListToolboxEventListener, false);
+        .addEventListener('click', genrateCoordinatesListToolboxEventHandler, false);
     document
         .getElementById('window-map')
-        .addEventListener('click', genrateCoordinatesMapToolboxEventListener, false);
+        .addEventListener('click', genrateCoordinatesMapToolboxEventHandler, false);
     document
         .getElementById('menu-item-refresh')
-        .addEventListener('click', getContentEventListener, false);
+        .addEventListener('click', getContentEventHandler, false);
     document
         .getElementById('menu-item-email-page')
-        .addEventListener('click', emailThisPageEventListener, false);
+        .addEventListener('click', emailThisPageEventHandler, false);
     document
         .getElementById('menu-item-foo')
-        .addEventListener('click', fooEventListener, false);
+        .addEventListener('click', fooEventHandler, false);
     document
         .getElementById('menu-item-tag-link')
-        .addEventListener('click', tagLinkEventListener, false);
+        .addEventListener('click', tagLinkEventHandler, false);
     document
         .getElementById('menu-item-tag-coordinate')
-        .addEventListener('click', tagCoordinateEventListener, false);
+        .addEventListener('click', tagCoordinateEventHandler, false);
     document
         .getElementById('menu-item-bibliography')
-        .addEventListener('click', tagbibliographyElementEventListener, false);
+        .addEventListener('click', tagbibliographyElementEventHandler, false);
 
     document
         .getElementById('tag-bibliographic-citations-menu-item')
-        .addEventListener('click', tagBibliographicCitationEventListener, false);
+        .addEventListener('click', tagBibliographicCitationEventHandler, false);
 
     document
-        .addEventListener('keydown', keyDownEventListener, false);
+        .addEventListener('keydown', keyDownEventHandler, false);
 
     document
         .getElementById(CONTENT_ELEMENT_ID)
@@ -493,6 +299,5 @@
 
     document
         .getElementById(CONTENT_ELEMENT_ID)
-        .addEventListener('mouseout', mouseoutXrefEventListener, false);
-
+        .addEventListener('mouseout', mouseoutXrefEventHandler, false);
 }(window, document, window.jQuery));

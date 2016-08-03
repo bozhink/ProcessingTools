@@ -92,6 +92,8 @@
                     "~/Scripts/controllers/documents/document-controller.js",
                     "~/Scripts/app/template.js",
                     "~/Scripts/custom/html-selection-tagger.js",
+                    "~/Scripts/custom/toolbox-event-handlers.js",
+                    "~/Scripts/custom/coordinates-toolboxes.js",
                     "~/Scripts/custom/document-preview.js"));
 
             bundles

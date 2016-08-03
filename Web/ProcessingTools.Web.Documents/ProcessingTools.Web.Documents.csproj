@@ -385,6 +385,7 @@
     <Content Include="Scripts\app\template.js" />
     <Content Include="Scripts\controllers\documents\document-controller.js" />
     <Content Include="Scripts\custom\auto-save.js" />
+    <Content Include="Scripts\custom\coordinates-toolboxes.js" />
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
     <Content Include="Scripts\config\interact-config.js" />
@@ -393,6 +394,7 @@
     <Content Include="Scripts\custom\key-bindings.js" />
     <Content Include="Scripts\config\monaco-editor-config.js" />
     <Content Include="Scripts\config\toastr-config.js" />
+    <Content Include="Scripts\custom\toolbox-event-handlers.js" />
     <Content Include="Scripts\data\documents\document-content-data.js" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFile.cshtml" />
