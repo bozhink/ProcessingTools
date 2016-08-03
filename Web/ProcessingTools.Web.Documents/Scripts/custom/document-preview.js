@@ -179,7 +179,7 @@
             span = document.createElement("span");
         span.appendChild(selectedText);
 
-        span.innerHTML = span.innerHTML.replace(/<\/?[^<>]+>/g, '');
+        span.innerHTML = span.innerHTML.replace(/<\/?[^!<>]+>/g, '');
         span.setAttribute('class', 'cleaned-selection');
 
         selection.insertNode(span);
