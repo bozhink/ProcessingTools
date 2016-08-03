@@ -22,7 +22,6 @@
 
     public class PublishersController : Controller
     {
-        public const string InstanceName = "Publisher";
         private readonly IPublishersDataService service;
 
         public PublishersController(IPublishersDataService service)
@@ -65,19 +64,19 @@
             }
             catch (InvalidPageNumberException e)
             {
-                return this.InvalidPageNumberErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.InvalidPageNumberErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (InvalidItemsPerPageException e)
             {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -86,7 +85,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -110,15 +109,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -151,11 +150,11 @@
                 }
                 catch (ArgumentException e)
                 {
-                    return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
+                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
                 catch (Exception e)
                 {
-                    return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
+                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
             }
 
@@ -167,7 +166,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -178,15 +177,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -214,15 +213,15 @@
                 }
                 catch (EntityNotFoundException e)
                 {
-                    return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                    return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
                 catch (ArgumentException e)
                 {
-                    return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
                 catch (Exception e)
                 {
-                    return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
+                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.JournalsAreaName);
                 }
             }
 
@@ -234,7 +233,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
 
             try
@@ -245,15 +244,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 
@@ -269,15 +268,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.JournalsAreaName);
             }
         }
 

@@ -24,8 +24,6 @@
     [Authorize]
     public class FilesController : Controller
     {
-        public const string InstanceName = "File";
-
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
 
@@ -47,7 +45,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -69,7 +67,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -95,7 +93,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -114,7 +112,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             var model = new DocumentViewModel
@@ -165,7 +163,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             var model = new DocumentViewModel
@@ -191,7 +189,7 @@
         {
             if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                return this.NoFilesSelectedErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NoFilesSelectedErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             var userId = User.Identity.GetUserId();
@@ -231,7 +229,7 @@
             if (invalidFiles.Count > 0)
             {
                 this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                return this.InvalidOrEmptyFileErrorView(InstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.InvalidOrEmptyFileErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -243,7 +241,7 @@
             if (filterContext.Exception is EntityNotFoundException)
             {
                 filterContext.Result = this.DefaultNotFoundView(
-                    InstanceName,
+                    InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
                     ContentConstants.DefaultDeleteActionLinkTitle,
                     AreasConstants.ArticlesAreaName);
@@ -251,7 +249,7 @@
             else if (filterContext.Exception is InvalidPageNumberException)
             {
                 filterContext.Result = this.InvalidPageNumberErrorView(
-                    InstanceName,
+                    InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
                     ContentConstants.DefaultBackToListActionLinkTitle,
                     AreasConstants.ArticlesAreaName);
@@ -259,7 +257,7 @@
             else if (filterContext.Exception is InvalidItemsPerPageException)
             {
                 filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
-                    InstanceName,
+                    InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
                     ContentConstants.DefaultBackToListActionLinkTitle,
                     AreasConstants.ArticlesAreaName);
@@ -267,7 +265,7 @@
             else if (filterContext.Exception is ArgumentException)
             {
                 filterContext.Result = this.BadRequestErrorView(
-                    InstanceName,
+                    InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
                     ContentConstants.DefaultDeleteActionLinkTitle,
                     AreasConstants.ArticlesAreaName);
@@ -275,7 +273,7 @@
             else
             {
                 filterContext.Result = this.DefaultErrorView(
-                    InstanceName,
+                    InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
                     ContentConstants.DefaultDeleteActionLinkTitle,
                     AreasConstants.ArticlesAreaName);

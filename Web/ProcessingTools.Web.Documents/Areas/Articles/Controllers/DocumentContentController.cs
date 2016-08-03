@@ -38,8 +38,6 @@
             this.presenter = presenter;
         }
 
-        public string InstanceName => InstanceNames.DocumentContentControllerInstanceName;
-
         // GET: Articles/DocumentContent
         [HttpGet]
         public ActionResult Index()
