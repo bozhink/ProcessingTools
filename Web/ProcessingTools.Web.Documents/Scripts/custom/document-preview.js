@@ -185,49 +185,55 @@
         selection.insertNode(span);
     }
 
-    function tagLink() {
-        var selection = window.getSelection().getRangeAt(0),
-            selectedText = selection.extractContents(),
-            tag = document.createElement("a");
+    function tag(tagName, elemName, className, attributes, callback) {
+        var i,
+            len,
+            attribute,
+            range,
+            selectedText,
+            tagElement,
+            selection = window.getSelection();
 
-        tag.setAttribute('href', selectedText.toString().trim());
-        tag.setAttribute('target', '_blank');
-        tag.setAttribute('type', 'simple');
+        for (i = 0, len = selection.rangeCount; i < len; i += 1) {
+            tagElement = document.createElement(tagName)
+            tagElement.setAttribute('elem-name', elemName);
 
-        tag.setAttribute('xlink:type', 'simple');
-        tag.setAttribute('elem-name', 'ext-link');
-        tag.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+            if (!className) {
+                tagElement.setAttribute('class', elemName);
+            } else {
+                tagElement.setAttribute('class', className);
+            }
 
-        tag.appendChild(selectedText);
+            if (attributes) {
+                for (attribute in attributes) {
+                    tagElement.setAttribute(attribute, attributes[attribute]);
+                }
+            }
 
-        tag.setAttribute('href', tag.innerText);
-        tag.setAttribute('xlink:href', tag.innerText);
+            range = selection.getRangeAt(i);
+            selectedText = range.extractContents();
+            tagElement.appendChild(selectedText);
 
-        selection.insertNode(tag);
+            if (callback) {
+                callback(tagElement);
+            }
+
+            range.insertNode(tagElement);
+        }
     }
 
-    function tag(tagName, elemName, className, attributes) {
-        var selection = window.getSelection().getRangeAt(0),
-            selectedText = selection.extractContents(),
-            tagElement = document.createElement(tagName),
-            attribute;
-
-        tagElement.setAttribute('elem-name', elemName);
-
-        if (!className) {
-            tagElement.setAttribute('class', elemName);
-        } else {
-            tagElement.setAttribute('class', className);
-        }
-
-        if (attributes) {
-            for (attribute in attributes) {
-                tagElement.setAttribute(attribute, attributes[attribute]);
-            }
-        }
-
-        tagElement.appendChild(selectedText);
-        selection.insertNode(tagElement);
+    function tagLink() {
+        tag('a', 'ext-link', 'ext-link', {
+            'target': '_blank',
+            'type': 'simple',
+            'xlink:type': 'simple',
+            'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+            'ext-link-type': 'uri'
+        }, function (tagElement) {
+            var href = tagElement.innerText.trim();
+            tagElement.setAttribute('href', href);
+            tagElement.setAttribute('xlink:href', href);
+        });
     }
 
     function tagInSpan(elemName, className) {

@@ -25,9 +25,8 @@
         }
 
         function getMessage(obj) {
-            if (obj.responseText)
-            {
-                return obj.responseText;
+            if (obj.responseText) {
+                return JSON.stringify(obj.responseText);
             } else if (obj.Message) {
                 return obj.Message;
             } else {
