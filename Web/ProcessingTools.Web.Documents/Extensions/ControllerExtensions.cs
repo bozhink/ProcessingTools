@@ -70,7 +70,7 @@
                 new ActionMetaViewModel
                 {
                     ActionLinkText = ContentConstants.DefaultBackToListActionLinkTitle,
-                    ActionName = ControllerConstants.DeafultIndexActionName,
+                    ActionName = ActionNames.DeafultIndexActionName,
                     ControllerName = sourceAction.ControllerName,
                     AreaName = sourceAction.AreaName
                 });
@@ -107,7 +107,7 @@
                 new ActionMetaViewModel
                 {
                     ActionLinkText = ContentConstants.DefaultBackToListActionLinkTitle,
-                    ActionName = ControllerConstants.DeafultIndexActionName,
+                    ActionName = ActionNames.DeafultIndexActionName,
                     ControllerName = controllerName,
                     AreaName = areaName
                 });

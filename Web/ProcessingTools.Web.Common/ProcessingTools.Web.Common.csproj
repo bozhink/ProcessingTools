@@ -33,11 +33,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ActionNames.cs" />
     <Compile Include="Constants\AreasConstants.cs" />
     <Compile Include="Constants\BundleNames.cs" />
     <Compile Include="Constants\ContentConstants.cs" />
-    <Compile Include="Constants\ControllerConstants.cs" />
     <Compile Include="Constants\ControllerNames.cs" />
+    <Compile Include="Constants\InstanceNames.cs" />
     <Compile Include="Constants\RouteConstants.cs" />
     <Compile Include="Constants\SectionNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />

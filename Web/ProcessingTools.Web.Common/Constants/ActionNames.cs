@@ -1,16 +1,7 @@
 ﻿namespace ProcessingTools.Web.Common.Constants
 {
-    public static class ControllerConstants
+    public static class ActionNames
     {
-        public const string ContinentsControllerName = "Continents";
-        public const string FilesControllerName = "Files";
-
-        public const string DocumentContentControllerName = "DocumentContent";
-        public const string DocumentContentControllerInstanceName = "Document Content";
-
-        public const string JournalsControllerName = "Journals";
-        public const string PublishersControllerName = "Publishers";
-
         public const string DeafultIndexActionName = "Index";
         public const string DeafultDetailsActionName = "Details";
         public const string DeafultCreateActionName = "Create";

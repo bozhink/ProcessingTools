@@ -38,9 +38,9 @@
             this.presenter = presenter;
         }
 
-        public string ControllerName => ControllerConstants.DocumentContentControllerName;
+        public string ControllerName => ControllerNames.DocumentContentControllerName;
 
-        public string InstanceName => ControllerConstants.DocumentContentControllerInstanceName;
+        public string InstanceName => InstanceNames.DocumentContentControllerInstanceName;
 
         // GET: Articles/DocumentContent
         [HttpGet]
@@ -48,7 +48,7 @@
         {
             return this.RedirectToAction(
                 actionName: nameof(FilesController.Index),
-                controllerName: nameof(ControllerConstants.FilesControllerName));
+                controllerName: ControllerNames.FilesControllerName);
         }
 
         [HttpPut]
