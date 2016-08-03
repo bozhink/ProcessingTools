@@ -160,21 +160,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Biorepositories.Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data.Miners", "Data.Miners", "{9775F5D3-6EC7-4CB4-ACB0-AED3F17F8F84}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data.Miners.Tests", "Data.Miners.Tests", "{FB9B4337-2799-4D5D-8497-BD6D6C8AF08F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data.Miners", "Data.Miners", "{FB9B4337-2799-4D5D-8497-BD6D6C8AF08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners", "Data.Miners\Data.Miners\Data.Miners.csproj", "{294E2A9B-7B64-4854-9C6A-57CF8B407708}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners", "Services\Data.Miners\Data.Miners\Data.Miners.csproj", "{294E2A9B-7B64-4854-9C6A-57CF8B407708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Miners", "Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj", "{529760C1-9FA0-4187-B20C-B878A1D58774}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Miners", "Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj", "{529760C1-9FA0-4187-B20C-B878A1D58774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Miners", "Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj", "{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Miners", "Services\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj", "{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners.Tests", "Data.Miners.Tests\Data.Miners.Tests\Data.Miners.Tests.csproj", "{8CDF963E-05DC-4667-82E5-A79B19D881C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners.Tests", "Services.Tests\Data.Miners\Data.Miners.Tests\Data.Miners.Tests.csproj", "{8CDF963E-05DC-4667-82E5-A79B19D881C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Miners.Tests", "Data.Miners.Tests\Bio.Data.Miners.Tests\Bio.Data.Miners.Tests.csproj", "{5FA5BC67-47ED-4243-80E2-774E53D8244E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Miners.Tests", "Services.Tests\Data.Miners\Bio.Data.Miners.Tests\Bio.Data.Miners.Tests.csproj", "{5FA5BC67-47ED-4243-80E2-774E53D8244E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Miners.Tests", "Data.Miners.Tests\Geo.Data.Miners.Tests\Geo.Data.Miners.Tests.csproj", "{C3712B3B-D249-4C5E-AB38-95879398CF0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Miners.Tests", "Services.Tests\Data.Miners\Geo.Data.Miners.Tests\Geo.Data.Miners.Tests.csproj", "{C3712B3B-D249-4C5E-AB38-95879398CF0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners.Common", "Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj", "{D6BEA2BC-EBB9-4BAB-80C9-719631773576}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Miners.Common", "Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj", "{D6BEA2BC-EBB9-4BAB-80C9-719631773576}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wcf", "Wcf", "{C8C1CCF4-9DAB-44B1-ABDB-34064DE85646}"
 EndProject
@@ -1411,6 +1411,8 @@ Global
 		{50911551-200B-40C1-84C8-C10F66C5050B} = {E757A233-A56D-41CF-8719-4F84C0292E0C}
 		{AA7AB2A8-DAC5-4F5C-8838-0FDC4D22E66C} = {3F6EE0ED-A798-4F97-9ED5-9B2241BF7A91}
 		{B22DD52C-95D5-47D3-B48C-0EC692AB8051} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
+		{9775F5D3-6EC7-4CB4-ACB0-AED3F17F8F84} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{FB9B4337-2799-4D5D-8497-BD6D6C8AF08F} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{294E2A9B-7B64-4854-9C6A-57CF8B407708} = {9775F5D3-6EC7-4CB4-ACB0-AED3F17F8F84}
 		{529760C1-9FA0-4187-B20C-B878A1D58774} = {9775F5D3-6EC7-4CB4-ACB0-AED3F17F8F84}
 		{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A} = {9775F5D3-6EC7-4CB4-ACB0-AED3F17F8F84}

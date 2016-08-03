@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A}</ProjectGuid>
+    <ProjectGuid>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Geo.Data.Miners</RootNamespace>
-    <AssemblyName>ProcessingTools.Geo.Data.Miners</AssemblyName>
+    <RootNamespace>ProcessingTools.Data.Miners</RootNamespace>
+    <AssemblyName>ProcessingTools.Data.Miners</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -34,27 +34,40 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Miners\AltitudesDataMiner.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
-    <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
-    <Compile Include="Contracts\IGeoNamesDataMiner.cs" />
-    <Compile Include="Miners\CoordinatesDataMiner.cs" />
-    <Compile Include="Miners\GeoEpithetsDataMiner.cs" />
-    <Compile Include="Miners\GeoNamesDataMiner.cs" />
+    <Compile Include="Contracts\IAltitudesDataMiner.cs" />
+    <Compile Include="Contracts\IDatesDataMiner.cs" />
+    <Compile Include="Contracts\IGeographicDeviationsDataMiner.cs" />
+    <Compile Include="Contracts\IInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\INlmExternalLinksDataMiner.cs" />
+    <Compile Include="Contracts\IProductsDataMiner.cs" />
+    <Compile Include="Contracts\IQuantitiesDataMiner.cs" />
+    <Compile Include="Miners\DatesDataMiner.cs" />
+    <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
+    <Compile Include="Miners\InstitutionsDataMiner.cs" />
+    <Compile Include="Models\NlmExternalLink.cs" />
+    <Compile Include="Miners\NlmExternalLinksDataMiner.cs" />
+    <Compile Include="Miners\ProductsDataMiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Miners\QuantitiesDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
-      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
-      <Name>Geo.Services.Data</Name>
+    <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data.Miners.Common\Data.Miners.Common.csproj">
       <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>

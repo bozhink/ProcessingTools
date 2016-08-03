@@ -282,19 +282,19 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
       <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
       <Name>Bio.Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
       <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
       <Name>Data.Miners.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
       <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
       <Name>Geo.Data.Miners</Name>
     </ProjectReference>

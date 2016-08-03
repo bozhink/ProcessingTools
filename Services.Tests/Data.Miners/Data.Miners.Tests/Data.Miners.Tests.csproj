@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FA5BC67-47ED-4243-80E2-774E53D8244E}</ProjectGuid>
+    <ProjectGuid>{8CDF963E-05DC-4667-82E5-A79B19D881C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Bio.Data.Miners.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Bio.Data.Miners.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Data.Miners.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Data.Miners.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.5.16.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.5.16\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -52,12 +60,35 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegressionTests\InstitutionsDataMinerRegressionTests.cs" />
+    <Compile Include="RegressionTests\ProductsDataMinerRegressionTests.cs" />
+    <Compile Include="RegressionTests\Services\Fakes\FakeInstitutionsDataService.cs" />
+    <Compile Include="RegressionTests\Services\Fakes\FakeProductsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
-      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
-      <Name>Bio.Data.Miners</Name>
+    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
+      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
+      <Name>Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Data\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

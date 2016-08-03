@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3712B3B-D249-4C5E-AB38-95879398CF0A}</ProjectGuid>
+    <ProjectGuid>{5FA5BC67-47ED-4243-80E2-774E53D8244E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Geo.Data.Miners.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Geo.Data.Miners.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Bio.Data.Miners.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Bio.Data.Miners.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,13 +51,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CoordinatesDataMinerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
-      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
-      <Name>Geo.Data.Miners</Name>
+    <ProjectReference Include="..\..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
+      <Name>Bio.Data.Miners</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -44,15 +44,15 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>

@@ -61,43 +61,43 @@
     <Compile Include="Miners\SpecimenCountDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
       <Project>{b22dd52c-95d5-47d3-b48c-0ec692ab8051}</Project>
       <Name>Bio.Biorepositories.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Services.Data\Bio.Services.Data.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Services.Data\Bio.Services.Data.csproj">
       <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
       <Name>Bio.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
