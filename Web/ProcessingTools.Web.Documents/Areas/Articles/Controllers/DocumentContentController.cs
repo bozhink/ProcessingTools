@@ -19,7 +19,7 @@
     using Resources;
 
     [Authorize]
-    public class DocumentContentController : Controller, INamedInstanceController
+    public class DocumentContentController : Controller
     {
         private const int MaximalJsonLength = int.MaxValue;
 
@@ -37,8 +37,6 @@
 
             this.presenter = presenter;
         }
-
-        public string ControllerName => ControllerNames.DocumentContentControllerName;
 
         public string InstanceName => InstanceNames.DocumentContentControllerInstanceName;
 
