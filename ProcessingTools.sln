@@ -8,11 +8,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLibrary", "Infrastructu
 		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {BDE55FC4-E7D2-416D-A220-164CA99BD63B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Startup\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configurator", "Infrastructure\Configurator\Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Startup\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Desktop\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Infrastructure\Contracts\Contracts.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
 EndProject
@@ -38,7 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceClients", "ServiceClients", "{8D3D2D75-57E3-4A4A-818A-4DB83CA58575}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Startup", "Startup", "{2D346903-DBD6-46C9-A53B-A33E0C215BB2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{2D346903-DBD6-46C9-A53B-A33E0C215BB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.ZooBank", "ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj", "{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}"
 EndProject
@@ -66,7 +66,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy", "Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj", "{B2A9C868-B6FF-4F68-9B40-E9B8511F2598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager", "Startup\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj", "{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager", "Desktop\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj", "{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data", "Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
 EndProject
@@ -112,7 +112,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceClients.Tests", "Ser
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services.Tests", "Services.Tests", "{A8F2DE62-2B7F-468C-A11F-1D898147E484}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Startup.Tests", "Startup.Tests", "{1E79B9F1-0090-481F-8AAC-C9C580704061}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.Tests", "Desktop.Tests", "{1E79B9F1-0090-481F-8AAC-C9C580704061}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Tests", "Web.Tests", "{51421CB2-377E-4BEF-855D-7665332A722A}"
 EndProject
@@ -134,7 +134,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Services.Data.Tests", "Services.Tests\MediaType.Services.Data.Tests\MediaType.Services.Data.Tests.csproj", "{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Startup.Tests\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Desktop.Tests\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Tests", "Web.Tests\ProcessingTools.Web.Api.Tests\ProcessingTools.Web.Api.Tests.csproj", "{7F7CB56C-67AC-49A0-98B3-709F6100FAE0}"
 EndProject
@@ -188,13 +188,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Validation.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.UBio", "ServiceClients\Bio.Taxonomy.ServiceClient.UBio\Bio.Taxonomy.ServiceClient.UBio.csproj", "{2511DEBD-E702-4CBB-AC09-151DCF1B4CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSeeder", "Startup\DbSeeder\DbSeeder.csproj", "{A2274DFB-1408-48B0-B31D-EF1FE3613CDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSeeder", "Desktop\DbSeeder\DbSeeder.csproj", "{A2274DFB-1408-48B0-B31D-EF1FE3613CDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests", "ServiceClients.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests.csproj", "{4707CF90-BA41-48C1-9578-879AEE4E2F6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itis.Data", "Data\Itis.Data\Itis.Data.csproj", "{6556440C-9210-4E14-B5C0-F311692FA666}"
 EndProject
-Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Startup\Scripts\Scripts.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Desktop\Scripts\Scripts.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache", "Services\Services.Cache\Services.Cache.csproj", "{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66}"
 EndProject
@@ -270,7 +270,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Common", "Data\Bio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Tests", "Data.Tests\Bio.Data.Tests\Bio.Data.Tests.csproj", "{AED104D8-C598-45EA-964E-239DF950BDC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager.Tests", "Startup.Tests\NlmArchiveConsoleManager.Tests\NlmArchiveConsoleManager.Tests.csproj", "{EA38EF7B-B6DA-44A6-B26A-B314A8A32922}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager.Tests", "Desktop.Tests\NlmArchiveConsoleManager.Tests\NlmArchiveConsoleManager.Tests.csproj", "{EA38EF7B-B6DA-44A6-B26A-B314A8A32922}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Xml", "Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj", "{C6EF8C37-8756-4B8D-95C6-E410CD1A1323}"
 EndProject

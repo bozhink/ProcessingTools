@@ -62,7 +62,7 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Startup\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj">
+    <ProjectReference Include="..\..\Desktop\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj">
       <Project>{44bf1ef0-8900-4ac8-8f89-4526af34dbf2}</Project>
       <Name>NlmArchiveConsoleManager</Name>
     </ProjectReference>

@@ -144,7 +144,7 @@
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Startup\Tagger\Tagger.csproj">
+    <ProjectReference Include="..\..\Desktop\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>
       <Name>Tagger</Name>
     </ProjectReference>
