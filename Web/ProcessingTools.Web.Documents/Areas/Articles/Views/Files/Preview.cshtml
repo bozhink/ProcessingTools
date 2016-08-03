@@ -102,7 +102,7 @@
     <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
     <menu id="menu-item-bibliography" label="Bibliography">
         @{
-            var tags = new string[] { "article-title", "source", "volume", "issue", "fpage", "lpage", "comment" };
+            var tags = new string[] { "annotation", "article-title", "chapter-title", "collab", "comment", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "page-range", "part-title", "patent", "person-group", "pub-id", "publisher-loc", "publisher-name", "role", "season", "series", "size", "source", "std", "string-name", "sub", "sup", "supplement", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
             foreach (var tag in tags)
             {
                 <menuitem id="menu-item-@tag" label="Tag @tag"></menuitem>

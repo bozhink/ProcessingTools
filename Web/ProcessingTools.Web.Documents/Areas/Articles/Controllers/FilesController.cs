@@ -45,7 +45,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -81,7 +81,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -107,7 +107,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultDownloadActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -126,7 +126,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var model = new DocumentViewModel
@@ -177,7 +177,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultPreviewActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var model = new DocumentViewModel
@@ -203,7 +203,7 @@
         {
             if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                return this.NoFilesSelectedErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.NoFilesSelectedErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var userId = User.Identity.GetUserId();
@@ -243,7 +243,7 @@
             if (invalidFiles.Count > 0)
             {
                 this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                return this.InvalidOrEmptyFileErrorView(InstanceNames.FilesControllerInstanceName, string.Empty, ContentConstants.DefaultUploadNewFileActionLinkTitle, AreasConstants.ArticlesAreaName);
+                return this.InvalidOrEmptyFileErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -252,48 +252,35 @@
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            // TODO
-            string actionName = this.Request.RequestContext.RouteData.Values["action"].ToString();
-
             if (filterContext.Exception is EntityNotFoundException)
             {
                 filterContext.Result = this.DefaultNotFoundView(
                     InstanceNames.FilesControllerInstanceName,
-                    filterContext.Exception.Message,
-                    actionName,
-                    AreasConstants.ArticlesAreaName);
+                    filterContext.Exception.Message);
             }
             else if (filterContext.Exception is InvalidPageNumberException)
             {
                 filterContext.Result = this.InvalidPageNumberErrorView(
                     InstanceNames.FilesControllerInstanceName,
-                    filterContext.Exception.Message,
-                    actionName,
-                    AreasConstants.ArticlesAreaName);
+                    filterContext.Exception.Message);
             }
             else if (filterContext.Exception is InvalidItemsPerPageException)
             {
                 filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
                     InstanceNames.FilesControllerInstanceName,
-                    filterContext.Exception.Message,
-                    actionName,
-                    AreasConstants.ArticlesAreaName);
+                    filterContext.Exception.Message);
             }
             else if (filterContext.Exception is ArgumentException)
             {
                 filterContext.Result = this.BadRequestErrorView(
                     InstanceNames.FilesControllerInstanceName,
-                    filterContext.Exception.Message,
-                    actionName,
-                    AreasConstants.ArticlesAreaName);
+                    filterContext.Exception.Message);
             }
             else
             {
                 filterContext.Result = this.DefaultErrorView(
                     InstanceNames.FilesControllerInstanceName,
-                    filterContext.Exception.Message,
-                    ContentConstants.DefaultDeleteActionLinkTitle,
-                    AreasConstants.ArticlesAreaName);
+                    filterContext.Exception.Message);
             }
 
             filterContext.ExceptionHandled = true;
