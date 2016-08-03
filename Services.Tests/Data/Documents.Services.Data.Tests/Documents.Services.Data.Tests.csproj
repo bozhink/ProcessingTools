@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8CDF963E-05DC-4667-82E5-A79B19D881C2}</ProjectGuid>
+    <ProjectGuid>{A8B3DC1A-BD6F-43E6-BAF8-09073F44B2EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Data.Miners.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Data.Miners.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Documents.Services.Data.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Documents.Services.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,7 +43,13 @@
       <HintPath>..\..\packages\Moq.4.5.16\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -60,35 +65,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegressionTests\InstitutionsDataMinerRegressionTests.cs" />
-    <Compile Include="RegressionTests\ProductsDataMinerRegressionTests.cs" />
-    <Compile Include="RegressionTests\Services\Fakes\FakeInstitutionsDataService.cs" />
-    <Compile Include="RegressionTests\Services\Fakes\FakeProductsDataService.cs" />
+    <Compile Include="XmlPresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
-      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
-      <Name>Data.Miners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
-      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
-      <Name>Services.Data</Name>
+    <ProjectReference Include="..\..\..\Services\Data\Documents.Services.Data\Documents.Services.Data.csproj">
+      <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
+      <Name>Documents.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

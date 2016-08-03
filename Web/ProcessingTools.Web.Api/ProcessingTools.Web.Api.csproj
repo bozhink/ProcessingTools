@@ -486,23 +486,23 @@
       <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Services.Data\Bio.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Bio.Services.Data\Bio.Services.Data.csproj">
       <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
       <Name>Bio.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Geo.Services.Data\Geo.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
       <Name>Geo.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Mediatype.Services.Data\MediaType.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>MediaType.Services.Data</Name>
     </ProjectReference>
@@ -510,7 +510,7 @@
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>

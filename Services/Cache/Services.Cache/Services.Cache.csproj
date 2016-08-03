@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A}</ProjectGuid>
+    <ProjectGuid>{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Geo.Data.Miners</RootNamespace>
-    <AssemblyName>ProcessingTools.Geo.Data.Miners</AssemblyName>
+    <RootNamespace>ProcessingTools.Services.Cache</RootNamespace>
+    <AssemblyName>ProcessingTools.Services.Cache</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,34 +30,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICoordinatesDataMiner.cs" />
-    <Compile Include="Contracts\IGeoEpithetsDataMiner.cs" />
-    <Compile Include="Contracts\IGeoNamesDataMiner.cs" />
-    <Compile Include="Miners\CoordinatesDataMiner.cs" />
-    <Compile Include="Miners\GeoEpithetsDataMiner.cs" />
-    <Compile Include="Miners\GeoNamesDataMiner.cs" />
+    <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Contracts\ISimpleCacheService.cs" />
+    <Compile Include="Contracts\IValidationCacheService.cs" />
+    <Compile Include="Models\ValidationCacheServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GenericCacheService.cs" />
+    <Compile Include="Services\SimpleCacheService.cs" />
+    <Compile Include="Services\ValidationCacheService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
-      <Name>Extensions</Name>
+    <None Include="CacheServicesClassDiagram.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Cache.Data\Cache.Data.csproj">
+      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
+      <Name>Cache.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
-      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
-      <Name>Geo.Services.Data</Name>
+    <ProjectReference Include="..\..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
+      <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
+      <Name>Data.Common.Redis</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
+    <ProjectReference Include="..\..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

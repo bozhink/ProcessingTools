@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8CDF963E-05DC-4667-82E5-A79B19D881C2}</ProjectGuid>
+    <ProjectGuid>{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Data.Miners.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Data.Miners.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.MediaType.Services.Data.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.MediaType.Services.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,37 +54,34 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MediaTypeDataServiceTests.cs" />
+    <Compile Include="MediaTypeDataServiceWindowsRegistryTests.cs" />
+    <Compile Include="MediaTypeDataServiceStaticDictionaryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegressionTests\InstitutionsDataMinerRegressionTests.cs" />
-    <Compile Include="RegressionTests\ProductsDataMinerRegressionTests.cs" />
-    <Compile Include="RegressionTests\Services\Fakes\FakeInstitutionsDataService.cs" />
-    <Compile Include="RegressionTests\Services\Fakes\FakeProductsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
+    <ProjectReference Include="..\..\..\Data\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
-      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
-      <Name>Data.Miners</Name>
+    <ProjectReference Include="..\..\..\Data\MediaType.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
-      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
-      <Name>Services.Data</Name>
+    <ProjectReference Include="..\..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
