@@ -91,6 +91,7 @@
                     "~/Scripts/data/documents/document-content-data.js",
                     "~/Scripts/controllers/documents/document-controller.js",
                     "~/Scripts/app/template.js",
+                    "~/Scripts/custom/html-selection-tagger.js",
                     "~/Scripts/custom/document-preview.js"));
 
             bundles

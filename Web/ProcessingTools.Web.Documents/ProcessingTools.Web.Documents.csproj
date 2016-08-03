@@ -389,6 +389,7 @@
     <Content Include="Scripts\custom\document-save-controller.js" />
     <Content Include="Scripts\config\interact-config.js" />
     <Content Include="Scripts\app\json-requester.js" />
+    <Content Include="Scripts\custom\html-selection-tagger.js" />
     <Content Include="Scripts\custom\key-bindings.js" />
     <Content Include="Scripts\config\monaco-editor-config.js" />
     <Content Include="Scripts\config\toastr-config.js" />
