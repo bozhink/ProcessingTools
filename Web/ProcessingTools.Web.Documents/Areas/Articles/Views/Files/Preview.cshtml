@@ -1,6 +1,4 @@
-﻿@using ProcessingTools.Extensions
-
-@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel
 
 @{
     ViewBag.Title = ContentConstants.DeafultPreviewPageTitle;
@@ -69,13 +67,13 @@
     @Html.ActionLink(
         linkText: ContentConstants.DefaultGetActionLinkTitle,
         actionName: nameof(DocumentContentController.GetHtml),
-        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.Id },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
         linkText: ContentConstants.DefaultSaveActionLinkTitle,
         actionName: nameof(DocumentContentController.SaveHtml),
-        controllerName: ControllerExtensions.GetControllerName<DocumentContentController>(),
+        controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.Id },
         htmlAttributes: new { id = "save-link" })
 </aside>
