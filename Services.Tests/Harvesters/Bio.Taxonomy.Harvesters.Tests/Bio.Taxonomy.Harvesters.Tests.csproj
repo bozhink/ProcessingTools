@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
+    <ProjectReference Include="..\..\..\Services\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
       <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
       <Name>Bio.Taxonomy.Harvesters</Name>
     </ProjectReference>

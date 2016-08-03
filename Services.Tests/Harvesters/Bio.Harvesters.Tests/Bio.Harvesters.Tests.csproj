@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C448E837-3AC5-44FC-965E-FD39962F326B}</ProjectGuid>
+    <ProjectGuid>{ACAA4238-FE83-457B-A7D2-2CEF5DC32ED3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Geo.Harvesters.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Geo.Harvesters.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Bio.Harvesters.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Bio.Harvesters.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
-      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
-      <Name>Geo.Harvesters</Name>
+    <ProjectReference Include="..\..\..\Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
+      <Name>Bio.Harvesters</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

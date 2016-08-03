@@ -78,13 +78,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data\Data.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harvesters", "Harvesters", "{5FC3176F-B6DA-4309-A7DE-496D7A3481F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Harvesters", "Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj", "{B5082DAE-3DBE-48EE-AC25-A29F7C38EC3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Harvesters", "Services\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj", "{B5082DAE-3DBE-48EE-AC25-A29F7C38EC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters", "Harvesters\Harvesters\Harvesters.csproj", "{68165C17-4F06-4652-B1F6-AECF7F44CA5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters", "Services\Harvesters\Harvesters\Harvesters.csproj", "{68165C17-4F06-4652-B1F6-AECF7F44CA5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters", "Harvesters\Bio.Harvesters\Bio.Harvesters.csproj", "{12D8DD48-A053-45CE-94B8-F1182EE28EF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters", "Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj", "{12D8DD48-A053-45CE-94B8-F1182EE28EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters", "Harvesters\Geo.Harvesters\Geo.Harvesters.csproj", "{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters", "Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj", "{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data", "Data\Bio.Environments.Data\Bio.Environments.Data.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
 EndProject
@@ -94,7 +94,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Data", "Services\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common", "Services\Services.Common\Services.Common.csproj", "{826165F0-F7FD-486F-B302-FCF7350C0888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters.Common", "Harvesters\Harvesters.Common\Harvesters.Common.csproj", "{E95AA4EC-C0F8-4DB4-B9C5-C2AEC671F484}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters.Common", "Services\Harvesters\Harvesters.Common\Harvesters.Common.csproj", "{E95AA4EC-C0F8-4DB4-B9C5-C2AEC671F484}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Services.Data", "Services\Data\Bio.Services.Data\Bio.Services.Data.csproj", "{F80D5E4C-DC41-48C6-99C1-43387B0D1BAF}"
 EndProject
@@ -102,7 +102,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Services.Data", "Servic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data.Tests", "Data.Tests", "{762ECEC1-1617-429D-9115-18ADB39EE2F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harvesters.Tests", "Harvesters.Tests", "{2F0C6A00-97F3-4679-8363-E0DA1D332091}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harvesters", "Harvesters", "{2F0C6A00-97F3-4679-8363-E0DA1D332091}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Tests", "Infrastructure.Tests", "{58B7BB3E-0FE6-4215-9FAA-70E810DDE888}"
 EndProject
@@ -138,13 +138,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Desktop.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Tests", "Web.Tests\ProcessingTools.Web.Api.Tests\ProcessingTools.Web.Api.Tests.csproj", "{7F7CB56C-67AC-49A0-98B3-709F6100FAE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters.Tests", "Harvesters.Tests\Bio.Harvesters.Tests\Bio.Harvesters.Tests.csproj", "{ACAA4238-FE83-457B-A7D2-2CEF5DC32ED3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters.Tests", "Services.Tests\Harvesters\Bio.Harvesters.Tests\Bio.Harvesters.Tests.csproj", "{ACAA4238-FE83-457B-A7D2-2CEF5DC32ED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Harvesters.Tests", "Harvesters.Tests\Bio.Taxonomy.Harvesters.Tests\Bio.Taxonomy.Harvesters.Tests.csproj", "{20E3FA01-256A-47E9-AD0C-5A5EECF0824C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Harvesters.Tests", "Services.Tests\Harvesters\Bio.Taxonomy.Harvesters.Tests\Bio.Taxonomy.Harvesters.Tests.csproj", "{20E3FA01-256A-47E9-AD0C-5A5EECF0824C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters.Tests", "Harvesters.Tests\Geo.Harvesters.Tests\Geo.Harvesters.Tests.csproj", "{C448E837-3AC5-44FC-965E-FD39962F326B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters.Tests", "Services.Tests\Harvesters\Geo.Harvesters.Tests\Geo.Harvesters.Tests.csproj", "{C448E837-3AC5-44FC-965E-FD39962F326B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters.Tests", "Harvesters.Tests\Harvesters.Tests\Harvesters.Tests.csproj", "{0F968970-6C68-4932-849F-7EB791AEFEED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvesters.Tests", "Services.Tests\Harvesters\Harvesters.Tests\Harvesters.Tests.csproj", "{0F968970-6C68-4932-849F-7EB791AEFEED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Tests", "Libraries.Tests\Bio.Taxonomy.Tests\Bio.Taxonomy.Tests.csproj", "{04DFBB74-7AE5-4CC9-B549-E052886EF43B}"
 EndProject
@@ -1379,6 +1379,7 @@ Global
 		{91A87E76-6AE4-4E63-9689-B129DB752BD5} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{715850DD-6FFB-45C6-B858-8D8E86C772D0} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{76671110-74C8-4E34-BB83-F75F0D42CBBD} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{5FC3176F-B6DA-4309-A7DE-496D7A3481F8} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{B5082DAE-3DBE-48EE-AC25-A29F7C38EC3C} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{68165C17-4F06-4652-B1F6-AECF7F44CA5A} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{12D8DD48-A053-45CE-94B8-F1182EE28EF8} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
@@ -1390,6 +1391,7 @@ Global
 		{E95AA4EC-C0F8-4DB4-B9C5-C2AEC671F484} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{F80D5E4C-DC41-48C6-99C1-43387B0D1BAF} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{C9AFD557-6559-4059-9287-65CA567F57EB} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
+		{2F0C6A00-97F3-4679-8363-E0DA1D332091} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{7A938698-047F-42BB-88CC-0814093C8E16} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{F8E2989E-FF8F-4E0A-B141-ABA9497F2D49} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{D8E1383B-937C-4B1E-B9C8-0448C8694D75} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
