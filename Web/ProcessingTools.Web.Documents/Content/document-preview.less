@@ -5,6 +5,7 @@
 @taxon-background-color: fade(lighten(@taxon-font-color, 25%), 15%);
 
 @mark-1-color: #FCF8E3;
+@mark-fake-tag: #ff5b5b;
 @mark-2-color: darken(@mark-1-color, 10%);
 @mark-3-color: darken(@mark-2-color, 20%);
 @mark-1-hover-color: #eefce3;
@@ -398,8 +399,22 @@ mark {
     border-radius: 3px;
     background-color: @mark-1-color;
 
+    &.fake_tag {
+        background-color: @mark-fake-tag;
+    }
+
     &:hover {
         background-color: @mark-1-hover-color;
+        position: relative;
+
+        &:before {
+            content: attr(elem-name);
+            position: absolute;
+            top: -1em;
+            left: -0.5em;
+            color: red;
+            font-weight: bold;
+        }
     }
 
     mark {

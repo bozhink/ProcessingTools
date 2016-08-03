@@ -92,6 +92,15 @@
 
 <menu type="context" id="supermenu">
     <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
+    <menu id="menu-item-bibliography" label="Bibliography">
+        @{
+            var tags = new string[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
+            foreach (var tag in tags)
+            {
+                <menuitem id="menu-item-@tag" label="@tag"></menuitem>
+            }
+        }
+    </menu>
     <menu label="Share on...">
         <menuitem label="Twitter" onclick="window.open('//twitter.com/intent/tweet?text='+window.location.href);"></menuitem>
         <menuitem label="Facebook" onclick="window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);"></menuitem>
@@ -100,14 +109,5 @@
     <menuitem id="menu-item-foo" label="Foo"></menuitem>
     <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
     <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
-    <menu id="menu-item-bibliography" label="Bibliography">
-        @{
-            var tags = new string[] { "annotation", "article-title", "chapter-title", "collab", "comment", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "page-range", "part-title", "patent", "person-group", "pub-id", "publisher-loc", "publisher-name", "role", "season", "series", "size", "source", "std", "string-name", "sub", "sup", "supplement", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
-            foreach (var tag in tags)
-            {
-                <menuitem id="menu-item-@tag" label="Tag @tag"></menuitem>
-            }
-        }
-    </menu>
 </menu>
 

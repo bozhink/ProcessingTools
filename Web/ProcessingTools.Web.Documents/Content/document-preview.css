@@ -324,8 +324,20 @@ mark {
   border-radius: 3px;
   background-color: #FCF8E3;
 }
+mark.fake_tag {
+  background-color: #ff5b5b;
+}
 mark:hover {
   background-color: #eefce3;
+  position: relative;
+}
+mark:hover:before {
+  content: attr(elem-name);
+  position: absolute;
+  top: -1em;
+  left: -0.5em;
+  color: red;
+  font-weight: bold;
 }
 mark mark {
   background-color: #f7ecb5;
