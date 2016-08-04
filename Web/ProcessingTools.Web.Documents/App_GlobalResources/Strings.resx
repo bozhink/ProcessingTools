@@ -171,6 +171,9 @@
   <data name="DefaultDetailsActionLinkTitle" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="DefaultDownloadActionLinkTitle" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="DefaultEditActionLinkTitle" xml:space="preserve">
     <value>Edit</value>
   </data>

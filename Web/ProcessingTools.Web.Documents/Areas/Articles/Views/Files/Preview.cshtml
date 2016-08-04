@@ -49,7 +49,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
-                <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
+                <li>@Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
                 <li><a id="refresh-button">@Resources.Strings.DefaultRefreshActionLinkTitle</a></li>
                 <li><a id="save-button">@Resources.Strings.DefaultSaveActionLinkTitle</a></li>
                 @Html.Partial(ViewNames.HelpSubmenuPartialViewName)

@@ -12,7 +12,5 @@
         public const string RegisterActionLinkTitle = "Register";
         public const string LoginActionLinkTitle = "Log in";
         public const string LogoutActionLinkTitle = "Log off";
-
-        public const string DefaultDownloadActionLinkTitle = "Download";
     }
 }
