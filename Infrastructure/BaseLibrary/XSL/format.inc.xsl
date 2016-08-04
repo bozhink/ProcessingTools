@@ -9,7 +9,7 @@
   exclude-result-prefixes="xs">
 
   <xsl:include href="geo/geo-json.xsl" />
-  <xsl:include href="Floats/format-tables.xsl"/>
+  <xsl:include href="Floats/format-tables.xsl" />
 
   <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
 
@@ -22,7 +22,7 @@
   <xsl:template match="p//break" />
 
   <xsl:template match="article_figs_and_tables[not(*)]" />
-  
+
   <xsl:template match="named-content">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
@@ -373,6 +373,33 @@
   </xsl:template>
 
   <!-- other -->
+  <xsl:template match="person-group/name[not(@name-style)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="name-style">
+        <xsl:text>western</xsl:text>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="size[not(@units)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="units">
+        <xsl:choose>
+          <xsl:when test="contains(string(.), 'pp')">
+            <xsl:text>page</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Unknown units type -->
+            <xsl:text></xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template match="td[count(node()) = 1 and count(text()) = 1] | th[count(node()) = 1 and count(text()) = 1] | title[count(node()) = 1 and count(text()) = 1] | label[count(node()) = 1 and count(text()) = 1] | p[count(node()) = 1 and count(text()) = 1] | article-title[count(node()) = 1 and count(text()) = 1] | li[count(node()) = 1 and count(text()) = 1] | kwd[count(node()) = 1 and count(text()) = 1] | xref-group[count(node()) = 1 and count(text()) = 1]">
     <xsl:element name="{name()}">
@@ -407,8 +434,8 @@
   <xsl:template name="generate-id">
     <xsl:param name="prefix" select="''" />
     <xsl:attribute name="id">
-      <xsl:value-of select="$prefix"/>
-      <xsl:value-of select="generate-id()"/>
+      <xsl:value-of select="$prefix" />
+      <xsl:value-of select="generate-id()" />
     </xsl:attribute>
   </xsl:template>
 </xsl:stylesheet>
