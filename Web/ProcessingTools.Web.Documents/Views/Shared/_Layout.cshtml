@@ -27,7 +27,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink(ContentConstants.HomeActionLinkTitle, nameof(HomeController.Index), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(Resources.Strings.HomeActionLinkTitle, nameof(HomeController.Index), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
@@ -41,8 +41,8 @@
                                 </ul>
                             </li>
                         }
-                        <li>@Html.ActionLink(ContentConstants.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink(ContentConstants.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(Resources.Strings.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(Resources.Strings.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                     </ul>
                     @Html.Partial(ViewNames.LoginPartialViewName)
                 </div>

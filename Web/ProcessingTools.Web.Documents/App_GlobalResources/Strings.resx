@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutActionLinkTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ContactActionLinkTitle" xml:space="preserve">
+    <value>Contact</value>
+  </data>
   <data name="DeafultCreatePageHeading" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -210,10 +216,22 @@
   <data name="HelpSubmenuTitle" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="HomeActionLinkTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="ListOfFilesPageHeading" xml:space="preserve">
     <value>List of Files</value>
   </data>
   <data name="ListOfFilesPageTitle" xml:space="preserve">
     <value>List of Files</value>
+  </data>
+  <data name="LoginActionLinkTitle" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogoutActionLinkTitle" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="RegisterActionLinkTitle" xml:space="preserve">
+    <value>Register</value>
   </data>
 </root>

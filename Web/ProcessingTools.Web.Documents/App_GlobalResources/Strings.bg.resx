@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutActionLinkTitle" xml:space="preserve">
+    <value>Относно</value>
+  </data>
+  <data name="ContactActionLinkTitle" xml:space="preserve">
+    <value>Контакти</value>
+  </data>
   <data name="DeafultCreatePageHeading" xml:space="preserve">
     <value>Създаване</value>
   </data>
@@ -210,10 +216,22 @@
   <data name="HelpSubmenuTitle" xml:space="preserve">
     <value>Помощ</value>
   </data>
+  <data name="HomeActionLinkTitle" xml:space="preserve">
+    <value>Начало</value>
+  </data>
   <data name="ListOfFilesPageHeading" xml:space="preserve">
     <value>Списък с файлове</value>
   </data>
   <data name="ListOfFilesPageTitle" xml:space="preserve">
     <value>Списък с файлове</value>
+  </data>
+  <data name="LoginActionLinkTitle" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogoutActionLinkTitle" xml:space="preserve">
+    <value>Излизане</value>
+  </data>
+  <data name="RegisterActionLinkTitle" xml:space="preserve">
+    <value>Регистриране</value>
   </data>
 </root>

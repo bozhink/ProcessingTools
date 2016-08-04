@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string AboutActionLinkTitle {
+            get {
+                return ResourceManager.GetString("AboutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        internal static string ContactActionLinkTitle {
+            get {
+                return ResourceManager.GetString("ContactActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string DeafultCreatePageHeading {
@@ -340,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string HomeActionLinkTitle {
+            get {
+                return ResourceManager.GetString("HomeActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of Files.
         /// </summary>
         internal static string ListOfFilesPageHeading {
@@ -354,6 +381,33 @@ namespace Resources {
         internal static string ListOfFilesPageTitle {
             get {
                 return ResourceManager.GetString("ListOfFilesPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        internal static string LoginActionLinkTitle {
+            get {
+                return ResourceManager.GetString("LoginActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log off.
+        /// </summary>
+        internal static string LogoutActionLinkTitle {
+            get {
+                return ResourceManager.GetString("LogoutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string RegisterActionLinkTitle {
+            get {
+                return ResourceManager.GetString("RegisterActionLinkTitle", resourceCulture);
             }
         }
     }
