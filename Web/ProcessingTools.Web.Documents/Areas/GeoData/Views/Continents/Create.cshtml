@@ -5,11 +5,12 @@
 @model DetailedContinentViewModel
 
 @{
-    ViewBag.Title = ContentConstants.DeafultCreatePageTitle;
+    ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
 }
 
-<h2>@ContentConstants.DeafultCreatePageHeading</h2>
-
+<h2>
+    @Resources.Strings.DeafultCreatePageHeading
+</h2>
 
 @using (Html.BeginForm()) 
 {

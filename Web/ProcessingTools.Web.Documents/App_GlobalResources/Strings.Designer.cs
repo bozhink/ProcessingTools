@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        internal static string DeafultCreatePageHeading {
+            get {
+                return ResourceManager.GetString("DeafultCreatePageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        internal static string DeafultCreatePageTitle {
+            get {
+                return ResourceManager.GetString("DeafultCreatePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         internal static string DefaultBackToListActionLinkTitle {

@@ -29,9 +29,6 @@
         public const string DeafultDetailsPageTitle = "Details";
         public const string DeafultDetailsPageHeading = "Details";
 
-        public const string DeafultCreatePageTitle = "Create";
-        public const string DeafultCreatePageHeading = "Create";
-
         public const string DeafultUploadPageTitle = "Upload";
         public const string DeafultUploadPageHeading = "Upload";
 
