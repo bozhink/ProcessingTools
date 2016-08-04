@@ -123,6 +123,21 @@
         window.htmlSelectionTagger.tagInSpan('locality-coordinates');
     }
 
+    function tagAbbrevEventHandler(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tag('abbr', 'abbrev');
+    }
+
+    function tagAbbrevDefEventHandler(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tagInSpan('p');
+        window.htmlSelectionTagger.tagInSpan('def');
+    }
+
     function tagbibliographyElementEventHandler(event) {
         var e = event || window.event,
             elementName = e.target.id.toString().substr(10);
@@ -199,6 +214,22 @@
             e.stopPropagation();
             e.preventDefault();
             window.htmlSelectionTagger.tagInUnderline();
+            return false;
+        }
+
+        // Alt + A -> abbrev
+        if (e.altKey && e.which === 65) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagAbbrevEventHandler(e);
+            return false;
+        }
+
+        // Alt + D -> def/p
+        if (e.altKey && e.which === 68) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagAbbrevDefEventHandler(e);
             return false;
         }
     }

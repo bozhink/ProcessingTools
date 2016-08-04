@@ -380,3 +380,6 @@ mark mark mark:hover {
   width: 400px;
   overflow-y: auto;
 }
+.graphic:before {
+  content: attr(href);
+}
