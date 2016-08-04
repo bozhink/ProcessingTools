@@ -135,6 +135,12 @@
   <data name="DeafultDetailsPageTitle" xml:space="preserve">
     <value>Подробности</value>
   </data>
+  <data name="DeafultEditPageHeading" xml:space="preserve">
+    <value>Редактиране</value>
+  </data>
+  <data name="DeafultEditPageTitle" xml:space="preserve">
+    <value>Редактиране</value>
+  </data>
   <data name="DeafultIndexPageHeading" xml:space="preserve">
     <value>Начало</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="DefaultDetailsActionLinkTitle" xml:space="preserve">
     <value>Подробности</value>
+  </data>
+  <data name="DefaultEditActionLinkTitle" xml:space="preserve">
+    <value>Редактирай</value>
   </data>
   <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
     <value>Начало</value>

@@ -6,10 +6,12 @@
 @model DetailedContinentViewModel
 
 @{
-    ViewBag.Title = ContentConstants.DeafultEditPageTitle;
+    ViewBag.Title = Resources.Strings.DeafultEditPageTitle;
 }
 
-<h2>@ContentConstants.DeafultEditPageHeading</h2>
+<h2>
+    @Resources.Strings.DeafultEditPageHeading
+</h2>
 
 <div class="form-horizontal">
     <h4>@Html.DisplayFor(model => model.ModelName)</h4>

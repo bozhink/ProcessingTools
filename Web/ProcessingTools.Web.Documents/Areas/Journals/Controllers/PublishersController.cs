@@ -166,7 +166,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultEditActionLinkTitle);
             }
 
             try
@@ -177,15 +177,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
             }
         }
 
@@ -213,15 +213,15 @@
                 }
                 catch (EntityNotFoundException e)
                 {
-                    return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                    return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
                 }
                 catch (ArgumentException e)
                 {
-                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
                 }
                 catch (Exception e)
                 {
-                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultEditActionLinkTitle);
+                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
                 }
             }
 

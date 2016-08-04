@@ -115,6 +115,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string DeafultEditPageHeading {
+            get {
+                return ResourceManager.GetString("DeafultEditPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string DeafultEditPageTitle {
+            get {
+                return ResourceManager.GetString("DeafultEditPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Index.
         /// </summary>
         internal static string DeafultIndexPageHeading {
@@ -165,6 +183,15 @@ namespace Resources {
         internal static string DefaultDetailsActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultDetailsActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string DefaultEditActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultEditActionLinkTitle", resourceCulture);
             }
         }
         

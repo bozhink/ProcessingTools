@@ -36,7 +36,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <span class="item">
-                        @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = item.Id })
+                        @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = item.Id })
                     </span>
                 }
 

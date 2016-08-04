@@ -107,7 +107,7 @@
 <footer>
     <nav class="separated-items">
         <span class="item">
-            @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = Model.Id })
+            @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(PublishersController.Edit), new { id = Model.Id })
         </span>
         <span class="item">
             @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))

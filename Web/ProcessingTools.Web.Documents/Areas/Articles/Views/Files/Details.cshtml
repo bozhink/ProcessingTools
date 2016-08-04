@@ -81,7 +81,7 @@
             @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })
         </span>
         <span class="item">
-            @Html.ActionLink(ContentConstants.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = Model.Id })
+            @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = Model.Id })
         </span>
         <span class="item">
             @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = Model.Id })
