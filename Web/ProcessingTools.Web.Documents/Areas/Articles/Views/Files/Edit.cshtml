@@ -23,7 +23,7 @@
                 <li>@Html.ActionLink(@ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), routeValues: new { id = Model.Id }, htmlAttributes: new { target = "_blank" })</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
+                <li>@Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
                 <li><a id="refresh-button">Refresh</a></li>
                 <li><a id="save-button">Save</a></li>

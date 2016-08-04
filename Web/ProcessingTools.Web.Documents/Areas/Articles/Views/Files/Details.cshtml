@@ -75,7 +75,7 @@
 <footer>
     <nav class="separated-items">
         <span class="item">
-            @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
         </span>
         <span class="item">
             @Html.ActionLink(ContentConstants.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })

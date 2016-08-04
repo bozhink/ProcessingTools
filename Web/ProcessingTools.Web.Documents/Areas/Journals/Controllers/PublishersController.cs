@@ -64,11 +64,11 @@
             }
             catch (InvalidPageNumberException e)
             {
-                return this.InvalidPageNumberErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle);
+                return this.InvalidPageNumberErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
             }
             catch (InvalidItemsPerPageException e)
             {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle);
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
             }
             catch (ArgumentException e)
             {

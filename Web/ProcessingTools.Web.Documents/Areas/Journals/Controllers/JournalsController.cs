@@ -83,11 +83,11 @@
             }
             catch (InvalidPageNumberException e)
             {
-                return this.InvalidPageNumberErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle);
+                return this.InvalidPageNumberErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
             }
             catch (InvalidItemsPerPageException e)
             {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, ContentConstants.DefaultBackToListActionLinkTitle);
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
             }
             catch (ArgumentException e)
             {
