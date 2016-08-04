@@ -147,6 +147,12 @@
   <data name="DeafultIndexPageTitle" xml:space="preserve">
     <value>Index</value>
   </data>
+  <data name="DeafultPreviewPageHeading" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="DeafultPreviewPageTitle" xml:space="preserve">
+    <value>Preview</value>
+  </data>
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Back to List</value>
   </data>
@@ -164,6 +170,9 @@
   </data>
   <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
     <value>Index</value>
+  </data>
+  <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
+    <value>Preview</value>
   </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>

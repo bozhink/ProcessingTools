@@ -13,7 +13,6 @@
         public const string LoginActionLinkTitle = "Log in";
         public const string LogoutActionLinkTitle = "Log off";
 
-        public const string DefaultPreviewActionLinkTitle = "Preview";
         public const string DefaultSaveActionLinkTitle = "Save";
         public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
@@ -21,8 +20,5 @@
 
         public const string DeafultUploadPageTitle = "Upload";
         public const string DeafultUploadPageHeading = "Upload";
-
-        public const string DeafultPreviewPageTitle = "Preview";
-        public const string DeafultPreviewPageHeading = "Preview";
     }
 }

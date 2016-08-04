@@ -147,6 +147,12 @@
   <data name="DeafultIndexPageTitle" xml:space="preserve">
     <value>Начало</value>
   </data>
+  <data name="DeafultPreviewPageHeading" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="DeafultPreviewPageTitle" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Назад към списъка</value>
   </data>
@@ -164,6 +170,9 @@
   </data>
   <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
     <value>Начало</value>
+  </data>
+  <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
+    <value>Преглед</value>
   </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Документът е запазен успешно</value>

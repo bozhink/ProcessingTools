@@ -151,6 +151,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string DeafultPreviewPageHeading {
+            get {
+                return ResourceManager.GetString("DeafultPreviewPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string DeafultPreviewPageTitle {
+            get {
+                return ResourceManager.GetString("DeafultPreviewPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         internal static string DefaultBackToListActionLinkTitle {
@@ -201,6 +219,15 @@ namespace Resources {
         internal static string DefaultIndexActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultIndexActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string DefaultPreviewActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultPreviewActionLinkTitle", resourceCulture);
             }
         }
         
