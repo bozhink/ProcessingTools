@@ -1,11 +1,13 @@
 ﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel>
 
 @{
-    ViewBag.Title = "List of Files";
+    ViewBag.Title = Resources.Strings.ListOfFilesPageTitle;
 }
 
 <header>
-    <h2>List of Files</h2>
+    <h2>
+        @Resources.Strings.ListOfFilesPageHeading
+    </h2>
 </header>
 
 <p>

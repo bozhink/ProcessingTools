@@ -338,5 +338,23 @@ namespace Resources {
                 return ResourceManager.GetString("HelpSubmenuTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Files.
+        /// </summary>
+        internal static string ListOfFilesPageHeading {
+            get {
+                return ResourceManager.GetString("ListOfFilesPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Files.
+        /// </summary>
+        internal static string ListOfFilesPageTitle {
+            get {
+                return ResourceManager.GetString("ListOfFilesPageTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -210,4 +210,10 @@
   <data name="HelpSubmenuTitle" xml:space="preserve">
     <value>Помощ</value>
   </data>
+  <data name="ListOfFilesPageHeading" xml:space="preserve">
+    <value>Списък с файлове</value>
+  </data>
+  <data name="ListOfFilesPageTitle" xml:space="preserve">
+    <value>Списък с файлове</value>
+  </data>
 </root>
