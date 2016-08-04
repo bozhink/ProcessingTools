@@ -233,7 +233,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
 
             try
@@ -244,15 +244,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
         }
 
@@ -268,15 +268,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
             }
         }
 

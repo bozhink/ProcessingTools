@@ -123,6 +123,12 @@
   <data name="DeafultCreatePageTitle" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="DeafultDeletePageHeading" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeafultDeletePageTitle" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DeafultDetailsPageHeading" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="DefaultCreateActionLinkTitle" xml:space="preserve">
     <value>Create New</value>
+  </data>
+  <data name="DefaultDeleteActionLinkTitle" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="DefaultDetailsActionLinkTitle" xml:space="preserve">
     <value>Details</value>

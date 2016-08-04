@@ -15,7 +15,6 @@
 
         public const string DefaultEditActionLinkTitle = "Edit";
         public const string DefaultPreviewActionLinkTitle = "Preview";
-        public const string DefaultDeleteActionLinkTitle = "Delete";
         public const string DefaultSaveActionLinkTitle = "Save";
         public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
@@ -23,9 +22,6 @@
 
         public const string DeafultUploadPageTitle = "Upload";
         public const string DeafultUploadPageHeading = "Upload";
-
-        public const string DeafultDeletePageTitle = "Delete";
-        public const string DeafultDeletePageHeading = "Delete";
 
         public const string DeafultEditPageTitle = "Edit";
         public const string DeafultEditPageHeading = "Edit";

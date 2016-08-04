@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeafultDeletePageHeading {
+            get {
+                return ResourceManager.GetString("DeafultDeletePageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeafultDeletePageTitle {
+            get {
+                return ResourceManager.GetString("DeafultDeletePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string DeafultDetailsPageHeading {
@@ -129,6 +147,15 @@ namespace Resources {
         internal static string DefaultCreateActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultCreateActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DefaultDeleteActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultDeleteActionLinkTitle", resourceCulture);
             }
         }
         

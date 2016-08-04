@@ -47,7 +47,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <span class="item">
-                        @Html.ActionLink(ContentConstants.DefaultDeleteActionLinkTitle, nameof(ContinentsController.Delete), new { id = item.Id })
+                        @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(ContinentsController.Delete), new { id = item.Id })
                     </span>
                 }
             </td>
