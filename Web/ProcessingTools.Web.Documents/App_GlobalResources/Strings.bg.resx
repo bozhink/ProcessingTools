@@ -180,6 +180,9 @@
   <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
     <value>Преглед</value>
   </data>
+  <data name="DefaultRefreshActionLinkTitle" xml:space="preserve">
+    <value>Презареди</value>
+  </data>
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Качи файл или файлове</value>
   </data>

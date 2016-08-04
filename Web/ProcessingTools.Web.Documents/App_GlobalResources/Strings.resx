@@ -180,6 +180,9 @@
   <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="DefaultRefreshActionLinkTitle" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Upload New File or Files</value>
   </data>

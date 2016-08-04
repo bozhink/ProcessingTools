@@ -50,7 +50,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
-                <li><a id="refresh-button">Refresh</a></li>
+                <li><a id="refresh-button">@Resources.Strings.DefaultRefreshActionLinkTitle</a></li>
                 <li><a id="save-button">Save</a></li>
                 @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
             </ul>
@@ -66,7 +66,7 @@
 
 <aside style="display: none;">
     @Html.ActionLink(
-        linkText: ContentConstants.DefaultGetActionLinkTitle,
+        linkText: Resources.Strings.DefaultRefreshActionLinkTitle,
         actionName: nameof(DocumentContentController.GetHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.Id },

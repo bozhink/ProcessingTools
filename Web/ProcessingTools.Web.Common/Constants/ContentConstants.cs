@@ -14,7 +14,6 @@
         public const string LogoutActionLinkTitle = "Log off";
 
         public const string DefaultSaveActionLinkTitle = "Save";
-        public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
     }
 }

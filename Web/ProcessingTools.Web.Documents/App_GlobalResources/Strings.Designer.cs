@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string DefaultRefreshActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultRefreshActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload New File or Files.
         /// </summary>
         internal static string DefaultUploadNewFileActionLinkTitle {
