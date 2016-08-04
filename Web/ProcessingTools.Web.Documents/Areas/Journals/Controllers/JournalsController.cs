@@ -104,7 +104,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.JournalsControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.JournalsControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle);
             }
 
             try

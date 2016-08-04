@@ -85,7 +85,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle);
             }
 
             try
@@ -166,7 +166,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultEditActionLinkTitle);
             }
 
             try
@@ -233,7 +233,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDeleteActionLinkTitle);
             }
 
             try

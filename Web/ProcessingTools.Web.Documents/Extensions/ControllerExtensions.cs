@@ -178,7 +178,7 @@
                 actionLinkText);
         }
 
-        public static ViewResult NullIdErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
+        public static ViewResult InvalidIdErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewNames.InvalidIdErrorViewName,

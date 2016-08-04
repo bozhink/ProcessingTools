@@ -45,7 +45,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -81,7 +81,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -107,7 +107,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
@@ -126,7 +126,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var model = new DocumentViewModel
@@ -177,7 +177,7 @@
         {
             if (id == null)
             {
-                return this.NullIdErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
             }
 
             var model = new DocumentViewModel
