@@ -85,7 +85,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultDetailsActionLinkTitle);
             }
 
             try
@@ -109,15 +109,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultDetailsActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
             }
         }
 

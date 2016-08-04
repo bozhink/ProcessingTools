@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string DeafultDetailsPageHeading {
+            get {
+                return ResourceManager.GetString("DeafultDetailsPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string DeafultDetailsPageTitle {
+            get {
+                return ResourceManager.GetString("DeafultDetailsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Index.
         /// </summary>
         internal static string DeafultIndexPageHeading {
@@ -111,6 +129,15 @@ namespace Resources {
         internal static string DefaultCreateActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultCreateActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string DefaultDetailsActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultDetailsActionLinkTitle", resourceCulture);
             }
         }
         

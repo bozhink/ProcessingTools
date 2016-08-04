@@ -41,7 +41,7 @@
                 }
 
                 <span class="item">
-                    @Html.ActionLink(ContentConstants.DefaultDetailsActionLinkTitle, nameof(ContinentsController.Details), new { id = item.Id })
+                    @Html.ActionLink(Resources.Strings.DefaultDetailsActionLinkTitle, nameof(ContinentsController.Details), new { id = item.Id })
                 </span>
 
                 @if (User.Identity.IsAuthenticated)

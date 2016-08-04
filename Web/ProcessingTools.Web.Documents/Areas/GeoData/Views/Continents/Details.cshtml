@@ -5,10 +5,12 @@
 @model DetailedContinentViewModel
 
 @{
-    ViewBag.Title = ContentConstants.DeafultDetailsPageTitle;
+    ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
 }
 
-<h2>@ContentConstants.DeafultDetailsPageHeading</h2>
+<h2>
+    @Resources.Strings.DeafultDetailsPageHeading
+</h2>
 
 <div>
     <h4>@Html.DisplayFor(model => model.ModelName)</h4>

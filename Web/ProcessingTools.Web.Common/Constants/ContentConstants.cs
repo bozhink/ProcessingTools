@@ -15,15 +15,11 @@
 
         public const string DefaultEditActionLinkTitle = "Edit";
         public const string DefaultPreviewActionLinkTitle = "Preview";
-        public const string DefaultDetailsActionLinkTitle = "Details";
         public const string DefaultDeleteActionLinkTitle = "Delete";
         public const string DefaultSaveActionLinkTitle = "Save";
         public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
         public const string DefaultUploadNewFileActionLinkTitle = "Upload New File or Files";
-
-        public const string DeafultDetailsPageTitle = "Details";
-        public const string DeafultDetailsPageHeading = "Details";
 
         public const string DeafultUploadPageTitle = "Upload";
         public const string DeafultUploadPageHeading = "Upload";

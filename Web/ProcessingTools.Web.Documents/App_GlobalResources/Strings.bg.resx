@@ -123,6 +123,12 @@
   <data name="DeafultCreatePageTitle" xml:space="preserve">
     <value>Създаване</value>
   </data>
+  <data name="DeafultDetailsPageHeading" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="DeafultDetailsPageTitle" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
   <data name="DeafultIndexPageHeading" xml:space="preserve">
     <value>Начало</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="DefaultCreateActionLinkTitle" xml:space="preserve">
     <value>Създай нов</value>
+  </data>
+  <data name="DefaultDetailsActionLinkTitle" xml:space="preserve">
+    <value>Подробности</value>
   </data>
   <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
     <value>Начало</value>
