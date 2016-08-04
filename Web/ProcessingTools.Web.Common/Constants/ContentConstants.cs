@@ -16,9 +16,5 @@
         public const string DefaultSaveActionLinkTitle = "Save";
         public const string DefaultGetActionLinkTitle = "Get";
         public const string DefaultDownloadActionLinkTitle = "Download";
-        public const string DefaultUploadNewFileActionLinkTitle = "Upload New File or Files";
-
-        public const string DeafultUploadPageTitle = "Upload";
-        public const string DeafultUploadPageHeading = "Upload";
     }
 }

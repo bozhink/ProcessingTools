@@ -153,6 +153,12 @@
   <data name="DeafultPreviewPageTitle" xml:space="preserve">
     <value>Преглед</value>
   </data>
+  <data name="DeafultUploadPageHeading" xml:space="preserve">
+    <value>Качи</value>
+  </data>
+  <data name="DeafultUploadPageTitle" xml:space="preserve">
+    <value>Качи</value>
+  </data>
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Назад към списъка</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
     <value>Преглед</value>
+  </data>
+  <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
+    <value>Качи файл или файлове</value>
   </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Документът е запазен успешно</value>

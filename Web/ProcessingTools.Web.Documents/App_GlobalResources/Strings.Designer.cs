@@ -169,6 +169,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string DeafultUploadPageHeading {
+            get {
+                return ResourceManager.GetString("DeafultUploadPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string DeafultUploadPageTitle {
+            get {
+                return ResourceManager.GetString("DeafultUploadPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         internal static string DefaultBackToListActionLinkTitle {
@@ -228,6 +246,15 @@ namespace Resources {
         internal static string DefaultPreviewActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultPreviewActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload New File or Files.
+        /// </summary>
+        internal static string DefaultUploadNewFileActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultUploadNewFileActionLinkTitle", resourceCulture);
             }
         }
         

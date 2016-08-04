@@ -153,6 +153,12 @@
   <data name="DeafultPreviewPageTitle" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="DeafultUploadPageHeading" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="DeafultUploadPageTitle" xml:space="preserve">
+    <value>Upload</value>
+  </data>
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Back to List</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
+    <value>Upload New File or Files</value>
   </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
