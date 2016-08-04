@@ -13,7 +13,6 @@
         public const string LoginActionLinkTitle = "Log in";
         public const string LogoutActionLinkTitle = "Log off";
 
-        public const string DefaultSaveActionLinkTitle = "Save";
         public const string DefaultDownloadActionLinkTitle = "Download";
     }
 }

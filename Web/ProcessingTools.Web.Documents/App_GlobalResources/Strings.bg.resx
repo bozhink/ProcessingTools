@@ -183,6 +183,9 @@
   <data name="DefaultRefreshActionLinkTitle" xml:space="preserve">
     <value>Презареди</value>
   </data>
+  <data name="DefaultSaveActionLinkTitle" xml:space="preserve">
+    <value>Запази</value>
+  </data>
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Качи файл или файлове</value>
   </data>

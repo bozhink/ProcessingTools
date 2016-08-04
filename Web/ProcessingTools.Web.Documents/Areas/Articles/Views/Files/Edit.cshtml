@@ -26,7 +26,7 @@
                 <li>@Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
                 <li><a id="refresh-button">@Resources.Strings.DefaultRefreshActionLinkTitle</a></li>
-                <li><a id="save-button">Save</a></li>
+                <li><a id="save-button">@Resources.Strings.DefaultSaveActionLinkTitle</a></li>
                 @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
             </ul>
         </div>
@@ -45,7 +45,7 @@
         routeValues: new { id = Model.Id },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
-        linkText: ContentConstants.DefaultSaveActionLinkTitle,
+        linkText: Resources.Strings.DefaultSaveActionLinkTitle,
         actionName: nameof(DocumentContentController.SaveXml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.Id },

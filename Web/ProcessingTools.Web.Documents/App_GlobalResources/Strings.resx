@@ -183,6 +183,9 @@
   <data name="DefaultRefreshActionLinkTitle" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="DefaultSaveActionLinkTitle" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Upload New File or Files</value>
   </data>

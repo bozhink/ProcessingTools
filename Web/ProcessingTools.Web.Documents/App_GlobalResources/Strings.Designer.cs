@@ -259,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string DefaultSaveActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultSaveActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload New File or Files.
         /// </summary>
         internal static string DefaultUploadNewFileActionLinkTitle {
