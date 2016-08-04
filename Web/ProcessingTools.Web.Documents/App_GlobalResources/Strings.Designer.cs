@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string DeafultIndexPageHeading {
+            get {
+                return ResourceManager.GetString("DeafultIndexPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string DeafultIndexPageTitle {
+            get {
+                return ResourceManager.GetString("DeafultIndexPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         internal static string DefaultBackToListActionLinkTitle {
@@ -93,6 +111,15 @@ namespace Resources {
         internal static string DefaultCreateActionLinkTitle {
             get {
                 return ResourceManager.GetString("DefaultCreateActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string DefaultIndexActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultIndexActionLinkTitle", resourceCulture);
             }
         }
         

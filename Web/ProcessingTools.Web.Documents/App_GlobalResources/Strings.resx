@@ -123,11 +123,20 @@
   <data name="DeafultCreatePageTitle" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="DeafultIndexPageHeading" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="DeafultIndexPageTitle" xml:space="preserve">
+    <value>Index</value>
+  </data>
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Back to List</value>
   </data>
   <data name="DefaultCreateActionLinkTitle" xml:space="preserve">
     <value>Create New</value>
+  </data>
+  <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
+    <value>Index</value>
   </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>

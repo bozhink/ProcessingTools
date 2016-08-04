@@ -5,10 +5,12 @@
 @model IEnumerable<ContinentViewModel>
 
 @{
-    ViewBag.Title = ContentConstants.DeafultIndexPageTitle;
+    ViewBag.Title = Resources.Strings.DeafultIndexPageTitle;
 }
 
-<h2>@ContentConstants.DeafultIndexPageHeading</h2>
+<h2>
+    @Resources.Strings.DeafultIndexPageHeading
+</h2>
 
 @if (User.Identity.IsAuthenticated)
 {

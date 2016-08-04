@@ -91,11 +91,11 @@
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
             }
         }
 

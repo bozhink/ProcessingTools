@@ -72,11 +72,11 @@
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultIndexActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
             }
         }
 
