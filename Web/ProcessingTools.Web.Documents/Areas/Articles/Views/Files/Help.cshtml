@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = Resources.Strings.HelpPageTitle;
+}
+
+<header>
+    <h2>
+        @Resources.Strings.HelpPageHeading
+    </h2>
+</header>
+
+<hr />
+
+<section>
+    <h3>Keyboard shortcuts</h3>
+    <section>
+        <h4>View <em>Preview</em></h4>
+        <dl class="dl-horizontal">
+            <dt>Ctrl + S</dt>
+            <dd>Save document.</dd>
+
+            <dt>Ctrl + R</dt>
+            <dd>Refresh document content.</dd>
+
+            <dt>Ctrl + B</dt>
+            <dd>Wrap selected text in <strong>bold</strong> tag.</dd>
+
+            <dt>Ctrl + I</dt>
+            <dd>Wrap selected text in <strong>italic</strong> tag.</dd>
+
+            <dt>Ctrl + U</dt>
+            <dd>Wrap selected text in <strong>underline</strong> tag.</dd>
+
+            <dt>Alt + A</dt>
+            <dd>Wrap selected text in <strong>abbrev</strong> tag.</dd>
+
+            <dt>Alt + D</dt>
+            <dd>Wrap selected text in <strong>def/p</strong> tag.</dd>
+        </dl>
+    </section>
+
+    <section>
+        <h4>View <em>Edit</em></h4>
+        <dl class="dl-horizontal">
+            <dt>Ctrl + S</dt>
+            <dd>Save document.</dd>
+
+            <dt>Ctrl + R</dt>
+            <dd>Refresh document content.</dd>
+        </dl>
+    </section>
+</section>
+
+<hr />
+
+<footer>
+    <p>
+        @Html.ActionLink(ContentConstants.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+    </p>
+</footer>

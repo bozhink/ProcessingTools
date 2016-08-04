@@ -27,6 +27,7 @@
                 <li>@Html.ActionLink(ContentConstants.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
                 <li><a id="refresh-button">Refresh</a></li>
                 <li><a id="save-button">Save</a></li>
+                @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
             </ul>
         </div>
     </div>

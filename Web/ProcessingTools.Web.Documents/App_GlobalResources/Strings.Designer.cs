@@ -61,11 +61,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to List.
+        /// </summary>
+        internal static string DefaultBackToListActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultBackToListActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document saved successfully.
         /// </summary>
         internal static string DocumentSavedSuccessfullyResponseMessage {
             get {
                 return ResourceManager.GetString("DocumentSavedSuccessfullyResponseMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string HelpActionLinkTitle {
+            get {
+                return ResourceManager.GetString("HelpActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string HelpMenuItemTitle {
+            get {
+                return ResourceManager.GetString("HelpMenuItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string HelpPageHeading {
+            get {
+                return ResourceManager.GetString("HelpPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string HelpPageTitle {
+            get {
+                return ResourceManager.GetString("HelpPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string HelpSubmenuTitle {
+            get {
+                return ResourceManager.GetString("HelpSubmenuTitle", resourceCulture);
             }
         }
     }

@@ -9,5 +9,6 @@
         public const string DeafultDeleteActionName = "Delete";
         public const string DeafultEditActionName = "Edit";
         public const string DeafultPreviewActionName = "Preview";
+        public const string DeafulHelpActionName = "Help";
     }
 }

@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
+  </data>
+  <data name="HelpActionLinkTitle" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpMenuItemTitle" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpPageHeading" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpPageTitle" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpSubmenuTitle" xml:space="preserve">
+    <value>Help</value>
   </data>
 </root>

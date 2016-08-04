@@ -138,6 +138,13 @@
             return this.View(model);
         }
 
+        // GET: /Articles/Help
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         /// <summary>
         /// Index of file list.
         /// </summary>
