@@ -150,11 +150,11 @@
                 }
                 catch (ArgumentException e)
                 {
-                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle);
+                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultCreateActionLinkTitle);
                 }
                 catch (Exception e)
                 {
-                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, ContentConstants.DefaultCreateActionLinkTitle);
+                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultCreateActionLinkTitle);
                 }
             }
 

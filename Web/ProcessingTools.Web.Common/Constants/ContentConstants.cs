@@ -13,7 +13,6 @@
         public const string LoginActionLinkTitle = "Log in";
         public const string LogoutActionLinkTitle = "Log off";
 
-        public const string DefaultCreateActionLinkTitle = "Create New";
         public const string DefaultEditActionLinkTitle = "Edit";
         public const string DefaultIndexActionLinkTitle = "Index";
         public const string DefaultPreviewActionLinkTitle = "Preview";

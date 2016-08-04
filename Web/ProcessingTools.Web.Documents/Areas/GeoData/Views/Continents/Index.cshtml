@@ -13,7 +13,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>
-        @Html.ActionLink(ContentConstants.DefaultCreateActionLinkTitle, nameof(ContinentsController.Create))
+        @Html.ActionLink(Resources.Strings.DefaultCreateActionLinkTitle, nameof(ContinentsController.Create))
     </p>
 }
 <table class="table">

@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create New.
+        /// </summary>
+        internal static string DefaultCreateActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DefaultCreateActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document saved successfully.
         /// </summary>
         internal static string DocumentSavedSuccessfullyResponseMessage {

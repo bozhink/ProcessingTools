@@ -120,6 +120,9 @@
   <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
     <value>Back to List</value>
   </data>
+  <data name="DefaultCreateActionLinkTitle" xml:space="preserve">
+    <value>Create New</value>
+  </data>
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
   </data>
