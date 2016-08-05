@@ -114,9 +114,6 @@
 
         public static ViewResult ErrorViewWithGoBackToIndexDestination(this Controller controller, string viewName, HttpStatusCode responseStatusCode, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
         {
-            StackTrace stackTrace = new StackTrace();
-            StackFrame[] stackFrame = stackTrace.GetFrames();
-
             string controllerName = controller.GetCallingControllerName();
             string actionName = controller.GetCallingActionName();
             string areaName = controller.GetCallingAreaName();
@@ -124,7 +121,7 @@
             string linkText = actionLinkText;
             if (string.IsNullOrEmpty(linkText))
             {
-                linkText = Regex.Replace(linkText, @"(?<!\A)(?=[A-Z0-9]+)", " ");
+                linkText = Regex.Replace(actionName, @"(?<!\A)(?=[A-Z0-9]+)", " ");
             }
 
             return controller.ErrorView(

@@ -210,7 +210,10 @@
         {
             if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                return this.NoFilesSelectedErrorView(InstanceNames.FilesControllerInstanceName);
+                return this.NoFilesSelectedErrorView(
+                    InstanceNames.FilesControllerInstanceName,
+                    string.Empty,
+                    Resources.Strings.DefaultUploadNewFileActionLinkTitle);
             }
 
             var userId = User.Identity.GetUserId();
