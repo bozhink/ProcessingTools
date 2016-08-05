@@ -48,7 +48,7 @@
         [TestCase("/api/products/1", 1, "Tomato Soup", "Groceries", 1)]
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public void NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);

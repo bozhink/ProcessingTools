@@ -878,7 +878,7 @@
         }
 
         [TestMethod]
-        [Timeout(10000)]
+        [Timeout(20000)]
         public void RedisGenericRepository_GetMultipleValidEntitiesById_ShouldWork()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
