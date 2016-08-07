@@ -50,21 +50,13 @@
                 throw new InvalidIdException();
             }
 
-            var document = await this.service.Get(this.UserId, this.FakeArticleId, id);
+            var userId = this.UserId;
+            var articleId = this.FakeArticleId;
 
-            var model = new DocumentViewModel
-            {
-                Id = id.ToString(),
-                FileName = document.FileName,
-                FileExtension = document.FileExtension,
-                ContentType = document.ContentType,
-                ContentLength = document.ContentLength,
-                DateCreated = document.DateCreated,
-                DateModified = document.DateModified
-            };
+            var viewModel = await this.GetDetails(userId, articleId, id);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(model);
+            return this.View(viewModel);
         }
 
         // POST: /Articles/Files/Delete/5
@@ -86,21 +78,13 @@
                 throw new InvalidIdException();
             }
 
-            var document = await this.service.Get(this.UserId, this.FakeArticleId, id);
+            var userId = this.UserId;
+            var articleId = this.FakeArticleId;
 
-            var model = new DocumentViewModel
-            {
-                Id = id.ToString(),
-                FileName = document.FileName,
-                FileExtension = document.FileExtension,
-                ContentType = document.ContentType,
-                ContentLength = document.ContentLength,
-                DateCreated = document.DateCreated,
-                DateModified = document.DateModified
-            };
+            var viewModel = await this.GetDetails(userId, articleId, id);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(model);
+            return this.View(viewModel);
         }
 
         // GET: /Articles/Files/Download/5
@@ -134,13 +118,10 @@
                 throw new InvalidIdException();
             }
 
-            var model = new DocumentViewModel
-            {
-                Id = id.ToString()
-            };
+            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(model);
+            return this.View(viewModel);
         }
 
         // GET: /Articles/Help
@@ -167,9 +148,8 @@
             var articleId = this.FakeArticleId;
 
             var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
-                .Select(d => new DocumentViewModel
+                .Select(d => new DocumentViewModel(articleId, d.Id)
                 {
-                    Id = d.Id,
                     FileName = d.FileName,
                     DateCreated = d.DateCreated,
                     DateModified = d.DateModified
@@ -193,13 +173,10 @@
                 throw new InvalidIdException();
             }
 
-            var model = new DocumentViewModel
-            {
-                Id = id.ToString()
-            };
+            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(model);
+            return this.View(viewModel);
         }
 
         // GET: /Articles/Files/Upload
@@ -330,6 +307,42 @@
 
             var task = this.service.Create(userId, articleId, document, file.InputStream);
             return task;
+        }
+
+        private async Task<DocumentDetailsViewModel> GetDetails(object userId, object articleId, object id)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var document = await this.service.Get(userId, articleId, id);
+            if (document == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            var viewModel = new DocumentDetailsViewModel(articleId, id)
+            {
+                FileName = document.FileName,
+                FileExtension = document.FileExtension,
+                ContentType = document.ContentType,
+                ContentLength = document.ContentLength,
+                DateCreated = document.DateCreated,
+                DateModified = document.DateModified
+            };
+
+            return viewModel;
         }
     }
 }

@@ -3,22 +3,15 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class DocumentViewModel
+    public class DocumentViewModel : DocumentIdViewModel
     {
-        [Display(Name = "Id")]
-        public string Id { get; set; }
+        public DocumentViewModel(object articleId, object id)
+            : base(articleId, id)
+        {
+        }
 
         [Display(Name = "File Name")]
         public string FileName { get; set; }
-
-        [Display(Name = "File Extension")]
-        public string FileExtension { get; set; }
-
-        [Display(Name = "Content Length")]
-        public long ContentLength { get; set; }
-
-        [Display(Name = "Content Type")]
-        public string ContentType { get; set; }
 
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }

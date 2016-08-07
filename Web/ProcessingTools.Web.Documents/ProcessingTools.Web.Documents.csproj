@@ -277,6 +277,8 @@
     <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
