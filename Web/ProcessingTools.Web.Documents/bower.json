@@ -15,11 +15,13 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "jquery": "2.2.3",
     "jquery-form": "^3.46.0",
     "jquery-ui": "^1.11.4",
+    "jquery-validation": "^1.15.1",
+    "jquery-validation-unobtrusive": "^3.2.6",
     "interact": "1.2.6",
-    "bootstrap": "^3.3.6",
     "handlebars": "^4.0.5",
     "toastr": "^2.1.2",
     "modernizr": "^3.3.1",

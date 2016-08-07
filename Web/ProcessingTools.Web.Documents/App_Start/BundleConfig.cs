@@ -21,7 +21,8 @@
             bundles
                 .Add(new ScriptBundle(BundleNames.JQueryValidationScriptBundleName)
                 .Include(
-                    "~/Scripts/jquery.validate*"));
+                    "~/bower_components/jquery-validation/dist/jquery.validate.min.js",
+                    "~/bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"));
 
             bundles
                 .Add(new ScriptBundle(BundleNames.CryptoJSScriptBundleName)

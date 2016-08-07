@@ -396,16 +396,6 @@
     <Content Include="Scripts\config\toastr-config.js" />
     <Content Include="Scripts\custom\toolbox-event-handlers.js" />
     <Content Include="Scripts\data\documents\document-content-data.js" />
-    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.0.js" />
-    <Content Include="Scripts\jquery-3.1.0.min.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.0.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
@@ -444,8 +434,6 @@
     <Content Include="JSLintNet.json" />
     <Content Include="Content\Templates\coordinates-map.handlebars" />
     <Content Include="Scripts\custom\document-preview.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
