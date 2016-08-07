@@ -10,65 +10,7 @@
     </h2>
 </header>
 
-<section>
-    <header>
-        <h4>
-            @InstanceNames.FilesControllerInstanceName
-        </h4>
-    </header>
-
-    <hr />
-
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FileExtension)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileExtension)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentLength)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentLength)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
-    </dl>
-</section>
+@Html.Partial(ViewNames.DetailsPartialViewName)
 
 <hr />
 

@@ -423,6 +423,7 @@
     <Content Include="Areas\Articles\Views\Files\Delete.cshtml" />
     <Content Include="Areas\Articles\Views\Files\_HelpSubmenu.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Help.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\_Details.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

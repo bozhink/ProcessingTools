@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class DocumentDetailsViewModel : DocumentViewModel
