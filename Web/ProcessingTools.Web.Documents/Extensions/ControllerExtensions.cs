@@ -155,10 +155,10 @@
                 actionLinkText);
         }
 
-        public static ViewResult InvalidOrEmptyFileErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
+        public static ViewResult InvalidOrEmptyFilesErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewNames.InvalidOrEmptyFileErrorViewName,
+                ViewNames.InvalidOrEmptyFilesErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,

@@ -48,9 +48,12 @@
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Exceptions\InvalidItemsPerPageException.cs" />
+    <Compile Include="Exceptions\InvalidOrEmptyFilesException.cs" />
+    <Compile Include="Exceptions\NullOrEmptyFileException.cs" />
     <Compile Include="Exceptions\InvalidPageNumberException.cs" />
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
+    <Compile Include="Exceptions\NoFilesSelectedException.cs" />
     <Compile Include="Models\IModelWithUserInformation.cs" />
     <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

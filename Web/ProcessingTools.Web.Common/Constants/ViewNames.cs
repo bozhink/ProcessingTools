@@ -15,7 +15,7 @@
         public const string InvalidActionErrorViewName = "~/Views/Shared/Errors/InvalidAction.cshtml";
         public const string NotFoundErrorViewName = "~/Views/Shared/Errors/NotFound.cshtml";
         public const string InvalidNumberOfItemsPerPageErrorViewName = "~/Views/Shared/Errors/InvalidNumberOfItemsPerPage.cshtml";
-        public const string InvalidOrEmptyFileErrorViewName = "~/Views/Shared/Errors/InvalidOrEmptyFile.cshtml";
+        public const string InvalidOrEmptyFilesErrorViewName = "~/Views/Shared/Errors/InvalidOrEmptyFiles.cshtml";
         public const string InvalidPageNumberErrorViewName = "~/Views/Shared/Errors/InvalidPageNumber.cshtml";
         public const string NoFilesSelectedErrorViewName = "~/Views/Shared/Errors/NoFilesSelected.cshtml";
         public const string InvalidIdErrorViewName = "~/Views/Shared/Errors/InvalidId.cshtml";

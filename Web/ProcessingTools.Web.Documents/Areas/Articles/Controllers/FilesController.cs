@@ -24,9 +24,6 @@
     [Authorize]
     public class FilesController : Controller
     {
-        // TODO: To be removed
-        private readonly int fakeArticleId = 0;
-
         private readonly IDocumentsDataService service;
 
         public FilesController(IDocumentsDataService service)
@@ -39,16 +36,21 @@
             this.service = service;
         }
 
+        private string UserId => User.Identity.GetUserId();
+
+        // TODO: To be removed
+        private int FakeArticleId => 0;
+
         // GET: /Articles/Files/Delete/5
         [HttpGet, ActionName(ActionNames.DeafultDeleteActionName)]
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidIdException();
             }
 
-            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+            var document = await this.service.Get(this.UserId, this.FakeArticleId, id);
 
             var model = new DocumentViewModel
             {
@@ -70,7 +72,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            await this.service.Delete(User.Identity.GetUserId(), this.fakeArticleId, id);
+            await this.service.Delete(this.UserId, this.FakeArticleId, id);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -81,10 +83,10 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidIdException();
             }
 
-            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+            var document = await this.service.Get(this.UserId, this.FakeArticleId, id);
 
             var model = new DocumentViewModel
             {
@@ -107,13 +109,16 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidIdException();
             }
 
-            var document = await this.service.Get(User.Identity.GetUserId(), this.fakeArticleId, id);
+            var userId = this.UserId;
+            var articleId = this.FakeArticleId;
 
+            var document = await this.service.Get(userId, articleId, id);
+
+            var stream = await this.service.GetStream(userId, articleId, id);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            var stream = await this.service.GetStream(User.Identity.GetUserId(), this.fakeArticleId, id);
             return this.File(
                 fileStream: stream,
                 contentType: document.ContentType,
@@ -126,7 +131,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidIdException();
             }
 
             var model = new DocumentViewModel
@@ -158,9 +163,10 @@
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.UserId;
+            var articleId = this.FakeArticleId;
 
-            var items = (await this.service.All(userId, this.fakeArticleId, currentPage, numberOfItemsPerPage))
+            var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
                 .Select(d => new DocumentViewModel
                 {
                     Id = d.Id,
@@ -170,7 +176,7 @@
                 })
                 .ToArray();
 
-            var numberOfDocuments = await this.service.Count(userId, this.fakeArticleId);
+            var numberOfDocuments = await this.service.Count(userId, articleId);
 
             var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
@@ -184,7 +190,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidIdException();
             }
 
             var model = new DocumentViewModel
@@ -210,41 +216,24 @@
         {
             if (files == null || files.Count() < 1 || files.All(f => f == null))
             {
-                return this.NoFilesSelectedErrorView(
-                    InstanceNames.FilesControllerInstanceName,
-                    string.Empty,
-                    Resources.Strings.DefaultUploadNewFileActionLinkTitle);
+                throw new NoFilesSelectedException();
             }
 
             var userId = User.Identity.GetUserId();
-            var articleId = this.fakeArticleId;
+            var articleId = this.FakeArticleId;
 
             var tasks = new ConcurrentQueue<Task>();
             var invalidFiles = new ConcurrentQueue<string>();
             foreach (var file in files)
             {
-                if (file == null || file.ContentLength < 1)
+                try
+                {
+                    var task = this.UploadSingleFile(userId, articleId, file);
+                    tasks.Enqueue(task);
+                }
+                catch (NullOrEmptyFileException)
                 {
                     invalidFiles.Enqueue(file.FileName);
-                }
-                else
-                {
-                    try
-                    {
-                        var document = new DocumentServiceModel
-                        {
-                            FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
-                            FileExtension = Path.GetExtension(file.FileName).Trim('.'),
-                            ContentLength = file.ContentLength,
-                            ContentType = file.ContentType
-                        };
-
-                        tasks.Enqueue(this.service.Create(userId, articleId, document, file.InputStream));
-                    }
-                    catch
-                    {
-                        invalidFiles.Enqueue(file.FileName);
-                    }
                 }
             }
 
@@ -252,8 +241,7 @@
 
             if (invalidFiles.Count > 0)
             {
-                this.ViewBag.InvalidFiles = invalidFiles.OrderBy(f => f).ToList();
-                return this.InvalidOrEmptyFileErrorView(InstanceNames.FilesControllerInstanceName);
+                throw new InvalidOrEmptyFilesException(invalidFiles.OrderBy(f => f).ToList());
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
@@ -265,6 +253,25 @@
             if (filterContext.Exception is EntityNotFoundException)
             {
                 filterContext.Result = this.DefaultNotFoundView(
+                    InstanceNames.FilesControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is NoFilesSelectedException)
+            {
+                filterContext.Result = this.NoFilesSelectedErrorView(
+                    InstanceNames.FilesControllerInstanceName,
+                    filterContext.Exception.Message,
+                    Resources.Strings.DefaultUploadNewFileActionLinkTitle);
+            }
+            else if (filterContext.Exception is InvalidOrEmptyFilesException)
+            {
+                // TODO: Remove ViewBag
+                this.ViewBag.InvalidFiles = ((InvalidOrEmptyFilesException)filterContext.Exception).FileNames;
+                filterContext.Result = this.InvalidOrEmptyFilesErrorView(InstanceNames.FilesControllerInstanceName);
+            }
+            else if (filterContext.Exception is InvalidIdException)
+            {
+                filterContext.Result = this.InvalidIdErrorView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message);
             }
@@ -294,6 +301,35 @@
             }
 
             filterContext.ExceptionHandled = true;
+        }
+
+        private Task<object> UploadSingleFile(object userId, object articleId, HttpPostedFileBase file)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            if (file == null || file.ContentLength < 1)
+            {
+                throw new NullOrEmptyFileException();
+            }
+
+            var document = new DocumentServiceModel
+            {
+                FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
+                FileExtension = Path.GetExtension(file.FileName).Trim('.'),
+                ContentLength = file.ContentLength,
+                ContentType = file.ContentType
+            };
+
+            var task = this.service.Create(userId, articleId, document, file.InputStream);
+            return task;
         }
     }
 }
