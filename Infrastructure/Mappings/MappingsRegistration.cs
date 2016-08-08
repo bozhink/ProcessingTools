@@ -5,10 +5,10 @@
     using System.Reflection;
 
     using AutoMapper;
+    using AutoMapper.Configuration;
 
     using Contracts;
     using Extensions;
-    using AutoMapper.Configuration;
 
     public class MappingsRegistration
     {
