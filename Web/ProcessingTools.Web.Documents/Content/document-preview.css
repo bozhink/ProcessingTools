@@ -383,3 +383,6 @@ mark mark mark:hover {
 .graphic:before {
   content: attr(href);
 }
+.related-article div {
+  display: inline;
+}

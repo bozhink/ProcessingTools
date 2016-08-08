@@ -12,7 +12,7 @@
   <xsl:output method="xml" indent="yes" encoding="utf-8"  cdata-section-elements="tex-math" />
 
   <xsl:strip-space elements="*" />
-  <xsl:preserve-space elements="p label title article-title td th kwd email ext-link uri preformat bold b italic i monospace overline roman sans-serif sc strike s underline u award-id funding-source private-char tex-math abbrev def milestone-end milestone-start named-content styled-content disp-quote speech statement target xref xref-group sub sup tp:taxon-name source institution institutional_code envo mixed-citation" />
+  <xsl:preserve-space elements="p related-article label title article-title td th kwd email ext-link uri preformat bold b italic i monospace overline roman sans-serif sc strike s underline u award-id funding-source private-char tex-math abbrev def milestone-end milestone-start named-content styled-content disp-quote speech statement target xref xref-group sub sup tp:taxon-name source institution institutional_code envo mixed-citation" />
 
   <xsl:include href="format.inc.xsl" />
 
