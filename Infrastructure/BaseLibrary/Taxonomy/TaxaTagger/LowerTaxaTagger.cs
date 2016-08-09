@@ -109,59 +109,64 @@
             this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
-                .ForAll(this.TagInfraspecificTaxa);
+                .ForAll(this.TagInfrarankTaxaSync);
 
             this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
-                .ForAll(this.TagInfraspecificTaxa);
+                .ForAll(this.TagInfrarankTaxaSync);
         }
 
-        private void TagInfraspecificTaxa(XmlNode node)
+        private void TagInfrarankTaxaSync(XmlNode node)
         {
-            string replace = this.TagInfraspecificTaxa(node.InnerXml);
-
-            // TODO: await needed
-            node.SafeReplaceInnerXml(replace, this.logger).Wait();
+            this.TagInfrarankTaxa(node).Wait();
         }
 
-        private string TagInfraspecificTaxa(string content)
+        private async Task TagInfrarankTaxa(XmlNode node)
         {
-            string result = content;
+            await this.TagSensu(node);
 
-            result = this.TagSensu(result);
+            await this.TagBindedInfragenericTaxa(node);
 
-            result = this.TagInfragenericTaxa(result);
+            await this.TagBindedInfraspecificTaxa(node);
 
-            result = this.TagBindedInfraspecificTaxa(result);
+            await this.TagBareInfraspecificTaxa(node);
 
-            result = this.TagBareInfraspecificTaxa(result);
+            await this.TagInfraspecicTaxaFinalize(node);
+        }
 
+        private async Task TagInfraspecicTaxaFinalize(XmlNode node)
+        {
             // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
-            result = Regex.Replace(result, @"<infraspecific>([A-Za-z][A-Za-z\.-]+)\s+([a-z][a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
+            string replace = node.InnerXml;
+            replace = Regex.Replace(replace, @"<infraspecific>([A-Za-z][A-Za-z\.-]+)\s+([a-z][a-z\s\.-]+)</infraspecific>", "<infraspecific>$1</infraspecific> <species>$2</species>");
 
-            result = Regex.Replace(result, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
+            replace = Regex.Replace(replace, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
 
-            return result;
+            await node.SafeReplaceInnerXml(replace, this.logger);
         }
 
         // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-        private string TagSensu(string result)
+        private async Task TagSensu(XmlNode node)
         {
             const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z][a-z\s-]+)(?:</tn>)?</i>";
             Regex re = new Regex(InfraspecificPattern);
 
+            string result = node.InnerXml;
             result = re.Replace(
                 result,
                 @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
-            return result;
+            await node.SafeReplaceInnerXml(result, this.logger);
         }
 
         // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
-        private string TagInfragenericTaxa(string result)
+        private async Task TagBindedInfragenericTaxa(XmlNode node)
         {
             const string Subpattern = @"(?!\s*[,\.:])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+\\\/]{0,40}?)\s*(\(\s*)?(" + InfragenericRankSubpattern + @")\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
+
+            string result = node.InnerXml;
+
             {
                 const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z][A-Za-z\.-]+)</tn></i>" + Subpattern;
 
@@ -194,7 +199,7 @@
                 result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
             }
 
-            return result;
+            await node.SafeReplaceInnerXml(result, this.logger);
         }
 
         // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
@@ -202,9 +207,11 @@
         // <i>Melitaea phoebe</i> Knoch rassa <i>occitanica</i> Staudinger 2-gen. <i>francescoi</i>
         // <i>Melitaea phoebe</i> Knoch sbsp. n. <i>canellina</i> Stauder, 1922
         // <i>Melitaea phoebe</i> mod. <i>nimbula</i> Higgins, 1941
-        private string TagBindedInfraspecificTaxa(string result)
+        private async Task TagBindedInfraspecificTaxa(XmlNode node)
         {
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
+
+            string result = node.InnerXml;
 
             {
                 const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]:\+]{0,3}?\([^<>\(\)\[\]:\+\\\/]{0,30}?\)[^<>\(\)\[\]:\+]{0,30}?|[^<>\(\)\[\]:\+]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
@@ -238,15 +245,18 @@
                 }
             }
 
-            return result;
+            await node.SafeReplaceInnerXml(result, this.logger);
         }
 
         // Tag bare infraspecific citations in text
         // var. <italic>schischkinii</italic>
-        private string TagBareInfraspecificTaxa(string result)
+        private async Task TagBareInfraspecificTaxa(XmlNode node)
         {
             const string BareInfraspecificPattern = InfraspecificRankSubpattern + @"<i>[A-Za-z][A-Za-z\.\-]+</i>";
             Regex re = new Regex(BareInfraspecificPattern);
+
+            string result = node.InnerXml;
+
             if (re.IsMatch(result))
             {
                 result = re.Replace(
@@ -254,7 +264,7 @@
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
             }
 
-            return result;
+            await node.SafeReplaceInnerXml(result, this.logger);
         }
 
         private bool IsMatchingLowerTaxaFormat(string textToCheck)
