@@ -19,6 +19,8 @@
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
         private const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|fo?|forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|aff)|prope|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
 
+        private const string StructureXPathTemplate = "//p[{0}]|//title[{0}]|//article-meta/title-group[{0}]|//label[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+
         // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
         private const string LowerTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//*[@object_id='90'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
 
@@ -56,10 +58,15 @@
                 @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                 "$1‘$2’ $4$3");
 
-            const string StructureXPathTemplate = "//p[{0}]|//title[{0}]|//label[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
-
             this.AdvancedTagLowerTaxa(string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
             ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
+        }
+
+        private XmlElement CreateNewLowerTaxonNameXmlElement()
+        {
+            XmlElement tn = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
+            tn.SetAttribute(XmlInternalSchemaConstants.TaxonNameTypeAttributeName, XmlInternalSchemaConstants.LowerTaxonTypeValue);
+            return tn;
         }
 
         private void TagDirectTaxonomicMatches(IEnumerable<string> taxonomicNames)
@@ -74,8 +81,7 @@
                 {
                     if (taxonomicNames.Contains(node.InnerText, comparer))
                     {
-                        XmlElement tn = node.OwnerDocument.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
-                        tn.SetAttribute(XmlInternalSchemaConstants.TaxonNameTypeAttributeName, XmlInternalSchemaConstants.LowerTaxonTypeValue);
+                        var tn = this.CreateNewLowerTaxonNameXmlElement();
                         tn.InnerXml = node.InnerXml;
                         node.InnerXml = tn.OuterXml;
                     }
@@ -127,6 +133,8 @@
             await this.TagSensu(node);
 
             await this.TagBindedInfragenericTaxa(node);
+
+            await this.TagBareInfragenericTaxa(node);
 
             await this.TagBindedInfraspecificTaxa(node);
 
@@ -252,13 +260,34 @@
         // var. <italic>schischkinii</italic>
         private async Task TagBareInfraspecificTaxa(XmlNode node)
         {
-            const string BareInfraspecificPattern = InfraspecificRankSubpattern + @"<i>[A-Za-z][A-Za-z\.\-]+</i>";
+            const string BareInfraspecificPattern = @"(" + InfraspecificRankSubpattern + @")\s*<i>([A-Za-z][A-Za-z\.\-]+)</i>";
             Regex re = new Regex(BareInfraspecificPattern);
 
             string result = node.InnerXml;
 
             if (re.IsMatch(result))
             {
+                result = re.Replace(
+                    result,
+                    @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
+            }
+
+            await node.SafeReplaceInnerXml(result, this.logger);
+        }
+
+        // Tag bare infraspecific citations in text
+        // section <italic>Stenodiptera</italic>
+        private async Task TagBareInfragenericTaxa(XmlNode node)
+        {
+            const string BareInfragenericPattern = @"(" + InfragenericRankSubpattern + @")\s*<i>(?:<tn type=""lower"">)?([A-Za-z][A-Za-z\.\-]+)(?:</tn>)?</i>";
+            Regex re = new Regex(BareInfragenericPattern);
+
+            string result = node.InnerXml;
+
+
+            if (re.IsMatch(result))
+            {
+            Console.WriteLine("Here");
                 result = re.Replace(
                     result,
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
@@ -320,8 +349,7 @@
 
             var orderedTaxaParts = new HashSet<string>(taxa).OrderByDescending(t => t.Length);
 
-            XmlElement lowerTaxaTagModel = this.XmlDocument.CreateElement("tn");
-            lowerTaxaTagModel.SetAttribute("type", "lower");
+            XmlElement lowerTaxaTagModel = this.CreateNewLowerTaxonNameXmlElement();
 
             foreach (var item in orderedTaxaParts)
             {
