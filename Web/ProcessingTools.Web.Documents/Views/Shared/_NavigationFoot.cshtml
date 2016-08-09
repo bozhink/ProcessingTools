@@ -3,6 +3,31 @@
 @{
     if (Model.LastPage > 0)
     {
+        const long MaximalNumberOfPagesToShow = 5;
+        const long NumberOfPagesNearActive = MaximalNumberOfPagesToShow / 2;
+
+        long leftPage = Model.FirstPage;
+        long rightPage = Model.LastPage;
+
+        if (Model.NumberOfPages > MaximalNumberOfPagesToShow)
+        {
+            long l = Math.Max(Model.FirstPage, Model.CurrentPage - NumberOfPagesNearActive);
+            leftPage = l;
+
+            long r = Math.Min(Model.LastPage, Model.CurrentPage + NumberOfPagesNearActive);
+            rightPage = r;
+
+            if (l == Model.FirstPage)
+            {
+                rightPage += NumberOfPagesNearActive - (Model.CurrentPage - Model.FirstPage);
+            }
+
+            if (r == Model.LastPage)
+            {
+                leftPage -= NumberOfPagesNearActive - (Model.LastPage - Model.CurrentPage);
+            }
+        }
+
         <nav>
             <ul class="pagination">
                 <li>
@@ -13,11 +38,21 @@
                     @Html.ActionLink(" ", Model.ActionName, new { p = Model.PreviousPage, n = Model.NumberOfItemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
                 </li>
 
-                @for (long i = 0; i < Model.NumberOfPages; ++i)
+                @if (leftPage > Model.FirstPage)
+                {
+                    <li class="disabled"><a>...</a></li>
+                }
+
+                @for (long i = leftPage; i <= rightPage; ++i)
                 {
                     <li class="@((i == Model.CurrentPage) ? "active" : null)">
                         @Html.ActionLink((i + 1).ToString(), Model.ActionName, new { p = i, n = Model.NumberOfItemsPerPage })
                     </li>
+                }
+
+                @if (rightPage < Model.LastPage)
+                {
+                    <li class="disabled"><a>...</a></li>
                 }
 
                 <li>
