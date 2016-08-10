@@ -111,8 +111,9 @@
 
             string xslFileName = ConfigurationManager.AppSettings[FormatHtmlToXmlXslFilePathKey];
             var xmlContent = xmlDocument.ApplyXslTransform(xslFileName);
+            xmlDocument.LoadXml(xmlContent);
 
-            var result = await this.service.Update(userId, articleId, document, xmlContent);
+            var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);
 
             return result;
         }

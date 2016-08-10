@@ -65,6 +65,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="NUnitSetUpClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlPresenterTests.cs" />
   </ItemGroup>
