@@ -9,16 +9,16 @@
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public class AboveGenusTaxaRankDataService : IAboveGenusTaxaRankDataService
+    public class AboveGenusTaxaRankResolverDataService : IAboveGenusTaxaRankResolverDataService
     {
         private const string Rank = "above-genus";
 
-        public Task<IQueryable<ITaxonClassification>> Resolve(params string[] scientificNames)
+        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
             return Task.Run(() =>
             {
-                var result = new HashSet<ITaxonClassification>(scientificNames
-                    .Select(s => new TaxonClassificationServiceModel
+                var result = new HashSet<ITaxonRank>(scientificNames
+                    .Select(s => new TaxonRankServiceModel
                     {
                         ScientificName = s,
                         Rank = Rank

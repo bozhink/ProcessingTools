@@ -5,7 +5,7 @@
 
     public class AphiaController : TaxaClassificationDataServiceControllerFactory
     {
-        public AphiaController(IAphiaTaxaClassificationDataService service)
+        public AphiaController(IAphiaTaxaClassificationResolverDataService service)
         {
             this.Service = service;
         }

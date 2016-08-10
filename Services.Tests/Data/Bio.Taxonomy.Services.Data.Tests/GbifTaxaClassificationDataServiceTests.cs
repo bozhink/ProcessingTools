@@ -15,7 +15,7 @@
         {
             var connectorFactory = new NetConnectorFactory();
             var requester = new GbifApiV09DataRequester(connectorFactory);
-            var service = new GbifTaxaClassificationDataService(requester);
+            var service = new GbifTaxaClassificationResolverDataService(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
 
@@ -29,7 +29,7 @@
 
             var connectorFactory = new NetConnectorFactory();
             var requester = new GbifApiV09DataRequester(connectorFactory);
-            var service = new GbifTaxaClassificationDataService(requester);
+            var service = new GbifTaxaClassificationResolverDataService(requester);
             var response = service.Resolve(CanonicalName).Result;
 
             var defaultClassification = response.FirstOrDefault();

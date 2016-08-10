@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public interface IAboveGenusTaxaRankDataService : ITaxaInformationResolverDataService<ITaxonClassification>
+    public interface ITaxonRankResolverDataService : ITaxaInformationResolverDataService<ITaxonRank>
     {
     }
 }

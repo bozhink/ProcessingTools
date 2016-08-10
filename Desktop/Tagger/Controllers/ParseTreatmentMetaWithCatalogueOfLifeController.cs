@@ -12,9 +12,9 @@
     [Description("Parse treatment meta with CoL.")]
     public class ParseTreatmentMetaWithCatalogueOfLifeController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithCatalogueOfLifeController
     {
-        private readonly ICatalogueOfLifeTaxaClassificationDataService service;
+        private readonly ICatalogueOfLifeTaxaClassificationResolverDataService service;
 
-        public ParseTreatmentMetaWithCatalogueOfLifeController(ICatalogueOfLifeTaxaClassificationDataService service)
+        public ParseTreatmentMetaWithCatalogueOfLifeController(ICatalogueOfLifeTaxaClassificationResolverDataService service)
         {
             if (service == null)
             {

@@ -14,7 +14,7 @@
         public void CatalogueOfLifeTaxaClassificationDataService_DefaultConstructor_ShouldWork()
         {
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
-            var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
+            var service = new CatalogueOfLifeTaxaClassificationResolverDataService(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
 
@@ -25,7 +25,7 @@
             const string Rank = "order";
 
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
-            var service = new CatalogueOfLifeTaxaClassificationDataService(requester);
+            var service = new CatalogueOfLifeTaxaClassificationResolverDataService(requester);
             var response = service.Resolve(ScientificName).Result;
 
             var defaultClassification = response.FirstOrDefault();

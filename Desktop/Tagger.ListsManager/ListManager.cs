@@ -145,8 +145,8 @@
                 {
                     var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items.Cast<ListViewItem>()
-                        .Select(i => new TaxonRankServiceModel
+                    var taxa = new HashSet<TaxonRankWithWhiteListingServiceModel>(this.listView.Items.Cast<ListViewItem>()
+                        .Select(i => new TaxonRankWithWhiteListingServiceModel
                         {
                             ScientificName = i.SubItems[0].Text,
                             Rank = i.SubItems[1].Text,

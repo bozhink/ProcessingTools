@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
-    public interface IParseHigherTaxaWithCatalogueOfLifeController : IParseHigherTaxaWithDataServiceGenericController<ICatalogueOfLifeTaxaClassificationDataService>
+    public interface IParseHigherTaxaWithCatalogueOfLifeController : IParseHigherTaxaWithDataServiceGenericController<ICatalogueOfLifeTaxaRankResolverDataService>
     {
     }
 }

@@ -2,96 +2,96 @@
 {
     public interface ITaxonClassification : IExtendedTaxonRank
     {
-        string Superkingdom { get; set; }
+        string Superkingdom { get; }
 
-        string Kingdom { get; set; }
+        string Kingdom { get; }
 
-        string Subkingdom { get; set; }
+        string Subkingdom { get; }
 
-        string Infrakingdom { get; set; }
+        string Infrakingdom { get; }
 
-        string Division { get; set; }
+        string Division { get; }
 
-        string Subdivision { get; set; }
+        string Subdivision { get; }
 
-        string Infradivision { get; set; }
+        string Infradivision { get; }
 
-        string Superphylum { get; set; }
+        string Superphylum { get; }
 
-        string Phylum { get; set; }
+        string Phylum { get; }
 
-        string Subphylum { get; set; }
+        string Subphylum { get; }
 
-        string Infraphylum { get; set; }
+        string Infraphylum { get; }
 
-        string Superclass { get; set; }
+        string Superclass { get; }
 
-        string Class { get; set; }
+        string Class { get; }
 
-        string Subclass { get; set; }
+        string Subclass { get; }
 
-        string Infraclass { get; set; }
+        string Infraclass { get; }
 
-        string Superorder { get; set; }
+        string Superorder { get; }
 
-        string Order { get; set; }
+        string Order { get; }
 
-        string Suborder { get; set; }
+        string Suborder { get; }
 
-        string Infraorder { get; set; }
+        string Infraorder { get; }
 
-        string Parvorder { get; set; }
+        string Parvorder { get; }
 
-        string Superfamily { get; set; }
+        string Superfamily { get; }
 
-        string Family { get; set; }
+        string Family { get; }
 
-        string Subfamily { get; set; }
+        string Subfamily { get; }
 
-        string Supertribe { get; set; }
+        string Supertribe { get; }
 
-        string Tribe { get; set; }
+        string Tribe { get; }
 
-        string Subtribe { get; set; }
+        string Subtribe { get; }
 
-        string Clade { get; set; }
+        string Clade { get; }
 
-        string Subclade { get; set; }
+        string Subclade { get; }
 
-        string Cohort { get; set; }
+        string Cohort { get; }
 
-        string Supergroup { get; set; }
+        string Supergroup { get; }
 
-        string Genus { get; set; }
+        string Genus { get; }
 
-        string Subgenus { get; set; }
+        string Subgenus { get; }
 
-        string Section { get; set; }
+        string Section { get; }
 
-        string Subsection { get; set; }
+        string Subsection { get; }
 
-        string Series { get; set; }
+        string Series { get; }
 
-        string Subseries { get; set; }
+        string Subseries { get; }
 
-        string Superspecies { get; set; }
+        string Superspecies { get; }
 
-        string Species { get; set; }
+        string Species { get; }
 
-        string Subspecies { get; set; }
+        string Subspecies { get; }
 
-        string Variety { get; set; }
+        string Variety { get; }
 
-        string Subvariety { get; set; }
+        string Subvariety { get; }
 
-        string Form { get; set; }
+        string Form { get; }
 
-        string Subform { get; set; }
+        string Subform { get; }
 
-        string Aberration { get; set; }
+        string Aberration { get; }
 
-        string Stage { get; set; }
+        string Stage { get; }
 
-        string Race { get; set; }
+        string Race { get; }
     }
 }

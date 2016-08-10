@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
-    public interface IParseHigherTaxaWithAphiaController : IParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaClassificationDataService>
+    public interface IParseHigherTaxaWithAphiaController : IParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaRankResolverDataService>
     {
     }
 }

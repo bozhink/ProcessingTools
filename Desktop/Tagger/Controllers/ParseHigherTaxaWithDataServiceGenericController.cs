@@ -4,11 +4,10 @@
 
     using Contracts;
     using Factories;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
     public class ParseHigherTaxaWithDataServiceGenericController<TService> : ParseHigherTaxaControllerFactory, IParseHigherTaxaWithDataServiceGenericController<TService>
-        where TService : ITaxaInformationResolverDataService<ITaxonClassification>
+        where TService : ITaxonRankResolverDataService
     {
         private readonly TService service;
 
@@ -22,6 +21,6 @@
             this.service = service;
         }
 
-        protected override ITaxaInformationResolverDataService<ITaxonClassification> Service => this.service;
+        protected override ITaxonRankResolverDataService Service => this.service;
     }
 }

@@ -13,7 +13,7 @@
     {
         private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException.";
         private const string InnerExceptionShouldBeArgumentNullExceptionMessage = "InnerException should be System.ArgumentNullException.";
-        private const string ContentShouldBeUnchangedMessage = "Content should be unchaged.";
+        private const string ContentShouldBeUnchangedMessage = "Content should be unchanged.";
 
         private XmlDocument document;
         private XmlNamespaceManager namespaceManager;

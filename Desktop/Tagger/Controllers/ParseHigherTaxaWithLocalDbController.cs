@@ -18,9 +18,9 @@
     [Description("Parse higher taxa with local database.")]
     public class ParseHigherTaxaWithLocalDbController : TaggerControllerFactory, IParseHigherTaxaWithLocalDbController
     {
-        private readonly ILocalDbTaxaRankDataService service;
+        private readonly ILocalDbTaxaRankResolverDataService service;
 
-        public ParseHigherTaxaWithLocalDbController(ILocalDbTaxaRankDataService service)
+        public ParseHigherTaxaWithLocalDbController(ILocalDbTaxaRankResolverDataService service)
         {
             if (service == null)
             {

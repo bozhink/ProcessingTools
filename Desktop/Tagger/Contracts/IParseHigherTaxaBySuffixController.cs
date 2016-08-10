@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
-    public interface IParseHigherTaxaBySuffixController : IParseHigherTaxaWithDataServiceGenericController<ISuffixHigherTaxaRankDataService>
+    public interface IParseHigherTaxaBySuffixController : IParseHigherTaxaWithDataServiceGenericController<ISuffixHigherTaxaRankResolverDataService>
     {
     }
 }

@@ -15,11 +15,11 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Common.Constants;
 
-    public class GbifTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationDataService
+    public class GbifTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationResolverDataService
     {
         private IGbifApiV09DataRequester requester;
 
-        public GbifTaxaClassificationDataService(IGbifApiV09DataRequester requester)
+        public GbifTaxaClassificationResolverDataService(IGbifApiV09DataRequester requester)
         {
             if (requester == null)
             {

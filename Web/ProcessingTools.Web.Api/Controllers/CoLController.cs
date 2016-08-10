@@ -7,7 +7,7 @@
     [EnableCors("*", "*", "*")]
     public class CoLController : TaxaClassificationDataServiceControllerFactory
     {
-        public CoLController(ICatalogueOfLifeTaxaClassificationDataService service)
+        public CoLController(ICatalogueOfLifeTaxaClassificationResolverDataService service)
         {
             this.Service = service;
         }

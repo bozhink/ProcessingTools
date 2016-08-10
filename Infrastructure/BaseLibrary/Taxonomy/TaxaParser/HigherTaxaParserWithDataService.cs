@@ -19,9 +19,9 @@
         where T : ITaxonRank
     {
         private ILogger logger;
-        private ITaxaInformationResolverDataService<T> taxaRankDataService;
+        private ITaxonRankResolverDataService taxaRankDataService;
 
-        public HigherTaxaParserWithDataService(string xml, ITaxaInformationResolverDataService<T> taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(string xml, ITaxonRankResolverDataService taxaRankDataService, ILogger logger)
             : base(xml)
         {
             this.logger = logger;

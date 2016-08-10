@@ -17,11 +17,11 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Common.Constants;
 
-    public class CatalogueOfLifeTaxaClassificationDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationDataService
+    public class CatalogueOfLifeTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolverDataService
     {
         private ICatalogueOfLifeDataRequester requester;
 
-        public CatalogueOfLifeTaxaClassificationDataService(ICatalogueOfLifeDataRequester requester)
+        public CatalogueOfLifeTaxaClassificationResolverDataService(ICatalogueOfLifeDataRequester requester)
         {
             if (requester == null)
             {

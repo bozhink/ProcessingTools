@@ -2,8 +2,8 @@
 {
     public interface ITaxonRank
     {
-        string ScientificName { get; set; }
+        string ScientificName { get; }
 
-        string Rank { get; set; }
+        string Rank { get; }
     }
 }

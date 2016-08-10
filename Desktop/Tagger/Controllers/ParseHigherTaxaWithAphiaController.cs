@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
     [Description("Parse higher taxa using Aphia.")]
-    public class ParseHigherTaxaWithAphiaController : ParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaClassificationDataService>, IParseHigherTaxaWithAphiaController
+    public class ParseHigherTaxaWithAphiaController : ParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaRankResolverDataService>, IParseHigherTaxaWithAphiaController
     {
-        public ParseHigherTaxaWithAphiaController(IAphiaTaxaClassificationDataService service)
+        public ParseHigherTaxaWithAphiaController(IAphiaTaxaRankResolverDataService service)
             : base(service)
         {
         }

@@ -10,11 +10,11 @@
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public class SuffixHigherTaxaRankDataService : ISuffixHigherTaxaRankDataService
+    public class SuffixHigherTaxaRankResolverDataService : ISuffixHigherTaxaRankResolverDataService
     {
         private IDictionary<string, string> rankPerSuffix;
 
-        public SuffixHigherTaxaRankDataService()
+        public SuffixHigherTaxaRankResolverDataService()
         {
             this.rankPerSuffix = new Dictionary<string, string>()
             {
@@ -35,11 +35,11 @@
             };
         }
 
-        public Task<IQueryable<ITaxonClassification>> Resolve(params string[] scientificNames)
+        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
             return Task.Run(() =>
             {
-                var result = new HashSet<ITaxonClassification>();
+                var result = new HashSet<ITaxonRank>();
 
                 foreach (var scientificName in scientificNames)
                 {
@@ -48,7 +48,7 @@
                         .Select(k => this.rankPerSuffix[k])
                         .ToList();
 
-                    ranks.ForEach(r => result.Add(new TaxonClassificationServiceModel
+                    ranks.ForEach(r => result.Add(new TaxonRankServiceModel
                     {
                         ScientificName = scientificName,
                         Rank = r

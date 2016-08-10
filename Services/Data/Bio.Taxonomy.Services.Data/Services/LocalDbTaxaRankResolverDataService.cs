@@ -8,11 +8,11 @@
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
 
-    public class LocalDbTaxaRankDataService : ILocalDbTaxaRankDataService
+    public class LocalDbTaxaRankResolverDataService : ILocalDbTaxaRankResolverDataService
     {
         private readonly ITaxonRankDataService service;
 
-        public LocalDbTaxaRankDataService(ITaxonRankDataService service)
+        public LocalDbTaxaRankResolverDataService(ITaxonRankDataService service)
         {
             if (service == null)
             {

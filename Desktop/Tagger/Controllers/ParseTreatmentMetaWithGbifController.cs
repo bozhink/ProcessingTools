@@ -12,9 +12,9 @@
     [Description("Parse treatment meta with GBIF.")]
     public class ParseTreatmentMetaWithGbifController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithGbifController
     {
-        private readonly IGbifTaxaClassificationDataService service;
+        private readonly IGbifTaxaClassificationResolverDataService service;
 
-        public ParseTreatmentMetaWithGbifController(IGbifTaxaClassificationDataService service)
+        public ParseTreatmentMetaWithGbifController(IGbifTaxaClassificationResolverDataService service)
         {
             if (service == null)
             {

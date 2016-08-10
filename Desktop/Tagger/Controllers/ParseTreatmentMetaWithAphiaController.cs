@@ -12,9 +12,9 @@
     [Description("Parse treatment meta with Aphia.")]
     public class ParseTreatmentMetaWithAphiaController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithAphiaController
     {
-        private readonly IAphiaTaxaClassificationDataService service;
+        private readonly IAphiaTaxaClassificationResolverDataService service;
 
-        public ParseTreatmentMetaWithAphiaController(IAphiaTaxaClassificationDataService service)
+        public ParseTreatmentMetaWithAphiaController(IAphiaTaxaClassificationResolverDataService service)
         {
             if (service == null)
             {

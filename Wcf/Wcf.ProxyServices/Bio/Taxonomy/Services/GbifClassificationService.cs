@@ -12,18 +12,18 @@
 
     public class GbifClassificationService : IGbifClassificationService
     {
-        private readonly IGbifTaxaClassificationDataService service;
+        private readonly IGbifTaxaClassificationResolverDataService service;
 
         // TODO
         public GbifClassificationService()
             : this(
-                  new GbifTaxaClassificationDataService(
+                  new GbifTaxaClassificationResolverDataService(
                       new GbifApiV09DataRequester(
                           new NetConnectorFactory())))
         {
         }
 
-        public GbifClassificationService(IGbifTaxaClassificationDataService service)
+        public GbifClassificationService(IGbifTaxaClassificationResolverDataService service)
         {
             if (service == null)
             {
