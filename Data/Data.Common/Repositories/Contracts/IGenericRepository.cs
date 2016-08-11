@@ -5,10 +5,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Types;
-
-    public interface IGenericRepository<TEntity>
+    public interface IGenericRepository<TEntity> : ICountableRepository<TEntity>, ISearchableRepository<TEntity>
     {
         Task<object> Add(TEntity entity);
 
@@ -21,21 +18,6 @@
         Task<TEntity> Get(Expression<Func<TEntity, bool>> selector);
 
         Task<TEntity> Get(object id);
-
-        Task<IQueryable<TEntity>> Query(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            SortOrder sortOrder = SortOrder.Ascending);
-
-        Task<IQueryable<T>> Query<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection,
-            Expression<Func<TEntity, object>> sort,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            SortOrder sortOrder = SortOrder.Ascending);
 
         Task<int> SaveChanges();
 

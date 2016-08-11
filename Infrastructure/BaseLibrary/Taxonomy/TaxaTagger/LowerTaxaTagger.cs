@@ -287,7 +287,6 @@
 
             if (re.IsMatch(result))
             {
-            Console.WriteLine("Here");
                 result = re.Replace(
                     result,
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");

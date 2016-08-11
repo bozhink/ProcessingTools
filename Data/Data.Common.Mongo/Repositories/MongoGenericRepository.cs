@@ -79,6 +79,23 @@
             return Task.FromResult<IQueryable<TEntity>>(this.Collection.AsQueryable());
         }
 
+        public virtual async Task<long> Count()
+        {
+            var count = await this.Collection.CountAsync("{}");
+            return count;
+        }
+
+        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var count = await this.Collection.CountAsync(filter);
+            return count;
+        }
+
         public virtual async Task<object> Delete(object id)
         {
             if (id == null)
@@ -126,12 +143,12 @@
             return entity;
         }
 
-        public virtual Task<IQueryable<TEntity>> Query(
+        public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
+            SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            SortOrder sortOrder = SortOrder.Ascending)
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
             if (filter == null)
             {
@@ -174,21 +191,65 @@
             return Task.FromResult(query);
         }
 
-        public virtual async Task<IQueryable<T>> Query<T>(
+        public virtual async Task<IQueryable<T>> Find<T>(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, T>> projection,
             Expression<Func<TEntity, object>> sort,
+            SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            SortOrder sortOrder = SortOrder.Ascending)
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
             if (projection == null)
             {
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            return (await this.Query(filter, sort, skip, take, sortOrder))
+            return (await this.Find(filter, sort, sortOrder, skip, take))
                 .Select(projection);
+        }
+
+        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var entity = await this.Collection
+                .Find(filter)
+                .FirstOrDefaultAsync();
+
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            return entity;
+        }
+
+        public virtual async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            var entity = await this.Collection
+                .Find(filter)
+                .Project(projection)
+                .FirstOrDefaultAsync();
+
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            return entity;
         }
 
         public virtual async Task<object> Update(TEntity entity)

@@ -62,6 +62,18 @@
             return response.Documents.AsQueryable();
         }
 
+        public virtual Task<long> Count()
+        {
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        {
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
         public virtual async Task<object> Delete(object id)
         {
             if (id == null)
@@ -86,7 +98,7 @@
 
         public virtual Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
         {
-            // TODO
+            // TODO: Not implemented
             throw new NotImplementedException();
         }
 
@@ -102,12 +114,12 @@
             return response.Source;
         }
 
-        public virtual Task<IQueryable<TEntity>> Query(
+        public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending,
             int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
             if (filter == null)
             {
@@ -133,13 +145,13 @@
             throw new NotImplementedException();
         }
 
-        public virtual Task<IQueryable<T>> Query<T>(
+        public virtual Task<IQueryable<T>> Find<T>(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, T>> projection,
             Expression<Func<TEntity, object>> sort,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending,
             int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect,
-            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending)
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
             if (filter == null)
             {
@@ -164,6 +176,36 @@
             if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<TEntity> FindFirst(
+            Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<T> FindFirst<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
             }
 
             // TODO: Not implemented

@@ -9,6 +9,7 @@
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public abstract class RepositoryMultiDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
@@ -51,7 +52,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = (await repository.Query(x => true, this.SortExpression, skip, take))
+            var result = (await repository.Find(x => true, this.SortExpression, SortOrder.Ascending, skip, take))
                 .SelectMany(this.MapDbModelToServiceModel)
                 .ToList()
                 .AsQueryable();

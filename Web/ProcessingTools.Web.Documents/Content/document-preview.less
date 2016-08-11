@@ -172,6 +172,26 @@ section {
     }
 }
 
+.treatment-sec {
+    border-top: 1px solid lightgray;
+
+    &:hover {
+        position: relative;
+
+        &:before {
+            content: attr(sec-type);
+            position: absolute;
+            top: 0em;
+            left: 0em;
+            color: red;
+            background-color: white;
+            opacity: 0.8;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    }
+}
+
 figure {
     border: 1px solid gray;
     border-radius: 3px;
@@ -465,12 +485,24 @@ mark {
     overflow-y: auto;
 }
 
-.graphic {
+/*.graphic {
     &:before {
         content: attr(href);
     }
-}
+}*/
 
 .related-article div {
     display: inline;
+}
+
+.overline {
+    text-decoration: overline;
+}
+
+.break {
+    display: block;
+
+    &:after {
+        content: ' ';
+    }
 }
