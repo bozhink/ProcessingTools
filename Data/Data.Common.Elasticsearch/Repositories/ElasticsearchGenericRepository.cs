@@ -96,12 +96,6 @@
             return response;
         }
 
-        public virtual Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
-        {
-            // TODO: Not implemented
-            throw new NotImplementedException();
-        }
-
         public virtual async Task<TEntity> Get(object id)
         {
             if (id == null)

@@ -115,16 +115,6 @@
             return await this.Delete(entity);
         }
 
-        public virtual Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
-        {
-            if (selector == null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            return this.DbSet.FirstOrDefaultAsync(selector);
-        }
-
         public virtual Task<TEntity> Get(object id)
         {
             if (id == null)

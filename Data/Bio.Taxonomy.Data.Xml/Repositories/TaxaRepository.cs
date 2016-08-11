@@ -95,17 +95,6 @@
             return this.Delete(entity.Name);
         }
 
-        public virtual async Task<Taxon> Get(Expression<Func<Taxon, bool>> selector)
-        {
-            if (selector == null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            return (await this.Context.All())
-                .FirstOrDefault(selector);
-        }
-
         public virtual Task<Taxon> Get(object id)
         {
             if (id == null)

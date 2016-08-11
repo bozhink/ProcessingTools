@@ -84,7 +84,7 @@
 
             var repository = this.RepositoryProvider.Create();
 
-            var entity = await repository.Get(e => e.Id.ToString() == id.ToString());
+            var entity = await repository.FindFirst(e => e.Id.ToString() == id.ToString());
             if (entity == null)
             {
                 repository.TryDispose();

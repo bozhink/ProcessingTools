@@ -112,17 +112,6 @@
             return entity;
         }
 
-        public async Task<string> Get(Expression<Func<string, bool>> selector)
-        {
-            if (selector == null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            return (await this.All())
-                .FirstOrDefault(selector);
-        }
-
         public async Task<string> Get(object id)
         {
             if (id == null)

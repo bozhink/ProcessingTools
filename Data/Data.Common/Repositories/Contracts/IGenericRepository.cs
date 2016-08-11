@@ -15,8 +15,6 @@
 
         Task<object> Delete(object id);
 
-        Task<TEntity> Get(Expression<Func<TEntity, bool>> selector);
-
         Task<TEntity> Get(object id);
 
         Task<int> SaveChanges();

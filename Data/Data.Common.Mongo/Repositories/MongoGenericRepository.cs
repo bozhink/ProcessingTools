@@ -119,18 +119,6 @@
             return await this.Delete(id);
         }
 
-        public virtual async Task<TEntity> Get(Expression<Func<TEntity, bool>> selector)
-        {
-            if (selector == null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
-
-            var cursor = await this.Collection.FindAsync(selector);
-            var entity = await cursor.FirstOrDefaultAsync();
-            return entity;
-        }
-
         public virtual async Task<TEntity> Get(object id)
         {
             if (id == null)
