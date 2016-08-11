@@ -8,7 +8,7 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
 
-    public interface ISearchableRepository<TEntity>
+    public interface ISearchableRepository<TEntity> : IRepository<TEntity>
     {
         Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,

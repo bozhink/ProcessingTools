@@ -49,8 +49,11 @@
     <Compile Include="Contracts\ITaxaContextProvider.cs" />
     <Compile Include="Repositories\Contracts\ITaxaRepository.cs" />
     <Compile Include="Repositories\Contracts\ITaxaRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\ITaxaSearchableRepository.cs" />
+    <Compile Include="Repositories\Contracts\ITaxaSearchableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepositoryProvider.cs" />
+    <Compile Include="Repositories\TaxaSearchableRepository.cs" />
     <Compile Include="Repositories\TaxonomicBlackListRepositoryProvider.cs" />
     <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="Repositories\TaxaRepository.cs" />

@@ -11,7 +11,7 @@
     /// <typeparam name="TContext">Type of the context object.</typeparam>
     /// <typeparam name="TId">Type of the Id property of the entity model.</typeparam>
     /// <typeparam name="TEntity">Type of the entity model.</typeparam>
-    public interface IGenericContextRepository<TContext, TId, TEntity>
+    public interface IGenericContextRepository<TContext, TId, TEntity> : IRepository<TEntity>
         where TEntity : IGenericEntity<TId>
     {
         /// <summary>

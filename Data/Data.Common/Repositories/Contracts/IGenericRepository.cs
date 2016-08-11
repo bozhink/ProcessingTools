@@ -1,11 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
-    using System;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public interface IGenericRepository<TEntity> : ICountableRepository<TEntity>, ISearchableRepository<TEntity>
+    public interface IGenericRepository<TEntity> : ICountableRepository<TEntity>, ISearchableRepository<TEntity>, IRepository<TEntity>
     {
         Task<object> Add(TEntity entity);
 

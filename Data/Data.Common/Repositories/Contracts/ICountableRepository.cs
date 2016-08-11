@@ -4,7 +4,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public interface ICountableRepository<TEntity>
+    public interface ICountableRepository<TEntity> : IRepository<TEntity>
     {
         Task<long> Count();
 
