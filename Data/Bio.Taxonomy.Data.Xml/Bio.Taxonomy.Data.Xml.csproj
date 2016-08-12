@@ -70,6 +70,10 @@
       <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
       <Name>Configurator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
       <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
       <Name>Bio.Taxonomy.Data.Common</Name>
