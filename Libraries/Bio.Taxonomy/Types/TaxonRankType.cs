@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Types
 {
-    public enum TaxonRanksType
+    public enum TaxonRankType
     {
         Other = 0,
 

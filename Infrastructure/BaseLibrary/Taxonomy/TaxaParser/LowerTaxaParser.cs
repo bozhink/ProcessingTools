@@ -364,7 +364,7 @@
                         XmlElement speciesElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
                         speciesElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
-                            TaxonRanksType.Species.ToString().ToLower());
+                            TaxonRankType.Species.ToString().ToLower());
                         speciesElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
                             string.Empty);
@@ -377,7 +377,7 @@
                         XmlElement genusElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
                         genusElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
-                            TaxonRanksType.Genus.ToString().ToLower());
+                            TaxonRankType.Genus.ToString().ToLower());
                         genusElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
                             string.Empty);

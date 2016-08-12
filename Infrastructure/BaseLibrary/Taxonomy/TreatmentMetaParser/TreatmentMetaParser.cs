@@ -53,28 +53,28 @@
                         .Select(c => c.Kingdom)
                         .ToList(),
                     genus,
-                    TaxonRanksType.Kingdom);
+                    TaxonRankType.Kingdom);
 
                 this.ReplaceTreatmentMetaClassificationItem(
                     classification
                         .Select(c => c.Order)
                         .ToList(),
                     genus,
-                    TaxonRanksType.Order);
+                    TaxonRankType.Order);
 
                 this.ReplaceTreatmentMetaClassificationItem(
                     classification
                         .Select(c => c.Family)
                         .ToList(),
                     genus,
-                    TaxonRanksType.Family);
+                    TaxonRankType.Family);
             }
         }
 
         private void ReplaceTreatmentMetaClassificationItem(
             IEnumerable<string> matchingHigherTaxa,
             string genus,
-            TaxonRanksType rank)
+            TaxonRankType rank)
         {
             this.ReplaceTreatmentMetaClassificationItem(matchingHigherTaxa, genus, rank.ToString().ToLower());
         }

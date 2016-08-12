@@ -46,7 +46,7 @@
     <Compile Include="SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="Types\SpeciesPartType.cs" />
     <Compile Include="Types\TaxaType.cs" />
-    <Compile Include="Types\TaxonRanksType.cs" />
+    <Compile Include="Types\TaxonRankType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
