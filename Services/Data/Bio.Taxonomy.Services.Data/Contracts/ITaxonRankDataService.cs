@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Contracts
 {
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using Models.Contracts;
 
     public interface ITaxonRankDataService : ITaxaDataService<ITaxonRankWithWhiteListing>
     {

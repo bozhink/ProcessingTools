@@ -41,7 +41,6 @@
     <Compile Include="Contracts\ISpecies.cs" />
     <Compile Include="Contracts\ITaxonClassification.cs" />
     <Compile Include="Contracts\ITaxonRank.cs" />
-    <Compile Include="Contracts\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

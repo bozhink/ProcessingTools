@@ -9,9 +9,9 @@
 
     using Contracts;
     using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;

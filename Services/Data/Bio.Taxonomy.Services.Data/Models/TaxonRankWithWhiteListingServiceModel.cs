@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Models
 {
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using Contracts;
 
     public class TaxonRankWithWhiteListingServiceModel : TaxonRankServiceModel, ITaxonRankWithWhiteListing
     {
