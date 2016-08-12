@@ -30,6 +30,10 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            // Custom hard-coded bindings
+            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankSearchableRepositoryProvider>()
+                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankSearchableRepositoryProvider>();
         }
     }
 }
