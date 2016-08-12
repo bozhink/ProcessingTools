@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Models
 {
-    using ProcessingTools.Services.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
 
-    public class MorphologicalEpithetServiceModel : INamedDataServiceModel
+    public class MorphologicalEpithetServiceModel : INameableIntegerIdentifiable
     {
         public int Id { get; set; }
 

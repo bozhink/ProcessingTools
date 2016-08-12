@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Contracts
 {
-    public interface IIdentifiable<TId>
+    public interface IIdentifiable : IGenericIdentifiable<object>
     {
-        TId Id { get; }
     }
 }

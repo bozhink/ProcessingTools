@@ -9,12 +9,12 @@
     using Contracts;
 
     using ProcessingTools.Common.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Common.Contracts;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
     public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
-        where TDataServiceModel : INamedDataServiceModel
+        where TDataServiceModel : INameableIntegerIdentifiable
         where TDataService : IMultiEntryDataService<TDataServiceModel>
     {
         private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;

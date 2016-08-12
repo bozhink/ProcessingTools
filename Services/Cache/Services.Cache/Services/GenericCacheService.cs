@@ -7,13 +7,13 @@
     using AutoMapper;
     using Contracts;
 
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
     public class GenericCacheService<TContext, TId, TDbModel, TServiceModel> : ICacheService<TContext, TId, TServiceModel>
         where TDbModel : IGenericEntity<TId>
-        where TServiceModel : IGenericServiceModel<TId>
+        where TServiceModel : IGenericIdentifiable<TId>
     {
         private readonly IMapper mapper;
 

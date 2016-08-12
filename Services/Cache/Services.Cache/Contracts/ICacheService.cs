@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Services.Cache.Contracts
 {
+    using ProcessingTools.Contracts;
     using ProcessingTools.Services.Common.Contracts;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
     public interface ICacheService<TContext, TId, TServiceModel> : IContextDataService<TContext, TId, TServiceModel>
-        where TServiceModel : IGenericServiceModel<TId>
+        where TServiceModel : IGenericIdentifiable<TId>
     {
     }
 }

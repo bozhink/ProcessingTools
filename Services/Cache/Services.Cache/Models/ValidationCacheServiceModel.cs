@@ -1,10 +1,11 @@
 ﻿namespace ProcessingTools.Services.Cache.Models
 {
     using System;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Services.Common.Models.Contracts;
 
-    public class ValidationCacheServiceModel : ISimpleServiceModel
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+
+    public class ValidationCacheServiceModel : IIntegerIdentifiable
     {
         public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts
 {
-    public interface IStringIdentifiable : IIdentifiable<string>
+    public interface IStringIdentifiable : IGenericIdentifiable<string>
     {
     }
 }

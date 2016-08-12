@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Models.Contracts;
+    using ProcessingTools.Contracts;
 
     /// <summary>
     /// Represents generic structure of a data service using data connection with context parameter.
@@ -12,7 +12,7 @@
     /// <typeparam name="TId">Type of the Id property of the service model object.</typeparam>
     /// <typeparam name="TServiceModel">Type of the service model.</typeparam>
     public interface IContextDataService<TContext, TId, TServiceModel>
-        where TServiceModel : IGenericServiceModel<TId>
+        where TServiceModel : IGenericIdentifiable<TId>
     {
         /// <summary>
         /// Gets all items from a context.

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IGuidIdentifiable : IIdentifiable<Guid>
+    public interface IGuidIdentifiable : IGenericIdentifiable<Guid>
     {
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Services.Cache.Contracts
 {
-    using ProcessingTools.Services.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
 
     public interface ISimpleCacheService<TServiceModel> : ICacheService<string, int, TServiceModel>
-        where TServiceModel : ISimpleServiceModel
+        where TServiceModel : IIntegerIdentifiable
     {
     }
 }

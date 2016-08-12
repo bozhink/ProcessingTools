@@ -58,9 +58,6 @@
     <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
     <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Services\StringRepositoryDataService.cs" />
-    <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
-    <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
-    <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

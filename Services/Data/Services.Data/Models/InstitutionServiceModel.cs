@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Services.Data.Models
 {
-    using ProcessingTools.Services.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
 
-    public class InstitutionServiceModel : INamedDataServiceModel
+    public class InstitutionServiceModel : INameableIntegerIdentifiable
     {
         public int Id { get; set; }
 
