@@ -4,6 +4,7 @@
     using System.Linq;
 
     using DataContracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
     using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
@@ -40,7 +41,7 @@
             return new TaxonClassification
             {
                 ScientificName = result.ScientificName,
-                Rank = result.Rank
+                Rank = result.Rank.MapTaxonRankTypeToTaxonRankString()
             };
         }
     }

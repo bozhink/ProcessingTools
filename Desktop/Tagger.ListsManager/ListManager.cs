@@ -9,6 +9,7 @@
     using System.Windows.Forms;
 
     using Ninject;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
 
@@ -149,7 +150,7 @@
                         .Select(i => new TaxonRankWithWhiteListingServiceModel
                         {
                             ScientificName = i.SubItems[0].Text,
-                            Rank = i.SubItems[1].Text,
+                            Rank = i.SubItems[1].Text.MapTaxonRankStringToTaxonRankType(),
                             IsWhiteListed = i.Checked
                         }))
                         .ToArray();
@@ -236,7 +237,7 @@
                         .ToList()
                         .ForEach(taxon =>
                         {
-                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank.MapTaxonRankTypeToTaxonRankString() };
                             var listItem = new ListViewItem(taxonRankPair);
                             listItem.Checked = taxon.IsWhiteListed;
                             this.listView.Items.Add(listItem);
@@ -295,7 +296,7 @@
                         .ToList()
                         .ForEach(taxon =>
                         {
-                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank };
+                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank.MapTaxonRankTypeToTaxonRankString() };
                             var listItem = new ListViewItem(taxonRankPair);
                             listItem.Checked = taxon.IsWhiteListed;
                             this.listView.Items.Add(listItem);

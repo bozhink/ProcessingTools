@@ -12,7 +12,6 @@
     using Models.Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
@@ -32,7 +31,7 @@
         {
             IsWhiteListed = e.IsWhiteListed,
             ScientificName = e.Name,
-            Rank = rank.MapTaxonRankTypeToTaxonRankString()
+            Rank = rank
         });
 
         protected override Expression<Func<ITaxonRankWithWhiteListing, IEnumerable<ITaxonRankEntity>>> MapServiceModelToDbModel => m => new Taxon[]
@@ -41,7 +40,7 @@
             {
                 Name = m.ScientificName,
                 IsWhiteListed = m.IsWhiteListed,
-                Ranks = new TaxonRankType[] { m.Rank.MapTaxonRankStringToTaxonRankType() }
+                Ranks = new TaxonRankType[] { m.Rank }
             }
         };
 

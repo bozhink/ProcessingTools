@@ -9,29 +9,30 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
 
     public class SuffixHigherTaxaRankResolverDataService : ISuffixHigherTaxaRankResolverDataService
     {
-        private IDictionary<string, string> rankPerSuffix;
+        private IDictionary<string, TaxonRankType> rankPerSuffix;
 
         public SuffixHigherTaxaRankResolverDataService()
         {
-            this.rankPerSuffix = new Dictionary<string, string>()
+            this.rankPerSuffix = new Dictionary<string, TaxonRankType>()
             {
-                { "phyta|mycota", "phylum" },
-                { "phytina|mycotina", "subphylum" },
-                { "ia|opsida|phyceae|mycetes", "class" },
-                { "idae|phycidae|mycetidae",  "subclass" },
-                { "anae", "superorder" },
-                { "ales", "order" },
-                { "ineae", "suborder" },
-                { "aria", "infraorder" },
-                { "acea|oidea", "superfamily" },
-                { "oidae", "epifamily" },
-                { "aceae|idae", "family" },
-                { "oideae|inae", "subfamily" },
-                { "eae|ini", "tribe" },
-                { "inae|ina", "subtribe" }
+                { "phyta|mycota", TaxonRankType.Phylum },
+                { "phytina|mycotina", TaxonRankType.Subphylum },
+                { "ia|opsida|phyceae|mycetes", TaxonRankType.Class },
+                { "idae|phycidae|mycetidae", TaxonRankType.Subclass },
+                { "anae", TaxonRankType.Superorder },
+                { "ales", TaxonRankType.Order },
+                { "ineae", TaxonRankType.Suborder },
+                { "aria", TaxonRankType.Infraorder },
+                { "acea|oidea", TaxonRankType.Superfamily },
+                { "oidae", TaxonRankType.Epifamily },
+                { "aceae|idae", TaxonRankType.Family },
+                { "oideae|inae", TaxonRankType.Subfamily },
+                { "eae|ini", TaxonRankType.Tribe },
+                { "inae|ina", TaxonRankType.Subtribe }
             };
         }
 

@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Models
 {
-    using System;
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
 
     public class TaxonRankServiceModel : ITaxonRank
     {
-        public string Rank { get; set; }
+        public TaxonRankType Rank { get; set; }
 
         public string ScientificName { get; set; }
     }

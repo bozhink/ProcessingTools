@@ -12,6 +12,7 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
     using ProcessingTools.Bio.Taxonomy.Types;
@@ -63,7 +64,7 @@
             return new TaxonClassificationServiceModel
             {
                 ScientificName = result.Name,
-                Rank = result.Rank?.ToLower(),
+                Rank = result.Rank.MapTaxonRankStringToTaxonRankType(),
                 Authority = result.Author,
                 CanonicalName = result.AcceptedName?.Name,
 

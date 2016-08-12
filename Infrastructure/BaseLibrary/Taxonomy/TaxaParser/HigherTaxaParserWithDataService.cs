@@ -9,6 +9,7 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -48,7 +49,7 @@
                 .Select(t => new TaxonRankResponseModel
                 {
                     ScientificName = t.ScientificName,
-                    Rank = t.Rank
+                    Rank = t.Rank.MapTaxonRankTypeToTaxonRankString()
                 });
 
             if (resolvedTaxa.Count() < 1)

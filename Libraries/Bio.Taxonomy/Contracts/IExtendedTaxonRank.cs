@@ -4,6 +4,6 @@
     {
         string CanonicalName { get; }
 
-        string Authority { get;  }
+        string Authority { get; }
     }
 }

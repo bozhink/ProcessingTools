@@ -11,6 +11,7 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Common.Constants;
@@ -64,7 +65,7 @@
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,
-                Rank = taxon.Rank?.ToLower(),
+                Rank = taxon.Rank.MapTaxonRankStringToTaxonRankType(),
 
                 Kingdom = taxon.Kingdom,
                 Phylum = taxon.Phylum,

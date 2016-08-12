@@ -30,6 +30,7 @@
         Parvorder,
 
         Superfamily,
+        Epifamily,
         Family,
         Subfamily,
 
@@ -66,6 +67,9 @@
 
         Stage,
 
-        Race
+        Race,
+
+        AboveGenus,
+        AboveFamily
     }
 }

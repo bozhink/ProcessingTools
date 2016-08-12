@@ -11,6 +11,7 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Common.Constants;
 
@@ -40,7 +41,7 @@
                                 Order = s.order,
                                 Family = s.family,
                                 Genus = s.genus,
-                                Rank = s.rank?.ToLower(),
+                                Rank = s.rank.MapTaxonRankStringToTaxonRankType(),
                                 ScientificName = s.scientificname,
                                 Authority = s.authority,
                                 CanonicalName = s.valid_name

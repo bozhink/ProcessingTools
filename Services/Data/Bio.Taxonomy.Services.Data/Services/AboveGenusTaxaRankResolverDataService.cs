@@ -8,24 +8,20 @@
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
 
     public class AboveGenusTaxaRankResolverDataService : IAboveGenusTaxaRankResolverDataService
     {
-        private const string Rank = "above-genus";
-
-        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames) => Task.Run(() =>
         {
-            return Task.Run(() =>
-            {
-                var result = new HashSet<ITaxonRank>(scientificNames
-                    .Select(s => new TaxonRankServiceModel
-                    {
-                        ScientificName = s,
-                        Rank = Rank
-                    }));
+            var result = new HashSet<ITaxonRank>(scientificNames
+                .Select(s => new TaxonRankServiceModel
+                {
+                    ScientificName = s,
+                    Rank = TaxonRankType.AboveGenus
+                }));
 
-                return result.AsQueryable();
-            });
-        }
+            return result.AsQueryable();
+        });
     }
 }
