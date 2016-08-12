@@ -71,6 +71,7 @@
     <Compile Include="Services\CatalogueOfLifeTaxaRankResolverDataService.cs" />
     <Compile Include="Services\GbifTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\IAboveGenusTaxaRankResolverDataService.cs" />
+    <Compile Include="Services\GbifTaxaRankResolverDataService.cs" />
     <Compile Include="Services\LocalDbTaxaRankResolverDataService.cs" />
     <Compile Include="Models\TaxonClassificationServiceModel.cs" />
     <Compile Include="Models\TaxonRankWithWhiteListingServiceModel.cs" />
