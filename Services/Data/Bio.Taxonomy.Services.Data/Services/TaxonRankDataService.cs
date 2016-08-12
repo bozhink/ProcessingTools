@@ -12,10 +12,10 @@
     using Models.Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Services.Common.Factories;
 
     public class TaxonRankDataService : MultiDataServiceWithRepositoryProviderFactory<ITaxonRankEntity, ITaxonRankWithWhiteListing>, ITaxonRankDataService

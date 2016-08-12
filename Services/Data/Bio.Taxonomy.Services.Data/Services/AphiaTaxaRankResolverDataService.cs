@@ -5,8 +5,6 @@
 
     public class AphiaTaxaRankResolverDataService : TaxaRankResolverOverTaxaClassificationResolverDataServiceFactory, IAphiaTaxaRankResolverDataService
     {
-        private readonly IAphiaTaxaClassificationResolverDataService service;
-
         public AphiaTaxaRankResolverDataService(IAphiaTaxaClassificationResolverDataService service)
             : base(service)
         {

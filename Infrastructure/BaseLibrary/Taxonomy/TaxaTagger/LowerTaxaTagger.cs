@@ -284,7 +284,6 @@
 
             string result = node.InnerXml;
 
-
             if (re.IsMatch(result))
             {
                 result = re.Replace(
