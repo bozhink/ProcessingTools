@@ -44,8 +44,12 @@
     <Compile Include="IContextProcessor.cs" />
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="IGuidIdentifiable.cs" />
+    <Compile Include="IIdentifiable.cs" />
+    <Compile Include="IIntegerIdentifiable.cs" />
     <Compile Include="INameable.cs" />
     <Compile Include="IProcessor.cs" />
+    <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
