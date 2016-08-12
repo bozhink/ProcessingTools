@@ -2,22 +2,23 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
 
     public interface ITaxaContext
     {
-        Task<object> Add(Taxon taxon);
+        Task<object> Add(ITaxonRankEntity taxon);
 
-        Task<IQueryable<Taxon>> All();
+        Task<IQueryable<ITaxonRankEntity>> All();
 
         Task<object> Delete(object id);
 
-        Task<Taxon> Get(object id);
+        Task<ITaxonRankEntity> Get(object id);
 
-        Task<int> LoadTaxa(string fileName);
+        Task<long> LoadTaxa(string fileName);
 
-        Task<object> Update(Taxon taxon);
+        Task<object> Update(ITaxonRankEntity taxon);
 
-        Task<int> WriteTaxa(string fileName);
+        Task<long> WriteTaxa(string fileName);
     }
 }

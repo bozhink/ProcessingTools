@@ -7,8 +7,8 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Configurator;
 
     public class XmlTaxonRankRepository : XmlTaxonRankSearchableRepository, IXmlTaxonRankRepository
@@ -18,7 +18,7 @@
         {
         }
 
-        public virtual Task<object> Add(Taxon entity)
+        public virtual Task<object> Add(ITaxonRankEntity entity)
         {
             if (entity == null)
             {
@@ -28,10 +28,7 @@
             return this.Context.Add(entity);
         }
 
-        public virtual Task<IQueryable<Taxon>> All()
-        {
-            return this.Context.All();
-        }
+        public virtual Task<IQueryable<ITaxonRankEntity>> All() => this.Context.All();
 
         public virtual async Task<long> Count()
         {
@@ -41,7 +38,7 @@
             return count;
         }
 
-        public virtual async Task<long> Count(Expression<Func<Taxon, bool>> filter)
+        public virtual async Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -65,7 +62,7 @@
             return this.Context.Delete(id);
         }
 
-        public virtual Task<object> Delete(Taxon entity)
+        public virtual Task<object> Delete(ITaxonRankEntity entity)
         {
             if (entity == null)
             {
@@ -75,7 +72,7 @@
             return this.Delete(entity.Name);
         }
 
-        public virtual Task<Taxon> Get(object id)
+        public virtual Task<ITaxonRankEntity> Get(object id)
         {
             if (id == null)
             {
@@ -85,7 +82,7 @@
             return this.Context.Get(id);
         }
 
-        public virtual Task<object> Update(Taxon entity)
+        public virtual Task<object> Update(ITaxonRankEntity entity)
         {
             if (entity == null)
             {
@@ -95,6 +92,6 @@
             return this.Context.Update(entity);
         }
 
-        public virtual Task<int> SaveChanges() => this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
+        public virtual Task<long> SaveChanges() => this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
     }
 }

@@ -11,7 +11,7 @@
 
     public abstract class RepositoryDataServiceFactoryBase<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
     {
-        public virtual async Task<int> Add(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Add(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -35,7 +35,7 @@
 
         public abstract Task<IQueryable<TServiceModel>> All(IGenericRepository<TDbModel> repository);
 
-        public virtual async Task<int> Delete(IGenericRepository<TDbModel> repository, params object[] ids)
+        public virtual async Task<object> Delete(IGenericRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {
@@ -55,7 +55,7 @@
             return await repository.SaveChanges();
         }
 
-        public virtual async Task<int> Delete(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Delete(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -81,7 +81,7 @@
 
         public abstract Task<IQueryable<TServiceModel>> Query(IGenericRepository<TDbModel> repository, int skip, int take);
 
-        public virtual async Task<int> Update(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Update(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {

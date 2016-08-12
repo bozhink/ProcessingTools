@@ -236,7 +236,7 @@
             return this.Add(entity);
         }
 
-        public Task<int> SaveChanges() => this.WriteItemsToFile();
+        public Task<long> SaveChanges() => this.WriteItemsToFile();
 
         private Task ReadItemsFromFile()
         {
@@ -258,7 +258,7 @@
             });
         }
 
-        private async Task<int> WriteItemsToFile()
+        private async Task<long> WriteItemsToFile()
         {
             var items = (await this.All())
                 .Select(item => new XElement(ItemNodeName, item))

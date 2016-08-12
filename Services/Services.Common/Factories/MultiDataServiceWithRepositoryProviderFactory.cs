@@ -31,11 +31,11 @@
 
         protected override abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public virtual async Task<int> Add(params TServiceModel[] models)
+        public virtual async Task<object> Add(params TServiceModel[] models)
         {
             var repository = this.repositoryProvider.Create();
 
-            int savedItems = await base.Add(repository: repository, models: models);
+            var savedItems = await base.Add(repository: repository, models: models);
 
             repository.TryDispose();
 
@@ -64,22 +64,22 @@
             return result;
         }
 
-        public virtual async Task<int> Delete(params object[] ids)
+        public virtual async Task<object> Delete(params object[] ids)
         {
             var repository = this.repositoryProvider.Create();
 
-            int savedItems = await base.Delete(repository: repository, ids: ids);
+            var savedItems = await base.Delete(repository: repository, ids: ids);
 
             repository.TryDispose();
 
             return savedItems;
         }
 
-        public virtual async Task<int> Delete(params TServiceModel[] models)
+        public virtual async Task<object> Delete(params TServiceModel[] models)
         {
             var repository = this.repositoryProvider.Create();
 
-            int savedItems = await base.Delete(repository: repository, models: models);
+            var savedItems = await base.Delete(repository: repository, models: models);
 
             repository.TryDispose();
 
@@ -97,11 +97,11 @@
             return result;
         }
 
-        public virtual async Task<int> Update(params TServiceModel[] models)
+        public virtual async Task<object> Update(params TServiceModel[] models)
         {
             var repository = this.repositoryProvider.Create();
 
-            int savedItems = await base.Update(repository: repository, models: models);
+            var savedItems = await base.Update(repository: repository, models: models);
 
             repository.TryDispose();
 

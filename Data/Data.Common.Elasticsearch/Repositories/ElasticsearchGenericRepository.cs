@@ -206,10 +206,10 @@
             throw new NotImplementedException();
         }
 
-        public virtual async Task<int> SaveChanges()
+        public virtual async Task<long> SaveChanges()
         {
             var response = await this.Client.FlushAsync(this.Context);
-            return response.IsValid ? 0 : 1;
+            return response.IsValid ? 0L : 1L;
         }
 
         public virtual async Task<object> Update(TEntity entity)

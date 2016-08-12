@@ -7,8 +7,8 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Types;
@@ -38,9 +38,9 @@
 
         protected ITaxaContext Context { get; private set; }
 
-        public virtual async Task<IQueryable<Taxon>> Find(
-            Expression<Func<Taxon, bool>> filter,
-            Expression<Func<Taxon, object>> sort,
+        public virtual async Task<IQueryable<ITaxonRankEntity>> Find(
+            Expression<Func<ITaxonRankEntity, bool>> filter,
+            Expression<Func<ITaxonRankEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
@@ -87,9 +87,9 @@
         }
 
         public virtual async Task<IQueryable<T>> Find<T>(
-            Expression<Func<Taxon, bool>> filter,
-            Expression<Func<Taxon, T>> projection,
-            Expression<Func<Taxon, object>> sort,
+            Expression<Func<ITaxonRankEntity, bool>> filter,
+            Expression<Func<ITaxonRankEntity, T>> projection,
+            Expression<Func<ITaxonRankEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
@@ -103,7 +103,7 @@
                 .Select(projection);
         }
 
-        public virtual async Task<Taxon> FindFirst(Expression<Func<Taxon, bool>> filter)
+        public virtual async Task<ITaxonRankEntity> FindFirst(Expression<Func<ITaxonRankEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -121,7 +121,7 @@
             return entity;
         }
 
-        public virtual async Task<T> FindFirst<T>(Expression<Func<Taxon, bool>> filter, Expression<Func<Taxon, T>> projection)
+        public virtual async Task<T> FindFirst<T>(Expression<Func<ITaxonRankEntity, bool>> filter, Expression<Func<ITaxonRankEntity, T>> projection)
         {
             if (filter == null)
             {

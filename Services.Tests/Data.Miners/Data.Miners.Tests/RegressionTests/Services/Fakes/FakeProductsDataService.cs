@@ -27,7 +27,7 @@
 
         public HashSet<ProductServiceModel> Items { get; set; }
 
-        public Task<int> Add(params ProductServiceModel[] entities)
+        public Task<object> Add(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
@@ -37,12 +37,12 @@
             return Task.FromResult(this.Items.AsQueryable());
         }
 
-        public Task<int> Delete(params object[] ids)
+        public Task<object> Delete(params object[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> Delete(params ProductServiceModel[] entities)
+        public Task<object> Delete(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }
@@ -63,7 +63,7 @@
                 .AsQueryable());
         }
 
-        public Task<int> Update(params ProductServiceModel[] entities)
+        public Task<object> Update(params ProductServiceModel[] entities)
         {
             throw new NotImplementedException();
         }

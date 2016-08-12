@@ -15,7 +15,7 @@
 
         Task<TEntity> Get(object id);
 
-        Task<int> SaveChanges();
+        Task<long> SaveChanges();
 
         Task<object> Update(TEntity entity);
     }

@@ -12,11 +12,14 @@
 
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Services.Common.Factories;
 
-    public class TaxonRankDataService : MultiDataServiceWithRepositoryProviderFactory<Taxon, ITaxonRankWithWhiteListing>, ITaxonRankDataService
+    public class TaxonRankDataService : MultiDataServiceWithRepositoryProviderFactory<ITaxonRankEntity, ITaxonRankWithWhiteListing>, ITaxonRankDataService
     {
         private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
@@ -25,26 +28,26 @@
         {
         }
 
-        protected override Expression<Func<Taxon, IEnumerable<ITaxonRankWithWhiteListing>>> MapDbModelToServiceModel => e => e.Ranks.Select(rank => new TaxonRankWithWhiteListingServiceModel
+        protected override Expression<Func<ITaxonRankEntity, IEnumerable<ITaxonRankWithWhiteListing>>> MapDbModelToServiceModel => e => e.Ranks.Select(rank => new TaxonRankWithWhiteListingServiceModel
         {
             IsWhiteListed = e.IsWhiteListed,
             ScientificName = e.Name,
-            Rank = rank
+            Rank = rank.MapTaxonRankTypeToTaxonRankString()
         });
 
-        protected override Expression<Func<ITaxonRankWithWhiteListing, IEnumerable<Taxon>>> MapServiceModelToDbModel => m => new Taxon[]
+        protected override Expression<Func<ITaxonRankWithWhiteListing, IEnumerable<ITaxonRankEntity>>> MapServiceModelToDbModel => m => new Taxon[]
         {
             new Taxon
             {
                 Name = m.ScientificName,
                 IsWhiteListed = m.IsWhiteListed,
-                Ranks = new string[] { m.Rank }
+                Ranks = new TaxonRankType[] { m.Rank.MapTaxonRankStringToTaxonRankType() }
             }
         };
 
-        protected override Expression<Func<Taxon, object>> SortExpression => t => t.Name;
+        protected override Expression<Func<ITaxonRankEntity, object>> SortExpression => t => t.Name;
 
-        public override Task<int> Add(params ITaxonRankWithWhiteListing[] models)
+        public override Task<object> Add(params ITaxonRankWithWhiteListing[] models)
         {
             if (models == null)
             {
@@ -59,7 +62,7 @@
             return base.Add(models);
         }
 
-        public override Task<int> Update(params ITaxonRankWithWhiteListing[] models)
+        public override Task<object> Update(params ITaxonRankWithWhiteListing[] models)
         {
             if (models == null)
             {

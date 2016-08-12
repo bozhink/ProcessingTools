@@ -251,9 +251,10 @@
             });
         }
 
-        public virtual Task<int> SaveChanges()
+        public virtual async Task<long> SaveChanges()
         {
-            return this.Context.SaveChangesAsync();
+            long result = await this.Context.SaveChangesAsync();
+            return result;
         }
 
         public void Dispose()

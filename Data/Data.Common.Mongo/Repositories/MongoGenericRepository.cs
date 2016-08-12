@@ -253,7 +253,7 @@
             return result;
         }
 
-        public virtual Task<int> SaveChanges() => Task.FromResult(0);
+        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
 
         private FilterDefinition<TEntity> GetFilterById(object id)
         {
