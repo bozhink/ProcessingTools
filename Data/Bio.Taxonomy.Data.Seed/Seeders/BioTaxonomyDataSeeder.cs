@@ -23,7 +23,7 @@
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
         private readonly ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider;
-        private readonly ITaxaRepositoryProvider taxonomicRepositoryProvider;
+        private readonly IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider;
         private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
@@ -31,7 +31,7 @@
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, ITaxaRepositoryProvider taxonomicRepositoryProvider, ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider)
+        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider, ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider)
         {
             if (contextProvider == null)
             {

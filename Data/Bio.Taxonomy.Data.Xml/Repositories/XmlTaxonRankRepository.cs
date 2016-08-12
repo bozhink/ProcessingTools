@@ -11,9 +11,9 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Configurator;
 
-    public class TaxaRepository : TaxaSearchableRepository, ITaxaRepository
+    public class XmlTaxonRankRepository : XmlTaxonRankSearchableRepository, IXmlTaxonRankRepository
     {
-        public TaxaRepository(ITaxaContextProvider contextProvider, Config config)
+        public XmlTaxonRankRepository(ITaxaContextProvider contextProvider, Config config)
             : base(contextProvider, config)
         {
         }

@@ -20,7 +20,7 @@
     {
         private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public TaxonRankDataService(ITaxaRepositoryProvider repositoryProvider)
+        public TaxonRankDataService(IXmlTaxonRankRepositoryProvider repositoryProvider)
             : base(repositoryProvider)
         {
         }

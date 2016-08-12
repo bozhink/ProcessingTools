@@ -22,7 +22,7 @@
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var contextProvider = new TaxaContextProvider();
-            var repositoryProvider = new TaxaRepositoryProvider(contextProvider);
+            var repositoryProvider = new XmlTaxonRankRepositoryProvider(contextProvider);
             var miner = new HigherTaxaDataMiner(new TaxonRankDataService(repositoryProvider));
             var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
 

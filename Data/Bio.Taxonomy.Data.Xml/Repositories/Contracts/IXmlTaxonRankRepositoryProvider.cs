@@ -3,7 +3,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface ITaxaSearchableRepositoryProvider : ISearchableRepositoryProvider<Taxon>
+    public interface IXmlTaxonRankRepositoryProvider : IGenericRepositoryProvider<Taxon>
     {
     }
 }

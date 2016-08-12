@@ -47,17 +47,18 @@
     <Compile Include="Models\TaxonXmlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\ITaxaContextProvider.cs" />
-    <Compile Include="Repositories\Contracts\ITaxaRepository.cs" />
-    <Compile Include="Repositories\Contracts\ITaxaRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\ITaxaSearchableRepository.cs" />
-    <Compile Include="Repositories\Contracts\ITaxaSearchableRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepository.cs" />
+    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepository.cs" />
+    <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\Contracts\ITaxonomicBlackListRepositoryProvider.cs" />
-    <Compile Include="Repositories\TaxaSearchableRepository.cs" />
+    <Compile Include="Repositories\XmlTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\TaxonomicBlackListRepositoryProvider.cs" />
+    <Compile Include="Repositories\XmlTaxonRankSearchableRepositoryProvider.cs" />
     <Compile Include="TaxaContextProvider.cs" />
-    <Compile Include="Repositories\TaxaRepository.cs" />
-    <Compile Include="Repositories\TaxaRepositoryProvider.cs" />
+    <Compile Include="Repositories\XmlTaxonRankRepository.cs" />
+    <Compile Include="Repositories\XmlTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\TaxonomicBlackListRepository.cs" />
     <Compile Include="TaxaContext.cs" />
   </ItemGroup>

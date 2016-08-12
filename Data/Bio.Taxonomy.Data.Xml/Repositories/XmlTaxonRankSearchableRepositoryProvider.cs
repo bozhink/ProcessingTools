@@ -8,11 +8,11 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class TaxaRepositoryProvider : ITaxaRepositoryProvider
+    public class XmlTaxonRankSearchableRepositoryProvider : IXmlTaxonRankSearchableRepositoryProvider
     {
         private readonly ITaxaContextProvider contextProvider;
 
-        public TaxaRepositoryProvider(ITaxaContextProvider contextProvider)
+        public XmlTaxonRankSearchableRepositoryProvider(ITaxaContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -22,9 +22,9 @@
             this.contextProvider = contextProvider;
         }
 
-        public IGenericRepository<Taxon> Create()
+        public ISearchableRepository<Taxon> Create()
         {
-            return new TaxaRepository(this.contextProvider, ConfigBuilder.Create());
+            return new XmlTaxonRankSearchableRepository(this.contextProvider, ConfigBuilder.Create());
         }
     }
 }

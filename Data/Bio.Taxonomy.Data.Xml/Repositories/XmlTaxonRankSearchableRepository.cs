@@ -14,9 +14,9 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Configurator;
 
-    public class TaxaSearchableRepository : ITaxaSearchableRepository
+    public class XmlTaxonRankSearchableRepository : IXmlTaxonRankSearchableRepository
     {
-        public TaxaSearchableRepository(ITaxaContextProvider contextProvider, Config config)
+        public XmlTaxonRankSearchableRepository(ITaxaContextProvider contextProvider, Config config)
         {
             if (contextProvider == null)
             {
