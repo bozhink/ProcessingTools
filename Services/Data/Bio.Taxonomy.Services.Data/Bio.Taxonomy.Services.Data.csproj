@@ -55,6 +55,7 @@
     <Compile Include="Contracts\ITaxonomicBlackListDataService.cs" />
     <Compile Include="Contracts\ITaxonRankDataService.cs" />
     <Compile Include="Contracts\ITaxonRankResolverDataService.cs" />
+    <Compile Include="Factories\TaxaRankResolverOverTaxaClassificationResolverDataServiceFactory.cs" />
     <Compile Include="Models\Contracts\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Services\AboveGenusTaxaRankResolverDataService.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Contracts\ILocalDbTaxaRankResolverDataService.cs" />
     <Compile Include="Contracts\ISuffixHigherTaxaRankResolverDataService.cs" />
     <Compile Include="Contracts\ITaxaInformationResolverDataService.cs" />
+    <Compile Include="Services\CatalogueOfLifeTaxaRankResolverDataService.cs" />
     <Compile Include="Services\GbifTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\IAboveGenusTaxaRankResolverDataService.cs" />
     <Compile Include="Services\LocalDbTaxaRankResolverDataService.cs" />
