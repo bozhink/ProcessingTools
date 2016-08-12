@@ -51,7 +51,7 @@
                     Value = t.Name,
                     Ranks = new TaxonRankXmlModel
                     {
-                        Values = t.Ranks.Select(r => r.ToString().ToLower()).ToArray()
+                        Values = t.Ranks.Select(r => r.MapTaxonRankTypeToTaxonRankString()).ToArray()
                     }
                 }
             }

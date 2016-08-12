@@ -12,6 +12,7 @@
 
     using ProcessingTools.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
@@ -364,7 +365,7 @@
                         XmlElement speciesElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
                         speciesElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
-                            TaxonRankType.Species.ToString().ToLower());
+                            TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
                         speciesElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
                             string.Empty);
@@ -377,7 +378,7 @@
                         XmlElement genusElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
                         genusElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartRankAttributeName,
-                            TaxonRankType.Genus.ToString().ToLower());
+                            TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
                         genusElement.SetAttribute(
                             XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName,
                             string.Empty);

@@ -10,6 +10,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Data;
     using ProcessingTools.Bio.Taxonomy.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Models;
@@ -95,7 +96,7 @@
                 var repository = this.taxonomicRepositoryProvider.Create();
                 var ranks = new HashSet<string>((await repository.All())
                     .SelectMany(t => t.Ranks)
-                    .Select(r => r.ToString().ToLower())
+                    .Select(r => r.MapTaxonRankTypeToTaxonRankString())
                     .ToList());
 
                 using (var context = this.contextProvider.Create())
@@ -150,7 +151,7 @@
                             .Select(taxon => new TaxonName
                             {
                                 Name = taxon.Name,
-                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank.ToString().ToLower())).ToList(),
+                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank.MapTaxonRankTypeToTaxonRankString())).ToList(),
                                 WhiteListed = taxon.IsWhiteListed
                             })
                             .ToArray();
