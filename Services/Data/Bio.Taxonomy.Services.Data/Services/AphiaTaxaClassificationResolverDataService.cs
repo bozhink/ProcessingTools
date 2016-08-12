@@ -13,6 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Common.Constants;
 
     public class AphiaTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationResolverDataService
@@ -31,21 +32,9 @@
                     var aphiaRecords = aphiaService.getAphiaRecords(scientificName, false, true, false, 0);
                     if (aphiaRecords != null && aphiaRecords.Length > 0)
                     {
-                        var records = new HashSet<TaxonClassificationServiceModel>(aphiaRecords
+                        var records = new HashSet<ITaxonClassification>(aphiaRecords
                             .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
-                            .Select(s => new TaxonClassificationServiceModel
-                            {
-                                Kingdom = s.kingdom,
-                                Phylum = s.phylum,
-                                Class = s.@class,
-                                Order = s.order,
-                                Family = s.family,
-                                Genus = s.genus,
-                                Rank = s.rank.MapTaxonRankStringToTaxonRankType(),
-                                ScientificName = s.scientificname,
-                                Authority = s.authority,
-                                CanonicalName = s.valid_name
-                            }));
+                            .Select(MapAphiaRecordToTaxonClassification));
 
                         foreach (var record in records)
                         {
@@ -54,6 +43,55 @@
                     }
                 }
             });
+        }
+
+        private ITaxonClassification MapAphiaRecordToTaxonClassification(AphiaRecord record)
+        {
+            var result = new TaxonClassificationServiceModel
+            {
+                Rank = record.rank.MapTaxonRankStringToTaxonRankType(),
+                ScientificName = record.scientificname,
+                Authority = record.authority,
+                CanonicalName = record.valid_name
+            };
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Kingdom,
+                ScientificName = record.kingdom
+            });
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Phylum,
+                ScientificName = record.phylum
+            });
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Class,
+                ScientificName = record.@class
+            });
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Order,
+                ScientificName = record.order
+            });
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Family,
+                ScientificName = record.family
+            });
+
+            result.Classification.Add(new TaxonRankServiceModel
+            {
+                Rank = TaxonRankType.Genus,
+                ScientificName = record.genus
+            });
+
+            return result;
         }
     }
 }
