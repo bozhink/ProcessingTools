@@ -7,7 +7,6 @@
     using Contracts;
 
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
@@ -15,7 +14,7 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        public DataServiceBaseFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
+        public DataServiceBaseFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -28,7 +27,7 @@
             this.MapServiceToDataModelFunc = this.MapServiceToDataModel.Compile();
         }
 
-        protected IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> RepositoryProvider { get; private set; }
+        protected IGenericRepositoryProvider<TDbModel> RepositoryProvider { get; private set; }
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDataToServiceModel { get; }
 

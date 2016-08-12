@@ -9,7 +9,6 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
@@ -19,9 +18,9 @@
         where TDetailsServiceModel : class
         where TDbModel : class, IModelWithUserInformation
     {
-        private readonly IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider;
+        private readonly IGenericRepositoryProvider<TDbModel> repositoryProvider;
 
-        public MvcDataServiceFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
+        public MvcDataServiceFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -33,7 +32,7 @@
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 
-        protected IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> RepositoryProvider => this.repositoryProvider;
+        protected IGenericRepositoryProvider<TDbModel> RepositoryProvider => this.repositoryProvider;
 
         public abstract Task<object> Add(object userId, TMinimalServiceModel model);
 

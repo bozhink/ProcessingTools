@@ -8,15 +8,14 @@
 
     using Contracts;
 
-    using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
     public abstract class MultiDataServiceWithRepositoryProviderFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
-        private readonly IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider;
+        private readonly IGenericRepositoryProvider<TDbModel> repositoryProvider;
 
-        public MultiDataServiceWithRepositoryProviderFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
+        public MultiDataServiceWithRepositoryProviderFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

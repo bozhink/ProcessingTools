@@ -10,7 +10,6 @@
     using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Repositories;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     [TestClass]
@@ -44,8 +43,8 @@
 
             Assert.IsInstanceOfType(
                 repositoryProvider,
-                typeof(IGenericRepositoryProvider<IGenericRepository<Tweet>, Tweet>),
-                $"RepositoryProvider should be a valid {nameof(IGenericRepositoryProvider<IGenericRepository<Tweet>, Tweet>)} object.");
+                typeof(IGenericRepositoryProvider<Tweet>),
+                $"RepositoryProvider should be a valid {nameof(IGenericRepositoryProvider<Tweet>)} object.");
         }
 
         [TestMethod]

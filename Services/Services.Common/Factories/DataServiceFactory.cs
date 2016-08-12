@@ -5,7 +5,6 @@
 
     using Contracts;
 
-    using ProcessingTools.Data.Common.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
@@ -13,7 +12,7 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        public DataServiceFactory(IGenericRepositoryProvider<IGenericRepository<TDbModel>, TDbModel> repositoryProvider)
+        public DataServiceFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
             : base(repositoryProvider)
         {
         }
