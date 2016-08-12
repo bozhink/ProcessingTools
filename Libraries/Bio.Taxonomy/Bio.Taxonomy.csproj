@@ -38,7 +38,6 @@
     <Compile Include="Constants\TaxaRegexPatterns.cs" />
     <Compile Include="Constants\XmlInternalSchemaConstants.cs" />
     <Compile Include="Contracts\IExtendedTaxonRank.cs" />
-    <Compile Include="Contracts\ISpecies.cs" />
     <Compile Include="Contracts\ITaxonClassification.cs" />
     <Compile Include="Contracts\ITaxonRank.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
