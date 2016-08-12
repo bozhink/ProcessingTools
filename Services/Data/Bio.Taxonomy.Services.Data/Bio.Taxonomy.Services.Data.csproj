@@ -59,6 +59,7 @@
     <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Services\AboveGenusTaxaRankResolverDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationResolverDataService.cs" />
+    <Compile Include="Services\AphiaTaxaRankResolverDataService.cs" />
     <Compile Include="Services\CatalogueOfLifeTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\IAphiaTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\ICatalogueOfLifeTaxaClassificationResolverDataService.cs" />
