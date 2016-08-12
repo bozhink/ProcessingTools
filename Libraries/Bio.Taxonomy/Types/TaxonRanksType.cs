@@ -2,6 +2,8 @@
 {
     public enum TaxonRanksType
     {
+        Other = 0,
+
         Superkingdom,
         Kingdom,
         Subkingdom,
