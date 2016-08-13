@@ -2,8 +2,9 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
 
-    public class BlackListEntity
+    public class BlackListEntity : IBlackListEntity
     {
         [Key]
         public int Id { get; set; }
