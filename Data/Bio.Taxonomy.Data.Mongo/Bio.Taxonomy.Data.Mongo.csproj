@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="BiotaxonomyMongoDatabaseInitializer.cs" />
     <Compile Include="BiotaxonomyMongoDatabaseProvider.cs" />
+    <Compile Include="Contracts\IBiotaxonomyMongoDatabaseInitializer.cs" />
     <Compile Include="Contracts\IBiotaxonomyMongoDatabaseProvider.cs" />
     <Compile Include="Models\MongoTaxonRankEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,7 +20,7 @@
 
     public class MongoTaxonRankSearchableRepository : MongoRepository<MongoTaxonRankEntity>, IMongoTaxonRankSearchableRepository
     {
-        private const string BiotaxonomyTaxaMongoCollectionNameKey = "BiotaxonomyTaxaMongoCollectionName";
+        internal const string BiotaxonomyTaxaMongoCollectionNameKey = "BiotaxonomyTaxaMongoCollectionName";
 
         public MongoTaxonRankSearchableRepository(IBiotaxonomyMongoDatabaseProvider provider)
             : base(provider)
