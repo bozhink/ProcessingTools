@@ -2,6 +2,7 @@
 {
     public static class ConfigurationConstants
     {
-        public const string CamelCaseConventionPackName = "camelCase";
+        public const string CamelCaseConventionPackName = "camelCaseConvention";
+        public const string EnumStringConventionPackName = "enumStringConvention";
     }
 }

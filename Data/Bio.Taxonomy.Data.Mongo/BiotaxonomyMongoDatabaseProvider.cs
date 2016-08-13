@@ -2,6 +2,7 @@
 {
     using System.Configuration;
     using Contracts;
+    using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Conventions;
     using MongoDB.Driver;
     using ProcessingTools.Data.Common.Mongo.Constants;
@@ -22,9 +23,13 @@
 
         public IMongoDatabase Create()
         {
-            var conventionPack = new ConventionPack();
-            conventionPack.Add(new CamelCaseElementNameConvention());
-            ConventionRegistry.Register(ConfigurationConstants.CamelCaseConventionPackName, conventionPack, t => true);
+            var conventionPack = new ConventionPack
+            {
+                new CamelCaseElementNameConvention(),
+                new EnumRepresentationConvention(BsonType.String)
+            };
+
+            ConventionRegistry.Register(ConfigurationConstants.EnumStringConventionPackName, conventionPack, t => true);
 
             var client = new MongoClient(this.connectionString);
             return client.GetDatabase(this.databaseName);
