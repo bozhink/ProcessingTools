@@ -50,6 +50,17 @@
             }
         }
 
-        public virtual ICollection<TaxonRank> Ranks { get; set; }
+        public virtual ICollection<TaxonRank> Ranks
+        {
+            get
+            {
+                return this.ranks;
+            }
+
+            set
+            {
+                this.ranks = value;
+            }
+        }
     }
 }
