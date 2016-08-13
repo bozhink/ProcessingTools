@@ -44,15 +44,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="BiotaxonomyMongoDatabaseProvider.cs" />
+    <Compile Include="Contracts\IBiotaxonomyMongoDatabaseProvider.cs" />
     <Compile Include="Models\TaxonEntity.cs" />
     <Compile Include="Models\TaxonRankEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\" />
     <Folder Include="Repositories\Contracts\" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

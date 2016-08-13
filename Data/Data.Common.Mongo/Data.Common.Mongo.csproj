@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Constants\ConfigurationConstants.cs" />
     <Compile Include="Contracts\IMongoDatabaseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IMongoGenericRepository.cs" />
