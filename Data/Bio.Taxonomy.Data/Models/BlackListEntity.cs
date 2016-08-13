@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
 
-    public class BlackListedItem
+    public class BlackListEntity
     {
         [Key]
         public int Id { get; set; }

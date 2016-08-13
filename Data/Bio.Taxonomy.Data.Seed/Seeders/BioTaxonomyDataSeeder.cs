@@ -199,7 +199,7 @@
                             .OrderBy(t => t)
                             .Skip(i * NumberOfItemsToImportAtOnce)
                             .Take(NumberOfItemsToImportAtOnce)
-                            .Select(item => new BlackListedItem
+                            .Select(item => new BlackListEntity
                             {
                                 Content = item
                             })

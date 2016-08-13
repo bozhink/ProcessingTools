@@ -26,7 +26,7 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the value of the taxona name.
+        /// Gets or sets the value of the taxon name.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]

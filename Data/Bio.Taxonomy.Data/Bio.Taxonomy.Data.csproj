@@ -49,7 +49,7 @@
     <Compile Include="Contracts\IBioTaxonomyDbContextFactory.cs" />
     <Compile Include="Contracts\IBioTaxonomyDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\BlackListedItem.cs" />
+    <Compile Include="Models\BlackListEntity.cs" />
     <Compile Include="Models\TaxonName.cs" />
     <Compile Include="Models\TaxonRank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
