@@ -15,6 +15,18 @@
             this.Ranks = new HashSet<TaxonRankType>();
         }
 
+        public MongoTaxonRankEntity(ITaxonRankEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            this.Name = entity.Name;
+            this.IsWhiteListed = entity.IsWhiteListed;
+            this.Ranks = entity.Ranks;
+        }
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonIgnoreIfDefault]
@@ -24,6 +36,6 @@
 
         public bool IsWhiteListed { get; set; }
 
-        public ICollection<TaxonRankType> Ranks { get; private set; }
+        public ICollection<TaxonRankType> Ranks { get; set; }
     }
 }
