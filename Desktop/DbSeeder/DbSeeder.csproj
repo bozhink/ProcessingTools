@@ -58,6 +58,7 @@
     <Compile Include="Contracts\IBioDbSeeder.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDbSeeder.cs" />
     <Compile Include="Contracts\IBiorepositoriesDbSeeder.cs" />
+    <Compile Include="Contracts\IBiotaxonomyMongoDbSeeder.cs" />
     <Compile Include="Contracts\IDataDbSeeder.cs" />
     <Compile Include="Contracts\IDbSeeder.cs" />
     <Compile Include="Contracts\IMediaTypesDbSeeder.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Seeders\BioDbSeeder.cs" />
     <Compile Include="Seeders\BioEnvironmentsDbSeeder.cs" />
     <Compile Include="Seeders\BiorepositoriesDbSeeder.cs" />
+    <Compile Include="Seeders\BiotaxonomyMongoDbSeeder.cs" />
     <Compile Include="Seeders\DataDbSeeder.cs" />
     <Compile Include="Seeders\GeoDbSeeder.cs" />
     <Compile Include="Contracts\IGeoDbSeeder.cs" />
@@ -117,6 +119,10 @@
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
       <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
       <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
+      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
+      <Name>Bio.Taxonomy.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj">
       <Project>{2FA391D3-D129-4799-98F4-0969D27B1B11}</Project>

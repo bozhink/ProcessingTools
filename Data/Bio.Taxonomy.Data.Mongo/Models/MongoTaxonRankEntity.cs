@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
-    using MongoDB.Bson.Serialization.Attributes;
+
     using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
 
     public class MongoTaxonRankEntity : ITaxonRankEntity
     {

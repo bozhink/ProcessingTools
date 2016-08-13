@@ -6,6 +6,7 @@
     using MongoDB.Bson.Serialization.Conventions;
     using MongoDB.Driver;
     using ProcessingTools.Data.Common.Mongo.Constants;
+    using MongoDB.Bson.Serialization;
 
     public class BiotaxonomyMongoDatabaseProvider : IBiotaxonomyMongoDatabaseProvider
     {
