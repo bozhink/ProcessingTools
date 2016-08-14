@@ -10,6 +10,7 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
@@ -85,7 +86,15 @@
             }
 
             var filter = this.GetFilterById(id);
-            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync();
+            var entity = await this.Collection
+                .Find(filter)
+                .FirstOrDefaultAsync();
+
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
             return entity;
         }
 
