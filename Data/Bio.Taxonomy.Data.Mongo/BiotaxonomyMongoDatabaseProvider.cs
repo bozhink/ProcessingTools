@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
 {
     using System.Configuration;
+
     using Contracts;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Conventions;
     using MongoDB.Driver;
     using ProcessingTools.Data.Common.Mongo.Constants;
-    using MongoDB.Bson.Serialization;
 
     public class BiotaxonomyMongoDatabaseProvider : IBiotaxonomyMongoDatabaseProvider
     {

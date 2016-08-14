@@ -10,11 +10,11 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Data;
     using ProcessingTools.Bio.Taxonomy.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder

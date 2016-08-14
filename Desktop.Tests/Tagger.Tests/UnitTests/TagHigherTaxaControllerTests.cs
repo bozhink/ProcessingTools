@@ -4,13 +4,14 @@
     using System.Xml;
 
     using Controllers;
+
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
+
     using ProcessingTools.BaseLibrary;
-    using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Contracts;
 
     // TODO: TagHigherTaxaControllerTests
     [TestFixture]

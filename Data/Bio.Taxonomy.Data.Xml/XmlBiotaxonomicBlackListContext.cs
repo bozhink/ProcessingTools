@@ -4,15 +4,11 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Types;
     using ProcessingTools.Configurator;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
@@ -55,6 +51,12 @@
             });
         }
 
+        public async Task<IQueryable<string>> All()
+        {
+            await this.ReadItemsFromFile();
+            return new HashSet<string>(this.Items).AsQueryable();
+        }
+
         public async Task<object> Delete(string entity)
         {
             if (string.IsNullOrWhiteSpace(entity))
@@ -69,29 +71,6 @@
             return entity;
         }
 
-        public async Task<IQueryable<string>> All()
-        {
-            await this.ReadItemsFromFile();
-            return new HashSet<string>(this.Items).AsQueryable();
-        }
-
-        private Task ReadItemsFromFile() => Task.Run(() =>
-        {
-            var timeSpan = this.lastUpdated - DateTime.Now;
-            if (timeSpan.HasValue &&
-                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
-            {
-                return;
-            }
-
-            XElement.Load(this.Config.BlackListXmlFilePath)
-                .Descendants(ItemNodeName)
-                .AsParallel()
-                .ForAll(element => this.Items.Enqueue(element.Value));
-
-            this.lastUpdated = DateTime.Now;
-        });
-
         public async Task<long> WriteItemsToFile()
         {
             var items = (await this.All())
@@ -105,5 +84,21 @@
             return items.Length;
         }
 
+        private Task ReadItemsFromFile() => Task.Run(() =>
+                {
+                    var timeSpan = this.lastUpdated - DateTime.Now;
+                    if (timeSpan.HasValue &&
+                        timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+                    {
+                        return;
+                    }
+
+                    XElement.Load(this.Config.BlackListXmlFilePath)
+                        .Descendants(ItemNodeName)
+                        .AsParallel()
+                        .ForAll(element => this.Items.Enqueue(element.Value));
+
+                    this.lastUpdated = DateTime.Now;
+                });
     }
 }

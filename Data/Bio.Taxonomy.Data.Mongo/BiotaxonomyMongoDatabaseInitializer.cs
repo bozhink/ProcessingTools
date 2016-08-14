@@ -1,14 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
 {
     using System;
-    using System.Configuration;
     using System.Threading.Tasks;
 
     using Contracts;
     using Models;
     using MongoDB.Driver;
-    using Repositories;
-
     using ProcessingTools.Data.Common.Mongo.Factories;
 
     public class BiotaxonomyMongoDatabaseInitializer : IBiotaxonomyMongoDatabaseInitializer

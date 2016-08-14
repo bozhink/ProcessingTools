@@ -19,7 +19,7 @@
         {
         }
 
-        public Task<IQueryable<IBlackListEntity>> All() => Task.Run(() =>
+        public virtual Task<IQueryable<IBlackListEntity>> All() => Task.Run(() =>
         {
             return this.Collection
                 .AsQueryable()
