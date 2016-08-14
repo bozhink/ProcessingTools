@@ -53,6 +53,7 @@
     <Compile Include="Contracts\IBiotaxonomyMongoDatabaseInitializer.cs" />
     <Compile Include="Contracts\IBiotaxonomyMongoDatabaseProvider.cs" />
     <Compile Include="Models\MongoTaxonRankEntity.cs" />
+    <Compile Include="Models\MongoTaxonRankTypeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepositoryProvider.cs" />
