@@ -7,13 +7,14 @@
     using Models;
 
     using MongoDB.Driver;
+
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
     public class MongoBiotaxonomicBlackListIterableRepository : MongoRepository<MongoBlackListEntity>, IMongoBiotaxonomicBlackListIterableRepository
     {
-        public MongoBiotaxonomicBlackListIterableRepository(IMongoDatabaseProvider provider)
+        public MongoBiotaxonomicBlackListIterableRepository(IBiotaxonomyMongoDatabaseProvider provider)
             : base(provider)
         {
         }
