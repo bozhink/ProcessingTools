@@ -48,6 +48,7 @@
     <Compile Include="Contracts\IDatabaseInitializer.cs" />
     <Compile Include="Contracts\IDatabaseProvider.cs" />
     <Compile Include="Contracts\IDatabaseSeeder.cs" />
+    <Compile Include="Repositories\Contracts\ICrudRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepositoryProvider.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Models\Contracts\IEntity.cs" />
