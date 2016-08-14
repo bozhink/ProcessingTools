@@ -2,9 +2,10 @@
 {
     using System;
     using Contracts;
+    using Factories;
+    using MongoDB.Bson;
     using MongoDB.Driver;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using MongoDB.Bson;
 
     public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity>
         where TEntity : class
@@ -20,7 +21,7 @@
             }
 
             this.db = provider.Create();
-            this.CollectionName = this.GenerateCollectionName();
+            this.CollectionName = CollectionNameFactory.Create<TEntity>();
         }
 
         protected IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
@@ -48,20 +49,6 @@
             var objectId = new ObjectId(id.ToString());
             var filter = Builders<TEntity>.Filter.Eq("_id", objectId);
             return filter;
-        }
-
-        private string GenerateCollectionName()
-        {
-            string name = typeof(TEntity).Name.ToLower();
-            int nameLength = name.Length;
-            if (name.ToCharArray()[nameLength - 1] == 'y')
-            {
-                return $"{name.Substring(0, nameLength - 1)}ies";
-            }
-            else
-            {
-                return $"{name}s";
-            }
         }
     }
 }

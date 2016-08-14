@@ -8,7 +8,9 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Data.Common.Mongo.Attributes;
 
+    [CollectionName("taxa")]
     public class MongoTaxonRankEntity : ITaxonRankEntity
     {
         public MongoTaxonRankEntity()

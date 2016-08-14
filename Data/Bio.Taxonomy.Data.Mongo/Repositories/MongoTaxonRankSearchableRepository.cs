@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories
 {
     using System;
-    using System.Configuration;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -20,12 +19,9 @@
 
     public class MongoTaxonRankSearchableRepository : MongoRepository<MongoTaxonRankEntity>, IMongoTaxonRankSearchableRepository
     {
-        internal const string BiotaxonomyTaxaMongoCollectionNameKey = "BiotaxonomyTaxaMongoCollectionName";
-
         public MongoTaxonRankSearchableRepository(IBiotaxonomyMongoDatabaseProvider provider)
             : base(provider)
         {
-            this.CollectionName = ConfigurationManager.AppSettings[BiotaxonomyTaxaMongoCollectionNameKey];
         }
 
         public virtual Task<IQueryable<ITaxonRankEntity>> Find(

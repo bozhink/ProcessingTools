@@ -64,7 +64,9 @@
     <Compile Include="Repositories\MongoTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankSearchableRepositoryProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Queries\get-taxa-with-named-ranks.js" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
