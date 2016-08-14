@@ -159,7 +159,7 @@
                 }
                 else
                 {
-                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
+                    var service = this.kernel.Get<IBiotaxonomicBlackListDataService>();
 
                     var items = new HashSet<string>(this.listView.Items
                         .Cast<ListViewItem>()
@@ -249,7 +249,7 @@
                 }
                 else
                 {
-                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
+                    var service = this.kernel.Get<IBiotaxonomicBlackListIterableDataService>();
 
                     (await service.All())
                         .Where(i => i.Contains(textToSearch))

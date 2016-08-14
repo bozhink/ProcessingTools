@@ -48,20 +48,24 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IAphiaTaxaRankResolverDataService.cs" />
+    <Compile Include="Contracts\IBiotaxonomicBlackListDataService.cs" />
+    <Compile Include="Contracts\IBiotaxonomicBlackListIterableDataService.cs" />
     <Compile Include="Contracts\ICatalogueOfLifeTaxaRankResolverDataService.cs" />
     <Compile Include="Contracts\IGbifTaxaRankResolverDataService.cs" />
     <Compile Include="Contracts\ITaxaDataService.cs" />
     <Compile Include="Contracts\ITaxonClassificationResolverDataService.cs" />
-    <Compile Include="Contracts\ITaxonomicBlackListDataService.cs" />
     <Compile Include="Contracts\ITaxonRankDataService.cs" />
     <Compile Include="Contracts\ITaxonRankResolverDataService.cs" />
     <Compile Include="Factories\TaxaRankResolverOverTaxaClassificationResolverDataServiceFactory.cs" />
+    <Compile Include="Models\BlackListEntity.cs" />
     <Compile Include="Models\Contracts\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Models\TaxonRankEntity.cs" />
     <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Services\AboveGenusTaxaRankResolverDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationResolverDataService.cs" />
     <Compile Include="Services\AphiaTaxaRankResolverDataService.cs" />
+    <Compile Include="Services\BiotaxonomicBlackListDataService.cs" />
+    <Compile Include="Services\BiotaxonomicBlackListIterableDataService.cs" />
     <Compile Include="Services\CatalogueOfLifeTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\IAphiaTaxaClassificationResolverDataService.cs" />
     <Compile Include="Contracts\ICatalogueOfLifeTaxaClassificationResolverDataService.cs" />
@@ -79,7 +83,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SuffixHigherTaxaRankResolverDataService.cs" />
     <Compile Include="Factories\TaxaInformationResolverDataServiceFactory.cs" />
-    <Compile Include="Services\TaxonomicBlackListDataService.cs" />
     <Compile Include="Services\TaxonRankDataService.cs" />
   </ItemGroup>
   <ItemGroup>

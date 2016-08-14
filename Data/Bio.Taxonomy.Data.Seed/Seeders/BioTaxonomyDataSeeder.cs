@@ -23,7 +23,7 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
-        private readonly ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider;
+        private readonly IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider;
         private readonly IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider;
         private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
@@ -32,7 +32,7 @@
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider, ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider)
+        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider, IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
         {
             if (contextProvider == null)
             {
@@ -201,7 +201,7 @@
                             .Take(NumberOfItemsToImportAtOnce)
                             .Select(item => new BlackListEntity
                             {
-                                Content = item
+                                Content = item.Content
                             })
                             .ToArray();
 

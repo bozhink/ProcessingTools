@@ -7,7 +7,12 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
+    using ProcessingTools.BaseLibrary;
+    using ProcessingTools.BaseLibrary.Taxonomy;
+    using ProcessingTools.Bio.Data.Miners.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
+    // TODO: TagHigherTaxaControllerTests
     [TestFixture]
     public class TagHigherTaxaControllerTests
     {
@@ -19,6 +24,8 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
+        private IBiotaxonomicBlackListIterableDataService service;
+        private IHigherTaxaDataMiner miner;
 
         [SetUp]
         public void Init()
@@ -31,12 +38,18 @@
 
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
+
+            var serviceMock = new Mock<IBiotaxonomicBlackListIterableDataService>();
+            this.service = serviceMock.Object;
+
+            var minerMock = new Mock<IHigherTaxaDataMiner>();
+            this.miner = minerMock.Object;
         }
 
         [Test]
         public void TagHigherTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -44,7 +57,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             string initialContent = this.document.OuterXml;
 
@@ -58,7 +71,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -68,7 +81,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -78,7 +91,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -88,7 +101,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -98,7 +111,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -108,7 +121,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -118,7 +131,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -128,7 +141,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -138,7 +151,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             try
             {
@@ -158,7 +171,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -168,7 +181,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -178,7 +191,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -188,7 +201,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -198,7 +211,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             try
             {
@@ -218,7 +231,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -228,7 +241,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -238,7 +251,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             try
             {
@@ -258,7 +271,7 @@
         [Test]
         public void TagHigherTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagHigherTaxaController();
+            var controller = new TagHigherTaxaController(this.service, this.miner);
 
             string initialContent = this.document.OuterXml;
 

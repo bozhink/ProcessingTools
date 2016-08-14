@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -9,19 +10,27 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
-    // TODO: Ninject
     [Description("Tag lower taxa.")]
     public class TagLowerTaxaController : TaggerControllerFactory, ITagLowerTaxaController
     {
+        private readonly IBiotaxonomicBlackListIterableDataService service;
+
+        public TagLowerTaxaController(IBiotaxonomicBlackListIterableDataService service)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
+        }
+
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
-
-            var tagger = new LowerTaxaTagger(document.OuterXml, blackListService, logger);
+            var tagger = new LowerTaxaTagger(document.OuterXml, this.service, logger);
 
             await tagger.Tag();
 

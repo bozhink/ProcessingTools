@@ -14,9 +14,9 @@
 
     public abstract class TaxaTagger : TaxPubDocument, ITagger
     {
-        private ITaxonomicBlackListDataService service;
+        private readonly IBiotaxonomicBlackListIterableDataService service;
 
-        public TaxaTagger(string xml, ITaxonomicBlackListDataService service)
+        public TaxaTagger(string xml, IBiotaxonomicBlackListIterableDataService service)
             : base(xml)
         {
             if (service == null)
@@ -52,7 +52,7 @@
 
         private async Task<IEnumerable<string>> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
         {
-            var blackListItems = new HashSet<string>(await this.service.All());
+            var blackListItems = await this.service.All();
 
             var blackListedNames = new HashSet<string>(taxaNamesFirstWord
                 .MatchWithStringList(blackListItems, true, false, true));

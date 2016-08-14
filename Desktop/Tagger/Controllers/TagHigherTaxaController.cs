@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -9,24 +10,35 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
-    using ProcessingTools.Bio.Data.Miners;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
+    using ProcessingTools.Bio.Data.Miners.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
-    // TODO: Ninject
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
     {
+        private readonly IBiotaxonomicBlackListIterableDataService service;
+        private readonly IHigherTaxaDataMiner miner;
+
+        public TagHigherTaxaController(IBiotaxonomicBlackListIterableDataService service, IHigherTaxaDataMiner miner)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            if (miner == null)
+            {
+                throw new ArgumentNullException(nameof(miner));
+            }
+
+            this.service = service;
+            this.miner = miner;
+        }
+
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var contextProvider = new TaxaContextProvider();
-            var repositoryProvider = new XmlTaxonRankRepositoryProvider(contextProvider);
-            var miner = new HigherTaxaDataMiner(new TaxonRankDataService(repositoryProvider));
-            var blackListService = new TaxonomicBlackListDataService(new TaxonomicBlackListRepository());
-
-            var tagger = new HigherTaxaTagger(document.OuterXml, miner, blackListService, logger);
+            var tagger = new HigherTaxaTagger(document.OuterXml, this.miner, this.service, logger);
 
             await tagger.Tag();
 

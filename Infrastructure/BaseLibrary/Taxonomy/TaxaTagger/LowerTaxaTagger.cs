@@ -28,7 +28,7 @@
 
         private ILogger logger;
 
-        public LowerTaxaTagger(string xml, ITaxonomicBlackListDataService service, ILogger logger)
+        public LowerTaxaTagger(string xml, IBiotaxonomicBlackListIterableDataService service, ILogger logger)
             : base(xml, service)
         {
             this.logger = logger;
