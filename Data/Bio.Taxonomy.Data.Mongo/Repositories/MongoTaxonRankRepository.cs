@@ -116,7 +116,7 @@
                     .Eq(t => t.Name, entity.Name),
                 Builders<MongoTaxonRankEntity>.Update
                     .Set(t => t.IsWhiteListed, entity.IsWhiteListed)
-                    .Set(t => t.Ranks, entity.Ranks),
+                    .AddToSetEach(t => t.Ranks, entity.Ranks),
                 this.updateOptions);
 
             return result;

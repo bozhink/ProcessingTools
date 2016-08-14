@@ -39,6 +39,34 @@
         protected ITaxaContext Context { get; private set; }
 
         public virtual async Task<IQueryable<ITaxonRankEntity>> Find(
+            Expression<Func<ITaxonRankEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var query = await this.Context.All();
+
+            query = query.Where(filter);
+
+            return query;
+        }
+
+        public virtual async Task<IQueryable<T>> Find<T>(
+            Expression<Func<ITaxonRankEntity, bool>> filter,
+            Expression<Func<ITaxonRankEntity, T>> projection)
+        {
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            return (await this.Find(filter))
+                .Select(projection);
+        }
+
+        public virtual async Task<IQueryable<ITaxonRankEntity>> Find(
             Expression<Func<ITaxonRankEntity, bool>> filter,
             Expression<Func<ITaxonRankEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
@@ -66,6 +94,8 @@
             }
 
             var query = await this.Context.All();
+
+            query = query.Where(filter);
 
             switch (sortOrder)
             {

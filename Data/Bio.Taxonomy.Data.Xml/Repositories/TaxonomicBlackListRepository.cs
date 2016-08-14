@@ -124,6 +124,34 @@
         }
 
         public virtual async Task<IQueryable<string>> Find(
+            Expression<Func<string, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var query = await this.All();
+
+            query = query.Where(filter);
+
+            return query;
+        }
+
+        public virtual async Task<IQueryable<T>> Find<T>(
+            Expression<Func<string, bool>> filter,
+            Expression<Func<string, T>> projection)
+        {
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            return (await this.Find(filter))
+                .Select(projection);
+        }
+
+        public virtual async Task<IQueryable<string>> Find(
             Expression<Func<string, bool>> filter,
             Expression<Func<string, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
@@ -151,6 +179,8 @@
             }
 
             var query = await this.All();
+
+            query = query.Where(filter);
 
             switch (sortOrder)
             {

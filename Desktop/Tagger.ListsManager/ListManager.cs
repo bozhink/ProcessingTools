@@ -146,12 +146,12 @@
                 {
                     var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    var taxa = new HashSet<TaxonRankWithWhiteListingServiceModel>(this.listView.Items.Cast<ListViewItem>()
-                        .Select(i => new TaxonRankWithWhiteListingServiceModel
+                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items
+                        .Cast<ListViewItem>()
+                        .Select(i => new TaxonRankServiceModel
                         {
                             ScientificName = i.SubItems[0].Text,
-                            Rank = i.SubItems[1].Text.MapTaxonRankStringToTaxonRankType(),
-                            IsWhiteListed = i.Checked
+                            Rank = i.SubItems[1].Text.MapTaxonRankStringToTaxonRankType()
                         }))
                         .ToArray();
 
@@ -208,61 +208,6 @@
             }
         }
 
-        private void LoadWholeListButton_Click(object sender, EventArgs e)
-        {
-            var dialogResult = MessageBox.Show(
-                "Are you sure?",
-                "Load whole list",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (dialogResult != DialogResult.Yes)
-            {
-                return;
-            }
-
-            var awaiter = this.LoadAllData().GetAwaiter();
-        }
-
-        private async Task LoadAllData()
-        {
-            this.Enabled = false;
-            try
-            {
-                if (this.IsRankList)
-                {
-                    var service = this.kernel.Get<ITaxonRankDataService>();
-
-                    (await service.All())
-                        .ToList()
-                        .ForEach(taxon =>
-                        {
-                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank.MapTaxonRankTypeToTaxonRankString() };
-                            var listItem = new ListViewItem(taxonRankPair);
-                            listItem.Checked = taxon.IsWhiteListed;
-                            this.listView.Items.Add(listItem);
-                        });
-                }
-                else
-                {
-                    var service = this.kernel.Get<ITaxonomicBlackListDataService>();
-
-                    (await service.All())
-                        .ToList()
-                        .ForEach(item =>
-                        {
-                            this.listView.Items.Add(item);
-                        });
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error in load.");
-            }
-
-            this.Enabled = true;
-        }
-
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
             var awaiter = this.Search().GetAwaiter();
@@ -290,17 +235,17 @@
                 if (this.IsRankList)
                 {
                     var service = this.kernel.Get<ITaxonRankDataService>();
+                    var foundTaxa = await service.SearchByName(textToSearch);
 
-                    (await service.All())
-                        .Where(t => t.ScientificName.Contains(textToSearch))
-                        .ToList()
-                        .ForEach(taxon =>
-                        {
-                            string[] taxonRankPair = { taxon.ScientificName, taxon.Rank.MapTaxonRankTypeToTaxonRankString() };
-                            var listItem = new ListViewItem(taxonRankPair);
-                            listItem.Checked = taxon.IsWhiteListed;
-                            this.listView.Items.Add(listItem);
-                        });
+                    foreach (var taxon in foundTaxa)
+                    {
+                        string scientificName = taxon.ScientificName;
+                        string rank = taxon.Rank.MapTaxonRankTypeToTaxonRankString();
+
+                        string[] taxonRankPair = { scientificName, rank };
+                        var listItem = new ListViewItem(taxonRankPair);
+                        this.listView.Items.Add(listItem);
+                    }
                 }
                 else
                 {

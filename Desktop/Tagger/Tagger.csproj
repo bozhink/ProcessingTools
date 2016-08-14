@@ -282,6 +282,10 @@
       <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
       <Name>Bio.Taxonomy.Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
+      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
+      <Name>Bio.Taxonomy.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>

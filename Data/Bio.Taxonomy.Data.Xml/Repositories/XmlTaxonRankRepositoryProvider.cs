@@ -2,11 +2,11 @@
 {
     using System;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using Contracts;
+
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Configurator;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class XmlTaxonRankRepositoryProvider : IXmlTaxonRankRepositoryProvider
     {
@@ -22,7 +22,7 @@
             this.contextProvider = contextProvider;
         }
 
-        public IGenericRepository<ITaxonRankEntity> Create()
+        public ITaxonRankRepository Create()
         {
             return new XmlTaxonRankRepository(this.contextProvider, ConfigBuilder.Create());
         }

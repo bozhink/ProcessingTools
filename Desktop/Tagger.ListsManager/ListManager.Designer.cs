@@ -35,8 +35,6 @@
 
         private System.Windows.Forms.ContextMenuStrip listViewContextMenuStrip;
 
-        private System.Windows.Forms.Button loadWholeListButton;
-
         private System.Windows.Forms.GroupBox parseTextGroupBox;
 
         private System.Windows.Forms.ColumnHeader rankColumnHeader;
@@ -54,7 +52,6 @@
             this.components = new System.ComponentModel.Container();
             this.listManagerGroupBox = new System.Windows.Forms.GroupBox();
             this.listGroupBox = new System.Windows.Forms.GroupBox();
-            this.loadWholeListButton = new System.Windows.Forms.Button();
             this.clearListViewButton = new System.Windows.Forms.Button();
             this.listImportButton = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
@@ -97,7 +94,6 @@
             this.listGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listGroupBox.Controls.Add(this.loadWholeListButton);
             this.listGroupBox.Controls.Add(this.clearListViewButton);
             this.listGroupBox.Controls.Add(this.listImportButton);
             this.listGroupBox.Controls.Add(this.listView);
@@ -107,17 +103,6 @@
             this.listGroupBox.TabIndex = 17;
             this.listGroupBox.TabStop = false;
             this.listGroupBox.Text = "List View";
-            // 
-            // loadWholeListButton
-            // 
-            this.loadWholeListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadWholeListButton.Location = new System.Drawing.Point(233, 235);
-            this.loadWholeListButton.Name = "loadWholeListButton";
-            this.loadWholeListButton.Size = new System.Drawing.Size(94, 23);
-            this.loadWholeListButton.TabIndex = 19;
-            this.loadWholeListButton.Text = "Load whole list";
-            this.loadWholeListButton.UseVisualStyleBackColor = true;
-            this.loadWholeListButton.Click += new System.EventHandler(this.LoadWholeListButton_Click);
             // 
             // clearListViewButton
             // 
@@ -160,7 +145,6 @@
             this.listView.Location = new System.Drawing.Point(6, 19);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(566, 209);
-            this.listView.Sorting = System.Windows.Forms.SortOrder.None;
             this.listView.TabIndex = 15;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;

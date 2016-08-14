@@ -109,6 +109,36 @@
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
+            Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<T>> Find<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending,

@@ -24,6 +24,32 @@
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
+            Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var query = this.Collection.AsQueryable().Where(filter);
+
+            return Task.FromResult(query);
+        }
+
+        public virtual async Task<IQueryable<T>> Find<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection)
+        {
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            return (await this.Find(filter))
+                .Select(projection);
+        }
+
+        public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,

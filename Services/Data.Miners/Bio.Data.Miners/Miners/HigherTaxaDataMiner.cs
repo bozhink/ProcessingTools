@@ -48,8 +48,7 @@
 
         private async Task<IEnumerable<string>> MatchWithWhiteList(IEnumerable<string> words)
         {
-            var whiteListItems = new HashSet<string>((await this.service.All())
-                .Where(t => t.IsWhiteListed)
+            var whiteListItems = new HashSet<string>((await this.service.GetWhiteListedTaxa())
                 .Select(t => t.ScientificName.ToLower()));
 
             var whiteListMatches = words.Where(w => whiteListItems.Contains(w.ToLower()));

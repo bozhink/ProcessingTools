@@ -4,9 +4,8 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class MongoTaxonRankRepositoryProvider : IMongoTaxonRankRepositoryProvider
     {
@@ -22,7 +21,7 @@
             this.provider = provider;
         }
 
-        public IGenericRepository<ITaxonRankEntity> Create()
+        public ITaxonRankRepository Create()
         {
             return new MongoTaxonRankRepository(this.provider);
         }

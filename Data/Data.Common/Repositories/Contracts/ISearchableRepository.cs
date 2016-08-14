@@ -11,6 +11,13 @@
     public interface ISearchableRepository<TEntity> : IRepository<TEntity>
     {
         Task<IQueryable<TEntity>> Find(
+            Expression<Func<TEntity, bool>> filter);
+
+        Task<IQueryable<T>> Find<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection);
+
+        Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,

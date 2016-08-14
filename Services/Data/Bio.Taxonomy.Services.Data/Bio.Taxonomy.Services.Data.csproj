@@ -57,6 +57,7 @@
     <Compile Include="Contracts\ITaxonRankResolverDataService.cs" />
     <Compile Include="Factories\TaxaRankResolverOverTaxaClassificationResolverDataServiceFactory.cs" />
     <Compile Include="Models\Contracts\ITaxonRankWithWhiteListing.cs" />
+    <Compile Include="Models\TaxonRankEntity.cs" />
     <Compile Include="Models\TaxonRankServiceModel.cs" />
     <Compile Include="Services\AboveGenusTaxaRankResolverDataService.cs" />
     <Compile Include="Services\AphiaTaxaClassificationResolverDataService.cs" />
