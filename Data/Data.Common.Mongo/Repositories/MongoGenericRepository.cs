@@ -14,7 +14,7 @@
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
-    public class MongoGenericRepository<TEntity> : MongoSearchableRepository<TEntity>, IMongoGenericRepository<TEntity>
+    public class MongoGenericRepository<TEntity> : MongoSearchableRepository<TEntity, TEntity>, IMongoGenericRepository<TEntity>
         where TEntity : class
     {
         public MongoGenericRepository(IMongoDatabaseProvider provider)

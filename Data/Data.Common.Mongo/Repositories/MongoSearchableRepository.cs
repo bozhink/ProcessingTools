@@ -14,8 +14,9 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
-    public class MongoSearchableRepository<TEntity> : MongoRepository<TEntity>, IMongoSearchableRepository<TEntity>
+    public class MongoSearchableRepository<TEntity, TDbModel> : MongoRepository<TDbModel>, IMongoSearchableRepository<TEntity>
         where TEntity : class
+        where TDbModel : class, TEntity
     {
         public MongoSearchableRepository(IMongoDatabaseProvider provider)
             : base(provider)
@@ -87,26 +88,29 @@
                 .Select(projection);
         }
 
-        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var entity = await this.Collection
-                .Find(filter)
-                .FirstOrDefaultAsync();
-
-            if (entity == null)
+            return Task.Run(() =>
             {
-                throw new EntityNotFoundException();
-            }
+                var entity = this.Collection
+                    .AsQueryable()
+                    .FirstOrDefault(filter);
 
-            return entity;
+                if (entity == null)
+                {
+                    throw new EntityNotFoundException();
+                }
+
+                return entity;
+            });
         }
 
-        public virtual async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
+        public virtual Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
         {
             if (filter == null)
             {
@@ -118,17 +122,21 @@
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            var entity = await this.Collection
-                .Find(filter)
-                .Project(projection)
-                .FirstOrDefaultAsync();
-
-            if (entity == null)
+            return Task.Run(() =>
             {
-                throw new EntityNotFoundException();
-            }
+                var entity = this.Collection
+                    .AsQueryable()
+                    .Where(filter)
+                    .Select(projection)
+                    .FirstOrDefault();
 
-            return entity;
+                if (entity == null)
+                {
+                    throw new EntityNotFoundException();
+                }
+
+                return entity;
+            });
         }
     }
 }
