@@ -3,11 +3,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IGenericRepository<TEntity> : ICountableRepository<TEntity>, ISearchableRepository<TEntity>, IRepository<TEntity>
+    public interface IGenericRepository<TEntity> : ICountableRepository<TEntity>, ISearchableRepository<TEntity>, IIterableRepository<TEntity>, IRepository<TEntity>
     {
         Task<object> Add(TEntity entity);
-
-        Task<IQueryable<TEntity>> All();
 
         Task<object> Delete(TEntity entity);
 

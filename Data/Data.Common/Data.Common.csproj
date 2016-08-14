@@ -59,6 +59,8 @@
     <Compile Include="Repositories\Contracts\IFullTextSearchableRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepository.cs" />
+    <Compile Include="Repositories\Contracts\IIterableRepository.cs" />
+    <Compile Include="Repositories\Contracts\IIterableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IRepository.cs" />
     <Compile Include="Repositories\Contracts\IRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\ISearchableRepository.cs" />
