@@ -4,72 +4,72 @@
     {
         Other = 0,
 
-        Superkingdom,
-        Kingdom,
-        Subkingdom,
-        Infrakingdom,
+        Superkingdom = 1,
+        Kingdom = 2,
+        Subkingdom = 3,
+        Infrakingdom = 4,
 
-        Division,
-        Subdivision,
-        Infradivision,
+        Division = 5,
+        Subdivision = 6,
+        Infradivision = 7,
 
-        Superphylum,
-        Phylum,
-        Subphylum,
-        Infraphylum,
+        Superphylum = 8,
+        Phylum = 9,
+        Subphylum = 10,
+        Infraphylum = 11,
 
-        Superclass,
-        Class,
-        Subclass,
-        Infraclass,
+        Superclass = 12,
+        Class = 13,
+        Subclass = 14,
+        Infraclass = 15,
 
-        Superorder,
-        Order,
-        Suborder,
-        Infraorder,
-        Parvorder,
+        Superorder = 16,
+        Order = 17,
+        Suborder = 18,
+        Infraorder = 19,
+        Parvorder = 20,
 
-        Superfamily,
-        Epifamily,
-        Family,
-        Subfamily,
+        Superfamily = 21,
+        Epifamily = 22,
+        Family = 23,
+        Subfamily = 24,
 
-        Supertribe,
-        Tribe,
-        Subtribe,
+        Supertribe = 25,
+        Tribe = 26,
+        Subtribe = 27,
 
-        Clade,
-        Subclade,
+        Clade = 28,
+        Subclade = 29,
 
-        Cohort,
-        Supergroup,
+        Cohort = 30,
+        Supergroup = 31,
 
-        Genus,
-        Subgenus,
+        Genus = 101,
+        Subgenus = 102,
 
-        Section,
-        Subsection,
+        Section = 103,
+        Subsection = 104,
 
-        Series,
-        Subseries,
+        Series = 105,
+        Subseries = 106,
 
-        Superspecies,
-        Species,
-        Subspecies,
+        Superspecies = 107,
+        Species = 108,
+        Subspecies = 109,
 
-        Variety,
-        Subvariety,
+        Variety = 110,
+        Subvariety = 111,
 
-        Form,
-        Subform,
+        Form = 112,
+        Subform = 113,
 
-        Aberration,
+        Aberration = 114,
 
-        Stage,
+        Stage = 115,
 
-        Race,
+        Race = 116,
 
-        AboveGenus,
-        AboveFamily
+        AboveGenus = 201,
+        AboveFamily = 202
     }
 }
