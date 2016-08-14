@@ -23,7 +23,7 @@
         {
             return this.Collection
                 .AsQueryable()
-                .Cast<IBlackListEntity>();
+                .Select(e => e as IBlackListEntity);
         });
     }
 }
