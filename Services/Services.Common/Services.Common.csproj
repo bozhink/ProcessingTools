@@ -57,7 +57,6 @@
     <Compile Include="Factories\MultiDataServiceWithRepositoryFactory.cs" />
     <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
     <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
-    <Compile Include="Services\GenericRepositoryDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
