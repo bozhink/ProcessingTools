@@ -29,6 +29,7 @@
         {
             await this.CreateIndicesToTaxonRankCollection();
             await this.CreateIndicesToTaxonRankTypesCollection();
+            await this.CreateIndicesToBlackListCollection();
         }
 
         private async Task<object> CreateIndicesToTaxonRankCollection()
@@ -64,6 +65,26 @@
             result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.Name),
+                    indexOptions);
+
+            return result;
+        }
+
+        private async Task<object> CreateIndicesToBlackListCollection()
+        {
+            string collectionName = CollectionNameFactory.Create<MongoBlackListEntity>();
+
+            var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
+
+            var indexOptions = new CreateIndexOptions
+            {
+                Unique = true,
+                Sparse = false
+            };
+
+            var result = await collection.Indexes
+                .CreateOneAsync(
+                    Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
                     indexOptions);
 
             return result;
