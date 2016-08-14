@@ -89,7 +89,7 @@
 
             var data = miner.Mine(content).Result.ToList();
 
-            Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
+            Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data length should be {numberOfMatchingDataItems}");
 
             Assert.IsTrue(data.Contains(item), "Resultant data should contain input item.");
         }
@@ -106,7 +106,7 @@
 
             var data = miner.Mine(content).Result.ToList();
 
-            Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data lenght should be {numberOfMatchingDataItems}");
+            Assert.AreEqual(numberOfMatchingDataItems, data.Count, $"Data length should be {numberOfMatchingDataItems}");
 
             Assert.IsTrue(data.Contains(item), "Resultant data should contain input item.");
         }
