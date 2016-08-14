@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IBiotaxonomicBlackListRepository : IGenericRepository<IBlackListEntity>
+    public interface IBiotaxonomicBlackListRepository : ICrudRepository<IBlackListEntity>
     {
     }
 }
