@@ -47,7 +47,7 @@
 
                 if (seederType == null)
                 {
-                    throw new ApplicationException("Seeder is not initialized corectly.");
+                    throw new ApplicationException("Seeder is not initialized correctly.");
                 }
 
                 Console.WriteLine(seeder.GetType().FullName);
