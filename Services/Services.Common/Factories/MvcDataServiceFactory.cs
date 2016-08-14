@@ -66,7 +66,7 @@
         {
             var repository = this.RepositoryProvider.Create();
 
-            long count = (await repository.All()).LongCount();
+            long count = await repository.Count();
 
             repository.TryDispose();
 
