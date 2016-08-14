@@ -39,7 +39,7 @@
             });
 
             this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Mongo.Repositories.MongoTaxonRankRepositoryProvider>();
+                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
         }
     }
 }

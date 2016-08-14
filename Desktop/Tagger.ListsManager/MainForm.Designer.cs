@@ -39,10 +39,6 @@
 
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelConfigOutput;
 
-        private ListManagerControl whiteListManager;
-
-        private System.Windows.Forms.TabPage whiteListTabPage;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -78,16 +74,13 @@
             this.qiutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.whiteListTabPage = new System.Windows.Forms.TabPage();
-            this.whiteListManager = new ListManagerControl();
             this.blackListTabPage = new System.Windows.Forms.TabPage();
-            this.blackListManager = new ListManagerControl();
+            this.blackListManager = new ProcessingTools.ListsManager.ListManagerControl();
             this.rankListTabPage = new System.Windows.Forms.TabPage();
-            this.rankListManager = new ListManagerControl();
+            this.rankListManager = new ProcessingTools.ListsManager.ListManagerControl();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.whiteListTabPage.SuspendLayout();
             this.blackListTabPage.SuspendLayout();
             this.rankListTabPage.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +100,7 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(106, 17);
-            this.toolStripStatusLabel1.Text = "Current config file:";
+            this.toolStripStatusLabel1.Text = "Current configuration file:";
             // 
             // toolStripStatusLabelConfigOutput
             // 
@@ -139,26 +132,26 @@
             // openConfigFileToolStripMenuItem
             // 
             this.openConfigFileToolStripMenuItem.Name = "openConfigFileToolStripMenuItem";
-            this.openConfigFileToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O);
+            this.openConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.openConfigFileToolStripMenuItem.Text = "&Open config file";
+            this.openConfigFileToolStripMenuItem.Text = "&Open configuration file";
             this.openConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenConfigFileToolStripMenuItem_Click);
             // 
             // openDefaultConfigFileToolStripMenuItem
             // 
             this.openDefaultConfigFileToolStripMenuItem.Name = "openDefaultConfigFileToolStripMenuItem";
-            this.openDefaultConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-            | System.Windows.Forms.Keys.O);
+            this.openDefaultConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
             this.openDefaultConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.openDefaultConfigFileToolStripMenuItem.Text = "Open default config file";
+            this.openDefaultConfigFileToolStripMenuItem.Text = "Open default configuration file";
             this.openDefaultConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenDefaultConfigFileToolStripMenuItem_Click);
             // 
             // closeConfigFileToolStripMenuItem
             // 
             this.closeConfigFileToolStripMenuItem.Name = "closeConfigFileToolStripMenuItem";
-            this.closeConfigFileToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4);
+            this.closeConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
             this.closeConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.closeConfigFileToolStripMenuItem.Text = "&Close config file";
+            this.closeConfigFileToolStripMenuItem.Text = "&Close configuration file";
             this.closeConfigFileToolStripMenuItem.Click += new System.EventHandler(this.CloseConfigFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -169,9 +162,9 @@
             // qiutToolStripMenuItem
             // 
             this.qiutToolStripMenuItem.Name = "qiutToolStripMenuItem";
-            this.qiutToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q);
+            this.qiutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.qiutToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.qiutToolStripMenuItem.Text = "&Qiut";
+            this.qiutToolStripMenuItem.Text = "&Quit";
             this.qiutToolStripMenuItem.Click += new System.EventHandler(this.QiutToolStripMenuItem_Click);
             // 
             // openConfigFileDialog
@@ -181,10 +174,9 @@
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right);
-            this.tabControl.Controls.Add(this.whiteListTabPage);
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.blackListTabPage);
             this.tabControl.Controls.Add(this.rankListTabPage);
             this.tabControl.Location = new System.Drawing.Point(13, 28);
@@ -192,30 +184,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(614, 563);
             this.tabControl.TabIndex = 0;
-            // 
-            // whiteListTabPage
-            // 
-            this.whiteListTabPage.Controls.Add(this.whiteListManager);
-            this.whiteListTabPage.Location = new System.Drawing.Point(4, 22);
-            this.whiteListTabPage.Name = "whiteListTabPage";
-            this.whiteListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.whiteListTabPage.Size = new System.Drawing.Size(606, 537);
-            this.whiteListTabPage.TabIndex = 1;
-            this.whiteListTabPage.Text = "WhiteList";
-            this.whiteListTabPage.ToolTipText = "Edit white list content";
-            this.whiteListTabPage.UseVisualStyleBackColor = true;
-            // 
-            // whiteListManager
-            // 
-            this.whiteListManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.whiteListManager.IsRankList = false;
-            this.whiteListManager.ListGroupBoxLabel = "listManagerGroupBox";
-            this.whiteListManager.Location = new System.Drawing.Point(6, 6);
-            this.whiteListManager.Name = "whiteListManager";
-            this.whiteListManager.Size = new System.Drawing.Size(594, 525);
-            this.whiteListManager.TabIndex = 0;
             // 
             // blackListTabPage
             // 
@@ -280,7 +248,6 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            this.whiteListTabPage.ResumeLayout(false);
             this.blackListTabPage.ResumeLayout(false);
             this.rankListTabPage.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -19,9 +19,6 @@
             this.blackListManager.ListGroupBoxLabel = "Black List";
             this.blackListManager.IsRankList = false;
 
-            this.whiteListManager.ListGroupBoxLabel = "White List";
-            this.whiteListManager.IsRankList = false;
-
             this.rankListManager.ListGroupBoxLabel = "Rank List";
             this.rankListManager.IsRankList = true;
         }
@@ -89,7 +86,7 @@
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, $"Unable to open config file '{this.ConfigFileName}.'");
+                MessageBox.Show(e.Message, $"Unable to open configuration file '{this.ConfigFileName}.'");
                 this.ConfigFileName = this.GetDefaultConfigFileName;
             }
         }
