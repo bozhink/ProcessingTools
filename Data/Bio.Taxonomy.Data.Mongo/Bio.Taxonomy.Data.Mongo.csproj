@@ -64,6 +64,7 @@
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankSearchableRepositoryProvider.cs" />
+    <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\MongoTaxonRankSearchableRepository.cs" />
