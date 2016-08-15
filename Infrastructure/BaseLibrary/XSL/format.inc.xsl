@@ -134,7 +134,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="conf-loc | conf-date | edition">
+  <xsl:template match="conf-loc[not(@field_name)] | conf-date[not(@field_name)] | edition[not(@field_name)]">
     <xsl:element name="{name()}">
       <xsl:value-of select="string()" />
     </xsl:element>
