@@ -48,6 +48,7 @@
     <Compile Include="IGenericIdentifiable.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="IIntegerIdentifiable.cs" />
+    <Compile Include="IModelWithUserInformation.cs" />
     <Compile Include="INameable.cs" />
     <Compile Include="INameableIntegerIdentifiable.cs" />
     <Compile Include="INameableStringIdentifiable.cs" />

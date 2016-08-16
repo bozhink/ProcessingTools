@@ -54,14 +54,18 @@
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
     <Compile Include="Exceptions\NoFilesSelectedException.cs" />
-    <Compile Include="Models\IModelWithUserInformation.cs" />
     <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\IRandomProvider.cs" />
     <Compile Include="Providers\RandomProvider.cs" />
     <Compile Include="Types\SortOrder.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

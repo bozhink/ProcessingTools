@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Constants;
+    using ProcessingTools.Contracts;
 
     public class ModelWithUserInformation : IModelWithUserInformation
     {

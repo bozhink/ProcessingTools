@@ -8,7 +8,7 @@
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Models;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Extensions;
 
