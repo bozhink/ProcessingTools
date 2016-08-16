@@ -5,9 +5,9 @@
 
     public interface IPublisherEntity : IGuidIdentifiable, IModelWithUserInformation
     {
-        string Name { get; set; }
+        string Name { get; }
 
-        string AbbreviatedName { get; set; }
+        string AbbreviatedName { get; }
 
         ICollection<IAddressEntity> Addresses { get; }
 
