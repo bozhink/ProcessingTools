@@ -3,12 +3,8 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts;
 
-    public interface IInstitutionEntity : IGuidIdentifiable, IModelWithUserInformation
+    public interface IInstitutionEntity : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
     {
-        string Name { get; set; }
-
-        string AbbreviatedName { get; set; }
-
         ICollection<IAddressEntity> Addresses { get; }
     }
 }

@@ -4,12 +4,8 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts;
 
-    public interface IJournalEntity : IGuidIdentifiable, IModelWithUserInformation
+    public interface IJournalEntity : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
     {
-        string Name { get; }
-
-        string AbbreviatedName { get; }
-
         string JournalId { get; }
 
         string PrintIssn { get; }

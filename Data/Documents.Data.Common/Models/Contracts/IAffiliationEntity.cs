@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Contracts;
 
-    public interface IAffiliationEntity : IGuidIdentifiable, IModelWithUserInformation
+    public interface IAffiliationEntity : INameableGuidIdentifiable, IModelWithUserInformation
     {
         string Name { get; }
 

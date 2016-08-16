@@ -3,12 +3,8 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts;
 
-    public interface IPublisherEntity : IGuidIdentifiable, IModelWithUserInformation
+    public interface IPublisherEntity : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
     {
-        string Name { get; }
-
-        string AbbreviatedName { get; }
-
         ICollection<IAddressEntity> Addresses { get; }
 
         ICollection<IJournalEntity> Journals { get; }
