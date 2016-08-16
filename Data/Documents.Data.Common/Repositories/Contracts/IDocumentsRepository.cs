@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IDocumentsRepository : ICountableIterableCrudRepository<IDocumentEntity>
+    public interface IDocumentsRepository : IGenericRepository<IDocumentEntity>
     {
     }
 }
