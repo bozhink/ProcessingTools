@@ -102,7 +102,6 @@
                 .Include(
                     "~/Scripts/custom/files-index.js"));
 
-
             bundles
                 .Add(new ScriptBundle(BundleNames.LeafletScriptBundleName)
                 .Include(
