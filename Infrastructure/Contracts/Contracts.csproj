@@ -50,6 +50,7 @@
     <Compile Include="IIntegerIdentifiable.cs" />
     <Compile Include="IModelWithUserInformation.cs" />
     <Compile Include="INameable.cs" />
+    <Compile Include="INameableGuidIdentifiable.cs" />
     <Compile Include="INameableIntegerIdentifiable.cs" />
     <Compile Include="INameableStringIdentifiable.cs" />
     <Compile Include="IProcessor.cs" />
