@@ -40,6 +40,7 @@
     <Compile Include="Models\Contracts\IAuthorEntity.cs" />
     <Compile Include="Models\Contracts\IDocumentEntity.cs" />
     <Compile Include="Models\Contracts\IJournalEntity.cs" />
+    <Compile Include="Models\Contracts\IPublisherEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
