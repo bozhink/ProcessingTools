@@ -30,13 +30,16 @@
 
         <nav>
             <ul class="pagination">
-                <li>
-                    @Html.ActionLink(" ", Model.ActionName, new { p = Model.FirstPage, n = Model.NumberOfItemsPerPage }, new { @class = "glyphicon glyphicon-fast-backward" })
-                </li>
+                @if (Model.CurrentPage > Model.FirstPage)
+                {
+                    <li>
+                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.FirstPage, n = Model.NumberOfItemsPerPage }, new { id = "page-first", @class = "glyphicon glyphicon-fast-backward" })
+                    </li>
 
-                <li>
-                    @Html.ActionLink(" ", Model.ActionName, new { p = Model.PreviousPage, n = Model.NumberOfItemsPerPage }, new { @class = "glyphicon glyphicon-backward" })
-                </li>
+                    <li>
+                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.PreviousPage, n = Model.NumberOfItemsPerPage }, new { id = "page-prev", @class = "glyphicon glyphicon-backward" })
+                    </li>
+                }
 
                 @if (leftPage > Model.FirstPage)
                 {
@@ -55,13 +58,16 @@
                     <li class="disabled"><a>...</a></li>
                 }
 
-                <li>
-                    @Html.ActionLink(" ", Model.ActionName, new { p = Model.NextPage, n = Model.NumberOfItemsPerPage }, new { @class = "glyphicon glyphicon-forward" })
-                </li>
+                @if (Model.CurrentPage < Model.LastPage)
+                {
+                    <li>
+                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.NextPage, n = Model.NumberOfItemsPerPage }, new { id = "page-next", @class = "glyphicon glyphicon-forward" })
+                    </li>
 
-                <li>
-                    @Html.ActionLink(" ", Model.ActionName, new { p = Model.LastPage, n = Model.NumberOfItemsPerPage }, new { @class = "glyphicon glyphicon-fast-forward" })
-                </li>
+                    <li>
+                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.LastPage, n = Model.NumberOfItemsPerPage }, new { id = "page-last", @class = "glyphicon glyphicon-fast-forward" })
+                    </li>
+                }
             </ul>
         </nav>
     }
