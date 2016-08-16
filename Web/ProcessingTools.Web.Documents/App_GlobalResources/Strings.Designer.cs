@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Articles.
+        /// </summary>
+        internal static string ArticlesActionLinkTitle {
+            get {
+                return ResourceManager.GetString("ArticlesActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         internal static string ContactActionLinkTitle {
@@ -313,6 +322,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string FilesActionLinkTitle {
+            get {
+                return ResourceManager.GetString("FilesActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         internal static string HelpActionLinkTitle {
@@ -367,6 +385,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journals.
+        /// </summary>
+        internal static string JournalActionLinkTitle {
+            get {
+                return ResourceManager.GetString("JournalActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of Files.
         /// </summary>
         internal static string ListOfFilesPageHeading {
@@ -399,6 +426,15 @@ namespace Resources {
         internal static string LogoutActionLinkTitle {
             get {
                 return ResourceManager.GetString("LogoutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publishers.
+        /// </summary>
+        internal static string PublishersActionLinkTitle {
+            get {
+                return ResourceManager.GetString("PublishersActionLinkTitle", resourceCulture);
             }
         }
         

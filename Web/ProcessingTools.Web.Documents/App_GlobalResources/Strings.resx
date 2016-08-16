@@ -120,6 +120,9 @@
   <data name="AboutActionLinkTitle" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="ArticlesActionLinkTitle" xml:space="preserve">
+    <value>Articles</value>
+  </data>
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
   </data>
+  <data name="FilesActionLinkTitle" xml:space="preserve">
+    <value>Files</value>
+  </data>
   <data name="HelpActionLinkTitle" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -219,6 +225,9 @@
   <data name="HomeActionLinkTitle" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="JournalActionLinkTitle" xml:space="preserve">
+    <value>Journals</value>
+  </data>
   <data name="ListOfFilesPageHeading" xml:space="preserve">
     <value>List of Files</value>
   </data>
@@ -230,6 +239,9 @@
   </data>
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Log off</value>
+  </data>
+  <data name="PublishersActionLinkTitle" xml:space="preserve">
+    <value>Publishers</value>
   </data>
   <data name="RegisterActionLinkTitle" xml:space="preserve">
     <value>Register</value>

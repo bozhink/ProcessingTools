@@ -33,11 +33,11 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Articles", "Index", "Articles", routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink("Files", "Index", "Files", routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.ArticlesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.ArticlesController.Index), ControllerNames.ArticlesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.FilesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.FilesController.Index), ControllerNames.FilesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
                                     <li role="separator" class="divider"></li>
-                                    <li>@Html.ActionLink("Journals", "Index", "Journals", routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink("Publishers", "Index", "Publishers", routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.JournalActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.JournalsController.Index), ControllerNames.JournalsControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.PublishersActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.PublishersController.Index), ControllerNames.PublishersControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
                                 </ul>
                             </li>
                         }

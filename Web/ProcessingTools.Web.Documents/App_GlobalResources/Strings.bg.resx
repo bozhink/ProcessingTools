@@ -120,6 +120,9 @@
   <data name="AboutActionLinkTitle" xml:space="preserve">
     <value>Относно</value>
   </data>
+  <data name="ArticlesActionLinkTitle" xml:space="preserve">
+    <value>Статии</value>
+  </data>
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Контакти</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Документът е запазен успешно</value>
   </data>
+  <data name="FilesActionLinkTitle" xml:space="preserve">
+    <value>Файлове</value>
+  </data>
   <data name="HelpActionLinkTitle" xml:space="preserve">
     <value>Помощ</value>
   </data>
@@ -219,6 +225,9 @@
   <data name="HomeActionLinkTitle" xml:space="preserve">
     <value>Начало</value>
   </data>
+  <data name="JournalActionLinkTitle" xml:space="preserve">
+    <value>Списания</value>
+  </data>
   <data name="ListOfFilesPageHeading" xml:space="preserve">
     <value>Списък с файлове</value>
   </data>
@@ -230,6 +239,9 @@
   </data>
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Излизане</value>
+  </data>
+  <data name="PublishersActionLinkTitle" xml:space="preserve">
+    <value>Издателства</value>
   </data>
   <data name="RegisterActionLinkTitle" xml:space="preserve">
     <value>Регистриране</value>
