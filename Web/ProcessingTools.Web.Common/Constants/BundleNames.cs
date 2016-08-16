@@ -13,8 +13,11 @@
         public const string MonacoEditorScriptBundleName = "~/bundles/monaco-editor";
         public const string KeyBindingsScriptBundleName = "~/bundles/key-bindings";
         public const string AutoSaveScriptBundleName = "~/bundles/auto-save";
+
         public const string DocumentEditScriptBundleName = "~/bundles/document-edit";
         public const string DocumentPreviewScriptBundleName = "~/bundles/document-preview";
+        public const string FilesIndexScriptBundleName = "~/bundles/files-index";
+
         public const string ApplicationScriptBundleName = "~/bundles/app";
         public const string HandlebarsScriptBundleName = "~/bundles/handlebars";
 

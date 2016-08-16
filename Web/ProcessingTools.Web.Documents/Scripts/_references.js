@@ -10,6 +10,7 @@
 /// <reference path="custom/document-edit.js" />
 /// <reference path="custom/document-preview.js" />
 /// <reference path="custom/document-save-controller.js" />
+/// <reference path="custom/files-index.js" />
 /// <reference path="custom/html-selection-tagger.js" />
 /// <reference path="custom/key-bindings.js" />
 /// <reference path="custom/toolbox-event-handlers.js" />

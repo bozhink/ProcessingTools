@@ -10,8 +10,13 @@
     </h2>
 </header>
 
-<p>
-    @Html.ActionLink(Resources.Strings.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload))
+<p class="separated-items">
+    <span class="item">
+        @Html.ActionLink(Resources.Strings.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload), routeValues: null, htmlAttributes: new { id = "upload-file-link" })
+    </span>
+    <span class="item">
+        @Html.ActionLink(Resources.Strings.HelpActionLinkTitle, nameof(FilesController.Help), routeValues: null, htmlAttributes: new { target = "_blank" })
+    </span>
 </p>
 
 @if (Model.Items.Count() > 0)
@@ -77,4 +82,8 @@
     <footer>
         @Html.Partial(ViewNames.NavigationFootPartialViewName)
     </footer>
+}
+
+@section Scripts{
+    @Scripts.Render(BundleNames.FilesIndexScriptBundleName)
 }

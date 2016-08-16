@@ -98,6 +98,12 @@
                     "~/Scripts/custom/document-preview.js"));
 
             bundles
+                .Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
+                .Include(
+                    "~/Scripts/custom/files-index.js"));
+
+
+            bundles
                 .Add(new ScriptBundle(BundleNames.LeafletScriptBundleName)
                 .Include(
                     "~/bower_components/leaflet/dist/leaflet.js"));
