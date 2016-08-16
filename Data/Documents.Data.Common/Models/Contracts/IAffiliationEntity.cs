@@ -5,8 +5,6 @@
 
     public interface IAffiliationEntity : INameableGuidIdentifiable, IModelWithUserInformation
     {
-        string Name { get; }
-
         Guid InstitutionId { get; }
 
         Guid AddressId { get; }
