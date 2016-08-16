@@ -54,6 +54,7 @@
     <Compile Include="INameableGuidIdentifiable.cs" />
     <Compile Include="INameableIntegerIdentifiable.cs" />
     <Compile Include="INameableStringIdentifiable.cs" />
+    <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
