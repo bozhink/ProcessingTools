@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IDocumentEntity : IGuidIdentifiable
+    public interface IDocumentEntity : IGuidIdentifiable, IModelWithUserInformation
     {
         string ContentType { get; }
 
