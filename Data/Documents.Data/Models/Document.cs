@@ -8,8 +8,9 @@
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields
+    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocumentEntity
     {
         public Document()
             : base()
@@ -39,6 +40,10 @@
 
         [MaxLength(ValidationConstants.LengthOfDocumentFileExtension)]
         public string FileExtension { get; set; }
+
+        // TODO: ArticleId in Document
+        [NotMapped]
+        public Guid ArticleId { get; set; }
 
         public virtual Article Article { get; set; }
 

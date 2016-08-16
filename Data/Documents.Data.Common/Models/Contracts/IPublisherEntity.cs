@@ -6,7 +6,5 @@
     public interface IPublisherEntity : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
     {
         ICollection<IAddressEntity> Addresses { get; }
-
-        ICollection<IJournalEntity> Journals { get; }
     }
 }

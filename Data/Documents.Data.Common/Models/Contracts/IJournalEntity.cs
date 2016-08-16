@@ -13,7 +13,5 @@
         string ElectronicIssn { get; }
 
         Guid PublisherId { get; }
-
-        ICollection<IArticleEntity> Articles { get; }
     }
 }

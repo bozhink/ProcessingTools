@@ -4,12 +4,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Publisher : ModelWithUserInformation, IEntityWithPreJoinedFields
+    public class Publisher : ModelWithUserInformation, IEntityWithPreJoinedFields, IPublisherEntity
     {
         private ICollection<Address> addresses;
         private ICollection<Journal> journals;
@@ -61,8 +63,10 @@
         [NotMapped]
         public IEnumerable<string> PreJoinFieldNames => new string[]
         {
-            nameof(this.Addresses),
-            nameof(this.Journals)
+            nameof(this.Addresses)
         };
+
+        [NotMapped]
+        ICollection<IAddressEntity> IPublisherEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
     }
 }

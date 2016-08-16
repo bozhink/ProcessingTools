@@ -8,8 +8,9 @@
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields
+    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddressEntity
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;

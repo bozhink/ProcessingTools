@@ -8,8 +8,9 @@
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields
+    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields, IJournalEntity
     {
         private ICollection<Article> articles;
 

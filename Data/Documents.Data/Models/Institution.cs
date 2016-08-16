@@ -4,12 +4,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Institution : ModelWithUserInformation, IEntityWithPreJoinedFields
+    public class Institution : ModelWithUserInformation, IEntityWithPreJoinedFields, IInstitutionEntity
     {
         private ICollection<Address> addresses;
         private ICollection<Affiliation> affiliations;
@@ -62,5 +64,8 @@
         {
             nameof(this.Addresses)
         };
+
+        [NotMapped]
+        ICollection<IAddressEntity> IInstitutionEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
     }
 }
