@@ -5,7 +5,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IPublishersRepository : ICountableRepository<IPublisherEntity>, ICrudRepository<IPublisherEntity>, IIterableRepository<IPublisherEntity>
+    public interface IPublishersRepository : ICountableIterableCrudRepository<IPublisherEntity>
     {
         Task<object> AddAddress(IAddressEntity address);
 
