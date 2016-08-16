@@ -5,8 +5,8 @@
 
     public interface IAddressableRepository
     {
-        Task<object> AddAddress(IAddressEntity address);
+        Task<object> AddAddress(object entityId, IAddressEntity address);
 
-        Task<object> RemoveAddress(object addressId);
+        Task<object> RemoveAddress(object entityId, object addressId);
     }
 }
