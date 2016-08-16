@@ -14,8 +14,6 @@
 
         Guid PublisherId { get; }
 
-        IPublisherEntity Publisher { get; }
-
         ICollection<IArticleEntity> Articles { get; }
     }
 }
