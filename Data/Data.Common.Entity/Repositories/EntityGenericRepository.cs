@@ -13,30 +13,13 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityGenericRepository<TContext, TEntity> : EntityIterableCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityGenericRepository<TContext, TEntity> : EntityCountableIterableCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
         public EntityGenericRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
         {
-        }
-
-        public virtual async Task<long> Count()
-        {
-            var count = await this.DbSet.CountAsync();
-            return count;
-        }
-
-        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var count = await this.DbSet.CountAsync(filter);
-            return count;
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
