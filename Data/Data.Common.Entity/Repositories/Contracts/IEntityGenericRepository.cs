@@ -2,8 +2,8 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IEntityGenericRepository<T> : IGenericRepository<T>
-        where T : class
+    public interface IEntityGenericRepository<TEntity> : IGenericRepository<TEntity>, IEntityCountableIterableCrudRepository<TEntity>
+        where TEntity : class
     {
     }
 }

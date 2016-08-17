@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IEntityIterableCrudRepository<TEntity> : IIterableCrudRepository<TEntity>
+    public interface IEntityIterableCrudRepository<TEntity> : IIterableCrudRepository<TEntity>, IEntityCrudRepository<TEntity>
     {
     }
 }
