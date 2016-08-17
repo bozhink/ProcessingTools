@@ -59,6 +59,7 @@
     <Compile Include="Providers\Contracts\IRandomProvider.cs" />
     <Compile Include="Providers\RandomProvider.cs" />
     <Compile Include="Types\SortOrder.cs" />
+    <Compile Include="Validation\DummyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">

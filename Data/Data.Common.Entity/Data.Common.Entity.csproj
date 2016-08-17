@@ -50,6 +50,7 @@
     <Compile Include="Models\Contracts\IEntityWithPreJoinedFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
+    <Compile Include="Repositories\EntityCrudRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />
     <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
     <Compile Include="Repositories\EntityRepository.cs" />

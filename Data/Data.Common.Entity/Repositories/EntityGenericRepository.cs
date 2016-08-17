@@ -13,35 +13,13 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityGenericRepository<TContext, TEntity> : EntityRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityGenericRepository<TContext, TEntity> : EntityCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
         public EntityGenericRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
         {
-        }
-
-        public virtual Task<object> Add(TEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                var entry = this.GetEntry(entity);
-                if (entry.State != EntityState.Detached)
-                {
-                    entry.State = EntityState.Added;
-                    return entity;
-                }
-                else
-                {
-                    return this.DbSet.Add(entity);
-                }
-            });
         }
 
         public virtual Task<IQueryable<TEntity>> All() => Task.FromResult(this.DbSet.AsQueryable());
@@ -61,55 +39,6 @@
 
             var count = await this.DbSet.CountAsync(filter);
             return count;
-        }
-
-        public virtual Task<object> Delete(TEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                var entry = this.GetEntry(entity);
-                if (entry.State != EntityState.Deleted)
-                {
-                    entry.State = EntityState.Deleted;
-                    return entity;
-                }
-                else
-                {
-                    this.DbSet.Attach(entity);
-                    return this.DbSet.Remove(entity);
-                }
-            });
-        }
-
-        public virtual async Task<object> Delete(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var entity = await this.Get(id);
-            if (entity == null)
-            {
-                return null;
-            }
-
-            return await this.Delete(entity);
-        }
-
-        public virtual Task<TEntity> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return Task.FromResult(this.DbSet.Find(id));
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
@@ -244,31 +173,6 @@
             }
 
             return entity;
-        }
-
-        public virtual Task<object> Update(TEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                var entry = this.GetEntry(entity);
-                if (entry.State == EntityState.Detached)
-                {
-                    this.DbSet.Attach(entity);
-                }
-
-                entry.State = EntityState.Modified;
-                return entity;
-            });
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
         }
     }
 }
