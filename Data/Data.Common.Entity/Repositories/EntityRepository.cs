@@ -5,10 +5,11 @@
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using Contracts;
 
-    public abstract class EntityRepository<TContext, TEntity> : IRepository<TEntity>, IDisposable
+    using ProcessingTools.Data.Common.Entity.Contracts;
+
+    public abstract class EntityRepository<TContext, TEntity> : IEntityRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
