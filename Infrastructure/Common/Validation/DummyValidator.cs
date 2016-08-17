@@ -3,6 +3,9 @@
     using System;
     using System.Linq.Expressions;
 
+    using Constants;
+    using Exceptions;
+
     public static class DummyValidator
     {
         /// <summary>
@@ -89,6 +92,120 @@
             if (filter == null)
             {
                 throw new ArgumentNullException(paramName: nameof(filter), message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'sort' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the input object for sort expression.</typeparam>
+        /// <param name="sort">Dummy parameter with name 'sort' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateSort<T>(Expression<Func<T, object>> sort)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(sort));
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'sort' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the input object for sort expression.</typeparam>
+        /// <param name="sort">Dummy parameter with name 'sort' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateSort<T>(Expression<Func<T, object>> sort, string message)
+        {
+            if (sort == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(sort), message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'projection' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the input object for projection expression.</typeparam>
+        /// <typeparam name="TResult">Type of the output object for projection expression.</typeparam>
+        /// <param name="projection">Dummy parameter with name 'projection' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateProjection<T, TResult>(Expression<Func<T, TResult>> projection)
+        {
+            if (projection == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(projection));
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'projection' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the input object for projection expression.</typeparam>
+        /// <typeparam name="TResult">Type of the output object for projection expression.</typeparam>
+        /// <param name="projection">Dummy parameter with name 'projection' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateProjection<T, TResult>(Expression<Func<T, TResult>> projection, string message)
+        {
+            if (projection == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(projection), message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'skip' is in allowed range and throws InvalidSkipValuePagingException.
+        /// </summary>
+        /// <param name="skip">Dummy parameter with name 'skip' to be checked.</param>
+        /// <exception cref="InvalidSkipValuePagingException"></exception>
+        public static void ValidateSkip(int skip)
+        {
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'skip' is in allowed range and throws InvalidSkipValuePagingException.
+        /// </summary>
+        /// <param name="skip">Dummy parameter with name 'skip' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant InvalidSkipValuePagingException.</param>
+        /// <exception cref="InvalidSkipValuePagingException"></exception>
+        public static void ValidateSkip(int skip, string message)
+        {
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException(message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
+        /// </summary>
+        /// <param name="take">Dummy parameter with name 'take' to be checked.</param>
+        /// <exception cref="InvalidTakeValuePagingException"></exception>
+        public static void ValidateTake(int take)
+        {
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
+        /// </summary>
+        /// <param name="take">Dummy parameter with name 'take' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant InvalidTakeValuePagingException.</param>
+        /// <exception cref="InvalidTakeValuePagingException"></exception>
+        public static void ValidateTake(int take, string message)
+        {
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException(message: message);
             }
         }
     }

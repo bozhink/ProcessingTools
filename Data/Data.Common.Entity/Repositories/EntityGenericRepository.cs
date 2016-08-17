@@ -11,6 +11,7 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Types;
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     public class EntityGenericRepository<TContext, TEntity> : EntityCountableIterableCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
@@ -22,30 +23,20 @@
         {
         }
 
-        public virtual Task<IQueryable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter)
+        public virtual Task<IQueryable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
+            DummyValidator.ValidateFilter(filter);
 
             var query = this.DbSet.Where(filter);
-
             return Task.FromResult(query);
         }
 
-        public virtual async Task<IQueryable<T>> Find<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection)
+        public virtual async Task<IQueryable<T>> Find<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
         {
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
+            DummyValidator.ValidateFilter(filter);
+            DummyValidator.ValidateProjection(projection);
 
             var query = await this.Find(filter);
-
             return query.Select(projection);
         }
 
@@ -56,25 +47,10 @@
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
+            DummyValidator.ValidateFilter(filter);
+            DummyValidator.ValidateSort(sort);
+            DummyValidator.ValidateSkip(skip);
+            DummyValidator.ValidateTake(take);
 
             var query = this.DbSet.Where(filter);
 
@@ -93,7 +69,6 @@
             }
 
             query = query.Skip(skip).Take(take);
-
             return Task.FromResult(query);
         }
 
@@ -105,22 +80,19 @@
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
         {
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
+            DummyValidator.ValidateFilter(filter);
+            DummyValidator.ValidateProjection(projection);
+            DummyValidator.ValidateSort(sort);
+            DummyValidator.ValidateSkip(skip);
+            DummyValidator.ValidateTake(take);
 
             var query = await this.Find(filter, sort, sortOrder, skip, take);
-
             return query.Select(projection);
         }
 
         public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
+            DummyValidator.ValidateFilter(filter);
 
             var entity = await this.DbSet.FirstOrDefaultAsync(filter);
             if (entity == null)
@@ -133,15 +105,8 @@
 
         public virtual async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
+            DummyValidator.ValidateFilter(filter);
+            DummyValidator.ValidateProjection(projection);
 
             var entity = await this.DbSet
                 .Where(filter)
