@@ -5,11 +5,12 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
+    using Contracts;
+
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public class EntityCountableIterableCrudRepository<TContext, TEntity> : EntityIterableCrudRepository<TContext, TEntity>, ICountableIterableCrudRepository<TEntity>, IDisposable
+    public class EntityCountableIterableCrudRepository<TContext, TEntity> : EntityIterableCrudRepository<TContext, TEntity>, IEntityCountableIterableCrudRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
