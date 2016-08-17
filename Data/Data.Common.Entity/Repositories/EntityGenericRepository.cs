@@ -13,7 +13,7 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityGenericRepository<TContext, TEntity> : EntityCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityGenericRepository<TContext, TEntity> : EntityIterableCrudRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
@@ -21,8 +21,6 @@
             : base(contextProvider)
         {
         }
-
-        public virtual Task<IQueryable<TEntity>> All() => Task.FromResult(this.DbSet.AsQueryable());
 
         public virtual async Task<long> Count()
         {

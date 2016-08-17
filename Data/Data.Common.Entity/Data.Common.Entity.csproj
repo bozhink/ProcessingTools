@@ -52,6 +52,7 @@
     <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
     <Compile Include="Repositories\EntityCrudRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />
+    <Compile Include="Repositories\EntityIterableCrudRepository.cs" />
     <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
     <Compile Include="Repositories\EntityRepository.cs" />
     <Compile Include="Seed\DbContextSeeder.cs" />
