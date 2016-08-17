@@ -13,24 +13,14 @@
     using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityGenericRepository<TContext, TEntity> : IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityGenericRepository<TContext, TEntity> : EntityRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
     {
         public EntityGenericRepository(IDbContextProvider<TContext> contextProvider)
+            : base(contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.Context = contextProvider.Create();
-            this.DbSet = this.Context.Set<TEntity>();
         }
-
-        protected TContext Context { get; set; }
-
-        protected IDbSet<TEntity> DbSet { get; set; }
 
         public virtual Task<object> Add(TEntity entity)
         {
@@ -41,7 +31,7 @@
 
             return Task.Run<object>(() =>
             {
-                var entry = this.Context.Entry(entity);
+                var entry = this.GetEntry(entity);
                 if (entry.State != EntityState.Detached)
                 {
                     entry.State = EntityState.Added;
@@ -54,10 +44,7 @@
             });
         }
 
-        public virtual Task<IQueryable<TEntity>> All()
-        {
-            return Task.FromResult(this.DbSet.AsQueryable());
-        }
+        public virtual Task<IQueryable<TEntity>> All() => Task.FromResult(this.DbSet.AsQueryable());
 
         public virtual async Task<long> Count()
         {
@@ -85,7 +72,7 @@
 
             return Task.Run<object>(() =>
             {
-                var entry = this.Context.Entry(entity);
+                var entry = this.GetEntry(entity);
                 if (entry.State != EntityState.Deleted)
                 {
                     entry.State = EntityState.Deleted;
@@ -133,7 +120,7 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            IQueryable<TEntity> query = this.DbSet.Where(filter);
+            var query = this.DbSet.Where(filter);
 
             return Task.FromResult(query);
         }
@@ -147,8 +134,9 @@
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            return (await this.Find(filter))
-                .Select(projection);
+            var query = await this.Find(filter);
+
+            return query.Select(projection);
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
@@ -178,7 +166,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            IQueryable<TEntity> query = this.DbSet.Where(filter);
+            var query = this.DbSet.Where(filter);
 
             switch (sortOrder)
             {
@@ -212,8 +200,9 @@
                 throw new ArgumentNullException(nameof(projection));
             }
 
-            return (await this.Find(filter, sort, sortOrder, skip, take))
-                .Select(projection);
+            var query = await this.Find(filter, sort, sortOrder, skip, take);
+
+            return query.Select(projection);
         }
 
         public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
@@ -266,7 +255,7 @@
 
             return Task.Run<object>(() =>
             {
-                var entry = this.Context.Entry(entity);
+                var entry = this.GetEntry(entity);
                 if (entry.State == EntityState.Detached)
                 {
                     this.DbSet.Attach(entity);
@@ -277,24 +266,9 @@
             });
         }
 
-        public virtual async Task<long> SaveChanges()
+        protected override void Dispose(bool disposing)
         {
-            long result = await this.Context.SaveChangesAsync();
-            return result;
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.Context.Dispose();
-            }
+            base.Dispose(disposing);
         }
     }
 }
