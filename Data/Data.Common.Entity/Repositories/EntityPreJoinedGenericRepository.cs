@@ -10,6 +10,7 @@
     using Contracts;
     using Models.Contracts;
 
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
@@ -42,30 +43,18 @@
 
         public override async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
+            DummyValidator.ValidateFilter(filter);
 
             var query = await this.All();
-
             return await query.FirstOrDefaultAsync(filter);
         }
 
         public override async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
+            DummyValidator.ValidateFilter(filter);
+            DummyValidator.ValidateProjection(projection);
 
             var query = await this.All();
-
             return await query.Where(filter).Select(projection).FirstOrDefaultAsync();
         }
     }
