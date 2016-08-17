@@ -63,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IDocumentsRepository.cs" />
     <Compile Include="Repositories\Contracts\IDocumentsRepositoryProvider.cs" />
+    <Compile Include="Repositories\Contracts\IEntityPublishersRepository.cs" />
+    <Compile Include="Repositories\Contracts\IEntityPublishersRepositoryProvider.cs" />
     <Compile Include="Repositories\DocumentsRepository.cs" />
     <Compile Include="Repositories\DocumentsRepositoryProvider.cs" />
   </ItemGroup>
