@@ -67,6 +67,7 @@
     <Compile Include="Repositories\Contracts\IEntityPublishersRepositoryProvider.cs" />
     <Compile Include="Repositories\DocumentsRepository.cs" />
     <Compile Include="Repositories\DocumentsRepositoryProvider.cs" />
+    <Compile Include="Repositories\EntityPublishersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
