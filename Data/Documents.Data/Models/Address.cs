@@ -24,6 +24,23 @@
             this.affiliations = new HashSet<Affiliation>();
         }
 
+        public Address(IAddressEntity entity)
+            : this()
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            this.AddressString = entity.AddressString;
+            this.CountryId = entity.CountryId;
+            this.CityId = entity.CityId;
+            this.CreatedByUser = entity.CreatedByUser;
+            this.ModifiedByUser = entity.ModifiedByUser;
+            this.DateCreated = entity.DateCreated;
+            this.DateModified = entity.DateModified;
+        }
+
         [Key]
         public Guid Id { get; set; }
 

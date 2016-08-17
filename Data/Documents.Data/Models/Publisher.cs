@@ -23,6 +23,23 @@
             this.journals = new HashSet<Journal>();
         }
 
+        public Publisher(IPublisherEntity entity)
+            : this()
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            this.Id = entity.Id;
+            this.Name = entity.Name;
+            this.AbbreviatedName = entity.AbbreviatedName;
+            this.CreatedByUser = entity.CreatedByUser;
+            this.ModifiedByUser = entity.ModifiedByUser;
+            this.DateCreated = entity.DateCreated;
+            this.DateModified = entity.DateModified;
+        }
+
         [Key]
         public Guid Id { get; set; }
 

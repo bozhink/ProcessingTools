@@ -18,71 +18,14 @@
         {
         }
 
-        public virtual Task<object> Add(TEntity entity) => Task.Run<object>(() =>
-        {
-            DummyValidator.ValidateEntity(entity);
+        public virtual async Task<object> Add(TEntity entity) => await this.Add(entity, this.DbSet);
 
-            var entry = this.GetEntry(entity);
-            if (entry.State != EntityState.Detached)
-            {
-                entry.State = EntityState.Added;
-                return entity;
-            }
-            else
-            {
-                return this.DbSet.Add(entity);
-            }
-        });
+        public virtual async Task<object> Delete(TEntity entity) => await this.Delete(entity, this.DbSet);
 
-        public virtual Task<object> Delete(TEntity entity) => Task.Run<object>(() =>
-        {
-            DummyValidator.ValidateEntity(entity);
+        public virtual async Task<object> Delete(object id) => await this.Delete(id, this.DbSet);
 
-            var entry = this.GetEntry(entity);
-            if (entry.State != EntityState.Deleted)
-            {
-                entry.State = EntityState.Deleted;
-                return entity;
-            }
-            else
-            {
-                this.DbSet.Attach(entity);
-                return this.DbSet.Remove(entity);
-            }
-        });
+        public virtual async Task<TEntity> Get(object id) => await this.Get(id, this.DbSet);
 
-        public virtual async Task<object> Delete(object id)
-        {
-            DummyValidator.ValidateId(id);
-
-            var entity = await this.Get(id);
-            if (entity == null)
-            {
-                return null;
-            }
-
-            return await this.Delete(entity);
-        }
-
-        public virtual Task<TEntity> Get(object id) => Task.Run(() =>
-        {
-            DummyValidator.ValidateId(id);
-
-            return this.DbSet.Find(id);
-        });
-
-        public virtual Task<object> Update(TEntity entity) => Task.Run<object>(() =>
-        {
-            DummyValidator.ValidateEntity(entity);
-
-            var entry = this.GetEntry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                this.DbSet.Attach(entity);
-            }
-
-            entry.State = EntityState.Modified;
-            return entity;
-        });
+        public virtual async Task<object> Update(TEntity entity) => await this.Update(entity, this.DbSet);
     }
 }

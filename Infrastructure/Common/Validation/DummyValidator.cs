@@ -40,6 +40,37 @@
         }
 
         /// <summary>
+        /// Checks set dummy parameter with name 'set' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the set. It should be reference object.</typeparam>
+        /// <param name="set">Dummy parameter with name 'set' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateSet<T>(T set)
+            where T : class
+        {
+            if (set == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(set));
+            }
+        }
+
+        /// <summary>
+        /// Checks set dummy parameter with name 'set' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the set. It should be reference object.</typeparam>
+        /// <param name="set">Dummy parameter with name 'set' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateSet<T>(T set, string message)
+            where T : class
+        {
+            if (set == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(set), message: message);
+            }
+        }
+
+        /// <summary>
         /// Checks dummy parameter with name 'id' if it is null and throws ArgumentNullException.
         /// </summary>
         /// <param name="id">Dummy parameter with name 'id' to be checked.</param>
