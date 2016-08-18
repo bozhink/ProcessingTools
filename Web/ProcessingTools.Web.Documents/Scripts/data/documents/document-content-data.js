@@ -25,12 +25,20 @@
         }
 
         function getMessage(obj) {
-            if (obj.responseText) {
-                return JSON.stringify(obj.responseText);
-            } else if (obj.Message) {
-                return obj.Message;
-            } else {
+            try {
+                if (obj.responseJSON && obj.responseJSON.Message) {
+                    return obj.responseJSON.Message;
+                }
+
+                if (obj.responseText) {
+                    return obj.responseText;
+                }
+            } catch (e) { }
+
+            try {
                 return JSON.stringify(obj);
+            } catch (e) {
+                return 'Cannot process message object';
             }
         }
 
@@ -48,7 +56,7 @@
                         })
                         .catch(function (err) {
                             sessionStorage.setItem(lastGetTimeKey, new Date());
-                            reject(makeResponse('error', err));
+                            reject(makeResponse('error', getMessage(err)));
                         });
                 } else {
                     remainingTimeToNextGetInSeconds = getTimeToNextPossibleGet(lastGetTime) / 1000.0;
