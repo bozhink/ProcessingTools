@@ -22,7 +22,29 @@
     <xsl:param name="output-node-name" select="'div'" />
     <xsl:copy-of select="." />
     <xsl:attribute name="{local-name()}">
-      <xsl:value-of select="string(.)"/>
+      <xsl:value-of select="string(.)" />
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match="@xlink:href">
+    <xsl:param name="output-node-name" select="'div'" />
+    <xsl:copy-of select="." />
+    <xsl:attribute name="{local-name()}">
+      <xsl:variable name="type" select="string(../@ext-link-type)" />
+      <xsl:variable name="content" select="normalize-space(.)" />
+      <xsl:choose>
+        <xsl:when test="$type = 'doi'">
+          <xsl:text>http://dx.doi.org/</xsl:text>
+          <xsl:value-of select="$content" />
+        </xsl:when>
+        <xsl:when test="$type = 'gen'">
+          <xsl:text>http://www.ncbi.nlm.nih.gov/nuccore/</xsl:text>
+          <xsl:value-of select="$content" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$content" />
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:attribute>
   </xsl:template>
 
