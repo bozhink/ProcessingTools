@@ -414,6 +414,7 @@
         <xsl:text>Math</xsl:text>
         <xsl:value-of select="generate-id()" />
       </xsl:attribute>
+    <xsl:apply-templates select="@* | node()" />
     </xsl:element>
   </xsl:template>
 
