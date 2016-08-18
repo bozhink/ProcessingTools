@@ -314,6 +314,12 @@
     <xsl:apply-templates mode="title" />
   </xsl:template>
 
+  <xsl:template match="def/p" mode="title">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" mode="title" />
+    </xsl:element>
+  </xsl:template>
+
   <!-- Table modes -->
   <xsl:template match="table-wrap">
     <xsl:element name="{name()}">
