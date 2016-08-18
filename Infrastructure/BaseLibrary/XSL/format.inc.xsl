@@ -326,18 +326,14 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="@*" mode="ext-link">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="ext-link" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text() | comment()" mode="ext-link">
+  <xsl:template match="@* | text() | comment()" mode="ext-link">
     <xsl:copy-of select="." />
   </xsl:template>
 
   <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup" mode="ext-link">
-    <xsl:apply-templates select="." />
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="*" mode="ext-link">
@@ -352,20 +348,15 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="@*" mode="license-p">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="license-p" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text() | comment()" mode="license-p">
+  <xsl:template match="@* | text() | comment()" mode="license-p">
     <xsl:copy-of select="." />
   </xsl:template>
 
-  <xsl:template match="license-p | email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
-    <xsl:copy>
-      <xsl:apply-templates select="." />
-    </xsl:copy>
+  <xsl:template match="email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
+    <xsl:element name="{name()}">
+      <!-- Apply templates not in node license-p -->
+      <xsl:apply-templates select="@* | node()" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="*" mode="license-p">
@@ -414,7 +405,7 @@
         <xsl:text>Math</xsl:text>
         <xsl:value-of select="generate-id()" />
       </xsl:attribute>
-    <xsl:apply-templates select="@* | node()" />
+      <xsl:apply-templates select="@* | node()" />
     </xsl:element>
   </xsl:template>
 
