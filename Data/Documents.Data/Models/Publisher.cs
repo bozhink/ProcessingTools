@@ -84,6 +84,6 @@
         };
 
         [NotMapped]
-        ICollection<IAddressEntity> IPublisherEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
+        ICollection<IAddressEntity> IAddressableEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
     }
 }

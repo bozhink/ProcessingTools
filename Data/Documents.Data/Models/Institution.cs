@@ -65,7 +65,6 @@
             nameof(this.Addresses)
         };
 
-        [NotMapped]
-        ICollection<IAddressEntity> IInstitutionEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
+        ICollection<IAddressEntity> IAddressableEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
     }
 }

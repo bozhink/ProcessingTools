@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Models\Contracts\IAddressableEntity.cs" />
     <Compile Include="Models\Contracts\IAddressEntity.cs" />
     <Compile Include="Models\Contracts\IAffiliationEntity.cs" />
     <Compile Include="Models\Contracts\IArticleEntity.cs" />
