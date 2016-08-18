@@ -109,7 +109,7 @@
                     map = leaflet.map('coordinates-map').setView([0.0, 0.0], 0);
 
                     leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors'
                     }).addTo(map);
 
                     len = coordinates.length;
