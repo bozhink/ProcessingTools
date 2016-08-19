@@ -11,6 +11,7 @@
     using MongoDB.Driver;
 
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
@@ -112,5 +113,43 @@
         }
 
         public virtual Task<long> SaveChanges() => Task.FromResult(0L);
+
+        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
+
+            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
+            var filter = this.GetFilterById(id);
+            var result = await this.Collection.UpdateOneAsync(filter, updateQuery);
+            return result;
+        }
+
+        private UpdateDefinition<TEntity> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<TEntity> update)
+        {
+            var updateCommands = update.UpdateCommands.ToArray();
+            if (updateCommands.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(update.UpdateCommands));
+            }
+
+            var updateCommand = updateCommands[0];
+            var updateQuery = Builders<TEntity>.Update
+                .Set(updateCommand.FieldName, updateCommand.Value);
+            for (int i = 1; i < updateCommands.Length; ++i)
+            {
+                updateCommand = updateCommands[i];
+                updateQuery = updateQuery.Set(updateCommand.FieldName, updateCommand.Value);
+            }
+
+            return updateQuery;
+        }
     }
 }

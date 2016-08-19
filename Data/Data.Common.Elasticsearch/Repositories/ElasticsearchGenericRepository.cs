@@ -7,11 +7,11 @@
 
     using Contracts;
     using Elasticsearch.Contracts;
-
     using Nest;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.Models.Contracts;
 
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
@@ -94,18 +94,6 @@
 
             var response = await this.Client.DeleteAsync(new DeleteRequest<TEntity>(entity));
             return response;
-        }
-
-        public virtual async Task<TEntity> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
-            var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
-            return response.Source;
         }
 
         public virtual Task<IQueryable<TEntity>> Find(
@@ -236,6 +224,18 @@
             throw new NotImplementedException();
         }
 
+        public virtual async Task<TEntity> Get(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var documentPath = new DocumentPath<TEntity>(new Id(id.ToString()));
+            var response = await this.Client.GetAsync<TEntity>(documentPath, idx => idx.Index(this.Context));
+            return response.Source;
+        }
+
         public virtual async Task<long> SaveChanges()
         {
             var response = await this.Client.FlushAsync(this.Context);
@@ -255,6 +255,12 @@
                 u => u.Doc(entity).DocAsUpsert(true));
 
             return response;
+        }
+
+        public Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        {
+            // TODO: Not implemented
+            throw new NotImplementedException();
         }
 
         private async Task CreateIndexIfItDoesNotExist(IndexName indexName)

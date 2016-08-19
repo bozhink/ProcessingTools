@@ -9,7 +9,10 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class XmlTaxonRankRepository : XmlTaxonRankSearchableRepository, IXmlTaxonRankRepository
     {
@@ -93,5 +96,30 @@
         }
 
         public virtual Task<long> SaveChanges() => this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
+
+        public virtual async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
+
+            var entity = await this.Get(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            // TODO : Updater
+            var updater = new Updater<ITaxonRankEntity>(update);
+            await updater.Invoke(entity);
+
+            return await this.Context.Update(entity);
+        }
     }
 }

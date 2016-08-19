@@ -13,6 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class MongoTaxonRankRepository : MongoTaxonRankSearchableRepository, IMongoTaxonRankRepository
     {
@@ -120,6 +121,45 @@
                 this.updateOptions);
 
             return result;
+        }
+
+        // TODO : repeated code
+        public async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
+
+            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
+            var filter = this.GetFilterById(id);
+            var result = await this.Collection.UpdateOneAsync(filter, updateQuery);
+            return result;
+        }
+
+        protected UpdateDefinition<MongoTaxonRankEntity> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<ITaxonRankEntity> update)
+        {
+            var updateCommands = update.UpdateCommands.ToArray();
+            if (updateCommands.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(update.UpdateCommands));
+            }
+
+            var updateCommand = updateCommands[0];
+            var updateQuery = Builders<MongoTaxonRankEntity>.Update
+                .Set(updateCommand.FieldName, updateCommand.Value);
+            for (int i = 1; i < updateCommands.Length; ++i)
+            {
+                updateCommand = updateCommands[i];
+                updateQuery = updateQuery.Set(updateCommand.FieldName, updateCommand.Value);
+            }
+
+            return updateQuery;
         }
     }
 }

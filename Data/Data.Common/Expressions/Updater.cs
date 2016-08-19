@@ -5,12 +5,11 @@
 
     using Contracts;
 
-    public class Updater<TEntity, TDbModel> : IUpdater<TEntity, TDbModel>
-        where TDbModel : TEntity
+    public class Updater<T> : IUpdater<T>
     {
-        private readonly IUpdateExpression<TEntity> updateExpression;
+        private readonly IUpdateExpression<T> updateExpression;
 
-        public Updater(IUpdateExpression<TEntity> updateExpression)
+        public Updater(IUpdateExpression<T> updateExpression)
         {
             if (updateExpression == null)
             {
@@ -20,9 +19,9 @@
             this.updateExpression = updateExpression;
         }
 
-        public IUpdateExpression<TEntity> UpdateExpression => this.updateExpression;
+        public IUpdateExpression<T> UpdateExpression => this.updateExpression;
 
-        public Task Invoke(TDbModel obj) => Task.Run(() =>
+        public Task Invoke(T obj) => Task.Run(() =>
         {
             if (obj == null)
             {

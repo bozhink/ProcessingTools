@@ -9,8 +9,11 @@
 
     using Contracts;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public abstract class EntityRepository<TContext, TEntity> : IEntityRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -90,6 +93,32 @@
             entry.State = EntityState.Modified;
             return entity;
         });
+
+        protected async Task<T> Update<T>(object id, IUpdateExpression<T> update, IDbSet<T> set) where T : class
+        {
+            DummyValidator.ValidateId(id);
+            DummyValidator.ValidateUpdate(update);
+            DummyValidator.ValidateSet(set);
+
+            var entity = await this.Get(id, set);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            // TODO : Updater
+            var updater = new Updater<T>(update);
+            await updater.Invoke(entity);
+
+            var entry = this.GetEntry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                set.Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
+            return entity;
+        }
 
         protected async Task<T> Upsert<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
             where T : class

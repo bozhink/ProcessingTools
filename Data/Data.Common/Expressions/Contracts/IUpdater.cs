@@ -2,11 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    public interface IUpdater<TEntity, TDbModel>
-        where TDbModel : TEntity
+    public interface IUpdater<T>
     {
-        IUpdateExpression<TEntity> UpdateExpression { get; }
+        IUpdateExpression<T> UpdateExpression { get; }
 
-        Task Invoke(TDbModel obj);
+        Task Invoke(T obj);
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Repositories
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -9,6 +10,7 @@
     using MongoDB.Driver;
 
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public abstract class MongoCrudRepository<TEntity, TDbModel> : MongoRepository<TDbModel>, IMongoCrudRepository<TEntity>
         where TEntity : class
@@ -58,5 +60,28 @@
         public virtual Task<long> SaveChanges() => Task.FromResult(0L);
 
         public abstract Task<object> Update(TEntity entity);
+
+        public abstract Task<object> Update(object id, IUpdateExpression<TEntity> update);
+
+        // TODO : repeated code
+        protected UpdateDefinition<TDbModel> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<TEntity> update)
+        {
+            var updateCommands = update.UpdateCommands.ToArray();
+            if (updateCommands.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(update.UpdateCommands));
+            }
+
+            var updateCommand = updateCommands[0];
+            var updateQuery = Builders<TDbModel>.Update
+                .Set(updateCommand.FieldName, updateCommand.Value);
+            for (int i = 1; i < updateCommands.Length; ++i)
+            {
+                updateCommand = updateCommands[i];
+                updateQuery = updateQuery.Set(updateCommand.FieldName, updateCommand.Value);
+            }
+
+            return updateQuery;
+        }
     }
 }

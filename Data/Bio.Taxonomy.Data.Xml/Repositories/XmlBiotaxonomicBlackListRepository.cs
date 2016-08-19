@@ -9,6 +9,9 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class XmlBiotaxonomicBlackListRepository : IXmlBiotaxonomicBlackListRepository
     {
@@ -80,5 +83,32 @@
         public virtual Task<long> SaveChanges() => this.context.WriteItemsToFile();
 
         public virtual Task<object> Update(IBlackListEntity entity) => this.Add(entity);
+
+        public virtual async Task<object> Update(object id, IUpdateExpression<IBlackListEntity> update)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
+
+            var entity = await this.Get(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            await this.Delete(entity);
+
+            // TODO : Updater
+            var updater = new Updater<IBlackListEntity>(update);
+            await updater.Invoke(entity);
+
+            return await this.Add(entity);
+        }
     }
 }

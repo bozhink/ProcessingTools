@@ -13,21 +13,21 @@
     [TestFixture]
     public class UpdaterTests
     {
-        [Test(Description = @"Updater with null updateExpression should throw ArgumentNullException with ""updateExpression"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with null updateExpression should throw ArgumentNullException with ""updateExpression"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithNullUpdateExpression_ShouldThrowArgumentNullExceptionWithUpdateExpressionParamName()
         {
             // Arrange + Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var updater = new Updater<ITweet, ITweet>(null);
+                    var updater = new Updater<ITweet>(null);
                 },
                 "Updater with null updateExpression should throw ArgumentNullException.");
 
             Assert.AreEqual("updateExpression", exception.ParamName, @"ParamName should be ""updateExpression"".");
         }
 
-        [Test(Description = @"Updater with valid updateExpression should correctly initialize the updateExpression field.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression should correctly initialize the updateExpression field.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionField()
         {
             // Arrange
@@ -35,7 +35,7 @@
 
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             var updateExpression = updateExpressionMock.Object;
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             // Act
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(updater);
@@ -46,13 +46,13 @@
             Assert.AreSame(updateExpression, updateExpressionFieldValue, "Updater.updateExpression should be set correctly.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression should correctly initialize the UpdateExpression property.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression should correctly initialize the UpdateExpression property.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         public void Updater_WithValiUpdateExpression_ShouldCorrectlyInitializeUpdateExpressionProperty()
         {
             // Arrange
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             var updateExpression = updateExpressionMock.Object;
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             // Act
             var updateExpressionValue = updater.UpdateExpression;
@@ -62,14 +62,14 @@
             Assert.AreSame(updateExpression, updateExpressionValue, "Updater.UpdateExpression should be set correctly.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with ""obj"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression  on Invoke with null object should throw AggregateException with inner ArgumentNullException with ""obj"" ParamName.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionOnInvokeWithNullObject_ShouldThrowAggregateExceptionWithInnerArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             var updateExpression = updateExpressionMock.Object;
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(
@@ -88,7 +88,7 @@
             Assert.AreEqual("obj", argumentNullException.ParamName, @"ParamName should be ""obj"".");
         }
 
-        [Test(Description = @"Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with single valid Set command on Invoke with valid input object should correctly set corresponding property of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleValidSetCommandOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertyOfTheInputObject()
         {
@@ -118,7 +118,7 @@
 
             var updateExpression = updateExpressionMock.Object;
 
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             string targetContent = null;
             var targetObjectMock = new Mock<ITweet>();
@@ -147,7 +147,7 @@
             Assert.AreEqual(contentValue, targetContent, "Target object Content should be set correctly.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with two different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionWithTwoDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
@@ -193,7 +193,7 @@
 
             var updateExpression = updateExpressionMock.Object;
 
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             string targetContent = null;
             int targetFaves = -1;
@@ -231,7 +231,7 @@
             Assert.AreEqual(favesValue, targetFaves, "Target object Faves should be set correctly.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with three different valid Set commands on Invoke with valid input object should correctly set corresponding properties of the input object.", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionWithTThreeDifferentValidSetCommandsOnInvokeWithValidInputObject_ShouldCorrectlySetCorrespondingPropertiesOfTheInputObject()
         {
@@ -292,7 +292,7 @@
 
             var updateExpression = updateExpressionMock.Object;
 
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             string targetContent = null;
             int targetFaves = -1;
@@ -339,7 +339,7 @@
             Assert.AreEqual(datePostedValue, targetDatePosted, "Target object DatePosted should be set correctly.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithErroneousFieldNameOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingPropertyAndIsNotFound()
         {
@@ -369,7 +369,7 @@
 
             var updateExpression = updateExpressionMock.Object;
 
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             var targetObjectMock = new Mock<ITweet>();
 
@@ -404,7 +404,7 @@
             targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
         }
 
-        [Test(Description = @"Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Set method of property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Test(Description = @"Updater with valid updateExpression with single Set command with fieldName of non-settable property on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Set method of property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet>))]
         [Timeout(2000)]
         public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithFieldNameOfNonSettablePropertyOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingSetMethodOfPropertyAndIsNotFound()
         {
@@ -434,7 +434,7 @@
 
             var updateExpression = updateExpressionMock.Object;
 
-            var updater = new Updater<ITweet, ITweet>(updateExpression);
+            var updater = new Updater<ITweet>(updateExpression);
 
             var targetObjectMock = new Mock<ITweet>();
 

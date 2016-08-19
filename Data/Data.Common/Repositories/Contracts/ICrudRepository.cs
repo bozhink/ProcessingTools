@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
     using System.Threading.Tasks;
+    using Expressions.Contracts;
 
     public interface ICrudRepository<TEntity> : IRepository<TEntity>
     {
@@ -15,5 +16,7 @@
         Task<long> SaveChanges();
 
         Task<object> Update(TEntity entity);
+
+        Task<object> Update(object id, IUpdateExpression<TEntity> update);
     }
 }

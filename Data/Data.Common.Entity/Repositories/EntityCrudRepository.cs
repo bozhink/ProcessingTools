@@ -6,8 +6,8 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class EntityCrudRepository<TContext, TEntity> : EntityRepository<TContext, TEntity>, IEntityCrudRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -27,5 +27,7 @@
         public virtual async Task<TEntity> Get(object id) => await this.Get(id, this.DbSet);
 
         public virtual async Task<object> Update(TEntity entity) => await this.Update(entity, this.DbSet);
+
+        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update) => await this.Update(id, update, this.DbSet);
     }
 }

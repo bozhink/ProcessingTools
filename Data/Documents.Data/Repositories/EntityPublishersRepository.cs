@@ -9,7 +9,10 @@
     using Contracts;
     using Models;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Documents.Data.Common.Models.Contracts;
     using ProcessingTools.Documents.Data.Contracts;
 
@@ -79,6 +82,31 @@
             var dbmodel = new Publisher(entity);
 
             return await this.Update(dbmodel, this.DbSet);
+        }
+
+        public async Task<object> Update(object id, IUpdateExpression<IPublisherEntity> update)
+        {
+            DummyValidator.ValidateId(id);
+            DummyValidator.ValidateUpdate(update);
+
+            var entity = this.DbSet.Find(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            // TODO : Updater
+            var updater = new Updater<IPublisherEntity>(update);
+            await updater.Invoke(entity);
+
+            var entry = this.GetEntry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
+            return entity;
         }
     }
 }
