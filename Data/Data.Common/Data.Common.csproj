@@ -71,6 +71,7 @@
     <Compile Include="Repositories\Contracts\ISearchableRepository.cs" />
     <Compile Include="Repositories\Contracts\ISearchableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\ISimpleGenericContextRepository.cs" />
+    <Compile Include="Repositories\Contracts\IUpdatableRepository.cs" />
     <Compile Include="Seed\SimpleRepositorySeeder.cs" />
   </ItemGroup>
   <ItemGroup>
