@@ -338,5 +338,97 @@
             Assert.AreEqual(favesValue, targetFaves, "Target object Faves should be set correctly.");
             Assert.AreEqual(datePostedValue, targetDatePosted, "Target object DatePosted should be set correctly.");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [Test(Description = @"Updater with valid updateExpression with single Set command with erroneous fieldName on Invoke with valid input object should throw AggregateException with inner InvalidOperationException with message containing ""Property"" and ""is not found"".", Author = "Bozhin Karaivanov", TestOf = typeof(Updater<ITweet, ITweet>))]
+        [Timeout(2000)]
+        public void Updater_WithValidUpdateExpressionWithSingleSetCommandWithErroneousFieldNameOnInvokeWithValidInputObject_ShouldThrowAggregateExceptionWithInnerInvalidOperationExceptionWithMessageContainingPropertyAndIsNotFound()
+        {
+            // Arrange
+            const string SetMethodName = "Set";
+            const string ContentPropertyName = "UserName";
+            string contentValue = "Some string content";
+
+            var updateContentCommandMock = new Mock<IUpdateCommand>();
+            updateContentCommandMock
+                .SetupGet(c => c.UpdateVerb)
+                .Returns(SetMethodName);
+            updateContentCommandMock
+                .SetupGet(c => c.FieldName)
+                .Returns(ContentPropertyName);
+            updateContentCommandMock
+                .SetupGet(c => c.Value)
+                .Returns(contentValue);
+
+            var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
+            updateExpressionMock
+                .SetupGet(e => e.UpdateCommands)
+                .Returns(new IUpdateCommand[]
+                {
+                    updateContentCommandMock.Object
+                });
+
+            var updateExpression = updateExpressionMock.Object;
+
+            var updater = new Updater<ITweet, ITweet>(updateExpression);
+
+            string targetContent = null;
+            var targetObjectMock = new Mock<ITweet>();
+            targetObjectMock
+                .SetupSet(t => t.Content = It.IsAny<string>())
+                .Callback<string>(s => targetContent = s);
+
+            var targetObject = targetObjectMock.Object;
+
+            // Act + Assert
+            var exception = Assert.Throws<AggregateException>(
+                () =>
+                {
+                    updater.Invoke(targetObject).Wait();
+                },
+                "AggregateException should be thrown.");
+
+            Assert.AreEqual(1, exception.InnerExceptions.Count, "Number of inner exceptions should be 1.");
+
+            var innerException = exception.InnerExceptions.Single();
+            Assert.IsInstanceOf<InvalidOperationException>(innerException, "Inner exception should be instance of InvalidOperationException.");
+
+            StringAssert.Contains("Property", innerException.Message, @"InnerException.Message should contain string ""Property"".");
+            StringAssert.Contains("is not found", innerException.Message, @"InnerException.Message should contain string ""is not found"".");
+
+            Assert.IsNotNull(targetObject, "Updated target object should not be null.");
+
+            updateExpressionMock.VerifyGet(e => e.UpdateCommands, Times.Once, "IUpdateExpression.UpdateCommands should be invoked once.");
+
+            updateContentCommandMock.VerifyGet(c => c.UpdateVerb, Times.Never, "UpdateContentCommand.UpdateVerb should not be invoked.");
+            updateContentCommandMock.VerifyGet(c => c.FieldName, Times.Exactly(2), "UpdateContentCommand.FieldName should be invoked twice.");
+            updateContentCommandMock.VerifyGet(c => c.Value, Times.Never, "UpdateContentCommand.Value should not be invoked.");
+
+            targetObjectMock.VerifySet(t => t.Content = It.IsAny<string>(), Times.Never, "ITweet.Content setter should not be invoked.");
+            targetObjectMock.VerifySet(t => t.DatePosted = It.IsAny<DateTime>(), Times.Never, "ITweet.DatePosted setter should not be invoked.");
+            targetObjectMock.VerifySet(t => t.Faves = It.IsAny<int>(), Times.Never, "ITweet.Faves setter should not be invoked.");
+        }
     }
 }
