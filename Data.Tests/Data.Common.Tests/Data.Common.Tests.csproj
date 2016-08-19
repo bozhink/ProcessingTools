@@ -64,6 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Attributes\CustomIdAttribute.cs" />
+    <Compile Include="Expressions\ExpressionBuilderTests.cs" />
     <Compile Include="Expressions\UpdateExpressionTests.cs" />
     <Compile Include="Fakes\Models\Contracts\ITweet.cs" />
     <Compile Include="ModelExtensionsTests.cs" />
