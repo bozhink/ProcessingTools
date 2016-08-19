@@ -4,6 +4,8 @@
 
     public interface ITweet
     {
+        int Id { get; }
+
         string Content { get; set; }
 
         DateTime DatePosted { get; set; }
