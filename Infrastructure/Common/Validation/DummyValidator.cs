@@ -40,6 +40,37 @@
         }
 
         /// <summary>
+        /// Checks dummy parameter with name 'update' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the update. It should be reference object.</typeparam>
+        /// <param name="update">Dummy parameter with name 'update' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateUpdate<T>(T update)
+            where T : class
+        {
+            if (update == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(update));
+            }
+        }
+
+        /// <summary>
+        /// Checks dummy parameter with name 'update' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the update. It should be reference object.</typeparam>
+        /// <param name="update">Dummy parameter with name 'update' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateUpdate<T>(T update, string message)
+            where T : class
+        {
+            if (update == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(update), message: message);
+            }
+        }
+
+        /// <summary>
         /// Checks set dummy parameter with name 'set' if it is null and throws ArgumentNullException.
         /// </summary>
         /// <typeparam name="T">Type of the set. It should be reference object.</typeparam>
