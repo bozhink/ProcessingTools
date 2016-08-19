@@ -7,6 +7,6 @@
     {
         IUpdateExpression<TEntity> UpdateExpression { get; }
 
-        Task<TDbModel> Invoke(TDbModel obj);
+        Task Invoke(TDbModel obj);
     }
 }

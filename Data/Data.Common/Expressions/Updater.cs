@@ -22,7 +22,7 @@
 
         public IUpdateExpression<TEntity> UpdateExpression => this.updateExpression;
 
-        public Task<TDbModel> Invoke(TDbModel obj) => Task.Run(() =>
+        public Task Invoke(TDbModel obj) => Task.Run(() =>
         {
             if (obj == null)
             {
@@ -48,8 +48,6 @@
 
                 method.Invoke(obj, new object[] { updateCommand.Value });
             }
-
-            return obj;
         });
     }
 }
