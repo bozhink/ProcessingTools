@@ -48,6 +48,13 @@
     <Compile Include="Contracts\IDatabaseInitializer.cs" />
     <Compile Include="Contracts\IDatabaseProvider.cs" />
     <Compile Include="Contracts\IDatabaseSeeder.cs" />
+    <Compile Include="Expressions\Contracts\IUpdateCommand.cs" />
+    <Compile Include="Expressions\Contracts\IUpdateExpression.cs" />
+    <Compile Include="Expressions\Contracts\IUpdater.cs" />
+    <Compile Include="Expressions\ExpressionBuilder.cs" />
+    <Compile Include="Expressions\UpdateCommand.cs" />
+    <Compile Include="Expressions\UpdateExpression.cs" />
+    <Compile Include="Expressions\Updater.cs" />
     <Compile Include="Repositories\Contracts\ICountableCrudRepository.cs" />
     <Compile Include="Repositories\Contracts\ICountableIterableCrudRepository.cs" />
     <Compile Include="Repositories\Contracts\ICoutableIterableRepository.cs" />
