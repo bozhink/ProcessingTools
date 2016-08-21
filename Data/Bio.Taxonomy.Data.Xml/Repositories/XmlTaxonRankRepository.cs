@@ -31,8 +31,6 @@
             return this.Context.Add(entity);
         }
 
-        public virtual Task<IQueryable<ITaxonRankEntity>> All() => this.Context.All();
-
         public virtual async Task<long> Count()
         {
             var count = (await this.Context.All())
@@ -73,16 +71,6 @@
             }
 
             return this.Delete(entity.Name);
-        }
-
-        public virtual Task<ITaxonRankEntity> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            return this.Context.Get(id);
         }
 
         public virtual Task<object> Update(ITaxonRankEntity entity)

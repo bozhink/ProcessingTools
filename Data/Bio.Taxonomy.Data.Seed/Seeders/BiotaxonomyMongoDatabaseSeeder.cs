@@ -116,7 +116,7 @@
             var mongoBiotaxonomicBlackListRepository = this.mongoBiotaxonomicBlackListRepositoryProvider.Create();
             var repository = this.biotaxonomicBlackListIterableRepositoryProvider.Create();
 
-            var entities = await repository.All();
+            var entities = repository.Entities;
             foreach (var entity in entities)
             {
                 await mongoBiotaxonomicBlackListRepository.Add(entity);

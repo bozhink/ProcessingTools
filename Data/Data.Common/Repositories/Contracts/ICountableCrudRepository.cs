@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
-    public interface ICountableCrudRepository<TEntity> : ICountableRepository<TEntity>, ICrudRepository<TEntity>
+    public interface ICountableCrudRepository<T> : ICountableRepository<T>, ICrudRepository<T>
     {
     }
 }

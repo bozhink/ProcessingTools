@@ -3,8 +3,10 @@
     using System;
     using Contracts;
     using Factories;
+
     using MongoDB.Bson;
     using MongoDB.Driver;
+
     using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity>
@@ -13,14 +15,14 @@
         private readonly IMongoDatabase db;
         private string collectionName;
 
-        public MongoRepository(IMongoDatabaseProvider provider)
+        public MongoRepository(IMongoDatabaseProvider databaseProvider)
         {
-            if (provider == null)
+            if (databaseProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            this.db = provider.Create();
+            this.db = databaseProvider.Create();
             this.CollectionName = CollectionNameFactory.Create<TEntity>();
         }
 

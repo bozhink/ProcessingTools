@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     using Contracts;
@@ -10,6 +11,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Types;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.Expressions.Contracts;
 
@@ -39,6 +41,11 @@
             return result;
         }
 
+        public Task<IQueryable<IBlackListEntity>> All()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual async Task<object> Delete(object id)
         {
             if (id == null || string.IsNullOrWhiteSpace(id.ToString()))
@@ -59,6 +66,36 @@
             }
 
             return this.Delete(entity.Content);
+        }
+
+        public Task<IQueryable<IBlackListEntity>> Find(Expression<Func<IBlackListEntity, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IQueryable<IBlackListEntity>> Find(Expression<Func<IBlackListEntity, bool>> filter, Expression<Func<IBlackListEntity, object>> sort, SortOrder sortOrder = SortOrder.Ascending, int skip = 0, int take = 10)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IQueryable<Tout>> Find<Tout>(Expression<Func<IBlackListEntity, bool>> filter, Expression<Func<IBlackListEntity, Tout>> projection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IQueryable<Tout>> Find<Tout>(Expression<Func<IBlackListEntity, bool>> filter, Expression<Func<IBlackListEntity, Tout>> projection, Expression<Func<IBlackListEntity, object>> sort, SortOrder sortOrder = SortOrder.Ascending, int skip = 0, int take = 10)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IBlackListEntity> FindFirst(Expression<Func<IBlackListEntity, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tout> FindFirst<Tout>(Expression<Func<IBlackListEntity, bool>> filter, Expression<Func<IBlackListEntity, Tout>> projection)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual async Task<IBlackListEntity> Get(object id)

@@ -2,7 +2,8 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IEntityCrudRepository<TEntity> : ICrudRepository<TEntity>, IEntityRepository<TEntity>
+    public interface IEntityCrudRepository<T> : ICrudRepository<T>, IEntityRepository<T>
+        where T : class
     {
     }
 }

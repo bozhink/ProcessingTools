@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -24,14 +25,10 @@
             this.context = provider.Create();
         }
 
-        public virtual async Task<IQueryable<IBlackListEntity>> All()
-        {
-            var query = await this.context.All();
-
-            return query.Select(s => new BlackListEntity
+        public IEnumerable<IBlackListEntity> Entities => this.context.All().Result
+            .Select(s => new BlackListEntity
             {
                 Content = s
             });
-        }
     }
 }

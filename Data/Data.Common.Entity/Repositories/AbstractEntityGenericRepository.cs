@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
@@ -10,26 +11,27 @@
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityCountableIterableCrudRepository<TContext, TEntity> : EntityIterableCrudRepository<TContext, TEntity>, IEntityCountableIterableCrudRepository<TEntity>, IDisposable
+    public abstract class EntityGenericRepository<TContext, TDbModel, TEntity> : EntityCrudRepository<TContext, TDbModel, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
         where TEntity : class
+        where TDbModel : class, TEntity
     {
-        public EntityCountableIterableCrudRepository(IDbContextProvider<TContext> contextProvider)
+        public EntityGenericRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
         {
         }
 
-        public virtual async Task<long> Count()
+        public async Task<long> Count()
         {
-            var count = await this.DbSet.CountAsync();
+            var count = await this.DbSet.LongCountAsync();
             return count;
         }
 
-        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        public async Task<long> Count(Expression<Func<TEntity, bool>> filter)
         {
             DummyValidator.ValidateFilter(filter);
 
-            var count = await this.DbSet.CountAsync(filter);
+            var count = await this.DbSet.Where(filter).LongCountAsync();
             return count;
         }
     }

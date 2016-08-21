@@ -7,8 +7,6 @@
     {
         Task<object> Add(T entity);
 
-        Task<object> Delete(T entity);
-
         Task<object> Delete(object id);
 
         Task<long> SaveChanges();

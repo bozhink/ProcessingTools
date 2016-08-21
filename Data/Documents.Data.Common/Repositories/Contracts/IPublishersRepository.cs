@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IPublishersRepository : IAddressableRepository, ICountableIterableCrudRepository<IPublisherEntity>
+    public interface IPublishersRepository : IAddressableRepository, ICrudRepository<IPublisherEntity>
     {
     }
 }

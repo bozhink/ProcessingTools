@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Contracts;
     using Models;
@@ -19,11 +18,9 @@
         {
         }
 
-        public virtual Task<IQueryable<IBlackListEntity>> All() => Task.Run(() =>
-        {
-            return this.Collection
-                .AsQueryable()
-                .Select(e => e as IBlackListEntity);
-        });
+        public IEnumerable<IBlackListEntity> Entities => this.Collection
+            .Find("{}")
+            .ToCursor()
+            .ToEnumerable<IBlackListEntity>();
     }
 }

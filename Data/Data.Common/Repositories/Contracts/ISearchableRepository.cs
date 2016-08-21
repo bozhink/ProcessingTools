@@ -8,35 +8,39 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
 
-    public interface ISearchableRepository<TEntity> : IRepository<TEntity>
+    public interface ISearchableRepository<T> : IRepository<T>
     {
-        Task<IQueryable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter);
+        Task<IQueryable<T>> All();
 
-        Task<IQueryable<T>> Find<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection);
+        Task<IQueryable<T>> Find(
+            Expression<Func<T, bool>> filter);
 
-        Task<IQueryable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
+        Task<IQueryable<Tout>> Find<Tout>(
+            Expression<Func<T, bool>> filter,
+            Expression<Func<T, Tout>> projection);
+
+        Task<IQueryable<T>> Find(
+            Expression<Func<T, bool>> filter,
+            Expression<Func<T, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect);
 
-        Task<IQueryable<T>> Find<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection,
-            Expression<Func<TEntity, object>> sort,
+        Task<IQueryable<Tout>> Find<Tout>(
+            Expression<Func<T, bool>> filter,
+            Expression<Func<T, Tout>> projection,
+            Expression<Func<T, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
             int take = PagingConstants.DefaultNumberOfTopItemsToSelect);
 
-        Task<TEntity> FindFirst(
-            Expression<Func<TEntity, bool>> filter);
+        Task<T> FindFirst(
+            Expression<Func<T, bool>> filter);
 
-        Task<T> FindFirst<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection);
+        Task<Tout> FindFirst<Tout>(
+            Expression<Func<T, bool>> filter,
+            Expression<Func<T, Tout>> projection);
+
+        Task<T> Get(object id);
     }
 }

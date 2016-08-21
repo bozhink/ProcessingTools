@@ -4,7 +4,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IAuthorsRepository : ICountableIterableCrudRepository<IAuthorEntity>
+    public interface IAuthorsRepository : ICrudRepository<IAuthorEntity>
     {
         Task<object> AddAffiliation(object entityId, IAffiliationEntity affiliation, IAddressEntity address);
 

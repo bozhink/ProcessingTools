@@ -85,7 +85,7 @@
             await repository.Update(entity: entity);
             await repository.SaveChanges();
 
-            await repository.Delete(entity: entity);
+            await repository.Delete(entity.Id);
             var result = await repository.SaveChanges();
 
             repository.TryDispose();

@@ -4,7 +4,7 @@
     using ProcessingTools.Documents.Data.Common.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
 
-    public interface IEntityPublishersRepository : IPublishersRepository, IEntityCountableIterableCrudRepository<IPublisherEntity>
+    public interface IEntityPublishersRepository : IPublishersRepository, IEntityCrudRepository<IPublisherEntity>
     {
     }
 }

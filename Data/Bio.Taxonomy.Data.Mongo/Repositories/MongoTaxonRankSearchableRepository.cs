@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoTaxonRankSearchableRepository : MongoSearchableRepository<ITaxonRankEntity, MongoTaxonRankEntity>, IMongoTaxonRankSearchableRepository
+    public class MongoTaxonRankSearchableRepository : MongoSearchableRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankSearchableRepository
     {
         public MongoTaxonRankSearchableRepository(IBiotaxonomyMongoDatabaseProvider provider)
             : base(provider)

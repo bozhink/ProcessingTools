@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
-    public interface IIterableRepository<TEntity> : IRepository<TEntity>
+    public interface IIterableRepository<T> : IRepository<T>
     {
-        Task<IQueryable<TEntity>> All();
+        IEnumerable<T> Entities { get; }
     }
 }

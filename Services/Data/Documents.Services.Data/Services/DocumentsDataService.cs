@@ -198,7 +198,7 @@
 
             await this.xmlFileReaderWriter.Delete(entity.FileName, this.DataDirectory);
 
-            await repository.Delete(entity: entity);
+            await repository.Delete(entity.Id);
             await repository.SaveChanges();
 
             repository.TryDispose();

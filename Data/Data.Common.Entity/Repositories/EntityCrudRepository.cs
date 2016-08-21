@@ -4,12 +4,9 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using Contracts;
-
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
 
-    public class EntityCrudRepository<TContext, TEntity> : EntityRepository<TContext, TEntity>, IEntityCrudRepository<TEntity>, IDisposable
+    public class EntityCrudRepository<TContext, TEntity> : EntityCrudRepository<TContext, TEntity, TEntity>
         where TContext : DbContext
         where TEntity : class
     {
@@ -18,16 +15,10 @@
         {
         }
 
-        public virtual async Task<object> Add(TEntity entity) => await this.Add(entity, this.DbSet);
+        protected override Func<TEntity, TEntity> MapEntityToDbModel => e => e;
 
-        public virtual async Task<object> Delete(TEntity entity) => await this.Delete(entity, this.DbSet);
+        public override async Task<object> Add(TEntity entity) => await this.Add(entity, this.DbSet);
 
-        public virtual async Task<object> Delete(object id) => await this.Delete(id, this.DbSet);
-
-        public virtual async Task<TEntity> Get(object id) => await this.Get(id, this.DbSet);
-
-        public virtual async Task<object> Update(TEntity entity) => await this.Update(entity, this.DbSet);
-
-        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update) => await this.Update(id, update, this.DbSet);
+        public override async Task<object> Update(TEntity entity) => await this.Update(entity, this.DbSet);
     }
 }

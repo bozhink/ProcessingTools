@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IMongoSearchableRepository<T> : IMongoRepository<T>, ISearchableRepository<T>
+    public interface IMongoSearchableRepository<T> : ISearchableRepository<T>, IMongoRepository<T>
         where T : class
     {
     }

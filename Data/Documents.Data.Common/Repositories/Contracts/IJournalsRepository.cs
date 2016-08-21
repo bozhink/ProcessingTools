@@ -3,7 +3,7 @@
     using Models.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IJournalsRepository : ICountableIterableCrudRepository<IJournalEntity>
+    public interface IJournalsRepository : ICrudRepository<IJournalEntity>
     {
     }
 }

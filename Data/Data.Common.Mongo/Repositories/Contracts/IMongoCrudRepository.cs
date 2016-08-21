@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
-    public interface IMongoCrudRepository<T> : ICrudRepository<T>
+    public interface IMongoCrudRepository<T> : ICrudRepository<T>, IMongoRepository<T>
         where T : class
     {
     }

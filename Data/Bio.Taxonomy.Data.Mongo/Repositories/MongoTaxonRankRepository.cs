@@ -12,10 +12,10 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
+    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoTaxonRankRepository : MongoTaxonRankSearchableRepository, IMongoTaxonRankRepository
+    public class MongoTaxonRankRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 
@@ -29,12 +29,10 @@
             };
         }
 
-        public virtual Task<object> Add(ITaxonRankEntity entity)
+        public override Task<object> Add(ITaxonRankEntity entity)
         {
             return this.Update(entity);
         }
-
-        public virtual Task<IQueryable<ITaxonRankEntity>> All() => Task.FromResult(this.Collection.AsQueryable().Cast<ITaxonRankEntity>());
 
         public virtual async Task<long> Count()
         {
@@ -42,75 +40,20 @@
             return count;
         }
 
-        public virtual Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter)
+        public virtual Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
+            DummyValidator.ValidateFilter(filter);
 
-            return Task.Run(() =>
-            {
-                var count = this.Collection.AsQueryable()
-                    .Cast<ITaxonRankEntity>()
-                    .LongCount(filter);
+            var count = this.Collection.AsQueryable()
+                .Cast<ITaxonRankEntity>()
+                .LongCount(filter);
 
-                return count;
-            });
-        }
+            return count;
+        });
 
-        public virtual async Task<object> Delete(object id)
+        public override async Task<object> Update(ITaxonRankEntity entity)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var filter = this.GetFilterById(id);
-            var result = await this.Collection.DeleteOneAsync(filter);
-            return result;
-        }
-
-        public virtual async Task<object> Delete(ITaxonRankEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            var result = await this.Collection.DeleteOneAsync(t => t.Name == entity.Name);
-
-            return result;
-        }
-
-        public virtual async Task<ITaxonRankEntity> Get(object id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var filter = this.GetFilterById(id);
-            var mongoEntity = await this.Collection
-                .Find(filter)
-                .FirstOrDefaultAsync();
-
-            if (mongoEntity == null)
-            {
-                throw new EntityNotFoundException();
-            }
-
-            return mongoEntity;
-        }
-
-        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
-
-        public virtual async Task<object> Update(ITaxonRankEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            DummyValidator.ValidateEntity(entity);
 
             var result = await this.Collection.UpdateOneAsync(
                 Builders<MongoTaxonRankEntity>.Filter
@@ -121,45 +64,6 @@
                 this.updateOptions);
 
             return result;
-        }
-
-        // TODO : repeated code
-        public async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (update == null)
-            {
-                throw new ArgumentNullException(nameof(update));
-            }
-
-            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
-            var filter = this.GetFilterById(id);
-            var result = await this.Collection.UpdateOneAsync(filter, updateQuery);
-            return result;
-        }
-
-        protected UpdateDefinition<MongoTaxonRankEntity> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<ITaxonRankEntity> update)
-        {
-            var updateCommands = update.UpdateCommands.ToArray();
-            if (updateCommands.Length < 1)
-            {
-                throw new ArgumentNullException(nameof(update.UpdateCommands));
-            }
-
-            var updateCommand = updateCommands[0];
-            var updateQuery = Builders<MongoTaxonRankEntity>.Update
-                .Set(updateCommand.FieldName, updateCommand.Value);
-            for (int i = 1; i < updateCommands.Length; ++i)
-            {
-                updateCommand = updateCommands[i];
-                updateQuery = updateQuery.Set(updateCommand.FieldName, updateCommand.Value);
-            }
-
-            return updateQuery;
         }
     }
 }

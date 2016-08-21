@@ -195,7 +195,7 @@
                 {
                     try
                     {
-                        var blackListItems = (await repository.All())
+                        var blackListItems = repository.Entities
                             .OrderBy(t => t)
                             .Skip(i * NumberOfItemsToImportAtOnce)
                             .Take(NumberOfItemsToImportAtOnce)

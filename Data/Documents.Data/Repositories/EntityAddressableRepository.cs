@@ -13,8 +13,9 @@
     using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Contracts;
 
-    public abstract class EntityAddressableRepository<TDbModel> : EntityRepository<DocumentsDbContext, TDbModel>, IAddressableRepository
-        where TDbModel : class, IAddressableEntity
+    public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityCrudRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
+        where TEntity : class, IAddressableEntity
+        where TDbModel : class, TEntity, IAddressableEntity
     {
         public EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
             : base(contextProvider)

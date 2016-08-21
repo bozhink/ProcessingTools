@@ -4,10 +4,10 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public interface ICountableRepository<TEntity> : IRepository<TEntity>
+    public interface ICountableRepository<T> : IRepository<T>
     {
         Task<long> Count();
 
-        Task<long> Count(Expression<Func<TEntity, bool>> filter);
+        Task<long> Count(Expression<Func<T, bool>> filter);
     }
 }

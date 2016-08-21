@@ -24,17 +24,17 @@
             this.provider = provider;
         }
 
-        public async Task<IEnumerable<string>> All()
+        public Task<IEnumerable<string>> All() => Task.Run(() =>
         {
             var repository = this.provider.Create();
 
-            var query = await repository.All();
-
-            var result = new HashSet<string>(query.Select(s => s.Content).ToList());
+            var result = new HashSet<string>(repository.Entities
+                .Select(s => s.Content)
+                .ToList());
 
             repository.TryDispose();
 
-            return result;
-        }
+            return result.AsEnumerable();
+        });
     }
 }

@@ -48,8 +48,6 @@
     <Compile Include="Expressions\UpdateExpression.cs" />
     <Compile Include="Expressions\Updater.cs" />
     <Compile Include="Repositories\Contracts\ICountableCrudRepository.cs" />
-    <Compile Include="Repositories\Contracts\ICountableIterableCrudRepository.cs" />
-    <Compile Include="Repositories\Contracts\ICoutableIterableRepository.cs" />
     <Compile Include="Repositories\Contracts\ICrudRepository.cs" />
     <Compile Include="Repositories\Contracts\ICrudRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepositoryProvider.cs" />
@@ -59,11 +57,10 @@
     <Compile Include="Models\Contracts\IStringIdEntity.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\ICountableIterableRepository.cs" />
+    <Compile Include="Repositories\Contracts\ICountableRepository.cs" />
     <Compile Include="Repositories\Contracts\IFullTextSearchableRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
     <Compile Include="Repositories\Contracts\IGenericRepository.cs" />
-    <Compile Include="Repositories\Contracts\IIterableCrudRepository.cs" />
     <Compile Include="Repositories\Contracts\IIterableRepository.cs" />
     <Compile Include="Repositories\Contracts\IIterableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IRepository.cs" />

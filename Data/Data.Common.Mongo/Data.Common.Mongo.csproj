@@ -57,9 +57,11 @@
     <Compile Include="Repositories\Contracts\IMongoIterableRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoSearchableRepository.cs" />
+    <Compile Include="Repositories\AbstractMongoCrudRepository.cs" />
     <Compile Include="Repositories\MongoCrudRepository.cs" />
     <Compile Include="Repositories\MongoGenericRepository.cs" />
     <Compile Include="Repositories\MongoRepository.cs" />
+    <Compile Include="Repositories\AbstractMongoSearchableRepository.cs" />
     <Compile Include="Repositories\MongoSearchableRepository.cs" />
   </ItemGroup>
   <ItemGroup>
