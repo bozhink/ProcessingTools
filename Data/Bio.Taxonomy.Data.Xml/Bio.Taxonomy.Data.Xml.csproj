@@ -92,6 +92,10 @@
       <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
       <Name>Bio.Taxonomy.Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data.Common.File\Data.Common.File.csproj">
+      <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
+      <Name>Data.Common.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
