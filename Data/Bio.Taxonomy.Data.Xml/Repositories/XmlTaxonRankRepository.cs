@@ -10,6 +10,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.Expressions.Contracts;
@@ -23,10 +24,7 @@
 
         public virtual Task<object> Add(ITaxonRankEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            DummyValidator.ValidateEntity(entity);
 
             return this.Context.Add(entity);
         }
@@ -37,30 +35,14 @@
 
         public virtual Task<object> Delete(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
+            DummyValidator.ValidateId(id);
 
             return this.Context.Delete(id);
         }
 
-        public virtual Task<object> Delete(ITaxonRankEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return this.Delete(entity.Name);
-        }
-
         public virtual Task<object> Update(ITaxonRankEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            DummyValidator.ValidateEntity(entity);
 
             return this.Context.Update(entity);
         }
@@ -69,15 +51,8 @@
 
         public virtual async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (update == null)
-            {
-                throw new ArgumentNullException(nameof(update));
-            }
+            DummyValidator.ValidateId(id);
+            DummyValidator.ValidateUpdate(update);
 
             var entity = await this.Get(id);
             if (entity == null)

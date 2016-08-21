@@ -14,6 +14,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Common.Validation;
 
     public class TaxaContext : ITaxaContext
     {
@@ -61,10 +62,7 @@
 
         public Task<ITaxonRankEntity> Get(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
+            DummyValidator.ValidateId(id);
 
             ITaxonRankEntity taxon;
             this.Taxa.TryGetValue(id.ToString(), out taxon);
@@ -77,46 +75,34 @@
 
         public Task<object> Delete(object id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
+            DummyValidator.ValidateId(id);
 
             ITaxonRankEntity taxon;
             this.Taxa.TryRemove(id.ToString(), out taxon);
             return Task.FromResult<object>(taxon);
         }
 
-        public Task<long> LoadFromFile(string fileName)
+        public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
         {
-            if (string.IsNullOrWhiteSpace(fileName))
+            DummyValidator.ValidateFileName(fileName);
+
+            IEnumerable<ITaxonRankEntity> taxa;
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                var serializer = new XmlSerializer(typeof(RankListXmlModel));
+                var result = (RankListXmlModel)serializer.Deserialize(stream);
+
+                taxa = result.Taxa.Select(this.MapTaxonXmlModelToTaxonRankEntity).ToList();
             }
 
-            return Task.Run(() =>
-            {
-                IEnumerable<ITaxonRankEntity> taxa;
-                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var serializer = new XmlSerializer(typeof(RankListXmlModel));
-                    var result = (RankListXmlModel)serializer.Deserialize(stream);
+            taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
 
-                    taxa = result.Taxa.Select(this.MapTaxonXmlModelToTaxonRankEntity).ToList();
-                }
-
-                taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
-
-                return taxa.LongCount();
-            });
-        }
+            return taxa.LongCount();
+        });
 
         public async Task<long> WriteToFile(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                throw new ArgumentNullException(nameof(fileName));
-            }
+            DummyValidator.ValidateFileName(fileName);
 
             var taxa = this.Taxa.Values.Select(this.MapTaxonRankEntityToTaxonXmlModel).ToArray();
 
