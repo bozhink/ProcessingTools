@@ -245,7 +245,7 @@
         }
 
         /// <summary>
-        /// Checks dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
+        /// Checks if a dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
         /// </summary>
         /// <param name="take">Dummy parameter with name 'take' to be checked.</param>
         /// <exception cref="InvalidTakeValuePagingException"></exception>
@@ -258,7 +258,7 @@
         }
 
         /// <summary>
-        /// Checks dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
+        /// Checks if a dummy parameter with name 'take' is in allowed range and throws InvalidTakeValuePagingException.
         /// </summary>
         /// <param name="take">Dummy parameter with name 'take' to be checked.</param>
         /// <param name="message">Custom message to be added in the resultant InvalidTakeValuePagingException.</param>
@@ -268,6 +268,33 @@
             if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException(message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a dummy parameter with name 'fileName' is null or whitespace and throws ArgumentNullException.
+        /// </summary>
+        /// <param name="fileName">Dummy parameter with name 'fileName' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateFileName(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(paramName: nameof(fileName));
+            }
+        }
+
+        /// <summary>
+        /// Checks if a dummy parameter with name 'fileName' is null or whitespace and throws ArgumentNullException.
+        /// </summary>
+        /// <param name="fileName">Dummy parameter with name 'fileName' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateFileName(string fileName, string message)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(paramName: nameof(fileName), message: message);
             }
         }
     }

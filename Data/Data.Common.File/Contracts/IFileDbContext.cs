@@ -7,7 +7,7 @@
     {
         Task<object> Add(T entity);
 
-        Task<IQueryable<T>> DataSet();
+        IQueryable<T> DataSet { get; }
 
         Task<object> Delete(object id);
 
