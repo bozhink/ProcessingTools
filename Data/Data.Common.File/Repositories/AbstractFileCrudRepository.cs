@@ -31,13 +31,13 @@
             return this.Context.Delete(id);
         }
 
+        public abstract Task<long> SaveChanges();
+
         public virtual Task<object> Update(ITaxonRankEntity entity)
         {
             DummyValidator.ValidateEntity(entity);
             return this.Context.Update(entity);
         }
-
-        public abstract Task<long> SaveChanges();
 
         public virtual async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
         {

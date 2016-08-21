@@ -23,24 +23,9 @@
             this.Taxa = new ConcurrentDictionary<string, ITaxonRankEntity>();
         }
 
+        public IQueryable<ITaxonRankEntity> DataSet => new HashSet<ITaxonRankEntity>(this.Taxa.Values).AsQueryable();
+
         protected ConcurrentDictionary<string, ITaxonRankEntity> Taxa { get; private set; }
-
-        private Func<TaxonXmlModel, ITaxonRankEntity> MapTaxonXmlModelToTaxonRankEntity => t =>
-        {
-            var ranks = t.Parts.FirstOrDefault().Ranks.Values
-                .Where(r => !string.IsNullOrWhiteSpace(r))
-                .Select(r => r.MapTaxonRankStringToTaxonRankType())
-                .ToList();
-
-            var taxon = new Taxon
-            {
-                Name = t.Parts.FirstOrDefault().Value,
-                IsWhiteListed = t.IsWhiteListed,
-                Ranks = new HashSet<TaxonRankType>(ranks)
-            };
-
-            return taxon;
-        };
 
         private Func<ITaxonRankEntity, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
         {
@@ -58,20 +43,24 @@
             }
         };
 
-        public IQueryable<ITaxonRankEntity> DataSet => new HashSet<ITaxonRankEntity>(this.Taxa.Values).AsQueryable();
+        private Func<TaxonXmlModel, ITaxonRankEntity> MapTaxonXmlModelToTaxonRankEntity => t =>
+                {
+                    var ranks = t.Parts.FirstOrDefault().Ranks.Values
+                        .Where(r => !string.IsNullOrWhiteSpace(r))
+                        .Select(r => r.MapTaxonRankStringToTaxonRankType())
+                        .ToList();
 
-        public Task<ITaxonRankEntity> Get(object id)
-        {
-            DummyValidator.ValidateId(id);
+                    var taxon = new Taxon
+                    {
+                        Name = t.Parts.FirstOrDefault().Value,
+                        IsWhiteListed = t.IsWhiteListed,
+                        Ranks = new HashSet<TaxonRankType>(ranks)
+                    };
 
-            ITaxonRankEntity taxon;
-            this.Taxa.TryGetValue(id.ToString(), out taxon);
-            return Task.FromResult(taxon);
-        }
+                    return taxon;
+                };
 
         public Task<object> Add(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
-
-        public Task<object> Update(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
 
         public Task<object> Delete(object id)
         {
@@ -80,6 +69,15 @@
             ITaxonRankEntity taxon;
             this.Taxa.TryRemove(id.ToString(), out taxon);
             return Task.FromResult<object>(taxon);
+        }
+
+        public Task<ITaxonRankEntity> Get(object id)
+        {
+            DummyValidator.ValidateId(id);
+
+            ITaxonRankEntity taxon;
+            this.Taxa.TryGetValue(id.ToString(), out taxon);
+            return Task.FromResult(taxon);
         }
 
         public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
@@ -99,6 +97,8 @@
 
             return taxa.LongCount();
         });
+
+        public Task<object> Update(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
 
         public async Task<long> WriteToFile(string fileName)
         {

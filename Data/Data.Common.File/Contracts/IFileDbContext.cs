@@ -5,9 +5,9 @@
 
     public interface IFileDbContext<T>
     {
-        Task<object> Add(T entity);
-
         IQueryable<T> DataSet { get; }
+
+        Task<object> Add(T entity);
 
         Task<object> Delete(object id);
 
