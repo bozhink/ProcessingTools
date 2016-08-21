@@ -31,24 +31,24 @@
             this.Config = config;
 
             this.Context = contextProvider.Create();
-            this.Context.LoadTaxa(this.Config.RankListXmlFilePath).Wait();
+            this.Context.LoadFromFile(this.Config.RankListXmlFilePath).Wait();
         }
 
         protected Config Config { get; private set; }
 
         protected ITaxaContext Context { get; private set; }
 
-        public Task<IQueryable<ITaxonRankEntity>> All() => this.Context.All();
+        public Task<IQueryable<ITaxonRankEntity>> All() => Task.FromResult(this.Context.DataSet);
 
-        public virtual async Task<IQueryable<ITaxonRankEntity>> Find(
-            Expression<Func<ITaxonRankEntity, bool>> filter)
+        public virtual Task<IQueryable<ITaxonRankEntity>> Find(
+            Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
 
-            var query = await this.Context.All();
+            var query = this.Context.DataSet;
             query = query.Where(filter);
             return query;
-        }
+        });
 
         public virtual async Task<IQueryable<T>> Find<T>(
             Expression<Func<ITaxonRankEntity, bool>> filter,
@@ -57,26 +57,23 @@
             DummyValidator.ValidateFilter(filter);
             DummyValidator.ValidateProjection(projection);
 
-            var query = await this.Context.All();
-            query = query.Where(filter);
+            var query = await this.Find(filter);
             return query.Select(projection);
         }
 
-        public virtual async Task<IQueryable<ITaxonRankEntity>> Find(
+        public virtual Task<IQueryable<ITaxonRankEntity>> Find(
             Expression<Func<ITaxonRankEntity, bool>> filter,
             Expression<Func<ITaxonRankEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
             DummyValidator.ValidateSort(sort);
             DummyValidator.ValidateSkip(skip);
             DummyValidator.ValidateTake(take);
 
-            var query = await this.Context.All();
-
-            query = query.Where(filter);
+            var query = this.Context.DataSet.Where(filter);
 
             switch (sortOrder)
             {
@@ -95,7 +92,7 @@
             query = query.Skip(skip).Take(take);
 
             return query;
-        }
+        });
 
         public virtual async Task<IQueryable<T>> Find<T>(
             Expression<Func<ITaxonRankEntity, bool>> filter,
@@ -115,28 +112,28 @@
                 .Select(projection);
         }
 
-        public virtual async Task<ITaxonRankEntity> FindFirst(Expression<Func<ITaxonRankEntity, bool>> filter)
+        public virtual Task<ITaxonRankEntity> FindFirst(
+            Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
 
-            var entity = (await this.Context.All())
-                .FirstOrDefault(filter);
+            var entity = this.Context.DataSet.FirstOrDefault(filter);
             return entity;
-        }
+        });
 
-        public virtual async Task<T> FindFirst<T>(
+        public virtual Task<T> FindFirst<T>(
             Expression<Func<ITaxonRankEntity, bool>> filter,
-            Expression<Func<ITaxonRankEntity, T>> projection)
+            Expression<Func<ITaxonRankEntity, T>> projection) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
             DummyValidator.ValidateProjection(projection);
 
-            var entity = (await this.Context.All())
+            var entity = this.Context.DataSet
                 .Where(filter)
                 .Select(projection)
                 .FirstOrDefault();
             return entity;
-        }
+        });
 
         public Task<ITaxonRankEntity> Get(object id)
         {

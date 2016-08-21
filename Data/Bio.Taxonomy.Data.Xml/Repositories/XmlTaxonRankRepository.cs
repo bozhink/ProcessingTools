@@ -31,27 +31,9 @@
             return this.Context.Add(entity);
         }
 
-        public virtual async Task<long> Count()
-        {
-            var count = (await this.Context.All())
-                .LongCount();
+        public virtual Task<long> Count() => Task.FromResult(this.Context.DataSet.LongCount());
 
-            return count;
-        }
-
-        public virtual async Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var count = (await this.Context.All())
-                .Where(filter)
-                .LongCount();
-
-            return count;
-        }
+        public virtual Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.FromResult(this.Context.DataSet.LongCount(filter));
 
         public virtual Task<object> Delete(object id)
         {
@@ -83,7 +65,7 @@
             return this.Context.Update(entity);
         }
 
-        public virtual Task<long> SaveChanges() => this.Context.WriteTaxa(this.Config.RankListXmlFilePath);
+        public virtual Task<long> SaveChanges() => this.Context.WriteToFile(this.Config.RankListXmlFilePath);
 
         public virtual async Task<object> Update(object id, IUpdateExpression<ITaxonRankEntity> update)
         {

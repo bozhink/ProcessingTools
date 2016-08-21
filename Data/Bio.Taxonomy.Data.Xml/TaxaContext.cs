@@ -57,7 +57,7 @@
             }
         };
 
-        public Task<IQueryable<ITaxonRankEntity>> All() => Task.Run(() => new HashSet<ITaxonRankEntity>(this.Taxa.Values).AsQueryable());
+        public IQueryable<ITaxonRankEntity> DataSet => new HashSet<ITaxonRankEntity>(this.Taxa.Values).AsQueryable();
 
         public Task<ITaxonRankEntity> Get(object id)
         {
@@ -87,7 +87,7 @@
             return Task.FromResult<object>(taxon);
         }
 
-        public Task<long> LoadTaxa(string fileName)
+        public Task<long> LoadFromFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -111,7 +111,7 @@
             });
         }
 
-        public async Task<long> WriteTaxa(string fileName)
+        public async Task<long> WriteToFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
