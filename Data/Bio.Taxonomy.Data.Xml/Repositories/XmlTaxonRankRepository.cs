@@ -12,7 +12,7 @@
 
     public class XmlTaxonRankRepository : FileGenericRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {
-        public XmlTaxonRankRepository(ITaxaContextProvider contextProvider, Config config)
+        public XmlTaxonRankRepository(ITaxaContextProvider contextProvider, IConfig config)
             : base(contextProvider)
         {
             if (config == null)
@@ -24,7 +24,7 @@
             this.Context.LoadFromFile(this.Config.RankListXmlFilePath).Wait();
         }
 
-        protected Config Config { get; private set; }
+        protected IConfig Config { get; private set; }
 
         public override Task<long> SaveChanges() => this.Context.WriteToFile(this.Config.RankListXmlFilePath);
     }

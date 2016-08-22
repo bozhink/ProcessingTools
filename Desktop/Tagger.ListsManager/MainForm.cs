@@ -23,7 +23,7 @@
             this.rankListManager.IsRankList = true;
         }
 
-        internal static Config Config { get; set; }
+        internal static IConfig Config { get; set; }
 
         private string GetDefaultConfigFileName => ConfigurationManager.AppSettings["ConfigJsonFilePath"];
 

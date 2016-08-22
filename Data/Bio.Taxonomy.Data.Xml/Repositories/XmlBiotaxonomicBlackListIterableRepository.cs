@@ -11,7 +11,7 @@
 
     public class XmlBiotaxonomicBlackListIterableRepository : FileIterableRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListIterableRepository
     {
-        public XmlBiotaxonomicBlackListIterableRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, Config config)
+        public XmlBiotaxonomicBlackListIterableRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, IConfig config)
             : base(contextProvider)
         {
             if (config == null)
@@ -23,6 +23,6 @@
             this.Context.LoadFromFile(this.Config.BlackListXmlFilePath).Wait();
         }
 
-        private Config Config { get; set; }
+        private IConfig Config { get; set; }
     }
 }

@@ -11,7 +11,7 @@
 
     public class XmlTaxonRankSearchableRepository : FileSearchableRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankSearchableRepository
     {
-        public XmlTaxonRankSearchableRepository(ITaxaContextProvider contextProvider, Config config)
+        public XmlTaxonRankSearchableRepository(ITaxaContextProvider contextProvider, IConfig config)
             : base(contextProvider)
         {
             if (config == null)
@@ -23,6 +23,6 @@
             this.Context.LoadFromFile(this.Config.RankListXmlFilePath).Wait();
         }
 
-        protected Config Config { get; private set; }
+        protected IConfig Config { get; private set; }
     }
 }

@@ -12,7 +12,7 @@
 
     public class XmlBiotaxonomicBlackListRepository : FileCrudRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
     {
-        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, Config config)
+        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, IConfig config)
             : base(contextProvider)
         {
             if (config == null)
@@ -24,7 +24,7 @@
             this.Context.LoadFromFile(this.Config.BlackListXmlFilePath).Wait();
         }
 
-        private Config Config { get; set; }
+        private IConfig Config { get; set; }
 
         public override Task<long> SaveChanges() => this.Context.WriteToFile(this.Config.BlackListXmlFilePath);
 
