@@ -24,7 +24,7 @@
 
         public Task<IQueryable<TEntity>> All() => Task.Run(() =>
         {
-            var query = this.Collection.AsQueryable().Cast<TEntity>();
+            var query = this.Collection.AsQueryable().AsQueryable<TEntity>();
             return query;
         });
 
