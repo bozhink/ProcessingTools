@@ -25,9 +25,9 @@
             this.Items = new ConcurrentQueue<IBlackListEntity>();
         }
 
-        private ConcurrentQueue<IBlackListEntity> Items { get; set; }
-
         public IQueryable<IBlackListEntity> DataSet => new HashSet<IBlackListEntity>(this.Items).AsQueryable();
+
+        private ConcurrentQueue<IBlackListEntity> Items { get; set; }
 
         public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
         {
@@ -57,17 +57,6 @@
             DummyValidator.ValidateId(id);
             var entity = this.DataSet.FirstOrDefault(e => e.Content == id.ToString());
             return entity;
-        });
-
-        private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
-        {
-            DummyValidator.ValidateEntity(entity);
-
-            var items = this.DataSet.ToList();
-            items.Remove(entity);
-            this.Items = new ConcurrentQueue<IBlackListEntity>(items);
-
-            return (object)entity;
         });
 
         public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
@@ -109,6 +98,17 @@
             list.Save(fileName, SaveOptions.DisableFormatting);
 
             return (long)items.Length;
+        });
+
+        private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
+        {
+            DummyValidator.ValidateEntity(entity);
+
+            var items = this.DataSet.ToList();
+            items.Remove(entity);
+            this.Items = new ConcurrentQueue<IBlackListEntity>(items);
+
+            return (object)entity;
         });
     }
 }
