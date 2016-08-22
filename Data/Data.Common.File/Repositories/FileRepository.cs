@@ -17,6 +17,6 @@
             this.Context = contextProvider.Create();
         }
 
-        protected TContext Context { get; private set; }
+        protected virtual TContext Context { get; private set; }
     }
 }

@@ -117,7 +117,7 @@
             return entity;
         });
 
-        public Task<TEntity> Get(object id)
+        public virtual Task<TEntity> Get(object id)
         {
             DummyValidator.ValidateId(id);
 
