@@ -88,6 +88,8 @@
 
         public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
         {
+            DummyValidator.ValidateFileName(fileName);
+
             var timeSpan = this.lastUpdated - DateTime.Now;
             if (timeSpan.HasValue &&
                 timeSpan.Value.Milliseconds < MillisecondsToUpdate)
@@ -95,7 +97,7 @@
                 return -1L;
             }
 
-            XElement.Load(this.Config.BlackListXmlFilePath)
+            XElement.Load(fileName)
                 .Descendants(ItemNodeName)
                 .AsParallel()
                 .ForAll(element => this.Items.Enqueue(new BlackListEntity
