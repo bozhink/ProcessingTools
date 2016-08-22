@@ -33,6 +33,7 @@
 
             this.Config = config;
             this.Context = contextProvider.Create();
+            this.Context.LoadFromFile(this.Config.BlackListXmlFilePath).Wait();
         }
 
         private Config Config { get; set; }

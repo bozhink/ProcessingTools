@@ -4,6 +4,7 @@
 
     using Contracts;
 
+    using ProcessingTools.Configurator;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Data.Common.Repositories.Contracts;
@@ -24,7 +25,7 @@
 
         public IIterableRepository<IBlackListEntity> Create()
         {
-            return new XmlBiotaxonomicBlackListIterableRepository(this.provider);
+            return new XmlBiotaxonomicBlackListIterableRepository(this.provider, ConfigBuilder.Create());
         }
     }
 }

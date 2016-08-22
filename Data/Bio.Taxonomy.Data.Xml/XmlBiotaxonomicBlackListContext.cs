@@ -12,7 +12,6 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Configurator;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
     {
@@ -21,29 +20,14 @@
         private const int MillisecondsToUpdate = 500;
         private DateTime? lastUpdated;
 
-        public XmlBiotaxonomicBlackListContext(Config config)
+        public XmlBiotaxonomicBlackListContext()
         {
-            if (config == null)
-            {
-                throw new ArgumentNullException(nameof(config));
-            }
-
-            this.Config = config;
             this.Items = new ConcurrentQueue<IBlackListEntity>();
         }
 
-        private Config Config { get; set; }
-
         private ConcurrentQueue<IBlackListEntity> Items { get; set; }
 
-        public IQueryable<IBlackListEntity> DataSet
-        {
-            get
-            {
-                this.LoadFromFile(this.Config.BlackListXmlFilePath).Wait();
-                return new HashSet<IBlackListEntity>(this.Items).AsQueryable();
-            }
-        }
+        public IQueryable<IBlackListEntity> DataSet => new HashSet<IBlackListEntity>(this.Items).AsQueryable();
 
         public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
         {
