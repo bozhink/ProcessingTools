@@ -8,7 +8,10 @@
     using System.Xml.Linq;
 
     using Contracts;
+    using Models;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.Configurator;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
@@ -26,47 +29,38 @@
             }
 
             this.Config = config;
-            this.Items = new ConcurrentQueue<string>();
+            this.Items = new ConcurrentQueue<IBlackListEntity>();
         }
 
         private Config Config { get; set; }
 
-        private ConcurrentQueue<string> Items { get; set; }
+        private ConcurrentQueue<IBlackListEntity> Items { get; set; }
 
-        public Task<object> Add(string entity)
+        public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
         {
-            if (string.IsNullOrWhiteSpace(entity))
+            DummyValidator.ValidateEntity(entity);
+
+            if (!string.IsNullOrWhiteSpace(entity.Content))
             {
-                throw new ArgumentNullException(nameof(entity));
+                this.Items.Enqueue(entity);
             }
 
-            return Task.Run<object>(() =>
-            {
-                if (!string.IsNullOrWhiteSpace(entity))
-                {
-                    this.Items.Enqueue(entity);
-                }
+            return entity;
+        });
 
-                return entity;
-            });
-        }
-
-        public async Task<IQueryable<string>> All()
+        public async Task<IQueryable<IBlackListEntity>> All()
         {
             await this.ReadItemsFromFile();
-            return new HashSet<string>(this.Items).AsQueryable();
+            return new HashSet<IBlackListEntity>(this.Items).AsQueryable();
         }
 
-        public async Task<object> Delete(string entity)
+        public async Task<object> Delete(IBlackListEntity entity)
         {
-            if (string.IsNullOrWhiteSpace(entity))
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            DummyValidator.ValidateEntity(entity);
 
             var items = (await this.All()).ToList();
             items.Remove(entity);
-            this.Items = new ConcurrentQueue<string>(items);
+            this.Items = new ConcurrentQueue<IBlackListEntity>(items);
 
             return entity;
         }
@@ -74,7 +68,7 @@
         public async Task<long> WriteItemsToFile()
         {
             var items = (await this.All())
-                .Select(item => new XElement(ItemNodeName, item))
+                .Select(item => new XElement(ItemNodeName, item.Content))
                 .ToArray();
 
             XElement list = new XElement(RootNodeName, items);
@@ -85,20 +79,23 @@
         }
 
         private Task ReadItemsFromFile() => Task.Run(() =>
+        {
+            var timeSpan = this.lastUpdated - DateTime.Now;
+            if (timeSpan.HasValue &&
+                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            {
+                return;
+            }
+
+            XElement.Load(this.Config.BlackListXmlFilePath)
+                .Descendants(ItemNodeName)
+                .AsParallel()
+                .ForAll(element => this.Items.Enqueue(new BlackListEntity
                 {
-                    var timeSpan = this.lastUpdated - DateTime.Now;
-                    if (timeSpan.HasValue &&
-                        timeSpan.Value.Milliseconds < MillisecondsToUpdate)
-                    {
-                        return;
-                    }
+                    Content = element.Value
+                }));
 
-                    XElement.Load(this.Config.BlackListXmlFilePath)
-                        .Descendants(ItemNodeName)
-                        .AsParallel()
-                        .ForAll(element => this.Items.Enqueue(element.Value));
-
-                    this.lastUpdated = DateTime.Now;
-                });
+            this.lastUpdated = DateTime.Now;
+        });
     }
 }

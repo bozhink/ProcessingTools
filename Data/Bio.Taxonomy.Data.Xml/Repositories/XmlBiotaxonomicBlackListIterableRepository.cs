@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Contracts;
     using Models;
@@ -15,20 +14,16 @@
     {
         private readonly IXmlBiotaxonomicBlackListContext context;
 
-        public XmlBiotaxonomicBlackListIterableRepository(IXmlBiotaxonomicBlackListContextProvider provider)
+        public XmlBiotaxonomicBlackListIterableRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider)
         {
-            if (provider == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.context = provider.Create();
+            this.context = contextProvider.Create();
         }
 
-        public IEnumerable<IBlackListEntity> Entities => this.context.All().Result
-            .Select(s => new BlackListEntity
-            {
-                Content = s
-            });
+        public IEnumerable<IBlackListEntity> Entities => this.context.All().Result.ToList();
     }
 }

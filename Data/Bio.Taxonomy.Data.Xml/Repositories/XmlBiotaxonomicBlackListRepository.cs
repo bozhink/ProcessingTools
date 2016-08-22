@@ -12,6 +12,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Types;
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.Expressions.Contracts;
 
@@ -19,14 +20,14 @@
     {
         private readonly IXmlBiotaxonomicBlackListContext context;
 
-        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider provider)
+        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider)
         {
-            if (provider == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.context = provider.Create();
+            this.context = contextProvider.Create();
         }
 
         public virtual async Task<object> Add(IBlackListEntity entity)
@@ -36,14 +37,14 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            var result = await this.context.Add(entity.Content);
+            var result = await this.context.Add(entity);
 
             return result;
         }
 
         public Task<IQueryable<IBlackListEntity>> All()
         {
-            throw new NotImplementedException();
+            return this.context.All();
         }
 
         public virtual async Task<object> Delete(object id)
@@ -53,19 +54,12 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.context.Delete(id.ToString());
+            var result = await this.context.Delete(new BlackListEntity
+            {
+                Content = id.ToString()
+            });
 
             return result;
-        }
-
-        public virtual Task<object> Delete(IBlackListEntity entity)
-        {
-            if (entity == null || string.IsNullOrWhiteSpace(entity.Content))
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            return this.Delete(entity.Content);
         }
 
         public Task<IQueryable<IBlackListEntity>> Find(Expression<Func<IBlackListEntity, bool>> filter)
@@ -107,12 +101,7 @@
 
             var query = await this.context.All();
 
-            var result = query.Where(s => s == id.ToString())
-                .Select(s => new BlackListEntity
-                {
-                    Content = s
-                })
-                .FirstOrDefault();
+            var result = query.FirstOrDefault(s => s.Content == id.ToString());
 
             return result;
         }
@@ -123,15 +112,8 @@
 
         public virtual async Task<object> Update(object id, IUpdateExpression<IBlackListEntity> update)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            if (update == null)
-            {
-                throw new ArgumentNullException(nameof(update));
-            }
+            DummyValidator.ValidateId(id);
+            DummyValidator.ValidateUpdate(update);
 
             var entity = await this.Get(id);
             if (entity == null)

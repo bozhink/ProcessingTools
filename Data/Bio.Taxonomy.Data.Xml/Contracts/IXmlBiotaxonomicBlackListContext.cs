@@ -2,14 +2,15 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
 
     public interface IXmlBiotaxonomicBlackListContext
     {
-        Task<object> Add(string entity);
+        Task<object> Add(IBlackListEntity entity);
 
-        Task<IQueryable<string>> All();
+        Task<IQueryable<IBlackListEntity>> All();
 
-        Task<object> Delete(string entity);
+        Task<object> Delete(IBlackListEntity entity);
 
         Task<long> WriteItemsToFile();
     }
