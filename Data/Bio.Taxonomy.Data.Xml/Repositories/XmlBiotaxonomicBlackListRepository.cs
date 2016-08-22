@@ -13,20 +13,29 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Types;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class XmlBiotaxonomicBlackListRepository : IXmlBiotaxonomicBlackListRepository
     {
-        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider)
+        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, Config config)
         {
             if (contextProvider == null)
             {
                 throw new ArgumentNullException(nameof(contextProvider));
             }
 
+            if (config == null)
+            {
+                throw new ArgumentNullException(nameof(config));
+            }
+
+            this.Config = config;
             this.Context = contextProvider.Create();
         }
+
+        private Config Config { get; set; }
 
         private IXmlBiotaxonomicBlackListContext Context { get; set; }
 
@@ -100,7 +109,7 @@
             return result;
         }
 
-        public virtual Task<long> SaveChanges() => this.Context.WriteToFile("DataFile");
+        public virtual Task<long> SaveChanges() => this.Context.WriteToFile(this.Config.BlackListXmlFilePath);
 
         public virtual Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 

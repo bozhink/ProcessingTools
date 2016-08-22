@@ -114,13 +114,15 @@
 
         public Task<long> WriteToFile(string fileName) => Task.Run(() =>
         {
+            DummyValidator.ValidateFileName(fileName);
+
             var items = this.DataSet
                 .Select(item => new XElement(ItemNodeName, item.Content))
                 .ToArray();
 
             XElement list = new XElement(RootNodeName, items);
 
-            list.Save(this.Config.BlackListXmlFilePath, SaveOptions.DisableFormatting);
+            list.Save(fileName, SaveOptions.DisableFormatting);
 
             return (long)items.Length;
         });

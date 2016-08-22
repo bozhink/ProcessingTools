@@ -6,6 +6,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class XmlBiotaxonomicBlackListRepositoryProvider : IXmlBiotaxonomicBlackListRepositoryProvider
@@ -24,7 +25,7 @@
 
         public ICrudRepository<IBlackListEntity> Create()
         {
-            return new XmlBiotaxonomicBlackListRepository(this.provider);
+            return new XmlBiotaxonomicBlackListRepository(this.provider, ConfigBuilder.Create());
         }
     }
 }
