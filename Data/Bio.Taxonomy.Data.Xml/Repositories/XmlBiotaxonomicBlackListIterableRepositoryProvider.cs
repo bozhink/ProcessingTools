@@ -4,28 +4,28 @@
 
     using Contracts;
 
-    using ProcessingTools.Configurator;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public class XmlBiotaxonomicBlackListIterableRepositoryProvider : IXmlBiotaxonomicBlackListIterableRepositoryProvider
     {
-        private readonly IXmlBiotaxonomicBlackListContextProvider provider;
+        private readonly IXmlBiotaxonomicBlackListContextProvider contextProvider;
 
-        public XmlBiotaxonomicBlackListIterableRepositoryProvider(IXmlBiotaxonomicBlackListContextProvider provider)
+        public XmlBiotaxonomicBlackListIterableRepositoryProvider(IXmlBiotaxonomicBlackListContextProvider contextProvider)
         {
-            if (provider == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.provider = provider;
+            this.contextProvider = contextProvider;
         }
 
         public IIterableRepository<IBlackListEntity> Create()
         {
-            return new XmlBiotaxonomicBlackListIterableRepository(this.provider, ConfigBuilder.Create());
+            return new XmlBiotaxonomicBlackListIterableRepository(this.contextProvider, ConfigBuilder.Create());
         }
     }
 }

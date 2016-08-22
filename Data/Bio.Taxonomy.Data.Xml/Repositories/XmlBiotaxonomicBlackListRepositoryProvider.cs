@@ -11,21 +11,21 @@
 
     public class XmlBiotaxonomicBlackListRepositoryProvider : IXmlBiotaxonomicBlackListRepositoryProvider
     {
-        private readonly IXmlBiotaxonomicBlackListContextProvider provider;
+        private readonly IXmlBiotaxonomicBlackListContextProvider contextProvider;
 
-        public XmlBiotaxonomicBlackListRepositoryProvider(IXmlBiotaxonomicBlackListContextProvider provider)
+        public XmlBiotaxonomicBlackListRepositoryProvider(IXmlBiotaxonomicBlackListContextProvider contextProvider)
         {
-            if (provider == null)
+            if (contextProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.provider = provider;
+            this.contextProvider = contextProvider;
         }
 
         public ICrudRepository<IBlackListEntity> Create()
         {
-            return new XmlBiotaxonomicBlackListRepository(this.provider, ConfigBuilder.Create());
+            return new XmlBiotaxonomicBlackListRepository(this.contextProvider, ConfigBuilder.Create());
         }
     }
 }
