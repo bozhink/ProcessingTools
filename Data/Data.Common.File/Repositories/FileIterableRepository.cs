@@ -20,7 +20,7 @@
             this.Context = contextProvider.Create();
         }
 
-        public IEnumerable<T> Entities => this.Context.DataSet;
+        public virtual IEnumerable<T> Entities => this.Context.DataSet;
 
         protected virtual TContext Context { get; private set; }
     }
