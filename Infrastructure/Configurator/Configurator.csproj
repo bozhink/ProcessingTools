@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="ConfigBuilder.cs" />
+    <Compile Include="IConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
