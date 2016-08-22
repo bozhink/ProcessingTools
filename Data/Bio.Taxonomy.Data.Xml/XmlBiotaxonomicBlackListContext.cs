@@ -36,6 +36,15 @@
 
         private ConcurrentQueue<IBlackListEntity> Items { get; set; }
 
+        public IQueryable<IBlackListEntity> DataSet
+        {
+            get
+            {
+                this.ReadItemsFromFile().Wait();
+                return new HashSet<IBlackListEntity>(this.Items).AsQueryable();
+            }
+        }
+
         public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
         {
             DummyValidator.ValidateEntity(entity);
@@ -48,26 +57,20 @@
             return entity;
         });
 
-        public async Task<IQueryable<IBlackListEntity>> All()
-        {
-            await this.ReadItemsFromFile();
-            return new HashSet<IBlackListEntity>(this.Items).AsQueryable();
-        }
-
-        public async Task<object> Delete(IBlackListEntity entity)
+        public Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
         {
             DummyValidator.ValidateEntity(entity);
 
-            var items = (await this.All()).ToList();
+            var items = this.DataSet.ToList();
             items.Remove(entity);
             this.Items = new ConcurrentQueue<IBlackListEntity>(items);
 
-            return entity;
-        }
+            return (object)entity;
+        });
 
-        public async Task<long> WriteItemsToFile()
+        public Task<long> WriteItemsToFile() => Task.Run(() =>
         {
-            var items = (await this.All())
+            var items = this.DataSet
                 .Select(item => new XElement(ItemNodeName, item.Content))
                 .ToArray();
 
@@ -75,8 +78,8 @@
 
             list.Save(this.Config.BlackListXmlFilePath, SaveOptions.DisableFormatting);
 
-            return items.Length;
-        }
+            return (long)items.Length;
+        });
 
         private Task ReadItemsFromFile() => Task.Run(() =>
         {
@@ -97,5 +100,27 @@
 
             this.lastUpdated = DateTime.Now;
         });
+
+        public Task<object> Delete(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IBlackListEntity> Get(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<long> LoadFromFile(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
+
+        public Task<long> WriteToFile(string fileName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

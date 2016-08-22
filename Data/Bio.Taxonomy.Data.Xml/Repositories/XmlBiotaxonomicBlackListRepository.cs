@@ -42,10 +42,7 @@
             return result;
         }
 
-        public Task<IQueryable<IBlackListEntity>> All()
-        {
-            return this.context.All();
-        }
+        public Task<IQueryable<IBlackListEntity>> All() => Task.FromResult(this.context.DataSet);
 
         public virtual async Task<object> Delete(object id)
         {
@@ -99,7 +96,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var query = await this.context.All();
+            var query = await this.All();
 
             var result = query.FirstOrDefault(s => s.Content == id.ToString());
 

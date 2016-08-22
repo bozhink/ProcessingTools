@@ -24,6 +24,6 @@
             this.context = contextProvider.Create();
         }
 
-        public IEnumerable<IBlackListEntity> Entities => this.context.All().Result.ToList();
+        public IEnumerable<IBlackListEntity> Entities => this.context.DataSet.ToList();
     }
 }

@@ -3,13 +3,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Data.Common.File.Contracts;
 
-    public interface IXmlBiotaxonomicBlackListContext
+    public interface IXmlBiotaxonomicBlackListContext : IFileDbContext<IBlackListEntity>
     {
-        Task<object> Add(IBlackListEntity entity);
-
-        Task<IQueryable<IBlackListEntity>> All();
-
         Task<object> Delete(IBlackListEntity entity);
 
         Task<long> WriteItemsToFile();
