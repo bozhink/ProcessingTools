@@ -10,6 +10,7 @@
     using Contracts;
     using Models;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Common.Validation;
 
@@ -85,11 +86,16 @@
 
         public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 
-        public Task<long> WriteToFile(string fileName) => Task.Run(() =>
+        public async Task<long> WriteToFile(string fileName)
         {
             DummyValidator.ValidateFileName(fileName);
 
+            await this.LoadFromFile(fileName);
+
+            var comparer = new BlackListEntityEqualityComparer();
+
             var items = this.DataSet
+                .Distinct(comparer)
                 .Select(item => new XElement(ItemNodeName, item.Content))
                 .ToArray();
 
@@ -98,7 +104,7 @@
             list.Save(fileName, SaveOptions.DisableFormatting);
 
             return (long)items.Length;
-        });
+        }
 
         private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
         {

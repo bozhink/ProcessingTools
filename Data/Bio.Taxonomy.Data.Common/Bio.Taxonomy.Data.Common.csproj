@@ -37,6 +37,7 @@
     <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Constants\XmlModelsConstants.cs" />
+    <Compile Include="Models\BlackListEntityEqualityComparer.cs" />
     <Compile Include="Models\Contracts\IBlackListEntity.cs" />
     <Compile Include="Models\Contracts\ITaxonRankEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -44,21 +44,21 @@
         };
 
         private Func<TaxonXmlModel, ITaxonRankEntity> MapTaxonXmlModelToTaxonRankEntity => t =>
-                {
-                    var ranks = t.Parts.FirstOrDefault().Ranks.Values
-                        .Where(r => !string.IsNullOrWhiteSpace(r))
-                        .Select(r => r.MapTaxonRankStringToTaxonRankType())
-                        .ToList();
+        {
+            var ranks = t.Parts.FirstOrDefault().Ranks.Values
+                .Where(r => !string.IsNullOrWhiteSpace(r))
+                .Select(r => r.MapTaxonRankStringToTaxonRankType())
+                .ToList();
 
-                    var taxon = new Taxon
-                    {
-                        Name = t.Parts.FirstOrDefault().Value,
-                        IsWhiteListed = t.IsWhiteListed,
-                        Ranks = new HashSet<TaxonRankType>(ranks)
-                    };
+            var taxon = new Taxon
+            {
+                Name = t.Parts.FirstOrDefault().Value,
+                IsWhiteListed = t.IsWhiteListed,
+                Ranks = new HashSet<TaxonRankType>(ranks)
+            };
 
-                    return taxon;
-                };
+            return taxon;
+        };
 
         public Task<object> Add(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
 
