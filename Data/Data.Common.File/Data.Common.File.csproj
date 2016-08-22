@@ -40,6 +40,7 @@
     <Compile Include="Repositories\Contracts\IFileGenericRepository.cs" />
     <Compile Include="Repositories\Contracts\IFileRepository.cs" />
     <Compile Include="Repositories\Contracts\IFileSearchableRepository.cs" />
+    <Compile Include="Repositories\Contracts\IIterableFileRepository.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\FileSearchableRepository.cs" />
     <Compile Include="Repositories\AbstractFileCrudRepository.cs" />
