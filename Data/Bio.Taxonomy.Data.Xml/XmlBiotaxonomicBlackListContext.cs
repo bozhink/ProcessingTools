@@ -40,7 +40,7 @@
         {
             get
             {
-                this.ReadItemsFromFile().Wait();
+                this.LoadFromFile(this.Config.BlackListXmlFilePath).Wait();
                 return new HashSet<IBlackListEntity>(this.Items).AsQueryable();
             }
         }
@@ -75,7 +75,7 @@
             return entity;
         });
 
-        public Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
+        private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
         {
             DummyValidator.ValidateEntity(entity);
 
@@ -86,26 +86,13 @@
             return (object)entity;
         });
 
-        public Task<long> WriteItemsToFile() => Task.Run(() =>
-        {
-            var items = this.DataSet
-                .Select(item => new XElement(ItemNodeName, item.Content))
-                .ToArray();
-
-            XElement list = new XElement(RootNodeName, items);
-
-            list.Save(this.Config.BlackListXmlFilePath, SaveOptions.DisableFormatting);
-
-            return (long)items.Length;
-        });
-
-        private Task ReadItemsFromFile() => Task.Run(() =>
+        public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
         {
             var timeSpan = this.lastUpdated - DateTime.Now;
             if (timeSpan.HasValue &&
                 timeSpan.Value.Milliseconds < MillisecondsToUpdate)
             {
-                return;
+                return -1L;
             }
 
             XElement.Load(this.Config.BlackListXmlFilePath)
@@ -117,18 +104,23 @@
                 }));
 
             this.lastUpdated = DateTime.Now;
-        });
 
-        public Task<long> LoadFromFile(string fileName)
-        {
-            throw new NotImplementedException();
-        }
+            return this.Items.Count;
+        });
 
         public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 
-        public Task<long> WriteToFile(string fileName)
+        public Task<long> WriteToFile(string fileName) => Task.Run(() =>
         {
-            throw new NotImplementedException();
-        }
+            var items = this.DataSet
+                .Select(item => new XElement(ItemNodeName, item.Content))
+                .ToArray();
+
+            XElement list = new XElement(RootNodeName, items);
+
+            list.Save(this.Config.BlackListXmlFilePath, SaveOptions.DisableFormatting);
+
+            return (long)items.Length;
+        });
     }
 }

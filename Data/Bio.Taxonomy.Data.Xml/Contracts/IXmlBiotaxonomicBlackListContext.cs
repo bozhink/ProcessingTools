@@ -7,6 +7,5 @@
 
     public interface IXmlBiotaxonomicBlackListContext : IFileDbContext<IBlackListEntity>
     {
-        Task<long> WriteItemsToFile();
     }
 }

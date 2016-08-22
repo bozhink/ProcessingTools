@@ -100,7 +100,7 @@
             return result;
         }
 
-        public virtual Task<long> SaveChanges() => this.context.WriteItemsToFile();
+        public virtual Task<long> SaveChanges() => this.context.WriteToFile("DataFile");
 
         public virtual Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 
