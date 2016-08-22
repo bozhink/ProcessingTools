@@ -18,8 +18,6 @@
 
     public class XmlBiotaxonomicBlackListRepository : IXmlBiotaxonomicBlackListRepository
     {
-        private readonly IXmlBiotaxonomicBlackListContext context;
-
         public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider)
         {
             if (contextProvider == null)
@@ -27,8 +25,10 @@
                 throw new ArgumentNullException(nameof(contextProvider));
             }
 
-            this.context = contextProvider.Create();
+            this.Context = contextProvider.Create();
         }
+
+        private IXmlBiotaxonomicBlackListContext Context { get; set; }
 
         public virtual async Task<object> Add(IBlackListEntity entity)
         {
@@ -37,12 +37,12 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            var result = await this.context.Add(entity);
+            var result = await this.Context.Add(entity);
 
             return result;
         }
 
-        public Task<IQueryable<IBlackListEntity>> All() => Task.FromResult(this.context.DataSet);
+        public Task<IQueryable<IBlackListEntity>> All() => Task.FromResult(this.Context.DataSet);
 
         public virtual async Task<object> Delete(object id)
         {
@@ -51,7 +51,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.context.Delete(id);
+            var result = await this.Context.Delete(id);
 
             return result;
         }
@@ -100,7 +100,7 @@
             return result;
         }
 
-        public virtual Task<long> SaveChanges() => this.context.WriteToFile("DataFile");
+        public virtual Task<long> SaveChanges() => this.Context.WriteToFile("DataFile");
 
         public virtual Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 
