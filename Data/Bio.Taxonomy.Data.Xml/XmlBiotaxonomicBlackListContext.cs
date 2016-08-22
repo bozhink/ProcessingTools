@@ -57,6 +57,24 @@
             return entity;
         });
 
+        public Task<object> Delete(object id)
+        {
+            DummyValidator.ValidateId(id);
+            var entity = new BlackListEntity
+            {
+                Content = id.ToString()
+            };
+
+            return this.Delete(entity);
+        }
+
+        public Task<IBlackListEntity> Get(object id) => Task.Run(() =>
+        {
+            DummyValidator.ValidateId(id);
+            var entity = this.DataSet.FirstOrDefault(e => e.Content == id.ToString());
+            return entity;
+        });
+
         public Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
         {
             DummyValidator.ValidateEntity(entity);
@@ -100,16 +118,6 @@
 
             this.lastUpdated = DateTime.Now;
         });
-
-        public Task<object> Delete(object id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IBlackListEntity> Get(object id)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<long> LoadFromFile(string fileName)
         {

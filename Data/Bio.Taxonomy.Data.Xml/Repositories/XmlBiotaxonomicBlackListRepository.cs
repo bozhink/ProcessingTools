@@ -51,10 +51,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.context.Delete(new BlackListEntity
-            {
-                Content = id.ToString()
-            });
+            var result = await this.context.Delete(id);
 
             return result;
         }
