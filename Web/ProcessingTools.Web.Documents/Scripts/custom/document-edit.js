@@ -42,7 +42,7 @@
 
         // Populate modes and themes
         if (themes) {
-            for (var i = 0, len = themes.length; i < len; i += 1) {
+            for (i = 0, len = themes.length; i < len; i += 1) {
                 option = document.createElement('option');
                 option.textContent = themes[i].display;
                 option.selected = themes[i].selected;
@@ -50,12 +50,28 @@
             }
 
             $(".theme-picker").change(function () {
-                monacoEditor.changeTheme(themes[this.selectedIndex]);
+                var index = this.selectedIndex,
+                    $body = $('body'),
+                    $monacoEditor = $('.monaco-editor');
+                monacoEditor.changeTheme(themes[index]);
+                if (index > 0) {
+                    // Not the default theme
+                    $('.navbar-fixed-bottom').removeClass('navbar-default').addClass('navbar-inverse');
+                } else {
+                    $('.navbar-fixed-bottom').removeClass('navbar-inverse').addClass('navbar-default');
+                }
+
+                if ($monacoEditor) {
+                    $body.css({
+                        'color': $monacoEditor.css('color'),
+                        'background-color': $monacoEditor.css('background-color')
+                    });
+                }
             });
         }
 
         if (modes) {
-            for (var i = 0, len = modes.length; i < len; i += 1) {
+            for (i = 0, len = modes.length; i < len; i += 1) {
                 option = document.createElement('option');
                 option.textContent = modes[i].modeId;
                 option.selected = modes[i].selected;
