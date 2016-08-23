@@ -17,8 +17,7 @@
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1;
 
-    monacoEditor.init(EDITOR_CONTAINER_ID, '');
-
+    // Register get-content
     window.getLinkAddress = document.getElementById(GET_LINK_ID).href;
     documentController.registerGetAction(function (content) {
         var contentHash;
@@ -29,16 +28,45 @@
         }
     });
 
+    // Register save-content
     window.saveLinkAddress = document.getElementById(SAVE_LINK_ID).href;
     documentController.registerSaveAction(function () {
         return window.editor.getValue();
     });
 
-    // Fetch content
-    // Wait 2s to be sure that Monaco editor is up and working
-    setTimeout(function () {
+    monacoEditor.init(EDITOR_CONTAINER_ID, '', function (modes, themes) {
+        var i, len, option;
+
+        // Fetch content
         window.get();
-    }, 2000);
+
+        // Populate modes and themes
+        if (themes) {
+            for (var i = 0, len = themes.length; i < len; i += 1) {
+                option = document.createElement('option');
+                option.textContent = themes[i].display;
+                option.selected = themes[i].selected;
+                $(".theme-picker").append(option);
+            }
+
+            $(".theme-picker").change(function () {
+                monacoEditor.changeTheme(themes[this.selectedIndex]);
+            });
+        }
+
+        if (modes) {
+            for (var i = 0, len = modes.length; i < len; i += 1) {
+                option = document.createElement('option');
+                option.textContent = modes[i].modeId;
+                option.selected = modes[i].selected;
+                $(".language-picker").append(option);
+            }
+
+            $(".language-picker").change(function () {
+                monacoEditor.changeMode(modes[this.selectedIndex]);
+            });
+        }
+    });
 
     // Event handlers
     function getContentEventHandler() {
