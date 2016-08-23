@@ -50,7 +50,11 @@
     }
 
     // Events registration
-    document.getElementById(SAVE_BUTTON_ID).onclick = saveContentEventHandler;
-    document.getElementById(REFRESH_BUTTON_ID).onclick = getContentEventHandler;
+    document
+        .getElementById(SAVE_BUTTON_ID)
+        .addEventListener('click', saveContentEventHandler, false);
+    document
+        .getElementById(REFRESH_BUTTON_ID)
+        .addEventListener('click', getContentEventHandler, false);
 
 }(window));
