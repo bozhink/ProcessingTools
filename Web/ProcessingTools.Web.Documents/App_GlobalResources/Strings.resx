@@ -252,6 +252,15 @@
   <data name="InvalidIdPageTitle" xml:space="preserve">
     <value>Invalid ID</value>
   </data>
+  <data name="InvalidNumberOfItemsPerPageMessageFormat" xml:space="preserve">
+    <value>Number of items per page should be between {0} and {1}.</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageHeading" xml:space="preserve">
+    <value>Invalid Number Of Items Per Page</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageTitle" xml:space="preserve">
+    <value>Invalid Number Of Items Per Page Error</value>
+  </data>
   <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
     <value>Invalid Or Empty File or Files</value>
   </data>

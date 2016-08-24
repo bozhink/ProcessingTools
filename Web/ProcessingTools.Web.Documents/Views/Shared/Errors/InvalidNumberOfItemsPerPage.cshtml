@@ -3,13 +3,13 @@
 @model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "Invalid Number Of Items Per Page Error";
+    ViewBag.Title = Resources.Strings.InvalidNumberOfItemsPerPagePageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3 class="text-danger">Invalid Number Of Items Per Page</h3>
+<h3>@Resources.Strings.InvalidNumberOfItemsPerPagePageHeading</h3>
 
 <p>
     @Model.SourceAction.Message
@@ -17,7 +17,7 @@
 
 <hr />
 
-<p>Number of items per page should be between 1 and @PagingConstants.MaximalItemsPerPageAllowed.</p>
+<p>@string.Format(Resources.Strings.InvalidNumberOfItemsPerPageMessageFormat, 1, @PagingConstants.MaximalItemsPerPageAllowed)</p>
 
 <p>@Resources.Strings.GoBackAndTryAgainMessage</p>
 <p>

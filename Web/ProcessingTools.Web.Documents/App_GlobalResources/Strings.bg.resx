@@ -252,6 +252,15 @@
   <data name="InvalidIdPageTitle" xml:space="preserve">
     <value>Невалиден идентификатор</value>
   </data>
+  <data name="InvalidNumberOfItemsPerPageMessageFormat" xml:space="preserve">
+    <value>Броят на обектите на страница трябва да бъде между {0} и {1}.</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageHeading" xml:space="preserve">
+    <value>Невалиден брой обекти на страница</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageTitle" xml:space="preserve">
+    <value>Невалиден брой обекти на страница</value>
+  </data>
   <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
     <value>Невалиден или празен файл или файлове</value>
   </data>

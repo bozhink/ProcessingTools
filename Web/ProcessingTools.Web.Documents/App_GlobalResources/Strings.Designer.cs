@@ -466,6 +466,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of items per page should be between {0} and {1}..
+        /// </summary>
+        internal static string InvalidNumberOfItemsPerPageMessageFormat {
+            get {
+                return ResourceManager.GetString("InvalidNumberOfItemsPerPageMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Number Of Items Per Page.
+        /// </summary>
+        internal static string InvalidNumberOfItemsPerPagePageHeading {
+            get {
+                return ResourceManager.GetString("InvalidNumberOfItemsPerPagePageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Number Of Items Per Page Error.
+        /// </summary>
+        internal static string InvalidNumberOfItemsPerPagePageTitle {
+            get {
+                return ResourceManager.GetString("InvalidNumberOfItemsPerPagePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Or Empty File or Files.
         /// </summary>
         internal static string InvalidOrEmptyFilePageHeading {
