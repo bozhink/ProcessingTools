@@ -20,5 +20,6 @@
         public const string InvalidPageNumberErrorViewName = "~/Views/Shared/Errors/InvalidPageNumber.cshtml";
         public const string NoFilesSelectedErrorViewName = "~/Views/Shared/Errors/NoFilesSelected.cshtml";
         public const string InvalidIdErrorViewName = "~/Views/Shared/Errors/InvalidId.cshtml";
+        public const string InvalidUserIdErrorViewName = "~/Views/Shared/Errors/InvalidUserId.cshtml";
     }
 }

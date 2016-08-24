@@ -482,6 +482,7 @@
     <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
     <Content Include="Settings.StyleCop" />
     <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
+    <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

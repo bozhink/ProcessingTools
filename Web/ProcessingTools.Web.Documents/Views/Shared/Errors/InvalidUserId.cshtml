@@ -1,0 +1,14 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = "Invalid User Id Error";
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>User Id is not valid.</h3>
+
+<p>Please, go back and try again.</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

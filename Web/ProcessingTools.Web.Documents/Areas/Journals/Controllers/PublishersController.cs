@@ -4,11 +4,9 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
@@ -22,6 +20,9 @@
 
     public class PublishersController : Controller
     {
+        private const string BindingsIncludedForCreateAction = nameof(PublisherCreateViewModel.Name) + "," + nameof(PublisherCreateViewModel.AbbreviatedName);
+        private const string BindingsIncludedForEditAction = nameof(PublisherViewModel.Id) + "," + nameof(PublisherViewModel.Name) + "," + nameof(PublisherViewModel.AbbreviatedName);
+
         private readonly IPublishersDataService service;
 
         public PublishersController(IPublishersDataService service)
@@ -34,7 +35,7 @@
             this.service = service;
         }
 
-        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        private object UserId => User.Identity.GetUserId();
 
         // GET: Journals/Publishers
         [HttpGet]
@@ -91,21 +92,20 @@
         }
 
         // POST: Journals/Publishers/Create
-        // To protect from over-posting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name,AbbreviatedName")] PublisherCreateViewModel publisher)
+        public async Task<ActionResult> Create([Bind(Include = BindingsIncludedForCreateAction)] PublisherCreateViewModel publisher)
         {
             if (this.ModelState.IsValid)
             {
-                await this.service.Add(
-                    User.Identity.GetUserId(),
-                    new PublisherMinimalServiceModel
-                    {
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName
-                    });
+                var userId = this.UserId;
+                var serviceModel = new PublisherMinimalServiceModel
+                {
+                    Name = publisher.Name,
+                    AbbreviatedName = publisher.AbbreviatedName
+                };
+
+                await this.service.Add(userId, serviceModel);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -128,22 +128,21 @@
         }
 
         // POST: Journals/Publishers/Edit/5
-        // To protect from over-posting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,AbbreviatedName")] PublisherViewModel publisher)
+        public async Task<ActionResult> Edit([Bind(Include = BindingsIncludedForEditAction)] PublisherViewModel publisher)
         {
             if (this.ModelState.IsValid)
             {
-                await this.service.Update(
-                    User.Identity.GetUserId(),
-                    new PublisherMinimalServiceModel
-                    {
-                        Id = publisher.Id,
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName
-                    });
+                var userId = this.UserId;
+                var serviceModel = new PublisherMinimalServiceModel
+                {
+                    Id = publisher.Id,
+                    Name = publisher.Name,
+                    AbbreviatedName = publisher.AbbreviatedName
+                };
+
+                await this.service.Update(userId, serviceModel);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -166,7 +165,7 @@
         }
 
         // POST: Journals/Publishers/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(ActionNames.DeafultDeleteActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
@@ -189,6 +188,12 @@
             if (filterContext.Exception is EntityNotFoundException)
             {
                 filterContext.Result = this.DefaultNotFoundView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is InvalidUserIdException)
+            {
+                filterContext.Result = this.InvalidUserIdErrorView(
                     InstanceNames.PublishersControllerInstanceName,
                     filterContext.Exception.Message);
             }
@@ -228,8 +233,8 @@
 
         private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherServiceModel serviceModel)
         {
-            string createdBy = (await this.UserManager.FindByIdAsync(serviceModel.CreatedByUser)).UserName;
-            string modifiedBy = (await this.UserManager.FindByIdAsync(serviceModel.ModifiedByUser)).UserName;
+            string createdByUserName = await this.GetUserNameByUserId(serviceModel.CreatedByUser);
+            string modifiedByUserName = await this.GetUserNameByUserId(serviceModel.ModifiedByUser);
 
             var model = new PublisherDetailsViewModel
             {
@@ -238,8 +243,8 @@
                 AbbreviatedName = serviceModel.AbbreviatedName,
                 DateCreated = serviceModel.DateCreated,
                 DateModified = serviceModel.DateModified,
-                CreatedBy = createdBy,
-                ModifiedBy = modifiedBy
+                CreatedBy = createdByUserName,
+                ModifiedBy = modifiedByUserName
             };
 
             return model;

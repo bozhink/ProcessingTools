@@ -92,8 +92,6 @@
             var entity = (await repository.All())
                 .FirstOrDefault(p => p.Id.ToString() == id.ToString());
 
-            repository.TryDispose();
-
             if (entity == null)
             {
                 throw new EntityNotFoundException();
@@ -121,6 +119,8 @@
                 Id = j.Id,
                 Name = j.Name
             }).ToList();
+
+            repository.TryDispose();
 
             return result;
         }

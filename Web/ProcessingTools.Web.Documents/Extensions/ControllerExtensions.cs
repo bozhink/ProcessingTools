@@ -1,11 +1,15 @@
 ﻿namespace ProcessingTools.Web.Documents.Extensions
 {
     using System;
-    using System.Diagnostics;
     using System.Net;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
 
+    using Microsoft.AspNet.Identity.Owin;
+
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
 
@@ -16,6 +20,31 @@
         private const string AreaNameContextKey = "area";
         private const string ActionNameContextKey = "action";
         private const string ControllerNameContextKey = "controller";
+
+        public static async Task<string> GetUserNameByUserId(this Controller controller, object userId)
+        {
+            if (controller == null)
+            {
+                throw new ArgumentNullException(nameof(controller));
+            }
+
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            var userManager = controller.HttpContext
+                .GetOwinContext()
+                .GetUserManager<ApplicationUserManager>();
+
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                throw new InvalidUserIdException(userId);
+            }
+
+            return user.UserName;
+        }
 
         public static string GetCallingActionName(this Controller controller)
         {
@@ -176,6 +205,16 @@
         }
 
         public static ViewResult InvalidIdErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
+        {
+            return controller.ErrorViewWithGoBackToIndexDestination(
+                ViewNames.InvalidIdErrorViewName,
+                HttpStatusCode.BadRequest,
+                instanceName,
+                message,
+                actionLinkText);
+        }
+
+        public static ViewResult InvalidUserIdErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewNames.InvalidIdErrorViewName,
