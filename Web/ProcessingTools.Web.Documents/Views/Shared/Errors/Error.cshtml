@@ -1,13 +1,13 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = Resources.Strings.ErrorPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3 class="text-danger">An error occurred while processing your request.</h3>
+<h3>@Resources.Strings.ErrorPageHeading</h3>
 
 <p>
     @Model.SourceAction.Message

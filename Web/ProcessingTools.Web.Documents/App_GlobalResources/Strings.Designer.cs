@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bad Request.
+        /// </summary>
+        internal static string BadRequestPageHeading {
+            get {
+                return ResourceManager.GetString("BadRequestPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Request.
+        /// </summary>
+        internal static string BadRequestPageTitle {
+            get {
+                return ResourceManager.GetString("BadRequestPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         internal static string ContactActionLinkTitle {
@@ -322,11 +340,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while processing your request.
+        /// </summary>
+        internal static string ErrorPageHeading {
+            get {
+                return ResourceManager.GetString("ErrorPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string ErrorPageTitle {
+            get {
+                return ResourceManager.GetString("ErrorPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Files.
         /// </summary>
         internal static string FilesActionLinkTitle {
             get {
                 return ResourceManager.GetString("FilesActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, go back and try again..
+        /// </summary>
+        internal static string GoBackAndTryAgainMessage {
+            get {
+                return ResourceManager.GetString("GoBackAndTryAgainMessage", resourceCulture);
             }
         }
         
@@ -385,6 +430,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Action.
+        /// </summary>
+        internal static string InvalidActionPageHeading {
+            get {
+                return ResourceManager.GetString("InvalidActionPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Action.
+        /// </summary>
+        internal static string InvalidActionPageTitle {
+            get {
+                return ResourceManager.GetString("InvalidActionPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journals.
         /// </summary>
         internal static string JournalActionLinkTitle {
@@ -426,6 +489,24 @@ namespace Resources {
         internal static string LogoutActionLinkTitle {
             get {
                 return ResourceManager.GetString("LogoutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        internal static string NotFoundPageHeading {
+            get {
+                return ResourceManager.GetString("NotFoundPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        internal static string NotFoundPageTitle {
+            get {
+                return ResourceManager.GetString("NotFoundPageTitle", resourceCulture);
             }
         }
         

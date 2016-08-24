@@ -123,6 +123,12 @@
   <data name="ArticlesActionLinkTitle" xml:space="preserve">
     <value>Статии</value>
   </data>
+  <data name="BadRequestPageHeading" xml:space="preserve">
+    <value>Невалидна заявка</value>
+  </data>
+  <data name="BadRequestPageTitle" xml:space="preserve">
+    <value>Невалидна заявка</value>
+  </data>
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Контакти</value>
   </data>
@@ -204,8 +210,17 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Документът е запазен успешно</value>
   </data>
+  <data name="ErrorPageHeading" xml:space="preserve">
+    <value>Възникна грешка при обработка на заявката</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
   <data name="FilesActionLinkTitle" xml:space="preserve">
     <value>Файлове</value>
+  </data>
+  <data name="GoBackAndTryAgainMessage" xml:space="preserve">
+    <value>Моля, въренете се назад и опитайте отново.</value>
   </data>
   <data name="HelpActionLinkTitle" xml:space="preserve">
     <value>Помощ</value>
@@ -225,6 +240,12 @@
   <data name="HomeActionLinkTitle" xml:space="preserve">
     <value>Начало</value>
   </data>
+  <data name="InvalidActionPageHeading" xml:space="preserve">
+    <value>Невалидно действие</value>
+  </data>
+  <data name="InvalidActionPageTitle" xml:space="preserve">
+    <value>Невалидно действие</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Списания</value>
   </data>
@@ -239,6 +260,12 @@
   </data>
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Излизане</value>
+  </data>
+  <data name="NotFoundPageHeading" xml:space="preserve">
+    <value>Обектът не е намерен</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>Обектът не е намерен</value>
   </data>
   <data name="PublishersActionLinkTitle" xml:space="preserve">
     <value>Издателства</value>

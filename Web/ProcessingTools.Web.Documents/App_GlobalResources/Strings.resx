@@ -123,6 +123,12 @@
   <data name="ArticlesActionLinkTitle" xml:space="preserve">
     <value>Articles</value>
   </data>
+  <data name="BadRequestPageHeading" xml:space="preserve">
+    <value>Bad Request</value>
+  </data>
+  <data name="BadRequestPageTitle" xml:space="preserve">
+    <value>Bad Request</value>
+  </data>
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -204,8 +210,17 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
   </data>
+  <data name="ErrorPageHeading" xml:space="preserve">
+    <value>An error occurred while processing your request</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="FilesActionLinkTitle" xml:space="preserve">
     <value>Files</value>
+  </data>
+  <data name="GoBackAndTryAgainMessage" xml:space="preserve">
+    <value>Please, go back and try again.</value>
   </data>
   <data name="HelpActionLinkTitle" xml:space="preserve">
     <value>Help</value>
@@ -225,6 +240,12 @@
   <data name="HomeActionLinkTitle" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="InvalidActionPageHeading" xml:space="preserve">
+    <value>Invalid Action</value>
+  </data>
+  <data name="InvalidActionPageTitle" xml:space="preserve">
+    <value>Invalid Action</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Journals</value>
   </data>
@@ -239,6 +260,12 @@
   </data>
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Log off</value>
+  </data>
+  <data name="NotFoundPageHeading" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>Not Found</value>
   </data>
   <data name="PublishersActionLinkTitle" xml:space="preserve">
     <value>Publishers</value>
