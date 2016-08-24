@@ -252,6 +252,12 @@
   <data name="InvalidOrEmptyFilePageTitle" xml:space="preserve">
     <value>Невалиден или празен файл</value>
   </data>
+  <data name="InvalidPageNumberPageHeading" xml:space="preserve">
+    <value>Невалиден номер на страница</value>
+  </data>
+  <data name="InvalidPageNumberPageTitle" xml:space="preserve">
+    <value>Невалиден номер на страница</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Списания</value>
   </data>

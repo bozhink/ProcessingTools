@@ -466,6 +466,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Page Number.
+        /// </summary>
+        internal static string InvalidPageNumberPageHeading {
+            get {
+                return ResourceManager.GetString("InvalidPageNumberPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Page Number.
+        /// </summary>
+        internal static string InvalidPageNumberPageTitle {
+            get {
+                return ResourceManager.GetString("InvalidPageNumberPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journals.
         /// </summary>
         internal static string JournalActionLinkTitle {

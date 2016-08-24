@@ -1,13 +1,13 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "Invalid Page Number Error";
+    ViewBag.Title = Resources.Strings.InvalidPageNumberPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3 class="text-danger">Invalid Page Number</h3>
+<h3>@Resources.Strings.InvalidPageNumberPageHeading</h3>
 
 <p>
     @Model.SourceAction.Message
