@@ -63,7 +63,7 @@
     <Compile Include="Models\Publishers\PublisherUpdateServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherDetailsServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherServiceModel.cs" />
-    <Compile Include="Models\Publishers\PublisherSimpleServiceModel.cs" />
+    <Compile Include="Models\Publishers\PublisherListServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JournalsDataService.cs" />
     <Compile Include="Services\PublishersDataService.cs" />

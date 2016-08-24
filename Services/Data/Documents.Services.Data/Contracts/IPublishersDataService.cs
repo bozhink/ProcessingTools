@@ -1,13 +1,28 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts
 {
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Models.Publishers;
-    using ProcessingTools.Services.Common.Contracts;
 
-    public interface IPublishersDataService : IMvcDataService<PublisherUpdateServiceModel, PublisherServiceModel, PublisherDetailsServiceModel>
+    using System.Collections.Generic;
+
+    public interface IPublishersDataService
     {
+        Task<object> Add(object userId, PublisherUpdateServiceModel model);
+
         Task<IEnumerable<PublisherListServiceModel>> All();
+
+        Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage);
+
+        Task<long> Count();
+
+        Task<object> Delete(object id);
+
+        Task<PublisherServiceModel> Get(object id);
+
+        Task<PublisherDetailsServiceModel> GetDetails(object id);
+
+        Task<object> Update(object userId, PublisherUpdateServiceModel model);
     }
 }
