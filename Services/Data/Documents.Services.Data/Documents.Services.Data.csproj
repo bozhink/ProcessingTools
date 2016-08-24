@@ -58,6 +58,7 @@
     <Compile Include="Models\Journals\JournalMinimalServiceModel.cs" />
     <Compile Include="Models\Journals\JournalServiceModel.cs" />
     <Compile Include="Models\Journals\PublisherServiceModel.cs" />
+    <Compile Include="Models\Publishers\Contracts\IPublisherDetailedServiceModel.cs" />
     <Compile Include="Models\Publishers\Contracts\IPublisherJournal.cs" />
     <Compile Include="Models\Publishers\Contracts\IPublisherSimpleServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherAddress.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Models\Publishers\PublisherJournal.cs" />
     <Compile Include="Models\Publishers\PublisherUpdatableServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherAddableServiceModel.cs" />
-    <Compile Include="Models\Publishers\PublisherDetailsServiceModel.cs" />
+    <Compile Include="Models\Publishers\PublisherDetailedServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherSimpleServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherListableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

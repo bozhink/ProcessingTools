@@ -188,7 +188,7 @@
             return result;
         }
 
-        public async Task<PublisherDetailsServiceModel> GetDetails(object id)
+        public async Task<IPublisherDetailedServiceModel> GetDetails(object id)
         {
             if (id == null)
             {
@@ -203,7 +203,7 @@
                 throw new EntityNotFoundException();
             }
 
-            var result = new PublisherDetailsServiceModel
+            var result = new PublisherDetailedServiceModel
             {
                 Id = entity.Id,
                 Name = entity.Name,

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Models.Publishers;
     using Models.Publishers.Contracts;
 
     public interface IPublishersDataService
@@ -21,7 +20,7 @@
 
         Task<IPublisherSimpleServiceModel> Get(object id);
 
-        Task<PublisherDetailsServiceModel> GetDetails(object id);
+        Task<IPublisherDetailedServiceModel> GetDetails(object id);
 
         Task<object> Update(object userId, IPublisherUpdatableServiceModel model);
     }

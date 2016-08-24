@@ -12,6 +12,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
+    using ProcessingTools.Documents.Services.Data.Models.Publishers.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;
@@ -237,7 +238,7 @@
             filterContext.ExceptionHandled = true;
         }
 
-        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherSimpleServiceModel serviceModel)
+        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(IPublisherSimpleServiceModel serviceModel)
         {
             string createdByUserName = await this.GetUserNameByUserId(serviceModel.CreatedByUser);
             string modifiedByUserName = await this.GetUserNameByUserId(serviceModel.ModifiedByUser);
