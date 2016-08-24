@@ -6,10 +6,8 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -39,45 +37,26 @@
         // GET: Journals/Publishers
         public async Task<ActionResult> Index(int? p, int? n)
         {
-            try
-            {
-                int currentPage = p ?? PagingConstants.DefaultPageNumber;
-                int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
-                var items = (await this.service.All(currentPage, numberOfItemsPerPage))
-                    .Select(e => new PublisherViewModel
-                    {
-                        Id = e.Id,
-                        Name = e.Name,
-                        AbbreviatedName = e.AbbreviatedName,
-                        DateCreated = e.DateCreated,
-                        DateModified = e.DateModified
-                    })
-                    .ToArray();
+            var items = (await this.service.All(currentPage, numberOfItemsPerPage))
+                .Select(e => new PublisherViewModel
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    AbbreviatedName = e.AbbreviatedName,
+                    DateCreated = e.DateCreated,
+                    DateModified = e.DateModified
+                })
+                .ToArray();
 
-                var numberOfDocuments = await this.service.Count();
+            var numberOfDocuments = await this.service.Count();
 
-                var viewModel = new ListWithPagingViewModel<PublisherViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ListWithPagingViewModel<PublisherViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
-                return this.View(viewModel);
-            }
-            catch (InvalidPageNumberException e)
-            {
-                return this.InvalidPageNumberErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
-            }
-            catch (InvalidItemsPerPageException e)
-            {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
-            }
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
         }
 
         // GET: Journals/Publishers/Details/5
@@ -85,40 +64,19 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultDetailsActionLinkTitle);
+                throw new InvalidIdException();
             }
 
-            try
-            {
-                var serviceModel = await this.service.GetDetails(id);
-                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
+            var serviceModel = await this.service.GetDetails(id);
+            var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
 
-                viewModel.Addresses = serviceModel.Addresses?.Select(a => new AddressViewModel
-                {
-                    Id = a.Id,
-                    AddressString = a.AddressString
-                }).ToList();
+            viewModel.Addresses = serviceModel.Addresses?.Select(a => new AddressViewModel
+            {
+                Id = a.Id,
+                AddressString = a.AddressString
+            }).ToList();
 
-                viewModel.Journals = serviceModel.Journals?.Select(j => new JournalViewModel
-                {
-                    Id = j.Id,
-                    Name = j.Name
-                }).ToList();
-
-                return this.View(viewModel);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
-            }
+            return this.View(viewModel);
         }
 
         // GET: Journals/Publishers/Create
@@ -136,26 +94,15 @@
         {
             if (this.ModelState.IsValid)
             {
-                try
-                {
-                    await this.service.Add(
-                        User.Identity.GetUserId(),
-                        new PublisherMinimalServiceModel
-                        {
-                            Name = publisher.Name,
-                            AbbreviatedName = publisher.AbbreviatedName
-                        });
+                await this.service.Add(
+                    User.Identity.GetUserId(),
+                    new PublisherMinimalServiceModel
+                    {
+                        Name = publisher.Name,
+                        AbbreviatedName = publisher.AbbreviatedName
+                    });
 
-                    return this.RedirectToAction(nameof(this.Index));
-                }
-                catch (ArgumentException e)
-                {
-                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultCreateActionLinkTitle);
-                }
-                catch (Exception e)
-                {
-                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultCreateActionLinkTitle);
-                }
+                return this.RedirectToAction(nameof(this.Index));
             }
 
             return this.View(publisher);
@@ -166,27 +113,12 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultEditActionLinkTitle);
+                throw new InvalidIdException();
             }
 
-            try
-            {
-                var serviceModel = await this.service.GetDetails(id);
-                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
-                return this.View(viewModel);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-            }
+            var serviceModel = await this.service.GetDetails(id);
+            var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
+            return this.View(viewModel);
         }
 
         // POST: Journals/Publishers/Edit/5
@@ -198,31 +130,16 @@
         {
             if (this.ModelState.IsValid)
             {
-                try
-                {
-                    await this.service.Update(
-                        User.Identity.GetUserId(),
-                        new PublisherMinimalServiceModel
-                        {
-                            Id = publisher.Id,
-                            Name = publisher.Name,
-                            AbbreviatedName = publisher.AbbreviatedName
-                        });
+                await this.service.Update(
+                    User.Identity.GetUserId(),
+                    new PublisherMinimalServiceModel
+                    {
+                        Id = publisher.Id,
+                        Name = publisher.Name,
+                        AbbreviatedName = publisher.AbbreviatedName
+                    });
 
-                    return this.RedirectToAction(nameof(this.Index));
-                }
-                catch (EntityNotFoundException e)
-                {
-                    return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-                }
-                catch (ArgumentException e)
-                {
-                    return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-                }
-                catch (Exception e)
-                {
-                    return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultEditActionLinkTitle);
-                }
+                return this.RedirectToAction(nameof(this.Index));
             }
 
             return this.View(publisher);
@@ -233,27 +150,12 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.PublishersControllerInstanceName, string.Empty, Resources.Strings.DefaultDeleteActionLinkTitle);
+                throw new InvalidIdException();
             }
 
-            try
-            {
-                var serviceModel = await this.service.GetDetails(id);
-                var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
-                return this.View(viewModel);
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
+            var serviceModel = await this.service.GetDetails(id);
+            var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
+            return this.View(viewModel);
         }
 
         // POST: Journals/Publishers/Delete/5
@@ -261,23 +163,8 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            try
-            {
-                await this.service.Delete(id);
-                return this.RedirectToAction(nameof(this.Index));
-            }
-            catch (EntityNotFoundException e)
-            {
-                return this.DefaultNotFoundView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
-            catch (ArgumentException e)
-            {
-                return this.BadRequestErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
-            catch (Exception e)
-            {
-                return this.DefaultErrorView(InstanceNames.PublishersControllerInstanceName, e.Message, Resources.Strings.DefaultDeleteActionLinkTitle);
-            }
+            await this.service.Delete(id);
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         protected override void Dispose(bool disposing)
@@ -288,6 +175,48 @@
             }
 
             base.Dispose(disposing);
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext.Exception is EntityNotFoundException)
+            {
+                filterContext.Result = this.DefaultNotFoundView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is InvalidIdException)
+            {
+                filterContext.Result = this.InvalidIdErrorView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is InvalidPageNumberException)
+            {
+                filterContext.Result = this.InvalidPageNumberErrorView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is InvalidItemsPerPageException)
+            {
+                filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else if (filterContext.Exception is ArgumentException)
+            {
+                filterContext.Result = this.BadRequestErrorView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+            else
+            {
+                filterContext.Result = this.DefaultErrorView(
+                    InstanceNames.PublishersControllerInstanceName,
+                    filterContext.Exception.Message);
+            }
+
+            filterContext.ExceptionHandled = true;
         }
 
         private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherServiceModel serviceModel)
