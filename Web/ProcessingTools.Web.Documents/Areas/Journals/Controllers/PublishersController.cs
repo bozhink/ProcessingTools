@@ -6,8 +6,10 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -35,6 +37,7 @@
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         // GET: Journals/Publishers
+        [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
@@ -60,6 +63,7 @@
         }
 
         // GET: Journals/Publishers/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -80,6 +84,7 @@
         }
 
         // GET: Journals/Publishers/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return this.View();
@@ -109,6 +114,7 @@
         }
 
         // GET: Journals/Publishers/Edit/5
+        [HttpGet]
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -146,6 +152,7 @@
         }
 
         // GET: Journals/Publishers/Delete/5
+        [HttpGet]
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
