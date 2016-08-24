@@ -3,9 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using Contracts;
+
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class JournalServiceModel
+    public class PublisherJournal : IPublisherJournal
     {
         public Guid Id { get; set; }
 

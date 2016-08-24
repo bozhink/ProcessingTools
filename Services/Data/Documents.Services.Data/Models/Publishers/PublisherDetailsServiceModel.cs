@@ -8,11 +8,11 @@
             : base()
         {
             this.Addresses = new HashSet<IPublisherAddress>();
-            this.Journals = new HashSet<JournalServiceModel>();
+            this.Journals = new HashSet<PublisherJournal>();
         }
 
         public ICollection<IPublisherAddress> Addresses { get; set; }
 
-        public ICollection<JournalServiceModel> Journals { get; set; }
+        public ICollection<PublisherJournal> Journals { get; set; }
     }
 }

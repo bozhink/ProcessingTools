@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Models.Publishers;
     using Models.Publishers.Contracts;
-
-    using System.Collections.Generic;
 
     public interface IPublishersDataService
     {
