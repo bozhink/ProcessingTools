@@ -11,7 +11,7 @@
     {
         Task<object> Add(object userId, PublisherUpdateServiceModel model);
 
-        Task<IEnumerable<PublisherListServiceModel>> All();
+        Task<IEnumerable<PublisherListableServiceModel>> All();
 
         Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage);
 

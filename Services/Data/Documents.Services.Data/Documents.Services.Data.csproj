@@ -59,11 +59,12 @@
     <Compile Include="Models\Journals\JournalServiceModel.cs" />
     <Compile Include="Models\Journals\PublisherServiceModel.cs" />
     <Compile Include="Models\Publishers\AddressServiceModel.cs" />
+    <Compile Include="Models\Publishers\Contracts\IPublisherListableServiceModel.cs" />
     <Compile Include="Models\Publishers\JournalServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherUpdateServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherDetailsServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherServiceModel.cs" />
-    <Compile Include="Models\Publishers\PublisherListServiceModel.cs" />
+    <Compile Include="Models\Publishers\PublisherListableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JournalsDataService.cs" />
     <Compile Include="Services\PublishersDataService.cs" />

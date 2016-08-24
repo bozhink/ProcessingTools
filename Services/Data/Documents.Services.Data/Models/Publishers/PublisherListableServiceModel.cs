@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Models.Publishers
 {
     using System;
+    using Contracts;
 
-    public class PublisherListServiceModel
+    public class PublisherListableServiceModel : IPublisherListableServiceModel
     {
         public Guid Id { get; set; }
 
