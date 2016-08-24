@@ -1,13 +1,13 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "Invalid Or Empty File Error";
+    ViewBag.Title = Resources.Strings.InvalidOrEmptyFilePageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3 class="text-danger">Invalid Or Empty File or Files</h3>
+<h3>@Resources.Strings.InvalidOrEmptyFilePageHeading</h3>
 
 <ol>
     @foreach (string fileName in this.ViewBag.InvalidFiles)

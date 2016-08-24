@@ -448,6 +448,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Or Empty File or Files.
+        /// </summary>
+        internal static string InvalidOrEmptyFilePageHeading {
+            get {
+                return ResourceManager.GetString("InvalidOrEmptyFilePageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Or Empty File.
+        /// </summary>
+        internal static string InvalidOrEmptyFilePageTitle {
+            get {
+                return ResourceManager.GetString("InvalidOrEmptyFilePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journals.
         /// </summary>
         internal static string JournalActionLinkTitle {

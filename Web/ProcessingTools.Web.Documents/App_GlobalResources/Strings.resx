@@ -246,6 +246,12 @@
   <data name="InvalidActionPageTitle" xml:space="preserve">
     <value>Invalid Action</value>
   </data>
+  <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
+    <value>Invalid Or Empty File or Files</value>
+  </data>
+  <data name="InvalidOrEmptyFilePageTitle" xml:space="preserve">
+    <value>Invalid Or Empty File</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Journals</value>
   </data>
