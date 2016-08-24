@@ -448,6 +448,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valid ID is expected.
+        /// </summary>
+        internal static string InvalidIdPageHeading {
+            get {
+                return ResourceManager.GetString("InvalidIdPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid ID.
+        /// </summary>
+        internal static string InvalidIdPageTitle {
+            get {
+                return ResourceManager.GetString("InvalidIdPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Or Empty File or Files.
         /// </summary>
         internal static string InvalidOrEmptyFilePageHeading {

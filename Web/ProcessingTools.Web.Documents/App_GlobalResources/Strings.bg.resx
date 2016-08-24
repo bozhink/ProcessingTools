@@ -246,6 +246,12 @@
   <data name="InvalidActionPageTitle" xml:space="preserve">
     <value>Невалидно действие</value>
   </data>
+  <data name="InvalidIdPageHeading" xml:space="preserve">
+    <value>Необходим е валиден идентификатор</value>
+  </data>
+  <data name="InvalidIdPageTitle" xml:space="preserve">
+    <value>Невалиден идентификатор</value>
+  </data>
   <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
     <value>Невалиден или празен файл или файлове</value>
   </data>

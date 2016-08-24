@@ -246,6 +246,12 @@
   <data name="InvalidActionPageTitle" xml:space="preserve">
     <value>Invalid Action</value>
   </data>
+  <data name="InvalidIdPageHeading" xml:space="preserve">
+    <value>Valid ID is expected</value>
+  </data>
+  <data name="InvalidIdPageTitle" xml:space="preserve">
+    <value>Invalid ID</value>
+  </data>
   <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
     <value>Invalid Or Empty File or Files</value>
   </data>

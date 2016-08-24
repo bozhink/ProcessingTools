@@ -1,13 +1,13 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "Invalid Id Error";
+    ViewBag.Title = Resources.Strings.InvalidIdPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>Valid Id is expected.</h3>
+<h3>@Resources.Strings.InvalidIdPageHeading</h3>
 
 <p>@Resources.Strings.GoBackAndTryAgainMessage</p>
 
