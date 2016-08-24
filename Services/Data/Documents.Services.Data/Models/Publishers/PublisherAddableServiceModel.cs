@@ -1,18 +1,15 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Models.Publishers
 {
     using System.Collections.Generic;
+    using Contracts;
 
-    public class PublisherDetailsServiceModel : PublisherServiceModel
+    public class PublisherAddableServiceModel : PublisherUpdatableServiceModel, IPublisherAddableServiceModel
     {
-        public PublisherDetailsServiceModel()
-            : base()
+        public PublisherAddableServiceModel()
         {
             this.Addresses = new HashSet<IPublisherAddress>();
-            this.Journals = new HashSet<JournalServiceModel>();
         }
 
         public ICollection<IPublisherAddress> Addresses { get; set; }
-
-        public ICollection<JournalServiceModel> Journals { get; set; }
     }
 }

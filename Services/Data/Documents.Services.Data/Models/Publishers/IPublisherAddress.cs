@@ -5,7 +5,7 @@
 
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class AddressServiceModel
+    public class IPublisherAddress
     {
         public Guid Id { get; set; }
 

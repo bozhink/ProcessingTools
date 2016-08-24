@@ -98,8 +98,9 @@
         {
             if (this.ModelState.IsValid)
             {
+                // TODO: addresses
                 var userId = this.UserId;
-                var serviceModel = new PublisherUpdateServiceModel
+                var serviceModel = new PublisherAddableServiceModel
                 {
                     Name = publisher.Name,
                     AbbreviatedName = publisher.AbbreviatedName

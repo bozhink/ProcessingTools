@@ -58,12 +58,14 @@
     <Compile Include="Models\Journals\JournalMinimalServiceModel.cs" />
     <Compile Include="Models\Journals\JournalServiceModel.cs" />
     <Compile Include="Models\Journals\PublisherServiceModel.cs" />
-    <Compile Include="Models\Publishers\AddressServiceModel.cs" />
+    <Compile Include="Models\Publishers\IPublisherAddress.cs" />
+    <Compile Include="Models\Publishers\Contracts\IPublisherAddress.cs" />
+    <Compile Include="Models\Publishers\Contracts\IPublisherAddableServiceModel.cs" />
     <Compile Include="Models\Publishers\Contracts\IPublisherListableServiceModel.cs" />
     <Compile Include="Models\Publishers\Contracts\IPublisherUpdatableServiceModel.cs" />
     <Compile Include="Models\Publishers\JournalServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherUpdatableServiceModel.cs" />
-    <Compile Include="Models\Publishers\PublisherUpdateServiceModel.cs" />
+    <Compile Include="Models\Publishers\PublisherAddableServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherDetailsServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherListableServiceModel.cs" />

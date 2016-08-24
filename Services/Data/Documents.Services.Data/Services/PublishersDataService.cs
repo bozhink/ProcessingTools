@@ -32,7 +32,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<object> Add(object userId, PublisherUpdateServiceModel model)
+        public async Task<object> Add(object userId, IPublisherAddableServiceModel model)
         {
             if (userId == null)
             {
@@ -216,7 +216,7 @@
 
             foreach (var address in entity.Addresses)
             {
-                result.Addresses.Add(new AddressServiceModel
+                result.Addresses.Add(new Models.Publishers.IPublisherAddress
                 {
                     Id = address.Id,
                     AddressString = address.AddressString,

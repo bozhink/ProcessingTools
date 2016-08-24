@@ -10,7 +10,7 @@
 
     public interface IPublishersDataService
     {
-        Task<object> Add(object userId, PublisherUpdateServiceModel model);
+        Task<object> Add(object userId, IPublisherAddableServiceModel model);
 
         Task<IEnumerable<IPublisherListableServiceModel>> All();
 
