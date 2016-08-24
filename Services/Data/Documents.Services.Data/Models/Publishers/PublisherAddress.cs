@@ -3,9 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using Contracts;
+
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class IPublisherAddress
+    public class PublisherAddress : IPublisherAddress
     {
         public Guid Id { get; set; }
 

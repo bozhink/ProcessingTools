@@ -93,7 +93,7 @@
             return result;
         }
 
-        public async Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage)
+        public async Task<IQueryable<IPublisherSimpleServiceModel>> All(int pageNumber, int itemsPerPage)
         {
             if (pageNumber < 0)
             {
@@ -111,7 +111,7 @@
                 .OrderByDescending(d => d.DateModified)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(e => new PublisherServiceModel
+                .Select(e => new PublisherSimpleServiceModel
                 {
                     Id = e.Id,
                     Name = e.Name,
@@ -156,7 +156,7 @@
             return result;
         }
 
-        public async Task<PublisherServiceModel> Get(object id)
+        public async Task<IPublisherSimpleServiceModel> Get(object id)
         {
             if (id == null)
             {
@@ -167,7 +167,7 @@
 
             var result = await repository.FindFirst(
                 e => e.Id.ToString() == id.ToString(),
-                e => new PublisherServiceModel
+                e => new PublisherSimpleServiceModel
                 {
                     Id = e.Id,
                     Name = e.Name,
@@ -216,7 +216,7 @@
 
             foreach (var address in entity.Addresses)
             {
-                result.Addresses.Add(new Models.Publishers.IPublisherAddress
+                result.Addresses.Add(new PublisherAddress
                 {
                     Id = address.Id,
                     AddressString = address.AddressString,

@@ -2,16 +2,16 @@
 {
     using System.Collections.Generic;
 
-    public class PublisherDetailsServiceModel : PublisherServiceModel
+    public class PublisherDetailsServiceModel : PublisherSimpleServiceModel
     {
         public PublisherDetailsServiceModel()
             : base()
         {
-            this.Addresses = new HashSet<IPublisherAddress>();
+            this.Addresses = new HashSet<PublisherAddress>();
             this.Journals = new HashSet<PublisherJournal>();
         }
 
-        public ICollection<IPublisherAddress> Addresses { get; set; }
+        public ICollection<PublisherAddress> Addresses { get; set; }
 
         public ICollection<PublisherJournal> Journals { get; set; }
     }

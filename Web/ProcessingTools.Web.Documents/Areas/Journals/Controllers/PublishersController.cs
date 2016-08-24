@@ -237,7 +237,7 @@
             filterContext.ExceptionHandled = true;
         }
 
-        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherServiceModel serviceModel)
+        private async Task<PublisherDetailsViewModel> MapToDetailsViewModelWithoutCollections(PublisherSimpleServiceModel serviceModel)
         {
             string createdByUserName = await this.GetUserNameByUserId(serviceModel.CreatedByUser);
             string modifiedByUserName = await this.GetUserNameByUserId(serviceModel.ModifiedByUser);

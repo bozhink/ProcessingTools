@@ -13,13 +13,13 @@
 
         Task<IEnumerable<IPublisherListableServiceModel>> All();
 
-        Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage);
+        Task<IQueryable<IPublisherSimpleServiceModel>> All(int pageNumber, int itemsPerPage);
 
         Task<long> Count();
 
         Task<object> Delete(object id);
 
-        Task<PublisherServiceModel> Get(object id);
+        Task<IPublisherSimpleServiceModel> Get(object id);
 
         Task<PublisherDetailsServiceModel> GetDetails(object id);
 

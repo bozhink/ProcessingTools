@@ -3,12 +3,14 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using Contracts;
+
     using ProcessingTools.Common.Models;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class PublisherServiceModel : ModelWithUserInformation
+    public class PublisherSimpleServiceModel : ModelWithUserInformation, IPublisherSimpleServiceModel
     {
-        public PublisherServiceModel()
+        public PublisherSimpleServiceModel()
             : base()
         {
         }
