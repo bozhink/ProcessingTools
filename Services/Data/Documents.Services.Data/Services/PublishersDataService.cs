@@ -8,6 +8,7 @@
     using Contracts;
     using DataModels.Publishers;
     using Models.Publishers;
+    using Models.Publishers.Contracts;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
@@ -75,7 +76,7 @@
             return result;
         }
 
-        public async Task<IEnumerable<PublisherListableServiceModel>> All()
+        public async Task<IEnumerable<IPublisherListableServiceModel>> All()
         {
             var repository = this.repositoryProvider.Create();
 

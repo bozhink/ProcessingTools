@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Models.Publishers;
+    using Models.Publishers.Contracts;
 
     using System.Collections.Generic;
 
@@ -11,7 +12,7 @@
     {
         Task<object> Add(object userId, PublisherUpdateServiceModel model);
 
-        Task<IEnumerable<PublisherListableServiceModel>> All();
+        Task<IEnumerable<IPublisherListableServiceModel>> All();
 
         Task<IQueryable<PublisherServiceModel>> All(int pageNumber, int itemsPerPage);
 
