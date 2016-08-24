@@ -31,7 +31,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<object> Add(object userId, PublisherMinimalServiceModel model)
+        public async Task<object> Add(object userId, PublisherUpdateServiceModel model)
         {
             if (userId == null)
             {
@@ -229,7 +229,7 @@
             return result;
         }
 
-        public async Task<object> Update(object userId, PublisherMinimalServiceModel model)
+        public async Task<object> Update(object userId, PublisherUpdateServiceModel model)
         {
             if (userId == null)
             {

@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Documents.Data.Common.Constants;
 
-    public class PublisherMinimalServiceModel
+    public class PublisherUpdateServiceModel
     {
-        public PublisherMinimalServiceModel()
+        public PublisherUpdateServiceModel()
         {
             this.Addresses = new HashSet<AddressServiceModel>();
         }

@@ -6,7 +6,7 @@
     using Models.Publishers;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IPublishersDataService : IMvcDataService<PublisherMinimalServiceModel, PublisherServiceModel, PublisherDetailsServiceModel>
+    public interface IPublishersDataService : IMvcDataService<PublisherUpdateServiceModel, PublisherServiceModel, PublisherDetailsServiceModel>
     {
         Task<IEnumerable<PublisherSimpleServiceModel>> All();
     }

@@ -99,7 +99,7 @@
             if (this.ModelState.IsValid)
             {
                 var userId = this.UserId;
-                var serviceModel = new PublisherMinimalServiceModel
+                var serviceModel = new PublisherUpdateServiceModel
                 {
                     Name = publisher.Name,
                     AbbreviatedName = publisher.AbbreviatedName
@@ -135,7 +135,7 @@
             if (this.ModelState.IsValid)
             {
                 var userId = this.UserId;
-                var serviceModel = new PublisherMinimalServiceModel
+                var serviceModel = new PublisherUpdateServiceModel
                 {
                     Id = publisher.Id,
                     Name = publisher.Name,
