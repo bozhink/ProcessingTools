@@ -50,6 +50,8 @@
     <Compile Include="Contracts\IPublishersDataService.cs" />
     <Compile Include="Contracts\IDocumentsDataService.cs" />
     <Compile Include="Contracts\IXmlPresenter.cs" />
+    <Compile Include="DataModels\Publishers\AddressEntity.cs" />
+    <Compile Include="DataModels\Publishers\PublisherEntity.cs" />
     <Compile Include="Models\DocumentServiceModel.cs" />
     <Compile Include="Models\Journals\ArticleServiceModel.cs" />
     <Compile Include="Models\Journals\JournalDetailsServiceModel.cs" />

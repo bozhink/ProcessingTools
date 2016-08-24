@@ -11,5 +11,9 @@
 
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]
         public string AddressString { get; set; }
+
+        public int? CityId { get; set; }
+
+        public int? CountryId { get; set; }
     }
 }
