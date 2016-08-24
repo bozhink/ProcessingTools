@@ -8,6 +8,6 @@
 
     public interface IPublishersDataService : IMvcDataService<PublisherUpdateServiceModel, PublisherServiceModel, PublisherDetailsServiceModel>
     {
-        Task<IEnumerable<PublisherSimpleServiceModel>> All();
+        Task<IEnumerable<PublisherListServiceModel>> All();
     }
 }

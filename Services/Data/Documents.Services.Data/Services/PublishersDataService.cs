@@ -75,12 +75,12 @@
             return result;
         }
 
-        public async Task<IEnumerable<PublisherSimpleServiceModel>> All()
+        public async Task<IEnumerable<PublisherListServiceModel>> All()
         {
             var repository = this.repositoryProvider.Create();
 
             var result = (await repository.All())
-                .Select(e => new PublisherSimpleServiceModel
+                .Select(e => new PublisherListServiceModel
                 {
                     Id = e.Id,
                     Name = e.Name

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PublisherSimpleServiceModel
+    public class PublisherListServiceModel
     {
         public Guid Id { get; set; }
 
