@@ -54,6 +54,7 @@
     <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
     <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
     <Compile Include="Exceptions\NoFilesSelectedException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\IRandomProvider.cs" />
