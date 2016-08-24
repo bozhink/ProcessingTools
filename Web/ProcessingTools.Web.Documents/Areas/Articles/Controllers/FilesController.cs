@@ -16,6 +16,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
@@ -223,6 +224,16 @@
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
             return this.RedirectToAction(nameof(this.Index));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.service.TryDispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         protected override void OnException(ExceptionContext filterContext)
