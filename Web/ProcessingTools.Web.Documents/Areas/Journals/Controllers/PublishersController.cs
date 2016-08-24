@@ -135,7 +135,7 @@
             if (this.ModelState.IsValid)
             {
                 var userId = this.UserId;
-                var serviceModel = new PublisherUpdateServiceModel
+                var serviceModel = new PublisherUpdatableServiceModel
                 {
                     Id = publisher.Id,
                     Name = publisher.Name,

@@ -24,6 +24,6 @@
 
         Task<PublisherDetailsServiceModel> GetDetails(object id);
 
-        Task<object> Update(object userId, PublisherUpdateServiceModel model);
+        Task<object> Update(object userId, IPublisherUpdatableServiceModel model);
     }
 }

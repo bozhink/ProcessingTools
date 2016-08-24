@@ -230,7 +230,7 @@
             return result;
         }
 
-        public async Task<object> Update(object userId, PublisherUpdateServiceModel model)
+        public async Task<object> Update(object userId, IPublisherUpdatableServiceModel model)
         {
             if (userId == null)
             {
