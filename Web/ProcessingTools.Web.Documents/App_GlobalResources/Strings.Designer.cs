@@ -493,6 +493,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Files Selected.
+        /// </summary>
+        internal static string NoFilesSelectedPageHeading {
+            get {
+                return ResourceManager.GetString("NoFilesSelectedPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Files Selected.
+        /// </summary>
+        internal static string NoFilesSelectedPageTitle {
+            get {
+                return ResourceManager.GetString("NoFilesSelectedPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Found.
         /// </summary>
         internal static string NotFoundPageHeading {

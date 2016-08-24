@@ -1,13 +1,13 @@
 ﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "No Files Selected Error";
+    ViewBag.Title = Resources.Strings.NoFilesSelectedPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>No Files Selected</h3>
+<h3>@Resources.Strings.NoFilesSelectedPageHeading</h3>
 
 <p>@Resources.Strings.GoBackAndTryAgainMessage</p>
 <p>

@@ -261,6 +261,12 @@
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Излизане</value>
   </data>
+  <data name="NoFilesSelectedPageHeading" xml:space="preserve">
+    <value>Няма избрани файлове</value>
+  </data>
+  <data name="NoFilesSelectedPageTitle" xml:space="preserve">
+    <value>Няма избрани файлове</value>
+  </data>
   <data name="NotFoundPageHeading" xml:space="preserve">
     <value>Обектът не е намерен</value>
   </data>

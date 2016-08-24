@@ -261,6 +261,12 @@
   <data name="LogoutActionLinkTitle" xml:space="preserve">
     <value>Log off</value>
   </data>
+  <data name="NoFilesSelectedPageHeading" xml:space="preserve">
+    <value>No Files Selected</value>
+  </data>
+  <data name="NoFilesSelectedPageTitle" xml:space="preserve">
+    <value>No Files Selected</value>
+  </data>
   <data name="NotFoundPageHeading" xml:space="preserve">
     <value>Not Found</value>
   </data>
