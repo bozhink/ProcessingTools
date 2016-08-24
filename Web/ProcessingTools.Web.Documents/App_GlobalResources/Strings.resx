@@ -264,6 +264,12 @@
   <data name="InvalidPageNumberPageTitle" xml:space="preserve">
     <value>Invalid Page Number</value>
   </data>
+  <data name="InvalidUserIdPageHeading" xml:space="preserve">
+    <value>Valid User ID is expected</value>
+  </data>
+  <data name="InvalidUserIdPageTitle" xml:space="preserve">
+    <value>Invalid User ID</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Journals</value>
   </data>

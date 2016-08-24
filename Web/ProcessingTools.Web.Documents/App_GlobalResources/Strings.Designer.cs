@@ -502,6 +502,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valid User ID is expected.
+        /// </summary>
+        internal static string InvalidUserIdPageHeading {
+            get {
+                return ResourceManager.GetString("InvalidUserIdPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid User ID.
+        /// </summary>
+        internal static string InvalidUserIdPageTitle {
+            get {
+                return ResourceManager.GetString("InvalidUserIdPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Journals.
         /// </summary>
         internal static string JournalActionLinkTitle {

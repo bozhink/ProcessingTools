@@ -264,6 +264,12 @@
   <data name="InvalidPageNumberPageTitle" xml:space="preserve">
     <value>Невалиден номер на страница</value>
   </data>
+  <data name="InvalidUserIdPageHeading" xml:space="preserve">
+    <value>Невалиден идентификатор на потребител</value>
+  </data>
+  <data name="InvalidUserIdPageTitle" xml:space="preserve">
+    <value>Невалиден идентификатор на потребител</value>
+  </data>
   <data name="JournalActionLinkTitle" xml:space="preserve">
     <value>Списания</value>
   </data>
