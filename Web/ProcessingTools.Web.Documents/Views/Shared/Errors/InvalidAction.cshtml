@@ -1,14 +1,14 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = "InvalidAction";
+    ViewBag.Title = "Invalid Action";
 }
 
-<h2>Invalid Action</h2>
-<h3>
-    @Html.DisplayFor(model => model.Exception.GetType().Name)
-</h3>
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>Invalid Action</h3>
 
-<p>
-    @Html.DisplayFor(model => model.Exception.Message)
-</p>
+<p>Please, go back and try again.</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

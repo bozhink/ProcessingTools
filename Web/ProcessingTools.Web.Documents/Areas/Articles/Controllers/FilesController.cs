@@ -236,6 +236,11 @@
             base.Dispose(disposing);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
+        }
+
         protected override void OnException(ExceptionContext filterContext)
         {
             if (filterContext.Exception is EntityNotFoundException)

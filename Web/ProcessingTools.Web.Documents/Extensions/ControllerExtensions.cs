@@ -217,7 +217,7 @@
         public static ViewResult InvalidUserIdErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
-                ViewNames.InvalidIdErrorViewName,
+                ViewNames.InvalidUserIdErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
@@ -258,6 +258,16 @@
         {
             return controller.ErrorViewWithGoBackToIndexDestination(
                 ViewNames.BadRequestErrorViewName,
+                HttpStatusCode.BadRequest,
+                instanceName,
+                message,
+                actionLinkText);
+        }
+
+        public static ViewResult IvalidActionErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
+        {
+            return controller.ErrorViewWithGoBackToIndexDestination(
+                ViewNames.InvalidActionErrorViewName,
                 HttpStatusCode.BadRequest,
                 instanceName,
                 message,
