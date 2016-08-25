@@ -44,5 +44,18 @@
             var query = this.DbSet.AsQueryable<IPublisherEntity>();
             return query.LongCountAsync(filter);
         }
+
+        public override async Task<IPublisherEntity> Get(object id)
+        {
+            DummyValidator.ValidateId(id);
+
+            var query = this.DbSet
+                .Include(p => p.Addresses)
+                .Where(p => p.Id.ToString() == id.ToString());
+
+            var entity = await query.FirstOrDefaultAsync();
+
+            return entity;
+        }
     }
 }
