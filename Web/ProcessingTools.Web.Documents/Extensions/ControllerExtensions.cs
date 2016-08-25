@@ -12,6 +12,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
+    using Microsoft.AspNet.Identity;
 
     public static class ControllerExtensions
     {
@@ -33,14 +34,22 @@
                 throw new ArgumentNullException(nameof(userId));
             }
 
+            var id = userId.ToString();
+            var controllerUserId = controller.User.Identity.GetUserId();
+
+            if (id == controllerUserId)
+            {
+                return controller.User.Identity.Name;
+            }
+
             var userManager = controller.HttpContext
                 .GetOwinContext()
                 .GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindByIdAsync(userId.ToString());
+            var user = await userManager.FindByIdAsync(id);
             if (user == null)
             {
-                throw new InvalidUserIdException(userId);
+                throw new InvalidUserIdException(id);
             }
 
             return user.UserName;
