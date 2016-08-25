@@ -43,8 +43,17 @@ li {
   max-width: 800px;
   padding: 0 10px 0 10px;
 }
-em {
+em,
+i {
   font-style: italic;
+  font-weight: normal;
+  text-decoration: none;
+}
+strong,
+b {
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
 }
 .taxon-name {
   position: relative;
@@ -172,11 +181,13 @@ section p {
 .treatment-sec:hover:before {
   content: attr(sec-type);
   position: absolute;
-  top: 0em;
+  top: -1em;
   left: 0em;
   color: red;
   background-color: white;
   opacity: 0.8;
+  font-size: 12px;
+  font-style: normal;
   font-weight: bold;
   pointer-events: none;
 }
@@ -366,16 +377,20 @@ mark.fake_tag {
 }
 mark:hover {
   background-color: #eefce3;
+}
+mark:hover {
   position: relative;
 }
 mark:hover:before {
   content: attr(elem-name);
   position: absolute;
   top: -1em;
-  left: -0.5em;
+  left: 0em;
   color: red;
   background-color: white;
   opacity: 0.8;
+  font-size: 12px;
+  font-style: normal;
   font-weight: bold;
   pointer-events: none;
 }
