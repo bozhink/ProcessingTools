@@ -101,6 +101,22 @@ em.taxon-name {
 .taxon-name-part.subspecies {
   font-style: italic;
 }
+.taxon-name-part:hover {
+  position: relative;
+}
+.taxon-name-part:hover:before {
+  content: attr(full-name) '|' attr(taxon-name-part-type);
+  position: absolute;
+  top: -1em;
+  left: 0em;
+  color: red;
+  background-color: white;
+  opacity: 0.8;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  pointer-events: none;
+}
 .named-content,
 .locality-coordinates {
   background-color: rgba(205, 248, 248, 0.7);
@@ -397,11 +413,6 @@ mark mark mark:hover {
   width: 400px;
   overflow-y: auto;
 }
-/*.graphic {
-    &:before {
-        content: attr(href);
-    }
-}*/
 .related-article div {
   display: inline;
 }

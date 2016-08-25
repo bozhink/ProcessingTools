@@ -119,6 +119,24 @@ em {
     &.genus, &.subgenus, &.species, &.subspecies {
         font-style: italic;
     }
+
+    &:hover {
+        position: relative;
+
+        &:before {
+            content: attr(full-name)'|'attr(taxon-name-part-type);
+            position: absolute;
+            top: -1em;
+            left: 0em;
+            color: red;
+            background-color: white;
+            opacity: 0.8;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    }
 }
 
 .named-content, .locality-coordinates {
@@ -484,12 +502,6 @@ mark {
     width: 400px;
     overflow-y: auto;
 }
-
-/*.graphic {
-    &:before {
-        content: attr(href);
-    }
-}*/
 
 .related-article div {
     display: inline;
