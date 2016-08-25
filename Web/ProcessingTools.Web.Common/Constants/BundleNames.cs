@@ -2,6 +2,7 @@
 {
     public static class BundleNames
     {
+        public const string AngularScriptBundleName = "~/bundles/angular";
         public const string JQueryScriptBundleName = "~/bundles/jquery";
         public const string JQueryFormScriptBundleName = "~/bundles/jqueryfrom";
         public const string JQueryValidationScriptBundleName = "~/bundles/jqueryval";

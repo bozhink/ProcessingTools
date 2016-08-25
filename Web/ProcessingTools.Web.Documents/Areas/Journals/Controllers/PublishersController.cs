@@ -95,7 +95,7 @@
         // POST: Journals/Publishers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = BindingsIncludedForCreateAction)] PublisherCreateViewModel publisher)
+        public async Task<ActionResult> Create(/*[Bind(Include = BindingsIncludedForCreateAction)]*/ PublisherCreateViewModel publisher)
         {
             if (this.ModelState.IsValid)
             {
@@ -106,6 +106,17 @@
                     Name = publisher.Name,
                     AbbreviatedName = publisher.AbbreviatedName
                 };
+
+                foreach (var address in publisher.Addresses)
+                {
+                    serviceModel.Addresses.Add(new PublisherAddress
+                    {
+                        Id = address.Id,
+                        AddressString = address.AddressString,
+                        CityId = address.CityId,
+                        CountryId = address.CountryId
+                    });
+                }
 
                 await this.service.Add(userId, serviceModel);
 

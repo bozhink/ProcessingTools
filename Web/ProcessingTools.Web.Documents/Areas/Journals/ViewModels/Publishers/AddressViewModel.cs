@@ -7,11 +7,20 @@
 
     public class AddressViewModel
     {
+        public AddressViewModel()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
         [Display(Name = "Id")]
         public Guid Id { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]
         [Display(Name = "Address")]
         public string AddressString { get; set; }
+
+        public int? CityId { get; set; }
+
+        public int? CountryId { get; set; }
     }
 }

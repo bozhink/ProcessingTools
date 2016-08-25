@@ -4,6 +4,28 @@
     ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
 }
 
+<style>
+    .address-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .address-string {
+        border: 0px;
+    }
+
+    .address-city-id, .address-country-id, .address-id {
+        display: none;
+    }
+
+    .remove-button {
+        cursor: pointer;
+    }
+</style>
+
+@Scripts.Render(BundleNames.AngularScriptBundleName)
+
 <header>
     <h2>
         @Resources.Strings.DeafultCreatePageHeading
@@ -19,35 +41,67 @@
 
     <hr />
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+    <script src="~/Scripts/controllers/address-list-controller.js"></script>
+    <div ng-app="addressApp">
+        <div ng-controller="AddressListController as addressList">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, string.Empty, new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.AbbreviatedName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AbbreviatedName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AbbreviatedName, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AbbreviatedName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AbbreviatedName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AbbreviatedName, string.Empty, new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <div class="form-group animate-if" ng-if="addressList.addresses.length">
+                        <label class="control-label col-md-2">Addresses</label>
+                        <div class="col-md-10">
+                            <ul class="address-list">
+                                <li ng-repeat="address in addressList.addresses">
+                                    <input type="hidden" name="Addresses.Index" value="{{address.id}}" />
+                                    <input type="text" name="Addresses[{{address.id}}].AddressString" value="{{address.addressString}}" readonly="readonly" class="address-string" />
+                                    <input type="text" name="Addresses[{{address.id}}].CityId" value="{{address.cityId}}" readonly="readonly" class="address-city-id" />
+                                    <input type="text" name="Addresses[{{address.id}}].CountryId" value="{{address.countryId}}" readonly="readonly" class="address-country-id" />
+                                    <span ng-click="addressList.removeAddress(address.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
+
+            <hr />
+            <h4>Add Address</h4>
+            <form ng-submit="addressList.addAddress()" class="form-horizontal">
+                <div class="form-group">
+                    <input type="text" ng-model="addressList.addressString" size="30" placeholder="add address string here" class="form-control" />
+                    <input type="text" ng-model="addressList.cityId" size="30" placeholder="city id: TODO select" class="form-control" />
+                    <input type="text" ng-model="addressList.countryId" size="30" placeholder="country id: TODO select" class="form-control" />
+                    <input class="btn btn-primary" type="submit" value="add" />
+                </div>
+            </form>
         </div>
-    }
+    </div>
+
 </section>
 
 <hr />

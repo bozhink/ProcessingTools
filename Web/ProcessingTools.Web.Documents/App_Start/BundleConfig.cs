@@ -9,6 +9,11 @@
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles
+                .Add(new ScriptBundle(BundleNames.AngularScriptBundleName)
+                .Include(
+                    "~/bower_components/angular/angular.min.js"));
+
+            bundles
                 .Add(new ScriptBundle(BundleNames.JQueryScriptBundleName)
                 .Include(
                     "~/bower_components/jquery/dist/jquery.js"));
