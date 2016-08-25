@@ -59,15 +59,12 @@ li {
 
 em {
     font-style: italic;
-
-    &.taxon-name {
-        font-style: normal;
-        background-color: @taxon-background-color;
-    }
 }
 
 .taxon-name {
     position: relative;
+    font-style: normal;
+    background-color: @taxon-background-color;
 
     .object-id {
         display: none;
@@ -115,8 +112,9 @@ em {
 
 .taxon-name-part {
     color: @taxon-font-color;
+    font-style: normal;
 
-    &.genus, &.subgenus, &.species, &.subspecies {
+    &.genus, &.subgenus, &.species, &.subspecies, &.section, &.subsection, &.form, &.variety, &.stage {
         font-style: italic;
     }
 

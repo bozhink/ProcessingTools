@@ -46,12 +46,10 @@ li {
 em {
   font-style: italic;
 }
-em.taxon-name {
-  font-style: normal;
-  background-color: rgba(255, 179, 128, 0.15);
-}
 .taxon-name {
   position: relative;
+  font-style: normal;
+  background-color: rgba(255, 179, 128, 0.15);
 }
 .taxon-name .object-id {
   display: none;
@@ -94,11 +92,17 @@ em.taxon-name {
 }
 .taxon-name-part {
   color: #f60;
+  font-style: normal;
 }
 .taxon-name-part.genus,
 .taxon-name-part.subgenus,
 .taxon-name-part.species,
-.taxon-name-part.subspecies {
+.taxon-name-part.subspecies,
+.taxon-name-part.section,
+.taxon-name-part.subsection,
+.taxon-name-part.form,
+.taxon-name-part.variety,
+.taxon-name-part.stage {
   font-style: italic;
 }
 .taxon-name-part:hover {
