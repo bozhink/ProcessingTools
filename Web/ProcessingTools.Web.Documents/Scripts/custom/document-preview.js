@@ -24,17 +24,24 @@
     function createBaloon(event, contentSelector) {
         var e = event || window.event,
             rid = e.target.getAttribute('href'),
+            $contentNode = $(rid),
             $aside = $(mainAside),
-            $baloon;
+            $baloon,
+            content;
 
         contentSelector = contentSelector || '';
+        if (contentSelector === '') {
+            content = $contentNode.text();
+        } else {
+            content = $contentNode.find(contentSelector).text();
+        }
 
         $aside.find('.balloon').remove();
 
         $baloon = $('<div>')
             .attr('role', 'balloon')
             .addClass('balloon')
-            .text($(rid + contentSelector).text())
+            .text(content)
             .css({
                 'top': (e.clientY + 10) + 'px',
                 'left': (e.clientX - 20) + 'px'
@@ -246,12 +253,16 @@
                 createBaloon(e);
             }
 
+            if (target.classList.contains('aff')) {
+                createBaloon(e, '.addr-line');
+            }
+
             if (target.classList.contains('fig')) {
-                createBaloon(e, ' .caption');
+                createBaloon(e, '.caption');
             }
 
             if (target.classList.contains('table')) {
-                createBaloon(e, ' .caption');
+                createBaloon(e, '.caption');
             }
 
             return false;
