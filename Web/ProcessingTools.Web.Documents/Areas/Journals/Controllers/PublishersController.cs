@@ -14,6 +14,7 @@
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
     using ProcessingTools.Documents.Services.Data.Models.Publishers.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers;
@@ -24,16 +25,33 @@
         private const string BindingsIncludedForCreateAction = nameof(PublisherCreateViewModel.Name) + "," + nameof(PublisherCreateViewModel.AbbreviatedName);
         private const string BindingsIncludedForEditAction = nameof(PublisherViewModel.Id) + "," + nameof(PublisherViewModel.Name) + "," + nameof(PublisherViewModel.AbbreviatedName);
 
-        private readonly IPublishersDataService service;
+        private readonly IPublishersDataService publishersDataService;
+        private readonly ICountriesDataService countriesDataService;
+        private readonly ICitiesDataService citiesDataService;
 
-        public PublishersController(IPublishersDataService service)
+        public PublishersController(
+            IPublishersDataService publishersDataService,
+            ICountriesDataService countriesDataService,
+            ICitiesDataService citiesDataService)
         {
-            if (service == null)
+            if (publishersDataService == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(publishersDataService));
             }
 
-            this.service = service;
+            if (countriesDataService == null)
+            {
+                throw new ArgumentNullException(nameof(countriesDataService));
+            }
+
+            if (citiesDataService == null)
+            {
+                throw new ArgumentNullException(nameof(citiesDataService));
+            }
+
+            this.publishersDataService = publishersDataService;
+            this.countriesDataService = countriesDataService;
+            this.citiesDataService = citiesDataService;
         }
 
         private object UserId => User.Identity.GetUserId();
@@ -45,7 +63,7 @@
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
-            var items = (await this.service.All(currentPage, numberOfItemsPerPage))
+            var items = (await this.publishersDataService.All(currentPage, numberOfItemsPerPage))
                 .Select(e => new PublisherViewModel
                 {
                     Id = e.Id,
@@ -56,7 +74,7 @@
                 })
                 .ToArray();
 
-            var numberOfDocuments = await this.service.Count();
+            var numberOfDocuments = await this.publishersDataService.Count();
 
             var viewModel = new ListWithPagingViewModel<PublisherViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
@@ -73,7 +91,7 @@
                 throw new InvalidIdException();
             }
 
-            var serviceModel = await this.service.GetDetails(id);
+            var serviceModel = await this.publishersDataService.GetDetails(id);
             var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
 
             viewModel.Addresses = serviceModel.Addresses?.Select(a => new AddressViewModel
@@ -87,9 +105,34 @@
 
         // GET: Journals/Publishers/Create
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return this.View();
+
+
+
+            var countries = (await this.countriesDataService.All())
+                .Select(c => new CountryViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
+
+            var cities = (await this.citiesDataService.All())
+                .Select(c => new CityViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
+
+            var model = new PublisherCreateViewModel
+            {
+                Cities = new SelectList(cities, nameof(CityViewModel.Id), nameof(CityViewModel.Name)),
+                Countries = new SelectList(countries, nameof(CountryViewModel.Id), nameof(CountryViewModel.Name))
+            };
+
+            return this.View(model);
         }
 
         // POST: Journals/Publishers/Create
@@ -118,7 +161,7 @@
                     });
                 }
 
-                await this.service.Add(userId, serviceModel);
+                await this.publishersDataService.Add(userId, serviceModel);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -135,7 +178,7 @@
                 throw new InvalidIdException();
             }
 
-            var serviceModel = await this.service.GetDetails(id);
+            var serviceModel = await this.publishersDataService.GetDetails(id);
             var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
             return this.View(viewModel);
         }
@@ -155,7 +198,7 @@
                     AbbreviatedName = publisher.AbbreviatedName
                 };
 
-                await this.service.Update(userId, serviceModel);
+                await this.publishersDataService.Update(userId, serviceModel);
 
                 return this.RedirectToAction(nameof(this.Index));
             }
@@ -172,7 +215,7 @@
                 throw new InvalidIdException();
             }
 
-            var serviceModel = await this.service.GetDetails(id);
+            var serviceModel = await this.publishersDataService.GetDetails(id);
             var viewModel = await this.MapToDetailsViewModelWithoutCollections(serviceModel);
             return this.View(viewModel);
         }
@@ -182,7 +225,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            await this.service.Delete(id);
+            await this.publishersDataService.Delete(id);
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -190,7 +233,7 @@
         {
             if (disposing)
             {
-                this.service.TryDispose();
+                this.publishersDataService.TryDispose();
             }
 
             base.Dispose(disposing);

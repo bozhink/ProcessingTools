@@ -297,6 +297,8 @@
     <Compile Include="Areas\Journals\ViewModels\Journals\PublisherSimpleViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Journals\PublisherViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\CityViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\CountryViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\JournalViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />

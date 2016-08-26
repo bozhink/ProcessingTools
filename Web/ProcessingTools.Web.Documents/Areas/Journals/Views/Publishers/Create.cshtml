@@ -83,18 +83,74 @@
                         </div>
                     </div>
                 </div>
-                        }
+            }
 
             <hr />
             <h4>Add Address</h4>
-            <form ng-submit="addressList.addAddress()" class="form-horizontal">
+            <form ng-submit="addressList.addAddress()" class="form-horizontal col-md-offset-2 col-md-10">
                 <div class="form-group">
-                    <input type="text" ng-model="addressList.addressString" size="30" placeholder="add address string here" class="form-control" />
-                    <input type="text" ng-model="addressList.cityId" size="30" placeholder="city id: TODO select" class="form-control" />
-                    <input type="text" ng-model="addressList.countryId" size="30" placeholder="country id: TODO select" class="form-control" />
+                    <div class="input-group">
+                        @Html.Label(
+                            "address-string",
+                            "Address string",
+                            htmlAttributes: new
+                            {
+                                @class = "input-group-addon"
+                            })
+
+                        @Html.TextBox(
+                            "address-string",
+                            null,
+                            htmlAttributes: new
+                            {
+                                ng_model = "addressList.addressString",
+                                size = 30,
+                                placeholder = "add address string here",
+                                @class = "form-control"
+                            })
+                    </div>
+
+                    <div class="input-group">
+                        @Html.Label(
+                            "country-id",
+                            "Country",
+                            htmlAttributes: new
+                            {
+                                @class = "input-group-addon"
+                            })
+
+                        @Html.DropDownList(
+                            "country-id",
+                            Model.Countries,
+                            htmlAttributes: new
+                            {
+                                ng_model = "addressList.countryId",
+                                @class = "form-control"
+                            })
+                    </div>
+
+                    <div class="input-group">
+                        @Html.Label(
+                            "city-id",
+                            "City",
+                            htmlAttributes: new
+                            {
+                                @class = "input-group-addon"
+                            })
+
+                        @Html.DropDownList(
+                            "city-id",
+                            Model.Cities,
+                            htmlAttributes: new
+                            {
+                                ng_model = "addressList.cityId",
+                                @class = "form-control"
+                            })
+                    </div>
                     <input class="btn btn-primary" type="submit" value="add" />
                 </div>
             </form>
+
         </div>
     </div>
 

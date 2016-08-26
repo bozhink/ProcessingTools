@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using System.Web.Mvc;
 
     public class PublisherCreateViewModel
     {
@@ -21,5 +22,9 @@
         public string AbbreviatedName { get; set; }
 
         public ICollection<AddressViewModel> Addresses { get; set; }
+
+        public SelectList Countries { get; set; }
+
+        public SelectList Cities { get; set; }
     }
 }
