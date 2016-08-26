@@ -9,9 +9,21 @@
 
     function addToSet(array, item) {
         var i, len, currentItem;
-        array = array || [];
+
         if (!item) {
             return;
+        }
+
+        item.addressString = item.addressString || '';
+        item.cityId = item.cityId | 0 || NaN;
+        item.countryId = item.countryId | 0 || NaN;
+        if (item.addressString === '' || isNaN(item.cityId) || isNaN(item.countryId)) {
+            return;
+        }
+
+        array = array || [];
+        if (!Array.isArray(array)) {
+            array = [];
         }
 
         for (i = 0, len = array.length; i < len; i += 1) {
