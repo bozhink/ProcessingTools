@@ -34,55 +34,61 @@
         return window.editor.getValue();
     });
 
-    monacoEditor.init(EDITOR_CONTAINER_ID, '', function (modes, themes) {
-        var i, len, option;
+    monacoEditor.init(EDITOR_CONTAINER_ID, '../../../node_modules')
+        .then(function (data) {
+            var i, len, option, modes, themes;
 
-        // Fetch content
-        window.get();
-
-        // Populate modes and themes
-        if (themes) {
-            for (i = 0, len = themes.length; i < len; i += 1) {
-                option = document.createElement('option');
-                option.textContent = themes[i].display;
-                option.selected = themes[i].selected;
-                $(".theme-picker").append(option);
+            if (data) {
+                modes = data.modes;
+                themes = data.themes;
             }
 
-            $(".theme-picker").change(function () {
-                var index = this.selectedIndex,
-                    $body = $('body'),
-                    $monacoEditor = $('.monaco-editor');
-                monacoEditor.changeTheme(themes[index]);
-                if (index > 0) {
-                    // Not the default theme
-                    $('.navbar-fixed-bottom').removeClass('navbar-default').addClass('navbar-inverse');
-                } else {
-                    $('.navbar-fixed-bottom').removeClass('navbar-inverse').addClass('navbar-default');
+            // Fetch content
+            window.get();
+
+            // Populate modes and themes
+            if (themes) {
+                for (i = 0, len = themes.length; i < len; i += 1) {
+                    option = document.createElement('option');
+                    option.textContent = themes[i].display;
+                    option.selected = themes[i].selected;
+                    $(".theme-picker").append(option);
                 }
 
-                if ($monacoEditor) {
-                    $body.css({
-                        'color': $monacoEditor.css('color'),
-                        'background-color': $monacoEditor.css('background-color')
-                    });
-                }
-            });
-        }
+                $(".theme-picker").change(function () {
+                    var index = this.selectedIndex,
+                        $body = $('body'),
+                        $monacoEditor = $('.monaco-editor');
+                    monacoEditor.changeTheme(themes[index]);
+                    if (index > 0) {
+                        // Not the default theme
+                        $('.navbar-fixed-bottom').removeClass('navbar-default').addClass('navbar-inverse');
+                    } else {
+                        $('.navbar-fixed-bottom').removeClass('navbar-inverse').addClass('navbar-default');
+                    }
 
-        if (modes) {
-            for (i = 0, len = modes.length; i < len; i += 1) {
-                option = document.createElement('option');
-                option.textContent = modes[i].modeId;
-                option.selected = modes[i].selected;
-                $(".language-picker").append(option);
+                    if ($monacoEditor) {
+                        $body.css({
+                            'color': $monacoEditor.css('color'),
+                            'background-color': $monacoEditor.css('background-color')
+                        });
+                    }
+                });
             }
 
-            $(".language-picker").change(function () {
-                monacoEditor.changeMode(modes[this.selectedIndex]);
-            });
-        }
-    });
+            if (modes) {
+                for (i = 0, len = modes.length; i < len; i += 1) {
+                    option = document.createElement('option');
+                    option.textContent = modes[i].modeId;
+                    option.selected = modes[i].selected;
+                    $(".language-picker").append(option);
+                }
+
+                $(".language-picker").change(function () {
+                    monacoEditor.changeMode(modes[this.selectedIndex]);
+                });
+            }
+        });
 
     // Event handlers
     function getContentEventHandler() {
