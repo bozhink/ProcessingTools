@@ -1,0 +1,16 @@
+﻿.address-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.address-list .address-string {
+  border: 0px;
+}
+.address-list .address-city-id,
+.address-list .address-country-id,
+.address-list .address-id {
+  display: none;
+}
+.address-list .remove-button {
+  cursor: pointer;
+}

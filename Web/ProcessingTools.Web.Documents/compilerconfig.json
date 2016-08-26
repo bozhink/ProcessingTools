@@ -18,5 +18,9 @@
   {
     "outputFile": "Content/document-edit.css",
     "inputFile": "Content/document-edit.less"
+  },
+  {
+    "outputFile": "Content/address-list.css",
+    "inputFile": "Content/address-list.less"
   }
 ]

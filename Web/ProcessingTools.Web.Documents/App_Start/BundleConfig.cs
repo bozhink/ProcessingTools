@@ -108,6 +108,11 @@
                     "~/Scripts/custom/files-index.js"));
 
             bundles
+                .Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
+                .Include(
+                    "~/Scripts/controllers/address-list-controller.js"));
+
+            bundles
                 .Add(new ScriptBundle(BundleNames.LeafletScriptBundleName)
                 .Include(
                     "~/bower_components/leaflet/dist/leaflet.js"));
@@ -136,6 +141,11 @@
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
                     "~/Content/document-edit.min.css"));
+
+            bundles
+                .Add(new StyleBundle(BundleNames.AddressListStyleBundleName)
+                .Include(
+                    "~/Content/address-list.min.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }

@@ -4,27 +4,10 @@
     ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
 }
 
-<style>
-    .address-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .address-string {
-        border: 0px;
-    }
-
-    .address-city-id, .address-country-id, .address-id {
-        display: none;
-    }
-
-    .remove-button {
-        cursor: pointer;
-    }
-</style>
+@Styles.Render(BundleNames.AddressListStyleBundleName)
 
 @Scripts.Render(BundleNames.AngularScriptBundleName)
+@Scripts.Render(BundleNames.AddressListScriptBundleName)
 
 <header>
     <h2>
@@ -41,7 +24,6 @@
 
     <hr />
 
-    <script src="~/Scripts/controllers/address-list-controller.js"></script>
     <div ng-app="addressApp">
         <div ng-controller="AddressListController as addressList">
             @using (Html.BeginForm())
@@ -101,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-            }
+                        }
 
             <hr />
             <h4>Add Address</h4>

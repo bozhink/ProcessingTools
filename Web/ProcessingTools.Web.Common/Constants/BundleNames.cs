@@ -15,6 +15,7 @@
         public const string KeyBindingsScriptBundleName = "~/bundles/key-bindings";
         public const string AutoSaveScriptBundleName = "~/bundles/auto-save";
 
+        public const string AddressListScriptBundleName = "~/bundles/address-list";
         public const string DocumentEditScriptBundleName = "~/bundles/document-edit";
         public const string DocumentPreviewScriptBundleName = "~/bundles/document-preview";
         public const string FilesIndexScriptBundleName = "~/bundles/files-index";
@@ -28,5 +29,6 @@
         public const string DefaultStyleBundleName = "~/Content/css";
         public const string DocumentEditStyleBundleName = "~/Content/document-edit";
         public const string DocumentPreviewStyleBundleName = "~/Content/document-preview";
+        public const string AddressListStyleBundleName = "~/Content/address-list";
     }
 }
