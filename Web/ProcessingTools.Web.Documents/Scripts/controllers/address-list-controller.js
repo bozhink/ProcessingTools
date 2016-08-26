@@ -7,13 +7,32 @@
         return id += 1;
     }
 
+    function addToSet(array, item) {
+        var i, len, currentItem;
+        array = array || [];
+        if (!item) {
+            return;
+        }
+
+        for (i = 0, len = array.length; i < len; i += 1) {
+            currentItem = array[i];
+            if (currentItem.addressString === item.addressString &&
+                currentItem.cityId === item.cityId &&
+                currentItem.countryId === item.countryId) {
+                return;
+            }
+        }
+
+        array.push(item);
+    }
+
     angular.module('addressApp', [])
         .controller('AddressListController', function AddressListController() {
             var addressList = this;
             addressList.addresses = [];
 
             addressList.addAddress = function () {
-                addressList.addresses.push({
+                addToSet(addressList.addresses, {
                     id: getId(),
                     addressString: addressList.addressString,
                     cityId: addressList.cityId,
