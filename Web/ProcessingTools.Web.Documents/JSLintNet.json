@@ -8,7 +8,8 @@
     "es6": true,
     "for": true,
     "multivar": true,
-    "single": true
+    "single": true,
+    "this": true
   },
   "globalVariables": [
     "window",
