@@ -70,7 +70,7 @@
                         <label class="control-label col-md-2">Addresses</label>
                         <div class="col-md-10">
                             <ul class="address-list">
-                                <li ng-repeat="address in addressList.addresses">
+                                <li ng-repeat="address in addressList.addresses | orderBy: 'addressString'">
                                     <input type="hidden" name="Addresses.Index" value="{{address.id}}" />
                                     <input type="text" name="Addresses[{{address.id}}].AddressString" value="{{address.addressString}}" readonly="readonly" class="address-string" />
                                     <input type="text" name="Addresses[{{address.id}}].CityId" value="{{address.cityId}}" readonly="readonly" class="address-city-id" />
