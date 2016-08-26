@@ -129,7 +129,7 @@
             return await this.Update(entity, set);
         }
 
-        protected async Task<T> Upsert<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
+        protected async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
             where T : class
         {
             DummyValidator.ValidateEntity(entity);
@@ -141,10 +141,8 @@
             {
                 return await this.Add(entity, set);
             }
-            else
-            {
-                return await this.Update(entity, set);
-            }
+
+            return dbmodel;
         }
     }
 }

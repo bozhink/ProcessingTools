@@ -77,7 +77,7 @@
 
         protected virtual async Task AddAddressToDbModel(TDbModel dbmodel, IAddressEntity address)
         {
-            var dbaddress = await this.Upsert(
+            var dbaddress = await this.AddOrGet(
                 new Address(address),
                 this.AddressSet,
                 t => (t.AddressString == address.AddressString) && (t.CountryId == address.CountryId) && (t.CityId == address.CityId));
