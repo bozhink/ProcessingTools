@@ -44,6 +44,7 @@
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\IDataServiceBase.cs" />
     <Compile Include="Contracts\IIterableDataService.cs" />
+    <Compile Include="Contracts\IListableDataService.cs" />
     <Compile Include="Contracts\IMultiEntryDataService.cs" />
     <Compile Include="Contracts\IMvcDataService.cs" />
     <Compile Include="Contracts\IRepositoryDataService.cs" />

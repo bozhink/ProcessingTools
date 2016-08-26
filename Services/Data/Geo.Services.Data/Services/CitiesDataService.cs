@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Services.Data
+﻿namespace ProcessingTools.Geo.Services.Data.Services
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,18 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Models.Countries;
-    using Models.Countries.Contracts;
+    using Models.Cities;
+    using Models.Cities.Contracts;
 
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Data.Models;
     using ProcessingTools.Geo.Data.Repositories.Contracts;
 
-    public class CountriesDataService : ICountriesDataService
+    public class CitiesDataService : ICitiesDataService
     {
-        private readonly IGeoDataRepositoryProvider<Country> repositoryProvider;
+        private readonly IGeoDataRepositoryProvider<City> repositoryProvider;
 
-        public CountriesDataService(IGeoDataRepositoryProvider<Country> repositoryProvider)
+        public CitiesDataService(IGeoDataRepositoryProvider<City> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -27,17 +27,17 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IEnumerable<ICountryListableServiceModel>> All()
+        public async Task<IEnumerable<ICityListableServiceModel>> All()
         {
             var repository = this.repositoryProvider.Create();
 
             var result = (await repository.All())
-                .Select(c => new CountryListableServiceModel
+                .Select(c => new CityListableServiceModel
                 {
                     Id = c.Id,
                     Name = c.Name
                 })
-                .ToList<ICountryListableServiceModel>();
+                .ToList<ICityListableServiceModel>();
 
             repository.TryDispose();
 

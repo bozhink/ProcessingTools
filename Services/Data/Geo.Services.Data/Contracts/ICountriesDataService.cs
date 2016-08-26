@@ -1,11 +1,9 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Contracts
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Models.Countries.Contracts;
+    using ProcessingTools.Services.Common.Contracts;
 
-    public interface ICountriesDataService
+    public interface ICountriesDataService : IListableDataService<ICountryListableServiceModel>
     {
-        Task<IEnumerable<ICountryListableServiceModel>> All();
     }
 }

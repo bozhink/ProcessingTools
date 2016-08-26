@@ -7,12 +7,12 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
-    using Microsoft.AspNet.Identity;
 
     public static class ControllerExtensions
     {
