@@ -1,34 +1,47 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Services
 {
     using System;
-    using System.Linq.Expressions;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
-    using Models;
+    using Models.Countries;
+    using Models.Countries.Contracts;
 
+    using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Data.Models;
     using ProcessingTools.Geo.Data.Repositories.Contracts;
-    using ProcessingTools.Services.Common.Factories;
 
-    public class CountriesDataService : SimpleDataServiceWithRepositoryProviderFactory<Country, CountryServiceModel>, ICountriesDataService
+    public class CountriesDataService : ICountriesDataService
     {
+        private readonly IGeoDataRepositoryProvider<Country> repositoryProvider;
+
         public CountriesDataService(IGeoDataRepositoryProvider<Country> repositoryProvider)
-            : base(repositoryProvider)
         {
+            if (repositoryProvider == null)
+            {
+                throw new ArgumentNullException(nameof(repositoryProvider));
+            }
+
+            this.repositoryProvider = repositoryProvider;
         }
 
-        protected override Expression<Func<Country, CountryServiceModel>> MapDbModelToServiceModel => e => new CountryServiceModel
+        public async Task<IEnumerable<ICountryListableServiceModel>> All()
         {
-            Id = e.Id,
-            Name = e.Name
-        };
+            var repository = this.repositoryProvider.Create();
 
-        protected override Expression<Func<CountryServiceModel, Country>> MapServiceModelToDbModel => m => new Country
-        {
-            Id = m.Id,
-            Name = m.Name
-        };
+            var result = (await repository.All())
+                .Select(c => new CountryListableServiceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList<ICountryListableServiceModel>();
 
-        protected override Expression<Func<Country, object>> SortExpression => c => c.Name;
+            repository.TryDispose();
+
+            return result;
+        }
     }
 }
