@@ -71,10 +71,24 @@
                         <div class="col-md-10">
                             <ul class="address-list">
                                 <li ng-repeat="address in addressList.addresses | orderBy: 'addressString'">
-                                    <input type="hidden" name="Addresses.Index" value="{{address.id}}" />
-                                    <input type="text" name="Addresses[{{address.id}}].AddressString" value="{{address.addressString}}" readonly="readonly" class="address-string" />
-                                    <input type="text" name="Addresses[{{address.id}}].CityId" value="{{address.cityId}}" readonly="readonly" class="address-city-id" />
-                                    <input type="text" name="Addresses[{{address.id}}].CountryId" value="{{address.countryId}}" readonly="readonly" class="address-country-id" />
+                                    <input type="hidden"
+                                           name="@(nameof(Model.Addresses)).Index"
+                                           value="{{address.id}}" />
+                                    <input type="text"
+                                           name="@(nameof(Model.Addresses))[{{address.id}}].AddressString"
+                                           value="{{address.addressString}}"
+                                           readonly="readonly"
+                                           class="address-string" />
+                                    <input type="text"
+                                           name="@(nameof(Model.Addresses))[{{address.id}}].CityId"
+                                           value="{{address.cityId}}"
+                                           readonly="readonly"
+                                           class="address-city-id" />
+                                    <input type="text"
+                                           name="@(nameof(Model.Addresses))[{{address.id}}].CountryId"
+                                           value="{{address.countryId}}"
+                                           readonly="readonly"
+                                           class="address-country-id" />
                                     <span ng-click="addressList.removeAddress(address.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
                                 </li>
                             </ul>
