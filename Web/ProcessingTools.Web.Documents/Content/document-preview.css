@@ -46,14 +46,10 @@ li {
 em,
 i {
   font-style: italic;
-  font-weight: normal;
-  text-decoration: none;
 }
 strong,
 b {
-  font-style: normal;
   font-weight: bold;
-  text-decoration: none;
 }
 .taxon-name {
   position: relative;
