@@ -89,6 +89,7 @@
     <Compile Include="Floats\Models\PictureFloatObject.cs" />
     <Compile Include="Floats\Models\PlateFloatObject.cs" />
     <Compile Include="Floats\Models\SupplementaryMaterialFloatObject.cs" />
+    <Compile Include="Floats\Models\TableAppendixFloatObject.cs" />
     <Compile Include="Floats\Models\TableBoxFloatObject.cs" />
     <Compile Include="Floats\Models\TableFloatObject.cs" />
     <Compile Include="Floats\Models\TextBoxFloatObject.cs" />

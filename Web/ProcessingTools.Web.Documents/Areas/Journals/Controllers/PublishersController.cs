@@ -107,9 +107,6 @@
         [HttpGet]
         public async Task<ActionResult> Create()
         {
-
-
-
             var countries = (await this.countriesDataService.All())
                 .Select(c => new CountryViewModel
                 {
