@@ -9,6 +9,7 @@
     using Contracts;
     using Models;
 
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Documents.Data.Common.Models.Contracts;
     using ProcessingTools.Documents.Data.Contracts;
@@ -29,10 +30,35 @@
             var dbmodel = new Publisher(entity);
             foreach (var entityAddress in entity.Addresses)
             {
-                await this.AddAddressToDbModel(dbmodel, entityAddress);
+                var dbaddress = await this.GetOrAddAddress(entityAddress);
+                dbmodel.Addresses.Add(dbaddress);
             }
 
             return await this.Add(dbmodel, this.DbSet);
+        }
+
+        public override async Task<object> AddAddress(object entityId, IAddressEntity address)
+        {
+            if (entityId == null)
+            {
+                throw new ArgumentNullException(nameof(entityId));
+            }
+
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+
+            var dbmodel = await this.Get(entityId, this.DbSet);
+            if (dbmodel == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            var dbaddress = await this.GetOrAddAddress(address);
+            dbmodel.Addresses.Add(dbaddress);
+
+            return dbmodel;
         }
 
         public virtual Task<long> Count() => this.DbSet.LongCountAsync();
@@ -56,6 +82,34 @@
             var entity = await query.FirstOrDefaultAsync();
 
             return entity;
+        }
+
+        public override async Task<object> RemoveAddress(object entityId, object addressId)
+        {
+            if (entityId == null)
+            {
+                throw new ArgumentNullException(nameof(entityId));
+            }
+
+            if (addressId == null)
+            {
+                throw new ArgumentNullException(nameof(addressId));
+            }
+
+            Guid id;
+            if (!Guid.TryParse(addressId.ToString(), out id))
+            {
+                throw new ArgumentException(nameof(addressId));
+            }
+
+            var dbmodel = await this.Get(entityId, this.DbSet);
+            if (dbmodel == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            // TODO
+            return this.RemoveAddressFromDbModel(dbmodel, id);
         }
     }
 }

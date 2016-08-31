@@ -25,64 +25,65 @@
 
         private IDbSet<Address> AddressSet { get; set; }
 
-        public virtual async Task<object> AddAddress(object entityId, IAddressEntity address)
-        {
-            if (entityId == null)
-            {
-                throw new ArgumentNullException(nameof(entityId));
-            }
+        public abstract Task<object> AddAddress(object entityId, IAddressEntity address);
+        ////{
+        ////    if (entityId == null)
+        ////    {
+        ////        throw new ArgumentNullException(nameof(entityId));
+        ////    }
 
-            if (address == null)
-            {
-                throw new ArgumentNullException(nameof(address));
-            }
+        ////    if (address == null)
+        ////    {
+        ////        throw new ArgumentNullException(nameof(address));
+        ////    }
 
-            var dbmodel = await this.Get(entityId, this.DbSet);
-            if (dbmodel == null)
-            {
-                throw new EntityNotFoundException();
-            }
+        ////    var dbmodel = await this.Get(entityId, this.DbSet);
+        ////    if (dbmodel == null)
+        ////    {
+        ////        throw new EntityNotFoundException();
+        ////    }
 
-            await this.AddAddressToDbModel(dbmodel, address);
+        ////    var dbaddress = await this.GetOrAddAddress(address);
+        ////    dbmodel.Addresses.Add(dbaddress);
 
-            return dbmodel;
-        }
+        ////    return dbmodel;
+        ////}
 
-        public virtual async Task<object> RemoveAddress(object entityId, object addressId)
-        {
-            if (entityId == null)
-            {
-                throw new ArgumentNullException(nameof(entityId));
-            }
+        public abstract Task<object> RemoveAddress(object entityId, object addressId);
+        ////{
+        ////    if (entityId == null)
+        ////    {
+        ////        throw new ArgumentNullException(nameof(entityId));
+        ////    }
 
-            if (addressId == null)
-            {
-                throw new ArgumentNullException(nameof(addressId));
-            }
+        ////    if (addressId == null)
+        ////    {
+        ////        throw new ArgumentNullException(nameof(addressId));
+        ////    }
 
-            Guid id;
-            if (!Guid.TryParse(addressId.ToString(), out id))
-            {
-                throw new ArgumentException(nameof(addressId));
-            }
+        ////    Guid id;
+        ////    if (!Guid.TryParse(addressId.ToString(), out id))
+        ////    {
+        ////        throw new ArgumentException(nameof(addressId));
+        ////    }
 
-            var dbmodel = await this.Get(entityId, this.DbSet);
-            if (dbmodel == null)
-            {
-                throw new EntityNotFoundException();
-            }
+        ////    var dbmodel = await this.Get(entityId, this.DbSet);
+        ////    if (dbmodel == null)
+        ////    {
+        ////        throw new EntityNotFoundException();
+        ////    }
 
-            return this.RemoveAddressFromDbModel(dbmodel, id);
-        }
+        ////    return this.RemoveAddressFromDbModel(dbmodel, id);
+        ////}
 
-        protected virtual async Task AddAddressToDbModel(TDbModel dbmodel, IAddressEntity address)
+        protected virtual async Task<Address> GetOrAddAddress(IAddressEntity address)
         {
             var dbaddress = await this.AddOrGet(
                 new Address(address),
                 this.AddressSet,
                 t => (t.AddressString == address.AddressString) && (t.CountryId == address.CountryId) && (t.CityId == address.CityId));
 
-            dbmodel.Addresses.Add(dbaddress);
+            return dbaddress;
         }
 
         protected virtual Task<object> RemoveAddressFromDbModel(TDbModel dbmodel, Guid addressId) => Task.Run<object>(() =>

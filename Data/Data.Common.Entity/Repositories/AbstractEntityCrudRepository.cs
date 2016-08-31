@@ -139,7 +139,10 @@
             var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter);
             if (dbmodel == null)
             {
-                return await this.Add(entity, set);
+                var result = await this.Add(entity, set);
+                await this.SaveChanges();
+
+                return result;
             }
 
             return dbmodel;

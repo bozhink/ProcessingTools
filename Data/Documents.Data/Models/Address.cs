@@ -44,6 +44,7 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]
         public string AddressString { get; set; }
 
