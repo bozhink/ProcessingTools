@@ -53,6 +53,7 @@
     <Compile Include="DocumentsDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AddressableEntity.cs" />
     <Compile Include="Models\Affiliation.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Author.cs" />

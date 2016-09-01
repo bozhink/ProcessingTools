@@ -4,22 +4,19 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
     using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Publisher : ModelWithUserInformation, IEntityWithPreJoinedFields, IPublisherEntity
+    public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisherEntity
     {
-        private ICollection<Address> addresses;
         private ICollection<Journal> journals;
 
         public Publisher()
+            : base()
         {
             this.Id = Guid.NewGuid();
-            this.addresses = new HashSet<Address>();
             this.journals = new HashSet<Journal>();
         }
 
@@ -51,19 +48,6 @@
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName)]
         public string AbbreviatedName { get; set; }
 
-        public virtual ICollection<Address> Addresses
-        {
-            get
-            {
-                return this.addresses;
-            }
-
-            set
-            {
-                this.addresses = value;
-            }
-        }
-
         public virtual ICollection<Journal> Journals
         {
             get
@@ -82,8 +66,5 @@
         {
             nameof(this.Addresses)
         };
-
-        [NotMapped]
-        ICollection<IAddressEntity> IAddressableEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
     }
 }
