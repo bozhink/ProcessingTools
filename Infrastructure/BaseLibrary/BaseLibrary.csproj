@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abbreviations\IAbbreviation.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="CustomXslRunner.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />

@@ -6,7 +6,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    internal class Abbreviation
+    internal class Abbreviation : IAbbreviation
     {
         private string contentType;
 

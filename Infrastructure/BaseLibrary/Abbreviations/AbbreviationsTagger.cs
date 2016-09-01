@@ -19,31 +19,31 @@
 
         public ILogger Logger { get; set; }
 
-        public Task Tag()
+        public async Task Tag()
         {
-            return Task.Run(() =>
-            {
-                // Do not change this sequence
-                this.TagAbbreviationsInSpecificNodeByXPath("//graphic | //media | //disp-formula-group", ".//abbrev");
-                this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap | //fig | //supplementary-material | //table-wrap", ".//abbrev");
-                this.TagAbbreviationsInSpecificNodeByXPath("//fig-group | //table-wrap-group", ".//abbrev");
-                this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text", ".//abbrev");
-                this.TagAbbreviationsInSpecificNodeByXPath("//alt-title | //article-title | //attrib | //award-id | //comment | //conf-theme | //def-head | //element-citation | //funding-source | //license-p | //meta-value | //mixed-citation | //p | //preformat | //product | //subtitle | //supplement | //td | //term | //term-head | //th | //title | //trans-subtitle | //trans-title | //verse-line", "//abbrev");
-            });
+            // Do not change this sequence
+            await this.TagAbbreviationsInSpecificNodeByXPath("//graphic | //media | //disp-formula-group", ".//abbrev");
+            await this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap | //fig | //supplementary-material | //table-wrap", ".//abbrev");
+            await this.TagAbbreviationsInSpecificNodeByXPath("//fig-group | //table-wrap-group", ".//abbrev");
+            await this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text", ".//abbrev");
+            await this.TagAbbreviationsInSpecificNodeByXPath("//alt-title | //article-title | //attrib | //award-id | //comment | //conf-theme | //def-head | //element-citation | //funding-source | //license-p | //meta-value | //mixed-citation | //p | //preformat | //product | //subtitle | //supplement | //td | //term | //term-head | //th | //title | //trans-subtitle | //trans-title | //verse-line", "//abbrev");
         }
 
-        private void TagAbbreviationsInSpecificNode(XmlNode specificNode, string abbreviationsXpath)
+        private async Task TagAbbreviationsInSpecificNodeByXPath(string selectSpecificNodeXPath, string abbreviationsXpath)
         {
-            var abbreviationsList = new HashSet<Abbreviation>(specificNode
-                .SelectNodes(abbreviationsXpath, this.NamespaceManager)
+            var tasks = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager)
                 .Cast<XmlNode>()
-                .Select(x => new Abbreviation(x))
-                .Where(a => !string.IsNullOrWhiteSpace(a.Content))
-                .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
-                .OrderByDescending(a => a.Content.Length)
-                .ToList());
+                .Select(n => this.TagAbbreviationsInSpecificNode(n, abbreviationsXpath))
+                .ToArray();
 
-            foreach (Abbreviation abbreviation in abbreviationsList)
+            await Task.WhenAll(tasks);
+        }
+
+        private Task TagAbbreviationsInSpecificNode(XmlNode specificNode, string abbreviationsXpath) => Task.Run(() =>
+        {
+            var abbreviationList = new HashSet<IAbbreviation>(this.GetAbbreviationList(specificNode, abbreviationsXpath));
+
+            foreach (var abbreviation in abbreviationList)
             {
                 string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
                 foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
@@ -62,15 +62,20 @@
                     }
                 }
             }
-        }
+        });
 
-        private void TagAbbreviationsInSpecificNodeByXPath(string selectSpecificNodeXPath, string abbreviationsXpath)
+        private IEnumerable<IAbbreviation> GetAbbreviationList(XmlNode specificNode, string abbreviationsXpath)
         {
-            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager);
-            foreach (XmlNode specificNode in specificNodes)
-            {
-                this.TagAbbreviationsInSpecificNode(specificNode, abbreviationsXpath);
-            }
+            var abbreviationList = specificNode.SelectNodes(abbreviationsXpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .Select(x => new Abbreviation(x))
+                .Where(a => !string.IsNullOrWhiteSpace(a.Content))
+                .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
+                .Where(a => a.Content.Length > 1)
+                .OrderByDescending(a => a.Content.Length)
+                .ToList();
+
+            return abbreviationList;
         }
     }
 }
