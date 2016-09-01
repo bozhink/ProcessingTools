@@ -86,6 +86,7 @@
     <Compile Include="Floats\Models\HabitusFloatObject.cs" />
     <Compile Include="Floats\Models\MapFloatObject.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
+    <Compile Include="Floats\Models\MovieFloatObject.cs" />
     <Compile Include="Floats\Models\PictureFloatObject.cs" />
     <Compile Include="Floats\Models\PlateFloatObject.cs" />
     <Compile Include="Floats\Models\SupplementaryMaterialFloatObject.cs" />
