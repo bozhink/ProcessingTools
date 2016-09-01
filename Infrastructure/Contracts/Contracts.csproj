@@ -44,7 +44,9 @@
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="IContextProcessor.cs" />
     <Compile Include="IContextProcessorVoid.cs" />
+    <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="IGenericXmlContextTagger.cs" />
     <Compile Include="IGuidIdentifiable.cs" />
     <Compile Include="IGenericIdentifiable.cs" />
     <Compile Include="IIdentifiable.cs" />
