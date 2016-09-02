@@ -75,7 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abbreviations\AbbreviationsContextTagger.cs" />
     <Compile Include="Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Abbreviations\IAbbreviationsContextTagger.cs" />
+    <Compile Include="Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="CustomXslRunner.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
@@ -361,7 +364,9 @@
       <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Xml\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

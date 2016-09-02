@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -13,16 +14,22 @@
     [Description("Tag abbreviations.")]
     public class TagAbbreviationsController : TaggerControllerFactory, ITagAbbreviationsController
     {
+        private readonly IAbbreviationsTagger abbreviationsTagger;
+
+        public TagAbbreviationsController(IAbbreviationsTagger abbreviationsTagger)
+        {
+            if (abbreviationsTagger == null)
+            {
+                throw new ArgumentNullException(nameof(abbreviationsTagger));
+            }
+
+            this.abbreviationsTagger = abbreviationsTagger;
+        }
+
+
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new AbbreviationsTagger(document.OuterXml)
-            {
-                Logger = logger
-            };
-
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
+            await this.abbreviationsTagger.Tag(document);
         }
     }
 }

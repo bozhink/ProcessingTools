@@ -24,13 +24,7 @@
 
         public string ReplacePattern { get; private set; }
 
-        public string SearchPattern
-        {
-            get
-            {
-                return $"\\b({Regex.Escape(this.Content)})\\b";
-            }
-        }
+        public string SearchPattern => $"\\b({Regex.Escape(this.Content)})\\b";
 
         private void SetContent(XmlNode abbrev)
         {
