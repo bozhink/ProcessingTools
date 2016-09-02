@@ -7,11 +7,12 @@
 
     using Contracts;
     using Models;
+    using Models.Contracts;
 
     using ProcessingTools.Harvesters.Common.Factories;
     using ProcessingTools.Xml.Extensions;
 
-    public class AbbreviationsHarvester : GenericHarvesterFactory<AbbreviationModel>, IAbbreviationsHarvester
+    public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private const string AbbreviationsXQueryFilePathKey = "AbbreviationsXQueryFilePath";
 
@@ -22,11 +23,11 @@
             this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePathKey];
         }
 
-        protected override async Task<IQueryable<AbbreviationModel>> Run(XmlDocument document)
+        protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            var items = await document.DeserializeXQueryTransformOutput<AbbreviationsModel>(this.abbreviationsXQueryFileName);
+            var items = await document.DeserializeXQueryTransformOutput<AbbreviationsXmlModel>(this.abbreviationsXQueryFileName);
 
-            return items.Abbreviations.AsQueryable();
+            return items?.Abbreviations?.AsQueryable<IAbbreviationModel>();
         }
     }
 }

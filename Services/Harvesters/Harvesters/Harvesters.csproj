@@ -42,10 +42,11 @@
     <Compile Include="Contracts\IExternalLinksHarvester.cs" />
     <Compile Include="Harvesters\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinksHarvester.cs" />
-    <Compile Include="Models\AbbreviationModel.cs" />
-    <Compile Include="Models\AbbreviationsModel.cs" />
+    <Compile Include="Models\AbbreviationXmlModel.cs" />
+    <Compile Include="Models\AbbreviationsXmlModel.cs" />
     <Compile Include="Models\ExternalLinkModel.cs" />
     <Compile Include="Models\ExternalLinksModel.cs" />
+    <Compile Include="Models\Contracts\IAbbreviationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,9 @@
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "abbreviations")]
-    public class AbbreviationsModel
+    public class AbbreviationsXmlModel
     {
         [XmlElement("abbreviation")]
-        public AbbreviationModel[] Abbreviations { get; set; }
+        public AbbreviationXmlModel[] Abbreviations { get; set; }
     }
 }
