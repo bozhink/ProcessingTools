@@ -2,8 +2,7 @@
 {
     using System.Xml;
 
-    public interface IXmlNamespaceManagerProvider
+    public interface IXmlNamespaceManagerProvider : IGenericProvider<XmlNamespaceManager>
     {
-        XmlNamespaceManager Create();
     }
 }

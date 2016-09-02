@@ -46,6 +46,7 @@
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="IGenericProvider.cs" />
     <Compile Include="IGenericXmlContextTagger.cs" />
     <Compile Include="IGuidIdentifiable.cs" />
     <Compile Include="IGenericIdentifiable.cs" />
