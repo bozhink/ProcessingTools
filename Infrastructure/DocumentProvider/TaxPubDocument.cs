@@ -126,22 +126,5 @@
         }
 
         public XmlDocument XmlDocument { get; private set; }
-
-        public static XmlNamespaceManager NamespceManager()
-        {
-            object syncLock = new object();
-            if (namespaceManager == null)
-            {
-                lock (syncLock)
-                {
-                    if (namespaceManager == null)
-                    {
-                        namespaceManager = new TaxPubDocument().NamespaceManager;
-                    }
-                }
-            }
-
-            return namespaceManager;
-        }
     }
 }

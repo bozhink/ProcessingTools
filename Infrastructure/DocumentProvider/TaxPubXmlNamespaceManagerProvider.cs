@@ -7,7 +7,7 @@
 
     public class TaxPubXmlNamespaceManagerProvider : IXmlNamespaceManagerProvider
     {
-        private readonly static XmlNamespaceManager NamespaceManager;
+        private static readonly XmlNamespaceManager NamespaceManager;
 
         static TaxPubXmlNamespaceManagerProvider()
         {
@@ -20,6 +20,8 @@
             NamespaceManager.AddNamespace(Namespaces.MathMLNamespacePrefix, Namespaces.MathMLNamespaceUri);
             NamespaceManager.PushScope();
         }
+
+        public static XmlNamespaceManager GetStatic() => NamespaceManager;
 
         public XmlNamespaceManager Create() => NamespaceManager;
     }
