@@ -42,6 +42,9 @@
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ProcessingTools.Loggers.TextWriterLogger>();
 
+            this.Bind<ProcessingTools.Contracts.IXmlNamespaceManagerProvider>()
+                .To<ProcessingTools.DocumentProvider.TaxPubXmlNamespaceManagerProvider>();
+
             this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankSearchableRepositoryProvider>()
                 .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankSearchableRepositoryProvider>();
 
