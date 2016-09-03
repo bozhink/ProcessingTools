@@ -3,8 +3,69 @@
     ViewBag.Title = "Taxa Ranks";
 }
 
-<section>
-    <header>
-        <h2>Taxa Ranks</h2>
-    </header>
-</section>
+@Scripts.Render(BundleNames.AngularScriptBundleName)
+<script src="~/Scripts/controllers/data/bio/taxonomy/taxa-ranks-controller.js"></script>
+
+<header>
+    <h2>Taxa Ranks</h2>
+</header>
+
+<div ng-app="taxaranksApp">
+    <div ng-controller="TaxaRanksController as taxaList">
+        <h4>Add Taxa</h4>
+        <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
+            <div class="form-group">
+                <div class="input-group">
+                    @Html.TextArea(
+                        "taxa",
+                        "",
+                        htmlAttributes: new
+                        {
+                            ng_model = "taxaList.textArea",
+                            placeholder = "add taxon-rank pairs here",
+                            @class = "form-control"
+                        })
+                </div>
+                <input class="btn btn-primary" type="submit" value="add" />
+            </div>
+        </form>
+
+        <div class="form-group" ng-if="taxaList.taxa.length">
+            <hr />
+
+            @using (Html.BeginForm())
+            {
+                <h4>Taxa</h4>
+                <ul class="list-group col-md-4 taxon-list">
+                    <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
+                        <input type="hidden"
+                               name="Taxa.Index"
+                               value="{{taxon.id}}" />
+                        <input type="text"
+                               name="Taxa[{{taxon.id}}].TaxonName"
+                               value="{{taxon.taxonName}}"
+                               readonly="readonly"
+                               class="taxon-name" />
+                        <input type="text"
+                               name="Taxa[{{taxon.id}}].Rank"
+                               value="{{taxon.rank}}"
+                               readonly="readonly"
+                               class="taxon-rank" />
+                        <span ng-click="taxaList.removeTaxon(taxon.id)"
+                              class="glyphicon glyphicon-remove remove-button"
+                              title="Remove"></span>
+                    </li>
+                </ul>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<div class="clearfix"></div>

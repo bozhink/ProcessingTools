@@ -5,6 +5,7 @@
 /// <reference path="config/monaco-editor-config.js" />
 /// <reference path="config/toastr-config.js" />
 /// <reference path="controllers/address-list-controller.js" />
+/// <reference path="controllers/data/bio/taxonomy/taxa-ranks-controller.js" />
 /// <reference path="controllers/documents/document-controller.js" />
 /// <reference path="custom/auto-save.js" />
 /// <reference path="custom/coordinates-toolboxes.js" />
