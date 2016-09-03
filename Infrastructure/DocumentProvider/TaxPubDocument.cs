@@ -4,15 +4,13 @@
     using System.Linq;
     using System.Text;
     using System.Xml;
-    using ProcessingTools.Contracts;
 
+    using ProcessingTools.Contracts;
     using ProcessingTools.Nlm.Publishing.Constants;
 
     public class TaxPubDocument : IDocument
     {
         private const string Xmlns = "xmlns";
-
-        private static XmlNamespaceManager namespaceManager = null;
         private Encoding encoding;
 
         public TaxPubDocument(Encoding encoding)
@@ -135,7 +133,7 @@
                 throw new ArgumentNullException(nameof(xpath));
             }
 
-            var query =  this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+            var query = this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
                 .Cast<XmlNode>()
                 .AsQueryable();
 
