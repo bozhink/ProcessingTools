@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.DocumentProvider.Tests
 {
     using System;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
@@ -597,6 +598,45 @@
         }
 
         #endregion XmlProperty
+
+        #region SelectNodes
+
+        // TODO: add more tests
+        [TestMethod]
+        public void TaxPubDocument_SelectNodesWithValidXPath_ShouldWork()
+        {
+            var document = new TaxPubDocument();
+            document.Xml = @"<a><b>1</b><b>2</b><b>3</b></a>";
+
+            var queryableNodes = document.SelectNodes("//b");
+
+            Assert.AreEqual(3, queryableNodes.Count(), "Number of nodes should be 3.");
+
+            var nodes = queryableNodes.ToList();
+
+            Assert.AreEqual("1", nodes[0].InnerText, @"InnerText of the first node should be ""1"".");
+            Assert.AreEqual("2", nodes[1].InnerText, @"InnerText of the second node should be ""2"".");
+            Assert.AreEqual("3", nodes[2].InnerText, @"InnerText of the third node should be ""3"".");
+        }
+
+        #endregion SelectNodes
+
+        #region SelectSingleNode
+
+        // TODO: add more tests
+        [TestMethod]
+        public void TaxPubDocument_SelectSingleNodeWithValidXPath_ShouldWork()
+        {
+            var document = new TaxPubDocument();
+            document.Xml = @"<a><b>1</b><b>2</b><b>3</b></a>";
+
+            var node = document.SelectSingleNode("//b");
+
+            Assert.IsNotNull(node, "Node should not be null.");
+            Assert.AreEqual("1", node.InnerText, @"InnerText of the node should be ""1"".");
+        }
+
+        #endregion SelectSingleNode
 
         #region Helpers
 
