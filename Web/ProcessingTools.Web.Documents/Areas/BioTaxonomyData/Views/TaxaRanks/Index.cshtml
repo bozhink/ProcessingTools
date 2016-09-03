@@ -1,4 +1,5 @@
-﻿
+﻿@model ProcessingTools.Web.Documents.Areas.BioTaxonomyData.ViewModels.TaxaRanks.TaxaRanksViewModel
+
 @{
     ViewBag.Title = "Taxa Ranks";
 }
@@ -12,7 +13,6 @@
 
 <div ng-app="taxaranksApp">
     <div ng-controller="TaxaRanksController as taxaList">
-        <h4>Add Taxa</h4>
         <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
             <div class="form-group">
                 <div class="input-group">
@@ -39,15 +39,15 @@
                 <ul class="list-group col-md-4 taxon-list">
                     <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
                         <input type="hidden"
-                               name="Taxa.Index"
+                               name="@(nameof(Model.Taxa)).Index"
                                value="{{taxon.id}}" />
                         <input type="text"
-                               name="Taxa[{{taxon.id}}].TaxonName"
+                               name="@(nameof(Model.Taxa))[{{taxon.id}}].TaxonName"
                                value="{{taxon.taxonName}}"
                                readonly="readonly"
                                class="taxon-name" />
                         <input type="text"
-                               name="Taxa[{{taxon.id}}].Rank"
+                               name="@(nameof(Model.Taxa))[{{taxon.id}}].Rank"
                                value="{{taxon.rank}}"
                                readonly="readonly"
                                class="taxon-rank" />

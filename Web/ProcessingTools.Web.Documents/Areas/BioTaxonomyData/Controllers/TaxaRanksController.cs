@@ -1,19 +1,59 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers
 {
     using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
 
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
+    using ViewModels.TaxaRanks;
+
     public class TaxaRanksController : Controller
     {
-        // GET: /Data/Bio/Taxonomy/TaxaRanks/Index
+        private readonly ITaxonRankDataService service;
+
+        public TaxaRanksController(ITaxonRankDataService service)
+        {
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
+        }
+
+        // GET: /Data/Bio/Taxonomy/TaxaRanks
         [HttpGet]
         public ActionResult Index()
         {
             return this.View();
+        }
+
+        [HttpPost, ActionName(nameof(TaxaRanksController.Index))]
+        public async Task<ActionResult> IndexPost(TaxaRanksViewModel viewModel)
+        {
+            if (viewModel == null || !this.ModelState.IsValid)
+            {
+                throw new ArgumentException(nameof(viewModel));
+            }
+
+            var taxa = viewModel.Taxa
+                .Select(i => new TaxonRankServiceModel
+                {
+                    ScientificName = i.TaxonName,
+                    Rank = i.Rank.MapTaxonRankStringToTaxonRankType()
+                })
+                .ToArray();
+
+            await this.service.Add(taxa);
+
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         protected override void HandleUnknownAction(string actionName)
