@@ -356,8 +356,7 @@
                     await item.TagContentInDocument(
                         lowerTaxaTagModel,
                         LowerTaxaXPathTemplate,
-                        this.NamespaceManager,
-                        this.XmlDocument,
+                        this,
                         true,
                         true,
                         this.logger);

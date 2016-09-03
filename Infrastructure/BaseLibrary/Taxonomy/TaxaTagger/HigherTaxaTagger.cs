@@ -41,8 +41,7 @@
             taxaNames.TagContentInDocument(
                 higherTaxaTag,
                 HigherTaxaXPathTemplate,
-                this.NamespaceManager,
-                this.XmlDocument,
+                this,
                 false,
                 true,
                 this.logger)

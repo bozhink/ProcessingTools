@@ -36,8 +36,7 @@
                 .TagContentInDocument(
                     this.tagModel,
                     this.contentNodesXPathTemplate,
-                    this.namespaceManager,
-                    this.XmlDocument,
+                    this,
                     false,
                     true,
                     this.logger);

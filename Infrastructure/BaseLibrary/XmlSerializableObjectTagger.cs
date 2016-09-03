@@ -39,8 +39,7 @@
                 {
                     item.TagContentInDocument(
                         this.contentNodesXPathTemplate,
-                        this.namespaceManager,
-                        this.XmlDocument,
+                        this,
                         this.caseSensitive,
                         this.minimalTextSelect,
                         this.logger)

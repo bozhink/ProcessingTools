@@ -183,7 +183,7 @@ namespace ProcessingTools.BaseLibrary
         /// <summary>
         /// Gets all matches of Janzen specimen codes in the text of the XmlDocument.
         /// </summary>
-        /// <returns>ICollection of found different Janzen speciment codes.</returns>
+        /// <returns>ICollection of found different Janzen specimen codes.</returns>
         /// <example>
         /// Janzen codes:
         /// yy-SRNP-xxxxxx
@@ -290,7 +290,7 @@ namespace ProcessingTools.BaseLibrary
         }
 
         /// <summary>
-        /// Gets all plausible specimen codes which contains a used in the article instirurional code.
+        /// Gets all plausible specimen codes which contains a used in the article institutional code.
         /// </summary>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
         /// <returns>Filtered list of plausible specimen codes.</returns>
@@ -304,7 +304,7 @@ namespace ProcessingTools.BaseLibrary
             foreach (string institutionalCode in institutionalCodes)
             {
                 /*
-                 * Here we believe that instituional codes are not specimen codes.
+                 * Here we believe that institutional codes are not specimen codes.
                  */
                 string pattern = @"\A" + institutionalCode + @"(\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
                 Regex matchPattern = new Regex(pattern);
@@ -334,7 +334,7 @@ namespace ProcessingTools.BaseLibrary
                 codeTag.SetAttribute("type", specimenCode.Type);
 
                 specimenCode.Code
-                    .TagContentInDocument(codeTag, xpathTemplate, this.NamespaceManager, this.XmlDocument, true, false, this.logger)
+                    .TagContentInDocument(codeTag, xpathTemplate, this, true, false, this.logger)
                     .Wait();
             }
 

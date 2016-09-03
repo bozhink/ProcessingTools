@@ -14,11 +14,6 @@
         public static string GetReplacementOfTagNode(this XmlElement item)
         {
             XmlElement replacementNode = (XmlElement)item.CloneNode(true);
-
-            ////XmlAttribute fullStringAttribute = replacementNode.OwnerDocument.CreateAttribute("full-string");
-            ////fullStringAttribute.InnerText = replacementNode.InnerText;
-            ////replacementNode.Attributes.Append(fullStringAttribute);
-
             replacementNode.InnerText = "$1";
             return replacementNode.OuterXml;
         }
@@ -27,8 +22,7 @@
             this IEnumerable<string> textToTagList,
             XmlElement tagModel,
             string xpathTemplate,
-            XmlNamespaceManager namespaceManager,
-            XmlDocument document,
+            IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
@@ -37,7 +31,7 @@
             {
                 try
                 {
-                    await textToTag.TagContentInDocument(tagModel, xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger);
+                    await textToTag.TagContentInDocument(tagModel, xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
                 }
                 catch (Exception e)
                 {
@@ -50,8 +44,7 @@
             this string textToTag,
             XmlElement tagModel,
             string xpathTemplate,
-            XmlNamespaceManager namespaceManager,
-            XmlDocument document,
+            IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
@@ -59,7 +52,7 @@
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await item.TagContentInDocument(xpathTemplate, namespaceManager, document, caseSensitive, minimalTextSelect, logger);
+            await item.TagContentInDocument(xpathTemplate, document, caseSensitive, minimalTextSelect, logger);
         }
 
         /// <summary>
@@ -67,8 +60,7 @@
         /// </summary>
         /// <param name="item">XmlElement to be set in the XmlDocument.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
-        /// <param name="namespaceManager">XmlNamespaceManager to execute xpathTemplate.</param>
-        /// <param name="document">XmlDocument object to be tagged.</param>
+        /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="caseSensitive">Should be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         /// <param name="logger"></param>
@@ -76,14 +68,13 @@
         public static async Task TagContentInDocument(
             this XmlElement item,
             string xpathTemplate,
-            XmlNamespaceManager namespaceManager,
-            XmlDocument document,
+            IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            string xpath = string.Format(xpathTemplate, "contains(string(.),'" + item.InnerText + "')");
-            XmlNodeList nodeList = document.SelectNodes(xpath, namespaceManager);
+            string xpath = string.Format(xpathTemplate, $"contains(string(.),'{item.InnerText}')");
+            var nodeList = document.SelectNodes(xpath);
 
             await item.TagContentInDocument(nodeList, caseSensitive, minimalTextSelect, logger);
         }
@@ -99,12 +90,12 @@
         /// <returns>Task for async call.</returns>
         public static Task TagContentInDocument(
             this XmlElement item,
-            XmlNodeList nodeList,
+            IEnumerable<XmlNode> nodeList,
             bool caseSensitive = true,
             bool minimalTextSelect = false,
             ILogger logger = null)
         {
-            return nodeList.Cast<XmlNode>().Tag(caseSensitive, minimalTextSelect, logger, item);
+            return nodeList.Tag(caseSensitive, minimalTextSelect, logger, item);
         }
 
         public static async Task Tag(this IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
