@@ -34,7 +34,7 @@
                     string b = replaceNode["B"].InnerXml;
                     if (replaceNode.Attributes.Count > 0)
                     {
-                        text = Regex.Replace(text, a, b);
+                        text = Regex.Replace(text, pattern: a, replacement: b);
                     }
                     else
                     {
