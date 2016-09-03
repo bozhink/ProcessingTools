@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.DocumentProvider
 {
     using System;
+    using System.Linq;
     using System.Text;
     using System.Xml;
-    using Contracts;
+    using ProcessingTools.Contracts;
 
     using ProcessingTools.Nlm.Publishing.Constants;
 
@@ -126,5 +127,31 @@
         }
 
         public XmlDocument XmlDocument { get; private set; }
+
+        public IQueryable<XmlNode> SelectNodes(string xpath)
+        {
+            if (string.IsNullOrWhiteSpace(xpath))
+            {
+                throw new ArgumentNullException(nameof(xpath));
+            }
+
+            var query =  this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsQueryable();
+
+            return query;
+        }
+
+        public XmlNode SelectSingleNode(string xpath)
+        {
+            if (string.IsNullOrWhiteSpace(xpath))
+            {
+                throw new ArgumentNullException(nameof(xpath));
+            }
+
+            var node = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
+
+            return node;
+        }
     }
 }
