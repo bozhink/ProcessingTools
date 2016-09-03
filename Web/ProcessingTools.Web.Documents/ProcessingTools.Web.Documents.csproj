@@ -283,7 +283,6 @@
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />
-    <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
@@ -382,8 +381,6 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Articles\Views\web.config" />
     <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Data\Views\web.config" />
-    <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
     <Content Include="Areas\GeoData\Views\web.config" />
     <Content Include="Areas\GeoData\Views\_ViewStart.cshtml" />
     <Content Include="Areas\GeoData\Views\Continents\Create.cshtml" />
@@ -506,9 +503,6 @@
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\BioTaxonomyData\Models\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
-    <Folder Include="Areas\Data\Controllers\" />
-    <Folder Include="Areas\Data\Models\" />
-    <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
