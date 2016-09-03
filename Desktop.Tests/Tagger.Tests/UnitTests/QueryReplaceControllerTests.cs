@@ -7,6 +7,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     [TestFixture]
     public class QueryReplaceControllerTests
@@ -19,6 +20,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
+        private IQueryReplacer queryReplacer;
 
         [SetUp]
         public void Init()
@@ -31,12 +33,15 @@
 
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
+
+            var queryReplacerMock = new Mock<IQueryReplacer>();
+            this.queryReplacer = queryReplacerMock.Object;
         }
 
         [Test]
         public void QueryReplaceController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -44,7 +49,7 @@
         [Test]
         public void QueryReplaceController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             string initialContent = this.document.OuterXml;
 
@@ -58,7 +63,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -68,7 +73,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -78,7 +83,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -88,7 +93,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -98,7 +103,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -108,7 +113,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -118,7 +123,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -128,7 +133,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -138,7 +143,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             try
             {
@@ -158,7 +163,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -168,7 +173,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -178,7 +183,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -188,7 +193,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -198,7 +203,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             try
             {
@@ -218,7 +223,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -228,7 +233,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -238,7 +243,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             try
             {
@@ -258,7 +263,7 @@
         [Test]
         public void QueryReplaceController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new QueryReplaceController();
+            var controller = new QueryReplaceController(this.queryReplacer);
 
             string initialContent = this.document.OuterXml;
 

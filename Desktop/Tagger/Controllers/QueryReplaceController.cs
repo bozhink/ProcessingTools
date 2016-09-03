@@ -9,13 +9,25 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     [Description("Query replace.")]
     public class QueryReplaceController : TaggerControllerFactory, IQueryReplaceController
     {
-        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly IQueryReplacer queryReplacer;
+
+        public QueryReplaceController(IQueryReplacer queryReplacer)
+        {
+            if (queryReplacer == null)
+            {
+                throw new ArgumentNullException(nameof(queryReplacer));
+            }
+
+            this.queryReplacer = queryReplacer;
+        }
+
+        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -26,7 +38,9 @@
 
             string queryFileName = settings.FileNames.ElementAt(2);
 
-            return Task.Run(() => document.LoadXml(QueryReplace.Replace(document.OuterXml, queryFileName)));
+            var processedContent = await this.queryReplacer.Replace(document.OuterXml, queryFileName);
+
+            document.LoadXml(processedContent);
         }
     }
 }

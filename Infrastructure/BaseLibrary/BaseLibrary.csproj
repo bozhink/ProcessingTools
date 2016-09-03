@@ -129,7 +129,6 @@
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="Special\QuentinFlora.cs" />
-    <Compile Include="QueryReplace.cs" />
     <Compile Include="References\ReferencesTagger.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />

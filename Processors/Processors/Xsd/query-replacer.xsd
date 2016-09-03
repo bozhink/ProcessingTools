@@ -12,7 +12,7 @@
         <xs:element name="pattern" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1" />
         <xs:element name="replacement" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
-      <xs:attribute name="is-regex" type="xs:boolean" default="true" use="optional" />
+      <xs:attribute name="is-regex" type="xs:boolean" default="false" use="optional" />
     </xs:complexType>
   </xs:element>
 
