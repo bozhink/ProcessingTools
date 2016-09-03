@@ -38,6 +38,13 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ProcessingTools.Loggers.TextWriterLogger>();
