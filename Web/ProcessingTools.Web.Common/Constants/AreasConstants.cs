@@ -5,6 +5,6 @@
         public const string DefaultAreaName = "";
         public const string ArticlesAreaName = "Articles";
         public const string JournalsAreaName = "Journals";
-        public const string BioTaxonomyDataAreaName = "Bio.Taxonomy.Data";
+        public const string BioTaxonomyDataAreaName = "BioTaxonomyData";
     }
 }

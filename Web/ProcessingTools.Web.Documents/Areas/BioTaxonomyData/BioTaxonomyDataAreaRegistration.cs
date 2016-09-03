@@ -14,7 +14,7 @@
                 "Data/Bio/Taxonomy/{controller}/{action}/{id}",
                 new
                 {
-                    action = ActionNames.DeafultIndexActionName,
+                    action = RouteConstants.DefaultActionName,
                     id = UrlParameter.Optional
                 });
         }
