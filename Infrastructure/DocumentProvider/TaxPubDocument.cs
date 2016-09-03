@@ -5,10 +5,11 @@
     using System.Text;
     using System.Xml;
 
-    using ProcessingTools.Contracts;
+    using Contracts;
+
     using ProcessingTools.Nlm.Publishing.Constants;
 
-    public class TaxPubDocument : IDocument
+    public class TaxPubDocument : ITaxPubDocument
     {
         private const string Xmlns = "xmlns";
         private Encoding encoding;
