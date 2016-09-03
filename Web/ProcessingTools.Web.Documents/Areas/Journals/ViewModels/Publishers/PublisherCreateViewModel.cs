@@ -2,8 +2,9 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Documents.Data.Common.Constants;
     using System.Web.Mvc;
+
+    using ProcessingTools.Documents.Data.Common.Constants;
 
     public class PublisherCreateViewModel
     {

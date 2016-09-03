@@ -5,8 +5,8 @@
     using System.Xml;
 
     using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Extensions;
     using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Xml.Extensions;
 
     internal class Abbreviation : IAbbreviation
     {
@@ -113,7 +113,6 @@
         }
 
         public string SearchPattern => $"\\b({Regex.Escape(this.Content)})\\b";
-
 
         private void SetContent(XmlNode abbrev)
         {

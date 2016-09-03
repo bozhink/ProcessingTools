@@ -43,7 +43,7 @@
             // TODO: TaxPubDocument should become dummy parameter.
             var context = new TaxPubDocument(document.OuterXml);
 
-            await processor.Process(context);
+            await this.processor.Process(context);
 
             document.LoadXml(context.Xml);
         }

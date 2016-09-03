@@ -26,7 +26,6 @@
             this.abbreviationsTagger = abbreviationsTagger;
         }
 
-
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             await this.abbreviationsTagger.Tag(document);
