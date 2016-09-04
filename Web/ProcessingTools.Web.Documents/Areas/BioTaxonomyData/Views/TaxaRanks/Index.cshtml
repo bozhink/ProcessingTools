@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Taxa Ranks";
     var anchorTag = Html.ActionLink("Search", nameof(TaxaRanksController.Search)).ToHtmlString();
-    var url = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
+    var searchUrl = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
 }
 
 @Scripts.Render(BundleNames.AngularScriptBundleName)
@@ -18,23 +18,23 @@
         <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
             <div class="form-group">
                 <textarea ng-model="taxaList.textArea"
-                            name="taxa"
-                            cols="30"
-                            rows="8"
-                            placeholder="add taxon-rank pairs here"
-                            class="form-control"></textarea>
+                          name="taxa"
+                          cols="30"
+                          rows="4"
+                          placeholder="add taxon-rank pairs here"
+                          class="form-control"></textarea>
                 <input class="btn btn-primary" type="submit" value="add" />
             </div>
         </form>
 
-        <form ng-submit="taxaList.search('@url')" class="form-horizontal">
+        <form ng-submit="taxaList.search('@searchUrl')" class="form-horizontal">
             <div class="form-group">
                 <input ng-model="taxaList.searchString"
-                        type="text"
-                        size="30"
-                        placeholder="input taxon name to search here"
-                        class="form-control"
-                        pattern=".+" />
+                       type="text"
+                       size="30"
+                       placeholder="input taxon name to search here"
+                       class="form-control"
+                       pattern=".+" />
                 <input class="btn btn-primary" type="submit" value="search" />
             </div>
         </form>
@@ -44,31 +44,34 @@
 
             @using (Html.BeginForm())
             {
-                <h4>Taxa</h4>
-                <ul class="list-group col-md-4 taxon-list">
-                    <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
-                        <input type="hidden"
-                               name="@(nameof(Model.Taxa)).Index"
-                               value="{{taxon.id}}" />
-                        <input type="text"
-                               name="@(nameof(Model.Taxa))[{{taxon.id}}].TaxonName"
-                               value="{{taxon.taxonName}}"
-                               readonly="readonly"
-                               class="taxon-name" />
-                        <input type="text"
-                               name="@(nameof(Model.Taxa))[{{taxon.id}}].Rank"
-                               value="{{taxon.rank}}"
-                               readonly="readonly"
-                               class="taxon-rank" />
-                        <span ng-click="taxaList.removeTaxon(taxon.id)"
-                              class="glyphicon glyphicon-remove remove-button"
-                              title="Remove"></span>
-                    </li>
-                </ul>
+                <div class="col-md-12">
+                    <h4>Taxa</h4>
+                    <ul class="list-group col-md-offset-2 col-md-10 taxon-list">
+                        <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
+                            <input type="hidden"
+                                   name="@(nameof(Model.Taxa)).Index"
+                                   value="{{taxon.id}}" />
+                            <input type="text"
+                                   name="@(nameof(Model.Taxa))[{{taxon.id}}].TaxonName"
+                                   value="{{taxon.taxonName}}"
+                                   readonly="readonly"
+                                   class="taxon-name" />
+                            <input type="text"
+                                   name="@(nameof(Model.Taxa))[{{taxon.id}}].Rank"
+                                   value="{{taxon.rank}}"
+                                   readonly="readonly"
+                                   class="taxon-rank" />
+                            <span ng-click="taxaList.removeTaxon(taxon.id)"
+                                  class="glyphicon glyphicon-remove remove-button"
+                                  title="Remove"></span>
+                        </li>
+                    </ul>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Submit" class="btn btn-default" />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
+                            <input type="submit" value="Submit" class="btn btn-default" />
+                        </div>
                     </div>
                 </div>
             }

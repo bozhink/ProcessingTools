@@ -86,6 +86,10 @@
                 }
             };
 
+            taxaList.clearList = function () {
+                taxaList.taxa.splice(0, taxaList.taxa.length);
+            }
+
             taxaList.search = function (url) {
                 var searchString, request;
                 if (!url) {
