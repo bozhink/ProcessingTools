@@ -17,31 +17,24 @@
     <div ng-controller="TaxaRanksController as taxaList">
         <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
             <div class="form-group">
-                <div class="input-group">
-                    @Html.TextArea(
-                        "taxa",
-                        "",
-                        htmlAttributes: new
-                        {
-                            ng_model = "taxaList.textArea",
-                            placeholder = "add taxon-rank pairs here",
-                            @class = "form-control"
-                        })
-                </div>
+                <textarea ng-model="taxaList.textArea"
+                            name="taxa"
+                            cols="30"
+                            rows="8"
+                            placeholder="add taxon-rank pairs here"
+                            class="form-control"></textarea>
                 <input class="btn btn-primary" type="submit" value="add" />
             </div>
         </form>
 
         <form ng-submit="taxaList.search('@url')" class="form-horizontal">
             <div class="form-group">
-                <div class="input-group">
-                    <input ng-model="taxaList.searchString"
-                           type="text"
-                           size="30"
-                           placeholder="input taxon name to search here"
-                           class="form-control"
-                           pattern=".+" />
-                </div>
+                <input ng-model="taxaList.searchString"
+                        type="text"
+                        size="30"
+                        placeholder="input taxon name to search here"
+                        class="form-control"
+                        pattern=".+" />
                 <input class="btn btn-primary" type="submit" value="search" />
             </div>
         </form>
