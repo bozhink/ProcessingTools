@@ -370,6 +370,12 @@
     <Content Include="Content\site.min.css">
       <DependentUpon>site.css</DependentUpon>
     </Content>
+    <Content Include="Content\taxa-ranks.css">
+      <DependentUpon>taxa-ranks.less</DependentUpon>
+    </Content>
+    <Content Include="Content\taxa-ranks.min.css">
+      <DependentUpon>taxa-ranks.css</DependentUpon>
+    </Content>
     <Content Include="Content\toolbox.css">
       <DependentUpon>toolbox.less</DependentUpon>
     </Content>
@@ -502,6 +508,7 @@
     <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
     <Content Include="Content\address-list.less" />
+    <Content Include="Content\taxa-ranks.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

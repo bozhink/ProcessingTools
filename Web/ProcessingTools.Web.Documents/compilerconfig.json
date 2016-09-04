@@ -22,5 +22,9 @@
   {
     "outputFile": "Content/address-list.css",
     "inputFile": "Content/address-list.less"
+  },
+  {
+    "outputFile": "Content/taxa-ranks.css",
+    "inputFile": "Content/taxa-ranks.less"
   }
 ]

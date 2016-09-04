@@ -6,6 +6,8 @@
     var searchUrl = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
 }
 
+<link href="~/Content/taxa-ranks.min.css" rel="stylesheet" />
+
 @Scripts.Render(BundleNames.AngularScriptBundleName)
 <script src="~/Scripts/controllers/data/bio/taxonomy/taxa-ranks-controller.js"></script>
 
@@ -15,37 +17,43 @@
 
 <div ng-app="taxaranksApp">
     <div ng-controller="TaxaRanksController as taxaList">
-        <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
+        <div class="contols">
             <div class="form-group">
-                <textarea ng-model="taxaList.textArea"
-                          name="taxa"
-                          cols="30"
-                          rows="4"
-                          placeholder="add taxon-rank pairs here"
-                          class="form-control"></textarea>
-                <input class="btn btn-primary" type="submit" value="add" />
+                <fieldset>
+                    <legend>Add taxa</legend>
+                    <form ng-submit="taxaList.addTaxon()" class="form-horizontal">
+                        <textarea ng-model="taxaList.textArea"
+                                  name="taxa"
+                                  cols="30"
+                                  rows="4"
+                                  placeholder="add taxon-rank pairs here"
+                                  class="form-control"></textarea>
+                        <input class="btn btn-primary" type="submit" value="add" />
+                    </form>
+                </fieldset>
             </div>
-        </form>
 
-        <form ng-submit="taxaList.search('@searchUrl')" class="form-horizontal">
             <div class="form-group">
-                <input ng-model="taxaList.searchString"
-                       type="text"
-                       size="30"
-                       placeholder="input taxon name to search here"
-                       class="form-control"
-                       pattern=".+" />
-                <input class="btn btn-primary" type="submit" value="search" />
+                <fieldset>
+                    <legend>Search taxa</legend>
+                    <form ng-submit="taxaList.search('@searchUrl')" class="form-horizontal">
+                        <input ng-model="taxaList.searchString"
+                               type="text"
+                               size="30"
+                               placeholder="input taxon name to search here"
+                               class="form-control"
+                               pattern=".+" />
+                        <input class="btn btn-primary" type="submit" value="search" />
+                    </form>
+                </fieldset>
             </div>
-        </form>
+        </div>
 
         <div class="form-group" ng-if="taxaList.taxa.length">
-            <hr />
-
-            @using (Html.BeginForm())
-            {
-                <div class="col-md-12">
-                    <h4>Taxa</h4>
+            <fieldset>
+                <legend>Taxa list</legend>
+                @using (Html.BeginForm())
+                {
                     <ul class="list-group col-md-offset-2 col-md-10 taxon-list">
                         <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
                             <input type="hidden"
@@ -73,10 +81,9 @@
                             <input type="submit" value="Submit" class="btn btn-default" />
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </fieldset>
         </div>
-
     </div>
 </div>
 
