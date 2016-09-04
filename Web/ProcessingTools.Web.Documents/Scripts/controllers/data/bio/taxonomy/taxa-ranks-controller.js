@@ -38,7 +38,7 @@
     }
 
     angular.module('taxaranksApp', [])
-        .controller('TaxaRanksController', function TaxaRanksController() {
+        .controller('TaxaRanksController', function TaxaRanksController($http) {
             var taxaList = this;
             taxaList.taxa = [];
 
@@ -85,5 +85,51 @@
                     }
                 }
             };
+
+            taxaList.search = function (url) {
+                var searchString, request;
+                if (!url) {
+                    return;
+                }
+
+                searchString = taxaList.searchString || '';
+                searchString = searchString.trim();
+                if (searchString.length < 1) {
+                    return;
+                }
+
+                request = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        searchString: searchString
+                    }
+                };
+
+                $http(request).then(function successCallback(response) {
+                    if (response.status === 200) {
+                        response.data.Taxa.forEach(function (element) {
+                            if (!element) {
+                                return;
+                            }
+
+                            addToSet(taxaList.taxa, {
+                                id: getId(),
+                                taxonName: element.TaxonName,
+                                rank: element.Rank,
+                            });
+                        })
+
+
+                        len = response.data.length;
+                        for (i = 0; i < len; i += 1) {
+
+                        }
+                    }
+                }, function errorCallback(response) { });
+            }
         });
 }(window.angular));

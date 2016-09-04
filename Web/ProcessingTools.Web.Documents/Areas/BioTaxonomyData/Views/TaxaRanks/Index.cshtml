@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Taxa Ranks";
+    var anchorTag = Html.ActionLink("Search", nameof(TaxaRanksController.Search)).ToHtmlString();
+    var url = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
 }
 
 @Scripts.Render(BundleNames.AngularScriptBundleName)
@@ -27,6 +29,20 @@
                         })
                 </div>
                 <input class="btn btn-primary" type="submit" value="add" />
+            </div>
+        </form>
+
+        <form ng-submit="taxaList.search('@url')" class="form-horizontal">
+            <div class="form-group">
+                <div class="input-group">
+                    <input ng-model="taxaList.searchString"
+                           type="text"
+                           size="30"
+                           placeholder="input taxon name to search here"
+                           class="form-control"
+                           pattern=".+" />
+                </div>
+                <input class="btn btn-primary" type="submit" value="search" />
             </div>
         </form>
 
@@ -69,3 +85,4 @@
 </div>
 
 <div class="clearfix"></div>
+

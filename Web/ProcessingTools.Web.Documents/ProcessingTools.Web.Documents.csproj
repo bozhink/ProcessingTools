@@ -283,6 +283,9 @@
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\Contracts\ITaxonRankResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\SearchResposeModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankResponseModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxaRanksViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxonRankViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
