@@ -25,9 +25,9 @@
 
     angular.module('taxaranksApp', [])
         .service('SearchStringService', ['$http', app.services.SearchStringService])
-        .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(searchService) {
-            var self = this,
-                dataSet = new app.data.DataSet();
+        .factory('DataSet', [app.data.DataSet])
+        .controller('TaxaRanksController', ['DataSet', 'SearchStringService', function TaxaRanksController(dataSet, searchService) {
+            var self = this;
 
             self.taxa = dataSet.data;
 
