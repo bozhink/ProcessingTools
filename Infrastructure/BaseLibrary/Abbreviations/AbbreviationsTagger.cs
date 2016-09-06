@@ -1,63 +1,179 @@
 ﻿namespace ProcessingTools.BaseLibrary.Abbreviations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Xml.Contract;
 
-    public class AbbreviationsTagger : TaxPubDocument, ITagger
+    public class AbbreviationsTagger : IAbbreviationsTagger
     {
-        private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[count(ancestor-or-self::node()[name()='abbrev'])=0][contains(string(.),string('{0}'))][count(.//node()[contains(string(.),string('{0}'))])=0]";
+        private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[contains(string(.),string('{0}'))]";
 
-        public AbbreviationsTagger(string xml)
-            : base(xml)
-        {
-        }
+        private readonly IAbbreviationsHarvester abbreviationsHarvester;
+        private readonly IXmlContextWrapperProvider wrapperProvider;
+        private readonly ILogger logger;
 
-        public Task Tag()
+        public AbbreviationsTagger(IAbbreviationsHarvester abbreviationsHarvester, IXmlContextWrapperProvider wrapperProvider, ILogger logger)
         {
-            return Task.Run(() =>
+            if (abbreviationsHarvester == null)
             {
-                // Do not change this sequence
-                this.TagAbbreviationsInSpecificNodeByXPath("//graphic|//media|//disp-formula-group");
-                this.TagAbbreviationsInSpecificNodeByXPath("//chem-struct-wrap|//fig|//supplementary-material|//table-wrap");
-                this.TagAbbreviationsInSpecificNodeByXPath("//fig-group|//table-wrap-group");
-                this.TagAbbreviationsInSpecificNodeByXPath("//boxed-text");
-                this.TagAbbreviationsInSpecificNodeByXPath("/");
-            });
+                throw new ArgumentNullException(nameof(abbreviationsHarvester));
+            }
+
+            if (wrapperProvider == null)
+            {
+                throw new ArgumentNullException(nameof(wrapperProvider));
+            }
+
+            this.abbreviationsHarvester = abbreviationsHarvester;
+            this.wrapperProvider = wrapperProvider;
+            this.logger = logger;
         }
 
-        private void TagAbbreviationsInSpecificNode(XmlNode specificNode)
+        public async Task<object> Tag(XmlNode context)
         {
-            var abbreviationsList = new HashSet<Abbreviation>(specificNode
-                .SelectNodes(".//abbrev", this.NamespaceManager)
+            // Do not change this sequence
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+                context,
+                "//graphic | //media | //disp-formula-group");
+
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+                context,
+                "//chem-struct-wrap | //fig | //supplementary-material | //table-wrap");
+
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+                context,
+                "//fig-group | //table-wrap-group");
+
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+                context,
+                "//boxed-text");
+
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestContext(
+                context,
+                "//alt-title | //article-title | //attrib | //award-id | //comment | //conf-theme | //def-head | //funding-source | //license-p | //meta-value | //p | //preformat | //product | //subtitle | //supplement | //td | //term | //term-head | //th | //title | //trans-subtitle | //trans-title | //verse-line");
+
+            return true;
+        }
+
+        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(XmlNode context, string selectContextToTagXPath)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (string.IsNullOrWhiteSpace(selectContextToTagXPath))
+            {
+                throw new ArgumentNullException(nameof(selectContextToTagXPath));
+            }
+
+            var tasks = context.SelectNodes(selectContextToTagXPath)
                 .Cast<XmlNode>()
-                .Select(x => new Abbreviation(x)));
+                .Select(n => this.TagAbbreviationsWithHarvestWholeContext(n))
+                .ToArray();
 
-            foreach (Abbreviation abbreviation in abbreviationsList)
-            {
-                string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                foreach (XmlNode nodeInSpecificNode in specificNode.SelectNodes(xpath, this.NamespaceManager))
-                {
-                    bool performReplace = nodeInSpecificNode.CheckIfIsPossibleToPerformReplaceInXmlNode();
-                    if (performReplace)
-                    {
-                        nodeInSpecificNode.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
-                    }
-                }
-            }
+            await Task.WhenAll(tasks);
         }
 
-        private void TagAbbreviationsInSpecificNodeByXPath(string selectSpecificNodeXPath)
+        private async Task<object> TagAbbreviationsWithHarvestWholeContext(XmlNode context)
         {
-            XmlNodeList specificNodes = this.XmlDocument.SelectNodes(selectSpecificNodeXPath, this.NamespaceManager);
-            foreach (XmlNode specificNode in specificNodes)
+            if (context == null)
             {
-                this.TagAbbreviationsInSpecificNode(specificNode);
+                throw new ArgumentNullException(nameof(context));
             }
+
+            var abbreviationDefinitions = await this.GetAbbreviationCollection(context);
+            var result = await this.TagAbbreviations(context, abbreviationDefinitions);
+            return result;
+        }
+
+        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestContext(XmlNode context, string selectContextToTagXPath)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (string.IsNullOrWhiteSpace(selectContextToTagXPath))
+            {
+                throw new ArgumentNullException(nameof(selectContextToTagXPath));
+            }
+
+            var abbreviationDefinitions = await this.GetAbbreviationCollection(context);
+
+            var tasks = context.SelectNodes(selectContextToTagXPath)
+                 .Cast<XmlNode>()
+                 .Select(n => this.TagAbbreviations(n, abbreviationDefinitions))
+                 .ToArray();
+
+            await Task.WhenAll(tasks);
+        }
+
+        private Task<object> TagAbbreviations(XmlNode context, IQueryable<IAbbreviation> abbreviationDefinitions) => Task.Run<object>(() =>
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (abbreviationDefinitions == null || abbreviationDefinitions.LongCount() < 1L)
+            {
+                return 0;
+            }
+
+            var document = this.wrapperProvider.Create(context);
+
+            var abbreviationSet = new HashSet<IAbbreviation>(abbreviationDefinitions);
+            abbreviationSet.OrderByDescending(a => a.Content.Length)
+                .ToList()
+                .ForEach(abbreviation =>
+                {
+                    string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
+                    foreach (XmlNode node in document.SelectNodes(xpath))
+                    {
+                        bool canPerformReplace = node.CheckIfIsPossibleToPerformReplaceInXmlNode();
+                        if (canPerformReplace)
+                        {
+                            try
+                            {
+                                node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                            }
+                            catch (XmlException)
+                            {
+                                this.logger?.Log("Exception in abbreviation {0}", abbreviation.Content);
+                            }
+                        }
+                    }
+                });
+
+            context.InnerXml = document.DocumentElement.InnerXml;
+
+            return abbreviationSet.Count;
+        });
+
+        private async Task<IQueryable<IAbbreviation>> GetAbbreviationCollection(XmlNode contextToHarvest)
+        {
+            if (contextToHarvest == null)
+            {
+                throw new ArgumentNullException(nameof(contextToHarvest));
+            }
+
+            var abbreviations = await this.abbreviationsHarvester.Harvest(contextToHarvest);
+            if (abbreviations != null)
+            {
+                return abbreviations
+                    .Where(a => !string.IsNullOrWhiteSpace(a.Value))
+                    .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
+                    .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition));
+            }
+
+            return null;
         }
     }
 }

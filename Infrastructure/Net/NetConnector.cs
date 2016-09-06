@@ -26,7 +26,7 @@
             this.BaseAddress = baseAddress;
         }
 
-        public string BaseAddress
+        private string BaseAddress
         {
             get
             {
@@ -45,7 +45,7 @@
             }
         }
 
-        public Uri BaseAddressUri { get; private set; }
+        private Uri BaseAddressUri { get; set; }
 
         public async Task<T> GetAndDeserializeXml<T>(string url)
             where T : class
@@ -182,6 +182,7 @@
         }
 
         public async Task<T> PostAndDeserializeXml<T>(string url, Dictionary<string, string> values, Encoding encoding)
+            where T : class
         {
             if (string.IsNullOrWhiteSpace(url))
             {

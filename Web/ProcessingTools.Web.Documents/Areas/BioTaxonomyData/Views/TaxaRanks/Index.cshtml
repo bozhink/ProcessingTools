@@ -1,0 +1,88 @@
+﻿@model ProcessingTools.Web.Documents.Areas.BioTaxonomyData.ViewModels.TaxaRanks.TaxaRanksViewModel
+
+@{
+    ViewBag.Title = "Taxa Ranks";
+    var anchorTag = Html.ActionLink("Search", nameof(TaxaRanksController.Search)).ToHtmlString();
+    var searchUrl = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
+}
+
+@Styles.Render(BundleNames.TaxaRanksStyleBundleName)
+@Scripts.Render(BundleNames.AngularScriptBundleName)
+@Scripts.Render(BundleNames.TaxaRanksScriptBundleName)
+
+<header>
+    <h2>Taxa Ranks</h2>
+</header>
+
+<div ng-app="taxaranksApp">
+    <div ng-controller="TaxaRanksController as taxaList">
+        <div class="contols">
+            <div class="form-group">
+                <fieldset>
+                    <legend>Add taxa</legend>
+                    <form ng-submit="taxaList.addTaxa()" class="form-horizontal">
+                        <textarea ng-model="taxaList.textArea"
+                                  name="taxa"
+                                  cols="30"
+                                  rows="4"
+                                  placeholder="add taxon-rank pairs here"
+                                  class="form-control"></textarea>
+                        <input class="btn btn-primary" type="submit" value="add" />
+                    </form>
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <fieldset>
+                    <legend>Search taxa</legend>
+                    <form ng-submit="taxaList.search('@searchUrl')" class="form-horizontal">
+                        <input ng-model="taxaList.searchString"
+                               type="text"
+                               size="30"
+                               placeholder="input taxon name to search here"
+                               class="form-control"
+                               pattern=".+" />
+                        <input class="btn btn-primary" type="submit" value="search" />
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="taxaList.taxa.length">
+            <fieldset>
+                <legend>Taxa list</legend>
+                @using (Html.BeginForm())
+                {
+                    <ul class="taxon-list">
+                        <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'">
+                            <input type="hidden"
+                                   name="@(nameof(Model.Taxa)).Index"
+                                   value="{{taxon.id}}" />
+                            <input type="text"
+                                   name="@(nameof(Model.Taxa))[{{taxon.id}}].TaxonName"
+                                   value="{{taxon.taxonName}}"
+                                   readonly="readonly"
+                                   class="taxon-name" />
+                            <input type="text"
+                                   name="@(nameof(Model.Taxa))[{{taxon.id}}].Rank"
+                                   value="{{taxon.rank}}"
+                                   readonly="readonly"
+                                   class="taxon-rank" />
+                            <span ng-click="taxaList.removeTaxon(taxon.id)"
+                                  class="glyphicon glyphicon-remove remove-button"
+                                  title="Remove"></span>
+                        </li>
+                    </ul>
+
+                    <div class="form-group">
+                        <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+

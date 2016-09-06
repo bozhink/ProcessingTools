@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
 
-    using Contracts;
     using ProcessingTools.Extensions;
     using Repositories.Contracts;
 
@@ -12,9 +11,9 @@
     {
         private const int NumberOfItemsToInsertBeforeRepositoryReset = 100;
 
-        private readonly IGenericRepositoryProvider<IGenericRepository<TEntity>, TEntity> repositoryProvider;
+        private readonly IGenericRepositoryProvider<TEntity> repositoryProvider;
 
-        public SimpleRepositorySeeder(IGenericRepositoryProvider<IGenericRepository<TEntity>, TEntity> repositoryProvider)
+        public SimpleRepositorySeeder(IGenericRepositoryProvider<TEntity> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

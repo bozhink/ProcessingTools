@@ -8,15 +8,28 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Net;
+    using Contracts;
+
+    using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Net.Factories.Contracts;
     using ProcessingTools.Xml.Extensions;
 
-    public class GlobalNamesResolverDataRequester
+    public class GlobalNamesResolverDataRequester : IGlobalNamesResolverDataRequester
     {
         private const string BaseAddress = "http://resolver.globalnames.org";
         private const string ApiUrl = "name_resolvers.xml";
-        private readonly Encoding encoding = Encoding.UTF8;
+        private readonly INetConnectorFactory connectorFactory;
+
+        public GlobalNamesResolverDataRequester(INetConnectorFactory connectorFactory)
+        {
+            if (connectorFactory == null)
+            {
+                throw new ArgumentNullException(nameof(connectorFactory));
+            }
+
+            this.connectorFactory = connectorFactory;
+        }
 
         public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
         {
@@ -25,7 +38,7 @@
                 string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string url = $"{ApiUrl}?{searchString}";
 
-                var connector = new NetConnector(BaseAddress);
+                var connector = this.connectorFactory.Create(BaseAddress);
                 string response = await connector.Get(url, ContentTypeConstants.XmlContentType);
                 return response.ToXmlDocument();
             }
@@ -42,8 +55,8 @@
                 string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
                 string contentType = "application/x-www-form-urlencoded";
 
-                var connector = new NetConnector(BaseAddress);
-                var response = await connector.Post(ApiUrl, postData, contentType, this.encoding);
+                var connector = this.connectorFactory.Create(BaseAddress);
+                var response = await connector.Post(ApiUrl, postData, contentType, Defaults.DefaultEncoding);
                 return response.ToXmlDocument();
             }
             catch
@@ -64,8 +77,8 @@
                     values.Add("data_source_ids", string.Join("|", sourceId));
                 }
 
-                var connector = new NetConnector(BaseAddress);
-                var response = await connector.Post(ApiUrl, values, this.encoding);
+                var connector = this.connectorFactory.Create(BaseAddress);
+                var response = await connector.Post(ApiUrl, values, Defaults.DefaultEncoding);
                 return response.ToXmlDocument();
             }
             catch

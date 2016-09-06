@@ -1,40 +1,123 @@
 ﻿namespace ProcessingTools.BaseLibrary.Abbreviations
 {
+    using System;
     using System.Text.RegularExpressions;
     using System.Xml;
 
     using ProcessingTools.Extensions;
+    using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
-    internal class Abbreviation
+    internal class Abbreviation : IAbbreviation
     {
+        private string content;
         private string contentType;
         private string definition;
+
+        public Abbreviation(string content, string contentType, string definition)
+        {
+            this.Content = content;
+            this.ContentType = contentType;
+            this.Definition = definition;
+        }
 
         public Abbreviation(XmlNode abbrev)
         {
             this.SetContent(abbrev);
             this.SetContentType(abbrev);
             this.SetDefinition(abbrev);
-            this.SetReplacePattern(abbrev);
         }
 
-        public string Content { get; private set; }
-
-        public string ReplacePattern { get; private set; }
-
-        public string SearchPattern
+        public string Content
         {
             get
             {
-                return $"\\b({Regex.Escape(this.Content)})\\b";
+                return this.content;
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException(nameof(this.Content));
+                }
+
+                this.content = value;
             }
         }
+
+        public string ContentType
+        {
+            get
+            {
+                return this.contentType;
+            }
+
+            set
+            {
+                this.contentType = value;
+            }
+        }
+
+        public string Definition
+        {
+            get
+            {
+                return this.definition;
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException(nameof(this.Definition));
+                }
+
+                this.definition = value;
+            }
+        }
+
+        public string ReplacePattern
+        {
+            get
+            {
+                var document = new XmlDocument
+                {
+                    PreserveWhitespace = true
+                };
+
+                var replacePatternNode = document.CreateElement(NodeNames.Abbrev);
+
+                if (!string.IsNullOrEmpty(this.ContentType))
+                {
+                    var contentTypeAttribute = document.CreateAttribute(AttributeNames.ContentType);
+                    contentTypeAttribute.InnerText = this.ContentType;
+                    replacePatternNode.Attributes.Append(contentTypeAttribute);
+                }
+
+                if (!string.IsNullOrEmpty(this.Definition))
+                {
+                    var titleAttribute = document.CreateAttribute(
+                        Namespaces.XlinkNamespacePrefix,
+                        AttributeNames.XLinkTitle,
+                        Namespaces.XlinkNamespaceUri);
+
+                    titleAttribute.InnerText = this.Definition;
+                    replacePatternNode.Attributes.Append(titleAttribute);
+                }
+
+                replacePatternNode.InnerXml = "$1";
+
+                return replacePatternNode.OuterXml;
+            }
+        }
+
+        public string SearchPattern => $"\\b({Regex.Escape(this.Content)})\\b";
 
         private void SetContent(XmlNode abbrev)
         {
             var abbrevContent = abbrev.CloneNode(true);
-            abbrevContent.SelectNodes("def").RemoveXmlNodes();
+            abbrevContent.SelectNodes(NodeNames.Def).RemoveXmlNodes();
             abbrevContent.SelectNodes("*[name()!='sup'][name()!='sub']").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
@@ -44,39 +127,16 @@
 
         private void SetContentType(XmlNode abbrev)
         {
-            this.contentType = abbrev.Attributes["content-type"]?.InnerText;
+            this.ContentType = abbrev.Attributes[AttributeNames.ContentType]?.InnerText;
         }
 
         private void SetDefinition(XmlNode abbrev)
         {
-            this.definition = abbrev["def"]?.InnerText
+            this.Definition = abbrev[NodeNames.Def]?.InnerText
                 .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
                 .RegexReplace(@"\((.+)\)", "$1")
                 .RegexReplace(@"\[(.+)\]", "$1");
-        }
-
-        private void SetReplacePattern(XmlNode abbrev)
-        {
-            var replacePatternNode = abbrev.OwnerDocument.CreateElement("abbrev");
-
-            if (!string.IsNullOrEmpty(this.contentType))
-            {
-                var contentTypeAttribute = abbrev.OwnerDocument.CreateAttribute("content-type");
-                contentTypeAttribute.InnerText = this.contentType;
-                replacePatternNode.Attributes.Append(contentTypeAttribute);
-            }
-
-            if (!string.IsNullOrEmpty(this.definition))
-            {
-                var titleAttribute = abbrev.OwnerDocument.CreateAttribute("xlink", "title", "http://www.w3.org/1999/xlink");
-                titleAttribute.InnerText = this.definition;
-                replacePatternNode.Attributes.Append(titleAttribute);
-            }
-
-            replacePatternNode.InnerXml = "$1";
-
-            this.ReplacePattern = replacePatternNode.OuterXml;
         }
     }
 }

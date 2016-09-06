@@ -1,22 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
+@using ProcessingTools.Web.Documents.Controllers
+
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm(nameof(AccountController.LogOff), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, method: FormMethod.Post, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", nameof(ManageController.Index), ControllerNames.ManageControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Strings.LogoutActionLinkTitle</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(Resources.Strings.RegisterActionLinkTitle, nameof(AccountController.Register), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(Resources.Strings.LoginActionLinkTitle, nameof(AccountController.Login), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

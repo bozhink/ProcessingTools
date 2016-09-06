@@ -3,10 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Affiliation : DocumentsAbstractEntity
+    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliationEntity
     {
         private ICollection<Author> authors;
 
@@ -42,5 +46,8 @@
                 this.authors = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => null;
     }
 }

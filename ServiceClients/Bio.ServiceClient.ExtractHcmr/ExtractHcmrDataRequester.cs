@@ -2,12 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Contracts;
     using Models;
-    using ProcessingTools.Net;
+
+    using ProcessingTools.Common;
+    using ProcessingTools.Net.Factories.Contracts;
 
     /// <summary>
     /// Request data from EXTRACT.
@@ -17,7 +18,17 @@
     {
         private const string BaseAddress = "http://tagger.jensenlab.org/";
         private const string GetEntitiesApiUrl = "GetEntities";
-        private readonly Encoding defaultEncoding = Encoding.UTF8;
+        private readonly INetConnectorFactory connectorFactory;
+
+        public ExtractHcmrDataRequester(INetConnectorFactory connectorFactory)
+        {
+            if (connectorFactory == null)
+            {
+                throw new ArgumentNullException(nameof(connectorFactory));
+            }
+
+            this.connectorFactory = connectorFactory;
+        }
 
         public async Task<ExtractHcmrResponseModel> RequestData(string content)
         {
@@ -33,16 +44,9 @@
                 { "format", "xml" }
             };
 
-            try
-            {
-                var connector = new NetConnector(BaseAddress);
-                var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, this.defaultEncoding);
-                return result;
-            }
-            catch
-            {
-                throw;
-            }
+            var connector = this.connectorFactory.Create(BaseAddress);
+            var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.DefaultEncoding);
+            return result;
         }
     }
 }

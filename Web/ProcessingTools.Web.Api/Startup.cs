@@ -7,10 +7,10 @@ namespace ProcessingTools.Web.Api
 {
     using System.Web.Http;
 
-    using Common.Constants;
-
     using Ninject.Web.Common.OwinHost;
     using Ninject.Web.WebApi.OwinHost;
+
+    using ProcessingTools.Common.Constants;
 
     public partial class Startup
     {

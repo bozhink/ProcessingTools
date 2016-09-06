@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests</RootNamespace>
     <AssemblyName>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -61,6 +61,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
+      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
+      <Name>Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
       <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
@@ -68,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DataFiles\Coleoptera-gbif-response.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\gbif-v1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

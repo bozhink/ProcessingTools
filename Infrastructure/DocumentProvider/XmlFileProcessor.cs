@@ -5,8 +5,8 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Contracts;
-    using Contracts.Types;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class XmlFileProcessor
     {

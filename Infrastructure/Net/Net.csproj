@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Net</RootNamespace>
     <AssemblyName>ProcessingTools.Net</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,8 @@
     <Compile Include="Constants\HeaderConstants.cs" />
     <Compile Include="Contracts\INetConnector.cs" />
     <Compile Include="Extensions\ClientExtensions.cs" />
+    <Compile Include="Factories\Contracts\INetConnectorFactory.cs" />
+    <Compile Include="Factories\NetConnectorFactory.cs" />
     <Compile Include="NetConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />

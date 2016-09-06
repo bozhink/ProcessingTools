@@ -1,123 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ProcessingTools.Services.Common.GenericCacheService&lt;TContext, TId, TDbModel, TServiceModel&gt;" Collapsed="true">
-    <Position X="8" Y="5" Width="4.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAKAABAAAAAAAAAAAEAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Services\GenericCacheService.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProcessingTools.Services.Common.GenericEfDataService&lt;TDbModel, TServiceModel, TOrderKey&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAKAABAAAAAAAAAAAEAAAAAAIEAAAAAAAA=</HashCode>
-      <FileName>Services\GenericEfDataService.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="ProcessingTools.Services.Common.GenericRepositoryDataService&lt;TDbModel, TServiceModel&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="3.25" Width="4" />
+    <Position X="3" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAACAIAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAIAAAAAAAAAAAAAAAAAAAAAAAACAIAAAA=</HashCode>
       <FileName>Services\GenericRepositoryDataService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ProcessingTools.Services.Common.SimpleCacheService&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
-    <Position X="8.5" Y="6.25" Width="3.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Services\SimpleCacheService.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="ProcessingTools.Services.Common.StringRepositoryDataService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="3.25" Width="3" />
+    <Position X="5.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAIAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAIAAAA=</HashCode>
       <FileName>Services\StringRepositoryDataService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ProcessingTools.Services.Common.Factories.GenericRepositoryDataServiceFactory&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
-    <Position X="9" Y="2" Width="4" />
+  <Class Name="ProcessingTools.Services.Common.Factories.MultiDataServiceWithRepositoryFactory&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAACACAABAAAAAAAAAAAEAAAAAAIAACAIAAAA=</HashCode>
-      <FileName>Factories\GenericRepositoryDataServiceFactory.cs</FileName>
+      <HashCode>AAYAAABAACACAABAAAAAAAAAAAEAAAgAAIAACAIAAAA=</HashCode>
+      <FileName>Factories\MultiDataServiceWithRepositoryFactory.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ProcessingTools.Services.Common.Models.ValidationServiceModel&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17.75" Y="2" Width="1.5" />
+  <Class Name="ProcessingTools.Services.Common.Factories.MultiDataServiceWithRepositoryProviderFactory&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAYAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\ValidationServiceModel.cs</FileName>
+      <HashCode>AAYAAABAACAAAABCAAAAAAAAAAEAAAgAAIAACAIAAAA=</HashCode>
+      <FileName>Factories\MultiDataServiceWithRepositoryProviderFactory.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ProcessingTools.Services.Common.Contracts.ICacheService&lt;TContext, TId, TServiceModel&gt;" Collapsed="true">
-    <Position X="3" Y="6" Width="3.25" />
+  <Class Name="ProcessingTools.Services.Common.Factories.RepositoryDataServiceFactory&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="0.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Contracts\ICacheService.cs</FileName>
+      <HashCode>AAAAAABAAAAAAABAAAAAAAAAAAAAAAgAAIAACgIAAAA=</HashCode>
+      <FileName>Factories\RepositoryDataServiceFactory.cs</FileName>
     </TypeIdentifier>
-  </Interface>
-  <Interface Name="ProcessingTools.Services.Common.Contracts.ICrudDataService&lt;TServiceModel&gt;" Collapsed="true">
-    <Position X="16" Y="3.25" Width="1.5" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Common.Factories.RepositoryDataServiceFactoryBase&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAgAAIAAAgAAAAA=</HashCode>
+      <FileName>Factories\RepositoryDataServiceFactoryBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.Services.Common.Factories.RepositoryMultiDataServiceFactory&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAABAAAAAAAAAAAAAAAgAAIAACgIAAAA=</HashCode>
+      <FileName>Factories\RepositoryMultiDataServiceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ProcessingTools.Services.Common.Contracts.IContextDataService&lt;TContext, TId, TServiceModel&gt;" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Contracts\ICrudDataService.cs</FileName>
+      <FileName>Contracts\IContextDataService.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.Services.Common.Contracts.IDataService&lt;TServiceModel&gt;" Collapsed="true">
-    <Position X="17.75" Y="3.25" Width="1.5" />
+    <Position X="11.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAgAAIAAAAAAAAA=</HashCode>
       <FileName>Contracts\IDataService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ProcessingTools.Services.Common.Contracts.ISimpleCacheService&lt;TServiceModel&gt;" Collapsed="true">
-    <Position X="3.25" Y="7.25" Width="2.75" />
+  <Interface Name="ProcessingTools.Services.Common.Contracts.IRepositoryDataService&lt;TDbModel, TServiceModel&gt;" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Contracts\ISimpleCacheService.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="ProcessingTools.Services.Common.Contracts.IValidationService&lt;TServiceModel&gt;" Collapsed="true">
-    <Position X="16" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Contracts\IValidationService.cs</FileName>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAgAAIAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IRepositoryDataService.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.Services.Common.Models.Contracts.IGenericServiceModel&lt;TId&gt;" Collapsed="true">
-    <Position X="3" Y="2" Width="2.25" />
+    <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Contracts\IGenericServiceModel.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.Services.Common.Models.Contracts.INamedDataServiceModel" Collapsed="true">
-    <Position X="3" Y="4.75" Width="2" />
+    <Position X="0.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Contracts\INamedDataServiceModel.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ProcessingTools.Services.Common.Models.Contracts.ISimpleServiceModel" Collapsed="true">
-    <Position X="3.25" Y="3.25" Width="1.75" />
+    <Position X="0.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Contracts\ISimpleServiceModel.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ProcessingTools.Services.Common.Models.Contracts.IValidationServiceModel&lt;T&gt;" Collapsed="true">
-    <Position X="17.75" Y="4" Width="1.5" />
+  <Enum Name="ProcessingTools.Services.Common.Assembly" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAYAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Contracts\IValidationServiceModel.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assembly.cs</FileName>
     </TypeIdentifier>
-  </Interface>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

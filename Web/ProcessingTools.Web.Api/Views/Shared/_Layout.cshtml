@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>
+        @ViewBag.Title -
+        @ProcessingTools.Web.Common.Constants.ContentConstants.CopyrightHolder
+    </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <meta name="description" content="ProcessingTools Web Api" />
@@ -31,7 +34,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>
+                &copy; @DateTime.Now.Year -
+                @ProcessingTools.Web.Common.Constants.ContentConstants.CopyrightHolder
+            </p>
         </footer>
     </div>
 

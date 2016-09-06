@@ -1,0 +1,14 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.InvalidActionPageTitle;
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>@Resources.Strings.InvalidActionPageHeading</h3>
+
+<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

@@ -1,0 +1,69 @@
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
+@using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
+
+@model DetailedContinentViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
+}
+
+<h2>
+    @Resources.Strings.DeafultDetailsPageHeading
+</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.ModelName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        @if (Model.Synonyms.Count > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Synonyms)
+            </dt>
+
+            foreach (var synonym in Model.Synonyms)
+            {
+                <dd>
+                    @Html.DisplayFor(model => synonym.Name)
+                </dd>
+            }
+        }
+
+        @if (Model.Countries.Count > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Countries)
+            </dt>
+
+            foreach (var country in Model.Countries)
+            {
+                <dd>
+                    @Html.DisplayFor(model => country.Name)
+                </dd>
+            }
+        }
+    </dl>
+</div>
+<footer>
+    <nav class="separated-items">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <span class="item">
+                @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
+            </span>
+        }
+
+        <span class="item">
+            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+        </span>
+    </nav>
+</footer>

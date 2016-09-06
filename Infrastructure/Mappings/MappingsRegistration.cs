@@ -5,13 +5,15 @@
     using System.Reflection;
 
     using AutoMapper;
+    using AutoMapper.Configuration;
 
     using Contracts;
     using Extensions;
 
     public class MappingsRegistration
     {
-        private readonly IMapperConfiguration mapperConfiguration;
+        private readonly MapperConfigurationExpression mapperConfigurationExpression;
+        private readonly Lazy<MapperConfiguration> mapperConfiguration;
 
         public MappingsRegistration(params string[] assemblies)
             : this(assemblies.GetAssemblies().ToArray())
@@ -25,15 +27,17 @@
 
         public MappingsRegistration(params Type[] types)
         {
-            this.mapperConfiguration = new MapperConfiguration(c => { });
+            this.mapperConfigurationExpression = new MapperConfigurationExpression();
 
             this.LoadStandardMappings(types);
             this.LoadCustomMappings(types);
+
+            this.mapperConfiguration = new Lazy<MapperConfiguration>(() => new MapperConfiguration(this.mapperConfigurationExpression), isThreadSafe: false);
         }
 
-        public IMapper Mapper => ((MapperConfiguration)this.mapperConfiguration).CreateMapper();
+        public IMapper Mapper => this.mapperConfiguration.Value.CreateMapper();
 
-        protected IMapperConfiguration MapperConfiguration => this.mapperConfiguration;
+        protected IMapperConfigurationExpression MapperConfigurationExpression => this.mapperConfigurationExpression;
 
         private void LoadStandardMappings(params Type[] types)
         {
@@ -52,8 +56,8 @@
 
             foreach (var map in maps)
             {
-                this.mapperConfiguration.CreateMap(map.Source, map.Destination);
-                this.mapperConfiguration.CreateMap(map.Destination, map.Source);
+                this.MapperConfigurationExpression.CreateMap(map.Source, map.Destination);
+                this.MapperConfigurationExpression.CreateMap(map.Destination, map.Source);
             }
         }
 
@@ -70,7 +74,7 @@
 
             foreach (var map in maps)
             {
-                map.CreateMappings(this.mapperConfiguration);
+                map.CreateMappings(this.MapperConfigurationExpression);
             }
         }
     }

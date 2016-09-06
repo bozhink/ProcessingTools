@@ -3,10 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
+    using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Article : DocumentsAbstractEntity
+    public class Article : ModelWithUserInformation, IEntityWithPreJoinedFields, IArticleEntity
     {
         private ICollection<Document> documents;
         private ICollection<Author> authors;
@@ -21,6 +26,7 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfArticleTitle)]
         public string Title { get; set; }
 
@@ -70,5 +76,18 @@
                 this.authors = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => new string[] 
+        {
+            nameof(this.Authors),
+            nameof(this.Documents)
+        };
+
+        [NotMapped]
+        ICollection<IDocumentEntity> IArticleEntity.Documents => this.Documents.ToList<IDocumentEntity>();
+
+        [NotMapped]
+        ICollection<IAuthorEntity> IArticleEntity.Authors => this.Authors.ToList<IAuthorEntity>();
     }
 }

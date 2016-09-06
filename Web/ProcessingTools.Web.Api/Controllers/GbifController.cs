@@ -7,7 +7,7 @@
     [EnableCors("*", "*", "*")]
     public class GbifController : TaxaClassificationDataServiceControllerFactory
     {
-        public GbifController(IGbifTaxaClassificationDataService service)
+        public GbifController(IGbifTaxaClassificationResolverDataService service)
         {
             this.Service = service;
         }

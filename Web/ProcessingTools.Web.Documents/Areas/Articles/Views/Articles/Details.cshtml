@@ -1,0 +1,130 @@
+﻿@model ProcessingTools.Documents.Data.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Journal.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Journal.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReceived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReceived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAccepted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePublished)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePublished)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ELocationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ELocationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByUser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

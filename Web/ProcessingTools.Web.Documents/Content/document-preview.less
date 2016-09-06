@@ -1,0 +1,500 @@
+﻿@default-padding: 10px;
+@treatment-sec-padding: @default-padding;
+
+@taxon-font-color: #f60;
+@taxon-background-color: fade(lighten(@taxon-font-color, 25%), 15%);
+
+@mark-1-color: #FCF8E3;
+@mark-fake-tag: #ff5b5b;
+@mark-2-color: darken(@mark-1-color, 10%);
+@mark-3-color: darken(@mark-2-color, 20%);
+@mark-1-hover-color: #eefce3;
+@mark-2-hover-color: darken(@mark-1-hover-color, 10%);
+@mark-3-hover-color: darken(@mark-2-hover-color, 20%);
+
+@article-min-width: 50px;
+@article-max-width: 800px;
+
+body {
+    padding-bottom: 70px;
+}
+
+.small-label(@content: '') {
+    &:hover {
+        position: relative;
+
+        &:before {
+            content: @content;
+            position: absolute;
+            top: -1em;
+            left: 0em;
+            color: red;
+            background-color: white;
+            opacity: 0.8;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    }
+}
+
+.outset-border {
+    border: 1px #E6E6E6 solid;
+    border-radius: 5px;
+}
+
+.no-border {
+    border: none;
+    border-radius: 0px;
+}
+
+.center-block {
+    text-align: center;
+    margin: 1em auto 1em auto;
+    display: block;
+}
+
+.heading-layout:extend(.outset-border) {
+    background-color: #F5F5F5;
+    color: black;
+    font-weight: normal;
+    padding: 5px;
+    text-align: center;
+}
+
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+#article {
+    margin: 0 auto;
+    text-align: justify;
+    min-width: @article-min-width;
+    max-width: @article-max-width;
+    padding: 0 @default-padding 0 @default-padding;
+}
+
+em, i {
+    font-style: italic;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+.taxon-name {
+    position: relative;
+    font-style: normal;
+    background-color: @taxon-background-color;
+
+    .object-id {
+        display: none;
+    }
+
+    &:hover .object-id {
+        position: absolute;
+        top: 25px;
+        display: block;
+        font-size: 1em;
+        color: white;
+        background-color: black;
+        padding: 5px;
+        border-radius: 5px;
+        min-width: 30em;
+        max-width: 30em;
+        width: 30em;
+        text-align: center;
+
+        &::after {
+            content: " ";
+            position: absolute;
+            bottom: 100%;
+            left: 5%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+        }
+    }
+}
+
+.nomenclature {
+    margin-top: 10px;
+
+    > .taxon-name, > .taxon-authority, > .taxon-status {
+        display: inline-block;
+        font-size: 1.2em;
+    }
+
+    .xref-group {
+        display: block;
+    }
+}
+
+.taxon-name-part {
+    color: @taxon-font-color;
+    font-style: normal;
+
+    &.genus, &.subgenus, &.species, &.subspecies, &.section, &.subsection, &.form, &.variety, &.stage {
+        font-style: italic;
+    }
+
+    .small-label(attr(full-name)'|'attr(taxon-name-part-type));
+}
+
+.named-content, .locality-coordinates {
+    background-color: rgba(205, 248, 248, 0.70);
+
+    &.date {
+        text-decoration: underline wavy #ffd800;
+    }
+}
+
+abbr {
+    text-decoration: underline wavy #808080;
+
+    .abbr-def-p {
+        text-decoration: underline double #808080;
+    }
+}
+
+.taxon-treatment {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: lighten(rebeccapurple, 57%);
+
+    .nomenclature {
+        font-size: 1.0em;
+    }
+}
+
+section {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+
+    &.treatment-sec {
+        padding-left: @treatment-sec-padding;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-indent: 0;
+    }
+
+    &.treatment-sec h3 {
+        font-size: 1.1em;
+    }
+
+    p {
+        font-size: 1em;
+        text-align: justify;
+    }
+}
+
+.treatment-sec {
+    border-top: 1px solid lightgray;
+    .small-label(attr(sec-type));
+}
+
+figure {
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+table:extend(.outset-border) {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+
+    td, th {
+        width: 100%;
+        border-color: #ccc;
+        padding: 5px;
+        text-align: left;
+    }
+}
+
+.table-wrap[content-type='key'] {
+    table:extend(.no-border) {
+        border-collapse: collapse;
+
+        td {
+            &:nth-child(1) {
+                max-width: 10%;
+            }
+
+            &:nth-child(2) {
+                max-width: 70%;
+            }
+
+            &:nth-child(3) {
+                min-width: 20%;
+                max-height: 40%;
+            }
+        }
+    }
+}
+
+h4.label {
+    color: black;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+}
+
+.front {
+    .journal-title-group, .journal-title, .abbrev-journal-title {
+        display: none;
+    }
+
+    .journal-meta:extend(.heading-layout):extend(.center-block) {
+        padding: 10px;
+
+        .journal-id, .issn {
+            display: inline-block;
+        }
+    }
+
+    .article-meta {
+        .article-id:extend(.center-block) {
+            &:before {
+                content: 'doi: ';
+            }
+        }
+
+        .article-categories {
+            .subject:extend(.heading-layout):extend(.center-block) {
+                margin-top: 1em;
+                margin-bottom: 1em;
+                width: 150px;
+                min-width: 150px;
+                max-width: 150px;
+            }
+        }
+
+        .contrib-group {
+            .contrib {
+                display: inline-block;
+
+                .name {
+                    display: inline-block;
+
+                    .surname, .given-names {
+                        display: inline;
+                    }
+                }
+
+                .xref {
+                    display: inline-block;
+                    position: relative;
+                    top: -0.5em;
+                    font-size: 80%;
+                }
+            }
+        }
+
+        .aff {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+
+            .label {
+                display: inline;
+                position: relative;
+                top: -0.5em;
+                font-size: 80%;
+            }
+
+            .addr-line {
+                display: inline;
+            }
+        }
+
+        .kwd {
+            display: inline;
+
+            &:after {
+                content: ', ';
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+
+        .title-group:extend(.center-block) {
+        }
+
+        > .pub-date[pub-type='collection'] {
+            display: none;
+        }
+
+        > .pub-date[pub-type='epub'] {
+            display: inline-block;
+
+            &:before {
+                content: ' | Date published: ';
+            }
+
+            .day, .month, .year {
+                display: inline;
+            }
+        }
+
+        > .volume, > .issue, > .fpage, > .lpage, > .elocation-id {
+            display: inline-block;
+
+            &:before {
+                content: ' | ';
+            }
+        }
+
+        > .history {
+            display: inline-block;
+
+            .date {
+                display: inline-block;
+
+                &:before {
+                    content: ' | Date ' attr(date-type) ': ';
+                }
+
+                &:last-child:after {
+                    content: ' |';
+                }
+
+                .day, .month, .year {
+                    display: inline;
+                }
+            }
+        }
+
+        > .permissions {
+            margin-top: 1.1em;
+            margin-bottom: 1.1em;
+            color: #777;
+        }
+    }
+
+    .notes {
+        color: #777;
+    }
+}
+
+.supplementary-material {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+}
+
+.mixed-citation {
+    line-height: 1.8em;
+
+    .person-group {
+        .name {
+            &:after {
+                content: ', ';
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+    }
+}
+
+.institutional_code {
+    background-color: burlywood;
+}
+
+span.ext-link {
+    color: cornflowerblue;
+    text-decoration: underline double;
+}
+
+mark {
+    margin: 0;
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: @mark-1-color;
+
+    &.fake_tag {
+        background-color: @mark-fake-tag;
+    }
+
+    &:hover {
+        background-color: @mark-1-hover-color;
+    }
+
+    .small-label(attr(elem-name));
+
+    mark {
+        background-color: @mark-2-color;
+        border: none;
+
+        &:hover {
+            background-color: @mark-2-hover-color;
+        }
+
+        mark {
+            background-color: @mark-3-color;
+            border: none;
+
+            &:hover {
+                background-color: @mark-3-hover-color;
+            }
+        }
+    }
+}
+
+.mode-notifier {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 80px;
+    padding: 20px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    opacity: 0.4;
+    font-weight: bold;
+    font-size: 1.2em;
+    pointer-events: none;
+    z-index: 5000;
+}
+
+.bibliographic-references {
+    display: block;
+    position: fixed;
+    top: 180px;
+    left: 80px;
+    height: 300px;
+    width: 400px;
+    overflow-y: auto;
+}
+
+.related-article div {
+    display: inline;
+}
+
+.overline {
+    text-decoration: overline;
+}
+
+.break {
+    display: block;
+
+    &:after {
+        content: ' ';
+    }
+}

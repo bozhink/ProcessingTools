@@ -5,17 +5,18 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Institution : DocumentsAbstractEntity
+    public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitutionEntity
     {
-        private ICollection<Address> addresses;
         private ICollection<Affiliation> affiliations;
 
         public Institution()
+            : base()
         {
             this.Id = Guid.NewGuid();
-            this.addresses = new HashSet<Address>();
             this.affiliations = new HashSet<Affiliation>();
         }
 
@@ -29,19 +30,6 @@
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedInstitutionName)]
         public string AbbreviatedName { get; set; }
 
-        public virtual ICollection<Address> Addresses
-        {
-            get
-            {
-                return this.addresses;
-            }
-
-            set
-            {
-                this.addresses = value;
-            }
-        }
-
         public virtual ICollection<Affiliation> Affiliations
         {
             get
@@ -54,5 +42,11 @@
                 this.affiliations = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => new string[]
+        {
+            nameof(this.Addresses)
+        };
     }
 }

@@ -1,0 +1,56 @@
+﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
+@using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
+
+@model IEnumerable<ContinentViewModel>
+
+@{
+    ViewBag.Title = Resources.Strings.DeafultIndexPageTitle;
+}
+
+<h2>
+    @Resources.Strings.DeafultIndexPageHeading
+</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink(Resources.Strings.DefaultCreateActionLinkTitle, nameof(ContinentsController.Create))
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="separated-items">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="item">
+                        @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = item.Id })
+                    </span>
+                }
+
+                <span class="item">
+                    @Html.ActionLink(Resources.Strings.DefaultDetailsActionLinkTitle, nameof(ContinentsController.Details), new { id = item.Id })
+                </span>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="item">
+                        @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(ContinentsController.Delete), new { id = item.Id })
+                    </span>
+                }
+            </td>
+        </tr>
+    }
+</table>

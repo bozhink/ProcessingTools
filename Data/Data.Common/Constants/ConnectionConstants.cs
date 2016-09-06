@@ -2,6 +2,7 @@
 {
     public static class ConnectionConstants
     {
-        public const string DefaultDataConnectionKey = "DataDbContext";
+        public const string DataDatabseConnectionKey = "DataDatabseConnection";
+        public const string ContextKey = "ProcessingTools.Data.DataDbContext";
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Web.Documents</RootNamespace>
     <AssemblyName>ProcessingTools.Web.Documents</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -25,6 +25,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,8 +50,8 @@
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -77,8 +79,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -105,6 +107,10 @@
       <HintPath>..\..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
       <Private>True</Private>
@@ -115,6 +121,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
@@ -124,8 +131,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
       <Private>True</Private>
@@ -134,9 +140,7 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -177,6 +181,11 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -240,6 +249,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Strings.bg.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\ApplicationSignInManager.cs" />
     <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -247,24 +266,70 @@
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\ArticlesManagment\ArticlesManagmentAreaRegistration.cs" />
-    <Compile Include="Areas\AuthorsManagment\AuthorsManagmentAreaRegistration.cs" />
-    <Compile Include="Areas\JournalsManagment\JournalsManagmentAreaRegistration.cs" />
-    <Compile Include="Areas\JournalsManagment\ViewModels\JournalViewModel.cs" />
-    <Compile Include="Areas\JournalsManagment\ViewModels\PublisherViewModel.cs" />
+    <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
+    <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
+    <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
+    <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Controllers\BiotaxonomicBlackListController.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\Contracts\IBlackListItemResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\SearchResposeModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\Contracts\ITaxonRankResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\SearchResposeModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemsViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxaRanksViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxonRankViewModel.cs" />
+    <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
+    <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
+    <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
+    <Compile Include="Areas\Journals\Controllers\JournalsController.cs" />
+    <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
+    <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\ArticleViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\JournalDetailsViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\JournalMinimalViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\JournalViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\PublisherSimpleViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Journals\PublisherViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\CityViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\CountryViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\JournalViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Areas\JournalsManagment\Controllers\PublishersController.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NinjectBindings.cs" />
+    <Compile Include="Settings\NinjectDataBindings.cs" />
+    <Compile Include="Settings\NinjectDataMinersBindings.cs" />
+    <Compile Include="Settings\NinjectHarvestersBindings.cs" />
+    <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -275,6 +340,8 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Error\ActionMetaViewModel.cs" />
+    <Compile Include="ViewModels\Error\ErrorMetaViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -285,43 +352,136 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\address-list.css">
+      <DependentUpon>address-list.less</DependentUpon>
+    </Content>
+    <Content Include="Content\address-list.min.css">
+      <DependentUpon>address-list.css</DependentUpon>
+    </Content>
+    <Content Include="Content\black-list.css">
+      <DependentUpon>black-list.less</DependentUpon>
+    </Content>
+    <Content Include="Content\black-list.min.css">
+      <DependentUpon>black-list.css</DependentUpon>
+    </Content>
+    <Content Include="Content\document-edit.css">
+      <DependentUpon>document-edit.less</DependentUpon>
+    </Content>
+    <Content Include="Content\document-edit.min.css">
+      <DependentUpon>document-edit.css</DependentUpon>
+    </Content>
+    <Content Include="Content\document-preview.css">
+      <DependentUpon>document-preview.less</DependentUpon>
+    </Content>
+    <Content Include="Content\document-preview.min.css">
+      <DependentUpon>document-preview.css</DependentUpon>
+    </Content>
+    <Content Include="Content\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\taxa-ranks.css">
+      <DependentUpon>taxa-ranks.less</DependentUpon>
+    </Content>
+    <Content Include="Content\taxa-ranks.min.css">
+      <DependentUpon>taxa-ranks.css</DependentUpon>
+    </Content>
+    <Content Include="Content\toolbox.css">
+      <DependentUpon>toolbox.less</DependentUpon>
+    </Content>
+    <Content Include="Content\toolbox.min.css">
+      <DependentUpon>toolbox.css</DependentUpon>
+    </Content>
+    <Content Include="Content\tooltips.css">
+      <DependentUpon>tooltips.less</DependentUpon>
+    </Content>
+    <Content Include="Content\tooltips.min.css">
+      <DependentUpon>tooltips.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\JournalsManagment\Views\web.config" />
-    <Content Include="Areas\JournalsManagment\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\AuthorsManagment\Views\web.config" />
-    <Content Include="Areas\AuthorsManagment\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\ArticlesManagment\Views\web.config" />
-    <Content Include="Areas\ArticlesManagment\Views\_ViewStart.cshtml" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Areas\Articles\Views\web.config" />
+    <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeoData\Views\web.config" />
+    <Content Include="Areas\GeoData\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Create.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Delete.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
+    <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
+    <Content Include="Scripts\app\data\data-set.js" />
+    <Content Include="Scripts\app\models\data\bio\taxonomy\black-list-item.js" />
+    <Content Include="Scripts\app\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="Scripts\app\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
+    <Content Include="Scripts\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
+    <Content Include="Scripts\app\services\search-string-service.js" />
+    <Content Include="Scripts\app\template.js" />
+    <Content Include="Scripts\controllers\address-list-controller.js" />
+    <Content Include="Scripts\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
+    <Content Include="Scripts\controllers\documents\document-controller.js" />
+    <Content Include="Scripts\custom\auto-save.js" />
+    <Content Include="Scripts\custom\coordinates-toolboxes.js" />
+    <Content Include="Scripts\custom\document-edit.js" />
+    <Content Include="Scripts\custom\document-save-controller.js" />
+    <Content Include="Scripts\config\interact-config.js" />
+    <Content Include="Scripts\app\json-requester.js" />
+    <Content Include="Scripts\custom\files-index.js" />
+    <Content Include="Scripts\custom\html-selection-tagger.js" />
+    <Content Include="Scripts\custom\key-bindings.js" />
+    <Content Include="Scripts\config\monaco-editor-config.js" />
+    <Content Include="Scripts\config\toastr-config.js" />
+    <Content Include="Scripts\custom\toolbox-event-handlers.js" />
+    <Content Include="Scripts\data\documents\document-content-data.js" />
+    <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Create.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Delete.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Details.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Journals\Views\web.config" />
+    <Content Include="Areas\Journals\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Create.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Delete.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Details.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Edit.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Index.cshtml" />
+    <Content Include="Areas\Journals\Views\Journals\Create.cshtml" />
+    <Content Include="Areas\Journals\Views\Journals\Delete.cshtml" />
+    <Content Include="Areas\Journals\Views\Journals\Details.cshtml" />
+    <Content Include="Areas\Journals\Views\Journals\Edit.cshtml" />
+    <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
+    <Content Include="bower.json" />
+    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Delete.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\_HelpSubmenu.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Help.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\_Details.cshtml" />
+    <Content Include="Areas\BioTaxonomyData\Views\web.config" />
+    <Content Include="Areas\BioTaxonomyData\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BioTaxonomyData\Views\TaxaRanks\Index.cshtml" />
+    <Content Include="Areas\BioTaxonomyData\Views\BiotaxonomicBlackList\Index.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\document-preview.less" />
+    <Content Include="Content\toolbox.less" />
+    <Content Include="package.json" />
+    <Content Include="Content\site.less" />
+    <Content Include="Content\tooltips.less" />
+    <Content Include="Content\document-edit.less" />
+    <Content Include="JSLintNet.json" />
+    <Content Include="Content\Templates\coordinates-map.handlebars" />
+    <Content Include="Scripts\custom\document-preview.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -332,7 +492,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Errors\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -357,30 +517,92 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Create.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Delete.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Details.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Edit.cshtml" />
-    <Content Include="Areas\JournalsManagment\Views\Publishers\Index.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidAction.cshtml" />
+    <Content Include="Views\Shared\Errors\NotFound.cshtml" />
+    <Content Include="Views\Shared\Errors\_ErrorFoot.cshtml" />
+    <Content Include="Views\Shared\_NavigationFoot.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidPageNumber.cshtml" />
+    <Content Include="Views\Shared\Errors\InvalidNumberOfItemsPerPage.cshtml" />
+    <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
+    <Content Include="Settings.StyleCop" />
+    <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
+    <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
+    <Content Include="Content\address-list.less" />
+    <Content Include="Content\taxa-ranks.less" />
+    <Content Include="Content\black-list.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ArticlesManagment\Controllers\" />
-    <Folder Include="Areas\ArticlesManagment\Models\" />
-    <Folder Include="Areas\ArticlesManagment\Views\Shared\" />
-    <Folder Include="Areas\AuthorsManagment\Controllers\" />
-    <Folder Include="Areas\AuthorsManagment\Models\" />
-    <Folder Include="Areas\AuthorsManagment\Views\Shared\" />
-    <Folder Include="Areas\JournalsManagment\Views\Shared\" />
+    <Folder Include="Areas\Articles\Views\DocumentContent\" />
+    <Folder Include="Areas\Articles\Views\Shared\" />
+    <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
+    <Folder Include="Areas\GeoData\Views\Shared\" />
+    <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
+      <Name>Bio.Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
+      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
+      <Name>Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
+      <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
+      <Name>Geo.Data.Miners</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Api.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
+      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
+      <Name>Bio.Biorepositories.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
+      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
+      <Name>Bio.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Common\Bio.Environments.Data.Common.csproj">
+      <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
+      <Name>Bio.Environments.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
+      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
+      <Name>Cache.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
@@ -402,9 +624,49 @@
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data.Common\Geo.Data.Common.csproj">
+      <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
+      <Name>Geo.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.csproj">
+      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
+      <Name>Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data.Common\MediaType.Data.Common.csproj">
+      <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>
+      <Name>MediaType.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
+      <Name>Bio.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Bio.Taxonomy.Harvesters\Bio.Taxonomy.Harvesters.csproj">
+      <Project>{b5082dae-3dbe-48ee-ac25-a29f7c38ec3c}</Project>
+      <Name>Bio.Taxonomy.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
+      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
+      <Name>Geo.Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
+      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
+      <Name>Harvesters.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
+      <Name>Harvesters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
@@ -414,21 +676,90 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
+      <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
+      <Name>FileSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899cf4-3e65-4860-8d89-0bec7d4e93ed}</Project>
       <Name>Mappings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Documents.Services.Data\Documents.Services.Data.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
+      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
+      <Name>Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
+      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
+      <Name>Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+      <Project>{b22dd52c-95d5-47d3-b48c-0ec692ab8051}</Project>
+      <Name>Bio.Biorepositories.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Bio.Services.Data\Bio.Services.Data.csproj">
+      <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
+      <Name>Bio.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Documents.Services.Data\Documents.Services.Data.csproj">
       <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
       <Name>Documents.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
+      <Name>Geo.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
+      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
+      <Name>MediaType.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
+      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
+      <Name>Services.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165F0-F7FD-486F-B302-FCF7350C0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
+      <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
+      <Name>Services.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProcessingTools.Web.Common\ProcessingTools.Web.Common.csproj">
+      <Project>{3b6c4b49-817c-478b-b4d5-f3c079fcf0b0}</Project>
+      <Name>ProcessingTools.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="App_GlobalResources\Strings.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Strings.bg.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Strings.bg.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -454,6 +785,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="">
+            <server name="OwinHost" exePath="{solutiondir}\packages\OwinHost.3.0.1\tools\OwinHost.exe" cmdArgs="-u {url}" url="http://localhost:12345/" workingDir="{projectdir}" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
@@ -463,7 +797,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

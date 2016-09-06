@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = Resources.Strings.DeafultUploadPageTitle;
+}
+
+<header>
+    <h2>
+        @Resources.Strings.DeafultUploadPageHeading
+    </h2>
+</header>
+
+<section>
+    <header>
+        <h4>
+            @InstanceNames.FilesControllerInstanceName
+        </h4>
+    </header>
+
+    <hr />
+
+    @using (Html.BeginForm(nameof(FilesController.Upload), ControllerNames.FilesControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="file" name="files" class="btn btn-default btn-file" accept=".xml, application/xml" multiple="multiple" placeholder="Select files" max="10" />
+            <input type="submit" name="Submit" id="submit" value="Upload" class="btn btn-default" />
+            <input type="reset" name="Reset" id="reset" value="Reset" class="btn btn-default" />
+        </div>
+    }
+</section>
+
+<hr />
+
+<footer>
+    <nav class="separated-items">
+        <span class="item">
+            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+        </span>
+    </nav>
+</footer>

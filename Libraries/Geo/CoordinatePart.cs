@@ -52,8 +52,7 @@
             {
                 return this.decimalCoordinatePartValue
                     .ToString(CoordinatePartDecimalFormat)
-                    .Replace(this.numberDecimalSeparator, ".")
-                    .TrimEnd('0');
+                    .Replace(this.numberDecimalSeparator, ".");
             }
         }
 
@@ -130,7 +129,7 @@
 
         private double ParseCoordinatePart()
         {
-            Regex matchDegreesString = new Regex(@"\A.*?(\-?\d+(?:\.\d+)?).*\Z");
+            Regex matchDegreesString = new Regex(@"\A.*?(\d+(?:\.\d+)?).*\Z");
             string degreesString = null;
             if (matchDegreesString.IsMatch(this.coordinatePartString))
             {

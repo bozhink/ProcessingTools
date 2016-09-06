@@ -1,0 +1,16 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.NotFoundPageTitle;
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>@Resources.Strings.NotFoundPageHeading</h3>
+
+<p>
+    @Model.SourceAction.Message
+</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

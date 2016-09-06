@@ -7,7 +7,6 @@ namespace ProcessingTools.Api.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
             this.ContextKey = "ProcessingTools.Api.Data.ApplicationDbContext";
         }
 

@@ -88,7 +88,7 @@
 
             kernel.Bind(b =>
             {
-                b.From(Common.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Common.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -110,6 +110,20 @@
             kernel.Bind(b =>
             {
                 b.From(Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            kernel.Bind(b =>
+            {
+                b.From(Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            kernel.Bind(b =>
+            {
+                b.From(Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

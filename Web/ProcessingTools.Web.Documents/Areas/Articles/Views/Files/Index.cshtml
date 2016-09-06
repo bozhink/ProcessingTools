@@ -1,0 +1,89 @@
+﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel>
+
+@{
+    ViewBag.Title = Resources.Strings.ListOfFilesPageTitle;
+}
+
+<header>
+    <h2>
+        @Resources.Strings.ListOfFilesPageHeading
+    </h2>
+</header>
+
+<p class="separated-items">
+    <span class="item">
+        @Html.ActionLink(Resources.Strings.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload), routeValues: null, htmlAttributes: new { id = "upload-file-link" })
+    </span>
+    <span class="item">
+        @Html.ActionLink(Resources.Strings.HelpActionLinkTitle, nameof(FilesController.Help), routeValues: null, htmlAttributes: new { target = "_blank" })
+    </span>
+</p>
+
+@if (Model.Items.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.LabelFor(model => model.Items.First().FileName)
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.Items.First().DateCreated)
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.Items.First().DateModified)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int counter = 0;
+                foreach (var item in Model.Items)
+                {
+                    ++counter;
+                    <tr>
+                        <td>
+                            @counter
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateModified)
+                        </td>
+                        <td class="separated-items">
+                            <span class="item">
+                                @Html.ActionLink(Resources.Strings.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(Resources.Strings.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                            </span>
+                            <span class="item">
+                                @Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                            </span>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <footer>
+        @Html.Partial(ViewNames.NavigationFootPartialViewName)
+    </footer>
+}
+
+@section Scripts{
+    @Scripts.Render(BundleNames.FilesIndexScriptBundleName)
+}

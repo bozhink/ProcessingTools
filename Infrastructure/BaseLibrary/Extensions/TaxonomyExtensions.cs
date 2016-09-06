@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Bio.Taxonomy.Types;
-    using DocumentProvider;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
@@ -33,7 +33,7 @@
             List<string> result = new List<string>();
             if (!string.IsNullOrWhiteSpace(xpath))
             {
-                XmlNodeList nodeList = xml.SelectNodes(xpath, TaxPubDocument.NamespceManager());
+                XmlNodeList nodeList = xml.SelectNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic());
                 if (stripTags)
                 {
                     result = nodeList.Cast<XmlNode>().Select(c => c.TaxonNameXmlNodeToString()).Distinct().ToList();
@@ -59,7 +59,7 @@
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             string xpath = "//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
             XmlDocument xd = new XmlDocument();
-            XmlNamespaceManager nm = TaxPubDocument.NamespceManager();
+            XmlNamespaceManager nm = TaxPubXmlNamespaceManagerProvider.GetStatic();
             XmlNodeList nodeList = xml.SelectNodes(xpath, nm);
             List<XmlNode> newList = new List<XmlNode>();
             foreach (XmlNode node in nodeList)
@@ -100,7 +100,7 @@
         {
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-            return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, TaxPubDocument.NamespceManager()));
+            return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic()));
         }
 
         public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
@@ -149,7 +149,7 @@
 
         public static void RemoveTaxonNamePartTags(this XmlDocument xmlDocument)
         {
-            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubDocument.NamespceManager()))
+            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubXmlNamespaceManagerProvider.GetStatic()))
             {
                 taxonName.InnerXml = taxonName.InnerXml.RemoveTaxonNamePartTags();
             }

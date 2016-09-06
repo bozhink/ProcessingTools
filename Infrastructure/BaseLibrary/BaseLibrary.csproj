@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.BaseLibrary</RootNamespace>
     <AssemblyName>ProcessingTools.BaseLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -75,8 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="CustomXslRunner.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="Floats\Contracts\IFloatObject.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
@@ -86,19 +87,24 @@
     <Compile Include="Floats\Models\HabitusFloatObject.cs" />
     <Compile Include="Floats\Models\MapFloatObject.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
+    <Compile Include="Floats\Models\MovieFloatObject.cs" />
+    <Compile Include="Floats\Models\PictureFloatObject.cs" />
     <Compile Include="Floats\Models\PlateFloatObject.cs" />
     <Compile Include="Floats\Models\SupplementaryMaterialFloatObject.cs" />
+    <Compile Include="Floats\Models\TableAppendixFloatObject.cs" />
     <Compile Include="Floats\Models\TableBoxFloatObject.cs" />
     <Compile Include="Floats\Models\TableFloatObject.cs" />
     <Compile Include="Floats\Models\TextBoxFloatObject.cs" />
-    <Compile Include="Format\SystemInitialFormatter.cs" />
     <Compile Include="References\IReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesParser.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
+    <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />
+    <Compile Include="Taxonomy\Models\TaxonName.cs" />
+    <Compile Include="Taxonomy\Models\TaxonNamePart.cs" />
     <Compile Include="Taxonomy\Models\TaxonRankResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abbreviations\Abbreviation.cs" />
@@ -123,7 +129,6 @@
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="Special\QuentinFlora.cs" />
-    <Compile Include="QueryReplace.cs" />
     <Compile Include="References\ReferencesTagger.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
@@ -199,6 +204,7 @@
     <Content Include="XSL\Materials\taxon-treatment.extract-materials.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSL\regularize-treatment-sec.xsl" />
     <Content Include="XSL\resolve-families-in-checklist.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -265,31 +271,31 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
       <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
       <Name>Bio.Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
       <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
       <Name>Data.Miners.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
+    <ProjectReference Include="..\..\Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
       <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
       <Name>Bio.Harvesters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
+    <ProjectReference Include="..\..\Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
       <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
       <Name>Geo.Harvesters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
+    <ProjectReference Include="..\..\Services\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
       <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
       <Name>Harvesters.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
+    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
       <Name>Harvesters</Name>
     </ProjectReference>
@@ -313,7 +319,7 @@
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Data\Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
@@ -341,11 +347,11 @@
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\MediaType.Services.Data\MediaType.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>MediaType.Services.Data</Name>
     </ProjectReference>

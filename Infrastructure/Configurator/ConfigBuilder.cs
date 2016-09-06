@@ -8,10 +8,10 @@
     public static class ConfigBuilder
     {
         /// <summary>
-        /// Reads the default config JSON file and builds a Config object from it.
+        /// Reads the default config JSON file and builds a IConfig object from it.
         /// </summary>
-        /// <returns>Initialized Config object.</returns>
-        public static Config Create()
+        /// <returns>Initialized IConfig object.</returns>
+        public static IConfig Create()
         {
             string configJsonFilePath = ConfigurationManager.AppSettings["ConfigJsonFilePath"];
 
@@ -19,11 +19,11 @@
         }
 
         /// <summary>
-        /// Reads a config JSON file and builds a Config object from it.
+        /// Reads a config JSON file and builds a IConfig object from it.
         /// </summary>
         /// <param name="configFilePath">Full path of the config file.</param>
-        /// <returns>Initialized Config object.</returns>
-        public static Config Create(string configFilePath)
+        /// <returns>Initialized IConfig object.</returns>
+        public static IConfig Create(string configFilePath)
         {
             if (string.IsNullOrWhiteSpace(configFilePath))
             {

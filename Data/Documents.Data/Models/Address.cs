@@ -3,10 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Address : DocumentsAbstractEntity
+    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddressEntity
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;
@@ -20,13 +24,33 @@
             this.affiliations = new HashSet<Affiliation>();
         }
 
+        public Address(IAddressEntity entity)
+            : this()
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            this.AddressString = entity.AddressString;
+            this.CountryId = entity.CountryId;
+            this.CityId = entity.CityId;
+            this.CreatedByUser = entity.CreatedByUser;
+            this.ModifiedByUser = entity.ModifiedByUser;
+            this.DateCreated = entity.DateCreated;
+            this.DateModified = entity.DateModified;
+        }
+
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]
         public string AddressString { get; set; }
 
         public int? CityId { get; set; }
+
+        public int? CountryId { get; set; }
 
         public virtual ICollection<Publisher> Publishers
         {
@@ -66,5 +90,8 @@
                 this.affiliations = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => null;
     }
 }

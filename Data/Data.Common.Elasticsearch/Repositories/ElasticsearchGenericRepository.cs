@@ -7,16 +7,18 @@
 
     using Contracts;
     using Elasticsearch.Contracts;
-
     using Nest;
 
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.Models.Contracts;
 
     public class ElasticsearchGenericRepository<TEntity> : IElasticsearchGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
-        private readonly IElasticContextProvider contextProvider;
         private readonly IElasticClientProvider clientProvider;
+        private readonly IElasticContextProvider contextProvider;
 
         public ElasticsearchGenericRepository(IElasticContextProvider contextProvider, IElasticClientProvider clientProvider)
         {
@@ -37,9 +39,9 @@
             this.Client = this.clientProvider.Create();
         }
 
-        protected IndexName Context { get; set; }
-
         protected IElasticClient Client { get; set; }
+
+        protected IndexName Context { get; set; }
 
         public virtual async Task<object> Add(TEntity entity)
         {
@@ -60,66 +62,16 @@
             return response.Documents.AsQueryable();
         }
 
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<long> Count()
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var countResponse = this.Client.Count<TEntity>(c => c.Index(this.Context));
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(0).Size((int)countResponse.Count));
-            return response.Documents.AsQueryable();
+            // TODO: Not implemented
+            throw new NotImplementedException();
         }
 
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, object>> sort, int skip, int take)
+        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter)
         {
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
-            return response.Documents.AsQueryable();
-        }
-
-        // TODO
-        public virtual async Task<IQueryable<TEntity>> All(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, object>> sort, int skip, int take)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (sort == null)
-            {
-                throw new ArgumentNullException(nameof(sort));
-            }
-
-            if (skip < 0)
-            {
-                throw new ArgumentException(string.Empty, nameof(skip));
-            }
-
-            if (take < 1)
-            {
-                throw new ArgumentException(string.Empty, nameof(take));
-            }
-
-            var response = await this.Client.SearchAsync<TEntity>(e => e.From(skip).Size(take));
-            return response.Documents.AsQueryable();
+            // TODO: Not implemented
+            throw new NotImplementedException();
         }
 
         public virtual async Task<object> Delete(object id)
@@ -144,6 +96,134 @@
             return response;
         }
 
+        public virtual Task<IQueryable<TEntity>> Find(
+            Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<T>> Find<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<TEntity>> Find(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, object>> sort,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending,
+            int skip = 0,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<IQueryable<T>> Find<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection,
+            Expression<Func<TEntity, object>> sort,
+            ProcessingTools.Common.Types.SortOrder sortOrder = ProcessingTools.Common.Types.SortOrder.Ascending,
+            int skip = 0,
+            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            if (sort == null)
+            {
+                throw new ArgumentNullException(nameof(sort));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<TEntity> FindFirst(
+            Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<T> FindFirst<T>(
+            Expression<Func<TEntity, bool>> filter,
+            Expression<Func<TEntity, T>> projection)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            if (projection == null)
+            {
+                throw new ArgumentNullException(nameof(projection));
+            }
+
+            // TODO: Not implemented
+            throw new NotImplementedException();
+        }
+
         public virtual async Task<TEntity> Get(object id)
         {
             if (id == null)
@@ -156,10 +236,10 @@
             return response.Source;
         }
 
-        public virtual async Task<int> SaveChanges()
+        public virtual async Task<long> SaveChanges()
         {
             var response = await this.Client.FlushAsync(this.Context);
-            return response.IsValid ? 0 : 1;
+            return response.IsValid ? 0L : 1L;
         }
 
         public virtual async Task<object> Update(TEntity entity)
@@ -175,6 +255,12 @@
                 u => u.Doc(entity).DocAsUpsert(true));
 
             return response;
+        }
+
+        public Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        {
+            // TODO: Not implemented
+            throw new NotImplementedException();
         }
 
         private async Task CreateIndexIfItDoesNotExist(IndexName indexName)

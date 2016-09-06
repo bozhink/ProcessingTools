@@ -100,95 +100,130 @@
 
         private void ParseSingleCoordinateXmlNode(XmlNode coordinateNode)
         {
-            //// S21°59'01, W64°12'30 is valid
-            //// 8.77522 N, -70.80349 E
-            //// -3.08732°N, -79.71493°W -->> (\-?\d+\.\d+°\w,\s*\-?\d+\.\d+°\w)      (\-?\d+\.\d+\s*°\s*\w,\s*\-?\d+\.\d+\s*°\s*\w)
-
-            ////03°14.78S, 72°54.61W
-            ////03°15’S 72°54’W
-            ////20°20.1N 74°33.6W
-
-            ////37°08'09.4"N, 8°23'04.2"W
-            ////08º48’23’’S, 115º56’24’’E
-            ////20°20.1N 74°33.6W
-
             string coordinateText = this.SimplifyCoordinateString(coordinateNode.InnerText);
+            this.logger?.Log(">> {0}", coordinateText);
 
-            //// this.logger?.Log(">> {0}", coordinateText);
-
-            CoordinatePart latitude = new CoordinatePart(this.logger)
+            // 29.5423°, -86.1926°
+            Regex matchDecimalDecimalCoordinateRegex = new Regex(@"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z");
+            if (matchDecimalDecimalCoordinateRegex.IsMatch(coordinateText))
             {
-                PartIsPresent = false
-            };
+                Match matchDecimalDecimalCoordinate = matchDecimalDecimalCoordinateRegex.Match(coordinateText);
+                var latitudeString = matchDecimalDecimalCoordinate.Groups["latitude"].Value.Trim();
+                var longitudeString = matchDecimalDecimalCoordinate.Groups["longitude"].Value.Trim();
 
-            CoordinatePart longitude = new CoordinatePart(this.logger)
-            {
-                PartIsPresent = false
-            };
+                Console.WriteLine(latitudeString);
+                Console.WriteLine(longitudeString);
 
-            if (coordinateNode.Attributes["type"] == null)
-            {
-                Coordinate coordinate = new Coordinate();
-
+                CoordinatePart latitude = new CoordinatePart(this.logger)
                 {
-                    const string RepeatedDirectionsErrorMessage = "Repeated directions in the coordinate string.";
+                    PartIsPresent = false
+                };
 
-                    // TODO: Error on 34.47325°, 132.10362°
-                    const string CoordinateParsePattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
+                CoordinatePart longitude = new CoordinatePart(this.logger)
+                {
+                    PartIsPresent = false
+                };
 
-                    string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
-                    string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
+                Coordinate coordinate = new Coordinate
+                {
+                    Latitude = latitudeString,
+                    Longitude = longitudeString
+                };
 
-                    if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
-                        (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
+                this.ParseCoordinateObject(latitude, longitude, coordinate);
+                this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
+
+                this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
+                this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
+            }
+            else
+            {
+                //// S21°59'01, W64°12'30 is valid
+                //// 8.77522 N, -70.80349 E
+                //// -3.08732°N, -79.71493°W -->> (\-?\d+\.\d+°\w,\s*\-?\d+\.\d+°\w)      (\-?\d+\.\d+\s*°\s*\w,\s*\-?\d+\.\d+\s*°\s*\w)
+
+                ////03°14.78S, 72°54.61W
+                ////03°15’S 72°54’W
+                ////20°20.1N 74°33.6W
+
+                ////37°08'09.4"N, 8°23'04.2"W
+                ////08º48’23’’S, 115º56’24’’E
+                ////20°20.1N 74°33.6W
+
+                CoordinatePart latitude = new CoordinatePart(this.logger)
+                {
+                    PartIsPresent = false
+                };
+
+                CoordinatePart longitude = new CoordinatePart(this.logger)
+                {
+                    PartIsPresent = false
+                };
+
+                if (coordinateNode.Attributes["type"] == null)
+                {
+                    Coordinate coordinate = new Coordinate();
+
                     {
-                        if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") ||
-                            rightPart.Contains("N") || rightPart.Contains("S"))
+                        const string RepeatedDirectionsErrorMessage = "Repeated directions in the coordinate string.";
+
+                        // TODO: Error on 34.47325°, 132.10362°
+                        const string CoordinateParsePattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
+
+                        string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
+                        string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
+
+                        if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
+                            (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
                         {
-                            throw new ApplicationException(RepeatedDirectionsErrorMessage);
+                            if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") ||
+                                rightPart.Contains("N") || rightPart.Contains("S"))
+                            {
+                                throw new ApplicationException(RepeatedDirectionsErrorMessage);
+                            }
+                            else
+                            {
+                                coordinate.Latitude = leftPart;
+                                coordinate.Longitude = rightPart;
+                            }
+                        }
+                        else if ((leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O")) && (rightPart.Contains("N") || rightPart.Contains("S")))
+                        {
+                            if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
+                            {
+                                throw new ApplicationException(RepeatedDirectionsErrorMessage);
+                            }
+                            else
+                            {
+                                coordinate.Latitude = rightPart;
+                                coordinate.Longitude = leftPart;
+                            }
                         }
                         else
                         {
                             coordinate.Latitude = leftPart;
                             coordinate.Longitude = rightPart;
                         }
-                    }
-                    else if ((leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O")) && (rightPart.Contains("N") || rightPart.Contains("S")))
-                    {
-                        if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
-                        {
-                            throw new ApplicationException(RepeatedDirectionsErrorMessage);
-                        }
-                        else
-                        {
-                            coordinate.Latitude = rightPart;
-                            coordinate.Longitude = leftPart;
-                        }
-                    }
-                    else
-                    {
-                        coordinate.Latitude = leftPart;
-                        coordinate.Longitude = rightPart;
+
+                        //// this.logger?.Log("Latitude =\t{0};\tLongitude =\t{1}", coordinate.Latitude, coordinate.Longitude);
                     }
 
-                    //// this.logger?.Log("Latitude =\t{0};\tLongitude =\t{1}", coordinate.Latitude, coordinate.Longitude);
+                    this.ParseCoordinateObject(latitude, longitude, coordinate);
+                }
+                else if (coordinateNode.Attributes["type"].InnerText == "latitude")
+                {
+                    this.ParseLatitudeTypeCoordinate(coordinateText, latitude);
+                }
+                else if (coordinateNode.Attributes["type"].InnerText == "longitude")
+                {
+                    this.ParseLongitudeTypeCoordinate(coordinateText, longitude);
                 }
 
-                this.ParseCoordinateObject(latitude, longitude, coordinate);
-            }
-            else if (coordinateNode.Attributes["type"].InnerText == "latitude")
-            {
-                this.ParseLatitudeTypeCoordinate(coordinateText, latitude);
-            }
-            else if (coordinateNode.Attributes["type"].InnerText == "longitude")
-            {
-                this.ParseLongitudeTypeCoordinate(coordinateText, longitude);
-            }
+                this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
 
-            this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
-
-            this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
-            this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
+                this.SetCoordinatePartAttribute(coordinateNode, latitude, "latitude");
+                this.SetCoordinatePartAttribute(coordinateNode, longitude, "longitude");
+            }
         }
 
         private void ParseCoordinateObject(CoordinatePart latitude, CoordinatePart longitude, Coordinate coordinate)
@@ -249,18 +284,19 @@
         {
             string coordinateText = coordinateString
                 .RegexReplace("[–—−-]", "-")
+                .RegexReplace(@"[,;]", ",")
                 .RegexReplace(@"[^EWONS\d\W]+", " ") //// Remove text
                 .RegexReplace(@"\s[a-z]+\s", " ")
-                .RegexReplace(@"\-\s+(?=\d)", "-")
+                .RegexReplace(@"\-\s+(?=\d)", " -")
                 .RegexReplace("E(?=[EWONS])", " ") //// 29.63527EN, 82.37111EW
-                .RegexReplace(@"[\\\/\|<>\!\?\*:;=]+", " ") //// Remove some unused special characters
+                .RegexReplace(@"[\\\/\|<>\!\?\*:=]+", " ") //// Remove some unused special characters
                 .RegexReplace(@"\s{2,}", " ")
                 .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9])\s*\.\s*([0-5][0-9](\s*\.\s*\d+)?(?!\.)(?!\d))", "$1 $2 $3") //// N33.50.13, E107.48.52 --> N33 50 13, E107 48 52
                 .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2") //// N33.50.613, E107.48.524 --> N33 50.613, E107 48.524
                 .RegexReplace(@"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".") //// S39°34 283, W71°29 908
                 .RegexReplace(@"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ") //// S39°34'283"W 71°29'908"
                 .RegexReplace(@"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".") //// 20. 58139°S, 164.76444°E
-                .RegexReplace(@"\W*°\W+|W+°\W*", "°"); //// 22.14158°’S, 166.67993 °E
+                .RegexReplace(@"\W*°[^\w,]+|W+°[^\w,]*", "°"); //// 22.14158°’S, 166.67993 °E
 
             return coordinateText;
         }

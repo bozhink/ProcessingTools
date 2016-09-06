@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Bio.Environments.Data</RootNamespace>
     <AssemblyName>ProcessingTools.Bio.Environments.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -46,7 +46,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="BioEnvironmentsDataInitializer.cs" />
     <Compile Include="BioEnvironmentsDbContext.cs" />
-    <Compile Include="BioEnvironmentsDbContextFactory.cs" />
+    <Compile Include="Factories\BioEnvironmentsDbContextFactory.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDataInitializer.cs" />
     <Compile Include="Contracts\IBioEnvironmentsDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />

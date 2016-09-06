@@ -4,6 +4,8 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using ProcessingTools.Net.Factories;
+
     [TestClass]
     public class ExtractHcmrDataRequesterTests
     {
@@ -14,7 +16,7 @@
         {
             const string Content = "Both samples were dominated by Zetaproteobacteria Fe oxidizers. This group was most abundant at Volcano 1, where sediments were richer in Fe and contained more crystalline forms of Fe oxides.";
 
-            var requester = new ExtractHcmrDataRequester();
+            var requester = new ExtractHcmrDataRequester(new NetConnectorFactory());
             var response = requester.RequestData(Content)?.Result;
 
             Assert.IsNotNull(response, "Response should not be null.");

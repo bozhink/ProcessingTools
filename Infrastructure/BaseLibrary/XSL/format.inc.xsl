@@ -9,7 +9,7 @@
   exclude-result-prefixes="xs">
 
   <xsl:include href="geo/geo-json.xsl" />
-  <xsl:include href="Floats/format-tables.xsl"/>
+  <xsl:include href="Floats/format-tables.xsl" />
 
   <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
 
@@ -22,6 +22,18 @@
   <xsl:template match="p//break" />
 
   <xsl:template match="article_figs_and_tables[not(*)]" />
+
+  <xsl:template match="named-content">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>NC</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates select="node()" />
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template match="article-meta/article-id">
     <xsl:element name="{name()}">
@@ -36,7 +48,6 @@
         <xsl:text>http://purl.obolibrary.org/obo/</xsl:text>
         <xsl:value-of select="normalize-space(@EnvoID)" />
       </xsl:attribute>
-
       <xsl:apply-templates select="@* | node()" />
     </xsl:element>
   </xsl:template>
@@ -45,7 +56,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date'] | ref//named-content[@content-type='institution'] | addr-line//named-content[@content-type='institution']">
+  <xsl:template match="tn//tp:taxon-name | tp:taxon-name//tp:taxon-name | a//tp:* | *[@object_id='82']//tp:* | *[@id='41']//tp:* | *[@id='236' or @id='436' or @id='435' or @id='418' or @id='49' or @id='417' or @id='48' or @id='434' or @id='433' or @id='432' or @id='431' or @id='430' or @id='429' or @id='428' or @id='427' or @id='426' or @id='425' or @id='424' or @id='423' or @id='422' or @id='421' or @id='420' or @id='419' or @id='475' or @id='414']/value//tp:* | xref//tp:* | tp:taxon-name//xref | named-content[@content-type='date']//institutional_code | named-content[@content-type='date']//named-content[@content-type='date'] | ref//named-content[@content-type='institution'] | named-content[@content-type='institution']//named-content[@content-type='institution'] | addr-line//named-content[@content-type='institution']">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -80,7 +91,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="date//institutional_code | quantity//quantity | //abbrev[normalize-space(@content-type)!='institution']//institutional_code[name(..)!='p']">
+  <xsl:template match="date//institutional_code | quantity//quantity | //abbrev[normalize-space(@content-type)!='institution' and normalize-space(@content-type)!='collection']//institutional_code[name(..)!='p']">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -123,7 +134,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="conf-loc | conf-date | edition">
+  <xsl:template match="conf-loc[not(@field_name)] | conf-date[not(@field_name)] | edition[not(@field_name)]">
     <xsl:element name="{name()}">
       <xsl:value-of select="string()" />
     </xsl:element>
@@ -315,18 +326,14 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="@*" mode="ext-link">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="ext-link" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text() | comment()" mode="ext-link">
+  <xsl:template match="@* | text() | comment()" mode="ext-link">
     <xsl:copy-of select="." />
   </xsl:template>
 
   <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup" mode="ext-link">
-    <xsl:apply-templates select="." />
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="*" mode="ext-link">
@@ -341,20 +348,15 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="@*" mode="license-p">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="license-p" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text() | comment()" mode="license-p">
+  <xsl:template match="@* | text() | comment()" mode="license-p">
     <xsl:copy-of select="." />
   </xsl:template>
 
-  <xsl:template match="license-p | email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
-    <xsl:copy>
-      <xsl:apply-templates select="@* | node()" mode="license-p" />
-    </xsl:copy>
+  <xsl:template match="email | ext-link | uri | inline-supplementary-material | related-article | related-object | address | alternatives | array | boxed-text | chem-struct-wrap | fig | fig-group | graphic | media | preformat | supplementary-material | table-wrap | table-wrap-group | disp-formula | disp-formula-group | element-citation | mixed-citation | nlm-citation | bold | b | italic | i | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | award-id | funding-source | open-access | chem-struct | inline-formula | inline-graphic | private-char | def-list | list | ol | ul | tex-math | mml:math | abbrev | milestone-end | milestone-start | named-content | styled-content | disp-quote | speech | statement | verse-group | fn | target | xref | sub | sup | price" mode="license-p">
+    <xsl:element name="{name()}">
+      <!-- Apply templates not in node license-p -->
+      <xsl:apply-templates select="@* | node()" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="*" mode="license-p">
@@ -362,6 +364,33 @@
   </xsl:template>
 
   <!-- other -->
+  <xsl:template match="person-group/name[not(@name-style)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="name-style">
+        <xsl:text>western</xsl:text>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="size[not(@units)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="units">
+        <xsl:choose>
+          <xsl:when test="contains(string(.), 'pp')">
+            <xsl:text>page</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Unknown units type -->
+            <xsl:text></xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template match="td[count(node()) = 1 and count(text()) = 1] | th[count(node()) = 1 and count(text()) = 1] | title[count(node()) = 1 and count(text()) = 1] | label[count(node()) = 1 and count(text()) = 1] | p[count(node()) = 1 and count(text()) = 1] | article-title[count(node()) = 1 and count(text()) = 1] | li[count(node()) = 1 and count(text()) = 1] | kwd[count(node()) = 1 and count(text()) = 1] | xref-group[count(node()) = 1 and count(text()) = 1]">
     <xsl:element name="{name()}">
@@ -376,6 +405,7 @@
         <xsl:text>Math</xsl:text>
         <xsl:value-of select="generate-id()" />
       </xsl:attribute>
+      <xsl:apply-templates select="@* | node()" />
     </xsl:element>
   </xsl:template>
 
@@ -391,5 +421,13 @@
         <xsl:value-of select="substring-after($content, $prefix)" />
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="generate-id">
+    <xsl:param name="prefix" select="''" />
+    <xsl:attribute name="id">
+      <xsl:value-of select="$prefix" />
+      <xsl:value-of select="generate-id()" />
+    </xsl:attribute>
   </xsl:template>
 </xsl:stylesheet>

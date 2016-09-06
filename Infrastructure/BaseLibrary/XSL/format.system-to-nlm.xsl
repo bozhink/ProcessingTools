@@ -12,7 +12,7 @@
   <xsl:output method="xml" indent="yes" encoding="utf-8"  cdata-section-elements="tex-math" />
 
   <xsl:strip-space elements="*" />
-  <xsl:preserve-space elements="p label title article-title td th kwd email ext-link uri preformat bold b italic i monospace overline roman sans-serif sc strike s underline u award-id funding-source private-char tex-math abbrev def milestone-end milestone-start named-content styled-content disp-quote speech statement target xref xref-group sub sup tp:taxon-name source institution institutional_code envo mixed-citation" />
+  <xsl:preserve-space elements="p related-article label title article-title td th kwd email ext-link uri preformat bold b italic i monospace overline roman sans-serif sc strike s underline u award-id funding-source private-char tex-math abbrev def milestone-end milestone-start named-content styled-content disp-quote speech statement target xref xref-group sub sup tp:taxon-name source institution institutional_code envo mixed-citation" />
 
   <xsl:include href="format.inc.xsl" />
 
@@ -38,12 +38,42 @@
     </underline>
   </xsl:template>
 
+  <xsl:template match="s | strike">
+    <strike>
+      <xsl:apply-templates select="@* | node()" />
+    </strike>
+  </xsl:template>
+
+  <xsl:template match="kbd | monospace">
+    <monospace>
+      <xsl:apply-templates select="@* | node()" />
+    </monospace>
+  </xsl:template>
+
+  <xsl:template match="pre | preformat">
+    <preformat>
+      <xsl:apply-templates select="@* | node()" />
+    </preformat>
+  </xsl:template>
+
   <xsl:template match="bold-italic | Bold-Italic">
     <bold>
       <italic>
         <xsl:apply-templates select="@* | node()" />
       </italic>
     </bold>
+  </xsl:template>
+  
+  <xsl:template match="sec | tp:treatment-sec">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>SEC</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates select="node()" />
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="sec[title][@sec-type][normalize-space(@sec-type)='']/@sec-type">
@@ -54,13 +84,25 @@
 
   <xsl:template match="tp:taxon-name | tn">
     <tp:taxon-name>
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:apply-templates select="@*" />
+      <!--<xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>TN</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>-->
+      <xsl:apply-templates select="node()" />
     </tp:taxon-name>
   </xsl:template>
 
   <xsl:template match="tp:taxon-name-part | tn-part">
     <tp:taxon-name-part>
-      <xsl:apply-templates select="@* | node()" />
+      <xsl:apply-templates select="@*" />
+      <!--<xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>TNP</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>-->
+      <xsl:apply-templates select="node()" />
     </tp:taxon-name-part>
     <xsl:if test="name(../..) != 'tp:nomenclature'">
       <xsl:if test="name(following-sibling::node()) = name() and normalize-space() != ''">
@@ -69,20 +111,11 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tn-part/@type">
+  <xsl:template match="tn-part/@type | tp:taxon-name-part/@type | tn-part/@taxon-name-part-type | tp:taxon-name-part/@taxon-name-part-type">
     <xsl:attribute name="taxon-name-part-type">
       <xsl:value-of select="." />
     </xsl:attribute>
   </xsl:template>
-
-  <!--<xsl:template match="tp:nomenclature-citation[not(comment)]">
-    <xsl:element name="{name()}">
-      <xsl:apply-templates select="@*" />
-      <comment>
-        <xsl:apply-templates select="node()" />
-      </comment>
-    </xsl:element>
-  </xsl:template>-->
 
   <xsl:template match="addr-line[count(node()) = count(text())]">
     <xsl:element name="{name()}">
@@ -93,6 +126,18 @@
 
   <xsl:template match="app/title/xref">
     <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="abbr | abbrev">
+    <abbrev>
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="generate-id">
+        <xsl:with-param name="prefix">
+          <xsl:text>ABBR</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates select="node()" />
+    </abbrev>
   </xsl:template>
 
   <xsl:template match="abbrev/def/p">

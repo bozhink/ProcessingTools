@@ -8,26 +8,26 @@
     using Contracts;
 
     using ProcessingTools.Common;
-    using ProcessingTools.Net.Contracts;
+    using ProcessingTools.Net.Factories.Contracts;
 
     public class MaterialCitationsParser : IMaterialCitationsParser
     {
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
         private const string ParserUrl = "/GgWS/wss/invokeFunction";
 
-        private readonly INetConnector connector;
+        private readonly INetConnectorFactory connectorFactory;
         private readonly Encoding encoding;
 
-        public MaterialCitationsParser(INetConnector connector)
-            : this(connector, Defaults.DefaultEncoding)
+        public MaterialCitationsParser(INetConnectorFactory connectorFactory)
+            : this(connectorFactory, Defaults.DefaultEncoding)
         {
         }
 
-        public MaterialCitationsParser(INetConnector connector, Encoding encoding)
+        public MaterialCitationsParser(INetConnectorFactory connectorFactory, Encoding encoding)
         {
-            if (connector == null)
+            if (connectorFactory == null)
             {
-                throw new ArgumentNullException(nameof(connector));
+                throw new ArgumentNullException(nameof(connectorFactory));
             }
 
             if (encoding == null)
@@ -37,8 +37,7 @@
 
             this.encoding = encoding;
 
-            this.connector = connector;
-            connector.BaseAddress = BaseAddress;
+            this.connectorFactory = connectorFactory;
         }
 
         public async Task<string> Invoke(string content)
@@ -56,7 +55,8 @@
                 { "INTERACTIVE", "no" }
             };
 
-            var response = await this.connector.Post(ParserUrl, values, this.encoding);
+            var connector = this.connectorFactory.Create(BaseAddress);
+            var response = await connector.Post(ParserUrl, values, this.encoding);
 
             return response;
         }

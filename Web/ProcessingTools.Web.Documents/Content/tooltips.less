@@ -1,0 +1,69 @@
+﻿@tooltip-text-max-width: 200px;
+@tooltip-background-color: black;
+@tooltip-foreground-color: white;
+@tooltip-opacity: 0.8;
+
+.balloon {
+    position: fixed;
+    display: block;
+    visibility: visible;
+    font-weight: normal;
+    color: @tooltip-foreground-color;
+    background-color: @tooltip-background-color;
+    width: @tooltip-text-max-width;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: @tooltip-opacity;
+    pointer-events: none;
+    /* Balloon top arrow*/
+    &::after {
+        content: " ";
+        position: absolute;
+        bottom: 100%;
+        left: 20px;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+    }
+}
+
+.custom-tooltip {
+    position: relative;
+    display: inline;
+
+    &:hover .custom-tooltiptext {
+        visibility: visible;
+        opacity: @tooltip-opacity;
+    }
+
+    .custom-tooltiptext:extend(.balloon) {
+        visibility: hidden;
+        position: absolute;
+        /* Fade in tooltip - takes 1 second to go from 0% to 100% opacity: */
+        opacity: 0;
+        -moz-transition: opacity 1s;
+        -o-transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        transition: opacity 1s;
+        /* Bottom tooltip */
+        top: 110%;
+        left: 50%;
+        margin-left: -@tooltip-text-max-width / 2;
+        /* Tooltip top arrow*/
+        &::after {
+            content: " ";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+        }
+    }
+}

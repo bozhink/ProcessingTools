@@ -7,8 +7,8 @@
 
     using AutoMapper;
 
-    using Common.Constants;
-    using Services.Common.Contracts;
+    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Services.Common.Contracts;
 
     public abstract class GenericDataServiceControllerFactory<TServiceModel, TRequestModel, TResponseModel> : ApiController
         where TServiceModel : class
@@ -17,9 +17,9 @@
     {
         private readonly IMapper mapper;
 
-        private IDataService<TServiceModel> service;
+        private IMultiEntryDataService<TServiceModel> service;
 
-        public GenericDataServiceControllerFactory(IDataService<TServiceModel> service)
+        public GenericDataServiceControllerFactory(IMultiEntryDataService<TServiceModel> service)
         {
             if (service == null)
             {
@@ -69,7 +69,7 @@
             return this.Ok(result);
         }
 
-        public async Task<IHttpActionResult> GetPaged(string skip, string take = DefaultPagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetPaged(string skip, string take = PagingConstants.DefaultTakeString)
         {
             int skipItemsCount;
             if (!int.TryParse(skip, out skipItemsCount))
@@ -83,7 +83,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = (await this.service.Get(skipItemsCount, takeItemsCount))
+            var result = (await this.service.Query(skipItemsCount, takeItemsCount))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 

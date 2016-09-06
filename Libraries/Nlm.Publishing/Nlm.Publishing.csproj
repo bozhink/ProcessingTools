@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Nlm.Publishing</RootNamespace>
     <AssemblyName>ProcessingTools.Nlm.Publishing</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -32,12 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Constants\AttributeNames.cs" />
     <Compile Include="Constants\Namespaces.cs" />
     <Compile Include="Constants\NodeNames.cs" />
+    <Compile Include="Models\NlmAbbreviationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\ArticleType.cs" />
     <Compile Include="Types\ExternalLinkType.cs" />

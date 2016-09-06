@@ -1,19 +1,30 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia
 {
-    using System.Text;
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
     using ProcessingTools.Common;
-    using ProcessingTools.Net;
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Net.Factories.Contracts;
     using ProcessingTools.Xml.Extensions;
 
     public class AphiaDirectSoapRequester
     {
         private const string BaseAddress = "http://www.marinespecies.org";
         private const string ApiUrl = "aphia.php?p=soap";
-        private readonly Encoding encoding = Defaults.DefaultEncoding;
+
+        private readonly INetConnectorFactory connectorFactory;
+
+        public AphiaDirectSoapRequester(INetConnectorFactory connectorFactory)
+        {
+            if (connectorFactory == null)
+            {
+                throw new ArgumentNullException(nameof(connectorFactory));
+            }
+
+            this.connectorFactory = connectorFactory;
+        }
 
         public XmlDocument AphiaSoapXml(string scientificName)
         {
@@ -34,12 +45,12 @@
 
         public async Task<XmlDocument> SearchAphia(string scientificName)
         {
-            var connector = new NetConnector(BaseAddress);
+            var connector = this.connectorFactory.Create(BaseAddress);
             var response = await connector.Post(
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
                 ContentTypeConstants.XmlContentType,
-                this.encoding);
+                Defaults.DefaultEncoding);
 
             return response.ToXmlDocument();
         }

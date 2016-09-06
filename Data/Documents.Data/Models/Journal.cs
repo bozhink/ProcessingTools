@@ -5,12 +5,13 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Journal : DocumentsAbstractEntity
+    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields, IJournalEntity
     {
-        private string journalId;
-
         private ICollection<Article> articles;
 
         public Journal()
@@ -22,31 +23,17 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.MaximalLengthOfJournalName)]
         public string Name { get; set; }
 
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedJournalName)]
         public string AbbreviatedName { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfJournalId)]
-        public string JournalId
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(this.journalId))
-                {
-                    return this.AbbreviatedName;
-                }
-
-                return this.journalId;
-            }
-
-            set
-            {
-                this.journalId = value;
-            }
-        }
+        public string JournalId { get; set; }
 
         [MaxLength(ValidationConstants.IssnLength)]
         public string PrintIssn { get; set; }
@@ -70,5 +57,11 @@
                 this.articles = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => new string[]
+        {
+            nameof(this.Publisher)
+        };
     }
 }

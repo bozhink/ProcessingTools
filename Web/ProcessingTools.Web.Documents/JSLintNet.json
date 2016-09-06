@@ -1,0 +1,20 @@
+﻿{
+  "version": "2.3.0",
+  "ignore": [],
+  "options": {
+    "bitwise": true,
+    "browser": true,
+    "devel": true,
+    "es6": true,
+    "for": true,
+    "multivar": true,
+    "node": true,
+    "single": true,
+    "this": true
+  },
+  "globalVariables": [
+    "window",
+    "document",
+    "HTMLElement"
+  ]
+}

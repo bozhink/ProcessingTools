@@ -1,6 +1,7 @@
 namespace ProcessingTools.Bio.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using ProcessingTools.Bio.Data.Common.Constants;
 
     public sealed class Configuration : DbMigrationsConfiguration<BioDbContext>
     {
@@ -8,7 +9,7 @@ namespace ProcessingTools.Bio.Data.Migrations
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = false;
-            this.ContextKey = typeof(BioDbContext).FullName;
+            this.ContextKey = ConnectionConstants.ContextKey;
         }
 
         protected override void Seed(BioDbContext context)

@@ -14,6 +14,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
@@ -22,8 +23,8 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
-        private readonly ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider;
-        private readonly ITaxaRepositoryProvider taxonomicRepositoryProvider;
+        private readonly IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider;
+        private readonly IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider;
         private readonly IBioTaxonomyDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
@@ -31,7 +32,7 @@
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, ITaxaRepositoryProvider taxonomicRepositoryProvider, ITaxonomicBlackListRepositoryProvider blackListRepositoryProvider)
+        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider, IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
         {
             if (contextProvider == null)
             {
@@ -95,6 +96,7 @@
                 var repository = this.taxonomicRepositoryProvider.Create();
                 var ranks = new HashSet<string>((await repository.All())
                     .SelectMany(t => t.Ranks)
+                    .Select(r => r.MapTaxonRankTypeToTaxonRankString())
                     .ToList());
 
                 using (var context = this.contextProvider.Create())
@@ -149,7 +151,7 @@
                             .Select(taxon => new TaxonName
                             {
                                 Name = taxon.Name,
-                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank)).ToList(),
+                                Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank.MapTaxonRankTypeToTaxonRankString())).ToList(),
                                 WhiteListed = taxon.IsWhiteListed
                             })
                             .ToArray();
@@ -193,13 +195,13 @@
                 {
                     try
                     {
-                        var blackListItems = (await repository.All())
+                        var blackListItems = repository.Entities
                             .OrderBy(t => t)
                             .Skip(i * NumberOfItemsToImportAtOnce)
                             .Take(NumberOfItemsToImportAtOnce)
-                            .Select(item => new BlackListedItem
+                            .Select(item => new BlackListEntity
                             {
-                                Content = item
+                                Content = item.Content
                             })
                             .ToArray();
 

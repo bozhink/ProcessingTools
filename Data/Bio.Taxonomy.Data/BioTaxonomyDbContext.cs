@@ -16,7 +16,7 @@
 
         public IDbSet<TaxonName> TaxonNames { get; set; }
 
-        public IDbSet<BlackListedItem> BlackListedItems { get; set; }
+        public IDbSet<BlackListEntity> BlackListedItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

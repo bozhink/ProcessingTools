@@ -17,7 +17,7 @@
         private ILogger logger;
         private IHigherTaxaDataMiner miner;
 
-        public HigherTaxaTagger(string xml, IHigherTaxaDataMiner miner, ITaxonomicBlackListDataService service, ILogger logger)
+        public HigherTaxaTagger(string xml, IHigherTaxaDataMiner miner, IBiotaxonomicBlackListIterableDataService service, ILogger logger)
             : base(xml, service)
         {
             this.logger = logger;
@@ -37,12 +37,11 @@
             XmlElement higherTaxaTag = this.XmlDocument.CreateElement("tn");
             higherTaxaTag.SetAttribute("type", "higher");
 
-            // TODO: Optimize peformance.
+            // TODO: Optimize performance.
             taxaNames.TagContentInDocument(
                 higherTaxaTag,
                 HigherTaxaXPathTemplate,
-                this.NamespaceManager,
-                this.XmlDocument,
+                this,
                 false,
                 true,
                 this.logger)

@@ -12,6 +12,8 @@
         {
         }
 
+        public IDbSet<Continent> Continents { get; set; }
+
         public IDbSet<Country> Countries { get; set; }
 
         public IDbSet<State> States { get; set; }

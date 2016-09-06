@@ -9,11 +9,15 @@
     {
         private ICollection<City> cities;
         private ICollection<State> states;
+        private ICollection<Continent> continents;
+        private ICollection<CountrySynonym> synonyms;
 
         public Country()
         {
             this.cities = new HashSet<City>();
             this.states = new HashSet<State>();
+            this.continents = new HashSet<Continent>();
+            this.synonyms = new HashSet<CountrySynonym>();
         }
 
         [Key]
@@ -54,6 +58,32 @@
             set
             {
                 this.states = value;
+            }
+        }
+
+        public virtual ICollection<Continent> Continents
+        {
+            get
+            {
+                return this.continents;
+            }
+
+            set
+            {
+                this.continents = value;
+            }
+        }
+
+        public virtual ICollection<CountrySynonym> Synonyms
+        {
+            get
+            {
+                return this.synonyms;
+            }
+
+            set
+            {
+                this.synonyms = value;
             }
         }
     }

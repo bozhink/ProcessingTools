@@ -29,7 +29,8 @@
 
         public override Task Tag()
         {
-            XmlNodeList nodeList = this.XmlDocument.SelectNodes(this.contentNodesXPath, this.namespaceManager);
+            var nodeList = this.XmlDocument.SelectNodes(this.contentNodesXPath, this.namespaceManager)
+                .Cast<XmlNode>();
 
             var items = this.data.ToList()
                 .Select(this.SerializeObject)

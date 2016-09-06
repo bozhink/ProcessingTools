@@ -1,0 +1,22 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.NoFilesSelectedPageTitle;
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>@Resources.Strings.NoFilesSelectedPageHeading</h3>
+
+<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>
+    @Html.ActionLink(
+        linkText: Model.SourceAction.ActionLinkText,
+        actionName: Model.SourceAction.ActionName,
+        controllerName: Model.SourceAction.ControllerName,
+        routeValues: new { area = Model.SourceAction.AreaName},
+        htmlAttributes: null)
+</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

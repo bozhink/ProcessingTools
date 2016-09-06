@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Contracts
 {
+    using System.Linq;
     using System.Text;
     using System.Xml;
 
@@ -14,5 +15,9 @@
         string Xml { get; set; }
 
         XmlDocument XmlDocument { get; }
+
+        IQueryable<XmlNode> SelectNodes(string xpath);
+
+        XmlNode SelectSingleNode(string xpath);
     }
 }

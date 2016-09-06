@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif</RootNamespace>
     <AssemblyName>ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -36,11 +36,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGbifDataRequester.cs" />
-    <Compile Include="GbifDataRequester.cs" />
+    <Compile Include="Contracts\IGbifApiV09DataRequester.cs" />
+    <Compile Include="GbifApiV09DataRequester.cs" />
     <Compile Include="Models\Alternative.cs" />
-    <Compile Include="Models\GbifApiResponseModel.cs" />
+    <Compile Include="Models\GbifApiV09ResponseModel.cs" />
     <Compile Include="Models\Contracts\IGbifTaxon.cs" />
+    <Compile Include="Models\GbifApiV1ResponseModel.cs" />
+    <Compile Include="Models\GbifApiV1ResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@
             public InnerMappingsRegistration(params string[] assemblies)
                 : base(assemblies)
             {
-                this.MapperConfiguration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
+                this.MapperConfigurationExpression.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
             }
         }
     }

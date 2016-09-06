@@ -1,44 +1,75 @@
-﻿<!DOCTYPE html>
+﻿@using ProcessingTools.Web.Documents.Controllers
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The description of my page" />
+    <title>
+        @ViewBag.Title - @ContentConstants.ApplicationName
+    </title>
+    @Styles.Render(BundleNames.DefaultStyleBundleName)
+    @RenderSection(SectionNames.StylesSectionName, required: false)
+    @Scripts.Render(BundleNames.ModernizrScriptBundleName)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink(ContentConstants.ApplicationName, nameof(HomeController.Index), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(Resources.Strings.HomeActionLinkTitle, nameof(HomeController.Index), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink(Resources.Strings.ArticlesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.ArticlesController.Index), ControllerNames.ArticlesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.FilesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.FilesController.Index), ControllerNames.FilesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink(Resources.Strings.JournalActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.JournalsController.Index), ControllerNames.JournalsControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Resources.Strings.PublishersActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.PublishersController.Index), ControllerNames.PublishersControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Taxa Ranks", nameof(ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers.TaxaRanksController.Index), ControllerNames.TaxaRanksControllerName, routeValues: new { area = AreasConstants.BioTaxonomyDataAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink("Black List", nameof(ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers.BiotaxonomicBlackListController.Index), ControllerNames.BiotaxonomicBlackListControllerName, routeValues: new { area = AreasConstants.BioTaxonomyDataAreaName }, htmlAttributes: null)</li>
+                                </ul>
+                            </li>
+                        }
+                        <li>@Html.ActionLink(Resources.Strings.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(Resources.Strings.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                    </ul>
+                    @Html.Partial(ViewNames.LoginPartialViewName)
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
+        </nav>
+    </header>
     <div class="container body-content">
-        @RenderBody()
+        <section role="main">
+            @RenderBody()
+        </section>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>
+                &copy; @DateTime.Now.Year - @ContentConstants.CopyrightHolder
+            </p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render(BundleNames.JQueryScriptBundleName)
+    @Scripts.Render(BundleNames.BootstrapScriptBundleName)
+    @RenderSection(SectionNames.ScriptsSectionName, required: false)
 </body>
 </html>

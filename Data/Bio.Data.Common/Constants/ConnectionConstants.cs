@@ -2,6 +2,7 @@
 {
     public static class ConnectionConstants
     {
-        public const string BioDbContextConnectionKey = "BioDbContextConnection";
+        public const string BioDatabaseConnectionKey = "BioDatabaseConnection";
+        public const string ContextKey = "ProcessingTools.Bio.Data.BioDbContext";
     }
 }

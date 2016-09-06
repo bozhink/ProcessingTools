@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutActionLinkTitle" xml:space="preserve">
+    <value>Относно</value>
+  </data>
+  <data name="ArticlesActionLinkTitle" xml:space="preserve">
+    <value>Статии</value>
+  </data>
+  <data name="BadRequestPageHeading" xml:space="preserve">
+    <value>Невалидна заявка</value>
+  </data>
+  <data name="BadRequestPageTitle" xml:space="preserve">
+    <value>Невалидна заявка</value>
+  </data>
+  <data name="ContactActionLinkTitle" xml:space="preserve">
+    <value>Контакти</value>
+  </data>
+  <data name="DeafultCreatePageHeading" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="DeafultCreatePageTitle" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="DeafultDeletePageHeading" xml:space="preserve">
+    <value>Изтриване</value>
+  </data>
+  <data name="DeafultDeletePageTitle" xml:space="preserve">
+    <value>Изтриване</value>
+  </data>
+  <data name="DeafultDetailsPageHeading" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="DeafultDetailsPageTitle" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="DeafultEditPageHeading" xml:space="preserve">
+    <value>Редактиране</value>
+  </data>
+  <data name="DeafultEditPageTitle" xml:space="preserve">
+    <value>Редактиране</value>
+  </data>
+  <data name="DeafultIndexPageHeading" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="DeafultIndexPageTitle" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="DeafultPreviewPageHeading" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="DeafultPreviewPageTitle" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="DeafultUploadPageHeading" xml:space="preserve">
+    <value>Качи</value>
+  </data>
+  <data name="DeafultUploadPageTitle" xml:space="preserve">
+    <value>Качи</value>
+  </data>
+  <data name="DefaultBackToListActionLinkTitle" xml:space="preserve">
+    <value>Назад към списъка</value>
+  </data>
+  <data name="DefaultCreateActionLinkTitle" xml:space="preserve">
+    <value>Създай нов</value>
+  </data>
+  <data name="DefaultDeleteActionLinkTitle" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="DefaultDetailsActionLinkTitle" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="DefaultDownloadActionLinkTitle" xml:space="preserve">
+    <value>Свали</value>
+  </data>
+  <data name="DefaultEditActionLinkTitle" xml:space="preserve">
+    <value>Редактирай</value>
+  </data>
+  <data name="DefaultIndexActionLinkTitle" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="DefaultPreviewActionLinkTitle" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="DefaultRefreshActionLinkTitle" xml:space="preserve">
+    <value>Презареди</value>
+  </data>
+  <data name="DefaultSaveActionLinkTitle" xml:space="preserve">
+    <value>Запази</value>
+  </data>
+  <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
+    <value>Качи файл или файлове</value>
+  </data>
+  <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
+    <value>Документът е запазен успешно</value>
+  </data>
+  <data name="ErrorPageHeading" xml:space="preserve">
+    <value>Възникна грешка при обработка на заявката</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
+  <data name="FilesActionLinkTitle" xml:space="preserve">
+    <value>Файлове</value>
+  </data>
+  <data name="GoBackAndTryAgainMessage" xml:space="preserve">
+    <value>Моля, въренете се назад и опитайте отново.</value>
+  </data>
+  <data name="HelpActionLinkTitle" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HelpMenuItemTitle" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HelpPageHeading" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HelpPageTitle" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HelpSubmenuTitle" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HomeActionLinkTitle" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="InvalidActionPageHeading" xml:space="preserve">
+    <value>Невалидно действие</value>
+  </data>
+  <data name="InvalidActionPageTitle" xml:space="preserve">
+    <value>Невалидно действие</value>
+  </data>
+  <data name="InvalidIdPageHeading" xml:space="preserve">
+    <value>Необходим е валиден идентификатор</value>
+  </data>
+  <data name="InvalidIdPageTitle" xml:space="preserve">
+    <value>Невалиден идентификатор</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPageMessageFormat" xml:space="preserve">
+    <value>Броят на обектите на страница трябва да бъде между {0} и {1}.</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageHeading" xml:space="preserve">
+    <value>Невалиден брой обекти на страница</value>
+  </data>
+  <data name="InvalidNumberOfItemsPerPagePageTitle" xml:space="preserve">
+    <value>Невалиден брой обекти на страница</value>
+  </data>
+  <data name="InvalidOrEmptyFilePageHeading" xml:space="preserve">
+    <value>Невалиден или празен файл или файлове</value>
+  </data>
+  <data name="InvalidOrEmptyFilePageTitle" xml:space="preserve">
+    <value>Невалиден или празен файл</value>
+  </data>
+  <data name="InvalidPageNumberPageHeading" xml:space="preserve">
+    <value>Невалиден номер на страница</value>
+  </data>
+  <data name="InvalidPageNumberPageTitle" xml:space="preserve">
+    <value>Невалиден номер на страница</value>
+  </data>
+  <data name="InvalidUserIdPageHeading" xml:space="preserve">
+    <value>Невалиден идентификатор на потребител</value>
+  </data>
+  <data name="InvalidUserIdPageTitle" xml:space="preserve">
+    <value>Невалиден идентификатор на потребител</value>
+  </data>
+  <data name="JournalActionLinkTitle" xml:space="preserve">
+    <value>Списания</value>
+  </data>
+  <data name="ListOfFilesPageHeading" xml:space="preserve">
+    <value>Списък с файлове</value>
+  </data>
+  <data name="ListOfFilesPageTitle" xml:space="preserve">
+    <value>Списък с файлове</value>
+  </data>
+  <data name="LoginActionLinkTitle" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogoutActionLinkTitle" xml:space="preserve">
+    <value>Излизане</value>
+  </data>
+  <data name="NoFilesSelectedPageHeading" xml:space="preserve">
+    <value>Няма избрани файлове</value>
+  </data>
+  <data name="NoFilesSelectedPageTitle" xml:space="preserve">
+    <value>Няма избрани файлове</value>
+  </data>
+  <data name="NotFoundPageHeading" xml:space="preserve">
+    <value>Обектът не е намерен</value>
+  </data>
+  <data name="NotFoundPageTitle" xml:space="preserve">
+    <value>Обектът не е намерен</value>
+  </data>
+  <data name="PublishersActionLinkTitle" xml:space="preserve">
+    <value>Издателства</value>
+  </data>
+  <data name="RegisterActionLinkTitle" xml:space="preserve">
+    <value>Регистриране</value>
+  </data>
+</root>

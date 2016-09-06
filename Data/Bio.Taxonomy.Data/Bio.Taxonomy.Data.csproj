@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Bio.Taxonomy.Data</RootNamespace>
     <AssemblyName>ProcessingTools.Bio.Taxonomy.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -49,12 +49,12 @@
     <Compile Include="Contracts\IBioTaxonomyDbContextFactory.cs" />
     <Compile Include="Contracts\IBioTaxonomyDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\BlackListedItem.cs" />
+    <Compile Include="Models\BlackListEntity.cs" />
     <Compile Include="Models\TaxonName.cs" />
     <Compile Include="Models\TaxonRank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BioTaxonomyDbContext.cs" />
-    <Compile Include="BioTaxonomyDbContextFactory.cs" />
+    <Compile Include="Factories\BioTaxonomyDbContextFactory.cs" />
     <Compile Include="BioTaxonomyDbContextProvider.cs" />
     <Compile Include="Repositories\BioTaxonomyDataRepository.cs" />
     <Compile Include="Repositories\BioTaxonomyDataRepositoryProvider.cs" />

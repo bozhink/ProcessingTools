@@ -1,0 +1,33 @@
+{
+  "name": "processing-tools-web-documents",
+  "homepage": "https://github.com/bozhink/ProcessingTools",
+  "authors": [
+    "bozhink <bozhink@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "2.2.3",
+    "jquery-form": "^3.46.0",
+    "jquery-ui": "^1.11.4",
+    "jquery-validation": "^1.15.1",
+    "jquery-validation-unobtrusive": "^3.2.6",
+    "interact": "1.2.6",
+    "handlebars": "^4.0.5",
+    "toastr": "^2.1.2",
+    "modernizr": "^3.3.1",
+    "respond": "^1.4.2",
+    "cryptojs-sha1": "^1.0.0",
+    "leaflet": "^0.7.7",
+    "angular": "1.5.8"
+  }
+}

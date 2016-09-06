@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Services.Common</RootNamespace>
     <AssemblyName>ProcessingTools.Services.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,33 +31,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Contracts\IContextDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Contracts\ISimpleCacheService.cs" />
-    <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\GenericRepositoryProviderDataServiceFactory.cs" />
-    <Compile Include="Services\GenericCacheService.cs" />
-    <Compile Include="Factories\GenericRepositoryDataServiceFactory.cs" />
-    <Compile Include="Services\GenericRepositoryDataService.cs" />
-    <Compile Include="Services\SimpleCacheService.cs" />
-    <Compile Include="Services\StringRepositoryDataService.cs" />
+    <Compile Include="Contracts\IDataServiceBase.cs" />
+    <Compile Include="Contracts\IIterableDataService.cs" />
+    <Compile Include="Contracts\IListableDataService.cs" />
+    <Compile Include="Contracts\IMultiEntryDataService.cs" />
+    <Compile Include="Contracts\IMvcDataService.cs" />
+    <Compile Include="Contracts\IRepositoryDataService.cs" />
+    <Compile Include="Factories\DataServiceBaseFactory.cs" />
+    <Compile Include="Factories\DataServiceFactory.cs" />
+    <Compile Include="Factories\MvcDataServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
+    <Compile Include="Factories\RepositoryDataServiceFactoryBase.cs" />
+    <Compile Include="Factories\RepositoryMultiDataServiceFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryProviderFactory.cs" />
+    <Compile Include="Factories\MultiDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
+    <Compile Include="Models\Contracts\IAddableServiceModel.cs" />
+    <Compile Include="Models\Contracts\IDetailedServiceModel.cs" />
+    <Compile Include="Models\Contracts\IListableServiceModel.cs" />
+    <Compile Include="Models\Contracts\IServiceModel.cs" />
     <Compile Include="Models\Contracts\ISimpleServiceModel.cs" />
-    <Compile Include="Models\Contracts\IGenericServiceModel.cs" />
-    <Compile Include="Models\Contracts\INamedDataServiceModel.cs" />
-    <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
-    <Compile Include="Models\ValidationServiceModel.cs" />
+    <Compile Include="Models\Contracts\IUpdatableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>

@@ -1,0 +1,28 @@
+﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.InvalidPageNumberPageTitle;
+}
+
+<h2 class="text-danger">
+    @Model.ToString()
+</h2>
+<h3>@Resources.Strings.InvalidPageNumberPageHeading</h3>
+
+<p>
+    @Model.SourceAction.Message
+</p>
+
+<hr />
+
+<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>
+    @Html.ActionLink(
+        Model.SourceAction.ActionLinkText,
+        Model.SourceAction.ActionName,
+        Model.SourceAction.ControllerName,
+        routeValues: new { area = Model.SourceAction.AreaName },
+        htmlAttributes: null)
+</p>
+
+@Html.Partial(ViewNames.ErrorFootPartialViewName)

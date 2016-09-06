@@ -20,8 +20,10 @@
         private const string TaxonAuthorityNodeName = "taxon-authority";
         private const string TaxonStatusNodeName = "taxon-status";
 
-        private const string TaxonNameNodeName = "tn";
+        private const string TaxonNameElementName = "tn";
         private const string ObjectIdNodeName = "object-id";
+
+        private const string CommentElementName = "comment";
 
         private ILogger logger;
 
@@ -37,6 +39,7 @@
             {
                 try
                 {
+                    this.RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations();
                     this.FormatNomenclatureCitations();
                     this.FormatNomenclaturesWithTitle();
                 }
@@ -45,6 +48,46 @@
                     this.logger?.Log(e, string.Empty);
                 }
             });
+        }
+
+        private void RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations()
+        {
+            const string XPath = "//tp:nomenclature-citation//i[count(tn) = count(*)][normalize-space(tn) = normalize-space(.)]";
+            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(italicNode => italicNode.ReplaceXmlNodeByItsInnerXml());
+        }
+
+        private void FormatNomenclatureCitations()
+        {
+            string firstNotWhitespaceNodeInCommentElementXPath = $"{CommentElementName}/node()[normalize-space()!=''][position()=1][name()='{TaxonNameElementName}']";
+
+            string xpath = $"//tp:nomenclature-citation[count({CommentElementName}) = count(*)][normalize-space({CommentElementName}) = normalize-space(.)][{firstNotWhitespaceNodeInCommentElementXPath}]";
+            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(citation =>
+                {
+                    var taxonNode = citation.SelectSingleNode(firstNotWhitespaceNodeInCommentElementXPath);
+
+                    if (taxonNode != null)
+                    {
+                        citation.PrependChild(taxonNode);
+                    }
+
+                    var commentNode = citation.SelectSingleNode(CommentElementName);
+
+                    if (commentNode != null)
+                    {
+                        commentNode.InnerXml = commentNode.InnerXml.Trim();
+
+                        if (string.IsNullOrWhiteSpace(commentNode.InnerXml))
+                        {
+                            commentNode.ParentNode.RemoveChild(commentNode);
+                        }
+                    }
+                });
         }
 
         private void FormatNomenclaturesWithTitle()
@@ -59,26 +102,6 @@
 
                     this.FormatNomencatureContent(nomenclature);
                     this.FormatObjectIdInNomenclature(nomenclature);
-                });
-        }
-
-        private void FormatNomenclatureCitations()
-        {
-            const string FitstNotWhitespaceNodeInCommentElementXPath = "comment/node()[normalize-space()!=''][position()=1]";
-
-            string xpath = $"//tp:nomenclature-citation[count(comment) = count(node()[normalize-space()!=''])][name({FitstNotWhitespaceNodeInCommentElementXPath})='tn']";
-
-            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
-                .Cast<XmlNode>()
-                .AsParallel()
-                .ForAll(citation =>
-                {
-                    var taxonNode = citation.SelectSingleNode($"{FitstNotWhitespaceNodeInCommentElementXPath}[name()='tn']");
-
-                    if (taxonNode != null)
-                    {
-                        citation.PrependChild(taxonNode);
-                    }
                 });
         }
 
@@ -130,7 +153,7 @@
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            XmlElement taxonName = nomenclature[TaxonNameNodeName];
+            XmlElement taxonName = nomenclature[TaxonNameElementName];
             if (taxonName != null && nomenclature[ObjectIdNodeName] != null)
             {
                 foreach (XmlNode objectId in nomenclature.SelectNodes(ObjectIdNodeName))

@@ -151,14 +151,20 @@
         <xsl:when test="starts-with($lower-case, 'ecoregion')">
           <xsl:text>distribution</xsl:text>
         </xsl:when>
+        <xsl:when test="contains($lower-case, 'distribution')">
+          <xsl:text>distribution</xsl:text>
+        </xsl:when>
         <xsl:when test="starts-with($lower-case, 'natural history')">
           <xsl:text>natural history</xsl:text>
         </xsl:when>
         <xsl:when test="starts-with($lower-case, 'comment')">
           <xsl:text>comments</xsl:text>
         </xsl:when>
-        <xsl:when test="contains($lower-case, 'distribution')">
-          <xsl:text>distribution</xsl:text>
+        <xsl:when test="starts-with($lower-case, 'phenology')">
+          <xsl:text>phenology</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with($lower-case, 'conservation status')">
+          <xsl:text>conservation status</xsl:text>
         </xsl:when>
         <xsl:when test="contains($lower-case, 'host plant') or starts-with($lower-case, 'host')">
           <xsl:text>host</xsl:text>
@@ -306,6 +312,12 @@
       <break />
     </xsl:if>
     <xsl:apply-templates mode="title" />
+  </xsl:template>
+
+  <xsl:template match="def/p" mode="title">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@* | node()" mode="title" />
+    </xsl:element>
   </xsl:template>
 
   <!-- Table modes -->

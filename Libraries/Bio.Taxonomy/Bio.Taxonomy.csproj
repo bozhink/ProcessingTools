@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Bio.Taxonomy</RootNamespace>
     <AssemblyName>ProcessingTools.Bio.Taxonomy</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -35,16 +35,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Constants\TaxaClassificationConstants.cs" />
     <Compile Include="Constants\TaxaRegexPatterns.cs" />
+    <Compile Include="Constants\XmlInternalSchemaConstants.cs" />
     <Compile Include="Contracts\IExtendedTaxonRank.cs" />
-    <Compile Include="Contracts\ISpecies.cs" />
     <Compile Include="Contracts\ITaxonClassification.cs" />
     <Compile Include="Contracts\ITaxonRank.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="Types\SpeciesPartType.cs" />
     <Compile Include="Types\TaxaType.cs" />
-    <Compile Include="Types\TaxonRanksType.cs" />
+    <Compile Include="Types\TaxonRankType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

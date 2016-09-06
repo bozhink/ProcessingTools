@@ -3,10 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
+    using ProcessingTools.Common.Models;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Common.Models.Contracts;
 
-    public class Author : DocumentsAbstractEntity
+    public class Author : ModelWithUserInformation, IEntityWithPreJoinedFields, IAuthorEntity
     {
         private ICollection<Affiliation> affiliations;
         private ICollection<Article> articles;
@@ -59,5 +64,18 @@
                 this.articles = value;
             }
         }
+
+        [NotMapped]
+        public IEnumerable<string> PreJoinFieldNames => new string[] 
+        {
+            nameof(this.Affiliations),
+            nameof(this.Articles)
+        };
+
+        [NotMapped]
+        ICollection<IAffiliationEntity> IAuthorEntity.Affiliations => this.Affiliations.ToList<IAffiliationEntity>();
+
+        [NotMapped]
+        ICollection<IArticleEntity> IAuthorEntity.Articles => this.Articles.ToList<IArticleEntity>();
     }
 }

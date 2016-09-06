@@ -1,9 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Contracts
 {
+    using Types;
+
     public interface ITaxonRank
     {
-        string ScientificName { get; set; }
+        string ScientificName { get; }
 
-        string Rank { get; set; }
+        TaxonRankType Rank { get; }
     }
 }

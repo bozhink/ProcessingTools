@@ -2,8 +2,8 @@
 {
     public interface IExtendedTaxonRank : ITaxonRank
     {
-        string CanonicalName { get; set; }
+        string CanonicalName { get; }
 
-        string Authority { get; set; }
+        string Authority { get; }
     }
 }

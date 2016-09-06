@@ -4,6 +4,7 @@
     {
         Genus,
         Subgenus,
+        Supersection,
         Section,
         Subsection,
         Series,

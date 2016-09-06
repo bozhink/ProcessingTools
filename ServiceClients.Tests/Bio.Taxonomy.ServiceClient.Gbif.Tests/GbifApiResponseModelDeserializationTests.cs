@@ -19,9 +19,9 @@
             Assert.IsFalse(string.IsNullOrWhiteSpace(jsonString));
 
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
-            var serializer = new DataContractJsonSerializer(typeof(GbifApiResponseModel));
+            var serializer = new DataContractJsonSerializer(typeof(GbifApiV09ResponseModel));
 
-            var gbifObject = (GbifApiResponseModel)serializer.ReadObject(stream);
+            var gbifObject = (GbifApiV09ResponseModel)serializer.ReadObject(stream);
 
             string scientificName = "Coleoptera";
             Assert.AreEqual(scientificName, gbifObject.CanonicalName, "CanonicalName should match.");
@@ -33,11 +33,11 @@
             string jsonString = File.ReadAllText(SampleGbifResponseJsonColeoptera);
             Assert.IsFalse(string.IsNullOrWhiteSpace(jsonString));
 
-            GbifApiResponseModel gbifObject = null;
+            GbifApiV09ResponseModel gbifObject = null;
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
             {
-                var serializer = new DataContractJsonSerializer(typeof(GbifApiResponseModel));
-                gbifObject = (GbifApiResponseModel)serializer.ReadObject(stream);
+                var serializer = new DataContractJsonSerializer(typeof(GbifApiV09ResponseModel));
+                gbifObject = (GbifApiV09ResponseModel)serializer.ReadObject(stream);
             }
 
             string scientificName = "Coleoptera";

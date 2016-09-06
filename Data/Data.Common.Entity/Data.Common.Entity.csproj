@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProcessingTools.Data.Common.Entity</RootNamespace>
     <AssemblyName>ProcessingTools.Data.Common.Entity</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,9 +47,20 @@
     <Compile Include="Contracts\IDbContextInitializer.cs" />
     <Compile Include="Contracts\IDbContextProvider.cs" />
     <Compile Include="Factories\DbContextInitializerFactory.cs" />
+    <Compile Include="Models\Contracts\IEntityWithPreJoinedFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
+    <Compile Include="Repositories\Contracts\IEntityRepository.cs" />
+    <Compile Include="Repositories\Contracts\IEntitySearchableRepository.cs" />
+    <Compile Include="Repositories\AbstractEntityCrudRepository.cs" />
+    <Compile Include="Repositories\AbstractEntityGenericRepository.cs" />
+    <Compile Include="Repositories\EntityCrudRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />
+    <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
+    <Compile Include="Repositories\EntityRepository.cs" />
+    <Compile Include="Repositories\Contracts\IEntityCrudRepository.cs" />
+    <Compile Include="Repositories\AbstractEntitySearchableRepository.cs" />
+    <Compile Include="Repositories\EntitySearchableRepository.cs" />
     <Compile Include="Seed\DbContextSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +69,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>

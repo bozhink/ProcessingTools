@@ -7,7 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
-    using ProcessingTools.Net.Contracts;
+    using ProcessingTools.Net.Factories.Contracts;
 
     [TestClass]
     public class MaterialCitationsParserUnitTests
@@ -15,7 +15,7 @@
         [TestMethod]
         public void MaterialCitationsParser_WithValidConnectorInDefaultConstructor_ShouldReturnValidObject()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object);
             Assert.IsNotNull(parser, "Parser should not be null object.");
         }
@@ -36,14 +36,14 @@
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("connector", e.ParamName, "ParamName should be connector.");
+                Assert.AreEqual("connectorFactory", e.ParamName, "ParamName should be connector.");
             }
         }
 
         [TestMethod]
         public void MaterialCitationsParser_WithValidConnectorAndValidEncodingInConstructor_ShouldReturnValidObject()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF32);
             Assert.IsNotNull(parser, "Parser should not be null object.");
         }
@@ -64,7 +64,7 @@
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("connector", e.ParamName, "ParamName should be connector.");
+                Assert.AreEqual("connectorFactory", e.ParamName, "ParamName should be connector.");
             }
         }
 
@@ -72,7 +72,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void MaterialCitationsParser_WithValidConnectorAndNullEncodingInConstructor_ShouldThrowArgumentNullException()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, null);
         }
 
@@ -81,7 +81,7 @@
         {
             try
             {
-                var connectorMock = new Mock<INetConnector>();
+                var connectorMock = new Mock<INetConnectorFactory>();
                 var parser = new MaterialCitationsParser(connectorMock.Object, null);
             }
             catch (ArgumentNullException e)
@@ -95,7 +95,7 @@
         [Timeout(5000)]
         public void MaterialCitationsParser_WithNullContentInInvoke_ShouldThrow()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
             var result = parser.Invoke(null).Result;
@@ -105,7 +105,7 @@
         [Timeout(5000)]
         public void MaterialCitationsParser_WithNullContentInInvoke_ShouldThrowWithInnerArgumentNullException()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
             try
@@ -128,7 +128,7 @@
         [Timeout(5000)]
         public void MaterialCitationsParser_WithWhitespaceContentInInvoke_ShouldThrow()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
             var result = parser.Invoke(@"
@@ -140,7 +140,7 @@
         [Timeout(5000)]
         public void MaterialCitationsParser_WithWhitespaceContentInInvoke_ShouldThrowWithInnerArgumentNullException()
         {
-            var connectorMock = new Mock<INetConnector>();
+            var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
             try
