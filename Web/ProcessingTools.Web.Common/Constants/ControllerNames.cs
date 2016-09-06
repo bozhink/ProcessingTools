@@ -14,5 +14,8 @@
 
         public const string JournalsControllerName = "Journals";
         public const string PublishersControllerName = "Publishers";
+
+        public const string TaxaRanksControllerName = "TaxaRanks";
+        public const string BiotaxonomicBlackListControllerName = "BiotaxonomicBlackList";
     }
 }
