@@ -23,7 +23,7 @@
         private readonly IJournalsDataService journalsDataService;
         private readonly IPublishersDataService publishersDataService;
 
-        private readonly DocumentsDbContext db;
+        private readonly DocumentsDbContext db = new DocumentsDbContextProvider(new ProcessingTools.Documents.Data.Factories.DocumentsDbContextFactory()).Create();
 
         public JournalsController(IJournalsDataService journalsDataService, IPublishersDataService publishersDataService)
         {
