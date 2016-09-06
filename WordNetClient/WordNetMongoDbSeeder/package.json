@@ -13,6 +13,6 @@
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
   "dependencies": {
-    "mongodb": "^2.1.6"
+    "mongodb": "^2.2.9"
   }
 }
