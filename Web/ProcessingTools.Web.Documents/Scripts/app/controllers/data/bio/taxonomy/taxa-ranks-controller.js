@@ -1,4 +1,4 @@
-﻿(function (angular) {
+﻿(function (angular, app) {
     'use strict';
 
     function TaxonRank(taxonName, rank) {
@@ -22,8 +22,6 @@
         var self = this;
         return (self.taxonName === taxon.taxonName) && (self.rank === taxon.rank);
     }
-
-
 
     function DataSet() {
         var id = 0, dataSet = [];
@@ -105,36 +103,7 @@
     }
 
     angular.module('taxaranksApp', [])
-        .service('SearchStringService', ['$http', function SearchStringService($http) {
-            function search(url, searchString) {
-                var request;
-                if (!url || !searchString) {
-                    throw 'Invalid input parameter';
-                }
-
-                searchString = searchString.trim();
-                if (searchString.length < 1) {
-                    throw 'Search string should not be empty';
-                }
-
-                request = {
-                    method: 'POST',
-                    url: url,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: {
-                        searchString: searchString
-                    }
-                };
-
-                return $http(request);
-            }
-
-            return {
-                search: search
-            };
-        }])
+        .service('SearchStringService', ['$http', app.services.SearchStringService])
         .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(searchService) {
             var self = this,
                 dataSet = new DataSet();
@@ -186,4 +155,4 @@
                     }, function errorCallback(response) { });
             }
         }]);
-}(window.angular));
+}(window.angular, window.app));

@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="app/controllers/data/bio/taxonomy/taxa-ranks-controller.js" />
 /// <reference path="app/json-requester.js" />
+/// <reference path="app/services/search-string-service.js" />
 /// <reference path="app/template.js" />
 /// <reference path="config/interact-config.js" />
 /// <reference path="config/monaco-editor-config.js" />
