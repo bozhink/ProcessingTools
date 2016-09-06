@@ -282,10 +282,16 @@
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Controllers\BiotaxonomicBlackListController.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\Contracts\IBlackListItemResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\SearchResposeModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\Contracts\ITaxonRankResponseModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\SearchResposeModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankResponseModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemsViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxaRanksViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxonRankViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
@@ -453,6 +459,7 @@
     <Content Include="Areas\BioTaxonomyData\Views\web.config" />
     <Content Include="Areas\BioTaxonomyData\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BioTaxonomyData\Views\TaxaRanks\Index.cshtml" />
+    <Content Include="Areas\BioTaxonomyData\Views\BiotaxonomicBlackList\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

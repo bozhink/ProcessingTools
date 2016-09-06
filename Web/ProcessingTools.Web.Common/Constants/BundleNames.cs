@@ -33,5 +33,8 @@
 
         public const string TaxaRanksScriptBundleName = "~/bundles/taxa-ranks";
         public const string TaxaRanksStyleBundleName = "~/Content/taxa-ranks";
+
+        public const string BiotaxonomicBlackListScriptBundleName = "~/bundles/biotaxonomic-black-list";
+        public const string BiotaxonomicBlackListStyleBundleName = "~/Content/biotaxonomic-black-list";
     }
 }
