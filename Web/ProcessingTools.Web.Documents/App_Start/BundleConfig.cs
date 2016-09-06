@@ -151,6 +151,19 @@
                 .Include(
                     "~/Content/taxa-ranks.min.css"));
 
+            // Taxa Ranks
+            bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
+                .Include(
+                    "~/Scripts/app/models/data/bio/taxonomy/black-list-item.js",
+                    "~/Scripts/app/data/data-set.js",
+                    "~/Scripts/app/services/search-string-service.js",
+                    "~/Scripts/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
+                    "~/Scripts/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
+
+            bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
+                .Include(
+                    "~/Content/taxa-ranks.min.css"));
+
             ////BundleTable.EnableOptimizations = true;
         }
     }
