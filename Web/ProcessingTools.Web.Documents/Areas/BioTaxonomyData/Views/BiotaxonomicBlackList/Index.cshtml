@@ -8,7 +8,7 @@
 
 @Styles.Render(BundleNames.BiotaxonomicBlackListStyleBundleName)
 @Scripts.Render(BundleNames.AngularScriptBundleName)
-@Scripts.Render(BundleNames.BiotaxonomicBlackListStyleBundleName)
+@Scripts.Render(BundleNames.BiotaxonomicBlackListScriptBundleName)
 
 <header>
     <h2>Black List</h2>
@@ -53,16 +53,16 @@
                 <legend>Black-list items</legend>
                 @using (Html.BeginForm())
                 {
-                    <ul class="taxon-list">
+                    <ul class="black-list">
                         <li ng-repeat="item in blackList.items | orderBy: 'content'">
                             <input type="hidden"
                                    name="@(nameof(Model.Items)).Index"
                                    value="{{item.id}}" />
                             <input type="text"
-                                   name="@(nameof(Model.Items))[{{item.id}}].TaxonName"
+                                   name="@(nameof(Model.Items))[{{item.id}}].Content"
                                    value="{{item.content}}"
                                    readonly="readonly"
-                                   class="taxon-name" />
+                                   class="black-list-item" />
                             <span ng-click="blackList.removeItem(item.id)"
                                   class="glyphicon glyphicon-remove remove-button"
                                   title="Remove"></span>

@@ -358,6 +358,12 @@
     <Content Include="Content\address-list.min.css">
       <DependentUpon>address-list.css</DependentUpon>
     </Content>
+    <Content Include="Content\black-list.css">
+      <DependentUpon>black-list.less</DependentUpon>
+    </Content>
+    <Content Include="Content\black-list.min.css">
+      <DependentUpon>black-list.css</DependentUpon>
+    </Content>
     <Content Include="Content\document-edit.css">
       <DependentUpon>document-edit.less</DependentUpon>
     </Content>
@@ -409,9 +415,11 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
     <Content Include="Scripts\app\data\data-set.js" />
     <Content Include="Scripts\app\models\data\bio\taxonomy\black-list-item.js" />
     <Content Include="Scripts\app\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="Scripts\app\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
     <Content Include="Scripts\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
     <Content Include="Scripts\app\services\search-string-service.js" />
     <Content Include="Scripts\app\template.js" />
@@ -521,6 +529,7 @@
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
     <Content Include="Content\address-list.less" />
     <Content Include="Content\taxa-ranks.less" />
+    <Content Include="Content\black-list.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

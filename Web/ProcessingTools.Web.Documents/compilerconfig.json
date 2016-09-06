@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/taxa-ranks.css",
     "inputFile": "Content/taxa-ranks.less"
+  },
+  {
+    "outputFile": "Content/black-list.css",
+    "inputFile": "Content/black-list.less"
   }
 ]
