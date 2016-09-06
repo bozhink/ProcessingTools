@@ -38,7 +38,37 @@
     }
 
     angular.module('taxaranksApp', [])
-        .controller('TaxaRanksController', function TaxaRanksController($http) {
+        .service('SearchStringService', ['$http', function SearchStringService($http) {
+            function search(url, searchString) {
+                var request;
+                if (!url || !searchString) {
+                    return;
+                }
+
+                searchString = searchString.trim();
+                if (searchString.length < 1) {
+                    return;
+                }
+
+                request = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        searchString: searchString
+                    }
+                };
+
+                return $http(request);
+            }
+
+            return {
+                search: search
+            };
+        }])
+        .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(service) {
             var taxaList = this;
             taxaList.taxa = [];
 
@@ -91,49 +121,32 @@
             }
 
             taxaList.search = function (url) {
-                var searchString, request;
                 if (!url) {
                     return;
                 }
 
-                searchString = taxaList.searchString || '';
-                searchString = searchString.trim();
-                if (searchString.length < 1) {
-                    return;
-                }
+                service.search(url, taxaList.searchString)
+                    .then(function successCallback(response) {
+                        if (response.status === 200) {
+                            response.data.Taxa.forEach(function (element) {
+                                if (!element) {
+                                    return;
+                                }
 
-                request = {
-                    method: 'POST',
-                    url: url,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: {
-                        searchString: searchString
-                    }
-                };
+                                addToSet(taxaList.taxa, {
+                                    id: getId(),
+                                    taxonName: element.TaxonName,
+                                    rank: element.Rank,
+                                });
+                            })
 
-                $http(request).then(function successCallback(response) {
-                    if (response.status === 200) {
-                        response.data.Taxa.forEach(function (element) {
-                            if (!element) {
-                                return;
+
+                            len = response.data.length;
+                            for (i = 0; i < len; i += 1) {
+
                             }
-
-                            addToSet(taxaList.taxa, {
-                                id: getId(),
-                                taxonName: element.TaxonName,
-                                rank: element.Rank,
-                            });
-                        })
-
-
-                        len = response.data.length;
-                        for (i = 0; i < len; i += 1) {
-
                         }
-                    }
-                }, function errorCallback(response) { });
+                    }, function errorCallback(response) { });
             }
-        });
+        }]);
 }(window.angular));
