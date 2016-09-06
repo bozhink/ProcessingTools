@@ -328,7 +328,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Startup", "Deskto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processors", "Processors", "{4DA970DE-6147-45AD-9DA6-AEA01FD07B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors", "Processors\Processors\Processors.csproj", "{237D4CAF-98A4-4C86-91A6-46AE3E27E965}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors", "Services\Processors\Processors\Processors.csproj", "{237D4CAF-98A4-4C86-91A6-46AE3E27E965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
