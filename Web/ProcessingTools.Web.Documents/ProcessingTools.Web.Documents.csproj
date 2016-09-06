@@ -405,7 +405,7 @@
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
     <Content Include="Scripts\app\template.js" />
     <Content Include="Scripts\controllers\address-list-controller.js" />
-    <Content Include="Scripts\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
+    <Content Include="Scripts\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
     <Content Include="Scripts\controllers\documents\document-controller.js" />
     <Content Include="Scripts\custom\auto-save.js" />
     <Content Include="Scripts\custom\coordinates-toolboxes.js" />
