@@ -56,6 +56,28 @@
             dataSet.push(item);
         }
 
+        function addMulti(items, map) {
+            if (!items) {
+                return;
+            }
+
+            if (!Array.isArray(items)) {
+                items = [items];
+            }
+
+            if (!map || typeof (map) !== 'function') {
+                map = (x) => x;
+            }
+
+            items.forEach((element) => {
+                if (!element) {
+                    return;
+                }
+
+                addItemToSet(map(element));
+            });
+        }
+
         function removeItem(id) {
             var i, len;
             if (id) {
@@ -76,6 +98,7 @@
         return {
             data: dataSet,
             add: addItemToSet,
+            addMulti: addMulti,
             remove: removeItem,
             removeAll: removeAll
         }
@@ -112,12 +135,14 @@
                 search: search
             };
         }])
-        .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(service) {
-            var taxaList = this, dataSet = new DataSet();
-            taxaList.taxa = dataSet.data;
+        .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(searchService) {
+            var self = this,
+                dataSet = new DataSet();
 
-            taxaList.addTaxa = function () {
-                var pairs, text = taxaList.textArea || '';
+            self.taxa = dataSet.data;
+
+            self.addTaxa = function () {
+                var pairs, text = self.textArea || '';
                 text = text.replace(/[^\w-]+/g, ' ').trim();
                 if (text === '') {
                     return;
@@ -125,52 +150,38 @@
 
                 text = text.replace(/(\S+\s+\S+)\s+/g, '$1\n');
                 pairs = text.split('\n');
-                pairs.forEach(function (element) {
-                    var pair, taxon;
-                    if (!element) {
-                        return;
-                    }
 
-                    pair = element.split(' ');
+                dataSet.addMulti(pairs, function (element) {
+                    var pair = element.split(' ');
                     if (!pair || pair.length !== 2) {
-                        return;
+                        return null;
                     }
 
-                    taxon = new TaxonRank(pair[0], pair[1]);
-
-                    dataSet.add(taxon);
+                    return new TaxonRank(pair[0], pair[1]);
                 });
 
-                taxaList.textArea = '';
+                self.textArea = '';
             };
 
-            taxaList.removeTaxon = function (id) {
+            self.removeTaxon = function (id) {
                 dataSet.remove(id);
             };
 
-            taxaList.clearList = function () {
+            self.clearList = function () {
                 dataSet.removeAll();
             }
 
-            taxaList.search = function (url) {
-                var searchString = taxaList.searchString || '';
-                if (!url || searchString.trim().length < 1) {
+            self.search = function (url) {
+                var searchString = self.searchString || '';
+                searchString = searchString.replace(/\s+/g, ' ').trim();
+                if (!url || searchString === '') {
                     return;
                 }
 
-                service.search(url, searchString)
+                searchService.search(url, searchString)
                     .then(function successCallback(response) {
                         if (response.status === 200) {
-                            response.data.Taxa.forEach(function (element) {
-                                var taxon;
-
-                                if (!element) {
-                                    return;
-                                }
-
-                                taxon = new TaxonRank(element.TaxonName, element.Rank);
-                                dataSet.add(taxon);
-                            });
+                            dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
                         }
                     }, function errorCallback(response) { });
             }
