@@ -403,6 +403,7 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Scripts\app\data\data-set.js" />
     <Content Include="Scripts\app\services\search-string-service.js" />
     <Content Include="Scripts\app\template.js" />
     <Content Include="Scripts\controllers\address-list-controller.js" />

@@ -23,90 +23,11 @@
         return (self.taxonName === taxon.taxonName) && (self.rank === taxon.rank);
     }
 
-    function DataSet() {
-        var id = 0, dataSet = [];
-
-        function nextId() {
-            id += 1;
-            return id;
-        }
-
-        function addItemToSet(item) {
-            var i, len, currentItem;
-
-            if (!item) {
-                return;
-            }
-
-            if (!item.compare || typeof (item.compare) !== 'function') {
-                throw 'Item to add should have function "compare"';
-            }
-
-            len = dataSet.length;
-            for (i = 0; i < len; i += 1) {
-                currentItem = dataSet[i];
-                if (item.compare(currentItem)) {
-                    return;
-                }
-            }
-
-            item.id = nextId();
-            dataSet.push(item);
-        }
-
-        function addMulti(items, map) {
-            if (!items) {
-                return;
-            }
-
-            if (!Array.isArray(items)) {
-                items = [items];
-            }
-
-            if (!map || typeof (map) !== 'function') {
-                map = (x) => x;
-            }
-
-            items.forEach((element) => {
-                if (!element) {
-                    return;
-                }
-
-                addItemToSet(map(element));
-            });
-        }
-
-        function removeItem(id) {
-            var i, len;
-            if (id) {
-                len = dataSet.length;
-                for (i = 0; i < len; i += 1) {
-                    if (dataSet[i].id === id) {
-                        dataSet.splice(i, 1);
-                        break;
-                    }
-                }
-            }
-        }
-
-        function removeAll() {
-            dataSet.splice(0, dataSet.length);
-        }
-
-        return {
-            data: dataSet,
-            add: addItemToSet,
-            addMulti: addMulti,
-            remove: removeItem,
-            removeAll: removeAll
-        }
-    }
-
     angular.module('taxaranksApp', [])
         .service('SearchStringService', ['$http', app.services.SearchStringService])
         .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(searchService) {
             var self = this,
-                dataSet = new DataSet();
+                dataSet = new app.data.DataSet();
 
             self.taxa = dataSet.data;
 

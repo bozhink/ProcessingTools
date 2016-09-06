@@ -8,6 +8,7 @@
     "es6": true,
     "for": true,
     "multivar": true,
+    "node": true,
     "single": true,
     "this": true
   },
