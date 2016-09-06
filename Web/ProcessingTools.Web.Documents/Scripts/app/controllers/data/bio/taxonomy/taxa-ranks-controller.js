@@ -1,58 +1,62 @@
-﻿(function (angular, app) {
+﻿(function (window) {
     'use strict';
+    var app, controllers;
 
-    angular.module('taxaranksApp', [])
-        .factory('DataSet', [app.data.DataSet])
-        .service('SearchStringService', ['$http', app.services.SearchStringService])
-        .controller('TaxaRanksController', ['DataSet', 'SearchStringService', function TaxaRanksController(dataSet, searchService) {
-            var self = this,
-                TaxonRank = app.models.TaxonRank;
+    window.app = window.app || {};
+    app = window.app;
 
-            self.taxa = dataSet.data;
+    app.controllers = app.controllers || {};
+    controllers = app.controllers;
 
-            self.addTaxa = function () {
-                var pairs, text = self.textArea || '';
-                text = text.replace(/[^\w-]+/g, ' ').trim();
-                if (text === '') {
-                    return;
+    controllers.TaxaRanksController = function TaxaRanksController(dataSet, searchService) {
+        var self = this,
+            TaxonRank = app.models.TaxonRank;
+
+        self.taxa = dataSet.data;
+
+        self.addTaxa = function () {
+            var pairs, text = self.textArea || '';
+            text = text.replace(/[^\w\-]+/g, ' ').trim();
+            if (text === '') {
+                return;
+            }
+
+            text = text.replace(/(\S+\s+\S+)\s+/g, '$1\n');
+            pairs = text.split('\n');
+
+            dataSet.addMulti(pairs, function (element) {
+                var pair = element.split(' ');
+                if (!pair || pair.length !== 2) {
+                    return null;
                 }
 
-                text = text.replace(/(\S+\s+\S+)\s+/g, '$1\n');
-                pairs = text.split('\n');
+                return new TaxonRank(pair[0], pair[1]);
+            });
 
-                dataSet.addMulti(pairs, function (element) {
-                    var pair = element.split(' ');
-                    if (!pair || pair.length !== 2) {
-                        return null;
+            self.textArea = '';
+        };
+
+        self.removeTaxon = function (id) {
+            dataSet.remove(id);
+        };
+
+        self.clearList = function () {
+            dataSet.removeAll();
+        };
+
+        self.search = function (url) {
+            var searchString = self.searchString || '';
+            searchString = searchString.replace(/\s+/g, ' ').trim();
+            if (!url || searchString === '') {
+                return;
+            }
+
+            searchService.search(url, searchString)
+                .then(function successCallback(response) {
+                    if (response.status === 200) {
+                        dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
                     }
-
-                    return new TaxonRank(pair[0], pair[1]);
-                });
-
-                self.textArea = '';
-            };
-
-            self.removeTaxon = function (id) {
-                dataSet.remove(id);
-            };
-
-            self.clearList = function () {
-                dataSet.removeAll();
-            }
-
-            self.search = function (url) {
-                var searchString = self.searchString || '';
-                searchString = searchString.replace(/\s+/g, ' ').trim();
-                if (!url || searchString === '') {
-                    return;
-                }
-
-                searchService.search(url, searchString)
-                    .then(function successCallback(response) {
-                        if (response.status === 200) {
-                            dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
-                        }
-                    }, function errorCallback(response) { });
-            }
-        }]);
-}(window.angular, window.app));
+                }, function errorCallback(response) { });
+        };
+    };
+}(window));

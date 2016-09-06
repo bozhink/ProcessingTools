@@ -405,6 +405,7 @@
     <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
     <Content Include="Scripts\app\data\data-set.js" />
     <Content Include="Scripts\app\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="Scripts\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
     <Content Include="Scripts\app\services\search-string-service.js" />
     <Content Include="Scripts\app\template.js" />
     <Content Include="Scripts\controllers\address-list-controller.js" />

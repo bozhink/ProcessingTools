@@ -3,6 +3,7 @@
 /// <reference path="app/data/data-set.js" />
 /// <reference path="app/json-requester.js" />
 /// <reference path="app/models/data/bio/taxonomy/taxon-rank.js" />
+/// <reference path="app/modules/data/bio/taxonomy/taxa-ranks-app.js" />
 /// <reference path="app/services/search-string-service.js" />
 /// <reference path="app/template.js" />
 /// <reference path="config/interact-config.js" />

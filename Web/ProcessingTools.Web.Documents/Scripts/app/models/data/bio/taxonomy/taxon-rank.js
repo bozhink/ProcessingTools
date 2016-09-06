@@ -17,7 +17,7 @@
 
         rank = rank ? rank.replace(/\s+/g, '').toLowerCase() : '';
         if (rank.length < 1) {
-            throw 'Null or whitespace'
+            throw 'Null or whitespace';
         }
 
         this.id = null;
@@ -28,7 +28,7 @@
     TaxonRank.prototype.compare = function (taxon) {
         var self = this;
         return (self.taxonName === taxon.taxonName) && (self.rank === taxon.rank);
-    }
+    };
 
     models.TaxonRank = TaxonRank;
 
