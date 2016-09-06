@@ -2,21 +2,22 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+
+    using Models.TaxaRanks;
 
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+    using ProcessingTools.Common;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
     using ViewModels.TaxaRanks;
-    using Models.TaxaRanks;
-    using ProcessingTools.Net.Constants;
-    using System.Net;
-    using ProcessingTools.Common;
 
     [Authorize]
     public class TaxaRanksController : Controller
@@ -89,21 +90,6 @@
                     responseTaxa.ToArray()));
         }
 
-        private JsonResult GetJsonResult(object data)
-        {
-            return new JsonResult
-            {
-                ContentType = ContentTypeConstants.JsonContentType,
-                ContentEncoding = Defaults.DefaultEncoding,
-                JsonRequestBehavior = JsonRequestBehavior.DenyGet,
-                Data = data
-            };
-        }
-        private JsonResult GetEmptyJsonResult()
-        {
-            return this.GetJsonResult(null);
-        }
-
         protected override void HandleUnknownAction(string actionName)
         {
             this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
@@ -155,6 +141,22 @@
             }
 
             filterContext.ExceptionHandled = true;
+        }
+
+        private JsonResult GetEmptyJsonResult()
+        {
+            return this.GetJsonResult(null);
+        }
+
+        private JsonResult GetJsonResult(object data)
+        {
+            return new JsonResult
+            {
+                ContentType = ContentTypeConstants.JsonContentType,
+                ContentEncoding = Defaults.DefaultEncoding,
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet,
+                Data = data
+            };
         }
     }
 }

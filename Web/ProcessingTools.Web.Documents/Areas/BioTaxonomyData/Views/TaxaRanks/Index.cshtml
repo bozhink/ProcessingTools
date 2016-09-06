@@ -6,15 +6,9 @@
     var searchUrl = System.Text.RegularExpressions.Regex.Replace(anchorTag, @".*?href=""([^""<>]+)"".*", "$1");
 }
 
-<link href="~/Content/taxa-ranks.min.css" rel="stylesheet" />
-
+@Styles.Render(BundleNames.TaxaRanksStyleBundleName)
 @Scripts.Render(BundleNames.AngularScriptBundleName)
-
-<script src="~/Scripts/app/models/data/bio/taxonomy/taxon-rank.js"></script>
-<script src="~/Scripts/app/data/data-set.js"></script>
-<script src="~/Scripts/app/services/search-string-service.js"></script>
-<script src="~/Scripts/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js"></script>
-<script src="~/Scripts/app/modules/data/bio/taxonomy/taxa-ranks-app.js"></script>
+@Scripts.Render(BundleNames.TaxaRanksScriptBundleName)
 
 <header>
     <h2>Taxa Ranks</h2>

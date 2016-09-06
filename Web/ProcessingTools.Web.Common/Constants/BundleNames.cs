@@ -30,5 +30,8 @@
         public const string DocumentEditStyleBundleName = "~/Content/document-edit";
         public const string DocumentPreviewStyleBundleName = "~/Content/document-preview";
         public const string AddressListStyleBundleName = "~/Content/address-list";
+
+        public const string TaxaRanksScriptBundleName = "~/bundles/taxa-ranks";
+        public const string TaxaRanksStyleBundleName = "~/Content/taxa-ranks";
     }
 }
