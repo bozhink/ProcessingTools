@@ -1,40 +1,84 @@
 ﻿(function (angular) {
     'use strict';
 
-    var id = 0;
+    function TaxonRank(taxonName, rank) {
 
-    function getId() {
-        id += 1;
-        return id;
+        taxonName = taxonName ? taxonName.replace(/\s+/g, '') : '';
+        if (taxonName.length < 1) {
+            throw 'Null or whitespace taxon name';
+        }
+
+        rank = rank ? rank.replace(/\s+/g, '').toLowerCase() : '';
+        if (rank.length < 1) {
+            throw 'Null or whitespace'
+        }
+
+        this.id = null;
+        this.taxonName = taxonName;
+        this.rank = rank;
     }
 
-    function addToSet(array, item) {
-        var i, len, currentItem;
+    TaxonRank.prototype.compare = function (taxon) {
+        var self = this;
+        return (self.taxonName === taxon.taxonName) && (self.rank === taxon.rank);
+    }
 
-        if (!item) {
-            return;
+
+
+    function DataSet() {
+        var id = 0, dataSet = [];
+
+        function nextId() {
+            id += 1;
+            return id;
         }
 
-        item.taxonName = item.taxonName || '';
-        item.rank = item.rank || '';
-        if (item.taxonName === '' || item.rank === '') {
-            return;
-        }
+        function addItemToSet(item) {
+            var i, len, currentItem;
 
-        array = array || [];
-        if (!Array.isArray(array)) {
-            array = [];
-        }
-
-        len = array.length;
-        for (i = 0; i < len; i += 1) {
-            currentItem = array[i];
-            if (currentItem.taxonName === item.taxonName && currentItem.rank === item.rank) {
+            if (!item) {
                 return;
+            }
+
+            if (!item.compare || typeof (item.compare) !== 'function') {
+                throw 'Item to add should have function "compare"';
+            }
+
+            len = dataSet.length;
+            for (i = 0; i < len; i += 1) {
+                currentItem = dataSet[i];
+                if (item.compare(currentItem)) {
+                    return;
+                }
+            }
+
+            item.id = nextId();
+            dataSet.push(item);
+        }
+
+        function removeItem(id) {
+            var i, len;
+            if (id) {
+                len = dataSet.length;
+                for (i = 0; i < len; i += 1) {
+                    if (dataSet[i].id === id) {
+                        dataSet.splice(i, 1);
+                        break;
+                    }
+                }
             }
         }
 
-        array.push(item);
+        function removeAll() {
+            dataSet.splice(0, dataSet.length);
+        }
+
+        return {
+            data: dataSet,
+            add: addItemToSet,
+            remove: removeItem,
+            removeAll: removeAll
+        }
     }
 
     angular.module('taxaranksApp', [])
@@ -42,12 +86,12 @@
             function search(url, searchString) {
                 var request;
                 if (!url || !searchString) {
-                    return;
+                    throw 'Invalid input parameter';
                 }
 
                 searchString = searchString.trim();
                 if (searchString.length < 1) {
-                    return;
+                    throw 'Search string should not be empty';
                 }
 
                 request = {
@@ -69,20 +113,20 @@
             };
         }])
         .controller('TaxaRanksController', ['SearchStringService', function TaxaRanksController(service) {
-            var taxaList = this;
-            taxaList.taxa = [];
+            var taxaList = this, dataSet = new DataSet();
+            taxaList.taxa = dataSet.data;
 
-            taxaList.addTaxon = function () {
+            taxaList.addTaxa = function () {
                 var pairs, text = taxaList.textArea || '';
-                if (text !== '') {
-                    text = text.replace(/[^\w-]+/g, ' ')
-                        .replace(/(\S+\s+\S+)\s+/g, '$1\n');
+                text = text.replace(/[^\w-]+/g, ' ').trim();
+                if (text === '') {
+                    return;
                 }
 
+                text = text.replace(/(\S+\s+\S+)\s+/g, '$1\n');
                 pairs = text.split('\n');
-
                 pairs.forEach(function (element) {
-                    var pair;
+                    var pair, taxon;
                     if (!element) {
                         return;
                     }
@@ -92,59 +136,41 @@
                         return;
                     }
 
-                    addToSet(taxaList.taxa, {
-                        id: getId(),
-                        taxonName: pair[0],
-                        rank: pair[1].toLowerCase(),
-                    });
+                    taxon = new TaxonRank(pair[0], pair[1]);
+
+                    dataSet.add(taxon);
                 });
 
                 taxaList.textArea = '';
             };
 
             taxaList.removeTaxon = function (id) {
-                var i, len, taxa = taxaList.taxa;
-
-                if (id) {
-                    len = taxa.length;
-                    for (i = 0; i < len; i += 1) {
-                        if (taxa[i].id === id) {
-                            taxa.splice(i, 1);
-                            break;
-                        }
-                    }
-                }
+                dataSet.remove(id);
             };
 
             taxaList.clearList = function () {
-                taxaList.taxa.splice(0, taxaList.taxa.length);
+                dataSet.removeAll();
             }
 
             taxaList.search = function (url) {
-                if (!url) {
+                var searchString = taxaList.searchString || '';
+                if (!url || searchString.trim().length < 1) {
                     return;
                 }
 
-                service.search(url, taxaList.searchString)
+                service.search(url, searchString)
                     .then(function successCallback(response) {
                         if (response.status === 200) {
                             response.data.Taxa.forEach(function (element) {
+                                var taxon;
+
                                 if (!element) {
                                     return;
                                 }
 
-                                addToSet(taxaList.taxa, {
-                                    id: getId(),
-                                    taxonName: element.TaxonName,
-                                    rank: element.Rank,
-                                });
-                            })
-
-
-                            len = response.data.length;
-                            for (i = 0; i < len; i += 1) {
-
-                            }
+                                taxon = new TaxonRank(element.TaxonName, element.Rank);
+                                dataSet.add(taxon);
+                            });
                         }
                     }, function errorCallback(response) { });
             }
