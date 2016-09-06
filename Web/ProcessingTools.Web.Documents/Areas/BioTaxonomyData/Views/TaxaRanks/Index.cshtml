@@ -54,8 +54,8 @@
                 <legend>Taxa list</legend>
                 @using (Html.BeginForm())
                 {
-                    <ul class="list-group col-md-offset-2 col-md-10 taxon-list">
-                        <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-group-item">
+                    <ul class="taxon-list">
+                        <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'">
                             <input type="hidden"
                                    name="@(nameof(Model.Taxa)).Index"
                                    value="{{taxon.id}}" />
@@ -76,10 +76,8 @@
                     </ul>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
-                            <input type="submit" value="Submit" class="btn btn-default" />
-                        </div>
+                        <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
+                        <input type="submit" value="Submit" class="btn btn-default" />
                     </div>
                 }
             </fieldset>
