@@ -8,8 +8,8 @@
 
     [Serializable]
     [DesignerCategory("code")]
-    [XmlType(AnonymousType = true, Namespace = Namespaces.InternalAbbreviationsNamespace)]
-    [XmlRoot(ElementName = "abbreviations", Namespace = Namespaces.InternalAbbreviationsNamespace, IsNullable = false)]
+    [XmlType(AnonymousType = true, Namespace = Namespaces.AbbreviationsNamespace)]
+    [XmlRoot(ElementName = "abbreviations", Namespace = Namespaces.AbbreviationsNamespace, IsNullable = false)]
     public class AbbreviationsXmlModel
     {
         [XmlElement("abbreviation")]

@@ -1,11 +1,15 @@
 ﻿namespace ProcessingTools.Harvesters.Models
 {
     using System;
+    using System.ComponentModel;
     using System.Xml.Serialization;
 
+    using ProcessingTools.Common.Constants;
+
     [Serializable]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false, ElementName = "external-link")]
+    [DesignerCategory("code")]
+    [XmlType(AnonymousType = true, Namespace = Namespaces.ExternalLinksNamespace)]
+    [XmlRoot(ElementName = "external-link", Namespace = Namespaces.ExternalLinksNamespace, IsNullable = false)]
     public class ExternalLinkModel
     {
         [XmlAttribute("base-address")]

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -6,11 +6,12 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:tp="http://www.plazi.org/taxpub"
+  xmlns:e="urn:processing-tools-external-links"
   exclude-result-prefixes="xs">
   <xsl:output method="xml" indent="yes" encoding="utf-8" omit-xml-declaration="no" />
 
   <xsl:template match="/">
-    <external-links>
+    <e:external-links>
       <xsl:for-each select="//ext-link">
         <xsl:variable name="base-address">
           <xsl:call-template name="get-base-address">
@@ -27,11 +28,11 @@
           </xsl:call-template>
         </xsl:variable>
 
-        <external-link base-address="{$base-address}" uri="{$uri}">
+        <e:external-link base-address="{$base-address}" uri="{$uri}">
           <xsl:value-of select="string(.)" />
-        </external-link>
+        </e:external-link>
       </xsl:for-each>
-    </external-links>
+    </e:external-links>
   </xsl:template>
 
   <xsl:template name="get-base-address">
