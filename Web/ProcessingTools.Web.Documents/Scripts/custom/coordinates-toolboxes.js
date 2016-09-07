@@ -116,7 +116,7 @@
                     for (i = 0; i < len; i += 1) {
                         coordinate = [coordinates[i].latitude, coordinates[i].longitude];
                         leaflet.marker(coordinate)
-                            .bindPopup('<a class="list-group-item coordinate-item" href="#' + coordinates[i].id + '">'+ JSON.stringify(coordinate)+ '</a>')
+                            .bindPopup(`<a class="coordinate-item" href="#${coordinates[i].id}">${JSON.stringify(coordinate)}</a>`)
                             .addTo(map);
                     }
                 })
