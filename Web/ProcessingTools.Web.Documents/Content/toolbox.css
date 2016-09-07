@@ -14,6 +14,18 @@
 .toolbox-titlebar .titlebar-text {
   pointer-events: none;
 }
+#coordinates-map-toolbox {
+  position: fixed;
+  top: 110px;
+  left: 40px;
+  right: 10px;
+  height: 600px;
+  min-height: 60px;
+  max-height: 600px;
+  width: 500px;
+  min-width: 250px;
+  max-width: 500px;
+}
 .panel.draggable {
   position: fixed;
   top: 100px;
