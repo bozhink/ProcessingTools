@@ -40,6 +40,7 @@
     <Compile Include="Constants\Assemblies.cs" />
     <Compile Include="Constants\ConcurrencyConstants.cs" />
     <Compile Include="Constants\ModelValidationConstants.cs" />
+    <Compile Include="Constants\Namespaces.cs" />
     <Compile Include="Constants\PagingConstants.cs" />
     <Compile Include="Constants\ProcessingConstants.cs" />
     <Compile Include="Constants\XPathConstants.cs" />

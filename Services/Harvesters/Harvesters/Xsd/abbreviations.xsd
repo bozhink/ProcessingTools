@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:a="urn:processing-tools-abbreviation" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:processing-tools-abbreviations" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="abbreviations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="abbreviation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="value" type="xs:string" />
+              <xs:element name="definition" type="xs:string" />
+            </xs:sequence>
+            <xs:attribute name="content-type" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

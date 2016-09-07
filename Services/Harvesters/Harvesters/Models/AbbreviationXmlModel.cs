@@ -1,13 +1,16 @@
 ﻿namespace ProcessingTools.Harvesters.Models
 {
     using System;
+    using System.ComponentModel;
     using System.Xml.Serialization;
 
     using Contracts;
+    using ProcessingTools.Common.Constants;
 
     [Serializable]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false, ElementName = "abbreviation")]
+    [DesignerCategory("code")]
+    [XmlType(AnonymousType = true, Namespace = Namespaces.InternalAbbreviationsNamespace)]
+    [XmlRoot(ElementName = "abbreviation", Namespace = Namespaces.InternalAbbreviationsNamespace, IsNullable = false)]
     public class AbbreviationXmlModel : IAbbreviationModel
     {
         [XmlAttribute("content-type")]

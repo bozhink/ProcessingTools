@@ -14,18 +14,18 @@ as xs:string
   return replace($result, '^[=,;: –—−\-]+|[=,;: –—−\-]+$', '')
 };
 
-<abbreviations>
+<a:abbreviations xmlns:a="urn:processing-tools-abbreviations">
 {
   for $a in //abbrev
-    return <abbreviation content-type="{data($a/@content-type)}">
-		<value>
+    return <a:abbreviation content-type="{data($a/@content-type)}">
+		<a:value>
 		  {
 			for $val in $a/node()[name(.)!='def']/local:clean-content(string(.))
 			where string($val) != ''
 			return data($val)
 		  }
-		</value>
-		<definition>
+		</a:value>
+		<a:definition>
 		  {
 			if ($a/def)
 			then for $def in $a/def/p/local:clean-content(string(.))
@@ -35,7 +35,7 @@ as xs:string
 			  where string($def) != ''
 			  return data($def)
 		  }
-		</definition>
-    </abbreviation>
+		</a:definition>
+    </a:abbreviation>
 }
-</abbreviations>
+</a:abbreviations>
