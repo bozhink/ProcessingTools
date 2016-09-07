@@ -6,6 +6,8 @@
 *.user
 *.sln.docstates
 .browse.VC.db*
+.vs/
+.vscode/
 
 # Build results
 [Dd]ebug/
