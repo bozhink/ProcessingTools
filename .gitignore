@@ -9,6 +9,8 @@
 .vs/
 .vscode/
 
+App_Data/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
