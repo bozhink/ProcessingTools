@@ -18,14 +18,24 @@ as xs:string
 {
   for $a in //abbrev
     return <abbreviation content-type="{data($a/@content-type)}">
-      {
-        for $val in local:clean-content(string($a/node()[name(.)!='def']))
-        return <value>{$val}</value>
-      }
-      {
-        for $def in local:clean-content(string($a/def/p|$a/@xlink:title))
-        return <definition>{data($def)}</definition>
-      }
+		<value>
+		  {
+			for $val in $a/node()[name(.)!='def']/local:clean-content(string(.))
+			where string($val) != ''
+			return data($val)
+		  }
+		</value>
+		<definition>
+		  {
+			if ($a/def)
+			then for $def in $a/def/p/local:clean-content(string(.))
+			  where string($def) != ''
+			  return data($def)
+			else for $def in $a/@xlink:title/local:clean-content(string(.))
+			  where string($def) != ''
+			  return data($def)
+		  }
+		</definition>
     </abbreviation>
 }
 </abbreviations>
