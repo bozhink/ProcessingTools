@@ -7,6 +7,8 @@
 
     using Contracts;
     using Models;
+
+    using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
     public class XmlPresenter : IXmlPresenter
@@ -68,14 +70,15 @@
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            var reader = await this.service.GetReader(userId, articleId, documentId);
-
             var xmlDocument = new XmlDocument
             {
                 PreserveWhitespace = true
             };
 
+            var reader = await this.service.GetReader(userId, articleId, documentId);
             xmlDocument.Load(reader);
+            reader.Close();
+            reader.TryDispose();
 
             return xmlDocument.OuterXml;
         }
