@@ -2,6 +2,7 @@
 {
     public static class InstanceNames
     {
+        public const string DocumentsControllerInstanceName = "Document";
         public const string DocumentContentControllerInstanceName = "Document Content";
         public const string FilesControllerInstanceName = "File";
         public const string JournalsControllerInstanceName = "Journal";

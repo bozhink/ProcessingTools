@@ -282,6 +282,7 @@
     <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
+    <Compile Include="Areas\Articles\Controllers\DocumentsController.cs" />
     <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
@@ -542,6 +543,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\DocumentContent\" />
+    <Folder Include="Areas\Articles\Views\Documents\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
