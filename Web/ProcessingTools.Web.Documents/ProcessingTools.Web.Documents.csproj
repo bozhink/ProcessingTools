@@ -289,8 +289,8 @@
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
     <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\BiotaxonomicBlackListController.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />

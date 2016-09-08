@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class DocumentViewModel
+    public class FileViewModel
     {
-        public DocumentViewModel(object articleId, object id)
+        public FileViewModel(object articleId, object id)
         {
             if (articleId == null)
             {

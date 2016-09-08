@@ -134,7 +134,7 @@
             var articleId = this.FakeArticleId;
 
             var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
-                .Select(d => new DocumentViewModel(articleId, d.Id)
+                .Select(d => new FileViewModel(articleId, d.Id)
                 {
                     FileName = d.FileName,
                     DateCreated = d.DateCreated,
@@ -144,7 +144,7 @@
 
             var numberOfDocuments = await this.service.Count(userId, articleId);
 
-            var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ListWithPagingViewModel<FileViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
@@ -295,7 +295,7 @@
             return task;
         }
 
-        private async Task<DocumentDetailsViewModel> GetDetails(object userId, object articleId, object id)
+        private async Task<FileDetailsViewModel> GetDetails(object userId, object articleId, object id)
         {
             if (userId == null)
             {
@@ -318,7 +318,7 @@
                 throw new EntityNotFoundException();
             }
 
-            var viewModel = new DocumentDetailsViewModel(articleId, id)
+            var viewModel = new FileDetailsViewModel(articleId, id)
             {
                 FileName = document.FileName,
                 FileExtension = document.FileExtension,

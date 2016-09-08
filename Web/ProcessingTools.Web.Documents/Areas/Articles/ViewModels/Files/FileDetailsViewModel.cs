@@ -2,9 +2,9 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class DocumentDetailsViewModel : DocumentViewModel
+    public class FileDetailsViewModel : FileViewModel
     {
-        public DocumentDetailsViewModel(object articleId, object id)
+        public FileDetailsViewModel(object articleId, object id)
             : base(articleId, id)
         {
         }
