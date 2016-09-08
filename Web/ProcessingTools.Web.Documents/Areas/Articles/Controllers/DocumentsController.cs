@@ -1,14 +1,20 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
+    using System.Net;
     using System.Web.Mvc;
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
+    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts;
 
     public class DocumentsController : Controller
     {
+        // TODO: To be removed
+        private int FakeArticleId => 0;
+
         // GET: /Articles/Documents
         [HttpGet]
         public ActionResult Index()
@@ -16,6 +22,36 @@
             return this.RedirectToAction(
                 actionName: nameof(FilesController.Index),
                 controllerName: ControllerNames.FilesControllerName);
+        }
+
+        // GET: /Articles/Files/Edit/5
+        [HttpGet]
+        public ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                throw new InvalidIdException();
+            }
+
+            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
+        }
+
+        // GET: /Articles/Files/Preview/5
+        [HttpGet]
+        public ActionResult Preview(Guid? id)
+        {
+            if (id == null)
+            {
+                throw new InvalidIdException();
+            }
+
+            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
         }
 
         protected override void HandleUnknownAction(string actionName)

@@ -12,10 +12,18 @@
 
 <p class="separated-items">
     <span class="item">
-        @Html.ActionLink(Resources.Strings.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload), routeValues: null, htmlAttributes: new { id = "upload-file-link" })
+        @Html.ActionLink(
+            linkText: Resources.Strings.DefaultUploadNewFileActionLinkTitle,
+            actionName: nameof(FilesController.Upload),
+            routeValues: null,
+            htmlAttributes: new { id = "upload-file-link" })
     </span>
     <span class="item">
-        @Html.ActionLink(Resources.Strings.HelpActionLinkTitle, nameof(FilesController.Help), routeValues: null, htmlAttributes: new { target = "_blank" })
+        @Html.ActionLink(
+            linkText: Resources.Strings.HelpActionLinkTitle,
+            actionName: nameof(FilesController.Help),
+            routeValues: null,
+            htmlAttributes: new { target = "_blank" })
     </span>
 </p>
 
@@ -58,19 +66,38 @@
                         </td>
                         <td class="separated-items">
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                                    actionName: nameof(DocumentsController.Preview),
+                                    controllerName: ControllerNames.DocumentsControllerName,
+                                    routeValues: new { id = item.Id },
+                                    htmlAttributes: null)
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                                    actionName: nameof(DocumentsController.Edit),
+                                    controllerName: ControllerNames.DocumentsControllerName,
+                                    routeValues: new { id = item.Id },
+                                    htmlAttributes: null)
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
+                                    actionName: nameof(FilesController.Details),
+                                    routeValues: new { id = item.Id })
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                                    actionName: nameof(FilesController.Delete),
+                                    routeValues: new { id = item.Id })
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
+                                    actionName: nameof(FilesController.Download),
+                                    routeValues: new { id = item.Id })
                             </span>
                         </td>
                     </tr>

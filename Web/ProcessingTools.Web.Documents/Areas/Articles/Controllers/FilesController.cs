@@ -110,22 +110,7 @@
                 fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
         }
 
-        // GET: /Articles/Files/Edit/5
-        [HttpGet]
-        public ActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
-
-            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
-
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(viewModel);
-        }
-
-        // GET: /Articles/Help
+        // GET: /Articles/Files/Help
         [HttpGet]
         public ActionResult Help()
         {
@@ -160,21 +145,6 @@
             var numberOfDocuments = await this.service.Count(userId, articleId);
 
             var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
-
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(viewModel);
-        }
-
-        // GET: /Articles/Files/Preview/5
-        [HttpGet]
-        public ActionResult Preview(Guid? id)
-        {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
-
-            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);

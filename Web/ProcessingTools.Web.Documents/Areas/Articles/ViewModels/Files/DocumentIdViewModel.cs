@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    // TODO: to be deleted
     public class DocumentIdViewModel
     {
         public DocumentIdViewModel(object articleId, object id)

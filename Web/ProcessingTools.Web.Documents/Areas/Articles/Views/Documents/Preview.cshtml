@@ -1,4 +1,4 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentIdViewModel
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
 
 @{
     ViewBag.Title = Resources.Strings.DeafultPreviewPageTitle;
@@ -18,12 +18,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink(Resources.Strings.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "navbar-brand" })
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                actionName: nameof(DocumentsController.Preview),
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: new { @class = "navbar-brand" })
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink(@Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), routeValues: new { id = Model.Id }, htmlAttributes: new { target = "_blank" })</li>
+                <li>
+                    @Html.ActionLink(
+                        linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                        actionName: nameof(DocumentsController.Edit),
+                        routeValues: new { id = Model.DocumentId },
+                        htmlAttributes: new { target = "_blank" })
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tag manually <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -47,13 +57,7 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))</li>
-                <li>@Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })</li>
-                <li><a id="refresh-button">@Resources.Strings.DefaultRefreshActionLinkTitle</a></li>
-                <li><a id="save-button">@Resources.Strings.DefaultSaveActionLinkTitle</a></li>
-                @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
-            </ul>
+            @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
         </div>
     </div>
 </nav>
@@ -69,13 +73,13 @@
         linkText: Resources.Strings.DefaultRefreshActionLinkTitle,
         actionName: nameof(DocumentContentController.GetHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
-        routeValues: new { id = Model.Id },
+        routeValues: new { id = Model.DocumentId },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
         linkText: Resources.Strings.DefaultSaveActionLinkTitle,
         actionName: nameof(DocumentContentController.SaveHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
-        routeValues: new { id = Model.Id },
+        routeValues: new { id = Model.DocumentId },
         htmlAttributes: new { id = "save-link" })
 </aside>
 

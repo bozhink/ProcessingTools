@@ -287,6 +287,8 @@
     <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
@@ -423,7 +425,7 @@
     <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
     <Content Include="Scripts\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
     <Content Include="Scripts\app\data\data-set.js" />
     <Content Include="Scripts\app\models\data\bio\taxonomy\black-list-item.js" />
@@ -469,9 +471,9 @@
     <Content Include="Areas\Journals\Views\Journals\Edit.cshtml" />
     <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
     <Content Include="bower.json" />
-    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Delete.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\_HelpSubmenu.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\_HelpSubmenu.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Help.cshtml" />
     <Content Include="Areas\Articles\Views\Files\_Details.cshtml" />
     <Content Include="Areas\BioTaxonomyData\Views\web.config" />
@@ -543,7 +545,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\DocumentContent\" />
-    <Folder Include="Areas\Articles\Views\Documents\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
