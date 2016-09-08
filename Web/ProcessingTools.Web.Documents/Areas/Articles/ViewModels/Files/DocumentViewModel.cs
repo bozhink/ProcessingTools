@@ -3,12 +3,29 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class DocumentViewModel : DocumentIdViewModel
+    public class DocumentViewModel
     {
         public DocumentViewModel(object articleId, object id)
-            : base(articleId, id)
         {
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            this.DocumentId = id.ToString();
+            this.ArticleId = articleId.ToString();
         }
+
+        [Display(Name = "Document ID")]
+        public string DocumentId { get; private set; }
+
+        [Display(Name = "Article ID")]
+        public string ArticleId { get; private set; }
 
         [Display(Name = "File Name")]
         public string FileName { get; set; }

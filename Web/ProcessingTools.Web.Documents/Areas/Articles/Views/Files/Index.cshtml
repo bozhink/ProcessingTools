@@ -70,7 +70,7 @@
                                     linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
                                     actionName: nameof(DocumentsController.Preview),
                                     controllerName: ControllerNames.DocumentsControllerName,
-                                    routeValues: new { id = item.Id },
+                                    routeValues: new { id = item.DocumentId },
                                     htmlAttributes: null)
                             </span>
                             <span class="item">
@@ -78,26 +78,26 @@
                                     linkText: Resources.Strings.DefaultEditActionLinkTitle,
                                     actionName: nameof(DocumentsController.Edit),
                                     controllerName: ControllerNames.DocumentsControllerName,
-                                    routeValues: new { id = item.Id },
+                                    routeValues: new { id = item.DocumentId },
                                     htmlAttributes: null)
                             </span>
                             <span class="item">
                                 @Html.ActionLink(
                                     linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
                                     actionName: nameof(FilesController.Details),
-                                    routeValues: new { id = item.Id })
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                             <span class="item">
                                 @Html.ActionLink(
                                     linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
                                     actionName: nameof(FilesController.Delete),
-                                    routeValues: new { id = item.Id })
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                             <span class="item">
                                 @Html.ActionLink(
                                     linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
                                     actionName: nameof(FilesController.Download),
-                                    routeValues: new { id = item.Id })
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                         </td>
                     </tr>

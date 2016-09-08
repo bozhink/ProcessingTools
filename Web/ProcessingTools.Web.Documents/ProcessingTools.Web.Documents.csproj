@@ -290,7 +290,6 @@
     <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\BiotaxonomicBlackListController.cs" />
