@@ -79,22 +79,22 @@
         // POST: /Data/Resources/Institutions/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = InstitutionValidationBinding)] Institution institution)
+        public async Task<ActionResult> Create([Bind(Include = InstitutionValidationBinding)] Institution model)
         {
             if (ModelState.IsValid)
             {
-                institution.Id = Guid.NewGuid();
+                model.Id = Guid.NewGuid();
 
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Institutions.Add(institution);
+                    db.Institutions.Add(model);
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(institution);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Institutions/Edit/5
@@ -124,20 +124,20 @@
         // POST: /Data/Resources/Institutions/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = InstitutionValidationBinding)] Institution institution)
+        public async Task<ActionResult> Edit([Bind(Include = InstitutionValidationBinding)] Institution model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Entry(institution).State = EntityState.Modified;
+                    db.Entry(model).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(institution);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Institutions/Delete/5

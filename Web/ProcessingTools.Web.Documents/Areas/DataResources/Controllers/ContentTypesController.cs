@@ -79,20 +79,20 @@
         // POST: /Data/Resources/ContentTypes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = ContentTypeValidationBinding)] ContentType contentType)
+        public async Task<ActionResult> Create([Bind(Include = ContentTypeValidationBinding)] ContentType model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.ContentTypes.Add(contentType);
+                    db.ContentTypes.Add(model);
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(contentType);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/ContentTypes/Edit/5
@@ -122,20 +122,20 @@
         // POST: /Data/Resources/ContentTypes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = ContentTypeValidationBinding)] ContentType contentType)
+        public async Task<ActionResult> Edit([Bind(Include = ContentTypeValidationBinding)] ContentType model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Entry(contentType).State = EntityState.Modified;
+                    db.Entry(model).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(contentType);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/ContentTypes/Delete/5

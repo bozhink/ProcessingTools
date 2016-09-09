@@ -54,19 +54,19 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = null;
+            Product viewModel = null;
 
             using (var db = this.contextProvider.Create())
             {
-                product = await Task.FromResult(db.Products.Find(id));
+                viewModel = await Task.FromResult(db.Products.Find(id));
             }
 
-            if (product == null)
+            if (viewModel == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(product);
+            return this.View(viewModel);
         }
 
         // GET: /Data/Resources/Products/Create
@@ -79,22 +79,22 @@
         // POST: /Data/Resources/Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = ProductValidationBinding)] Product product)
+        public async Task<ActionResult> Create([Bind(Include = ProductValidationBinding)] Product model)
         {
             if (ModelState.IsValid)
             {
-                product.Id = Guid.NewGuid();
+                model.Id = Guid.NewGuid();
 
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Products.Add(product);
+                    db.Products.Add(model);
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(product);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Products/Edit/5
@@ -106,37 +106,38 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = null;
+            Product viewModel = null;
 
             using (var db = this.contextProvider.Create())
             {
-                product = await Task.FromResult(db.Products.Find(id));
+                viewModel = await Task.FromResult(db.Products.Find(id));
             }
 
-            if (product == null)
+            if (viewModel == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(product);
+            return this.View(viewModel);
         }
 
         // POST: /Data/Resources/Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = ProductValidationBinding)] Product product)
+        public async Task<ActionResult> Edit([Bind(Include = ProductValidationBinding)] Product model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Entry(product).State = EntityState.Modified;
+                    db.Entry(model).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
-            return this.View(product);
+
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Products/Delete/5
@@ -148,19 +149,19 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = null;
+            Product viewModel = null;
 
             using (var db = this.contextProvider.Create())
             {
-                product = await Task.FromResult(db.Products.Find(id));
+                viewModel = await Task.FromResult(db.Products.Find(id));
             }
 
-            if (product == null)
+            if (viewModel == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(product);
+            return this.View(viewModel);
         }
 
         // POST: /Data/Resources/Products/Delete/5

@@ -85,23 +85,23 @@
         // POST: /Data/Resources/Abbreviations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = AbbreviationValidationBinding)] Abbreviation abbreviation)
+        public async Task<ActionResult> Create([Bind(Include = AbbreviationValidationBinding)] Abbreviation model)
         {
             if (ModelState.IsValid)
             {
-                abbreviation.Id = Guid.NewGuid();
+                model.Id = Guid.NewGuid();
 
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Abbreviations.Add(abbreviation);
+                    db.Abbreviations.Add(model);
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            this.ViewBag.ContentTypeId = await this.GetContentTypesSelectList(abbreviation.ContentTypeId);
-            return this.View(abbreviation);
+            this.ViewBag.ContentTypeId = await this.GetContentTypesSelectList(model.ContentTypeId);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Abbreviations/Edit/5
@@ -133,21 +133,21 @@
         // POST: /Data/Resources/Abbreviations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = AbbreviationValidationBinding)] Abbreviation abbreviation)
+        public async Task<ActionResult> Edit([Bind(Include = AbbreviationValidationBinding)] Abbreviation model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Entry(abbreviation).State = EntityState.Modified;
+                    db.Entry(model).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                 }
 
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            this.ViewBag.ContentTypeId = await this.GetContentTypesSelectList(abbreviation.ContentTypeId);
-            return this.View(abbreviation);
+            this.ViewBag.ContentTypeId = await this.GetContentTypesSelectList(model.ContentTypeId);
+            return this.View(model);
         }
 
         // GET: /Data/Resources/Abbreviations/Delete/5
