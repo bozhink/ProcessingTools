@@ -6,9 +6,8 @@
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
-    using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts;
+    using ProcessingTools.Web.Documents.Extensions;
 
     public class DocumentsController : Controller
     {
