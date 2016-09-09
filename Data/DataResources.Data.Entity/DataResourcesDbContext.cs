@@ -26,5 +26,7 @@
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<ProcessingTools.DataResources.Data.Entity.Models.Abbreviation> Abbreviations { get; set; }
     }
 }

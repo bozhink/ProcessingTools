@@ -18,5 +18,7 @@
 
         public const string TaxaRanksControllerName = "TaxaRanks";
         public const string BiotaxonomicBlackListControllerName = "BiotaxonomicBlackList";
+
+        public const string AbbreviationsControllerName = "Abbreviations";
     }
 }

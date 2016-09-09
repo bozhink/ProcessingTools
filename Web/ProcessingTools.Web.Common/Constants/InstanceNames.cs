@@ -8,5 +8,7 @@
         public const string JournalsControllerInstanceName = "Journal";
         public const string PublishersControllerInstanceName = "Publisher";
         public const string TaxaRanksControllerInstanceName = "Taxon Rank";
+
+        public const string AbbreviationsControllerInstanceName = "Abbreviation";
     }
 }
