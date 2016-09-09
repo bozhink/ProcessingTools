@@ -307,6 +307,7 @@
     <Compile Include="Areas\DataResources\Controllers\AbbreviationsController.cs" />
     <Compile Include="Areas\DataResources\Controllers\ContentTypesController.cs" />
     <Compile Include="Areas\DataResources\Controllers\InstitutionsController.cs" />
+    <Compile Include="Areas\DataResources\Controllers\ProductsController.cs" />
     <Compile Include="Areas\DataResources\DataResourcesAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
@@ -500,6 +501,11 @@
     <Content Include="Areas\DataResources\Views\Institutions\Details.cshtml" />
     <Content Include="Areas\DataResources\Views\Institutions\Edit.cshtml" />
     <Content Include="Areas\DataResources\Views\Institutions\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
