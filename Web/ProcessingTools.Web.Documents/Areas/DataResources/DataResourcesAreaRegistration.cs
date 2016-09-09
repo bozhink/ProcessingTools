@@ -1,17 +1,17 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.GeoData
+﻿namespace ProcessingTools.Web.Documents.Areas.DataResources
 {
     using System.Web.Mvc;
     using ProcessingTools.Web.Common.Constants;
 
-    public class GeoDataAreaRegistration : AreaRegistration
+    public class DataResourcesAreaRegistration : AreaRegistration
     {
-        public override string AreaName => AreasConstants.GeoDataAreaName;
+        public override string AreaName => AreasConstants.DataResourcesAreaName;
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "GeoData_default",
-                "Data/Geo/{controller}/{action}/{id}",
+                "DataResources_default",
+                "Data/Resources/{controller}/{action}/{id}",
                 new
                 {
                     action = ActionNames.DeafultIndexActionName,
