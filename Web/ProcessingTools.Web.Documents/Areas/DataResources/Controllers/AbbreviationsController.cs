@@ -58,7 +58,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Abbreviation viewModel = null;
@@ -113,7 +113,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Abbreviation viewModel = null;
@@ -159,7 +159,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Abbreviation viewModel = null;

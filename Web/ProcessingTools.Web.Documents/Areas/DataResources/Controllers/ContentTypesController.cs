@@ -54,7 +54,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             ContentType viewModel = null;
@@ -104,7 +104,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             ContentType viewModel = null;
@@ -147,7 +147,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             ContentType viewModel = null;

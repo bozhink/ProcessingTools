@@ -54,7 +54,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Product viewModel = null;
@@ -106,7 +106,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Product viewModel = null;
@@ -149,7 +149,7 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidIdException();
             }
 
             Product viewModel = null;
