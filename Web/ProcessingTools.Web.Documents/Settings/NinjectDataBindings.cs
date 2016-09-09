@@ -61,6 +61,13 @@
 
             this.Bind(b =>
             {
+                b.From(DataResources.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
