@@ -10,13 +10,6 @@
     <h4>Abbreviation</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentType.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentType.Name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -32,6 +25,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Definition)
+        </dd>
+
+        <dt>
+            Content Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentType.Name)
         </dd>
 
     </dl>

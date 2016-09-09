@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProcessingTools.DataResources.Data.Entity.Models.Abbreviation>
+﻿@model IEnumerable<ProcessingTools.DataResources.Data.Entity.Models.ContentType>
 
 @{
     ViewBag.Title = "Index";
@@ -14,10 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Definition)
-        </th>
-        <th>Content type</th>
         <th></th>
     </tr>
 
@@ -25,12 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Definition)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContentType.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

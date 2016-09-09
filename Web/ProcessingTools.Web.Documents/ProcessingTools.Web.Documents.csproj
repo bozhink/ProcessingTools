@@ -305,6 +305,7 @@
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxaRanksViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxonRankViewModel.cs" />
     <Compile Include="Areas\DataResources\Controllers\AbbreviationsController.cs" />
+    <Compile Include="Areas\DataResources\Controllers\ContentTypesController.cs" />
     <Compile Include="Areas\DataResources\DataResourcesAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
@@ -488,6 +489,11 @@
     <Content Include="Areas\DataResources\Views\Abbreviations\Details.cshtml" />
     <Content Include="Areas\DataResources\Views\Abbreviations\Edit.cshtml" />
     <Content Include="Areas\DataResources\Views\Abbreviations\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

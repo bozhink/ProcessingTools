@@ -62,7 +62,8 @@
 
             using (var db = this.contextProvider.Create())
             {
-                viewModel = await db.Abbreviations.FindAsync(id);
+                var query = db.Abbreviations.Include(a => a.ContentType);
+                viewModel = await query.FirstOrDefaultAsync(e => e.Id.ToString() == id.ToString());
             }
 
             if (viewModel == null)
@@ -116,7 +117,8 @@
 
             using (var db = this.contextProvider.Create())
             {
-                viewModel = await db.Abbreviations.FindAsync(id);
+                var query = db.Abbreviations.Include(a => a.ContentType);
+                viewModel = await query.FirstOrDefaultAsync(e => e.Id.ToString() == id.ToString());
             }
 
             if (viewModel == null)
@@ -161,7 +163,8 @@
 
             using (var db = this.contextProvider.Create())
             {
-                viewModel = await db.Abbreviations.FindAsync(id);
+                var query = db.Abbreviations.Include(a => a.ContentType);
+                viewModel = await query.FirstOrDefaultAsync(e => e.Id.ToString() == id.ToString());
             }
 
             if (viewModel == null)
@@ -179,7 +182,7 @@
         {
             using (var db = this.contextProvider.Create())
             {
-                var entity = await db.Abbreviations.FindAsync(id);
+                var entity = await Task.FromResult(db.Abbreviations.Find(id));
                 db.Abbreviations.Remove(entity);
                 await db.SaveChangesAsync();
             }

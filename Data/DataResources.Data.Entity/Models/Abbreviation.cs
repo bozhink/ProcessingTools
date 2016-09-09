@@ -21,7 +21,7 @@
         [MaxLength(ValidationConstants.AbbreviationDefinitionMaximalLength)]
         public string Definition { get; set; }
 
-        public virtual int ContentTypeId { get; set; }
+        public virtual int? ContentTypeId { get; set; }
 
         public virtual ContentType ContentType { get; set; }
 
