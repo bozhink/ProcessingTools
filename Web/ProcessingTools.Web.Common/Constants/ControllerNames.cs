@@ -20,5 +20,8 @@
         public const string BiotaxonomicBlackListControllerName = "BiotaxonomicBlackList";
 
         public const string AbbreviationsControllerName = "Abbreviations";
+        public const string ContentTypesControllerName = "ContentTypes";
+        public const string ProductsControllerName = "Products";
+        public const string InstitutionsControllerName = "InstitutionsController";
     }
 }

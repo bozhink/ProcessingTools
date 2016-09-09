@@ -10,5 +10,8 @@
         public const string TaxaRanksControllerInstanceName = "Taxon Rank";
 
         public const string AbbreviationsControllerInstanceName = "Abbreviation";
+        public const string ContentTypesControllerInstanceName = "Content Type";
+        public const string ProductsControllerInstanceName = "Product";
+        public const string InstitutionsControllerInstanceName = "Institution";
     }
 }
