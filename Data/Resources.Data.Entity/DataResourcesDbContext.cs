@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-
-namespace ProcessingTools.Resources.Data.Entity
+﻿namespace ProcessingTools.Resources.Data.Entity
 {
+    using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
+
     public class DataResourcesDbContext : DbContext
     {
         public DataResourcesDbContext(string connectionString)
