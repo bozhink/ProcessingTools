@@ -12,6 +12,7 @@
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
+    [Authorize]
     public class ContentTypesController : Controller
     {
         private const string ContentTypeValidationBinding = nameof(ContentType.Id) + "," + nameof(ContentType.Name);

@@ -12,6 +12,7 @@
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
+    [Authorize]
     public class AbbreviationsController : Controller
     {
         private const string AbbreviationValidationBinding = nameof(Abbreviation.Id) + "," +

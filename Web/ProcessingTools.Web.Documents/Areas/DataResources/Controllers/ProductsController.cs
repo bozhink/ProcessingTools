@@ -12,6 +12,7 @@
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
+    [Authorize]
     public class ProductsController : Controller
     {
         private const string ProductValidationBinding = nameof(Product.Id) + "," + nameof(Product.Name);

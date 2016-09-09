@@ -12,6 +12,7 @@
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 
+    [Authorize]
     public class InstitutionsController : Controller
     {
         private const string InstitutionValidationBinding = nameof(Institution.Id) + "," + nameof(Institution.Name);
