@@ -42,7 +42,7 @@
 
             if (viewModels == null)
             {
-                return this.HttpNotFound();
+                throw new EntityNotFoundException();
             }
 
             return this.View(viewModels);
@@ -66,7 +66,7 @@
 
             if (viewModel == null)
             {
-                return this.HttpNotFound();
+                throw new EntityNotFoundException();
             }
 
             return this.View(viewModel);
@@ -116,7 +116,7 @@
 
             if (viewModel == null)
             {
-                return this.HttpNotFound();
+                throw new EntityNotFoundException();
             }
 
             return this.View(viewModel);
@@ -159,7 +159,7 @@
 
             if (viewModel == null)
             {
-                return this.HttpNotFound();
+                throw new EntityNotFoundException();
             }
 
             return this.View(viewModel);
