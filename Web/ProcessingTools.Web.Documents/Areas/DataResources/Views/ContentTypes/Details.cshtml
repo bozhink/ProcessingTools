@@ -1,26 +1,29 @@
-﻿@model ProcessingTools.DataResources.Data.Entity.Models.ContentType
+﻿@model ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts.IContentTypeDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
 }
 
-<h2>Details</h2>
+<header>
+    <h2>@Resources.Strings.DeafultDetailsPageHeading</h2>
+</header>
 
-<div>
-    <h4>ContentType</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+@Html.Partial(ViewNames.DetailsPartialViewName)
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+<hr />
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<footer>
+    <nav class="separated-items">
+        <span class="item">
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                actionName: nameof(ContentTypesController.Edit),
+                routeValues: new { id = Model.Id })
+        </span>
+        <span class="item">
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultBackToListActionLinkTitle,
+                actionName: nameof(ContentTypesController.Index))
+        </span>
+    </nav>
+</footer>

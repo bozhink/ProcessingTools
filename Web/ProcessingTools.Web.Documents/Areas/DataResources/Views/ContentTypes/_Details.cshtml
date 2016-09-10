@@ -1,0 +1,19 @@
+﻿@model ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts.IContentTypeDetailsViewModel
+
+<section>
+    <header>
+        <h4>@InstanceNames.ContentTypesControllerInstanceName</h4>
+    </header>
+
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => ((ProcessingTools.Contracts.INameable)model).Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => ((ProcessingTools.Contracts.INameable)model).Name)
+        </dd>
+    </dl>
+</section>

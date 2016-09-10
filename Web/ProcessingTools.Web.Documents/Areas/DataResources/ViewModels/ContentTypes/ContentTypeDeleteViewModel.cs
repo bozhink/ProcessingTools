@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes
 {
-    public class ContentTypeDeleteViewModel
+    using Contracts;
+
+    public class ContentTypeDeleteViewModel : ContentTypeIndexViewModel, IContentTypeDetailsViewModel
     {
     }
 }

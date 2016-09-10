@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes
 {
-    public class ContentTypeDetailsViewModel
+    using Contracts;
+
+    public class ContentTypeDetailsViewModel : ContentTypeIndexViewModel, IContentTypeDetailsViewModel
     {
     }
 }

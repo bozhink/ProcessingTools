@@ -5,9 +5,9 @@
 
     public class ContentTypeIndexViewModel : IContentTypeIndexViewModel
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         [Display(Name = "Name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 }

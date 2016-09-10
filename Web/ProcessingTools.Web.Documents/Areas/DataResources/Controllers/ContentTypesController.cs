@@ -76,11 +76,19 @@
                 throw new InvalidIdException();
             }
 
-            ContentType viewModel = null;
+            IContentTypeDetailsViewModel viewModel = null;
 
             using (var db = this.contextProvider.Create())
             {
-                viewModel = await Task.FromResult(db.ContentTypes.Find(id));
+                var query = db.ContentTypes
+                    .Where(e => e.Id.ToString() == id.ToString())
+                    .Select(e => new ContentTypeDetailsViewModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name
+                    });
+
+                viewModel = await query.FirstOrDefaultAsync();
             }
 
             if (viewModel == null)
