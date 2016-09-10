@@ -48,6 +48,26 @@
             return result;
         }
 
+        public async Task<IEnumerable<IContentTypeServiceModel>> All()
+        {
+            IEnumerable<IContentTypeServiceModel> result = null;
+
+            using (var db = this.contextProvider.Create())
+            {
+                var query = db.ContentTypes
+                    .OrderBy(e => e.Name)
+                    .Select(e => new ContentTypeServiceModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name
+                    });
+
+                result = await query.ToListAsync();
+            }
+
+            return result;
+        }
+
         public async Task<IEnumerable<IContentTypeServiceModel>> All(int pageNumber, int numberOfItemsPerPage)
         {
             ValidationHelpers.ValidatePageNumber(pageNumber);

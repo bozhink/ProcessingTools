@@ -8,6 +8,8 @@
     {
         Task<object> Add(IContentTypeCreateServiceModel model);
 
+        Task<IEnumerable<IContentTypeServiceModel>> All();
+
         Task<IEnumerable<IContentTypeServiceModel>> All(int pageNumber, int numberOfItemsPerPage);
 
         Task<long> Count();
