@@ -19,6 +19,8 @@
     using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts;
     using ProcessingTools.Web.Documents.Factories;
 
+    using ProcessingTools.DataResources.Services.Data.Contracts;
+
     [Authorize]
     public class ContentTypesController : MvcControllerWithExceptionHandling
     {
@@ -26,14 +28,22 @@
 
         private readonly IDataResourcesDbContextProvider contextProvider;
 
-        public ContentTypesController(IDataResourcesDbContextProvider contextProvider)
+        private readonly IContentTypesDataService service;
+
+        public ContentTypesController(IDataResourcesDbContextProvider contextProvider, IContentTypesDataService service)
         {
             if (contextProvider == null)
             {
                 throw new ArgumentNullException(nameof(contextProvider));
             }
 
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
             this.contextProvider = contextProvider;
+            this.service = service;
         }
 
         protected override string InstanceName => InstanceNames.ContentTypesControllerInstanceName;
@@ -48,24 +58,14 @@
             ValidationHelpers.ValidatePageNumber(currentPage);
             ValidationHelpers.ValidateNumberOfItemsPerPage(numberOfItemsPerPage);
 
-            long numberOfItems = 0L;
-            IEnumerable<IContentTypeIndexViewModel> items = null;
-
-            using (var db = this.contextProvider.Create())
-            {
-                var query = db.ContentTypes
-                    .OrderBy(e => e.Name)
-                    .Skip(currentPage * numberOfItemsPerPage)
-                    .Take(numberOfItemsPerPage)
-                    .Select(e => new ContentTypeIndexViewModel
-                    {
-                        Id = e.Id,
-                        Name = e.Name
-                    });
-
-                items = await query.ToListAsync();
-                numberOfItems = await db.ContentTypes.LongCountAsync();
-            }
+            long numberOfItems = await this.service.Count();
+            var items = (await this.service.All(currentPage, numberOfItemsPerPage))
+                .Select(e => new ContentTypeIndexViewModel
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                })
+                .ToList();
 
             var viewModel = new ListWithPagingViewModel<IContentTypeIndexViewModel>(nameof(this.Index), numberOfItems, numberOfItemsPerPage, currentPage, items);
 
