@@ -10,16 +10,17 @@
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Validation;
     using ProcessingTools.DataResources.Data.Entity.Contracts;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes;
     using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts;
-    using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.Factories;
 
     [Authorize]
-    public class ContentTypesController : Controller
+    public class ContentTypesController : MvcControllerWithExceptionHandling
     {
         private const string ContentTypeValidationBinding = nameof(ContentType.Id) + "," + nameof(ContentType.Name);
 
@@ -35,12 +36,17 @@
             this.contextProvider = contextProvider;
         }
 
+        protected override string InstanceName => InstanceNames.ContentTypesControllerInstanceName;
+
         // GET: /Data/Resources/ContentTypes
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+
+            ValidationHelpers.ValidatePageNumber(currentPage);
+            ValidationHelpers.ValidateNumberOfItemsPerPage(numberOfItemsPerPage);
 
             long numberOfItems = 0L;
             IEnumerable<IContentTypeIndexViewModel> items = null;
@@ -71,10 +77,7 @@
         [HttpGet]
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
+            ValidationHelpers.ValidateId(id);
 
             IContentTypeDetailsViewModel viewModel = null;
 
@@ -129,10 +132,7 @@
         [HttpGet]
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
+            ValidationHelpers.ValidateId(id);
 
             ContentType viewModel = null;
 
@@ -172,10 +172,7 @@
         [HttpGet]
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
+            ValidationHelpers.ValidateId(id);
 
             IContentTypeDetailsViewModel viewModel = null;
 
@@ -213,53 +210,6 @@
             }
 
             return this.RedirectToAction(nameof(this.Index));
-        }
-
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
-        }
-
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            if (filterContext.Exception is EntityNotFoundException)
-            {
-                filterContext.Result = this.DefaultNotFoundView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidIdException)
-            {
-                filterContext.Result = this.InvalidIdErrorView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidPageNumberException)
-            {
-                filterContext.Result = this.InvalidPageNumberErrorView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidItemsPerPageException)
-            {
-                filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is ArgumentException)
-            {
-                filterContext.Result = this.BadRequestErrorView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else
-            {
-                filterContext.Result = this.DefaultErrorView(
-                    InstanceNames.ContentTypesControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-
-            filterContext.ExceptionHandled = true;
         }
     }
 }
