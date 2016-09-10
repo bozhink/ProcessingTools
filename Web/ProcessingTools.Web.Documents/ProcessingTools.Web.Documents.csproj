@@ -310,7 +310,6 @@
     <Compile Include="Areas\DataResources\Controllers\ProductsController.cs" />
     <Compile Include="Areas\DataResources\DataResourcesAreaRegistration.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeCreateViewModel.cs" />
-    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDeleteViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDetailsViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeEditViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeIndexViewModel.cs" />
@@ -514,6 +513,8 @@
     <Content Include="Areas\DataResources\Views\Products\Edit.cshtml" />
     <Content Include="Areas\DataResources\Views\Products\Index.cshtml" />
     <Content Include="Areas\DataResources\Views\ContentTypes\_Details.cshtml" />
+    <Content Include="Views\Shared\_DeleteFooter.cshtml" />
+    <Content Include="Views\Shared\_DeleteHeader.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

@@ -6,6 +6,8 @@
 
         public const string LoginPartialViewName = "_LoginPartial";
         public const string DetailsPartialViewName = "_Details";
+        public const string DeleteHeaderPartialViewName = "_DeleteHeader";
+        public const string DeleteFooterPartialViewName = "_DeleteFooter";
         public const string HelpSubmenuPartialViewName = "_HelpSubmenu";
 
         public const string NavigationFootPartialViewName = "~/Views/Shared/_NavigationFoot.cshtml";
