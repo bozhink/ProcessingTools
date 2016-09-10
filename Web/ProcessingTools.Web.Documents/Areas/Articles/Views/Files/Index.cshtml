@@ -8,24 +8,24 @@
     <h2>
         @Resources.Strings.ListOfFilesPageHeading
     </h2>
-</header>
 
-<p class="separated-items">
-    <span class="item">
-        @Html.ActionLink(
+    <p class="separated-items">
+        <span class="item">
+            @Html.ActionLink(
             linkText: Resources.Strings.DefaultUploadNewFileActionLinkTitle,
             actionName: nameof(FilesController.Upload),
             routeValues: null,
             htmlAttributes: new { id = "upload-file-link" })
-    </span>
-    <span class="item">
-        @Html.ActionLink(
+        </span>
+        <span class="item">
+            @Html.ActionLink(
             linkText: Resources.Strings.HelpActionLinkTitle,
             actionName: nameof(FilesController.Help),
             routeValues: null,
             htmlAttributes: new { target = "_blank" })
-    </span>
-</p>
+        </span>
+    </p>
+</header>
 
 @if (Model.Items.Count() > 0)
 {

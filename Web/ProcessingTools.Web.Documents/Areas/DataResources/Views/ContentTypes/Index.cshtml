@@ -1,33 +1,65 @@
-﻿@model IEnumerable<ProcessingTools.DataResources.Data.Entity.Models.ContentType>
+﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts.IContentTypeIndexViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Resources.Strings.DeafultIndexPageTitle;
 }
 
-<h2>Index</h2>
+<header>
+    <h2>@Resources.Strings.DeafultIndexPageHeading</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink(
+            linkText: Resources.Strings.DefaultCreateActionLinkTitle,
+            actionName: nameof(ContentTypesController.Create))
+    </p>
+</header>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@if (Model.Items.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => ((ProcessingTools.Contracts.INameable)model.Items.First()).Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                var id = ((ProcessingTools.Contracts.IIntegerIdentifiable)item).Id;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => ((ProcessingTools.Contracts.INameable)item).Name)
+                    </td>
+                    <td class="separated-items">
+                        <span class="item">
+                            @Html.ActionLink(
+                                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                                actionName: nameof(ContentTypesController.Edit),
+                                routeValues: new { id = id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(
+                                linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
+                                actionName: nameof(ContentTypesController.Details),
+                                routeValues: new { id = id })
+                        </span>
+                        <span class="item">
+                            @Html.ActionLink(
+                                linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                                actionName: nameof(ContentTypesController.Delete),
+                                routeValues: new { id = id })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <footer>
+        @Html.Partial(ViewNames.NavigationFootPartialViewName)
+    </footer>
 }
-
-</table>

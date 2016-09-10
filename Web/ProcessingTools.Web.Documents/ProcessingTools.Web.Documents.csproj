@@ -309,6 +309,12 @@
     <Compile Include="Areas\DataResources\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\DataResources\Controllers\ProductsController.cs" />
     <Compile Include="Areas\DataResources\DataResourcesAreaRegistration.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeCreateViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDeleteViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDetailsViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeEditViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeIndexViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
@@ -573,7 +579,7 @@
     <Folder Include="Areas\Articles\Views\DocumentContent\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
-    <Folder Include="Areas\DataResources\Models\" />
+    <Folder Include="Areas\DataResources\Models\ContentTypes\" />
     <Folder Include="Areas\DataResources\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />

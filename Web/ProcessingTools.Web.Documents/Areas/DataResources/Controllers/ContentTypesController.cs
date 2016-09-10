@@ -3,13 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.DataResources.Data.Entity.Contracts;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Common.ViewModels;
+    using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes;
+    using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts;
     using ProcessingTools.Web.Documents.Extensions;
 
     [Authorize]
@@ -31,21 +37,34 @@
 
         // GET: /Data/Resources/ContentTypes
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? p, int? n)
         {
-            IEnumerable<ContentType> viewModels = null;
+            int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+
+            long numberOfItems = 0L;
+            IEnumerable<IContentTypeIndexViewModel> items = null;
 
             using (var db = this.contextProvider.Create())
             {
-                viewModels = await db.ContentTypes.ToListAsync();
+                var query = db.ContentTypes
+                    .OrderBy(e => e.Name)
+                    .Skip(currentPage * numberOfItemsPerPage)
+                    .Take(numberOfItemsPerPage)
+                    .Select(e => new ContentTypeIndexViewModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name
+                    });
+
+                items = await query.ToListAsync();
+                numberOfItems = await db.ContentTypes.LongCountAsync();
             }
 
-            if (viewModels == null)
-            {
-                throw new EntityNotFoundException();
-            }
+            var viewModel = new ListWithPagingViewModel<IContentTypeIndexViewModel>(nameof(this.Index), numberOfItems, numberOfItemsPerPage, currentPage, items);
 
-            return this.View(viewModels);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
         }
 
         // GET: /Data/Resources/ContentTypes/Details/5
