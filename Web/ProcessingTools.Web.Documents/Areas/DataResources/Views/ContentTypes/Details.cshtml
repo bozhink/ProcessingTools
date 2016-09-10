@@ -4,26 +4,6 @@
     ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
 }
 
-<header>
-    <h2>@Resources.Strings.DeafultDetailsPageHeading</h2>
-</header>
-
+@Html.Partial(ViewNames.DetailsHeaderPartialViewName)
 @Html.Partial(ViewNames.DetailsPartialViewName)
-
-<hr />
-
-<footer>
-    <nav class="separated-items">
-        <span class="item">
-            @Html.ActionLink(
-                linkText: Resources.Strings.DefaultEditActionLinkTitle,
-                actionName: nameof(ContentTypesController.Edit),
-                routeValues: new { id = Model.Id })
-        </span>
-        <span class="item">
-            @Html.ActionLink(
-                linkText: Resources.Strings.DefaultBackToListActionLinkTitle,
-                actionName: nameof(ContentTypesController.Index))
-        </span>
-    </nav>
-</footer>
+@Html.Partial(ViewNames.DetailsFooterPartialViewName)

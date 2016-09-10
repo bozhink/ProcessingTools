@@ -577,6 +577,8 @@
     <Content Include="Content\address-list.less" />
     <Content Include="Content\taxa-ranks.less" />
     <Content Include="Content\black-list.less" />
+    <Content Include="Views\Shared\_DetailsHeader.cshtml" />
+    <Content Include="Views\Shared\_DetailsFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
