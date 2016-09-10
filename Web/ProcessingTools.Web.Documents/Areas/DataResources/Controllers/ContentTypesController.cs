@@ -1,8 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.DataResources.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -11,38 +9,29 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.DataResources.Services.Data.Contracts;
+    using ProcessingTools.DataResources.Services.Data.Models;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes;
     using ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts;
     using ProcessingTools.Web.Documents.Factories;
 
-    using ProcessingTools.DataResources.Services.Data.Contracts;
-
     [Authorize]
     public class ContentTypesController : MvcControllerWithExceptionHandling
     {
-        private const string ContentTypeValidationBinding = nameof(ContentType.Id) + "," + nameof(ContentType.Name);
-
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private const string ContentTypeValidationBinding = nameof(IContentTypeEditViewModel.Id) + "," + nameof(IContentTypeEditViewModel.Name);
 
         private readonly IContentTypesDataService service;
 
-        public ContentTypesController(IDataResourcesDbContextProvider contextProvider, IContentTypesDataService service)
+        public ContentTypesController(IContentTypesDataService service)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
-            this.contextProvider = contextProvider;
             this.service = service;
         }
 
@@ -79,26 +68,8 @@
         {
             ValidationHelpers.ValidateId(id);
 
-            IContentTypeDetailsViewModel viewModel = null;
-
-            using (var db = this.contextProvider.Create())
-            {
-                var query = db.ContentTypes
-                    .Where(e => e.Id.ToString() == id.ToString())
-                    .Select(e => new ContentTypeDetailsViewModel
-                    {
-                        Id = e.Id,
-                        Name = e.Name
-                    });
-
-                viewModel = await query.FirstOrDefaultAsync();
-            }
-
-            if (viewModel == null)
-            {
-                throw new EntityNotFoundException();
-            }
-
+            var viewModel = await this.GetDetailsViewModel(id);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -106,6 +77,7 @@
         [HttpGet]
         public ActionResult Create()
         {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -116,20 +88,17 @@
         {
             if (ModelState.IsValid)
             {
-                using (var db = this.contextProvider.Create())
+                await this.service.Add(new ContentTypeCreateServiceModel
                 {
-                    var entity = new ContentType
-                    {
-                        Name = model.Name
-                    };
+                    Id = model.Id,
+                    Name = model.Name
+                });
 
-                    db.ContentTypes.Add(entity);
-                    await db.SaveChangesAsync();
-                }
-
+                this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
             }
 
+            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return this.View(model);
         }
 
@@ -139,26 +108,8 @@
         {
             ValidationHelpers.ValidateId(id);
 
-            IContentTypeEditViewModel viewModel = null;
-
-            using (var db = this.contextProvider.Create())
-            {
-                var query = db.ContentTypes
-                    .Where(e => e.Id.ToString() == id.ToString())
-                    .Select(e => new ContentTypeEditViewModel
-                    {
-                        Id = e.Id,
-                        Name = e.Name
-                    });
-
-                viewModel = await query.FirstOrDefaultAsync();
-            }
-
-            if (viewModel == null)
-            {
-                throw new EntityNotFoundException();
-            }
-
+            var viewModel = await this.GetEditViewModel(id);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -169,21 +120,17 @@
         {
             if (ModelState.IsValid)
             {
-                using (var db = this.contextProvider.Create())
+                await this.service.Update(new ContentTypeUpdateServiceModel
                 {
-                    var entity = new ContentType
-                    {
-                        Id = model.Id,
-                        Name = model.Name
-                    };
+                    Id = model.Id,
+                    Name = model.Name
+                });
 
-                    db.Entry(entity).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                }
-
+                this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
             }
 
+            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return this.View(model);
         }
 
@@ -193,26 +140,8 @@
         {
             ValidationHelpers.ValidateId(id);
 
-            IContentTypeDetailsViewModel viewModel = null;
-
-            using (var db = this.contextProvider.Create())
-            {
-                var query = db.ContentTypes
-                    .Where(e => e.Id.ToString() == id.ToString())
-                    .Select(e => new ContentTypeDetailsViewModel
-                    {
-                        Id = e.Id,
-                        Name = e.Name
-                    });
-
-                viewModel = await query.FirstOrDefaultAsync();
-            }
-
-            if (viewModel == null)
-            {
-                throw new EntityNotFoundException();
-            }
-
+            var viewModel = await this.GetDetailsViewModel(id);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -221,14 +150,52 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            using (var db = this.contextProvider.Create())
+            await this.service.Delete(id);
+            this.Response.StatusCode = (int)HttpStatusCode.Redirect;
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                var entity = await Task.FromResult(db.ContentTypes.Find(id));
-                db.ContentTypes.Remove(entity);
-                await db.SaveChangesAsync();
+                this.service.TryDispose();
             }
 
-            return this.RedirectToAction(nameof(this.Index));
+            base.Dispose(disposing);
+        }
+
+        private async Task<IContentTypeDetailsViewModel> GetDetailsViewModel(int? id)
+        {
+            var entity = await this.service.GetDetails(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            var viewModel = new ContentTypeDetailsViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+
+            return viewModel;
+        }
+
+        private async Task<ContentTypeEditViewModel> GetEditViewModel(int? id)
+        {
+            var entity = await this.service.GetDetails(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            var viewModel = new ContentTypeEditViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+            return viewModel;
         }
     }
 }

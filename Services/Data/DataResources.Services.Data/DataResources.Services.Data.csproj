@@ -44,8 +44,14 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IContentTypesDataService.cs" />
+    <Compile Include="Models\ContentTypeCreateServiceModel.cs" />
+    <Compile Include="Models\ContentTypeDetailsServiceModel.cs" />
     <Compile Include="Models\ContentTypeServiceModel.cs" />
+    <Compile Include="Models\ContentTypeUpdateServiceModel.cs" />
+    <Compile Include="Models\Contracts\IContentTypeCreateServiceModel.cs" />
+    <Compile Include="Models\Contracts\IContentTypeDetailsServiceModel.cs" />
     <Compile Include="Models\Contracts\IContentTypeServiceModel.cs" />
+    <Compile Include="Models\Contracts\IContentTypeUpdateServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContentTypesDataService.cs" />
   </ItemGroup>
@@ -78,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

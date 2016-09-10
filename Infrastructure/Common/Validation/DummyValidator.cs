@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq.Expressions;
-
     using Constants;
     using Exceptions;
 
@@ -36,6 +35,37 @@
             if (entity == null)
             {
                 throw new ArgumentNullException(paramName: nameof(entity), message: message);
+            }
+        }
+
+        /// <summary>
+        /// Checks service model dummy parameter with name 'model' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the model. It should be reference object.</typeparam>
+        /// <param name="model">Dummy parameter with name 'model' to be checked.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateModel<T>(T model)
+            where T : class
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(model));
+            }
+        }
+
+        /// <summary>
+        /// Checks service model dummy parameter with name 'model' if it is null and throws ArgumentNullException.
+        /// </summary>
+        /// <typeparam name="T">Type of the model. It should be reference object.</typeparam>
+        /// <param name="model">Dummy parameter with name 'model' to be checked.</param>
+        /// <param name="message">Custom message to be added in the resultant ArgumentNullException.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ValidateModel<T>(T model, string message)
+            where T : class
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(model), message: message);
             }
         }
 

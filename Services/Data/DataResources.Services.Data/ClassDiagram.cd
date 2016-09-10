@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProcessingTools.DataResources.Services.Data.ContentTypesDataService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAQAAAEAAAEAAIAAAAAAAAA=</HashCode>
+      <FileName>Services\ContentTypesDataService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProcessingTools.DataResources.Services.Data.Models.ContentTypeCreateServiceModel" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ContentTypeCreateServiceModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.DataResources.Services.Data.Models.ContentTypeDetailsServiceModel" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ContentTypeDetailsServiceModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.DataResources.Services.Data.Models.ContentTypeServiceModel" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ContentTypeServiceModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProcessingTools.DataResources.Services.Data.Models.ContentTypeUpdateServiceModel" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ContentTypeUpdateServiceModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ProcessingTools.DataResources.Services.Data.Contracts.IContentTypesDataService" Collapsed="true">
+    <Position X="13.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAEAAAEAAIAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IContentTypesDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.DataResources.Services.Data.Models.Contracts.IContentTypeCreateServiceModel" Collapsed="true">
+    <Position X="9" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\IContentTypeCreateServiceModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.DataResources.Services.Data.Models.Contracts.IContentTypeDetailsServiceModel" Collapsed="true">
+    <Position X="11.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\IContentTypeDetailsServiceModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.DataResources.Services.Data.Models.Contracts.IContentTypeServiceModel" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\IContentTypeServiceModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProcessingTools.DataResources.Services.Data.Models.Contracts.IContentTypeUpdateServiceModel" Collapsed="true">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Contracts\IContentTypeUpdateServiceModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ProcessingTools.DataResources.Services.Data.Assembly" Collapsed="true">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assembly.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
