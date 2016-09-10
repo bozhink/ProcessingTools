@@ -112,13 +112,18 @@
         // POST: /Data/Resources/ContentTypes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = ContentTypeValidationBinding)] ContentType model)
+        public async Task<ActionResult> Create([Bind(Include = ContentTypeValidationBinding)] ContentTypeCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.ContentTypes.Add(model);
+                    var entity = new ContentType
+                    {
+                        Name = model.Name
+                    };
+
+                    db.ContentTypes.Add(entity);
                     await db.SaveChangesAsync();
                 }
 

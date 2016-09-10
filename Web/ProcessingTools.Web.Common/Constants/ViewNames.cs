@@ -11,6 +11,7 @@
         public const string DeleteHeaderPartialViewName = "_DeleteHeader";
         public const string DeleteFooterPartialViewName = "_DeleteFooter";
         public const string HelpSubmenuPartialViewName = "_HelpSubmenu";
+        public const string BackToListFooterPartialViewName = "_BackToListFooter";
 
         public const string NavigationFootPartialViewName = "~/Views/Shared/_NavigationFoot.cshtml";
 

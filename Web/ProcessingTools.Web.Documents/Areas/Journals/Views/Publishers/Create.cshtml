@@ -153,16 +153,5 @@
 
         </div>
     </div>
-
 </section>
-
-<hr />
-
-<footer>
-
-    <nav class="separated-items">
-        <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
-        </span>
-    </nav>
-</footer>
+@Html.Partial(ViewNames.BackToListFooterPartialViewName)

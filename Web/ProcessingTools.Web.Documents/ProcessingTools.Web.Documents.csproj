@@ -313,6 +313,7 @@
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDetailsViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeEditViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeIndexViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeCreateViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeDetailsViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
@@ -579,6 +580,7 @@
     <Content Include="Content\black-list.less" />
     <Content Include="Views\Shared\_DetailsHeader.cshtml" />
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
+    <Content Include="Views\Shared\_BackToListFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
