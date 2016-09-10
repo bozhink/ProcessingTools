@@ -5,6 +5,7 @@
         public const string DefaultLayoutViewName = "~/Views/Shared/_Layout.cshtml";
 
         public const string LoginPartialViewName = "_LoginPartial";
+        public const string EditPartialViewName = "_Edit";
         public const string DetailsPartialViewName = "_Details";
         public const string DetailsHeaderPartialViewName = "_DetailsHeader";
         public const string DetailsFooterPartialViewName = "_DetailsFooter";

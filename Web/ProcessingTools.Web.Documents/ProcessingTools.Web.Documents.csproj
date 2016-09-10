@@ -315,6 +315,7 @@
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeIndexViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeCreateViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeDetailsViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeEditViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
@@ -517,6 +518,7 @@
     <Content Include="Areas\DataResources\Views\ContentTypes\_Details.cshtml" />
     <Content Include="Views\Shared\_DeleteFooter.cshtml" />
     <Content Include="Views\Shared\_DeleteHeader.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\_Edit.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

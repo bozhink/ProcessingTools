@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts
 {
-    public interface IContentTypeCreateViewModel : IContentTypeEditViewModel
+    public interface IContentTypeEditViewModel : IContentTypeIndexViewModel
     {
     }
 }

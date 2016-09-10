@@ -139,11 +139,19 @@
         {
             ValidationHelpers.ValidateId(id);
 
-            ContentType viewModel = null;
+            IContentTypeEditViewModel viewModel = null;
 
             using (var db = this.contextProvider.Create())
             {
-                viewModel = await Task.FromResult(db.ContentTypes.Find(id));
+                var query = db.ContentTypes
+                    .Where(e => e.Id.ToString() == id.ToString())
+                    .Select(e => new ContentTypeEditViewModel
+                    {
+                        Id = e.Id,
+                        Name = e.Name
+                    });
+
+                viewModel = await query.FirstOrDefaultAsync();
             }
 
             if (viewModel == null)
@@ -157,13 +165,19 @@
         // POST: /Data/Resources/ContentTypes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = ContentTypeValidationBinding)] ContentType model)
+        public async Task<ActionResult> Edit([Bind(Include = ContentTypeValidationBinding)] ContentTypeEditViewModel model)
         {
             if (ModelState.IsValid)
             {
                 using (var db = this.contextProvider.Create())
                 {
-                    db.Entry(model).State = EntityState.Modified;
+                    var entity = new ContentType
+                    {
+                        Id = model.Id,
+                        Name = model.Name
+                    };
+
+                    db.Entry(entity).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                 }
 
