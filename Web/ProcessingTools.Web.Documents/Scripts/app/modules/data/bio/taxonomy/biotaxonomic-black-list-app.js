@@ -20,6 +20,7 @@
         .controller('BiotaxonomicBlackListController', [
             'DataSet',
             'SearchStringService',
+            'NgJsonRequester',
             app.controllers.BiotaxonomicBlackListController
         ]);
 }(window.angular, window.app));

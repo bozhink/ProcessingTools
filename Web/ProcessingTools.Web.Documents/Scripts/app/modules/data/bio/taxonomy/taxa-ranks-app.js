@@ -20,6 +20,7 @@
         .controller('TaxaRanksController', [
             'DataSet',
             'SearchStringService',
+            'NgJsonRequester',
             app.controllers.TaxaRanksController
         ]);
 }(window.angular, window.app));

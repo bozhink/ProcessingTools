@@ -1,15 +1,26 @@
 ﻿.taxon-list {
   margin: 0 0 10px 0;
-  list-style-type: decimal-leading-zero;
+  padding: 0;
+  list-style-type: none;
 }
 .taxon-list li {
   margin: 0;
   padding: 5px;
+  display: table-row;
 }
-.taxon-list .taxon-name,
+.taxon-list .taxon-name {
+  border: none;
+  display: table-cell;
+  min-width: 200px;
+  width: 200px;
+}
 .taxon-list .taxon-rank {
   border: none;
+  display: table-cell;
+  min-width: 80px;
+  width: 80px;
 }
 .taxon-list .remove-button {
   cursor: pointer;
+  display: table-cell;
 }

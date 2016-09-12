@@ -8,7 +8,7 @@
     app.controllers = app.controllers || {};
     controllers = app.controllers;
 
-    controllers.TaxaRanksController = function TaxaRanksController(dataSet, searchService) {
+    controllers.TaxaRanksController = function TaxaRanksController(dataSet, searchService, jsonRequester) {
         var self = this,
             TaxonRank = app.models.TaxonRank;
 
@@ -58,5 +58,32 @@
                     }
                 }, function errorCallback(response) { });
         };
+
+        self.submitTaxa = function (url) {
+            var i, len, taxon, taxa = [];
+
+            if (!url) {
+                return;
+            }
+
+            len = dataSet.data.length;
+            for (i = 0; i < len; i += 1) {
+                taxon = dataSet.data[i];
+                taxa.push({
+                    TaxonName: taxon.taxonName,
+                    Rank: taxon.rank
+                });
+            }
+
+            jsonRequester.post(url, {
+                data: {
+                    Taxa: taxa
+                }
+            }).then(function (response) {
+                dataSet.removeAll();
+            }).catch(function (error) {
+
+            });
+        }
     };
 }(window));

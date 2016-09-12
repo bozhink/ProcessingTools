@@ -1,17 +1,30 @@
 ﻿.taxon-list {
     margin: 0 0 10px 0;
-    list-style-type: decimal-leading-zero;
+    padding: 0;
+    list-style-type: none;
 
     li {
         margin: 0;
         padding: 5px;
+        display: table-row;
     }
 
-    .taxon-name, .taxon-rank {
+    .taxon-name {
         border: none;
+        display: table-cell;
+        min-width: 200px;
+        width: 200px;
+    }
+
+    .taxon-rank {
+        border: none;
+        display: table-cell;
+        min-width: 80px;
+        width: 80px;
     }
 
     .remove-button {
         cursor: pointer;
+        display: table-cell;
     }
 }
