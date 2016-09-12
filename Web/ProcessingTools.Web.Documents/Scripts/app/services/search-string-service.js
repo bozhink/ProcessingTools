@@ -8,7 +8,11 @@
     app.services = app.services || {};
     services = app.services;
 
-    services.SearchStringService = function SearchStringService($http) {
+    services.SearchStringService = function SearchStringService(jsonRequester) {
+        if (!jsonRequester) {
+            throw 'JsonRequester should not be null';
+        }
+
         function search(url, searchString) {
             var request;
             if (!url || !searchString) {
@@ -20,18 +24,11 @@
                 throw 'Search string should not be empty';
             }
 
-            request = {
-                method: 'POST',
-                url: url,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            return jsonRequester.post(url, {
                 data: {
                     searchString: searchString
                 }
-            };
-
-            return $http(request);
+            });
         }
 
         return {

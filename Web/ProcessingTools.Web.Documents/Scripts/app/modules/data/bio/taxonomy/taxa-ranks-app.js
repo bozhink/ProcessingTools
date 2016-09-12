@@ -9,8 +9,12 @@
         .service('DataSet', [
             app.data.DataSet
         ])
-        .factory('SearchStringService', [
+        .factory('NgJsonRequester', [
             '$http',
+            app.services.NgJsonRequester
+        ])
+        .factory('SearchStringService', [
+            'NgJsonRequester',
             app.services.SearchStringService
         ])
         .controller('TaxaRanksController', [

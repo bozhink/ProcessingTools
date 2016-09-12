@@ -143,6 +143,7 @@
                 .Include(
                     "~/Scripts/app/models/data/bio/taxonomy/taxon-rank.js",
                     "~/Scripts/app/data/data-set.js",
+                    "~/Scripts/app/services/ng-json-requester.js",
                     "~/Scripts/app/services/search-string-service.js",
                     "~/Scripts/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
                     "~/Scripts/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
@@ -156,6 +157,7 @@
                 .Include(
                     "~/Scripts/app/models/data/bio/taxonomy/black-list-item.js",
                     "~/Scripts/app/data/data-set.js",
+                    "~/Scripts/app/services/ng-json-requester.js",
                     "~/Scripts/app/services/search-string-service.js",
                     "~/Scripts/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
                     "~/Scripts/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
