@@ -6,10 +6,10 @@
     }
 
     angular.module('biotaxonomicblacklistApp', [])
-        .factory('DataSet', [
+        .service('DataSet', [
             app.data.DataSet
         ])
-        .service('SearchStringService', [
+        .factory('SearchStringService', [
             '$http',
             app.services.SearchStringService
         ])
