@@ -17,20 +17,22 @@
         }
 
         function addItemToSet(item) {
-            var i, len, currentItem;
+            var i, len, currentItem, hash;
 
             if (!item) {
                 return;
             }
 
-            if (!item.compare || typeof (item.compare) !== 'function') {
-                throw 'Item to add should have function "compare"';
+            if (!item.getHash || typeof (item.getHash) !== 'function') {
+                throw 'Item to add should have function "getHash"';
             }
+
+            hash = item.getHash();
 
             len = dataSet.length;
             for (i = 0; i < len; i += 1) {
                 currentItem = dataSet[i];
-                if (item.compare(currentItem)) {
+                if (hash === currentItem.getHash()) {
                     return;
                 }
             }

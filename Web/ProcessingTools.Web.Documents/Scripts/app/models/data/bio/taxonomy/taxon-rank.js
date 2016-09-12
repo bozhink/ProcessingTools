@@ -9,6 +9,7 @@
     models = app.models;
 
     function TaxonRank(taxonName, rank) {
+        var self = this;
 
         taxonName = taxonName ? taxonName.replace(/\s+/g, '') : '';
         if (taxonName.length < 1) {
@@ -20,14 +21,14 @@
             throw 'Null or whitespace';
         }
 
-        this.id = null;
-        this.taxonName = taxonName;
-        this.rank = rank;
+        self.id = undefined;
+        self.taxonName = taxonName;
+        self.rank = rank;
     }
 
-    TaxonRank.prototype.compare = function (taxon) {
+    TaxonRank.prototype.getHash = function () {
         var self = this;
-        return (self.taxonName === taxon.taxonName) && (self.rank === taxon.rank);
+        return `${self.taxonName}${self.rank}`;
     };
 
     models.TaxonRank = TaxonRank;

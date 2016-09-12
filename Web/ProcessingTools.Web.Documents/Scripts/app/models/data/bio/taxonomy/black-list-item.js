@@ -9,18 +9,20 @@
     models = app.models;
 
     function BlackListItem(content) {
+        var self = this;
+
         content = content ? content.replace(/\s+/g, '') : '';
         if (content.length < 1) {
             throw 'Null or whitespace content';
         }
 
-        this.id = null;
-        this.content = content;
+        self.id = undefined;
+        self.content = content;
     }
 
-    BlackListItem.prototype.compare = function (item) {
+    BlackListItem.prototype.getHash = function () {
         var self = this;
-        return (self.content === item.content);
+        return self.content;
     };
 
     models.BlackListItem = BlackListItem;
