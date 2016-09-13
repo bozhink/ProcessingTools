@@ -376,48 +376,6 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\address-list.css">
-      <DependentUpon>address-list.less</DependentUpon>
-    </Content>
-    <Content Include="Content\address-list.min.css">
-      <DependentUpon>address-list.css</DependentUpon>
-    </Content>
-    <Content Include="Content\biotaxonomic-lists.css">
-      <DependentUpon>biotaxonomic-lists.less</DependentUpon>
-    </Content>
-    <Content Include="Content\biotaxonomic-lists.min.css">
-      <DependentUpon>biotaxonomic-lists.css</DependentUpon>
-    </Content>
-    <Content Include="Content\document-edit.css">
-      <DependentUpon>document-edit.less</DependentUpon>
-    </Content>
-    <Content Include="Content\document-edit.min.css">
-      <DependentUpon>document-edit.css</DependentUpon>
-    </Content>
-    <Content Include="Content\document-preview.css">
-      <DependentUpon>document-preview.less</DependentUpon>
-    </Content>
-    <Content Include="Content\document-preview.min.css">
-      <DependentUpon>document-preview.css</DependentUpon>
-    </Content>
-    <Content Include="Content\site.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Content\site.min.css">
-      <DependentUpon>site.css</DependentUpon>
-    </Content>
-    <Content Include="Content\toolbox.css">
-      <DependentUpon>toolbox.less</DependentUpon>
-    </Content>
-    <Content Include="Content\toolbox.min.css">
-      <DependentUpon>toolbox.css</DependentUpon>
-    </Content>
-    <Content Include="Content\tooltips.css">
-      <DependentUpon>tooltips.less</DependentUpon>
-    </Content>
-    <Content Include="Content\tooltips.min.css">
-      <DependentUpon>tooltips.css</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Articles\Views\web.config" />
