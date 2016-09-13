@@ -525,7 +525,7 @@
     <Content Include="Content\tooltips.less" />
     <Content Include="Content\document-edit.less" />
     <Content Include="JSLintNet.json" />
-    <Content Include="Content\Templates\coordinates-map.handlebars" />
+    <Content Include="static\templates\coordinates-map.handlebars" />
     <Content Include="Scripts\custom\document-preview.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -570,7 +570,7 @@
     <Content Include="Views\Shared\Errors\InvalidNumberOfItemsPerPage.cshtml" />
     <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
     <Content Include="Settings.StyleCop" />
-    <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
+    <Content Include="static\templates\coordinates-toolbox.handlebars" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
     <Content Include="Content\address-list.less" />
     <Content Include="Views\Shared\_DetailsHeader.cshtml" />
@@ -589,6 +589,8 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="static\css\" />
+    <Folder Include="static\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

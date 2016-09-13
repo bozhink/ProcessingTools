@@ -3,7 +3,7 @@
 
     window.coordinatesToolboxes = (function () {
 
-        var template = new window.Template('../../../Content/Templates');
+        var template = new window.Template('../../../static/templates');
 
         function listAnchorClickEventHandler(event) {
             const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
