@@ -416,6 +416,48 @@
     <Content Include="Scripts\config\toastr-config.js" />
     <Content Include="Scripts\custom\toolbox-event-handlers.js" />
     <Content Include="Scripts\data\documents\document-content-data.js" />
+    <Content Include="static\styles\address-list.css">
+      <DependentUpon>address-list.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\address-list.min.css">
+      <DependentUpon>address-list.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\biotaxonomic-lists.css">
+      <DependentUpon>biotaxonomic-lists.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\biotaxonomic-lists.min.css">
+      <DependentUpon>biotaxonomic-lists.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-edit.css">
+      <DependentUpon>document-edit.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-edit.min.css">
+      <DependentUpon>document-edit.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-preview.css">
+      <DependentUpon>document-preview.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-preview.min.css">
+      <DependentUpon>document-preview.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\toolbox.css">
+      <DependentUpon>toolbox.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\toolbox.min.css">
+      <DependentUpon>toolbox.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\tooltips.css">
+      <DependentUpon>tooltips.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\tooltips.min.css">
+      <DependentUpon>tooltips.css</DependentUpon>
+    </Content>
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
