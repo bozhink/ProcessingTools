@@ -200,3 +200,6 @@ _Pvt_Extensions/
 ModelManifest.xml
 .ntvs_analysis.dat
 packages/
+
+# Static .css files are ignored in favor of .less/.sass etc files
+static/styles/*.css
