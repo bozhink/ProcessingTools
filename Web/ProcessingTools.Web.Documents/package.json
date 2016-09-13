@@ -9,6 +9,6 @@
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
   "dependencies": {
-    "monaco-editor": "^0.5.1"
+    "monaco-editor": "^0.6.1"
   }
 }
