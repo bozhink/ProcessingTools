@@ -55,7 +55,8 @@
             <fieldset>
                 <legend>Taxa list</legend>
                 <ul class="taxon-list">
-                    <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'">
+                    <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-item">
+                        <span class="index">{{$index + 1}}.</span>
                         <span class="taxon-name">{{taxon.taxonName}}</span>
                         <span class="taxon-rank">{{taxon.rank}}</span>
                         <span ng-click="taxaList.removeTaxon(taxon.id)"

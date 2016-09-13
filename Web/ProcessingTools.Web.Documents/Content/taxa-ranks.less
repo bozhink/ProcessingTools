@@ -1,30 +1,54 @@
-﻿.taxon-list {
+﻿@taxon-name-width: 200px;
+@taxon-rank-width: 80px;
+@index-width: 20px;
+@remove-button-width: 40px;
+@cell-horizontal-padding: 10px;
+@cell-vertical-padding: 5px;
+@border: 1px solid #E5E5E5;
+@color-danger: red;
+@color-hover: azure;
+
+.list-item-content(@width) {
+    display: table-cell;
+    min-width: @width;
+    width: @width;
+    padding: @cell-vertical-padding @cell-horizontal-padding;
+}
+
+.taxon-list {
     margin: 0 0 10px 0;
     padding: 0;
-    list-style-type: none;
+    display: table;
+    border-collapse: collapse;
 
-    li {
-        margin: 0;
-        padding: 5px;
+    .list-item {
         display: table-row;
+        border-top: @border;
+        border-bottom: @border;
+
+        &:hover {
+            background-color: @color-hover;
+        }
+    }
+
+    .index {
+        .list-item-content(@index-width);
+        text-align: right;
     }
 
     .taxon-name {
-        border: none;
-        display: table-cell;
-        min-width: 200px;
-        width: 200px;
+        .list-item-content(@taxon-name-width);
     }
 
     .taxon-rank {
-        border: none;
-        display: table-cell;
-        min-width: 80px;
-        width: 80px;
+        .list-item-content(@taxon-rank-width);
     }
 
     .remove-button {
+        .list-item-content(@remove-button-width);
         cursor: pointer;
-        display: table-cell;
+        &:hover {
+            color: @color-danger;
+        }
     }
 }
