@@ -588,7 +588,6 @@
     <Folder Include="Areas\DataResources\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="static\code\" />
   </ItemGroup>
