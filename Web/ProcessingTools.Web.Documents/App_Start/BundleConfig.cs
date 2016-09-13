@@ -36,7 +36,7 @@
             bundles.Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
                 .Include(
                     "~/bower_components/interact/interact.js",
-                    "~/Scripts/config/interact-config.js"));
+                    "~/static/code/config/interact-config.js"));
 
             // Modernizr
             bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
@@ -53,7 +53,7 @@
             bundles.Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.js",
-                    "~/Scripts/config/toastr-config.js"));
+                    "~/static/code/config/toastr-config.js"));
 
             // Handlebars
             bundles.Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
@@ -73,7 +73,7 @@
             bundles.Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
                 .Include(
                     "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/Scripts/config/monaco-editor-config.js"));
+                    "~/static/code/config/monaco-editor-config.js"));
 
             // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
