@@ -24,11 +24,7 @@
     "inputFile": "Content/address-list.less"
   },
   {
-    "outputFile": "Content/taxa-ranks.css",
-    "inputFile": "Content/taxa-ranks.less"
-  },
-  {
-    "outputFile": "Content/black-list.css",
-    "inputFile": "Content/black-list.less"
+    "outputFile": "Content/biotaxonomic-lists.css",
+    "inputFile": "Content/biotaxonomic-lists.less"
   }
 ]

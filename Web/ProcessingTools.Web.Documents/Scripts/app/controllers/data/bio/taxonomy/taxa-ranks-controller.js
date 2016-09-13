@@ -56,7 +56,8 @@
                     if (response.status === 200) {
                         dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
                     }
-                }, function errorCallback(response) { });
+                }).catch(function () {
+                });
         };
 
         self.submitTaxa = function (url) {
@@ -79,11 +80,10 @@
                 data: {
                     Taxa: taxa
                 }
-            }).then(function (response) {
+            }).then(function () {
                 dataSet.removeAll();
-            }).catch(function (error) {
-
+            }).catch(function () {
             });
-        }
+        };
     };
 }(window));

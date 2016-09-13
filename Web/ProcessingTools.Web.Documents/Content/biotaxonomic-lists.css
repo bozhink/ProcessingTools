@@ -1,43 +1,49 @@
-﻿.taxon-list {
+﻿.view-list {
   margin: 0 0 10px 0;
   padding: 0;
   display: table;
   border-collapse: collapse;
 }
-.taxon-list .list-item {
+.view-list .list-item {
   display: table-row;
   border-top: 1px solid #E5E5E5;
   border-bottom: 1px solid #E5E5E5;
 }
-.taxon-list .list-item:hover {
+.view-list .list-item:hover {
   background-color: azure;
 }
-.taxon-list .index {
+.view-list .index {
   display: table-cell;
   min-width: 20px;
   width: 20px;
   padding: 5px 10px;
   text-align: right;
 }
-.taxon-list .taxon-name {
+.view-list .taxon-name {
   display: table-cell;
   min-width: 200px;
   width: 200px;
   padding: 5px 10px;
 }
-.taxon-list .taxon-rank {
+.view-list .taxon-rank {
   display: table-cell;
   min-width: 80px;
   width: 80px;
   padding: 5px 10px;
 }
-.taxon-list .remove-button {
+.view-list .black-list-item {
+  display: table-cell;
+  min-width: 200px;
+  width: 200px;
+  padding: 5px 10px;
+}
+.view-list .remove-button {
   display: table-cell;
   min-width: 40px;
   width: 40px;
   padding: 5px 10px;
   cursor: pointer;
 }
-.taxon-list .remove-button:hover {
+.view-list .remove-button:hover {
   color: red;
 }

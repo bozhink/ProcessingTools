@@ -150,9 +150,9 @@
 
             bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
                 .Include(
-                    "~/Content/taxa-ranks.min.css"));
+                    "~/Content/biotaxonomic-lists.min.css"));
 
-            // Taxa Ranks
+            // Biotaxonomic Black List
             bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
                 .Include(
                     "~/Scripts/app/models/data/bio/taxonomy/black-list-item.js",
@@ -164,7 +164,7 @@
 
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
-                    "~/Content/black-list.min.css"));
+                    "~/Content/biotaxonomic-lists.min.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }

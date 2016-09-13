@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Taxa Ranks";
+
     var searchAnchorTag = Html.ActionLink("Search", nameof(TaxaRanksController.Search)).ToHtmlString();
     var searchUrl = System.Text.RegularExpressions.Regex.Replace(searchAnchorTag, @".*?href=""([^""<>]+)"".*", "$1");
 
@@ -54,7 +55,7 @@
         <div class="form-group" ng-if="taxaList.taxa.length">
             <fieldset>
                 <legend>Taxa list</legend>
-                <ul class="taxon-list">
+                <ul class="view-list">
                     <li ng-repeat="taxon in taxaList.taxa | orderBy: 'taxonName'" class="list-item">
                         <span class="index">{{$index + 1}}.</span>
                         <span class="taxon-name">{{taxon.taxonName}}</span>

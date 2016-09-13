@@ -8,7 +8,7 @@
     app.controllers = app.controllers || {};
     controllers = app.controllers;
 
-    controllers.BiotaxonomicBlackListController = function BiotaxonomicBlackListController(dataSet, searchService) {
+    controllers.BiotaxonomicBlackListController = function BiotaxonomicBlackListController(dataSet, searchService, jsonRequester) {
         var self = this,
             BlackListItem = app.models.BlackListItem;
 
@@ -49,7 +49,33 @@
                     if (response.status === 200) {
                         dataSet.addMulti(response.data.Items, (e) => new BlackListItem(e.Content));
                     }
-                }, function errorCallback(response) { });
+                }).catch(function () {
+                });
+        };
+
+        self.submitItems = function (url) {
+            var i, len, item, items = [];
+
+            if (!url) {
+                return;
+            }
+
+            len = dataSet.data.length;
+            for (i = 0; i < len; i += 1) {
+                item = dataSet.data[i];
+                items.push({
+                    Content: item.content
+                });
+            }
+
+            jsonRequester.post(url, {
+                data: {
+                    Items: items
+                }
+            }).then(function () {
+                dataSet.removeAll();
+            }).catch(function () {
+            });
         };
     };
 }(window));

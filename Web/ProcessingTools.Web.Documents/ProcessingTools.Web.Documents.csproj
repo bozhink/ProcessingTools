@@ -300,8 +300,8 @@
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\Contracts\ITaxonRankResponseModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\SearchResposeModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankResponseModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemsViewModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemsRequestModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemRequestModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxaRanksRequestModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankRequestModel.cs" />
     <Compile Include="Areas\DataResources\Controllers\AbbreviationsController.cs" />
@@ -382,11 +382,11 @@
     <Content Include="Content\address-list.min.css">
       <DependentUpon>address-list.css</DependentUpon>
     </Content>
-    <Content Include="Content\black-list.css">
-      <DependentUpon>black-list.less</DependentUpon>
+    <Content Include="Content\biotaxonomic-lists.css">
+      <DependentUpon>biotaxonomic-lists.less</DependentUpon>
     </Content>
-    <Content Include="Content\black-list.min.css">
-      <DependentUpon>black-list.css</DependentUpon>
+    <Content Include="Content\biotaxonomic-lists.min.css">
+      <DependentUpon>biotaxonomic-lists.css</DependentUpon>
     </Content>
     <Content Include="Content\document-edit.css">
       <DependentUpon>document-edit.less</DependentUpon>
@@ -405,12 +405,6 @@
     </Content>
     <Content Include="Content\site.min.css">
       <DependentUpon>site.css</DependentUpon>
-    </Content>
-    <Content Include="Content\taxa-ranks.css">
-      <DependentUpon>taxa-ranks.less</DependentUpon>
-    </Content>
-    <Content Include="Content\taxa-ranks.min.css">
-      <DependentUpon>taxa-ranks.css</DependentUpon>
     </Content>
     <Content Include="Content\toolbox.css">
       <DependentUpon>toolbox.less</DependentUpon>
@@ -579,17 +573,16 @@
     <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
     <Content Include="Content\address-list.less" />
-    <Content Include="Content\taxa-ranks.less" />
-    <Content Include="Content\black-list.less" />
     <Content Include="Views\Shared\_DetailsHeader.cshtml" />
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
     <Content Include="Views\Shared\_BackToListFooter.cshtml" />
+    <Content Include="Content\biotaxonomic-lists.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\DocumentContent\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
-    <Folder Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\" />
+    <Folder Include="Areas\BioTaxonomyData\ViewModels\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
     <Folder Include="Areas\DataResources\Models\ContentTypes\" />
     <Folder Include="Areas\DataResources\Views\Shared\" />
