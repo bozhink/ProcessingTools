@@ -1,4 +1,4 @@
-﻿(function (window) {
+﻿(function (window, document, $) {
     'use strict';
 
     const
@@ -11,9 +11,10 @@
         SAVE_BUTTON_ID = 'save-button',
         REFRESH_BUTTON_ID = 'refresh-button';
 
-    var sessionStorage = window.sessionStorage,
+    var app = window.app,
+        sessionStorage = window.sessionStorage,
         monacoEditor = new window.MonacoEditor(window, document),
-        jsonRequester = new window.JsonRequester(),
+        jsonRequester = new app.services.JsonRequester($),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1;
 
@@ -48,7 +49,8 @@
 
             // Populate modes and themes
             if (themes) {
-                for (i = 0, len = themes.length; i < len; i += 1) {
+                len = themes.length;
+                for (i = 0; i < len; i += 1) {
                     option = document.createElement('option');
                     option.textContent = themes[i].display;
                     option.selected = themes[i].selected;
@@ -77,7 +79,8 @@
             }
 
             if (modes) {
-                for (i = 0, len = modes.length; i < len; i += 1) {
+                len = modes.length;
+                for (i = 0; i < len; i += 1) {
                     option = document.createElement('option');
                     option.textContent = modes[i].modeId;
                     option.selected = modes[i].selected;
@@ -107,4 +110,4 @@
         .getElementById(REFRESH_BUTTON_ID)
         .addEventListener('click', getContentEventHandler, false);
 
-}(window));
+}(window, window.document, window.jQuery));

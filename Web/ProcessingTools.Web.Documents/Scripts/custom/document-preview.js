@@ -12,9 +12,10 @@
         REFRESH_BUTTON_ID = 'refresh-button',
         MAIN_ASIDE_ID = 'aside-main-box';
 
-    var sessionStorage = window.sessionStorage,
+    var app = window.app,
+        sessionStorage = window.sessionStorage,
         interactConfig = new window.InteractJSConfig(),
-        jsonRequester = new window.JsonRequester(),
+        jsonRequester = new app.services.JsonRequester($),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,
         mainAside = document.getElementById(MAIN_ASIDE_ID);
@@ -342,4 +343,4 @@
     document
         .getElementById(CONTENT_ELEMENT_ID)
         .addEventListener('mouseout', mouseoutXrefEventHandler, false);
-}(window, document, window.jQuery));
+}(window, window.document, window.jQuery));

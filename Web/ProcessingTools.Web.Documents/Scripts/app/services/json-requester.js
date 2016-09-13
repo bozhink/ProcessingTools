@@ -1,7 +1,14 @@
-﻿(function (window, $) {
+﻿(function (window) {
     'use strict';
+    var app, services;
 
-    window.JsonRequester = function () {
+    window.app = window.app || {};
+    app = window.app;
+
+    app.services = app.services || {};
+    services = app.services;
+
+    services.JsonRequester = function ($) {
         function send(method, url, options) {
             options = options || {};
 
@@ -51,4 +58,4 @@
             delete: del
         };
     };
-}(window, window.jQuery));
+}(window));

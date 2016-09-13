@@ -408,7 +408,7 @@
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
     <Content Include="static\code\config\interact-config.js" />
-    <Content Include="Scripts\app\json-requester.js" />
+    <Content Include="Scripts\app\services\json-requester.js" />
     <Content Include="Scripts\custom\files-index.js" />
     <Content Include="Scripts\custom\html-selection-tagger.js" />
     <Content Include="Scripts\custom\key-bindings.js" />
