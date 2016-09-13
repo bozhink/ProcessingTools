@@ -547,8 +547,8 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="static\css\" />
-    <Folder Include="static\js\" />
+    <Folder Include="static\code\" />
+    <Folder Include="static\styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
