@@ -1,4 +1,8 @@
-﻿(function (window) {
+﻿/*property
+    NgJsonRequester, app, data, delete, get, headers, method, post, put,
+    services, url
+*/
+(function (window) {
     'use strict';
     var app, services;
 
@@ -10,13 +14,13 @@
 
     services.NgJsonRequester = function NgJsonRequester($http) {
         function send(method, url, options) {
-            var headers, data, request;
-
-            options = options || {};
+            var headers, data, request, promise;
 
             if (!url) {
                 throw 'URL should not be null';
             }
+
+            options = options || {};
 
             headers = options.headers || {};
             headers['Content-Type'] = 'application/json';
@@ -30,7 +34,9 @@
                 data: data
             };
 
-            return $http(request);
+            promise = $http(request);
+
+            return promise;
         }
 
         function get(url, options) {
@@ -45,7 +51,7 @@
             return send('PUT', url, options);
         }
 
-        function delele(url, options) {
+        function del(url, options) {
             return send('DELETE', url, options);
         }
 
@@ -53,7 +59,7 @@
             get: get,
             post: post,
             put: put,
-            delele: delele
+            delete: del
         };
     };
 }(window));

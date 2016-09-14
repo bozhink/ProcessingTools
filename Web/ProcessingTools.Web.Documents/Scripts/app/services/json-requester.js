@@ -1,4 +1,8 @@
-﻿(function (window) {
+﻿/*property
+    JsonRequester, ajax, app, contentType, data, delete, error, get, headers,
+    method, post, put, send, services, stringify, success, url
+*/
+(function (window) {
     'use strict';
     var app, services;
 
@@ -10,12 +14,17 @@
 
     services.JsonRequester = function ($) {
         function send(method, url, options) {
+            var headers, data, promise;
+
+            if (!url) {
+                throw 'URL should not be null';
+            }
+
             options = options || {};
+            headers = options.headers || {};
+            data = options.data || undefined;
 
-            var headers = options.headers || {},
-                data = options.data || undefined;
-
-            var promise = new Promise(function (resolve, reject) {
+            promise = new Promise(function (resolve, reject) {
                 $.ajax({
                     url: url,
                     method: method,
