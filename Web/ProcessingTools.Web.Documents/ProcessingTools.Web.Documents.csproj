@@ -399,7 +399,7 @@
     <Content Include="Scripts\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
     <Content Include="Scripts\app\services\ng-json-requester.js" />
     <Content Include="Scripts\app\services\search-string-service.js" />
-    <Content Include="Scripts\app\template.js" />
+    <Content Include="Scripts\app\services\templates-provider.js" />
     <Content Include="Scripts\controllers\address-list-controller.js" />
     <Content Include="Scripts\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
     <Content Include="Scripts\controllers\documents\document-controller.js" />

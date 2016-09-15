@@ -1,7 +1,14 @@
 ﻿(function (window, $) {
     'use strict';
+    var app, services;
 
-    window.Template = function (baseAddress, extension) {
+    window.app = window.app || {};
+    app = window.app;
+
+    app.services = app.services || {};
+    services = app.services;
+
+    services.TemplatesProvider = function (baseAddress, extension) {
         var handlebars = window.handlebars || window.Handlebars,
             cache = {};
 

@@ -3,7 +3,7 @@
 
     window.coordinatesToolboxes = (function () {
 
-        var template = new window.Template('../../../static/templates');
+        var templatesProvider = new window.app.services.TemplatesProvider('../../../static/templates');
 
         function listAnchorClickEventHandler(event) {
             const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
@@ -65,7 +65,7 @@
             // Remove all coordinates list toolboxes yet present.
             $(toolboxSelector).remove();
 
-            template.get('coordinates-toolbox')
+            templatesProvider.get('coordinates-toolbox')
                 .then(function (template) {
                     $('<div>')
                         .html(template(toolbox))
@@ -91,7 +91,7 @@
             // Remove all coordinates list toolboxes yet present.
             $(toolboxSelector).remove();
 
-            template.get('coordinates-map')
+            templatesProvider.get('coordinates-map')
                 .then(function (template) {
                     var i,
                         len,

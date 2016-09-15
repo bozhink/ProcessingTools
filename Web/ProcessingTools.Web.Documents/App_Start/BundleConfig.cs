@@ -85,7 +85,7 @@
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
                     "~/Scripts/app/services/json-requester.js",
-                    "~/Scripts/app/template.js"));
+                    "~/Scripts/app/services/templates-provider.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
