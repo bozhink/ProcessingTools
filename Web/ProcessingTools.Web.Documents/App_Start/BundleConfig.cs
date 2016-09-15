@@ -89,23 +89,23 @@
 
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/key-bindings.js"));
+                    "~/static/code/custom/key-bindings.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.AutoSaveScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/auto-save.js"));
+                    "~/static/code/custom/auto-save.js"));
 
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/files-index.js"));
+                    "~/static/code/custom/files-index.js"));
 
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
                     "~/static/code/app/services/documents/document-content-data.js",
                     "~/static/code/app/controllers/documents/document-controller.js",
-                    "~/Scripts/custom/document-edit.js"));
+                    "~/static/code/custom/document-edit.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
@@ -118,10 +118,10 @@
                     "~/static/code/app/services/documents/document-content-data.js",
                     "~/static/code/app/controllers/documents/document-controller.js",
                     "~/static/code/app/services/templates-provider.js",
-                    "~/Scripts/custom/html-selection-tagger.js",
-                    "~/Scripts/custom/toolbox-event-handlers.js",
-                    "~/Scripts/custom/coordinates-toolboxes.js",
-                    "~/Scripts/custom/document-preview.js"));
+                    "~/static/code/custom/html-selection-tagger.js",
+                    "~/static/code/custom/toolbox-event-handlers.js",
+                    "~/static/code/custom/coordinates-toolboxes.js",
+                    "~/static/code/custom/document-preview.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(

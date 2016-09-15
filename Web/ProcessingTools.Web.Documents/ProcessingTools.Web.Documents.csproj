@@ -403,18 +403,18 @@
     <Content Include="static\code\app\controllers\address-list-controller.js" />
     <Content Include="static\code\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
     <Content Include="static\code\app\controllers\documents\document-controller.js" />
-    <Content Include="Scripts\custom\auto-save.js" />
-    <Content Include="Scripts\custom\coordinates-toolboxes.js" />
-    <Content Include="Scripts\custom\document-edit.js" />
-    <Content Include="Scripts\custom\document-save-controller.js" />
+    <Content Include="static\code\custom\auto-save.js" />
+    <Content Include="static\code\custom\coordinates-toolboxes.js" />
+    <Content Include="static\code\custom\document-edit.js" />
+    <Content Include="static\code\custom\document-save-controller.js" />
     <Content Include="static\code\app\configurations\interact-config.js" />
     <Content Include="static\code\app\services\json-requester.js" />
-    <Content Include="Scripts\custom\files-index.js" />
-    <Content Include="Scripts\custom\html-selection-tagger.js" />
-    <Content Include="Scripts\custom\key-bindings.js" />
+    <Content Include="static\code\custom\files-index.js" />
+    <Content Include="static\code\custom\html-selection-tagger.js" />
+    <Content Include="static\code\custom\key-bindings.js" />
     <Content Include="static\code\app\configurations\monaco-editor-config.js" />
     <Content Include="static\code\app\configurations\toastr-config.js" />
-    <Content Include="Scripts\custom\toolbox-event-handlers.js" />
+    <Content Include="static\code\custom\toolbox-event-handlers.js" />
     <Content Include="static\code\app\services\documents\document-content-data.js" />
     <Content Include="static\styles\address-list.css">
       <DependentUpon>address-list.less</DependentUpon>
@@ -526,7 +526,7 @@
     <Content Include="static\styles\document-edit.less" />
     <Content Include="JSLintNet.json" />
     <Content Include="static\templates\coordinates-map.handlebars" />
-    <Content Include="Scripts\custom\document-preview.js" />
+    <Content Include="static\code\custom\document-preview.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

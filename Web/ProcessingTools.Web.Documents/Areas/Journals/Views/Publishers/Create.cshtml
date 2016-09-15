@@ -25,7 +25,7 @@
     <hr />
 
     <div ng-app="addressApp">
-        <div ng-controller="AddressListController as addressList">
+        <div ng-cloak ng-controller="AddressListController as addressList">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
