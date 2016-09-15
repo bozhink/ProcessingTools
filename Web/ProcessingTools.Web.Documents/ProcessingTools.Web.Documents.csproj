@@ -400,7 +400,7 @@
     <Content Include="static\code\app\services\ng-json-requester.js" />
     <Content Include="static\code\app\services\search-string-service.js" />
     <Content Include="static\code\app\services\templates-provider.js" />
-    <Content Include="Scripts\controllers\address-list-controller.js" />
+    <Content Include="static\code\app\controllers\address-list-controller.js" />
     <Content Include="static\code\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
     <Content Include="static\code\app\controllers\documents\document-controller.js" />
     <Content Include="Scripts\custom\auto-save.js" />
@@ -589,8 +589,6 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\controllers\documents\" />
-    <Folder Include="Scripts\data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

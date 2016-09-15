@@ -132,7 +132,7 @@
             // Address List
             bundles.Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
                 .Include(
-                    "~/Scripts/controllers/address-list-controller.js"));
+                    "~/static/code/app/controllers/address-list-controller.js"));
 
             bundles.Add(new StyleBundle(BundleNames.AddressListStyleBundleName)
                 .Include(
