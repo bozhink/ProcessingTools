@@ -104,7 +104,7 @@
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
                     "~/static/code/app/services/documents/document-content-data.js",
-                    "~/Scripts/controllers/documents/document-controller.js",
+                    "~/static/code/app/controllers/documents/document-controller.js",
                     "~/Scripts/custom/document-edit.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
@@ -116,8 +116,8 @@
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
                     "~/static/code/app/services/documents/document-content-data.js",
-                    "~/Scripts/controllers/documents/document-controller.js",
-                    "~/static/code/app/template.js",
+                    "~/static/code/app/controllers/documents/document-controller.js",
+                    "~/static/code/app/services/templates-provider.js",
                     "~/Scripts/custom/html-selection-tagger.js",
                     "~/Scripts/custom/toolbox-event-handlers.js",
                     "~/Scripts/custom/coordinates-toolboxes.js",
