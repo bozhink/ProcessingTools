@@ -240,6 +240,22 @@
             tagAbbrevDefEventHandler(e);
             return false;
         }
+
+        // Alt + C -> coordinates
+        if (e.altKey && e.which === 67) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagCoordinateEventHandler(e);
+            return false;
+        }
+
+        // Alt + E -> ext-link
+        if (e.altKey && e.which === 69) {
+            e.stopPropagation();
+            e.preventDefault();
+            tagLinkEventHandler(e);
+            return false;
+        }
     }
 
     function mouseoverXrefEventLstener(event) {
