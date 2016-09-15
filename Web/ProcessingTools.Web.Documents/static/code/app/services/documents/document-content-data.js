@@ -1,5 +1,12 @@
 ﻿(function (window) {
     'use strict';
+    var app, services;
+
+    window.app = window.app || {};
+    app = window.app;
+
+    app.services = app.services || {};
+    services = app.services;
 
     const
         MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS = 5000,
@@ -7,7 +14,7 @@
 
     var sha1 = window.CryptoJS.SHA1;
 
-    window.DocumentContentData = function (sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester) {
+    services.DocumentContentData = function (sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester) {
 
         function getTimeToNextPossibleSave(lastSavedTime) {
             return MINIMAL_TIME_SPAN_BETWEEN_SEQUENTAL_SAVES_MILLISECONDS - (new Date() - new Date(lastSavedTime));

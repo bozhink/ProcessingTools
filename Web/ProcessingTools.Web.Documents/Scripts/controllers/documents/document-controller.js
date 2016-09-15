@@ -1,10 +1,11 @@
 ﻿(function (window) {
     'use strict';
 
-    var toastr = window.toastr;
+    var toastr = window.toastr,
+        app = window.app;
 
     window.DocumentController = function (sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester) {
-        var data = new window.DocumentContentData(sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester);
+        var dataService = new app.services.DocumentContentData(sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester);
 
         function raiseMessage(res) {
             switch (res.type) {
@@ -30,7 +31,7 @@
                 throw 'setContentCallback function is required';
             }
 
-            data.get(url)
+            dataService.get(url)
                 .then(function (res) {
                     setContentCallback(res);
                 })
@@ -49,7 +50,7 @@
                 throw 'getContentCallback function is required';
             }
 
-            data.save(url, getContentCallback())
+            dataService.save(url, getContentCallback())
                 .then(function (res) {
                     raiseMessage(res);
                 })
