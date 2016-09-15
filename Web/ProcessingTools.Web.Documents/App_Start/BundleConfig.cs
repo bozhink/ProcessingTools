@@ -84,8 +84,8 @@
 
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
-                    "~/Scripts/app/services/json-requester.js",
-                    "~/Scripts/app/services/templates-provider.js"));
+                    "~/static/code/app/services/json-requester.js",
+                    "~/static/code/app/services/templates-provider.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
@@ -117,7 +117,7 @@
                 .Include(
                     "~/Scripts/data/documents/document-content-data.js",
                     "~/Scripts/controllers/documents/document-controller.js",
-                    "~/Scripts/app/template.js",
+                    "~/static/code/app/template.js",
                     "~/Scripts/custom/html-selection-tagger.js",
                     "~/Scripts/custom/toolbox-event-handlers.js",
                     "~/Scripts/custom/coordinates-toolboxes.js",
@@ -141,12 +141,12 @@
             // Taxa Ranks
             bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
                 .Include(
-                    "~/Scripts/app/models/data/bio/taxonomy/taxon-rank.js",
-                    "~/Scripts/app/data/data-set.js",
-                    "~/Scripts/app/services/ng-json-requester.js",
-                    "~/Scripts/app/services/search-string-service.js",
-                    "~/Scripts/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
-                    "~/Scripts/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
+                    "~/static/code/app/models/data/bio/taxonomy/taxon-rank.js",
+                    "~/static/code/app/data/data-set.js",
+                    "~/static/code/app/services/ng-json-requester.js",
+                    "~/static/code/app/services/search-string-service.js",
+                    "~/static/code/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
+                    "~/static/code/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
                 .Include(
@@ -155,12 +155,12 @@
             // Biotaxonomic Black List
             bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
                 .Include(
-                    "~/Scripts/app/models/data/bio/taxonomy/black-list-item.js",
-                    "~/Scripts/app/data/data-set.js",
-                    "~/Scripts/app/services/ng-json-requester.js",
-                    "~/Scripts/app/services/search-string-service.js",
-                    "~/Scripts/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
-                    "~/Scripts/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
+                    "~/static/code/app/models/data/bio/taxonomy/black-list-item.js",
+                    "~/static/code/app/data/data-set.js",
+                    "~/static/code/app/services/ng-json-requester.js",
+                    "~/static/code/app/services/search-string-service.js",
+                    "~/static/code/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
+                    "~/static/code/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
