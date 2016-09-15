@@ -407,13 +407,13 @@
     <Content Include="Scripts\custom\coordinates-toolboxes.js" />
     <Content Include="Scripts\custom\document-edit.js" />
     <Content Include="Scripts\custom\document-save-controller.js" />
-    <Content Include="static\code\config\interact-config.js" />
+    <Content Include="static\code\app\configurations\interact-config.js" />
     <Content Include="static\code\app\services\json-requester.js" />
     <Content Include="Scripts\custom\files-index.js" />
     <Content Include="Scripts\custom\html-selection-tagger.js" />
     <Content Include="Scripts\custom\key-bindings.js" />
-    <Content Include="static\code\config\monaco-editor-config.js" />
-    <Content Include="static\code\config\toastr-config.js" />
+    <Content Include="static\code\app\configurations\monaco-editor-config.js" />
+    <Content Include="static\code\app\configurations\toastr-config.js" />
     <Content Include="Scripts\custom\toolbox-event-handlers.js" />
     <Content Include="Scripts\data\documents\document-content-data.js" />
     <Content Include="static\styles\address-list.css">
