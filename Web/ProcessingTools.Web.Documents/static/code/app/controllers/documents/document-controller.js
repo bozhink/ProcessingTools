@@ -1,10 +1,14 @@
 ﻿(function (window) {
     'use strict';
+    var app, controllers, toastr = window.toastr;
 
-    var toastr = window.toastr,
-        app = window.app;
+    window.app = window.app || {};
+    app = window.app;
 
-    window.DocumentController = function (sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester) {
+    app.controllers = app.controllers || {};
+    controllers = app.controllers;
+
+    controllers.DocumentController = function (sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester) {
         var dataService = new app.services.DocumentContentData(sessionStorage, lastGetTimeKey, lastSavedTimeKey, contentHashKey, jsonRequester);
 
         function raiseMessage(res) {

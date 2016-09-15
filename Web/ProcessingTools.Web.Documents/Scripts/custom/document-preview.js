@@ -16,7 +16,7 @@
         sessionStorage = window.sessionStorage,
         interactConfig = new app.configurations.InteractJSConfig(),
         jsonRequester = new app.services.JsonRequester($),
-        documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
+        documentController = new app.controllers.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,
         mainAside = document.getElementById(MAIN_ASIDE_ID);
 
