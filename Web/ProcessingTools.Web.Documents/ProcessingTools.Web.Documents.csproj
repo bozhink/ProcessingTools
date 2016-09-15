@@ -415,7 +415,7 @@
     <Content Include="static\code\app\configurations\monaco-editor-config.js" />
     <Content Include="static\code\app\configurations\toastr-config.js" />
     <Content Include="Scripts\custom\toolbox-event-handlers.js" />
-    <Content Include="Scripts\data\documents\document-content-data.js" />
+    <Content Include="static\code\app\services\documents\document-content-data.js" />
     <Content Include="static\styles\address-list.css">
       <DependentUpon>address-list.less</DependentUpon>
     </Content>
@@ -589,6 +589,7 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

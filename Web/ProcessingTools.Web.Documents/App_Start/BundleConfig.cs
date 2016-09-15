@@ -103,7 +103,7 @@
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
-                    "~/Scripts/data/documents/document-content-data.js",
+                    "~/static/code/app/services/documents/document-content-data.js",
                     "~/Scripts/controllers/documents/document-controller.js",
                     "~/Scripts/custom/document-edit.js"));
 
@@ -115,7 +115,7 @@
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
-                    "~/Scripts/data/documents/document-content-data.js",
+                    "~/static/code/app/services/documents/document-content-data.js",
                     "~/Scripts/controllers/documents/document-controller.js",
                     "~/static/code/app/template.js",
                     "~/Scripts/custom/html-selection-tagger.js",
