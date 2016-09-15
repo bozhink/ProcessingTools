@@ -1,7 +1,14 @@
 ﻿(function (window) {
     'use strict';
+    var app, configurations;
 
-    window.InteractJSConfig = function () {
+    window.app = window.app || {};
+    app = window.app;
+
+    app.configurations = app.configurations || {};
+    configurations = app.configurations;
+
+    configurations.InteractJSConfig = function () {
         function resizeMoveListener(event) {
             var target = event.target,
                 x = (parseFloat(target.getAttribute('data-x')) || 0),

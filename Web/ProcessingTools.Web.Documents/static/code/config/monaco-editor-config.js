@@ -1,121 +1,130 @@
-﻿function MonacoEditor(window, document) {
+﻿(function(window, document) {
     'use strict';
+    var app, configurations;
 
-    const
-        DEFAULT_LANGUAGE = 'xml',
-        DEFAULT_THEME = 'vs';
+    window.app = window.app || {};
+    app = window.app;
 
-    var require = window.require,
-        editor = window.editor || null,
-        modes = null,
-        themes = [{
-            themeId: 'vs',
-            display: 'Visual Studio',
-            selected: true
-        }, {
-            themeId: 'vs-dark',
-            display: 'Visual Studio Dark'
-        }, {
-            themeId: 'hc-black',
-            display: 'High Contrast Dark'
-        }];
+    app.configurations = app.configurations || {};
+    configurations = app.configurations;
 
-    function initEditor(containerId, pathToNodeModules, language, theme, content) {
-        content = content || '';
-        language = language || DEFAULT_LANGUAGE;
-        theme = theme || DEFAULT_THEME;
+    configurations.MonacoEditor = function() {
+        const
+            DEFAULT_LANGUAGE = 'xml',
+            DEFAULT_THEME = 'vs';
 
-        return new Promise(function (resolve, reject) {
-            try {
-                require.config({
-                    paths: {
-                        'vs': pathToNodeModules + '/monaco-editor/min/vs'
-                    }
-                });
+        var require = window.require,
+            editor = window.editor || null,
+            modes = null,
+            themes = [{
+                themeId: 'vs',
+                display: 'Visual Studio',
+                selected: true
+            }, {
+                themeId: 'vs-dark',
+                display: 'Visual Studio Dark'
+            }, {
+                themeId: 'hc-black',
+                display: 'High Contrast Dark'
+            }];
 
-                require(['vs/editor/editor.main'], function () {
-                    var monaco = window.monaco || null;
+        function initEditor(containerId, pathToNodeModules, language, theme, content) {
+            content = content || '';
+            language = language || DEFAULT_LANGUAGE;
+            theme = theme || DEFAULT_THEME;
 
-                    if (!modes) {
-                        modes = (function () {
-                            var modesIds = monaco.languages.getLanguages().map(function (lang) {
-                                return lang.id;
-                            });
-
-                            modesIds.sort();
-
-                            return modesIds.map(function (modeId) {
-                                var item = {
-                                    modeId: modeId
-                                };
-
-                                if (modeId === DEFAULT_LANGUAGE) {
-                                    item.selected = true;
-                                }
-
-                                return item;
-                            });
-                        }());
-                    }
-
-                    editor = monaco.editor.create(document.getElementById(containerId), {
-                        value: content.toString(),
-                        language: language,
-                        theme: theme
+            return new Promise(function(resolve, reject) {
+                try {
+                    require.config({
+                        paths: {
+                            'vs': pathToNodeModules + '/monaco-editor/min/vs'
+                        }
                     });
 
-                    window.editor = editor;
+                    require(['vs/editor/editor.main'], function() {
+                        var monaco = window.monaco || null;
 
-                    window.addEventListener('resize', function () {
-                        if (editor) {
-                            editor.layout();
+                        if (!modes) {
+                            modes = (function() {
+                                var modesIds = monaco.languages.getLanguages().map(function(lang) {
+                                    return lang.id;
+                                });
+
+                                modesIds.sort();
+
+                                return modesIds.map(function(modeId) {
+                                    var item = {
+                                        modeId: modeId
+                                    };
+
+                                    if (modeId === DEFAULT_LANGUAGE) {
+                                        item.selected = true;
+                                    }
+
+                                    return item;
+                                });
+                            }());
                         }
-                    }, false);
 
-                    if (resolve) {
-                        resolve({
-                            modes: modes,
-                            themes: themes
+                        editor = monaco.editor.create(document.getElementById(containerId), {
+                            value: content.toString(),
+                            language: language,
+                            theme: theme
                         });
+
+                        window.editor = editor;
+
+                        window.addEventListener('resize', function() {
+                            if (editor) {
+                                editor.layout();
+                            }
+                        }, false);
+
+                        if (resolve) {
+                            resolve({
+                                modes: modes,
+                                themes: themes
+                            });
+                        }
+                    });
+                } catch (e) {
+                    if (reject) {
+                        reject(e);
                     }
-                });
-            } catch (e) {
-                if (reject) {
-                    reject(e);
                 }
-            }
-        });
-    }
-
-    function changeMode(mode) {
-        var oldModel,
-            newModel,
-            content,
-            language = mode ? mode.modeId || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
-
-        if (editor) {
-            content = editor.getValue();
-            oldModel = editor.getModel();
-            newModel = window.monaco.editor.createModel(content, language);
-            editor.setModel(newModel);
-            if (oldModel) {
-                oldModel.dispose();
-            }
-        }
-    }
-
-    function changeTheme(theme) {
-        var newTheme = theme ? theme.themeId || DEFAULT_THEME : DEFAULT_THEME;
-        if (editor) {
-            editor.updateOptions({
-                'theme': newTheme
             });
         }
-    }
 
-    return {
-        init: initEditor,
-        changeMode: changeMode,
-        changeTheme: changeTheme
-    };
-}
+        function changeMode(mode) {
+            var oldModel,
+                newModel,
+                content,
+                language = mode ? mode.modeId || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
+
+            if (editor) {
+                content = editor.getValue();
+                oldModel = editor.getModel();
+                newModel = window.monaco.editor.createModel(content, language);
+                editor.setModel(newModel);
+                if (oldModel) {
+                    oldModel.dispose();
+                }
+            }
+        }
+
+        function changeTheme(theme) {
+            var newTheme = theme ? theme.themeId || DEFAULT_THEME : DEFAULT_THEME;
+            if (editor) {
+                editor.updateOptions({
+                    'theme': newTheme
+                });
+            }
+        }
+
+        return {
+            init: initEditor,
+            changeMode: changeMode,
+            changeTheme: changeTheme
+        };
+    }
+}(window, document));

@@ -14,7 +14,7 @@
 
     var app = window.app,
         sessionStorage = window.sessionStorage,
-        interactConfig = new window.InteractJSConfig(),
+        interactConfig = new app.configurations.InteractJSConfig(),
         jsonRequester = new app.services.JsonRequester($),
         documentController = new window.DocumentController(sessionStorage, LAST_GET_TIME_KEY, LAST_SAVED_TIME_KEY, CONTENT_HASH_KEY, jsonRequester),
         sha1 = window.CryptoJS.SHA1,

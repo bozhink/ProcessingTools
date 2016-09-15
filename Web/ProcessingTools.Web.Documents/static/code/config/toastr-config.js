@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function (toastr) {
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -16,4 +16,4 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-}())
+}(window.toastr))
