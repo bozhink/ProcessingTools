@@ -47,10 +47,15 @@
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlDocument xmlDocument)
+        public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlNode context)
         {
-            XmlNodeList nodeList = xmlDocument.SelectNodes("//tn[@type='higher'][not(tn-part)]");
-            return new HashSet<string>(nodeList.Cast<XmlNode>().Select(c => c.InnerText));
+            var taxaNames = context.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
+                .Cast<XmlNode>()
+                .Select(c => c.InnerText);
+
+            var result = new HashSet<string>(taxaNames);
+
+            return result;
         }
 
         public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode xml)
