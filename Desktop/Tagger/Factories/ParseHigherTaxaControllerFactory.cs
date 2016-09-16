@@ -9,13 +9,14 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
-    public abstract class ParseHigherTaxaControllerFactory : TaggerControllerFactory
+    public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
+        where TService : ITaxonRankResolverDataService
     {
-        protected abstract ITaxonRankResolverDataService Service { get; }
+        protected abstract TService Service { get; }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(this.Service, logger);
+            var parser = new HigherTaxaParserWithDataService<TService, ITaxonRank>(this.Service, logger);
 
             await parser.Parse(document.DocumentElement);
 

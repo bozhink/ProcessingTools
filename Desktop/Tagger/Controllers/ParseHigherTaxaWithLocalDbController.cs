@@ -31,7 +31,7 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(this.service, logger);
+            var parser = new HigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank>(this.service, logger);
 
             await parser.Parse(document);
 
