@@ -17,14 +17,14 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
 
-    public class HigherTaxaParserWithDataService<TTaxaRankDataService, T> : IHigherTaxaParserWithDataService<TTaxaRankDataService>
-        where TTaxaRankDataService : ITaxonRankResolverDataService
+    public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
+        where TService : ITaxonRankResolverDataService
         where T : ITaxonRank
     {
-        private readonly TTaxaRankDataService taxaRankDataService;
+        private readonly TService taxaRankDataService;
         private readonly ILogger logger;
 
-        public HigherTaxaParserWithDataService(TTaxaRankDataService taxaRankDataService, ILogger logger)
+        public HigherTaxaParserWithDataService(TService taxaRankDataService, ILogger logger)
         {
             if (taxaRankDataService == null)
             {

@@ -9,7 +9,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
-    using ProcessingTools.BaseLibrary.Taxonomy;
+    using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
@@ -17,24 +17,21 @@
     [Description("Parse higher taxa with local database.")]
     public class ParseHigherTaxaWithLocalDbController : TaggerControllerFactory, IParseHigherTaxaWithLocalDbController
     {
-        private readonly ILocalDbTaxaRankResolverDataService service;
+        private readonly IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser;
 
-        public ParseHigherTaxaWithLocalDbController(ILocalDbTaxaRankResolverDataService service)
+        public ParseHigherTaxaWithLocalDbController(IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser)
         {
-            if (service == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.service = service;
+            this.parser = parser;
         }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank>(this.service, logger);
-
-            await parser.Parse(document);
-
+            await this.parser.Parse(document);
             await document.PrintNonParsedTaxa(logger);
         }
     }

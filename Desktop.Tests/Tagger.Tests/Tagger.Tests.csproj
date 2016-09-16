@@ -100,6 +100,10 @@
     <Compile Include="UnitTests\ZooBankGenerateRegistrationXmlControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
       <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
       <Name>Bio.Data.Miners</Name>
