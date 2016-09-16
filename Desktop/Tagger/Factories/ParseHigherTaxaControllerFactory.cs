@@ -4,7 +4,7 @@
     using System.Xml;
 
     using ProcessingTools.BaseLibrary;
-    using ProcessingTools.BaseLibrary.Taxonomy;
+    using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
@@ -12,14 +12,11 @@
     public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
         where TService : ITaxonRankResolverDataService
     {
-        protected abstract TService Service { get; }
+        protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<TService, ITaxonRank>(this.Service, logger);
-
-            await parser.Parse(document.DocumentElement);
-
+            await this.Parser.Parse(document.DocumentElement);
             await document.PrintNonParsedTaxa(logger);
         }
     }

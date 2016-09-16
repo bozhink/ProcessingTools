@@ -5,23 +5,25 @@
     using Contracts;
     using Factories;
 
+    using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
     public class ParseHigherTaxaWithDataServiceGenericController<TService> : ParseHigherTaxaControllerFactory<TService>, IParseHigherTaxaWithDataServiceGenericController<TService>
         where TService : ITaxonRankResolverDataService
     {
-        private readonly TService service;
+        private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
 
-        public ParseHigherTaxaWithDataServiceGenericController(TService service)
+        public ParseHigherTaxaWithDataServiceGenericController(IHigherTaxaParserWithDataService<TService, ITaxonRank> parser)
         {
-            if (service == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.service = service;
+            this.parser = parser;
         }
 
-        protected override TService Service => this.service;
+        protected override IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser => this.parser;
     }
 }

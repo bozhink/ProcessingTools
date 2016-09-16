@@ -4,8 +4,12 @@
     using System.Xml;
 
     using Controllers;
+
     using Moq;
     using NUnit.Framework;
+
+    using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
@@ -22,7 +26,7 @@
         private ProgramSettings settings;
         private ILogger logger;
 
-        private IAphiaTaxaRankResolverDataService service;
+        private IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser;
 
         [SetUp]
         public void Init()
@@ -36,14 +40,14 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
-            var serviceMock = new Mock<IAphiaTaxaRankResolverDataService>();
-            this.service = serviceMock.Object;
+            var parserMock = new Mock<IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank>>();
+            this.parser = parserMock.Object;
         }
 
         [Test]
         public void ParseHigherTaxaWithAphiaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -70,14 +74,14 @@
             {
                 Assert.AreEqual(typeof(ArgumentNullException), e.GetType(), CallShouldThrowSystemArgumentNullExceptionMessage);
 
-                Assert.AreEqual("service", ((ArgumentNullException)e).ParamName, @"ParamName should be ""service"".");
+                Assert.AreEqual("parser", ((ArgumentNullException)e).ParamName, @"ParamName should be ""parser"".");
             }
         }
 
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -91,7 +95,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -101,7 +105,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -111,7 +115,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -121,7 +125,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -131,7 +135,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -141,7 +145,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -151,7 +155,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -161,7 +165,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -171,7 +175,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             try
             {
@@ -191,7 +195,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -201,7 +205,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -211,7 +215,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -221,7 +225,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -231,7 +235,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             try
             {
@@ -251,7 +255,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -261,7 +265,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -271,7 +275,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             try
             {
@@ -291,7 +295,7 @@
         [Test]
         public void ParseHigherTaxaWithAphiaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaWithAphiaController(this.service);
+            var controller = new ParseHigherTaxaWithAphiaController(this.parser);
 
             string initialContent = this.document.OuterXml;
 

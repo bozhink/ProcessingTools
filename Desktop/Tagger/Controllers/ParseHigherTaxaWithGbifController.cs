@@ -3,13 +3,15 @@
     using Contracts;
 
     using ProcessingTools.Attributes;
+    using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
 
     [Description("Parse higher taxa using GBIF.")]
     public class ParseHigherTaxaWithGbifController : ParseHigherTaxaWithDataServiceGenericController<IGbifTaxaRankResolverDataService>, IParseHigherTaxaWithGbifController
     {
-        public ParseHigherTaxaWithGbifController(IGbifTaxaRankResolverDataService service)
-            : base(service)
+        public ParseHigherTaxaWithGbifController(IHigherTaxaParserWithDataService<IGbifTaxaRankResolverDataService, ITaxonRank> parser)
+            : base(parser)
         {
         }
     }
