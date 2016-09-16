@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts;
     using Models;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
@@ -14,32 +15,41 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
 
-    public class HigherTaxaParserWithDataService<T> : TaxPubDocument, IParser
+    public class HigherTaxaParserWithDataService<T> : IHigherTaxaParserWithDataService
         where T : ITaxonRank
     {
         private ILogger logger;
         private ITaxonRankResolverDataService taxaRankDataService;
 
-        public HigherTaxaParserWithDataService(string xml, ITaxonRankResolverDataService taxaRankDataService, ILogger logger)
-            : base(xml)
+        public HigherTaxaParserWithDataService(ITaxonRankResolverDataService taxaRankDataService, ILogger logger)
         {
-            this.logger = logger;
+            if (taxaRankDataService == null)
+            {
+                throw new ArgumentNullException(nameof(taxaRankDataService));
+            }
+
             this.taxaRankDataService = taxaRankDataService;
+            this.logger = logger;
         }
 
-        public async Task Parse()
+        public async Task<long> Parse(XmlNode context)
         {
-            var uniqueHigherTaxaList = new HashSet<string>(this.XmlDocument
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            var uniqueHigherTaxaList = new HashSet<string>(context
                 .ExtractUniqueHigherTaxa()
                 .Select(n => n.ToFirstLetterUpperCase()))
                 .ToArray();
 
-            if (uniqueHigherTaxaList.Length < 1)
+            long numberOfUniqueHigherTaxa = uniqueHigherTaxaList.LongLength;
+            if (numberOfUniqueHigherTaxa < 1L)
             {
-                return;
+                return numberOfUniqueHigherTaxa;
             }
 
             var response = await this.taxaRankDataService.Resolve(uniqueHigherTaxaList);
@@ -55,38 +65,40 @@
                     Rank = t.Rank.MapTaxonRankTypeToTaxonRankString()
                 });
 
-            if (resolvedTaxa.Count() < 1)
+            long numberOfResolvedTaxa = resolvedTaxa.LongCount();
+            if (numberOfResolvedTaxa > 0L)
             {
-                return;
-            }
-
-            foreach (var scientificName in uniqueHigherTaxaList)
-            {
-                var ranks = resolvedTaxa
-                    .Where(t => t.ScientificName == scientificName)
-                    .Select(t => t.Rank)
-                    .Where(r => !string.IsNullOrWhiteSpace(r))
-                    .ToList();
-
-                int numberOfRanks = ranks?.Count ?? 0;
-                switch (numberOfRanks)
+                foreach (var scientificName in uniqueHigherTaxaList)
                 {
-                    case 0:
-                        this.ProcessZeroRanksCase(scientificName, ranks);
-                        break;
+                    var ranks = resolvedTaxa
+                        .Where(t => t.ScientificName.ToLower() == scientificName.ToLower())
+                        .Where(t => !string.IsNullOrWhiteSpace(t.Rank))
+                        .Select(t => t.Rank.ToLower())
+                        .Distinct()
+                        .ToList();
 
-                    case 1:
-                        this.ProcessSingleRankCase(scientificName, ranks);
-                        break;
+                    int numberOfRanks = ranks?.Count ?? 0;
+                    switch (numberOfRanks)
+                    {
+                        case 0:
+                            this.ProcessZeroRanksCase(scientificName, ranks, context);
+                            break;
 
-                    default:
-                        this.ProcessMultipleRanksCase(scientificName, ranks);
-                        break;
+                        case 1:
+                            this.ProcessSingleRankCase(scientificName, ranks, context);
+                            break;
+
+                        default:
+                            this.ProcessMultipleRanksCase(scientificName, ranks, context);
+                            break;
+                    }
                 }
             }
+
+            return numberOfResolvedTaxa;
         }
 
-        private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks)
+        private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
         {
             this.logger?.Log(LogType.Warning, "{0} --> Multiple matches.", scientificName);
             foreach (var rank in ranks)
@@ -97,13 +109,13 @@
             this.logger?.Log();
         }
 
-        private void ProcessSingleRankCase(string scientificName, IEnumerable<string> ranks)
+        private void ProcessSingleRankCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
         {
             string rank = ranks.Single();
 
-            string xpath = $"//tn[@type='higher'][not(tn-part)][translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')='{scientificName.ToUpper()}']";
+            string xpath = $".//tn[@type='higher'][not(tn-part)][translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')='{scientificName.ToUpper()}']";
 
-            this.XmlDocument.SelectNodes(xpath)
+            context?.SelectNodes(xpath)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(tn =>
@@ -115,7 +127,7 @@
                 });
         }
 
-        private void ProcessZeroRanksCase(string scientificName, IEnumerable<string> ranks)
+        private void ProcessZeroRanksCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
         {
             this.logger?.Log(LogType.Warning, "{0} --> No match or error.\n", scientificName);
         }

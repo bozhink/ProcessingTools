@@ -15,13 +15,11 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<ITaxonClassification>(document.OuterXml, this.Service, logger);
+            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(this.Service, logger);
 
-            await parser.Parse();
+            await parser.Parse(document.DocumentElement);
 
-            await parser.XmlDocument.PrintNonParsedTaxa(logger);
-
-            document.LoadXml(parser.Xml);
+            await document.PrintNonParsedTaxa(logger);
         }
     }
 }

@@ -11,7 +11,6 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
@@ -32,13 +31,11 @@
 
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(document.OuterXml, this.service, logger);
+            var parser = new HigherTaxaParserWithDataService<ITaxonRank>(this.service, logger);
 
-            await parser.Parse();
+            await parser.Parse(document);
 
-            await parser.XmlDocument.PrintNonParsedTaxa(logger);
-
-            document.LoadXml(parser.Xml);
+            await document.PrintNonParsedTaxa(logger);
         }
     }
 }
