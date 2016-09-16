@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="IContentTypable.cs" />
+    <Compile Include="IContextParser.cs" />
     <Compile Include="IContextProcessor.cs" />
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IContextTagger.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />
     <Compile Include="IGenericProvider.cs" />
+    <Compile Include="IGenericXmlContextParser.cs" />
     <Compile Include="IGenericXmlContextTagger.cs" />
     <Compile Include="IGuidIdentifiable.cs" />
     <Compile Include="IGenericIdentifiable.cs" />
