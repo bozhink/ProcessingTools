@@ -9,6 +9,9 @@
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
   "dependencies": {
-    "monaco-editor": "^0.5.1"
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.5.0",
+    "eslint-plugin-react": "^6.2.2",
+    "monaco-editor": "^0.6.1"
   }
 }

@@ -6,5 +6,7 @@
         public const string ArticlesAreaName = "Articles";
         public const string JournalsAreaName = "Journals";
         public const string BioTaxonomyDataAreaName = "BioTaxonomyData";
+        public const string DataResourcesAreaName = "DataResources";
+        public const string GeoDataAreaName = "GeoData";
     }
 }

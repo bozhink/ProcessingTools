@@ -20,7 +20,7 @@ as xs:string
     return <a:abbreviation content-type="{data($a/@content-type)}">
 		<a:value>
 		  {
-			for $val in $a/node()[name(.)!='def']/local:clean-content(string(.))
+			for $val in $a/node()[name(.)!='def']/local:clean-content(replace(string(.), '^\W+|\W+$', ''))
 			where string($val) != ''
 			return data($val)
 		  }

@@ -17,6 +17,9 @@
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Data.BioDbContext, ProcessingTools.Bio.Data.Migrations.Configuration>());
+
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ProcessingTools.DataResources.Data.Entity.DataResourcesDbContext, ProcessingTools.DataResources.Data.Entity.Migrations.Configuration>());
         }
     }
 }

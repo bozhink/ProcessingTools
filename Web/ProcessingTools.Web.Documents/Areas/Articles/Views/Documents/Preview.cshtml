@@ -1,0 +1,118 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.DeafultPreviewPageTitle;
+}
+
+@section Styles {
+    @Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
+    @Styles.Render(BundleNames.LeafletStyleBundleName)
+}
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                actionName: nameof(DocumentsController.Preview),
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: new { @class = "navbar-brand" })
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink(
+                        linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                        actionName: nameof(DocumentsController.Edit),
+                        routeValues: new { id = Model.DocumentId },
+                        htmlAttributes: new { target = "_blank" })
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tag manually <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a>Figures citations</a></li>
+                        <li><a>Tables citations</a></li>
+                        <li><a>Suppl. materials citations</a></li>
+                        <li><a>Appendices citations</a></li>
+                        <li><a id="tag-bibliographic-citations-menu-item">Bibliographic citations</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a>Coordinates</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a>Lower taxa</a></li>
+                        <li><a>Higher taxa</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Window <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="window-map">Map</a></li>
+                        <li><a id="window-coordinates">Coordinates</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
+        </div>
+    </div>
+</nav>
+
+<article id="article" contextmenu="supermenu"></article>
+
+<aside id="aside-main-box"></aside>
+
+<div class="clearfix"></div>
+
+<aside style="display: none;">
+    @Html.ActionLink(
+        linkText: Resources.Strings.DefaultRefreshActionLinkTitle,
+        actionName: nameof(DocumentContentController.GetHtml),
+        controllerName: ControllerNames.DocumentContentControllerName,
+        routeValues: new { id = Model.DocumentId },
+        htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(
+        linkText: Resources.Strings.DefaultSaveActionLinkTitle,
+        actionName: nameof(DocumentContentController.SaveHtml),
+        controllerName: ControllerNames.DocumentContentControllerName,
+        routeValues: new { id = Model.DocumentId },
+        htmlAttributes: new { id = "save-link" })
+</aside>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.InteractJSScriptBundleName)
+    @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
+    @Scripts.Render(BundleNames.ToastrScriptBundleName)
+    @Scripts.Render(BundleNames.HandlebarsScriptBundleName)
+    @Scripts.Render(BundleNames.LeafletScriptBundleName)
+    @Scripts.Render(BundleNames.ApplicationScriptBundleName)
+    @Scripts.Render(BundleNames.DocumentPreviewScriptBundleName)
+    @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)
+    @*@Scripts.Render(BundleNames.AutoSaveScriptBundleName)*@
+}
+
+<menu type="context" id="supermenu">
+    <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
+    <menu id="menu-item-bibliography" label="Bibliography">
+        @{
+            var tags = new string[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
+            foreach (var tag in tags)
+            {
+                <menuitem id="menu-item-@tag" label="@tag"></menuitem>
+            }
+        }
+    </menu>
+    <menu label="Share on...">
+        <menuitem label="Twitter" onclick="window.open('//twitter.com/intent/tweet?text='+window.location.href);"></menuitem>
+        <menuitem label="Facebook" onclick="window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);"></menuitem>
+    </menu>
+    <menuitem id="menu-item-email-page" label="Email This Page"></menuitem>
+    <menuitem id="menu-item-foo" label="Foo"></menuitem>
+    <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
+    <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
+</menu>
+

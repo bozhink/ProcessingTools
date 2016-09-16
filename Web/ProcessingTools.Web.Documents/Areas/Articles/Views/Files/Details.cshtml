@@ -1,4 +1,4 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentDetailsViewModel
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileDetailsViewModel
 
 @{
     ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
@@ -17,19 +17,37 @@
 <footer>
     <nav class="separated-items">
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultBackToListActionLinkTitle,
+                actionName: nameof(FilesController.Index))
         </span>
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = Model.Id })
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                actionName: nameof(DocumentsController.Preview),
+                controllerName: ControllerNames.DocumentsControllerName,
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: null)
         </span>
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = Model.Id })
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                actionName: nameof(DocumentsController.Edit),
+                controllerName: ControllerNames.DocumentsControllerName,
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: null)
         </span>
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = Model.Id })
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                actionName: nameof(FilesController.Delete),
+                routeValues: new { id = Model.DocumentId })
         </span>
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = Model.Id })
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
+                actionName: nameof(FilesController.Download),
+                routeValues: new { id = Model.DocumentId })
         </span>
     </nav>
 </footer>

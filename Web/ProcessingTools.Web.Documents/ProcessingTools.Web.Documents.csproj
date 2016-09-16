@@ -282,13 +282,15 @@
     <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
     <Compile Include="Areas\Articles\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
+    <Compile Include="Areas\Articles\Controllers\DocumentsController.cs" />
     <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentDetailsViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentIdViewModel.cs" />
-    <Compile Include="Areas\Articles\ViewModels\Files\DocumentViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\BioTaxonomyDataAreaRegistration.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\BiotaxonomicBlackListController.cs" />
     <Compile Include="Areas\BioTaxonomyData\Controllers\TaxaRanksController.cs" />
@@ -298,10 +300,23 @@
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\Contracts\ITaxonRankResponseModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\SearchResposeModel.cs" />
     <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankResponseModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemsViewModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\BiotaxonomicBlackList\BlackListItemViewModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxaRanksViewModel.cs" />
-    <Compile Include="Areas\BioTaxonomyData\ViewModels\TaxaRanks\TaxonRankViewModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemsRequestModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\BiotaxonomicBlackList\BlackListItemRequestModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxaRanksRequestModel.cs" />
+    <Compile Include="Areas\BioTaxonomyData\Models\TaxaRanks\TaxonRankRequestModel.cs" />
+    <Compile Include="Areas\DataResources\Controllers\AbbreviationsController.cs" />
+    <Compile Include="Areas\DataResources\Controllers\ContentTypesController.cs" />
+    <Compile Include="Areas\DataResources\Controllers\InstitutionsController.cs" />
+    <Compile Include="Areas\DataResources\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\DataResources\DataResourcesAreaRegistration.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeCreateViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeDetailsViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeEditViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\ContentTypeIndexViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeCreateViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeDetailsViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeEditViewModel.cs" />
+    <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
@@ -328,6 +343,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Factories\MvcControllerWithExceptionHandling.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -360,54 +376,6 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\address-list.css">
-      <DependentUpon>address-list.less</DependentUpon>
-    </Content>
-    <Content Include="Content\address-list.min.css">
-      <DependentUpon>address-list.css</DependentUpon>
-    </Content>
-    <Content Include="Content\black-list.css">
-      <DependentUpon>black-list.less</DependentUpon>
-    </Content>
-    <Content Include="Content\black-list.min.css">
-      <DependentUpon>black-list.css</DependentUpon>
-    </Content>
-    <Content Include="Content\document-edit.css">
-      <DependentUpon>document-edit.less</DependentUpon>
-    </Content>
-    <Content Include="Content\document-edit.min.css">
-      <DependentUpon>document-edit.css</DependentUpon>
-    </Content>
-    <Content Include="Content\document-preview.css">
-      <DependentUpon>document-preview.less</DependentUpon>
-    </Content>
-    <Content Include="Content\document-preview.min.css">
-      <DependentUpon>document-preview.css</DependentUpon>
-    </Content>
-    <Content Include="Content\site.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Content\site.min.css">
-      <DependentUpon>site.css</DependentUpon>
-    </Content>
-    <Content Include="Content\taxa-ranks.css">
-      <DependentUpon>taxa-ranks.less</DependentUpon>
-    </Content>
-    <Content Include="Content\taxa-ranks.min.css">
-      <DependentUpon>taxa-ranks.css</DependentUpon>
-    </Content>
-    <Content Include="Content\toolbox.css">
-      <DependentUpon>toolbox.less</DependentUpon>
-    </Content>
-    <Content Include="Content\toolbox.min.css">
-      <DependentUpon>toolbox.css</DependentUpon>
-    </Content>
-    <Content Include="Content\tooltips.css">
-      <DependentUpon>tooltips.less</DependentUpon>
-    </Content>
-    <Content Include="Content\tooltips.min.css">
-      <DependentUpon>tooltips.css</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Articles\Views\web.config" />
@@ -422,31 +390,74 @@
     <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\Preview.cshtml" />
-    <Content Include="Scripts\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
-    <Content Include="Scripts\app\data\data-set.js" />
-    <Content Include="Scripts\app\models\data\bio\taxonomy\black-list-item.js" />
-    <Content Include="Scripts\app\models\data\bio\taxonomy\taxon-rank.js" />
-    <Content Include="Scripts\app\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
-    <Content Include="Scripts\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
-    <Content Include="Scripts\app\services\search-string-service.js" />
-    <Content Include="Scripts\app\template.js" />
-    <Content Include="Scripts\controllers\address-list-controller.js" />
-    <Content Include="Scripts\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
-    <Content Include="Scripts\controllers\documents\document-controller.js" />
-    <Content Include="Scripts\custom\auto-save.js" />
-    <Content Include="Scripts\custom\coordinates-toolboxes.js" />
-    <Content Include="Scripts\custom\document-edit.js" />
-    <Content Include="Scripts\custom\document-save-controller.js" />
-    <Content Include="Scripts\config\interact-config.js" />
-    <Content Include="Scripts\app\json-requester.js" />
-    <Content Include="Scripts\custom\files-index.js" />
-    <Content Include="Scripts\custom\html-selection-tagger.js" />
-    <Content Include="Scripts\custom\key-bindings.js" />
-    <Content Include="Scripts\config\monaco-editor-config.js" />
-    <Content Include="Scripts\config\toastr-config.js" />
-    <Content Include="Scripts\custom\toolbox-event-handlers.js" />
-    <Content Include="Scripts\data\documents\document-content-data.js" />
+    <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
+    <Content Include="static\code\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
+    <Content Include="static\code\app\data\data-set.js" />
+    <Content Include="static\code\app\models\data\bio\taxonomy\black-list-item.js" />
+    <Content Include="static\code\app\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="static\code\app\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
+    <Content Include="static\code\app\modules\data\bio\taxonomy\taxa-ranks-app.js" />
+    <Content Include="static\code\app\services\ng-json-requester.js" />
+    <Content Include="static\code\app\services\search-string-service.js" />
+    <Content Include="static\code\app\services\templates-provider.js" />
+    <Content Include="static\code\app\controllers\address-list-controller.js" />
+    <Content Include="static\code\app\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
+    <Content Include="static\code\app\controllers\documents\document-controller.js" />
+    <Content Include="static\code\custom\auto-save.js" />
+    <Content Include="static\code\custom\coordinates-toolboxes.js" />
+    <Content Include="static\code\custom\document-edit.js" />
+    <Content Include="static\code\custom\document-save-controller.js" />
+    <Content Include="static\code\app\configurations\interact-config.js" />
+    <Content Include="static\code\app\services\json-requester.js" />
+    <Content Include="static\code\custom\files-index.js" />
+    <Content Include="static\code\custom\html-selection-tagger.js" />
+    <Content Include="static\code\custom\key-bindings.js" />
+    <Content Include="static\code\app\configurations\monaco-editor-config.js" />
+    <Content Include="static\code\app\configurations\toastr-config.js" />
+    <Content Include="static\code\custom\toolbox-event-handlers.js" />
+    <Content Include="static\code\app\services\documents\document-content-data.js" />
+    <Content Include="static\styles\address-list.css">
+      <DependentUpon>address-list.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\address-list.min.css">
+      <DependentUpon>address-list.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\biotaxonomic-lists.css">
+      <DependentUpon>biotaxonomic-lists.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\biotaxonomic-lists.min.css">
+      <DependentUpon>biotaxonomic-lists.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-edit.css">
+      <DependentUpon>document-edit.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-edit.min.css">
+      <DependentUpon>document-edit.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-preview.css">
+      <DependentUpon>document-preview.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\document-preview.min.css">
+      <DependentUpon>document-preview.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\toolbox.css">
+      <DependentUpon>toolbox.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\toolbox.min.css">
+      <DependentUpon>toolbox.css</DependentUpon>
+    </Content>
+    <Content Include="static\styles\tooltips.css">
+      <DependentUpon>tooltips.less</DependentUpon>
+    </Content>
+    <Content Include="static\styles\tooltips.min.css">
+      <DependentUpon>tooltips.css</DependentUpon>
+    </Content>
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
@@ -468,28 +479,54 @@
     <Content Include="Areas\Journals\Views\Journals\Edit.cshtml" />
     <Content Include="Areas\Journals\Views\Journals\Index.cshtml" />
     <Content Include="bower.json" />
-    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Delete.cshtml" />
-    <Content Include="Areas\Articles\Views\Files\_HelpSubmenu.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\_HelpSubmenu.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Help.cshtml" />
     <Content Include="Areas\Articles\Views\Files\_Details.cshtml" />
     <Content Include="Areas\BioTaxonomyData\Views\web.config" />
     <Content Include="Areas\BioTaxonomyData\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BioTaxonomyData\Views\TaxaRanks\Index.cshtml" />
     <Content Include="Areas\BioTaxonomyData\Views\BiotaxonomicBlackList\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\web.config" />
+    <Content Include="Areas\DataResources\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\DataResources\Views\Abbreviations\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\Abbreviations\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\Abbreviations\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\Abbreviations\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\Abbreviations\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\Institutions\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\Institutions\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\Institutions\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\Institutions\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\Institutions\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Create.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Details.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\DataResources\Views\Products\Index.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\_Details.cshtml" />
+    <Content Include="Views\Shared\_DeleteFooter.cshtml" />
+    <Content Include="Views\Shared\_DeleteHeader.cshtml" />
+    <Content Include="Areas\DataResources\Views\ContentTypes\_Edit.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\document-preview.less" />
-    <Content Include="Content\toolbox.less" />
+    <Content Include="static\styles\document-preview.less" />
+    <Content Include="static\styles\toolbox.less" />
     <Content Include="package.json" />
-    <Content Include="Content\site.less" />
-    <Content Include="Content\tooltips.less" />
-    <Content Include="Content\document-edit.less" />
+    <Content Include="static\styles\site.less" />
+    <Content Include="static\styles\tooltips.less" />
+    <Content Include="static\styles\document-edit.less" />
     <Content Include="JSLintNet.json" />
-    <Content Include="Content\Templates\coordinates-map.handlebars" />
-    <Content Include="Scripts\custom\document-preview.js" />
+    <Content Include="static\templates\coordinates-map.handlebars" />
+    <Content Include="static\code\custom\document-preview.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -533,17 +570,22 @@
     <Content Include="Views\Shared\Errors\InvalidNumberOfItemsPerPage.cshtml" />
     <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
     <Content Include="Settings.StyleCop" />
-    <Content Include="Content\Templates\coordinates-toolbox.handlebars" />
+    <Content Include="static\templates\coordinates-toolbox.handlebars" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
-    <Content Include="Content\address-list.less" />
-    <Content Include="Content\taxa-ranks.less" />
-    <Content Include="Content\black-list.less" />
+    <Content Include="static\styles\address-list.less" />
+    <Content Include="Views\Shared\_DetailsHeader.cshtml" />
+    <Content Include="Views\Shared\_DetailsFooter.cshtml" />
+    <Content Include="Views\Shared\_BackToListFooter.cshtml" />
+    <Content Include="static\styles\biotaxonomic-lists.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Articles\Views\DocumentContent\" />
     <Folder Include="Areas\Articles\Views\Shared\" />
+    <Folder Include="Areas\BioTaxonomyData\ViewModels\" />
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
+    <Folder Include="Areas\DataResources\Models\ContentTypes\" />
+    <Folder Include="Areas\DataResources\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
@@ -552,6 +594,18 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\DataResources.Data.Common\DataResources.Data.Common.csproj">
+      <Project>{ad202ef1-f5f1-4d85-9cea-ea13ee71d5d6}</Project>
+      <Name>DataResources.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
+      <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
+      <Name>DataResources.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\DataResources.Data.Mongo\DataResources.Data.Mongo.csproj">
+      <Project>{394df755-e829-4321-a974-6a69ed86f56e}</Project>
+      <Name>DataResources.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
@@ -655,6 +709,10 @@
     <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\DataResources.Services.Data\DataResources.Services.Data.csproj">
+      <Project>{0af6537b-c198-49dd-a858-5247e24f0179}</Project>
+      <Name>DataResources.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
       <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>

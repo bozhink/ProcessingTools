@@ -1,34 +1,30 @@
 ﻿[
   {
-    "outputFile": "Content/site.css",
-    "inputFile": "Content/site.less"
+    "outputFile": "static/styles/address-list.css",
+    "inputFile": "static/styles/address-list.less"
   },
   {
-    "outputFile": "Content/tooltips.css",
-    "inputFile": "Content/tooltips.less"
+    "outputFile": "static/styles/biotaxonomic-lists.css",
+    "inputFile": "static/styles/biotaxonomic-lists.less"
   },
   {
-    "outputFile": "Content/toolbox.css",
-    "inputFile": "Content/toolbox.less"
+    "outputFile": "static/styles/document-edit.css",
+    "inputFile": "static/styles/document-edit.less"
   },
   {
-    "outputFile": "Content/document-preview.css",
-    "inputFile": "Content/document-preview.less"
+    "outputFile": "static/styles/document-preview.css",
+    "inputFile": "static/styles/document-preview.less"
   },
   {
-    "outputFile": "Content/document-edit.css",
-    "inputFile": "Content/document-edit.less"
+    "outputFile": "static/styles/site.css",
+    "inputFile": "static/styles/site.less"
   },
   {
-    "outputFile": "Content/address-list.css",
-    "inputFile": "Content/address-list.less"
+    "outputFile": "static/styles/toolbox.css",
+    "inputFile": "static/styles/toolbox.less"
   },
   {
-    "outputFile": "Content/taxa-ranks.css",
-    "inputFile": "Content/taxa-ranks.less"
-  },
-  {
-    "outputFile": "Content/black-list.css",
-    "inputFile": "Content/black-list.less"
+    "outputFile": "static/styles/tooltips.css",
+    "inputFile": "static/styles/tooltips.less"
   }
 ]

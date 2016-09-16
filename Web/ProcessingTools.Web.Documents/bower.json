@@ -15,11 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
+    "bootstrap": "3.3.6",
     "jquery": "2.2.3",
     "jquery-form": "^3.46.0",
-    "jquery-ui": "^1.11.4",
-    "jquery-validation": "^1.15.1",
+    "jquery-ui": "1.11.4",
+    "jquery-validation": "1.15.0",
     "jquery-validation-unobtrusive": "^3.2.6",
     "interact": "1.2.6",
     "handlebars": "^4.0.5",
@@ -28,6 +28,10 @@
     "respond": "^1.4.2",
     "cryptojs-sha1": "^1.0.0",
     "leaflet": "^0.7.7",
-    "angular": "1.5.8"
+    "angular": "1.5.5"
+  },
+  "resolutions": {
+    "angular": "1.5.8",
+    "jquery-validation": ">=1.8"
   }
 }

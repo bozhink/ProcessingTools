@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
+    <Compile Include="IContentTypable.cs" />
     <Compile Include="IContextProcessor.cs" />
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="IDefinable.cs" />
     <Compile Include="IDocumentProcessor.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />

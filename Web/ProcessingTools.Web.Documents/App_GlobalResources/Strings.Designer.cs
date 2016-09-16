@@ -331,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this?.
+        /// </summary>
+        internal static string DeletePromptMessage {
+            get {
+                return ResourceManager.GetString("DeletePromptMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document saved successfully.
         /// </summary>
         internal static string DocumentSavedSuccessfullyResponseMessage {

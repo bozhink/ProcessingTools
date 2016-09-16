@@ -1,4 +1,4 @@
-﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentViewModel>
+﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileViewModel>
 
 @{
     ViewBag.Title = Resources.Strings.ListOfFilesPageTitle;
@@ -8,16 +8,24 @@
     <h2>
         @Resources.Strings.ListOfFilesPageHeading
     </h2>
-</header>
 
-<p class="separated-items">
-    <span class="item">
-        @Html.ActionLink(Resources.Strings.DefaultUploadNewFileActionLinkTitle, nameof(FilesController.Upload), routeValues: null, htmlAttributes: new { id = "upload-file-link" })
-    </span>
-    <span class="item">
-        @Html.ActionLink(Resources.Strings.HelpActionLinkTitle, nameof(FilesController.Help), routeValues: null, htmlAttributes: new { target = "_blank" })
-    </span>
-</p>
+    <p class="separated-items">
+        <span class="item">
+            @Html.ActionLink(
+            linkText: Resources.Strings.DefaultUploadNewFileActionLinkTitle,
+            actionName: nameof(FilesController.Upload),
+            routeValues: null,
+            htmlAttributes: new { id = "upload-file-link" })
+        </span>
+        <span class="item">
+            @Html.ActionLink(
+            linkText: Resources.Strings.HelpActionLinkTitle,
+            actionName: nameof(FilesController.Help),
+            routeValues: null,
+            htmlAttributes: new { target = "_blank" })
+        </span>
+    </p>
+</header>
 
 @if (Model.Items.Count() > 0)
 {
@@ -58,19 +66,38 @@
                         </td>
                         <td class="separated-items">
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultPreviewActionLinkTitle, nameof(FilesController.Preview), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                                    actionName: nameof(DocumentsController.Preview),
+                                    controllerName: ControllerNames.DocumentsControllerName,
+                                    routeValues: new { id = item.DocumentId },
+                                    htmlAttributes: null)
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(FilesController.Edit), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                                    actionName: nameof(DocumentsController.Edit),
+                                    controllerName: ControllerNames.DocumentsControllerName,
+                                    routeValues: new { id = item.DocumentId },
+                                    htmlAttributes: null)
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDetailsActionLinkTitle, nameof(FilesController.Details), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
+                                    actionName: nameof(FilesController.Details),
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDeleteActionLinkTitle, nameof(FilesController.Delete), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                                    actionName: nameof(FilesController.Delete),
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                             <span class="item">
-                                @Html.ActionLink(Resources.Strings.DefaultDownloadActionLinkTitle, nameof(FilesController.Download), new { id = item.Id })
+                                @Html.ActionLink(
+                                    linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
+                                    actionName: nameof(FilesController.Download),
+                                    routeValues: new { id = item.DocumentId })
                             </span>
                         </td>
                     </tr>

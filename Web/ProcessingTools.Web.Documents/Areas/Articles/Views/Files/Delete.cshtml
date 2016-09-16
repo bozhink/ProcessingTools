@@ -1,29 +1,9 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.DocumentDetailsViewModel
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileDetailsViewModel
 
 @{
     ViewBag.Title = Resources.Strings.DeafultDeletePageTitle;
 }
 
-<header>
-    <h2>
-        @Resources.Strings.DeafultDeletePageHeading
-    </h2>
-</header>
-
+@Html.Partial(ViewNames.DeleteHeaderPartialViewName)
 @Html.Partial(ViewNames.DetailsPartialViewName)
-
-<footer>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color separated-items">
-            <span class="item">
-                <input type="submit" value="Delete" class="btn btn-default" />
-            </span>
-            <span class="item">
-                @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
-            </span>
-        </div>
-    }
-</footer>
+@Html.Partial(ViewNames.DeleteFooterPartialViewName)

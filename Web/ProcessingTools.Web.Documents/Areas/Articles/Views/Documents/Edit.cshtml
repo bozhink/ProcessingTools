@@ -1,0 +1,83 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
+
+@{
+    ViewBag.Title = Resources.Strings.DeafultEditPageTitle;
+}
+
+@section Styles {
+    @Styles.Render(BundleNames.DocumentEditStyleBundleName)
+}
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                actionName: nameof(DocumentsController.Edit),
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: new { @class = "navbar-brand" })
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink(
+                        linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                        actionName: nameof(DocumentsController.Preview),
+                        routeValues: new { id = Model.DocumentId },
+                        htmlAttributes: new { target = "_blank" })
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <span class="input-group">
+                        <label class="input-group-addon">Language</label>
+                        <select class="form-control language-picker"></select>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <span class="input-group">
+                        <label class="input-group-addon">Theme</label>
+                        <select class="form-control theme-picker"></select>
+                    </span>
+                </div>
+            </form>
+            @Html.Partial(ViewNames.HelpSubmenuPartialViewName)
+        </div>
+    </div>
+</nav>
+
+<div id="editor-container"></div>
+
+<div class="clearfix"></div>
+
+<aside style="display: none;">
+    @Html.ActionLink(
+        linkText: Resources.Strings.DefaultRefreshActionLinkTitle,
+        actionName: nameof(DocumentContentController.GetXml),
+        controllerName: ControllerNames.DocumentContentControllerName,
+        routeValues: new { id = Model.DocumentId },
+        htmlAttributes: new { id = "get-link" })
+    @Html.ActionLink(
+        linkText: Resources.Strings.DefaultSaveActionLinkTitle,
+        actionName: nameof(DocumentContentController.SaveXml),
+        controllerName: ControllerNames.DocumentContentControllerName,
+        routeValues: new { id = Model.DocumentId },
+        htmlAttributes: new { id = "save-link" })
+</aside>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.CryptoJSScriptBundleName)
+    @Scripts.Render(BundleNames.ToastrScriptBundleName)
+    @Scripts.Render(BundleNames.ApplicationScriptBundleName)
+    @Scripts.Render(BundleNames.MonacoEditorScriptBundleName)
+    @Scripts.Render(BundleNames.DocumentEditScriptBundleName)
+    @Scripts.Render(BundleNames.KeyBindingsScriptBundleName)
+    @*@Scripts.Render(BundleNames.AutoSaveScriptBundleName)*@
+}

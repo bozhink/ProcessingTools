@@ -110,22 +110,7 @@
                 fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
         }
 
-        // GET: /Articles/Files/Edit/5
-        [HttpGet]
-        public ActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
-
-            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
-
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(viewModel);
-        }
-
-        // GET: /Articles/Help
+        // GET: /Articles/Files/Help
         [HttpGet]
         public ActionResult Help()
         {
@@ -149,7 +134,7 @@
             var articleId = this.FakeArticleId;
 
             var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
-                .Select(d => new DocumentViewModel(articleId, d.Id)
+                .Select(d => new FileViewModel(articleId, d.Id)
                 {
                     FileName = d.FileName,
                     DateCreated = d.DateCreated,
@@ -159,22 +144,7 @@
 
             var numberOfDocuments = await this.service.Count(userId, articleId);
 
-            var viewModel = new ListWithPagingViewModel<DocumentViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
-
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(viewModel);
-        }
-
-        // GET: /Articles/Files/Preview/5
-        [HttpGet]
-        public ActionResult Preview(Guid? id)
-        {
-            if (id == null)
-            {
-                throw new InvalidIdException();
-            }
-
-            var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
+            var viewModel = new ListWithPagingViewModel<FileViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
@@ -325,7 +295,7 @@
             return task;
         }
 
-        private async Task<DocumentDetailsViewModel> GetDetails(object userId, object articleId, object id)
+        private async Task<FileDetailsViewModel> GetDetails(object userId, object articleId, object id)
         {
             if (userId == null)
             {
@@ -348,7 +318,7 @@
                 throw new EntityNotFoundException();
             }
 
-            var viewModel = new DocumentDetailsViewModel(articleId, id)
+            var viewModel = new FileDetailsViewModel(articleId, id)
             {
                 FileName = document.FileName,
                 FileExtension = document.FileExtension,

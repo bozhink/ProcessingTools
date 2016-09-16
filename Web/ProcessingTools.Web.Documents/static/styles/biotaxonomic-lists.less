@@ -1,0 +1,63 @@
+﻿@index-width: 20px;
+@remove-button-width: 40px;
+@black-list-item-content-width: 200px;
+@taxon-name-width: 200px;
+@taxon-rank-width: 80px;
+
+@border: 1px solid #E5E5E5;
+
+@cell-horizontal-padding: 10px;
+@cell-vertical-padding: 5px;
+
+@color-danger: red;
+@color-hover: azure;
+
+.list-item-content(@width) {
+    display: table-cell;
+    min-width: @width;
+    width: @width;
+    padding: @cell-vertical-padding @cell-horizontal-padding;
+}
+
+.view-list {
+    margin: 0 0 10px 0;
+    padding: 0;
+    display: table;
+    border-collapse: collapse;
+
+    .list-item {
+        display: table-row;
+        border-top: @border;
+        border-bottom: @border;
+
+        &:hover {
+            background-color: @color-hover;
+        }
+    }
+
+    .index {
+        .list-item-content(@index-width);
+        text-align: right;
+    }
+
+    .taxon-name {
+        .list-item-content(@taxon-name-width);
+    }
+
+    .taxon-rank {
+        .list-item-content(@taxon-rank-width);
+    }
+
+    .black-list-item {
+        .list-item-content(@black-list-item-content-width);
+    }
+
+    .remove-button {
+        .list-item-content(@remove-button-width);
+        cursor: pointer;
+
+        &:hover {
+            color: @color-danger;
+        }
+    }
+}

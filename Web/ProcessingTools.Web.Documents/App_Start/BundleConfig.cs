@@ -36,7 +36,7 @@
             bundles.Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
                 .Include(
                     "~/bower_components/interact/interact.js",
-                    "~/Scripts/config/interact-config.js"));
+                    "~/static/code/app/configurations/interact-config.js"));
 
             // Modernizr
             bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
@@ -53,7 +53,7 @@
             bundles.Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.js",
-                    "~/Scripts/config/toastr-config.js"));
+                    "~/static/code/app/configurations/toastr-config.js"));
 
             // Handlebars
             bundles.Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
@@ -73,96 +73,98 @@
             bundles.Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
                 .Include(
                     "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/Scripts/config/monaco-editor-config.js"));
+                    "~/static/code/app/configurations/monaco-editor-config.js"));
 
             // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
-                    "~/Content/site.min.css",
-                    "~/Content/tooltips.min.css"));
+                    "~/static/styles/site.min.css",
+                    "~/static/styles/tooltips.min.css"));
 
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
-                    "~/Scripts/app/json-requester.js",
-                    "~/Scripts/app/template.js"));
+                    "~/static/code/app/services/json-requester.js",
+                    "~/static/code/app/services/templates-provider.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/key-bindings.js"));
+                    "~/static/code/custom/key-bindings.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.AutoSaveScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/auto-save.js"));
+                    "~/static/code/custom/auto-save.js"));
 
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
                 .Include(
-                    "~/Scripts/custom/files-index.js"));
+                    "~/static/code/custom/files-index.js"));
 
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
-                    "~/Scripts/data/documents/document-content-data.js",
-                    "~/Scripts/controllers/documents/document-controller.js",
-                    "~/Scripts/custom/document-edit.js"));
+                    "~/static/code/app/services/documents/document-content-data.js",
+                    "~/static/code/app/controllers/documents/document-controller.js",
+                    "~/static/code/custom/document-edit.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/Content/document-edit.min.css"));
+                    "~/static/styles/document-edit.min.css"));
 
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
-                    "~/Scripts/data/documents/document-content-data.js",
-                    "~/Scripts/controllers/documents/document-controller.js",
-                    "~/Scripts/app/template.js",
-                    "~/Scripts/custom/html-selection-tagger.js",
-                    "~/Scripts/custom/toolbox-event-handlers.js",
-                    "~/Scripts/custom/coordinates-toolboxes.js",
-                    "~/Scripts/custom/document-preview.js"));
+                    "~/static/code/app/services/documents/document-content-data.js",
+                    "~/static/code/app/controllers/documents/document-controller.js",
+                    "~/static/code/app/services/templates-provider.js",
+                    "~/static/code/custom/html-selection-tagger.js",
+                    "~/static/code/custom/toolbox-event-handlers.js",
+                    "~/static/code/custom/coordinates-toolboxes.js",
+                    "~/static/code/custom/document-preview.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/Content/toolbox.min.css",
-                    "~/Content/document-preview.min.css"));
+                    "~/static/styles/toolbox.min.css",
+                    "~/static/styles/document-preview.min.css"));
 
             // Address List
             bundles.Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
                 .Include(
-                    "~/Scripts/controllers/address-list-controller.js"));
+                    "~/static/code/app/controllers/address-list-controller.js"));
 
             bundles.Add(new StyleBundle(BundleNames.AddressListStyleBundleName)
                 .Include(
-                    "~/Content/address-list.min.css"));
+                    "~/static/styles/address-list.min.css"));
 
             // Taxa Ranks
             bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
                 .Include(
-                    "~/Scripts/app/models/data/bio/taxonomy/taxon-rank.js",
-                    "~/Scripts/app/data/data-set.js",
-                    "~/Scripts/app/services/search-string-service.js",
-                    "~/Scripts/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
-                    "~/Scripts/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
+                    "~/static/code/app/models/data/bio/taxonomy/taxon-rank.js",
+                    "~/static/code/app/data/data-set.js",
+                    "~/static/code/app/services/ng-json-requester.js",
+                    "~/static/code/app/services/search-string-service.js",
+                    "~/static/code/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
+                    "~/static/code/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
                 .Include(
-                    "~/Content/taxa-ranks.min.css"));
+                    "~/static/styles/biotaxonomic-lists.min.css"));
 
-            // Taxa Ranks
+            // Biotaxonomic Black List
             bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
                 .Include(
-                    "~/Scripts/app/models/data/bio/taxonomy/black-list-item.js",
-                    "~/Scripts/app/data/data-set.js",
-                    "~/Scripts/app/services/search-string-service.js",
-                    "~/Scripts/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
-                    "~/Scripts/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
+                    "~/static/code/app/models/data/bio/taxonomy/black-list-item.js",
+                    "~/static/code/app/data/data-set.js",
+                    "~/static/code/app/services/ng-json-requester.js",
+                    "~/static/code/app/services/search-string-service.js",
+                    "~/static/code/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
+                    "~/static/code/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
-                    "~/Content/black-list.min.css"));
+                    "~/static/styles/biotaxonomic-lists.min.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }
