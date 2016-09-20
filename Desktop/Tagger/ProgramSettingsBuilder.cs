@@ -258,16 +258,35 @@
 
             var controllerNames = args
                 .Where(a => matchDirectControllerCall.IsMatch(a))
-                .Select(a => a.Substring(1));
+                .Select(a => a.Substring(1))
+                .ToArray();
 
             foreach (var controllerName in controllerNames)
             {
-                var controllerInfo = this.controllerInfoProvider
+                var matchingControllers = this.controllerInfoProvider
                     .ControllersInformation
-                    .FirstOrDefault(i => i.Value.Name == controllerName)
-                    .Value;
+                    .Where(i => i.Value.Name.ToLower().IndexOf(controllerName.ToLower()) == 0)
+                    .ToArray();
 
-                this.Settings.CalledControllers.Add(controllerInfo.ControllerType);
+                switch (matchingControllers.Length)
+                {
+                    case 0:
+                        this.logger?.Log(LogType.Warning, "No matching controller '{0}'.", controllerName);
+                        break;
+
+                    case 1:
+                        var controllerInfo = matchingControllers.Single().Value;
+                        this.Settings.CalledControllers.Add(controllerInfo.ControllerType);
+                        break;
+
+                    default:
+                        this.logger?.Log(
+                            LogType.Warning,
+                            "Multiple controllers match input name '{0}': {1}",
+                            controllerName,
+                            string.Join("\n\t", matchingControllers.Select(c => c.Key.ToString())));
+                        break;
+                }
             }
         }
 
