@@ -7,12 +7,14 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
-    using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.Factories;
 
-    public class DocumentsController : Controller
+    public class DocumentsController : MvcControllerWithExceptionHandling
     {
         // TODO: To be removed
         private int FakeArticleId => 0;
+
+        protected override string InstanceName => InstanceNames.DocumentsControllerInstanceName;
 
         // GET: /Articles/Documents
         [HttpGet]
@@ -58,53 +60,6 @@
         public ActionResult Help()
         {
             return this.View();
-        }
-
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
-        }
-
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            if (filterContext.Exception is EntityNotFoundException)
-            {
-                filterContext.Result = this.DefaultNotFoundView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidIdException)
-            {
-                filterContext.Result = this.InvalidIdErrorView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidPageNumberException)
-            {
-                filterContext.Result = this.InvalidPageNumberErrorView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is InvalidItemsPerPageException)
-            {
-                filterContext.Result = this.InvalidNumberOfItemsPerPageErrorView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else if (filterContext.Exception is ArgumentException)
-            {
-                filterContext.Result = this.BadRequestErrorView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-            else
-            {
-                filterContext.Result = this.DefaultErrorView(
-                    InstanceNames.DocumentsControllerInstanceName,
-                    filterContext.Exception.Message);
-            }
-
-            filterContext.ExceptionHandled = true;
         }
     }
 }
