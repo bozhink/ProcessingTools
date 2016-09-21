@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     [JsonObject]
-    public class JsonKeyValuePair
+    public class JsonKeyValuePair : IJsonKeyValuePair
     {
         [JsonProperty("key")]
         public string Key { get; set; }

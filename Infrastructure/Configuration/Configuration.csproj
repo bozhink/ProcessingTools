@@ -38,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ConfigurationModel.cs" />
+    <Compile Include="Models\IConfigurationModel.cs" />
+    <Compile Include="Models\IJsonKeyValuePair.cs" />
     <Compile Include="Models\JsonKeyValuePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
