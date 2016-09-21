@@ -11,10 +11,10 @@
 
     public class DocumentsController : MvcControllerWithExceptionHandling
     {
+        protected override string InstanceName => InstanceNames.DocumentsControllerInstanceName;
+
         // TODO: To be removed
         private int FakeArticleId => 0;
-
-        protected override string InstanceName => InstanceNames.DocumentsControllerInstanceName;
 
         // GET: /Articles/Documents
         [HttpGet]
