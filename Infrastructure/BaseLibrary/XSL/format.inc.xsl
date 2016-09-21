@@ -140,32 +140,6 @@
     </xsl:element>
   </xsl:template>
 
-  <!-- front/notes/sec/p model -->
-
-  <xsl:template match="article/front/notes/sec//p">
-    <p>
-      <xsl:apply-templates mode="front-notes-sec-p" />
-    </p>
-  </xsl:template>
-
-  <xsl:template match="@*" mode="front-notes-sec-p">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" mode="front-notes-sec-p" />
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text() | comment()" mode="front-notes-sec-p">
-    <xsl:copy-of select="." />
-  </xsl:template>
-
-  <xsl:template match="bold | Bold | b | italic | Italic | i | bold-italic | monospace | overline | roman | sans-serif | sc | strike | s | underline | u | named-content | styled-content | sub | sup | ext-link" mode="front-notes-sec-p">
-    <xsl:apply-templates select="." />
-  </xsl:template>
-
-  <xsl:template match="*" mode="front-notes-sec-p">
-    <xsl:apply-templates mode="front-notes-sec-p" />
-  </xsl:template>
-
   <!-- author-notes/fn/p model -->
 
   <xsl:template match="author-notes/fn/p">
