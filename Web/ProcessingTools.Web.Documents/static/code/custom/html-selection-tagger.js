@@ -107,17 +107,22 @@
             tag('u', 'underline', 'underline');
         }
 
+        function tagInMonospace() {
+            tag('kbd', 'monospace', 'monospace');
+        }
+
         return {
-            foo,
-            clearTagsInSelection,
-            tag,
-            tagLink,
-            tagInSpan,
-            tagInMark,
-            tagInXref,
-            tagInBold,
-            tagInItalic,
-            tagInUnderline
+            foo: foo,
+            clearTagsInSelection: clearTagsInSelection,
+            tag: tag,
+            tagLink: tagLink,
+            tagInSpan: tagInSpan,
+            tagInMark: tagInMark,
+            tagInXref: tagInXref,
+            tagInBold: tagInBold,
+            tagInItalic: tagInItalic,
+            tagInUnderline: tagInUnderline,
+            tagInMonospace: tagInMonospace
         };
     }());
 }(window, document));

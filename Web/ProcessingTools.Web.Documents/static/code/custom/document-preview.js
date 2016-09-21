@@ -225,6 +225,14 @@
             return false;
         }
 
+        // Ctrl + M
+        if (e.ctrlKey && e.which === 77) {
+            e.stopPropagation();
+            e.preventDefault();
+            window.htmlSelectionTagger.tagInMonospace();
+            return false;
+        }
+
         // Alt + A -> abbrev
         if (e.altKey && e.which === 65) {
             e.stopPropagation();
