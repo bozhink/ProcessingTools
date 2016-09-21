@@ -10,12 +10,12 @@
 
     using ProcessingTools.Common;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
+
     using Resources;
 
     [Authorize]
