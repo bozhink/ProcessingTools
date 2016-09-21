@@ -514,6 +514,7 @@
     <Content Include="Views\Shared\_DeleteFooter.cshtml" />
     <Content Include="Views\Shared\_DeleteHeader.cshtml" />
     <Content Include="Areas\DataResources\Views\ContentTypes\_Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

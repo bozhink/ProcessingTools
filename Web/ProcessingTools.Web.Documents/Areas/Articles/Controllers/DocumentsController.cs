@@ -23,7 +23,7 @@
                 controllerName: ControllerNames.FilesControllerName);
         }
 
-        // GET: /Articles/Files/Edit/5
+        // GET: /Articles/Documents/Edit/5
         [HttpGet]
         public ActionResult Edit(Guid? id)
         {
@@ -38,7 +38,7 @@
             return this.View(viewModel);
         }
 
-        // GET: /Articles/Files/Preview/5
+        // GET: /Articles/Documents/Preview/5
         [HttpGet]
         public ActionResult Preview(Guid? id)
         {
@@ -51,6 +51,13 @@
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
+        }
+
+        // GET: /Articles/Documents/Help
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
         }
 
         protected override void HandleUnknownAction(string actionName)
