@@ -10,7 +10,7 @@
     using Contracts;
     using ProcessingTools.Contracts;
 
-    public class DirectoryProcessor : IProcessor
+    public class DirectoryProcessor : ISimpleProcessor
     {
         private string direcoryName;
         private IJournal journal;
