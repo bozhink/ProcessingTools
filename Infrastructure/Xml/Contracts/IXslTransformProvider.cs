@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contract
+﻿namespace ProcessingTools.Xml.Contracts
 {
     using System.Xml.Xsl;
 

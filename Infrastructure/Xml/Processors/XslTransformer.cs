@@ -4,7 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contract;
+    using Contracts;
     using Extensions;
 
     public class XslTransformer : IXslTransformer

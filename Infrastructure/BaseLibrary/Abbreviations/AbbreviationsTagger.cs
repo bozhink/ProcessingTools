@@ -8,7 +8,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Xml.Contract;
+    using ProcessingTools.Xml.Contracts;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
