@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contract\IXmlContextWrapperProvider.cs" />
+    <Compile Include="Contract\IXslTransformer.cs" />
+    <Compile Include="Contract\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
