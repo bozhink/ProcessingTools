@@ -4,7 +4,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    public interface IXslTransformer
+    using ProcessingTools.Contracts;
+
+    public interface IXslTransformer : IProcessor
     {
         Stream TransformToStream(string xml);
 
