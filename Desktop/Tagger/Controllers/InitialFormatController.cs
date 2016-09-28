@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System.Configuration;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -11,26 +10,34 @@
     using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Processors;
 
+    using Providers;
+
+    // TODO: DI
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            string xslFileName = null;
+            // TODO: Factory
+            IXslTransformProvider xslTransformProvider = null;
             switch (settings.ArticleSchemaType)
             {
                 case SchemaType.Nlm:
-                    xslFileName = ConfigurationManager.AppSettings["NlmInitialFormatXslPath"];
+                    xslTransformProvider = new NlmInitialFormatXslTransformProvider(new XslTransformCache());
                     break;
 
                 default:
-                    xslFileName = ConfigurationManager.AppSettings["SystemInitialFormatXslPath"];
+                    xslTransformProvider = new SystemInitialFormatXslTransformProvider(new XslTransformCache());
                     break;
             }
 
-            string xml = document.ApplyXslTransform(xslFileName);
+            var transformer = new XslTransformer();
+
+            string xml = await transformer.Transform(document, xslTransformProvider);
             var formatter = new NlmInitialFormatter(xml);
             await formatter.Format();
             document.LoadXml(formatter.Xml);

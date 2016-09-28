@@ -4,35 +4,29 @@
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
+
     using Contracts;
     using Extensions;
 
     public class XslTransformer : IXslTransformer
     {
-        private readonly IXslTransformProvider xslTransformProvider;
-
-        public XslTransformer(IXslTransformProvider xslTransformProvider)
-        {
-            if (xslTransformProvider == null)
-            {
-                throw new ArgumentNullException(nameof(xslTransformProvider));
-            }
-
-            this.xslTransformProvider = xslTransformProvider;
-        }
-
-        public async Task<string> Transform(XmlReader reader, bool closeReader)
+        public async Task<string> Transform(XmlReader reader, bool closeReader, IXslTransformProvider xslTransformProvider)
         {
             if (reader == null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
 
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
             string result = string.Empty;
 
             try
             {
-                using (var stream = this.TransformToStream(reader))
+                using (var stream = this.TransformToStream(reader, xslTransformProvider))
                 {
                     stream.Position = 0;
                     var streamReader = new StreamReader(stream);
@@ -62,60 +56,85 @@
             return result;
         }
 
-        public Task<string> Transform(XmlNode node)
+        public Task<string> Transform(XmlNode node, IXslTransformProvider xslTransformProvider)
         {
             if (node == null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            return this.Transform(node.OuterXml);
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
+            return this.Transform(node.OuterXml, xslTransformProvider);
         }
 
-        public Task<string> Transform(string xml)
+        public Task<string> Transform(string xml, IXslTransformProvider xslTransformProvider)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            return this.Transform(xml.ToXmlReader(), true);
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
+            return this.Transform(xml.ToXmlReader(), true, xslTransformProvider);
         }
 
-        public Stream TransformToStream(XmlReader reader)
+        public Stream TransformToStream(XmlReader reader, IXslTransformProvider xslTransformProvider)
         {
             if (reader == null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
 
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
             var stream = new MemoryStream();
 
-            var xslTransform = this.xslTransformProvider.GetXslTransform();
+            var xslTransform = xslTransformProvider.GetXslTransform();
             xslTransform.Transform(reader, null, stream);
             stream.Position = 0;
 
             return stream;
         }
 
-        public Stream TransformToStream(XmlNode node)
+        public Stream TransformToStream(XmlNode node, IXslTransformProvider xslTransformProvider)
         {
             if (node == null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            return this.TransformToStream(node.OuterXml);
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
+            return this.TransformToStream(node.OuterXml, xslTransformProvider);
         }
 
-        public Stream TransformToStream(string xml)
+        public Stream TransformToStream(string xml, IXslTransformProvider xslTransformProvider)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            return this.TransformToStream(xml.ToXmlReader());
+            if (xslTransformProvider == null)
+            {
+                throw new ArgumentNullException(nameof(xslTransformProvider));
+            }
+
+            return this.TransformToStream(xml.ToXmlReader(), xslTransformProvider);
         }
     }
 }

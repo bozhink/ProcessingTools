@@ -103,6 +103,7 @@
     <Compile Include="Contracts\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
+    <Compile Include="Contracts\INlmInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\IParseHigherTaxaAboveGenusController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaBySuffixController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Contracts\IQueryReplaceController.cs" />
     <Compile Include="Contracts\IRemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Contracts\IRunCustomXslTransformController.cs" />
+    <Compile Include="Contracts\ISystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\ITagAbbreviationsController.cs" />
     <Compile Include="Contracts\ITagCodesController.cs" />
     <Compile Include="Contracts\ITagDatesController.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
+    <Compile Include="Contracts\IZoobankNlmXslTransformProvider.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
@@ -226,6 +229,9 @@
     <Compile Include="Models\NamedContentSerializableModel.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Providers\NlmInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Providers\ZoobankNlmXslTransformProvider.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -289,6 +295,10 @@
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
       <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
@@ -509,6 +519,7 @@
     <Analyzer Include="..\..\packages\System.Security.Cryptography.Hashing.Algorithms.Analyzers.1.1.0\analyzers\dotnet\cs\System.Security.Cryptography.Hashing.Algorithms.Analyzers.dll" />
     <Analyzer Include="..\..\packages\System.Security.Cryptography.Hashing.Algorithms.Analyzers.1.1.0\analyzers\dotnet\cs\System.Security.Cryptography.Hashing.Algorithms.CSharp.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,22 +1,27 @@
 ﻿namespace ProcessingTools.Documents.Services.Data
 {
     using System;
-    using System.Configuration;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
     using Models;
 
+    using ProcessingTools.Documents.Services.Data.Providers;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Processors;
 
     public class XmlPresenter : IXmlPresenter
     {
-        private const string FormatXmlToHtmlXslFilePathKey = "FormatXmlToHtmlXslFilePath";
-        private const string FormatHtmlToXmlXslFilePathKey = "FormatHtmlToXmlXslFilePath";
-
         private readonly IDocumentsDataService service;
+
+        // TODO: DI
+        private readonly IXslTransformer transformer = new XslTransformer();
+
+        private readonly IFormatXmlToHtmlXslTransformProvider formatXmlToHtmlXslTransformProvider = new FormatXmlToHtmlXslTransformProvider(new XslTransformCache());
+        private readonly IFormatHtmlToXmlXslTransformProvider formatHtmlToXmlXslTransformProvider = new FormatHtmlToXmlXslTransformProvider(new XslTransformCache());
 
         public XmlPresenter(IDocumentsDataService service)
         {
@@ -45,11 +50,8 @@
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            string xslFileName = ConfigurationManager.AppSettings[FormatXmlToHtmlXslFilePathKey];
-
-            var content = (await this.service.GetReader(userId, articleId, documentId))
-                    .ApplyXslTransform(xslFileName);
-
+            var reader = await this.service.GetReader(userId, articleId, documentId);
+            var content = await this.transformer.Transform(reader, true, this.formatXmlToHtmlXslTransformProvider);
             return content;
         }
 
@@ -112,8 +114,7 @@
 
             xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
 
-            string xslFileName = ConfigurationManager.AppSettings[FormatHtmlToXmlXslFilePathKey];
-            var xmlContent = xmlDocument.ApplyXslTransform(xslFileName);
+            var xmlContent = await this.transformer.Transform(xmlDocument, this.formatHtmlToXmlXslTransformProvider);
             xmlDocument.LoadXml(xmlContent);
 
             var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);

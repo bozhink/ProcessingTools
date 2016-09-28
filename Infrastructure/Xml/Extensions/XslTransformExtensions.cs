@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.IO;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
@@ -12,28 +11,6 @@
     public static class XslTransformExtrensions
     {
         private static readonly ConcurrentDictionary<string, XslCompiledTransform> XslCompiledTransformObjects = new ConcurrentDictionary<string, XslCompiledTransform>();
-
-        /// <summary>
-        /// Executes XSL transform using the input document specified by the System.Xml object and returns the result as a string.
-        /// </summary>
-        /// <param name="document">Input document to be transformed.</param>
-        /// <param name="xslFileName">File name path of the XSL file.</param>
-        /// <returns>Transformed document as string.</returns>
-        /// <exception cref="EncoderFallbackException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="IOException"></exception>
-        /// <exception cref="XsltException"></exception>
-        /// <exception cref="XmlException"></exception>
-        /// <exception cref="Exception"></exception>
-        public static string ApplyXslTransform(this XmlDocument document, string xslFileName)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            return document.OuterXml.ApplyXslTransform(xslFileName);
-        }
 
         /// <summary>
         /// Executes XSL transform using the input document specified by the string object and returns the result as a string.

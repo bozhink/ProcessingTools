@@ -19,5 +19,7 @@
         public const string TaxonTreatmentExtractMaterialsXslPathKey = "TaxonTreatmentExtractMaterialsXslPath";
         public const string TextContentXslFileNameKey = "TextContentXslFileName";
         public const string ZoobankNlmXslPathKey = "ZoobankNlmXslPath";
+        public const string FormatHtmlToXmlXslFilePathKey = "FormatHtmlToXmlXslFilePath";
+        public const string FormatXmlToHtmlXslFilePathKey = "FormatXmlToHtmlXslFilePath";
     }
 }
