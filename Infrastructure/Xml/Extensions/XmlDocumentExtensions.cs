@@ -83,10 +83,6 @@
             {
                 throw new EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
             }
-            catch
-            {
-                throw;
-            }
 
             return xmlReader;
         }
