@@ -318,6 +318,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Mongo", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34804C67-D50F-4753-BC9C-7F3DDECEFC2B}"
 	ProjectSection(SolutionItems) = preProject
+		Grant.sql = Grant.sql
 		WE-Palette.css = WE-Palette.css
 		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
 	EndProjectSection
