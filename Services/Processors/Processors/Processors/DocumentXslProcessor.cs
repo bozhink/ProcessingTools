@@ -6,43 +6,44 @@
     using Contracts;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Contracts;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
     {
-        private string xslFilePath;
+        private readonly IModifiableXslTransformer transformer;
+
+        public DocumentXslProcessor(IModifiableXslTransformer transformer)
+        {
+            if (transformer == null)
+            {
+                throw new ArgumentNullException(nameof(transformer));
+            }
+
+            this.transformer = transformer;
+        }
 
         public string XslFilePath
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(this.xslFilePath))
-                {
-                    throw new NullReferenceException("File path of the XSLT file should not be null or white-space.");
-                }
-
-                return this.xslFilePath;
+                return this.transformer.XslFilePath;
             }
 
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentNullException(nameof(this.XslFilePath));
-                }
-
-                this.xslFilePath = value;
+                this.transformer.XslFilePath = value;
             }
         }
 
-        public Task Process(IDocument context) => Task.Run(() =>
+        public async Task Process(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            context.Xml = context.Xml.ApplyXslTransform(this.XslFilePath);
-        });
+            var content = await this.transformer.Transform(context.Xml);
+            context.Xml = content;
+        }
     }
 }

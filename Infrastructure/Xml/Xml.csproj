@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IGenericXslTransformer.cs" />
+    <Compile Include="Contracts\IModifiableXslTransformer.cs" />
+    <Compile Include="Contracts\IModifiableXslTransformProvider.cs" />
     <Compile Include="Contracts\ITextContentXslTransformProvider.cs" />
     <Compile Include="Contracts\IXmlTransformer.cs" />
     <Compile Include="Contracts\IXslTransformCache.cs" />
@@ -55,7 +57,9 @@
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
     <Compile Include="Factories\XslTransformAbstractProvider.cs" />
+    <Compile Include="Providers\ModifiableXslTransformProvider.cs" />
     <Compile Include="Transformers\GenericXslTransformer.cs" />
+    <Compile Include="Transformers\ModifiableXslTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\TextContentXslTransformProvider.cs" />
