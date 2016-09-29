@@ -6,7 +6,7 @@
 
     using ProcessingTools.Contracts;
 
-    public interface IXslTransformer : IProcessor
+    public interface IXslTransformer : IProcessor, ITransformer
     {
         Task<string> Transform(string xml, IXslTransformProvider xslTransformProvider);
 
