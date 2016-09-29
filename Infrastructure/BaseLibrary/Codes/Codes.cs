@@ -18,7 +18,7 @@ namespace ProcessingTools.BaseLibrary
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Extensions;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
 
     public class Codes : TaxPubDocument
     {
@@ -282,10 +282,10 @@ namespace ProcessingTools.BaseLibrary
                 string.Empty);
 
             // TODO: DI
-            var transformer = new XslTransformer();
+            var transformer = new XslTransformer(new CodesRemoveNonCodeNodesXslTransformProvider(new XslTransformCache()));
 
             // TODO: async, DI
-            cleanedXmlDocument.LoadXml(transformer.Transform(cleanedXmlDocument, new CodesRemoveNonCodeNodesXslTransformProvider(new XslTransformCache())).Result);
+            cleanedXmlDocument.LoadXml(transformer.Transform(cleanedXmlDocument).Result);
 
             Regex matchCodePattern = new Regex(codePattern);
             return cleanedXmlDocument.InnerText.GetMatches(matchCodePattern);

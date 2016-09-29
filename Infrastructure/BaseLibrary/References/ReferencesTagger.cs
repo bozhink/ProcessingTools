@@ -7,19 +7,26 @@
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
+    using ProcessingTools.BaseLibrary.Contracts;
     using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
 
     public class ReferencesTagger : TaxPubDocument, ITagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private IReferencesConfiguration referencesConfiguration;
-        private ILogger logger;
+        private readonly IReferencesConfiguration referencesConfiguration;
+        private readonly ILogger logger;
+
+        // TODO: DI
+        private readonly IXslTransformer<IReferencesTagTemplateXslTransformProvider> referencesTagTemplateXslTransformer = new XslTransformer<IReferencesTagTemplateXslTransformProvider>(new ReferencesTagTemplateXslTransformProvider(new XslTransformCache()));
+
+        // TODO: DI
+        private readonly IXslTransformer<IReferencesGetReferencesXslTransformProvider> referencesGetReferencesXslTransformer = new XslTransformer<IReferencesGetReferencesXslTransformProvider>(new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
 
         public ReferencesTagger(string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
             : base(xml)
@@ -30,12 +37,9 @@
 
         public async Task Tag()
         {
-            // TODO: DI
-            var transformer = new XslTransformer();
+            await this.ExportReferences();
 
-            await this.ExportReferences(transformer);
-
-            var referencesTemplates = await this.GetReferencesTemplates(transformer);
+            var referencesTemplates = await this.GetReferencesTemplates();
 
             /*
              * Tag references using generated template
@@ -166,9 +170,9 @@
             this.Xml = xml;
         }
 
-        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(IXslTransformer transformer)
+        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates()
         {
-            var text = await transformer.Transform(this.Xml, new ReferencesTagTemplateXslTransformProvider(new XslTransformCache()));
+            var text = await this.referencesTagTemplateXslTransformer.Transform(this.Xml);
             var referencesTemplatesXml = XDocument.Parse(text);
 
             var referencesTemplates = referencesTemplatesXml.Descendants("reference")
@@ -186,9 +190,9 @@
             return referencesTemplates;
         }
 
-        private async Task ExportReferences(IXslTransformer transformer)
+        private async Task ExportReferences()
         {
-            var text = await transformer.Transform(this.Xml, new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
+            var text = await this.referencesGetReferencesXslTransformer.Transform(this.Xml);
             var referencesList = XDocument.Parse(text);
 
             if (this.referencesConfiguration != null)

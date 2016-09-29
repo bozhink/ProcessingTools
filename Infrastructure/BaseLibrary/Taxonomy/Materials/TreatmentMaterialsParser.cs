@@ -12,41 +12,32 @@
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
-
-        private readonly IXslTransformer transformer;
-        private readonly ITaxonTreatmentExtractMaterialsXslTransformProvider taxonTreatmentExtractMaterialsXslTransformProvider;
-        private readonly IFormatTaxonTreatmentsXslTransformProvider formatTaxonTreatmentsXslTransformProvider;
+        private readonly IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer;
+        private readonly IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer;
 
         public TreatmentMaterialsParser(
             IMaterialCitationsParser materialCitationsParser,
-            IXslTransformer transformer,
-            ITaxonTreatmentExtractMaterialsXslTransformProvider taxonTreatmentExtractMaterialsXslTransformProvider,
-            IFormatTaxonTreatmentsXslTransformProvider formatTaxonTreatmentsXslTransformProvider)
+            IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer,
+            IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer)
         {
             if (materialCitationsParser == null)
             {
                 throw new ArgumentNullException(nameof(materialCitationsParser));
             }
 
-            if (transformer == null)
+            if (taxonTreatmentExtractMaterialsXslTransformer == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsXslTransformer));
             }
 
-            if (taxonTreatmentExtractMaterialsXslTransformProvider == null)
+            if (formatTaxonTreatmentsXslTransformer == null)
             {
-                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsXslTransformProvider));
-            }
-
-            if (formatTaxonTreatmentsXslTransformProvider == null)
-            {
-                throw new ArgumentNullException(nameof(formatTaxonTreatmentsXslTransformProvider));
+                throw new ArgumentNullException(nameof(formatTaxonTreatmentsXslTransformer));
             }
 
             this.materialCitationsParser = materialCitationsParser;
-            this.transformer = transformer;
-            this.taxonTreatmentExtractMaterialsXslTransformProvider = taxonTreatmentExtractMaterialsXslTransformProvider;
-            this.formatTaxonTreatmentsXslTransformProvider = formatTaxonTreatmentsXslTransformProvider;
+            this.taxonTreatmentExtractMaterialsXslTransformer = taxonTreatmentExtractMaterialsXslTransformer;
+            this.formatTaxonTreatmentsXslTransformer = formatTaxonTreatmentsXslTransformer;
         }
 
         public async Task Parse(XmlDocument document, XmlNamespaceManager namespaceManager)
@@ -100,14 +91,14 @@
                 PreserveWhitespace = true
             };
 
-            var text = await this.transformer.Transform(document, this.taxonTreatmentExtractMaterialsXslTransformProvider);
+            var text = await this.taxonTreatmentExtractMaterialsXslTransformer.Transform(document);
             queryDocument.LoadXml(text);
             return queryDocument;
         }
 
         private async Task FormatTaxonTreatments(XmlDocument document)
         {
-            var text = await this.transformer.Transform(document, this.formatTaxonTreatmentsXslTransformProvider);
+            var text = await this.formatTaxonTreatmentsXslTransformer.Transform(document);
             document.LoadXml(text);
         }
     }

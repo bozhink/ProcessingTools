@@ -5,7 +5,7 @@
     using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
 
     /// <summary>
     /// This class provides extension methods for transformation of TaxPub NLM to system XML schemas.
@@ -20,8 +20,8 @@
         public static string NormalizeXmlToSystemXml(this string xml)
         {
             // TODO: DI, async
-            var transformer = new XslTransformer();
-            return transformer.Transform(xml, new FormatNlmToSystemXslTransformProvider(new XslTransformCache())).Result;
+            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
@@ -32,8 +32,8 @@
         public static string NormalizeXmlToSystemXml(this XmlDocument xml)
         {
             // TODO: DI, async
-            var transformer = new XslTransformer();
-            return transformer.Transform(xml, new FormatNlmToSystemXslTransformProvider(new XslTransformCache())).Result;
+            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
@@ -44,8 +44,8 @@
         public static string NormalizeXmlToNlmXml(this string xml)
         {
             // TODO: DI, async
-            var transformer = new XslTransformer();
-            return transformer.Transform(xml, new FormatSystemToNlmXslTransformProvider(new XslTransformCache())).Result;
+            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
@@ -56,8 +56,8 @@
         public static string NormalizeXmlToNlmXml(this XmlDocument xml)
         {
             // TODO: DI, async
-            var transformer = new XslTransformer();
-            return transformer.Transform(xml, new FormatSystemToNlmXslTransformProvider(new XslTransformCache())).Result;
+            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>

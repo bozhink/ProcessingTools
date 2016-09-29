@@ -7,21 +7,22 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Documents.Services.Data.Providers;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
+
+    using Providers;
 
     public class XmlPresenter : IXmlPresenter
     {
         private readonly IDocumentsDataService service;
 
         // TODO: DI
-        private readonly IXslTransformer transformer = new XslTransformer();
+        private readonly IXslTransformer<IFormatXmlToHtmlXslTransformProvider> formatXmlToHtmlXslTransformer = new XslTransformer<IFormatXmlToHtmlXslTransformProvider>(new FormatXmlToHtmlXslTransformProvider(new XslTransformCache()));
 
-        private readonly IFormatXmlToHtmlXslTransformProvider formatXmlToHtmlXslTransformProvider = new FormatXmlToHtmlXslTransformProvider(new XslTransformCache());
-        private readonly IFormatHtmlToXmlXslTransformProvider formatHtmlToXmlXslTransformProvider = new FormatHtmlToXmlXslTransformProvider(new XslTransformCache());
+        // TODO: DI
+        private readonly IXslTransformer<IFormatHtmlToXmlXslTransformProvider> formatHtmlToXmlXslTransformer = new XslTransformer<IFormatHtmlToXmlXslTransformProvider>(new FormatHtmlToXmlXslTransformProvider(new XslTransformCache()));
 
         public XmlPresenter(IDocumentsDataService service)
         {
@@ -51,7 +52,7 @@
             }
 
             var reader = await this.service.GetReader(userId, articleId, documentId);
-            var content = await this.transformer.Transform(reader, true, this.formatXmlToHtmlXslTransformProvider);
+            var content = await this.formatXmlToHtmlXslTransformer.Transform(reader, true);
             return content;
         }
 
@@ -114,7 +115,7 @@
 
             xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
 
-            var xmlContent = await this.transformer.Transform(xmlDocument, this.formatHtmlToXmlXslTransformProvider);
+            var xmlContent = await this.formatHtmlToXmlXslTransformer.Transform(xmlDocument);
             xmlDocument.LoadXml(xmlContent);
 
             var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);

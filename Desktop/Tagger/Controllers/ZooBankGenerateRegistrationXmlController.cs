@@ -9,7 +9,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
 
     using Providers;
 
@@ -19,8 +19,8 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var transformer = new XslTransformer();
-            var text = await transformer.Transform(document, new ZoobankNlmXslTransformProvider(new XslTransformCache()));
+            var transformer = new XslTransformer(new ZoobankNlmXslTransformProvider(new XslTransformCache()));
+            var text = await transformer.Transform(document);
             document.LoadXml(text);
         }
     }

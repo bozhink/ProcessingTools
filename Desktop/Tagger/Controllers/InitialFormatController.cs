@@ -12,7 +12,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Processors;
+    using ProcessingTools.Xml.Transformers;
 
     using Providers;
 
@@ -35,9 +35,9 @@
                     break;
             }
 
-            var transformer = new XslTransformer();
+            var transformer = new XslTransformer(xslTransformProvider);
 
-            string xml = await transformer.Transform(document, xslTransformProvider);
+            string xml = await transformer.Transform(document);
             var formatter = new NlmInitialFormatter(xml);
             await formatter.Format();
             document.LoadXml(formatter.Xml);
