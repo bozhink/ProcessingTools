@@ -269,7 +269,9 @@
                 .RegexReplace(@"</volume>\s+\(<issue>", "</volume>(<issue>")
                 .RegexReplace(@"</issue>(\))+", "</issue>)")
                 .RegexReplace(@"<role>Ed</role>", "<role>Ed.</role>")
-                .RegexReplace(@"(?<=</role>\))[\.,;:]", string.Empty);
+                .RegexReplace(@"(?<=</role>\))[\.,;:]", string.Empty)
+                .RegexReplace(@"(?<=<article-title>)\.\s+", string.Empty)
+                .RegexReplace(@"[,;](?=</surname>)", string.Empty);
 
             return result;
         }
