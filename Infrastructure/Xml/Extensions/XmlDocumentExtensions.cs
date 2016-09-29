@@ -112,7 +112,7 @@
         /// Removes XmlNode objects from the DOM object.
         /// </summary>
         /// <param name="node">XmlNode object in which will be selected by XPath XmlNode objects to be removed.</param>
-        /// <param name="xpath">XPath string to select XmlNode objects wich will be removed.</param>
+        /// <param name="xpath">XPath string to select XmlNode objects winch will be removed.</param>
         /// <returns>The input XmlNode objects with removed XmlNode objects. This return is needed to enable chaining.</returns>
         public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath)
         {
@@ -124,7 +124,7 @@
         /// Removes XmlNode objects from the DOM object.
         /// </summary>
         /// <param name="node">XmlNode object in which will be selected by XPath XmlNode objects to be removed.</param>
-        /// <param name="xpath">XPath string to select XmlNode objects wich will be removed.</param>
+        /// <param name="xpath">XPath string to select XmlNode objects winch will be removed.</param>
         /// <param name="namespaceManager">XmlNamespaceManager object required in SelectNodes method.</param>
         /// <returns>The input XmlNode objects with removed XmlNode objects. This return is needed to enable chaining.</returns>
         public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath, XmlNamespaceManager namespaceManager)
@@ -159,7 +159,7 @@
         /// <summary>
         /// Safely sets the InnerText value of a XmlNode's attributes. Creates it if it does not exist.
         /// </summary>
-        /// <param name="node">XmlNode object to be set attribte's InnerText value.</param>
+        /// <param name="node">XmlNode object to be set attribute's InnerText value.</param>
         /// <param name="attributeName">The name of the attribute which InnerText will be set.</param>
         /// <param name="attributeInnerText">The value of the InnerText of the attribute.</param>
         public static void SafeSetAttributeValue(this XmlNode node, string attributeName, string attributeInnerText)
@@ -262,7 +262,7 @@
         /// <param name="postReplacementPattern">Replacement pattern to be applied in regex after the XmlElement.</param>
         /// <param name="replacementElementName">The name of the XmlElement which will be inserted in the node.</param>
         /// <param name="repmacementElementNamePrefix">Prefix for the replacement XmlElement.</param>
-        /// <param name="namespaceUri">Namespece uri for the replacement XmlElement.</param>
+        /// <param name="namespaceUri">Namespace uri for the replacement XmlElement.</param>
         public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, string preReplacementPattern, string replacementPattern, string postReplacementPattern, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
         {
             if (node == null)
