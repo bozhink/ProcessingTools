@@ -69,6 +69,7 @@
     <Compile Include="IProvider.cs" />
     <Compile Include="ISimpleProcessor.cs" />
     <Compile Include="IStringIdentifiable.cs" />
+    <Compile Include="ITransformer.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="IXmlNamespaceManagerProvider.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
