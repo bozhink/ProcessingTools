@@ -34,6 +34,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagTableFootnoteController();
@@ -42,6 +43,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagTableFootnoteController();
@@ -56,6 +58,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -66,6 +69,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -76,6 +80,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -86,6 +91,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -96,6 +102,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -106,6 +113,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -116,6 +124,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -126,6 +135,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -136,6 +146,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagTableFootnoteController();
@@ -156,6 +167,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -166,6 +178,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -176,6 +189,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -186,6 +200,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -196,6 +211,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagTableFootnoteController();
@@ -216,6 +232,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -226,6 +243,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagTableFootnoteController();
@@ -236,6 +254,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagTableFootnoteController();
@@ -256,6 +275,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagTableFootnoteController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagTableFootnoteController();

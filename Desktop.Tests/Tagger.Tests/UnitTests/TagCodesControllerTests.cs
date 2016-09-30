@@ -45,6 +45,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -53,6 +54,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_WithNullInstitutionsMinerAndValidCollectionsMinerService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -64,6 +66,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_WithNullInstitutionsMinerAndValidCollectionsMinerService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -79,6 +82,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_WithNullCollectionsMinerAndValidInstitutionsMinerService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -90,6 +94,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_WithNullCollectionsMinerAndValidInstitutionsMinerService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -105,6 +110,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -119,6 +125,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -129,6 +136,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -139,6 +147,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -149,6 +158,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -159,6 +169,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -169,6 +180,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -179,6 +191,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -189,6 +202,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -199,6 +213,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -219,6 +234,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -229,6 +245,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -239,6 +256,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -249,6 +267,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -259,6 +278,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -279,6 +299,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -289,6 +310,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -299,6 +321,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);
@@ -319,6 +342,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagCodesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagCodesController(this.institutionsMiner, this.collectionsMiner);

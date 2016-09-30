@@ -1,17 +1,14 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
-    using System;
-    using System.Xml;
-
     using Controllers;
-
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using System;
+    using System.Xml;
 
     [TestFixture]
     public class ParseHigherTaxaWithAphiaControllerTests
@@ -45,6 +42,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -53,6 +51,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -64,6 +63,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -79,6 +79,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -93,6 +94,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -103,6 +105,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -113,6 +116,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -123,6 +127,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -133,6 +138,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -143,6 +149,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -153,6 +160,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -163,6 +171,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -173,6 +182,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -193,6 +203,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -203,6 +214,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -213,6 +225,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -223,6 +236,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -233,6 +247,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -253,6 +268,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -263,6 +279,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -273,6 +290,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);
@@ -293,6 +311,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithAphiaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithAphiaController(this.parser);

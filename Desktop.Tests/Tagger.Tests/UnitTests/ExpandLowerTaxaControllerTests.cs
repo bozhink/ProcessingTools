@@ -33,7 +33,7 @@
             this.logger = loggerMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ExpandLowerTaxaController();
@@ -41,7 +41,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ExpandLowerTaxaController();
@@ -55,7 +55,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -65,7 +65,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -75,7 +75,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -85,7 +85,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -95,7 +95,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -105,7 +105,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -115,7 +115,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -125,7 +125,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -135,7 +135,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -155,7 +155,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -165,7 +165,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -175,7 +175,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -185,7 +185,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -195,7 +195,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -215,7 +215,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -225,7 +225,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -235,7 +235,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExpandLowerTaxaController();
@@ -255,7 +255,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ExpandLowerTaxaController();

@@ -39,6 +39,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -47,6 +48,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -61,6 +63,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -71,6 +74,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -81,6 +85,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -91,6 +96,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -101,6 +107,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -111,6 +118,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -121,6 +129,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -131,6 +140,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -141,6 +151,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -161,6 +172,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -171,6 +183,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -181,6 +194,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -191,6 +205,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -201,6 +216,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -221,6 +237,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -231,6 +248,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -241,6 +259,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);
@@ -261,6 +280,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagAbbreviationsController(this.abbreviationsTagger);

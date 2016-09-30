@@ -19,6 +19,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
+        private IDocumentFactory documentFactory;
 
         [SetUp]
         public void Init()
@@ -31,20 +32,25 @@
 
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             string initialContent = this.document.OuterXml;
 
@@ -56,9 +62,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -66,9 +73,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -76,9 +84,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -86,9 +95,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -96,9 +106,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -106,9 +117,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -116,9 +128,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -126,9 +139,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -136,9 +150,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             try
             {
@@ -156,9 +171,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -166,9 +182,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -176,9 +193,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -186,9 +204,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -196,9 +215,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             try
             {
@@ -216,9 +236,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -226,9 +247,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -236,9 +258,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             try
             {
@@ -256,9 +279,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ZooBankGenerateRegistrationXmlController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ZooBankGenerateRegistrationXmlController();
+            var controller = new ZooBankGenerateRegistrationXmlController(this.documentFactory);
 
             string initialContent = this.document.OuterXml;
 

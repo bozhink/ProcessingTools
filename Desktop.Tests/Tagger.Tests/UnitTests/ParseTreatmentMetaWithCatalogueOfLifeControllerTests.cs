@@ -41,6 +41,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -49,6 +50,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -60,6 +62,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -75,6 +78,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -89,6 +93,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -99,6 +104,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -109,6 +115,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -119,6 +126,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -129,6 +137,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -139,6 +148,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -149,6 +159,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -159,6 +170,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -169,6 +181,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -189,6 +202,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -199,6 +213,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -209,6 +224,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -219,6 +235,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -229,6 +246,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -249,6 +267,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -259,6 +278,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -269,6 +289,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);
@@ -289,6 +310,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.service);

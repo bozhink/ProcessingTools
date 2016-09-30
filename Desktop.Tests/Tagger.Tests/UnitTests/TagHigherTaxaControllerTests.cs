@@ -48,6 +48,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -56,6 +57,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -70,6 +72,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -80,6 +83,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -90,6 +94,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -100,6 +105,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -110,6 +116,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -120,6 +127,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -130,6 +138,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -140,6 +149,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -150,6 +160,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -170,6 +181,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -180,6 +192,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -190,6 +203,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -200,6 +214,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -210,6 +225,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -230,6 +246,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -240,6 +257,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -250,6 +268,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);
@@ -270,6 +289,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagHigherTaxaController(this.service, this.miner);

@@ -40,7 +40,7 @@
             this.miner = minerMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -48,7 +48,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_WithNullMiner_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -59,7 +59,7 @@
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_WithNullMiner_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -74,7 +74,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -88,7 +88,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -98,7 +98,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -108,7 +108,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -118,7 +118,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -128,7 +128,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -138,7 +138,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -148,7 +148,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -158,7 +158,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -168,7 +168,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -188,7 +188,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -198,7 +198,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -208,7 +208,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -218,7 +218,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -228,7 +228,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -248,7 +248,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -258,7 +258,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -268,7 +268,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagQuantitiesController(this.miner);
@@ -288,7 +288,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void TagQuantitiesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagQuantitiesController(this.miner);

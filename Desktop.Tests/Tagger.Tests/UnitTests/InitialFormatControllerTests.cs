@@ -40,7 +40,7 @@
             this.formatter = formatterMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -48,7 +48,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithValidParameters_ShouldWork()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -62,7 +62,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -72,7 +72,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -82,7 +82,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -92,7 +92,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -102,7 +102,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -112,7 +112,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -122,7 +122,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -132,7 +132,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -142,7 +142,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -162,7 +162,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -172,7 +172,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -182,7 +182,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -192,7 +192,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -202,7 +202,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -222,7 +222,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -232,7 +232,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -242,7 +242,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new InitialFormatController(this.formatter);
@@ -262,7 +262,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void InitialFormatController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new InitialFormatController(this.formatter);

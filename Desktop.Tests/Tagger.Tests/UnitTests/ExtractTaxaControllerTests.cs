@@ -33,7 +33,7 @@
             this.logger = loggerMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ExtractTaxaController();
@@ -41,7 +41,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ExtractTaxaController();
@@ -55,7 +55,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -65,7 +65,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -75,7 +75,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -85,7 +85,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -95,7 +95,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -105,7 +105,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -115,7 +115,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -125,7 +125,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -135,7 +135,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExtractTaxaController();
@@ -155,7 +155,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -165,7 +165,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -175,7 +175,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -185,7 +185,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -195,7 +195,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExtractTaxaController();
@@ -215,7 +215,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -225,7 +225,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ExtractTaxaController();
@@ -235,7 +235,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ExtractTaxaController();
@@ -255,7 +255,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ExtractTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ExtractTaxaController();

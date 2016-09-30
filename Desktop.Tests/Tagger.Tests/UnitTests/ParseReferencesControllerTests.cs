@@ -34,6 +34,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseReferencesController();
@@ -42,6 +43,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseReferencesController();
@@ -56,6 +58,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -66,6 +69,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -76,6 +80,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -86,6 +91,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -96,6 +102,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -106,6 +113,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -116,6 +124,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -126,6 +135,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -136,6 +146,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseReferencesController();
@@ -156,6 +167,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -166,6 +178,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -176,6 +189,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -186,6 +200,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -196,6 +211,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseReferencesController();
@@ -216,6 +232,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -226,6 +243,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseReferencesController();
@@ -236,6 +254,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseReferencesController();
@@ -256,6 +275,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseReferencesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseReferencesController();

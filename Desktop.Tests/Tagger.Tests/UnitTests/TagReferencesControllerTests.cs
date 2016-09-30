@@ -34,6 +34,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagReferencesController();
@@ -42,6 +43,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagReferencesController();
@@ -56,6 +58,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -66,6 +69,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -76,6 +80,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -86,6 +91,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -96,6 +102,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -106,6 +113,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -116,6 +124,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -126,6 +135,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -136,6 +146,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagReferencesController();
@@ -156,6 +167,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -166,6 +178,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -176,6 +189,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -186,6 +200,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -196,6 +211,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagReferencesController();
@@ -216,6 +232,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -226,6 +243,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagReferencesController();
@@ -236,6 +254,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagReferencesController();
@@ -256,6 +275,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagReferencesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagReferencesController();

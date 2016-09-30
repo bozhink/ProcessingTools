@@ -44,7 +44,7 @@
             this.parser = parserMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -52,7 +52,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -63,7 +63,7 @@
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -78,7 +78,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -92,7 +92,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -102,7 +102,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -112,7 +112,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -122,7 +122,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -132,7 +132,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -142,7 +142,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -152,7 +152,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -162,7 +162,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -172,7 +172,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -192,7 +192,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -202,7 +202,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -212,7 +212,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -222,7 +222,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -232,7 +232,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -252,7 +252,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -262,7 +262,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -272,7 +272,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);
@@ -292,7 +292,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaAboveGenusController(this.parser);

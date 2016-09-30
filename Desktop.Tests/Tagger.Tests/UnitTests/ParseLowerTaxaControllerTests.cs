@@ -34,6 +34,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseLowerTaxaController();
@@ -42,6 +43,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseLowerTaxaController();
@@ -56,6 +58,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -66,6 +69,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -76,6 +80,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -86,6 +91,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -96,6 +102,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -106,6 +113,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -116,6 +124,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -126,6 +135,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -136,6 +146,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseLowerTaxaController();
@@ -156,6 +167,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -166,6 +178,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -176,6 +189,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -186,6 +200,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -196,6 +211,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseLowerTaxaController();
@@ -216,6 +232,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -226,6 +243,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseLowerTaxaController();
@@ -236,6 +254,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseLowerTaxaController();
@@ -256,6 +275,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseLowerTaxaController();

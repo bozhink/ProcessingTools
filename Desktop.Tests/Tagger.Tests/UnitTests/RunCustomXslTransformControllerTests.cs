@@ -39,6 +39,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -47,6 +48,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithValidParameters_ShouldWork()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -61,6 +63,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -71,6 +74,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -81,6 +85,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -91,6 +96,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -101,6 +107,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -111,6 +118,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -121,6 +129,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -131,6 +140,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -141,6 +151,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -161,6 +172,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -171,6 +183,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -181,6 +194,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -191,6 +205,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -201,6 +216,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -221,6 +237,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -231,6 +248,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -241,6 +259,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RunCustomXslTransformController(this.processor);
@@ -261,6 +280,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new RunCustomXslTransformController(this.processor);

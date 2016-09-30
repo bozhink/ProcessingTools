@@ -41,6 +41,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -49,6 +50,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -60,6 +62,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -75,6 +78,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -89,6 +93,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -99,6 +104,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -109,6 +115,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -119,6 +126,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -129,6 +137,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -139,6 +148,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -149,6 +159,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -159,6 +170,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -169,6 +181,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -189,6 +202,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -199,6 +213,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -209,6 +224,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -219,6 +235,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -229,6 +246,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -249,6 +267,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -259,6 +278,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -269,6 +289,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagEnvironmentTermsController(this.miner);
@@ -289,6 +310,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagEnvironmentTermsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagEnvironmentTermsController(this.miner);

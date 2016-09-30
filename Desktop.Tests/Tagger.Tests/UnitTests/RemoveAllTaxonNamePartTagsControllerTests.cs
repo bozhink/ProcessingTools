@@ -34,6 +34,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -42,6 +43,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithValidParameters_ShouldWork()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -56,6 +58,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -66,6 +69,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -76,6 +80,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -86,6 +91,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -96,6 +102,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -106,6 +113,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -116,6 +124,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -126,6 +135,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -136,6 +146,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -156,6 +167,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -166,6 +178,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -176,6 +189,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -186,6 +200,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -196,6 +211,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -216,6 +232,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -226,6 +243,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -236,6 +254,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();
@@ -256,6 +275,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void RemoveAllTaxonNamePartTagsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new RemoveAllTaxonNamePartTagsController();

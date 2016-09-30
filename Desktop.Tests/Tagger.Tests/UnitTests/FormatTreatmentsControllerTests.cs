@@ -33,7 +33,7 @@
             this.logger = loggerMock.Object;
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new FormatTreatmentsController();
@@ -41,7 +41,7 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithValidParameters_ShouldWork()
         {
             var controller = new FormatTreatmentsController();
@@ -55,7 +55,7 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -65,7 +65,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -75,7 +75,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -85,7 +85,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -95,7 +95,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -105,7 +105,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -115,7 +115,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -125,7 +125,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -135,7 +135,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new FormatTreatmentsController();
@@ -155,7 +155,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -165,7 +165,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -175,7 +175,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -185,7 +185,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -195,7 +195,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new FormatTreatmentsController();
@@ -215,7 +215,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -225,7 +225,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new FormatTreatmentsController();
@@ -235,7 +235,7 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new FormatTreatmentsController();
@@ -255,7 +255,7 @@
             }
         }
 
-        [Test]
+        [Test][Timeout(500)]
         public void FormatTreatmentsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new FormatTreatmentsController();

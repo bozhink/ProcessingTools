@@ -41,6 +41,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -49,6 +50,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -60,6 +62,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -75,6 +78,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -89,6 +93,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -99,6 +104,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -109,6 +115,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -119,6 +126,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -129,6 +137,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -139,6 +148,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -149,6 +159,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -159,6 +170,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -169,6 +181,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -189,6 +202,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -199,6 +213,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -209,6 +224,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -219,6 +235,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -229,6 +246,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -249,6 +267,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -259,6 +278,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -269,6 +289,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ResolveMediaTypesController(this.service);
@@ -289,6 +310,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ResolveMediaTypesController(this.service);

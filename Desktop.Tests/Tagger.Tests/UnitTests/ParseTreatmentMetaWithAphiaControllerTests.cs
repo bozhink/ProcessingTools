@@ -41,6 +41,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -49,6 +50,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -60,6 +62,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -75,6 +78,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -89,6 +93,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -99,6 +104,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -109,6 +115,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -119,6 +126,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -129,6 +137,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -139,6 +148,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -149,6 +159,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -159,6 +170,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -169,6 +181,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -189,6 +202,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -199,6 +213,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -209,6 +224,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -219,6 +235,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -229,6 +246,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -249,6 +267,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -259,6 +278,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -269,6 +289,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);
@@ -289,6 +310,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithAphiaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMetaWithAphiaController(this.service);

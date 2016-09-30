@@ -46,6 +46,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -54,6 +55,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -65,6 +67,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -80,6 +83,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -94,6 +98,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -104,6 +109,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -114,6 +120,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -124,6 +131,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -134,6 +142,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -144,6 +153,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -154,6 +164,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -164,6 +175,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -174,6 +186,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -194,6 +207,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -204,6 +218,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -214,6 +229,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -224,6 +240,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -234,6 +251,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -254,6 +272,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -264,6 +283,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -274,6 +294,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);
@@ -294,6 +315,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithLocalDbController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithLocalDbController(this.parser);

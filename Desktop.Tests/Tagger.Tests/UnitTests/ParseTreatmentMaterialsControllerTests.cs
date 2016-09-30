@@ -42,6 +42,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -50,6 +51,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -61,6 +63,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -76,6 +79,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -90,6 +94,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -100,6 +105,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -110,6 +116,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -120,6 +127,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -130,6 +138,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -140,6 +149,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -150,6 +160,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -160,6 +171,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -170,6 +182,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -190,6 +203,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -200,6 +214,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -210,6 +225,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -220,6 +236,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -230,6 +247,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -250,6 +268,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -260,6 +279,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -270,6 +290,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);
@@ -290,6 +311,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseTreatmentMaterialsController(this.parser);

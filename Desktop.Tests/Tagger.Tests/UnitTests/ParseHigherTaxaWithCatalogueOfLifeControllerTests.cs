@@ -45,6 +45,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -53,6 +54,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -64,6 +66,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -79,6 +82,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -93,6 +97,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -103,6 +108,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -113,6 +119,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -123,6 +130,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -133,6 +141,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -143,6 +152,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -153,6 +163,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -163,6 +174,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -173,6 +185,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -193,6 +206,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -203,6 +217,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -213,6 +228,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -223,6 +239,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -233,6 +250,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -253,6 +271,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -263,6 +282,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -273,6 +293,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);
@@ -293,6 +314,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.parser);

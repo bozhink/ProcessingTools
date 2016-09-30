@@ -21,7 +21,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private INlmExternalLinksDataMiner miner;
 
         [SetUp]
@@ -38,33 +38,39 @@
 
             var minerMock = new Mock<INlmExternalLinksDataMiner>();
             this.miner = minerMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new TagWebLinksController(null);
+                    var controller = new TagWebLinksController(this.documentFactory, null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {
-                var controller = new TagWebLinksController(null);
+                var controller = new TagWebLinksController(this.documentFactory, null);
             }
             catch (Exception e)
             {
@@ -75,9 +81,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             string initialContent = this.document.OuterXml;
 
@@ -89,9 +96,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -99,9 +107,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -109,9 +118,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -119,9 +129,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -129,9 +140,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -139,9 +151,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -149,9 +162,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -159,9 +173,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -169,9 +184,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             try
             {
@@ -189,9 +205,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -199,9 +216,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -209,9 +227,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -219,9 +238,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -229,9 +249,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             try
             {
@@ -249,9 +270,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -259,9 +281,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -269,9 +292,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             try
             {
@@ -289,9 +313,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagWebLinksController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagWebLinksController(this.miner);
+            var controller = new TagWebLinksController(this.documentFactory, this.miner);
 
             string initialContent = this.document.OuterXml;
 
