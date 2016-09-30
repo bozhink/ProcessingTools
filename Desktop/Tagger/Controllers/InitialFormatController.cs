@@ -9,11 +9,11 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.DocumentProvider.Extensions;
+    using ProcessingTools.Layout.Processors.Formatters;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts;
     using ProcessingTools.Xml.Transformers;
-    using ProcessingTools.DocumentProvider.Extensions;
-    using ProcessingTools.Layout.Processors.Formatters;
 
     using Providers;
 

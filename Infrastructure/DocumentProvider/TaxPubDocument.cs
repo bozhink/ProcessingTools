@@ -6,7 +6,7 @@
     using System.Xml;
 
     using Contracts;
-
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Nlm.Publishing.Constants;
 
     public class TaxPubDocument : ITaxPubDocument
@@ -126,6 +126,8 @@
         }
 
         public XmlDocument XmlDocument { get; private set; }
+
+        public SchemaType SchemaType { get; set; }
 
         public IQueryable<XmlNode> SelectNodes(string xpath)
         {
