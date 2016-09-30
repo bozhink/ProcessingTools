@@ -16,12 +16,27 @@
         private const int NumberOfPostFormattingIterations = 3;
         private const string SensuSelector = @"(?:(?i)(?:\bs\.\s*|\bsens?u?\.?\s+)[sl][a-z]*\.?|\bsensu\b)";
 
-        public Task<object> Format(IDocument document)
+        private readonly IInitialFormatTransformerFactory initialFormatTransformerFactory;
+
+        public DocumentInitialFormatter(IInitialFormatTransformerFactory initialFormatTransformerFactory)
+        {
+            if (initialFormatTransformerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(initialFormatTransformerFactory));
+            }
+
+            this.initialFormatTransformerFactory = initialFormatTransformerFactory;
+        }
+
+        public async Task<object> Format(IDocument document)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
+
+            var transformer = this.initialFormatTransformerFactory.Create(document.SchemaType);
+            document.Xml = await transformer.Transform(document.Xml);
 
             this.TrimBlockElements(document);
 
@@ -36,7 +51,7 @@
             this.FinalRefactor(document);
             this.TrimBlockElements(document);
 
-            return Task.FromResult<object>(true);
+            return true;
         }
 
         private void BoldItalic(IDocument document)

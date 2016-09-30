@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Providers
+﻿namespace ProcessingTools.Layout.Processors.Providers
 {
     using System.Configuration;
 

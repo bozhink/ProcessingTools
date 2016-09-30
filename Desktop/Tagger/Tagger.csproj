@@ -103,7 +103,6 @@
     <Compile Include="Contracts\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\IExtractTaxaController.cs" />
     <Compile Include="Contracts\IFormatTreatmentsController.cs" />
-    <Compile Include="Contracts\INlmInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\IParseHigherTaxaAboveGenusController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaBySuffixController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
@@ -119,7 +118,6 @@
     <Compile Include="Contracts\IQueryReplaceController.cs" />
     <Compile Include="Contracts\IRemoveAllTaxonNamePartTagsController.cs" />
     <Compile Include="Contracts\IRunCustomXslTransformController.cs" />
-    <Compile Include="Contracts\ISystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\ITagAbbreviationsController.cs" />
     <Compile Include="Contracts\ITagCodesController.cs" />
     <Compile Include="Contracts\ITagDatesController.cs" />
@@ -229,8 +227,6 @@
     <Compile Include="Models\NamedContentSerializableModel.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Providers\NlmInitialFormatXslTransformProvider.cs" />
-    <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Providers\ZoobankNlmXslTransformProvider.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

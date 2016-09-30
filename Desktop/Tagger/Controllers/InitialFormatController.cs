@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -8,44 +9,31 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider.Extensions;
-    using ProcessingTools.Layout.Processors.Formatters;
-    using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Transformers;
+    using ProcessingTools.Layout.Processors.Contracts;
 
-    using Providers;
-
-    // TODO: DI
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
     {
+        private readonly IDocumentInitialFormatter formatter;
+
+        public InitialFormatController(IDocumentInitialFormatter formatter)
+        {
+            if (formatter == null)
+            {
+                throw new ArgumentNullException(nameof(formatter));
+            }
+
+            this.formatter = formatter;
+        }
+
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             // TODO: TaggerController.Run should use IDocument
             var taxpubDocument = document.ToTaxPubDocument();
             taxpubDocument.SchemaType = settings.ArticleSchemaType;
 
-            // TODO: Factory
-            IXslTransformProvider xslTransformProvider = null;
-            switch (settings.ArticleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    xslTransformProvider = new NlmInitialFormatXslTransformProvider(new XslTransformCache());
-                    break;
-
-                default:
-                    xslTransformProvider = new SystemInitialFormatXslTransformProvider(new XslTransformCache());
-                    break;
-            }
-
-            var transformer = new XslTransformer(xslTransformProvider);
-            taxpubDocument.Xml = await transformer.Transform(taxpubDocument.Xml);
-
-            // TODO: DI
-            var formatter = new DocumentInitialFormatter();
-            await formatter.Format(taxpubDocument);
+            await this.formatter.Format(taxpubDocument);
             document.LoadXml(taxpubDocument.Xml);
         }
     }
