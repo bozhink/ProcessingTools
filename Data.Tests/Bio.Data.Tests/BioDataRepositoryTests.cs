@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Data.Tests
 {
     using System;
+    using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mocks;
@@ -70,8 +71,8 @@
 
         [TestMethod]
         [Timeout(2000)]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void BioDataRepository_AddNullEntity_ShouldThrowArgumentNullException()
+        [ExpectedException(typeof(AggregateException))]
+        public void BioDataRepository_AddNullEntity_ShouldThrowAggregateException()
         {
             var repository = new BioDataRepository<Tweet>(this.contextProvider);
             repository.Add(null).Wait();
@@ -79,7 +80,7 @@
 
         [TestMethod]
         [Timeout(2000)]
-        public void BioDataRepository_AddNullEntity_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void BioDataRepository_AddNullEntity_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             var repository = new BioDataRepository<Tweet>(this.contextProvider);
 
@@ -87,9 +88,11 @@
             {
                 repository.Add(null).Wait();
             }
-            catch (ArgumentNullException e)
+            catch (AggregateException e)
             {
-                Assert.AreEqual("entity", e.ParamName, "ParamName should be entity.");
+                var argumentNummException = e.InnerExceptions.Single() as ArgumentNullException;
+
+                Assert.AreEqual("entity", argumentNummException.ParamName, "ParamName should be entity.");
             }
         }
     }
