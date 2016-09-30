@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -31,7 +30,7 @@
             this.miner = miner;
         }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
@@ -49,7 +48,7 @@
                     VerbatimTerm = t.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, namespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, logger);
 
             await tagger.Tag();
 

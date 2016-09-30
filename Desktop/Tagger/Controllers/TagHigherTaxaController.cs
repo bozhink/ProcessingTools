@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -36,7 +35,7 @@
             this.miner = miner;
         }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, logger);
 

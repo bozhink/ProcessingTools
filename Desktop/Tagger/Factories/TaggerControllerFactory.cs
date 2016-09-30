@@ -33,7 +33,7 @@
                 document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
                 document.SchemaType = settings.ArticleSchemaType;
 
-                await this.Run(document, namespaceManager, settings, logger);
+                await this.Run(document, settings, logger);
 
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
@@ -43,6 +43,6 @@
             }
         }
 
-        protected abstract Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger);
+        protected abstract Task Run(IDocument document, ProgramSettings settings, ILogger logger);
     }
 }

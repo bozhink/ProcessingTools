@@ -38,10 +38,10 @@
             this.collectionsMiner = collectionsMiner;
         }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var textContent = document.XmlDocument.GetTextContent();
-            await this.TagInstitutions(document.XmlDocument, namespaceManager, logger, textContent);
+            await this.TagInstitutions(document.XmlDocument, document.NamespaceManager, logger, textContent);
             ////await this.TagCollections(document, namespaceManager, logger, textContent);
         }
 

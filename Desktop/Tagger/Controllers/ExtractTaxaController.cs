@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,7 +12,7 @@
 
     public class ExtractTaxaController : TaggerControllerFactory, IExtractTaxaController
     {
-        protected override Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             return Task.Run(() =>
             {

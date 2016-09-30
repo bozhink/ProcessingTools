@@ -3,15 +3,12 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Processors.Contracts;
 
     [Description("Custom XSL transform.")]
@@ -29,7 +26,7 @@
             this.processor = processor;
         }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();
 

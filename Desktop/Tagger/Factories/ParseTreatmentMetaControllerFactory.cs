@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Factories
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -12,7 +11,7 @@
     {
         protected abstract ITaxaInformationResolverDataService<ITaxonClassification> Service { get; }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var parser = new TreatmentMetaParser(this.Service, document.Xml, logger);
 

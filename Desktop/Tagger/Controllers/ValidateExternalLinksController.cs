@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -15,7 +14,7 @@
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 
-    [Description("Validate extenal links.")]
+    [Description("Validate external links.")]
     public class ValidateExternalLinksController : TaggerControllerFactory, IValidateExternalLinksController
     {
         private IExternalLinksHarvester harvester;
@@ -37,7 +36,7 @@
             this.service = service;
         }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
 

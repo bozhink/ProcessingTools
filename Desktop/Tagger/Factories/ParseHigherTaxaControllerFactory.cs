@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Factories
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
@@ -14,7 +13,7 @@
     {
         protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
-        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             await this.Parser.Parse(document.XmlDocument.DocumentElement);
             await document.XmlDocument.PrintNonParsedTaxa(logger);

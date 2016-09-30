@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,7 +12,7 @@
     [Description("Expand lower taxa.")]
     public class ExpandLowerTaxaController : TaggerControllerFactory, IExpandLowerTaxaController
     {
-        protected override Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             return Task.Run(() =>
             {
