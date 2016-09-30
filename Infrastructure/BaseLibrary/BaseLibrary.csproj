@@ -136,7 +136,6 @@
     <Compile Include="Coordinates\CoordinatesParser.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />
-    <Compile Include="Format\NlmInitialFormatter.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="Taxonomy\TaxaExpander\AbbreviatedNamesResolver.cs" />

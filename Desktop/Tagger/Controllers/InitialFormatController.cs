@@ -7,12 +7,13 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts;
     using ProcessingTools.Xml.Transformers;
+    using ProcessingTools.DocumentProvider.Extensions;
+    using ProcessingTools.Layout.Processors.Formatters;
 
     using Providers;
 
@@ -35,12 +36,16 @@
                     break;
             }
 
-            var transformer = new XslTransformer(xslTransformProvider);
+            // TODO: TaggerController.Run should use IDocument
+            var taxpubDocument = document.ToTaxPubDocument();
 
-            string xml = await transformer.Transform(document);
-            var formatter = new NlmInitialFormatter(xml);
-            await formatter.Format();
-            document.LoadXml(formatter.Xml);
+            var transformer = new XslTransformer(xslTransformProvider);
+            taxpubDocument.Xml = await transformer.Transform(taxpubDocument.Xml);
+
+            // TODO: DI
+            var formatter = new DocumentInitialFormatter();
+            await formatter.Format(taxpubDocument);
+            document.LoadXml(taxpubDocument.Xml);
         }
     }
 }
