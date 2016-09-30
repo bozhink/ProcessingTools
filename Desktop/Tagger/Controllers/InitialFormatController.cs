@@ -23,6 +23,10 @@
     {
         protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
+            // TODO: TaggerController.Run should use IDocument
+            var taxpubDocument = document.ToTaxPubDocument();
+            taxpubDocument.SchemaType = settings.ArticleSchemaType;
+
             // TODO: Factory
             IXslTransformProvider xslTransformProvider = null;
             switch (settings.ArticleSchemaType)
@@ -35,9 +39,6 @@
                     xslTransformProvider = new SystemInitialFormatXslTransformProvider(new XslTransformCache());
                     break;
             }
-
-            // TODO: TaggerController.Run should use IDocument
-            var taxpubDocument = document.ToTaxPubDocument();
 
             var transformer = new XslTransformer(xslTransformProvider);
             taxpubDocument.Xml = await transformer.Transform(taxpubDocument.Xml);
