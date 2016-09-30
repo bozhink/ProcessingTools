@@ -31,21 +31,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDocumentInitialFormatter.cs" />
+    <Compile Include="Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />
-    <Folder Include="Formatters\" />
     <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
+      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
+      <Name>DocumentProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
+      <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
