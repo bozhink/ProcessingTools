@@ -11,17 +11,20 @@
     public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
         where TService : ITaxonRankResolverDataService
     {
-        public ParseHigherTaxaControllerFactory(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ParseHigherTaxaControllerFactory(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
         protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             await this.Parser.Parse(document.XmlDocument.DocumentElement);
-            await document.XmlDocument.PrintNonParsedTaxa(logger);
+            await document.XmlDocument.PrintNonParsedTaxa(this.logger);
         }
     }
 }

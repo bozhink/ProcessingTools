@@ -19,8 +19,12 @@
     {
         private const string XPath = "/*";
         private readonly IEnvoTermsDataMiner miner;
+        private readonly ILogger logger;
 
-        public TagEnvironmentTermsController(IDocumentFactory documentFactory, IEnvoTermsDataMiner miner)
+        public TagEnvironmentTermsController(
+            IDocumentFactory documentFactory,
+            IEnvoTermsDataMiner miner,
+            ILogger logger)
             : base(documentFactory)
         {
             if (miner == null)
@@ -29,9 +33,10 @@
             }
 
             this.miner = miner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
@@ -49,7 +54,7 @@
                     VerbatimTerm = t.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
 
             await tagger.Tag();
 

@@ -17,8 +17,9 @@
 
         public ParseTreatmentMetaWithAphiaController(
             IDocumentFactory documentFactory,
-            IAphiaTaxaClassificationResolverDataService service)
-            : base(documentFactory)
+            IAphiaTaxaClassificationResolverDataService service,
+            ILogger logger)
+            : base(documentFactory, logger)
         {
             if (service == null)
             {

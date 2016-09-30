@@ -16,8 +16,12 @@
     public class TagLowerTaxaController : TaggerControllerFactory, ITagLowerTaxaController
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
+        private readonly ILogger logger;
 
-        public TagLowerTaxaController(IDocumentFactory documentFactory, IBiotaxonomicBlackListIterableDataService service)
+        public TagLowerTaxaController(
+            IDocumentFactory documentFactory,
+            IBiotaxonomicBlackListIterableDataService service,
+            ILogger logger)
             : base(documentFactory)
         {
             if (service == null)
@@ -26,11 +30,12 @@
             }
 
             this.service = service;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new LowerTaxaTagger(document.Xml, this.service, logger);
+            var tagger = new LowerTaxaTagger(document.Xml, this.service, this.logger);
 
             await tagger.Tag();
 

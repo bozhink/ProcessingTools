@@ -17,10 +17,12 @@
     public class ParseHigherTaxaWithLocalDbController : TaggerControllerFactory, IParseHigherTaxaWithLocalDbController
     {
         private readonly IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser;
+        private readonly ILogger logger;
 
         public ParseHigherTaxaWithLocalDbController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser)
+            IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
             : base(documentFactory)
         {
             if (parser == null)
@@ -29,12 +31,13 @@
             }
 
             this.parser = parser;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             await this.parser.Parse(document.XmlDocument);
-            await document.XmlDocument.PrintNonParsedTaxa(logger);
+            await document.XmlDocument.PrintNonParsedTaxa(this.logger);
         }
     }
 }

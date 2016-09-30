@@ -12,14 +12,17 @@
     [Description("Tag table foot-notes.")]
     public class TagTableFootnoteController : TaggerControllerFactory, ITagTableFootnoteController
     {
-        public TagTableFootnoteController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public TagTableFootnoteController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new TableFootNotesTagger(document.Xml, logger);
+            var tagger = new TableFootNotesTagger(document.Xml, this.logger);
 
             await tagger.Tag();
 

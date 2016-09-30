@@ -9,16 +9,19 @@
 
     public abstract class ParseTreatmentMetaControllerFactory : TaggerControllerFactory
     {
-        public ParseTreatmentMetaControllerFactory(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ParseTreatmentMetaControllerFactory(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
         protected abstract ITaxaInformationResolverDataService<ITaxonClassification> Service { get; }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new TreatmentMetaParser(this.Service, document.Xml, logger);
+            var parser = new TreatmentMetaParser(this.Service, document.Xml, this.logger);
 
             await parser.Parse();
 

@@ -15,8 +15,12 @@
     public class ResolveMediaTypesController : TaggerControllerFactory, IResolveMediaTypesController
     {
         private readonly IMediaTypeDataService service;
+        private readonly ILogger logger;
 
-        public ResolveMediaTypesController(IDocumentFactory documentFactory, IMediaTypeDataService service)
+        public ResolveMediaTypesController(
+            IDocumentFactory documentFactory,
+            IMediaTypeDataService service,
+            ILogger logger)
             : base(documentFactory)
         {
             if (service == null)
@@ -25,11 +29,12 @@
             }
 
             this.service = service;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new MediaTypesResolver(document.Xml, this.service, logger);
+            var parser = new MediaTypesResolver(document.Xml, this.service, this.logger);
 
             await parser.Parse();
 

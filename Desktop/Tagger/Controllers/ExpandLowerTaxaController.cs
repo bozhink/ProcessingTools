@@ -12,16 +12,19 @@
     [Description("Expand lower taxa.")]
     public class ExpandLowerTaxaController : TaggerControllerFactory, IExpandLowerTaxaController
     {
-        public ExpandLowerTaxaController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ExpandLowerTaxaController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, ProgramSettings settings)
         {
             return Task.Run(() =>
             {
-                var expander = new Expander(document.XmlDocument.OuterXml, logger);
+                var expander = new Expander(document.XmlDocument.OuterXml, this.logger);
 
                 expander.StableExpand();
 

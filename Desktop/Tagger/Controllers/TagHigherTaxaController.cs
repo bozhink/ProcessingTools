@@ -18,11 +18,13 @@
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
         private readonly IHigherTaxaDataMiner miner;
+        private readonly ILogger logger;
 
         public TagHigherTaxaController(
             IDocumentFactory documentFactory,
             IBiotaxonomicBlackListIterableDataService service,
-            IHigherTaxaDataMiner miner)
+            IHigherTaxaDataMiner miner,
+            ILogger logger)
             : base(documentFactory)
         {
             if (service == null)
@@ -37,11 +39,12 @@
 
             this.service = service;
             this.miner = miner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, logger);
+            var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, this.logger);
 
             await tagger.Tag();
 

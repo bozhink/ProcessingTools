@@ -17,8 +17,9 @@
 
         public ParseTreatmentMetaWithCatalogueOfLifeController(
             IDocumentFactory documentFactory,
-            ICatalogueOfLifeTaxaClassificationResolverDataService service)
-            : base(documentFactory)
+            ICatalogueOfLifeTaxaClassificationResolverDataService service,
+            ILogger logger)
+            : base(documentFactory, logger)
         {
             if (service == null)
             {

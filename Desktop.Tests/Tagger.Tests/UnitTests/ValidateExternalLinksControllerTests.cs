@@ -51,7 +51,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -63,7 +63,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, null);
+                    var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, null, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -74,7 +74,7 @@
         {
             try
             {
-                var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, null);
+                var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, null, this.logger);
             }
             catch (Exception e)
             {
@@ -91,7 +91,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ValidateExternalLinksController(this.documentFactory, null, this.service);
+                    var controller = new ValidateExternalLinksController(this.documentFactory, null, this.service, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -102,7 +102,7 @@
         {
             try
             {
-                var controller = new ValidateExternalLinksController(this.documentFactory, null, this.service);
+                var controller = new ValidateExternalLinksController(this.documentFactory, null, this.service, this.logger);
             }
             catch (Exception e)
             {
@@ -119,7 +119,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ValidateExternalLinksController(this.documentFactory, null, null);
+                    var controller = new ValidateExternalLinksController(this.documentFactory, null, null, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -128,7 +128,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             string initialContent = this.document.OuterXml;
 
@@ -143,7 +143,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -154,7 +154,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -165,7 +165,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -176,7 +176,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -187,7 +187,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -198,7 +198,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -209,7 +209,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -220,7 +220,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -231,7 +231,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             try
             {
@@ -252,7 +252,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -263,7 +263,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -274,7 +274,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -285,7 +285,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -296,7 +296,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             try
             {
@@ -317,7 +317,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -328,7 +328,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -339,7 +339,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             try
             {
@@ -360,7 +360,7 @@
         [Timeout(500)]
         public void ValidateExternalLinksController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service);
+            var controller = new ValidateExternalLinksController(this.documentFactory, this.harvester, this.service, this.logger);
 
             string initialContent = this.document.OuterXml;
 

@@ -12,14 +12,17 @@
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController
     {
-        public TagFloatsController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public TagFloatsController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new FloatsTagger(document.Xml, logger);
+            var tagger = new FloatsTagger(document.Xml, this.logger);
 
             await tagger.Tag();
 

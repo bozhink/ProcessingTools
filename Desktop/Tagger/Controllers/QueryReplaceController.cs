@@ -27,7 +27,7 @@
             this.queryReplacer = queryReplacer;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 

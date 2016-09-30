@@ -17,13 +17,15 @@
     [Description("Validate external links.")]
     public class ValidateExternalLinksController : TaggerControllerFactory, IValidateExternalLinksController
     {
-        private IExternalLinksHarvester harvester;
-        private IUrlValidationService service;
+        private readonly IExternalLinksHarvester harvester;
+        private readonly IUrlValidationService service;
+        private readonly ILogger logger;
 
         public ValidateExternalLinksController(
             IDocumentFactory documentFactory,
             IExternalLinksHarvester harvester,
-            IUrlValidationService service)
+            IUrlValidationService service,
+            ILogger logger)
             : base(documentFactory)
         {
             if (harvester == null)
@@ -38,15 +40,16 @@
 
             this.harvester = harvester;
             this.service = service;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
 
             if (externalLinks == null)
             {
-                logger?.Log(LogType.Info, "No external links are found.");
+                this.logger?.Log(LogType.Info, "No external links are found.");
                 return;
             }
 
@@ -63,7 +66,7 @@
                 .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /")
                 .OrderBy(i => i);
 
-            logger?.Log("Non-valid external links:\n|\t{0}\n", string.Join("\n|\t", nonValidItems));
+            this.logger?.Log("Non-valid external links:\n|\t{0}\n", string.Join("\n|\t", nonValidItems));
         }
     }
 }

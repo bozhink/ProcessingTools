@@ -12,14 +12,17 @@
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
     {
-        public FormatTreatmentsController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public FormatTreatmentsController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var formatter = new TreatmentFormatter(document.Xml, logger);
+            var formatter = new TreatmentFormatter(document.Xml, this.logger);
 
             await formatter.Format();
 

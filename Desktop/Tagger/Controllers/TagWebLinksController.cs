@@ -20,8 +20,12 @@
     {
         private const string XPath = "/*";
         private readonly INlmExternalLinksDataMiner miner;
+        private readonly ILogger logger;
 
-        public TagWebLinksController(IDocumentFactory documentFactory, INlmExternalLinksDataMiner miner)
+        public TagWebLinksController(
+            IDocumentFactory documentFactory,
+            INlmExternalLinksDataMiner miner,
+            ILogger logger)
             : base(documentFactory)
         {
             if (miner == null)
@@ -30,9 +34,10 @@
             }
 
             this.miner = miner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
@@ -42,7 +47,7 @@
                     Value = i.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
 
             await tagger.Tag();
 

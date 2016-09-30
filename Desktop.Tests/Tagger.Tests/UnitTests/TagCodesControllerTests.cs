@@ -50,7 +50,7 @@
         [Timeout(500)]
         public void TagCodesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -62,7 +62,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new TagCodesController(this.documentFactory, null, this.collectionsMiner);
+                    var controller = new TagCodesController(this.documentFactory, null, this.collectionsMiner, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -73,7 +73,7 @@
         {
             try
             {
-                var controller = new TagCodesController(this.documentFactory, null, this.collectionsMiner);
+                var controller = new TagCodesController(this.documentFactory, null, this.collectionsMiner, this.logger);
             }
             catch (Exception e)
             {
@@ -90,7 +90,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, null);
+                    var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, null, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -101,7 +101,7 @@
         {
             try
             {
-                var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, null);
+                var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, null, this.logger);
             }
             catch (Exception e)
             {
@@ -115,7 +115,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             string initialContent = this.document.OuterXml;
 
@@ -130,7 +130,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -141,7 +141,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -152,7 +152,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -163,7 +163,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -174,7 +174,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -185,7 +185,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -196,7 +196,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -207,7 +207,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -218,7 +218,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             try
             {
@@ -239,7 +239,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -250,7 +250,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -261,7 +261,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -272,7 +272,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -283,7 +283,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             try
             {
@@ -304,7 +304,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -315,7 +315,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -326,7 +326,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             try
             {
@@ -347,7 +347,7 @@
         [Timeout(500)]
         public void TagCodesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner);
+            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
 
             string initialContent = this.document.OuterXml;
 

@@ -13,8 +13,9 @@
     {
         public ParseHigherTaxaAboveGenusController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(documentFactory, parser)
+            IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

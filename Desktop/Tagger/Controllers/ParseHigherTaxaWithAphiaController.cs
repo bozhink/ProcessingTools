@@ -13,8 +13,9 @@
     {
         public ParseHigherTaxaWithAphiaController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(documentFactory, parser)
+            IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

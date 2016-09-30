@@ -18,10 +18,12 @@
     public class ValidateTaxaController : TaggerControllerFactory, IValidateTaxaController
     {
         private readonly ITaxaValidationService service;
+        private readonly ILogger logger;
 
         public ValidateTaxaController(
             IDocumentFactory documentFactory,
-            ITaxaValidationService service)
+            ITaxaValidationService service,
+            ILogger logger)
             : base(documentFactory)
         {
             if (service == null)
@@ -30,9 +32,10 @@
             }
 
             this.service = service;
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             var scientificNames = document.XmlDocument.ExtractTaxa(true)
                 .Select(s => new TaxonNameServiceModel
@@ -42,7 +45,7 @@
 
             if (scientificNames == null || scientificNames.Length < 1)
             {
-                logger?.Log(LogType.Warning, "No taxa found.");
+                this.logger?.Log(LogType.Warning, "No taxa found.");
                 return;
             }
 
@@ -52,7 +55,7 @@
                 .Select(r => r.ValidatedObject.Name)
                 .OrderBy(i => i);
 
-            logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
+            this.logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
         }
     }
 }

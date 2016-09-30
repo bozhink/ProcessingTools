@@ -13,8 +13,9 @@
     {
         public ParseHigherTaxaWithGbifController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<IGbifTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(documentFactory, parser)
+            IHigherTaxaParserWithDataService<IGbifTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

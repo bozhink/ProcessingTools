@@ -21,7 +21,7 @@
         {
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settingsogger)
         {
             var transformer = new XslTransformer(new ZoobankNlmXslTransformProvider(new XslTransformCache()));
             var text = await transformer.Transform(document.Xml);

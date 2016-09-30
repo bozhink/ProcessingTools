@@ -17,7 +17,7 @@
         {
         }
 
-        protected override Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, ProgramSettings settings)
         {
             return Task.Run(() =>
             {

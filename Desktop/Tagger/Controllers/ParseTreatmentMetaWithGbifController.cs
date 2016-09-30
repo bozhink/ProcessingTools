@@ -17,8 +17,9 @@
 
         public ParseTreatmentMetaWithGbifController(
             IDocumentFactory documentFactory,
-            IGbifTaxaClassificationResolverDataService service)
-            : base(documentFactory)
+            IGbifTaxaClassificationResolverDataService service,
+            ILogger logger)
+            : base(documentFactory, logger)
         {
             if (service == null)
             {

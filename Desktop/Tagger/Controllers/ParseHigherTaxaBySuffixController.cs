@@ -13,8 +13,9 @@
     {
         public ParseHigherTaxaBySuffixController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(documentFactory, parser)
+            IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

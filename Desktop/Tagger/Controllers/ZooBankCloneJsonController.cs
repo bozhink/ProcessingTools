@@ -15,12 +15,15 @@
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController
     {
-        public ZooBankCloneJsonController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ZooBankCloneJsonController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -32,7 +35,7 @@
             string jsonToCloneFileName = settings.FileNames.ElementAt(2);
 
             string jsonStringContent = File.ReadAllText(jsonToCloneFileName);
-            var cloner = new ZoobankJsonCloner(jsonStringContent, document.Xml, logger);
+            var cloner = new ZoobankJsonCloner(jsonStringContent, document.Xml, this.logger);
 
             await cloner.Clone();
 

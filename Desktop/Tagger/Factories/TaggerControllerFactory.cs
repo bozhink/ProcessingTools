@@ -44,7 +44,7 @@
                 document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
                 document.SchemaType = settings.ArticleSchemaType;
 
-                await this.Run(document, settings, logger);
+                await this.Run(document, settings);
 
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
@@ -54,6 +54,6 @@
             }
         }
 
-        protected abstract Task Run(IDocument document, ProgramSettings settings, ILogger logger);
+        protected abstract Task Run(IDocument document, ProgramSettings settings);
     }
 }

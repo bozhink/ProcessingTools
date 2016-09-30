@@ -26,7 +26,7 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             await this.parser.Parse(document.XmlDocument, document.NamespaceManager);
         }

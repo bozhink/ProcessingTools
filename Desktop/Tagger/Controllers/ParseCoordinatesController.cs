@@ -12,14 +12,17 @@
     [Description("Parse coordinates.")]
     public class ParseCoordinatesController : TaggerControllerFactory, IParseCoordinatesController
     {
-        public ParseCoordinatesController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ParseCoordinatesController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new CoordinatesParser(document.Xml, logger);
+            var parser = new CoordinatesParser(document.Xml, this.logger);
 
             await parser.Parse();
 

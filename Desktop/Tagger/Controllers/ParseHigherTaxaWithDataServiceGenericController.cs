@@ -17,8 +17,9 @@
 
         public ParseHigherTaxaWithDataServiceGenericController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<TService, ITaxonRank> parser)
-            : base(documentFactory)
+            IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, logger)
         {
             if (parser == null)
             {

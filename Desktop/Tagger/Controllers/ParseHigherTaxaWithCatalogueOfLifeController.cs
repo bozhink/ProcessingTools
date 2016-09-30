@@ -13,8 +13,9 @@
     {
         public ParseHigherTaxaWithCatalogueOfLifeController(
             IDocumentFactory documentFactory,
-            IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(documentFactory, parser)
+            IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

@@ -15,12 +15,15 @@
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : TaggerControllerFactory, IZooBankCloneXmlController
     {
-        public ZooBankCloneXmlController(IDocumentFactory documentFactory)
+        private readonly ILogger logger;
+
+        public ZooBankCloneXmlController(IDocumentFactory documentFactory, ILogger logger)
             : base(documentFactory)
         {
+            this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -41,7 +44,7 @@
             var fileProcessorNlm = new XmlFileProcessor(xmlToCloneFileName, outputFileName);
             fileProcessorNlm.Read(nlmDocument);
 
-            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, document.Xml, logger);
+            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, document.Xml, this.logger);
 
             await cloner.Clone();
 
