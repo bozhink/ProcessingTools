@@ -2,7 +2,6 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
@@ -46,7 +45,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -55,7 +54,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             string initialContent = this.document.OuterXml;
 
@@ -70,7 +69,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -81,7 +80,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -92,7 +91,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -103,7 +102,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -114,7 +113,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -125,7 +124,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -136,7 +135,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -147,7 +146,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -158,7 +157,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             try
             {
@@ -179,7 +178,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -190,7 +189,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -201,7 +200,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -212,7 +211,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -223,7 +222,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             try
             {
@@ -244,7 +243,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -255,7 +254,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -266,7 +265,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             try
             {
@@ -287,7 +286,7 @@
         [Timeout(500)]
         public void RunCustomXslTransformController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new RunCustomXslTransformController(this.documentFactory,this.processor);
+            var controller = new RunCustomXslTransformController(this.documentFactory, this.processor);
 
             string initialContent = this.document.OuterXml;
 

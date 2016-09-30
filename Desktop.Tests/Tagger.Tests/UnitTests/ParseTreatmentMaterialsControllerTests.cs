@@ -2,11 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Materials;
     using ProcessingTools.Contracts;
 

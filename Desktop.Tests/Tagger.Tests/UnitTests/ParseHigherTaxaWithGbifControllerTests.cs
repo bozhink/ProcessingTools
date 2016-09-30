@@ -2,12 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
-
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
@@ -47,7 +44,8 @@
             this.parser = parserMock.Object;
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -55,7 +53,8 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -66,7 +65,8 @@
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -81,7 +81,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -95,7 +96,8 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -105,7 +107,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -115,7 +118,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -125,7 +129,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -135,7 +140,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -145,7 +151,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -155,7 +162,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -165,7 +173,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -175,7 +184,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -195,7 +205,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -205,7 +216,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -215,7 +227,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -225,7 +238,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -235,7 +249,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -255,7 +270,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -265,7 +281,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -275,7 +292,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);
@@ -295,7 +313,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaWithGbifController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseHigherTaxaWithGbifController(this.documentFactory, this.parser);

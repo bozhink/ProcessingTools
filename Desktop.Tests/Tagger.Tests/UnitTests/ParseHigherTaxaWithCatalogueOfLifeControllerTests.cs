@@ -2,12 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
-
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;

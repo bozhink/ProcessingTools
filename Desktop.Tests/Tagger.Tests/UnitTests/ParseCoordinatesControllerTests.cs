@@ -2,7 +2,6 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
@@ -37,7 +36,8 @@
             this.documentFactory = documentFactoryMock.Object;
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -45,7 +45,8 @@
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -59,7 +60,8 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -69,7 +71,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -79,7 +82,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -89,7 +93,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -99,7 +104,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -109,7 +115,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -119,7 +126,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -129,7 +137,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -139,7 +148,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -159,7 +169,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -169,7 +180,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -179,7 +191,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -189,7 +202,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -199,7 +213,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -219,7 +234,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -229,7 +245,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -239,7 +256,8 @@
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);
@@ -259,7 +277,8 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void ParseCoordinatesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new ParseCoordinatesController(this.documentFactory);

@@ -2,12 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
-
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts;
 
