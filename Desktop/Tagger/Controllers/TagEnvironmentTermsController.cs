@@ -20,7 +20,8 @@
         private const string XPath = "/*";
         private readonly IEnvoTermsDataMiner miner;
 
-        public TagEnvironmentTermsController(IEnvoTermsDataMiner miner)
+        public TagEnvironmentTermsController(IDocumentFactory documentFactory, IEnvoTermsDataMiner miner)
+            : base(documentFactory)
         {
             if (miner == null)
             {

@@ -11,6 +11,11 @@
     public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
         where TService : ITaxonRankResolverDataService
     {
+        public ParseHigherTaxaControllerFactory(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)

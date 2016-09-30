@@ -20,7 +20,8 @@
         private const string XPath = "/*";
         private readonly IExtractHcmrDataMiner miner;
 
-        public TagEnvironmentTermsWithExtractController(IExtractHcmrDataMiner miner)
+        public TagEnvironmentTermsWithExtractController(IDocumentFactory documentFactory, IExtractHcmrDataMiner miner)
+            : base(documentFactory)
         {
             if (miner == null)
             {

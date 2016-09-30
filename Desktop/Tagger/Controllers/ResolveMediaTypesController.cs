@@ -16,7 +16,8 @@
     {
         private readonly IMediaTypeDataService service;
 
-        public ResolveMediaTypesController(IMediaTypeDataService service)
+        public ResolveMediaTypesController(IDocumentFactory documentFactory, IMediaTypeDataService service)
+            : base(documentFactory)
         {
             if (service == null)
             {

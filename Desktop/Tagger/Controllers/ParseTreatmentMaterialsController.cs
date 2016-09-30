@@ -15,7 +15,8 @@
     {
         private readonly ITreatmentMaterialsParser parser;
 
-        public ParseTreatmentMaterialsController(ITreatmentMaterialsParser parser)
+        public ParseTreatmentMaterialsController(IDocumentFactory documentFactory, ITreatmentMaterialsParser parser)
+            : base(documentFactory)
         {
             if (parser == null)
             {

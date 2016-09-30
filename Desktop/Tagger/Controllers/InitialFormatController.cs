@@ -15,7 +15,8 @@
     {
         private readonly IDocumentInitialFormatter formatter;
 
-        public InitialFormatController(IDocumentInitialFormatter formatter)
+        public InitialFormatController(IDocumentFactory documentFactory, IDocumentInitialFormatter formatter)
+            : base(documentFactory)
         {
             if (formatter == null)
             {

@@ -12,6 +12,11 @@
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController
     {
+        public TagFloatsController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var tagger = new FloatsTagger(document.Xml, logger);

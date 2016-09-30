@@ -12,6 +12,11 @@
     [Description("Parse coordinates.")]
     public class ParseCoordinatesController : TaggerControllerFactory, IParseCoordinatesController
     {
+        public ParseCoordinatesController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var parser = new CoordinatesParser(document.Xml, logger);

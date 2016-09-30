@@ -6,12 +6,15 @@
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa using CoL.")]
     public class ParseHigherTaxaWithCatalogueOfLifeController : ParseHigherTaxaWithDataServiceGenericController<ICatalogueOfLifeTaxaRankResolverDataService>, IParseHigherTaxaWithCatalogueOfLifeController
     {
-        public ParseHigherTaxaWithCatalogueOfLifeController(IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(parser)
+        public ParseHigherTaxaWithCatalogueOfLifeController(
+            IDocumentFactory documentFactory,
+            IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolverDataService, ITaxonRank> parser)
+            : base(documentFactory, parser)
         {
         }
     }

@@ -20,7 +20,11 @@
         private IExternalLinksHarvester harvester;
         private IUrlValidationService service;
 
-        public ValidateExternalLinksController(IExternalLinksHarvester harvester, IUrlValidationService service)
+        public ValidateExternalLinksController(
+            IDocumentFactory documentFactory,
+            IExternalLinksHarvester harvester,
+            IUrlValidationService service)
+            : base(documentFactory)
         {
             if (harvester == null)
             {

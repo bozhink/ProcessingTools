@@ -12,6 +12,11 @@
     [Description("Parse references.")]
     public class ParseReferencesController : TaggerControllerFactory, IParseReferencesController
     {
+        public ParseReferencesController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var parser = new ReferencesParser(document.Xml, logger);

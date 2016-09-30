@@ -70,6 +70,9 @@
 
             this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListRepositoryProvider>()
                 .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
+
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();
         }
     }
 }

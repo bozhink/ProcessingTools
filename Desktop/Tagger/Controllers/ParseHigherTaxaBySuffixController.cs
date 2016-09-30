@@ -6,12 +6,15 @@
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa by suffix.")]
     public class ParseHigherTaxaBySuffixController : ParseHigherTaxaWithDataServiceGenericController<ISuffixHigherTaxaRankResolverDataService>, IParseHigherTaxaBySuffixController
     {
-        public ParseHigherTaxaBySuffixController(IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(parser)
+        public ParseHigherTaxaBySuffixController(
+            IDocumentFactory documentFactory,
+            IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser)
+            : base(documentFactory, parser)
         {
         }
     }

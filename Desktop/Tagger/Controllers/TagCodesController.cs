@@ -22,7 +22,11 @@
         private readonly IBiorepositoriesInstitutionsDataMiner institutionsMiner;
         private readonly IBiorepositoriesCollectionsDataMiner collectionsMiner;
 
-        public TagCodesController(IBiorepositoriesInstitutionsDataMiner institutionsMiner, IBiorepositoriesCollectionsDataMiner collectionsMiner)
+        public TagCodesController(
+            IDocumentFactory documentFactory,
+            IBiorepositoriesInstitutionsDataMiner institutionsMiner,
+            IBiorepositoriesCollectionsDataMiner collectionsMiner)
+            : base(documentFactory)
         {
             if (institutionsMiner == null)
             {

@@ -18,7 +18,10 @@
     {
         private readonly IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser;
 
-        public ParseHigherTaxaWithLocalDbController(IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser)
+        public ParseHigherTaxaWithLocalDbController(
+            IDocumentFactory documentFactory,
+            IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolverDataService, ITaxonRank> parser)
+            : base(documentFactory)
         {
             if (parser == null)
             {

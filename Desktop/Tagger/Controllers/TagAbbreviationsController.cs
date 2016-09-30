@@ -15,7 +15,8 @@
     {
         private readonly IAbbreviationsTagger abbreviationsTagger;
 
-        public TagAbbreviationsController(IAbbreviationsTagger abbreviationsTagger)
+        public TagAbbreviationsController(IDocumentFactory documentFactory, IAbbreviationsTagger abbreviationsTagger)
+            : base(documentFactory)
         {
             if (abbreviationsTagger == null)
             {

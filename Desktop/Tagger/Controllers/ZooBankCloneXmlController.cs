@@ -15,6 +15,11 @@
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : TaggerControllerFactory, IZooBankCloneXmlController
     {
+        public ZooBankCloneXmlController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();

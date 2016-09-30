@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ITaxPubDocumentFactory : IGenericDocumentFactory<ITaxPubDocument>
+    public interface ITaxPubDocumentFactory : IDocumentFactory
     {
     }
 }

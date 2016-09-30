@@ -19,7 +19,11 @@
         private readonly IBiotaxonomicBlackListIterableDataService service;
         private readonly IHigherTaxaDataMiner miner;
 
-        public TagHigherTaxaController(IBiotaxonomicBlackListIterableDataService service, IHigherTaxaDataMiner miner)
+        public TagHigherTaxaController(
+            IDocumentFactory documentFactory,
+            IBiotaxonomicBlackListIterableDataService service,
+            IHigherTaxaDataMiner miner)
+            : base(documentFactory)
         {
             if (service == null)
             {

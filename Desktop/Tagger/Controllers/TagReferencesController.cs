@@ -12,6 +12,11 @@
     [Description("Tag references.")]
     public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
     {
+        public TagReferencesController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var tagger = new ReferencesTagger(

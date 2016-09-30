@@ -12,6 +12,11 @@
     [Description("Parse lower taxa.")]
     public class ParseLowerTaxaController : TaggerControllerFactory, IParseLowerTaxaController
     {
+        public ParseLowerTaxaController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var parser = new LowerTaxaParser(document.Xml, logger);

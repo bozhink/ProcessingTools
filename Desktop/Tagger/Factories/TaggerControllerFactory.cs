@@ -6,10 +6,21 @@
 
     using Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
 
     public abstract class TaggerControllerFactory : ITaggerController
     {
+        private readonly IDocumentFactory documentFactory;
+
+        public TaggerControllerFactory(IDocumentFactory documentFactory)
+        {
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            this.documentFactory = documentFactory;
+        }
+
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             if (context == null)
@@ -29,7 +40,7 @@
 
             try
             {
-                var document = new TaxPubDocument(Resources.ContextWrapper);
+                var document = this.documentFactory.Create(Resources.ContextWrapper);
                 document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
                 document.SchemaType = settings.ArticleSchemaType;
 

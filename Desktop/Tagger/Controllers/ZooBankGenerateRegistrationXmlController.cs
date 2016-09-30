@@ -16,6 +16,11 @@
     [Description("Generate xml document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlController : TaggerControllerFactory, IZooBankGenerateRegistrationXmlController
     {
+        public ZooBankGenerateRegistrationXmlController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             var transformer = new XslTransformer(new ZoobankNlmXslTransformProvider(new XslTransformCache()));

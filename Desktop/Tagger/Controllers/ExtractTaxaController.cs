@@ -12,6 +12,11 @@
 
     public class ExtractTaxaController : TaggerControllerFactory, IExtractTaxaController
     {
+        public ExtractTaxaController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             return Task.Run(() =>

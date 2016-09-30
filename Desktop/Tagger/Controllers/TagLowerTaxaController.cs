@@ -17,7 +17,8 @@
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
 
-        public TagLowerTaxaController(IBiotaxonomicBlackListIterableDataService service)
+        public TagLowerTaxaController(IDocumentFactory documentFactory, IBiotaxonomicBlackListIterableDataService service)
+            : base(documentFactory)
         {
             if (service == null)
             {

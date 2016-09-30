@@ -9,6 +9,11 @@
 
     public abstract class ParseTreatmentMetaControllerFactory : TaggerControllerFactory
     {
+        public ParseTreatmentMetaControllerFactory(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected abstract ITaxaInformationResolverDataService<ITaxonClassification> Service { get; }
 
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)

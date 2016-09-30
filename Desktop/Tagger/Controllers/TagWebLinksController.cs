@@ -21,7 +21,8 @@
         private const string XPath = "/*";
         private readonly INlmExternalLinksDataMiner miner;
 
-        public TagWebLinksController(INlmExternalLinksDataMiner miner)
+        public TagWebLinksController(IDocumentFactory documentFactory, INlmExternalLinksDataMiner miner)
+            : base(documentFactory)
         {
             if (miner == null)
             {

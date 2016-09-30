@@ -16,7 +16,8 @@
     {
         private readonly IQueryReplacer queryReplacer;
 
-        public QueryReplaceController(IQueryReplacer queryReplacer)
+        public QueryReplaceController(IDocumentFactory documentFactory, IQueryReplacer queryReplacer)
+            : base(documentFactory)
         {
             if (queryReplacer == null)
             {

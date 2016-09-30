@@ -16,7 +16,8 @@
     {
         private readonly IDocumentXslProcessor processor;
 
-        public RunCustomXslTransformController(IDocumentXslProcessor processor)
+        public RunCustomXslTransformController(IDocumentFactory documentFactory, IDocumentXslProcessor processor)
+            : base(documentFactory)
         {
             if (processor == null)
             {

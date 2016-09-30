@@ -15,6 +15,11 @@
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController
     {
+        public ZooBankCloneJsonController(IDocumentFactory documentFactory)
+            : base(documentFactory)
+        {
+        }
+
         protected override async Task Run(IDocument document, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();

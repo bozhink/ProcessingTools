@@ -19,7 +19,10 @@
     {
         private readonly ITaxaValidationService service;
 
-        public ValidateTaxaController(ITaxaValidationService service)
+        public ValidateTaxaController(
+            IDocumentFactory documentFactory,
+            ITaxaValidationService service)
+            : base(documentFactory)
         {
             if (service == null)
             {
