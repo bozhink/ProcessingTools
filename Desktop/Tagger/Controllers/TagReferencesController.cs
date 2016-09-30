@@ -16,8 +16,6 @@
         {
             var tagger = new ReferencesTagger(
                 document.Xml,
-                
-                // TODO: unneeded?
                 new ReferencesConfiguration
                 {
                     ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath
