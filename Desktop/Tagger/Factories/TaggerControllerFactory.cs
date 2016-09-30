@@ -6,6 +6,7 @@
 
     using Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DocumentProvider;
 
     public abstract class TaggerControllerFactory : ITaggerController
     {
@@ -28,17 +29,13 @@
 
             try
             {
-                XmlDocument document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
-
-                document.LoadXml(Resources.ContextWrapper);
-                document.DocumentElement.InnerXml = context.InnerXml;
+                var document = new TaxPubDocument(Resources.ContextWrapper);
+                document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+                document.SchemaType = settings.ArticleSchemaType;
 
                 await this.Run(document, namespaceManager, settings, logger);
 
-                context.InnerXml = document.DocumentElement.InnerXml;
+                context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
             catch (Exception e)
             {
@@ -46,6 +43,6 @@
             }
         }
 
-        protected abstract Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger);
+        protected abstract Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger);
     }
 }

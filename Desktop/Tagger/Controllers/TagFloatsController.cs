@@ -13,13 +13,13 @@
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new FloatsTagger(document.OuterXml, logger);
+            var tagger = new FloatsTagger(document.Xml, logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

@@ -27,7 +27,7 @@
             this.queryReplacer = queryReplacer;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -38,9 +38,9 @@
 
             string queryFileName = settings.FileNames.ElementAt(2);
 
-            var processedContent = await this.queryReplacer.Replace(document.OuterXml, queryFileName);
+            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
 
-            document.LoadXml(processedContent);
+            document.Xml = processedContent;
         }
     }
 }

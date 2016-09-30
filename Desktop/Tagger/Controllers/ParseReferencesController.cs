@@ -13,13 +13,13 @@
     [Description("Parse references.")]
     public class ParseReferencesController : TaggerControllerFactory, IParseReferencesController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var parser = new ReferencesParser(document.OuterXml, logger);
+            var parser = new ReferencesParser(document.Xml, logger);
 
             await parser.Parse();
 
-            document.LoadXml(parser.Xml);
+            document.Xml = parser.Xml;
         }
     }
 }

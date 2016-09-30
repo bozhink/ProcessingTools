@@ -13,13 +13,13 @@
     [Description("Tag table foot-notes.")]
     public class TagTableFootnoteController : TaggerControllerFactory, ITagTableFootnoteController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new TableFootNotesTagger(document.OuterXml, logger);
+            var tagger = new TableFootNotesTagger(document.Xml, logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

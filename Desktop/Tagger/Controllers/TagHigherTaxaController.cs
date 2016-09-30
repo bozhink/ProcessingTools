@@ -36,13 +36,13 @@
             this.miner = miner;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new HigherTaxaTagger(document.OuterXml, this.miner, this.service, logger);
+            var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml.NormalizeXmlToSystemXml());
+            document.Xml = tagger.Xml.NormalizeXmlToSystemXml();
         }
     }
 }

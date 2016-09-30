@@ -37,9 +37,9 @@
             this.service = service;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var externalLinks = await this.harvester.Harvest(document.DocumentElement);
+            var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
 
             if (externalLinks == null)
             {

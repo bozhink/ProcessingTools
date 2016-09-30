@@ -30,9 +30,9 @@
             this.service = service;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var scientificNames = document.ExtractTaxa(true)
+            var scientificNames = document.XmlDocument.ExtractTaxa(true)
                 .Select(s => new TaxonNameServiceModel
                 {
                     Name = s

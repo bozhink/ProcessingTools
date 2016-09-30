@@ -13,15 +13,15 @@
     [Description("Test.")]
     public class TestController : TaggerControllerFactory, ITestController
     {
-        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             return Task.Run(() =>
             {
-                var test = new Test(document.OuterXml);
+                var test = new Test(document.Xml);
 
                 test.RenumerateFootNotes();
 
-                document.LoadXml(test.Xml);
+                document.Xml = test.Xml;
             });
         }
     }

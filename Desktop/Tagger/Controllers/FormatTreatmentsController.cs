@@ -13,13 +13,13 @@
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var formatter = new TreatmentFormatter(document.OuterXml, logger);
+            var formatter = new TreatmentFormatter(document.Xml, logger);
 
             await formatter.Format();
 
-            document.LoadXml(formatter.Xml);
+            document.Xml = formatter.Xml;
         }
     }
 }

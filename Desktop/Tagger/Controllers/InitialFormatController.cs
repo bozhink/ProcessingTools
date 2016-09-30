@@ -9,7 +9,6 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Layout.Processors.Contracts;
 
     [Description("Initial format.")]
@@ -27,14 +26,9 @@
             this.formatter = formatter;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            // TODO: TaggerController.Run should use IDocument
-            var taxpubDocument = document.ToTaxPubDocument();
-            taxpubDocument.SchemaType = settings.ArticleSchemaType;
-
-            await this.formatter.Format(taxpubDocument);
-            document.LoadXml(taxpubDocument.Xml);
+            await this.formatter.Format(document);
         }
     }
 }

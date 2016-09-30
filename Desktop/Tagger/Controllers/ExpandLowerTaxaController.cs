@@ -13,17 +13,17 @@
     [Description("Expand lower taxa.")]
     public class ExpandLowerTaxaController : TaggerControllerFactory, IExpandLowerTaxaController
     {
-        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             return Task.Run(() =>
             {
-                var expander = new Expander(document.OuterXml, logger);
+                var expander = new Expander(document.XmlDocument.OuterXml, logger);
 
                 expander.StableExpand();
 
                 expander.ForceExactSpeciesMatchExpand();
 
-                document.LoadXml(expander.Xml);
+                document.Xml = expander.Xml;
             });
         }
     }

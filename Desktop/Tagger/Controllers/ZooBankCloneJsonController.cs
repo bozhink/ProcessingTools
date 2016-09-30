@@ -16,7 +16,7 @@
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -28,11 +28,11 @@
             string jsonToCloneFileName = settings.FileNames.ElementAt(2);
 
             string jsonStringContent = File.ReadAllText(jsonToCloneFileName);
-            var cloner = new ZoobankJsonCloner(jsonStringContent, document.OuterXml, logger);
+            var cloner = new ZoobankJsonCloner(jsonStringContent, document.Xml, logger);
 
             await cloner.Clone();
 
-            document.LoadXml(cloner.Xml);
+            document.Xml = cloner.Xml;
         }
     }
 }

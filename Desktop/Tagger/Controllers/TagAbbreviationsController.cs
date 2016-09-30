@@ -26,9 +26,9 @@
             this.abbreviationsTagger = abbreviationsTagger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            await this.abbreviationsTagger.Tag(document);
+            await this.abbreviationsTagger.Tag(document.XmlDocument);
         }
     }
 }

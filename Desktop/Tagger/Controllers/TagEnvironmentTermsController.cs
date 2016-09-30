@@ -31,9 +31,9 @@
             this.miner = miner;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var textContent = document.GetTextContent();
+            var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoTermResponseModel
                 {
@@ -49,11 +49,11 @@
                     VerbatimTerm = t.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.OuterXml, data, XPath, namespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, namespaceManager, false, true, logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

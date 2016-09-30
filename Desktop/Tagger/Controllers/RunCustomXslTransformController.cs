@@ -29,7 +29,7 @@
             this.processor = processor;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -40,12 +40,7 @@
 
             this.processor.XslFilePath = settings.FileNames.ElementAt(2);
 
-            // TODO: TaxPubDocument should become dummy parameter.
-            var context = new TaxPubDocument(document.OuterXml);
-
-            await this.processor.Process(context);
-
-            document.LoadXml(context.Xml);
+            await this.processor.Process(document);
         }
     }
 }

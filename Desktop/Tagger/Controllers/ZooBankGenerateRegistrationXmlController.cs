@@ -17,11 +17,11 @@
     [Description("Generate xml document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlController : TaggerControllerFactory, IZooBankGenerateRegistrationXmlController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var transformer = new XslTransformer(new ZoobankNlmXslTransformProvider(new XslTransformCache()));
-            var text = await transformer.Transform(document);
-            document.LoadXml(text);
+            var text = await transformer.Transform(document.Xml);
+            document.Xml = text;
         }
     }
 }

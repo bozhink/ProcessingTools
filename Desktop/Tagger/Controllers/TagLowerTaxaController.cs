@@ -28,13 +28,13 @@
             this.service = service;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
-            var tagger = new LowerTaxaTagger(document.OuterXml, this.service, logger);
+            var tagger = new LowerTaxaTagger(document.Xml, this.service, logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml.NormalizeXmlToSystemXml());
+            document.Xml = tagger.Xml.NormalizeXmlToSystemXml();
         }
     }
 }

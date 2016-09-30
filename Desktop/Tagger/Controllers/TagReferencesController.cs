@@ -13,10 +13,12 @@
     [Description("Tag references.")]
     public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             var tagger = new ReferencesTagger(
-                document.OuterXml,
+                document.Xml,
+                
+                // TODO: unneeded?
                 new ReferencesConfiguration
                 {
                     ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath
@@ -25,7 +27,7 @@
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }
