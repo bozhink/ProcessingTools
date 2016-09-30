@@ -19,6 +19,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
+        private IDocumentFactory documentFactory;
 
         [SetUp]
         public void Init()
@@ -31,12 +32,15 @@
 
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
         [Test][Timeout(500)]
         public void ParseCoordinatesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -44,7 +48,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             string initialContent = this.document.OuterXml;
 
@@ -58,7 +62,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -68,7 +72,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -78,7 +82,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -88,7 +92,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -98,7 +102,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -108,7 +112,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -118,7 +122,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -128,7 +132,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -138,7 +142,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             try
             {
@@ -158,7 +162,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -168,7 +172,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -178,7 +182,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -188,7 +192,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -198,7 +202,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             try
             {
@@ -218,7 +222,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -228,7 +232,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -238,7 +242,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             try
             {
@@ -258,7 +262,7 @@
         [Test][Timeout(500)]
         public void ParseCoordinatesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseCoordinatesController();
+            var controller = new ParseCoordinatesController(this.documentFactory);
 
             string initialContent = this.document.OuterXml;
 

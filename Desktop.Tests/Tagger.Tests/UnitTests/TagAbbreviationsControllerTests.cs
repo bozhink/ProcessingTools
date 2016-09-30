@@ -20,6 +20,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
+        private IDocumentFactory documentFactory;
         private IAbbreviationsTagger abbreviationsTagger;
 
         [SetUp]
@@ -34,6 +35,9 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
+
             var abbreviationsTaggerMock = new Mock<IAbbreviationsTagger>();
             this.abbreviationsTagger = abbreviationsTaggerMock.Object;
         }
@@ -42,7 +46,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -51,7 +55,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             string initialContent = this.document.OuterXml;
 
@@ -66,7 +70,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -77,7 +81,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -88,7 +92,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -99,7 +103,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -110,7 +114,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -121,7 +125,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -132,7 +136,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -143,7 +147,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -154,7 +158,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             try
             {
@@ -175,7 +179,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -186,7 +190,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -197,7 +201,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -208,7 +212,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -219,7 +223,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             try
             {
@@ -240,7 +244,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -251,7 +255,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -262,7 +266,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             try
             {
@@ -283,7 +287,7 @@
         [Timeout(500)]
         public void TagAbbreviationsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagAbbreviationsController(this.abbreviationsTagger);
+            var controller = new TagAbbreviationsController(this.documentFactory,this.abbreviationsTagger);
 
             string initialContent = this.document.OuterXml;
 

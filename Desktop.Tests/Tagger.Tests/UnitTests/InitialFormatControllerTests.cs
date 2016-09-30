@@ -23,6 +23,7 @@
         private ProgramSettings settings;
         private ILogger logger;
         private IDocumentInitialFormatter formatter;
+        private IDocumentFactory documentFactory;
 
         [SetUp]
         public void Init()
@@ -38,20 +39,25 @@
 
             var formatterMock = new Mock<IDocumentInitialFormatter>();
             this.formatter = formatterMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             string initialContent = this.document.OuterXml;
 
@@ -62,90 +68,99 @@
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             try
             {
@@ -162,50 +177,55 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             try
             {
@@ -222,30 +242,33 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             try
             {
@@ -262,10 +285,11 @@
             }
         }
 
-        [Test][Timeout(500)]
+        [Test]
+        [Timeout(500)]
         public void InitialFormatController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new InitialFormatController(this.formatter);
+            var controller = new InitialFormatController(this.documentFactory, this.formatter);
 
             string initialContent = this.document.OuterXml;
 

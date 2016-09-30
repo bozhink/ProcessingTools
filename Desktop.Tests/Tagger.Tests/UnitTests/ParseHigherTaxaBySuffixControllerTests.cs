@@ -25,7 +25,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser;
 
         [SetUp]
@@ -42,12 +42,15 @@
 
             var parserMock = new Mock<IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank>>();
             this.parser = parserMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -58,7 +61,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseHigherTaxaBySuffixController(null);
+                    var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -68,7 +71,7 @@
         {
             try
             {
-                var controller = new ParseHigherTaxaBySuffixController(null);
+                var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, null);
             }
             catch (Exception e)
             {
@@ -81,7 +84,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -95,7 +98,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -105,7 +108,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -115,7 +118,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -125,7 +128,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -135,7 +138,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -145,7 +148,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -155,7 +158,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -165,7 +168,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -175,7 +178,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             try
             {
@@ -195,7 +198,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -205,7 +208,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -215,7 +218,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -225,7 +228,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -235,7 +238,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             try
             {
@@ -255,7 +258,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -265,7 +268,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -275,7 +278,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             try
             {
@@ -295,7 +298,7 @@
         [Test][Timeout(500)]
         public void ParseHigherTaxaBySuffixController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaBySuffixController(this.parser);
+            var controller = new ParseHigherTaxaBySuffixController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 

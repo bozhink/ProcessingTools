@@ -21,7 +21,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private IExtractHcmrDataMiner miner;
 
         [SetUp]
@@ -36,6 +36,9 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
+
             var minerMock = new Mock<IExtractHcmrDataMiner>();
             this.miner = minerMock.Object;
         }
@@ -44,7 +47,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -56,7 +59,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new TagEnvironmentTermsWithExtractController(null);
+                    var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -67,7 +70,7 @@
         {
             try
             {
-                var controller = new TagEnvironmentTermsWithExtractController(null);
+                var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,null);
             }
             catch (Exception e)
             {
@@ -81,7 +84,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             string initialContent = this.document.OuterXml;
 
@@ -96,7 +99,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -107,7 +110,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -118,7 +121,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -129,7 +132,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -140,7 +143,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -151,7 +154,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -162,7 +165,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -173,7 +176,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -184,7 +187,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             try
             {
@@ -205,7 +208,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -216,7 +219,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -227,7 +230,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -238,7 +241,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -249,7 +252,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             try
             {
@@ -270,7 +273,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -281,7 +284,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -292,7 +295,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             try
             {
@@ -313,7 +316,7 @@
         [Timeout(500)]
         public void TagEnvironmentTermsWithExtractController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagEnvironmentTermsWithExtractController(this.miner);
+            var controller = new TagEnvironmentTermsWithExtractController(this.documentFactory,this.miner);
 
             string initialContent = this.document.OuterXml;
 
