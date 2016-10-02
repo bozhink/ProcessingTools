@@ -9,9 +9,14 @@
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
   "dependencies": {
+    "monaco-editor": "^0.6.1"
+  },
+  "devDependencies": {
     "babel-eslint": "^6.1.2",
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
-    "monaco-editor": "^0.6.1"
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.1.0"
   }
 }
