@@ -50,6 +50,9 @@
                         }
                         <li>@Html.ActionLink(Resources.Strings.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                         <li>@Html.ActionLink(Resources.Strings.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                        <li>
+                            @Html.ActionLink(Resources.Strings.HelpActionLinkTitle, ActionNames.DeafulHelpActionName, routeValues: null, htmlAttributes: new { target = "_blank" })
+                        </li>
                     </ul>
                     @Html.Partial(ViewNames.LoginPartialViewName)
                 </div>

@@ -43,6 +43,12 @@
 
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: Journals/Journals
         public async Task<ActionResult> Index(int? p, int? n)
         {

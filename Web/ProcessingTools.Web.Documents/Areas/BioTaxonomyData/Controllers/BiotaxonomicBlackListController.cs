@@ -35,6 +35,12 @@
             this.searchService = searchService;
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Data/Bio/Taxonomy/BiotaxonomicBlackList
         [HttpGet]
         public ActionResult Index()

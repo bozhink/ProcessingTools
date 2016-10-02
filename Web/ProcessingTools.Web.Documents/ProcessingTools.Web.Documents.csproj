@@ -578,6 +578,7 @@
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
     <Content Include="Views\Shared\_BackToListFooter.cshtml" />
     <Content Include="static\styles\biotaxonomic-lists.less" />
+    <Content Include="Views\Shared\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -73,7 +73,14 @@
             }
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Manage/Index
+        [HttpGet]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -135,6 +142,7 @@
         }
 
         // GET: /Manage/AddPhoneNumber
+        [HttpGet]
         public ActionResult AddPhoneNumber()
         {
             return this.View();
@@ -210,6 +218,7 @@
         }
 
         // GET: /Manage/VerifyPhoneNumber
+        [HttpGet]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(
@@ -296,6 +305,7 @@
         }
 
         // GET: /Manage/ChangePassword
+        [HttpGet]
         public ActionResult ChangePassword()
         {
             return this.View();
@@ -340,6 +350,7 @@
         }
 
         // GET: /Manage/SetPassword
+        [HttpGet]
         public ActionResult SetPassword()
         {
             return this.View();
@@ -383,6 +394,7 @@
         }
 
         // GET: /Manage/ManageLogins
+        [HttpGet]
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -421,6 +433,7 @@
         }
 
         // GET: /Manage/LinkLoginCallback
+        [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync(
