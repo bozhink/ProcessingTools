@@ -6,8 +6,9 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:tp="http://www.plazi.org/taxpub"
+  xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  exclude-result-prefixes="xs xsd">
+  exclude-result-prefixes="aid xs xsd">
 
   <xsl:output method="xml" indent="yes" encoding="utf-8"  cdata-section-elements="tex-math" />
 
