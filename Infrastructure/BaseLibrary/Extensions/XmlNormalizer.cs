@@ -1,24 +1,17 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System.Configuration;
     using System.Xml;
 
-    using ProcessingTools.Common;
+    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Transformers;
 
     /// <summary>
-    /// This class provides extension methods for transformation of Taxpub NLM to system XML schemas.
+    /// This class provides extension methods for transformation of TaxPub NLM to system XML schemas.
     /// </summary>
     public static class XmlNormalizer
     {
-        private const string FormatNlmToSystemXslPathKey = "FormatNlmToSystemXslPath";
-        private const string FormatSystemToNlmXslPathKey = "FormatSystemToNlmXslPath";
-
-        private static string FormatNlmToSystemXslPath => Dictionaries.FileNames.GetOrAdd(FormatNlmToSystemXslPathKey, ConfigurationManager.AppSettings[FormatNlmToSystemXslPathKey]);
-
-        private static string FormatSystemToNlmXslPath => Dictionaries.FileNames.GetOrAdd(FormatSystemToNlmXslPathKey, ConfigurationManager.AppSettings[FormatSystemToNlmXslPathKey]);
-
         /// <summary>
         /// Transforms a given XML string to system Xml Schema.
         /// </summary>
@@ -26,7 +19,9 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this string xml)
         {
-            return xml.ApplyXslTransform(FormatNlmToSystemXslPath);
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
@@ -36,31 +31,37 @@
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToSystemXml(this XmlDocument xml)
         {
-            return xml.ApplyXslTransform(FormatNlmToSystemXslPath);
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
-        /// Transforms a given XML string to Taxpub NLM Xml Schema.
+        /// Transforms a given XML string to TaxPub NLM Xml Schema.
         /// </summary>
         /// <param name="xml">XML as string to be transformed.</param>
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this string xml)
         {
-            return xml.ApplyXslTransform(FormatSystemToNlmXslPath);
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
-        /// Transforms a given XmlDocument object to Taxpub NLM Xml Schema.
+        /// Transforms a given XmlDocument object to TaxPub NLM Xml Schema.
         /// </summary>
         /// <param name="xml">XmlDocument object to be transformed.</param>
         /// <returns>Transformed XML as string.</returns>
         public static string NormalizeXmlToNlmXml(this XmlDocument xml)
         {
-            return xml.ApplyXslTransform(FormatSystemToNlmXslPath);
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
 
         /// <summary>
-        /// Transforms a given XML string to Taxpub NLM Xml Schema or system Xml Schema.
+        /// Transforms a given XML string to TaxPub NLM Xml Schema or system Xml Schema.
         /// </summary>
         /// <param name="xml">XML as string to be transformed.</param>
         /// <param name="articleSchemaType">SchemaType of the document.</param>
@@ -78,7 +79,7 @@
         }
 
         /// <summary>
-        /// Transforms a given XmlDocument object to Taxpub NLM Xml Schema or system Xml Schema.
+        /// Transforms a given XmlDocument object to TaxPub NLM Xml Schema or system Xml Schema.
         /// </summary>
         /// <param name="xml">XmlDocument object to be transformed.</param>
         /// <param name="articleSchemaType">SchemaType of the document.</param>

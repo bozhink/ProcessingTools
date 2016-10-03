@@ -21,8 +21,14 @@
         private const string XPath = "/*";
         private readonly IBiorepositoriesInstitutionsDataMiner institutionsMiner;
         private readonly IBiorepositoriesCollectionsDataMiner collectionsMiner;
+        private readonly ILogger logger;
 
-        public TagCodesController(IBiorepositoriesInstitutionsDataMiner institutionsMiner, IBiorepositoriesCollectionsDataMiner collectionsMiner)
+        public TagCodesController(
+            IDocumentFactory documentFactory,
+            IBiorepositoriesInstitutionsDataMiner institutionsMiner,
+            IBiorepositoriesCollectionsDataMiner collectionsMiner,
+            ILogger logger)
+            : base(documentFactory)
         {
             if (institutionsMiner == null)
             {
@@ -36,24 +42,25 @@
 
             this.institutionsMiner = institutionsMiner;
             this.collectionsMiner = collectionsMiner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var textContent = document.GetTextContent();
-            await this.TagInstitutions(document, namespaceManager, logger, textContent);
+            var textContent = document.XmlDocument.GetTextContent();
+            await this.TagInstitutions(document.XmlDocument, document.NamespaceManager, textContent);
             ////await this.TagCollections(document, namespaceManager, logger, textContent);
         }
 
-        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, string textContent)
+        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, string textContent)
         {
             var data = await this.institutionsMiner.Mine(textContent);
 
-            await this.TagInstitutionalCodes(document, namespaceManager, logger, data);
-            await this.TagInstitutions(document, namespaceManager, logger, data);
+            await this.TagInstitutionalCodes(document, namespaceManager, data);
+            await this.TagInstitutions(document, namespaceManager, data);
         }
 
-        private async Task TagInstitutionalCodes(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
+        private async Task TagInstitutionalCodes(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoriesInstitutionalCodeSerializableModel
             {
@@ -62,14 +69,14 @@
                 Value = i.InstitutionalCode
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, true, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, true, true, this.logger);
 
             await tagger.Tag();
 
             document.LoadXml(tagger.Xml);
         }
 
-        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
+        private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
         {
             var institutions = data.Select(i => new BiorepositoriesInstitutionSerializableModel
             {
@@ -77,22 +84,22 @@
                 Value = i.NameOfInstitution
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(document.OuterXml, institutions, XPath, namespaceManager, true, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(document.OuterXml, institutions, XPath, namespaceManager, true, true, this.logger);
 
             await tagger.Tag();
 
             document.LoadXml(tagger.Xml);
         }
 
-        private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, string textContent)
+        private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, string textContent)
         {
             var data = await this.collectionsMiner.Mine(textContent);
 
-            await this.TagCollectionCodes(document, namespaceManager, logger, data);
-            await this.TagCollections(document, namespaceManager, logger, data);
+            await this.TagCollectionCodes(document, namespaceManager, data);
+            await this.TagCollections(document, namespaceManager, data);
         }
 
-        private async Task TagCollectionCodes(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
+        private async Task TagCollectionCodes(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
@@ -101,14 +108,14 @@
                 XLinkTitle = c.CollectionName
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(document.OuterXml, collectionCodes, XPath, namespaceManager, true, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(document.OuterXml, collectionCodes, XPath, namespaceManager, true, true, this.logger);
 
             await tagger.Tag();
 
             document.LoadXml(tagger.Xml);
         }
 
-        private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, ILogger logger, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
+        private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {
@@ -116,7 +123,7 @@
                 Value = c.CollectionName
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(document.OuterXml, collections, XPath, namespaceManager, true, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(document.OuterXml, collections, XPath, namespaceManager, true, true, this.logger);
 
             await tagger.Tag();
 

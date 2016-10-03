@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Factories
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
@@ -12,12 +11,20 @@
     public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
         where TService : ITaxonRankResolverDataService
     {
+        private readonly ILogger logger;
+
+        public ParseHigherTaxaControllerFactory(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
         protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            await this.Parser.Parse(document.DocumentElement);
-            await document.PrintNonParsedTaxa(logger);
+            await this.Parser.Parse(document.XmlDocument.DocumentElement);
+            await document.XmlDocument.PrintNonParsedTaxa(this.logger);
         }
     }
 }

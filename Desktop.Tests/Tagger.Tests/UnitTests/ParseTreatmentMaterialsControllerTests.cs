@@ -2,11 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Materials;
     using ProcessingTools.Contracts;
 
@@ -22,7 +20,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private ITreatmentMaterialsParser parser;
 
         [SetUp]
@@ -37,35 +35,41 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
+
             var parserMock = new Mock<ITreatmentMaterialsParser>();
             this.parser = parserMock.Object;
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseTreatmentMaterialsController(null);
+                    var controller = new ParseTreatmentMaterialsController(this.documentFactory, null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {
-                var controller = new ParseTreatmentMaterialsController(null);
+                var controller = new ParseTreatmentMaterialsController(this.documentFactory, null);
             }
             catch (Exception e)
             {
@@ -76,9 +80,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -90,9 +95,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -100,9 +106,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -110,9 +117,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -120,9 +128,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -130,9 +139,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -140,9 +150,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -150,9 +161,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -160,9 +172,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -170,9 +183,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             try
             {
@@ -190,9 +204,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -200,9 +215,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -210,9 +226,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -220,9 +237,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -230,9 +248,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             try
             {
@@ -250,9 +269,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -260,9 +280,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -270,9 +291,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             try
             {
@@ -290,9 +312,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMaterialsController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMaterialsController(this.parser);
+            var controller = new ParseTreatmentMaterialsController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 

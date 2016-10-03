@@ -33,7 +33,7 @@
             {
                 this.programSettings.HigherStructrureXpath = xpath;
 
-                Assert.AreEqual(xpath, this.programSettings.HigherStructrureXpath, "1. HigherStructrureXpath and xpath should match.");
+                Assert.AreEqual(xpath, this.programSettings.HigherStructrureXpath, "1. HigherStructrureXpath and XPath should match.");
             }
 
             {

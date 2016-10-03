@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,13 +12,21 @@
     [Description("Tag table foot-notes.")]
     public class TagTableFootnoteController : TaggerControllerFactory, ITagTableFootnoteController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public TagTableFootnoteController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
         {
-            var tagger = new TableFootNotesTagger(document.OuterXml, logger);
+            this.logger = logger;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
+        {
+            var tagger = new TableFootNotesTagger(document.Xml, this.logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

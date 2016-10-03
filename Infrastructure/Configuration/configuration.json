@@ -1,0 +1,18 @@
+﻿{
+  "files": [
+    {
+      "key": "NlmInitialFormatXslPath",
+      "value": "Xsl/format.nlm.initial.xsl"
+    },
+    {
+      "key": "SystemInitialFormatXslPath",
+      "value": "Xsl/format.system.initial.xsl"
+    }
+  ],
+  "settings": [
+    {
+      "key": "RedisServerAddress",
+      "value": "redis://localhost:6379"
+    }
+  ]
+}

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -19,8 +18,14 @@
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
         private readonly IHigherTaxaDataMiner miner;
+        private readonly ILogger logger;
 
-        public TagHigherTaxaController(IBiotaxonomicBlackListIterableDataService service, IHigherTaxaDataMiner miner)
+        public TagHigherTaxaController(
+            IDocumentFactory documentFactory,
+            IBiotaxonomicBlackListIterableDataService service,
+            IHigherTaxaDataMiner miner,
+            ILogger logger)
+            : base(documentFactory)
         {
             if (service == null)
             {
@@ -34,15 +39,16 @@
 
             this.service = service;
             this.miner = miner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new HigherTaxaTagger(document.OuterXml, this.miner, this.service, logger);
+            var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, this.logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml.NormalizeXmlToSystemXml());
+            document.Xml = tagger.Xml.NormalizeXmlToSystemXml();
         }
     }
 }

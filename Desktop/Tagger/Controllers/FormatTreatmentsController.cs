@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,13 +12,21 @@
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public FormatTreatmentsController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
         {
-            var formatter = new TreatmentFormatter(document.OuterXml, logger);
+            this.logger = logger;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
+        {
+            var formatter = new TreatmentFormatter(document.Xml, this.logger);
 
             await formatter.Format();
 
-            document.LoadXml(formatter.Xml);
+            document.Xml = formatter.Xml;
         }
     }
 }

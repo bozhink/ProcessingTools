@@ -3,15 +3,12 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Processors.Contracts;
 
     [Description("Custom XSL transform.")]
@@ -19,7 +16,8 @@
     {
         private readonly IDocumentXslProcessor processor;
 
-        public RunCustomXslTransformController(IDocumentXslProcessor processor)
+        public RunCustomXslTransformController(IDocumentFactory documentFactory, IDocumentXslProcessor processor)
+            : base(documentFactory)
         {
             if (processor == null)
             {
@@ -29,7 +27,7 @@
             this.processor = processor;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -40,12 +38,7 @@
 
             this.processor.XslFilePath = settings.FileNames.ElementAt(2);
 
-            // TODO: TaxPubDocument should become dummy parameter.
-            var context = new TaxPubDocument(document.OuterXml);
-
-            await this.processor.Process(context);
-
-            document.LoadXml(context.Xml);
+            await this.processor.Process(document);
         }
     }
 }

@@ -1,25 +1,32 @@
 ﻿namespace ProcessingTools.BaseLibrary.References
 {
     using System;
-    using System.Configuration;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
-    using ProcessingTools.Common;
+    using ProcessingTools.BaseLibrary.Contracts;
+    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Transformers;
 
     public class ReferencesTagger : TaxPubDocument, ITagger
     {
-        private const string ReferencesGetReferencesXslPathKey = "ReferencesGetReferencesXslPath";
-        private const string ReferencesTagTemplateXslPathKey = "ReferencesTagTemplateXslPath";
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private IReferencesConfiguration referencesConfiguration;
-        private ILogger logger;
+        private readonly IReferencesConfiguration referencesConfiguration;
+        private readonly ILogger logger;
+
+        // TODO: DI
+        private readonly IXslTransformer<IReferencesTagTemplateXslTransformProvider> referencesTagTemplateXslTransformer = new XslTransformer<IReferencesTagTemplateXslTransformProvider>(new ReferencesTagTemplateXslTransformProvider(new XslTransformCache()));
+
+        // TODO: DI
+        private readonly IXslTransformer<IReferencesGetReferencesXslTransformProvider> referencesGetReferencesXslTransformer = new XslTransformer<IReferencesGetReferencesXslTransformProvider>(new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
 
         public ReferencesTagger(string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
             : base(xml)
@@ -28,40 +35,11 @@
             this.referencesConfiguration = referencesConfiguration;
         }
 
-        private string ReferencesGetReferencesXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesGetReferencesXslPathKey, ConfigurationManager.AppSettings[ReferencesGetReferencesXslPathKey]);
-
-        private string ReferencesTagTemplateXslPath => Dictionaries.FileNames.GetOrAdd(ReferencesTagTemplateXslPathKey, ConfigurationManager.AppSettings[ReferencesTagTemplateXslPathKey]);
-
-        public Task Tag()
+        public async Task Tag()
         {
-            return Task.Run(() => this.Run());
-        }
+            await this.ExportReferences();
 
-        private void Run()
-        {
-            {
-                var referencesList = XDocument.Parse(this.Xml
-                    .ApplyXslTransform(this.ReferencesGetReferencesXslPath));
-
-                if (this.referencesConfiguration != null)
-                {
-                    referencesList.Save(this.referencesConfiguration.ReferencesGetReferencesXmlPath);
-                }
-            }
-
-            var referencesTemplatesXml = XDocument.Parse(this.XmlDocument
-                .ApplyXslTransform(this.ReferencesTagTemplateXslPath));
-
-            var referencesTemplates = referencesTemplatesXml.Descendants("reference")
-                .OrderByDescending(r => r.Attribute("authors").Value.Length)
-                .ThenBy(r => r.Attribute("year").Value)
-                .Select(r => new
-                {
-                    Id = r.Attribute("id").Value,
-                    Year = Regex.Escape(r.Attribute("year").Value),
-                    Authors = Regex.Replace(r.Attribute("authors").Value, @"\W+", "\\W*") + "[^\\w,]{0,3}"
-                })
-                .Where(s => !string.IsNullOrWhiteSpace(s.Id) && !string.IsNullOrWhiteSpace(s.Year) && !string.IsNullOrWhiteSpace(s.Authors));
+            var referencesTemplates = await this.GetReferencesTemplates();
 
             /*
              * Tag references using generated template
@@ -190,6 +168,37 @@
             //// TODO: Call here the two loops above
 
             this.Xml = xml;
+        }
+
+        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates()
+        {
+            var text = await this.referencesTagTemplateXslTransformer.Transform(this.Xml);
+            var referencesTemplatesXml = XDocument.Parse(text);
+
+            var referencesTemplates = referencesTemplatesXml.Descendants("reference")
+                .OrderByDescending(r => r.Attribute("authors").Value.Length)
+                .ThenBy(r => r.Attribute("year").Value)
+                .Select(r => new ReferenceTemplateItem
+                {
+                    Id = r.Attribute("id").Value,
+                    Year = Regex.Escape(r.Attribute("year").Value),
+                    Authors = Regex.Replace(r.Attribute("authors").Value, @"\W+", "\\W*") + "[^\\w,]{0,3}"
+                })
+                .Where(s => !string.IsNullOrWhiteSpace(s.Id) && !string.IsNullOrWhiteSpace(s.Year) && !string.IsNullOrWhiteSpace(s.Authors))
+                .ToArray();
+
+            return referencesTemplates;
+        }
+
+        private async Task ExportReferences()
+        {
+            var text = await this.referencesGetReferencesXslTransformer.Transform(this.Xml);
+            var referencesList = XDocument.Parse(text);
+
+            if (this.referencesConfiguration != null)
+            {
+                referencesList.Save(this.referencesConfiguration.ReferencesGetReferencesXmlPath);
+            }
         }
     }
 }

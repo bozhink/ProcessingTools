@@ -2,7 +2,6 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
@@ -41,6 +40,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -49,6 +49,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
@@ -60,6 +61,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
@@ -75,6 +77,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithValidParameters_ShouldWork()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -89,6 +92,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -99,6 +103,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -109,6 +114,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -119,6 +125,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -129,6 +136,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -139,6 +147,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -149,6 +158,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -159,6 +169,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -169,6 +180,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -189,6 +201,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -199,6 +212,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -209,6 +223,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -219,6 +234,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -229,6 +245,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -249,6 +266,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -259,6 +277,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -269,6 +288,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
             var controller = new TagGeoNamesController(this.miner);
@@ -289,6 +309,7 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void TagGeoNamesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
             var controller = new TagGeoNamesController(this.miner);

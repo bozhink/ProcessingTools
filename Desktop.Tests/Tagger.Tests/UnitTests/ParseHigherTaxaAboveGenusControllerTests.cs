@@ -2,12 +2,9 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
-
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
@@ -25,7 +22,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolverDataService, ITaxonRank> parser;
 
         [SetUp]
@@ -42,33 +39,39 @@
 
             var parserMock = new Mock<IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolverDataService, ITaxonRank>>();
             this.parser = parserMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseHigherTaxaAboveGenusController(null);
+                    var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, null, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {
-                var controller = new ParseHigherTaxaAboveGenusController(null);
+                var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, null, this.logger);
             }
             catch (Exception e)
             {
@@ -79,9 +82,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             string initialContent = this.document.OuterXml;
 
@@ -93,9 +97,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -103,9 +108,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -113,9 +119,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -123,9 +130,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -133,9 +141,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -143,9 +152,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -153,9 +163,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -163,9 +174,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -173,9 +185,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             try
             {
@@ -193,9 +206,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -203,9 +217,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -213,9 +228,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -223,9 +239,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -233,9 +250,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             try
             {
@@ -253,9 +271,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -263,9 +282,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -273,9 +293,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             try
             {
@@ -293,9 +314,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseHigherTaxaAboveGenusController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseHigherTaxaAboveGenusController(this.parser);
+            var controller = new ParseHigherTaxaAboveGenusController(this.documentFactory, this.parser, this.logger);
 
             string initialContent = this.document.OuterXml;
 

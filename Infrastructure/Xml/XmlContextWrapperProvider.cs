@@ -2,7 +2,7 @@
 {
     using System;
     using System.Xml;
-    using Contract;
+    using Contracts;
 
     public class XmlContextWrapperProvider : IXmlContextWrapperProvider
     {

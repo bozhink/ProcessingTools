@@ -49,6 +49,7 @@
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDefinable.cs" />
+    <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentProcessor.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />
@@ -66,7 +67,10 @@
     <Compile Include="INameableStringIdentifiable.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
+    <Compile Include="IProvider.cs" />
+    <Compile Include="ISimpleProcessor.cs" />
     <Compile Include="IStringIdentifiable.cs" />
+    <Compile Include="ITransformer.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="IXmlNamespaceManagerProvider.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />

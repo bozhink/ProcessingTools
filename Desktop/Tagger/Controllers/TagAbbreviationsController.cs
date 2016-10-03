@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -16,7 +15,8 @@
     {
         private readonly IAbbreviationsTagger abbreviationsTagger;
 
-        public TagAbbreviationsController(IAbbreviationsTagger abbreviationsTagger)
+        public TagAbbreviationsController(IDocumentFactory documentFactory, IAbbreviationsTagger abbreviationsTagger)
+            : base(documentFactory)
         {
             if (abbreviationsTagger == null)
             {
@@ -26,9 +26,9 @@
             this.abbreviationsTagger = abbreviationsTagger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            await this.abbreviationsTagger.Tag(document);
+            await this.abbreviationsTagger.Tag(document.XmlDocument);
         }
     }
 }

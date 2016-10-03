@@ -9,6 +9,18 @@
 
     public abstract class TaggerControllerFactory : ITaggerController
     {
+        private readonly IDocumentFactory documentFactory;
+
+        public TaggerControllerFactory(IDocumentFactory documentFactory)
+        {
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            this.documentFactory = documentFactory;
+        }
+
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {
             if (context == null)
@@ -28,17 +40,13 @@
 
             try
             {
-                XmlDocument document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
+                var document = this.documentFactory.Create(Resources.ContextWrapper);
+                document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+                document.SchemaType = settings.ArticleSchemaType;
 
-                document.LoadXml(Resources.ContextWrapper);
-                document.DocumentElement.InnerXml = context.InnerXml;
+                await this.Run(document, settings);
 
-                await this.Run(document, namespaceManager, settings, logger);
-
-                context.InnerXml = document.DocumentElement.InnerXml;
+                context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
             catch (Exception e)
             {
@@ -46,6 +54,6 @@
             }
         }
 
-        protected abstract Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger);
+        protected abstract Task Run(IDocument document, ProgramSettings settings);
     }
 }

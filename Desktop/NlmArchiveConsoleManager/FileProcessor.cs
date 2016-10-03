@@ -15,7 +15,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class FileProcessor : IProcessor
+    public class FileProcessor : ISimpleProcessor
     {
         private const string SelectHrefXPath = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
 

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -16,7 +15,8 @@
     {
         private readonly ITreatmentMaterialsParser parser;
 
-        public ParseTreatmentMaterialsController(ITreatmentMaterialsParser parser)
+        public ParseTreatmentMaterialsController(IDocumentFactory documentFactory, ITreatmentMaterialsParser parser)
+            : base(documentFactory)
         {
             if (parser == null)
             {
@@ -26,9 +26,9 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            await this.parser.Parse(document, namespaceManager);
+            await this.parser.Parse(document.XmlDocument, document.NamespaceManager);
         }
     }
 }

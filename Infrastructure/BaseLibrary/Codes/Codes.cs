@@ -7,21 +7,21 @@ specimen_code -> @institutionalCode
 namespace ProcessingTools.BaseLibrary
 {
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using ProcessingTools.Common;
+    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Transformers;
 
     public class Codes : TaxPubDocument
     {
-        private const string CodesRemoveNonCodeNodesXslPathKey = "CodesRemoveNonCodeNodesXslPath";
         private const string SpecimenCodeTagName = "specimen_code";
         private const string InstitutionTagName = "institution";
         private const string InstitutionalCodeTagName = "institutional_code";
@@ -129,8 +129,6 @@ namespace ProcessingTools.BaseLibrary
             this.logger = logger;
             this.specimenCodeTagModel = this.XmlDocument.CreateElement(SpecimenCodeTagName);
         }
-
-        private static string CodesRemoveNonCodeNodesXslPath => Dictionaries.FileNames.GetOrAdd(CodesRemoveNonCodeNodesXslPathKey, ConfigurationManager.AppSettings[CodesRemoveNonCodeNodesXslPathKey]);
 
         public void TagSpecimenCodes()
         {
@@ -282,8 +280,12 @@ namespace ProcessingTools.BaseLibrary
                 cleanedXmlDocument.InnerXml,
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
-            cleanedXmlDocument.LoadXml(
-                cleanedXmlDocument.ApplyXslTransform(CodesRemoveNonCodeNodesXslPath));
+
+            // TODO: DI
+            var transformer = new XslTransformer(new CodesRemoveNonCodeNodesXslTransformProvider(new XslTransformCache()));
+
+            // TODO: async, DI
+            cleanedXmlDocument.LoadXml(transformer.Transform(cleanedXmlDocument).Result);
 
             Regex matchCodePattern = new Regex(codePattern);
             return cleanedXmlDocument.InnerText.GetMatches(matchCodePattern);
@@ -321,7 +323,7 @@ namespace ProcessingTools.BaseLibrary
 
             return result.Distinct();
         }
-        
+
         private void ReplaceSpecimenCodesInXml(
             string xpathTemplate,
             IEnumerable<SpecimenCode> specimenCodes,

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Factories
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -10,15 +9,23 @@
 
     public abstract class ParseTreatmentMetaControllerFactory : TaggerControllerFactory
     {
+        private readonly ILogger logger;
+
+        public ParseTreatmentMetaControllerFactory(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
         protected abstract ITaxaInformationResolverDataService<ITaxonClassification> Service { get; }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new TreatmentMetaParser(this.Service, document.OuterXml, logger);
+            var parser = new TreatmentMetaParser(this.Service, document.Xml, this.logger);
 
             await parser.Parse();
 
-            document.LoadXml(parser.Xml);
+            document.Xml = parser.Xml;
         }
     }
 }

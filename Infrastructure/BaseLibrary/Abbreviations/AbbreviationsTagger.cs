@@ -8,7 +8,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Xml.Contract;
+    using ProcessingTools.Xml.Contracts;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
@@ -170,6 +170,7 @@
                 return abbreviations
                     .Where(a => !string.IsNullOrWhiteSpace(a.Value))
                     .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
+                    .Where(a => a.Value.Length > 1)
                     .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition));
             }
 

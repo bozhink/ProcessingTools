@@ -60,6 +60,8 @@
     <xsl:apply-templates />
   </xsl:template>
 
+  <xsl:template match="tp:taxon-treatment/@id" />
+
   <xsl:template match="tp:treatment-meta/kwd-group/kwd/named-content">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />

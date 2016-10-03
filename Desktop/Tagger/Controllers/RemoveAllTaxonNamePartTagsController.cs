@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,9 +12,14 @@
     [Description("Remove all taxon-name-part tags.")]
     public class RemoveAllTaxonNamePartTagsController : TaggerControllerFactory, IRemoveAllTaxonNamePartTagsController
     {
-        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        public RemoveAllTaxonNamePartTagsController(IDocumentFactory documentFactory)
+            : base(documentFactory)
         {
-            return Task.Run(() => document.RemoveTaxonNamePartTags());
+        }
+
+        protected override Task Run(IDocument document, ProgramSettings settings)
+        {
+            return Task.Run(() => document.XmlDocument.RemoveTaxonNamePartTags());
         }
     }
 }

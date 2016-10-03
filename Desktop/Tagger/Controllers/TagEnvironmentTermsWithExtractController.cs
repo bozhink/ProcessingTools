@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -20,8 +19,13 @@
     {
         private const string XPath = "/*";
         private readonly IExtractHcmrDataMiner miner;
+        private readonly ILogger logger;
 
-        public TagEnvironmentTermsWithExtractController(IExtractHcmrDataMiner miner)
+        public TagEnvironmentTermsWithExtractController(
+            IDocumentFactory documentFactory,
+            IExtractHcmrDataMiner miner,
+            ILogger logger)
+            : base(documentFactory)
         {
             if (miner == null)
             {
@@ -29,11 +33,12 @@
             }
 
             this.miner = miner;
+            this.logger = logger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var textContent = document.GetTextContent();
+            var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
@@ -42,11 +47,11 @@
                     Identifier = string.Join("|", t.Identifiers)
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(document.OuterXml, data, XPath, namespaceManager, false, true, logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

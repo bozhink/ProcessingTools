@@ -6,12 +6,16 @@
     using ProcessingTools.BaseLibrary.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa using Aphia.")]
     public class ParseHigherTaxaWithAphiaController : ParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaRankResolverDataService>, IParseHigherTaxaWithAphiaController
     {
-        public ParseHigherTaxaWithAphiaController(IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser)
-            : base(parser)
+        public ParseHigherTaxaWithAphiaController(
+            IDocumentFactory documentFactory,
+            IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser,
+            ILogger logger)
+            : base(documentFactory, parser, logger)
         {
         }
     }

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -12,12 +11,17 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.MediaType.Services.Data.Contracts;
 
-    [Description("Resolve mediatypes.")]
+    [Description("Resolve media-types.")]
     public class ResolveMediaTypesController : TaggerControllerFactory, IResolveMediaTypesController
     {
         private readonly IMediaTypeDataService service;
+        private readonly ILogger logger;
 
-        public ResolveMediaTypesController(IMediaTypeDataService service)
+        public ResolveMediaTypesController(
+            IDocumentFactory documentFactory,
+            IMediaTypeDataService service,
+            ILogger logger)
+            : base(documentFactory)
         {
             if (service == null)
             {
@@ -25,15 +29,16 @@
             }
 
             this.service = service;
+            this.logger = logger;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new MediaTypesResolver(document.OuterXml, this.service, logger);
+            var parser = new MediaTypesResolver(document.Xml, this.service, this.logger);
 
             await parser.Parse();
 
-            document.LoadXml(parser.Xml);
+            document.Xml = parser.Xml;
         }
     }
 }

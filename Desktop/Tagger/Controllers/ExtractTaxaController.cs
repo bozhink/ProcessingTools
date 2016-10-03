@@ -2,49 +2,57 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
+
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
 
     public class ExtractTaxaController : TaggerControllerFactory, IExtractTaxaController
     {
-        protected override Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public ExtractTaxaController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
+        protected override Task Run(IDocument document, ProgramSettings settings)
         {
             return Task.Run(() =>
             {
                 if (settings.ExtractTaxa)
                 {
-                    logger?.Log(Messages.ExtractAllTaxaMessage);
-                    document
+                    this.logger?.Log(Messages.ExtractAllTaxaMessage);
+                    document.XmlDocument
                         .ExtractTaxa(true)
                         .OrderBy(i => i)
                         .ToList()
-                        .ForEach(t => logger?.Log(t));
+                        .ForEach(t => this.logger?.Log(t));
                     return;
                 }
 
                 if (settings.ExtractLowerTaxa)
                 {
-                    logger?.Log(Messages.ExtractLowerTaxaMessage);
-                    document
+                    this.logger?.Log(Messages.ExtractLowerTaxaMessage);
+                    document.XmlDocument
                         .ExtractTaxa(true, TaxaType.Lower)
                         .OrderBy(i => i)
                         .ToList()
-                        .ForEach(t => logger?.Log(t));
+                        .ForEach(t => this.logger?.Log(t));
                 }
 
                 if (settings.ExtractHigherTaxa)
                 {
-                    logger?.Log(Messages.ExtractHigherTaxaMessage);
-                    document
+                    this.logger?.Log(Messages.ExtractHigherTaxaMessage);
+                    document.XmlDocument
                         .ExtractTaxa(true, TaxaType.Higher)
                         .OrderBy(i => i)
                         .ToList()
-                        .ForEach(t => logger?.Log(t));
+                        .ForEach(t => this.logger?.Log(t));
                 }
             });
         }

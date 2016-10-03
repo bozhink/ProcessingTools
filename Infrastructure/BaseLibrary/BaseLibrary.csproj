@@ -78,6 +78,13 @@
     <Compile Include="Abbreviations\IAbbreviation.cs" />
     <Compile Include="Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Contracts\IFormatNlmToSystemXslTransformProvider.cs" />
+    <Compile Include="Contracts\IFormatSystemToNlmXslTransformProvider.cs" />
+    <Compile Include="Contracts\IFormatTaxonTreatmentsXslTransformProvider.cs" />
+    <Compile Include="Contracts\IReferencesGetReferencesXslTransformProvider.cs" />
+    <Compile Include="Contracts\IReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Contracts\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="Floats\Contracts\IFloatObject.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
@@ -95,9 +102,18 @@
     <Compile Include="Floats\Models\TableBoxFloatObject.cs" />
     <Compile Include="Floats\Models\TableFloatObject.cs" />
     <Compile Include="Floats\Models\TextBoxFloatObject.cs" />
+    <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatSystemToNlmXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatTaxonTreatmentsXslTransformProvider.cs" />
+    <Compile Include="Providers\ReferencesGetReferencesXslTransformProvider.cs" />
+    <Compile Include="Providers\ReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Providers\TaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="References\IReferencesConfiguration.cs" />
+    <Compile Include="References\IReferenceTemplateItem.cs" />
     <Compile Include="References\ReferencesConfiguration.cs" />
     <Compile Include="References\ReferencesParser.cs" />
+    <Compile Include="References\ReferenceTemplateItem.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
     <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
@@ -120,7 +136,6 @@
     <Compile Include="Coordinates\CoordinatesParser.cs" />
     <Compile Include="Floats\FloatsTagger.cs" />
     <Compile Include="Special\Flora.cs" />
-    <Compile Include="Format\NlmInitialFormatter.cs" />
     <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="Taxonomy\TaxaExpander\AbbreviatedNamesResolver.cs" />
@@ -323,6 +338,10 @@
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>

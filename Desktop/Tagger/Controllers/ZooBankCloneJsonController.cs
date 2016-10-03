@@ -4,7 +4,6 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -16,7 +15,15 @@
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public ZooBankCloneJsonController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -28,11 +35,11 @@
             string jsonToCloneFileName = settings.FileNames.ElementAt(2);
 
             string jsonStringContent = File.ReadAllText(jsonToCloneFileName);
-            var cloner = new ZoobankJsonCloner(jsonStringContent, document.OuterXml, logger);
+            var cloner = new ZoobankJsonCloner(jsonStringContent, document.Xml, this.logger);
 
             await cloner.Clone();
 
-            document.LoadXml(cloner.Xml);
+            document.Xml = cloner.Xml;
         }
     }
 }

@@ -1,35 +1,43 @@
 ﻿namespace ProcessingTools.BaseLibrary.Taxonomy.Materials
 {
     using System;
-    using System.Configuration;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
+    using ProcessingTools.BaseLibrary.Contracts;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Contracts;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
-        private const string FormatTaxonTreatmentsXslPathKey = "FormatTaxonTreatmentsXslPath";
-        private const string TaxonTreatmentExtractMaterialsXslPathKey = "TaxonTreatmentExtractMaterialsXslPath";
-
         private readonly IMaterialCitationsParser materialCitationsParser;
+        private readonly IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer;
+        private readonly IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer;
 
-        private readonly string formatTaxonTreatmentsXslFileName;
-        private readonly string taxonTreatmentExtractMaterialsXslFileName;
-
-        public TreatmentMaterialsParser(IMaterialCitationsParser materialCitationsParser)
+        public TreatmentMaterialsParser(
+            IMaterialCitationsParser materialCitationsParser,
+            IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer,
+            IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer)
         {
             if (materialCitationsParser == null)
             {
                 throw new ArgumentNullException(nameof(materialCitationsParser));
             }
 
-            this.materialCitationsParser = materialCitationsParser;
+            if (taxonTreatmentExtractMaterialsXslTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsXslTransformer));
+            }
 
-            this.formatTaxonTreatmentsXslFileName = ConfigurationManager.AppSettings[FormatTaxonTreatmentsXslPathKey];
-            this.taxonTreatmentExtractMaterialsXslFileName = ConfigurationManager.AppSettings[TaxonTreatmentExtractMaterialsXslPathKey];
+            if (formatTaxonTreatmentsXslTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(formatTaxonTreatmentsXslTransformer));
+            }
+
+            this.materialCitationsParser = materialCitationsParser;
+            this.taxonTreatmentExtractMaterialsXslTransformer = taxonTreatmentExtractMaterialsXslTransformer;
+            this.formatTaxonTreatmentsXslTransformer = formatTaxonTreatmentsXslTransformer;
         }
 
         public async Task Parse(XmlDocument document, XmlNamespaceManager namespaceManager)
@@ -44,24 +52,13 @@
                 throw new ArgumentNullException(nameof(namespaceManager));
             }
 
-            document.LoadXml(document.ApplyXslTransform(this.formatTaxonTreatmentsXslFileName));
+            await this.FormatTaxonTreatments(document);
 
-            XmlDocument queryDocument = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
-
-            queryDocument.LoadXml(document.ApplyXslTransform(this.taxonTreatmentExtractMaterialsXslFileName));
+            var queryDocument = await this.GenerateQueryDocument(document);
 
             string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
 
-            XmlDocument responseDocument = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
-
-            responseDocument.LoadXml(response);
-
+            var responseDocument = this.GenerateResponseDocument(response);
             responseDocument.SelectNodes("//p[@id]", namespaceManager)
                 .Cast<XmlNode>()
                 .AsParallel()
@@ -74,6 +71,35 @@
                         paragraph.InnerXml = p.InnerXml;
                     }
                 });
+        }
+
+        private XmlDocument GenerateResponseDocument(string response)
+        {
+            XmlDocument responseDocument = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+
+            responseDocument.LoadXml(response);
+            return responseDocument;
+        }
+
+        private async Task<XmlDocument> GenerateQueryDocument(XmlDocument document)
+        {
+            XmlDocument queryDocument = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+
+            var text = await this.taxonTreatmentExtractMaterialsXslTransformer.Transform(document);
+            queryDocument.LoadXml(text);
+            return queryDocument;
+        }
+
+        private async Task FormatTaxonTreatments(XmlDocument document)
+        {
+            var text = await this.formatTaxonTreatmentsXslTransformer.Transform(document);
+            document.LoadXml(text);
         }
     }
 }

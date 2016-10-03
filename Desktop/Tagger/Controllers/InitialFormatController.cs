@@ -1,39 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System.Configuration;
+    using System;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Format;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Layout.Processors.Contracts;
 
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
-        {
-            string xslFileName = null;
-            switch (settings.ArticleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    xslFileName = ConfigurationManager.AppSettings["NlmInitialFormatXslPath"];
-                    break;
+        private readonly IDocumentInitialFormatter formatter;
 
-                default:
-                    xslFileName = ConfigurationManager.AppSettings["SystemInitialFormatXslPath"];
-                    break;
+        public InitialFormatController(IDocumentFactory documentFactory, IDocumentInitialFormatter formatter)
+            : base(documentFactory)
+        {
+            if (formatter == null)
+            {
+                throw new ArgumentNullException(nameof(formatter));
             }
 
-            string xml = document.ApplyXslTransform(xslFileName);
-            var formatter = new NlmInitialFormatter(xml);
-            await formatter.Format();
-            document.LoadXml(formatter.Xml);
+            this.formatter = formatter;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
+        {
+            await this.formatter.Format(document);
         }
     }
 }

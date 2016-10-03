@@ -40,7 +40,7 @@
             await this.InvokeProcessor(message, () => cloner.Clone().Wait());
         }
 
-        protected async Task InvokeProcessor(string message, IProcessor processor)
+        protected async Task InvokeProcessor(string message, ISimpleProcessor processor)
         {
             await this.InvokeProcessor(message, () => processor.Process().Wait());
         }

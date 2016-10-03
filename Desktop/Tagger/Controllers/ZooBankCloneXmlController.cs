@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -16,7 +15,15 @@
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : TaggerControllerFactory, IZooBankCloneXmlController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public ZooBankCloneXmlController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -37,11 +44,11 @@
             var fileProcessorNlm = new XmlFileProcessor(xmlToCloneFileName, outputFileName);
             fileProcessorNlm.Read(nlmDocument);
 
-            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, document.OuterXml, logger);
+            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, document.Xml, this.logger);
 
             await cloner.Clone();
 
-            document.LoadXml(cloner.Xml);
+            document.Xml = cloner.Xml;
         }
     }
 }

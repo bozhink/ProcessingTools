@@ -2,7 +2,6 @@
 {
     using System;
     using System.Xml;
-
     using Controllers;
     using Moq;
     using NUnit.Framework;
@@ -21,7 +20,7 @@
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
         private ILogger logger;
-
+        private IDocumentFactory documentFactory;
         private IGbifTaxaClassificationResolverDataService service;
 
         [SetUp]
@@ -36,35 +35,41 @@
             var loggerMock = new Mock<ILogger>();
             this.logger = loggerMock.Object;
 
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
+
             var serviceMock = new Mock<IGbifTaxaClassificationResolverDataService>();
             this.service = serviceMock.Object;
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_WithNullService_ShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseTreatmentMetaWithGbifController(null);
+                    var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, null, this.logger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_WithNullService_ShouldThrowArgumentNullExceptionWithParamName()
         {
             try
             {
-                var controller = new ParseTreatmentMetaWithGbifController(null);
+                var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, null, this.logger);
             }
             catch (Exception e)
             {
@@ -75,9 +80,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             string initialContent = this.document.OuterXml;
 
@@ -89,9 +95,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -99,9 +106,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -109,9 +117,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -119,9 +128,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -129,9 +139,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -139,9 +150,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -149,9 +161,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -159,9 +172,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -169,9 +183,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             try
             {
@@ -189,9 +204,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -199,9 +215,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -209,9 +226,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -219,9 +237,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -229,9 +248,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             try
             {
@@ -249,9 +269,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -259,9 +280,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -269,9 +291,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             try
             {
@@ -289,9 +312,10 @@
         }
 
         [Test]
+        [Timeout(500)]
         public void ParseTreatmentMetaWithGbifController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithGbifController(this.service);
+            var controller = new ParseTreatmentMetaWithGbifController(this.documentFactory, this.service, this.logger);
 
             string initialContent = this.document.OuterXml;
 

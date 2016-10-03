@@ -45,6 +45,13 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Layout.Processors.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ProcessingTools.Loggers.TextWriterLogger>();
@@ -63,6 +70,9 @@
 
             this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListRepositoryProvider>()
                 .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
+
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -13,19 +12,27 @@
     [Description("Tag references.")]
     public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
     {
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        private readonly ILogger logger;
+
+        public TagReferencesController(IDocumentFactory documentFactory, ILogger logger)
+            : base(documentFactory)
+        {
+            this.logger = logger;
+        }
+
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             var tagger = new ReferencesTagger(
-                document.OuterXml,
+                document.Xml,
                 new ReferencesConfiguration
                 {
                     ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath
                 },
-                logger);
+                this.logger);
 
             await tagger.Tag();
 
-            document.LoadXml(tagger.Xml);
+            document.Xml = tagger.Xml;
         }
     }
 }

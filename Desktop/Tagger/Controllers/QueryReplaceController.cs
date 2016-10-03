@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Contracts;
     using Factories;
@@ -17,7 +16,8 @@
     {
         private readonly IQueryReplacer queryReplacer;
 
-        public QueryReplaceController(IQueryReplacer queryReplacer)
+        public QueryReplaceController(IDocumentFactory documentFactory, IQueryReplacer queryReplacer)
+            : base(documentFactory)
         {
             if (queryReplacer == null)
             {
@@ -27,7 +27,7 @@
             this.queryReplacer = queryReplacer;
         }
 
-        protected override async Task Run(XmlDocument document, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 
@@ -38,9 +38,9 @@
 
             string queryFileName = settings.FileNames.ElementAt(2);
 
-            var processedContent = await this.queryReplacer.Replace(document.OuterXml, queryFileName);
+            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
 
-            document.LoadXml(processedContent);
+            document.Xml = processedContent;
         }
     }
 }

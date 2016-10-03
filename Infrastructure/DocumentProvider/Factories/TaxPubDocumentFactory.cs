@@ -2,15 +2,16 @@
 {
     using System;
     using Contracts;
+    using ProcessingTools.Contracts;
 
     public class TaxPubDocumentFactory : ITaxPubDocumentFactory
     {
-        public ITaxPubDocument Create()
+        public IDocument Create()
         {
             return new TaxPubDocument();
         }
 
-        public ITaxPubDocument Create(string content)
+        public IDocument Create(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
