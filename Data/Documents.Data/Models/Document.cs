@@ -28,6 +28,9 @@
 
         public long OriginalContentLength { get; set; }
 
+        [MaxLength(ValidationConstants.MaximalLengthOfDocumentComment)]
+        public string Comment { get; set; }
+
         [Required]
         [Index(IsUnique = true)]
         [MinLength(ValidationConstants.LengthOfDocumentFileName)]

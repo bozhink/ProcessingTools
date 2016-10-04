@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts;
 
     // TODO: separation with IFileEntity
-    public interface IDocumentEntity : IGuidIdentifiable, IModelWithUserInformation
+    public interface IDocumentEntity : IGuidIdentifiable, ICommentable, IModelWithUserInformation
     {
         Guid ArticleId { get; }
 
@@ -25,6 +25,8 @@
 
         // TODO: remove
         string FileName { get; }
+
+        string Comment { get; }
 
         // TODO: remove
         long OriginalContentLength { get; }
