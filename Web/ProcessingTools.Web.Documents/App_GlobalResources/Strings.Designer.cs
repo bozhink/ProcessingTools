@@ -349,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Document.
+        /// </summary>
+        internal static string EditDocumentActionLinkTitle {
+            get {
+                return ResourceManager.GetString("EditDocumentActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing your request.
         /// </summary>
         internal static string ErrorPageHeading {
@@ -633,6 +642,15 @@ namespace Resources {
         internal static string NotFoundPageTitle {
             get {
                 return ResourceManager.GetString("NotFoundPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Document.
+        /// </summary>
+        internal static string PreviewDocumentActionLinkTitle {
+            get {
+                return ResourceManager.GetString("PreviewDocumentActionLinkTitle", resourceCulture);
             }
         }
         

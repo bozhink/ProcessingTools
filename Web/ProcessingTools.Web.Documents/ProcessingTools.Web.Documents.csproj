@@ -515,6 +515,8 @@
     <Content Include="Views\Shared\_DeleteHeader.cshtml" />
     <Content Include="Areas\DataResources\Views\ContentTypes\_Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\_Edit.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -579,6 +581,8 @@
     <Content Include="Views\Shared\_BackToListFooter.cshtml" />
     <Content Include="static\styles\biotaxonomic-lists.less" />
     <Content Include="Views\Shared\Help.cshtml" />
+    <Content Include="Views\Shared\_EditHeader.cshtml" />
+    <Content Include="Views\Shared\_EditFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

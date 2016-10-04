@@ -4,11 +4,6 @@
 
     public class FileDetailsViewModel : FileViewModel
     {
-        public FileDetailsViewModel(object articleId, object id)
-            : base(articleId, id)
-        {
-        }
-
         [Display(Name = "File Extension")]
         public string FileExtension { get; set; }
 

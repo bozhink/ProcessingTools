@@ -1,0 +1,63 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileDetailsViewModel
+
+<section>
+    <header>
+        <h4>@InstanceNames.FilesControllerInstanceName</h4>
+    </header>
+
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.DocumentId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FileName, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FileExtension, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FileExtension, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FileExtension, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContentType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContentType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContentType, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Comment, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="reset" value="Reset" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.JQueryValidationScriptBundleName)
+}

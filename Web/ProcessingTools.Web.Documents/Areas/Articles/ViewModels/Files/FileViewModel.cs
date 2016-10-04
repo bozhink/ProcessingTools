@@ -5,27 +5,11 @@
 
     public class FileViewModel
     {
-        public FileViewModel(object articleId, object id)
-        {
-            if (articleId == null)
-            {
-                throw new ArgumentNullException(nameof(articleId));
-            }
-
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            this.DocumentId = id.ToString();
-            this.ArticleId = articleId.ToString();
-        }
-
         [Display(Name = "Document ID")]
-        public string DocumentId { get; private set; }
+        public string DocumentId { get; set; }
 
         [Display(Name = "Article ID")]
-        public string ArticleId { get; private set; }
+        public string ArticleId { get; set; }
 
         [Display(Name = "File Name")]
         public string FileName { get; set; }
