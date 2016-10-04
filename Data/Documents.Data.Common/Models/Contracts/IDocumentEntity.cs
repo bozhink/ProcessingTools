@@ -26,10 +26,14 @@
         // TODO: remove
         string FileName { get; }
 
-        string Comment { get; }
-
         // TODO: remove
         long OriginalContentLength { get; }
+
+        // TODO: remove
+        string OriginalContentType { get; }
+
+        // TODO: remove
+        string OriginalFileExtension { get; }
 
         // TODO: remove
         string OriginalFileName { get; }

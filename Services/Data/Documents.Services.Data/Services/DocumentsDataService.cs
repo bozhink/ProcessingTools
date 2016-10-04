@@ -90,8 +90,9 @@
                 .Select(d => new DocumentServiceModel
                 {
                     Id = d.Id.ToString(),
-                    FileName = d.OriginalFileName,
+                    FileName = d.FileName,
                     FileExtension = d.FileExtension,
+                    Comment = d.Comment,
                     ContentType = d.ContentType,
                     ContentLength = d.ContentLength,
                     DateCreated = d.DateCreated,
@@ -121,7 +122,7 @@
             long count = (await repository.All())
                 .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .Count();
+                .LongCount();
 
             repository.TryDispose();
 
@@ -154,10 +155,20 @@
 
             var entity = new Document
             {
+                FileName = document.FileName,
                 OriginalFileName = document.FileName,
+
+                ContentLength = document.ContentLength,
                 OriginalContentLength = document.ContentLength,
+
                 ContentType = document.ContentType,
+                OriginalContentType = document.ContentType,
+
                 FileExtension = document.FileExtension,
+                OriginalFileExtension = document.FileExtension,
+
+                Comment = document.Comment,
+
                 CreatedByUser = userId.ToString(),
                 ModifiedByUser = userId.ToString()
             };
@@ -212,6 +223,7 @@
             return new DocumentServiceModel
             {
                 Id = entity.Id.ToString(),
+                Comment = entity.Comment,
                 ContentLength = entity.ContentLength,
                 ContentType = entity.ContentType,
                 DateCreated = entity.DateCreated,
@@ -233,7 +245,42 @@
             return this.xmlFileReaderWriter.ReadToStream(entity.FileName, this.DataDirectory);
         }
 
-        public async Task<object> Update(object userId, object articleId, DocumentServiceModel document, string content)
+        public async Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var entity = await this.GetEntity(userId, articleId, document.Id, repository);
+
+            entity.FileExtension = document.FileExtension;
+            entity.Comment = document.Comment;
+            entity.ModifiedByUser = userId.ToString();
+            entity.DateModified = DateTime.UtcNow;
+            entity.ContentType = document.ContentType;
+
+            await repository.Update(entity: entity);
+            await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return entity.ContentLength;
+        }
+
+        public async Task<object> UpdateContent(object userId, object articleId, DocumentServiceModel document, string content)
         {
             if (userId == null)
             {
@@ -260,6 +307,7 @@
                 entity.ModifiedByUser = userId.ToString();
                 entity.DateModified = DateTime.UtcNow;
                 entity.ContentType = document.ContentType;
+                stream.Close();
             }
 
             await repository.Update(entity: entity);
