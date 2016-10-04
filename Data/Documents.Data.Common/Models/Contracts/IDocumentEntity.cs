@@ -15,6 +15,9 @@
         // string Description { get; }
 
         // TODO: remove
+        string FilePath { get; }
+
+        // TODO: remove
         long ContentLength { get; }
 
         // TODO: remove
@@ -22,6 +25,7 @@
 
         // TODO: remove
         string FileExtension { get; }
+
 
         // TODO: remove
         string FileName { get; }

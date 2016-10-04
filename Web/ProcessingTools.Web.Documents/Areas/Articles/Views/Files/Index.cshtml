@@ -28,6 +28,9 @@
                     @Html.LabelFor(model => model.Items.First().FileName)
                 </th>
                 <th>
+                    @Html.LabelFor(model => model.Items.First().Comment)
+                </th>
+                <th>
                     @Html.LabelFor(model => model.Items.First().DateCreated)
                 </th>
                 <th>
@@ -48,6 +51,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DateCreated)

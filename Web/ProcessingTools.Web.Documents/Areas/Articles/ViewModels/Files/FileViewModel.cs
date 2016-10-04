@@ -30,6 +30,9 @@
         [Display(Name = "File Name")]
         public string FileName { get; set; }
 
+        [Display(Name = "Comment")]
+        public string Comment { get; set; }
+
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
 

@@ -137,6 +137,7 @@
                 .Select(d => new FileViewModel(articleId, d.Id)
                 {
                     FileName = d.FileName,
+                    Comment = d.Comment,
                     DateCreated = d.DateCreated,
                     DateModified = d.DateModified
                 })
@@ -322,6 +323,7 @@
             {
                 FileName = document.FileName,
                 FileExtension = document.FileExtension,
+                Comment = document.Comment,
                 ContentType = document.ContentType,
                 ContentLength = document.ContentLength,
                 DateCreated = document.DateCreated,

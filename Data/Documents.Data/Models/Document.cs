@@ -36,6 +36,10 @@
         [Index(IsUnique = true)]
         [MinLength(ValidationConstants.LengthOfDocumentFileName)]
         [MaxLength(ValidationConstants.LengthOfDocumentFileName)]
+        public string FilePath { get; set; }
+
+        [Required]
+        [MaxLength(ValidationConstants.MaximalLengthOfDocumentOriginalFileName)]
         public string FileName { get; set; }
 
         public long OriginalContentLength { get; set; }

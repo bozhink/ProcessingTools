@@ -175,8 +175,8 @@
 
             var repository = this.repositoryProvider.Create();
 
-            entity.FileName = Path.GetFileNameWithoutExtension(path);
-            entity.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, entity.FileName, this.DataDirectory);
+            entity.FilePath = Path.GetFileNameWithoutExtension(path);
+            entity.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, entity.FilePath, this.DataDirectory);
 
             await repository.Add(entity);
             await repository.SaveChanges();
@@ -207,7 +207,7 @@
 
             var entity = await this.GetEntity(userId, articleId, documentId, repository);
 
-            await this.xmlFileReaderWriter.Delete(entity.FileName, this.DataDirectory);
+            await this.xmlFileReaderWriter.Delete(entity.FilePath, this.DataDirectory);
 
             await repository.Delete(entity.Id);
             await repository.SaveChanges();
@@ -223,26 +223,26 @@
             return new DocumentServiceModel
             {
                 Id = entity.Id.ToString(),
-                Comment = entity.Comment,
+                FileName = entity.FileName,
+                FileExtension = entity.FileExtension.Trim('.'),
                 ContentLength = entity.ContentLength,
                 ContentType = entity.ContentType,
+                Comment = entity.Comment,
                 DateCreated = entity.DateCreated,
-                DateModified = entity.DateModified,
-                FileExtension = entity.FileExtension.Trim('.'),
-                FileName = entity.OriginalFileName
+                DateModified = entity.DateModified
             };
         }
 
         public async Task<XmlReader> GetReader(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocument(userId, articleId, documentId);
-            return this.xmlFileReaderWriter.GetXmlReader(entity.FileName, this.DataDirectory);
+            return this.xmlFileReaderWriter.GetXmlReader(entity.FilePath, this.DataDirectory);
         }
 
         public async Task<Stream> GetStream(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocument(userId, articleId, documentId);
-            return this.xmlFileReaderWriter.ReadToStream(entity.FileName, this.DataDirectory);
+            return this.xmlFileReaderWriter.ReadToStream(entity.FilePath, this.DataDirectory);
         }
 
         public async Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document)
@@ -266,11 +266,12 @@
 
             var entity = await this.GetEntity(userId, articleId, document.Id, repository);
 
-            entity.FileExtension = document.FileExtension;
             entity.Comment = document.Comment;
+            entity.ContentType = document.ContentType;
+            entity.FileExtension = document.FileExtension;
+            entity.FileName = document.FileName;
             entity.ModifiedByUser = userId.ToString();
             entity.DateModified = DateTime.UtcNow;
-            entity.ContentType = document.ContentType;
 
             await repository.Update(entity: entity);
             await repository.SaveChanges();
@@ -303,7 +304,7 @@
 
             using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(content)))
             {
-                entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FileName, this.DataDirectory);
+                entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FilePath, this.DataDirectory);
                 entity.ModifiedByUser = userId.ToString();
                 entity.DateModified = DateTime.UtcNow;
                 entity.ContentType = document.ContentType;
