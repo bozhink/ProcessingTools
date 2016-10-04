@@ -595,6 +595,7 @@
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="static\code\tests\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -15,6 +15,7 @@
   "globalVariables": [
     "window",
     "document",
-    "HTMLElement"
+    "HTMLElement",
+    "module"
   ]
 }

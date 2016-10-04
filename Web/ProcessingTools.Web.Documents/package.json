@@ -3,11 +3,21 @@
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
+  "directories": {
+    "test": "static/code/tests"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bozhink/ProcessingTools.git"
+  },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/bozhink/ProcessingTools/issues"
+  },
   "dependencies": {
     "monaco-editor": "^0.6.1"
   },
