@@ -23,13 +23,14 @@
                 throw 'Item to add should have function "getHash"';
             }
 
-            hash = item.getHash();
-
             len = dataSet.length;
-            for (i = 0; i < len; i += 1) {
-                currentItem = dataSet[i];
-                if (hash === currentItem.getHash()) {
-                    return;
+            if (len > 0) {
+                hash = item.getHash();
+                for (i = 0; i < len; i += 1) {
+                    currentItem = dataSet[i];
+                    if (hash === currentItem.getHash()) {
+                        return;
+                    }
                 }
             }
 
