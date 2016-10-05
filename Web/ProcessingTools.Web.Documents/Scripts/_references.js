@@ -25,3 +25,4 @@
 /// <reference path="../static/code/custom/html-selection-tagger.js" />
 /// <reference path="../static/code/custom/key-bindings.js" />
 /// <reference path="../static/code/custom/toolbox-event-handlers.js" />
+/// <reference path="../static/code/tests/data-set-tests.js" />

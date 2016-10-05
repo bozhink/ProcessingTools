@@ -420,6 +420,7 @@
     <Content Include="static\code\app\configurations\toastr-config.js" />
     <Content Include="static\code\custom\toolbox-event-handlers.js" />
     <Content Include="static\code\app\services\documents\document-content-data.js" />
+    <Content Include="static\code\tests\data-set-tests.js" />
     <Content Include="static\styles\address-list.css">
       <DependentUpon>address-list.less</DependentUpon>
     </Content>
