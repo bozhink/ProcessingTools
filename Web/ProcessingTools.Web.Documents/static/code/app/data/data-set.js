@@ -1,15 +1,11 @@
-﻿(function (window) {
+﻿(function () {
     'use strict';
+
     var app, data;
 
-    window.app = window.app || {};
-    app = window.app;
-
-    app.data = app.data || {};
-    data = app.data;
-
-    data.DataSet = function DataSet() {
-        var id = 0, dataSet = [];
+    function DataSet() {
+        var id = 0,
+            dataSet = [];
 
         function nextId() {
             id += 1;
@@ -87,5 +83,17 @@
             remove: removeItem,
             removeAll: removeAll
         };
-    };
-}(window));
+    }
+
+    if (typeof module !== 'undefined') {
+        module.exports = DataSet;
+    } else {
+        window.app = window.app || {};
+        app = window.app;
+
+        app.data = app.data || {};
+        data = app.data;
+
+        data.DataSet = DataSet;
+    }
+}());
