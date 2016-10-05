@@ -1,14 +1,8 @@
-﻿(function (window) {
+﻿(function () {
     'use strict';
     var app, configurations;
 
-    window.app = window.app || {};
-    app = window.app;
-
-    app.configurations = app.configurations || {};
-    configurations = app.configurations;
-
-    configurations.InteractJSConfig = function () {
+    function InteractJSConfig() {
         function resizeMoveListener(event) {
             var target = event.target,
                 x = (parseFloat(target.getAttribute('data-x')) || 0),
@@ -83,7 +77,19 @@
         }
 
         return {
-            registerDragabbleBehavior
+            registerDragabbleBehavior: registerDragabbleBehavior
         };
-    };
-}(window));
+    }
+
+    if (typeof module !== 'undefined') {
+        module.exports = InteractJSConfig;
+    } else {
+        window.app = window.app || {};
+        app = window.app;
+
+        app.configurations = app.configurations || {};
+        configurations = app.configurations;
+
+        configurations.InteractJSConfig = InteractJSConfig;
+    }
+}());
