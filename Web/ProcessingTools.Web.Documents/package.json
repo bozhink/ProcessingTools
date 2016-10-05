@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha static/code/tests/",
-    "test-kitten": "mocha -R nyan static/code/tests/"
+    "test-kitten": "mocha -R nyan static/code/tests/",
+    "watch": "gulp watch"
   },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",

@@ -395,6 +395,7 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
+    <Content Include="gulpfile.js" />
     <Content Include="static\code\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
     <Content Include="static\code\app\data\data-set.js" />
     <Content Include="static\code\app\models\data\bio\taxonomy\black-list-item.js" />
