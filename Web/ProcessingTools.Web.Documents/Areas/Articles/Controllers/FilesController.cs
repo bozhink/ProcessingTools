@@ -140,14 +140,17 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                await this.service.UpdateMeta(userId, articleId, new DocumentServiceModel
-                {
-                    Id = model.DocumentId,
-                    Comment = model.Comment,
-                    ContentType = model.ContentType,
-                    FileExtension = model.FileExtension,
-                    FileName = model.FileName
-                });
+                await this.service.UpdateMeta(
+                    userId,
+                    articleId,
+                    new DocumentServiceModel
+                    {
+                        Id = model.DocumentId,
+                        Comment = model.Comment,
+                        ContentType = model.ContentType,
+                        FileExtension = model.FileExtension,
+                        FileName = model.FileName
+                    });
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
