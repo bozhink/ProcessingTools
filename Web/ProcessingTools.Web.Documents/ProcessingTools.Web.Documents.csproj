@@ -339,10 +339,12 @@
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
+    <Compile Include="Contracts\ICertificateValidatorFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Factories\CertificateValidatorFactory.cs" />
     <Compile Include="Factories\MvcControllerWithExceptionHandling.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">

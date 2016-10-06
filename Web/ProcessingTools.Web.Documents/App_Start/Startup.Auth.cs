@@ -2,6 +2,7 @@
 {
     using System;
     using System.Configuration;
+    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
@@ -12,13 +13,16 @@
     using Owin;
     using ProcessingTools.Api.Data;
     using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Web.Documents.Contracts;
 
     public partial class Startup
     {
+        private readonly ICertificateValidatorFactory certificateValidatorFactory = (ICertificateValidatorFactory)DependencyResolver.Current.GetService(typeof(ICertificateValidatorFactory));
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context, user manager and signin manager to use a single instance per request
+            // Configure the db context, user manager and sign-in manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
@@ -54,23 +58,17 @@
             ////    clientId: "",
             ////    clientSecret: "");
 
-            ////app.UseTwitterAuthentication(
-            ////   consumerKey: ConfigurationManager.AppSettings["TwitterConsumerKey"],
-            ////   consumerSecret: ConfigurationManager.AppSettings["TwitterConsumerSecret"]);
-            app.UseTwitterAuthentication(new TwitterAuthenticationOptions
+            string twitterConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+            string twitterConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+            if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
             {
-                ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
-                ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
-                BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
+                app.UseTwitterAuthentication(new TwitterAuthenticationOptions
                 {
-                    "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
-                    "0D445C165344C1827E1D20AB25F40163D8BE79A5", // VeriSign Class 3 Secure Server CA - G3
-                    "7FD365A7C2DDECBBF03009F34339FA02AF333133", // VeriSign Class 3 Public Primary Certification Authority - G5
-                    "39A55D933676616E73A761DFA16A7E59CDE66FAD", // Symantec Class 3 Secure Server CA - G4
-                    "5168FF90AF0207753CCCD9656462A212B859723B", //DigiCert SHA2 High Assurance Server C‎A 
-                    "B13EC36903F8BF4701D498261A0802EF63642BC3" //DigiCert High Assurance EV Root CA
-                })
-            });
+                    ConsumerKey = twitterConsumerKey,
+                    ConsumerSecret = twitterConsumerSecret,
+                    BackchannelCertificateValidator = this.certificateValidatorFactory.Create()
+                });
+            }
 
             ////app.UseFacebookAuthentication(
             ////   appId: "",

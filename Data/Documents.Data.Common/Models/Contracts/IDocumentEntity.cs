@@ -26,7 +26,6 @@
         // TODO: remove
         string FileExtension { get; }
 
-
         // TODO: remove
         string FileName { get; }
 
