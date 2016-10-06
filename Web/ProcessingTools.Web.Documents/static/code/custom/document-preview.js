@@ -154,40 +154,51 @@
         window.htmlSelectionTagger.tagInMark(elementName);
     }
 
+    function createManualTagMenuEventHandlerFactory(menuName, callback) {
+        var $aside = $('#' + MAIN_ASIDE_ID),
+            $supermenu = $('#supermenu'),
+            $menu;
+
+        // Remove notification
+        $('#manual-mode-notifier').remove();
+        $('<div>')
+            .addClass('mode-notifier')
+            .attr('id', 'manual-mode-notifier')
+            .text(menuName)
+            .appendTo($aside);
+
+        // Create menu
+        $('.manual-tag-menu').remove();
+        $menu = $('<menu>')
+            .addClass('manual-tag-menu')
+            .attr('id', 'menu-bibliographic-citations')
+            .attr('label', menuName);
+
+        // Populate the menu
+        callback($menu);
+
+        // Attach the menu to DOM
+        $menu.appendTo($supermenu);
+    }
+
     function tagBibliographicCitationEventHandler(event) {
         var e = event || window.event,
-            $aside = $('#' + MAIN_ASIDE_ID),
-            $target = $(e.target),
-            $supermenu = $('#supermenu'),
-            $menu = $('<menu>')
-                .addClass('manual-tag-menu')
-                .attr('id', 'menu-bibliographic-citations')
-                .attr('label', $target.text());
+            $target = $(e.target);
 
         e.stopPropagation();
         e.preventDefault();
 
-        $('#manual-mode-notifier').remove();
-
-        $('<div>')
-            .addClass('mode-notifier')
-            .attr('id', 'manual-mode-notifier')
-            .text($target.text())
-            .appendTo($aside);
-
-        $('.ref').each(function (i, element) {
-            var $element = $(element);
-
-            $('<menuitem>')
-                .attr('id', 'ref-' + i)
-                .attr('rid', $element.attr('id'))
-                .attr('label', $element.text().trim())
-                .appendTo($menu);
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.ref').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('bibr')
+                    .attr('id', 'ref-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.text().trim())
+                    .appendTo($menu);
+            });
         });
-
-        $menu.appendTo($supermenu);
-
-        $menu.on('click', tagBibliographicCitation);
     }
 
     function keyDownEventHandler(event) {
@@ -322,6 +333,8 @@
     }
 
     // Events registration
+    $('#supermenu').on('click', '.bibr', tagBibliographicCitation);
+
     document
         .getElementById(SAVE_BUTTON_ID)
         .addEventListener('click', saveContentEventHandler, false);
