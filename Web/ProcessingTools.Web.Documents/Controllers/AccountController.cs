@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Account;
 
     [Authorize]
@@ -127,7 +128,7 @@
             // Require that the user has already logged in via username/password or external login
             if (!await this.SignInManager.HasBeenVerifiedAsync())
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             return this.View(new VerifyCodeViewModel
@@ -227,11 +228,11 @@
         {
             if (userId == null || code == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var result = await this.UserManager.ConfirmEmailAsync(userId, code);
-            return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return this.View(result.Succeeded ? "ConfirmEmail" : ViewNames.ErrorViewName);
         }
 
         // GET: /Account/ForgotPassword
@@ -282,7 +283,7 @@
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? this.View("Error") : this.View();
+            return code == null ? this.View(ViewNames.ErrorViewName) : this.View();
         }
 
         // POST: /Account/ResetPassword
@@ -344,7 +345,7 @@
             var userId = await this.SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
@@ -377,7 +378,7 @@
             // Generate the token and send it
             if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             return this.RedirectToAction(

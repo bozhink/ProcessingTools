@@ -7,6 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Manage;
 
     [Authorize]
@@ -226,7 +227,7 @@
                 phoneNumber);
 
             // Send an SMS through the SMS provider to verify the phone number
-            return phoneNumber == null ? this.View("Error") : this.View(new VerifyPhoneNumberViewModel
+            return phoneNumber == null ? this.View(ViewNames.ErrorViewName) : this.View(new VerifyPhoneNumberViewModel
             {
                 PhoneNumber = phoneNumber
             });
@@ -404,7 +405,7 @@
             var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var userLogins = await this.UserManager.GetLoginsAsync(User.Identity.GetUserId());

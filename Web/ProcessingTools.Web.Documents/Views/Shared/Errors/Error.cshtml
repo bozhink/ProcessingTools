@@ -5,12 +5,15 @@
 }
 
 <h2 class="text-danger">
-    @Model.ToString()
+    @(Model?.ToString() ?? "Error")
 </h2>
 <h3>@Resources.Strings.ErrorPageHeading</h3>
 
-<p>
-    @Model.SourceAction.Message
-</p>
+@if (Model != null)
+{
+    <p>
+        @Model.SourceAction.Message
+    </p>
 
-@Html.Partial(ViewNames.ErrorFootPartialViewName)
+    @Html.Partial(ViewNames.ErrorFootPartialViewName)
+}
