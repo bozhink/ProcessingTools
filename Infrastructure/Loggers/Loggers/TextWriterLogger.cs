@@ -2,11 +2,13 @@
 {
     using System;
     using System.IO;
+
     using Contracts;
-    using Contracts.Types;
     using Diagnostics;
 
-    public class TextWriterLogger : ILogger
+    using ProcessingTools.Contracts.Types;
+
+    public class TextWriterLogger : ITextWriterLogger
     {
         private TextWriter textWriter;
 
