@@ -4,7 +4,20 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 */
 
 var gulp = require('gulp'),
+    less = less = require('gulp-less'),
+    cleanCSS = require('gulp-clean-css'),
     mocha = require('gulp-mocha');
+
+gulp.task('less', function () {
+    return gulp.src('./static/styles/**/*.less')
+        .pipe(less())
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(gulp.dest('./static/build/css'));
+});
+
+gulp.task('build', ['less'], function () {
+    gulp.watch('./static/**/*.less', ['less']);
+});
 
 gulp.task('test', function () {
     gulp.src('./static/code/tests/*.js')

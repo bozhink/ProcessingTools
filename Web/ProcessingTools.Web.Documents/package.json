@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha static/code/tests/",
     "test-kitten": "mocha -R nyan static/code/tests/",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "build": "gulp build"
   },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
@@ -26,6 +27,8 @@
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-less": "^3.1.0",
     "gulp-mocha": "^3.0.1",
     "jquery": "^3.1.1",
     "jsdom": "^9.6.0",
