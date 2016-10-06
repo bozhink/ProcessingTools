@@ -54,7 +54,7 @@
 
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ProcessingTools.Loggers.TextWriterLogger>();
+                .To<ProcessingTools.Loggers.ConsoleLogger>();
 
             this.Bind<ProcessingTools.Contracts.IXmlNamespaceManagerProvider>()
                 .To<ProcessingTools.DocumentProvider.TaxPubXmlNamespaceManagerProvider>();

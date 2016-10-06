@@ -11,11 +11,6 @@
     {
         private TextWriter textWriter;
 
-        public TextWriterLogger()
-            : this(Console.Out)
-        {
-        }
-
         public TextWriterLogger(TextWriter textWriter)
         {
             if (textWriter == null)
@@ -100,34 +95,12 @@
             }
         }
 
-        private void ResetLogTypeColor()
+        protected virtual void ResetLogTypeColor()
         {
-            Console.ResetColor();
         }
 
-        private void SetLogTypeColor(LogType type)
+        protected virtual void SetLogTypeColor(LogType type)
         {
-            switch (type)
-            {
-                case LogType.Info:
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    break;
-
-                case LogType.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-
-                case LogType.Error:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-
-                case LogType.Exception:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-
-                default:
-                    break;
-            }
         }
     }
 }
