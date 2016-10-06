@@ -9,14 +9,19 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha');
 
 gulp.task('less', function () {
-    return gulp.src('./static/styles/**/*.less')
+    gulp.src('./static/styles/**/*.less')
         .pipe(less())
         .pipe(cleanCSS({ compatibility: 'ie8' }))
-        .pipe(gulp.dest('./static/build/css'));
+        .pipe(gulp.dest('./static/build/css'))
+        .on('error', function () {
+            this.emit('end');
+        });
 });
 
-gulp.task('build', ['less'], function () {
-    gulp.watch('./static/**/*.less', ['less']);
+gulp.task('build', ['less']);
+
+gulp.task('continuous-build', function () {
+    gulp.watch(['./static/**/*.*', '!./static/build/**/*.*'], ['build']);
 });
 
 gulp.task('test', function () {

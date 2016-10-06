@@ -7,7 +7,8 @@
     "test": "mocha static/code/tests/",
     "test-kitten": "mocha -R nyan static/code/tests/",
     "watch": "gulp watch",
-    "build": "gulp build"
+    "build": "gulp build",
+    "continuous-build": "gulp continuous-build"
   },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
