@@ -2,13 +2,12 @@
 {
     using System;
     using System.IO;
-
+    using Base;
     using Contracts;
     using Diagnostics;
-
     using ProcessingTools.Contracts.Types;
 
-    public class TextWriterLogger : ITextWriterLogger
+    public class TextWriterLogger : LoggerBase, ITextWriterLogger
     {
         private TextWriter textWriter;
 
@@ -27,7 +26,7 @@
             this.textWriter = textWriter;
         }
 
-        public void Log()
+        public override void Log()
         {
             try
             {
@@ -42,7 +41,7 @@
             }
         }
 
-        public void Log(object message)
+        public override void Log(object message)
         {
             try
             {
@@ -57,22 +56,7 @@
             }
         }
 
-        public void Log(string format, params object[] args)
-        {
-            try
-            {
-                this.textWriter.WriteLine(format, args);
-            }
-            catch (IOException)
-            {
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public void Log(LogType type, object message)
+        public override void Log(LogType type, object message)
         {
             try
             {
@@ -94,12 +78,7 @@
             }
         }
 
-        public void Log(Exception e, object message)
-        {
-            this.Log(LogType.Exception, e, message);
-        }
-
-        public void Log(LogType type, string format, params object[] args)
+        public override void Log(LogType type, string format, params object[] args)
         {
             try
             {
@@ -110,49 +89,6 @@
                 }
 
                 this.textWriter.WriteLine(format, args);
-                this.ResetLogTypeColor();
-            }
-            catch (IOException)
-            {
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public void Log(LogType type, Exception e, object message)
-        {
-            try
-            {
-                this.SetLogTypeColor(type);
-                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Tracer.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
-                this.textWriter.WriteLine(message);
-                this.textWriter.WriteLine(e.ToString());
-                this.ResetLogTypeColor();
-            }
-            catch (IOException)
-            {
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public void Log(Exception e, string format, params object[] args)
-        {
-            this.Log(LogType.Exception, e, format, args);
-        }
-
-        public void Log(LogType type, Exception e, string format, params object[] args)
-        {
-            try
-            {
-                this.SetLogTypeColor(type);
-                this.textWriter.WriteLine("{0}: {1}: {2}: {3}", Tracer.GetCurrentMethod(2), type.ToString(), e.GetType(), e.Message);
-                this.textWriter.WriteLine(format, args);
-                this.textWriter.WriteLine(e.ToString());
                 this.ResetLogTypeColor();
             }
             catch (IOException)
