@@ -1,24 +1,25 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats.Models
+﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using Contracts;
+    using Types;
 
     /// <summary>
-    /// Textbox of type table.
+    /// Table.
     /// </summary>
-    public class TableBoxFloatObject : IFloatObject
+    public class TableFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//table-wrap[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Table;
 
-        public string FloatTypeNameInLabel => "Box";
+        public string FloatTypeNameInLabel => "Table";
 
-        public string MatchCitationPattern => @"(?:Box|Boxes)";
+        public string MatchCitationPattern => @"(?:Tab\.|Tabs|Tables?)";
 
         public string InternalReferenceType => "table";
 
         public string ResultantReferenceType => "table";
 
-        public string Description => "Box";
+        public string Description => "Table";
     }
 }

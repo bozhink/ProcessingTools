@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats
+﻿namespace ProcessingTools.Processors.Floats
 {
     using System;
     using System.Collections;
@@ -10,11 +10,14 @@
     using System.Xml;
 
     using Contracts;
+    using Models.Contracts;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class FloatsTagger : IGenericXmlContextTagger<object>
+    using Types;
+
+    public class FloatsTagger : IFloatsTagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 60;
@@ -55,10 +58,11 @@
 
             string defaultFloatObjectInterfaceName = typeof(IFloatObject).FullName;
 
-            var floatOfjectTypes = BaseLibrary.Assembly.Assembly.GetType().Assembly
+            var floatOfjectTypes = this.GetType().Assembly
                 .GetTypes()
                 .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
-                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName));
+                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName))
+                .ToArray();
 
             // Tag citations in text.
             foreach (var floatObjectType in floatOfjectTypes)

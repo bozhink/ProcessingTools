@@ -1,6 +1,7 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats.Models
+﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using Contracts;
+    using Types;
 
     /// <summary>
     /// Supplementary material.

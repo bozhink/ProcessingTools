@@ -1,5 +1,7 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats.Contracts
+﻿namespace ProcessingTools.Processors.Models.Contracts
 {
+    using Types;
+
     public interface IFloatObject
     {
         /// <summary>

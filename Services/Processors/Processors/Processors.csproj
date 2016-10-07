@@ -38,14 +38,31 @@
     <Compile Include="Contracts\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\ICoordinatesParser.cs" />
     <Compile Include="Contracts\IDocumentXslProcessor.cs" />
+    <Compile Include="Contracts\IFloatsTagger.cs" />
     <Compile Include="Contracts\IQueryReplacer.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Models\Contracts\IFloatObject.cs" />
+    <Compile Include="Models\Floats\AppendixFloatObject.cs" />
+    <Compile Include="Models\Floats\FigureFloatObject.cs" />
+    <Compile Include="Models\Floats\GraphicFloatObject.cs" />
+    <Compile Include="Models\Floats\HabitusFloatObject.cs" />
+    <Compile Include="Models\Floats\MapFloatObject.cs" />
+    <Compile Include="Models\Floats\MovieFloatObject.cs" />
+    <Compile Include="Models\Floats\PictureFloatObject.cs" />
+    <Compile Include="Models\Floats\PlateFloatObject.cs" />
+    <Compile Include="Models\Floats\SupplementaryMaterialFloatObject.cs" />
+    <Compile Include="Models\Floats\TableAppendixFloatObject.cs" />
+    <Compile Include="Models\Floats\TableBoxFloatObject.cs" />
+    <Compile Include="Models\Floats\TableFloatObject.cs" />
+    <Compile Include="Models\Floats\TextBoxFloatObject.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\DocumentXslProcessor.cs" />
+    <Compile Include="Processors\Floats\FloatsTagger.cs" />
     <Compile Include="Processors\QueryReplacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
@@ -84,9 +101,7 @@
   <ItemGroup>
     <Content Include="Xml\query-replacer-sample-query.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Types\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Xsd\query-replacer.xsd">
       <SubType>Designer</SubType>
