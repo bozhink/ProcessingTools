@@ -12,10 +12,9 @@
     using Contracts;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
 
-    public class FloatsTagger : TaxPubDocument, ITagger
+    public class FloatsTagger : IGenericXmlContextTagger<object>
     {
         private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 60;
@@ -32,8 +31,7 @@
         private IEnumerable floatIdByLabelValues = null;
         private ILogger logger;
 
-        public FloatsTagger(string xml, ILogger logger)
-            : base(xml)
+        public FloatsTagger(ILogger logger)
         {
             this.logger = logger;
             this.InitFloats();
@@ -41,12 +39,17 @@
             this.floatObjects = new ConcurrentDictionary<Type, IFloatObject>();
         }
 
-        public Task Tag() => Task.Run(() => this.TagSync());
+        public Task<object> Tag(XmlNode context) => Task.Run(() => this.TagSync(context));
 
-        public object TagSync()
+        private object TagSync(XmlNode context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             // Force Fig. and Figs
-            this.Xml = this.Xml
+            context.InnerXml = context.InnerXml
                 .RegexReplace(@"(Fig)\s+", "$1. ")
                 .RegexReplace(@"(Figs)\.", "$1");
 
@@ -62,7 +65,7 @@
             {
                 var floatObject = this.floatObjects.GetOrAdd(floatObjectType, t => Activator.CreateInstance(t) as IFloatObject);
 
-                this.TagFloatObjects(floatObject);
+                this.TagFloatObjects(context, floatObject);
             }
 
             // Set correct values of xref/@ref-type.
@@ -70,9 +73,9 @@
             {
                 if (floatObject.InternalReferenceType != floatObject.ResultantReferenceType)
                 {
-                    string xpath = $"//xref[@ref-type='{floatObject.InternalReferenceType}']";
+                    string xpath = $".//xref[@ref-type='{floatObject.InternalReferenceType}']";
 
-                    this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                    context.SelectNodes(xpath)
                         .Cast<XmlNode>()
                         .AsParallel()
                         .ForAll(xref =>
@@ -105,9 +108,9 @@
             return "$1<xref ref-type=\"" + refType + "\" rid=\"$4\">$3</xref>";
         }
 
-        private void FormatXref()
+        private void FormatXref(XmlNode context)
         {
-            string xml = this.Xml;
+            string xml = context.InnerXml;
 
             // Format content between </xref> and <xref
             xml = Regex.Replace(xml, @"(?<=</xref>)\s*[‒–—−-]\s*(?=<xref)", "–");
@@ -122,17 +125,16 @@
                 xml = Regex.Replace(xml, "(<[^<>]+=\"[^<>\"]*)<[^<>]*>", "$1");
             }
 
-            this.Xml = xml;
+            context.InnerXml = xml;
         }
 
-        private void FormatXrefGroup(string refType)
+        private void FormatXrefGroup(XmlNode context, string refType)
         {
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
-                string xrefGroupNodeXPath = $"//xref-group[xref[@ref-type='{refType}']]";
-                XmlNodeList xrefGroupNodes = this.XmlDocument.SelectNodes(xrefGroupNodeXPath, this.NamespaceManager);
-                foreach (XmlNode xrefGroupNode in xrefGroupNodes)
+                string xrefGroupNodeXPath = $".//xref-group[xref[@ref-type='{refType}']]";
+                foreach (XmlNode xrefGroupNode in context.SelectNodes(xrefGroupNodeXPath))
                 {
                     // Format content in xref-group
                     string xrefGroup = xrefGroupNode.InnerXml;
@@ -263,9 +265,10 @@
         /// Gets the number of floating objects of a given type and populates label-and-id-related hash tables.
         /// This method generates the "dictionary" to correctly post-process xref/@rid references.
         /// </summary>
+        /// <param name="context">XmlNode to be harvested.</param>
         /// <param name="floatObject">IFloatObject model to provide information for the floating object.</param>
         /// <returns>Number of floating objects of type refType with label containing "floatType".</returns>
-        private int GetFloatsOfType(IFloatObject floatObject)
+        private int GetFloatsOfType(XmlNode context, IFloatObject floatObject)
         {
             this.floatIdByLabel = new Hashtable();
             this.floatLabelById = new Hashtable();
@@ -273,7 +276,7 @@
             int numberOfFloatsOfType = 0;
             try
             {
-                XmlNodeList floatsNodeList = this.XmlDocument.SelectNodes(floatObject.FloatObjectXPath, this.NamespaceManager);
+                XmlNodeList floatsNodeList = context.SelectNodes(floatObject.FloatObjectXPath);
                 foreach (XmlNode floatNode in floatsNodeList)
                 {
                     string id = this.GetFloatId(floatObject.FloatReferenceType, floatNode);
@@ -373,9 +376,9 @@
             }
         }
 
-        private void ProcessFloatsRid(int floatsNumber, string refType)
+        private void ProcessFloatsRid(XmlNode context, int floatsNumber, string refType)
         {
-            string xml = this.Xml;
+            string xml = context.InnerXml;
 
             foreach (string rid in this.floatIdByLabelKeys)
             {
@@ -390,34 +393,35 @@
                 }
             }
 
-            this.Xml = xml;
+            context.InnerXml = xml;
         }
 
-        private void TagFloatObjects(IFloatObject floatObject)
+        private void TagFloatObjects(XmlNode context, IFloatObject floatObject)
         {
             this.InitFloats();
-            int numberOfFloatsOfType = this.GetFloatsOfType(floatObject);
+            int numberOfFloatsOfType = this.GetFloatsOfType(context, floatObject);
 
             if (numberOfFloatsOfType > 0)
             {
-                this.TagFloatsOfType(floatObject.InternalReferenceType, floatObject.MatchCitationPattern);
-                this.FormatXref();
-                this.ProcessFloatsRid(numberOfFloatsOfType, floatObject.InternalReferenceType);
-                this.FormatXrefGroup(floatObject.InternalReferenceType);
+                this.TagFloatsOfType(context, floatObject.InternalReferenceType, floatObject.MatchCitationPattern);
+                this.FormatXref(context);
+                this.ProcessFloatsRid(context, numberOfFloatsOfType, floatObject.InternalReferenceType);
+                this.FormatXrefGroup(context, floatObject.InternalReferenceType);
             }
         }
 
         /// <summary>
         /// Find and put in xref citations of a floating object of given type.
         /// </summary>
+        /// <param name="context">XmlNode to be processed.</param>
         /// <param name="refType">Logical type of the floating object. This string will be put as current value of the attribute xref/@ref-type.</param>
         /// <param name="matchCitationPattern">Regex pattern to find citations of floating objects of the given type.</param>
-        private void TagFloatsOfType(string refType, string matchCitationPattern)
+        private void TagFloatsOfType(XmlNode context, string refType, string matchCitationPattern)
         {
             string pattern = this.FloatsFirstOccurencePattern(matchCitationPattern);
             string replace = this.FloatsFirstOccurenceReplace(refType);
 
-            string xml = this.Xml;
+            string xml = context.InnerXml;
             xml = Regex.Replace(xml, pattern, replace);
 
             pattern = this.FloatsNextOccurencePattern(refType);
@@ -427,7 +431,7 @@
                 xml = Regex.Replace(xml, pattern, replace);
             }
 
-            this.Xml = xml;
+            context.InnerXml = xml;
         }
 
         private void UpdateFloatIdByLabelList(string id, string labelText)

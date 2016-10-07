@@ -22,11 +22,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new FloatsTagger(document.Xml, this.logger);
+            var tagger = new FloatsTagger(this.logger);
 
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }
