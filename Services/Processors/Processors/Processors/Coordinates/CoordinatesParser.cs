@@ -1,17 +1,20 @@
-﻿namespace ProcessingTools.BaseLibrary.Coordinates
+﻿namespace ProcessingTools.Processors.Coordinates
 {
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Geo;
-    using ProcessingTools.Xml.Extensions;
     using System;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts;
+
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Geo;
+    using ProcessingTools.Xml.Extensions;
+
     // TODO: Needs refactoring
-    public class CoordinatesParser : IGenericXmlContextParser<object>
+    public class CoordinatesParser : ICoordinatesParser
     {
         private const string LatitudeAttributeName = "latitude";
         private const string LongitudeAttributeName = "longitude";
