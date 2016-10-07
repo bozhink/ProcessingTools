@@ -54,6 +54,7 @@
     <Compile Include="Contracts\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
+    <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
     <Compile Include="Factories\XslTransformAbstractProvider.cs" />

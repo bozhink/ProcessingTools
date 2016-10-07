@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Abbreviations
+﻿namespace ProcessingTools.Processors.Models.Abbreviations
 {
     internal interface IAbbreviation
     {

@@ -8,6 +8,7 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.Xml.Extensions;
 
     public static class ContentTagger
     {

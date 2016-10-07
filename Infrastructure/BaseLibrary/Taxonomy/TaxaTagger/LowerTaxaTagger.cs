@@ -12,6 +12,7 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger
     {

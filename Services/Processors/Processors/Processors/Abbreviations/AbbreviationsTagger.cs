@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Abbreviations
+﻿namespace ProcessingTools.Processors.Abbreviations
 {
     using System;
     using System.Collections.Generic;
@@ -6,9 +6,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts;
+    using Models.Abbreviations;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts;
     using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Extensions;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
@@ -18,7 +22,10 @@
         private readonly IXmlContextWrapperProvider wrapperProvider;
         private readonly ILogger logger;
 
-        public AbbreviationsTagger(IAbbreviationsHarvester abbreviationsHarvester, IXmlContextWrapperProvider wrapperProvider, ILogger logger)
+        public AbbreviationsTagger(
+            IAbbreviationsHarvester abbreviationsHarvester,
+            IXmlContextWrapperProvider wrapperProvider,
+            ILogger logger)
         {
             if (abbreviationsHarvester == null)
             {

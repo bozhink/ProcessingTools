@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Abbreviations
+﻿namespace ProcessingTools.Processors.Contracts
 {
     using ProcessingTools.Contracts;
 
