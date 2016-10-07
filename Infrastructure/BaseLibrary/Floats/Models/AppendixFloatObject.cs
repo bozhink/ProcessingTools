@@ -7,7 +7,7 @@
     /// </summary>
     public class AppendixFloatObject : IFloatObject
     {
-        public string FloatObjectXPath => $"//app[contains(string(title),'{this.FloatTypeNameInLabel}')]";
+        public string FloatObjectXPath => $".//app[contains(string(title),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Appendix;
 

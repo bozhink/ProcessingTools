@@ -7,7 +7,7 @@
     /// </summary>
     public class TextBoxFloatObject : IFloatObject
     {
-        public string FloatObjectXPath => $"//box[contains(string(title),'{this.FloatTypeNameInLabel}')]|//boxed-text[contains(string(label),'{this.FloatTypeNameInLabel}')]";
+        public string FloatObjectXPath => $".//box[contains(string(title),'{this.FloatTypeNameInLabel}')]|//boxed-text[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Textbox;
 

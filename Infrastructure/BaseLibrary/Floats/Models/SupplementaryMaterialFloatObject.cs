@@ -7,7 +7,7 @@
     /// </summary>
     public class SupplementaryMaterialFloatObject : IFloatObject
     {
-        public string FloatObjectXPath => $"//supplementary-material[contains(string(label),'{this.FloatTypeNameInLabel}')]";
+        public string FloatObjectXPath => $".//supplementary-material[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.SupplementaryMaterial;
 

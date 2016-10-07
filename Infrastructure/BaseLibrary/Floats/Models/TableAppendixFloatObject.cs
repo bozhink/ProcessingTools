@@ -7,7 +7,7 @@
     /// </summary>
     public class TableAppendixFloatObject : IFloatObject
     {
-        public string FloatObjectXPath => $"//table-wrap[contains(string(label),'{this.FloatTypeNameInLabel}')]";
+        public string FloatObjectXPath => $".//table-wrap[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Table;
 

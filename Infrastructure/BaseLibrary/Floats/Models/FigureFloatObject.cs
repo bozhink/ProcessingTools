@@ -7,7 +7,7 @@
     /// </summary>
     public class FigureFloatObject : IFloatObject
     {
-        public string FloatObjectXPath => $"//fig[contains(string(label),'{this.FloatTypeNameInLabel}')]";
+        public string FloatObjectXPath => $".//fig[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
         public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Figure;
 
