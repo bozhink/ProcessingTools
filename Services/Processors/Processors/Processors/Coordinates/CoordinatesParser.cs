@@ -46,7 +46,9 @@
             this.logger = logger;
         }
 
-        public async Task<object> Parse(XmlNode context)
+        public Task<object> Parse(XmlNode context) => Task.Run(() => this.ParseSync(context));
+
+        public object ParseSync(XmlNode context)
         {
             if (context == null)
             {
@@ -71,8 +73,7 @@
 
             this.CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows(context);
 
-            // TODO: Make real async method
-            return await Task.FromResult(true);
+            return true;
         }
 
         private void CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows(XmlNode context)
