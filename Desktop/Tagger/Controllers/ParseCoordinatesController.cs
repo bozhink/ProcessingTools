@@ -22,11 +22,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new CoordinatesParser(document.Xml, this.logger);
+            var parser = new CoordinatesParser(this.logger);
 
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }
