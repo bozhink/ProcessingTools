@@ -41,47 +41,48 @@
             this.floatObjects = new ConcurrentDictionary<Type, IFloatObject>();
         }
 
-        public Task Tag()
+        public Task Tag() => Task.Run(() => this.TagSync());
+
+        public object TagSync()
         {
-            return Task.Run(() =>
+            // Force Fig. and Figs
+            this.Xml = this.Xml
+                .RegexReplace(@"(Fig)\s+", "$1. ")
+                .RegexReplace(@"(Figs)\.", "$1");
+
+            string defaultFloatObjectInterfaceName = typeof(IFloatObject).FullName;
+
+            var floatOfjectTypes = BaseLibrary.Assembly.Assembly.GetType().Assembly
+                .GetTypes()
+                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
+                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName));
+
+            // Tag citations in text.
+            foreach (var floatObjectType in floatOfjectTypes)
             {
-                // Force Fig. and Figs
-                this.Xml = this.Xml
-                    .RegexReplace(@"(Fig)\s+", "$1. ")
-                    .RegexReplace(@"(Figs)\.", "$1");
+                var floatObject = this.floatObjects.GetOrAdd(floatObjectType, t => Activator.CreateInstance(t) as IFloatObject);
 
-                string defaultFloatObjectInterfaceName = typeof(IFloatObject).FullName;
+                this.TagFloatObjects(floatObject);
+            }
 
-                var floatOfjectTypes = BaseLibrary.Assembly.Assembly.GetType().Assembly
-                    .GetTypes()
-                    .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
-                    .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName));
-
-                // Tag citations in text.
-                foreach (var floatObjectType in floatOfjectTypes)
+            // Set correct values of xref/@ref-type.
+            foreach (var floatObject in this.floatObjects.Values)
+            {
+                if (floatObject.InternalReferenceType != floatObject.ResultantReferenceType)
                 {
-                    var floatObject = this.floatObjects.GetOrAdd(floatObjectType, t => Activator.CreateInstance(t) as IFloatObject);
+                    string xpath = $"//xref[@ref-type='{floatObject.InternalReferenceType}']";
 
-                    this.TagFloatObjects(floatObject);
+                    this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+                        .Cast<XmlNode>()
+                        .AsParallel()
+                        .ForAll(xref =>
+                        {
+                            xref.Attributes["ref-type"].InnerText = floatObject.ResultantReferenceType;
+                        });
                 }
+            }
 
-                // Set correct values of xref/@ref-type.
-                foreach (var floatObject in this.floatObjects.Values)
-                {
-                    if (floatObject.InternalReferenceType != floatObject.ResultantReferenceType)
-                    {
-                        string xpath = $"//xref[@ref-type='{floatObject.InternalReferenceType}']";
-
-                        this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
-                            .Cast<XmlNode>()
-                            .AsParallel()
-                            .ForAll(xref =>
-                            {
-                                xref.Attributes["ref-type"].InnerText = floatObject.ResultantReferenceType;
-                            });
-                    }
-                }
-            });
+            return true;
         }
 
         private string FloatsFirstOccurencePattern(string labelPattern)
