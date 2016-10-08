@@ -78,7 +78,6 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Special\SpecialFactory.cs" />
     <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Taxonomy\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Taxonomy\Materials\TreatmentMaterialsParser.cs" />

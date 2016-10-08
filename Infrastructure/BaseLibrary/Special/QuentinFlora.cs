@@ -2,7 +2,9 @@
 {
     using System.Text.RegularExpressions;
 
-    public class QuentinFlora : SpecialFactory
+    using ProcessingTools.DocumentProvider;
+
+    public class QuentinFlora : TaxPubDocument
     {
         public QuentinFlora(string xml)
             : base(xml)

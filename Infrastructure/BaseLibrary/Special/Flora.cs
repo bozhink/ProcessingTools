@@ -4,7 +4,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    public class Flora : SpecialFactory
+    using ProcessingTools.DocumentProvider;
+
+    public class Flora : TaxPubDocument
     {
         public Flora(string xml)
             : base(xml)
