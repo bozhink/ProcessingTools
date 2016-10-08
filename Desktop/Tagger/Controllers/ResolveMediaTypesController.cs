@@ -7,36 +7,28 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Floats;
     using ProcessingTools.Contracts;
-    using ProcessingTools.MediaType.Services.Data.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     [Description("Resolve media-types.")]
     public class ResolveMediaTypesController : TaggerControllerFactory, IResolveMediaTypesController
     {
-        private readonly IMediaTypeDataService service;
-        private readonly ILogger logger;
+        private readonly IMediaTypesResolver parser;
 
-        public ResolveMediaTypesController(
-            IDocumentFactory documentFactory,
-            IMediaTypeDataService service,
-            ILogger logger)
+        public ResolveMediaTypesController(IDocumentFactory documentFactory, IMediaTypesResolver parser)
             : base(documentFactory)
         {
-            if (service == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.service = service;
-            this.logger = logger;
+            this.parser = parser;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new MediaTypesResolver(this.service, this.logger);
-
-            await parser.Parse(document.XmlDocument.DocumentElement);
+            await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

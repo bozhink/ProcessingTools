@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.MediaType.Services.Data.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     [TestFixture]
     public class ResolveMediaTypesControllerTests
@@ -21,7 +21,7 @@
         private ProgramSettings settings;
         private ILogger logger;
         private IDocumentFactory documentFactory;
-        private IMediaTypeDataService service;
+        private IMediaTypesResolver parser;
 
         [SetUp]
         public void Init()
@@ -38,15 +38,15 @@
             var documentFactoryMock = new Mock<IDocumentFactory>();
             this.documentFactory = documentFactoryMock.Object;
 
-            var serviceMock = new Mock<IMediaTypeDataService>();
-            this.service = serviceMock.Object;
+            var parserMock = new Mock<IMediaTypesResolver>();
+            this.parser = parserMock.Object;
         }
 
         [Test]
         [Timeout(500)]
         public void ResolveMediaTypesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -58,7 +58,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ResolveMediaTypesController(this.documentFactory, null, this.logger);
+                    var controller = new ResolveMediaTypesController(this.documentFactory, null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -69,13 +69,13 @@
         {
             try
             {
-                var controller = new ResolveMediaTypesController(this.documentFactory, null, this.logger);
+                var controller = new ResolveMediaTypesController(this.documentFactory, null);
             }
             catch (Exception e)
             {
                 Assert.AreEqual(typeof(ArgumentNullException), e.GetType(), CallShouldThrowSystemArgumentNullExceptionMessage);
 
-                Assert.AreEqual("service", ((ArgumentNullException)e).ParamName, @"ParamName should be ""service"".");
+                Assert.AreEqual("parser", ((ArgumentNullException)e).ParamName, @"ParamName should be ""parser"".");
             }
         }
 
@@ -83,7 +83,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -98,7 +98,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -109,7 +109,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -120,7 +120,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -131,7 +131,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -142,7 +142,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -153,7 +153,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -164,7 +164,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -175,7 +175,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -186,7 +186,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             try
             {
@@ -207,7 +207,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -218,7 +218,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -229,7 +229,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -240,7 +240,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -251,7 +251,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             try
             {
@@ -272,7 +272,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -283,7 +283,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -294,7 +294,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             try
             {
@@ -315,7 +315,7 @@
         [Timeout(500)]
         public void ResolveMediaTypesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ResolveMediaTypesController(this.documentFactory, this.service, this.logger);
+            var controller = new ResolveMediaTypesController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 

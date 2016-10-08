@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats
+﻿namespace ProcessingTools.Processors.Floats
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Models;
+    using Contracts;
+    using Models.Contracts;
+    using Models.Floats;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -15,7 +17,7 @@
     using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
-    public class MediaTypesResolver : IGenericXmlContextParser<object>
+    public class MediaTypesResolver : IMediaTypesResolver
     {
         private readonly ILogger logger;
         private readonly IMediaTypeDataService service;
