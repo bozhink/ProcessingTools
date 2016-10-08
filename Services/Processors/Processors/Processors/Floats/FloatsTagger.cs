@@ -10,10 +10,11 @@
     using System.Xml;
 
     using Contracts;
-    using Models.Contracts;
+    using Models.Floats;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     using Types;
 
@@ -60,8 +61,8 @@
 
             var floatOfjectTypes = this.GetType().Assembly
                 .GetTypes()
-                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
                 .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultFloatObjectInterfaceName))
+                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
                 .ToArray();
 
             // Tag citations in text.
@@ -84,7 +85,7 @@
                         .AsParallel()
                         .ForAll(xref =>
                         {
-                            xref.Attributes["ref-type"].InnerText = floatObject.ResultantReferenceType;
+                            xref.Attributes[AttributeNames.RefType].InnerText = floatObject.ResultantReferenceType;
                         });
                 }
             }
@@ -225,9 +226,9 @@
         private string GetFloatId(FloatsReferenceType floatReferenceType, XmlNode node)
         {
             string id = string.Empty;
-            if (node.Attributes["id"] != null)
+            if (node.Attributes[AttributeNames.Id] != null)
             {
-                id = node.Attributes["id"].InnerText;
+                id = node.Attributes[AttributeNames.Id].InnerText;
             }
             else
             {
@@ -236,7 +237,7 @@
                     case FloatsReferenceType.Table:
                         try
                         {
-                            id = node["table"].Attributes["id"].InnerText;
+                            id = node[ElementNames.Table].Attributes[AttributeNames.Id].InnerText;
                         }
                         catch (Exception e)
                         {
@@ -253,13 +254,13 @@
         private string GetFloatLabelText(XmlNode node)
         {
             string labelText = string.Empty;
-            if (node["label"] != null)
+            if (node[ElementNames.Label] != null)
             {
-                labelText = node["label"].InnerText;
+                labelText = node[ElementNames.Label].InnerText;
             }
-            else if (node["title"] != null)
+            else if (node[ElementNames.Title] != null)
             {
-                labelText = node["title"].InnerText;
+                labelText = node[ElementNames.Title].InnerText;
             }
 
             return labelText;
@@ -327,29 +328,22 @@
             Match dash = this.selectDash.Match(floatIndexInLabel.Value);
             if (dash.Success)
             {
-                try
+                int currentFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(currentFloatIndex, string.Empty));
+
+                string nextFloatIndex = floatIndexInLabel.NextMatch().Success ? this.selectDash.Replace(floatIndexInLabel.NextMatch().Value, string.Empty) : string.Empty;
+                int nextFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(nextFloatIndex, string.Empty));
+
+                if (currentFloatIndexNumber < nextFloatIndexNumber)
                 {
-                    int currentFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(currentFloatIndex, string.Empty));
-
-                    string nextFloatIndex = floatIndexInLabel.NextMatch().Success ? this.selectDash.Replace(floatIndexInLabel.NextMatch().Value, string.Empty) : string.Empty;
-                    int nextFloatIndexNumber = int.Parse(this.selectNaNChar.Replace(nextFloatIndex, string.Empty));
-
-                    if (currentFloatIndexNumber < nextFloatIndexNumber)
+                    string prefix = Regex.Replace(currentFloatIndex, @"([A-Z]?)\d+", "$1");
+                    for (int i = currentFloatIndexNumber + 1; i < nextFloatIndexNumber; ++i)
                     {
-                        string prefix = Regex.Replace(currentFloatIndex, @"([A-Z]?)\d+", "$1");
-                        for (int i = currentFloatIndexNumber + 1; i < nextFloatIndexNumber; ++i)
-                        {
-                            this.floatIdByLabel.Add(prefix + i, id);
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Error in multiple-float's label '" + labelText + "': Label numbers must be strictly increasing.");
+                        this.floatIdByLabel.Add(prefix + i, id);
                     }
                 }
-                catch
+                else
                 {
-                    throw;
+                    throw new Exception($"Error in multiple-float's label '{labelText}': Label numbers must be strictly increasing.");
                 }
             }
         }

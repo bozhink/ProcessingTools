@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts;
     using Types;
 
     /// <summary>
-    /// Textbox of type boxed-text.
+    /// Text-box of type boxed-text.
     /// </summary>
-    public class TextBoxFloatObject : IFloatObject
+    internal class TextBoxFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//box[contains(string(title),'{this.FloatTypeNameInLabel}')]|//boxed-text[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 

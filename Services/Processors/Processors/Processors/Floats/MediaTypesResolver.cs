@@ -8,7 +8,6 @@
     using System.Xml;
 
     using Contracts;
-    using Models.Contracts;
     using Models.Floats;
 
     using ProcessingTools.Contracts;

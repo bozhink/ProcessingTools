@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts;
     using Types;
 
     /// <summary>
     /// Appendix.
     /// </summary>
-    public class AppendixFloatObject : IFloatObject
+    internal class AppendixFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//app[contains(string(title),'{this.FloatTypeNameInLabel}')]";
 

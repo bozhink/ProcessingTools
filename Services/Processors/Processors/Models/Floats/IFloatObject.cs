@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Processors.Models.Contracts
+﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using Types;
 
-    public interface IFloatObject
+    internal interface IFloatObject
     {
         /// <summary>
         /// Gets description of the float object.

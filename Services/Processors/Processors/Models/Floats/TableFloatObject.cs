@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts;
     using Types;
 
     /// <summary>
     /// Table.
     /// </summary>
-    public class TableFloatObject : IFloatObject
+    internal class TableFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//table-wrap[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 

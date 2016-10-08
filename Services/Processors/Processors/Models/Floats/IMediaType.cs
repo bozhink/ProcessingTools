@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Models.Contracts
+﻿namespace ProcessingTools.Processors.Models.Floats
 {
     internal interface IMediaType
     {

@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts;
     using Types;
 
     /// <summary>
     /// Supplementary material.
     /// </summary>
-    public class SupplementaryMaterialFloatObject : IFloatObject
+    internal class SupplementaryMaterialFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//supplementary-material[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 

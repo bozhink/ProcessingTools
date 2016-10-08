@@ -44,8 +44,8 @@
     <Compile Include="Contracts\ITableFootNotesTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
-    <Compile Include="Models\Contracts\IFloatObject.cs" />
-    <Compile Include="Models\Contracts\IMediaType.cs" />
+    <Compile Include="Models\Floats\IFloatObject.cs" />
+    <Compile Include="Models\Floats\IMediaType.cs" />
     <Compile Include="Models\Floats\AppendixFloatObject.cs" />
     <Compile Include="Models\Floats\FigureFloatObject.cs" />
     <Compile Include="Models\Floats\GraphicFloatObject.cs" />

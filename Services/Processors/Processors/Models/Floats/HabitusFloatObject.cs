@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts;
     using Types;
 
     /// <summary>
     /// Habitus.
     /// </summary>
-    public class HabitusFloatObject : IFloatObject
+    internal class HabitusFloatObject : IFloatObject
     {
         public string FloatObjectXPath => $".//fig[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
