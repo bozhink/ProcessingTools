@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
+    using ProcessingTools.Nlm.Publishing.Constants;
     using Types;
 
     /// <summary>
@@ -17,7 +18,7 @@
 
         public string InternalReferenceType => "supplementary-material";
 
-        public string ResultantReferenceType => "supplementary-material";
+        public string ResultantReferenceType => RefTypeAttributeValues.SupplementaryMaterial;
 
         public string Description => "Supplementary material";
     }

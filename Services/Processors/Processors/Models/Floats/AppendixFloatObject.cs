@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
+    using ProcessingTools.Nlm.Publishing.Constants;
     using Types;
 
     /// <summary>
@@ -17,7 +18,7 @@
 
         public string InternalReferenceType => "app";
 
-        public string ResultantReferenceType => "app";
+        public string ResultantReferenceType => RefTypeAttributeValues.Appendix;
 
         public string Description => "Appendix";
     }

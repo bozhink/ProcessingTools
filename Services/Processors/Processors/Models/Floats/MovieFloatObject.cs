@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
+    using ProcessingTools.Nlm.Publishing.Constants;
     using Types;
 
     /// <summary>
@@ -17,7 +18,7 @@
 
         public string InternalReferenceType => "movie";
 
-        public string ResultantReferenceType => "fig";
+        public string ResultantReferenceType => RefTypeAttributeValues.Figure;
 
         public string Description => "Movie";
     }

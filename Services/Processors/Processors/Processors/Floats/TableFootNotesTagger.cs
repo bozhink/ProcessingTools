@@ -77,7 +77,7 @@
         private void WrapCitationInXref(string id, XmlNode footnoteCitation)
         {
             var xref = footnoteCitation.OwnerDocument.CreateElement(ElementNames.XRef);
-            xref.SetAttribute(AttributeNames.RefType, RefTypeAttributeValues.TableFn);
+            xref.SetAttribute(AttributeNames.RefType, RefTypeAttributeValues.TableFootnote);
             xref.SetAttribute(AttributeNames.RId, id);
             xref.InnerXml = footnoteCitation.OuterXml;
 
