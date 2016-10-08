@@ -77,11 +77,10 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
-    <Compile Include="References\IReferencesConfiguration.cs" />
-    <Compile Include="References\IReferenceTemplateItem.cs" />
-    <Compile Include="References\ReferencesConfiguration.cs" />
-    <Compile Include="References\ReferencesParser.cs" />
-    <Compile Include="References\ReferenceTemplateItem.cs" />
+    <Compile Include="References\Models\IReferencesConfiguration.cs" />
+    <Compile Include="References\Models\IReferenceTemplateItem.cs" />
+    <Compile Include="References\Models\ReferencesConfiguration.cs" />
+    <Compile Include="References\Models\ReferenceTemplateItem.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
     <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />

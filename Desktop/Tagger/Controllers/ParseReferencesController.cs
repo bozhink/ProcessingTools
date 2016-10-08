@@ -1,32 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.References;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.References;
 
     [Description("Parse references.")]
     public class ParseReferencesController : TaggerControllerFactory, IParseReferencesController
     {
-        private readonly ILogger logger;
+        private readonly IReferencesParser parser;
 
-        public ParseReferencesController(IDocumentFactory documentFactory, ILogger logger)
+        public ParseReferencesController(IDocumentFactory documentFactory, IReferencesParser parser)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            this.parser = parser;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new ReferencesParser(document.Xml, this.logger);
-
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

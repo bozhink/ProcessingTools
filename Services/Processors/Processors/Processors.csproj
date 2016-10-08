@@ -42,6 +42,7 @@
     <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
     <Compile Include="Contracts\IQueryReplacer.cs" />
     <Compile Include="Contracts\Floats\ITableFootNotesTagger.cs" />
+    <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Processors\Floats\MediaTypesResolver.cs" />
     <Compile Include="Processors\Floats\TableFootNotesTagger.cs" />
     <Compile Include="Processors\QueryReplacer.cs" />
+    <Compile Include="Processors\References\ReferencesParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>

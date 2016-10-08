@@ -1,42 +1,48 @@
-﻿namespace ProcessingTools.BaseLibrary.References
+﻿namespace ProcessingTools.Processors.Processors.References
 {
     using System;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
+    using Contracts.References;
 
-    public class ReferencesParser : TaxPubDocument, IParser
+    using ProcessingTools.Contracts;
+
+    public class ReferencesParser : IReferencesParser
     {
         private ILogger logger;
 
-        public ReferencesParser(string xml, ILogger logger)
-            : base(xml)
+        public ReferencesParser(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public Task Parse()
+        public Task<object> Parse(XmlNode context) => Task.Run(() => this.ParseSync(context));
+
+        private object ParseSync(XmlNode context)
         {
-            return Task.Run(() =>
+            if (context == null)
             {
-                try
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            try
+            {
+                XmlNodeList nodeList = context.SelectNodes("//element-citation|//mixed-citation|nlm-citation");
+                foreach (XmlNode node in nodeList)
                 {
-                    XmlNodeList nodeList = this.XmlDocument.SelectNodes("//element-citation|//mixed-citation|nlm-citation", this.NamespaceManager);
-                    foreach (XmlNode node in nodeList)
-                    {
-                        node.InnerXml = this.ReferencePartSplitter(node);
-                        node.InnerXml = this.ReferenceJournalMatch(node);
-                        node.InnerXml = this.ReferencePersonGroupSplit(node.InnerXml);
-                    }
+                    node.InnerXml = this.ReferencePartSplitter(node);
+                    node.InnerXml = this.ReferenceJournalMatch(node);
+                    node.InnerXml = this.ReferencePersonGroupSplit(node.InnerXml);
                 }
-                catch (Exception e)
-                {
-                    this.logger?.Log(e, string.Empty);
-                }
-            });
+            }
+            catch (Exception e)
+            {
+                this.logger?.Log(e, string.Empty);
+            }
+
+            return true;
         }
 
         private string ReferencePartSplitter(XmlNode reference)
