@@ -108,24 +108,6 @@
             return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic()));
         }
 
-        public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
-        {
-            ////XmlNode clonedXml = xml.CloneNode(true);
-            ////clonedXml.SelectNodes("//tn|//tn-part|//tp:taxon-name|//tp:taxon-name-part", Config.TaxPubNamespceManager())
-            ////    .Cast<XmlNode>()
-            ////    .Select(node => node.ParentNode.RemoveChild(node));
-
-            IEnumerable<string> taxaMatchesInText = xml.InnerText.GetMatches(matchTaxa);
-            IEnumerable<string> result = from item in taxaMatchesInText
-                                         where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
-                                         select item;
-            return new HashSet<string>(result);
-
-            ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
-
-            ////return new HashSet<string>(result);
-        }
-
         public static Task PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
         {
             return Task.Run(() =>
