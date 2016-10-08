@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Xml
+﻿namespace ProcessingTools.Xml.Providers
 {
     using System;
     using System.Xml;
-    using Contracts;
+    using Contracts.Providers;
 
     public class XmlContextWrapperProvider : IXmlContextWrapperProvider
     {

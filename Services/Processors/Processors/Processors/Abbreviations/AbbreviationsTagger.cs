@@ -11,7 +11,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Extensions;
 
     public class AbbreviationsTagger : IAbbreviationsTagger

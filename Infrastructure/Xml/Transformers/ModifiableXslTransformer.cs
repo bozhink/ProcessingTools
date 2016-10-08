@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Xml.Transformers
 {
     using Contracts;
+    using Contracts.Providers;
 
     public class ModifiableXslTransformer : XslTransformer<IModifiableXslTransformProvider>, IModifiableXslTransformer
     {

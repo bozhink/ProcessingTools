@@ -44,12 +44,12 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IGenericXslTransformer.cs" />
     <Compile Include="Contracts\IModifiableXslTransformer.cs" />
-    <Compile Include="Contracts\IModifiableXslTransformProvider.cs" />
-    <Compile Include="Contracts\ITextContentXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IModifiableXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\ITextContentXslTransformProvider.cs" />
     <Compile Include="Contracts\IXmlTransformer.cs" />
     <Compile Include="Contracts\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
-    <Compile Include="Contracts\IXmlContextWrapperProvider.cs" />
+    <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
     <Compile Include="Contracts\IXslTransformer.cs" />
     <Compile Include="Contracts\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Serialization\SimpleXmlSerializer.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
-    <Compile Include="XmlContextWrapperProvider.cs" />
+    <Compile Include="Providers\XmlContextWrapperProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

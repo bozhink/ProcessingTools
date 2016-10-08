@@ -3,8 +3,9 @@
     using System;
     using System.IO;
 
-    using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Factories;
+    using Contracts;
+    using Contracts.Providers;
+    using Factories;
 
     public class ModifiableXslTransformProvider : XslTransformAbstractProvider, IModifiableXslTransformProvider
     {
