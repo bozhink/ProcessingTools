@@ -2,13 +2,13 @@
 {
     using System.Xml;
 
-    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
     /// <summary>
-    /// This class provides extension methods for transformation of TaxPub NLM to system XML schemas.
+    /// This class provides extension methods for transformation of TaxPub NLM to system XML schema.
     /// </summary>
     public static class XmlNormalizer
     {

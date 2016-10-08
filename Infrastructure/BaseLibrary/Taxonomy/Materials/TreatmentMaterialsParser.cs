@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.BaseLibrary.Contracts;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Transformers;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser

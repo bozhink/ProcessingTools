@@ -1,7 +1,5 @@
-﻿namespace ProcessingTools.BaseLibrary.Contracts
+﻿namespace ProcessingTools.Xml.Contracts.Providers
 {
-    using ProcessingTools.Xml.Contracts.Providers;
-
     public interface ITaxonTreatmentExtractMaterialsXslTransformProvider : IXslTransformProvider
     {
     }

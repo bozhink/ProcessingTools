@@ -1,11 +1,12 @@
-﻿namespace ProcessingTools.BaseLibrary.Providers
+﻿namespace ProcessingTools.Xml.Providers
 {
     using System.Configuration;
 
     using Contracts;
+    using Contracts.Providers;
+    using Factories;
+
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Factories;
 
     public class CodesRemoveNonCodeNodesXslTransformProvider : XslTransformAbstractProvider, ICodesRemoveNonCodeNodesXslTransformProvider
     {

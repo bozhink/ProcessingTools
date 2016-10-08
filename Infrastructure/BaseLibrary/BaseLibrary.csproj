@@ -76,21 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
-    <Compile Include="Contracts\IFormatNlmToSystemXslTransformProvider.cs" />
-    <Compile Include="Contracts\IFormatSystemToNlmXslTransformProvider.cs" />
-    <Compile Include="Contracts\IFormatTaxonTreatmentsXslTransformProvider.cs" />
-    <Compile Include="Contracts\IReferencesGetReferencesXslTransformProvider.cs" />
-    <Compile Include="Contracts\IReferencesTagTemplateXslTransformProvider.cs" />
-    <Compile Include="Contracts\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
-    <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
-    <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />
-    <Compile Include="Providers\FormatSystemToNlmXslTransformProvider.cs" />
-    <Compile Include="Providers\FormatTaxonTreatmentsXslTransformProvider.cs" />
-    <Compile Include="Providers\ReferencesGetReferencesXslTransformProvider.cs" />
-    <Compile Include="Providers\ReferencesTagTemplateXslTransformProvider.cs" />
-    <Compile Include="Providers\TaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="References\IReferencesConfiguration.cs" />
     <Compile Include="References\IReferenceTemplateItem.cs" />
     <Compile Include="References\ReferencesConfiguration.cs" />

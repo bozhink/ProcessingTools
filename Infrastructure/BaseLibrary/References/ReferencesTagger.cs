@@ -7,12 +7,12 @@
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
-    using ProcessingTools.BaseLibrary.Contracts;
-    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Transformers;
+    using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
     public class ReferencesTagger : TaxPubDocument, ITagger
