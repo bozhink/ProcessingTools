@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
+    using Contracts.Floats;
     using Models.Floats;
 
     using ProcessingTools.Contracts;

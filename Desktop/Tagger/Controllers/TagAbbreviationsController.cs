@@ -8,7 +8,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Abbreviations;
 
     [Description("Tag abbreviations.")]
     public class TagAbbreviationsController : TaggerControllerFactory, ITagAbbreviationsController

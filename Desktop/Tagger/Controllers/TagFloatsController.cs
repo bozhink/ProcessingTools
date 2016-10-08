@@ -8,7 +8,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController

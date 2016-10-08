@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts
+﻿namespace ProcessingTools.Processors.Contracts.Coordinates
 {
     using ProcessingTools.Contracts;
 

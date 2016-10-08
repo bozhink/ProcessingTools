@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
+    using Contracts.Coordinates;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;

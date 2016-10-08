@@ -35,13 +35,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IAbbreviationsTagger.cs" />
-    <Compile Include="Contracts\ICoordinatesParser.cs" />
+    <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
+    <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
     <Compile Include="Contracts\IDocumentXslProcessor.cs" />
-    <Compile Include="Contracts\IFloatsTagger.cs" />
-    <Compile Include="Contracts\IMediaTypesResolver.cs" />
+    <Compile Include="Contracts\Floats\IFloatsTagger.cs" />
+    <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
     <Compile Include="Contracts\IQueryReplacer.cs" />
-    <Compile Include="Contracts\ITableFootNotesTagger.cs" />
+    <Compile Include="Contracts\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />

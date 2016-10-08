@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Abbreviations;
 
     [TestFixture]
     public class TagAbbreviationsControllerTests

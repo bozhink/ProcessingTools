@@ -8,7 +8,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Coordinates;
 
     [Description("Parse coordinates.")]
     public class ParseCoordinatesController : TaggerControllerFactory, IParseCoordinatesController

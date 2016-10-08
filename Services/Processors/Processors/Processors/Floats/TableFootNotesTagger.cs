@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
+    using Contracts.Floats;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Nlm.Publishing.Constants;

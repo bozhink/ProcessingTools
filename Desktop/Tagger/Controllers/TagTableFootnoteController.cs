@@ -8,7 +8,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag table foot-notes.")]
     public class TagTableFootnoteController : TaggerControllerFactory, ITagTableFootnoteController
