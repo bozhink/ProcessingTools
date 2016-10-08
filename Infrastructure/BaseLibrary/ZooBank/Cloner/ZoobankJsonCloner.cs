@@ -92,7 +92,7 @@
 
             if (zoobankRegistrationList.Count < 1)
             {
-                throw new ApplicationException("No valid ZooBank registation records in JSON file");
+                throw new ApplicationException("No valid ZooBank registration records in JSON file");
             }
             else
             {
