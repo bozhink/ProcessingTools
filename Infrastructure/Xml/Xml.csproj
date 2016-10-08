@@ -90,6 +90,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="XQuery\select_multi-rank-taxa.xq" />
+    <None Include="XQuery\taxonomic_ranks.xq" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

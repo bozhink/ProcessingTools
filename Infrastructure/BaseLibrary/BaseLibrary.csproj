@@ -126,8 +126,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram.cd" />
-    <None Include="XQuery\select_multi-rank-taxa.xq" />
-    <None Include="XQuery\taxonomic_ranks.xq" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
