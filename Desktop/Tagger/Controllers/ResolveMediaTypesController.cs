@@ -34,11 +34,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new MediaTypesResolver(document.Xml, this.service, this.logger);
+            var parser = new MediaTypesResolver(this.service, this.logger);
 
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

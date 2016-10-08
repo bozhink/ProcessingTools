@@ -1,35 +1,49 @@
 ﻿namespace ProcessingTools.BaseLibrary.Floats
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using MediaType.Services.Data.Contracts;
     using Models;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.DocumentProvider;
+    using ProcessingTools.MediaType.Services.Data.Contracts;
     using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
-    public class MediaTypesResolver : TaxPubDocument, IParser
+    public class MediaTypesResolver : IGenericXmlContextParser<object>
     {
-        private readonly IMediaTypeDataService mediatypeDataService;
         private readonly ILogger logger;
+        private readonly IMediaTypeDataService service;
 
-        public MediaTypesResolver(string xml, IMediaTypeDataService mediatypeDataService, ILogger logger)
-            : base(xml)
+        public MediaTypesResolver(IMediaTypeDataService service, ILogger logger)
         {
-            this.mediatypeDataService = mediatypeDataService;
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
+            this.service = service;
             this.logger = logger;
         }
 
-        public async Task Parse()
+        public async Task<object> Parse(XmlNode context)
         {
-            XmlNodeList mediaElements = this.XmlDocument.SelectNodes(XPathValues.MediaElementXPath);
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            XmlNodeList mediaElements = context.SelectNodes(XPathValues.MediaElementXPath);
+
+            if (mediaElements.Count < 1)
+            {
+                return false;
+            }
 
             var extensions = this.GetExtensions(mediaElements);
             var mediatypes = await this.ResolveMediaTypes(extensions);
@@ -50,7 +64,28 @@
                     .SetOrUpdateAttribute(AttributeNames.MimeSubtypeAttributeName, mediatype.MimeSubtype);
             }
 
-            //return true;
+            return true;
+        }
+
+        private IEnumerable<string> GetExtensions(XmlNodeList mediaNodes)
+        {
+            return mediaNodes.Cast<XmlNode>()
+                .Select(this.GetFileName)
+                .Where(m => !string.IsNullOrWhiteSpace(m))
+                .Select(this.GetFileExtension)
+                .Where(e => !string.IsNullOrWhiteSpace(e))
+                .Distinct()
+                .ToArray();
+        }
+
+        private string GetFileExtension(string fileName)
+        {
+            return Path.GetExtension(fileName).TrimStart('.');
+        }
+
+        private string GetFileName(XmlNode mediaNode)
+        {
+            return mediaNode.Attributes[AttributeNames.FileNameAttributeName]?.InnerText;
         }
 
         private IMediaType GetMediaTypeOfFileName(IEnumerable<IMediaType> mediatypes, string fileName)
@@ -72,28 +107,6 @@
             return mediatype;
         }
 
-        private string GetFileExtension(string fileName)
-        {
-            return Path.GetExtension(fileName).TrimStart('.');
-        }
-
-        private string GetFileName(XmlNode mediaNode)
-        {
-            return mediaNode.Attributes[AttributeNames.FileNameAttributeName]?.InnerText;
-        }
-
-        private async Task<IEnumerable<IMediaType>> ResolveMediaTypes(IEnumerable<string> extensions)
-        {
-            var mediatypes = new HashSet<IMediaType>();
-            foreach (var extension in extensions)
-            {
-                var mediatype = await this.ResolveFileExtensionToMediaType(extension);
-                mediatypes.Add(mediatype);
-            }
-
-            return mediatypes;
-        }
-
         private async Task<IMediaType> ResolveFileExtensionToMediaType(string extension)
         {
             var result = new MediaTypeResponseModel
@@ -101,7 +114,7 @@
                 FileExtension = extension
             };
 
-            var response = (await this.mediatypeDataService.GetMediaType(extension))
+            var response = (await this.service.GetMediaType(extension))
                 .FirstOrDefault();
 
             if (response != null)
@@ -114,15 +127,16 @@
             return result;
         }
 
-        private IEnumerable<string> GetExtensions(XmlNodeList mediaNodes)
+        private async Task<IEnumerable<IMediaType>> ResolveMediaTypes(IEnumerable<string> extensions)
         {
-            return mediaNodes.Cast<XmlNode>()
-                .Select(this.GetFileName)
-                .Where(m => !string.IsNullOrWhiteSpace(m))
-                .Select(this.GetFileExtension)
-                .Where(e => !string.IsNullOrWhiteSpace(e))
-                .Distinct()
-                .ToArray();
+            var mediatypes = new HashSet<IMediaType>();
+            foreach (var extension in extensions)
+            {
+                var mediatype = await this.ResolveFileExtensionToMediaType(extension);
+                mediatypes.Add(mediatype);
+            }
+
+            return mediatypes;
         }
     }
 }
