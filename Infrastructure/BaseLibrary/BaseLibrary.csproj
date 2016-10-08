@@ -77,9 +77,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
-    <Compile Include="References\Models\IReferencesConfiguration.cs" />
     <Compile Include="References\Models\IReferenceTemplateItem.cs" />
-    <Compile Include="References\Models\ReferencesConfiguration.cs" />
     <Compile Include="References\Models\ReferenceTemplateItem.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />

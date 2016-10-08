@@ -24,11 +24,9 @@
         {
             var tagger = new ReferencesTagger(
                 document.Xml,
-                new ReferencesConfiguration
-                {
-                    ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath
-                },
                 this.logger);
+
+            tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
 
             await tagger.Tag();
 

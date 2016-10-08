@@ -19,7 +19,6 @@
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private readonly IReferencesConfiguration referencesConfiguration;
         private readonly ILogger logger;
 
         // TODO: DI
@@ -28,12 +27,13 @@
         // TODO: DI
         private readonly IXslTransformer<IReferencesGetReferencesXslTransformProvider> referencesGetReferencesXslTransformer = new XslTransformer<IReferencesGetReferencesXslTransformProvider>(new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
 
-        public ReferencesTagger(string xml, IReferencesConfiguration referencesConfiguration, ILogger logger)
+        public ReferencesTagger(string xml, ILogger logger)
             : base(xml)
         {
             this.logger = logger;
-            this.referencesConfiguration = referencesConfiguration;
         }
+
+        public string ReferencesGetReferencesXmlPath { get; set; }
 
         public async Task Tag()
         {
@@ -192,13 +192,15 @@
 
         private async Task ExportReferences()
         {
+            if (string.IsNullOrWhiteSpace(this.ReferencesGetReferencesXmlPath))
+            {
+                return;
+            }
+
             var text = await this.referencesGetReferencesXslTransformer.Transform(this.Xml);
             var referencesList = XDocument.Parse(text);
 
-            if (this.referencesConfiguration != null)
-            {
-                referencesList.Save(this.referencesConfiguration.ReferencesGetReferencesXmlPath);
-            }
+            referencesList.Save(this.ReferencesGetReferencesXmlPath);
         }
     }
 }
