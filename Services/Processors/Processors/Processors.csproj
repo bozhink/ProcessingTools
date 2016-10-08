@@ -45,6 +45,8 @@
     <Compile Include="Contracts\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
+    <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />
@@ -75,6 +77,8 @@
     <Compile Include="Processors\References\ReferencesParser.cs" />
     <Compile Include="Processors\References\ReferencesTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
+    <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>

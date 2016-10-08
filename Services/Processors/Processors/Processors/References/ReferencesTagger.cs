@@ -9,29 +9,36 @@
     using System.Xml.Linq;
 
     using Contracts.References;
+    using Contracts.Transformers;
     using Models.References;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Contracts.Transformers;
-    using ProcessingTools.Xml.Providers;
-    using ProcessingTools.Xml.Transformers;
 
     public class ReferencesTagger : IReferencesTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
+        private readonly IReferencesTagTemplateTransformer referencesTagTemplateTransformer;
+        private readonly IReferencesGetReferencesTransformer referencesGetReferencesTransformer;
         private readonly ILogger logger;
 
-        // TODO: DI
-        private readonly IXslTransformer<IReferencesTagTemplateXslTransformProvider> referencesTagTemplateXslTransformer = new XslTransformer<IReferencesTagTemplateXslTransformProvider>(new ReferencesTagTemplateXslTransformProvider(new XslTransformCache()));
-
-        // TODO: DI
-        private readonly IXslTransformer<IReferencesGetReferencesXslTransformProvider> referencesGetReferencesXslTransformer = new XslTransformer<IReferencesGetReferencesXslTransformProvider>(new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
-
-        public ReferencesTagger(ILogger logger)
+        public ReferencesTagger(
+            IReferencesTagTemplateTransformer referencesTagTemplateTransformer,
+            IReferencesGetReferencesTransformer referencesGetReferencesTransformer,
+            ILogger logger)
         {
+            if (referencesTagTemplateTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(referencesTagTemplateTransformer));
+            }
+
+            if (referencesGetReferencesTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(referencesGetReferencesTransformer));
+            }
+
+            this.referencesTagTemplateTransformer = referencesTagTemplateTransformer;
+            this.referencesGetReferencesTransformer = referencesGetReferencesTransformer;
             this.logger = logger;
         }
 
@@ -181,7 +188,7 @@
 
         private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(XmlNode context)
         {
-            var text = await this.referencesTagTemplateXslTransformer.Transform(context);
+            var text = await this.referencesTagTemplateTransformer.Transform(context);
             var referencesTemplatesXml = XDocument.Parse(text);
 
             var referencesTemplates = referencesTemplatesXml.Descendants("reference")
@@ -206,7 +213,7 @@
                 return;
             }
 
-            var text = await this.referencesGetReferencesXslTransformer.Transform(context);
+            var text = await this.referencesGetReferencesTransformer.Transform(context);
             var referencesList = XDocument.Parse(text);
 
             referencesList.Save(this.ReferencesGetReferencesXmlPath);
