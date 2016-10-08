@@ -17,38 +17,39 @@
             this.logger = logger;
         }
 
-        public Task Tag()
+        public Task Tag() => Task.Run(() => this.TagSync());
+
+        private object TagSync()
         {
-            return Task.Run(() =>
+            // Get list of table-wrap with correctly formatted foot-notes
+            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
+            if (tableWrapList.Count < 1)
             {
-                // Get list of table-wrap with correctly formatted foot-notes
-                XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
-                if (tableWrapList.Count < 1)
+                this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                return false;
+            }
+
+            this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
+            foreach (XmlNode tableWrap in tableWrapList)
+            {
+                Hashtable tableFootnotes = new Hashtable();
+
+                // Get foot-note's label and corresponding @id-s
+                foreach (XmlNode fn in tableWrap.SelectNodes(".//fn[label][@id]", this.NamespaceManager))
                 {
-                    this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
-                    return;
+                    tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
                 }
 
-                this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
-                foreach (XmlNode tableWrap in tableWrapList)
+                foreach (string tableFootnoteKey in tableFootnotes.Keys)
                 {
-                    Hashtable tableFootnotes = new Hashtable();
-
-                    // Get foot-note's label and corresponding @id-s
-                    foreach (XmlNode fn in tableWrap.SelectNodes(".//fn[label][@id]", this.NamespaceManager))
+                    foreach (XmlNode footnoteSup in tableWrap.SelectNodes(".//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
                     {
-                        tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
-                    }
-
-                    foreach (string tableFootnoteKey in tableFootnotes.Keys)
-                    {
-                        foreach (XmlNode footnoteSup in tableWrap.SelectNodes(".//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
-                        {
-                            this.TagCitationInXref(tableFootnotes, tableFootnoteKey, footnoteSup);
-                        }
+                        this.TagCitationInXref(tableFootnotes, tableFootnoteKey, footnoteSup);
                     }
                 }
-            });
+            }
+
+            return true;
         }
 
         private void TagCitationInXref(Hashtable tableFootnotes, string tableFootnoteKey, XmlNode footnoteSup)
