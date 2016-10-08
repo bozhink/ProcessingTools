@@ -42,16 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGenericXslTransformer.cs" />
-    <Compile Include="Contracts\IModifiableXslTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IGenericXslTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IModifiableXslTransformer.cs" />
     <Compile Include="Contracts\Providers\IModifiableXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\ITextContentXslTransformProvider.cs" />
-    <Compile Include="Contracts\IXmlTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IXmlTransformer.cs" />
     <Compile Include="Contracts\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
     <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
-    <Compile Include="Contracts\IXslTransformer.cs" />
-    <Compile Include="Contracts\IXslTransformProvider.cs" />
+    <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
+    <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />

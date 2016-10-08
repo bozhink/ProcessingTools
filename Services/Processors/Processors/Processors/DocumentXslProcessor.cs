@@ -6,7 +6,7 @@
     using Contracts;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Transformers;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
     {

@@ -12,7 +12,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Transformers;
     using ProcessingTools.Xml.Transformers;
 
     public class ReferencesTagger : TaxPubDocument, ITagger

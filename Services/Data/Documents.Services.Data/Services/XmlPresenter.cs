@@ -9,7 +9,7 @@
 
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Transformers;
     using ProcessingTools.Xml.Transformers;
 
     using Providers;

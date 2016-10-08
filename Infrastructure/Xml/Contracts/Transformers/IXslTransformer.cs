@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts
+﻿namespace ProcessingTools.Xml.Contracts.Transformers
 {
     using ProcessingTools.Contracts;
 

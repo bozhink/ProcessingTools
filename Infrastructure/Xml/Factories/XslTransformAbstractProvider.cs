@@ -4,6 +4,7 @@
     using System.Xml.Xsl;
 
     using Contracts;
+    using Contracts.Providers;
 
     public abstract class XslTransformAbstractProvider : IXslTransformProvider
     {

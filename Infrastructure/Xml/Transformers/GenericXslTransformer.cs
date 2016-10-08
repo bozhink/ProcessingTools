@@ -5,7 +5,8 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
+    using Contracts.Providers;
+    using Contracts.Transformers;
     using Extensions;
 
     public class XslTransformer<T> : IXslTransformer<T>
