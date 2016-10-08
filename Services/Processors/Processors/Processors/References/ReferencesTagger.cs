@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.References
+﻿namespace ProcessingTools.Processors.References
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,9 @@
     using System.Xml;
     using System.Xml.Linq;
 
+    using Contracts.References;
+    using Models.References;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts.Providers;
@@ -15,7 +18,7 @@
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
-    public class ReferencesTagger : IGenericXmlContextTagger<object>
+    public class ReferencesTagger : IReferencesTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 

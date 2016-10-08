@@ -77,8 +77,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
-    <Compile Include="References\Models\IReferenceTemplateItem.cs" />
-    <Compile Include="References\Models\ReferenceTemplateItem.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Special\SpecialFactory.cs" />
     <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
@@ -104,7 +102,6 @@
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="Special\QuentinFlora.cs" />
-    <Compile Include="References\ReferencesTagger.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="Taxonomy\Species\Species.cs" />

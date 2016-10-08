@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.References
+﻿namespace ProcessingTools.Processors.References
 {
     using System;
     using System.Text.RegularExpressions;

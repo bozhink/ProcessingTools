@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.BaseLibrary.References
+﻿namespace ProcessingTools.Processors.Models.References
 {
-    public interface IReferenceTemplateItem
+    internal interface IReferenceTemplateItem
     {
         string Authors { get; }
 

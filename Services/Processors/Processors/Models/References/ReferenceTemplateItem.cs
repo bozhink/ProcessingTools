@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.BaseLibrary.References
+﻿namespace ProcessingTools.Processors.Models.References
 {
-    public class ReferenceTemplateItem : IReferenceTemplateItem
+    internal class ReferenceTemplateItem : IReferenceTemplateItem
     {
         public string Id { get; set; }
 

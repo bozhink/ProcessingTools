@@ -1,31 +1,35 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.References;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.References;
 
     [Description("Tag references.")]
     public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
     {
-        private readonly ILogger logger;
+        private readonly IReferencesTagger tagger;
 
-        public TagReferencesController(IDocumentFactory documentFactory, ILogger logger)
+        public TagReferencesController(IDocumentFactory documentFactory, IReferencesTagger tagger)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (tagger == null)
+            {
+                throw new ArgumentNullException(nameof(tagger));
+            }
+
+            this.tagger = tagger;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new ReferencesTagger(this.logger);
-
-            tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
-            await tagger.Tag(document.XmlDocument.DocumentElement);
+            this.tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
+            await this.tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }
