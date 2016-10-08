@@ -201,5 +201,32 @@
 
             return Task.FromResult(!reset);
         }
+
+        /// <summary>
+        /// Sets or updates attribute with given value of an XmlNode object.
+        /// </summary>
+        /// <param name="node">XmlNode object to be changed.</param>
+        /// <param name="attributeName">Name of the attribute to be created of updated.</param>
+        /// <param name="attributeValue">Value of the attribute.</param>
+        /// <returns>The same XmlNode object. Used for chaining.</returns>
+        public static XmlNode SetOrUpdateAttribute(this XmlNode node, string attributeName, string attributeValue)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var attribute = node.Attributes[attributeName];
+            if (attribute == null)
+            {
+                var a = node.OwnerDocument.CreateAttribute(attributeName);
+                node.Attributes.Append(a);
+                attribute = a;
+            }
+
+            attribute.InnerText = attributeValue;
+
+            return node;
+        }
     }
 }

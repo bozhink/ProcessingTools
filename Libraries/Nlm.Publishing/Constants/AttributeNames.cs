@@ -12,5 +12,9 @@
         public const string XLinkHref = "href";
         public const string XLinkType = "type";
         public const string XLinkTitle = "title";
+
+        public const string FileNameAttributeName = "xlink:href";
+        public const string MimeTypeAttributeName = "mimetype";
+        public const string MimeSubtypeAttributeName = "mime-subtype";
     }
 }

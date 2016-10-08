@@ -12,21 +12,13 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Xml.Extensions;
 
     public class MediaTypesResolver : TaxPubDocument, IParser
     {
-        private const string DefaultMimeType = "application";
-        private const string DefaultMimeSubtype = "octet-stream";
-
-        private const string MediaElementXPath = "//media";
-
-        private const string FileNameAttributeName = "xlink:href";
-        private const string MimeTypeAttributeName = "mimetype";
-        private const string MimeSubtypeAttributeName = "mime-subtype";
-
-        private ILogger logger;
-
-        private IMediaTypeDataService mediatypeDataService;
+        private readonly IMediaTypeDataService mediatypeDataService;
+        private readonly ILogger logger;
 
         public MediaTypesResolver(string xml, IMediaTypeDataService mediatypeDataService, ILogger logger)
             : base(xml)
@@ -35,80 +27,102 @@
             this.logger = logger;
         }
 
-        public Task Parse()
+        public async Task Parse()
         {
-            return Task.Run(() =>
+            XmlNodeList mediaElements = this.XmlDocument.SelectNodes(XPathValues.MediaElementXPath);
+
+            var extensions = this.GetExtensions(mediaElements);
+            var mediatypes = await this.ResolveMediaTypes(extensions);
+
+            foreach (XmlNode mediaNode in mediaElements)
             {
-                XmlNodeList mediaElements = this.XmlDocument.SelectNodes(MediaElementXPath, this.NamespaceManager);
-
-                var extensions = new HashSet<string>(mediaElements.Cast<XmlNode>()
-                    .Select(m => m.Attributes[FileNameAttributeName]?.InnerText)
-                    .Where(m => !string.IsNullOrWhiteSpace(m))
-                    .Select(f => Path.GetExtension(f).TrimStart('.'))
-                    .Where(e => !string.IsNullOrWhiteSpace(e)));
-
-                var types = new HashSet<MediaTypeResponseModel>(extensions.Select(e =>
+                var fileName = this.GetFileName(mediaNode);
+                if (string.IsNullOrWhiteSpace(fileName))
                 {
-                    var result = new MediaTypeResponseModel
-                    {
-                        FileExtension = e,
-                        MimeType = DefaultMimeType,
-                        MimeSubtype = DefaultMimeSubtype
-                    };
-
-                    // TODO: mediatypes
-                    var response = this.mediatypeDataService.GetMediaType(e).Result?.FirstOrDefault();
-                    if (response != null)
-                    {
-                        result.FileExtension = response.FileExtension;
-                        result.MimeType = response.MimeType;
-                        result.MimeSubtype = response.MimeSubtype;
-                    }
-
-                    return result;
-                }));
-
-                foreach (XmlNode mediaElement in mediaElements)
-                {
-                    string mimeType = DefaultMimeType;
-                    string mimeSubtype = DefaultMimeSubtype;
-
-                    var fileName = mediaElement.Attributes[FileNameAttributeName]?.InnerText;
-                    if (fileName != null && !string.IsNullOrWhiteSpace(fileName))
-                    {
-                        string fileExtension = Path.GetExtension(fileName).TrimStart('.');
-                        if (fileExtension.Length > 0)
-                        {
-                            var result = types?.FirstOrDefault(t => t.FileExtension == fileExtension);
-                            if (result != null)
-                            {
-                                mimeType = result.MimeType;
-                                mimeSubtype = result.MimeSubtype;
-                            }
-                        }
-
-                        this.SetMimeAttribute(mediaElement, MimeTypeAttributeName, mimeType);
-                        this.SetMimeAttribute(mediaElement, MimeSubtypeAttributeName, mimeSubtype);
-                    }
-                    else
-                    {
-                        this.logger?.Log(LogType.Warning, "File name not provided.");
-                    }
+                    this.logger?.Log(LogType.Warning, "File name is not provided.");
+                    continue;
                 }
-            });
-        }
 
-        private void SetMimeAttribute(XmlNode mediaElement, string attributeName, string type)
-        {
-            var mimeAttribute = mediaElement.Attributes[attributeName];
-            if (mimeAttribute == null)
-            {
-                var attribute = mediaElement.OwnerDocument.CreateAttribute(attributeName);
-                mediaElement.Attributes.Append(attribute);
-                mimeAttribute = attribute;
+                var mediatype = this.GetMediaTypeOfFileName(mediatypes, fileName);
+
+                mediaNode
+                    .SetOrUpdateAttribute(AttributeNames.MimeTypeAttributeName, mediatype.MimeType)
+                    .SetOrUpdateAttribute(AttributeNames.MimeSubtypeAttributeName, mediatype.MimeSubtype);
             }
 
-            mimeAttribute.InnerText = type;
+            //return true;
+        }
+
+        private IMediaType GetMediaTypeOfFileName(IEnumerable<IMediaType> mediatypes, string fileName)
+        {
+            IMediaType mediatype = new MediaTypeResponseModel
+            {
+                FileExtension = this.GetFileExtension(fileName)
+            };
+
+            if (!string.IsNullOrEmpty(mediatype.FileExtension))
+            {
+                var result = mediatypes.FirstOrDefault(t => t.FileExtension == mediatype.FileExtension);
+                if (result != null)
+                {
+                    mediatype = result;
+                }
+            }
+
+            return mediatype;
+        }
+
+        private string GetFileExtension(string fileName)
+        {
+            return Path.GetExtension(fileName).TrimStart('.');
+        }
+
+        private string GetFileName(XmlNode mediaNode)
+        {
+            return mediaNode.Attributes[AttributeNames.FileNameAttributeName]?.InnerText;
+        }
+
+        private async Task<IEnumerable<IMediaType>> ResolveMediaTypes(IEnumerable<string> extensions)
+        {
+            var mediatypes = new HashSet<IMediaType>();
+            foreach (var extension in extensions)
+            {
+                var mediatype = await this.ResolveFileExtensionToMediaType(extension);
+                mediatypes.Add(mediatype);
+            }
+
+            return mediatypes;
+        }
+
+        private async Task<IMediaType> ResolveFileExtensionToMediaType(string extension)
+        {
+            var result = new MediaTypeResponseModel
+            {
+                FileExtension = extension
+            };
+
+            var response = (await this.mediatypeDataService.GetMediaType(extension))
+                .FirstOrDefault();
+
+            if (response != null)
+            {
+                result.FileExtension = response.FileExtension;
+                result.MimeType = response.MimeType;
+                result.MimeSubtype = response.MimeSubtype;
+            }
+
+            return result;
+        }
+
+        private IEnumerable<string> GetExtensions(XmlNodeList mediaNodes)
+        {
+            return mediaNodes.Cast<XmlNode>()
+                .Select(this.GetFileName)
+                .Where(m => !string.IsNullOrWhiteSpace(m))
+                .Select(this.GetFileExtension)
+                .Where(e => !string.IsNullOrWhiteSpace(e))
+                .Distinct()
+                .ToArray();
         }
     }
 }

@@ -85,6 +85,7 @@
     <Compile Include="Contracts\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="Floats\MediaTypesResolver.cs" />
+    <Compile Include="Floats\Models\IMediaType.cs" />
     <Compile Include="Floats\Models\MediaTypeResponseModel.cs" />
     <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
     <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />
