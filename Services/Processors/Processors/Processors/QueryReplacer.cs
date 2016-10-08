@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors
+﻿namespace ProcessingTools.Processors
 {
     using System;
     using System.Text.RegularExpressions;

@@ -111,7 +111,6 @@
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
     <Compile Include="Extensions\XmlNormalizer.cs" />
-    <Compile Include="Floats\TableFootNotesTagger.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Special\Flora.cs" />

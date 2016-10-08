@@ -1,14 +1,16 @@
-﻿namespace ProcessingTools.BaseLibrary.Floats
+﻿namespace ProcessingTools.Processors.Floats
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Nlm.Publishing.Constants;
 
-    public class TableFootNotesTagger : IGenericXmlContextTagger<object>
+    public class TableFootNotesTagger : ITableFootNotesTagger
     {
         private readonly ILogger logger;
 
