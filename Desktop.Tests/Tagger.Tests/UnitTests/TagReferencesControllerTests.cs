@@ -20,7 +20,7 @@
         private ProgramSettings settings;
         private ILogger logger;
         private IDocumentFactory documentFactory;
-        public IReferencesTagger tagger;
+        private IReferencesTagger tagger;
 
         [SetUp]
         public void Init()
