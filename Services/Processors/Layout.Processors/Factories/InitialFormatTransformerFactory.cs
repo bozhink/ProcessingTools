@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Contracts;
+    using Contracts.Factories;
 
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Contracts.Providers;
@@ -31,7 +31,7 @@
             this.systemInitialFormatXslTransformer = systemInitialFormatXslTransformer;
         }
 
-        public IXslTransformer Create(SchemaType schemaType)
+        public IXmlTransformer Create(SchemaType schemaType)
         {
             switch (schemaType)
             {

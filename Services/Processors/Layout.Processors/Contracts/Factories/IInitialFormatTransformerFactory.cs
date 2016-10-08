@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Layout.Processors.Contracts
+﻿namespace ProcessingTools.Layout.Processors.Contracts.Factories
 {
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Contracts.Transformers;
 
     public interface IInitialFormatTransformerFactory
     {
-        IXslTransformer Create(SchemaType schemaType);
+        IXmlTransformer Create(SchemaType schemaType);
     }
 }

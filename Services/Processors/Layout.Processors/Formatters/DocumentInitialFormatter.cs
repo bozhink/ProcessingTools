@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using Contracts;
+    using Contracts.Factories;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;

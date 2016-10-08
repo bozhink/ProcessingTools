@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDocumentInitialFormatter.cs" />
-    <Compile Include="Contracts\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
