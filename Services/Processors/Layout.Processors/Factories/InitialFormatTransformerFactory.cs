@@ -5,6 +5,7 @@
     using Contracts;
 
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Transformers;
 
     public class InitialFormatTransformerFactory : IInitialFormatTransformerFactory

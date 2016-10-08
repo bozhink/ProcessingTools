@@ -46,8 +46,10 @@
     <Compile Include="Contracts\Providers\IFormatNlmToSystemXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatSystemToNlmXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatTaxonTreatmentsXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\INlmInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IReferencesGetReferencesXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\ISystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Contracts\Transformers\IGenericXslTransformer.cs" />
     <Compile Include="Contracts\Transformers\IModifiableXslTransformer.cs" />
@@ -70,8 +72,10 @@
     <Compile Include="Providers\FormatSystemToNlmXslTransformProvider.cs" />
     <Compile Include="Providers\FormatTaxonTreatmentsXslTransformProvider.cs" />
     <Compile Include="Providers\ModifiableXslTransformProvider.cs" />
+    <Compile Include="Providers\NlmInitialFormatXslTransformProvider.cs" />
     <Compile Include="Providers\ReferencesGetReferencesXslTransformProvider.cs" />
     <Compile Include="Providers\ReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Providers\TaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Transformers\GenericXslTransformer.cs" />
     <Compile Include="Transformers\ModifiableXslTransformer.cs" />

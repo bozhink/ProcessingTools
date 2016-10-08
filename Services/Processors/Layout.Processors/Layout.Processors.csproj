@@ -38,13 +38,9 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\IInitialFormatTransformerFactory.cs" />
-    <Compile Include="Contracts\INlmInitialFormatXslTransformProvider.cs" />
-    <Compile Include="Contracts\ISystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\NlmInitialFormatXslTransformProvider.cs" />
-    <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
