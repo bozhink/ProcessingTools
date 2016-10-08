@@ -86,7 +86,7 @@
                     PreserveWhitespace = true
                 };
 
-                var replacePatternNode = document.CreateElement(NodeNames.Abbrev);
+                var replacePatternNode = document.CreateElement(ElementNames.Abbrev);
 
                 if (!string.IsNullOrEmpty(this.ContentType))
                 {
@@ -117,7 +117,7 @@
         private void SetContent(XmlNode abbrev)
         {
             var abbrevContent = abbrev.CloneNode(true);
-            abbrevContent.SelectNodes(NodeNames.Def).RemoveXmlNodes();
+            abbrevContent.SelectNodes(ElementNames.Def).RemoveXmlNodes();
             abbrevContent.SelectNodes("*[name()!='sup'][name()!='sub']").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
@@ -132,7 +132,7 @@
 
         private void SetDefinition(XmlNode abbrev)
         {
-            this.Definition = abbrev[NodeNames.Def]?.InnerText
+            this.Definition = abbrev[ElementNames.Def]?.InnerText
                 .RegexReplace(@"\s+", " ")
                 .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
                 .RegexReplace(@"\((.+)\)", "$1")

@@ -5,7 +5,7 @@
     using Constants;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ElementName = NodeNames.Abbrev, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementName = ElementNames.Abbrev, Namespace = "", IsNullable = false)]
     public partial class NlmAbbreviationModel
     {
         [XmlAttribute(AttributeName = AttributeNames.ContentType)]

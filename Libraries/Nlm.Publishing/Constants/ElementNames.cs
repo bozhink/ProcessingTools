@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Constants
 {
-    public static class NodeNames
+    public static class ElementNames
     {
         public const string NamedContent = "named-content";
         public const string ExtLink = "ext-link";

@@ -5,7 +5,7 @@
     using ProcessingTools.Nlm.Publishing.Constants;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(NodeNames.ExtLink, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.ExtLink, Namespace = "", IsNullable = false)]
     public class ExternalLinkSerializableModel
     {
         [XmlAttribute(AttributeNames.ExtLinkType)]

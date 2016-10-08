@@ -39,7 +39,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Constants\AttributeNames.cs" />
     <Compile Include="Constants\Namespaces.cs" />
-    <Compile Include="Constants\NodeNames.cs" />
+    <Compile Include="Constants\ElementNames.cs" />
     <Compile Include="Models\NlmAbbreviationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\ArticleType.cs" />
