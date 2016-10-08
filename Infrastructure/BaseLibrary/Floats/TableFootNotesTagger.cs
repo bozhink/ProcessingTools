@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.BaseLibrary.Floats
 {
-    using System.Collections;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     public class TableFootNotesTagger : TaxPubDocument, ITagger
     {
@@ -22,7 +23,7 @@
         private object TagSync()
         {
             // Get list of table-wrap with correctly formatted foot-notes
-            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes("//table-wrap[table-wrap-foot[fn[label][@id]]]", this.NamespaceManager);
+            XmlNodeList tableWrapList = this.XmlDocument.SelectNodes(".//table-wrap[table-wrap-foot[fn[label][@id]]]");
             if (tableWrapList.Count < 1)
             {
                 this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
@@ -32,19 +33,24 @@
             this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
             foreach (XmlNode tableWrap in tableWrapList)
             {
-                Hashtable tableFootnotes = new Hashtable();
+                var tableFootnotes = new Dictionary<string, string>();
 
                 // Get foot-note's label and corresponding @id-s
-                foreach (XmlNode fn in tableWrap.SelectNodes(".//fn[label][@id]", this.NamespaceManager))
+                foreach (XmlNode footnote in tableWrap.SelectNodes("./table-wrap-foot/fn[label][@id]"))
                 {
-                    tableFootnotes.Add(fn["label"].InnerText.Trim(), fn.Attributes["id"].Value.Trim());
+                    var label = footnote[ElementNames.Label].InnerText.Trim();
+                    var id = footnote.Attributes[AttributeNames.Id].Value.Trim();
+
+                    tableFootnotes.Add(label, id);
                 }
 
-                foreach (string tableFootnoteKey in tableFootnotes.Keys)
+                foreach (string label in tableFootnotes.Keys)
                 {
-                    foreach (XmlNode footnoteSup in tableWrap.SelectNodes(".//table//sup[normalize-space(.)='" + tableFootnoteKey + "']", this.NamespaceManager))
+                    string xpath = $".//table//sup[normalize-space(.)='{label}']";
+
+                    foreach (XmlNode footnoteCitation in tableWrap.SelectNodes(xpath))
                     {
-                        this.TagCitationInXref(tableFootnotes, tableFootnoteKey, footnoteSup);
+                        this.WrapCitationInXref(tableFootnotes[label], footnoteCitation);
                     }
                 }
             }
@@ -52,21 +58,14 @@
             return true;
         }
 
-        private void TagCitationInXref(Hashtable tableFootnotes, string tableFootnoteKey, XmlNode footnoteSup)
+        private void WrapCitationInXref(string id, XmlNode footnoteCitation)
         {
-            XmlNode xrefTableFootNote = footnoteSup.OwnerDocument.CreateElement("xref");
+            var xref = footnoteCitation.OwnerDocument.CreateElement(ElementNames.XRef);
+            xref.SetAttribute(AttributeNames.RefType, RefTypeAttributeValues.TableFn);
+            xref.SetAttribute(AttributeNames.RId, id);
+            xref.InnerXml = footnoteCitation.OuterXml;
 
-            XmlAttribute refType = footnoteSup.OwnerDocument.CreateAttribute("ref-type");
-            refType.InnerXml = "table-fn";
-            xrefTableFootNote.Attributes.Append(refType);
-
-            XmlAttribute rid = footnoteSup.OwnerDocument.CreateAttribute("rid");
-            rid.InnerXml = tableFootnotes[tableFootnoteKey].ToString();
-            xrefTableFootNote.Attributes.Append(rid);
-
-            xrefTableFootNote.InnerXml = footnoteSup.OuterXml;
-
-            footnoteSup.ParentNode.ReplaceChild(xrefTableFootNote, footnoteSup);
+            footnoteCitation.ParentNode.ReplaceChild(xref, footnoteCitation);
         }
     }
 }
