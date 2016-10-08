@@ -5,17 +5,17 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using System.Xml;
     using System.Xml.Linq;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Transformers;
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
-    public class ReferencesTagger : TaxPubDocument, ITagger
+    public class ReferencesTagger : IGenericXmlContextTagger<object>
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
@@ -27,24 +27,28 @@
         // TODO: DI
         private readonly IXslTransformer<IReferencesGetReferencesXslTransformProvider> referencesGetReferencesXslTransformer = new XslTransformer<IReferencesGetReferencesXslTransformProvider>(new ReferencesGetReferencesXslTransformProvider(new XslTransformCache()));
 
-        public ReferencesTagger(string xml, ILogger logger)
-            : base(xml)
+        public ReferencesTagger(ILogger logger)
         {
             this.logger = logger;
         }
 
         public string ReferencesGetReferencesXmlPath { get; set; }
 
-        public async Task Tag()
+        public async Task<object> Tag(XmlNode context)
         {
-            await this.ExportReferences();
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
 
-            var referencesTemplates = await this.GetReferencesTemplates();
+            await this.ExportReferences(context);
+
+            var referencesTemplates = await this.GetReferencesTemplates(context);
 
             /*
              * Tag references using generated template
              */
-            string xml = this.Xml;
+            string xml = context.InnerXml;
             foreach (var reference in referencesTemplates)
             {
                 xml = Regex.Replace(
@@ -167,12 +171,14 @@
             }
             //// TODO: Call here the two loops above
 
-            this.Xml = xml;
+            context.InnerXml = xml;
+
+            return true;
         }
 
-        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates()
+        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(XmlNode context)
         {
-            var text = await this.referencesTagTemplateXslTransformer.Transform(this.Xml);
+            var text = await this.referencesTagTemplateXslTransformer.Transform(context);
             var referencesTemplatesXml = XDocument.Parse(text);
 
             var referencesTemplates = referencesTemplatesXml.Descendants("reference")
@@ -190,14 +196,14 @@
             return referencesTemplates;
         }
 
-        private async Task ExportReferences()
+        private async Task ExportReferences(XmlNode context)
         {
             if (string.IsNullOrWhiteSpace(this.ReferencesGetReferencesXmlPath))
             {
                 return;
             }
 
-            var text = await this.referencesGetReferencesXslTransformer.Transform(this.Xml);
+            var text = await this.referencesGetReferencesXslTransformer.Transform(context);
             var referencesList = XDocument.Parse(text);
 
             referencesList.Save(this.ReferencesGetReferencesXmlPath);

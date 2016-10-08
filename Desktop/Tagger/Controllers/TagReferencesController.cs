@@ -22,15 +22,10 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new ReferencesTagger(
-                document.Xml,
-                this.logger);
+            var tagger = new ReferencesTagger(this.logger);
 
             tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
-
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }
