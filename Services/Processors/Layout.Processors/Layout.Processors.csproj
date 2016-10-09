@@ -37,6 +37,8 @@
   <ItemGroup>
     <Compile Include="Abstracts\Normalizers\AbstractXmlNormalizer.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\Factories\INormalizationTransformerFactory.cs" />
+    <Compile Include="Contracts\Factories\ITransformerFactory.cs" />
     <Compile Include="Contracts\Formatters\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
     <Compile Include="Contracts\Normalizers\IDocumentNormalizer.cs" />
