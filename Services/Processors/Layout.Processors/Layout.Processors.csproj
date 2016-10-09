@@ -47,6 +47,8 @@
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Processors\Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformers\FormatNlmToSystemTransformer.cs" />
+    <Compile Include="Transformers\FormatSystemToNlmTransformer.cs" />
     <Compile Include="Transformers\NlmInitialFormatTransformer.cs" />
     <Compile Include="Transformers\SystemInitialFormatTransformer.cs" />
   </ItemGroup>
