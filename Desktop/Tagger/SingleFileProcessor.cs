@@ -67,7 +67,6 @@
                     return;
                 }
 
-
                 if (this.settings.RunXslTransform)
                 {
                     this.InvokeProcessor<IRunCustomXslTransformController>(kernel).Wait();
