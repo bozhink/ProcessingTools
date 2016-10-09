@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IReferencesParser : IGenericXmlContextParser<object>
+    public interface IReferencesParser : IXmlContextParser
     {
     }
 }

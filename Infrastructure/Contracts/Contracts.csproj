@@ -75,6 +75,7 @@
     <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="ITransformer.cs" />
     <Compile Include="IXmlContextNormalizer.cs" />
+    <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
     <Compile Include="IXmlNamespaceManagerProvider.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ICoordinatesParser : IGenericXmlContextParser<object>
+    public interface ICoordinatesParser : IXmlContextParser
     {
     }
 }
