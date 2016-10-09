@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Xml.Contracts.Transformers;
 
-    public interface IFormatSystemToNlmTransformer : IXmlTransformer
+    public interface IFormatToNlmTransformer : IXmlTransformer
     {
     }
 }

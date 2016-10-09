@@ -5,9 +5,9 @@
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Transformers;
 
-    public class FormatSystemToNlmTransformer : XslTransformer<IFormatSystemToNlmXslTransformProvider>, IFormatSystemToNlmTransformer
+    public class FormatToNlmTransformer : XslTransformer<IFormatSystemToNlmXslTransformProvider>, IFormatToNlmTransformer
     {
-        public FormatSystemToNlmTransformer(IFormatSystemToNlmXslTransformProvider xslTransformProvider)
+        public FormatToNlmTransformer(IFormatSystemToNlmXslTransformProvider xslTransformProvider)
             : base(xslTransformProvider)
         {
         }
