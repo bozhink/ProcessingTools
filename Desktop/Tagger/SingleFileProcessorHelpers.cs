@@ -1,37 +1,39 @@
 ﻿namespace ProcessingTools.Tagger
 {
+    using Contracts;
+    using Extensions;
+    using Ninject;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
     using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
-    using Extensions;
-
-    using Ninject;
-
     public partial class SingleFileProcessor
     {
-        private Task InvokeProcessor(string message, Action action)
+        private static async Task InvokeProcessor(string message, Func<object, Task> action, ILogger logger)
         {
-            return Task.Run(() =>
+            var timer = new Stopwatch();
+            timer.Start();
+            logger?.Log(message);
+
+            try
             {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                this.logger?.Log(message);
+                await action.Invoke(null);
+            }
+            catch (Exception e)
+            {
+                logger?.Log(e, string.Empty);
+            }
 
-                try
-                {
-                    action.Invoke();
-                }
-                catch (Exception e)
-                {
-                    this.logger?.Log(e, string.Empty);
-                }
+            PrintElapsedTime(timer, logger);
+        }
 
-                this.PrintElapsedTime(timer);
-            });
+        private static void PrintElapsedTime(Stopwatch timer, ILogger logger)
+        {
+            logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
         }
 
         private async Task InvokeProcessor<TController>(IKernel kernel)
@@ -47,12 +49,10 @@
 
             string message = controller.GetDescriptionMessageForController();
 
-            await this.InvokeProcessor(
+            await InvokeProcessor(
                 message,
-                () =>
-                {
-                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
-                });
+                _ => controller.Run(context, this.document.NamespaceManager, this.settings, this.logger),
+                this.logger);
         }
 
         private async Task InvokeProcessor(Type controllerType, IKernel kernel)
@@ -83,12 +83,10 @@
 
             string message = controller.GetDescriptionMessageForController();
 
-            await this.InvokeProcessor(
+            await InvokeProcessor(
                 message,
-                () =>
-                {
-                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
-                });
+                _ => controller.Run(context, this.document.NamespaceManager, this.settings, this.logger),
+                this.logger);
         }
     }
 }

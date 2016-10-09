@@ -260,11 +260,6 @@
             });
         }
 
-        private void PrintElapsedTime(Stopwatch timer)
-        {
-            this.logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
-        }
-
         private void ReadDocument()
         {
             this.fileProcessor.Read(this.document);
@@ -307,13 +302,14 @@
 
         private async Task WriteOutputFile()
         {
-            await this.InvokeProcessor(
+            await InvokeProcessor(
                 Messages.WriteOutputFileMessage,
-                () =>
+                _ => Task.Run(() =>
                 {
                     this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.ArticleSchemaType);
                     this.fileProcessor.Write(this.document, null, null);
-                });
+                }),
+                this.logger);
         }
     }
 }
