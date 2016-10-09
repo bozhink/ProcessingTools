@@ -5,8 +5,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using Contracts;
     using Contracts.Factories;
+    using Contracts.Formatters;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;

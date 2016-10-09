@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Layout.Processors.Contracts
+﻿namespace ProcessingTools.Layout.Processors.Contracts.Formatters
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
