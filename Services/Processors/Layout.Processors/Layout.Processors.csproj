@@ -40,6 +40,8 @@
     <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
     <Compile Include="Contracts\Normalizers\INlmXmlNormalizer.cs" />
     <Compile Include="Contracts\Normalizers\ISystemXmlNormalizer.cs" />
+    <Compile Include="Contracts\Transformers\IFormatNlmToSystemTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IFormatSystemToNlmTransformer.cs" />
     <Compile Include="Contracts\Transformers\INlmInitialFormatTransformer.cs" />
     <Compile Include="Contracts\Transformers\ISystemInitialFormatTransformer.cs" />
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
