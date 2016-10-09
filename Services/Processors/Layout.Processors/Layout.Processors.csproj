@@ -51,6 +51,7 @@
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Factories\NormalizationTransformerFactory.cs" />
     <Compile Include="Processors\Formatters\DocumentInitialFormatter.cs" />
+    <Compile Include="Processors\Normalizers\DocumentNormalizer.cs" />
     <Compile Include="Processors\Normalizers\NlmXmlNormalizer.cs" />
     <Compile Include="Processors\Normalizers\SystemXmlNormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

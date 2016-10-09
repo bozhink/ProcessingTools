@@ -17,16 +17,16 @@
         private const int NumberOfPostFormattingIterations = 3;
         private const string SensuSelector = @"(?:(?i)(?:\bs\.\s*|\bsens?u?\.?\s+)[sl][a-z]*\.?|\bsensu\b)";
 
-        private readonly IInitialFormatTransformerFactory initialFormatTransformerFactory;
+        private readonly IInitialFormatTransformerFactory transformerFactory;
 
-        public DocumentInitialFormatter(IInitialFormatTransformerFactory initialFormatTransformerFactory)
+        public DocumentInitialFormatter(IInitialFormatTransformerFactory transformerFactory)
         {
-            if (initialFormatTransformerFactory == null)
+            if (transformerFactory == null)
             {
-                throw new ArgumentNullException(nameof(initialFormatTransformerFactory));
+                throw new ArgumentNullException(nameof(transformerFactory));
             }
 
-            this.initialFormatTransformerFactory = initialFormatTransformerFactory;
+            this.transformerFactory = transformerFactory;
         }
 
         public async Task<object> Format(IDocument document)
@@ -36,7 +36,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var transformer = this.initialFormatTransformerFactory.Create(document.SchemaType);
+            var transformer = this.transformerFactory.Create(document.SchemaType);
             document.Xml = await transformer.Transform(document.Xml);
 
             this.TrimBlockElements(document);
