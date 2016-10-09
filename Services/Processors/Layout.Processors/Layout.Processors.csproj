@@ -38,6 +38,8 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Formatters\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Contracts\Normalizers\INlmXmlNormalizer.cs" />
+    <Compile Include="Contracts\Normalizers\ISystemXmlNormalizer.cs" />
     <Compile Include="Contracts\Transformers\INlmInitialFormatTransformer.cs" />
     <Compile Include="Contracts\Transformers\ISystemInitialFormatTransformer.cs" />
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
@@ -46,7 +48,9 @@
     <Compile Include="Transformers\NlmInitialFormatTransformer.cs" />
     <Compile Include="Transformers\SystemInitialFormatTransformer.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Processors\Normalizers\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
