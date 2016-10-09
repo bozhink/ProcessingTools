@@ -1,7 +1,5 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    using System.Xml;
-
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Providers;
@@ -12,54 +10,6 @@
     /// </summary>
     public static class XmlNormalizer
     {
-        /// <summary>
-        /// Transforms a given XML string to system Xml Schema.
-        /// </summary>
-        /// <param name="xml">XML as string to be transformed.</param>
-        /// <returns>Transformed XML as string.</returns>
-        public static string NormalizeXmlToSystemXml(this string xml)
-        {
-            // TODO: DI, async
-            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
-            return transformer.Transform(xml).Result;
-        }
-
-        /// <summary>
-        /// Transforms a given XmlDocument object to system Xml Schema.
-        /// </summary>
-        /// <param name="xml">XmlDocument object to be transformed.</param>
-        /// <returns>Transformed XML as string.</returns>
-        public static string NormalizeXmlToSystemXml(this XmlDocument xml)
-        {
-            // TODO: DI, async
-            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
-            return transformer.Transform(xml).Result;
-        }
-
-        /// <summary>
-        /// Transforms a given XML string to TaxPub NLM Xml Schema.
-        /// </summary>
-        /// <param name="xml">XML as string to be transformed.</param>
-        /// <returns>Transformed XML as string.</returns>
-        public static string NormalizeXmlToNlmXml(this string xml)
-        {
-            // TODO: DI, async
-            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
-            return transformer.Transform(xml).Result;
-        }
-
-        /// <summary>
-        /// Transforms a given XmlDocument object to TaxPub NLM Xml Schema.
-        /// </summary>
-        /// <param name="xml">XmlDocument object to be transformed.</param>
-        /// <returns>Transformed XML as string.</returns>
-        public static string NormalizeXmlToNlmXml(this XmlDocument xml)
-        {
-            // TODO: DI, async
-            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
-            return transformer.Transform(xml).Result;
-        }
-
         /// <summary>
         /// Transforms a given XML string to TaxPub NLM Xml Schema or system Xml Schema.
         /// </summary>
@@ -79,21 +29,27 @@
         }
 
         /// <summary>
-        /// Transforms a given XmlDocument object to TaxPub NLM Xml Schema or system Xml Schema.
+        /// Transforms a given XML string to system Xml Schema.
         /// </summary>
-        /// <param name="xml">XmlDocument object to be transformed.</param>
-        /// <param name="articleSchemaType">SchemaType of the document.</param>
+        /// <param name="xml">XML as string to be transformed.</param>
         /// <returns>Transformed XML as string.</returns>
-        public static string NormalizeXmlToCurrentXml(this XmlDocument xml, SchemaType articleSchemaType)
+        public static string NormalizeXmlToSystemXml(this string xml)
         {
-            switch (articleSchemaType)
-            {
-                case SchemaType.Nlm:
-                    return xml.NormalizeXmlToNlmXml();
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
+        }
 
-                default:
-                    return xml.NormalizeXmlToSystemXml();
-            }
+        /// <summary>
+        /// Transforms a given XML string to TaxPub NLM Xml Schema.
+        /// </summary>
+        /// <param name="xml">XML as string to be transformed.</param>
+        /// <returns>Transformed XML as string.</returns>
+        private static string NormalizeXmlToNlmXml(this string xml)
+        {
+            // TODO: DI, async
+            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
+            return transformer.Transform(xml).Result;
         }
     }
 }
