@@ -4,6 +4,8 @@
     using System.Diagnostics;
     using System.Threading.Tasks;
 
+    using Ninject;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Loggers;
@@ -27,12 +29,15 @@
             Stopwatch mainTimer = new Stopwatch();
             mainTimer.Start();
 
-            this.RunAsync(args).Wait();
+            using (IKernel kernel = NinjectConfig.CreateKernel())
+            {
+                this.RunAsync(kernel, args).Wait();
+            }
 
             this.logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
         }
 
-        public async Task RunAsync(string[] args)
+        public async Task RunAsync(IKernel kernel, string[] args)
         {
             try
             {
@@ -41,7 +46,7 @@
 
                 var singleFileProcessor = new SingleFileProcessor(settings, this.logger);
 
-                await singleFileProcessor.Run();
+                await singleFileProcessor.Run(kernel);
             }
             catch (Exception e)
             {

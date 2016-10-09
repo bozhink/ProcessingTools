@@ -1,15 +1,17 @@
 ﻿namespace ProcessingTools.Tagger
 {
-    using Contracts;
-    using Extensions;
-    using Ninject;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
     using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Contracts;
+    using Extensions;
+    using Ninject;
+
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public partial class SingleFileProcessor
     {
