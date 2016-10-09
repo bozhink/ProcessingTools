@@ -214,7 +214,6 @@
     <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
-    <Compile Include="FileProcessor.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

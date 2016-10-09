@@ -17,7 +17,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
 
-    public class SingleFileProcessor : FileProcessor
+    public class SingleFileProcessor
     {
         private ConcurrentQueue<Task> tasks;
 
@@ -35,7 +35,7 @@
             this.document = new TaxPubDocument();
         }
 
-        public override async Task Run()
+        public async Task Run()
         {
             try
             {
@@ -115,7 +115,7 @@
                             this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(kernel).Wait();
                         }
 
-                        // Tag envo terms using envornment database
+                        // Tag envo terms using environment database
                         if (this.settings.TagEnvironmentTerms)
                         {
                             this.InvokeProcessor<ITagEnvironmentTermsController>(kernel).Wait();
@@ -238,7 +238,7 @@
             }
         }
 
-        protected override Task InvokeProcessor(string message, Action action)
+        private Task InvokeProcessor(string message, Action action)
         {
             return Task.Run(() =>
             {
@@ -259,13 +259,13 @@
             });
         }
 
-        protected async Task InvokeProcessor<TController>(IKernel kernel)
+        private async Task InvokeProcessor<TController>(IKernel kernel)
             where TController : ITaggerController
         {
             await this.InvokeProcessor<TController>(this.document.XmlDocument.DocumentElement, kernel);
         }
 
-        protected async Task InvokeProcessor<TController>(XmlNode context, IKernel kernel)
+        private async Task InvokeProcessor<TController>(XmlNode context, IKernel kernel)
             where TController : ITaggerController
         {
             var controller = kernel.Get<TController>();
@@ -280,7 +280,7 @@
                 });
         }
 
-        protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
+        private async Task InvokeProcessor(Type controllerType, IKernel kernel)
         {
             // Do not wait validation controllers to return.
             var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(INotAwaitableController));
@@ -302,7 +302,7 @@
             }
         }
 
-        protected async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
+        private async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
         {
             var controller = kernel.Get(controllerType) as ITaggerController;
 
