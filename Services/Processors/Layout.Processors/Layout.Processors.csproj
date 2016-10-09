@@ -39,6 +39,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Formatters\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Contracts\Normalizers\IDocumentNormalizer.cs" />
     <Compile Include="Contracts\Normalizers\INlmXmlNormalizer.cs" />
     <Compile Include="Contracts\Normalizers\ISystemXmlNormalizer.cs" />
     <Compile Include="Contracts\Transformers\IFormatToSystemTransformer.cs" />
