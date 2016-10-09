@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IAbbreviationsTagger : IGenericXmlContextTagger<object>
+    public interface IAbbreviationsTagger : IXmlContextTagger
     {
     }
 }

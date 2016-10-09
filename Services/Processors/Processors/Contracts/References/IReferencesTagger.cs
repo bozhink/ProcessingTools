@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IReferencesTagger : IGenericXmlContextTagger<object>
+    public interface IReferencesTagger : IXmlContextTagger
     {
         string ReferencesGetReferencesXmlPath { get;  set; }
     }

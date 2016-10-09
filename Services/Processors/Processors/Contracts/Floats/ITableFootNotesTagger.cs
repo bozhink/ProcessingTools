@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ITableFootNotesTagger : IGenericXmlContextTagger<object>
+    public interface ITableFootNotesTagger : IXmlContextTagger
     {
     }
 }
