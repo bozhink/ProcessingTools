@@ -180,12 +180,12 @@
                         {
                             foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
                             {
-                                this.MainProcessing(context, kernel).Wait();
+                                this.ContextProcessing(context, kernel).Wait();
                             }
                         }
                         else
                         {
-                            this.MainProcessing(this.document.XmlDocument.DocumentElement, kernel).Wait();
+                            this.ContextProcessing(this.document.XmlDocument.DocumentElement, kernel).Wait();
                         }
 
                         if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
@@ -236,28 +236,25 @@
             }
         }
 
-        private Task MainProcessing(XmlNode context, IKernel kernel)
+        private async Task ContextProcessing(XmlNode context, IKernel kernel)
         {
-            return Task.Run(() =>
+            if (this.settings.TagFloats)
             {
-                if (this.settings.TagFloats)
-                {
-                    this.InvokeProcessor<ITagFloatsController>(context, kernel).Wait();
-                }
+                await this.InvokeProcessor<ITagFloatsController>(context, kernel);
+            }
 
-                if (this.settings.TagReferences)
-                {
-                    this.InvokeProcessor<ITagReferencesController>(context, kernel).Wait();
-                }
+            if (this.settings.TagReferences)
+            {
+                await this.InvokeProcessor<ITagReferencesController>(context, kernel);
+            }
 
-                if (this.settings.ExpandLowerTaxa)
+            if (this.settings.ExpandLowerTaxa)
+            {
+                for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
                 {
-                    for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
-                    {
-                        this.InvokeProcessor<IExpandLowerTaxaController>(context, kernel).Wait();
-                    }
+                    await this.InvokeProcessor<IExpandLowerTaxaController>(context, kernel);
                 }
-            });
+            }
         }
 
         private void ReadDocument()
