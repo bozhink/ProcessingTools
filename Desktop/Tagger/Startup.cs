@@ -1,43 +1,22 @@
 ﻿namespace ProcessingTools.Tagger
 {
     using System;
-    using System.Diagnostics;
     using System.Threading.Tasks;
 
-    using Ninject;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Loggers;
 
-    public class Startup
+    public class Startup : IStartup
     {
         private readonly ILogger logger;
 
-        public Startup()
+        public Startup(ILogger logger)
         {
-            this.logger = new ConsoleLogger();
+            this.logger = logger;
         }
 
-        public static Startup Create()
-        {
-            return new Startup();
-        }
+        public void Run(string[] args) => this.RunAsync(args).Wait();
 
-        public void Run(string[] args)
-        {
-            Stopwatch mainTimer = new Stopwatch();
-            mainTimer.Start();
-
-            using (IKernel kernel = NinjectConfig.CreateKernel())
-            {
-                this.RunAsync(kernel, args).Wait();
-            }
-
-            this.logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
-        }
-
-        public async Task RunAsync(IKernel kernel, string[] args)
+        private async Task RunAsync(string[] args)
         {
             try
             {
@@ -46,7 +25,7 @@
 
                 var singleFileProcessor = new SingleFileProcessor(settings, this.logger);
 
-                await singleFileProcessor.Run(kernel);
+                await singleFileProcessor.Run();
             }
             catch (Exception e)
             {

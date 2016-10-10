@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Core;
     using Contracts;
     using Ninject;
 
@@ -33,8 +34,9 @@
             this.document = new TaxPubDocument();
         }
 
-        public async Task Run(IKernel kernel)
+        public async Task Run()
         {
+            var kernel = DI.Kernel;
             try
             {
                 this.ConfigureFileProcessor();
