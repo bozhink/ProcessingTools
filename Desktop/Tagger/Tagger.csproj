@@ -249,6 +249,7 @@
     <Compile Include="SingleFileProcessor.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="SystemSettings.cs" />
     <Compile Include="XmlNodesSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

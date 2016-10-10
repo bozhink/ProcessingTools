@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.Tagger
 {
     using System;
+    using System.Configuration;
     using System.Threading.Tasks;
 
     using Core;
 
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
 
     public class Startup : IStartup
     {
@@ -16,7 +18,22 @@
             this.logger = logger;
         }
 
-        public void Run(string[] args) => this.RunAsync(args).Wait();
+        public void Run(string[] args)
+        {
+            int timeSpanInMunutesValue = 0;
+            if (!int.TryParse(ConfigurationManager.AppSettings["MaximalTimeInMinutesToWaitTheMainThread"], out timeSpanInMunutesValue))
+            {
+                throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+            }
+
+            var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
+
+            var succeeded = this.RunAsync(args).Wait(ts);
+            if (!succeeded)
+            {
+                this.logger.Log(LogType.Error, "The timeout interval elapsed.");
+            }
+        }
 
         private async Task RunAsync(string[] args)
         {
