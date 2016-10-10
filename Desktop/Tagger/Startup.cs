@@ -3,6 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
+    using Core;
+
     using ProcessingTools.Contracts;
 
     public class Startup : IStartup
@@ -23,9 +25,9 @@
                 var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = new SingleFileProcessor(settings, this.logger);
+                var singleFileProcessor = DI.Get<ISingleFileProcessor>();
 
-                await singleFileProcessor.Run();
+                await singleFileProcessor.Run(settings);
             }
             catch (Exception e)
             {

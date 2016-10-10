@@ -16,26 +16,32 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
 
-    public partial class SingleFileProcessor
+    public partial class SingleFileProcessor : ISingleFileProcessor
     {
-        private ConcurrentQueue<Task> tasks;
+        private readonly ILogger logger;
 
+        private ConcurrentQueue<Task> tasks;
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
-
-        private ILogger logger;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(ProgramSettings settings, ILogger logger)
+        public SingleFileProcessor(ILogger logger)
         {
-            this.tasks = new ConcurrentQueue<Task>();
-            this.settings = settings;
             this.logger = logger;
+
+            this.tasks = new ConcurrentQueue<Task>();
             this.document = new TaxPubDocument();
         }
 
-        public async Task Run()
+        public async Task Run(ProgramSettings settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            this.settings = settings;
+
             var kernel = DI.Kernel;
             try
             {
