@@ -48,189 +48,7 @@
 
                 this.ReadDocument();
 
-                if (this.settings.ZoobankCloneXml)
-                {
-                    await this.InvokeProcessor<IZooBankCloneXmlController>();
-                    return;
-                }
-
-                if (this.settings.ZoobankCloneJson)
-                {
-                    await this.InvokeProcessor<IZooBankCloneJsonController>();
-                    return;
-                }
-
-                if (this.settings.ZoobankGenerateRegistrationXml)
-                {
-                    await this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>();
-                    return;
-                }
-
-                if (this.settings.QueryReplace)
-                {
-                    await this.InvokeProcessor<IQueryReplaceController>();
-                    return;
-                }
-
-                if (this.settings.RunXslTransform)
-                {
-                    await this.InvokeProcessor<IRunCustomXslTransformController>();
-                }
-
-                if (this.settings.InitialFormat)
-                {
-                    await this.InvokeProcessor<IInitialFormatController>();
-                }
-
-                if (this.settings.ParseReferences)
-                {
-                    await this.InvokeProcessor<IParseReferencesController>();
-                }
-
-                if (this.settings.TagDoi || this.settings.TagWebLinks)
-                {
-                    await this.InvokeProcessor<ITagWebLinksController>();
-                }
-
-                if (this.settings.ResolveMediaTypes)
-                {
-                    await this.InvokeProcessor<IResolveMediaTypesController>();
-                }
-
-                if (this.settings.TagTableFn)
-                {
-                    await this.InvokeProcessor<ITagTableFootnoteController>();
-                }
-
-                if (this.settings.TagCoordinates)
-                {
-                    await this.InvokeProcessor<ITagCoordinatesController>();
-                }
-
-                if (this.settings.ParseCoordinates)
-                {
-                    await this.InvokeProcessor<IParseCoordinatesController>();
-                }
-
-                foreach (var controllerType in this.settings.CalledControllers)
-                {
-                    await this.InvokeProcessor(controllerType);
-                }
-
-                if (this.settings.TagEnvironmentTermsWithExtract)
-                {
-                    await this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>();
-                }
-
-                // Tag envo terms using environment database
-                if (this.settings.TagEnvironmentTerms)
-                {
-                    await this.InvokeProcessor<ITagEnvironmentTermsController>();
-                }
-
-                if (this.settings.TagAbbreviations)
-                {
-                    await this.InvokeProcessor<ITagAbbreviationsController>();
-                }
-
-                // Tag institutions, institutional codes, and specimen codes
-                if (this.settings.TagCodes)
-                {
-                    await this.InvokeProcessor<ITagCodesController>();
-                }
-
-                if (this.settings.TagLowerTaxa)
-                {
-                    await this.InvokeProcessor<ITagLowerTaxaController>();
-                }
-
-                if (this.settings.TagHigherTaxa)
-                {
-                    await this.InvokeProcessor<ITagHigherTaxaController>();
-                }
-
-                if (this.settings.ParseLowerTaxa)
-                {
-                    await this.InvokeProcessor<IParseLowerTaxaController>();
-                }
-
-                if (this.settings.ParseHigherTaxa)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>();
-                }
-
-                if (this.settings.ParseHigherWithAphia)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaWithAphiaController>();
-                }
-
-                if (this.settings.ParseHigherWithCoL)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>();
-                }
-
-                if (this.settings.ParseHigherWithGbif)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaWithGbifController>();
-                }
-
-                if (this.settings.ParseHigherBySuffix)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaBySuffixController>();
-                }
-
-                if (this.settings.ParseHigherAboveGenus)
-                {
-                    await this.InvokeProcessor<IParseHigherTaxaAboveGenusController>();
-                }
-
-                // Main Tagging part of the program
-                if (this.settings.ParseBySection)
-                {
-                    foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                    {
-                        await this.ContextProcessing(context);
-                    }
-                }
-                else
-                {
-                    await this.ContextProcessing(this.document.XmlDocument.DocumentElement);
-                }
-
-                if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
-                {
-                    await this.InvokeProcessor<IExtractTaxaController>();
-                }
-
-                if (this.settings.ValidateTaxa)
-                {
-                    this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>());
-                }
-
-                if (this.settings.UntagSplit)
-                {
-                    await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>();
-                }
-
-                if (this.settings.FormatTreat)
-                {
-                    await this.InvokeProcessor<IFormatTreatmentsController>();
-                }
-
-                if (this.settings.ParseTreatmentMetaWithAphia)
-                {
-                    await this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>();
-                }
-
-                if (this.settings.ParseTreatmentMetaWithGbif)
-                {
-                    await this.InvokeProcessor<IParseTreatmentMetaWithGbifController>();
-                }
-
-                if (this.settings.ParseTreatmentMetaWithCol)
-                {
-                    await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>();
-                }
+                await this.ProcessDocument();
 
                 this.tasks.Enqueue(this.WriteOutputFile());
 
@@ -241,6 +59,195 @@
                 this.logger?.Log(e, string.Empty);
                 throw;
             }
+        }
+
+        private async Task ProcessDocument()
+        {
+            if (this.settings.ZoobankCloneXml)
+            {
+                await this.InvokeProcessor<IZooBankCloneXmlController>();
+                return;
+            }
+
+            if (this.settings.ZoobankCloneJson)
+            {
+                await this.InvokeProcessor<IZooBankCloneJsonController>();
+                return;
+            }
+
+            if (this.settings.ZoobankGenerateRegistrationXml)
+            {
+                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>();
+                return;
+            }
+
+            if (this.settings.QueryReplace)
+            {
+                await this.InvokeProcessor<IQueryReplaceController>();
+                return;
+            }
+
+            if (this.settings.RunXslTransform)
+            {
+                await this.InvokeProcessor<IRunCustomXslTransformController>();
+            }
+
+            if (this.settings.InitialFormat)
+            {
+                await this.InvokeProcessor<IInitialFormatController>();
+            }
+
+            if (this.settings.ParseReferences)
+            {
+                await this.InvokeProcessor<IParseReferencesController>();
+            }
+
+            if (this.settings.TagDoi || this.settings.TagWebLinks)
+            {
+                await this.InvokeProcessor<ITagWebLinksController>();
+            }
+
+            if (this.settings.ResolveMediaTypes)
+            {
+                await this.InvokeProcessor<IResolveMediaTypesController>();
+            }
+
+            if (this.settings.TagTableFn)
+            {
+                await this.InvokeProcessor<ITagTableFootnoteController>();
+            }
+
+            if (this.settings.TagCoordinates)
+            {
+                await this.InvokeProcessor<ITagCoordinatesController>();
+            }
+
+            if (this.settings.ParseCoordinates)
+            {
+                await this.InvokeProcessor<IParseCoordinatesController>();
+            }
+
+            foreach (var controllerType in this.settings.CalledControllers)
+            {
+                await this.InvokeProcessor(controllerType);
+            }
+
+            if (this.settings.TagEnvironmentTermsWithExtract)
+            {
+                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>();
+            }
+
+            // Tag envo terms using environment database
+            if (this.settings.TagEnvironmentTerms)
+            {
+                await this.InvokeProcessor<ITagEnvironmentTermsController>();
+            }
+
+            if (this.settings.TagAbbreviations)
+            {
+                await this.InvokeProcessor<ITagAbbreviationsController>();
+            }
+
+            // Tag institutions, institutional codes, and specimen codes
+            if (this.settings.TagCodes)
+            {
+                await this.InvokeProcessor<ITagCodesController>();
+            }
+
+            if (this.settings.TagLowerTaxa)
+            {
+                await this.InvokeProcessor<ITagLowerTaxaController>();
+            }
+
+            if (this.settings.TagHigherTaxa)
+            {
+                await this.InvokeProcessor<ITagHigherTaxaController>();
+            }
+
+            if (this.settings.ParseLowerTaxa)
+            {
+                await this.InvokeProcessor<IParseLowerTaxaController>();
+            }
+
+            if (this.settings.ParseHigherTaxa)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>();
+            }
+
+            if (this.settings.ParseHigherWithAphia)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithAphiaController>();
+            }
+
+            if (this.settings.ParseHigherWithCoL)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>();
+            }
+
+            if (this.settings.ParseHigherWithGbif)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithGbifController>();
+            }
+
+            if (this.settings.ParseHigherBySuffix)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaBySuffixController>();
+            }
+
+            if (this.settings.ParseHigherAboveGenus)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaAboveGenusController>();
+            }
+
+            // Main Tagging part of the program
+            if (this.settings.ParseBySection)
+            {
+                foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
+                {
+                    await this.ContextProcessing(context);
+                }
+            }
+            else
+            {
+                await this.ContextProcessing(this.document.XmlDocument.DocumentElement);
+            }
+
+            if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
+            {
+                await this.InvokeProcessor<IExtractTaxaController>();
+            }
+
+            if (this.settings.ValidateTaxa)
+            {
+                this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>());
+            }
+
+            if (this.settings.UntagSplit)
+            {
+                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>();
+            }
+
+            if (this.settings.FormatTreat)
+            {
+                await this.InvokeProcessor<IFormatTreatmentsController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithAphia)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithGbif)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithGbifController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithCol)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>();
+            }
+
+            return;
         }
 
         private async Task ContextProcessing(XmlNode context)

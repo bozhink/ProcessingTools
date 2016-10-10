@@ -117,10 +117,8 @@
     </person-group>
   </xsl:template>
 
-  <xsl:template match="locality-coordinates">
-    <named-content content-type="dwc:verbatimCoordinates">
-      <xsl:apply-templates/>
-    </named-content>
+  <xsl:template match="locality-coordinates|named-content">
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="sec/@sec-type">
