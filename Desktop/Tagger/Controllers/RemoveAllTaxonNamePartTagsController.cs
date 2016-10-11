@@ -20,6 +20,7 @@
 
         protected override Task Run(IDocument document, ProgramSettings settings) => Task.Run(() => this.RunSync(document));
 
+        // TODO: implement with XSLT
         private void RunSync(IDocument document)
         {
             foreach (XmlNode node in document.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']"))
