@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Strings.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public static class DocumentExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// Gets list of first words of a given list of strings.
@@ -23,8 +23,9 @@
         /// <returns>String of the first word.</returns>
         public static string GetFirstWord(this string phrase)
         {
-            Regex matchWord = new Regex(@"\A(?:[^\W\d_]{1,3}\.|[^\W\d_]{2,})");
-            return matchWord.Match(phrase).Value;
+            var matchFirstWord = new Regex(@"\A(?:[^\W\d_]{1,3}\.|[^\W\d_]{2,})");
+            var firstWord = matchFirstWord.Match(phrase).Value;
+            return firstWord;
         }
     }
 }
