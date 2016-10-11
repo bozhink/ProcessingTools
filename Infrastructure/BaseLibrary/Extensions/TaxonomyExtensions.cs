@@ -124,20 +124,6 @@
             });
         }
 
-        public static string RemoveTaxonNamePartTags(this string content)
-        {
-            string result = Regex.Replace(content, @"(?<=full-name=""([^<>""]+)""[^>]*>)[^<>]*(?=</)", "$1");
-            return Regex.Replace(result, "</?tn-part[^>]*>|</?tp:taxon-name-part[^>]*>", string.Empty);
-        }
-
-        public static void RemoveTaxonNamePartTags(this XmlDocument xmlDocument)
-        {
-            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubXmlNamespaceManagerProvider.GetStatic()))
-            {
-                taxonName.InnerXml = taxonName.InnerXml.RemoveTaxonNamePartTags();
-            }
-        }
-
         public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)
         {
             foreach (XmlNode fullNamedPart in node.SelectNodes(".//*[normalize-space(@full-name)!='']"))
