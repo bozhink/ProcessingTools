@@ -10,7 +10,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Strings.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
@@ -35,7 +35,7 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var words = content.ExtractWordsFromString();
+            var words = content.ExtractWordsFromText();
 
             var matches = words.Where(w => this.matchHigherTaxa.IsMatch(w))
                 .ToList();

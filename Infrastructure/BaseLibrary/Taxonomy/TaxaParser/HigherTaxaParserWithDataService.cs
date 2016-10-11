@@ -15,7 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Strings.Extensions;
 
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : ITaxonRankResolverDataService

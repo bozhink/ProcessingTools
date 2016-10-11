@@ -27,5 +27,34 @@
             var firstWord = matchFirstWord.Match(phrase).Value;
             return firstWord;
         }
+
+        public static IEnumerable<string> ExtractWordsFromText(this string text)
+        {
+            var matchWord = new Regex(@"[^\W\d]+");
+
+            var result = new HashSet<string>();
+            for (Match word = matchWord.Match(text); word.Success; word = word.NextMatch())
+            {
+                result.Add(word.Value);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Makes the first letter of a text upper-case and all other letters in lower-case.
+        /// </summary>
+        /// <param name="text">Text to be transformed.</param>
+        /// <returns>Transformed text.</returns>
+        public static string ToFirstLetterUpperCase(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return text;
+            }
+
+            int length = text.Length;
+            return text.Substring(0, 1).ToUpper() + text.Substring(1, length - 1).ToLower();
+        }
     }
 }
