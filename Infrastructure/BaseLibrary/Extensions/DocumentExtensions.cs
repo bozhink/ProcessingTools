@@ -9,11 +9,11 @@
         /// <summary>
         /// Gets list of first words of a given list of strings.
         /// </summary>
-        /// <param name="list">IEnumerable&lt;string&gt; object from which to extract first words.</param>
+        /// <param name="phrases">IEnumerable&lt;string&gt; object from which to extract first words.</param>
         /// <returns>IEnumerable&lt;string&gt; object containing every first word in the input list.</returns>
-        public static IEnumerable<string> GetFirstWord(this IEnumerable<string> list)
+        public static IEnumerable<string> GetFirstWord(this IEnumerable<string> phrases)
         {
-            return new HashSet<string>(list.Select(phrase => phrase.GetFirstWord()));
+            return new HashSet<string>(phrases.Select(phrase => phrase.GetFirstWord()));
         }
 
         /// <summary>

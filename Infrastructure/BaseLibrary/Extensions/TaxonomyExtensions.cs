@@ -47,7 +47,7 @@
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlNode context)
+        public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode context)
         {
             var taxaNames = context.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
                 .Cast<XmlNode>()
@@ -112,18 +112,14 @@
         {
             return Task.Run(() =>
             {
-                List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa().ToList();
-                uniqueHigherTaxaList.Distinct();
-                uniqueHigherTaxaList.TrimExcess();
+                var uniqueHigherTaxaList = xmlDocument.ExtractUniqueNonParsedHigherTaxa()
+                    .Distinct()
+                    .OrderBy(s => s)
+                    .ToList();
 
-                if (uniqueHigherTaxaList.Count() > 0)
+                if (uniqueHigherTaxaList.Count > 0)
                 {
-                    uniqueHigherTaxaList.Sort();
-
-                    logger.Log("\nNon-parsed taxa:");
-                    uniqueHigherTaxaList
-                        .ForEach(taxon => logger?.Log("\t{0}", taxon));
-                    logger.Log();
+                    logger?.Log("\nNon-parsed taxa: {0}\n", string.Join("\n\t", uniqueHigherTaxaList));
                 }
             });
         }

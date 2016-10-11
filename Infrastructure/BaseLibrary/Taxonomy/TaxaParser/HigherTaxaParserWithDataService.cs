@@ -43,7 +43,7 @@
             }
 
             var uniqueHigherTaxaList = new HashSet<string>(context
-                .ExtractUniqueHigherTaxa()
+                .ExtractUniqueNonParsedHigherTaxa()
                 .Select(n => n.ToFirstLetterUpperCase()))
                 .ToArray();
 
