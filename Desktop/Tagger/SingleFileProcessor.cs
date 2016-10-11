@@ -8,14 +8,15 @@
 
     using Contracts;
 
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     public partial class SingleFileProcessor : ISingleFileProcessor
     {
+        private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
 
         private ConcurrentQueue<Task> tasks;
@@ -23,8 +24,14 @@
         private TaxPubDocument document;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(ILogger logger)
+        public SingleFileProcessor(IDocumentNormalizer documentNormalizer, ILogger logger)
         {
+            if (documentNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentNormalizer));
+            }
+
+            this.documentNormalizer = documentNormalizer;
             this.logger = logger;
 
             this.tasks = new ConcurrentQueue<Task>();
@@ -46,7 +53,7 @@
 
                 this.SetUpConfigParameters();
 
-                this.ReadDocument();
+                await this.ReadDocument();
 
                 await this.ProcessDocument();
 
@@ -271,7 +278,7 @@
             }
         }
 
-        private void ReadDocument()
+        private async Task ReadDocument()
         {
             this.fileProcessor.Read(this.document);
 
@@ -286,7 +293,8 @@
                     break;
             }
 
-            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml();
+            this.document.SchemaType = this.settings.ArticleSchemaType;
+            await this.documentNormalizer.NormalizeToSystem(this.document);
         }
 
         private void SetUpConfigParameters()
@@ -311,16 +319,15 @@
                 queryFileName);
         }
 
-        private async Task WriteOutputFile()
-        {
-            await InvokeProcessor(
-                Messages.WriteOutputFileMessage,
-                _ => Task.Run(() =>
-                {
-                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.ArticleSchemaType);
-                    this.fileProcessor.Write(this.document, null, null);
-                }),
+        private Task WriteOutputFile() => InvokeProcessor(
+            Messages.WriteOutputFileMessage,
+            _ => this.documentNormalizer.NormalizeToDocumentSchema(this.document)
+                .ContinueWith(
+                    __ =>
+                    {
+                        __.Wait();
+                        this.fileProcessor.Write(this.document, null, null);
+                    }),
                 this.logger);
-        }
     }
 }
