@@ -11,16 +11,19 @@
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     [Description("Tag lower taxa.")]
     public class TagLowerTaxaController : TaggerControllerFactory, ITagLowerTaxaController
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
+        private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
 
         public TagLowerTaxaController(
             IDocumentFactory documentFactory,
             IBiotaxonomicBlackListIterableDataService service,
+            IDocumentNormalizer documentNormalizer,
             ILogger logger)
             : base(documentFactory)
         {
@@ -29,7 +32,13 @@
                 throw new ArgumentNullException(nameof(service));
             }
 
+            if (documentNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentNormalizer));
+            }
+
             this.service = service;
+            this.documentNormalizer = documentNormalizer;
             this.logger = logger;
         }
 
@@ -39,7 +48,8 @@
 
             await tagger.Tag();
 
-            document.Xml = tagger.Xml.NormalizeXmlToSystemXml();
+            document.Xml = tagger.Xml;
+            await this.documentNormalizer.NormalizeToSystem(document);
         }
     }
 }
