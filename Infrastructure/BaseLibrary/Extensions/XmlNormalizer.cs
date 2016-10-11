@@ -20,17 +20,5 @@
             var transformer = new XslTransformer(new FormatNlmToSystemXslTransformProvider(new XslTransformCache()));
             return transformer.Transform(xml).Result;
         }
-
-        /// <summary>
-        /// Transforms a given XML string to TaxPub NLM Xml Schema.
-        /// </summary>
-        /// <param name="xml">XML as string to be transformed.</param>
-        /// <returns>Transformed XML as string.</returns>
-        private static string NormalizeXmlToNlmXml(this string xml)
-        {
-            // TODO: DI, async
-            var transformer = new XslTransformer(new FormatSystemToNlmXslTransformProvider(new XslTransformCache()));
-            return transformer.Transform(xml).Result;
-        }
     }
 }
