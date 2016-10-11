@@ -10,7 +10,6 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Strings.Extensions;
 
     public abstract class TaxaTagger : TaxPubDocument, ITagger

@@ -38,7 +38,6 @@
     <Compile Include="ControllerExtensions.cs" />
     <Compile Include="DisposableExtensions.cs" />
     <Compile Include="DisposeStatus.cs" />
-    <Compile Include="ListIntersectionsExtensions.cs" />
     <Compile Include="MappingsExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

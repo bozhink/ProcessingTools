@@ -351,6 +351,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Processors", "Services\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strings", "Libraries\Strings\Strings.csproj", "{B705EDF9-0593-4312-AF43-5C205A4441B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strings.Tests", "Libraries.Tests\Strings.Tests\Strings.Tests.csproj", "{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1495,6 +1497,14 @@ Global
 		{B705EDF9-0593-4312-AF43-5C205A4441B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B705EDF9-0593-4312-AF43-5C205A4441B9}.Release|x64.ActiveCfg = Release|Any CPU
 		{B705EDF9-0593-4312-AF43-5C205A4441B9}.Release|x64.Build.0 = Release|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Debug|x64.Build.0 = Debug|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Release|x64.ActiveCfg = Release|Any CPU
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1653,6 +1663,7 @@ Global
 		{FC880066-D413-4E16-9F46-23ACD5E30C2D} = {4DA970DE-6147-45AD-9DA6-AEA01FD07B93}
 		{104088BB-B91B-4CDE-A201-72B9CAA2D2E0} = {4DA970DE-6147-45AD-9DA6-AEA01FD07B93}
 		{B705EDF9-0593-4312-AF43-5C205A4441B9} = {ACA18A73-7650-47C2-A581-FCDB652F4AAA}
+		{E3183C3A-E1C0-4FED-8B57-FC7FB9435236} = {E757A233-A56D-41CF-8719-4F84C0292E0C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

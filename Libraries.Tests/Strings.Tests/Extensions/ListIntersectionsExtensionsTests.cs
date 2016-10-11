@@ -1,8 +1,10 @@
-﻿namespace ProcessingTools.Extensions.Tests
+﻿namespace ProcessingTools.Strings.Tests.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using ProcessingTools.Strings.Extensions;
 
     [TestClass]
     public class ListIntersectionsExtensionsTests
@@ -261,9 +263,5 @@
         #endregion DistinctWithStringList_NonStrictMode
 
         #endregion Fixed_String_Samples
-
-        #region Random_String_Samples
-        // TODO
-        #endregion Random_String_Samples
     }
 }

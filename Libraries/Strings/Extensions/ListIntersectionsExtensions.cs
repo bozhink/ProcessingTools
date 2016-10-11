@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions
+﻿namespace ProcessingTools.Strings.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -22,19 +22,12 @@
             bool caseSensitive = false,
             bool strictMode = false)
         {
-            try
-            {
-                var list = new HashSet<string>(wordList);
-                var result = from word in list
-                             where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive, strictMode).Count() == 0
-                             select word;
+            var list = new HashSet<string>(wordList);
+            var result = from word in list
+                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive, strictMode).Count() == 0
+                         select word;
 
-                return new HashSet<string>(result);
-            }
-            catch
-            {
-                throw;
-            }
+            return new HashSet<string>(result);
         }
 
         /// <summary>
@@ -55,75 +48,69 @@
             bool strictMode = false)
         {
             IEnumerable<string> result = null;
-            try
+
+            var list = new HashSet<string>(compareList);
+            if (strictMode)
             {
-                var list = new HashSet<string>(compareList);
-                if (strictMode)
+                if (treatAsRegex)
                 {
-                    if (treatAsRegex)
+                    if (caseSensitive)
                     {
-                        if (caseSensitive)
-                        {
-                            result = list.Where(c => Regex.IsMatch(word, $"\\A{c}\\Z"));
-                        }
-                        else
-                        {
-                            result = list.Where(c => Regex.IsMatch(word, $"\\A(?i){c}\\Z"));
-                        }
+                        result = list.Where(c => Regex.IsMatch(word, $"\\A{c}\\Z"));
                     }
                     else
                     {
-                        if (caseSensitive)
-                        {
-                            result = list.Where(c => word == c);
-                        }
-                        else
-                        {
-                            string wordLowerCase = word.ToLower();
-                            result = list
-                                .Select(c => c.ToLower())
-                                .Where(c => wordLowerCase == c);
-                        }
+                        result = list.Where(c => Regex.IsMatch(word, $"\\A(?i){c}\\Z"));
                     }
                 }
                 else
                 {
-                    if (treatAsRegex)
+                    if (caseSensitive)
                     {
-                        if (caseSensitive)
-                        {
-                            result = from comparePattern in list
-                                     where Regex.IsMatch(word, @"\b" + comparePattern + @"\b")
-                                     select comparePattern;
-                        }
-                        else
-                        {
-                            result = from comparePattern in list
-                                     where Regex.IsMatch(word, @"\b(?i)" + comparePattern + @"\b")
-                                     select comparePattern;
-                        }
+                        result = list.Where(c => word == c);
                     }
                     else
                     {
-                        if (caseSensitive)
-                        {
-                            result = from stringToCompare in list
-                                     where word.Contains(stringToCompare)
-                                     select stringToCompare;
-                        }
-                        else
-                        {
-                            string wordLowerCase = word.ToLower();
-                            result = from stringToCompare in list
-                                     where wordLowerCase.Contains(stringToCompare.ToLower())
-                                     select stringToCompare;
-                        }
+                        string wordLowerCase = word.ToLower();
+                        result = list
+                            .Select(c => c.ToLower())
+                            .Where(c => wordLowerCase == c);
                     }
                 }
             }
-            catch
+            else
             {
-                throw;
+                if (treatAsRegex)
+                {
+                    if (caseSensitive)
+                    {
+                        result = from comparePattern in list
+                                 where Regex.IsMatch(word, @"\b" + comparePattern + @"\b")
+                                 select comparePattern;
+                    }
+                    else
+                    {
+                        result = from comparePattern in list
+                                 where Regex.IsMatch(word, @"\b(?i)" + comparePattern + @"\b")
+                                 select comparePattern;
+                    }
+                }
+                else
+                {
+                    if (caseSensitive)
+                    {
+                        result = from stringToCompare in list
+                                 where word.Contains(stringToCompare)
+                                 select stringToCompare;
+                    }
+                    else
+                    {
+                        string wordLowerCase = word.ToLower();
+                        result = from stringToCompare in list
+                                 where wordLowerCase.Contains(stringToCompare.ToLower())
+                                 select stringToCompare;
+                    }
+                }
             }
 
             return new HashSet<string>(result);
@@ -145,19 +132,12 @@
             bool caseSensitive = false,
             bool strictMode = false)
         {
-            try
-            {
-                var list = new HashSet<string>(compareList);
-                var result = from word in wordList
-                             where word.MatchWithStringList(list, treatAsRegex, caseSensitive, strictMode).Count() > 0
-                             select word;
+            var list = new HashSet<string>(compareList);
+            var result = from word in wordList
+                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive, strictMode).Count() > 0
+                         select word;
 
-                return new HashSet<string>(result);
-            }
-            catch
-            {
-                throw;
-            }
+            return new HashSet<string>(result);
         }
     }
 }
