@@ -123,7 +123,6 @@
                 })
                 .ToList<XmlNode>()
                 .GetStringListOfUniqueXmlNodes();
-            
 
             return new HashSet<string>(result);
         }

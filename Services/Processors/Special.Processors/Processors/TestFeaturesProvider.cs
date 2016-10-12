@@ -1,50 +1,63 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Special.Processors
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using ProcessingTools.DocumentProvider;
+    using Contracts;
 
-    public class Test : TaxPubDocument
+    using ProcessingTools.Contracts;
+
+    public class TestFeaturesProvider : ITestFeaturesProvider
     {
-        public Test(string xml)
-            : base(xml)
+        public void ExtractSystemChecklistAuthority(IDocument document)
         {
-        }
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
 
-        public void ExtractSystemChecklistAuthority()
-        {
-            foreach (XmlNode node in this.XmlDocument.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']", this.NamespaceManager))
+            foreach (var node in document.SelectNodes("//fields/taxon_authors_and_year/value[normalize-space(.)!='']"))
             {
                 node.InnerText = Regex.Replace(node.InnerText, @"\s+and\s+", " &amp; ");
                 node.InnerText = Regex.Replace(node.InnerText, @"(?<=[^,])\s+(?=\d)", ", ");
             }
         }
 
-        public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure()
+        public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure(IDocument document)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
             string xpath = "//tp:nomenclature[tp:taxon-authority][normalize-space(tp:taxon-authority)=''][tn[tn-part[@type='authority']]]";
 
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            foreach (var node in document.SelectNodes(xpath))
             {
-                XmlNode taxonAuthority = node.SelectSingleNode("tp:taxon-authority", this.NamespaceManager);
+                XmlNode taxonAuthority = node.SelectSingleNode("tp:taxon-authority", document.NamespaceManager);
 
-                XmlNode authority = node.SelectSingleNode("tn/tn-part[@type='authority'][position()=last()]", this.NamespaceManager);
+                XmlNode authority = node.SelectSingleNode("tn/tn-part[@type='authority'][position()=last()]");
 
                 taxonAuthority.InnerText = authority.InnerText;
                 authority.ParentNode.RemoveChild(authority);
             }
         }
 
-        public void WrapEmptySuperscriptsInFootnoteXrefTag()
+        public void WrapEmptySuperscriptsInFootnoteXrefTag(IDocument document)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
             string xpath = "//sup[normalize-space()='']";
 
             int counter = 0;
 
-            foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
+            foreach (var node in document.SelectNodes(xpath))
             {
                 XmlElement sup = (XmlElement)node.CloneNode(true);
                 sup.InnerText = $"{++counter}";
@@ -58,9 +71,14 @@
             }
         }
 
-        public void RenumerateFootNotes()
+        public void RenumerateFootNotes(IDocument document)
         {
-            var footnoteIds = new HashSet<string>(this.XmlDocument.SelectNodes("//back//fn-group//fn/@id")
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            var footnoteIds = new HashSet<string>(document.SelectNodes("//back//fn-group//fn/@id")
                 .Cast<XmlNode>()
                 .Select(n => n.InnerText))
                 .ToArray();
@@ -72,13 +90,13 @@
             }
 
             // Add label tags in fn
-            foreach (XmlElement fn in this.XmlDocument.SelectNodes("//back//fn-group//fn[not(label)]"))
+            foreach (var fn in document.SelectNodes("//back//fn-group//fn[not(label)]"))
             {
                 try
                 {
                     string id = fn.Attributes["id"]?.InnerText;
 
-                    XmlElement label = this.XmlDocument.CreateElement("label");
+                    XmlElement label = document.XmlDocument.CreateElement("label");
                     label.InnerText = reindexDictionary[id].ToString();
 
                     fn.PrependChild(label);
@@ -89,7 +107,7 @@
             }
 
             // Update the content of xref[@ref-type='fn']
-            foreach (XmlElement xref in this.XmlDocument.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']"))
+            foreach (var xref in document.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']"))
             {
                 try
                 {
@@ -102,14 +120,14 @@
             }
 
             // Update fn/@id
-            foreach (XmlAttribute id in this.XmlDocument.SelectNodes("//back//fn-group//fn/@id"))
+            foreach (var id in document.SelectNodes("//back//fn-group//fn/@id"))
             {
                 string key = id.InnerText;
                 id.InnerText = $"FN{reindexDictionary[key]}";
             }
 
             // Update xref[@ref-type='fn']/@rid
-            foreach (XmlAttribute rid in this.XmlDocument.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']/@rid"))
+            foreach (var rid in document.SelectNodes("//xref[@ref-type='fn'][name(..)!='contrib']/@rid"))
             {
                 string key = rid.InnerText;
                 rid.InnerText = $"FN{reindexDictionary[key]}";

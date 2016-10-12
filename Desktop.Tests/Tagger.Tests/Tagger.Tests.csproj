@@ -152,6 +152,10 @@
       <Project>{237d4caf-98a4-4c86-91a6-46ae3e27e965}</Project>
       <Name>Processors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Special.Processors\Special.Processors.csproj">
+      <Project>{287bb38d-333e-4206-b0dc-7d87345ee2ae}</Project>
+      <Name>Special.Processors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>

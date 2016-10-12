@@ -39,7 +39,9 @@
     <Compile Include="Contracts\IQuentinFlora.cs" />
     <Compile Include="Processors\Flora.cs" />
     <Compile Include="Contracts\IFlora.cs" />
+    <Compile Include="Contracts\ITestFeaturesProvider.cs" />
     <Compile Include="Processors\QuentinFlora.cs" />
+    <Compile Include="Processors\TestFeaturesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

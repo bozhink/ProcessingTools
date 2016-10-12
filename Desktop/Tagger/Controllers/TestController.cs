@@ -1,31 +1,36 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Special.Processors.Contracts;
 
     [Description("Test.")]
     public class TestController : TaggerControllerFactory, ITestController
     {
-        public TestController(IDocumentFactory documentFactory)
+        private readonly ITestFeaturesProvider provider;
+
+        public TestController(IDocumentFactory documentFactory, ITestFeaturesProvider provider)
             : base(documentFactory)
         {
+            if (provider == null)
+            {
+                throw new ArgumentNullException(nameof(provider));
+            }
+
+            this.provider = provider;
         }
 
         protected override Task Run(IDocument document, ProgramSettings settings)
         {
             return Task.Run(() =>
             {
-                var test = new Test(document.Xml);
-
-                test.RenumerateFootNotes();
-
-                document.Xml = test.Xml;
+                this.provider.RenumerateFootNotes(document);
             });
         }
     }
