@@ -78,7 +78,6 @@
     <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlContextTagger.cs" />
     <Compile Include="IXmlDocumentParser.cs" />
-    <Compile Include="IXmlNamespaceManagerProvider.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />

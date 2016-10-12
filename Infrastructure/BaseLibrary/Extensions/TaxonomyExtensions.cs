@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -8,15 +9,20 @@
 
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
+    using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Strings.Extensions;
     using ProcessingTools.Xml.Extensions;
 
     public static class TaxonomyExtensions
     {
-        public static IEnumerable<string> ExtractTaxa(this XmlNode xml, bool stripTags = false, TaxaType type = TaxaType.Any)
+        public static IEnumerable<string> ExtractTaxa(this XmlNode node, bool stripTags = false, TaxaType type = TaxaType.Any)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
             string typeString = type.ToString().ToLower();
             string xpath = string.Empty;
             switch (type)
@@ -31,13 +37,16 @@
                     break;
             }
 
-            List<string> result = new List<string>();
+            var result = new List<string>();
             if (!string.IsNullOrWhiteSpace(xpath))
             {
-                XmlNodeList nodeList = xml.SelectNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic());
+                XmlNodeList nodeList = node.SelectNodesWithTaxPubXmlNamespaceManager(xpath);
                 if (stripTags)
                 {
-                    result = nodeList.Cast<XmlNode>().Select(c => c.TaxonNameXmlNodeToString()).Distinct().ToList();
+                    result = nodeList.Cast<XmlNode>()
+                        .Select(c => c.TaxonNameXmlNodeToString())
+                        .Distinct()
+                        .ToList();
                 }
                 else
                 {
@@ -48,9 +57,14 @@
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode context)
+        public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode node)
         {
-            var taxaNames = context.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var taxaNames = node.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
                 .Cast<XmlNode>()
                 .Select(c => c.InnerText);
 
@@ -59,54 +73,73 @@
             return result;
         }
 
-        public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode xml)
+        public static IEnumerable<string> GetListOfNonShortenedTaxa(this XmlNode node)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var document = node.OwnerDocument;
+
             ////string xpath = "//tp:taxon-name[count(tp:taxon-name-part[normalize-space(@full-name)=''])=0][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             string xpath = "//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
-            XmlDocument xd = new XmlDocument();
-            XmlNamespaceManager nm = TaxPubXmlNamespaceManagerProvider.GetStatic();
-            XmlNodeList nodeList = xml.SelectNodes(xpath, nm);
-            List<XmlNode> newList = new List<XmlNode>();
-            foreach (XmlNode node in nodeList)
-            {
-                XmlNode taxonName = xd.CreateElement("tn");
-                foreach (XmlNode innerNode in node.SelectNodes(".//*", nm))
+            var result = node.SelectNodesWithTaxPubXmlNamespaceManager(xpath)
+                .Cast<XmlNode>()
+                .Select(currentNode =>
                 {
-                    XmlNode newNode = xd.CreateElement("tn-part");
-                    foreach (XmlAttribute attribute in innerNode.Attributes)
+                    XmlElement taxonNameElement = document.CreateElement("tn");
+                    foreach (XmlNode innerNode in currentNode.SelectNodes(".//*"))
                     {
-                        if (attribute.Name.Contains("type"))
+                        XmlElement taxonNamePartElement = document.CreateElement("tn-part");
+
+                        // Copy only *type* attributes
+                        foreach (XmlAttribute attribute in innerNode.Attributes)
                         {
-                            XmlAttribute newAttribute = xd.CreateAttribute(attribute.Name);
-                            newAttribute.InnerText = attribute.InnerText;
-                            newNode.Attributes.Append(newAttribute);
+                            if (attribute.Name.Contains("type"))
+                            {
+                                XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
+                                typeAttribute.InnerText = attribute.InnerText;
+                                taxonNamePartElement.Attributes.Append(typeAttribute);
+                            }
                         }
+
+                        // Gets the value of the @full-name attribute if present or the content of the node
+                        var fullNameAttribute = innerNode.Attributes["full-name"];
+                        if (fullNameAttribute != null && !string.IsNullOrWhiteSpace(fullNameAttribute.InnerText))
+                        {
+                            taxonNamePartElement.InnerText = fullNameAttribute.InnerText;
+                        }
+                        else
+                        {
+                            taxonNamePartElement.InnerText = innerNode.InnerText;
+                        }
+
+                        taxonNameElement.AppendChild(taxonNamePartElement);
                     }
 
-                    if (innerNode.Attributes["full-name"] != null)
-                    {
-                        newNode.InnerText = innerNode.Attributes["full-name"].InnerText;
-                    }
-                    else
-                    {
-                        newNode.InnerText = innerNode.InnerText;
-                    }
+                    return taxonNameElement;
+                })
+                .ToList<XmlNode>()
+                .GetStringListOfUniqueXmlNodes();
+            
 
-                    taxonName.AppendChild(newNode);
-                }
-
-                newList.Add(taxonName);
-            }
-
-            return new HashSet<string>(newList.GetStringListOfUniqueXmlNodes());
+            return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> GetListOfShortenedTaxa(this XmlNode xml)
+        public static IEnumerable<string> GetListOfShortenedTaxa(this XmlNode node)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
             string xpath = "//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
-            return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic()));
+            var result = node.GetStringListOfUniqueXmlNodes(xpath, node.GetTaxPubXmlNamespaceManager());
+
+            return new HashSet<string>(result);
         }
 
         public static Task PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
@@ -127,6 +160,11 @@
 
         public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
             foreach (XmlNode fullNamedPart in node.SelectNodes(".//*[normalize-space(@full-name)!='']"))
             {
                 fullNamedPart.InnerText = fullNamedPart.Attributes["full-name"].InnerText;
@@ -136,9 +174,14 @@
             return node;
         }
 
-        private static string TaxonNameXmlNodeToString(this XmlNode taxonNameNode)
+        private static string TaxonNameXmlNodeToString(this XmlNode node)
         {
-            XmlNode result = taxonNameNode.CloneNode(true);
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            XmlNode result = node.CloneNode(true);
             result.Attributes.RemoveAll();
 
             string innerXml = result
