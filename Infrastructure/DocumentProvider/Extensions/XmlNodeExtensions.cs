@@ -14,7 +14,8 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            var nameTable = node.OwnerDocument.NameTable;
+            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
+            var nameTable = document.NameTable;
             var namespaceManager = new XmlNamespaceManager(nameTable);
             namespaceManager.AddNamespace(Namespaces.TaxPubNamespacePrefix, Namespaces.TaxPubNamespaceUri);
             namespaceManager.AddNamespace(Namespaces.XlinkNamespacePrefix, Namespaces.XlinkNamespaceUri);

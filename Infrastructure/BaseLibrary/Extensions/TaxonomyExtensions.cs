@@ -80,7 +80,7 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            var document = node.OwnerDocument;
+            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
 
             ////string xpath = "//tp:taxon-name[count(tp:taxon-name-part[normalize-space(@full-name)=''])=0][tp:taxon-name-part[@taxon-name-part-type='genus']]";
             ////string xpath = "//tp:taxon-name[@type='lower'][not(tp:taxon-name-part[@full-name=''])][tp:taxon-name-part[@taxon-name-part-type='genus']]";

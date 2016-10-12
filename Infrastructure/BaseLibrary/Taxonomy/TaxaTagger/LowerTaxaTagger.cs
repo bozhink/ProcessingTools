@@ -83,7 +83,8 @@
                     if (taxonomicNames.Contains(node.InnerText, comparer))
                     {
                         var tn = this.CreateNewLowerTaxonNameXmlElement();
-                        tn.InnerXml = node.InnerXml;
+                        tn.InnerXml = node.InnerXml
+                            .RegexReplace(@"\A([A-Z][A-Za-z]{0,2}\.)([a-z])", "$1 $2");
                         node.InnerXml = tn.OuterXml;
                     }
                 });
