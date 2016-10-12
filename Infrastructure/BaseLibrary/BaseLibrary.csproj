@@ -98,7 +98,6 @@
     <Compile Include="Taxonomy\TaxaTagger\HigherTaxaTagger.cs" />
     <Compile Include="Taxonomy\TaxaTagger\LowerTaxaTagger.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
-    <Compile Include="Special\QuentinFlora.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="Taxonomy\Species\Species.cs" />
