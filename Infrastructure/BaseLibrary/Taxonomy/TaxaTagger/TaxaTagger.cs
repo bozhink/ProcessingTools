@@ -67,12 +67,13 @@
         {
             var taxaNamesFirstWord = await this.GetTaxaNamesFirstWords(taxaNames);
 
-            var taxaLikePersonNameParts = new HashSet<string>(this.XmlDocument
+            var personNames = this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
                 .Select(s => s.InnerText)
-                .MatchWithStringList(taxaNamesFirstWord, false, true, true)
-                .Select(Regex.Escape));
+                .Select(Regex.Escape);
+
+            var taxaLikePersonNameParts = personNames.MatchWithStringList(taxaNamesFirstWord, false, true, true);
 
             var result = taxaNames.DistinctWithStringList(taxaLikePersonNameParts, true, false, true);
 
