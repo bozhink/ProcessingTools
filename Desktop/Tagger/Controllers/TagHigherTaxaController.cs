@@ -7,37 +7,25 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
-    using ProcessingTools.Bio.Data.Miners.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Processors.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
     {
-        private readonly IBiotaxonomicBlackListIterableDataService service;
-        private readonly IHigherTaxaDataMiner miner;
+        private readonly IHigherTaxaTagger tagger;
         private readonly IDocumentNormalizer documentNormalizer;
-        private readonly ILogger logger;
 
         public TagHigherTaxaController(
             IDocumentFactory documentFactory,
-            IBiotaxonomicBlackListIterableDataService service,
-            IHigherTaxaDataMiner miner,
-            IDocumentNormalizer documentNormalizer,
-            ILogger logger)
+            IHigherTaxaTagger tagger,
+            IDocumentNormalizer documentNormalizer)
             : base(documentFactory)
         {
-            if (service == null)
+            if (tagger == null)
             {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
+                throw new ArgumentNullException(nameof(tagger));
             }
 
             if (documentNormalizer == null)
@@ -45,18 +33,13 @@
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
-            this.service = service;
-            this.miner = miner;
+            this.tagger = tagger;
             this.documentNormalizer = documentNormalizer;
-            this.logger = logger;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new HigherTaxaTagger(this.miner, this.service, this.logger);
-
-            await tagger.Tag(document);
-
+            await this.tagger.Tag(document);
             await this.documentNormalizer.NormalizeToSystem(document);
         }
     }
