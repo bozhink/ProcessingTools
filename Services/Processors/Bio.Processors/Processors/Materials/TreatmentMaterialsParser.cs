@@ -6,41 +6,40 @@
     using System.Xml;
 
     using Contracts.Materials;
+    using Contracts.Transformers;
 
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Contracts.Transformers;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
-        private readonly IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer;
-        private readonly IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer;
+        private readonly ITaxonTreatmentExtractMaterialsTransformer taxonTreatmentExtractMaterialsTransformer;
+        private readonly IFormatTaxonTreatmentsTransformer formatTaxonTreatmentsTransformer;
 
         public TreatmentMaterialsParser(
             IMaterialCitationsParser materialCitationsParser,
-            IXslTransformer<ITaxonTreatmentExtractMaterialsXslTransformProvider> taxonTreatmentExtractMaterialsXslTransformer,
-            IXslTransformer<IFormatTaxonTreatmentsXslTransformProvider> formatTaxonTreatmentsXslTransformer)
+            ITaxonTreatmentExtractMaterialsTransformer taxonTreatmentExtractMaterialsTransformer,
+            IFormatTaxonTreatmentsTransformer formatTaxonTreatmentsTransformer)
         {
             if (materialCitationsParser == null)
             {
                 throw new ArgumentNullException(nameof(materialCitationsParser));
             }
 
-            if (taxonTreatmentExtractMaterialsXslTransformer == null)
+            if (taxonTreatmentExtractMaterialsTransformer == null)
             {
-                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsXslTransformer));
+                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsTransformer));
             }
 
-            if (formatTaxonTreatmentsXslTransformer == null)
+            if (formatTaxonTreatmentsTransformer == null)
             {
-                throw new ArgumentNullException(nameof(formatTaxonTreatmentsXslTransformer));
+                throw new ArgumentNullException(nameof(formatTaxonTreatmentsTransformer));
             }
 
             this.materialCitationsParser = materialCitationsParser;
-            this.taxonTreatmentExtractMaterialsXslTransformer = taxonTreatmentExtractMaterialsXslTransformer;
-            this.formatTaxonTreatmentsXslTransformer = formatTaxonTreatmentsXslTransformer;
+            this.taxonTreatmentExtractMaterialsTransformer = taxonTreatmentExtractMaterialsTransformer;
+            this.formatTaxonTreatmentsTransformer = formatTaxonTreatmentsTransformer;
         }
 
         public async Task<object> Parse(IDocument document)
@@ -91,14 +90,14 @@
                 PreserveWhitespace = true
             };
 
-            var text = await this.taxonTreatmentExtractMaterialsXslTransformer.Transform(document);
+            var text = await this.taxonTreatmentExtractMaterialsTransformer.Transform(document);
             queryDocument.LoadXml(text);
             return queryDocument;
         }
 
         private async Task FormatTaxonTreatments(XmlDocument document)
         {
-            var text = await this.formatTaxonTreatmentsXslTransformer.Transform(document);
+            var text = await this.formatTaxonTreatmentsTransformer.Transform(document);
             document.LoadXml(text);
         }
     }
