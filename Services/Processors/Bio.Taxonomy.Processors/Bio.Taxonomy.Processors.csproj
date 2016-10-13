@@ -35,12 +35,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
     <Compile Include="Processors\Formatters\TreatmentFormatter.cs" />
+    <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
+    <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\BaseLibrary\BaseLibrary.csproj">
+      <Project>{25195D4B-EBD2-487F-84A6-C2CD8850450D}</Project>
+      <Name>BaseLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -65,8 +72,29 @@
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
+      <Name>Strings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
+      <Project>{529760C1-9FA0-4187-B20C-B878A1D58774}</Project>
+      <Name>Bio.Data.Miners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
+      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
+      <Name>Services.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contracts\Taggers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

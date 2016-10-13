@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,9 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Abstracts.Taggers;
+
+    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
@@ -413,3 +416,4 @@
         }
     }
 }
+

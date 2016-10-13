@@ -1,10 +1,13 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Abstracts.Taggers;
+
+    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
