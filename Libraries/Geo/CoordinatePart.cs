@@ -10,6 +10,7 @@
 
     public class CoordinatePart
     {
+        private const string DotSignAsDecimalSeparator = ".";
         private const string CoordinatePartDecimalFormat = "f6";
         private readonly string numberDecimalSeparator;
 
@@ -54,7 +55,7 @@
             {
                 return this.decimalCoordinatePartValue
                     .ToString(CoordinatePartDecimalFormat)
-                    .Replace(this.numberDecimalSeparator, ".");
+                    .Replace(this.numberDecimalSeparator, DotSignAsDecimalSeparator);
             }
         }
 
@@ -137,7 +138,7 @@
             {
                 degreesString = matchDegreesString
                     .Replace(this.coordinatePartString, "$1")
-                    .Replace(".", this.numberDecimalSeparator);
+                    .Replace(DotSignAsDecimalSeparator, this.numberDecimalSeparator);
             }
 
             Regex matchMinutesString = new Regex(@"\A.*?(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?).*\Z");
@@ -146,7 +147,7 @@
             {
                 minutesString = matchMinutesString
                     .Replace(this.coordinatePartString, "$2")
-                    .Replace(".", this.numberDecimalSeparator);
+                    .Replace(DotSignAsDecimalSeparator, this.numberDecimalSeparator);
             }
 
             Regex matchSecondsString = new Regex(@"\A.*(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?)\s(\d+(?:\.\d+)?).*\Z");
@@ -155,7 +156,7 @@
             {
                 secondsString = matchSecondsString
                     .Replace(this.coordinatePartString, "$3")
-                    .Replace(".", this.numberDecimalSeparator);
+                    .Replace(DotSignAsDecimalSeparator, this.numberDecimalSeparator);
             }
 
             try
