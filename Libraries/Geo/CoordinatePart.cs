@@ -125,8 +125,8 @@
             }
 
             // There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West
-            // Here is supposed that O = Ost
-            this.decimalCoordinatePartSign = (hasS || hasW) || (hasMinus && !(hasE || hasN || hasO)) ? -1 : 1;
+            // Here is supposed that O = Oeste
+            this.decimalCoordinatePartSign = (hasS || hasW || hasO) || (hasMinus && !(hasE || hasN)) ? -1 : 1;
         }
 
         private double ParseCoordinatePart()
