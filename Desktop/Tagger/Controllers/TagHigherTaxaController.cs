@@ -9,7 +9,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Taggers;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;

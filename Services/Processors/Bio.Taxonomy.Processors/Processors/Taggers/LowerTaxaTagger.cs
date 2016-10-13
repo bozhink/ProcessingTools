@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Taggers
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,7 @@
     using System.Xml;
 
     using Abstracts.Taggers;
+    using Contracts.Taggers;
 
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
@@ -17,7 +18,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    public class LowerTaxaTagger : TaxaTagger, IDocumentTagger
+    public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger
     {
         private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";

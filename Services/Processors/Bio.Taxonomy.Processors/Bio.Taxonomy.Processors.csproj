@@ -38,6 +38,8 @@
     <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
+    <Compile Include="Contracts\Taggers\IHigherTaxaTagger.cs" />
+    <Compile Include="Contracts\Taggers\ILowerTaxaTagger.cs" />
     <Compile Include="Processors\Formatters\TreatmentFormatter.cs" />
     <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
     <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
@@ -94,7 +96,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\Taggers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Taggers
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using Abstracts.Taggers;
+    using Contracts.Taggers;
 
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
@@ -14,7 +15,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Extensions;
 
-    public class HigherTaxaTagger : TaxaTagger, IDocumentTagger
+    public class HigherTaxaTagger : TaxaTagger, IHigherTaxaTagger
     {
         private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
 
