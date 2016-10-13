@@ -24,7 +24,6 @@
         private IDocumentFactory documentFactory;
         private IHigherTaxaTagger tagger;
 
-
         [SetUp]
         public void Init()
         {

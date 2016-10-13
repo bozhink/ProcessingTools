@@ -5,8 +5,8 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
+    using ProcessingTools.Contracts;
 
     [TestFixture]
     public class FormatTreatmentsControllerTests

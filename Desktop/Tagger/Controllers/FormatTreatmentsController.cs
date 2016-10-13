@@ -7,8 +7,8 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
+    using ProcessingTools.Contracts;
 
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
