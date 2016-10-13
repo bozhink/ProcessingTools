@@ -31,11 +31,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\Materials\ITreatmentMaterialsParser.cs" />
+    <Compile Include="Processors\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
+      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
+      <Name>Bio.ServiceClient.MaterialsParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

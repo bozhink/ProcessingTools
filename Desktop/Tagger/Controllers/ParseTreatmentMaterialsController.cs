@@ -7,7 +7,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Taxonomy.Materials;
+    using ProcessingTools.Bio.Processors.Contracts.Materials;
     using ProcessingTools.Contracts;
 
     [Description("Parse treatment materials.")]

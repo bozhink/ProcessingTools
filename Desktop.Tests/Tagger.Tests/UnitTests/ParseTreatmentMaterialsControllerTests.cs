@@ -5,7 +5,7 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.BaseLibrary.Taxonomy.Materials;
+    using ProcessingTools.Bio.Processors.Contracts.Materials;
     using ProcessingTools.Contracts;
 
     [TestFixture]

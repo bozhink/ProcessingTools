@@ -1,9 +1,11 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy.Materials
+﻿namespace ProcessingTools.Bio.Processors.Materials
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Contracts.Materials;
 
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Contracts;
