@@ -57,6 +57,10 @@
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
       <Name>Xml</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>

@@ -8,6 +8,7 @@
 
     using Contracts.Formatters;
 
+    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Nlm.Publishing.Constants;
@@ -16,7 +17,6 @@
     public class TreatmentFormatter : ITreatmentFormatter
     {
         private const string TaxonAuthorityStatusNodeName = "AuthorityStatus";
-        private const string TaxonNameElementName = "tn";
 
         private ILogger logger;
 
@@ -60,7 +60,7 @@
 
         private void FormatNomenclatureCitations(IDocument document)
         {
-            string firstNotWhitespaceNodeInCommentElementXPath = $"{ElementNames.Comment}/node()[normalize-space()!=''][position()=1][name()='{TaxonNameElementName}']";
+            string firstNotWhitespaceNodeInCommentElementXPath = $"{ElementNames.Comment}/node()[normalize-space()!=''][position()=1][name()='{XmlInternalSchemaConstants.TaxonNameElementName}']";
             string xpath = $"//tp:nomenclature-citation[count({ElementNames.Comment}) = count(*)][normalize-space({ElementNames.Comment}) = normalize-space(.)][{firstNotWhitespaceNodeInCommentElementXPath}]";
 
             document.SelectNodes(xpath)
@@ -164,7 +164,7 @@
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            XmlElement taxonName = nomenclature[TaxonNameElementName];
+            XmlElement taxonName = nomenclature[XmlInternalSchemaConstants.TaxonNameElementName];
             if (taxonName != null && nomenclature[ElementNames.ObjectId] != null)
             {
                 foreach (XmlNode objectId in nomenclature.SelectNodes(ElementNames.ObjectId))
