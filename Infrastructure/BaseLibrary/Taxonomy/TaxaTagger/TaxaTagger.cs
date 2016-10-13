@@ -31,40 +31,42 @@
 
         protected async Task<IEnumerable<string>> ClearFakeTaxaNames(IEnumerable<string> taxaNames)
         {
-            var result = taxaNames;
+            var taxaNamesWithoutPersonNames = await this.ClearFakeTaxaNamesLikePersonNamesInArticle(taxaNames);
+            var taxaNamesWithoutBlackListed = await this.ClearFakeTaxaNamesUsingBlackList(taxaNamesWithoutPersonNames);
 
-            try
-            {
-                var taxaNamesFirstWord = new HashSet<string>(result
-                    .GetFirstWord()
-                    .Select(Regex.Escape));
+            var result = new HashSet<string>(taxaNamesWithoutBlackListed);
 
-                result = this.ClearFakeTaxaNamesLikePersonNamesInArticle(result, taxaNamesFirstWord);
-                result = await this.ClearFakeTaxaNamesUsingBlackList(result, taxaNamesFirstWord);
-            }
-            catch
-            {
-                throw;
-            }
-
-            return new HashSet<string>(result);
+            return result;
         }
 
-        private async Task<IEnumerable<string>> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames, HashSet<string> taxaNamesFirstWord)
+        private Task<IEnumerable<string>> GetTaxaNamesFirstWords(IEnumerable<string> taxaNames) => Task.Run<IEnumerable<string>>(() =>
         {
+            var words = taxaNames
+                .GetFirstWord()
+                .Select(Regex.Escape)
+                .ToArray();
+
+            return new HashSet<string>(words);
+        });
+
+        private async Task<IEnumerable<string>> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames)
+        {
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWords(taxaNames);
             var blackListItems = await this.service.All();
 
-            var blackListedNames = new HashSet<string>(taxaNamesFirstWord
-                .MatchWithStringList(blackListItems, true, false, true));
+            var blackListedNames = taxaNamesFirstWord.MatchWithStringList(blackListItems, true, false, true);
 
             var result = taxaNames
-                .Where(name => !blackListedNames.Contains(name.GetFirstWord()));
+                .Where(name => !blackListedNames.Contains(name.GetFirstWord()))
+                .ToArray();
 
             return new HashSet<string>(result);
         }
 
-        private IEnumerable<string> ClearFakeTaxaNamesLikePersonNamesInArticle(IEnumerable<string> taxaNames, IEnumerable<string> taxaNamesFirstWord)
+        private async Task<IEnumerable<string>> ClearFakeTaxaNamesLikePersonNamesInArticle(IEnumerable<string> taxaNames)
         {
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWords(taxaNames);
+
             var taxaLikePersonNameParts = new HashSet<string>(this.XmlDocument
                 .SelectNodes("//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]")
                 .Cast<XmlNode>()
@@ -72,8 +74,7 @@
                 .MatchWithStringList(taxaNamesFirstWord, false, true, true)
                 .Select(Regex.Escape));
 
-            var result = new HashSet<string>(taxaNames
-                .DistinctWithStringList(taxaLikePersonNameParts, true, false, true));
+            var result = taxaNames.DistinctWithStringList(taxaLikePersonNameParts, true, false, true);
 
             return result;
         }
