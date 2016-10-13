@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Xml.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +8,8 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Extensions;
 
+    // TODO: remove this class
     public static class ContentTagger
     {
         public static string GetReplacementOfTagNode(this XmlElement item)

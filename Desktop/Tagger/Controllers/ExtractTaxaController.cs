@@ -6,7 +6,7 @@
     using Contracts;
     using Factories;
 
-    using ProcessingTools.BaseLibrary;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
 

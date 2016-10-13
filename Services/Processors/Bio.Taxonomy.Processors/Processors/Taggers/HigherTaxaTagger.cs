@@ -8,7 +8,6 @@
     using Abstracts.Taggers;
     using Contracts.Taggers;
 
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;

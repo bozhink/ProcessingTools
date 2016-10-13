@@ -6,6 +6,7 @@
 
     using Factories;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Xml.Extensions;
 
     public class XmlSerializableObjectTagger<T> : XmlSerializableObjectTaggerFactory<T>
     {

@@ -38,18 +38,17 @@
     <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
+    <Compile Include="Contracts\Parsers\IHigherTaxaParserWithDataService.cs" />
     <Compile Include="Contracts\Taggers\IHigherTaxaTagger.cs" />
     <Compile Include="Contracts\Taggers\ILowerTaxaTagger.cs" />
+    <Compile Include="Models\Parsers\TaxonRankResponseModel.cs" />
     <Compile Include="Processors\Formatters\TreatmentFormatter.cs" />
+    <Compile Include="Processors\Parsers\HigherTaxaParserWithDataService.cs" />
     <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
     <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\BaseLibrary\BaseLibrary.csproj">
-      <Project>{25195D4B-EBD2-487F-84A6-C2CD8850450D}</Project>
-      <Name>BaseLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -95,9 +94,7 @@
       <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Bio.Taxonomy.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -14,6 +14,7 @@
     using ProcessingTools.Strings.Extensions;
     using ProcessingTools.Xml.Extensions;
 
+    // TODO: Consolidate different extension namespace-s
     public static class TaxonomyExtensions
     {
         public static IEnumerable<string> ExtractTaxa(this XmlNode node, bool stripTags = false, TaxonType type = TaxonType.Any)

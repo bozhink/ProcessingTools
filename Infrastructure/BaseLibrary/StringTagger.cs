@@ -6,6 +6,7 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Xml.Extensions;
 
     public class StringTagger : TaxPubDocument, ITagger
     {
