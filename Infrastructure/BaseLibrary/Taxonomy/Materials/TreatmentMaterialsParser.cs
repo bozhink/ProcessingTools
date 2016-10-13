@@ -6,6 +6,7 @@
     using System.Xml;
 
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Transformers;
 
@@ -40,37 +41,34 @@
             this.formatTaxonTreatmentsXslTransformer = formatTaxonTreatmentsXslTransformer;
         }
 
-        public async Task Parse(XmlDocument document, XmlNamespaceManager namespaceManager)
+        public async Task<object> Parse(IDocument document)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (namespaceManager == null)
-            {
-                throw new ArgumentNullException(nameof(namespaceManager));
-            }
+            await this.FormatTaxonTreatments(document.XmlDocument);
 
-            await this.FormatTaxonTreatments(document);
-
-            var queryDocument = await this.GenerateQueryDocument(document);
+            var queryDocument = await this.GenerateQueryDocument(document.XmlDocument);
 
             string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
 
             var responseDocument = this.GenerateResponseDocument(response);
-            responseDocument.SelectNodes("//p[@id]", namespaceManager)
+            responseDocument.SelectNodes("//p[@id]")
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(p =>
                 {
                     string id = p.Attributes["id"].InnerText;
-                    var paragraph = document.SelectSingleNode($"//p[@id='{id}']", namespaceManager);
+                    var paragraph = document.SelectSingleNode($"//p[@id='{id}']");
                     if (paragraph != null)
                     {
                         paragraph.InnerXml = p.InnerXml;
                     }
                 });
+
+            return true;
         }
 
         private XmlDocument GenerateResponseDocument(string response)

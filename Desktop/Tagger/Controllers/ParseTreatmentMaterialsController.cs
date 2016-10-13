@@ -28,7 +28,7 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            await this.parser.Parse(document.XmlDocument, document.NamespaceManager);
+            await this.parser.Parse(document);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ITreatmentMaterialsParser : IXmlDocumentParser
+    public interface ITreatmentMaterialsParser : IDocumentParser
     {
     }
 }
