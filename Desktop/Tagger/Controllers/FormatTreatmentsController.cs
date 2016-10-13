@@ -22,11 +22,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var formatter = new TreatmentFormatter(document.Xml, this.logger);
+            var formatter = new TreatmentFormatter(this.logger);
 
-            await formatter.Format();
-
-            document.Xml = formatter.Xml;
+            await formatter.Format(document);
         }
     }
 }

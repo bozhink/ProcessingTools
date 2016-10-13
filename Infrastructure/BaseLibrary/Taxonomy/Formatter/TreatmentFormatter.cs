@@ -7,11 +7,10 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    public class TreatmentFormatter : TaxPubDocument, IFormatter
+    public class TreatmentFormatter : IDocumentFormatter
     {
         private const string TitleNodeName = "title";
         private const string LabelNodeName = "label";
@@ -27,45 +26,50 @@
 
         private ILogger logger;
 
-        public TreatmentFormatter(string xml, ILogger logger)
-            : base(xml)
+        public TreatmentFormatter(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public Task Format()
+        public Task<object> Format(IDocument document)
         {
-            return Task.Run(() =>
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            return Task.Run<object>(() =>
             {
                 try
                 {
-                    this.RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations();
-                    this.FormatNomenclatureCitations();
-                    this.FormatNomenclaturesWithTitle();
+                    this.RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations(document);
+                    this.FormatNomenclatureCitations(document);
+                    this.FormatNomenclaturesWithTitle(document);
                 }
                 catch (Exception e)
                 {
                     this.logger?.Log(e, string.Empty);
                 }
+
+                return true;
             });
         }
 
-        private void RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations()
+        private void RemoveWrappingItalicsOfTaxonNamesInNomenclatureCitations(IDocument document)
         {
             const string XPath = "//tp:nomenclature-citation//i[count(tn) = count(*)][normalize-space(tn) = normalize-space(.)]";
-            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
-                .Cast<XmlNode>()
+
+            document.SelectNodes(XPath)
                 .AsParallel()
                 .ForAll(italicNode => italicNode.ReplaceXmlNodeByItsInnerXml());
         }
 
-        private void FormatNomenclatureCitations()
+        private void FormatNomenclatureCitations(IDocument document)
         {
             string firstNotWhitespaceNodeInCommentElementXPath = $"{CommentElementName}/node()[normalize-space()!=''][position()=1][name()='{TaxonNameElementName}']";
-
             string xpath = $"//tp:nomenclature-citation[count({CommentElementName}) = count(*)][normalize-space({CommentElementName}) = normalize-space(.)][{firstNotWhitespaceNodeInCommentElementXPath}]";
-            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
-                .Cast<XmlNode>()
+
+            document.SelectNodes(xpath)
                 .AsParallel()
                 .ForAll(citation =>
                 {
@@ -90,24 +94,24 @@
                 });
         }
 
-        private void FormatNomenclaturesWithTitle()
+        private void FormatNomenclaturesWithTitle(IDocument document)
         {
             const string XPath = "//tp:nomenclature[title]";
-            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
-                .Cast<XmlNode>()
+
+            document.SelectNodes(XPath)
                 .AsParallel()
                 .ForAll(nomenclature =>
                 {
                     nomenclature.SelectNodes(".//i[tn]").ReplaceXmlNodeByItsInnerXml();
 
-                    this.FormatNomencatureContent(nomenclature);
+                    this.FormatNomencatureContent(document, nomenclature);
                     this.FormatObjectIdInNomenclature(nomenclature);
                 });
         }
 
-        private void FormatNomencatureContent(XmlNode nomenclature)
+        private void FormatNomencatureContent(IDocument document, XmlNode nomenclature)
         {
-            string namespaceUri = this.NamespaceManager.LookupNamespace(TaxonNodesPrefix);
+            string namespaceUri = document.NamespaceManager.LookupNamespace(TaxonNodesPrefix);
 
             XmlNode titleNode = nomenclature.SelectSingleNode(TitleNodeName);
             if (titleNode != null)
@@ -131,7 +135,7 @@
                     var matchWholeContentAsStatus = new Regex(@"(?<=(?:\A|\W\s*))\b([Ii]ncertae\s+[Ss]edis|nom\.?\s+cons\.?|(?:n\.\s*[a-z]+)\b|(?:[a-z]+\.\s*)?spp\b\.?|[a-z]+\.\s*\b(?:n|nov|r|rev)\b\.?|new record)\Z");
                     authorityStatusNode.ReplaceXmlNodeContentByRegex(matchWholeContentAsStatus, string.Empty, "$1", string.Empty, TaxonStatusNodeName, TaxonNodesPrefix, namespaceUri);
 
-                    var statusNode = authorityStatusNode.SelectSingleNode($"{TaxonNodesPrefix}:{TaxonStatusNodeName}", this.NamespaceManager);
+                    var statusNode = authorityStatusNode.SelectSingleNode($"{TaxonNodesPrefix}:{TaxonStatusNodeName}", document.NamespaceManager);
                     if (statusNode == null)
                     {
                         var authorityNode = authorityStatusNode.OwnerDocument.CreateElement(TaxonNodesPrefix, TaxonAuthorityNodeName, namespaceUri);
