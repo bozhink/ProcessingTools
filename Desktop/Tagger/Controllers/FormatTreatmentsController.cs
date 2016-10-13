@@ -1,30 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
 
     [Description("Format treatments.")]
     public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
     {
-        private readonly ILogger logger;
+        private readonly ITreatmentFormatter formatter;
 
-        public FormatTreatmentsController(IDocumentFactory documentFactory, ILogger logger)
+        public FormatTreatmentsController(IDocumentFactory documentFactory, ITreatmentFormatter formatter)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (formatter == null)
+            {
+                throw new ArgumentNullException(nameof(formatter));
+            }
+
+            this.formatter = formatter;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var formatter = new TreatmentFormatter(this.logger);
-
-            await formatter.Format(document);
+            await this.formatter.Format(document);
         }
     }
 }

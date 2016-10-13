@@ -31,9 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
+    <Compile Include="Processors\Formatters\TreatmentFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +53,17 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
+      <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

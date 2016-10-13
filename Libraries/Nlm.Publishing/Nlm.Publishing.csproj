@@ -41,6 +41,7 @@
     <Compile Include="Constants\Namespaces.cs" />
     <Compile Include="Constants\ElementNames.cs" />
     <Compile Include="Constants\RefTypeAttributeValues.cs" />
+    <Compile Include="Constants\TaxPubElementNames.cs" />
     <Compile Include="Constants\XPathValues.cs" />
     <Compile Include="Models\NlmAbbreviationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

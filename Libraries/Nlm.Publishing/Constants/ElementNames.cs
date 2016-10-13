@@ -10,5 +10,7 @@
         public const string Table = "table";
         public const string Title = "title";
         public const string XRef = "xref";
+        public const string Comment = "comment";
+        public const string ObjectId = "object-id";
     }
 }

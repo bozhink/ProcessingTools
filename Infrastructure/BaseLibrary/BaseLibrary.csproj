@@ -89,7 +89,6 @@
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
-    <Compile Include="Taxonomy\Formatter\TreatmentFormatter.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
     <Compile Include="Taxonomy\TaxaExpander\AbbreviatedNamesResolver.cs" />
     <Compile Include="Taxonomy\TaxaParser\Contracts\IHigherTaxaParserWithDataService.cs" />
