@@ -8,13 +8,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    public class LowerTaxaTagger : TaxaTagger
+    public class LowerTaxaTagger : TaxaTagger, IDocumentTagger
     {
         private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
@@ -27,62 +27,61 @@
 
         private const string ItalicXPath = "//i[not(tn)]|//italic[not(tn)]|//Italic[not(tn)]";
 
-        private ILogger logger;
+        private readonly ILogger logger;
 
-        public LowerTaxaTagger(string xml, IBiotaxonomicBlackListIterableDataService service, ILogger logger)
-            : base(xml, service)
+        public LowerTaxaTagger(IBiotaxonomicBlackListIterableDataService service, ILogger logger)
+            : base(service)
         {
             this.logger = logger;
         }
 
-        public override async Task Tag()
+        public override async Task<object> Tag(IDocument document)
         {
-            await this.MainTag();
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
 
-            await this.DeepTag();
+            await this.MainTag(document);
+
+            await this.DeepTag(document);
+
+            return true;
         }
 
-        private async Task MainTag()
+        private async Task MainTag(IDocument document)
         {
-            var knownLowerTaxaNames = this.GetKnownLowerTaxa();
+            var knownLowerTaxaNames = this.GetKnownLowerTaxa(document);
 
-            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa().Concat(knownLowerTaxaNames));
+            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(document).Concat(knownLowerTaxaNames));
 
-            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(plausibleLowerTaxa))
+            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
 
-            this.TagDirectTaxonomicMatches(plausibleLowerTaxa);
+            this.TagDirectTaxonomicMatches(document, plausibleLowerTaxa);
 
             // TODO: move to format
-            this.Xml = Regex.Replace(
-                this.Xml,
+            document.Xml = Regex.Replace(
+                document.Xml,
                 @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                 "$1‘$2’ $4$3");
 
-            this.AdvancedTagLowerTaxa(string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
+            this.AdvancedTagLowerTaxa(document, string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
             ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
         }
 
-        private XmlElement CreateNewLowerTaxonNameXmlElement()
-        {
-            XmlElement tn = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
-            tn.SetAttribute(XmlInternalSchemaConstants.TaxonNameTypeAttributeName, XmlInternalSchemaConstants.LowerTaxonTypeValue);
-            return tn;
-        }
-
-        private void TagDirectTaxonomicMatches(IEnumerable<string> taxonomicNames)
+        private void TagDirectTaxonomicMatches(IDocument document, IEnumerable<string> taxonomicNames)
         {
             var comparer = StringComparer.InvariantCultureIgnoreCase;
 
             // Tag all direct matches
-            this.XmlDocument.SelectNodes(ItalicXPath)
-                .Cast<XmlNode>()
+            document.SelectNodes(ItalicXPath)
                 .AsParallel()
                 .ForAll(node =>
                 {
                     if (taxonomicNames.Contains(node.InnerText, comparer))
                     {
-                        var tn = this.CreateNewLowerTaxonNameXmlElement();
+                        var tn = this.CreateNewTaxonNameXmlElement(document, TaxonType.Lower);
                         tn.InnerXml = node.InnerXml
                             .RegexReplace(@"\A([A-Z][A-Za-z]{0,2}\.)([a-z])", "$1 $2");
                         node.InnerXml = tn.OuterXml;
@@ -90,37 +89,33 @@
                 });
         }
 
-        private IEnumerable<string> GetPlausibleLowerTaxa()
+        private IEnumerable<string> GetPlausibleLowerTaxa(IDocument document)
         {
-            return this.XmlDocument
-                .SelectNodes(ItalicXPath)
-                .Cast<XmlNode>()
+            var result = document.SelectNodes(ItalicXPath)
                 .Select(x => x.InnerText)
                 .Where(this.IsMatchingLowerTaxaFormat)
-                .ToList();
+                .ToArray();
+
+            return result;
         }
 
-        private IEnumerable<string> GetKnownLowerTaxa()
+        private IEnumerable<string> GetKnownLowerTaxa(IDocument document)
         {
-            var result = this.XmlDocument
-                .SelectNodes("//tn[@type='lower']")
-                .Cast<XmlNode>()
+            var result = document.SelectNodes("//tn[@type='lower']")
                 .Select(x => x.InnerText)
-                .ToList();
+                .ToArray();
 
             return result;
         }
 
         // TODO: XPath-s correction needed
-        private void AdvancedTagLowerTaxa(string xpath)
+        private void AdvancedTagLowerTaxa(IDocument document, string xpath)
         {
-            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
-                .Cast<XmlNode>()
+            document.SelectNodes(xpath)
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
 
-            this.XmlDocument.SelectNodes("//value[.//tn[@type='lower']]", this.NamespaceManager)
-                .Cast<XmlNode>()
+            document.SelectNodes("//value[.//tn[@type='lower']]")
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
         }
@@ -311,11 +306,9 @@
             return result;
         }
 
-        private async Task DeepTag()
+        private async Task DeepTag(IDocument document)
         {
-            var knownLowerTaxaNamesXml = new HashSet<string>(this.XmlDocument.SelectNodes("//tn[@type='lower']")
-                .Cast<XmlNode>()
-                .Select(x => x.InnerXml));
+            var knownLowerTaxaNamesXml = new HashSet<string>(document.SelectNodes("//tn[@type='lower']").Select(x => x.InnerXml));
 
             //////string clearUselessTaxonNamePartsSubpattern = string.Join(
             //////    "|",
@@ -332,13 +325,11 @@
                 .Distinct()
                 .ToList();
 
-            taxa.AddRange(
-                this.XmlDocument.SelectNodes("//treatment//species_name/fields | //checklist_taxon/fields")
-                    .Cast<XmlNode>()
-                    .Select(this.GetSystemTaxonNameString)
-                    .Where(t => !string.IsNullOrWhiteSpace(t))
-                    .Distinct()
-                    .ToList());
+            taxa.AddRange(document.SelectNodes("//treatment//species_name/fields | //checklist_taxon/fields")
+                .Select(this.GetSystemTaxonNameString)
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+                .Distinct()
+                .ToArray());
 
             foreach (string taxon in new HashSet<string>(taxa))
             {
@@ -349,16 +340,15 @@
 
             var orderedTaxaParts = new HashSet<string>(taxa).OrderByDescending(t => t.Length);
 
-            XmlElement lowerTaxaTagModel = this.CreateNewLowerTaxonNameXmlElement();
-
+            var tagModel = this.CreateNewTaxonNameXmlElement(document, TaxonType.Lower);
             foreach (var item in orderedTaxaParts)
             {
                 try
                 {
                     await item.TagContentInDocument(
-                        lowerTaxaTagModel,
+                        tagModel,
                         LowerTaxaXPathTemplate,
-                        this,
+                        document,
                         true,
                         true,
                         this.logger);

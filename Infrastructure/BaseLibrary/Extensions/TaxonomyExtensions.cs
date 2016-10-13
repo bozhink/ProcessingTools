@@ -16,7 +16,7 @@
 
     public static class TaxonomyExtensions
     {
-        public static IEnumerable<string> ExtractTaxa(this XmlNode node, bool stripTags = false, TaxaType type = TaxaType.Any)
+        public static IEnumerable<string> ExtractTaxa(this XmlNode node, bool stripTags = false, TaxonType type = TaxonType.Any)
         {
             if (node == null)
             {
@@ -27,12 +27,12 @@
             string xpath = string.Empty;
             switch (type)
             {
-                case TaxaType.Lower:
-                case TaxaType.Higher:
+                case TaxonType.Lower:
+                case TaxonType.Higher:
                     xpath = string.Format("//tn[@type='{0}']|//tp:taxon-name[@type='{0}']", typeString);
                     break;
 
-                case TaxaType.Any:
+                case TaxonType.Any:
                     xpath = "//tn|//tp:taxon-name";
                     break;
             }

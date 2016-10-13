@@ -7,7 +7,6 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
@@ -44,11 +43,10 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new LowerTaxaTagger(document.Xml, this.service, this.logger);
+            var tagger = new LowerTaxaTagger(this.service, this.logger);
 
-            await tagger.Tag();
+            await tagger.Tag(document);
 
-            document.Xml = tagger.Xml;
             await this.documentNormalizer.NormalizeToSystem(document);
         }
     }

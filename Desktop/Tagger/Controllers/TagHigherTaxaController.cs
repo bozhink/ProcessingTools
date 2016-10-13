@@ -53,11 +53,10 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new HigherTaxaTagger(document.Xml, this.miner, this.service, this.logger);
+            var tagger = new HigherTaxaTagger(this.miner, this.service, this.logger);
 
-            await tagger.Tag();
+            await tagger.Tag(document);
 
-            document.Xml = tagger.Xml;
             await this.documentNormalizer.NormalizeToSystem(document);
         }
     }

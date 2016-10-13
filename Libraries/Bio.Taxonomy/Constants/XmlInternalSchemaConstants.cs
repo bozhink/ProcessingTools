@@ -14,5 +14,6 @@
         public const string TaxonNamePartOfTypeSpeciesXPath = "tn-part[@type='species']";
 
         public const string LowerTaxonTypeValue = "lower";
+        public const string HigherTaxonTypeValue = "higher";
     }
 }

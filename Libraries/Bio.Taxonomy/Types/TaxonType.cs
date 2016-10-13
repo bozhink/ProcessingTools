@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Types
 {
-    public enum TaxaType
+    public enum TaxonType
     {
         Undefined = 0,
         Lower = 1,

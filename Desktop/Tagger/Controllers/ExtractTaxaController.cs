@@ -39,7 +39,7 @@
                 {
                     this.logger?.Log(Messages.ExtractLowerTaxaMessage);
                     document.XmlDocument
-                        .ExtractTaxa(true, TaxaType.Lower)
+                        .ExtractTaxa(true, TaxonType.Lower)
                         .OrderBy(i => i)
                         .ToList()
                         .ForEach(t => this.logger?.Log(t));
@@ -49,7 +49,7 @@
                 {
                     this.logger?.Log(Messages.ExtractHigherTaxaMessage);
                     document.XmlDocument
-                        .ExtractTaxa(true, TaxaType.Higher)
+                        .ExtractTaxa(true, TaxonType.Higher)
                         .OrderBy(i => i)
                         .ToList()
                         .ForEach(t => this.logger?.Log(t));
