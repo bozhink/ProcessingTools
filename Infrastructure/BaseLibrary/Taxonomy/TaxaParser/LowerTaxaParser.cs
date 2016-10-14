@@ -16,9 +16,18 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Extensions;
 
     public class LowerTaxaParser : TaxPubDocument, IParser
     {
+        private const string InfraRank = "infraspecific-rank";
+        private const string UncertaintyRank = "uncertainty-rank";
+
+        private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
+
+        private const string InfraRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + InfraRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
+        private const string UncertaintyRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + UncertaintyRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
+
         private ILogger logger;
 
         public LowerTaxaParser(string xml, ILogger logger)
@@ -37,6 +46,16 @@
             });
         }
 
+        private static string GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType type)
+        {
+            return string.Format(InfraRankPairTaxonNameParts123FormatString, type.ToString().ToLower());
+        }
+
+        private static string GetUncertaintyRankTaxonNameParts123ReplaceString(SpeciesPartType type)
+        {
+            return string.Format(UncertaintyRankPairTaxonNameParts123FormatString, type.ToString().ToLower());
+        }
+
         /// <summary>
         /// Parse different parts of the taxonomic name.
         /// </summary>
@@ -44,63 +63,55 @@
         /// <returns>Parsed text string.</returns>
         private static string ParseDifferentPartsOfTaxonomicNames(string text)
         {
+            const string InfraTaxonNamePattern = @"([A-Za-zçäöüëïâěôûêîæœ\.-]+)";
+            const string InfraPatternSuffix = @"(\.\s*|\s+)" + InfraTaxonNamePattern;
+
             // TODO: add other infrageneric ranks
-            string replace = text;
+            string replace = text
+                .RegexReplace(
+                    @"\b((?i)sect?|section)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Section))
 
-            replace = Regex.Replace(
-                replace,
-                @"\b((?i)sect?|section)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""infraspecific-rank"">$1</tn-part>$2<tn-part type=""" + SpeciesPartType.Section.ToString().ToLower() + @""">$3</tn-part>");
+                .RegexReplace(
+                    @"\b([Ss]ubvar)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Subvariety))
 
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ss]ubvar)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subvariety\">$3</tn-part>");
+                .RegexReplace(
+                    @"\b([Vv]ar|[Vv]ariety|v)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Variety))
 
-            replace = Regex.Replace(
-                replace,
-                @"\b([Vv]ar|[Vv]ariety|v)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"variety\">$3</tn-part>");
+                .RegexReplace(
+                    @"\b([Ff]orma?|f)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Form))
+                
+                .RegexReplace(
+                    @"\b(sf|[Ss]ubforma?)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Subform))
+                
+                .RegexReplace(
+                    @"\b([Aa]b)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Aberration))
+                
+                .RegexReplace(
+                    @"\b([Ss]ubsp|[Ss]sp)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Subspecies))
+                
+                .RegexReplace(
+                    @"\b([Aa]ff|[Cc]f|[Nn]r|[Ss]p|[Ss]p\.?\s*ne?a?r|[Ss]p\s+ne?a?r)\b" + InfraPatternSuffix,
+                    GetUncertaintyRankTaxonNameParts123ReplaceString(SpeciesPartType.Species))
+                
+                .RegexReplace(
+                    @"\b([Ss]ubgen|[Ss]ubgenus|[Ss]g)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Subgenus))
+                
+                .RegexReplace(
+                    @"\b([Ss]ect|[Ss]ection)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Section))
+                
+                .RegexReplace(
+                    @"\b([Ss]ubsect|[Ss]ubsection)\b" + InfraPatternSuffix,
+                    GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType.Subsection));
 
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ff]orma?|f)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"form\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b(sf|[Ss]ubforma?)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subform\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Aa]b)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"aberration\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ss]ubsp|[Ss]sp)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subspecies\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Aa]ff|[Cc]f|[Nn]r|[Ss]p|[Ss]p\.?\s*ne?a?r|[Ss]p\s+ne?a?r)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"uncertainty-rank\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ss]ubgen|[Ss]ubgenus|[Ss]g)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subgenus\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ss]ect|[Ss]ection)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"section\">$3</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\b([Ss]ubsect|[Ss]ubsection)\b(\.\s*|\s+)([A-Za-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"infraspecific-rank\">$1</tn-part>$2<tn-part type=\"subsection\">$3</tn-part>");
             return replace;
         }
 
@@ -207,11 +218,6 @@
             return replace;
         }
 
-        /// <summary>
-        /// Parse taxa from beginning.
-        /// </summary>
-        /// <param name="text">Text string to be parsed.</param>
-        /// <returns>Parsed text string.</returns>
         private static string ParseTaxaFromBeginning(string text)
         {
             string replace = text;
@@ -276,11 +282,6 @@
             return replace;
         }
 
-        /// <summary>
-        /// Try to parse whole string.
-        /// </summary>
-        /// <param name="text">Text string to be parsed.</param>
-        /// <returns>Parsed text string.</returns>
         private static string ParseWholeString(string text)
         {
             string replace = text;
@@ -331,7 +332,7 @@
         {
             const string XPath = "//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
 
-            this.XmlDocument.SelectNodes(XPath, this.NamespaceManager)
+            this.XmlDocument.SelectNodes(XPath)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(lowerTaxonNamePart =>
@@ -354,12 +355,12 @@
 
         private void AddMissingEmptyTagsInTaxonName()
         {
-            foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]", this.NamespaceManager))
+            foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]"))
             {
-                XmlNode genus = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']", this.NamespaceManager);
+                XmlNode genus = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']");
                 if (genus == null)
                 {
-                    XmlNode species = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']", this.NamespaceManager);
+                    XmlNode species = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']");
                     if (species == null)
                     {
                         XmlElement speciesElement = this.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
@@ -393,7 +394,7 @@
         {
             try
             {
-                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(*)]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][not(*)]"))
                 {
                     lowerTaxon.InnerXml = ParseLower(lowerTaxon.InnerXml);
                 }
@@ -410,7 +411,7 @@
             {
                 var rankResolver = new SpeciesPartsPrefixesResolver();
 
-                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]", this.NamespaceManager))
+                foreach (XmlNode lowerTaxon in this.XmlDocument.SelectNodes("//tn[@type='lower'][count(*) != count(tn-part)]"))
                 {
                     string replace = Regex.Replace(lowerTaxon.InnerXml, "</?i>", string.Empty);
 
@@ -489,7 +490,7 @@
             const string TaxonNamePartWithValidContentXPath = "tn-part[normalize-space(.)!=''][not(@full-name)][@type]";
             string nonSingleWordTaxonNamePartsXPath = string.Format("//tn[@type='lower'][count({0}) > 1]/{0}", TaxonNamePartWithValidContentXPath);
 
-            var listOfNonSingleWordTaxonNameParts = this.XmlDocument.SelectNodes(nonSingleWordTaxonNamePartsXPath, this.NamespaceManager)
+            var listOfNonSingleWordTaxonNameParts = this.XmlDocument.SelectNodes(nonSingleWordTaxonNamePartsXPath)
                 .Cast<XmlNode>()
                 .Select(node => new TaxonNamePart(node))
                 .Distinct(new TaxonNamePartEqualityComparer())
@@ -504,7 +505,7 @@
 
         private void UpdateSingleWordTaxonNamePartOfTypeRanks(string xpath, IEnumerable<TaxonNamePart> listOfNonSingleWordTaxonNameParts)
         {
-            this.XmlDocument.SelectNodes(xpath, this.NamespaceManager)
+            this.XmlDocument.SelectNodes(xpath)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(node =>
