@@ -258,6 +258,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="app.manifest" />
+    <None Include="Graph.dgml" />
     <None Include="packages.config" />
     <None Include="TaggerClassDiagram.cd" />
     <None Include="XmlNodesSettings.settings">

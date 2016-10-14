@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="CustomSchema.HTML-like" Category="Comment" Bounds="87.8033333333334,80,164.153333333333,25.96" Label="Custom schema. HTML-like" />
+    <Node Id="EoL" Bounds="230.47370918053,393.927986071408,50,25.96" />
+    <Node Id="File-basedProcess" Bounds="360.065833333333,0,283.701666666667,257.88" Group="Expanded" Label="File-based Process" LayoutSettings="TopToBottom" />
+    <Node Id="HTML" Bounds="310.473695956246,449.887947008908,51.2333333333332,25.96" />
+    <Node Id="HTML1" Bounds="144.263333333333,155.96,51.2333333333333,25.96" Label="HTML" />
+    <Node Id="HTML2" Bounds="418.449166666667,211.92,51.2333333333333,25.96" Label="HTML" />
+    <Node Id="HTMLForPDF" Bounds="20,155.96,93.76,25.96" Label="HTML for PDF" />
+    <Node Id="InDesign" Bounds="508.800833333333,40,66.53,25.96" />
+    <Node Id="Keys" Bounds="311.473754956897,393.928001330197,49.9999999999999,25.96" />
+    <Node Id="PDF" Bounds="230.473754956897,449.887931750119,50,25.96" />
+    <Node Id="PDF1" Bounds="41.88,211.92,50,25.96" Label="PDF" />
+    <Node Id="PDF2" Bounds="380.065833333333,125.96,50,25.96" Label="PDF" />
+    <Node Id="Publication" Bounds="210.47370918053,297.967985212569,252,197.88" Group="Expanded" LayoutSettings="TopToBottom" UseManualLocation="True" />
+    <Node Id="SystemXML" Bounds="67.8033333333334,40,204.153333333333,85.96" Group="Expanded" Label="System XML" />
+    <Node Id="SystemXML1" Bounds="460.364166666667,95.96,163.403333333333,85.96" Group="Expanded" Label="System XML" />
+    <Node Id="TaxPub-likeSchema" Bounds="480.364166666667,135.96,123.403333333333,25.96" Label="TaxPub-like schema" />
+    <Node Id="TaxPubXML" Bounds="294.520406364775,337.967948839963,83.9066666666668,25.96" Label="TaxPub XML" />
+    <Node Id="TaxPubXML1" Bounds="225.926666666667,155.96,83.9066666666666,25.96" Label="TaxPub XML" />
+    <Node Id="TaxPubXML2" Bounds="500.1125,211.92,83.9066666666665,25.96" Label="TaxPub XML" />
+    <Node Id="Web-basedProcess" Bounds="0,0,329.833333333333,257.88" Group="Expanded" Label="Web-based Process" LayoutSettings="TopToBottom" />
+    <Node Id="Wiki" Bounds="392.473693921741,393.92795555383,50,25.96" />
+  </Nodes>
+  <Links>
+    <Link Source="File-basedProcess" Target="HTML2" Category="Contains" />
+    <Link Source="File-basedProcess" Target="InDesign" Category="Contains" />
+    <Link Source="File-basedProcess" Target="PDF2" Category="Contains" />
+    <Link Source="File-basedProcess" Target="SystemXML1" Category="Contains" />
+    <Link Source="File-basedProcess" Target="TaxPubXML2" Category="Contains" />
+    <Link Source="HTML1" Target="HTML" Bounds="-72.803136507289,-452.878495169281,107.697034856473,138.848769574705" />
+    <Link Source="HTML2" Target="HTML" Bounds="-329.207846822288,-398.829989555727,207.157365496584,90.2293318625233" />
+    <Link Source="HTMLForPDF" Target="PDF1" Bounds="66.879997253418,181.919998168945,0,21" />
+    <Link Source="InDesign" Target="PDF2" Bounds="424.33349609375,65.7416305541992,86.3437194824219,53.8393783569336" />
+    <Link Source="InDesign" Target="SystemXML1" Bounds="542.065856933594,65.9599990844727,0,21" />
+    <Link Source="PDF1" Target="PDF" Bounds="-150.360375248632,-396.918503714203,79.9012208622968,83.4978353609148" />
+    <Link Source="PDF2" Target="PDF" Bounds="-379.18106630749,-482.87851042807,189.045333578812,169.943484757035" />
+    <Link Source="Publication" Target="EoL" Category="Contains" />
+    <Link Source="Publication" Target="HTML" Category="Contains" />
+    <Link Source="Publication" Target="Keys" Category="Contains" />
+    <Link Source="Publication" Target="PDF" Category="Contains" />
+    <Link Source="Publication" Target="TaxPubXML" Category="Contains" />
+    <Link Source="Publication" Target="Wiki" Category="Contains" />
+    <Link Source="SystemXML" Target="CustomSchema.HTML-like" Category="Contains" />
+    <Link Source="SystemXML" Target="HTML1" Bounds="169.880004882813,125.959999084473,0,21.0000076293945" />
+    <Link Source="SystemXML" Target="HTMLForPDF" Bounds="89.3428573608398,125.959999084473,29.0371398925781,24.2333297729492" />
+    <Link Source="SystemXML" Target="TaxPubXML1" Bounds="218.880004882813,125.959999084473,27.4359436035156,24.0652542114258" />
+    <Link Source="SystemXML1" Target="HTML2" Bounds="465.6298828125,181.919998168945,27.4359436035156,24.0652465820313" />
+    <Link Source="SystemXML1" Target="TaxPub-likeSchema" Category="Contains" />
+    <Link Source="SystemXML1" Target="TaxPubXML2" Bounds="542.065856933594,181.919998168945,0,21" />
+    <Link Source="TaxPubXML" Target="EoL" Bounds="281.666534423828,363.927825927734,36.0191345214844,24.88427734375" />
+    <Link Source="TaxPubXML" Target="Keys" Bounds="336.473754882813,363.927825927734,0,20.9999694824219" />
+    <Link Source="TaxPubXML" Target="Wiki" Bounds="355.261810302734,363.927825927734,36.0191345214844,24.88427734375" />
+    <Link Source="TaxPubXML1" Target="TaxPubXML" Bounds="-178.260570855695,-463.701396484375,296.367249566944,254.713710230228" />
+    <Link Source="TaxPubXML2" Target="TaxPubXML" Bounds="-262.64684415172,-407.745769042969,56.2495503252466,195.973578216618" />
+    <Link Source="Web-basedProcess" Target="HTML1" Category="Contains" />
+    <Link Source="Web-basedProcess" Target="HTMLForPDF" Category="Contains" />
+    <Link Source="Web-basedProcess" Target="PDF1" Category="Contains" />
+    <Link Source="Web-basedProcess" Target="SystemXML" Category="Contains" />
+    <Link Source="Web-basedProcess" Target="TaxPubXML1" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Comment" Label="Comment" Description="Represents a user defined comment on the diagram" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Comments" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+</DirectedGraph>
