@@ -17,56 +17,34 @@
         private bool nullSubgenus;
         private bool nullSpecies;
         private bool nullSubspecies;
-        private bool shortened;
 
         public Species(string parsedContent)
         {
             Match m = this.genusNameMatchInXml.Match(parsedContent);
             this.genus = m.Success ? m.Value : string.Empty;
+
             m = this.subgenusNameMatchInXml.Match(parsedContent);
             this.subgenus = m.Success ? m.Value : string.Empty;
+
             m = this.speciesNameMatchInXml.Match(parsedContent);
             this.species = m.Success ? m.Value : string.Empty;
+
             m = this.subspeciesNameMatchInXml.Match(parsedContent);
             this.subspecies = m.Success ? m.Value : string.Empty;
+
             this.nullGenus = this.CheckIfGenusIsNull();
             this.nullSubgenus = this.CheckIfSubgenusIsNull();
             this.nullSpecies = this.CheckIfSpeciesIsNull();
             this.nullSubspecies = this.CheckIfSubspeciesIsNull();
-            this.shortened = this.CheckIfTaxonIsShortened();
         }
 
-        public string GenusName
-        {
-            get
-            {
-                return this.genus;
-            }
-        }
+        public string GenusName => this.genus;
 
-        public string SubgenusName
-        {
-            get
-            {
-                return this.subgenus;
-            }
-        }
+        public string SubgenusName => this.subgenus;
 
-        public string SpeciesName
-        {
-            get
-            {
-                return this.species;
-            }
-        }
+        public string SpeciesName => this.species;
 
-        public string SubspeciesName
-        {
-            get
-            {
-                return this.subspecies;
-            }
-        }
+        public string SubspeciesName => this.subspecies;
 
         public string GenusPattern
         {
@@ -104,30 +82,12 @@
             }
         }
 
-        private bool CheckIfGenusIsNull()
-        {
-            return this.genus.Length == 0;
-        }
+        private bool CheckIfGenusIsNull() => this.genus.Length == 0;
 
-        private bool CheckIfSubgenusIsNull()
-        {
-            return this.subgenus.Length == 0;
-        }
+        private bool CheckIfSubgenusIsNull() => this.subgenus.Length == 0;
 
-        private bool CheckIfSpeciesIsNull()
-        {
-            return this.species.Length == 0;
-        }
+        private bool CheckIfSpeciesIsNull() => this.species.Length == 0;
 
-        private bool CheckIfSubspeciesIsNull()
-        {
-            return this.subspecies.Length == 0;
-        }
-
-        private bool CheckIfTaxonIsShortened()
-        {
-            string sp = this.genus + this.subgenus + this.species + this.subspecies;
-            return sp.IndexOf('.') > -1;
-        }
+        private bool CheckIfSubspeciesIsNull() => this.subspecies.Length == 0;
     }
 }
