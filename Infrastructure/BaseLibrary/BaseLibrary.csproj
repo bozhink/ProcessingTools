@@ -84,7 +84,6 @@
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Taxonomy\Species\SpeciesComparison.cs" />
-    <Compile Include="Taxonomy\TaxaExpander\AbbreviatedNamesResolver.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
@@ -209,9 +208,7 @@
       <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Taxonomy\TaxaParser\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
