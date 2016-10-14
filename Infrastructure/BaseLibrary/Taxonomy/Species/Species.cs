@@ -36,45 +36,6 @@
             this.shortened = this.CheckIfTaxonIsShortened();
         }
 
-        public Species(string genus, string subgenus, string species, string subspecies)
-        {
-            this.genus = genus;
-            this.subgenus = subgenus;
-            this.species = species;
-            this.subspecies = subspecies;
-            this.nullGenus = this.CheckIfGenusIsNull();
-            this.nullSubgenus = this.CheckIfSubgenusIsNull();
-            this.nullSpecies = this.CheckIfSpeciesIsNull();
-            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
-            this.shortened = this.CheckIfTaxonIsShortened();
-        }
-
-        public Species()
-        {
-            this.genus = string.Empty;
-            this.subgenus = string.Empty;
-            this.species = string.Empty;
-            this.subspecies = string.Empty;
-            this.nullGenus = true;
-            this.nullSubgenus = true;
-            this.nullSpecies = true;
-            this.nullSubspecies = true;
-            this.shortened = false;
-        }
-
-        public Species(Species sp)
-        {
-            this.genus = sp.GenusName;
-            this.subgenus = sp.SubgenusName;
-            this.species = sp.SpeciesName;
-            this.subspecies = sp.SubspeciesName;
-            this.nullGenus = this.CheckIfGenusIsNull();
-            this.nullSubgenus = this.CheckIfSubgenusIsNull();
-            this.nullSpecies = this.CheckIfSpeciesIsNull();
-            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
-            this.shortened = this.CheckIfTaxonIsShortened();
-        }
-
         public string GenusName
         {
             get
