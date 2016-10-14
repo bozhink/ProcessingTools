@@ -104,6 +104,18 @@
             return performReplace;
         }
 
+        public static XmlDocument OwnerDocument(this XmlNode node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
+
+            return document;
+        }
+
         public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this XmlNode xml, string xpath)
         {
             XmlNodeList nodeList = xml.SelectNodes(xpath);

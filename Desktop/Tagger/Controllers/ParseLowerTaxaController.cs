@@ -22,11 +22,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new LowerTaxaParser(document.Xml, this.logger);
+            var parser = new LowerTaxaParser(this.logger);
 
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }
