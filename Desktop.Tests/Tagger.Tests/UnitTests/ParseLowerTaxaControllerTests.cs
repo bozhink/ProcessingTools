@@ -6,6 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
 
     [TestFixture]
     public class ParseLowerTaxaControllerTests
@@ -19,6 +20,7 @@
         private ProgramSettings settings;
         private ILogger logger;
         private IDocumentFactory documentFactory;
+        private ILowerTaxaParser parser;
 
         [SetUp]
         public void Init()
@@ -34,13 +36,16 @@
 
             var documentFactoryMock = new Mock<IDocumentFactory>();
             this.documentFactory = documentFactoryMock.Object;
+
+            var parserMock = new Mock<ILowerTaxaParser>();
+            this.parser = parserMock.Object;
         }
 
         [Test]
         [Timeout(500)]
         public void ParseLowerTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -49,7 +54,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -64,7 +69,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -75,7 +80,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -86,7 +91,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -97,7 +102,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -108,7 +113,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -119,7 +124,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -130,7 +135,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -141,7 +146,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -152,7 +157,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             try
             {
@@ -173,7 +178,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -184,7 +189,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -195,7 +200,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -206,7 +211,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -217,7 +222,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             try
             {
@@ -238,7 +243,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -249,7 +254,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -260,7 +265,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             try
             {
@@ -281,7 +286,7 @@
         [Timeout(500)]
         public void ParseLowerTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseLowerTaxaController(this.documentFactory, this.logger);
+            var controller = new ParseLowerTaxaController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 

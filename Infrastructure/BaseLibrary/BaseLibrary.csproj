@@ -78,7 +78,6 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Taxonomy\Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Taxonomy\Models\TaxonName.cs" />
     <Compile Include="Taxonomy\Models\TaxonNamePart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="StringTagger.cs" />
     <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
     <Compile Include="Taxonomy\Species\Species.cs" />
-    <Compile Include="Taxonomy\TaxaParser\LowerTaxaParser.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankXmlCloner.cs" />
@@ -211,7 +209,9 @@
       <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Taxonomy\TaxaParser\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

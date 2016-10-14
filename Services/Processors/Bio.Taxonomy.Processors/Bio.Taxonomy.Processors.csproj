@@ -37,13 +37,18 @@
   <ItemGroup>
     <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
     <Compile Include="Contracts\Parsers\IHigherTaxaParserWithDataService.cs" />
+    <Compile Include="Contracts\Parsers\ILowerTaxaParser.cs" />
     <Compile Include="Contracts\Taggers\IHigherTaxaTagger.cs" />
     <Compile Include="Contracts\Taggers\ILowerTaxaTagger.cs" />
+    <Compile Include="Models\Parsers\TaxonName.cs" />
+    <Compile Include="Models\Parsers\TaxonNamePart.cs" />
     <Compile Include="Models\Parsers\TaxonRankResponseModel.cs" />
     <Compile Include="Processors\Formatters\TreatmentFormatter.cs" />
     <Compile Include="Processors\Parsers\HigherTaxaParserWithDataService.cs" />
+    <Compile Include="Processors\Parsers\LowerTaxaParser.cs" />
     <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
     <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

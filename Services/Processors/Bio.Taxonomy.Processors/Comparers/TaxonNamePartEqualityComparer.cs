@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy.Comparers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Comparers
 {
     using System.Collections.Generic;
-    using Models;
+    using Models.Parsers;
 
     public class TaxonNamePartEqualityComparer : IEqualityComparer<TaxonNamePart>
     {

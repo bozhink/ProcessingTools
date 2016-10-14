@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Parsers
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,8 @@
     using System.Xml;
 
     using Comparers;
-    using Models;
+    using Contracts.Parsers;
+    using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Constants;
@@ -18,7 +19,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    public class LowerTaxaParser : IGenericXmlContextParser<object>
+    public class LowerTaxaParser : ILowerTaxaParser
     {
         private const string InfraRank = "infraspecific-rank";
         private const string UncertaintyRank = "uncertainty-rank";
