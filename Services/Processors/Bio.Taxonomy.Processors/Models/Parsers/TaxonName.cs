@@ -7,9 +7,12 @@
 
     public class TaxonName
     {
+        private const long PositionDefaultValue = 0L;
+
         public TaxonName()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Position = PositionDefaultValue;
             this.Parts = new HashSet<TaxonNamePart>();
         }
 
@@ -23,6 +26,17 @@
             this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
             this.Type = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName]?.InnerText ?? string.Empty;
 
+            var positionAttributeValue = node.Attributes[XmlInternalSchemaConstants.PositionAttributeName]?.InnerText ?? string.Empty;
+            long position = PositionDefaultValue;
+            if (long.TryParse(positionAttributeValue, out position))
+            {
+                this.Position = position;
+            }
+            else
+            {
+                this.Position = PositionDefaultValue;
+            }
+
             this.Parts = new HashSet<TaxonNamePart>();
             foreach (XmlNode taxonNamePart in node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName))
             {
@@ -31,6 +45,8 @@
         }
 
         public string Id { get; set; }
+
+        public long Position { get; set; }
 
         public string Type { get; set; }
 

@@ -194,6 +194,16 @@
             context.InnerXml = xml;
         }
 
+        private IQueryable<TaxonName> GetContextTaxonVectorModel(XmlNode context)
+        {
+            var taxa = context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
+                .Cast<XmlNode>()
+                .Select(t => new TaxonName(t))
+                .ToArray();
+
+            return new HashSet<TaxonName>(taxa).AsQueryable();
+        }
+
         private void ForceExactSpeciesMatchExpand(XmlNode context)
         {
             if (context == null)
@@ -201,15 +211,10 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            ICollection<TaxonName> taxonNames = new List<TaxonName>();
-            context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
-                .Cast<XmlNode>()
-                .ToList()
-                .ForEach(t => taxonNames.Add(new TaxonName(t)));
-
-            foreach (var taxonName in taxonNames)
+            var taxonNames = this.GetContextTaxonVectorModel(context);
+            foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
             {
-                this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
+                this.logger?.Log("{0} {1} {2} | {3}", taxonName.Id, taxonName.Type, taxonName.Position, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
             }
 
             string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath}";

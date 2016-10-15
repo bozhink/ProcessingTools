@@ -72,5 +72,7 @@
         public string Rank { get; set; }
 
         public string FullName { get; set; }
+
+        public bool IsModified { get; set; } = false;
     }
 }
