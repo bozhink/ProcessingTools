@@ -6,7 +6,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Processors.Parsers;
     using ProcessingTools.Contracts;
 
     [Description("Expand lower taxa.")]

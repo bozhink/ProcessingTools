@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Parsers
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Models;
+    using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;

@@ -85,8 +85,6 @@
     <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="StringTagger.cs" />
-    <Compile Include="Taxonomy\TaxaExpander\Expander.cs" />
-    <Compile Include="Taxonomy\Species\Species.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankXmlCloner.cs" />
