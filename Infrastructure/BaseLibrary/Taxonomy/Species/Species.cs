@@ -13,10 +13,6 @@
         private string subgenus;
         private string species;
         private string subspecies;
-        private bool nullGenus;
-        private bool nullSubgenus;
-        private bool nullSpecies;
-        private bool nullSubspecies;
 
         public Species(string parsedContent)
         {
@@ -31,11 +27,6 @@
 
             m = this.subspeciesNameMatchInXml.Match(parsedContent);
             this.subspecies = m.Success ? m.Value : string.Empty;
-
-            this.nullGenus = this.CheckIfGenusIsNull();
-            this.nullSubgenus = this.CheckIfSubgenusIsNull();
-            this.nullSpecies = this.CheckIfSpeciesIsNull();
-            this.nullSubspecies = this.CheckIfSubspeciesIsNull();
         }
 
         public string GenusName => this.genus;
@@ -70,24 +61,13 @@
             }
         }
 
-        public string SpeciesNameAsString
+        public override string ToString()
         {
-            get
-            {
-                string name = this.nullGenus ? string.Empty : this.genus;
-                name += this.nullSubgenus ? string.Empty : " (" + this.subgenus + ")";
-                name += this.nullSpecies ? string.Empty : " " + this.species;
-                name += this.nullSubspecies ? string.Empty : " " + this.subspecies;
-                return name;
-            }
+            string name = (this.genus.Length == 0) ? string.Empty : this.genus;
+            name += (this.subgenus.Length == 0) ? string.Empty : " (" + this.subgenus + ")";
+            name += (this.species.Length == 0) ? string.Empty : " " + this.species;
+            name += (this.subspecies.Length == 0) ? string.Empty : " " + this.subspecies;
+            return name;
         }
-
-        private bool CheckIfGenusIsNull() => this.genus.Length == 0;
-
-        private bool CheckIfSubgenusIsNull() => this.subgenus.Length == 0;
-
-        private bool CheckIfSpeciesIsNull() => this.species.Length == 0;
-
-        private bool CheckIfSubspeciesIsNull() => this.subspecies.Length == 0;
     }
 }

@@ -11,6 +11,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Extensions;
 
     public class Expander : TaxPubDocument
     {
@@ -29,32 +30,30 @@
 
         public static void PrintNextShortened(Species sp, ILogger logger)
         {
-            logger?.Log("\nNext shortened taxon:\t{0}", sp.SpeciesNameAsString);
+            logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
         }
 
         public static void PrintSubstitutionMessage(Species original, Species substitution, ILogger logger)
         {
-            logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.SpeciesNameAsString, substitution.SpeciesNameAsString);
+            logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
         }
 
         public static void PrintSubstitutionMessageFail(Species original, Species substitution, ILogger logger)
         {
-            logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.SpeciesNameAsString, substitution.SpeciesNameAsString);
+            logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
         }
 
         public void StableExpand()
         {
             // In this method it is supposed that the subspecies name is not shortened
-            Expander.PrintMethodMessage("StableExpand", this.logger);
+            PrintMethodMessage("StableExpand", this.logger);
 
-            IEnumerable<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
-            IEnumerable<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
+            var shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
+            var nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
 
-            List<Species> speciesList = new List<Species>();
-            foreach (string taxon in nonShortTaxaListUnique)
-            {
-                speciesList.Add(new Species(taxon));
-            }
+            var speciesList = nonShortTaxaListUnique
+                .Select(t => new Species(t))
+                .ToList();
 
             string xml = this.Xml;
 
@@ -63,43 +62,46 @@
                 string text = Regex.Replace(shortTaxon, " xmlns:\\w+=\".*?\"", string.Empty);
                 string replace = text;
 
-                Species sp = new Species(shortTaxon);
-                Expander.PrintNextShortened(sp, this.logger);
+                var sp = new Species(shortTaxon);
+                PrintNextShortened(sp, this.logger);
 
-                foreach (Species sp1 in speciesList)
+                foreach (var sp1 in speciesList)
                 {
-                    if (string.Compare(sp.SubspeciesName, sp1.SubspeciesName) == 0)
+                    if (string.Compare(sp.SubspeciesName, sp1.SubspeciesName, true) != 0)
                     {
-                        Match matchGenus = Regex.Match(sp1.GenusName, sp.GenusPattern);
-                        Match matchSubgenus = Regex.Match(sp1.SubgenusName, sp.SubgenusPattern);
-                        Match matchSpecies = Regex.Match(sp1.SpeciesName, sp.SpeciesPattern);
+                        continue;
+                    }
 
-                        // Check if the subgenus is empty
-                        if (string.Compare(sp.SubgenusName, string.Empty) == 0)
+                    var matchGenus = Regex.Match(sp1.GenusName, sp.GenusPattern);
+                    var matchSubgenus = Regex.Match(sp1.SubgenusName, sp.SubgenusPattern);
+                    var matchSpecies = Regex.Match(sp1.SpeciesName, sp.SpeciesPattern);
+
+                    if (string.IsNullOrWhiteSpace(sp.SubgenusName))
+                    {
+                        if (matchGenus.Success && matchSpecies.Success)
                         {
-                            if (matchGenus.Success && matchSpecies.Success)
+                            if (string.IsNullOrWhiteSpace(sp1.SubgenusName))
                             {
-                                if (string.Compare(sp1.SubgenusName, string.Empty) == 0)
-                                {
-                                    Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
-                                    replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
-                                    replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
-                                }
-                                else
-                                {
-                                    Expander.PrintSubstitutionMessageFail(sp, sp1, this.logger);
-                                }
+                                PrintSubstitutionMessage(sp, sp1, this.logger);
+                                replace = replace
+                                    .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
+                                    .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
+                            }
+                            else
+                            {
+                                PrintSubstitutionMessageFail(sp, sp1, this.logger);
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                         {
-                            if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
-                            {
-                                Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
-                                replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
-                                replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName);
-                                replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
-                            }
+                            PrintSubstitutionMessage(sp, sp1, this.logger);
+                            replace = replace
+                                .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
+                                .RegexReplace("(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName)
+                                .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
                         }
                     }
                 }
@@ -110,85 +112,10 @@
             this.Xml = xml;
         }
 
-        public void UnstableExpand3()
-        {
-            Expander.PrintMethodMessage("UnstableExpand. STAGE 3: Look in paragraphs", this.logger);
-
-            // Loop over paragraphs containing shortened taxa
-            foreach (XmlNode p in this.XmlDocument.SelectNodes("//p[count(.//tn-part[normalize-space(@full-name)='']) > 0]"))
-            {
-                this.logger?.Log(p.InnerText);
-                this.logger?.Log("\n\n");
-
-                IEnumerable<string> shortTaxaListUnique = p.GetListOfShortenedTaxa();
-                IEnumerable<string> nonShortTaxaListUnique = p.GetListOfNonShortenedTaxa();
-
-                List<Species> speciesList = new List<Species>();
-                foreach (string taxon in nonShortTaxaListUnique)
-                {
-                    speciesList.Add(new Species(taxon));
-                }
-
-                foreach (string taxon in shortTaxaListUnique)
-                {
-                    this.logger?.Log(taxon);
-                }
-
-                this.logger?.Log();
-                foreach (string taxon in nonShortTaxaListUnique)
-                {
-                    this.logger?.Log(taxon);
-                }
-
-                this.logger?.Log("\n\n");
-            }
-        }
-
-        // TODO
-        public void UnstableExpand8()
-        {
-            Expander.PrintMethodMessage("UnstableExpand. STAGE 8: WARNING: search in the whole article", this.logger);
-
-            IEnumerable<string> shortTaxaListUnique = this.XmlDocument.GetListOfShortenedTaxa();
-            IEnumerable<string> nonShortTaxaListUnique = this.XmlDocument.GetListOfNonShortenedTaxa();
-
-            List<Species> speciesList = new List<Species>();
-            foreach (string taxon in nonShortTaxaListUnique)
-            {
-                speciesList.Add(new Species(taxon));
-            }
-
-            foreach (string shortTaxon in shortTaxaListUnique)
-            {
-                string text = Regex.Replace(shortTaxon, " xmlns:\\w+=\".*?\"", string.Empty);
-                string replace = text;
-
-                Species sp = new Species(shortTaxon);
-                Expander.PrintNextShortened(sp, this.logger);
-
-                foreach (Species sp1 in speciesList)
-                {
-                    Match matchGenus = Regex.Match(sp1.GenusName, sp.GenusPattern);
-                    Match matchSubgenus = Regex.Match(sp1.SubgenusName, sp.SubgenusPattern);
-                    Match matchSpecies = Regex.Match(sp1.SpeciesName, sp.SpeciesPattern);
-
-                    if (matchGenus.Success || matchSubgenus.Success || matchSpecies.Success)
-                    {
-                        Expander.PrintSubstitutionMessage(sp, sp1, this.logger);
-                        replace = Regex.Replace(replace, "(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName);
-                        replace = Regex.Replace(replace, "(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName);
-                        replace = Regex.Replace(replace, "(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
-                    }
-                }
-
-                this.Xml = Regex.Replace(this.Xml, Regex.Escape(text), replace);
-            }
-        }
-
         public void ForceExactSpeciesMatchExpand()
         {
             ICollection<TaxonName> taxonNames = new List<TaxonName>();
-            this.XmlDocument.SelectNodes("//tn[@type='lower']")
+            this.XmlDocument.SelectNodes(".//tn[@type='lower']")
                 .Cast<XmlNode>()
                 .ToList()
                 .ForEach(t => taxonNames.Add(new TaxonName(t)));
@@ -198,7 +125,7 @@
                 this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
             }
 
-            string nodeListOfSpeciesInShortenedTaxaNameXPath = "//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = ".//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
 
             var speciesUniq = this.XmlDocument.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
                 .Cast<XmlNode>()
@@ -212,7 +139,7 @@
 
             foreach (string species in speciesUniq)
             {
-                var genera = this.XmlDocument.SelectNodes($"//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
+                var genera = this.XmlDocument.SelectNodes($".//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
                     .Cast<XmlElement>()
                     .Select(g =>
                     {
@@ -245,7 +172,7 @@
                         string genus = speciesGenusPairs[species].FirstOrDefault();
                         this.logger?.Log(genus);
 
-                        this.XmlDocument.SelectNodes($"//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
+                        this.XmlDocument.SelectNodes($".//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
                             .Cast<XmlElement>()
                             .AsParallel()
                             .ForAll(t =>
