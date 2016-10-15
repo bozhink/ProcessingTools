@@ -24,13 +24,11 @@
         {
             return Task.Run(() =>
             {
-                var expander = new Expander(document.XmlDocument.OuterXml, this.logger);
+                var expander = new Expander(this.logger);
 
-                expander.StableExpand();
+                expander.StableExpand(document.XmlDocument.DocumentElement);
 
-                expander.ForceExactSpeciesMatchExpand();
-
-                document.Xml = expander.Xml;
+                expander.ForceExactSpeciesMatchExpand(document.XmlDocument.DocumentElement);
             });
         }
     }
