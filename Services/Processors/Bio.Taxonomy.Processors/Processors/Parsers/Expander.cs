@@ -14,6 +14,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Xml.Extensions;
 
     public class Expander : IExpander
     {
@@ -50,8 +51,8 @@
             // In this method it is supposed that the subspecies name is not shortened
             this.PrintMethodMessage(nameof(this.StableExpand));
 
-            var shortTaxaListUnique = context.GetListOfShortenedTaxa();
-            var nonShortTaxaListUnique = context.GetListOfNonShortenedTaxa();
+            var shortTaxaListUnique = this.GetListOfShortenedTaxa(context);
+            var nonShortTaxaListUnique = this.GetListOfNonShortenedTaxa(context);
 
             var speciesList = nonShortTaxaListUnique
                 .Select(t => new Species(t))
@@ -225,6 +226,72 @@
         private void PrintSubstitutionMessageFail(Species original, Species substitution)
         {
             this.logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
+        }
+
+        private IEnumerable<string> GetListOfNonShortenedTaxa(XmlNode node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
+
+            string xpath = ".//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
+            var result = node.SelectNodes(xpath)
+                .Cast<XmlNode>()
+                .Select(currentNode =>
+                {
+                    XmlElement taxonNameElement = document.CreateElement("tn");
+                    foreach (XmlNode innerNode in currentNode.SelectNodes(".//*"))
+                    {
+                        XmlElement taxonNamePartElement = document.CreateElement("tn-part");
+
+                        // Copy only *type* attributes
+                        foreach (XmlAttribute attribute in innerNode.Attributes)
+                        {
+                            if (attribute.Name.Contains("type"))
+                            {
+                                XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
+                                typeAttribute.InnerText = attribute.InnerText;
+                                taxonNamePartElement.Attributes.Append(typeAttribute);
+                            }
+                        }
+
+                        // Gets the value of the @full-name attribute if present or the content of the node
+                        var fullNameAttribute = innerNode.Attributes["full-name"];
+                        if (fullNameAttribute != null && !string.IsNullOrWhiteSpace(fullNameAttribute.InnerText))
+                        {
+                            taxonNamePartElement.InnerText = fullNameAttribute.InnerText;
+                        }
+                        else
+                        {
+                            taxonNamePartElement.InnerText = innerNode.InnerText;
+                        }
+
+                        taxonNameElement.AppendChild(taxonNamePartElement);
+                    }
+
+                    return taxonNameElement;
+                })
+                .ToList<XmlNode>()
+                .GetStringListOfUniqueXmlNodes();
+
+            return new HashSet<string>(result);
+        }
+
+        public IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
+            string xpath = ".//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
+            var result = node.GetStringListOfUniqueXmlNodes(xpath);
+
+            return new HashSet<string>(result);
         }
     }
 }
