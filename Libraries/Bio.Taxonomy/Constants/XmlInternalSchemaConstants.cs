@@ -19,6 +19,7 @@
         public const string SelectLowerTaxonNamesXPath = ".//tn[@type='lower']";
         public const string SelectTaxonNamePartsOfLowerTaxonNamesXPath = SelectLowerTaxonNamesXPath + "/" + TaxonNamePartElementName;
 
+        public const string AnyTaxonTypeValue = "any";
         public const string LowerTaxonTypeValue = "lower";
         public const string HigherTaxonTypeValue = "higher";
     }

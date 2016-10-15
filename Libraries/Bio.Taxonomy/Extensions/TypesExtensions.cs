@@ -19,5 +19,29 @@
                     return rank.ToString().ToLower();
             }
         }
+
+        public static string MapTaxonTypeToTaxonTypeString(this TaxonType type)
+        {
+            return type.ToString().ToLower();
+        }
+
+        public static TaxonType MapTaxonTypeStringToTaxonType(this string type)
+        {
+            string typeLowerCase = type.ToLower();
+            switch (typeLowerCase)
+            {
+                case XmlInternalSchemaConstants.AnyTaxonTypeValue:
+                    return TaxonType.Any;
+
+                case XmlInternalSchemaConstants.LowerTaxonTypeValue:
+                    return TaxonType.Lower;
+
+                case XmlInternalSchemaConstants.HigherTaxonTypeValue:
+                    return TaxonType.Higher;
+
+                default:
+                    return TaxonType.Undefined;
+            }
+        }
     }
 }
