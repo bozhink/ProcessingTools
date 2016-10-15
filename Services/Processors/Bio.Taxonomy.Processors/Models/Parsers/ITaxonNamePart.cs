@@ -1,19 +1,19 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using System;
+    using System.Linq.Expressions;
 
-    public interface ITaxonNamePart
+    internal interface ITaxonNamePart : IMinimalTaxonNamePart
     {
-        string FullName { get; set; }
-
         string Id { get; }
 
         bool IsAbbreviated { get; }
 
         bool IsModified { get; set; }
 
+        Expression<Func<ITaxonNamePart, bool>> MatchExpression { get; }
         string Name { get; }
 
-        SpeciesPartType Rank { get; }
+        string Pattern { get; }
     }
 }

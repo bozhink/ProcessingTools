@@ -1,12 +1,14 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
     using System;
+    using System.Linq.Expressions;
     using System.Xml;
+
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
 
-    public class TaxonNamePart : ITaxonNamePart
+    internal class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
     {
         private string name;
 
@@ -49,7 +51,7 @@
             }
             else
             {
-                this.FullName = fullNameAttribute.InnerText;
+                this.FullName = fullNameAttribute.InnerText.Trim();
             }
         }
 
@@ -75,14 +77,50 @@
                     this.IsAbbreviated = false;
                 }
 
-                this.name = value;
+                this.name = value.Trim();
+
+                if (this.IsAbbreviated)
+                {
+                    this.Pattern = this.name.TrimEnd('.');
+                }
+                else
+                {
+                    this.Pattern = this.name;
+                }
             }
         }
 
-        public SpeciesPartType Rank { get; set; }
-
-        public string FullName { get; set; }
+        public string Pattern { get; private set; }
 
         public bool IsModified { get; set; } = false;
+
+        public Expression<Func<ITaxonNamePart, bool>> MatchExpression
+        {
+            get
+            {
+                if (this.IsAbbreviated && !this.IsModified)
+                {
+                    return p => (p.Rank == this.Rank) &&
+                                (!p.IsAbbreviated || p.IsModified) &&
+                                (p.FullName.IndexOf(this.Pattern) == 0);
+                }
+                else
+                {
+                    return p => (p.Rank == this.Rank) &&
+                                (!p.IsAbbreviated || p.IsModified) &&
+                                (p.FullName == this.FullName);
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.FullName + " " + this.Rank;
+        }
+
+        public override int GetHashCode()
+        {
+            return (this.FullName + this.Rank + this.Name).GetHashCode();
+        }
     }
 }

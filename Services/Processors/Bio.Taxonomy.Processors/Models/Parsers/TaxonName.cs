@@ -2,22 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Xml;
+
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
 
-    public class TaxonName : ITaxonName
+    internal class TaxonName : ITaxonName
     {
         private const long PositionDefaultValue = 0L;
-
-        public TaxonName()
-        {
-            this.Id = Guid.NewGuid().ToString();
-            this.Position = PositionDefaultValue;
-            this.Type = TaxonType.Undefined;
-            this.Parts = new HashSet<ITaxonNamePart>();
-        }
 
         public TaxonName(XmlNode node)
         {
@@ -49,11 +43,13 @@
                 this.Position = PositionDefaultValue;
             }
 
-            this.Parts = new HashSet<ITaxonNamePart>();
+            var parts = new HashSet<ITaxonNamePart>();
             foreach (XmlNode taxonNamePart in node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName))
             {
-                this.Parts.Add(new TaxonNamePart(taxonNamePart));
+                parts.Add(new TaxonNamePart(taxonNamePart));
             }
+
+            this.Parts = parts.AsQueryable();
         }
 
         public string Id { get; set; }
@@ -62,6 +58,11 @@
 
         public TaxonType Type { get; set; }
 
-        public ICollection<ITaxonNamePart> Parts { get; set; }
+        public IQueryable<ITaxonNamePart> Parts { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2} | {3}", this.Id, this.Type, this.Position, string.Join(" / ", this.Parts));
+        }
     }
 }

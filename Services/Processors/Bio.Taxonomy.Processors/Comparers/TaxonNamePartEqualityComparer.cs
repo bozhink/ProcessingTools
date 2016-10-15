@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Models.Parsers;
 
-    public class TaxonNamePartEqualityComparer : IEqualityComparer<TaxonNamePart>
+    internal class TaxonNamePartEqualityComparer : IEqualityComparer<TaxonNamePart>
     {
         public bool Equals(TaxonNamePart x, TaxonNamePart y)
         {
@@ -12,7 +12,7 @@
 
         public int GetHashCode(TaxonNamePart obj)
         {
-            return (obj.FullName + obj.Rank + obj.Name).GetHashCode();
+            return obj.GetHashCode();
         }
     }
 }

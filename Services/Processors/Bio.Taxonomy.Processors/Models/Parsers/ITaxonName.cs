@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
+    using System.Linq;
     using ProcessingTools.Bio.Taxonomy.Types;
 
-    public interface ITaxonName
+    internal interface ITaxonName
     {
         string Id { get; }
 
@@ -12,6 +11,6 @@ namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 
         TaxonType Type { get; }
 
-        ICollection<ITaxonNamePart> Parts { get; }
+        IQueryable<ITaxonNamePart> Parts { get; }
     }
 }

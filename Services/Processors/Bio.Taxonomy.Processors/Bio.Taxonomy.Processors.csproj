@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Comparers\TaxonNameContentEqualityComparer.cs" />
     <Compile Include="Comparers\TaxonNamePartEqualityComparer.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
     <Compile Include="Contracts\Parsers\IExpander.cs" />
@@ -44,8 +45,12 @@
     <Compile Include="Contracts\Parsers\ILowerTaxaParser.cs" />
     <Compile Include="Contracts\Taggers\IHigherTaxaTagger.cs" />
     <Compile Include="Contracts\Taggers\ILowerTaxaTagger.cs" />
+    <Compile Include="Models\Parsers\IMinimalTaxonName.cs" />
+    <Compile Include="Models\Parsers\IMinimalTaxonNamePart.cs" />
     <Compile Include="Models\Parsers\ITaxonName.cs" />
     <Compile Include="Models\Parsers\ITaxonNamePart.cs" />
+    <Compile Include="Models\Parsers\MinimalTaxonName.cs" />
+    <Compile Include="Models\Parsers\MinimalTaxonNamePart.cs" />
     <Compile Include="Models\Parsers\Species.cs" />
     <Compile Include="Models\Parsers\TaxonName.cs" />
     <Compile Include="Models\Parsers\TaxonNamePart.cs" />

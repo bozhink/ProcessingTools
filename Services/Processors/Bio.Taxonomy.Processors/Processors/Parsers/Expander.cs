@@ -3,14 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Comparers;
     using Contracts.Parsers;
     using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
@@ -37,6 +40,14 @@
                 this.AddFullNameAttributeToTaxonNamePartElements(context);
 
                 this.AddIdAndPositionAttributesToTaxonNameElements(context);
+
+
+                var taxonNames = this.GetContextTaxonVectorModel(context);
+
+                this.PrintContextVectorModel(taxonNames);
+
+                this.StableExpand(taxonNames);
+                this.ImportExpandedItems(context, taxonNames);
 
                 this.StableExpand(context);
                 this.ForceExactSpeciesMatchExpand(context);
@@ -194,6 +205,66 @@
             context.InnerXml = xml;
         }
 
+        private void StableExpand(IQueryable<ITaxonName> taxonNames)
+        {
+            Expression<Func<ITaxonNamePart, bool>> partIsAbbreviatedAndNotModified = p => p.IsAbbreviated && !p.IsModified;
+            Expression<Func<ITaxonNamePart, bool>> partIsModifiedOrNotAbbreviated = p => p.IsModified || !p.IsAbbreviated;
+
+            var abbreviatedTaxonNames = taxonNames.Where(tn => tn.Parts.Any(partIsAbbreviatedAndNotModified));
+            var expandedTaxonNames = taxonNames.Where(tn => tn.Parts.All(partIsModifiedOrNotAbbreviated))
+                .Distinct(new TaxonNameContentEqualityComparer())
+                .ToList();
+
+            foreach (var abbreviatedTaxonName in abbreviatedTaxonNames)
+            {
+                this.logger?.Log(abbreviatedTaxonName);
+
+                var query = expandedTaxonNames.AsQueryable();
+
+                foreach (var taxonNamePart in abbreviatedTaxonName.Parts)
+                {
+                    query = query.Where(e => e.Parts.FirstOrDefault(taxonNamePart.MatchExpression) != null);
+                }
+
+                var reducedQuery = query.Select(e => new MinimalTaxonName
+                {
+                    Parts = e.Parts.Select(p => new MinimalTaxonNamePart
+                    {
+                        FullName = p.FullName,
+                        Rank = p.Rank
+                    })
+                })
+                .Distinct();
+
+                var matches = reducedQuery.ToList();
+                if (matches.Count < 1)
+                {
+                    this.logger?.Log("\tNo matches.");
+                }
+                else if (matches.Count > 1)
+                {
+                    this.logger?.Log("\tMultiple matches:");
+                    foreach (var item in matches)
+                    {
+                        this.logger.Log("\t{0}", item);
+                    }
+                }
+                else
+                {
+                    var match = matches.Single();
+                    this.logger?.Log("\tSubstitution: {0}", match);
+                    foreach (var part in abbreviatedTaxonName.Parts.Where(partIsAbbreviatedAndNotModified))
+                    {
+                        var name = match.Parts.First(p => p.Rank == part.Rank).FullName;
+                        part.FullName = name;
+                        part.IsModified = true;
+                    }
+                }
+
+                this.logger?.Log();
+            }
+        }
+
         private IQueryable<ITaxonName> GetContextTaxonVectorModel(XmlNode context)
         {
             var taxa = context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
@@ -201,7 +272,24 @@
                 .Select(t => new TaxonName(t))
                 .ToArray();
 
-            return new HashSet<ITaxonName>(taxa).AsQueryable();
+            return taxa.AsQueryable();
+        }
+
+        private void ImportExpandedItems(XmlNode context, IQueryable<ITaxonName> taxonNames)
+        {
+            var modifiedTaxonNameParts = taxonNames
+                .Where(tn => tn.Parts.FirstOrDefault(p => p.IsModified) != null)
+                .SelectMany(tn => tn.Parts.Where(p => p.IsModified))
+                .ToArray();
+
+            modifiedTaxonNameParts.AsParallel()
+                .ForAll(p =>
+                {
+                    var xpath = $".//{XmlInternalSchemaConstants.TaxonNamePartElementName}[@{XmlInternalSchemaConstants.IdAttributeName}='{p.Id}']";
+
+                    var taxonNamePartElement = context.SelectSingleNode(xpath) as XmlElement;
+                    taxonNamePartElement.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, p.FullName);
+                });
         }
 
         private void ForceExactSpeciesMatchExpand(XmlNode context)
@@ -209,12 +297,6 @@
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
-            }
-
-            var taxonNames = this.GetContextTaxonVectorModel(context);
-            foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
-            {
-                this.logger?.Log("{0} {1} {2} | {3}", taxonName.Id, taxonName.Type, taxonName.Position, string.Join(" / ", taxonName.Parts.Select(p => p.FullName + "_" + p.Rank).ToArray()));
             }
 
             string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath}";
@@ -290,6 +372,18 @@
 
                 this.logger?.Log();
             }
+        }
+
+        private void PrintContextVectorModel(IQueryable<ITaxonName> taxonNames)
+        {
+            this.logger?.Log();
+
+            foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
+            {
+                this.logger?.Log(taxonName);
+            }
+
+            this.logger?.Log();
         }
 
         private void PrintMethodMessage(string name)
