@@ -194,14 +194,14 @@
             context.InnerXml = xml;
         }
 
-        private IQueryable<TaxonName> GetContextTaxonVectorModel(XmlNode context)
+        private IQueryable<ITaxonName> GetContextTaxonVectorModel(XmlNode context)
         {
             var taxa = context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
                 .Cast<XmlNode>()
                 .Select(t => new TaxonName(t))
                 .ToArray();
 
-            return new HashSet<TaxonName>(taxa).AsQueryable();
+            return new HashSet<ITaxonName>(taxa).AsQueryable();
         }
 
         private void ForceExactSpeciesMatchExpand(XmlNode context)

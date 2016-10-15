@@ -5,7 +5,7 @@
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Constants;
 
-    public class TaxonName
+    public class TaxonName : ITaxonName
     {
         private const long PositionDefaultValue = 0L;
 
@@ -13,7 +13,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.Position = PositionDefaultValue;
-            this.Parts = new HashSet<TaxonNamePart>();
+            this.Parts = new HashSet<ITaxonNamePart>();
         }
 
         public TaxonName(XmlNode node)
@@ -37,7 +37,7 @@
                 this.Position = PositionDefaultValue;
             }
 
-            this.Parts = new HashSet<TaxonNamePart>();
+            this.Parts = new HashSet<ITaxonNamePart>();
             foreach (XmlNode taxonNamePart in node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName))
             {
                 this.Parts.Add(new TaxonNamePart(taxonNamePart));
@@ -50,6 +50,6 @@
 
         public string Type { get; set; }
 
-        public ICollection<TaxonNamePart> Parts { get; set; }
+        public ICollection<ITaxonNamePart> Parts { get; set; }
     }
 }

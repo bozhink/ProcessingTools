@@ -4,7 +4,7 @@
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Constants;
 
-    public class TaxonNamePart
+    public class TaxonNamePart : ITaxonNamePart
     {
         private string name;
 
