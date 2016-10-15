@@ -1,30 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Processors.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
 
     [Description("Expand lower taxa.")]
     public class ExpandLowerTaxaController : TaggerControllerFactory, IExpandLowerTaxaController
     {
-        private readonly ILogger logger;
+        private readonly IExpander parser;
 
-        public ExpandLowerTaxaController(IDocumentFactory documentFactory, ILogger logger)
+        public ExpandLowerTaxaController(IDocumentFactory documentFactory, IExpander parser)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            this.parser = parser;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var expander = new Expander(this.logger);
-
-            await expander.Parse(document.XmlDocument.DocumentElement);
+            await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

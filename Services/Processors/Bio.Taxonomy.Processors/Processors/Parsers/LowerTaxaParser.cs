@@ -22,16 +22,12 @@
     public class LowerTaxaParser : ILowerTaxaParser
     {
         private const string InfraRank = "infraspecific-rank";
-        private const string UncertaintyRank = "uncertainty-rank";
-
-        private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
-
         private const string InfraRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + InfraRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
-        private const string UncertaintyRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + UncertaintyRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
-
-        private const string SelectLowerTaxaWithoutChildNodesXPath = ".//tn[@type='lower'][not(*)]";
         private const string SelectLowerTaxaWithInvalidChildNodesXPath = ".//tn[@type='lower'][count(*) != count(tn-part)]";
-
+        private const string SelectLowerTaxaWithoutChildNodesXPath = ".//tn[@type='lower'][not(*)]";
+        private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
+        private const string UncertaintyRank = "uncertainty-rank";
+        private const string UncertaintyRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + UncertaintyRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
         private readonly ILogger logger;
 
         public LowerTaxaParser(ILogger logger)
@@ -50,15 +46,6 @@
             {
                 return this.ParseSync(context);
             });
-        }
-
-        private object ParseSync(XmlNode context)
-        {
-            this.ParseLowerTaxaWithoutBasionym(context);
-            this.ParseLowerTaxaWithBasionym(context);
-            this.RemoveWrappingItalics(context);
-
-            return true;
         }
 
         private static string GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType type)
@@ -419,24 +406,6 @@
                 });
         }
 
-        private void ParseLowerTaxaWithoutBasionym(XmlNode context)
-        {
-            try
-            {
-                context.SelectNodes(SelectLowerTaxaWithoutChildNodesXPath)
-                    .Cast<XmlNode>()
-                    .AsParallel()
-                    .ForAll(lowerTaxon =>
-                    {
-                        lowerTaxon.InnerXml = ParseLower(lowerTaxon.InnerXml);
-                    });
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, "Parse lower taxa without basionym.");
-            }
-        }
-
         private void ParseLowerTaxaWithBasionym(XmlNode context)
         {
             try
@@ -516,6 +485,33 @@
             }
         }
 
+        private void ParseLowerTaxaWithoutBasionym(XmlNode context)
+        {
+            try
+            {
+                context.SelectNodes(SelectLowerTaxaWithoutChildNodesXPath)
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(lowerTaxon =>
+                    {
+                        lowerTaxon.InnerXml = ParseLower(lowerTaxon.InnerXml);
+                    });
+            }
+            catch (Exception e)
+            {
+                this.logger?.Log(e, "Parse lower taxa without basionym.");
+            }
+        }
+
+        private object ParseSync(XmlNode context)
+        {
+            this.ParseLowerTaxaWithoutBasionym(context);
+            this.ParseLowerTaxaWithBasionym(context);
+            this.RemoveWrappingItalics(context);
+
+            return true;
+        }
+
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)
         {
             const string SingleWordTaxonNameXPathFormat = "//tn[@type='lower'][count(tn-part) = 1][{0}]/{0}";
@@ -534,6 +530,15 @@
 
             // Process single-word-taxon-names tagged with type species.
             this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath), listOfNonSingleWordTaxonNameParts);
+        }
+
+        private void RemoveWrappingItalics(XmlNode context)
+        {
+            // Remove wrapping i around tn[tn-part[@type='subgenus']]
+            context.InnerXml = Regex.Replace(
+                context.InnerXml,
+                @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>",
+                "$1");
         }
 
         private void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<TaxonNamePart> listOfNonSingleWordTaxonNameParts)
@@ -566,15 +571,6 @@
                         }
                     }
                 });
-        }
-
-        private void RemoveWrappingItalics(XmlNode context)
-        {
-            // Remove wrapping i around tn[tn-part[@type='subgenus']]
-            context.InnerXml = Regex.Replace(
-                context.InnerXml,
-                @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>",
-                "$1");
         }
     }
 }

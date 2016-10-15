@@ -5,8 +5,8 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+    using ProcessingTools.Contracts;
 
     [TestFixture]
     public class ParseLowerTaxaControllerTests

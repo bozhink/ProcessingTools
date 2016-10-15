@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts.Parsers;
     using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy.Extensions;
@@ -14,7 +15,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
 
-    public class Expander : IXmlContextParser
+    public class Expander : IExpander
     {
         private readonly ILogger logger;
 
@@ -47,7 +48,7 @@
             }
 
             // In this method it is supposed that the subspecies name is not shortened
-            PrintMethodMessage(nameof(this.StableExpand));
+            this.PrintMethodMessage(nameof(this.StableExpand));
 
             var shortTaxaListUnique = context.GetListOfShortenedTaxa();
             var nonShortTaxaListUnique = context.GetListOfNonShortenedTaxa();
@@ -64,7 +65,7 @@
                 string replace = text;
 
                 var sp = new Species(shortTaxon);
-                PrintNextShortened(sp);
+                this.PrintNextShortened(sp);
 
                 foreach (var sp1 in speciesList)
                 {
@@ -83,14 +84,14 @@
                         {
                             if (string.IsNullOrWhiteSpace(sp1.SubgenusName))
                             {
-                                PrintSubstitutionMessage(sp, sp1);
+                                this.PrintSubstitutionMessage(sp, sp1);
                                 replace = replace
                                     .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
                                     .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
                             }
                             else
                             {
-                                PrintSubstitutionMessageFail(sp, sp1);
+                                this.PrintSubstitutionMessageFail(sp, sp1);
                             }
                         }
                     }
@@ -98,7 +99,7 @@
                     {
                         if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                         {
-                            PrintSubstitutionMessage(sp, sp1);
+                            this.PrintSubstitutionMessage(sp, sp1);
                             replace = replace
                                 .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
                                 .RegexReplace("(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName)
