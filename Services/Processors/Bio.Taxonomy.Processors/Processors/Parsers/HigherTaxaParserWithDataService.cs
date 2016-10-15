@@ -122,7 +122,7 @@
                 .ForAll(tn =>
                 {
                     XmlElement taxonNamePart = tn.OwnerDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
-                    taxonNamePart.SetAttribute(XmlInternalSchemaConstants.TaxonNameTypeAttributeName, rank);
+                    taxonNamePart.SetAttribute(XmlInternalSchemaConstants.TypeAttributeName, rank);
                     taxonNamePart.InnerXml = tn.InnerXml;
                     tn.InnerXml = taxonNamePart.OuterXml;
                 });

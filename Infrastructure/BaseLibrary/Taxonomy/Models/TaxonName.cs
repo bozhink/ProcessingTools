@@ -21,7 +21,7 @@
             }
 
             this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
-            this.Type = node.Attributes[XmlInternalSchemaConstants.TaxonNameTypeAttributeName]?.InnerText ?? string.Empty;
+            this.Type = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName]?.InnerText ?? string.Empty;
 
             this.Parts = new HashSet<TaxonNamePart>();
             foreach (XmlNode taxonNamePart in node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName))

@@ -54,7 +54,7 @@
         protected XmlElement CreateNewTaxonNameXmlElement(IDocument document, TaxonType type)
         {
             XmlElement tn = document.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
-            tn.SetAttribute(XmlInternalSchemaConstants.TaxonNameTypeAttributeName, type.ToString().ToLower());
+            tn.SetAttribute(XmlInternalSchemaConstants.TypeAttributeName, type.ToString().ToLower());
             return tn;
         }
 

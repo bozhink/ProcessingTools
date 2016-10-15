@@ -22,10 +22,10 @@
 
             this.Name = node.InnerText;
 
-            this.Rank = node.Attributes[XmlInternalSchemaConstants.TaxonNamePartRankAttributeName]?.InnerText ?? string.Empty;
+            this.Rank = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName]?.InnerText ?? string.Empty;
             this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
 
-            var fullNameAttribute = node.Attributes[XmlInternalSchemaConstants.TaxonNamePartFullNameAttributeName];
+            var fullNameAttribute = node.Attributes[XmlInternalSchemaConstants.FullNameAttributeName];
             if (fullNameAttribute == null)
             {
                 if (this.IsAbbreviated)
