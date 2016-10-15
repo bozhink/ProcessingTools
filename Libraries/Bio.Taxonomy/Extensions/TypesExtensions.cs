@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Extensions
 {
+    using System;
+    using System.Linq;
     using Constants;
     using Types;
 
@@ -42,6 +44,17 @@
                 default:
                     return TaxonType.Undefined;
             }
+        }
+
+        public static SpeciesPartType ToSpeciesPartType(this string type)
+        {
+            string typeLowerCase = type.ToLower();
+            var result = Enum.GetValues(typeof(SpeciesPartType))
+                .Cast<SpeciesPartType>()
+                .Where(r => r.ToString().ToLower() == typeLowerCase)
+                .FirstOrDefault();
+
+            return result;
         }
     }
 }

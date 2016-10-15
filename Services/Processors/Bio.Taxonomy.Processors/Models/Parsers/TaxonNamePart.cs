@@ -3,6 +3,8 @@
     using System;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Types;
 
     public class TaxonNamePart : ITaxonNamePart
     {
@@ -20,10 +22,18 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
+            this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
             this.Name = node.InnerText;
 
-            this.Rank = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName]?.InnerText ?? string.Empty;
-            this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
+            var typeAttribute = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName];
+            if (typeAttribute != null)
+            {
+                this.Rank = typeAttribute.InnerText.ToSpeciesPartType();
+            }
+            else
+            {
+                this.Rank = SpeciesPartType.Undefined;
+            }
 
             var fullNameAttribute = node.Attributes[XmlInternalSchemaConstants.FullNameAttributeName];
             if (fullNameAttribute == null)
@@ -69,7 +79,7 @@
             }
         }
 
-        public string Rank { get; set; }
+        public SpeciesPartType Rank { get; set; }
 
         public string FullName { get; set; }
 

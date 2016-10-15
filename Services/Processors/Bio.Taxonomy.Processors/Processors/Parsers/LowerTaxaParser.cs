@@ -514,10 +514,10 @@
 
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)
         {
-            const string SingleWordTaxonNameXPathFormat = "//tn[@type='lower'][count(tn-part) = 1][{0}]/{0}";
+            const string SingleWordTaxonNameXPathFormat = ".//tn[@type='lower'][count(tn-part) = 1][{0}]/{0}";
 
             const string TaxonNamePartWithValidContentXPath = "tn-part[normalize-space(.)!=''][not(@full-name)][@type]";
-            string nonSingleWordTaxonNamePartsXPath = string.Format("//tn[@type='lower'][count({0}) > 1]/{0}", TaxonNamePartWithValidContentXPath);
+            string nonSingleWordTaxonNamePartsXPath = string.Format(".//tn[@type='lower'][count({0}) > 1]/{0}", TaxonNamePartWithValidContentXPath);
 
             var listOfNonSingleWordTaxonNameParts = context.SelectNodes(nonSingleWordTaxonNamePartsXPath)
                 .Cast<XmlNode>()
@@ -564,7 +564,7 @@
                                 node.Attributes.Append(rankAttribute);
                             }
 
-                            rankAttribute.InnerText = match.Rank;
+                            rankAttribute.InnerText = match.Rank.ToString().ToLower();
 
                             // TODO: remove this line
                             this.logger?.Log("\t {1} --> {0}", match.Rank, node.InnerText);

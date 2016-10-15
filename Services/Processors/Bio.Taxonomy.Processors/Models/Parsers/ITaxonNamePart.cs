@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
+    using ProcessingTools.Bio.Taxonomy.Types;
+
     public interface ITaxonNamePart
     {
         string FullName { get; set; }
@@ -12,6 +14,6 @@
 
         string Name { get; }
 
-        string Rank { get; }
+        SpeciesPartType Rank { get; }
     }
 }

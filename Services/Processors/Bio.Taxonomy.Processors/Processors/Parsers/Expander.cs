@@ -214,7 +214,7 @@
             var taxonNames = this.GetContextTaxonVectorModel(context);
             foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
             {
-                this.logger?.Log("{0} {1} {2} | {3}", taxonName.Id, taxonName.Type, taxonName.Position, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
+                this.logger?.Log("{0} {1} {2} | {3}", taxonName.Id, taxonName.Type, taxonName.Position, string.Join(" / ", taxonName.Parts.Select(p => p.FullName + "_" + p.Rank).ToArray()));
             }
 
             string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath}";

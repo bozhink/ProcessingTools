@@ -2,6 +2,7 @@
 {
     public enum SpeciesPartType
     {
+        Undefined = 0,
         Genus,
         Subgenus,
         Supersection,
