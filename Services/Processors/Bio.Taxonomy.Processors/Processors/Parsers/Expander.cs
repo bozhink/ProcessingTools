@@ -25,6 +25,9 @@
         private const string TaxonNameElementName = "tn";
         private const string TaxonNamePartElementName = "tn-part";
 
+        private const string TaxonNamePartOfTypeGenusXPath = "tn-part[@type='genus']";
+        private const string TaxonNamePartOfTypeSpeciesXPath = "tn-part[@type='species']";
+
         private readonly ILogger logger;
 
         public Expander(ILogger logger)
@@ -140,7 +143,7 @@
                 this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
             }
 
-            string nodeListOfSpeciesInShortenedTaxaNameXPath = SelectLowerTaxaXPath + "[normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{SelectLowerTaxaXPath}[normalize-space({TaxonNamePartOfTypeSpeciesXPath})!=''][normalize-space({TaxonNamePartOfTypeGenusXPath})=''][normalize-space({TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{TaxonNamePartOfTypeSpeciesXPath}";
 
             var speciesUniq = context.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
                 .Cast<XmlNode>()
@@ -154,7 +157,7 @@
 
             foreach (string species in speciesUniq)
             {
-                var genera = context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
+                var genera = context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space({TaxonNamePartOfTypeSpeciesXPath})='{species}'][normalize-space({TaxonNamePartOfTypeGenusXPath})!='' or normalize-space({TaxonNamePartOfTypeGenusXPath}/@full-name)!='']/{TaxonNamePartOfTypeGenusXPath}")
                     .Cast<XmlElement>()
                     .Select(g =>
                     {
@@ -187,7 +190,7 @@
                         string genus = speciesGenusPairs[species].FirstOrDefault();
                         this.logger?.Log(genus);
 
-                        context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
+                        context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space({TaxonNamePartOfTypeSpeciesXPath})='{species}'][normalize-space({TaxonNamePartOfTypeGenusXPath})=''][normalize-space({TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{TaxonNamePartOfTypeGenusXPath}")
                             .Cast<XmlElement>()
                             .AsParallel()
                             .ForAll(t =>
@@ -244,7 +247,7 @@
 
             var document = node.OwnerDocument();
 
-            string xpath = SelectLowerTaxaXPath + "[not(tn-part[@full-name=''])][tn-part[@type='genus']]";
+            string xpath = $"{SelectLowerTaxaXPath}[not(tn-part[@full-name=''])][{TaxonNamePartOfTypeGenusXPath}]";
             var result = node.SelectNodes(xpath)
                 .Cast<XmlNode>()
                 .Select(currentNode =>
@@ -294,8 +297,7 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
-            string xpath = SelectLowerTaxaXPath + "[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
+            string xpath = $"{SelectLowerTaxaXPath}[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][{TaxonNamePartOfTypeGenusXPath}][normalize-space({TaxonNamePartOfTypeSpeciesXPath})!='']";
             var result = node.GetStringListOfUniqueXmlNodes(xpath);
 
             return new HashSet<string>(result);
