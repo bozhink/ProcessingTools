@@ -1,9 +1,11 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Parsers
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
@@ -215,53 +217,71 @@
                 .Distinct(new TaxonNameContentEqualityComparer())
                 .ToList();
 
-            foreach (var abbreviatedTaxonName in abbreviatedTaxonNames)
-            {
-                this.logger?.Log(abbreviatedTaxonName);
+            var messages = new ConcurrentQueue<string>();
 
-                var query = expandedTaxonNames.AsQueryable();
-
-                foreach (var taxonNamePart in abbreviatedTaxonName.Parts)
+            abbreviatedTaxonNames.AsParallel()
+                .ForAll(abbreviatedTaxonName =>
                 {
-                    query = query.Where(e => e.Parts.FirstOrDefault(taxonNamePart.MatchExpression) != null);
-                }
+                    var messageBag = new StringBuilder();
+                    messageBag.Append(abbreviatedTaxonName);
+                    messageBag.AppendLine();
 
-                var reducedQuery = query.Select(e => new MinimalTaxonName
-                {
-                    Parts = e.Parts.Select(p => new MinimalTaxonNamePart
+                    var query = expandedTaxonNames.AsQueryable();
+
+                    foreach (var taxonNamePart in abbreviatedTaxonName.Parts.Where(p => p.Rank != SpeciesPartType.Undefined))
                     {
-                        FullName = p.FullName,
-                        Rank = p.Rank
+                        query = query.Where(e => e.Parts.Any(taxonNamePart.MatchExpression));
+                    }
+
+                    var reducedQuery = query.Select(e => new MinimalTaxonName
+                    {
+                        Parts = e.Parts.Select(p => new MinimalTaxonNamePart
+                        {
+                            FullName = p.FullName,
+                            Rank = p.Rank
+                        })
                     })
-                })
-                .Distinct();
+                    .Distinct();
 
-                var matches = reducedQuery.ToList();
-                if (matches.Count < 1)
-                {
-                    this.logger?.Log("\tNo matches.");
-                }
-                else if (matches.Count > 1)
-                {
-                    this.logger?.Log("\tMultiple matches:");
-                    foreach (var item in matches)
+                    var matches = reducedQuery.ToList();
+                    if (matches.Count < 1)
                     {
-                        this.logger.Log("\t{0}", item);
+                        messageBag.Append("\tNo matches.");
+                        messageBag.AppendLine();
                     }
-                }
-                else
-                {
-                    var match = matches.Single();
-                    this.logger?.Log("\tSubstitution: {0}", match);
-                    foreach (var part in abbreviatedTaxonName.Parts.Where(partIsAbbreviatedAndNotModified))
+                    else if (matches.Count > 1)
                     {
-                        var name = match.Parts.First(p => p.Rank == part.Rank).FullName;
-                        part.FullName = name;
-                        part.IsModified = true;
+                        messageBag.Append("\tMultiple matches:");
+                        messageBag.AppendLine();
+                        foreach (var item in matches)
+                        {
+                            messageBag.AppendFormat("\t{0}", item);
+                            messageBag.AppendLine();
+                        }
                     }
-                }
+                    else
+                    {
+                        var match = matches.Single();
 
-                this.logger?.Log();
+                        messageBag.AppendFormat("\tSubstitution: {0}", match);
+                        messageBag.AppendLine();
+
+                        foreach (var part in abbreviatedTaxonName.Parts.Where(partIsAbbreviatedAndNotModified))
+                        {
+                            var name = match.Parts.First(p => p.Rank == part.Rank).FullName;
+                            part.FullName = name;
+                            part.IsModified = true;
+                        }
+                    }
+
+                    messageBag.AppendLine();
+
+                    messages.Enqueue(messageBag.ToString());
+                });
+
+            foreach (var message in messages)
+            {
+                this.logger?.Log(message);
             }
         }
 
