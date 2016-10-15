@@ -10,7 +10,6 @@
     using Contracts.Parsers;
     using Models.Parsers;
 
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
@@ -18,6 +17,14 @@
 
     public class Expander : IExpander
     {
+        private const string SelectLowerTaxaXPath = ".//tn[@type='lower']";
+
+        private const string FullNameAttributeName = "full-name";
+        private const string TypeAttributeName = "type";
+
+        private const string TaxonNameElementName = "tn";
+        private const string TaxonNamePartElementName = "tn-part";
+
         private readonly ILogger logger;
 
         public Expander(ILogger logger)
@@ -123,7 +130,7 @@
             }
 
             ICollection<TaxonName> taxonNames = new List<TaxonName>();
-            context.SelectNodes(".//tn[@type='lower']")
+            context.SelectNodes(SelectLowerTaxaXPath)
                 .Cast<XmlNode>()
                 .ToList()
                 .ForEach(t => taxonNames.Add(new TaxonName(t)));
@@ -133,7 +140,7 @@
                 this.logger?.Log("{0} {1} | {2}", taxonName.Id, taxonName.Type, string.Join(" / ", taxonName.Parts.Select(p => p.FullName).ToArray()));
             }
 
-            string nodeListOfSpeciesInShortenedTaxaNameXPath = ".//tn[@type='lower'][normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = SelectLowerTaxaXPath + "[normalize-space(tn-part[@type='species'])!=''][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='species']";
 
             var speciesUniq = context.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
                 .Cast<XmlNode>()
@@ -147,13 +154,13 @@
 
             foreach (string species in speciesUniq)
             {
-                var genera = context.SelectNodes($".//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
+                var genera = context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])!='' or normalize-space(tn-part[@type='genus']/@full-name)!='']/tn-part[@type='genus']")
                     .Cast<XmlElement>()
                     .Select(g =>
                     {
-                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes["full-name"] != null)
+                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes[FullNameAttributeName] != null)
                         {
-                            return g.Attributes["full-name"].InnerText;
+                            return g.Attributes[FullNameAttributeName].InnerText;
                         }
                         else
                         {
@@ -180,15 +187,15 @@
                         string genus = speciesGenusPairs[species].FirstOrDefault();
                         this.logger?.Log(genus);
 
-                        context.SelectNodes($".//tn[@type='lower'][normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
+                        context.SelectNodes($"{SelectLowerTaxaXPath}[normalize-space(tn-part[@type='species'])='{species}'][normalize-space(tn-part[@type='genus'])=''][normalize-space(tn-part[@type='genus']/@full-name)='']/tn-part[@type='genus']")
                             .Cast<XmlElement>()
                             .AsParallel()
                             .ForAll(t =>
                             {
-                                var fullNameAttribute = t.Attributes["full-name"];
+                                var fullNameAttribute = t.Attributes[FullNameAttributeName];
                                 if (fullNameAttribute == null)
                                 {
-                                    t.SetAttribute("full-name", genus);
+                                    t.SetAttribute(FullNameAttributeName, genus);
                                 }
                                 else
                                 {
@@ -235,22 +242,22 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            var document = (node is XmlDocument ? node : node.OwnerDocument) as XmlDocument;
+            var document = node.OwnerDocument();
 
-            string xpath = ".//tn[@type='lower'][not(tn-part[@full-name=''])][tn-part[@type='genus']]";
+            string xpath = SelectLowerTaxaXPath + "[not(tn-part[@full-name=''])][tn-part[@type='genus']]";
             var result = node.SelectNodes(xpath)
                 .Cast<XmlNode>()
                 .Select(currentNode =>
                 {
-                    XmlElement taxonNameElement = document.CreateElement("tn");
+                    XmlElement taxonNameElement = document.CreateElement(TaxonNameElementName);
                     foreach (XmlNode innerNode in currentNode.SelectNodes(".//*"))
                     {
-                        XmlElement taxonNamePartElement = document.CreateElement("tn-part");
+                        XmlElement taxonNamePartElement = document.CreateElement(TaxonNamePartElementName);
 
                         // Copy only *type* attributes
                         foreach (XmlAttribute attribute in innerNode.Attributes)
                         {
-                            if (attribute.Name.Contains("type"))
+                            if (attribute.Name.Contains(TypeAttributeName))
                             {
                                 XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
                                 typeAttribute.InnerText = attribute.InnerText;
@@ -259,7 +266,7 @@
                         }
 
                         // Gets the value of the @full-name attribute if present or the content of the node
-                        var fullNameAttribute = innerNode.Attributes["full-name"];
+                        var fullNameAttribute = innerNode.Attributes[FullNameAttributeName];
                         if (fullNameAttribute != null && !string.IsNullOrWhiteSpace(fullNameAttribute.InnerText))
                         {
                             taxonNamePartElement.InnerText = fullNameAttribute.InnerText;
@@ -288,7 +295,7 @@
             }
 
             ////string xpath = "//tp:taxon-name[@type='lower'][tp:taxon-name-part[@full-name[normalize-space(.)='']]][tp:taxon-name-part[@taxon-name-part-type='genus']][normalize-space(tp:taxon-name-part[@taxon-name-part-type='species'])!='']";
-            string xpath = ".//tn[@type='lower'][tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
+            string xpath = SelectLowerTaxaXPath + "[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][tn-part[@type='genus']][normalize-space(tn-part[@type='species'])!='']";
             var result = node.GetStringListOfUniqueXmlNodes(xpath);
 
             return new HashSet<string>(result);
