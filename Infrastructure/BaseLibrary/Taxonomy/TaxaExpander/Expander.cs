@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Xml;
 
     using Models;
@@ -13,7 +14,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
 
-    public class Expander
+    public class Expander : IXmlContextParser
     {
         private readonly ILogger logger;
 
@@ -22,27 +23,23 @@
             this.logger = logger;
         }
 
-        private static void PrintMethodMessage(string name, ILogger logger)
+        public async Task<object> Parse(XmlNode context)
         {
-            logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            await Task.Run(() =>
+            {
+                this.StableExpand(context);
+                this.ForceExactSpeciesMatchExpand(context);
+            });
+
+            return true;
         }
 
-        private static void PrintNextShortened(Species sp, ILogger logger)
-        {
-            logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
-        }
-
-        private static void PrintSubstitutionMessage(Species original, Species substitution, ILogger logger)
-        {
-            logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
-        }
-
-        private static void PrintSubstitutionMessageFail(Species original, Species substitution, ILogger logger)
-        {
-            logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
-        }
-
-        public void StableExpand(XmlNode context)
+        private void StableExpand(XmlNode context)
         {
             if (context == null)
             {
@@ -50,7 +47,7 @@
             }
 
             // In this method it is supposed that the subspecies name is not shortened
-            PrintMethodMessage("StableExpand", this.logger);
+            PrintMethodMessage(nameof(this.StableExpand));
 
             var shortTaxaListUnique = context.GetListOfShortenedTaxa();
             var nonShortTaxaListUnique = context.GetListOfNonShortenedTaxa();
@@ -67,7 +64,7 @@
                 string replace = text;
 
                 var sp = new Species(shortTaxon);
-                PrintNextShortened(sp, this.logger);
+                PrintNextShortened(sp);
 
                 foreach (var sp1 in speciesList)
                 {
@@ -86,14 +83,14 @@
                         {
                             if (string.IsNullOrWhiteSpace(sp1.SubgenusName))
                             {
-                                PrintSubstitutionMessage(sp, sp1, this.logger);
+                                PrintSubstitutionMessage(sp, sp1);
                                 replace = replace
                                     .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
                                     .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
                             }
                             else
                             {
-                                PrintSubstitutionMessageFail(sp, sp1, this.logger);
+                                PrintSubstitutionMessageFail(sp, sp1);
                             }
                         }
                     }
@@ -101,7 +98,7 @@
                     {
                         if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
                         {
-                            PrintSubstitutionMessage(sp, sp1, this.logger);
+                            PrintSubstitutionMessage(sp, sp1);
                             replace = replace
                                 .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
                                 .RegexReplace("(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName)
@@ -116,7 +113,7 @@
             context.InnerXml = xml;
         }
 
-        public void ForceExactSpeciesMatchExpand(XmlNode context)
+        private void ForceExactSpeciesMatchExpand(XmlNode context)
         {
             if (context == null)
             {
@@ -207,6 +204,26 @@
 
                 this.logger?.Log();
             }
+        }
+
+        private void PrintMethodMessage(string name)
+        {
+            this.logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
+        }
+
+        private void PrintNextShortened(Species sp)
+        {
+            this.logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
+        }
+
+        private void PrintSubstitutionMessage(Species original, Species substitution)
+        {
+            this.logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
+        }
+
+        private void PrintSubstitutionMessageFail(Species original, Species substitution)
+        {
+            this.logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
         }
     }
 }

@@ -20,16 +20,11 @@
             this.logger = logger;
         }
 
-        protected override Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            return Task.Run(() =>
-            {
-                var expander = new Expander(this.logger);
+            var expander = new Expander(this.logger);
 
-                expander.StableExpand(document.XmlDocument.DocumentElement);
-
-                expander.ForceExactSpeciesMatchExpand(document.XmlDocument.DocumentElement);
-            });
+            await expander.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }
