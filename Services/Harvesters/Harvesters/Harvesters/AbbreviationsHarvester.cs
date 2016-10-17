@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters
 {
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Linq;
     using System.Threading.Tasks;
@@ -20,6 +21,7 @@
 
         public AbbreviationsHarvester()
         {
+            // TODO: ConfigurationManager
             this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePathKey];
         }
 
@@ -27,7 +29,14 @@
         {
             var items = await document.DeserializeXQueryTransformOutput<AbbreviationsXmlModel>(this.abbreviationsXQueryFileName);
 
-            return items?.Abbreviations?.AsQueryable<IAbbreviationModel>();
+            if (items?.Abbreviations == null)
+            {
+                return null;
+            }
+
+            var result = new HashSet<IAbbreviationModel>(items?.Abbreviations);
+
+            return result.AsQueryable();
         }
     }
 }

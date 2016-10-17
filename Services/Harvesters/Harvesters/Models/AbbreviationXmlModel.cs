@@ -21,5 +21,15 @@
 
         [XmlElement("value")]
         public string Value { get; set; }
+
+        public override int GetHashCode()
+        {
+            return (this.ContentType + this.Value + this.Definition).GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.GetHashCode() == obj.GetHashCode();
+        }
     }
 }

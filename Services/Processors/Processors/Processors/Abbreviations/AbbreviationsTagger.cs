@@ -122,14 +122,14 @@
             await Task.WhenAll(tasks);
         }
 
-        private Task<object> TagAbbreviations(XmlNode context, IQueryable<IAbbreviation> abbreviationDefinitions) => Task.Run<object>(() =>
+        private Task<object> TagAbbreviations(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions) => Task.Run<object>(() =>
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (abbreviationDefinitions == null || abbreviationDefinitions.LongCount() < 1L)
+            if (abbreviationDefinitions == null || abbreviationDefinitions.Count() < 1)
             {
                 return 0;
             }
@@ -164,7 +164,7 @@
             return abbreviationSet.Count;
         });
 
-        private async Task<IQueryable<IAbbreviation>> GetAbbreviationCollection(XmlNode contextToHarvest)
+        private async Task<IEnumerable<IAbbreviation>> GetAbbreviationCollection(XmlNode contextToHarvest)
         {
             if (contextToHarvest == null)
             {
@@ -174,11 +174,14 @@
             var abbreviations = await this.abbreviationsHarvester.Harvest(contextToHarvest);
             if (abbreviations != null)
             {
-                return abbreviations
+                var result = abbreviations
                     .Where(a => !string.IsNullOrWhiteSpace(a.Value))
                     .Where(a => !string.IsNullOrWhiteSpace(a.Definition))
                     .Where(a => a.Value.Length > 1)
-                    .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition));
+                    .Select(a => new Abbreviation(a.Value, a.ContentType, a.Definition))
+                    .ToList();
+
+                return result;
             }
 
             return null;
