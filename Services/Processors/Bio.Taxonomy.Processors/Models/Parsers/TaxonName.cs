@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Xml;
 
@@ -43,11 +42,10 @@
                 this.Position = PositionDefaultValue;
             }
 
-            var parts = new HashSet<ITaxonNamePart>();
-            foreach (XmlNode taxonNamePart in node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName))
-            {
-                parts.Add(new TaxonNamePart(taxonNamePart));
-            }
+            var parts = node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName)
+                .Cast<XmlNode>()
+                .Select(n => new TaxonNamePart(n))
+                .ToArray<ITaxonNamePart>();
 
             this.Parts = parts.AsQueryable();
         }

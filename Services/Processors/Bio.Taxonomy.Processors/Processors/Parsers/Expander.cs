@@ -15,6 +15,7 @@
     using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -39,20 +40,27 @@
 
             await Task.Run(() =>
             {
-                this.AddFullNameAttributeToTaxonNamePartElements(context);
+                this.EnsureFullNameAttributeToTaxonNamePartElements(context);
 
                 this.AddIdAndPositionAttributesToTaxonNameElements(context);
 
+                try
+                {
 
-                var taxonNames = this.GetContextTaxonVectorModel(context);
+                    var taxonNames = this.GetContextTaxonVectorModel(context);
 
-                this.PrintContextVectorModel(taxonNames);
+                    this.PrintContextVectorModel(taxonNames);
 
-                this.StableExpand(taxonNames);
-                this.ImportExpandedItems(context, taxonNames);
+                    this.StableExpand(taxonNames);
+                    this.ImportModifiedItems(context, taxonNames);
 
-                this.StableExpand(context);
-                this.ForceExactSpeciesMatchExpand(context);
+                    this.StableExpand(context);
+                    this.ForceExactSpeciesMatchExpand(context);
+                }
+                catch(Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                }
 
                 this.RemoveIdAndPositionAttributesToTaxonNameElements(context);
             });
@@ -60,21 +68,35 @@
             return true;
         }
 
-        private void AddFullNameAttributeToTaxonNamePartElements(XmlNode context)
+        private void EnsureFullNameAttributeToTaxonNamePartElements(XmlNode context)
         {
             context.SelectNodes($"{XmlInternalSchemaConstants.SelectTaxonNamePartsOfLowerTaxonNamesXPath}[not(@{XmlInternalSchemaConstants.FullNameAttributeName})]")
                 .Cast<XmlElement>()
                 .AsParallel()
                 .ForAll(n =>
                 {
-                    string content = n.InnerText;
-                    if (string.IsNullOrWhiteSpace(content) || content.Contains("."))
+                    var rank = n.GetAttribute(XmlInternalSchemaConstants.TypeAttributeName).ToSpeciesPartType();
+                    if (rank == SpeciesPartType.Undefined)
                     {
-                        n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, string.Empty);
+                        if (n.HasAttribute(XmlInternalSchemaConstants.FullNameAttributeName))
+                        {
+                            n.RemoveAttribute(XmlInternalSchemaConstants.FullNameAttributeName);
+                        }
                     }
                     else
                     {
-                        n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, content);
+                        if (!n.HasAttribute(XmlInternalSchemaConstants.FullNameAttributeName))
+                        {
+                            string content = n.InnerText;
+                            if (string.IsNullOrWhiteSpace(content) || content.Contains("."))
+                            {
+                                n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, string.Empty);
+                            }
+                            else
+                            {
+                                n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, content);
+                            }
+                        }
                     }
                 });
         }
@@ -209,11 +231,12 @@
 
         private void StableExpand(IQueryable<ITaxonName> taxonNames)
         {
-            Expression<Func<ITaxonNamePart, bool>> partIsAbbreviatedAndNotModified = p => p.IsAbbreviated && !p.IsModified;
-            Expression<Func<ITaxonNamePart, bool>> partIsModifiedOrNotAbbreviated = p => p.IsModified || !p.IsAbbreviated;
+            Expression<Func<ITaxonNamePart, bool>> partIsAbbreviatedAndNotResolved = p => p.IsAbbreviated && !p.IsResolved;
+            Expression<Func<ITaxonNamePart, bool>> partIsResolvedOrNotAbbreviated = p => p.IsResolved || !p.IsAbbreviated;
+            Expression<Func<ITaxonNamePart, bool>> partIsWithMeaningfullRank = p => p.Rank != SpeciesPartType.Undefined;
 
-            var abbreviatedTaxonNames = taxonNames.Where(tn => tn.Parts.Any(partIsAbbreviatedAndNotModified));
-            var expandedTaxonNames = taxonNames.Where(tn => tn.Parts.All(partIsModifiedOrNotAbbreviated))
+            var abbreviatedTaxonNames = taxonNames.Where(tn => tn.Parts.Where(partIsWithMeaningfullRank).Any(partIsAbbreviatedAndNotResolved));
+            var expandedTaxonNames = taxonNames.Where(tn => tn.Parts.All(partIsResolvedOrNotAbbreviated))
                 .Distinct(new TaxonNameContentEqualityComparer())
                 .ToList();
 
@@ -228,49 +251,66 @@
 
                     var query = expandedTaxonNames.AsQueryable();
 
-                    foreach (var taxonNamePart in abbreviatedTaxonName.Parts.Where(p => p.Rank != SpeciesPartType.Undefined))
+                    var meaningfullTaxonNameParts = abbreviatedTaxonName.Parts.Where(partIsWithMeaningfullRank);
+
+                    // Builds the query
+                    foreach (var taxonNamePart in meaningfullTaxonNameParts)
                     {
                         query = query.Where(e => e.Parts.Any(taxonNamePart.MatchExpression));
                     }
 
-                    var reducedQuery = query.Select(e => new MinimalTaxonName
+                    // Executes the query and gets matches
+                    var matches = query.Select(e => new MinimalTaxonName
                     {
                         Parts = e.Parts.Select(p => new MinimalTaxonNamePart
                         {
+                            Name = p.Name,
                             FullName = p.FullName,
                             Rank = p.Rank
                         })
                     })
-                    .Distinct();
+                    .Distinct()
+                    .ToArray();
 
-                    var matches = reducedQuery.ToList();
-                    if (matches.Count < 1)
+                    if (matches.Length < 1)
                     {
                         messageBag.Append("\tNo matches.");
                         messageBag.AppendLine();
                     }
-                    else if (matches.Count > 1)
-                    {
-                        messageBag.Append("\tMultiple matches:");
-                        messageBag.AppendLine();
-                        foreach (var item in matches)
-                        {
-                            messageBag.AppendFormat("\t{0}", item);
-                            messageBag.AppendLine();
-                        }
-                    }
                     else
                     {
-                        var match = matches.Single();
-
-                        messageBag.AppendFormat("\tSubstitution: {0}", match);
-                        messageBag.AppendLine();
-
-                        foreach (var part in abbreviatedTaxonName.Parts.Where(partIsAbbreviatedAndNotModified))
+                        foreach (var taxonNamePart in meaningfullTaxonNameParts.Where(partIsAbbreviatedAndNotResolved))
                         {
-                            var name = match.Parts.First(p => p.Rank == part.Rank).FullName;
-                            part.FullName = name;
-                            part.IsModified = true;
+                            var matchedFullNames = matches.SelectMany(t => t.Parts.Where(p => p.Rank == taxonNamePart.Rank))
+                                .Select(p => p.FullName)
+                                .Distinct()
+                                .ToArray();
+
+                            if (matchedFullNames.Length < 1)
+                            {
+                                messageBag.AppendFormat("\tError: taxon-name-part of rank {0} does not have valid matches:", taxonNamePart.Rank);
+                                messageBag.AppendLine();
+                            }
+                            else if (matchedFullNames.Length > 1)
+                            {
+                                messageBag.AppendFormat("\tError: Multiple matches ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendLine();
+                            }
+                            else
+                            {
+                                var name = matchedFullNames[0];
+                                taxonNamePart.FullName = name;
+                                taxonNamePart.IsModified = true;
+
+                                messageBag.AppendFormat("\tSubstitution ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendLine();
+                            }
+
+                            foreach (var match in matches)
+                            {
+                                messageBag.AppendFormat("\t\t{0}", match);
+                                messageBag.AppendLine();
+                            }
                         }
                     }
 
@@ -295,10 +335,10 @@
             return taxa.AsQueryable();
         }
 
-        private void ImportExpandedItems(XmlNode context, IQueryable<ITaxonName> taxonNames)
+        private void ImportModifiedItems(XmlNode context, IQueryable<ITaxonName> taxonNames)
         {
             var modifiedTaxonNameParts = taxonNames
-                .Where(tn => tn.Parts.FirstOrDefault(p => p.IsModified) != null)
+                .Where(tn => tn.Parts.Any(p => p.IsModified))
                 .SelectMany(tn => tn.Parts.Where(p => p.IsModified))
                 .ToArray();
 

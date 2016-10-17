@@ -9,6 +9,8 @@
 
         bool IsAbbreviated { get; }
 
+        bool IsResolved { get; }
+
         bool IsModified { get; set; }
 
         Expression<Func<ITaxonNamePart, bool>> MatchExpression { get; }
