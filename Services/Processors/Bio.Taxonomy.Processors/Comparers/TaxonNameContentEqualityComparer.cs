@@ -13,7 +13,7 @@
 
         public int GetHashCode(ITaxonName obj)
         {
-            return string.Join(".", obj.Parts.Select(p => p.FullName + p.Name + p.Rank)).GetHashCode();
+            return string.Join(".", obj.Parts.Select(p => p.ContentHash)).GetHashCode();
         }
     }
 }

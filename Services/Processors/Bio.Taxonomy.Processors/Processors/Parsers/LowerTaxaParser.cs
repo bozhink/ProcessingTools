@@ -522,7 +522,7 @@
             var listOfNonSingleWordTaxonNameParts = context.SelectNodes(nonSingleWordTaxonNamePartsXPath)
                 .Cast<XmlNode>()
                 .Select(node => new TaxonNamePart(node))
-                .Distinct(new TaxonNamePartEqualityComparer())
+                .Distinct(new TaxonNamePartContentEqualityComparer())
                 .ToList();
 
             // Process single-word-taxon-names tagged with type genus.
@@ -541,7 +541,7 @@
                 "$1");
         }
 
-        private void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<TaxonNamePart> listOfNonSingleWordTaxonNameParts)
+        private void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<ITaxonNamePart> listOfNonSingleWordTaxonNameParts)
         {
             var document = context.OwnerDocument();
 

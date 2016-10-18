@@ -38,7 +38,7 @@
     <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Comparers\TaxonNameContentEqualityComparer.cs" />
-    <Compile Include="Comparers\TaxonNamePartEqualityComparer.cs" />
+    <Compile Include="Comparers\TaxonNamePartContentEqualityComparer.cs" />
     <Compile Include="Contracts\Formatters\ITreatmentFormatter.cs" />
     <Compile Include="Contracts\Parsers\IExpander.cs" />
     <Compile Include="Contracts\Parsers\IHigherTaxaParserWithDataService.cs" />

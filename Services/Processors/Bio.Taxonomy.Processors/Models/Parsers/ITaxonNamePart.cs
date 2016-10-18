@@ -9,12 +9,11 @@
 
         bool IsAbbreviated { get; }
 
-        bool IsResolved { get; }
-
         bool IsModified { get; set; }
 
+        bool IsResolved { get; }
+
         Expression<Func<ITaxonNamePart, bool>> MatchExpression { get; }
-        string Name { get; }
 
         string Pattern { get; }
     }

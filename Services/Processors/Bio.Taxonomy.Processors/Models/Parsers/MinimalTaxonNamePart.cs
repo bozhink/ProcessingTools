@@ -4,11 +4,54 @@
 
     internal class MinimalTaxonNamePart : IMinimalTaxonNamePart
     {
-        public virtual string FullName { get; set; }
+        private string fullName;
+        private string name;
+        private SpeciesPartType rank;
+        private int contentHash;
 
-        public virtual string Name { get; set; }
+        public virtual string FullName
+        {
+            get
+            {
+                return this.fullName;
+            }
 
-        public virtual SpeciesPartType Rank { get; set; }
+            set
+            {
+                this.fullName = value;
+                this.UpdateContentHash();
+            }
+        }
+
+        public virtual string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value;
+                this.UpdateContentHash();
+            }
+        }
+
+        public virtual SpeciesPartType Rank
+        {
+            get
+            {
+                return this.rank;
+            }
+
+            set
+            {
+                this.rank = value;
+                this.UpdateContentHash();
+            }
+        }
+
+        public int ContentHash => this.contentHash;
 
         public override string ToString()
         {
@@ -16,6 +59,12 @@
                 "{0} {1}",
                 this.Rank.ToString().ToLower(),
                 string.IsNullOrWhiteSpace(this.FullName) ? this.Name : this.FullName);
+        }
+
+        private void UpdateContentHash()
+        {
+            var contentString = this.FullName + this.Name + this.Rank;
+            this.contentHash = contentString.GetHashCode();
         }
     }
 }
