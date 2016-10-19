@@ -39,6 +39,14 @@ body {
     }
 }
 
+.float-border() {
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
 .outset-border {
     border: 1px #E6E6E6 solid;
     border-radius: 5px;
@@ -175,7 +183,6 @@ abbr {
 #article section {
     margin-top: 1.2em;
     margin-bottom: 1.2em;
-
     border-left: 1px dashed lightgray;
     padding-left: 10px;
 
@@ -205,11 +212,7 @@ abbr {
 }
 
 figure, .table-wrap {
-    border: 1px solid gray;
-    border-radius: 3px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
+    .float-border();
 }
 
 table:extend(.outset-border) {
@@ -381,12 +384,6 @@ h4.label {
                 }
             }
         }
-
-        > .permissions {
-            margin-top: 1.1em;
-            margin-bottom: 1.1em;
-            color: #777;
-        }
     }
 
     .notes {
@@ -394,9 +391,28 @@ h4.label {
     }
 }
 
-.supplementary-material {
+.permissions {
+    font-style: oblique;
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+    color: #777;
+}
+
+div.supplementary-material {
     margin-top: 1.2em;
     margin-bottom: 1.2em;
+    .float-border();
+
+    .dataType p, .notes p {
+        padding-left: 20px;
+        text-indent: -20px;
+    }
+
+    .attrib {
+        text-align: right;
+        padding: 5px 0 0 20px;
+        font-style: oblique;
+    }
 }
 
 .mixed-citation {
